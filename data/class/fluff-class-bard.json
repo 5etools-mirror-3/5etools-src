@@ -1,4 +1,9 @@
 {
+	"_meta": {
+		"internalCopies": [
+			"subclassFluff"
+		]
+	},
 	"classFluff": [
 		{
 			"name": "Bard",
@@ -381,11 +386,36 @@
 	],
 	"subclassFluff": [
 		{
+			"name": "Bard",
+			"shortName": "Bard",
+			"source": "XGE",
+			"className": "Bard",
+			"classSource": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "classes/XGE/Bard.webp"
+					},
+					"width": 1000,
+					"height": 491
+				}
+			]
+		},
+		{
 			"name": "College of Glamour",
 			"shortName": "Glamour",
 			"source": "XGE",
 			"className": "Bard",
 			"classSource": "PHB",
+			"_copy": {
+				"name": "Bard",
+				"shortName": "Bard",
+				"source": "XGE",
+				"className": "Bard",
+				"classSource": "PHB"
+			},
 			"entries": [
 				{
 					"type": "quote",
@@ -402,17 +432,27 @@
 			"source": "XGE",
 			"className": "Bard",
 			"classSource": "PHB",
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "classes/XGE/Swords Bard.webp"
-					},
-					"width": 732,
-					"height": 1000
+			"_copy": {
+				"name": "Bard",
+				"shortName": "Bard",
+				"source": "XGE",
+				"className": "Bard",
+				"classSource": "PHB",
+				"_mod": {
+					"images": {
+						"mode": "appendArr",
+						"items": {
+							"type": "image",
+							"href": {
+								"type": "internal",
+								"path": "classes/XGE/Swords Bard.webp"
+							},
+							"width": 732,
+							"height": 1000
+						}
+					}
 				}
-			]
+			}
 		},
 		{
 			"name": "College of Whispers",
@@ -420,6 +460,27 @@
 			"source": "XGE",
 			"className": "Bard",
 			"classSource": "PHB",
+			"_copy": {
+				"name": "Bard",
+				"shortName": "Bard",
+				"source": "XGE",
+				"className": "Bard",
+				"classSource": "PHB",
+				"_mod": {
+					"images": {
+						"mode": "appendArr",
+						"items": {
+							"type": "image",
+							"href": {
+								"type": "internal",
+								"path": "classes/XGE/Whispers Bard.webp"
+							},
+							"width": 1000,
+							"height": 578
+						}
+					}
+				}
+			},
 			"entries": [
 				{
 					"type": "quote",
@@ -427,17 +488,6 @@
 						"Speak up! It's really hard to hear you over the screaming. Nope. It's no use. I'll have to stop the screaming. Disintegrations all around, then."
 					],
 					"by": "Xanathar"
-				}
-			],
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "classes/XGE/Whispers Bard.webp"
-					},
-					"width": 1000,
-					"height": 578
 				}
 			]
 		},

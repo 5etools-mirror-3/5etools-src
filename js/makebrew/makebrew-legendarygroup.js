@@ -75,7 +75,7 @@ export class LegendaryGroupBuilder extends BuilderBase {
 
 	_renderInputMain () {
 		this._sourcesCache = MiscUtil.copy(this._ui.allSources);
-		const $wrp = this._ui.$wrpInput.empty();
+		const wrp = this._ui.wrpInput.empty();
 
 		const _cb = () => {
 			// Prefer numerical pages if possible
@@ -107,33 +107,33 @@ export class LegendaryGroupBuilder extends BuilderBase {
 			},
 		);
 		const [infoTab, lairActionsTab, regionalEffectsTab, mythicEncounterTab] = tabs;
-		$$`<div class="ve-flex-v-center w-100 no-shrink ui-tab__wrp-tab-heads--border">${tabs.map(it => it.$btnTab)}</div>`.appendTo($wrp);
-		tabs.forEach(it => it.$wrpTab.appendTo($wrp));
+		ee`<div class="ve-flex-v-center w-100 no-shrink ui-tab__wrp-tab-heads--border">${tabs.map(it => it.btnTab)}</div>`.appendTo(wrp);
+		tabs.forEach(it => it.wrpTab.appendTo(wrp));
 
 		// INFO
-		BuilderUi.$getStateIptString("Name", cb, this._state, {nullable: false, callback: () => this.pRenderSideMenu()}, "name").appendTo(infoTab.$wrpTab);
-		this._$selSource = this.$getSourceInput(cb).appendTo(infoTab.$wrpTab);
+		BuilderUi.getStateIptString("Name", cb, this._state, {nullable: false, callback: () => this.pRenderSideMenu()}, "name").appendTo(infoTab.wrpTab);
+		this._selSource = this.getSourceInput(cb).appendTo(infoTab.wrpTab);
 
 		// LAIR ACTIONS
-		this.__$getLairActionsInput(cb).appendTo(lairActionsTab.$wrpTab);
+		this.__getLairActionsInput(cb).appendTo(lairActionsTab.wrpTab);
 
 		// REGIONAL EFFECTS
-		this.__$getRegionalEffectsInput(cb).appendTo(regionalEffectsTab.$wrpTab);
+		this.__getRegionalEffectsInput(cb).appendTo(regionalEffectsTab.wrpTab);
 
 		// MYTHIC ENCOUNTER
-		this.__$getMythicEncounterEffectsInput(cb).appendTo(mythicEncounterTab.$wrpTab);
+		this.__getMythicEncounterEffectsInput(cb).appendTo(mythicEncounterTab.wrpTab);
 	}
 
-	__$getLairActionsInput (cb) {
-		return BuilderUi.$getStateIptEntries("Lair Actions", cb, this._state, {}, "lairActions");
+	__getLairActionsInput (cb) {
+		return BuilderUi.getStateIptEntries("Lair Actions", cb, this._state, {}, "lairActions");
 	}
 
-	__$getRegionalEffectsInput (cb) {
-		return BuilderUi.$getStateIptEntries("Regional Effects", cb, this._state, {}, "regionalEffects");
+	__getRegionalEffectsInput (cb) {
+		return BuilderUi.getStateIptEntries("Regional Effects", cb, this._state, {}, "regionalEffects");
 	}
 
-	__$getMythicEncounterEffectsInput (cb) {
-		return BuilderUi.$getStateIptEntries("Mythic Encounter", cb, this._state, {}, "mythicEncounter");
+	__getMythicEncounterEffectsInput (cb) {
+		return BuilderUi.getStateIptEntries("Mythic Encounter", cb, this._state, {}, "mythicEncounter");
 	}
 
 	renderOutput () {
@@ -141,7 +141,7 @@ export class LegendaryGroupBuilder extends BuilderBase {
 	}
 
 	_renderOutput () {
-		const $wrp = this._ui.$wrpOutput.empty();
+		const wrp = this._ui.wrpOutput.empty();
 
 		// initialise tabs
 		this._resetTabs({tabGroup: "output"});
@@ -156,15 +156,14 @@ export class LegendaryGroupBuilder extends BuilderBase {
 			},
 		);
 		const [legGroupTab, dataTab] = tabs;
-		$$`<div class="ve-flex-v-center w-100 no-shrink">${tabs.map(it => it.$btnTab)}</div>`.appendTo($wrp);
-		tabs.forEach(it => it.$wrpTab.appendTo($wrp));
+		ee`<div class="ve-flex-v-center w-100 no-shrink">${tabs.map(it => it.btnTab)}</div>`.appendTo(wrp);
+		tabs.forEach(it => it.wrpTab.appendTo(wrp));
 
 		// Legendary Group
-		const $tblLegGroup = $(`<table class="w-100 stats"></table>`).appendTo(legGroupTab.$wrpTab);
-		RenderBestiary.$getRenderedLegendaryGroup(this._state).appendTo($tblLegGroup);
+		const tblLegGroup = ee`<table class="w-100 stats"></table>`.appendTo(legGroupTab.wrpTab);
+		tblLegGroup.appends(RenderBestiary.getRenderedLegendaryGroup(this._state));
 
 		// Data
-		const $tblData = $(`<table class="stats stats--book mkbru__wrp-output-tab-data"></table>`).appendTo(dataTab.$wrpTab);
 		const asCode = Renderer.get().render({
 			type: "entries",
 			entries: [
@@ -175,9 +174,12 @@ export class LegendaryGroupBuilder extends BuilderBase {
 				},
 			],
 		});
-		$tblData.append(Renderer.utils.getBorderTr());
-		$tblData.append(`<tr><td colspan="6">${asCode}</td></tr>`);
-		$tblData.append(Renderer.utils.getBorderTr());
+		ee`<table class="stats stats--book mkbru__wrp-output-tab-data">
+			${Renderer.utils.getBorderTr()}
+			<tr><td colspan="6">${asCode}</td></tr>
+			${Renderer.utils.getBorderTr()}
+		</table>`
+			.appendTo(dataTab.wrpTab);
 	}
 
 	async pDoPostSave () { await this._ui.creatureBuilder.pUpdateLegendaryGroups(); }

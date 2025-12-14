@@ -28,18 +28,18 @@ class RacesSublistManager extends SublistManager {
 			(race.size || [Parser.SZ_VARIES]).map(sz => Parser.sizeAbvToFull(sz)).join("/"),
 		];
 
-		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col">
+		const ele = ee`<div class="lst__row lst__row--sublist ve-flex-col">
 				<a href="#${UrlUtil.autoEncodeHash(race)}" class="lst__row-border lst__row-inner">
 					${this.constructor._getRowCellsHtml({values: cellsText})}
 				</a>
 			</div>
-		`)
-			.contextmenu(evt => this._handleSublistItemContextMenu(evt, listItem))
-			.click(evt => this._listSub.doSelect(listItem, evt));
+		`
+			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
 		const listItem = new ListItem(
 			hash,
-			$ele,
+			ele,
 			race.name,
 			{
 				hash,
@@ -134,7 +134,7 @@ class RacesPage extends ListPage {
 	}
 
 	_renderStats_doBuildStatsTab ({ent}) {
-		this._$pgContent.empty().append(RenderRaces.$getRenderedRace(ent));
+		this._pgContent.empty().appends(RenderRaces.getRenderedRace(ent));
 	}
 }
 

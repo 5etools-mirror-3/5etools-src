@@ -3047,14 +3047,20 @@
 			"level": 1,
 			"effects": [
 				{
-					"name": "Thaumaturge",
+					"name": "Thaumaturge (Arcana)",
 					"transfer": true,
 					"changes": [
 						{
 							"key": "system.skills.arc.bonuses.check",
 							"mode": "ADD",
 							"value": "(max(1,@abilities.wis.mod))"
-						},
+						}
+					]
+				},
+				{
+					"name": "Thaumaturge (Religion)",
+					"transfer": true,
+					"changes": [
 						{
 							"key": "system.skills.rel.bonuses.check",
 							"mode": "ADD",

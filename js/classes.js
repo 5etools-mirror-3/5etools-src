@@ -362,21 +362,22 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		OmnisearchUtilsUi.addScrollTopFloat();
 		const data = await DataUtil.class.loadJSON();
 
-		const $btnReset = $("#reset");
+		const iptSearch = e_(document.getElementById("lst__search"));
+		const btnReset = e_(document.getElementById("reset"));
 		this._list = this._initList({
-			$iptSearch: $("#lst__search"),
-			$wrpList: $(`.list.classes`),
-			$btnReset,
-			$btnClear: $(`#lst__search-glass`),
+			iptSearch,
+			wrpList: e_(document.getElementById("list")),
+			btnReset,
+			btnClear: e_(document.getElementById("lst__search-glass")),
 			dispPageTagline: document.getElementById(`page__subtitle`),
 			isBindFindHotkey: true,
 		});
 		SortUtil.initBtnSortHandlers(es("#filtertools"), this._list);
 
 		this._filterBox = await this._pageFilter.pInitFilterBox({
-			$iptSearch: $(`#lst__search`),
-			$wrpFormTop: $(`#filter-search-group`),
-			$btnReset,
+			iptSearch,
+			wrpFormTop: e_(document.getElementById("filter-search-group")),
+			btnReset,
 		});
 
 		this._addData(data);
@@ -390,7 +391,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			.then(({ManageBrewUi}) => {
 				ManageBrewUi.bindBtngroupManager(e_({id: "btngroup-manager"}));
 			});
-		this._renderListFeelingLucky({isCompact: true, $btnReset, isScrollablePage: true});
+		this._renderListFeelingLucky({isCompact: true, btnReset, isScrollablePage: true});
 
 		window.onhashchange = this._pHandleHashChange.bind(this);
 
@@ -404,11 +405,11 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 		await this._pInitAndRunRender();
 
-		ListPage._checkShowAllExcluded(this._dataList, this._$pgContent);
+		ListPage._checkShowAllExcluded(this._dataList, this._$pgContent[0]);
 		this._initLinkRedirectors();
 		this._initLinkGrabbers();
 		this._initScrollToSubclassSelection();
-		this._bindLinkExportButton({$btn: $(`#btn-link-export`)});
+		this._bindLinkExportButton({btn: e_(document.getElementById("btn-link-export"))});
 		this._doBindBtnSettingsSidebar();
 
 		Hist.initialLoad = false;

@@ -148,6 +148,8 @@ export class BookUtil {
 					AnimationUtil.pRecomputeStyles()
 						.then(() => BookUtil._scrollClick(ixChapter, scrollToHeaderText, scrollToHeaderNumber));
 				}
+			} else {
+				BookUtil._scrollPageTop();
 			}
 		} else {
 			// It's the same chapter/same book

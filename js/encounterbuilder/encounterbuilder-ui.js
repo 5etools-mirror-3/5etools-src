@@ -518,9 +518,9 @@ export class EncounterBuilderUi extends BaseComponent {
 					.off("mouseover")
 					.off("mousemove")
 					.off("mouseleave")
-					.onn("mouseover", function (event) { hoverMeta.mouseOver(event, this); })
-					.onn("mousemove", function (event) { hoverMeta.mouseMove(event, this); })
-					.onn("mouseleave", function (event) { hoverMeta.mouseLeave(event, this); });
+					.onn("mouseover", evt => hoverMeta.mouseOver(evt, hovXpAdjustedInfo))
+					.onn("mousemove", evt => hoverMeta.mouseMove(evt, hovXpAdjustedInfo))
+					.onn("mouseleave", evt => hoverMeta.mouseLeave(evt, hovXpAdjustedInfo));
 			} else {
 				Renderer.hover.updatePredefinedHover(rdState.infoHoverId, infoEntry);
 			}

@@ -19,17 +19,17 @@ class ConditionsDiseasesSublistManager extends SublistManager {
 	pGetSublistItem (it, hash) {
 		const cellsText = [it.type || PageFilterConditionsDiseases.getDisplayProp(it.__prop), it.name];
 
-		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col">
+		const ele = ee`<div class="lst__row lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="lst__row-border lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
-		</div>`)
-			.contextmenu(evt => this._handleSublistItemContextMenu(evt, listItem))
-			.click(evt => this._listSub.doSelect(listItem, evt));
+		</div>`
+			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
 		const listItem = new ListItem(
 			hash,
-			$ele,
+			ele,
 			it.name,
 			{
 				hash,
@@ -104,7 +104,7 @@ class ConditionsDiseasesPage extends ListPage {
 	}
 
 	_renderStats_doBuildStatsTab ({ent}) {
-		this._$pgContent.empty().append(RenderConditionDiseases.$getRenderedConditionDisease(ent));
+		this._pgContent.empty().appends(RenderConditionDiseases.getRenderedConditionDisease(ent));
 	}
 }
 

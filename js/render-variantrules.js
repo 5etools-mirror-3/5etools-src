@@ -1,7 +1,7 @@
 "use strict";
 
 class RenderVariantRules {
-	static $getRenderedVariantRule (rule) {
+	static getRenderedVariantRule (rule) {
 		const cpy = MiscUtil.copy(rule);
 		delete cpy.name;
 
@@ -10,7 +10,7 @@ class RenderVariantRules {
 		Renderer.get().resetHeaderIndex();
 		Renderer.get().recursiveRender(cpy, textStack);
 
-		return $$`
+		return ee`
 		${Renderer.utils.getBorderTr()}
 		${Renderer.utils.getExcludedTr({entity: rule, dataProp: "variantrule"})}
 		${Renderer.utils.getNameTr(rule, {page: UrlUtil.PG_VARIANTRULES})}

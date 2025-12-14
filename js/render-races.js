@@ -1,5 +1,5 @@
 export class RenderRaces {
-	static $getRenderedRace (ent) {
+	static getRenderedRace (ent) {
 		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
 
 		const renderer = Renderer.get().setFirstSection(true);
@@ -7,7 +7,7 @@ export class RenderRaces {
 		const entriesMeta = Renderer.race.getRaceRenderableEntriesMeta(ent, {styleHint});
 		const ptHeightWeight = RenderRaces._getHeightAndWeightPart(ent);
 
-		return $$`
+		return ee`
 		${Renderer.utils.getBorderTr()}
 		${Renderer.utils.getExcludedTr({entity: ent, dataProp: "race"})}
 		${Renderer.utils.getNameTr(ent, {controlRhs: ent.soundClip ? RenderRaces._getPronunciationButton(ent) : "", page: UrlUtil.PG_RACES})}
@@ -21,7 +21,7 @@ export class RenderRaces {
 			 </section>` : ""}
 		</td></tr>
 
-		${ptHeightWeight ? $$`<tr><td colspan="6"><hr class="rd__hr">${ptHeightWeight}</td></tr>` : ""}
+		${ptHeightWeight ? ee`<tr><td colspan="6"><hr class="rd__hr">${ptHeightWeight}</td></tr>` : ""}
 
 		${Renderer.utils.getPageTr(ent)}
 		${Renderer.utils.getBorderTr()}`;

@@ -2503,7 +2503,8 @@ class SearchWidget {
 						q: subSpec.page,
 						s: src,
 						u: UrlUtil.URL_TO_HASH_BUILDER[subSpec.page](ent),
-						dP: SourceUtil.isPartneredSourceWotc(src),
+						dP: SourceUtil.isPartneredSourceWotc(src) ? 1 : 0,
+						dR: ent.reprintedAs || ent.isReprinted ? 1 : 0,
 					};
 					if (subSpec.pFnGetDocExtras) Object.assign(doc, await subSpec.pFnGetDocExtras({ent, doc, subSpec}));
 					index.addDoc(doc);
@@ -4346,6 +4347,7 @@ class _RenderableCollectionGenericRowsSyncAsyncUtils {
 		// TODO(jquery) migrate
 		if (wrpRows && $wrpRows) throw new Error(`Only one of "wrpRows" and "$wrpRows" may be specified!`);
 		this._$wrpRows = $wrpRows || $(wrpRows);
+		this._wrpRows = this._$wrpRows[0];
 		this._namespace = namespace;
 	}
 
@@ -4448,6 +4450,7 @@ class RenderableCollectionGenericRows extends RenderableCollectionBase {
 	constructor (comp, prop, $wrpRows, opts) {
 		super(comp, prop, opts);
 		this._$wrpRows = $wrpRows instanceof $ ? $wrpRows : $($wrpRows);
+		this._wrpRows = this._$wrpRows[0];
 
 		this._utils = new _RenderableCollectionGenericRowsSyncAsyncUtils({
 			comp,
@@ -4898,14 +4901,18 @@ class ComponentUiUtil {
 		hooks[prop].push(hook);
 	}
 
-	static $getDisp (comp, prop, {html, $ele, fnGetText} = {}) {
-		$ele = ($ele || $(html || `<div></div>`));
+	static getDisp (comp, prop, {html, ele, fnGetText} = {}) {
+		ele = (ele || e_({outer: html || `<div></div>`}));
 
-		const hk = () => $ele.text(fnGetText ? fnGetText(comp._state[prop]) : comp._state[prop]);
+		const hk = () => ele.txt(fnGetText ? fnGetText(comp._state[prop]) : comp._state[prop]);
 		comp._addHookBase(prop, hk);
 		hk();
 
-		return $ele;
+		return ele;
+	}
+
+	static $getDisp (comp, prop, {html, $ele, fnGetText} = {}) {
+		return this.getDisp(comp, prop, {html, ele: $ele?.[0], fnGetText});
 	}
 
 	/**
@@ -6289,6 +6296,15 @@ class ComponentUiUtil {
 	}
 
 	/* -------------------------------------------- */
+
+	static getPickEnum (comp, prop, opts) {
+		const out = this.$getPickEnum(comp, prop, opts);
+		if (!opts?.asMeta) return out[0];
+		return {
+			...out,
+			wrp: out.$wrp[0],
+		};
+	}
 
 	/**
 	 * @param comp An instance of a class which extends BaseComponent.

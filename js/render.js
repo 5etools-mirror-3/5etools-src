@@ -3477,7 +3477,13 @@ Renderer.utils = class {
 	static _tabs = {};
 	static _curTab = null;
 	static _tabsPreferredLabel = null;
-	static bindTabButtons ({tabButtons, tabLabelReference, $wrpTabs, $pgContent}) {
+	static bindTabButtons ({tabButtons, tabLabelReference, $wrpTabs, wrpTabs, $pgContent, pgContent}) {
+		if ($wrpTabs && wrpTabs) throw new Error(`Only one of "$wrpTabs" and "wrpTabs" may be provided!`);
+		if ($pgContent && pgContent) throw new Error(`Only one of "$pgContent" and "pgContent" may be provided!`);
+
+		if (wrpTabs) $wrpTabs = $(wrpTabs);
+		if (pgContent) $pgContent = $(pgContent);
+
 		Renderer.utils._tabs = {};
 		Renderer.utils._curTab = null;
 
@@ -3694,12 +3700,17 @@ Renderer.utils = class {
 	/**
 	 * @param isImageTab True if this is the "Images" tab, false otherwise
 	 * @param $content The statblock wrapper
+	 * @param content The statblock wrapper
 	 * @param entity Entity to build tab for (e.g. a monster; an item)
 	 * @param pFnGetFluff Function which gets the entity's fluff.
 	 * @param $headerControls
 	 * @param page
 	 */
-	static async pBuildFluffTab ({isImageTab, $content, entity, $headerControls, pFnGetFluff, page} = {}) {
+	static async pBuildFluffTab ({isImageTab, $content, wrpContent, entity, $headerControls, pFnGetFluff, page} = {}) {
+		if ($content && wrpContent) throw new Error(`Only one of "$content" and "wrpContent" may be specified!`);
+
+		if (wrpContent) $content = $(wrpContent);
+
 		$content.append(Renderer.utils.getBorderTr());
 		$content.append(Renderer.utils.getNameTr(entity, {controlRhs: $headerControls, asJquery: true, page}));
 		const $td = $(`<td colspan="6" class="pb-3"></td>`);
@@ -4430,7 +4441,10 @@ Renderer.utils = class {
 		if (entry[prop].type === "internal") {
 			href = UrlUtil.link(Renderer.get().getMediaUrl(mediaDir, isUrlEncode ? encodeURI(entry[prop].path) : entry[prop].path));
 		} else if (entry[prop].type === "external") {
-			href = isUrlEncode ? encodeURI(entry[prop].url) : entry[prop].url;
+			const isPreEncoded = decodeURI(entry[prop].url) !== entry[prop].url;
+			href = (isPreEncoded || !isUrlEncode)
+				? entry[prop].url
+				: encodeURI(entry[prop].url);
 		}
 		return href;
 	}
@@ -8552,23 +8566,27 @@ Renderer.race = class {
 					lst,
 				],
 			},
-			{
-				type: "section",
-				entries: [
+			...baseRace.entries
+				? [
 					{
-						type: "entries",
+						type: "section",
 						entries: [
 							{
 								type: "entries",
-								name: "Traits",
 								entries: [
-									...MiscUtil.copyFast(baseRace.entries),
+									{
+										type: "entries",
+										name: "Traits",
+										entries: [
+											...MiscUtil.copyFast(baseRace.entries),
+										],
+									},
 								],
 							},
 						],
 					},
-				],
-			},
+				]
+				: [],
 		];
 	}
 
@@ -11367,7 +11385,9 @@ Renderer.monster = class {
 	}
 
 	static hover = class {
-		static bindFluffImageMouseover ({mon, $ele}) {
+		static bindFluffImageMouseover ({mon, ele, $ele}) {
+			if ($ele && ele) throw new Error(`Only one of "ele" and "$ele" may be provided!`);
+			if (ele) $ele = $(ele);
 			$ele
 				.on("mouseover", evt => this._pOnFluffImageMouseover({evt, mon, $ele}));
 		}

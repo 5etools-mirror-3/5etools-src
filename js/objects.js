@@ -20,17 +20,17 @@ class ObjectsSublistManager extends SublistManager {
 		const size = Renderer.utils.getRenderedSize(it.size);
 		const cellsText = [it.name, size];
 
-		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col">
+		const ele = ee`<div class="lst__row lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="lst__row-border lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
-		</div>`)
-			.contextmenu(evt => this._handleSublistItemContextMenu(evt, listItem))
-			.click(evt => this._listSub.doSelect(listItem, evt));
+		</div>`
+			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
 		const listItem = new ListItem(
 			hash,
-			$ele,
+			ele,
 			it.name,
 			{
 				hash,
@@ -114,7 +114,7 @@ class ObjectsPage extends ListPage {
 		if (ent.entries) this._renderer.recursiveRender({entries: ent.entries}, renderStack, {depth: 2});
 		if (ent.actionEntries) this._renderer.recursiveRender({entries: ent.actionEntries}, renderStack, {depth: 2});
 
-		this._$pgContent.empty().append(RenderObjects.$getRenderedObject(ent));
+		this._pgContent.empty().appends(RenderObjects.getRenderedObject(ent));
 
 		this._tokenDisplay.render(ent);
 	}

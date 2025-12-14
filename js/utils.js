@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.19.1"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.20.0"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -1188,6 +1188,8 @@ class ElementUtil {
 	 * @property {function(HTMLElement): HTMLElementExtended} prependTo
 	 * @property {function(HTMLElement|string): HTMLElementExtended} aftere
 	 * @property {function(HTMLElement): HTMLElementExtended} insertAfter
+	 * @property {function(HTMLElement|string): HTMLElementExtended} beforee
+	 * @property {function(HTMLElement|string): HTMLElementExtended} insertBefore
 	 *
 	 * @property {function(string): HTMLElementExtended} addClass
 	 * @property {function(string): HTMLElementExtended} removeClass
@@ -1244,6 +1246,7 @@ class ElementUtil {
 	 * @return {HTMLElementExtended}
 	 */
 	static getOrModify (opts) {
+		if (!opts) return null;
 		if (opts instanceof Element) opts = {ele: opts};
 
 		const {
@@ -1343,6 +1346,8 @@ class ElementUtil {
 		ele.prependTo = ele.prependTo || ElementUtil._prependTo.bind(ele);
 		ele.aftere = ele.aftere || ElementUtil._aftere.bind(ele);
 		ele.insertAfter = ele.insertAfter || ElementUtil._insertAfter.bind(ele);
+		ele.beforee = ele.beforee || ElementUtil._beforee.bind(ele);
+		ele.insertBefore = ele.insertBefore || ElementUtil._insertBefore.bind(ele);
 		ele.addClass = ele.addClass || ElementUtil._addClass.bind(ele);
 		ele.removeClass = ele.removeClass || ElementUtil._removeClass.bind(ele);
 		ele.toggleClass = ele.toggleClass || ElementUtil._toggleClass.bind(ele);
@@ -1512,6 +1517,25 @@ class ElementUtil {
 	}
 
 	/** @this {HTMLElementExtended} */
+	static _beforee (other) {
+		// eslint-disable-next-line vet-jquery/jquery
+		if (other instanceof $) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
+
+		if (typeof other === "string") other = ee`${other}`;
+		this.before(other);
+		return this;
+	}
+
+	/** @this {HTMLElementExtended} */
+	static _insertBefore (parent) {
+		// eslint-disable-next-line vet-jquery/jquery
+		if (parent instanceof $) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
+
+		parent.before(this);
+		return this;
+	}
+
+	/** @this {HTMLElementExtended} */
 	static _addClass (clazz) {
 		this.classList.add(clazz);
 		return this;
@@ -1611,21 +1635,39 @@ class ElementUtil {
 	}
 
 	/** @this {HTMLElementExtended} */
-	static _css (obj) {
-		Object.entries(obj)
+	static _css (keyOrObj, val) {
+		if (typeof keyOrObj === "string") {
+			if (val === undefined) return this.style[keyOrObj];
+			this.style[keyOrObj] = val;
+			return this;
+		}
+		Object.entries(keyOrObj)
 			.forEach(([k, v]) => this.style[k] = v);
 		return this;
 	}
 
 	/** @this {HTMLElementExtended} */
 	static _onX (evtName, fn, opts) {
+		((this._listeners ||= {})[evtName] ||= []).push({fn, opts});
+
 		if (opts) this.addEventListener(evtName, fn, opts);
 		else this.addEventListener(evtName, fn);
 		return this;
 	}
 
 	/** @this {HTMLElementExtended} */
-	static _offX (evtName, fn) {
+	static _offX (evtName, fn, opts) {
+		if (!fn) {
+			(this._listeners?.[evtName] || [])
+				.forEach(({fn, opts}) => {
+					this.removeEventListener(evtName, fn);
+					if (opts) this.removeEventListener(evtName, fn, opts);
+					else this.removeEventListener(evtName, fn);
+				});
+			return this;
+		}
+
+		if (this._listeners?.[evtName]) this._listeners[evtName] = this._listeners[evtName].filter(({fn: fn_, opts: opts_}) => fn_ === fn && MiscUtil.isNearStrictlyEqual(opts_?.capture, opts?.capture));
 		this.removeEventListener(evtName, fn);
 		return this;
 	}
@@ -4106,19 +4148,19 @@ if (!IS_DEPLOYED && !globalThis.IS_VTT && typeof window !== "undefined") {
 }
 
 // SORTING =============================================================================================================
-globalThis.SortUtil = {
-	ascSort: (a, b) => {
+globalThis.SortUtil = class {
+	static ascSort (a, b) {
 		if (typeof FilterItem !== "undefined") {
 			if (a instanceof FilterItem) a = a.item;
 			if (b instanceof FilterItem) b = b.item;
 		}
 
 		return SortUtil._ascSort(a, b);
-	},
+	}
 
-	ascSortProp: (prop, a, b) => { return SortUtil.ascSort(a[prop], b[prop]); },
+	static ascSortProp (prop, a, b) { return SortUtil.ascSort(a[prop], b[prop]); }
 
-	ascSortLower: (a, b) => {
+	static ascSortLower (a, b) {
 		if (typeof FilterItem !== "undefined") {
 			if (a instanceof FilterItem) a = a.item;
 			if (b instanceof FilterItem) b = b.item;
@@ -4128,12 +4170,12 @@ globalThis.SortUtil = {
 		b = b ? b.toLowerCase() : b;
 
 		return SortUtil._ascSort(a, b);
-	},
+	}
 
-	ascSortLowerProp: (prop, a, b) => { return SortUtil.ascSortLower(a[prop], b[prop]); },
+	static ascSortLowerProp (prop, a, b) { return SortUtil.ascSortLower(a[prop], b[prop]); }
 
 	// warning: slow
-	ascSortNumericalSuffix (a, b) {
+	static ascSortNumericalSuffix (a, b) {
 		if (typeof FilterItem !== "undefined") {
 			if (a instanceof FilterItem) a = a.item;
 			if (b instanceof FilterItem) b = b.item;
@@ -4149,58 +4191,58 @@ globalThis.SortUtil = {
 		const initialSort = SortUtil.ascSort(aStr, bStr);
 		if (initialSort) return initialSort;
 		return SortUtil.ascSort(aNum, bNum);
-	},
+	}
 
-	_RE_SORT_NUM: /\d+/g,
-	ascSortLowerPropNumeric (prop, a, b) {
+	static _RE_SORT_NUM = /\d+/g;
+	static ascSortLowerPropNumeric (prop, a, b) {
 		a._sortName ||= (a[prop] || "").replace(SortUtil._RE_SORT_NUM, (...m) => `${m[0].padStart(10, "0")}`);
 		b._sortName ||= (b[prop] || "").replace(SortUtil._RE_SORT_NUM, (...m) => `${m[0].padStart(10, "0")}`);
 		return SortUtil.ascSortLower(a._sortName, b._sortName);
-	},
+	}
 
-	_ascSort: (a, b) => {
+	static _ascSort (a, b) {
 		if (b === a) return 0;
 		return b < a ? 1 : -1;
-	},
+	}
 
-	ascSortDate (a, b) {
+	static ascSortDate (a, b) {
 		return b.getTime() - a.getTime();
-	},
+	}
 
-	ascSortDateString (a, b) {
+	static ascSortDateString (a, b) {
 		return SortUtil.ascSortDate(new Date(a || "1970-01-01"), new Date(b || "1970-01-01"));
-	},
+	}
 
-	compareListNames (a, b) { return SortUtil._ascSort(a.name.toLowerCase(), b.name.toLowerCase()); },
+	static compareListNames (a, b) { return SortUtil._ascSort(a.name.toLowerCase(), b.name.toLowerCase()); }
 
-	listSort (a, b, opts) {
+	static listSort (a, b, opts) {
 		opts = opts || {sortBy: "name"};
 		if (opts.sortBy === "name") return SortUtil.compareListNames(a, b);
 		if (opts.sortBy === "source") return SortUtil._listSort_compareBy(a, b, opts.sortBy) || SortUtil._listSort_compareBy(a, b, "page") || SortUtil.compareListNames(a, b);
 		return SortUtil._compareByOrDefault_compareByOrDefault(a, b, opts.sortBy);
-	},
+	}
 
-	_listSort_compareBy (a, b, sortBy) {
+	static _listSort_compareBy (a, b, sortBy) {
 		const aValue = typeof a.values[sortBy] === "string" ? a.values[sortBy].toLowerCase() : a.values[sortBy];
 		const bValue = typeof b.values[sortBy] === "string" ? b.values[sortBy].toLowerCase() : b.values[sortBy];
 
 		return SortUtil._ascSort(aValue, bValue);
-	},
+	}
 
-	_compareByOrDefault_compareByOrDefault (a, b, sortBy) {
+	static _compareByOrDefault_compareByOrDefault (a, b, sortBy) {
 		return SortUtil._listSort_compareBy(a, b, sortBy) || SortUtil.compareListNames(a, b);
-	},
+	}
 
 	/**
 	 * "Special Equipment" first, then alphabetical
 	 */
-	_MON_TRAIT_ORDER: [
+	static _MON_TRAIT_ORDER = [
 		"temporary statblock",
 
 		"special equipment",
 		"shapechanger",
-	],
-	monTraitSort: (a, b) => {
+	];
+	static monTraitSort (a, b) {
 		if (a.sort != null && b.sort != null) return a.sort - b.sort;
 		if (a.sort != null && b.sort == null) return -1;
 		if (a.sort == null && b.sort != null) return 1;
@@ -4220,20 +4262,20 @@ globalThis.SortUtil = {
 		else if (~ixA) return -1;
 		else if (~ixB) return 1;
 		else return SortUtil.ascSort(aClean, bClean);
-	},
+	}
 
-	_alignFirst: ["L", "C"],
-	_alignSecond: ["G", "E"],
-	alignmentSort: (a, b) => {
+	static _alignFirst = ["L", "C"];
+	static _alignSecond = ["G", "E"];
+	static alignmentSort (a, b) {
 		if (a === b) return 0;
 		if (SortUtil._alignFirst.includes(a)) return -1;
 		if (SortUtil._alignSecond.includes(a)) return 1;
 		if (SortUtil._alignFirst.includes(b)) return 1;
 		if (SortUtil._alignSecond.includes(b)) return -1;
 		return 0;
-	},
+	}
 
-	ascSortCr (a, b) {
+	static ascSortCr (a, b) {
 		if (typeof FilterItem !== "undefined") {
 			if (a instanceof FilterItem) a = a.item;
 			if (b instanceof FilterItem) b = b.item;
@@ -4244,17 +4286,17 @@ globalThis.SortUtil = {
 		if (a === "\u2014" || a == null) a = "999";
 		if (b === "\u2014" || b == null) b = "999";
 		return SortUtil.ascSort(Parser.crToNumber(a), Parser.crToNumber(b));
-	},
+	}
 
-	ascSortAtts (a, b) {
+	static ascSortAtts (a, b) {
 		const aSpecial = a === "special";
 		const bSpecial = b === "special";
 		return aSpecial && bSpecial ? 0 : aSpecial ? 1 : bSpecial ? -1 : Parser.ABIL_ABVS.indexOf(a) - Parser.ABIL_ABVS.indexOf(b);
-	},
+	}
 
-	ascSortSize (a, b) { return Parser.SIZE_ABVS.indexOf(a) - Parser.SIZE_ABVS.indexOf(b); },
+	static ascSortSize (a, b) { return Parser.SIZE_ABVS.indexOf(a) - Parser.SIZE_ABVS.indexOf(b); }
 
-	initBtnSortHandlers (wrpBtnsSort, list) {
+	static initBtnSortHandlers (wrpBtnsSort, list) {
 		if (wrpBtnsSort instanceof $) { // TODO(jquery) migrate
 			wrpBtnsSort = wrpBtnsSort[0];
 		}
@@ -4289,9 +4331,9 @@ globalThis.SortUtil = {
 		dispCaretInitial = dispCaretInitial || dispCarets[0]; // Fall back on displaying the first caret
 
 		SortUtil._initBtnSortHandlers_showCaret({dispCaret: dispCaretInitial, dispCarets, direction: list.sortDir});
-	},
+	}
 
-	_initBtnSortHandlers_showCaret (
+	static _initBtnSortHandlers_showCaret (
 		{
 			dispCaret,
 			dispCarets,
@@ -4300,10 +4342,10 @@ globalThis.SortUtil = {
 	) {
 		dispCarets.forEach($it => $it.removeClass("lst__caret--active"));
 		dispCaret.addClass("lst__caret--active").toggleClass("lst__caret--reverse", direction === "asc");
-	},
+	}
 
 	/** Add more list sort on-clicks to existing sort buttons. */
-	initBtnSortHandlersAdditional ($wrpBtnsSort, list) {
+	static initBtnSortHandlersAdditional ($wrpBtnsSort, list) {
 		[...$wrpBtnsSort[0].querySelectorAll(".sort")]
 			.map(btnSort => {
 				const btnSortField = btnSort.dataset.sort;
@@ -4317,57 +4359,57 @@ globalThis.SortUtil = {
 					},
 				});
 			});
-	},
+	}
 
-	ascSortSourceGroup (a, b) {
+	static ascSortSourceGroup (a, b) {
 		const grpA = a.group || "other";
 		const grpB = b.group || "other";
 		const ixA = SourceUtil.ADV_BOOK_GROUPS.findIndex(it => it.group === grpA);
 		const ixB = SourceUtil.ADV_BOOK_GROUPS.findIndex(it => it.group === grpB);
 		return SortUtil.ascSort(ixA, ixB);
-	},
+	}
 
-	ascSortAdventure (a, b) {
+	static ascSortAdventure (a, b) {
 		return SortUtil.ascSortDateString(b.published, a.published)
 			|| SortUtil.ascSortLower(a.parentSource || "", b.parentSource || "")
 			|| SortUtil.ascSort(a.publishedOrder ?? 0, b.publishedOrder ?? 0)
 			|| SortUtil.ascSortLower(a.storyline, b.storyline)
 			|| SortUtil.ascSort(a.level?.start ?? 20, b.level?.start ?? 20)
 			|| SortUtil.ascSortLower(a.name, b.name);
-	},
+	}
 
-	ascSortBook (a, b) {
+	static ascSortBook (a, b) {
 		return SortUtil.ascSortDateString(b.published, a.published)
 			|| SortUtil.ascSortLower(a.parentSource || "", b.parentSource || "")
 			|| SortUtil.ascSortLower(a.name, b.name);
-	},
+	}
 
-	ascSortBookData (a, b) {
+	static ascSortBookData (a, b) {
 		return SortUtil.ascSortLower(a.id || "", b.id || "");
-	},
+	}
 
-	ascSortGenericEntity (a, b) {
+	static ascSortGenericEntity (a, b) {
 		return SortUtil.ascSortLower(a.name || "", b.name || "") || SortUtil.ascSortLower(a.source || "", b.source || "");
-	},
+	}
 
-	ascSortDeity (a, b) {
+	static ascSortDeity (a, b) {
 		return SortUtil.ascSortLower(a.name, b.name) || SortUtil.ascSortLower(a.source, b.source) || SortUtil.ascSortLower(a.pantheon, b.pantheon);
-	},
+	}
 
-	ascSortCard (a, b) {
+	static ascSortCard (a, b) {
 		return SortUtil.ascSortLower(a.set, b.set) || SortUtil.ascSortLower(a.source, b.source) || SortUtil.ascSortLower(a.name, b.name);
-	},
+	}
 
-	ascSortEncounter (a, b) {
+	static ascSortEncounter (a, b) {
 		return SortUtil.ascSortLower(a.name, b.name) || SortUtil.ascSortLower(a.caption || "", b.caption || "") || SortUtil.ascSort(a.minlvl || 0, b.minlvl || 0) || SortUtil.ascSort(a.maxlvl || Number.MAX_SAFE_INTEGER, b.maxlvl || Number.MAX_SAFE_INTEGER);
-	},
+	}
 
-	_ITEM_RARITY_ORDER: ["none", "common", "uncommon", "rare", "very rare", "legendary", "artifact", "varies", "unknown (magic)", "unknown"],
-	ascSortItemRarity (a, b) {
+	static _ITEM_RARITY_ORDER = ["none", "common", "uncommon", "rare", "very rare", "legendary", "artifact", "varies", "unknown (magic)", "unknown"];
+	static ascSortItemRarity (a, b) {
 		const ixA = SortUtil._ITEM_RARITY_ORDER.indexOf(a);
 		const ixB = SortUtil._ITEM_RARITY_ORDER.indexOf(b);
 		return (~ixA ? ixA : Number.MAX_SAFE_INTEGER) - (~ixB ? ixB : Number.MAX_SAFE_INTEGER);
-	},
+	}
 };
 
 globalThis.MultiSourceUtil = class {

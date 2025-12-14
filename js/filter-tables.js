@@ -2,6 +2,13 @@
 
 class PageFilterTables extends PageFilterBase {
 	// region static
+	static sortTables (a, b, opts) {
+		opts = opts || {sortBy: "sortName"};
+		if (opts.sortBy === "sortName") return SortUtil._listSort_compareBy(a, b, opts.sortBy);
+		if (opts.sortBy === "source") return SortUtil._listSort_compareBy(a, b, opts.sortBy) || SortUtil._listSort_compareBy(a, b, "page") || SortUtil._listSort_compareBy(a, b, "sortName");
+		return SortUtil._listSort_compareBy(a, b, opts.sortBy) || SortUtil._listSort_compareBy(a, b, "sortName");
+	}
+
 	static getSortName (name) {
 		return name.replace(/^\s*([\d,.]+)\s*gp/i, (...m) => m[1].replace(Parser._numberCleanRegexp, "").padStart(9, "0"));
 	}

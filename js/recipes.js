@@ -25,17 +25,17 @@ class RecipesSublistManager extends SublistManager {
 		const name = it._displayName || it.name;
 		const cellsText = [name, it.type || "\u2014"];
 
-		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col">
+		const ele = ee`<div class="lst__row lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="lst__row-border lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
-		</div>`)
-			.contextmenu(evt => this._handleSublistItemContextMenu(evt, listItem))
-			.click(evt => this._listSub.doSelect(listItem, evt));
+		</div>`
+			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
 		const listItem = new ListItem(
 			hash,
-			$ele,
+			ele,
 			name,
 			{
 				hash,
@@ -114,21 +114,21 @@ class RecipesPage extends ListPage {
 	_renderStats_doBuildStatsTab ({ent, scaleFactor = null}) {
 		if (scaleFactor != null) ent = Renderer.recipe.getScaledRecipe(ent, scaleFactor);
 
-		const $selScaleFactor = $(`
+		const selScaleFactor = ee`
 			<select title="Scale Recipe" class="form-control input-xs form-control--minimal ve-popwindow__hidden">
 				${[0.5, 1, 2, 3, 4].map(it => `<option value="${it}" ${(scaleFactor || 1) === it ? "selected" : ""}>×${it}</option>`)}
-			</select>`)
-			.change(() => {
-				const scaleFactor = Number($selScaleFactor.val());
+			</select>`
+			.onn("change", () => {
+				const scaleFactor = Number(selScaleFactor.val());
 
 				if (scaleFactor !== this._lastRender?._scaleFactor) {
 					if (scaleFactor === 1) Hist.setSubhash(VeCt.HASH_SCALED, null);
 					else Hist.setSubhash(VeCt.HASH_SCALED, scaleFactor);
 				}
 			});
-		$selScaleFactor.val(`${scaleFactor || 1}`);
+		selScaleFactor.val(`${scaleFactor || 1}`);
 
-		this._$pgContent.empty().append(RenderRecipes.$getRenderedRecipe(ent, {$selScaleFactor}));
+		this._pgContent.empty().append(RenderRecipes.getRenderedRecipe(ent, {selScaleFactor}));
 		Renderer.initLazyImageLoaders();
 		this._lastRender = {entity: ent};
 	}

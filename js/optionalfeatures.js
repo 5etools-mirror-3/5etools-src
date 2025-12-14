@@ -44,17 +44,17 @@ class OptionalFeaturesSublistManager extends SublistManager {
 			level,
 		];
 
-		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col">
+		const ele = ee`<div class="lst__row lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="lst__row-border lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
-		</div>`)
-			.contextmenu(evt => this._handleSublistItemContextMenu(evt, listItem))
-			.click(evt => this._listSub.doSelect(listItem, evt));
+		</div>`
+			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
 		const listItem = new ListItem(
 			hash,
-			$ele,
+			ele,
 			it.name,
 			{
 				hash,
@@ -147,33 +147,33 @@ class OptionalFeaturesPage extends ListPage {
 	}
 
 	_renderStats_doBuildStatsTab ({ent}) {
-		this._$wrpTabs.parent().find(`.opt-feature-type`).remove();
+		this._wrpTabs.parente().find(`.opt-feature-type`)?.remove();
 
 		Promise.any([
 			Renderer.utils.pHasFluffText(ent, "optionalfeatureFluff"),
 			Renderer.utils.pHasFluffImages(ent, "optionalfeatureFluff"),
 		])
 			.then(hasAnyFluff => {
-				const $wrpOptFeatType = $(`<div class="opt-feature-type"></div>`);
+				const wrpOptFeatType = ee`<div class="opt-feature-type"></div>`;
 
-				if (hasAnyFluff) $wrpOptFeatType.addClass("ml-0 mb-1").insertBefore(this._$wrpTabs);
-				else $wrpOptFeatType.prependTo(this._$wrpTabs);
+				if (hasAnyFluff) wrpOptFeatType.addClass("ml-0 mb-1").insertBefore(this._wrpTabs);
+				else wrpOptFeatType.prependTo(this._wrpTabs);
 
 				const commonPrefix = ent.featureType.length > 1 ? MiscUtil.findCommonPrefix(ent.featureType.map(fs => Parser.optFeatureTypeToFull(fs)), {isRespectWordBoundaries: true}) : "";
-				if (commonPrefix) $wrpOptFeatType.append(`${commonPrefix.trim()} `);
+				if (commonPrefix) wrpOptFeatType.appends(`${commonPrefix.trim()} `);
 
 				ent.featureType.forEach((ft, i) => {
-					if (i > 0) $wrpOptFeatType.append("/");
-					$(`<span class="roller">${Parser.optFeatureTypeToFull(ft).substring(commonPrefix.length)}</span>`)
-						.click(() => {
+					if (i > 0) wrpOptFeatType.appends("/");
+					ee`<span class="roller">${Parser.optFeatureTypeToFull(ft).substring(commonPrefix.length)}</span>`
+						.onn("click", () => {
 							this._filterBox.setFromValues({"Feature Type": {[ft]: 1}});
 							this.handleFilterChange();
 						})
-						.appendTo($wrpOptFeatType);
+						.appendTo(wrpOptFeatType);
 				});
 			});
 
-		this._$pgContent.empty().append(RenderOptionalFeatures.$getRenderedOptionalFeature(ent));
+		this._pgContent.empty().appends(RenderOptionalFeatures.getRenderedOptionalFeature(ent));
 	}
 }
 

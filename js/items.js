@@ -12,9 +12,9 @@ class ItemsSublistManager extends SublistManager {
 		this._sublistCurrencyConversion = null;
 		this._sublistCurrencyDisplayMode = null;
 
-		this._$totalWeight = null;
-		this._$totalValue = null;
-		this._$totalItems = null;
+		this._totalWeight = null;
+		this._totalValue = null;
+		this._totalItems = null;
 	}
 
 	async pCreateSublist () {
@@ -58,19 +58,19 @@ class ItemsSublistManager extends SublistManager {
 			item._l_value,
 		];
 
-		const $dispCount = $(`<span class="ve-text-center ve-col-2 pr-0">${count}</span>`);
-		const $ele = $$`<div class="lst__row lst__row--sublist ve-flex-col">
+		const dispCount = ee`<span class="ve-text-center ve-col-2 pr-0">${count}</span>`;
+		const ele = ee`<div class="lst__row lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="lst__row-border lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText, templates: this.constructor._ROW_TEMPLATE.slice(0, 3)})}
-				${$dispCount}
+				${dispCount}
 			</a>
 		</div>`
-			.contextmenu(evt => this._handleSublistItemContextMenu(evt, listItem))
-			.click(evt => this._listSub.doSelect(listItem, evt));
+			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
 		const listItem = new ListItem(
 			hash,
-			$ele,
+			ele,
 			item.name,
 			{
 				hash,
@@ -81,7 +81,7 @@ class ItemsSublistManager extends SublistManager {
 			},
 			{
 				count,
-				$elesCount: [$dispCount],
+				elesCount: [dispCount],
 				entity: item,
 				mdRow: [...cellsText, ({listItem}) => listItem.data.count],
 			},
@@ -90,9 +90,9 @@ class ItemsSublistManager extends SublistManager {
 	}
 
 	_onSublistChange () {
-		this._$totalWeight = this._$totalWeight || $(`#totalweight`);
-		this._$totalValue = this._$totalValue || $(`#totalvalue`);
-		this._$totalItems = this._$totalItems || $(`#totalitems`);
+		this._totalWeight ||= es(`#totalweight`);
+		this._totalValue ||= es(`#totalvalue`);
+		this._totalItems ||= es(`#totalitems`);
 
 		let weight = 0;
 		let value = 0;
@@ -108,14 +108,14 @@ class ItemsSublistManager extends SublistManager {
 			if (item.value) value += item.value * count;
 		});
 
-		this._$totalWeight.text(Parser.itemWeightToFull({weight}, true));
-		this._$totalItems.text(cntItems);
+		this._totalWeight.txt(Parser.itemWeightToFull({weight}, true));
+		this._totalItems.txt(cntItems);
 
 		if (availConversions.size) {
-			this._$totalValue
-				.text(Parser.itemValueToFullMultiCurrency({value, currencyConversion: this._sublistCurrencyConversion}, {styleHint: this._styleHint}))
+			this._totalValue
+				.txt(Parser.itemValueToFullMultiCurrency({value, currencyConversion: this._sublistCurrencyConversion}, {styleHint: this._styleHint}))
 				.off("click")
-				.click(async () => {
+				.onn("click", async () => {
 					const values = ["(Default)", ...[...availConversions].sort(SortUtil.ascSortLower)];
 					const defaultSel = values.indexOf(this._sublistCurrencyConversion);
 					const userSel = await InputUiUtil.pGetUserEnum({
@@ -133,10 +133,10 @@ class ItemsSublistManager extends SublistManager {
 			return;
 		}
 
-		this._$totalValue
-			.text(this._getTotalValueText({value}) || "\u2014")
+		this._totalValue
+			.txt(this._getTotalValueText({value}) || "\u2014")
 			.off("click")
-			.click(async () => {
+			.onn("click", async () => {
 				const defaultSel = this.constructor._TOTAL_VALUE_MODES.indexOf(this._sublistCurrencyDisplayMode);
 				const userSel = await InputUiUtil.pGetUserEnum({
 					values: this.constructor._TOTAL_VALUE_MODES,
@@ -357,19 +357,19 @@ class ItemsPage extends ListPage {
 	_tabTitleStats = "Item";
 
 	_renderStats_doBuildStatsTab ({ent}) {
-		this._$pgContent.empty().append(RenderItems.$getRenderedItem(ent));
+		this._pgContent.empty().appends(RenderItems.getRenderedItem(ent));
 	}
 
 	async _pOnLoad_pInitPrimaryLists () {
-		const $iptSearch = $("#lst__search");
-		const $btnReset = $("#reset");
-		const $btnClear = $(`#lst__search-glass`);
+		const iptSearch = e_(document.getElementById("lst__search"));
+		const btnReset = e_(document.getElementById("reset"));
+		const btnClear = e_(document.getElementById("lst__search-glass"));
 		this._mundaneList = this._initList({
-			$iptSearch,
-			$btnReset,
-			$btnClear,
+			iptSearch,
+			btnReset,
+			btnClear,
 			dispPageTagline: document.getElementById(`page__subtitle`),
-			$wrpList: $(`.list.mundane`),
+			wrpList: e_(document.getElementById("list-mundane")),
 			syntax: this._listSyntax.build(),
 			isBindFindHotkey: true,
 			optsList: {
@@ -377,10 +377,10 @@ class ItemsPage extends ListPage {
 			},
 		});
 		this._magicList = this._initList({
-			$iptSearch,
-			$btnReset,
-			$btnClear,
-			$wrpList: $(`.list.magic`),
+			iptSearch,
+			btnReset,
+			btnClear,
+			wrpList: e_(document.getElementById("list-magic")),
 			syntax: this._listSyntax.build(),
 			optsList: {
 				fnSort: PageFilterItems.sortItems,
@@ -394,15 +394,15 @@ class ItemsPage extends ListPage {
 		this._magicList.prevList = this._mundaneList;
 
 		this._filterBox = await this._pageFilter.pInitFilterBox({
-			$iptSearch,
-			$wrpFormTop: $(`#filter-search-group`),
-			$btnReset,
+			iptSearch,
+			wrpFormTop: e_(document.getElementById("filter-search-group")),
+			btnReset,
 		});
 	}
 
 	_pOnLoad_initVisibleItemsDisplay () {
-		const $elesMundaneAndMagic = $(`.ele-mundane-and-magic`);
-		$(`.side-label--mundane`).click(() => {
+		const elesMundaneAndMagic = em(`.ele-mundane-and-magic`);
+		es(`.side-label--mundane`).onn("click", () => {
 			const filterValues = this._pageFilter.filterBox.getValues();
 			const curValue = MiscUtil.get(filterValues, "Miscellaneous", "Mundane");
 			this._pageFilter.filterBox.setFromValues({
@@ -412,7 +412,7 @@ class ItemsPage extends ListPage {
 				},
 			});
 		});
-		$(`.side-label--magic`).click(() => {
+		es(`.side-label--magic`).onn("click", () => {
 			const filterValues = this._pageFilter.filterBox.getValues();
 			const curValue = MiscUtil.get(filterValues, "Miscellaneous", "Magic");
 			this._pageFilter.filterBox.setFromValues({
@@ -422,46 +422,46 @@ class ItemsPage extends ListPage {
 				},
 			});
 		});
-		const $outVisibleResults = $(`.lst__wrp-search-visible`);
-		const $wrpListMundane = $(`.itm__wrp-list--mundane`);
-		const $wrpListMagic = $(`.itm__wrp-list--magic`);
-		const $elesMundane = $(`.ele-mundane`);
-		const $elesMagic = $(`.ele-magic`);
+		const outVisibleResults = es(`.lst__wrp-search-visible`);
+		const wrpListMundane = es(`.itm__wrp-list--mundane`);
+		const wrpListMagic = es(`.itm__wrp-list--magic`);
+		const elesMundane = em(`.ele-mundane`);
+		const elesMagic = em(`.ele-magic`);
 		this._mundaneList.on("updated", () => {
 			// Force-show the mundane list if there are no items on display
-			if (this._magicList.visibleItems.length) $elesMundane.toggleVe(!!this._mundaneList.visibleItems.length);
-			else $elesMundane.showVe();
-			$elesMundaneAndMagic.toggleVe(!!(this._mundaneList.visibleItems.length && this._magicList.visibleItems.length));
+			if (this._magicList.visibleItems.length) elesMundane.forEach(ele => ele.toggleVe(!!this._mundaneList.visibleItems.length));
+			else elesMundane.forEach(ele => ele.showVe());
+			elesMundaneAndMagic.forEach(ele => ele.toggleVe(!!(this._mundaneList.visibleItems.length && this._magicList.visibleItems.length)));
 
 			const current = this._mundaneList.visibleItems.length + this._magicList.visibleItems.length;
 			const total = this._mundaneList.items.length + this._magicList.items.length;
-			$outVisibleResults.html(`${current}/${total}`);
+			outVisibleResults.html(`${current}/${total}`);
 
 			// Collapse the mundane section if there are no magic items displayed
-			$wrpListMundane.toggleClass(`itm__wrp-list--empty`, this._mundaneList.visibleItems.length === 0);
+			wrpListMundane.toggleClass(`itm__wrp-list--empty`, this._mundaneList.visibleItems.length === 0);
 		});
 		this._magicList.on("updated", () => {
-			$elesMagic.toggleVe(!!this._magicList.visibleItems.length);
+			elesMagic.forEach(ele => ele.toggleVe(!!this._magicList.visibleItems.length));
 			// Force-show the mundane list if there are no items on display
-			if (!this._magicList.visibleItems.length) $elesMundane.showVe();
-			else $elesMundane.toggleVe(!!this._mundaneList.visibleItems.length);
-			$elesMundaneAndMagic.toggleVe(!!(this._mundaneList.visibleItems.length && this._magicList.visibleItems.length));
+			if (!this._magicList.visibleItems.length) elesMundane.forEach(ele => ele.showVe());
+			else elesMundane.forEach(ele => ele.toggleVe(!!this._mundaneList.visibleItems.length));
+			elesMundaneAndMagic.forEach(ele => ele.toggleVe(!!(this._mundaneList.visibleItems.length && this._magicList.visibleItems.length)));
 
 			const current = this._mundaneList.visibleItems.length + this._magicList.visibleItems.length;
 			const total = this._mundaneList.items.length + this._magicList.items.length;
-			$outVisibleResults.html(`${current}/${total}`);
+			outVisibleResults.html(`${current}/${total}`);
 
 			// Collapse the magic section if there are no magic items displayed
-			$wrpListMagic.toggleClass(`itm__wrp-list--empty`, this._magicList.visibleItems.length === 0);
+			wrpListMagic.toggleClass(`itm__wrp-list--empty`, this._magicList.visibleItems.length === 0);
 		});
 	}
 
 	_addData (data) {
 		super._addData(data);
 
-		// populate table labels
-		$(`h3.ele-mundane span.side-label`).text("Mundane");
-		$(`h3.ele-magic span.side-label`).text("Magic");
+		// Populate table labels
+		es(`h3.ele-mundane span.side-label`).txt("Mundane");
+		es(`h3.ele-magic span.side-label`).txt("Magic");
 	}
 
 	_addListItem (listItem) {

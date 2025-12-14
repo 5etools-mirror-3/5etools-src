@@ -4,9 +4,9 @@ import {SITE_STYLE__CLASSIC, SITE_STYLE_DISPLAY} from "../consts.js";
 import {PropOrder} from "../utils-proporder.js";
 
 class SidemenuRenderCache {
-	constructor ({$lastStageSaved, $lastWrpBtnLoadExisting}) {
-		this.$lastStageSaved = $lastStageSaved;
-		this.$lastWrpBtnLoadExisting = $lastWrpBtnLoadExisting;
+	constructor ({lastStageSaved, lastWrpBtnLoadExisting}) {
+		this.lastStageSaved = lastStageSaved;
+		this.lastWrpBtnLoadExisting = lastWrpBtnLoadExisting;
 	}
 }
 
@@ -39,7 +39,7 @@ export class BuilderBase extends ProxyBase {
 		this._isInitialLoad = true;
 
 		this._sourcesCache = []; // the JSON sources from the main UI
-		this._$selSource = null;
+		this._selSource = null;
 		this._cbCache = null;
 
 		this.__state = this._getInitialState();
@@ -47,17 +47,17 @@ export class BuilderBase extends ProxyBase {
 		this.__meta = this._getInitialMetaState(); // meta state
 		this._meta = null; // proxy used to access meta state
 
-		this._$wrpBtnLoadExisting = null;
-		this._$sideMenuStageSaved = null;
-		this._$sideMenuWrpList = null;
-		this._$eles = {}; // Generic internal element storage
+		this._wrpBtnLoadExisting = null;
+		this._eleSideMenuStageSaved = null;
+		this._eleSideMenuWrpList = null;
+		this._eles = {}; // Generic internal element storage
 		this._compsSource = {};
 	}
 
 	_doResetProxies () {
 		this._resetHooks("state");
 		this._resetHooks("meta");
-		this._$eles = {};
+		this._eles = {};
 		this._compsSource = {};
 	}
 
@@ -112,9 +112,9 @@ export class BuilderBase extends ProxyBase {
 			this._state.source = nuSource;
 			this._sourcesCache = MiscUtil.copy(this._ui.allSources);
 
-			const $cache = this._$selSource;
-			this._$selSource = this.$getSourceInput(this._cbCache);
-			$cache.replaceWith(this._$selSource);
+			const cache = this._selSource;
+			this._selSource = this.getSourceInput(this._cbCache);
+			cache.replaceWith(this._selSource);
 		}
 
 		this.renderInput();
@@ -130,8 +130,8 @@ export class BuilderBase extends ProxyBase {
 		};
 	}
 
-	$getSourceInput (cb) {
-		return BuilderUi.$getStateIptEnum(
+	getSourceInput (cb) {
+		return BuilderUi.getStateIptEnum(
 			"Source",
 			cb,
 			this._state,
@@ -150,54 +150,54 @@ export class BuilderBase extends ProxyBase {
 	async pRenderSideMenu () {
 		// region Detach any sidemenu renders from other builders
 		if (this._ui.sidemenuRenderCache) {
-			if (this._ui.sidemenuRenderCache.$lastStageSaved !== this._$sideMenuStageSaved) this._ui.sidemenuRenderCache.$lastStageSaved.detach();
+			if (this._ui.sidemenuRenderCache.lastStageSaved !== this._eleSideMenuStageSaved) this._ui.sidemenuRenderCache.lastStageSaved.detach();
 
-			if (this._ui.sidemenuRenderCache.$lastWrpBtnLoadExisting !== this._$wrpBtnLoadExisting) this._ui.sidemenuRenderCache.$lastWrpBtnLoadExisting.detach();
+			if (this._ui.sidemenuRenderCache.lastWrpBtnLoadExisting !== this._wrpBtnLoadExisting) this._ui.sidemenuRenderCache.lastWrpBtnLoadExisting.detach();
 		}
 		// endregion
 
 		// region If this is our first sidemenu render, create elements
-		if (!this._$sideMenuStageSaved) {
-			const $btnLoadExisting = $(`<button class="ve-btn ve-btn-xs ve-btn-default">${this._titleSidebarLoadExisting}</button>`)
-				.click(() => this.pHandleSidebarLoadExistingClick());
-			this._$wrpBtnLoadExisting = $$`<div class="w-100 mb-2">${$btnLoadExisting}</div>`;
+		if (!this._eleSideMenuStageSaved) {
+			const btnLoadExisting = ee`<button class="ve-btn ve-btn-xs ve-btn-default">${this._titleSidebarLoadExisting}</button>`
+				.onn("click", () => this.pHandleSidebarLoadExistingClick());
+			this._wrpBtnLoadExisting = ee`<div class="w-100 mb-2">${btnLoadExisting}</div>`;
 
-			const $btnDownloadJson = $(`<button class="ve-btn ve-btn-default ve-btn-xs mb-2">${this._titleSidebarDownloadJson}</button>`)
-				.click(() => this.pHandleSidebarDownloadJsonClick());
+			const btnDownloadJson = ee`<button class="ve-btn ve-btn-default ve-btn-xs mb-2">${this._titleSidebarDownloadJson}</button>`
+				.onn("click", () => this.pHandleSidebarDownloadJsonClick());
 
-			const $wrpDownloadMarkdown = (() => {
+			const wrpDownloadMarkdown = (() => {
 				if (!this._metaSidebarDownloadMarkdown) return null;
 
-				const $btnDownload = $(`<button class="ve-btn ve-btn-default ve-btn-xs mb-2">${this._metaSidebarDownloadMarkdown.title}</button>`)
-					.click(async () => {
+				const btnDownload = ee`<button class="ve-btn ve-btn-default ve-btn-xs mb-2">${this._metaSidebarDownloadMarkdown.title}</button>`
+					.onn("click", async () => {
 						const entities = await this._pGetSideMenuBrewEntities();
 						const mdOut = await this._metaSidebarDownloadMarkdown.pFnGetText(entities);
 						DataUtil.userDownloadText(`${DataUtil.getCleanFilename(BrewUtil2.sourceJsonToFull(this._ui.source))}.md`, mdOut);
 					});
 
-				const $btnSettings = $(`<button class="ve-btn ve-btn-default ve-btn-xs mb-2"><span class="glyphicon glyphicon-cog"></span></button>`)
-					.click(() => RendererMarkdown.pShowSettingsModal());
+				const btnSettings = ee`<button class="ve-btn ve-btn-default ve-btn-xs mb-2"><span class="glyphicon glyphicon-cog"></span></button>`
+					.onn("click", () => RendererMarkdown.pShowSettingsModal());
 
-				return $$`<div class="ve-flex-v-center ve-btn-group">${$btnDownload}${$btnSettings}</div>`;
+				return ee`<div class="ve-flex-v-center ve-btn-group">${btnDownload}${btnSettings}</div>`;
 			})();
 
-			this._$sideMenuWrpList = this._$sideMenuWrpList || $(`<div class="w-100 ve-flex-col">`);
-			this._$sideMenuStageSaved = $$`<div>
-				${PageUiUtil.$getSideMenuDivider().hide()}
-				<div class="ve-flex-v-center">${$btnDownloadJson}</div>
-				${$wrpDownloadMarkdown}
-				${this._$sideMenuWrpList}
+			this._eleSideMenuWrpList = this._eleSideMenuWrpList || ee`<div class="w-100 ve-flex-col">`;
+			this._eleSideMenuStageSaved = ee`<div>
+				${PageUiUtil.getSideMenuDivider().hideVe()}
+				<div class="ve-flex-v-center">${btnDownloadJson}</div>
+				${wrpDownloadMarkdown}
+				${this._eleSideMenuWrpList}
 			</div>`;
 		}
 		// endregion
 
 		// Make our sidemenu internal wrapper visible
-		this._$wrpBtnLoadExisting.appendTo(this._ui.$wrpSideMenu);
-		this._$sideMenuStageSaved.appendTo(this._ui.$wrpSideMenu);
+		this._wrpBtnLoadExisting.appendTo(this._ui.wrpSideMenu);
+		this._eleSideMenuStageSaved.appendTo(this._ui.wrpSideMenu);
 
 		this._ui.sidemenuRenderCache = new SidemenuRenderCache({
-			$lastWrpBtnLoadExisting: this._$wrpBtnLoadExisting,
-			$lastStageSaved: this._$sideMenuStageSaved,
+			lastWrpBtnLoadExisting: this._wrpBtnLoadExisting,
+			lastStageSaved: this._eleSideMenuStageSaved,
 		});
 
 		await this._pDoUpdateSidemenu();
@@ -218,7 +218,7 @@ export class BuilderBase extends ProxyBase {
 		this._sidemenuListRenderCache = this._sidemenuListRenderCache || {};
 
 		const toList = await this._pGetSideMenuBrewEntities();
-		this._$sideMenuStageSaved.toggleVe(!!toList.length);
+		this._eleSideMenuStageSaved.toggleVe(!!toList.length);
 
 		const metasVisible = new Set();
 		toList.forEach((ent, ix) => {
@@ -227,23 +227,23 @@ export class BuilderBase extends ProxyBase {
 			if (this._sidemenuListRenderCache[ent.uniqueId]) {
 				const meta = this._sidemenuListRenderCache[ent.uniqueId];
 
-				meta.$row.showVe();
+				meta.row.showVe();
 
 				if (meta.name !== ent.name) {
-					meta.$dispName.text(ent.name);
+					meta.dispName.txt(ent.name);
 					meta.name = ent.name;
 				}
 
 				if (meta.position !== ix) {
-					meta.$row.css("order", ix);
+					meta.row.css({"order": ix});
 					meta.position = ix;
 				}
 
 				return;
 			}
 
-			const $btnEdit = $(`<button class="ve-btn ve-btn-xs ve-btn-default mr-2" title="Edit"><span class="glyphicon glyphicon-pencil"></span></button>`)
-				.click(async () => {
+			const btnEdit = ee`<button class="ve-btn ve-btn-xs ve-btn-default mr-2" title="Edit"><span class="glyphicon glyphicon-pencil"></span></button>`
+				.onn("click", async () => {
 					if (
 						this.getOnNavMessage()
 						&& !await InputUiUtil.pGetUserBoolean({title: "Discard Unsaved Changes", htmlDescription: "You have unsaved changes. Are you sure?", textYes: "Yes", textNo: "Cancel"})
@@ -334,11 +334,11 @@ export class BuilderBase extends ProxyBase {
 				),
 			]);
 
-			const $btnBurger = $(`<button class="ve-btn ve-btn-xs ve-btn-default mr-2" title="More Options"><span class="glyphicon glyphicon-option-vertical"></span></button>`)
-				.click(evt => ContextUtil.pOpenMenu(evt, menu));
+			const btnBurger = ee`<button class="ve-btn ve-btn-xs ve-btn-default mr-2" title="More Options"><span class="glyphicon glyphicon-option-vertical"></span></button>`
+				.onn("click", evt => ContextUtil.pOpenMenu(evt, menu));
 
-			const $btnDelete = $(`<button class="ve-btn ve-btn-xs ve-btn-danger" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>`)
-				.click(async () => {
+			const btnDelete = ee`<button class="ve-btn ve-btn-xs ve-btn-danger" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>`
+				.onn("click", async () => {
 					if (!await InputUiUtil.pGetUserBoolean({title: "Delete Entity", htmlDescription: "Are you sure?", textYes: "Yes", textNo: "Cancel"})) return;
 
 					if (this._state.uniqueId === ent.uniqueId) this.reset();
@@ -347,16 +347,16 @@ export class BuilderBase extends ProxyBase {
 					await this.pDoPostDelete();
 				});
 
-			const $dispName = $$`<span class="py-1">${ent.name}</span>`;
+			const dispName = ee`<span class="py-1">${ent.name}</span>`;
 
-			const $row = $$`<div class="mkbru__sidebar-entry ve-flex-v-center split px-2" style="order: ${ix}">
-			${$dispName}
-			<div class="py-1 no-shrink">${$btnEdit}${$btnBurger}${$btnDelete}</div>
-			</div>`.appendTo(this._$sideMenuWrpList);
+			const row = ee`<div class="mkbru__sidebar-entry ve-flex-v-center split px-2" style="order: ${ix}">
+			${dispName}
+			<div class="py-1 no-shrink">${btnEdit}${btnBurger}${btnDelete}</div>
+			</div>`.appendTo(this._eleSideMenuWrpList);
 
 			this._sidemenuListRenderCache[ent.uniqueId] = {
-				$dispName,
-				$row,
+				dispName,
+				row,
 				name: ent.name,
 				ix,
 			};
@@ -364,7 +364,7 @@ export class BuilderBase extends ProxyBase {
 
 		Object.entries(this._sidemenuListRenderCache)
 			.filter(([uniqueId]) => !metasVisible.has(uniqueId))
-			.forEach(([, meta]) => meta.$row.hideVe());
+			.forEach(([, meta]) => meta.row.hideVe());
 	}
 
 	async pHandleSidebarEditUniqueId (uniqueId) {
@@ -392,21 +392,21 @@ export class BuilderBase extends ProxyBase {
 	}
 
 	renderInputControls () {
-		const $wrpControls = this._ui.$wrpInputControls.empty();
+		const wrpControls = this._ui.wrpInputControls.empty();
 
-		const $btnSave = $(`<button class="ve-btn ve-btn-xs ve-btn-default mr-2 mkbru__cnt-save">Save</button>`)
-			.click(() => this._pHandleClick_pSaveBrew())
-			.appendTo($wrpControls);
-		const hkBtnSaveText = () => $btnSave.text(this._meta.isModified ? "Save *" : "Saved");
+		const btnSave = ee`<button class="ve-btn ve-btn-xs ve-btn-default mr-2 mkbru__cnt-save">Save</button>`
+			.onn("click", () => this._pHandleClick_pSaveBrew())
+			.appendTo(wrpControls);
+		const hkBtnSaveText = () => btnSave.txt(this._meta.isModified ? "Save *" : "Saved");
 		this._addHook("meta", "isModified", hkBtnSaveText);
 		hkBtnSaveText();
 
-		$(`<button class="ve-btn ve-btn-xs ve-btn-default" title="SHIFT to reset additional state (such as whether or not certain attributes are auto-calculated)">New</button>`)
-			.click(async (evt) => {
+		ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="SHIFT to reset additional state (such as whether or not certain attributes are auto-calculated)">New</button>`
+			.onn("click", async (evt) => {
 				if (!await InputUiUtil.pGetUserBoolean({title: "Reset Builder", htmlDescription: "Are you sure?", textYes: "Yes", textNo: "Cancel"})) return;
 				this.reset({isResetAllMeta: !!evt.shiftKey});
 			})
-			.appendTo($wrpControls);
+			.appendTo(wrpControls);
 	}
 
 	reset ({isResetAllMeta = false} = {}) {
@@ -484,33 +484,33 @@ export class BuilderBase extends ProxyBase {
 	 * @param doUpdateState
 	 * @param rowArr
 	 * @param row
-	 * @param $wrpRow
+	 * @param wrpRow
 	 * @param title
 	 * @param [opts] Options object.
 	 * @param [opts.isProtectLast]
 	 * @param [opts.isExtraSmall]
 	 * @return {jQuery}
 	 */
-	static $getBtnRemoveRow (doUpdateState, rowArr, row, $wrpRow, title, opts) {
+	static getBtnRemoveRow (doUpdateState, rowArr, row, wrpRow, title, opts) {
 		opts = opts || {};
 
-		return $(`<button class="ve-btn ${opts.isExtraSmall ? "ve-btn-xxs" : "ve-btn-xs"} ve-btn-danger ${opts.isProtectLast ? "mkbru__btn-rm-row" : ""}" title="Remove ${title}"><span class="glyphicon glyphicon-trash"></span></button>`)
-			.click(() => {
+		return ee`<button class="ve-btn ${opts.isExtraSmall ? "ve-btn-xxs" : "ve-btn-xs"} ve-btn-danger ${opts.isProtectLast ? "mkbru__btn-rm-row" : ""}" title="Remove ${title}"><span class="glyphicon glyphicon-trash"></span></button>`
+			.onn("click", () => {
 				rowArr.splice(rowArr.indexOf(row), 1);
-				$wrpRow.empty().remove();
+				wrpRow.empty().remove();
 				doUpdateState();
 			});
 	}
 
-	$getFluffInput (cb) {
-		const [$row, $rowInner] = BuilderUi.getLabelledRowTuple("Flavor Info");
+	getFluffInput (cb) {
+		const [row, rowInner] = BuilderUi.getLabelledRowTuple("Flavor Info");
 
 		const imageRows = [];
 
 		const doUpdateState = () => {
 			const out = {};
 
-			const entries = UiUtil.getTextAsEntries($iptEntries.val());
+			const entries = UiUtil.getTextAsEntries(iptEntries.val());
 			if (entries && entries.length) out.entries = entries;
 
 			const images = imageRows.map(it => it.getState()).filter(Boolean);
@@ -524,60 +524,60 @@ export class BuilderBase extends ProxyBase {
 		};
 
 		const doUpdateOrder = () => {
-			imageRows.forEach(it => it.$ele.detach().appendTo($wrpRows));
+			imageRows.forEach(it => it.ele.detach().appendTo(wrpRows));
 			doUpdateState();
 		};
 
-		const $wrpRowsOuter = $(`<div class="relative"></div>`);
-		const $wrpRows = $(`<div class="ve-flex-col mb-1 mt-n1"></div>`).appendTo($wrpRowsOuter);
+		const wrpRows = ee`<div class="ve-flex-col mb-1 mt-n1"></div>`;
+		const wrpRowsOuter = ee`<div class="relative">${wrpRows}</div>`;
 
-		const rowOptions = {$wrpRowsOuter};
+		const rowOptions = {wrpRowsOuter};
 
-		const $iptEntries = $(`<textarea class="form-control form-control--minimal resize-vertical mb-2"></textarea>`)
-			.change(() => doUpdateState());
+		const iptEntries = ee`<textarea class="form-control form-control--minimal resize-vertical mb-2"></textarea>`
+			.onn("change", () => doUpdateState());
 
-		const $btnAddImage = $(`<button class="ve-btn ve-btn-xs ve-btn-default">Add Image</button>`)
-			.click(async () => {
+		const btnAddImage = ee`<button class="ve-btn ve-btn-xs ve-btn-default">Add Image</button>`
+			.onn("click", async () => {
 				const url = await InputUiUtil.pGetUserString({title: "Enter a URL"});
 				if (!url) return;
-				this.constructor.__$getFluffInput__getImageRow(doUpdateState, doUpdateOrder, rowOptions, imageRows, {href: {url: url}}).$ele.appendTo($wrpRows);
+				this.constructor.__getFluffInput__getImageRow(doUpdateState, doUpdateOrder, rowOptions, imageRows, {href: {url: url}}).ele.appendTo(wrpRows);
 				doUpdateState();
 			});
 
-		$$`<div class="ve-flex-col">
-		${$iptEntries}
-		${$wrpRowsOuter}
-		<div>${$btnAddImage}</div>
-		</div>`.appendTo($rowInner);
+		ee`<div class="ve-flex-col">
+		${iptEntries}
+		${wrpRowsOuter}
+		<div>${btnAddImage}</div>
+		</div>`.appendTo(rowInner);
 
 		if (this._state.fluff) {
-			if (this._state.fluff.entries) $iptEntries.val(UiUtil.getEntriesAsText(this._state.fluff.entries));
-			if (this._state.fluff.images) this._state.fluff.images.forEach(img => this.constructor.__$getFluffInput__getImageRow(doUpdateState, doUpdateOrder, rowOptions, imageRows, img).$ele.appendTo($wrpRows));
+			if (this._state.fluff.entries) iptEntries.val(UiUtil.getEntriesAsText(this._state.fluff.entries));
+			if (this._state.fluff.images) this._state.fluff.images.forEach(img => this.constructor.__getFluffInput__getImageRow(doUpdateState, doUpdateOrder, rowOptions, imageRows, img).ele.appendTo(wrpRows));
 		}
 
-		return $row;
+		return row;
 	}
 
-	static __$getFluffInput__getImageRow (doUpdateState, doUpdateOrder, options, imageRows, image) {
+	static __getFluffInput__getImageRow (doUpdateState, doUpdateOrder, options, imageRows, image) {
 		const out = {};
 
 		const getState = () => {
-			const rawUrl = $iptUrl.val().trim();
+			const rawUrl = iptUrl.val().trim();
 			return rawUrl ? {type: "image", href: {type: "external", url: rawUrl}} : null;
 		};
 
-		const $iptUrl = $(`<input class="form-control form-control--minimal input-xs mr-2">`)
-			.change(() => doUpdateState());
+		const iptUrl = ee`<input class="form-control form-control--minimal input-xs mr-2">`
+			.onn("change", () => doUpdateState());
 		if (image) {
 			const href = ((image || {}).href || {});
-			if (href.url) $iptUrl.val(href.url);
+			if (href.url) iptUrl.val(href.url);
 			else if (href.path) {
-				$iptUrl.val(`${window.location.origin.replace(/\/+$/, "")}/img/${href.path}`);
+				iptUrl.val(`${window.location.origin.replace(/\/+$/, "")}/img/${href.path}`);
 			}
 		}
 
-		const $btnPreview = $(`<button class="ve-btn ve-btn-xs ve-btn-default mr-2" title="Preview Image"><span class="glyphicon glyphicon-fullscreen"></span></button>`)
-			.click((evt) => {
+		const btnPreview = ee`<button class="ve-btn ve-btn-xs ve-btn-default mr-2" title="Preview Image"><span class="glyphicon glyphicon-fullscreen"></span></button>`
+			.onn("click", (evt) => {
 				const toRender = getState();
 				if (!toRender) return JqueryUtil.doToast({content: "Please enter an image URL", type: "warning"});
 
@@ -593,18 +593,18 @@ export class BuilderBase extends ProxyBase {
 				);
 			});
 
-		const $btnRemove = $(`<button class="ve-btn ve-btn-xs ve-btn-danger" title="Remove Image"><span class="glyphicon glyphicon-trash"></span></button>`)
-			.click(() => {
+		const btnRemove = ee`<button class="ve-btn ve-btn-xs ve-btn-danger" title="Remove Image"><span class="glyphicon glyphicon-trash"></span></button>`
+			.onn("click", () => {
 				imageRows.splice(imageRows.indexOf(out), 1);
-				out.$ele.empty().remove();
+				out.ele.empty().remove();
 				doUpdateState();
 			});
 
-		const $dragOrder = BuilderUi.$getDragPad(doUpdateOrder, imageRows, out, {
-			$wrpRowsOuter: options.$wrpRowsOuter,
+		const dragOrder = BuilderUi.getDragPad(doUpdateOrder, imageRows, out, {
+			wrpRowsOuter: options.wrpRowsOuter,
 		});
 
-		out.$ele = $$`<div class="ve-flex-v-center py-1 mkbru__wrp-rows--removable">${$iptUrl}${$btnPreview}${$btnRemove}${$dragOrder}</div>`;
+		out.ele = ee`<div class="ve-flex-v-center py-1 mkbru__wrp-rows--removable">${iptUrl}${btnPreview}${btnRemove}${dragOrder}</div>`;
 		out.getState = getState;
 		imageRows.push(out);
 

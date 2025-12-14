@@ -11,10 +11,6 @@ export class RenderPageImplBase {
 		return ee`${this._getRendered({ent, renderer, opts})}`;
 	}
 
-	$getRendered (ent, opts) {
-		return $(this.getRendered(ent, opts));
-	}
-
 	/**
 	 * @abstract
 	 *

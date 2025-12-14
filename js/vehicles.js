@@ -20,17 +20,17 @@ class VehiclesSublistManager extends SublistManager {
 		const displayType = it.vehicleType ? Parser.vehicleTypeToFull(it.vehicleType) : it.upgradeType.map(t => Parser.vehicleTypeToFull(t));
 		const cellsText = [displayType, it.name];
 
-		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col">
+		const ele = ee`<div class="lst__row lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="lst__row-border lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
-		</div>`)
-			.contextmenu(evt => this._handleSublistItemContextMenu(evt, listItem))
-			.click(evt => this._listSub.doSelect(listItem, evt));
+		</div>`
+			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
 		const listItem = new ListItem(
 			hash,
-			$ele,
+			ele,
 			it.name,
 			{
 				hash,
@@ -111,7 +111,7 @@ class VehiclesPage extends ListPage {
 	}
 
 	_renderStats_doBuildStatsTab ({ent}) {
-		this._$pgContent.empty().append(RenderVehicles.$getRenderedVehicle(ent));
+		this._pgContent.empty().appends(RenderVehicles.getRenderedVehicle(ent));
 
 		this._tokenDisplay.render(ent);
 	}

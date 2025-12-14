@@ -1,8 +1,8 @@
 "use strict";
 
 class RenderDeities {
-	static $getRenderedDeity (deity) {
-		return $$`
+	static getRenderedDeity (deity) {
+		return ee`
 			${Renderer.utils.getBorderTr()}
 			${Renderer.utils.getExcludedTr({entity: deity, dataProp: "deity"})}
 			${Renderer.utils.getNameTr(deity, {suffix: deity.title ? `, ${deity.title.toTitleCase()}` : "", page: UrlUtil.PG_DEITIES})}

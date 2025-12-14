@@ -82,16 +82,16 @@ class _RenderFeatsImplClassic extends _RenderFeatsImplBase {
 
 			${htmlPtIsExcluded}
 			${htmlPtName}
-			
+
 			${htmlPtPrerequisites}
 			${htmlPtRepeatable}
-		
+
 			<tr><td colspan="6" class="py-0"><div class="ve-tbl-divider"></div></td></tr>
-			
+
 			<tr><td colspan="6">
 				${htmlPtEntries}
 			</td></tr>
-			
+
 			${htmlPtPage}
 			${Renderer.utils.getBorderTr()}
 		`;
@@ -125,14 +125,14 @@ class _RenderFeatsImplOne extends _RenderFeatsImplBase {
 
 			${htmlPtIsExcluded}
 			${htmlPtName}
-			
+
 			${htmlPtPrerequisites}
 			${htmlPtRepeatable}
-			
+
 			<tr><td colspan="6">
 				${htmlPtEntries}
 			</td></tr>
-			
+
 			${htmlPtPage}
 			${Renderer.utils.getBorderTr()}
 		`;
@@ -143,11 +143,11 @@ export class RenderFeats {
 	static _RENDER_CLASSIC = new _RenderFeatsImplClassic();
 	static _RENDER_ONE = new _RenderFeatsImplOne();
 
-	static $getRenderedFeat (ent) {
+	static getRenderedFeat (ent) {
 		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
 		switch (styleHint) {
-			case SITE_STYLE__CLASSIC: return this._RENDER_CLASSIC.$getRendered(ent);
-			case SITE_STYLE__ONE: return this._RENDER_ONE.$getRendered(ent);
+			case SITE_STYLE__CLASSIC: return this._RENDER_CLASSIC.getRendered(ent);
+			case SITE_STYLE__ONE: return this._RENDER_ONE.getRendered(ent);
 			default: throw new Error(`Unhandled style "${styleHint}"!`);
 		}
 	}

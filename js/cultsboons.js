@@ -24,17 +24,17 @@ class CultsBoonsSublistManager extends SublistManager {
 	pGetSublistItem (it, hash) {
 		const cellsText = [it._lType, it._lSubType, it.name];
 
-		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col">
+		const ele = ee`<div class="lst__row lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="lst__row-border lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
-		</div>`)
-			.contextmenu(evt => this._handleSublistItemContextMenu(evt, listItem))
-			.click(evt => this._listSub.doSelect(listItem, evt));
+		</div>`
+			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
 		const listItem = new ListItem(
 			hash,
-			$ele,
+			ele,
 			it.name,
 			{
 				hash,
@@ -105,7 +105,7 @@ class CultsBoonsPage extends ListPage {
 	}
 
 	_renderStats_doBuildStatsTab ({ent}) {
-		this._$pgContent.empty().append(RenderCultsBoons.$getRenderedCultBoon(ent));
+		this._pgContent.empty().appends(RenderCultsBoons.getRenderedCultBoon(ent));
 	}
 }
 

@@ -10,16 +10,16 @@ class PageUi {
 	constructor () {
 		this._builders = {};
 
-		this._$menuInner = null;
-		this._$selBuilderMode = null;
-		this._$wrpSource = null;
-		this._$wrpMain = null;
-		this._$wrpInput = null;
-		this._$wrpInputControls = null;
-		this._$wrpOutput = null;
+		this._eleMenuInner = null;
+		this._selBuilderMode = null;
+		this._wrpSource = null;
+		this._wrpMain = null;
+		this._wrpInput = null;
+		this._wrpInputControls = null;
+		this._wrpOutput = null;
 
 		this._allSources = [];
-		this._$selSource = null;
+		this._selSource = null;
 
 		this._isInitialLoad = true;
 		this.doSaveDebounced = MiscUtil.debounce(() => this._doSave(), 50);
@@ -43,13 +43,13 @@ class PageUi {
 
 	get activeBuilder () { return this._settings.activeBuilder || PageUi._DEFAULT_ACTIVE_BUILDER; }
 
-	get $wrpInput () { return this._$wrpInput; }
+	get wrpInput () { return this._wrpInput; }
 
-	get $wrpInputControls () { return this._$wrpInputControls; }
+	get wrpInputControls () { return this._wrpInputControls; }
 
-	get $wrpOutput () { return this._$wrpOutput; }
+	get wrpOutput () { return this._wrpOutput; }
 
-	get $wrpSideMenu () { return this._$menuInner; }
+	get wrpSideMenu () { return this._eleMenuInner; }
 
 	get source () { return this._settings.activeSource || ""; }
 
@@ -73,9 +73,9 @@ class PageUi {
 	async init () {
 		this._settings = await StorageUtil.pGetForPage(PageUi._STORAGE_SETTINGS) || {};
 
-		this._$wrpLoad = $(`#page_loading`);
-		this._$wrpSource = $(`#page_source`);
-		this._$wrpMain = $(`#page_main`);
+		this._wrpLoad = es(`#page_loading`);
+		this._wrpSource = es(`#page_source`);
+		this._wrpMain = es(`#page_main`);
 
 		this._settings.activeBuilder = this._settings.activeBuilder || PageUi._DEFAULT_ACTIVE_BUILDER;
 
@@ -109,21 +109,21 @@ class PageUi {
 	}
 
 	__setStageSource () {
-		this._$wrpLoad.hide();
-		this._$wrpSource.show();
-		this._$wrpMain.hide();
+		this._wrpLoad.hideVe();
+		this._wrpSource.showVe();
+		this._wrpMain.hideVe();
 	}
 
 	__setStageMain () {
-		this._$wrpLoad.hide();
-		this._$wrpSource.hide();
-		this._$wrpMain.show();
+		this._wrpLoad.hideVe();
+		this._wrpSource.hideVe();
+		this._wrpMain.showVe();
 	}
 
 	_doRebuildStageSource (options) {
 		SourceUiUtil.render({
 			...options,
-			$parent: this._$wrpSource,
+			eleParent: this._wrpSource,
 			cbConfirm: async (source, isNewSource) => {
 				if (isNewSource) await BrewUtil2.pAddSource(source);
 				else await BrewUtil2.pEditSource(source);
@@ -149,12 +149,12 @@ class PageUi {
 	}
 
 	_initLhs () {
-		this._$wrpInput = $(`#content_input`);
-		this._$wrpInputControls = $(`#content_input_controls`);
+		this._wrpInput = es(`#content_input`);
+		this._wrpInputControls = es(`#content_input_controls`);
 	}
 
 	_initRhs () {
-		this._$wrpOutput = $(`#content_output`);
+		this._wrpOutput = es(`#content_output`);
 	}
 
 	getBuilderById (id) {
@@ -172,7 +172,7 @@ class PageUi {
 	async _pSetActiveBuilder (nxtActiveBuilder) {
 		if (!this._builders[nxtActiveBuilder]) throw new Error(`Builder "${nxtActiveBuilder}" does not exist!`);
 
-		this._$selBuilderMode.val(nxtActiveBuilder);
+		this._selBuilderMode.val(nxtActiveBuilder);
 		this._settings.activeBuilder = nxtActiveBuilder;
 		if (!Hist.initialLoad) Hist.replaceHistoryHash(UrlUtil.encodeForHash(this._settings.activeBuilder));
 		const builder = this._builders[this._settings.activeBuilder];
@@ -183,75 +183,75 @@ class PageUi {
 	}
 
 	async _pInitSideMenu () {
-		const $mnu = $(`.sidemenu`);
+		const mnu = es(`.sidemenu`);
 
 		const prevMode = this._settings.activeBuilder;
 
-		const $wrpMode = $(`<div class="w-100 split-v-center"><div class="sidemenu__row__label mr-2">Mode</div></div>`).appendTo($mnu);
-		this._$selBuilderMode = $(`
+		const wrpMode = ee`<div class="w-100 split-v-center"><div class="sidemenu__row__label mr-2">Mode</div></div>`.appendTo(mnu);
+		this._selBuilderMode = ee`
 			<select class="form-control input-xs">
 				<option value="creatureBuilder">Creature</option>
 				<option value="legendaryGroupBuilder">Legendary Group</option>
 				<option value="spellBuilder">Spell</option>
 				<option value="none" class="italic">Everything Else?</option>
 			</select>
-		`)
-			.appendTo($wrpMode)
-			.change(async () => {
-				const val = this._$selBuilderMode.val();
+		`
+			.appendTo(wrpMode)
+			.onn("change", async () => {
+				const val = this._selBuilderMode.val();
 				if (val === "none") {
 					InputUiUtil.pGetUserBoolean({
 						title: "Homebrew Builder Support",
 						htmlDescription: `<p>The Homebrew Builder only supports a limited set of entity types. For everything else, you will need to <a href="https://github.com/TheGiddyLimit/homebrew/blob/master/README.md" rel="noopener noreferrer">manually</a> create or convert content.</p>`,
 						isAlert: true,
 					}).then(null);
-					this._$selBuilderMode.val(this._settings.activeBuilder);
+					this._selBuilderMode.val(this._settings.activeBuilder);
 					return;
 				}
 				await this._pSetActiveBuilder(val);
 			});
 
-		$mnu.append(PageUiUtil.$getSideMenuDivider(true));
+		mnu.appends(PageUiUtil.getSideMenuDivider(true));
 
-		const $wrpSource = $(`<div class="w-100 mb-2 split-v-center"><div class="sidemenu__row__label mr-2">Source</div></div>`).appendTo($mnu);
+		const wrpSource = ee`<div class="w-100 mb-2 split-v-center"><div class="sidemenu__row__label mr-2">Source</div></div>`.appendTo(mnu);
 		this._allSources = BrewUtil2.getSources().sort((a, b) => SortUtil.ascSortLower(a.full, b.full))
 			.map(it => it.json);
-		this._$selSource = $$`
+		this._selSource = ee`
 			<select class="form-control input-xs">
 				<option disabled>Select</option>
 				${this._allSources.map(s => `<option value="${s.qq()}">${Parser.sourceJsonToFull(s).qq()}</option>`)}
 			</select>`
-			.appendTo($wrpSource)
-			.change(async () => {
-				this._settings.activeSource = this._$selSource.val();
+			.appendTo(wrpSource)
+			.onn("change", async () => {
+				this._settings.activeSource = this._selSource.val();
 				await this._pDoHandleUpdateSource();
 			});
-		if (this._settings.activeSource) this._$selSource.val(this._settings.activeSource);
-		else this._$selSource[0].selectedIndex = 0;
+		if (this._settings.activeSource) this._selSource.val(this._settings.activeSource);
+		else this._selSource.selectedIndex = 0;
 
-		const $btnSourceEdit = $(`<button class="ve-btn ve-btn-default ve-btn-xs mr-2">Edit Selected Source</button>`)
-			.click(() => {
+		const btnSourceEdit = ee`<button class="ve-btn ve-btn-default ve-btn-xs mr-2">Edit Selected Source</button>`
+			.onn("click", () => {
 				const curSourceJson = this._settings.activeSource;
 				const curSource = BrewUtil2.sourceJsonToSource(curSourceJson);
 				if (!curSource) return;
 				this._doRebuildStageSource({mode: "edit", source: MiscUtil.copy(curSource)});
 				this.__setStageSource();
 			});
-		$$`<div class="w-100 mb-2">${$btnSourceEdit}</div>`.appendTo($mnu);
+		ee`<div class="w-100 mb-2">${btnSourceEdit}</div>`.appendTo(mnu);
 
-		const $btnSourceAdd = $(`<button class="ve-btn ve-btn-default ve-btn-xs">Add New Source</button>`).click(() => {
+		const btnSourceAdd = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Add New Source</button>`.onn("click", () => {
 			this._doRebuildStageSource({mode: "add"});
 			this.__setStageSource();
 		});
-		$$`<div class="w-100">${$btnSourceAdd}</div>`.appendTo($mnu);
+		ee`<div class="w-100">${btnSourceAdd}</div>`.appendTo(mnu);
 
-		$mnu.append(PageUiUtil.$getSideMenuDivider(true));
-		this._$menuInner = $(`<div></div>`).appendTo($mnu);
+		mnu.appends(PageUiUtil.getSideMenuDivider(true));
+		this._eleMenuInner = ee`<div></div>`.appendTo(mnu);
 
 		if (prevMode) await this._pSetActiveBuilder(prevMode);
 	}
 
-	set _sideMenuEnabled (val) { $(`.sidemenu__toggle`).toggle(!!val); }
+	set _sideMenuEnabled (val) { es(`.sidemenu__toggle`).toggleVe(!!val); }
 
 	_doRenderActiveBuilder () {
 		const activeBuilder = this._builders[this._settings.activeBuilder];
@@ -275,12 +275,12 @@ class PageUi {
 	_doAddSourceOption (source) {
 		this._allSources.push(source.json);
 		// TODO this should detach + re-order. Ensure correct is re-selected; ensure disabled option is first
-		this._$selSource.append(`<option value="${source.json.escapeQuotes()}">${source.full.escapeQuotes()}</option>`);
+		this._selSource.appends(`<option value="${source.json.escapeQuotes()}">${source.full.escapeQuotes()}</option>`);
 		this._builders[this._settings.activeBuilder].doHandleSourcesAdd();
 	}
 
 	async _pDoHandleUpdateSource () {
-		if (this._$selSource) this._$selSource.val(this._settings.activeSource);
+		if (this._selSource) this._selSource.val(this._settings.activeSource);
 		this._saveSettingsDebounced();
 		await this._builders[this._settings.activeBuilder].pDoHandleSourceUpdate();
 	}

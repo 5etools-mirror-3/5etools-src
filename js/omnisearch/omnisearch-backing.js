@@ -136,7 +136,7 @@ export class OmnisearchBacking {
 		]
 			.join("|");
 
-		this._RE_SYNTAX__IN_CATEGORY = new RegExp(`\\bin:\\s*(?<isNegate>!)?(?<category>${ptCategory})s?\\b`, "i");
+		this._RE_SYNTAX__IN_CATEGORY = new RegExp(`\\bin:\\s*(?<isNegate>!)?(?<category>${ptCategory})s?\\b`, "ig");
 	}
 
 	/* -------------------------------------------- */
@@ -193,8 +193,8 @@ export class OmnisearchBacking {
 
 	/* -------------------------------------------- */
 
-	static _RE_SYNTAX__SOURCE = /\bsource:\s*(?<isNegate>!)?(?<source>.*)\b/i;
-	static _RE_SYNTAX__PAGE = /\bpage:\s*(?<isNegate>!)?(?<pageStart>\d+)\s*(?:-\s*(?<pageEnd>\d+)\s*)?\b/i;
+	static _RE_SYNTAX__SOURCE = /\bsource:\s*(?<isNegate>!)?(?<source>.*)\b/ig;
+	static _RE_SYNTAX__PAGE = /\bpage:\s*(?<isNegate>!)?(?<pageStart>\d+)\s*(?:-\s*(?<pageEnd>\d+)\s*)?\b/ig;
 
 	static async pGetResults (searchTerm) {
 		await this._pInit();
@@ -340,6 +340,8 @@ export class OmnisearchBacking {
 
 		if (this._CATEGORIES_DEPRIORITIZED.has(result.doc.c)) result.score *= 0.5;
 		if (styleHint !== SITE_STYLE__CLASSIC && this._CATEGORIES_DEPRIORITIZED_MODERN.has(result.doc.c)) result.score *= 0.5;
+
+		if (result.doc.dR) result.score *= 0.9;
 	}
 
 	/* -------------------------------------------- */

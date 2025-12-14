@@ -35,12 +35,12 @@ class RenderTables {
 		}
 	}
 
-	static $getRenderedTable (it) {
+	static getRenderedTable (it) {
 		it.type = it.type || "table";
 
 		const ptFrom = this._getPartTableFrom(it);
 
-		return $$`
+		return ee`
 		${Renderer.utils.getBorderTr()}
 		${Renderer.utils.getExcludedTr({entity: it, dataProp: "table"})}
 		${Renderer.utils.getNameTr(it, {page: UrlUtil.PG_TABLES})}

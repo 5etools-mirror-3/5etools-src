@@ -59,15 +59,15 @@ class _RenderBackgroundsImplClassic extends _RenderBackgroundsImplBase {
 
 			${htmlPtIsExcluded}
 			${htmlPtName}
-			
+
 			${htmlPtPrerequisites}
-		
+
 			<tr><td colspan="6" class="py-0"><div class="ve-tbl-divider"></div></td></tr>
-			
+
 			<tr><td colspan="6">
 				${htmlPtEntries}
 			</td></tr>
-			
+
 			${htmlPtPage}
 			${Renderer.utils.getBorderTr()}
 		`;
@@ -98,13 +98,13 @@ class _RenderBackgroundsImplOne extends _RenderBackgroundsImplBase {
 
 			${htmlPtIsExcluded}
 			${htmlPtName}
-			
+
 			${htmlPtPrerequisites}
-		
+
 			<tr><td colspan="6" class="pt-0">
 				${htmlPtEntries}
 			</td></tr>
-			
+
 			${htmlPtPage}
 			${Renderer.utils.getBorderTr()}
 		`;
@@ -115,11 +115,11 @@ export class RenderBackgrounds {
 	static _RENDER_CLASSIC = new _RenderBackgroundsImplClassic();
 	static _RENDER_ONE = new _RenderBackgroundsImplOne();
 
-	static $getRenderedBackground (ent) {
+	static getRenderedBackground (ent) {
 		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
 		switch (styleHint) {
-			case SITE_STYLE__CLASSIC: return this._RENDER_CLASSIC.$getRendered(ent);
-			case SITE_STYLE__ONE: return this._RENDER_ONE.$getRendered(ent);
+			case SITE_STYLE__CLASSIC: return this._RENDER_CLASSIC.getRendered(ent);
+			case SITE_STYLE__ONE: return this._RENDER_ONE.getRendered(ent);
 			default: throw new Error(`Unhandled style "${styleHint}"!`);
 		}
 	}

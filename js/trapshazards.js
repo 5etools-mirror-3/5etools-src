@@ -20,17 +20,17 @@ class TrapsHazardsSublistManager extends SublistManager {
 		const trapType = Parser.trapHazTypeToFull(it.trapHazType);
 		const cellsText = [trapType, it.name];
 
-		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col">
+		const ele = ee`<div class="lst__row lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="lst__row-border lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
-		</div>`)
-			.contextmenu(evt => this._handleSublistItemContextMenu(evt, listItem))
-			.click(evt => this._listSub.doSelect(listItem, evt));
+		</div>`
+			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
 		const listItem = new ListItem(
 			hash,
-			$ele,
+			ele,
 			it.name,
 			{
 				hash,
@@ -101,7 +101,7 @@ class TrapsHazardsPage extends ListPage {
 	}
 
 	_renderStats_doBuildStatsTab ({ent}) {
-		this._$pgContent.empty().append(RenderTrapsHazards.$getRenderedTrapHazard(ent));
+		this._pgContent.empty().appends(RenderTrapsHazards.getRenderedTrapHazard(ent));
 	}
 }
 

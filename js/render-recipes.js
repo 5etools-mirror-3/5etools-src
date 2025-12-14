@@ -4,9 +4,9 @@ class RenderRecipes {
 	/**
 	 * @param ent
 	 * @param [opts]
-	 * @param [opts.$selScaleFactor]
+	 * @param [opts.selScaleFactor]
 	 */
-	static $getRenderedRecipe (ent, opts) {
+	static getRenderedRecipe (ent, opts) {
 		opts = opts || {};
 
 		const ptFluff = this._getFluffHtml(ent);
@@ -16,9 +16,9 @@ class RenderRecipes {
 		const ptTime = Renderer.recipe.getTimeHtml(ent, {entriesMeta});
 		const {ptMakes, ptServes} = Renderer.recipe.getMakesServesHtml(ent, {entriesMeta});
 
-		const $wrpSelScaleFactor = $$`<div class="ve-flex-v-center ml-2 mb-2">(${opts.$selScaleFactor})</div>`;
+		const wrpSelScaleFactor = ee`<div class="ve-flex-v-center ml-2 mb-2">(${opts.selScaleFactor})</div>`;
 
-		return $$`
+		return ee`
 		${Renderer.utils.getBorderTr()}
 		${Renderer.utils.getExcludedTr({entity: ent, dataProp: "recipe"})}
 		${Renderer.utils.getNameTr(ent, {page: UrlUtil.PG_RECIPES})}
@@ -31,11 +31,11 @@ class RenderRecipes {
 			<div class="w-33 pl-3 pr-2 ve-flex-col">
 				${ptTime}
 
-				${(ptMakes || ptServes) ? $$`<div class="ve-flex-v-center">${ptMakes || ptServes}${$wrpSelScaleFactor}</div>` : ""}
+				${(ptMakes || ptServes) ? ee`<div class="ve-flex-v-center">${ptMakes || ptServes}${wrpSelScaleFactor}</div>` : ""}
 				${(ptMakes && ptServes) ? ptServes : ""}
-				${!(ptMakes || ptServes) && opts.$selScaleFactor ? $$`<div class="mb-2">Scale: ${opts.$selScaleFactor}</div>` : ""}
+				${!(ptMakes || ptServes) && opts.selScaleFactor ? ee`<div class="mb-2">Scale: ${opts.selScaleFactor}</div>` : ""}
 
-				<div class="rd-recipes__wrp-ingredients ${ptMakes || ptServes || opts.$selScaleFactor ? "mt-1" : ""}">${Renderer.get().render(entriesMeta.entryIngredients, 0)}</div>
+				<div class="rd-recipes__wrp-ingredients ${ptMakes || ptServes || opts.selScaleFactor ? "mt-1" : ""}">${Renderer.get().render(entriesMeta.entryIngredients, 0)}</div>
 
 				${entriesMeta.entryEquipment ? `<div class="rd-recipes__wrp-ingredients mt-4"><div class="ve-flex-vh-center bold mb-1 small-caps">Equipment</div><div>${Renderer.get().render(entriesMeta.entryEquipment)}</div></div>` : ""}
 

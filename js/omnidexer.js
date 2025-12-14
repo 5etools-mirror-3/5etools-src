@@ -50,6 +50,7 @@ class Omnidexer {
 		 *   r: 1 // if SRD 5.1
 		 *   r2: 1 // if SRD 5.2
 		 *   [dP: 1] // if partnered
+		 *   [dR: 1] // if reprinted
 		 *   c: 10, // category ID
 		 *   id: 123, // index ID
 		 *   [t: "spell"], // tag
@@ -185,6 +186,7 @@ class Omnidexer {
 		if (arbiter.isFauxPage) indexDoc.hx = 1;
 		if (ent.srd) indexDoc.r = 1;
 		if (ent.srd52) indexDoc.r2 = 1;
+		if (ent.reprintedAs || ent.isReprinted) indexDoc.dR = 1;
 
 		if (src) {
 			if (SourceUtil.isPartneredSourceWotc(src)) indexDoc.dP = 1;

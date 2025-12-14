@@ -550,7 +550,7 @@ TagCondition._CONDITION_INFLICTED_MATCHERS = [
 	{re: `The (?!(?:[^.]+) can sense)(?:[^.]+) is {@condition (invisible)}`, flags: "g"}, // MM :: Invisible Stalker :: Invisibility
 	`succeed\\b[^.!?]+\\bsaving throw\\b[^.!?]+\\. (?:It|The (?:creature|target)) is {@condition ([^}]+)}`, // MM :: Beholder :: 6. Telekinetic Ray
 	{re: `\\bhave the {@condition ([^}]+)}\\b`, flags: "g"}, // XPHB :: Animal Friendship
-	{re: `\\bhas the {@condition ([^}]+)} condition\\b`, flags: "g"}, // XPHB :: Constrictor Snake
+	{re: `(?<!while [^.!?]+? |can't use this trait if [^.!?]+? |unless [^.!?]+? |suppressed while [^.!?]+? )has the {@condition ([^}]+)} condition\\b`, flags: "g"}, // XPHB :: Constrictor Snake
 ]
 	.map(it => typeof it === "object" ? it : ({re: it, flags: "gi"}))
 	.map(({re, flags}) => new RegExp(`${re}((?:, {@condition [^}]+})*)(,? (?:and|or) {@condition [^}]+})?`, flags));

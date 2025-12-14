@@ -1,8 +1,8 @@
 "use strict";
 
 class RenderPsionics {
-	static $getRenderedPsionic (psi) {
-		return $$`
+	static getRenderedPsionic (psi) {
+		return ee`
 			${Renderer.utils.getBorderTr()}
 			${Renderer.utils.getExcludedTr({entity: psi, dataProp: "psionic"})}
 			${Renderer.utils.getNameTr(psi, {page: UrlUtil.PG_PSIONICS})}

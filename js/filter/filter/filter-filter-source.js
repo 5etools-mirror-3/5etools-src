@@ -163,6 +163,17 @@ export class SourceFilter extends Filter {
 			),
 			null,
 			new ContextUtil.Action(
+				`Select 2014 Sources`,
+				() => this._doSetPinsClassic(),
+				{title: `Select sources published from 2014 to 2024.`},
+			),
+			new ContextUtil.Action(
+				`Select 2024 Sources`,
+				() => this._doSetPinsOne(),
+				{title: `Select sources published from 2024 onwards.`},
+			),
+			null,
+			new ContextUtil.Action(
 				`Select "Vanilla" Sources`,
 				() => this._doSetPinsVanilla(),
 				{title: `Select a baseline set of sources suitable for any campaign.`},
@@ -266,6 +277,14 @@ export class SourceFilter extends Filter {
 			Object.keys(this._state)
 				.mergeMap(k => ({[k]: SourceUtil.getFilterGroup(k) === SourceUtil.FILTER_GROUP_HOMEBREW ? PILL_STATE__YES : isAdditive ? this._state[k] : PILL_STATE__IGNORE})),
 		);
+	}
+
+	_doSetPinsClassic () {
+		Object.keys(this._state).forEach(k => this._state[k] = SourceUtil.isClassicSource(k) ? PILL_STATE__YES : PILL_STATE__IGNORE);
+	}
+
+	_doSetPinsOne () {
+		Object.keys(this._state).forEach(k => this._state[k] = SourceUtil.isClassicSource(k) ? PILL_STATE__IGNORE : PILL_STATE__YES);
 	}
 
 	_doSetPinsVanilla () {

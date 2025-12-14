@@ -19,17 +19,17 @@ class RewardsSublistManager extends SublistManager {
 	pGetSublistItem (reward, hash) {
 		const cellsText = [reward.type, reward.name];
 
-		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col">
+		const ele = ee`<div class="lst__row lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="lst__row-border lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
-		</div>`)
-			.contextmenu(evt => this._handleSublistItemContextMenu(evt, listItem))
-			.click(evt => this._listSub.doSelect(listItem, evt));
+		</div>`
+			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
 		const listItem = new ListItem(
 			hash,
-			$ele,
+			ele,
 			reward.name,
 			{
 				hash,
@@ -103,7 +103,7 @@ class RewardsPage extends ListPage {
 	}
 
 	_renderStats_doBuildStatsTab ({ent}) {
-		this._$pgContent.empty().append(RenderRewards.$getRenderedReward(ent));
+		this._pgContent.empty().appends(RenderRewards.getRenderedReward(ent));
 	}
 }
 

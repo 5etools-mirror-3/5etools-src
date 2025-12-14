@@ -351,15 +351,4 @@ export class RenderSpells {
 			default: throw new Error(`Unhandled style "${styleHint}"!`);
 		}
 	}
-
-	/**
-	 * @param {object} ent
-	 * @param [opts]
-	 * @param [opts.subclassLookup]
-	 * @param [opts.isSkipExcludesRender]
-	 * @param [opts.settings]
-	 */
-	static $getRenderedSpell (ent, opts) {
-		return $(this.getRenderedSpell(ent, opts));
-	}
 }

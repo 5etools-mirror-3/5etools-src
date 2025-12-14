@@ -82,6 +82,11 @@ export class EntityFileHandlerItems extends EntityFileHandlerBase {
 			this._checkArrayItemsExist({file, name, source, arr: Renderer.item.getFlatAttachedSpells(root), prop: "attachedSpells", tag: "spell"});
 		}
 
+		if (root.classFeatures) {
+			this._checkArrayDuplicates({file, name, source, arr: root.classFeatures, prop: "classFeatures", tag: "classFeature", propEntity: "classFeature"});
+			this._checkArrayItemsExist({file, name, source, arr: root.classFeatures, prop: "classFeatures", tag: "classFeature", propEntity: "classFeature"});
+		}
+
 		if (root.optionalfeatures) {
 			this._checkArrayDuplicates({file, name, source, arr: root.optionalfeatures, prop: "optionalfeatures", tag: "optfeature", propEntity: "optionalfeature"});
 			this._checkArrayItemsExist({file, name, source, arr: root.optionalfeatures, prop: "optionalfeatures", tag: "optfeature", propEntity: "optionalfeature"});

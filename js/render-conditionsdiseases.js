@@ -115,28 +115,28 @@ export class RenderConditionDiseases {
 	static _RENDER_CLASSIC__STATUS = new _RenderStatusImplClassic();
 	static _RENDER_ONE__STATUS = new _RenderStatusImplOne();
 
-	static $getRenderedConditionDisease (ent) {
+	static getRenderedConditionDisease (ent) {
 		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
 
 		switch (ent.__prop) {
 			case "condition": {
 				switch (styleHint) {
-					case SITE_STYLE__CLASSIC: return this._RENDER_CLASSIC__CONDITION.$getRendered(ent);
-					case SITE_STYLE__ONE: return this._RENDER_ONE__CONDITION.$getRendered(ent);
+					case SITE_STYLE__CLASSIC: return this._RENDER_CLASSIC__CONDITION.getRendered(ent);
+					case SITE_STYLE__ONE: return this._RENDER_ONE__CONDITION.getRendered(ent);
 					default: throw new Error(`Unhandled style "${styleHint}"!`);
 				}
 			}
 			case "disease": {
 				switch (styleHint) {
-					case SITE_STYLE__CLASSIC: return this._RENDER_CLASSIC__DISEASE.$getRendered(ent);
-					case SITE_STYLE__ONE: return this._RENDER_ONE__DISEASE.$getRendered(ent);
+					case SITE_STYLE__CLASSIC: return this._RENDER_CLASSIC__DISEASE.getRendered(ent);
+					case SITE_STYLE__ONE: return this._RENDER_ONE__DISEASE.getRendered(ent);
 					default: throw new Error(`Unhandled style "${styleHint}"!`);
 				}
 			}
 			case "status": {
 				switch (styleHint) {
-					case SITE_STYLE__CLASSIC: return this._RENDER_CLASSIC__STATUS.$getRendered(ent);
-					case SITE_STYLE__ONE: return this._RENDER_ONE__STATUS.$getRendered(ent);
+					case SITE_STYLE__CLASSIC: return this._RENDER_CLASSIC__STATUS.getRendered(ent);
+					case SITE_STYLE__ONE: return this._RENDER_ONE__STATUS.getRendered(ent);
 					default: throw new Error(`Unhandled style "${styleHint}"!`);
 				}
 			}

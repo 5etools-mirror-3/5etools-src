@@ -177,6 +177,17 @@ class List {
 		this._isDirty = true;
 	}
 
+	getScrollWrpInfo () {
+		return {
+			scrollTop: this._wrpList.scrollTop,
+			height: this._wrpList.getBoundingClientRect().height,
+		};
+	}
+
+	setScrollWrpTop (val) {
+		this._wrpList.scrollTop = val;
+	}
+
 	init ({isLazySearch = false} = {}) {
 		if (this._isInit) return;
 

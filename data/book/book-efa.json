@@ -1245,7 +1245,7 @@
 						"{@i An adventure for Level 4 characters}",
 						{
 							"type": "insetReadaloud",
-							"name": "The Sharn Inquisitive: Gold Dragon Burns!",
+							"name": "The Sharn Inquisitive\u2014Gold Dragon Burns!",
 							"id": "1a7",
 							"entries": [
 								"{@b THE PEACEFUL GOLD DRAGON INN NESTLED IN THE LOWER TOWERS OF TERMINUS IS ABLAZE, AND VICIOUS MARAUDERS ARE ATTACKING PATRONS FLEAING THE BURNING BUILDING}!",
@@ -2749,7 +2749,7 @@
 				"Run a Morgrave expeditions campaign if you want to emulate the pulp-action adventures of Professor Challenger, Indiana Jones, Lara Croft, and other explorer-scholars.",
 				{
 					"type": "section",
-					"name": "Morgrave Chartacters",
+					"name": "Morgrave Characters",
 					"id": "220",
 					"entries": [
 						"A Morgrave expeditions campaign assumes that characters are connected to Morgrave University, which is a patron to the adventuring party. This arrangement allows the university to assign the characters to specific missions and reward them for achieving certain objectives without directing their every move. In return, the characters can draw on the resources of the university, and they gain other benefits from having a group patron. (If you use the group patron rules in {@book Eberron: Rising from the Last War|ERLW|4} or {@book Tasha's Cauldron of Everything|TCE|16}, you can use the benefits listed here instead of the ones in those books; you can use the information on the {@book University|ERLW|4|University} and {@book Academy|TCE|2|Academy} patrons to flesh out the characters' contacts, fields of study, and so on.)",
@@ -3508,7 +3508,7 @@
 						"{@i An adventure for Level 3 characters}",
 						{
 							"type": "insetReadaloud",
-							"name": "The Sharn Inquisitive: Rivals Race To Wretched Ruin",
+							"name": "The Sharn Inquisitive\u2014Rivals Race To Wretched Ruin",
 							"id": "264",
 							"entries": [
 								"Not one but two expeditions from Morgrave University launch this week to explore the so-called Crab Temple, discovered last month near Stormreach. Which team will be the first to cross the deadly Straits of Shargon, cut through the jungles of the Skyfall Peninsula, and discover the great crab's secrets?"
@@ -3950,7 +3950,8 @@
 								"{@vehicle Strider Airship|EFA}"
 							]
 						}
-					]
+					],
+					"id": "00c"
 				},
 				{
 					"type": "section",
@@ -4205,58 +4206,10 @@
 											"entries": [
 												"You may use the following table to generate random encounters as adventurers navigate the skies.",
 												{
-													"type": "table",
-													"caption": "Airborne Encounters",
-													"colLabels": [
-														"1d10",
-														"Encounter"
-													],
-													"colStyles": [
-														"col-2 text-center",
-														"col-10"
-													],
-													"rows": [
-														[
-															"1",
-															"A gleaming {@book Lyrandar Air Cruiser|EFA|7|Lyrandar Air Cruiser Summary} helmed by a Friendly but pompous {@creature Noble Prodigy|XMM} or {@creature Lyrandar Scion|EFA} (described in {@area chapter 5|217|x})"
-														],
-														[
-															"2",
-															"A {@book Strider Airship|EFA|7|Strider Airship Summary} with a Hostile crew of {@dice 2d4} {@creature Pirate|XMM|Pirates} and one {@creature Pirate Captain|XMM}"
-														],
-														[
-															"3",
-															"{@dice 2d6} {@book Lyrandar Skyskiffs|EFA|7|Lyrandar Skyskiff Summary} gathered for a race; the ships' pilots are Indifferent but disgruntled toward anyone who interrupts their activities"
-														],
-														[
-															"4",
-															"A derelict Lyrandar Air Cruiser, stranded in the sky after its engine's elemental core shattered"
-														],
-														[
-															"5",
-															"{@dice 1d4} {@creature Air Elemental|XMM|Air Elementals} making cloud sculptures"
-														],
-														[
-															"6",
-															"{@dice 2d6} {@creature Griffon|XMM|Griffons} defending their territory"
-														],
-														[
-															"7",
-															"Two {@creature Sphinx of Secrets|XMM|Sphinxes of Secrets}, trying to figure out how the airship flies"
-														],
-														[
-															"8",
-															"Three {@creature Wyvern|XMM|Wyverns} hunting for prey"
-														],
-														[
-															"9",
-															"A flock of {@dice 2d4} {@creature Peryton|XMM|Perytons} hiding in a cloud, waiting to ambush unsuspecting travelers"
-														],
-														[
-															"10",
-															"One {@creature Roc|XMM} looking for food to carry to its nest"
-														]
-													]
+													"type": "statblock",
+													"name": "Airborne Encounters",
+													"source": "EFA",
+													"tag": "table"
 												}
 											]
 										}

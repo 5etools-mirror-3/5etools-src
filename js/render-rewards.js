@@ -1,8 +1,8 @@
 "use strict";
 
 class RenderRewards {
-	static $getRenderedReward (reward) {
-		return $$`
+	static getRenderedReward (reward) {
+		return ee`
 		${Renderer.utils.getBorderTr()}
 		${Renderer.utils.getExcludedTr({entity: reward, dataProp: "reward"})}
 		${Renderer.utils.getNameTr(reward, {page: UrlUtil.PG_REWARDS})}

@@ -1,20 +1,20 @@
 "use strict";
 
 class RenderCultsBoons {
-	static $getRenderedCultBoon (it) {
+	static getRenderedCultBoon (it) {
 		return it.__prop === "cult"
-			? RenderCultsBoons._$getRenderedCult(it)
-			: RenderCultsBoons._$getRenderedBoon(it);
+			? RenderCultsBoons._getRenderedCult(it)
+			: RenderCultsBoons._getRenderedBoon(it);
 	}
 
-	static _$getRenderedCult (it) {
+	static _getRenderedCult (it) {
 		const renderer = Renderer.get().setFirstSection(true);
 
 		const renderStack = [];
 		Renderer.cultboon.doRenderCultParts(it, renderer, renderStack);
 		renderer.recursiveRender({entries: it.entries}, renderStack, {depth: 1});
 
-		return $$`
+		return ee`
 			${Renderer.utils.getBorderTr()}
 			${Renderer.utils.getExcludedTr({entity: it, dataProp: "cult"})}
 			${Renderer.utils.getNameTr(it, {page: UrlUtil.PG_CULTS_BOONS})}
@@ -25,14 +25,14 @@ class RenderCultsBoons {
 		`;
 	}
 
-	static _$getRenderedBoon (it) {
+	static _getRenderedBoon (it) {
 		const renderer = Renderer.get().setFirstSection(true);
 
 		const renderStack = [];
 		it._displayName = it._displayName || it.name;
 		Renderer.cultboon.doRenderBoonParts(it, renderer, renderStack);
 		renderer.recursiveRender({entries: it.entries}, renderStack, {depth: 1});
-		return $$`
+		return ee`
 			${Renderer.utils.getBorderTr()}
 			${Renderer.utils.getExcludedTr({entity: it, dataProp: "boon"})}
 			${Renderer.utils.getNameTr(it, {page: UrlUtil.PG_CULTS_BOONS})}

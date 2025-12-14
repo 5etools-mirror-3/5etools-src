@@ -1,7 +1,7 @@
 "use strict";
 
 class RenderCharCreationOptions {
-	static $getRenderedCharCreationOption (ent) {
+	static getRenderedCharCreationOption (ent) {
 		const renderStack = [];
 
 		const prerequisite = Renderer.utils.prerequisite.getHtml(ent.prerequisite);
@@ -12,7 +12,7 @@ class RenderCharCreationOptions {
 		const entryList = {type: "entries", entries: ent.entries};
 		Renderer.get().setFirstSection(true).recursiveRender(entryList, renderStack);
 
-		return $$`
+		return ee`
 		${Renderer.utils.getBorderTr()}
 		${Renderer.utils.getExcludedTr({entity: ent, dataProp: "charoption"})}
 		${Renderer.utils.getNameTr(ent, {page: UrlUtil.PG_CHAR_CREATION_OPTIONS})}

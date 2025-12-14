@@ -3237,6 +3237,7 @@ Parser.SRC_ABH = "ABH";
 Parser.SRC_NF = "NF";
 Parser.SRC_LFL = "LFL";
 Parser.SRC_EFA = "EFA";
+Parser.SRC_FFotR = "FFotR";
 Parser.SRC_TD = "TD";
 Parser.SRC_SCREEN = "Screen";
 Parser.SRC_SCREEN_WILDERNESS_KIT = "ScreenWildernessKit";
@@ -3443,6 +3444,7 @@ Parser.SOURCE_JSON_TO_FULL[Parser.SRC_ABH] = "Astarion's Book of Hungers";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_NF] = "Netheril's Fall";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_LFL] = "Lorwyn: First Light";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_EFA] = "Eberron: Forge of the Artificer";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_FFotR] = "Fated Flight of the Recluse";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_TD] = "Tarot Deck";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_SCREEN] = "Dungeon Master's Screen";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_SCREEN_WILDERNESS_KIT] = "Dungeon Master's Screen: Wilderness Kit";
@@ -3624,6 +3626,7 @@ Parser.SOURCE_JSON_TO_ABV[Parser.SRC_ABH] = "ABH";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_NF] = "NF";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_LFL] = "LFL";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_EFA] = "EFA";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_FFotR] = "FFotR";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_TD] = "TD";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_SCREEN] = "Scr'14";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_SCREEN_WILDERNESS_KIT] = "ScrWild";
@@ -3804,6 +3807,7 @@ Parser.SOURCE_JSON_TO_DATE[Parser.SRC_ABH] = "2025-11-11";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_NF] = "2025-11-11";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_LFL] = "2025-11-18";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_EFA] = "2025-12-09";
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_FFotR] = "2025-12-09";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_TD] = "2022-05-24";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_SCREEN] = "2015-01-20";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_SCREEN_WILDERNESS_KIT] = "2020-11-17";
@@ -3958,7 +3962,7 @@ Parser.SOURCES_ADVENTURES = new Set([
 	Parser.SRC_DrDe_DotS,
 	Parser.SRC_HotB,
 	Parser.SRC_WttHC,
-
+	Parser.SRC_FFotR,
 	Parser.SRC_AWM,
 ]);
 Parser.SOURCES_CORE_SUPPLEMENTS = new Set(Object.keys(Parser.SOURCE_JSON_TO_FULL).filter(it => !Parser.SOURCES_ADVENTURES.has(it)));
@@ -4134,6 +4138,7 @@ Parser.SOURCES_NON_FR = new Set([
 	Parser.SRC_WttHC,
 	Parser.SRC_LFL,
 	Parser.SRC_EFA,
+	Parser.SRC_FFotR,
 ]);
 
 // endregion
@@ -4301,6 +4306,7 @@ Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE = {};
 	Parser.SRC_DrDe_DotS,
 	Parser.SRC_HotB,
 	Parser.SRC_WttHC,
+	Parser.SRC_FFotR,
 ].forEach(src => {
 	Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE[src] = src;
 	Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE[src.toLowerCase()] = src;

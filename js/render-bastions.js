@@ -64,13 +64,13 @@ class _RenderFacilitiesImplOne extends _RenderFacilitiesImplBase {
 
 			${htmlPtIsExcluded}
 			${htmlPtName}
-			
+
 			${htmlPtPrerequisites}
-			
+
 			<tr><td colspan="6">
 				${htmlPtEntries}
 			</td></tr>
-			
+
 			${htmlPtPage}
 			${Renderer.utils.getBorderTr()}
 		`;
@@ -80,7 +80,7 @@ class _RenderFacilitiesImplOne extends _RenderFacilitiesImplBase {
 export class RenderBastions {
 	static _RENDER_ONE__FACILITIES = new _RenderFacilitiesImplOne();
 
-	static $getRenderedFacility (ent) {
-		return this._RENDER_ONE__FACILITIES.$getRendered(ent);
+	static getRenderedFacility (ent) {
+		return this._RENDER_ONE__FACILITIES.getRendered(ent);
 	}
 }

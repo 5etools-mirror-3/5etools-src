@@ -23,7 +23,10 @@ export class StatGenUi extends BaseComponent {
 		...this._MODES,
 	];
 
-	static _PROPS_POINT_BUY_CUSTOM = [
+	static _PROPS_CUSTOM = [
+		"rolled_formula",
+		"rolled_rollCount",
+
 		"pb_rules",
 		"pb_budget",
 		"pb_isCustom",
@@ -96,7 +99,7 @@ export class StatGenUi extends BaseComponent {
 	set ixActiveTab (ix) { this._setIxActiveTab({ixActiveTab: ix}); }
 
 	// region Expose for external use
-	addHookPointBuyCustom (hook) { this.constructor._PROPS_POINT_BUY_CUSTOM.forEach(prop => this._addHookBase(prop, hook)); }
+	addHookCustom (hook) { this.constructor._PROPS_CUSTOM.forEach(prop => this._addHookBase(prop, hook)); }
 
 	addHookAbilityScores (hook) { Parser.ABIL_ABVS.forEach(ab => this._addHookBase(`common_export_${ab}`, hook)); }
 	addHookPulseAsi (hook) { this._addHookBase("common_pulseAsi", hook); }
@@ -1307,10 +1310,13 @@ export class StatGenUi extends BaseComponent {
 	}
 
 	// region External use
-	getSaveableStatePointBuyCustom () {
+	getSaveableStateCustom () {
 		const base = this.getSaveableState();
 		return {
-			state: this.constructor._PROPS_POINT_BUY_CUSTOM.mergeMap(k => ({[k]: base.state[k]})),
+			state: Object.fromEntries(
+				this.constructor._PROPS_CUSTOM
+					.map(k => [k, base.state[k]]),
+			),
 		};
 	}
 	// endregion

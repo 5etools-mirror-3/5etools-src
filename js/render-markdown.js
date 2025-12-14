@@ -1468,7 +1468,11 @@ RendererMarkdown.item = class {
 		const ptMastery = Renderer.item.getRenderedMastery(item, {renderer: RendererMarkdown.get()});
 		const [typeRarityText, subTypeText, tierText] = RendererMarkdown.item.getTypeRarityAndAttunementText(item);
 
-		const typeRarityTierValueWeight = [typeRarityText, subTypeText, tierText, Parser.itemValueToFullMultiCurrency(item, {styleHint}), Parser.itemWeightToFull(item)].filter(Boolean).join(", ").uppercaseFirst();
+		const ptTypeRarity = styleHint === "classic" ? typeRarityText.uppercaseFirst() : typeRarityText.toTitleCase();
+		const ptTier = styleHint === "classic" ? subTypeText.uppercaseFirst() : subTypeText.toTitleCase();
+		const ptSubtype = styleHint === "classic" ? tierText.uppercaseFirst() : tierText.toTitleCase();
+
+		const typeRarityTierValueWeight = [ptTypeRarity, ptSubtype, ptTier, Parser.itemValueToFullMultiCurrency(item, {styleHint}), Parser.itemWeightToFull(item)].filter(Boolean).join(", ").uppercaseFirst();
 
 		const ptSubtitle = [typeRarityTierValueWeight, ptDamage, ptProperties, ptMastery].filter(Boolean).join("\n\n");
 

@@ -1,8 +1,8 @@
 "use strict";
 
 class RenderActions {
-	static $getRenderedAction (it) {
-		return $$`
+	static getRenderedAction (it) {
+		return ee`
 		${Renderer.utils.getBorderTr()}
 		${Renderer.utils.getExcludedTr({entity: it, dataProp: "action"})}
 		${Renderer.utils.getNameTr(it, {page: UrlUtil.PG_ACTIONS})}
