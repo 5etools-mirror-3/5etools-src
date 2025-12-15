@@ -67,6 +67,7 @@ export class StyleSwitcher {
 
 	constructor () {
 		if (typeof window === "undefined") return;
+		// Start with night mode by default, then check user preference
 		this._setActiveDayNight(StyleSwitcher.storage.getItem(StyleSwitcher._STORAGE_DAY_NIGHT) || StyleSwitcher._STYLE_AUTOMATIC);
 		this._setActiveWide(StyleSwitcher.storage.getItem(StyleSwitcher._STORAGE_WIDE) === "true");
 	}
@@ -86,6 +87,7 @@ export class StyleSwitcher {
 
 	static _getDefaultStyleDayNight () {
 		// if (window.matchMedia("(prefers-color-scheme: dark)").matches) return StyleSwitcher._STYLE_NIGHT;
+		// Default to night mode to prevent white flash
 		return StyleSwitcher._STYLE_NIGHT;
 	}
 
