@@ -70,42 +70,94 @@ import { VOICE_APP_PATH } from "./controller-config.js";
 	/*************************************/
 
 	function initPeer2Peer () {
-		peer = new Peer(null, { debug: 2 });
+		// Log environment info for debugging production issues
+		const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.hostname === "";
+		const envInfo = {
+			hostname: window.location.hostname,
+			protocol: window.location.protocol,
+			isLocalhost: isLocalhost,
+			isProduction: !isLocalhost,
+			peerjsAvailable: typeof Peer !== "undefined",
+		};
+		console.log("[PeerJS Debug] Environment:", envInfo);
+
+		try {
+			peer = new Peer(null, { debug: 2 });
+			console.log("[PeerJS Debug] Peer instance created");
+		} catch (error) {
+			console.error("[PeerJS Debug] Failed to create Peer instance:", error);
+			showAlert(`Failed to initialize PeerJS: ${error.message}`);
+			return;
+		}
+
 		peer.on("open", function (id) {
-			if (peer.id === null) {
-				peer.id = lastPeerId;
-			} else {
-				lastPeerId = peer.id;
+			try {
+				if (peer.id === null) {
+					peer.id = lastPeerId;
+				} else {
+					lastPeerId = peer.id;
+				}
+				console.log(`[PeerJS Debug] peer.on('open') - ID: ${peer.id}, Environment: ${envInfo.isProduction ? "PRODUCTION" : "LOCALHOST"}`);
+				checkForKeyAndJoin();
+			} catch (error) {
+				console.error("[PeerJS Debug] Error in peer.on('open'):", error);
 			}
-			console.log(`peer.on('open')`);
-			checkForKeyAndJoin();
 		});
+
 		peer.on("connection", function (c) {
-			console.log(`peer.on('connection')`);
-			c.on("open", function () {
-				c.send("Sender does not accept incoming connections");
-				setTimeout(function () { c.close(); }, 500);
-			});
+			console.log(`[PeerJS Debug] peer.on('connection') - From: ${c.peer || "unknown"}`);
+			try {
+				c.on("open", function () {
+					c.send("Sender does not accept incoming connections");
+					setTimeout(function () { c.close(); }, 500);
+				});
+				c.on("error", function (err) {
+					console.error("[PeerJS Debug] Incoming connection error:", err);
+				});
+			} catch (error) {
+				console.error("[PeerJS Debug] Error handling incoming connection:", error);
+			}
 		});
+
 		peer.on("disconnected", function () {
-			console.log(`peer.on('disconnected')`);
-			p2pconnected = false;
-			status.innerHTML = "<span class=\"red\">Connection lost. Please reconnect</span>";
-			document.querySelectorAll(".control-panel").forEach(c => { c.classList.add("closed"); });
-			peer.id = lastPeerId;
-			peer._lastServerId = lastPeerId;
-			peer.reconnect();
+			console.log(`[PeerJS Debug] peer.on('disconnected') - ID: ${peer.id}, Will attempt reconnect`);
+			try {
+				p2pconnected = false;
+				status.innerHTML = "<span class=\"red\">Connection lost. Please reconnect</span>";
+				document.querySelectorAll(".control-panel").forEach(c => { c.classList.add("closed"); });
+				peer.id = lastPeerId;
+				peer._lastServerId = lastPeerId;
+				peer.reconnect();
+			} catch (error) {
+				console.error("[PeerJS Debug] Error during reconnect:", error);
+			}
 		});
+
 		peer.on("close", function () {
-			console.log(`peer.on('close')`);
-			p2pconnected = false;
-			conn = null;
-			status.innerHTML = "<span class=\"red\">Connection destroyed. Please refresh</span>";
-			document.querySelectorAll(".control-panel").forEach(c => { c.classList.add("closed"); });
+			console.log(`[PeerJS Debug] peer.on('close') - Connection destroyed`);
+			try {
+				p2pconnected = false;
+				conn = null;
+				status.innerHTML = "<span class=\"red\">Connection destroyed. Please refresh</span>";
+				document.querySelectorAll(".control-panel").forEach(c => { c.classList.add("closed"); });
+			} catch (error) {
+				console.error("[PeerJS Debug] Error in peer.on('close'):", error);
+			}
 		});
+
 		peer.on("error", function (err) {
+			const errorDetails = {
+				error: err,
+				type: err?.type || "unknown",
+				message: err?.message || String(err),
+				peerId: peer?.id,
+				disconnected: peer?.disconnected,
+				destroyed: peer?.destroyed,
+				environment: envInfo,
+			};
+			console.error("[PeerJS Debug] peer.on('error'):", errorDetails);
 			p2pconnected = false;
-			showAlert(`${err}`);
+			showAlert(`PeerJS Error: ${err?.type || "Unknown"} - ${err?.message || err}`);
 		});
 	}
 
@@ -143,11 +195,25 @@ import { VOICE_APP_PATH } from "./controller-config.js";
 
 			// Now send the signal
 			if (conn && conn.open) {
-				conn.send(sigName);
-				addMessage(cueString + (typeof sigName === "object" ? JSON.stringify(sigName) : sigName));
-				console.info("Data Sent:", sigName);
+				try {
+					conn.send(sigName);
+					addMessage(cueString + (typeof sigName === "object" ? JSON.stringify(sigName) : sigName));
+					console.info("[PeerJS Debug] Data Sent:", sigName);
+				} catch (error) {
+					console.error("[PeerJS Debug] Error sending data:", error);
+					showAlert(`Failed to send data: ${error.message}`);
+					resolve(null);
+				}
 			} else {
-				console.error("No connection found.");
+				const connState = {
+					connExists: !!conn,
+					connOpen: conn?.open,
+					p2pconnected: p2pconnected,
+					peerId: peer?.id,
+					peerDisconnected: peer?.disconnected,
+					peerDestroyed: peer?.destroyed,
+				};
+				console.error("[PeerJS Debug] No connection found. Connection state:", connState);
 				showAlert("No connection found.");
 				resolve(null); // Resolve with null if no connection
 			}
@@ -157,52 +223,133 @@ import { VOICE_APP_PATH } from "./controller-config.js";
 	function join (forcedPasskey) {
 		const passkey = forcedPasskey || recvIdInput.value;
 		if (passkey) {
-			setCookie("passkey", passkey);
-			if (conn) { conn.close(); }
-			conn = peer.connect(`orcnog-${passkey}`, { label: "CONTROLLER", reliable: true });
-
-			conn.on("open", function () {
-				console.log(`conn.on("open")`);
-				p2pconnected = true;
-				status.innerHTML = `Connected to: ${conn.peer.split("orcnog-")[1]}`;
-				document.querySelectorAll(".control-panel").forEach(c => { c.classList.remove("closed"); });
-				// Send ready broadcast to other tabs/windows immediately
-				broadcastChannel.postMessage({
-					type: "controller_ready",
-					timestamp: Date.now(),
-				});
-			});
-
-			conn.on("data", async (data) => {
-				console.log(`conn.on("data")`, data);
-				// Check for error message
-				if (data?.error === "CONTROLLER_ALREADY_CONNECTED") {
-					p2pconnected = false;
-					status.innerHTML = "<span class=\"red\">Connection rejected: Another controller is already connected</span>";
-					showAlert("Connection Error", "Another controller is already connected to this session.");
-					conn.duplicateControllerError = true;
+			try {
+				setCookie("passkey", passkey);
+				
+				// Check peer state before attempting connection
+				if (!peer) {
+					console.error("[PeerJS Debug] Cannot connect: Peer instance is null");
+					showAlert("PeerJS not initialized. Please refresh the page.");
 					return;
 				}
 
-				// Handle normal data
-				if (typeof data === "object" && "controllerData" in data) {
-					await handleDataObject(data.controllerData);
-					// addMessage(`<span class="peerMsg">Received:</span> ${JSON.stringify(data)}`);
-					console.info("Peer Data Recieved: ", data.controllerData);
-				} else {
-					addMessage(`<span class="peerMsg">Peer said:</span> ${data}`);
+				if (peer.destroyed) {
+					console.error("[PeerJS Debug] Cannot connect: Peer instance is destroyed");
+					showAlert("PeerJS connection destroyed. Please refresh the page.");
+					return;
 				}
-			});
 
-			conn.on("close", function () {
-				console.log(`"conn.on("close")`);
-				p2pconnected = false;
-				// Only show generic close message if it wasn't a duplicate controller error
-				if (!conn.duplicateControllerError) {
-					status.innerHTML = "<span class=\"red\">Connection closed</span>";
+				if (peer.disconnected && !peer.id) {
+					console.warn("[PeerJS Debug] Peer is disconnected and has no ID. Waiting for peer to open...");
+					// Wait for peer to open before connecting
+					peer.once("open", function() {
+						console.log("[PeerJS Debug] Peer opened, retrying connection");
+						join(passkey);
+					});
+					return;
 				}
-				document.querySelectorAll(".control-panel").forEach(c => { c.classList.add("closed"); });
-			});
+
+				const targetPeerId = `orcnog-${passkey}`;
+				console.log(`[PeerJS Debug] Attempting to connect to: ${targetPeerId}, Peer ID: ${peer.id}, Disconnected: ${peer.disconnected}`);
+
+				if (conn) {
+					console.log("[PeerJS Debug] Closing existing connection");
+					conn.close();
+				}
+
+				try {
+					conn = peer.connect(targetPeerId, { label: "CONTROLLER", reliable: true });
+					console.log("[PeerJS Debug] Connection object created, waiting for open event");
+				} catch (connectError) {
+					console.error("[PeerJS Debug] Failed to create connection:", connectError);
+					showAlert(`Failed to create connection: ${connectError.message}`);
+					return;
+				}
+
+				// Set connection timeout
+				const connectionTimeout = setTimeout(() => {
+					if (!p2pconnected) {
+						console.error("[PeerJS Debug] Connection timeout after 10 seconds");
+						showAlert("Connection timeout. The peer may be unreachable or the network may be blocking the connection.");
+					}
+				}, 10000);
+
+				conn.on("open", function () {
+					clearTimeout(connectionTimeout);
+					console.log(`[PeerJS Debug] conn.on("open") - Connected to: ${conn.peer}`);
+					try {
+						p2pconnected = true;
+						status.innerHTML = `Connected to: ${conn.peer.split("orcnog-")[1]}`;
+						document.querySelectorAll(".control-panel").forEach(c => { c.classList.remove("closed"); });
+						// Send ready broadcast to other tabs/windows immediately
+						broadcastChannel.postMessage({
+							type: "controller_ready",
+							timestamp: Date.now(),
+						});
+					} catch (error) {
+						console.error("[PeerJS Debug] Error in conn.on('open'):", error);
+					}
+				});
+
+				conn.on("data", async (data) => {
+					console.log(`[PeerJS Debug] conn.on("data") - Received data`);
+					try {
+						// Check for error message
+						if (data?.error === "CONTROLLER_ALREADY_CONNECTED") {
+							p2pconnected = false;
+							status.innerHTML = "<span class=\"red\">Connection rejected: Another controller is already connected</span>";
+							showAlert("Connection Error", "Another controller is already connected to this session.");
+							conn.duplicateControllerError = true;
+							return;
+						}
+
+						// Handle normal data
+						if (typeof data === "object" && "controllerData" in data) {
+							await handleDataObject(data.controllerData);
+							// addMessage(`<span class="peerMsg">Received:</span> ${JSON.stringify(data)}`);
+							console.info("[PeerJS Debug] Peer Data Received:", data.controllerData);
+						} else {
+							addMessage(`<span class="peerMsg">Peer said:</span> ${data}`);
+						}
+					} catch (error) {
+						console.error("[PeerJS Debug] Error handling connection data:", error);
+					}
+				});
+
+				conn.on("close", function () {
+					clearTimeout(connectionTimeout);
+					console.log(`[PeerJS Debug] conn.on("close") - Connection closed`);
+					try {
+						p2pconnected = false;
+						// Only show generic close message if it wasn't a duplicate controller error
+						if (!conn.duplicateControllerError) {
+							status.innerHTML = "<span class=\"red\">Connection closed</span>";
+						}
+						document.querySelectorAll(".control-panel").forEach(c => { c.classList.add("closed"); });
+					} catch (error) {
+						console.error("[PeerJS Debug] Error in conn.on('close'):", error);
+					}
+				});
+
+				conn.on("error", function (err) {
+					clearTimeout(connectionTimeout);
+					const errorDetails = {
+						error: err,
+						type: err?.type || "unknown",
+						message: err?.message || String(err),
+						peer: conn?.peer,
+						open: conn?.open,
+					};
+					console.error("[PeerJS Debug] conn.on('error'):", errorDetails);
+					p2pconnected = false;
+					showAlert(`Connection Error: ${err?.type || "Unknown"} - ${err?.message || err}`);
+				});
+			} catch (error) {
+				console.error("[PeerJS Debug] Error in join function:", error);
+				showAlert(`Failed to join: ${error.message}`);
+			}
+		} else {
+			console.warn("[PeerJS Debug] join() called without passkey");
 		}
 	}
 
@@ -2203,7 +2350,18 @@ import { VOICE_APP_PATH } from "./controller-config.js";
 	/* Initialization                    */
 	/*************************************/
 
-	initPeer2Peer();
+	try {
+		if (typeof Peer === "undefined") {
+			console.error("[PeerJS Debug] PeerJS library not loaded. Make sure peerjs.js is loaded before controller.js");
+			showAlert("PeerJS library not found. Please refresh the page.");
+		} else {
+			initPeer2Peer();
+		}
+	} catch (error) {
+		console.error("[PeerJS Debug] Failed to initialize PeerJS:", error);
+		showAlert(`Failed to initialize PeerJS: ${error.message}`);
+	}
+
 	initTab2Tab();
 	initializeDOM();
 })();
