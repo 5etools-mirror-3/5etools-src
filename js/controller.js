@@ -1144,22 +1144,45 @@ import { VOICE_APP_PATH } from "./controller-config.js";
 		return new Promise(resolve => {
 			// Set value and focus
 			const input = document.querySelector(".omni__input");
+			if (!input) {
+				resolve();
+				return;
+			}
+
 			input.value = value;
 			input.focus();
 
 			// Show the output wrapper
-			document.querySelector(".omni__wrp-output")?.classList.remove("ve-hidden");
+			const wrpOutput = document.querySelector(".omni__wrp-output");
+			if (wrpOutput) {
+				wrpOutput.classList.remove("ve-hidden");
+			}
 
-			// Try to open search results div immediately
-			Omnisearch._pHandleClickSubmit();
+			// Try to trigger search by clicking the submit button
+			const submitBtn = document.querySelector(".omni__submit");
+			if (submitBtn) {
+				submitBtn.click();
+			} else {
+				// Fallback: trigger input event to start search
+				const inputEvent = new Event("input", { bubbles: true });
+				input.dispatchEvent(inputEvent);
+			}
 
-			// If it doesn't open immediately, wait for the TYPE_TIMEOUT_MS duration before triggering search
+			// If it doesn't open immediately, wait for the timeout duration before triggering search again
+			const TYPE_TIMEOUT_MS = 100; // Same as OmnisearchUi._TYPE_TIMEOUT_MS
 			setTimeout(async () => {
-				if (document.querySelector(".omni__wrp-output").classList.contains("ve-hidden")) {
-					await Omnisearch._pHandleClickSubmit();
+				const wrpOutputCheck = document.querySelector(".omni__wrp-output");
+				if (wrpOutputCheck && wrpOutputCheck.classList.contains("ve-hidden")) {
+					// Try again
+					if (submitBtn) {
+						submitBtn.click();
+					} else {
+						const inputEvent = new Event("input", { bubbles: true });
+						input.dispatchEvent(inputEvent);
+					}
 				}
 				resolve();
-			}, Omnisearch._TYPE_TIMEOUT_MS);
+			}, TYPE_TIMEOUT_MS);
 		});
 	}
 
@@ -2166,6 +2189,30 @@ import { VOICE_APP_PATH } from "./controller-config.js";
 		document.getElementById("updateSlideshowContext").addEventListener("change", (e) => {
 			signal(`updateSlideshowContext:${e.target.value}`);
 		});
+
+		// Mic status click handler - toggle mic on/off
+		const micStatus = document.getElementById("mic_status");
+		if (micStatus) {
+			micStatus.style.cursor = "pointer";
+			micStatus.title = "Click to toggle microphone";
+			micStatus.addEventListener("click", () => {
+				if (!conn || !conn.open) {
+					console.warn("[PeerJS Debug] Cannot toggle mic: not connected");
+					return;
+				}
+
+				// Send command directly (bypass signal function's mic-waiting logic)
+				const command = isMicActive ? "mic_disable" : "mic_enable";
+				try {
+					conn.send(command);
+					addMessage(cueString + command);
+					console.info("[PeerJS Debug] Mic toggle command sent:", command);
+				} catch (error) {
+					console.error("[PeerJS Debug] Error sending mic toggle command:", error);
+					showAlert(`Failed to send mic command: ${error.message}`);
+				}
+			});
+		}
 
 		// App scale input
 		document.getElementById("update_app_scale").addEventListener("change", (e) => {
