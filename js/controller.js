@@ -125,6 +125,7 @@ import { VOICE_APP_PATH } from "./controller-config.js";
 				p2pconnected = false;
 				status.innerHTML = "<span class=\"red\">Connection lost. Please reconnect</span>";
 				document.querySelectorAll(".control-panel").forEach(c => { c.classList.add("closed"); });
+				updateConnectionButtons(false);
 				peer.id = lastPeerId;
 				peer._lastServerId = lastPeerId;
 				peer.reconnect();
@@ -140,6 +141,7 @@ import { VOICE_APP_PATH } from "./controller-config.js";
 				conn = null;
 				status.innerHTML = "<span class=\"red\">Connection destroyed. Please refresh</span>";
 				document.querySelectorAll(".control-panel").forEach(c => { c.classList.add("closed"); });
+				updateConnectionButtons(false);
 			} catch (error) {
 				console.error("[PeerJS Debug] Error in peer.on('close'):", error);
 			}
@@ -220,12 +222,56 @@ import { VOICE_APP_PATH } from "./controller-config.js";
 		});
 	}
 
+	function disconnect () {
+		try {
+			console.log("[PeerJS Debug] Disconnecting...");
+
+			// Close the connection if it exists
+			if (conn) {
+				conn.close();
+				conn = null;
+			}
+
+			// Update connection state
+			p2pconnected = false;
+
+			// Update UI
+			status.innerHTML = "<span class=\"red\">Disconnected</span>";
+			document.querySelectorAll(".control-panel").forEach(c => { c.classList.add("closed"); });
+
+			// Update button states
+			updateConnectionButtons(false);
+
+			console.log("[PeerJS Debug] Disconnected successfully");
+		} catch (error) {
+			console.error("[PeerJS Debug] Error during disconnect:", error);
+			showAlert(`Failed to disconnect: ${error.message}`);
+		}
+	}
+
+	function updateConnectionButtons (isConnected) {
+		if (isConnected) {
+			connectButton.textContent = "Disconnect";
+			connectButton.disabled = false;
+			connectButton.style.cursor = "pointer";
+		} else {
+			connectButton.textContent = "Connect";
+			connectButton.disabled = false;
+			connectButton.style.cursor = "pointer";
+		}
+
+		// Remove any disconnect button that might have been created
+		const disconnectButton = document.getElementById("disconnect-button");
+		if (disconnectButton) {
+			disconnectButton.remove();
+		}
+	}
+
 	function join (forcedPasskey) {
 		const passkey = forcedPasskey || recvIdInput.value;
 		if (passkey) {
 			try {
 				setCookie("passkey", passkey);
-				
 				// Check peer state before attempting connection
 				if (!peer) {
 					console.error("[PeerJS Debug] Cannot connect: Peer instance is null");
@@ -242,7 +288,7 @@ import { VOICE_APP_PATH } from "./controller-config.js";
 				if (peer.disconnected && !peer.id) {
 					console.warn("[PeerJS Debug] Peer is disconnected and has no ID. Waiting for peer to open...");
 					// Wait for peer to open before connecting
-					peer.once("open", function() {
+					peer.once("open", function () {
 						console.log("[PeerJS Debug] Peer opened, retrying connection");
 						join(passkey);
 					});
@@ -281,6 +327,8 @@ import { VOICE_APP_PATH } from "./controller-config.js";
 						p2pconnected = true;
 						status.innerHTML = `Connected to: ${conn.peer.split("orcnog-")[1]}`;
 						document.querySelectorAll(".control-panel").forEach(c => { c.classList.remove("closed"); });
+						// Update connection buttons
+						updateConnectionButtons(true);
 						// Send ready broadcast to other tabs/windows immediately
 						broadcastChannel.postMessage({
 							type: "controller_ready",
@@ -300,6 +348,7 @@ import { VOICE_APP_PATH } from "./controller-config.js";
 							status.innerHTML = "<span class=\"red\">Connection rejected: Another controller is already connected</span>";
 							showAlert("Connection Error", "Another controller is already connected to this session.");
 							conn.duplicateControllerError = true;
+							updateConnectionButtons(false);
 							return;
 						}
 
@@ -326,6 +375,7 @@ import { VOICE_APP_PATH } from "./controller-config.js";
 							status.innerHTML = "<span class=\"red\">Connection closed</span>";
 						}
 						document.querySelectorAll(".control-panel").forEach(c => { c.classList.add("closed"); });
+						updateConnectionButtons(false);
 					} catch (error) {
 						console.error("[PeerJS Debug] Error in conn.on('close'):", error);
 					}
@@ -342,6 +392,7 @@ import { VOICE_APP_PATH } from "./controller-config.js";
 					};
 					console.error("[PeerJS Debug] conn.on('error'):", errorDetails);
 					p2pconnected = false;
+					updateConnectionButtons(false);
 					showAlert(`Connection Error: ${err?.type || "Unknown"} - ${err?.message || err}`);
 				});
 			} catch (error) {
@@ -901,11 +952,13 @@ import { VOICE_APP_PATH } from "./controller-config.js";
 		nameCell.appendChild(nameInput); // Append the input to the table cell and the cell to the row
 		row.appendChild(nameCell);
 
-		// Create and append the "statblock-lock-status" cell
+		// Create and append the "statblock-locked-status" cell
 		const lockCell = document.createElement("td");
-		const lockSpan = document.createElement("span");
-		lockSpan.classList.add("statblock-lock-status");
-		lockCell.appendChild(lockSpan);
+		const lockBtn = document.createElement("button");
+		lockBtn.type = "button";
+		lockBtn.title = "Lock Statblock in Place";
+		lockBtn.classList.add("statblock-locked-status");
+		lockCell.appendChild(lockBtn);
 		row.appendChild(lockCell);
 
 		const mon = await get5etMonsterByHash(player.hash, player.scaledCr);
@@ -1034,7 +1087,7 @@ import { VOICE_APP_PATH } from "./controller-config.js";
 
 		initTrackerTable.addEventListener("mouseleave", (e) => {
 			if (!initTrackerTable.contains(e.relatedTarget)) {
-				if (!document.querySelector(".statblock-lock-status.locked")) {
+				if (!document.querySelector(".statblock-locked-status.locked")) {
 					isRowHoverEnabled = true;
 				}
 			}
@@ -1044,8 +1097,8 @@ import { VOICE_APP_PATH } from "./controller-config.js";
 			if (e.target.tagName === "INPUT" || !("hash" in row.dataset)) return;
 			showStatblockOnEvent(e);
 
-			// Get the clicked row's statblock-lock-status
-			const statBlockLockCell = e.target?.closest("tr")?.querySelector(".statblock-lock-status");
+			// Get the clicked row's statblock-locked-status
+			const statBlockLockCell = e.target?.closest("tr")?.querySelector(".statblock-locked-status");
 
 			if (statBlockLockCell) {
 				// Check if the row is currently locked
@@ -1055,7 +1108,7 @@ import { VOICE_APP_PATH } from "./controller-config.js";
 					isRowHoverEnabled = true;
 				} else {
 					// If not locked, add the class and disable row hover
-					document.querySelectorAll(".statblock-lock-status.locked").forEach((c) => c.classList.remove("locked"));
+					document.querySelectorAll(".statblock-locked-status.locked").forEach((c) => c.classList.remove("locked"));
 					statBlockLockCell.classList.add("locked");
 					isRowHoverEnabled = false;
 				}
@@ -2039,7 +2092,7 @@ import { VOICE_APP_PATH } from "./controller-config.js";
 		const hpInput = e.target;
 		const raw = hpInput.value.trim();
 		const cur = Number(hpInput.dataset.lastHp); // Ensure cur is a number
-		const cookieSuffix = getDataOrNull(hpInput.dataset.cookie) || hpCookieSuffix
+		const cookieSuffix = getDataOrNull(hpInput.dataset.cookie) || hpCookieSuffix;
 		const id = hpInput.dataset.id;
 
 		let result; // Variable to hold the new HP value
@@ -2327,7 +2380,18 @@ import { VOICE_APP_PATH } from "./controller-config.js";
 		});
 
 		clearMsgsButton.addEventListener("click", clearMessages);
-		connectButton.addEventListener("click", () => { join(); });
+		connectButton.addEventListener("click", () => {
+			if (p2pconnected) {
+				// If connected, disconnect
+				disconnect();
+			} else {
+				// If not connected, connect
+				join();
+			}
+		});
+
+		// Initialize button state
+		updateConnectionButtons(false);
 		recvIdInput.addEventListener("focus", function (e) {
 			e.target.select();
 		});

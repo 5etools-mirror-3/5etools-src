@@ -88,7 +88,7 @@
 					<div class="control-section">
 						<span style="font-weight: bold">ID: </span>
 						<input type="text" id="receiver-id" title="Input the ID from receive.html">
-						<button id="connect-button">Connect</button>
+						<button id="connect-button" title="Connect to Peer-to-Peer Initiative Controller">Connect</button>
 						<div id="status" class="status"></div>
 					</div>
 				</div>
@@ -100,7 +100,7 @@
 					<input type="text" id="new_player_name" />
 					<label for="new_player_roll">Initiative Roll</label>
 					<input type="text" id="new_player_roll" />
-					<button id="submit_new_player" type="submit">Submit</button>
+					<button id="submit_new_player" type="submit" title="Submit New Player">Submit</button>
 				</form>
 			</div>
 
@@ -157,10 +157,10 @@
 						<div id="initiative_order">
 							<div class="initiative-header">
 								<div class="round-tracker">Round: <span id="round_tracker"></span></div>
-								<div class="clear-all-btn"><button id="clear_initiative"
+								<div class="clear-all-btn"><button id="clear_initiative" title="Clear Initiative Tracker"
 										class="control-button clear-initiative-btn"></button></div>
 							</div>
-							<button id="prev_turn"><svg xmlns="http://www.w3.org/2000/svg"
+							<button id="prev_turn" title="Previous Turn"><svg xmlns="http://www.w3.org/2000/svg"
 									viewBox="0 0 320 512">
 									<path fill="var(--subtle-icon-color)"
 										d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
@@ -178,7 +178,7 @@
 								</thead>
 								<tbody></tbody>
 							</table>
-							<button id="next_turn"><svg xmlns="http://www.w3.org/2000/svg"
+							<button id="next_turn" title="Next Turn"><svg xmlns="http://www.w3.org/2000/svg"
 									viewBox="0 0 320 512">
 									<path fill="var(--subtle-icon-color)"
 										d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
@@ -214,32 +214,32 @@
 						<div class="audio-player-controls-container">
 							<label>Music</label>
 							<div class="audio-player-controls">
-								<button id="repeat_music" class="audio-ui-btn"><svg
+								<button id="repeat_music" class="audio-ui-btn" title="Repeat Music"><svg
 										xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 										<path fill="var(--music-icon-color)"
 											d="M142.9 142.9c-17.5 17.5-30.1 38-37.8 59.8c-5.9 16.7-24.2 25.4-40.8 19.5s-25.4-24.2-19.5-40.8C55.6 150.7 73.2 122 97.6 97.6c87.2-87.2 228.3-87.5 315.8-1L455 55c6.9-6.9 17.2-8.9 26.2-5.2s14.8 12.5 14.8 22.2l0 128c0 13.3-10.7 24-24 24l-8.4 0c0 0 0 0 0 0L344 224c-9.7 0-18.5-5.8-22.2-14.8s-1.7-19.3 5.2-26.2l41.1-41.1c-62.6-61.5-163.1-61.2-225.3 1zM16 312c0-13.3 10.7-24 24-24l7.6 0 .7 0L168 288c9.7 0 18.5 5.8 22.2 14.8s1.7 19.3-5.2 26.2l-41.1 41.1c62.6 61.5 163.1 61.2 225.3-1c17.5-17.5 30.1-38 37.8-59.8c5.9-16.7 24.2-25.4 40.8-19.5s25.4 24.2 19.5 40.8c-10.8 30.6-28.4 59.3-52.9 83.8c-87.2 87.2-228.3 87.5-315.8 1L57 457c-6.9 6.9-17.2 8.9-26.2 5.2S16 449.7 16 440l0-119.6 0-.7 0-7.6z" />
 									</svg></button>
-								<button id="prev_track_music" class="audio-ui-btn"><svg
+								<button id="prev_track_music" class="audio-ui-btn" title="Previous Track"><svg
 										xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
 										<path fill="var(--music-icon-color)"
 											d="M267.5 440.6c9.5 7.9 22.8 9.7 34.1 4.4s18.4-16.6 18.4-29l0-320c0-12.4-7.2-23.7-18.4-29s-24.5-3.6-34.1 4.4l-192 160L64 241 64 96c0-17.7-14.3-32-32-32S0 78.3 0 96L0 416c0 17.7 14.3 32 32 32s32-14.3 32-32l0-145 11.5 9.6 192 160z" />
 									</svg></button>
-								<button id="play_music" class="audio-ui-btn bigger"><svg
+								<button id="play_music" class="audio-ui-btn bigger" title="Play Music"><svg
 										xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 										<path fill="var(--music-icon-color)"
 											d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9l0 176c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z" />
 									</svg></button>
-								<button id="pause_music" class="audio-ui-btn bigger"><svg
+								<button id="pause_music" class="audio-ui-btn bigger" title="Pause Music"><svg
 										xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 										<path fill="var(--music-icon-color)"
 											d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM224 192l0 128c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-128c0-17.7 14.3-32 32-32s32 14.3 32 32zm128 0l0 128c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-128c0-17.7 14.3-32 32-32s32 14.3 32 32z" />
 									</svg></button>
-								<button id="next_track_music" class="audio-ui-btn"><svg
+								<button id="next_track_music" class="audio-ui-btn" title="Next Track"><svg
 										xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
 										<path fill="var(--music-icon-color)"
 											d="M52.5 440.6c-9.5 7.9-22.8 9.7-34.1 4.4S0 428.4 0 416L0 96C0 83.6 7.2 72.3 18.4 67s24.5-3.6 34.1 4.4l192 160L256 241l0-145c0-17.7 14.3-32 32-32s32 14.3 32 32l0 320c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-145-11.5 9.6-192 160z" />
 									</svg></button>
-								<button id="shuffle_music" class="audio-ui-btn"><svg
+								<button id="shuffle_music" class="audio-ui-btn" title="Shuffle Music"><svg
 										xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 										<path fill="var(--music-icon-color)"
 											d="M403.8 34.4c12-5 25.7-2.2 34.9 6.9l64 64c6 6 9.4 14.1 9.4 22.6s-3.4 16.6-9.4 22.6l-64 64c-9.2 9.2-22.9 11.9-34.9 6.9s-19.8-16.6-19.8-29.6l0-32-32 0c-10.1 0-19.6 4.7-25.6 12.8L284 229.3 244 176l31.2-41.6C293.3 110.2 321.8 96 352 96l32 0 0-32c0-12.9 7.8-24.6 19.8-29.6zM164 282.7L204 336l-31.2 41.6C154.7 401.8 126.2 416 96 416l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c10.1 0 19.6-4.7 25.6-12.8L164 282.7zm274.6 188c-9.2 9.2-22.9 11.9-34.9 6.9s-19.8-16.6-19.8-29.6l0-32-32 0c-30.2 0-58.7-14.2-76.8-38.4L121.6 172.8c-6-8.1-15.5-12.8-25.6-12.8l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c30.2 0 58.7 14.2 76.8 38.4L326.4 339.2c6 8.1 15.5 12.8 25.6 12.8l32 0 0-32c0-12.9 7.8-24.6 19.8-29.6s25.7-2.2 34.9 6.9l64 64c6 6 9.4 14.1 9.4 22.6s-3.4 16.6-9.4 22.6l-64 64z" />
@@ -257,7 +257,7 @@
 						</div>
 					</div>
 
-					<button id="audio_kill_switch" class="audio-ui-btn audio-kill-switch">
+					<button id="audio_kill_switch" class="audio-ui-btn audio-kill-switch" title="Kill Audio">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
 							<path fill="#777"
 								d="M301.1 34.8C312.6 40 320 51.4 320 64l0 384c0 12.6-7.4 24-18.9 29.2s-25 3.1-34.4-5.3L131.8 352 64 352c-35.3 0-64-28.7-64-64l0-64c0-35.3 28.7-64 64-64l67.8 0L266.7 40.1c9.4-8.4 22.9-10.4 34.4-5.3z">
@@ -271,23 +271,23 @@
 						<div class="audio-player-controls-container">
 							<label>Ambience</label>
 							<div class="audio-player-controls">
-								<button id="prev_track_ambience" class="audio-ui-btn">
+								<button id="prev_track_ambience" class="audio-ui-btn" title="Previous Track"><svg
                                     <svg xmlns="http://www.w3.org/2000/svg"
 										viewBox="0 0 320 512">
 										<path fill="var(--ambience-icon-color)"
 											d="M267.5 440.6c9.5 7.9 22.8 9.7 34.1 4.4s18.4-16.6 18.4-29l0-320c0-12.4-7.2-23.7-18.4-29s-24.5-3.6-34.1 4.4l-192 160L64 241 64 96c0-17.7-14.3-32-32-32S0 78.3 0 96L0 416c0 17.7 14.3 32 32 32s32-14.3 32-32l0-145 11.5 9.6 192 160z" />
 									</svg></button>
-								<button id="play_ambience" class="audio-ui-btn bigger"><svg
+								<button id="play_ambience" class="audio-ui-btn bigger" title="Play Ambience"><svg
 										xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 										<path fill="var(--ambience-icon-color)"
 											d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c7.6-4.2 16.8-4.1 24.3 .5l144 88c7.1 4.4 11.5 12.1 11.5 20.5s-4.4 16.1-11.5 20.5l-144 88c-7.4 4.5-16.7 4.7-24.3 .5s-12.3-12.2-12.3-20.9l0-176c0-8.7 4.7-16.7 12.3-20.9z" />
 									</svg></button>
-								<button id="pause_ambience" class="audio-ui-btn bigger"><svg
+								<button id="pause_ambience" class="audio-ui-btn bigger" title="Pause Ambience"><svg
 										xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 										<path fill="var(--ambience-icon-color)"
 											d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm224-72l0 144c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-144c0-13.3 10.7-24 24-24s24 10.7 24 24zm112 0l0 144c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-144c0-13.3 10.7-24 24-24s24 10.7 24 24z" />
 									</svg></button>
-								<button id="next_track_ambience" class="audio-ui-btn">
+								<button id="next_track_ambience" class="audio-ui-btn" title="Next Track"><svg
                                     <svg xmlns="http://www.w3.org/2000/svg"
 										viewBox="0 0 320 512">
 										<path fill="var(--ambience-icon-color)"
@@ -308,12 +308,18 @@
 				</div>
 
 				<div class="control">
-					<div class="title">Log:</div>
-					<div class="control-section">
-						<div class="message" id="message"></div>
-						<input type="text" id="sendMessageBox" placeholder="Enter a message..." autofocus="true" />
-						<button type="button" id="sendButton">Send</button>
-						<button type="button" id="clearMsgsButton">Clear Msgs (Local)</button>
+					<div class="toggle" data-target=".log-menu">Log <svg xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 512 512">
+							<path fill="white"
+								d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
+						</svg></div>
+					<div class="log-menu menu-expandable closed">
+						<div class="control-section">
+							<div class="message" id="message"></div>
+							<input type="text" id="sendMessageBox" placeholder="Enter a message..." autofocus="true" />
+							<button type="button" id="sendButton" title="Send Message">Send</button>
+							<button type="button" id="clearMsgsButton">Clear Msgs (Local)</button>
+						</div>
 					</div>
 				</div>
 			</div>
