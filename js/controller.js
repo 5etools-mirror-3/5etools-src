@@ -438,6 +438,14 @@ import { VOICE_APP_PATH } from "./controller-config.js";
 					status: "ready",
 				});
 
+				// Handle slide cue messages from media-action clicks
+				if (event?.data?.type === "cue_slide" && typeof event.data.slideNum === "number") {
+					const slideNum = event.data.slideNum;
+					console.log(`[Media Action] Cueing slide #${slideNum}`);
+					signal(`go_to_slide:${slideNum}`);
+					return;
+				}
+
 				if (event?.data?.hasOwnProperty("new_initiative_board")) {
 					const newInitObj = event.data.new_initiative_board;
 					const result = await getEncounterLoadOptions(newInitObj?.players);

@@ -2361,7 +2361,20 @@ globalThis.Renderer = function () {
 			case "@cue":
 				let [toDisplay, color] = Renderer.splitTagByPipe(text);
 				let ptColor = this._renderString_renderTag_getCueColorPart(color);
-				textStack[0] += `<i class="ve-dm-action" style="color: ${ptColor}">`;
+				// Check if this is a media-action cue that should trigger slide changes
+				const isMediaAction = color === "media-action" || color === "media";
+				let slideNum = null;
+				let extraAttrs = "";
+				if (isMediaAction) {
+					// Parse slide number from text like "Load Image #2: Red Alert 1"
+					const slideMatch = toDisplay.match(/Load\sImage\s#(\d+)/i);
+					if (slideMatch) {
+						slideNum = parseInt(slideMatch[1], 10);
+						// Add data attribute and class for event delegation
+						extraAttrs = ` class="media-action-cue" data-slide-num="${slideNum}" title="Click to cue slide #${slideNum}"`;
+					}
+				}
+				textStack[0] += `<i class="ve-dm-action${slideNum ? ' media-action-cue' : ''}" style="color: ${ptColor}${slideNum ? '; cursor: pointer;' : ''}"${extraAttrs}>`;
 				this._recursiveRender(toDisplay, textStack, meta);
 				textStack[0] += `</i>`;
 				break;

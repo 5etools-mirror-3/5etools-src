@@ -56,9 +56,34 @@ channel.addEventListener("message", async (event) => {
 });
 
 window.addEventListener("click", async (evt) => {
-	if (evt.target.classList.contains("initiative-tracker-link")) {
+	// Handle media-action cue clicks for slide navigation
+	const target = evt.target;
+	if (target instanceof HTMLElement) {
+		if (target.classList.contains("media-action-cue") || target.closest(".media-action-cue")) {
+			const cueElement = target.classList.contains("media-action-cue") ? target : target.closest(".media-action-cue");
+			if (cueElement instanceof HTMLElement) {
+				const slideNum = cueElement.dataset?.slideNum;
+				if (slideNum) {
+					evt.preventDefault();
+					try {
+						channel.postMessage({
+							type: "cue_slide",
+							slideNum: parseInt(slideNum, 10),
+							timestamp: Date.now(),
+						});
+						console.log(`[Media Action] Sent slide cue #${slideNum} to controller`);
+					} catch (error) {
+						console.warn("Failed to send slide cue:", error);
+					}
+					return;
+				}
+			}
+		}
+	}
+
+	if (target instanceof HTMLElement && target.classList.contains("initiative-tracker-link")) {
 		evt.preventDefault();
-		const escapedDataJSON = evt.target?.dataset?.encounter;
+		const escapedDataJSON = target?.dataset?.encounter;
 		if (!escapedDataJSON) return;
 
 		try {
