@@ -1,2 +1,2 @@
-export const VOICE_APP_PATH = "https://127.0.0.1:8913/";
-export const CONTROLLER_APP_PATH = "http://127.0.0.1:5050/";
+export const VOICE_APP_PATH = "https://d20.orcnog.com/";
+export const CONTROLLER_APP_PATH = "https://5e.orcnog.com/";
