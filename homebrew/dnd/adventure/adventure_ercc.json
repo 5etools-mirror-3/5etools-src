@@ -436,15 +436,15 @@
 							"id": "cold_open_readaloud",
 							"entries": [
 								"\"Alert!  Alert!  We've lost Santa's sleigh on radar!  Repeat, we've lost Santa's sleigh on radar!\"",
-								"{@cue [Image #2: Red Alert 1]|media}",
+								"{@cue [Load Image #2: Red Alert 1]|media}",
 								"Reports of a crash are coming in from a small northern village!",
-								"{@cue [Image #3: Red Alert 2]|media}",
+								"{@cue [Load Image #3: Red Alert 2]|media}",
 								"Admiral, what do we do?\"",
-								"{@cue [Image #4: Red Alert 3]|media}",
+								"{@cue [Load Image #4: Red Alert 3]|media}",
 								"\"THERE'S ONLY ONE CREW I WANT ON THIS MISSION. SCRAMBLE THE SPECIAL-OPS TEAM... {@i ELF RECON}.\"",
 								"\"Elf Recon, you have a go!  Prep for immediate extraction operation!\"",
-								"You and your spec ops team scramble to the rocket sled, geared up and ready to rescue the boss. In a flash, you're airborne, {@cue [Image #5: Drop Zone 1]|media} piercing the cold thick northern air at blinding speed. As Maverick, Santa's ace covert-op reindeer, navigates over the tiny village near Santa's sleigh fell off radar, his gruff voice comes over the intercom communicating that you'll reach the drop zone in T-minus 10 seconds. 9... 8... You tighten your parachute straps one last time, position yourself at the edge of the loading bay and... {@cue [Image #6: Drop Zone 2 image]|media}",
-								"One by one in rapid succession, 4 brave Christmas heroes jump from the flying sled and begin plummeting toward the ground below. {@cue [Image #7: Drop Zone 3]|media}"
+								"You and your spec ops team scramble to the rocket sled, geared up and ready to rescue the boss. In a flash, you're airborne, {@cue [Load Image #5: Drop Zone 1]|media} piercing the cold thick northern air at blinding speed. As Maverick, Santa's ace covert-op reindeer, navigates over the tiny village near Santa's sleigh fell off radar, his gruff voice comes over the intercom communicating that you'll reach the drop zone in T-minus 10 seconds. 9... 8... You tighten your parachute straps one last time, position yourself at the edge of the loading bay and... {@cue [Load Image #6: Drop Zone 2 image]|media}",
+								"One by one in rapid succession, 4 brave Christmas heroes jump from the flying sled and begin plummeting toward the ground below. {@cue [Load Image #7: Drop Zone 3]|media}"
 							]
 						},
 						"Ask each player to introduce their PC now. Ask them to describe their character and tell us their call sign, then describe what they say when they touch down."
@@ -460,7 +460,7 @@
 							"page": 1,
 							"id": "crash_site_readaloud",
 							"entries": [
-								"{@cue [Image #8: Crash Site]|media}",
+								"{@cue [Load Image #8: Crash Site]|media}",
 								"Stowing your chutes and dusting the snow off your heroic shoulders, you take in the crash scene.  Splinters of bright-red painted wood litter the road of this tiny village. Broken toys, smashed gifts, and other sleigh debris mottle up the otherwise pure white snow covering the ground.",
 								"Your eyes follow the trail of wreckage all the up the oblong trench of the impact crater... and there it is, Big Red, the Spruce Christmas Goose, Noel One, Die Klausvagen... Santa's Sleigh itself: brought down to the humble ground like a meteor from the heavens.",
 								"Thankfully, the village is small, and the crash is in an open area between buildings, so hopefully no one in the village was seriously hurt.  Actually... speaking of... where is everyone? And what is this myriad of footprints leading away from the crash site?  Lots and lots of tiny tracks, a few huge tracks, but nothing matching Santa's boots...  What could it mean??...",
@@ -529,7 +529,7 @@
 							"type": "insetReadaloud",
 							"entries": [
 								"As you make your way through the icy tundra, the pleasantly light falling snow begins to thicken as the wind picks up.  The air temperature drops quickly as your tactical cold-weather gear begins to fail to keep your body temperature nominal.  Within moments, you find yourself fighting through a full-on blizzard.",
-								"{@cue [Load the Frozen Waterfall image.]|media}",
+								"{@cue [Load Image #9: Frozen Waterfall]|media}",
 								"You've been trekking through the blizzard for over an hour. Gusts of freezing biting wind threaten to blow you over, and the flying specs of snow now feel like tiny daggers as they hit your face.  I need everyone to make a Constitution saving throw to withstand the extreme conditions.",
 								"{@cue [DC 10 save to avoid gaining 1 level of exhaustion]}",
 								"Despite the extreme cold and the nearly-blinding snow, [player with the highest Survival score] manages to track the largest of the footprints all the way to their termination at the base of what appears to be a frozen waterfall, cascading down from atop a cliff.  The tracks appear to disappear right at the base of the waterfall... hmm, the captors couldn't have climbed up the ice, could they?"
@@ -571,7 +571,13 @@
 											]
 										}
 									]
-								},
+								}
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "id": "icy_cave_entry",
+                            "entries": [
 								"The first room of the cave is dimly lit by a campfire in the southwest corner. A natural frozen pool guards the west wall. The meandering cave winds to the north from here.",
 								"But more pressing is the ominous presense of... a yeti and 2 winter wolf guard dogs!",
 								{
@@ -590,6 +596,7 @@
 					"id": "yeti_encounter",
 					"entries": [
 						"After the players enter the icy cavern, read the following to kick off the Yeti encounter...",
+                        "{@cue [Load Image #10: Icy Cave]|media}",
 						{
 							"type": "insetReadaloud",
 							"entries": [
@@ -651,12 +658,14 @@
 					"name": "Stocking Puzzle",
 					"id": "stocking_puzzle",
 					"entries": [
+                        "{@cue [Load Image #11: Stocking Puzzle]|media}",
 						{
 							"type": "insetReadaloud",
 							"entries": [
 								"Coming to a dead end in this cave corridor, you see what appears to be a boulder blocking the passage. On the cave wall to the left are some toys: a teddy bear, a doll, a jack-in-the-box, and a tin soldier. You grin to yourself\u2014tin soldiers were always Santa's favorite toy\u2014you hope the big guy is alright. Next to the solid boulder are 4 stockings hung by a fire, each with a name written on it. The names on the stockings are as follows, from left to right: \"Paul, Betty Claire, Ben Bolder, Kraken Seahawks\". The stockings look peaceful, lit by the crackling fire."
 							]
 						},
+                        "{@cue [Load Image #12: Stocking Puzzle Close-Up]|media}",
 						"The solution is to put the correct toy in the correct stocking to unlock the door.",
 						{
 							"type": "inset",
@@ -685,7 +694,7 @@
 						{
 							"type": "insetReadaloud",
 							"entries": [
-								"The boulder rumbles as it rolls itself out of the way. On the other side of the secret door, bewildered, stand several kobolds wearing festive red hats, and one winged kobold with a wily scowl. They seem to be gathered around the winged kobold as he interacts with a glowing orb. But all of the kobolds in the room stop when you come in. \"Intruders!\" shouts the winged kobold. \"They've come to take away our guest and foil our master's plan! Stop them!\" Roll for initiative!"
+								"The boulder rumbles as it rolls itself out of the way. On the other side of the secret door, bewildered, stand several kobolds wearing festive red hats, and one winged kobold with a wily scowl. {@cue [Load Image #13: Kobolds and Sorcerer]|media} They seem to be gathered around the winged kobold as he interacts with a glowing orb. But all of the kobolds in the room stop when you come in. \"Intruders!\" shouts the winged kobold. \"They've come to take away our guest and foil our master's plan! Stop them!\" Roll for initiative!"
 							]
 						},
 						"Run the Kobolds & Sorcerer encounter:",
@@ -760,7 +769,7 @@
 									"name": "Santa Hats",
 									"entries": [
 										"The sorcerer kobold controls the other kobolds (who are otherwise good-aligned) via the festive red hats they wear. One by one, these good kobolds were tricked into wearing the hats, at which point they immediately fell under the {@spell geas} spell and began serving the sorcerer.",
-										"Any time a kobold is hit, {@dice 1d6|roll a 1d6}, and on a roll of 4 or higher, the kobold's hat is knocked off. Alternatively, if a kobold takes fire or radiant damage, their hat is burnt to ash. Once a hat is destroyed or dislodged, you immediately notice the kobold's beady eyes wide with remorse. It pleads something such as {@i \"I just wanna make kids smile, not... this!\"} and likely runs out of the room."
+										"Any time a kobold is hit, {@dice 1d6|roll a 1d6}, and on a roll of 4 or higher, the kobold's hat is knocked off. Alternatively, if a kobold takes fire or radiant damage, their hat is burnt to ash. Once a hat is destroyed or dislodged, you immediately notice the kobold's beady eyes sofeten, and grow wide with remorse. It pleads something such as {@i \"I just wanna make kids smile, not... this!\"} and likely runs out of the room."
 									]
 								}
 							]
@@ -777,7 +786,7 @@
 						{
 							"type": "insetReadaloud",
 							"entries": [
-								"The air grows colder as you descend the southward tunnel, its twisting, narrowing walls pressing in like the confines of a burrow. The fading torchlight gives way to darkness, and the low, jagged ceiling forces you to stoop. Suddenly, the passage opens into a cramped cavern, dimly lit by an orange glow from carrot-colored stalactites hanging low like fangs above your heads. \"Aww\", you think to yourself, \"they look like little carrots... [Sigh] Santa's favorite vegetable was always carrot cake.\" You do hope Mr. Claus is alright.",
+								"The air grows colder as you descend the southward tunnel, its twisting, narrowing walls pressing in like the confines of a burrow. The fading torchlight gives way to darkness, and the low, jagged ceiling forces you to stoop. Suddenly, the passage opens into a cramped cavern, {@cue [Load Image #14: The Carrot Cavern]|media} dimly lit by an orange glow from orange stalactites hanging low like fangs above your heads. \"Aww\", you think to yourself, \"they look like little carrots... [Sigh] Santa's favorite vegetable was always carrot cake.\" You do hope Mr. Claus is alright.",
 								"But before you can take in more of your surroundings, a sound slices through the oppressive silence\u2014a piercing, ear-splitting shriek that reverberates through the close confines. It's cunning, malicious, and... undeniably coming from a... uh... {@i bunny}?",
 								"{@cue Reveal the Easter Bunny minifigure!}",
 								"Bounding into view from behind a jagged orange stalagmite, a towering white rabbit glares at you with eyes full of cold contempt. Her pristine fur bristles, and her voice drips with venom as she sneers, \"So, you've come to meddle in my plans, have you? Fools! You'll never take my prize!\"",
@@ -904,7 +913,8 @@
 						{
 							"type": "insetReadaloud",
 							"entries": [
-								"At the far end of the cavern, you see an alcove along the north wall. A crude cage stands with its door ajar, and beside it are two identical figures\u2014two Santa Clauses! Crap! Which one is the real one?"
+								"At the far end of the cavern, you see an alcove along the north wall. A crude cage stands with its door ajar, and beside it are two identical figures\u2014two Santa Clauses! Crap! Which one is the real one?",
+                                "{@cue [Load Image #15: Duplicate Santas!]|media}"
 							]
 						},
 						"Both Santas react when they see you enter the chamber.",
@@ -991,6 +1001,7 @@
 								{
 									"type": "insetReadaloud",
 									"entries": [
+                                        "{@cue [Load Image #16: The Real Santa!]|media}",
 										"Relief washes over the true Santa's face as he realizes you've chosen correctly. His eyes twinkle with gratitude, and his voice booms with warmth, \"Ho ho ho! You've done it, my friends!\" The cavern seems to brighten with joy. As you hold the embroidered red cap in your hands, you feel it quiver with anticipation, almost as if eager to return to its rightful owner.",
 										"{@cue [Pause for player interaction with the hat/Santa]}",
 										"The moment the hat touches Santa's head, a golden light bursts forth, enveloping him in a soft glow. His cheeks regain their rosy hue, and his belly shakes with renewed laughter. \"Ho ho ho! Christmas is saved!\" The sound of jingling sleigh bells echoes faintly, and the air fills with the faint scent of peppermint and pine."
@@ -1075,9 +1086,9 @@
 						{
 							"type": "insetReadaloud",
 							"entries": [
-								"Leading Santa out of the cave, you step into the snowy night. The sleigh awaits, fully repaired and gleaming, surrounded by industrious North Pole elves who are repacking the scattered gifts with cheerful efficiency. Santa turns to you, his face glowing with pride. \"You've not only saved Christmas,\" he says, his voice booming with joy, \"but you've saved Easter too! The world owes you a great debt.\"",
-								"As Santa steps into his sleigh, you radio headquarters with the words they've been waiting for: \"The Big Guy is safe.\" The room erupts. Elves cheer, hats fly, and bells jingle in celebration!",
-								"Santa's reindeer stamp eagerly in the snow as Santa takes the reins. Moments later, as the sleigh soars into the starry night, you hear Santa's booming voice call \"Ho ho ho! Merry Christmas to all!\" ...as you watch the sleigh disappear into the distance with a twinkle."
+								"Leading Santa out of the cave, you step into the snowy night. The sleigh awaits, fully repaired and gleaming, {@cue [Load Image #17: Repaired Sleigh]|media} surrounded by industrious North Pole elves who are repacking the scattered gifts with cheerful efficiency. Santa turns to you, his face glowing with pride. \"You've not only saved Christmas,\" he says, his voice booming with joy, \"but you've saved Easter too! The world owes you a great debt.\"",
+								"{@cue [Load Image #18: Satellite]|media} As Santa steps into his sleigh, you hop on the North Pole Satellite Phone and radio into headquarters with the words they've been waiting for: \"The Big Guy is safe.\" {@cue [Load Image #19: North Pole Celebration]|media} The room erupts. Elves cheer, hats fly, and bells jingle in celebration!",
+								"Santa's reindeer stamp eagerly in the snow as Santa takes the reins. {@cue [Load Image #20: To All a Good Night!]|media} Moments later, as the sleigh soars into the starry night, you hear Santa's booming voice call \"Ho ho ho! Merry Christmas to all!\" ...as you watch the sleigh disappear into the distance with a twinkle."
 							]
 						}
 					]
