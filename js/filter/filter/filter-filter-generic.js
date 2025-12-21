@@ -773,7 +773,7 @@ export class Filter extends FilterBase {
 		this.__$wrpFilter = $$`<div>
 			${opts.isFirst ? "" : `<div class="fltr__dropdown-divider ${opts.isMulti ? "fltr__dropdown-divider--indented" : ""} mb-1"></div>`}
 			<div class="split fltr__h ${this._minimalUi ? "fltr__minimal-hide" : ""} mb-1">
-				<div class="fltr__h-text ve-flex-h-center mobile__w-100">
+				<div class="fltr__h-text ve-flex-h-center mobile-sm__w-100">
 					${opts.isMulti ? `<span class="mr-2">\u2012</span>` : ""}
 					${this._getRenderedHeader()}
 					${btnMobToggleControls}

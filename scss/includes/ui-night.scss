@@ -227,7 +227,7 @@ Shared UI components
 	/* region "Copied" tooltip */
 	.ve-night-mode .clp__ {
 		&disp-copied {
-			background: radial-gradient(ellipse at center, vars-night.$rgb-bg--night 0%, vars-night.$rgb-bg--night 35%, transparent 75%, transparent 100%);
+			background: color.adjust(vars-night.$rgb-bg--night, $alpha: - 0.3);
 		}
 	}
 	/* endregion */

@@ -341,7 +341,7 @@ export class GetBrewUi {
 						}),
 						btnAdd,
 						e_({tag: "span", clazz: "ve-col-3", text: brewInfo._brewAuthor}),
-						e_({tag: "span", clazz: "ve-col-1-2 ve-text-center mobile__text-clip-ellipsis", text: brewInfo._brewPropDisplayName, title: brewInfo._brewPropDisplayName}),
+						e_({tag: "span", clazz: "ve-col-1-2 ve-text-center mobile-sm__text-clip-ellipsis", text: brewInfo._brewPropDisplayName, title: brewInfo._brewPropDisplayName}),
 						e_({tag: "span", clazz: "ve-col-1-4 ve-text-center code", text: timestampModified}),
 						e_({tag: "span", clazz: "ve-col-1-4 ve-text-center code", text: timestampAddedPublished}),
 						e_({

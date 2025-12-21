@@ -515,30 +515,6 @@
 			]
 		},
 		{
-			"name": "+2 Ring of Protection",
-			"source": "TDCSR",
-			"page": 263,
-			"_copy": {
-				"name": "Ring of Protection",
-				"source": "DMG",
-				"_mod": {
-					"entries": {
-						"mode": "replaceTxt",
-						"replace": "\\+1",
-						"with": "+2",
-						"flags": "i"
-					}
-				},
-				"_preserve": {
-					"tier": true
-				}
-			},
-			"bonusAc": "+2",
-			"bonusSavingThrow": "+2",
-			"optionalfeatures": [],
-			"hasFluffImages": true
-		},
-		{
 			"name": "+2 Rod of the Pact Keeper",
 			"source": "DMG",
 			"page": 197,
@@ -586,46 +562,6 @@
 			],
 			"lootTables": [
 				"Arcana - Rare|XDMG"
-			]
-		},
-		{
-			"name": "+2 Studded Leather Armor of Acid Resistance",
-			"source": "TDCSR",
-			"page": 271,
-			"type": "LA",
-			"resist": [
-				"acid"
-			],
-			"tier": "major",
-			"rarity": "unknown (magic)",
-			"reqAttune": true,
-			"weight": 13,
-			"ac": 12,
-			"bonusAc": "+2",
-			"entries": [
-				"You have a +2 bonus to AC while wearing this armor.",
-				"You have resistance to acid damage while you wear this armor.",
-				"{@note Worn by {@creature Scanlan Shorthalt|TDCSR}.}"
-			]
-		},
-		{
-			"name": "+2 Studded White Dragon Leather Armor of Cold Resistance",
-			"source": "TDCSR",
-			"page": 267,
-			"type": "LA",
-			"resist": [
-				"cold"
-			],
-			"tier": "major",
-			"rarity": "unknown (magic)",
-			"reqAttune": true,
-			"weight": 13,
-			"ac": 12,
-			"bonusAc": "+2",
-			"entries": [
-				"You have a +2 bonus to AC while wearing this armor.",
-				"You have resistance to cold damage while you wear this armor.",
-				"{@note Worn by {@creature Vex'ahlia|TDCSR}.}"
 			]
 		},
 		{
@@ -1329,124 +1265,6 @@
 			"miscTags": [
 				"TT"
 			]
-		},
-		{
-			"name": "Agony (Awakened)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Agony (Dormant)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Awakened",
-										"entries": [
-											"When Agony reaches an awakened state, you gain the following benefits:",
-											{
-												"type": "list",
-												"items": [
-													"The extra damage when you hit a marked creature increases to {@dice 1d8}.",
-													"A marked creature has {@quickref Advantage and Disadvantage|PHB|2|0|disadvantage} on Constitution checks and Constitution {@quickref saving throws|PHB|2|1}.",
-													"When you reduce a creature to 0 hit points with an attack using Agony, you can immediately make an additional melee attack with this weapon as a bonus action."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"hasFluffImages": true
-		},
-		{
-			"name": "Agony (Dormant)",
-			"source": "TDCSR",
-			"page": 202,
-			"baseItem": "flail|PHB",
-			"type": "M",
-			"rarity": "legendary",
-			"reqAttune": "by a creature of non-good alignment",
-			"reqAttuneTags": [
-				{
-					"alignment": [
-						"N",
-						"E",
-						"C",
-						"L",
-						"A"
-					]
-				}
-			],
-			"weight": 2,
-			"weaponCategory": "martial",
-			"property": [
-				"Vst|TDCSR"
-			],
-			"dmg1": "1d8",
-			"dmgType": "B",
-			"bonusWeapon": "+2",
-			"entries": [
-				"Utilized in countless tortures and slow executions, the hooked chains of this brutal weapon constantly show dried blood and rot. Legend says that Agony was wielded in the {@book Calamity|TDCSR|1|The Calamity} by the gnoll scion of a flesh-eating Demon Lord.",
-				{
-					"type": "entries",
-					"name": "Dormant",
-					"entries": [
-						"While Agony is in a dormant state, you gain a +2 bonus to attack and damage rolls made with this magic weapon. Whenever you damage a creature with Agony, that creature is marked for 10 minutes or until you damage a different creature. When you hit a creature marked in this way with this weapon, the target takes an extra {@damage 1d6} piercing damage."
-					]
-				}
-			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Agony (Exalted)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Agony (Awakened)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Exalted",
-										"entries": [
-											"When Agony reaches an exalted state, you gain the following benefits:",
-											{
-												"type": "list",
-												"items": [
-													"The weapon's bonus to attack and damage rolls increases to +3.",
-													"The extra damage when you hit a marked creature increases to {@dice 2d8}.",
-													"When you score a critical hit with this weapon, the target must succeed on a {@dc 17} Wisdom {@quickref saving throws|PHB|2|1|saving throw} or become {@condition frightened} of you for 1 minute. On a success, the target is immune to this effect for 24 hours."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"bonusWeapon": "+3",
-			"hasFluffImages": true
 		},
 		{
 			"name": "Airship",
@@ -3256,136 +3074,6 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Armor of the Valiant Soul (Awakened)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Armor of the Valiant Soul (Dormant)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Awakened",
-										"entries": [
-											"When the Armor of the Valiant Soul reaches an awakened state, you gain the following benefits:",
-											{
-												"type": "list",
-												"items": [
-													"The AC bonus of the armor increases to +2.",
-													"You have resistance to acid damage while wearing this armor.",
-													"You are immune to the {@condition frightened} condition while wearing this armor.",
-													"The spell save DC for the armor's {@spell command} spell increases to 16, and the spell can target up to three creatures."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"resist": [
-				"acid"
-			],
-			"conditionImmune": [
-				"frightened"
-			],
-			"bonusAc": "+2",
-			"hasFluffImages": true
-		},
-		{
-			"name": "Armor of the Valiant Soul (Dormant)",
-			"source": "TDCSR",
-			"page": 202,
-			"baseItem": "scale mail|PHB",
-			"type": "MA",
-			"immune": [
-				"acid"
-			],
-			"rarity": "legendary",
-			"reqAttune": true,
-			"weight": 45,
-			"property": [
-				"Vst|TDCSR"
-			],
-			"ac": 14,
-			"bonusAc": "+1",
-			"recharge": "restLong",
-			"stealth": true,
-			"entries": [
-				"This antique armor forged from jade and black dragon scales was once worn by J'mon Sa Ord of {@book Ank'Harel|TDCSR|3|Marquet}.",
-				{
-					"type": "entries",
-					"name": "Dormant",
-					"entries": [
-						"While the Armor of the Valiant Soul is in a dormant state, you gain a +1 bonus to AC while wearing it. You can also cast the {@spell command} spell (save {@dc 14}) while attuned to this armor. Once this property is used, it can't be used again until you finish a {@quickref resting|PHB|2|0|long rest}."
-					]
-				}
-			],
-			"attachedSpells": {
-				"daily": {
-					"1e": [
-						"command"
-					]
-				}
-			},
-			"hasFluffImages": true
-		},
-		{
-			"name": "Armor of the Valiant Soul (Exalted)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Armor of the Valiant Soul (Awakened)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Exalted",
-										"entries": [
-											"When the Armor of the Valiant Soul reaches an exalted state, you gain the following benefits:",
-											{
-												"type": "list",
-												"items": [
-													"The AC bonus of the armor increases to +3.",
-													"You are immune to acid damage while wearing this armor.",
-													"All friendly creatures within 15 feet of you are immune to the {@condition frightened} condition as long as you are conscious.",
-													"The spell save DC of the armor's {@spell command} spell increases to 18, and the spell can target up to five creatures."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"immune": [
-				"acid"
-			],
-			"resist": null,
-			"bonusAc": "+3",
-			"hasFluffImages": true
-		},
-		{
 			"name": "Armor of Vulnerability (Bludgeoning)",
 			"source": "DMG",
 			"page": 152,
@@ -4185,20 +3873,6 @@
 					"bright": 30,
 					"dim": 60
 				}
-			]
-		},
-		{
-			"name": "Azuremite",
-			"source": "TDCSR",
-			"page": 141,
-			"type": "IDG|TDCSR",
-			"rarity": "unknown (magic)",
-			"entries": [
-				"The ruins of this sprawling city are now known as the Crystalfen Caverns. These caves are home to scattered veins of {@item azuremite|TDCSR}, a gorgeous blue crystal that formed from millennia of psychic energies existing near element deposits. Curious explorers who discovered the veins found that, when mined and refined into a fine dust, the {@item azuremite|TDCSR} powder is a strong mind-altering agent and induces temporary visions and other psychic phenomena.",
-				"While a number of small, isolated entrances to this labyrinth of tunnels have been discovered and adventuring parties have attempted to chart the mines, the caverns are so vast and deep that either they gave up for fear of becoming lost, or they were assailed by the terrible denizens of the caverns, never to return. Most who now brave the caverns are foolish treasure hunters or criminals seeking to mine more {@item azuremite|TDCSR} to sell on the black market."
-			],
-			"miscTags": [
-				"CNS"
 			]
 		},
 		{
@@ -7278,7 +6952,7 @@
 				"F",
 				"L",
 				"T",
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"range": "20/60",
 			"dmg1": "1d4",
@@ -8579,25 +8253,6 @@
 			]
 		},
 		{
-			"name": "Boots of Haste",
-			"source": "TDCSR",
-			"page": 194,
-			"rarity": "very rare",
-			"reqAttune": true,
-			"wondrous": true,
-			"recharge": "dawn",
-			"entries": [
-				"While you wear these boots, you can click your heels together to cast the {@spell haste} spell on yourself as a bonus action. You don't suffer from lethargy when the spell ends when cast using these boots. Once this property is used, it can't be used again until next dawn."
-			],
-			"attachedSpells": {
-				"daily": {
-					"1": [
-						"haste"
-					]
-				}
-			}
-		},
-		{
 			"name": "Boots of Levitation",
 			"source": "DMG",
 			"page": 155,
@@ -8757,17 +8412,6 @@
 				"Implements - Uncommon|XDMG"
 			],
 			"hasFluffImages": true
-		},
-		{
-			"name": "Boots of the Vigilant",
-			"source": "TDCSR",
-			"page": 194,
-			"rarity": "uncommon",
-			"wondrous": true,
-			"recharge": "dawn",
-			"entries": [
-				"While you wear these boots, you can sense impending danger. After you roll initiative, you can choose to roll a {@dice d8} and add it to your initiative roll. Once this property is used, it can't be used again until the next dawn."
-			]
 		},
 		{
 			"name": "Boots of the Winding Path",
@@ -9981,113 +9625,6 @@
 					]
 				}
 			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Cabal's Ruin (Awakened)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Cabal's Ruin (Dormant)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Awakened",
-										"entries": [
-											"When Cabal's Ruin reaches an awakened state, you gain the following benefits:",
-											{
-												"type": "list",
-												"items": [
-													"You have {@quickref Advantage and Disadvantage|PHB|2|0|advantage} on {@quickref saving throws|PHB|2|1} against spells and other magical effects while wearing this cloak.",
-													"The cloak has 6 charges and it regains {@dice 1d4 + 2} expended charges daily at dawn.",
-													"When you use the cloak to absorb a spell, you gain resistance to one type of damage dealt by the spell (your choice). This resistance then lasts until the end of your next turn."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"recharge": "dawn",
-			"rechargeAmount": "{@dice 1d4 + 2}",
-			"charges": 6,
-			"hasFluffImages": true
-		},
-		{
-			"name": "Cabal's Ruin (Dormant)",
-			"source": "TDCSR",
-			"page": 203,
-			"rarity": "legendary",
-			"reqAttune": true,
-			"wondrous": true,
-			"property": [
-				"Vst|TDCSR"
-			],
-			"recharge": "restShort",
-			"rechargeAmount": "{@dice 1d4}",
-			"charges": 4,
-			"entries": [
-				"This cloak is made of heavy dark cloth trimmed with golden patterns, and occasionally shimmers with sparks of arcane energy. It was once worn by the famed gunslinger {@creature Percival de Rolo|TDCSR|Percival Fredrickstein von Musel Klossowski de Rolo III of Whitestone}.",
-				{
-					"type": "entries",
-					"name": "Dormant",
-					"entries": [
-						"While Cabal's Ruin is in a dormant state, the cloak has 4 charges and it regains {@dice 1d4} expended charges daily at dawn. When you hit with an attack, you can expend any number of charges from the cloak, with the attack dealing an extra {@damage 1d6} lightning damage per charge expended. If your attack strikes multiple targets, you choose one target that takes this extra damage.",
-						"When you are targeted by an enemy's spell, you can use your reaction to absorb a portion of the spell's energy into the cloak. The spell affects you normally, but the cloak regains a number of charges equal to the level of the spell. This property can't be used again until you finish a {@quickref resting|PHB|2|0|short or long rest}."
-					]
-				}
-			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Cabal's Ruin (Exalted)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Cabal's Ruin (Awakened)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Exalted",
-										"entries": [
-											"When Cabal's Ruin reaches an exalted state, you gain the following benefit:",
-											{
-												"type": "list",
-												"items": [
-													"The cloak has 10 charges and it regains {@dice 1d6 + 4} expended charges daily at dawn."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"rechargeAmount": "{@dice 1d6 + 2}",
-			"charges": 10,
 			"hasFluffImages": true
 		},
 		{
@@ -11579,48 +11116,6 @@
 			"value": 75000
 		},
 		{
-			"name": "Cataclysm Bolts",
-			"source": "TDCSR",
-			"page": 194,
-			"type": "A",
-			"rarity": "very rare",
-			"weight": 0.075,
-			"entries": [
-				"These steel {@item crossbow bolt|PHB|crossbow bolts} were first created by the Jaggenstrike Clan during the {@book Scattered War|TDCSR|1|The Scattered War}, and the secret to crafting them remains well guarded by the {@book Houses of Kraghammer|TDCSR|2|Houses of Kraghammer}. Cataclysm bolts are usually kept in sets of ten, though anyone who holds even one can feel it thrumming with magical power. When you hit with an attack using a cataclysm bolt, the attack deals normal damage. Then roll a {@dice d6} on the following table to determine its additional effect.",
-				{
-					"type": "table",
-					"caption": "Cataclysm Bolt Effects",
-					"colLabels": [
-						"d6",
-						"Effect"
-					],
-					"colStyles": [
-						"col-2 text-center",
-						"col-10"
-					],
-					"rows": [
-						[
-							"1-2",
-							"The bolt explodes in a blast of fire, dealing {@damage 3d8} fire damage to the target and each creature within 5 feet of it."
-						],
-						[
-							"3-4",
-							"The bolt freezes the air around the target into jagged ice. The target and each creature within 5 feet of it must succeed on a {@dc 17} Dexterity {@quickref saving throws|PHB|2|1|saving throw} or take {@damage 1d10} cold damage and be {@condition restrained} until the end of your next turn."
-						],
-						[
-							"5",
-							"The bolt releases a pulse of necrotic energy. The target takes {@damage 2d6} necrotic damage and must succeed on a {@dc 16} Strength {@quickref saving throws|PHB|2|1|saving throw} or be {@condition stunned} until the end of your next turn."
-						],
-						[
-							"6",
-							"The bolt shatters to unleash a burst of shrapnel. Make six additional ranged attacks against the target, each of which has a {@hit 7} attack bonus and deals {@damage 1d6} piercing damage on a hit."
-						]
-					]
-				},
-				"Once the bolt hits, the enchantment ends and it becomes a normal piece of ammunition."
-			]
-		},
-		{
 			"name": "Catapult Munition",
 			"source": "SCC",
 			"page": 174,
@@ -12281,131 +11776,6 @@
 			"value": 200
 		},
 		{
-			"name": "Circlet of Barbed Vision (Awakened)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Circlet of Barbed Vision (Dormant)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Awakened",
-										"entries": [
-											"When the Circlet of Barbed Vision reaches an awakened state, you gain the following benefits:",
-											{
-												"type": "list",
-												"items": [
-													"You have resistance to poison damage, and you are immune to the {@condition poisoned} condition.",
-													"Your ability to gain a bonus to an attack roll can be used twice between rests."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"resist": [
-				"poison"
-			],
-			"conditionImmune": [
-				"poisoned"
-			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Circlet of Barbed Vision (Dormant)",
-			"source": "TDCSR",
-			"page": 203,
-			"rarity": "legendary",
-			"reqAttune": "by a creature of non-good alignment",
-			"reqAttuneTags": [
-				{
-					"alignment": [
-						"N",
-						"E",
-						"C",
-						"L",
-						"A"
-					]
-				}
-			],
-			"wondrous": true,
-			"property": [
-				"Vst|TDCSR"
-			],
-			"ability": {
-				"cha": -2
-			},
-			"recharge": "restShort",
-			"entries": [
-				"When you don this circlet of gnarled onyx, black barbs dig into your head, imparting power to you as the circlet twists your appearance to amuse {@deity The Spider Queen|Exandria|TDCSR}. The current resting place of the Circlet of Barbed Vision is unknown, but rumor has it that a spectral assassin known as {@creature Jourrael, the Caedogeist|TDCSR|the Inevitable End} seeks this relic.",
-				{
-					"type": "entries",
-					"name": "Dormant",
-					"entries": [
-						"While the Circlet of Barbed Vision is in a dormant state, you have {@quickref Advantage and Disadvantage|PHB|2|0|advantage} on initiative rolls while you wear it, but your Charisma score decreases by 2. Your Charisma score returns to normal if you remove the circlet, but you take {@damage 4d6} psychic damage when you do so.",
-						"Additionally, when you make an attack roll, you can use your reaction to gain a +5 bonus to the roll. You make this choice after you see the roll, but before the GM says whether the attack hits or misses. You can't use this property again until you finish a {@quickref resting|PHB|2|0|short or long rest}."
-					]
-				}
-			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Circlet of Barbed Vision (Exalted)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Circlet of Barbed Vision (Awakened)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Exalted",
-										"entries": [
-											"When the Circlet of Barbed Vision reaches an exalted state, you gain the following benefits:",
-											{
-												"type": "list",
-												"items": [
-													"You are immune to poison damage.",
-													"You have {@sense truesight} out to a range of 60 feet.",
-													"Your ability to gain a bonus to an attack roll can be used three times between rests."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"immune": [
-				"poison"
-			],
-			"resist": null,
-			"hasFluffImages": true
-		},
-		{
 			"name": "Circlet of Blasting",
 			"source": "DMG",
 			"page": 158,
@@ -12468,19 +11838,6 @@
 			],
 			"entries": [
 				"The Circlet of Human Perfection transforms its attuned wearer into an attractive human of average height and weight. The circlet chooses the physical characteristics of the form, such as age, gender, skin color, hair color, and voice. Except for size, the wearer's statistics and racial traits don't change, nor do items worn or carried by the wearer. Removing the circlet ends the effect."
-			]
-		},
-		{
-			"name": "Circlet of Wisdom",
-			"source": "TDCSR",
-			"page": 263,
-			"rarity": "unknown (magic)",
-			"wondrous": true,
-			"ability": {
-				"wis": 2
-			},
-			"entries": [
-				"{@note Worn by {@creature Keyleth, Voice of the Tempest|TDCSR}, increases her Wisdom score by +2.}"
 			]
 		},
 		{
@@ -13215,22 +12572,6 @@
 			"value": 300
 		},
 		{
-			"name": "Coat of the Crest",
-			"source": "TDCSR",
-			"page": 194,
-			"rarity": "rare",
-			"reqAttune": true,
-			"wondrous": true,
-			"bonusAc": "+1",
-			"recharge": "dawn",
-			"rechargeAmount": "{@dice 1d3}",
-			"charges": 3,
-			"entries": [
-				"This exquisite brocade coat is cut in a long, high-collared style popular among nobles of the Clovis Concord\u2014a nation on the west coast of {@book Wildemount|TDCSR|3|Wildemount} whose stylish fashion is often mimicked in Tal'Dorei. Its shimmering lining hints at its magical properties. You gain a +1 bonus to AC while wearing this coat, which can be worn over light armor.",
-				"Additionally, the coat has 3 charges and regains {@dice 1d3} expended charges daily at dawn. When you are the target of an attack while wearing this coat, you can spend 1 charge as a reaction to gain resistance to one type of damage from the triggering attack. This resistance is effective against the triggering attack and lasts until the start of your next turn."
-			]
-		},
-		{
 			"name": "Cobbler's Tools",
 			"source": "PHB",
 			"page": 154,
@@ -13620,160 +12961,6 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Condemner (Awakened)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Condemner (Dormant)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Awakened",
-										"entries": [
-											"When Condemner reaches an awakened state, you gain the following benefits:",
-											{
-												"type": "list",
-												"items": [
-													"The weapon's bonus to attack and damage rolls increases to +2.",
-													"The extra poison damage dealt by the weapon increases to {@dice 1d6}.",
-													"You gain an additional effect that can be triggered in place of dealing damage when you hit with an attack:",
-													{
-														"type": "list",
-														"items": [
-															"You cast {@spell hold person} on the target (save {@dc 15})."
-														]
-													},
-													"This effect can't be used again until you finish a {@quickref resting|PHB|2|0|short or long rest}."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"bonusWeapon": "+2",
-			"attachedSpells": [
-				"fog cloud",
-				"hold person",
-				"silence"
-			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Condemner (Dormant)",
-			"source": "TDCSR",
-			"page": 204,
-			"baseItem": "heavy crossbow|PHB",
-			"type": "R",
-			"rarity": "legendary",
-			"reqAttune": true,
-			"weight": 18,
-			"weaponCategory": "martial",
-			"property": [
-				"A",
-				"H",
-				"LD",
-				"2H",
-				"Vst|TDCSR"
-			],
-			"range": "100/400",
-			"dmg1": "1d10",
-			"dmgType": "P",
-			"bonusWeapon": "+1",
-			"recharge": "restShort",
-			"entries": [
-				"This shadow-touched {@item heavy crossbow|phb} once served as the weapon of choice for the legendary assassin Todora. Though few know this, Condemner is now in the possession of an equally infamous assassin named {@book Ixrattu Khar|TDCSR|2|Ixrattu Khar}.",
-				{
-					"type": "entries",
-					"name": "Dormant",
-					"entries": [
-						"When Condemner is in a dormant state, you gain a +1 bonus to attack and damage rolls made with this magic weapon. When you hit with an attack using this weapon, the target takes an extra {@damage 1d4} poison damage.",
-						"Additionally, if you hit with an attack using this weapon, you can activate one of the following effects instead of dealing damage:",
-						{
-							"type": "list",
-							"items": [
-								"You cast {@spell fog cloud} centered on the target's space.",
-								"You cast {@spell silence} centered on the target's space."
-							]
-						},
-						"When an effect is used, it can't be used again until you finish a {@quickref resting|PHB|2|0|short or long rest}."
-					]
-				}
-			],
-			"ammoType": "crossbow bolt|phb",
-			"attachedSpells": [
-				"fog cloud",
-				"silence"
-			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Condemner (Exalted)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Condemner (Awakened)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Exalted",
-										"entries": [
-											"When Condemner reaches an exalted state, you gain the following benefits:",
-											{
-												"type": "list",
-												"items": [
-													"The weapon's bonus to attack and damage rolls increases to +3.",
-													"The extra poison damage dealt by the weapon increases to {@damage 1d8}.",
-													"The save DC for the weapon's hold person spell increases to 17.",
-													"You gain an additional effect that can be triggered in place of damage when you hit with an attack:",
-													{
-														"type": "list",
-														"items": [
-															"You cast the {@spell blight} spell on the target (save {@dc 17})."
-														]
-													}
-												]
-											},
-											"This effect can't be used again until you finish a {@quickref resting|PHB|2|0|short or long rest}."
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"bonusWeapon": "+3",
-			"attachedSpells": [
-				"blight",
-				"fog cloud",
-				"hold person",
-				"silence"
-			],
-			"hasFluffImages": true
-		},
-		{
 			"name": "Condensed Order",
 			"source": "CoA",
 			"page": 267,
@@ -14119,37 +13306,6 @@
 			"value": 10000,
 			"entries": [
 				"A crimson gemstone."
-			]
-		},
-		{
-			"name": "Corecut Dagger",
-			"source": "TDCSR",
-			"page": 195,
-			"baseItem": "dagger|PHB",
-			"type": "M",
-			"rarity": "very rare",
-			"reqAttune": true,
-			"curse": true,
-			"weight": 1,
-			"weaponCategory": "simple",
-			"property": [
-				"F",
-				"L",
-				"T"
-			],
-			"range": "20/60",
-			"dmg1": "1d4",
-			"dmgType": "P",
-			"bonusWeapon": "+1",
-			"entries": [
-				"This dark metal blade bends in a wicked, hooked curve. You gain a +1 bonus to attack and damage rolls made with this magic weapon. When you hit with an attack using this weapon, you can spend 1 Hit Die to deal an extra {@damage 3d6} necrotic damage.",
-				{
-					"type": "entries",
-					"name": "Curse",
-					"entries": [
-						"This weapon is cursed, a fact that is revealed only when an {@spell identify} spell is cast on the weapon or you attune to it. Attuning to the dagger curses you until you are targeted by the {@spell remove curse} spell or similar magic; disposing of the dagger fails to end the curse. While cursed, whenever you receive magical healing, you must spend 1 Hit Die to regain any hit points. If you spend all your Hit Dice at any point, you die."
-					]
-				}
 			]
 		},
 		{
@@ -15482,31 +14638,6 @@
 			]
 		},
 		{
-			"name": "Dagger of Denial",
-			"source": "TDCSR",
-			"page": 195,
-			"baseItem": "dagger|PHB",
-			"type": "M",
-			"rarity": "rare",
-			"reqAttune": true,
-			"weight": 1,
-			"weaponCategory": "simple",
-			"property": [
-				"F",
-				"L",
-				"T"
-			],
-			"range": "20/60",
-			"dmg1": "1d4",
-			"dmgType": "P",
-			"bonusWeapon": "+2",
-			"entries": [
-				"This silver stiletto blade bears intricate grooves that spiral from its tip to its ivory hilt and handle. You gain a +2 bonus to attack and damage rolls made with this magic weapon.",
-				"As an action, you can place the point of the blade into any keyhole and seal it shut. A keyhole sealed in this way can't be unlocked until this dagger is placed into that keyhole once more (though a sealed door or container can still be broken, bypassing the lock). Sealing a keyhole unseals any keyholes previously sealed with this weapon."
-			],
-			"hasFluffImages": true
-		},
-		{
 			"name": "Dagger of Guitar Solos",
 			"source": "WDMM",
 			"page": 228,
@@ -15671,7 +14802,7 @@
 			"reqAttune": true,
 			"wondrous": true,
 			"property": [
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"entries": [
 				"These mithral-frame goggles with clear diamond lenses were used by the evoker Danoth Oro to spot {@condition invisible} enemies and scout areas from afar.",
@@ -16007,133 +15138,6 @@
 			"miscTags": [
 				"CNS"
 			]
-		},
-		{
-			"name": "Deathwalker's Ward (Awakened)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Deathwalker's Ward (Dormant)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Awakened",
-										"entries": [
-											"When the Deathwalker's Ward reaches an awakened state, you gain the following benefits:",
-											{
-												"type": "list",
-												"items": [
-													"The AC bonus of the armor increases to +2.",
-													"While wearing the armor, you have resistance to one of the following damage types of your choice: acid, cold, fire, lightning, necrotic, or poison. You can change the damage type when you finish a {@quickref resting|PHB|2|0|short rest}."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"resist": [
-				"acid",
-				"cold",
-				"fire",
-				"lightning",
-				"necrotic",
-				"poison"
-			],
-			"bonusWeapon": "+2",
-			"hasFluffImages": true
-		},
-		{
-			"name": "Deathwalker's Ward (Dormant)",
-			"source": "TDCSR",
-			"page": 204,
-			"baseItem": "studded leather armor|PHB",
-			"type": "LA",
-			"rarity": "legendary",
-			"reqAttune": true,
-			"weight": 13,
-			"property": [
-				"Vst|TDCSR"
-			],
-			"ac": 12,
-			"bonusAc": "+1",
-			"bonusSavingThrow": "+1",
-			"entries": [
-				"This beautiful black leather armor is covered in intricate scrollwork, and has a mantle bearing the black feathers of {@deity The Matron of Ravens|Exandria|TDCSR}. Legends say that it has been worn by a number of that deity's champions over the centuries\u2014most recently, {@creature Champion of Ravens|TDCSR|Vax'ildan of Vox Machina}.",
-				{
-					"type": "entries",
-					"name": "Dormant",
-					"entries": [
-						"When the Deathwalker's Ward is in a dormant state, you gain a +1 bonus to AC and you have {@quickref Advantage and Disadvantage|PHB|2|0|advantage} on death {@quickref saving throws|PHB|2|1} while wearing the armor."
-					]
-				}
-			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Deathwalker's Ward (Exalted)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Deathwalker's Ward (Awakened)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Exalted",
-										"entries": [
-											"When the Deathwalker's Ward reaches an exalted state, you gain the following benefits:",
-											{
-												"type": "list",
-												"items": [
-													"The AC bonus of the armor increases to +3.",
-													"As a bonus action, you grow large black raven wings that grant you a flying speed of 60 feet and last for 1 hour. Once this property is used, it can't be used again until you finish a {@quickref resting|PHB|2|0|long rest}."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"resist": [
-				"acid",
-				"cold",
-				"fire",
-				"lightning",
-				"necrotic",
-				"poison"
-			],
-			"bonusWeapon": "+3",
-			"modifySpeed": {
-				"static": {
-					"fly": 60
-				}
-			},
-			"recharge": "restLong",
-			"hasFluffImages": true
 		},
 		{
 			"name": "Decanter of Endless Water",
@@ -20720,17 +19724,6 @@
 			"speed": 40
 		},
 		{
-			"name": "Doublet of Dramatic Demise",
-			"source": "TDCSR",
-			"page": 195,
-			"rarity": "common",
-			"wondrous": true,
-			"entries": [
-				"This striking satin jacket allows you to make the most of your dying moments. When you drop to 0 hit points while wearing this doublet, you do not fall {@condition unconscious}. Instead, you are {@condition incapacitated} and your speed becomes 0, but you can speak and communicate.",
-				"You make death {@quickref saving throws|PHB|2|1} as normal, but if you roll a 1 on the {@dice d20}, you swoon with a loud gasp and die instantly."
-			]
-		},
-		{
 			"name": "Dowsing Dagger",
 			"source": "XMtS",
 			"page": 19,
@@ -21681,23 +20674,6 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Dynamite",
-			"source": "TDCSR",
-			"page": 100,
-			"type": "EXP|DMG",
-			"rarity": "none",
-			"value": 10000,
-			"range": "30",
-			"dmg1": "6d6",
-			"dmgType": "F",
-			"entries": [
-				"This bundle of explosives can be lit and thrown up to 30 feet as an action. It explodes at the start of your next turn. Creatures and objects within 20 feet of it must make a {@dc 12} Dexterity {@quickref saving throws|PHB|2|1|saving throw}, taking {@damage 6d6} fire damage on a failed save, or half as much damage on a successful one."
-			],
-			"miscTags": [
-				"CNS"
-			]
-		},
-		{
 			"name": "Dynamite (stick)",
 			"source": "DMG",
 			"page": 268,
@@ -21834,35 +20810,6 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Earthboard",
-			"source": "TDCSR",
-			"page": 198,
-			"rarity": "rare",
-			"reqAttune": true,
-			"wondrous": true,
-			"weight": 40,
-			"modifySpeed": {
-				"static": {
-					"burrow": 20,
-					"walk": 60
-				}
-			},
-			"entries": [
-				"An earthboard is a slab of granite about three inches thick, nine feet long, and two feet wide, with smooth, tapered ends. However, its mundane appearance belies its unique elemental power, which reduces its weight to 40 pounds while a creature is attuned to it. {@book The Earth Ashari of Terrah|TDCSR|3|Terrah} can often be seen with these stone boards upon their backs as they trek into the crags of the {@book Cliffkeep Mountains|TDCSR|3|Cliffkeep Mountains}.",
-				"While standing on an earthboard, you gain the following benefits:",
-				{
-					"type": "list",
-					"items": [
-						"Your speed increases to 60 feet as the board skims across solid ground (but not liquid surfaces).",
-						"If you ramp off a surface of solid earth, you can {@quickref jumping|PHB|4|0|long jump} up to 60 feet. When you end this {@quickref jumping|PHB|4|0|jump}, you can choose to slam into the ground, creating a shockwave. Each creature standing on the ground within 20 feet of you must succeed on a {@dc 14} Strength {@quickref saving throws|PHB|2|1|saving throw} or fall {@condition prone}.",
-						"You have a burrowing speed of 20 feet that allows you to tunnel through earth or solid rock, leaving a 5-foot-diameter tunnel in your wake. As an action, you can increase this burrowing speed to 60 feet until the start of your next turn.",
-						"The earthboard always moves with you until you decide to dismount it (no action required)."
-					]
-				},
-				"These benefits last until you end your turn not standing on the earthboard."
-			]
-		},
-		{
 			"name": "Earworm",
 			"source": "ERLW",
 			"page": 277,
@@ -21900,16 +20847,6 @@
 					]
 				}
 			}
-		},
-		{
-			"name": "Echo Stone",
-			"source": "TDCSR",
-			"page": 195,
-			"rarity": "uncommon",
-			"wondrous": true,
-			"entries": [
-				"This dull-blue river stone is soft to the touch, and makes remarkably little sound if dropped. When an echo stone is squeezed as an action, it glows faintly for 1 minute. The stone records all sound made within 15 feet of it while glowing, then repeats that recorded sound at an equal volume once every 5 minutes. This cycle of repetition continues until the stone is squeezed again as an action, which silences it. Squeezing the stone twice in quick succession as an action causes it to play the sounds it has most recently recorded, rather than recording new sounds."
-			]
 		},
 		{
 			"name": "Efreeti Bottle",
@@ -24449,122 +23386,6 @@
 			"value": 5
 		},
 		{
-			"name": "Fenthras (Awakened)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Fenthras (Dormant)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Awakened",
-										"entries": [
-											"When Fenthras reaches an awakened state, you gain the following benefits:",
-											{
-												"type": "list",
-												"items": [
-													"The weapon's bonus to attack and damage rolls increases to +2. Additionally, when you hit with an attack using this weapon, the target takes an extra {@damage 1d4} lightning damage.",
-													"When you hit with an attack using this weapon, you can declare it a bramble shot. The attack deals an extra {@damage 3d8} piercing damage, and the target must succeed on a {@dc 15} Strength {@quickref saving throws|PHB|2|1|saving throw} or become {@condition restrained} by steely brambles that burst from the arrow. A {@condition restrained} target can repeat the {@quickref saving throws|PHB|2|1|saving throw} at the end of each of its turns, ending the effect on itself on a success. Once this property is used, it can't be used again until you finish a {@quickref resting|PHB|2|0|short or long rest}."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"bonusWeapon": "+2",
-			"recharge": "restShort",
-			"hasFluffImages": true
-		},
-		{
-			"name": "Fenthras (Dormant)",
-			"source": "TDCSR",
-			"page": 205,
-			"baseItem": "longbow|PHB",
-			"type": "R",
-			"rarity": "legendary",
-			"reqAttune": true,
-			"weight": 2,
-			"weaponCategory": "martial",
-			"property": [
-				"A",
-				"H",
-				"2H",
-				"Vst|TDCSR"
-			],
-			"range": "150/600",
-			"dmg1": "1d8",
-			"dmgType": "P",
-			"bonusWeapon": "+1",
-			"recharge": "restShort",
-			"entries": [
-				"This gorgeous {@item longbow|phb} made of everbark from the Fey Realm flexes and shifts like a living entity. It is said to have been wielded by the legendary ranger {@creature Vex'ahlia|TDCSR} against great evils.",
-				{
-					"type": "entries",
-					"name": "Dormant",
-					"entries": [
-						"While Fenthras is in a dormant state, you gain a +1 bonus to attack and damage rolls made with this magic weapon.",
-						"When you make an attack with Fenthras, you can declare it an oracle shot, allowing you to experience the area around the arrow using your normal senses for 10 minutes. Once this property is used, it can't be used again until you finish a {@quickref resting|PHB|2|0|short or long rest}.",
-						"Additionally, when a creature is killed by an attack using this weapon, a six-foot-tall tree rapidly grows out of the corpse over the next minute. The tree is rooted in the ground to make the body difficult to move, but does not permanently damage the corpse or its organs."
-					]
-				}
-			],
-			"ammoType": "arrow|phb",
-			"hasFluffImages": true
-		},
-		{
-			"name": "Fenthras (Exalted)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Fenthras (Awakened)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Exalted",
-										"entries": [
-											"When Fenthras reaches an exalted state, you gain the following benefits:",
-											{
-												"type": "list",
-												"items": [
-													"The weapon's bonus to attack and damage rolls increases to +3.",
-													"The extra lightning damage dealt by attacks using the bow increases to {@damage 1d6}.",
-													"You can declare a bramble shot twice between rests, and the {@quickref saving throws|PHB|2|1|saving throw} DC increases to 17."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"bonusWeapon": "+3",
-			"hasFluffImages": true
-		},
-		{
 			"name": "Feywild Shard",
 			"source": "TCE",
 			"page": 127,
@@ -25792,69 +24613,6 @@
 					"dim": 80
 				}
 			]
-		},
-		{
-			"name": "Flamefriend Lantern",
-			"source": "TDCSR",
-			"page": 198,
-			"resist": [
-				"fire"
-			],
-			"rarity": "rare",
-			"reqAttune": true,
-			"wondrous": true,
-			"recharge": "dawn",
-			"entries": [
-				"This wrought-iron lantern holds a small fire elemental spirit. To attune to this item, you must also succeed on a {@dc 10} Charisma check to bond with the spirit inside the lantern.",
-				{
-					"type": "entries",
-					"name": "Light and Flame",
-					"entries": [
-						"While attuned to the lantern, you can verbally ask the elemental to glow (no action required), causing the lantern to cast bright light in a radius of your choice up to 60 feet and dim light for the same distance beyond that. You can also cast the {@spell produce flame} cantrip from the lantern at will. Wisdom is your spellcasting ability for this spell."
-					]
-				},
-				{
-					"type": "entries",
-					"name": "Elemental Essence",
-					"entries": [
-						"The fire elemental spirit in the lantern can grant you a small fragment of its power. As an action, you gain one of the following benefits of your choice for 1 hour:",
-						{
-							"type": "list",
-							"items": [
-								"You have resistance to fire damage.",
-								"Whenever a creature hits you with a melee attack, that creature takes fire damage equal to your proficiency bonus.",
-								"You can cast the {@spell burning hands} spell (spell save {@dc 15}) from the lantern at 3rd level. Once you cast the spell, you can't do so again until the next time you use this property of the lantern."
-							]
-						},
-						"Once the elemental has shared its power with you in this way, it can't do so again until the next dawn."
-					]
-				},
-				{
-					"type": "entries",
-					"name": "Willful Attunement",
-					"entries": [
-						"Your {@quickref attunement|DMG|1|0} to the lantern lasts until you choose to end it, or until you anger the elemental (by dousing the lantern in water, attacking another nonhostile elemental being, and so forth). You can attempt to attune to the lantern again and repeat the check to bond with the elemental during a {@quickref resting|PHB|2|0|short or long rest}, but you make this check with {@quickref Advantage and Disadvantage|PHB|2|0|disadvantage} until you have made amends to the spirit, as the GM determines."
-					]
-				}
-			],
-			"light": [
-				{
-					"bright": 60,
-					"dim": 120
-				}
-			],
-			"attachedSpells": {
-				"will": [
-					"produce flame"
-				],
-				"daily": {
-					"1": [
-						"burning hands#3"
-					]
-				},
-				"ability": "wis"
-			},
-			"hasFluff": true
 		},
 		{
 			"name": "Flames Card",
@@ -27467,21 +26225,6 @@
 			]
 		},
 		{
-			"name": "Gluebomb",
-			"source": "TDCSR",
-			"page": 100,
-			"type": "EXP|DMG",
-			"rarity": "none",
-			"value": 5000,
-			"range": "30",
-			"entries": [
-				"This unique explosive can be primed and thrown up to 30 feet as an action. It explodes on impact. Creatures within 20 feet of it must make a {@dc 12} Dexterity {@quickref saving throws|PHB|2|1|saving throw} or be {@condition restrained} for 1 minute. A {@condition restrained} creature can make a {@dc 12} Strength check as an action, escaping on a success."
-			],
-			"miscTags": [
-				"CNS"
-			]
-		},
-		{
 			"name": "Gnomengarde Grenade",
 			"source": "DC",
 			"rarity": "varies",
@@ -28150,59 +26893,6 @@
 			]
 		},
 		{
-			"name": "Graz'tchar, the Decadent End",
-			"source": "TDCSR",
-			"page": 195,
-			"baseItem": "greatsword|PHB",
-			"type": "M",
-			"rarity": "legendary",
-			"reqAttune": true,
-			"sentient": true,
-			"weight": 6,
-			"weaponCategory": "martial",
-			"property": [
-				"H",
-				"2H"
-			],
-			"dmg1": "2d6",
-			"dmgType": "S",
-			"bonusWeapon": "+3",
-			"entries": [
-				"This blade appears to be a beautiful cruciform sword of shining silver, inlaid with sparkling rubies. You gain a +3 bonus to attack and damage rolls made with this magic weapon, which has the following properties.",
-				{
-					"type": "entries",
-					"name": "Corrosive Submission",
-					"entries": [
-						"When you hit a creature that has an Intelligence score of 4 or higher with an attack using this sword, the target takes an extra {@damage 3d6} acid damage and must succeed on a {@dc 17} Charisma {@quickref saving throws|PHB|2|1|saving throw} or be {@condition charmed} by you for 1 hour. If you attack the creature again while it is {@condition charmed} in this way, the extra acid damage increases to {@dice 10d6} and the {@condition charmed} condition ends. If the target succeeds on its {@quickref saving throws|PHB|2|1|saving throw} or the charm ends for it, it can't be {@condition charmed} again in this way for 24 hours."
-					]
-				},
-				{
-					"type": "entries",
-					"name": "Hidden Nature",
-					"entries": [
-						"The acid damage dealt by this greatsword appears to be radiant damage to all who perceive it. A {@spell true seeing} spell or similar magic reveals that the sword is actually a rusted, pitted blade dripping with acid."
-					]
-				},
-				{
-					"type": "entries",
-					"name": "Sentience",
-					"entries": [
-						"{@deity Graz'tchar|Exandria|TDCSR|Graz'tchar} is a sentient neutral evil weapon with an Intelligence of 14, a Wisdom of 12, and a Charisma of 18. It has hearing and {@sense darkvision} out to a range of 120 feet.",
-						"The sword can speak, read, and understand {@language Common}, and can communicate with its wielder telepathically. Anyone who holds it hears the wise voice of a sorrowful king, beckoning the user to seize their destiny. A creature that succeeds on a {@dc 26} Wisdom ({@skill Insight}) check while listening to the blade's voice hears a sliver of malice that suggests the truth: the voice is a corrupting trick of the Demon Prince of Indulgence."
-					]
-				},
-				{
-					"type": "entries",
-					"name": "Personality",
-					"entries": [
-						"{@deity Graz'tchar|Exandria|TDCSR|Graz'tchar} slowly attempts to sway its wielder to sow chaos in Exandria, telling lies and spreading malign truths about great leaders, and claiming that the {@book members of the Tal'Dorei Council|TDCSR|2|Tal'Dorei Council} are corrupt and must be overthrown. The voice of this blade is actually the Demon Prince of Indulgence, speaking from his Abyssal prison.",
-						"If the sword's attuned wielder disobeys the urges of the weapon for an extended period of time, {@deity Graz'tchar|Exandria|TDCSR|Graz'tchar} can attempt to control the wielder, who must succeed on a {@dc 17} Charisma {@quickref saving throws|PHB|2|1|saving throw} or become {@condition charmed} by the sword for 24 hours. While the wielder is {@condition charmed} in this way, the sword can compel them to take an action of the sword's choice once per hour, though the wielder believes this action is taken of their own free will. If the chosen action leads to the harm of someone the wielder considers a trusted friend or ally, the {@condition charmed} condition immediately ends. On a successful {@quickref saving throws|PHB|2|1|saving throw} or if the {@condition charmed} condition ends for the wielder, they are immune to this property of the sword for 24 hours."
-					]
-				}
-			],
-			"hasFluffImages": true
-		},
-		{
 			"name": "Greater Silver Sword",
 			"source": "MTF",
 			"page": 89,
@@ -28446,7 +27136,7 @@
 			"wondrous": true,
 			"weight": 3,
 			"property": [
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"entries": [
 				"Several of these spellbooks with gilded pages and silver-plated covers were created during the Age of Arcanum, but only one has been found since the Calamity ended. The book has an infinite number of pages, is three inches thick, eight inches wide, twelve inches long, and weighs three pounds.",
@@ -28547,7 +27237,7 @@
 			"weaponCategory": "martial",
 			"property": [
 				"V",
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"dmg1": "1d8",
 			"dmgType": "B",
@@ -31023,7 +29713,7 @@
 			"reqAttune": true,
 			"weight": 13,
 			"property": [
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"ac": 12,
 			"bonusWeapon": "+1",
@@ -31223,129 +29913,6 @@
 			"miscTags": [
 				"CNS"
 			]
-		},
-		{
-			"name": "Honor's Last Stand (Awakened)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Honor's Last Stand (Dormant)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Awakened",
-										"entries": [
-											"When Honor's Last Stand reaches an awakened state, you gain the following benefits:",
-											{
-												"type": "list",
-												"items": [
-													"The shield's bonus to AC increases to +2.",
-													"If you successfully {@action shove} a creature while holding this shield, that creature takes {@damage 2d6} force damage.",
-													"When a creature within 5 feet of you misses you with an attack, you can attempt to {@action shove} that creature as a reaction."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"bonusAc": "+2",
-			"hasFluff": true,
-			"hasFluffImages": true
-		},
-		{
-			"name": "Honor's Last Stand (Dormant)",
-			"source": "TDCSR",
-			"page": 206,
-			"baseItem": "shield|PHB",
-			"type": "S",
-			"conditionImmune": [
-				"prone"
-			],
-			"rarity": "legendary",
-			"reqAttune": "by a creature of non-evil alignment",
-			"reqAttuneTags": [
-				{
-					"alignment": [
-						"N",
-						"G",
-						"C",
-						"L",
-						"A"
-					]
-				}
-			],
-			"weight": 6,
-			"property": [
-				"Vst|TDCSR"
-			],
-			"ac": 2,
-			"bonusAc": "+1",
-			"entries": [
-				"This massive silvered shield bears the crest of {@deity The Platinum Dragon|Exandria|TDCSR} and never tarnishes. Its metal is always warm to the touch.",
-				{
-					"type": "entries",
-					"name": "Dormant",
-					"entries": [
-						"While Honor's Last Stand is in a dormant state, you gain a +1 bonus to AC while holding the shield. This bonus is in addition to the shield's normal bonus to AC. You also can't be knocked {@condition prone} while bearing this shield."
-					]
-				}
-			],
-			"hasFluff": true,
-			"hasFluffImages": true
-		},
-		{
-			"name": "Honor's Last Stand (Exalted)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Honor's Last Stand (Awakened)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Exalted",
-										"entries": [
-											"When Honor's Last Stand reaches an exalted state, you gain the following benefits:",
-											{
-												"type": "list",
-												"items": [
-													"The shield's bonus to AC increases to +3.",
-													"When you successfully {@action shove} a creature while holding this shield, you can move it up to 15 feet away from you.",
-													"As a bonus action, you can protect an ally within 5 feet of you, granting that ally a +3 bonus to AC until the start of your next turn or until they are no longer within 5 feet of you."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"bonusAc": "+3",
-			"hasFluff": true,
-			"hasFluffImages": true
 		},
 		{
 			"name": "Hooded Lantern",
@@ -32716,30 +31283,6 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Inescapable Lash",
-			"source": "TDCSR",
-			"page": 195,
-			"baseItem": "whip|PHB",
-			"type": "M",
-			"rarity": "rare",
-			"reqAttune": true,
-			"weight": 3,
-			"weaponCategory": "martial",
-			"property": [
-				"F",
-				"ER|TDCSR"
-			],
-			"dmg1": "1d4",
-			"dmgType": "S",
-			"bonusWeapon": "+1",
-			"reach": 20,
-			"hasRefs": true,
-			"entries": [
-				"This braided cord is dull bronze in color, ends in a splayed set of three barbs, and gleams like metal under any light. You gain a +1 bonus to attack and damage rolls made with this magic weapon, which has a reach of 20 feet. When you hit a creature or object using this whip, you can attempt to {@action grapple} the target as a bonus action.",
-				"While you have a creature {@condition grappled} using this whip, you can use your action to either pull the creature up to 20 feet toward you, or cause the creature to be {@condition restrained} until you let go of the whip. A creature {@condition restrained} in this way can escape by making a successful Strength ({@skill Athletics}) or Dexterity ({@skill Acrobatics}) check as an action. The DC of this check equals 8 + your proficiency bonus + your Strength modifier."
-			]
-		},
-		{
 			"name": "Infernal Amulet",
 			"source": "CoA",
 			"page": 268,
@@ -32892,7 +31435,7 @@
 			"reqAttune": true,
 			"wondrous": true,
 			"property": [
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"grantsProficiency": true,
 			"bonusWeapon": "+1",
@@ -35488,7 +34031,7 @@
 			"reqAttune": true,
 			"wondrous": true,
 			"property": [
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"bonusAc": "+1",
 			"recharge": "dawn",
@@ -36247,131 +34790,6 @@
 			]
 		},
 		{
-			"name": "Kiss of the Changebringer (Awakened)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Kiss of the Changebringer (Dormant)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Awakened",
-										"entries": [
-											"When the Kiss of the Changebringer reaches an awakened state, you gain the following benefits:",
-											{
-												"type": "list",
-												"items": [
-													"The bonus to {@quickref saving throws|PHB|2|1} increases to +2.",
-													"You are immune to the {@condition restrained} condition.",
-													"You can use an action to cast the {@spell blink} spell on yourself. This property of the amulet can't be used again until you finish a {@quickref resting|PHB|2|0|long rest}."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"conditionImmune": [
-				"grappled",
-				"restrained"
-			],
-			"bonusSavingThrow": "+2",
-			"recharge": "restLong",
-			"attachedSpells": {
-				"daily": {
-					"1e": [
-						"blink"
-					]
-				}
-			},
-			"hasFluffImages": true
-		},
-		{
-			"name": "Kiss of the Changebringer (Dormant)",
-			"source": "TDCSR",
-			"page": 206,
-			"conditionImmune": [
-				"grappled"
-			],
-			"rarity": "legendary",
-			"reqAttune": true,
-			"wondrous": true,
-			"property": [
-				"Vst|TDCSR"
-			],
-			"bonusSavingThrow": "+1",
-			"entries": [
-				"A beautiful, glittering emerald is set within this silver chain, humming with power and possibility. It is said that this amulet was stolen from the neck of {@deity The Changebringer|Exandria|TDCSR} herself by the {@deity The Lord of the Hells|Exandria|TDCSR}, and locked within the vaults of Bazzoxan in {@book Wildemount|TDCSR|3|Wildemount}. It was later claimed there by a group of Aurora Watch soldiers during an expedition into that grim fortress's abandoned temples.",
-				{
-					"type": "entries",
-					"name": "Dormant",
-					"entries": [
-						"While the Kiss of the Changebringer is in a dormant state, you have a +1 bonus to {@quickref saving throws|PHB|2|1} and are immune to the {@condition grappled} condition while wearing it."
-					]
-				}
-			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Kiss of the Changebringer (Exalted)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Kiss of the Changebringer (Awakened)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Exalted",
-										"entries": [
-											"When the Kiss of the Changebringer reaches an exalted state, you gain the following benefits:",
-											{
-												"type": "list",
-												"items": [
-													"The bonus to {@quickref saving throws|PHB|2|1} increases to +3.",
-													"You are immune to the {@condition paralyzed} and {@condition petrified} conditions.",
-													"When you make an attack roll, ability check, or {@quickref saving throws|PHB|2|1|saving throw}, you can roll an additional {@dice d20}. You can choose to do so after you make the attack roll, ability check, or {@quickref saving throws|PHB|2|1|saving throw}, but before the outcome is determined. You choose which of the {@dice 2d20|d20s} to use for your roll. This property of the amulet can't be used again until you finish a {@quickref resting|PHB|2|0|short or long rest}."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"conditionImmune": [
-				"grappled",
-				"restrained",
-				"paralyzed",
-				"petrified"
-			],
-			"bonusSavingThrow": "+3",
-			"recharge": "restShort",
-			"hasFluffImages": true
-		},
-		{
 			"name": "Knave's Eye Patch",
 			"source": "WDH",
 			"page": 191,
@@ -36895,7 +35313,7 @@
 			"property": [
 				"F",
 				"R",
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"dmg1": "1d4",
 			"dmgType": "S",
@@ -38501,7 +36919,7 @@
 			"weight": 4,
 			"weaponCategory": "simple",
 			"property": [
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"dmg1": "1d6",
 			"dmgType": "B",
@@ -38642,35 +37060,6 @@
 					]
 				}
 			]
-		},
-		{
-			"name": "Magician's Judge",
-			"source": "TDCSR",
-			"page": 196,
-			"baseItem": "greatsword|PHB",
-			"type": "M",
-			"rarity": "rare",
-			"weight": 6,
-			"weaponCategory": "martial",
-			"property": [
-				"H",
-				"2H"
-			],
-			"dmg1": "2d6",
-			"dmgType": "S",
-			"recharge": "dawn",
-			"entries": [
-				"An executioner's blade from the {@book Age of Arcanum|TDCSR|1|Age of Arcanum}, this magic {@item greatsword|PHB} is one of many similar weapons once used to execute magic-wielding criminals. Though most commonly found in the lands now known as {@book Wildemount|TDCSR|3|Wildemount} and {@book Issylra|TDCSR|3|Issylra}, a few such blades have found their way to Tal'Dorei.",
-				"If you hit a creature with an attack using this weapon, you can cast the {@spell dispel magic} spell from the sword against the target as part of the attack. Alternatively, you can use an action to cast {@spell dispel magic} from the sword against a target of your choice. If you need to make a check with your spellcasting ability modifier as part of casting the spell, you make this check with a +3 modifier or your own spellcasting ability modifier, whichever is higher.",
-				"Once you cast {@spell dispel magic} using this weapon, you can't do so again until the next dawn."
-			],
-			"attachedSpells": {
-				"daily": {
-					"1e": [
-						"dispel magic"
-					]
-				}
-			}
 		},
 		{
 			"name": "Magnifying Glass",
@@ -40241,76 +38630,6 @@
 			]
 		},
 		{
-			"name": "Mirror of Infinite Transpondence",
-			"source": "TDCSR",
-			"page": 196,
-			"rarity": "very rare",
-			"wondrous": true,
-			"recharge": "dawn",
-			"entries": [
-				"These silver hand mirrors always come in pairs. When activated as an action, a mirror establishes a visual link with its paired mirror for 10 minutes, with the two mirrors acting as opposite sides of the same open window. The mirrors create this connection even if both are on different planes.",
-				"When a single mirror of infinite transpondence is found, the GM decides where its paired mirror is and who possesses it. A random possessor and location can be determined by rolling on the table below. Named bearers are described in {@book chapter 2|TDCSR|2}.",
-				"Once the connection between the two mirrors has been activated three times from either end, it can't be activated again until the next dawn.",
-				{
-					"type": "table",
-					"caption": "Mirror Locations",
-					"colLabels": [
-						"d8",
-						"Location",
-						"Possessor"
-					],
-					"colStyles": [
-						"col-1 text-center",
-						"col-5",
-						"col-6"
-					],
-					"rows": [
-						[
-							"1",
-							"{@book Emon|TDCSR|3|Emon, the City of Fellowship}",
-							"{@book Seeker Odessa Tal'Dorei|TDCSR|2|Seeker Odessa Tal'Dorei}"
-						],
-						[
-							"2",
-							"{@book Whitestone|TDCSR|3|Whitestone}",
-							"None; the mirror is in an empty dungeon"
-						],
-						[
-							"3",
-							"{@book Kymal|TDCSR|3|Kymal}",
-							"{@book Sylker \"The Millionaire\" Uttolot|TDCSR|2|Sylker \"The Millionaire\" Uttolot}"
-						],
-						[
-							"4",
-							"{@book Westruun|TDCSR|3|Westruun}",
-							"{@book Realmseer Eskil Ryndarien|TDCSR|2|Realmseer Eskil Ryndarien}"
-						],
-						[
-							"5",
-							"{@book Syngorn|TDCSR|3|Syngorn}",
-							"{@book Ouestra, the Voice of Memory|TDCSR|2|Ouestra, the Voice of Memory}"
-						],
-						[
-							"6",
-							"The Elemental Plane of Water",
-							"{@deity Khedive Xundi|Exandria|TDCSR}, Lord of Silver Silt"
-						],
-						[
-							"7",
-							"The Plane of Shadow",
-							"A {@creature Remnant Chosen|TDCSR}"
-						],
-						[
-							"8",
-							"An untraceable location",
-							"{@book The Wonderworker|TDCSR|2|The Wonderworker}"
-						]
-					]
-				}
-			],
-			"hasFluffImages": true
-		},
-		{
 			"name": "Mirror of Life Trapping",
 			"source": "DMG",
 			"page": 181,
@@ -41207,124 +39526,6 @@
 				"While wearing the cloak, you can take a {@variantrule Bonus Action|XPHB} and expend 1 charge to activate the cloak's magic. The magic lasts for 1 minute or until you end it early (no action required).",
 				"While the cloak's magic is active, you gain a {@variantrule Fly Speed|XPHB} of 30 feet and can hover. Additionally, once on each of your turns when you hit a creature with an attack roll and deal damage, you can cause the target to take an extra {@damage 1d4} Radiant damage. If you are aloft when the cloak's magic ends, you fall."
 			]
-		},
-		{
-			"name": "Mythcarver (Awakened)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Mythcarver (Dormant)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Awakened",
-										"entries": [
-											"When Mythcarver reaches an awakened state, you gain the following benefits:",
-											{
-												"type": "list",
-												"items": [
-													"The weapon's bonus to attack and damage rolls increases to +2. Additionally, when you hit with an attack using this weapon, the target takes an extra {@damage 1d6} force damage.",
-													"When you use your Bardic Inspiration to affect an enemy while wielding this sword, that enemy has {@quickref Advantage and Disadvantage|PHB|2|0|disadvantage} on their next {@quickref saving throws|PHB|2|1|saving throw}."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"bonusWeapon": "+2",
-			"hasFluff": true,
-			"hasFluffImages": true
-		},
-		{
-			"name": "Mythcarver (Dormant)",
-			"source": "TDCSR",
-			"page": 207,
-			"baseItem": "longsword|PHB",
-			"type": "M",
-			"rarity": "legendary",
-			"reqAttune": "by a bard",
-			"reqAttuneTags": [
-				{
-					"class": "bard"
-				}
-			],
-			"weight": 3,
-			"weaponCategory": "martial",
-			"property": [
-				"V",
-				"Vst|TDCSR",
-				"F"
-			],
-			"dmg1": "1d8",
-			"dmgType": "S",
-			"dmg2": "1d10",
-			"bonusWeapon": "+1",
-			"entries": [
-				"This incredible silvered blade once belonged to the legendary White Duke, a founding member of the {@book Golden Grin|TDCSR|2|Golden Grin}, and many other master bards before him. It resonates with nearby musical tones. In the modern era, it is best known as the personal weapon of famed bard {@creature Scanlan Shorthalt|TDCSR}.",
-				{
-					"type": "entries",
-					"name": "Dormant",
-					"entries": [
-						"While Mythcarver is in a dormant state, you gain a +1 bonus to attack and damage rolls made with this magic weapon. This longsword's enchantments and light construction also grant it the Finesse property, which allows you to use either your Strength or Dexterity modifier for the attack and damage rolls when making an attack with this weapon.",
-						"Additionally, when you target an ally with your Bardic Inspiration feature, you gain {@quickref Advantage and Disadvantage|PHB|2|0|advantage} on attacks with this weapon until the end of your turn."
-					]
-				}
-			],
-			"hasFluff": true,
-			"hasFluffImages": true
-		},
-		{
-			"name": "Mythcarver (Exalted)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Mythcarver (Awakened)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Exalted",
-										"entries": [
-											"When Mythcarver reaches an exalted state, you gain the following benefits:",
-											{
-												"type": "list",
-												"items": [
-													"The weapon's bonus to attack and damage rolls increases to +3.",
-													"As an action, you let the spirit of the sword overtake your body and guide your strikes. You make 4 melee attacks with the sword, then gain 1 level of {@condition exhaustion}. Once this property is used, it can't be used again until you finish a {@quickref resting|PHB|2|0|long rest}."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"bonusWeapon": "+3",
-			"hasFluff": true,
-			"hasFluffImages": true
 		},
 		{
 			"name": "Narycrash",
@@ -42731,24 +40932,6 @@
 			"value": 5000,
 			"entries": [
 				"These dried leaves of the Olisuba tree, when steeped to make a tea, can help a body recover from strenuous activity. If you drink a dose of Olisuba tea during a long rest, your {@condition exhaustion} level is reduced by 2 instead of 1 at the end of that long rest."
-			]
-		},
-		{
-			"name": "Oloore Root Teabag",
-			"source": "TDCSR",
-			"page": 85,
-			"type": "IDG|TDCSR",
-			"rarity": "unknown",
-			"value": 10000,
-			"entries": [
-				"This root is typically {@item Oloore Root Teabag|TDCSR|sold in teabags} for 100 gp per dose. It was originally a ritualistic tool used by the followers of many gods, but now sees more recreational use. Oracles used it to enhance their divinations, for it helped them leave their physical bodies behind and become closer to gods and spirits. Drinking tea brewed from the root causes intense hallucinations, which feel like they have granted perfect clarity of mind to the imbiber.",
-				"After drinking {@item Oloore Root Teabag|TDCSR|oloore tea} as an action, you must succeed on a {@dc 19} Constitution {@quickref saving throws|PHB|2|1|saving throw} or experience vivid hallucinations for {@dice 1d4} hours. During this time, you have {@quickref Advantage and Disadvantage|PHB|2|0|disadvantage} on attack rolls and {@quickref ability checks|PHB|2|0}. If you fail the {@quickref saving throws|PHB|2|1|saving throw} by 10 or more, your hallucinations become horrific visions and you gain a level of {@condition exhaustion}. On a success, you gain preternatural clarity, allowing you to cast the {@spell scrying} spell once within the next {@dice 1d4} hours."
-			],
-			"attachedSpells": [
-				"scrying"
-			],
-			"miscTags": [
-				"CNS"
 			]
 		},
 		{
@@ -45018,37 +43201,6 @@
 			]
 		},
 		{
-			"name": "Plainscow",
-			"source": "TDCSR",
-			"page": 248,
-			"type": "MNT",
-			"rarity": "none",
-			"value": 20000,
-			"carryingCapacity": 1500,
-			"speed": 40,
-			"entries": [
-				"The hulking plainscow is an exceptionally sturdy beast of burden native to the {@book Dividing Plains|TDCSR|3|Dividing Plains} and used by the people of central Tal'Dorei for centuries. Though many wild herds still roam the plains, domesticated plainscows are more common, used as {@quickref Mounts and Vehicles|PHB|1|0|mounts}, pack animals, and livestock. Plainscows are unusually empathetic for beasts, and often bond with a rider for life. They stand 6 feet tall, weigh about two tons, and live for 70 years.",
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"name": "Market Value",
-									"page": 248,
-									"entries": [
-										"Plainscows can be bought in {@book Westruun|TDCSR|3|Westruun} for 200 gp. A plainscow has a carrying capacity of 1,500 pounds."
-									]
-								}
-							]
-						}
-					]
-				}
-			]
-		},
-		{
 			"name": "Planar Key",
 			"source": "AitFR-THP",
 			"page": 13,
@@ -45210,122 +43362,6 @@
 				"Once this bonus action is used, it can't be used again until the next dawn.",
 				"Plate consists of shaped, interlocking metal plates to cover the entire body. A suit of plate includes gauntlets, heavy leather boots, a visored helmet, and thick layers of padding underneath the armor. Buckles and straps distribute the weight over the body."
 			]
-		},
-		{
-			"name": "Plate of the Dawnmartyr (Awakened)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Plate of the Dawnmartyr (Dormant)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Awakened",
-										"entries": [
-											"When the Plate of the Dawnmartyr reaches an awakened state, you gain the following benefits:",
-											{
-												"type": "list",
-												"items": [
-													"The armor's bonus to AC increases to +2.",
-													"You are immune to the {@condition frightened} condition.",
-													"You have resistance to fire damage.",
-													"The fire damage you deal when you rebuke an attacker increases to {@damage 2d6}."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"resist": [
-				"fire"
-			],
-			"conditionImmune": [
-				"frightened"
-			],
-			"bonusAc": "+2",
-			"hasFluffImages": true
-		},
-		{
-			"name": "Plate of the Dawnmartyr (Dormant)",
-			"source": "TDCSR",
-			"page": 208,
-			"baseItem": "plate armor|PHB",
-			"type": "HA",
-			"rarity": "legendary",
-			"reqAttune": true,
-			"weight": 65,
-			"property": [
-				"Vst|TDCSR"
-			],
-			"ac": 18,
-			"strength": "15",
-			"bonusAc": "+1",
-			"stealth": true,
-			"entries": [
-				"Beautiful silver scrollwork and priceless cut rubies adorn this set of brass-and-gold armor. Legend holds that it was worn by Duana, High Priest of the {@deity The Dawnfather|Exandria|TDCSR}, when she was martyred in the Battle of Ghor Dranas in the final days of the {@book Calamity|TDCSR|1|The Calamity}. In more recent times, it was worn by {@creature Pike Trickfoot|TDCSR}, a legendary cleric of the {@deity The Everlight|Exandria|TDCSR}, while fighting against {@book the Chroma Conclave|TDCSR|1|The Chroma Conclave} and {@deity The Whispered One|Exandria|TDCSR}.",
-				{
-					"type": "entries",
-					"name": "Dormant",
-					"entries": [
-						"While the Plate of the Dawnmartyr is in a dormant state, you gain a +1 bonus to AC while wearing it. When a creature within 5 feet of you hits you with a melee attack, you can use your reaction to rebuke that creature, dealing it {@damage 1d6} fire damage."
-					]
-				}
-			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Plate of the Dawnmartyr (Exalted)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Plate of the Dawnmartyr (Awakened)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Exalted",
-										"entries": [
-											"When the Plate of the Dawnmartyr reaches an exalted state, you gain the following benefits:",
-											{
-												"type": "list",
-												"items": [
-													"The armor's bonus to AC increases to +3.",
-													"When you rebuke an attacker, you can choose to deal either fire damage or radiant damage.",
-													"When you are reduced to 0 hit points, you can choose to have a blast of healing flame surround you. You regain 1 hit point and are lifted to your feet. Each enemy within 10 feet of you takes {@damage 2d6} fire damage or radiant damage (your choice). This property of the armor can't be used again until you finish a {@quickref resting|PHB|2|0|long rest}."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"bonusAc": "+3",
-			"recharge": "restLong",
-			"hasFluffImages": true
 		},
 		{
 			"name": "Platinum",
@@ -48956,135 +46992,6 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Pyremaul (Awakened)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Pyremaul (Dormant)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Awakened",
-										"entries": [
-											"When Pyremaul reaches an awakened state, you gain the following benefits:",
-											{
-												"type": "list",
-												"items": [
-													"The weapon's bonus to attack rolls increases to +2.",
-													"The extra fire damage dealt by the weapon increases to {@damage 2d6}.",
-													"As an action, you can slam Pyremaul into the ground to cast the {@spell burning hands} spell at 2nd level (save {@dc 15}). You can't use this property again until you finish a {@quickref resting|PHB|2|0|short or long rest}.",
-													"Whenever you score a critical hit with this weapon, the target must succeed on a {@dc 15} Strength {@quickref saving throws|PHB|2|1|saving throw} or be knocked {@condition prone}."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"bonusWeaponAttack": "+2",
-			"recharge": "restShort",
-			"attachedSpells": {
-				"rest": {
-					"1e": [
-						"burning hands#2"
-					]
-				}
-			},
-			"hasFluffImages": true
-		},
-		{
-			"name": "Pyremaul (Dormant)",
-			"source": "TDCSR",
-			"page": 208,
-			"baseItem": "maul|PHB",
-			"type": "M",
-			"rarity": "legendary",
-			"reqAttune": true,
-			"weight": 10,
-			"weaponCategory": "martial",
-			"property": [
-				"H",
-				"2H",
-				"Vst|TDCSR"
-			],
-			"dmg1": "2d6",
-			"dmgType": "B",
-			"bonusWeaponAttack": "+1",
-			"entries": [
-				"Forged from deep red iron, this massive hammer is set with a brilliant fire opal that shimmers with eternal flame. It is rumored to be currently wielded by {@book Grand Legate Phaestor, the fire giant ruler of Vulkanon|TDCSR|6|fire giants}, somewhere beneath the {@book Cliffkeep Mountains|TDCSR|3|Cliffkeep Mountains}.",
-				{
-					"type": "entries",
-					"name": "Dormant",
-					"entries": [
-						"While Pyremaul is in a dormant state, you gain a +1 bonus to attack rolls made with this magic weapon. When you hit with an attack using this weapon, the target takes an extra {@damage 1d6} fire damage.",
-						"Additionally, you can choose to have this weapon shed bright light in a 30-foot radius and dim light for an additional 30 feet (no action required)."
-					]
-				}
-			],
-			"light": [
-				{
-					"bright": 30,
-					"dim": 60
-				}
-			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Pyremaul (Exalted)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Pyremaul (Awakened)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Exalted",
-										"entries": [
-											"When Pyremaul reaches an exalted state, you gain the following benefits:",
-											{
-												"type": "list",
-												"items": [
-													"The weapon's bonus to attack rolls increases to +3.",
-													"The extra fire damage dealt by the weapon increases to {@damage 3d6}.",
-													"When you cast {@spell burning hands} with the weapon, you do so at 3rd level and the save DC increases to 17.",
-													"When you score a critical hit with this weapon, the {@quickref saving throws|PHB|2|1|saving throw} to avoid being knocked {@condition prone} increases to 17. You also roll an extra {@damage 3d6} fire damage when determining the extra damage for the critical hit.",
-													"When you kill a creature with an attack using this weapon, you can take {@damage 10d10} fire damage and immolate the creature's corpse. This damage can't be reduced in any way, and you die if this damage reduces you to 0 hit points. The immolated creature and everything it is wearing and carrying, except magic items, are reduced to a pile of ash. The creature can be restored to life only by means of a {@spell true resurrection} or a {@spell wish} spell. You can't use this property of the maul again until 7 days have passed."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"bonusWeaponAttack": "+3",
-			"recharge": "special",
-			"hasFluffImages": true
-		},
-		{
 			"name": "Pyroconverger",
 			"source": "GGR",
 			"page": 180,
@@ -49951,18 +47858,6 @@
 			]
 		},
 		{
-			"name": "Raven's Slumber",
-			"source": "TDCSR",
-			"page": 197,
-			"rarity": "very rare",
-			"wondrous": true,
-			"entries": [
-				"This black crystal pendant is a magical gateway to a small pocket dimension. You can use the pendant as an improvised weapon to make a melee or ranged weapon attack against a Large or smaller creature. On a hit, the target must succeed on a {@dc 10} Wisdom {@quickref saving throws|PHB|2|1|saving throw} or be trapped within the crystal. A creature that wants to be trapped can intentionally fail this {@quickref saving throws|PHB|2|1|saving throw}.",
-				"Only one creature at a time can be held in a raven's slumber. That creature is aware of the passage of time and can see the world outside of this talisman as if through a window. You can release a held creature to an unoccupied space within 5 feet of you as a bonus action.",
-				"If a companion creature granted to you by a class feature, or a beast that you've tamed as a companion, is reduced to 0 hit points while within 100 feet of you, it is immediately drawn into the pendant and stabilized. If the pendant already holds a creature, this effect fails."
-			]
-		},
-		{
 			"name": "Reaper's Scream",
 			"source": "BGG",
 			"page": 115,
@@ -50276,35 +48171,6 @@
 			],
 			"classFeatures": [
 				"replicate magic item|artificer|efa|2|efa"
-			]
-		},
-		{
-			"name": "Residuum",
-			"source": "TDCSR",
-			"page": 75,
-			"type": "TG",
-			"rarity": "unknown (magic)",
-			"weight": 1,
-			"value": 50000,
-			"entries": [
-				"The sheer amount of leftover arcane power within the {@item whitestone|TDCSR} of the mountains is incredibly receptive to enchantment. Magic items that incorporate at least an ounce of {@item whitestone|TDCSR} into their construction require only one-quarter the creation time of other magic items. Some alchemists in {@book Emon|TDCSR|3|Emon, the City of Fellowship} have discovered that dissolving {@item whitestone|TDCSR} with specific acids can leave behind pure residuum, which can substitute for expensive spell components when such materials are not readily available.",
-				"If a spell has a component cost that consumes the component, its caster can substitute the required component for an amount of residuum of an equal value. One pound of pure residuum is worth approximately 500 gp in most markets, though it becomes extremely expensive and difficult to find outside of {@book Emon|TDCSR|3|Emon, the City of Fellowship} or the city of {@book Whitestone|TDCSR|3|Whitestone} itself.",
-				"Residuum can also be heated and blown into glass, forming a shimmering, greenish surface. Residuum slates or orbs can be used in stationary enchanting tables. Archmages willing to pay exorbitant rates\u2014easily 20,000 gp or more\u2014may acquire an {@item Residuum enchanting slate|TDCSR|enchanting slate} that can be used to expedite the creation of all magic items. Using such a table allows anyone crafting a magic item to do so in one-quarter of the usual time."
-			],
-			"miscTags": [
-				"CNS"
-			]
-		},
-		{
-			"name": "Residuum Enchanting Slate",
-			"source": "TDCSR",
-			"page": 75,
-			"type": "T",
-			"rarity": "unknown (magic)",
-			"wondrous": true,
-			"value": 2000000,
-			"entries": [
-				"{@item Residuum|TDCSR} can also be heated and blown into glass, forming a shimmering, greenish surface. Residuum slates or orbs can be used in stationary enchanting tables. Archmages willing to pay exorbitant rates\u2014easily 20,000 gp or more\u2014may acquire an {@item Residuum enchanting slate|TDCSR|enchanting slate} that can be used to expedite the creation of all magic items. Using such a table allows anyone crafting a magic item to do so in one-quarter of the usual time."
 			]
 		},
 		{
@@ -53677,16 +51543,6 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Rod of Mercurial Form",
-			"source": "TDCSR",
-			"page": 197,
-			"rarity": "uncommon",
-			"wondrous": true,
-			"entries": [
-				"This humble steel rod is engraved with tiny symbols representing different weapons, as well as the monogram \"T.D.\" A creature holding this rod can speak the name of any simple or martial weapon aloud as a bonus action, causing the rod to transform into an ordinary weapon of that type. When in the form of a ranged weapon, this rod magically creates its own ammunition, which disappears after a ranged attack hits or misses."
-			]
-		},
-		{
 			"name": "Rod of Resurrection",
 			"source": "DMG",
 			"page": 197,
@@ -54582,7 +52438,7 @@
 			"property": [
 				"T",
 				"V",
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"range": "20/60",
 			"dmg1": "1d6",
@@ -57747,7 +55603,7 @@
 			"weaponCategory": "martial",
 			"property": [
 				"F",
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"dmg1": "1d8",
 			"dmgType": "P",
@@ -58336,45 +56192,6 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Skysail",
-			"source": "TDCSR",
-			"page": 199,
-			"baseItem": "quarterstaff|PHB",
-			"type": "M",
-			"rarity": "rare",
-			"reqAttune": true,
-			"wondrous": true,
-			"weight": 4,
-			"weaponCategory": "simple",
-			"property": [
-				"V"
-			],
-			"dmg1": "1d6",
-			"dmgType": "B",
-			"dmg2": "1d8",
-			"modifySpeed": {
-				"static": {
-					"fly": 60
-				}
-			},
-			"entries": [
-				"These bat-like wings were first used by the {@book Air Ashari|TDCSR|3|Zephrah} to soar through the sky. They are constructed of either leather and bone, or cloth and wood, and are set onto a sturdy wooden pole that helps their user remain stable during flight.",
-				"While these wings are open and you are riding the skysail, you can glide through the air. You have a flying speed of 60 feet, but you must descend at least 10 feet by the end of each of your turns and you can't gain altitude.",
-				"Additionally, while in contact with the skysail, you can use an action to cast the {@spell fly} spell on yourself, with a duration of 1 minute and requiring no {@status concentration}.",
-				"The spell ends if you lose physical contact with the skysail. Once this property is used, it can't be used again until the next dawn, or unless the skysail is immersed in powerful magic of elemental air. (This includes magic such as that found at the top of the {@book Summit Peaks|TDCSR|3|Summit Peaks} near the rift of air in {@book Zephrah|TDCSR|3|Zephrah}, or on the Elemental Plane of Air).",
-				"When the skysail is not in use, its wings can be retracted, and its pole can be used as a {@item quarterstaff|PHB}."
-			],
-			"attachedSpells": {
-				"daily": {
-					"1e": [
-						"fly"
-					]
-				}
-			},
-			"hasFluff": true,
-			"hasFluffImages": true
-		},
-		{
 			"name": "Skyship",
 			"source": "EGW",
 			"page": 72,
@@ -58388,25 +56205,6 @@
 			"capCargo": 10,
 			"travelCost": 200,
 			"shippingCost": 100
-		},
-		{
-			"name": "Skyship",
-			"source": "TDCSR",
-			"page": 137,
-			"type": "AIR|DMG",
-			"rarity": "none",
-			"value": 10000000,
-			"crewMin": 6,
-			"crewMax": 10,
-			"vehSpeed": 10,
-			"capPassenger": 30,
-			"capCargo": 10,
-			"travelCost": 200,
-			"shippingCost": 100,
-			"entries": [
-				"Purchasing a {@item skyship|TDCSR} costs 100,000 gp, and requires a personal connection with the Alsfarin Union in {@book Ank'Harel|TDCSR|3|Marquet}. A {@item skyship|TDCSR} travels at a top speed of 10 miles per hour, can carry total cargo of 10 tons, and requires a crew of six to ten humanoids to operate at peak performance. Most {@item skyship|TDCSR|skyships} have maximum accommodations for up to 30 passengers. Most {@item skyship|TDCSR|skyships} only travel between existing skyports (see \"{@book Emon Skyport|TDCSR|3|8. Emon Skyport},\"), and charge a fee of 2 gp per mile for a passenger ticket. Chartering a {@item skyship|TDCSR} to a destination off the standard sky routes costs 15 gp per mile, if the captain is available and willing to undertake the journey. Shipping cargo costs 1 gp per mile per 100 pounds of cargo along normal sky routes, and twice that to other destinations."
-			],
-			"hasFluffImages": true
 		},
 		{
 			"name": "Sled",
@@ -60775,183 +58573,6 @@
 			"entries": [
 				"A red, red brown, or deep green gemstone."
 			]
-		},
-		{
-			"name": "Spire of Conflux (Awakened)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Spire of Conflux (Dormant)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Awakened",
-										"entries": [
-											"When the Spire of Conflux reaches an awakened state, you gain the following benefits:",
-											{
-												"type": "list",
-												"items": [
-													"The staff has 12 charges, and it regains {@dice 1d6 + 2} expended charges daily at dawn.",
-													"You can also spend charges to cast the following spells from the staff: {@spell conjure elemental} (5 charges) or {@spell ice storm} (4 charges).",
-													"When you cast a spell that deals bludgeoning, cold, fire, lightning, or thunder damage and you roll a 1 on a damage die, you can reroll the die and must use the new roll."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"rechargeAmount": "{@dice 1d6 + 2}",
-			"charges": 12,
-			"attachedSpells": {
-				"charges": {
-					"1": [
-						"burning hands"
-					],
-					"3": [
-						"fireball"
-					],
-					"4": [
-						"ice storm"
-					],
-					"5": [
-						"conjure elemental"
-					]
-				}
-			},
-			"hasFluff": true,
-			"hasFluffImages": true
-		},
-		{
-			"name": "Spire of Conflux (Dormant)",
-			"source": "TDCSR",
-			"page": 209,
-			"srd": true,
-			"basicRules": true,
-			"type": "M",
-			"rarity": "legendary",
-			"reqAttune": "by a spellcaster",
-			"reqAttuneTags": [
-				{
-					"spellcasting": true
-				}
-			],
-			"weight": 4,
-			"weaponCategory": "simple",
-			"property": [
-				"V",
-				"Vst|TDCSR"
-			],
-			"dmg1": "1d6",
-			"dmgType": "B",
-			"dmg2": "1d8",
-			"bonusSpellAttack": "+1",
-			"bonusSpellSaveDc": "+1",
-			"recharge": "dawn",
-			"rechargeAmount": "{@dice 1d4 + 2}",
-			"charges": 8,
-			"staff": true,
-			"entries": [
-				"A powerful relic passed down from generation to generation of Ashari leaders, the Spire of Conflux was lost over three centuries ago when Joran the Sea-Speaker, a respected leader of {@book the Water Ashari|TDCSR|2|The Ashari}, was devoured by a demon of the Abyss. It was rediscovered by the legendary druid {@creature Keyleth, Voice of the Tempest|TDCSR|Keyleth of Zephrah, Voice of the Tempest}. However, rumors swirl that she is seeking another hero to wield it\u2014one who can travel the land and do good in small ways as she once did.",
-				{
-					"type": "entries",
-					"name": "Dormant",
-					"entries": [
-						"While the Spire of Conflux is in a dormant state, the staff has 8 charges and regains {@dice 1d4 + 2} expended charges daily at dawn. While holding the staff, you can expend 1 or more of its charges to cast one of the following spells from it, using your spell save DC: {@spell burning hands} (1 charge) or {@spell fireball} (3 charges).",
-						"Additionally, while holding this staff, you have a +1 bonus to spell attack rolls and your spell save DC increases by 1."
-					]
-				}
-			],
-			"attachedSpells": {
-				"charges": {
-					"1": [
-						"burning hands"
-					],
-					"3": [
-						"fireball"
-					]
-				}
-			},
-			"hasFluff": true,
-			"hasFluffImages": true
-		},
-		{
-			"name": "Spire of Conflux (Exalted)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Spire of Conflux (Awakened)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Exalted",
-										"entries": [
-											"When the Spire of Conflux reaches an exalted state, you gain the following benefits:",
-											{
-												"type": "list",
-												"items": [
-													"The staff has 20 charges, and it regains {@dice 1d6 + 4} expended charges daily at dawn.",
-													"You can also spend charges to cast the following spells from the staff: {@spell chain lightning} (6 charges) or {@spell fire storm} (7 charges)",
-													"The bonus to spell attack rolls and your spell save DC increases to +2."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"bonusSpellAttack": "+2",
-			"bonusSpellSaveDc": "+2",
-			"rechargeAmount": "{@dice 1d6 + 4}",
-			"charges": 20,
-			"attachedSpells": {
-				"charges": {
-					"1": [
-						"burning hands"
-					],
-					"3": [
-						"fireball"
-					],
-					"4": [
-						"ice storm"
-					],
-					"5": [
-						"conjure elemental"
-					],
-					"6": [
-						"chain lightning"
-					],
-					"7": [
-						"fire storm"
-					]
-				}
-			},
-			"hasFluff": true,
-			"hasFluffImages": true
 		},
 		{
 			"name": "Spirit Board",
@@ -63714,164 +61335,6 @@
 			]
 		},
 		{
-			"name": "Star Razor (Awakened)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Star Razor (Dormant)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Awakened",
-										"entries": [
-											"When Star Razor reaches an awakened state, you gain the following benefits:",
-											{
-												"type": "list",
-												"items": [
-													"The weapon's bonus to attack and damage rolls increases to +2.",
-													"When a creature within 5 feet of you hits you with a melee attack, you can use your reaction to create a burst of radiance from the sword, dealing {@damage 1d8} radiant damage to the attacker.",
-													"You can cast the {@spell see invisibility} spell from the sword as an action, and the save DC for spells cast using the sword increases to 15."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"bonusWeapon": "+2",
-			"attachedSpells": {
-				"will": [
-					"see invisibility"
-				],
-				"daily": {
-					"1e": [
-						"faerie fire"
-					]
-				}
-			},
-			"hasFluff": true,
-			"hasFluffImages": true
-		},
-		{
-			"name": "Star Razor (Dormant)",
-			"source": "TDCSR",
-			"page": 210,
-			"baseItem": "longsword|PHB",
-			"type": "M",
-			"resist": [
-				"radiant"
-			],
-			"rarity": "legendary",
-			"reqAttune": true,
-			"weight": 3,
-			"weaponCategory": "martial",
-			"property": [
-				"V",
-				"Vst|TDCSR"
-			],
-			"dmg1": "1d8",
-			"dmgType": "S",
-			"dmg2": "1d10",
-			"bonusWeapon": "+1",
-			"recharge": "dawn",
-			"entries": [
-				"The thick, grooved blade of this shining silver {@item longsword|PHB} is lined with etched runes that sparkle blue in the light. Star Razor\u2014known also as Dwueth'var\u2014was thought to have been destroyed or lost after the {@book Calamity|TDCSR|1|The Calamity}, but new rumors suggest that it might be wielded by a half-orc somewhere in {@book Wildemount|TDCSR|3|Wildemount}.",
-				{
-					"type": "entries",
-					"name": "Dormant",
-					"entries": [
-						"While Star Razor is in a dormant state, you can hold this magic longsword and use a bonus action to speak the command word {@i Galas-var}, causing the sword to emit a pale blue glow that sheds bright light in a 20-foot radius and dim light for an additional 20 feet. This glow lasts until you use a bonus action to speak the command word again, or until you drop or sheathe the sword.",
-						{
-							"type": "list",
-							"items": [
-								"While this longsword is glowing, you gain a +1 bonus to attack and damage rolls made with the weapon, and you have resistance to radiant damage.",
-								"You can cast the {@spell faerie fire} spell from the weapon as an action, requiring no components (save {@dc 13}). Once a spell has been cast using Star Razor, that spell can't be cast from the sword until the next dawn."
-							]
-						}
-					]
-				}
-			],
-			"light": [
-				{
-					"bright": 20,
-					"dim": 40
-				}
-			],
-			"attachedSpells": {
-				"daily": {
-					"1e": [
-						"faerie fire"
-					]
-				}
-			},
-			"hasFluff": true,
-			"hasFluffImages": true
-		},
-		{
-			"name": "Star Razor (Exalted)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Star Razor (Awakened)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Exalted",
-										"entries": [
-											"When Star Razor reaches an exalted state, you gain the following benefits:",
-											{
-												"type": "list",
-												"items": [
-													"The weapon's bonus to attack and damage rolls increases to +3.",
-													"The burst of radiance you can create as a reaction when hit with a melee attack deals {@damage 1d12} radiant damage, and you can immediately teleport to an unoccupied space you can see within 15 feet of you as part of the same reaction.",
-													"You can cast the {@spell fly} spell from the sword as an action, and the save DC for spells cast using the sword increases to 17."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"bonusWeapon": "+3",
-			"attachedSpells": {
-				"will": [
-					"fly",
-					"see invisibility"
-				],
-				"daily": {
-					"1e": [
-						"faerie fire"
-					]
-				}
-			},
-			"hasFluff": true,
-			"hasFluffImages": true
-		},
-		{
 			"name": "Star rose quartz",
 			"source": "DMG",
 			"page": 134,
@@ -64035,21 +61498,6 @@
 			"rarity": "none",
 			"weight": 0.5,
 			"value": 500
-		},
-		{
-			"name": "Stink Bomb",
-			"source": "TDCSR",
-			"page": 100,
-			"type": "EXP|DMG",
-			"rarity": "none",
-			"value": 2500,
-			"range": "30",
-			"entries": [
-				"This smelly explosive can be primed and thrown up to 30 feet as an action. It explodes at the start of your next turn. Creatures within 20 feet of it must make a {@dc 12} Constitution {@quickref saving throws|PHB|2|1|saving throw} or be {@condition poisoned} for 1 minute. A creature can repeat this save at the end of each of its turns, ending the effect on itself on a success."
-			],
-			"miscTags": [
-				"CNS"
-			]
 		},
 		{
 			"name": "Stirring Dragon Vessel",
@@ -64574,7 +62022,7 @@
 			"reqAttune": true,
 			"wondrous": true,
 			"property": [
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"ability": {
 				"static": {
@@ -64642,31 +62090,6 @@
 			}
 		},
 		{
-			"name": "Stormrider Boots",
-			"source": "TDCSR",
-			"page": 197,
-			"rarity": "rare",
-			"wondrous": true,
-			"modifySpeed": {
-				"static": {
-					"fly": 90
-				}
-			},
-			"recharge": "dawn",
-			"entries": [
-				"These dark leather boots look to be of common make, but a subtle pattern of swirling storm clouds upon their soles suggests the potency of their enchantment. You can activate these boots as part of your movement, gaining the following benefits until the end of your turn:",
-				{
-					"type": "list",
-					"items": [
-						"You have a flying speed of 90 feet.",
-						"{@action Opportunity attack|PHB|Opportunity attacks} against you are made with {@quickref Advantage and Disadvantage|PHB|2|0|disadvantage}.",
-						"Whenever you move within 5 feet of a hostile creature, it must succeed on a {@dc 15} Dexterity {@quickref saving throws|PHB|2|1|saving throw} or take {@damage 3d8} lightning damage. A creature can't be damaged in this way more than once per turn."
-					]
-				},
-				"Once this property is used, it can't be used again until the next dawn."
-			]
-		},
-		{
 			"name": "String",
 			"source": "XPHB",
 			"page": 229,
@@ -64693,38 +62116,6 @@
 					"dim": 20
 				}
 			]
-		},
-		{
-			"name": "Summer's Dance",
-			"source": "TDCSR",
-			"page": 197,
-			"baseItem": "scimitar|PHB",
-			"type": "M",
-			"rarity": "rare",
-			"reqAttune": true,
-			"weight": 3,
-			"weaponCategory": "martial",
-			"property": [
-				"F",
-				"L"
-			],
-			"dmg1": "1d6",
-			"dmgType": "S",
-			"bonusWeapon": "+1",
-			"recharge": "dawn",
-			"rechargeAmount": 1,
-			"charges": 3,
-			"entries": [
-				"This beautiful golden blade appears to bend and flex like a reed with your movements. You gain a +1 bonus to attack and damage rolls made with this magic weapon.",
-				"Additionally, the scimitar has 3 charges and regains 1 expended charge daily at dawn. While wielding this {@item scimitar|PHB}, you can expend 1 charge as a bonus action to cast the {@spell misty step} spell."
-			],
-			"attachedSpells": {
-				"charges": {
-					"1": [
-						"misty step"
-					]
-				}
-			}
 		},
 		{
 			"name": "Sun",
@@ -64908,18 +62299,6 @@
 			]
 		},
 		{
-			"name": "Sunbeam Compass",
-			"source": "TDCSR",
-			"page": 143,
-			"type": "OTH",
-			"rarity": "unknown (magic)",
-			"wondrous": true,
-			"entries": [
-				"A device that always directs the user to the sun by emitting a small light at the tip of the needle in a glass orb, allowing it to rotate in all directions\u2014a very useful tool when exploring subterranean territory.",
-				"Created by {@book Karaline von Ethro|TDCSR|3|Karaline von Ethro}."
-			]
-		},
-		{
 			"name": "Sunforger",
 			"source": "GGR",
 			"page": 181,
@@ -65009,54 +62388,6 @@
 			"entries": [
 				"This carapace-like augmentation encases portions of the wearer's shoulders, neck, and chest. A survival mantle is equivalent to a suit of nonmagical half plate armor and takes just as long to don or doff. It can't be worn with other kinds of armor.",
 				"A creature wearing a survival mantle can breathe normally in any environment (including a vacuum) and has advantage on saving throws against harmful gases (such as those created by a {@spell cloudkill} spell, a {@spell stinking cloud} spell, inhaled poisons, and the breath weapons of some dragons)."
-			]
-		},
-		{
-			"name": "Suude (Blue)",
-			"source": "TDCSR",
-			"page": 85,
-			"type": "IDG|TDCSR",
-			"rarity": "unknown (magic)",
-			"entries": [
-				"Exandria's most infamous drug, {@item suude|TDCSR} is a glittering powder made from {@book residuum|TDCSR|3|An Enchanting Export}. It was first developed by power-hungry archmages in the {@book Age of Arcanum|TDCSR|1|Age of Arcanum} as an incense burned to enhance focus during ritual spellcasting. The secret to its refinement has been lost and rediscovered a variety of times since the {@book Calamity|TDCSR|1|The Calamity}, and many different types of {@item suude|TDCSR} have been developed by arcanists in search of ever-greater power. It has terrible addictive and mentally degenerative properties, even when used sparingly.",
-				"After burning {@item suude|TDCSR} within a vessel and inhaling its fumes as an action, you take 22 ({@damage 4d10}) psychic damage and must make a {@dc 10} Constitution {@quickref saving throws|PHB|2|1|saving throw}. On a failure, you become {@condition poisoned} for 1 hour and fall {@condition unconscious} for 1 minute, or until you are shaken awake as an action. During this time, the world seems to move in slow motion, and your vision is twisted in kaleidoscopic colors\u2014yet your focus is never distorted. If one dose of {@item suude|TDCSR}, or more, is used within 1 hour of another, the DC of the Constitution {@quickref saving throws|PHB|2|1|saving throw} is increased by 5 per additional dose. If you fail this save by 10 or more, you instantly drop to 0 hit points.",
-				"On a success, you gain the ability to use one of the following Metamagic options as a sorcerer for the next minute, requiring no sorcery points. The type of Metamagic you gain access to depends on the type of {@item suude|TDCSR}, and once you use it, you can't use it again until you inhale {@item suude|TDCSR} again.",
-				"Blue suude allows you to use the {@optfeature Twinned Spell|PHB} Metamagic option."
-			],
-			"miscTags": [
-				"CNS"
-			]
-		},
-		{
-			"name": "Suude (Brown)",
-			"source": "TDCSR",
-			"page": 85,
-			"type": "IDG|TDCSR",
-			"rarity": "unknown (magic)",
-			"entries": [
-				"Exandria's most infamous drug, {@item suude|TDCSR} is a glittering powder made from {@book residuum|TDCSR|3|An Enchanting Export}. It was first developed by power-hungry archmages in the {@book Age of Arcanum|TDCSR|1|Age of Arcanum} as an incense burned to enhance focus during ritual spellcasting. The secret to its refinement has been lost and rediscovered a variety of times since the {@book Calamity|TDCSR|1|The Calamity}, and many different types of {@item suude|TDCSR} have been developed by arcanists in search of ever-greater power. It has terrible addictive and mentally degenerative properties, even when used sparingly.",
-				"After burning {@item suude|TDCSR} within a vessel and inhaling its fumes as an action, you take 22 ({@damage 4d10}) psychic damage and must make a {@dc 10} Constitution {@quickref saving throws|PHB|2|1|saving throw}. On a failure, you become {@condition poisoned} for 1 hour and fall {@condition unconscious} for 1 minute, or until you are shaken awake as an action. During this time, the world seems to move in slow motion, and your vision is twisted in kaleidoscopic colors\u2014yet your focus is never distorted. If one dose of {@item suude|TDCSR}, or more, is used within 1 hour of another, the DC of the Constitution {@quickref saving throws|PHB|2|1|saving throw} is increased by 5 per additional dose. If you fail this save by 10 or more, you instantly drop to 0 hit points.",
-				"On a success, you gain the ability to use one of the following Metamagic options as a sorcerer for the next minute, requiring no sorcery points. The type of Metamagic you gain access to depends on the type of {@item suude|TDCSR}, and once you use it, you can't use it again until you inhale {@item suude|TDCSR} again.",
-				"Brown suude allows you to use the {@optfeature Extended Spell|PHB} Metamagic option."
-			],
-			"miscTags": [
-				"CNS"
-			]
-		},
-		{
-			"name": "Suude (Red)",
-			"source": "TDCSR",
-			"page": 85,
-			"type": "IDG|TDCSR",
-			"rarity": "unknown (magic)",
-			"entries": [
-				"Exandria's most infamous drug, {@item suude|TDCSR} is a glittering powder made from {@book residuum|TDCSR|3|An Enchanting Export}. It was first developed by power-hungry archmages in the {@book Age of Arcanum|TDCSR|1|Age of Arcanum} as an incense burned to enhance focus during ritual spellcasting. The secret to its refinement has been lost and rediscovered a variety of times since the {@book Calamity|TDCSR|1|The Calamity}, and many different types of {@item suude|TDCSR} have been developed by arcanists in search of ever-greater power. It has terrible addictive and mentally degenerative properties, even when used sparingly.",
-				"After burning {@item suude|TDCSR} within a vessel and inhaling its fumes as an action, you take 22 ({@damage 4d10}) psychic damage and must make a {@dc 10} Constitution {@quickref saving throws|PHB|2|1|saving throw}. On a failure, you become {@condition poisoned} for 1 hour and fall {@condition unconscious} for 1 minute, or until you are shaken awake as an action. During this time, the world seems to move in slow motion, and your vision is twisted in kaleidoscopic colors\u2014yet your focus is never distorted. If one dose of {@item suude|TDCSR}, or more, is used within 1 hour of another, the DC of the Constitution {@quickref saving throws|PHB|2|1|saving throw} is increased by 5 per additional dose. If you fail this save by 10 or more, you instantly drop to 0 hit points.",
-				"On a success, you gain the ability to use one of the following Metamagic options as a sorcerer for the next minute, requiring no sorcery points. The type of Metamagic you gain access to depends on the type of {@item suude|TDCSR}, and once you use it, you can't use it again until you inhale {@item suude|TDCSR} again.",
-				"Red suude allows you to use the {@optfeature Distant Spell|PHB} Metamagic option."
-			],
-			"miscTags": [
-				"CNS"
 			]
 		},
 		{
@@ -66792,7 +64123,7 @@
 			"weight": 4,
 			"weaponCategory": "martial",
 			"property": [
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"dmg1": "1d8",
 			"dmgType": "P",
@@ -68194,164 +65525,12 @@
 			]
 		},
 		{
-			"name": "Tinkertop Boltblaster 1000",
-			"source": "TDCSR",
-			"page": 197,
-			"baseItem": "hand crossbow|PHB",
-			"type": "R",
-			"rarity": "very rare",
-			"reqAttune": true,
-			"weight": 3,
-			"weaponCategory": "martial",
-			"property": [
-				"A",
-				"L",
-				"LD"
-			],
-			"range": "30/120",
-			"dmg1": "1d6",
-			"dmgType": "P",
-			"bonusWeapon": "+1",
-			"entries": [
-				"This strange contraption of gears, wires, and lacquered wood has a handle with a metal grip and crank. Its stock bears a flamboyant maker's mark that reads: \"Made in Hupperdook,\" a city in {@book Wildemount|TDCSR|3|Wildemount}. You gain a +1 bonus to attack and damage rolls made with this magic weapon.",
-				"When you roll a 20 on an attack roll made with this weapon, you can immediately make another attack with this weapon after resolving the critical hit. When you roll a 1 on an attack roll made with this weapon, you must succeed on a {@dc 14} Dexterity {@quickref saving throws|PHB|2|1|saving throw} or take {@damage 1d6} piercing damage as some of its gears and wires spring loose."
-			],
-			"ammoType": "crossbow bolt|phb"
-		},
-		{
 			"name": "Tiny jade figurine (River Heralds)",
 			"source": "PSX",
 			"page": 24,
 			"type": "$A|DMG",
 			"rarity": "none",
 			"value": 2500
-		},
-		{
-			"name": "Titanstone Knuckles (Awakened)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Titanstone Knuckles (Dormant)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Awakened",
-										"entries": [
-											"When the Titanstone Knuckles reach an awakened state, they gain the following properties:",
-											{
-												"type": "list",
-												"items": [
-													"Your Strength score becomes 24.",
-													"You can use an action to cast the {@spell enlarge/reduce} spell from the gauntlets on yourself (enlarge only), with a duration of 10 minutes. This property of the gauntlets can't be used again until you finish a {@quickref resting|PHB|2|0|long rest}."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"ability": {
-				"static": {
-					"str": 24
-				}
-			},
-			"recharge": "restLong",
-			"attachedSpells": {
-				"daily": {
-					"1e": [
-						"enlarge/reduce"
-					]
-				}
-			},
-			"hasFluffImages": true
-		},
-		{
-			"name": "Titanstone Knuckles (Dormant)",
-			"source": "TDCSR",
-			"page": 211,
-			"rarity": "legendary",
-			"reqAttune": true,
-			"wondrous": true,
-			"property": [
-				"Vst|TDCSR"
-			],
-			"ability": {
-				"static": {
-					"str": 22
-				}
-			},
-			"entries": [
-				"Carved from the heartstone of a slain earth primordial, these gauntlets bestow immeasurable might to their wearer. In recent times, they were wielded by the legendary barbarian {@creature Grog Strongjaw|TDCSR}, who continues to use them as he seeks worthy challengers across Tal'Dorei and Exandria.",
-				{
-					"type": "entries",
-					"name": "Dormant",
-					"entries": [
-						"While the Titanstone Knuckles are in a dormant state, your Strength score becomes 22 while you wear these gauntlets. Additionally, your weapon attacks deal double damage to objects and structures."
-					]
-				}
-			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Titanstone Knuckles (Exalted)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Titanstone Knuckles (Awakened)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Exalted",
-										"entries": [
-											"When the Titanstone Knuckles reach an exalted state, they gain the following properties:",
-											{
-												"type": "list",
-												"items": [
-													"Your Strength score becomes 26.",
-													"While you are under the effect of the {@spell enlarge/reduce} spell cast by the gauntlets, you have resistance to cold, fire, lightning, and thunder damage."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"resist": [
-				"cold",
-				"fire",
-				"lightning",
-				"thunder"
-			],
-			"ability": {
-				"static": {
-					"str": 26
-				}
-			},
-			"hasFluffImages": true
 		},
 		{
 			"name": "Tome of Clear Thought",
@@ -71334,7 +68513,7 @@
 			"reqAttune": true,
 			"wondrous": true,
 			"property": [
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"entries": [
 				"This patchy cloak was pieced together from the pelts of rats found feasting on the dead in Blightshore and is dotted with the bloated corpses of magically preserved insects along its seams.",
@@ -74259,118 +71438,6 @@
 			"value": 1
 		},
 		{
-			"name": "Whisper (Awakened)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Whisper (Dormant)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Awakened",
-										"entries": [
-											"When Whisper reaches an awakened state, you gain the following benefits:",
-											{
-												"type": "list",
-												"items": [
-													"The weapon's bonus to attack and damage rolls increases to +2. Additionally, when you hit with an attack using this dagger, the target takes an extra {@damage 1d6} psychic damage.",
-													"The DC to resist being {@condition frightened} from a critical hit increases to 15."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"bonusWeapon": "+2",
-			"hasFluffImages": true
-		},
-		{
-			"name": "Whisper (Dormant)",
-			"source": "TDCSR",
-			"page": 211,
-			"baseItem": "dagger|PHB",
-			"type": "M",
-			"rarity": "legendary",
-			"reqAttune": true,
-			"weight": 1,
-			"weaponCategory": "simple",
-			"property": [
-				"F",
-				"L",
-				"T",
-				"Vst|TDCSR"
-			],
-			"range": "20/60",
-			"dmg1": "1d4",
-			"dmgType": "P",
-			"bonusWeapon": "+1",
-			"entries": [
-				"Forged with a mercurial metal accidentally drawn from the Realms Beyond, this dagger shimmers with an unsettling sourceless light. It was once wielded by {@creature Champion of Ravens|TDCSR|Vax'ildan, a legendary champion of the Matron of Ravens}. Two raven feathers are linked to its pommel as a memento of its former bearer.",
-				{
-					"type": "entries",
-					"name": "Dormant",
-					"entries": [
-						"While Whisper is in a dormant state, you gain a +1 bonus to attack and damage rolls made with this magic weapon.",
-						"Additionally, when you score a critical hit with this dagger, the target must succeed on a {@dc 13} Wisdom {@quickref saving throws|PHB|2|1|saving throw} or become {@condition frightened} of you for 1 minute. On a success, the target is immune to this effect for 24 hours."
-					]
-				}
-			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Whisper (Exalted)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Whisper (Awakened)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Exalted",
-										"entries": [
-											"When Whisper reaches an exalted state, you gain the following benefits:",
-											{
-												"type": "list",
-												"items": [
-													"The weapon's bonus to attack and damage rolls increases to +3, and the extra psychic damage it deals increases to {@dice 1d8}.",
-													"The DC to resist being {@condition frightened} from a critical hit increases to 17.",
-													"When this dagger is used to make a ranged attack, you can choose to transform into shadow and merge with the blade as part of the action used to attack, teleporting to another location. If the attack hits, you appear in an unoccupied space of your choice within 5 feet of the target. If the attack misses, you appear where the GM determines the dagger lands (typically within {@dice 1d6 × 5} feet of the target). In either case, you appear with the dagger in your hand."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"bonusWeapon": "+3",
-			"hasFluffImages": true
-		},
-		{
 			"name": "Whisper Jar",
 			"source": "AI",
 			"page": 27,
@@ -74625,16 +71692,6 @@
 			]
 		},
 		{
-			"name": "Whitestone",
-			"source": "TDCSR",
-			"page": 75,
-			"type": "TG",
-			"rarity": "unknown (magic)",
-			"entries": [
-				"The sheer amount of leftover arcane power within the whitestone of the {@book Alabaster Sierra|TDCSR|3|Alabaster Sierras} mountains is incredibly receptive to enchantment. Magic items that incorporate at least an ounce of whitestone into their construction require only one-quarter the creation time of other magic items. Some alchemists in {@book Emon|TDCSR|3|Emon, the City of Fellowship} have discovered that dissolving whitestone with specific acids can leave behind pure {@item residuum|TDCSR}, which can substitute for expensive spell components when such materials are not readily available."
-			]
-		},
-		{
 			"name": "Wildroot",
 			"source": "ToA",
 			"page": 205,
@@ -74709,7 +71766,7 @@
 			"weight": 2,
 			"weaponCategory": "martial",
 			"property": [
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"dmg1": "1d8",
 			"dmgType": "P",
@@ -75453,121 +72510,6 @@
 			]
 		},
 		{
-			"name": "Wraps of Dyamak (Awakened)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Wraps of Dyamak (Dormant)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Awakened",
-										"entries": [
-											"When the Wraps of Dyamak reach an awakened state, they gain the following properties:",
-											{
-												"type": "list",
-												"items": [
-													"The bonus to attack and damage rolls with your unarmed strike increases to +2.",
-													"You can cast the {@spell misty step} spell from the wraps as a bonus action, vanishing in a cloud of crimson mist. This property of the wraps can't be used again until you finish a {@quickref resting|PHB|2|0|short or long rest}, or until you score a critical hit with an unarmed strike against a hostile creature."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"bonusWeapon": "+2",
-			"recharge": "special",
-			"attachedSpells": {
-				"daily": {
-					"1e": [
-						"misty step"
-					]
-				}
-			},
-			"hasFluffImages": true
-		},
-		{
-			"name": "Wraps of Dyamak (Dormant)",
-			"source": "TDCSR",
-			"page": 212,
-			"rarity": "legendary",
-			"reqAttune": "by a monk",
-			"reqAttuneTags": [
-				{
-					"class": "monk"
-				}
-			],
-			"wondrous": true,
-			"property": [
-				"Vst|TDCSR"
-			],
-			"bonusWeapon": "+1",
-			"entries": [
-				"Created and wielded by the ancient warrior-monk Dyamak, these thick strips of enchanted cloth are stained to appear dark crimson with blood of unknown origin. The current resting place of the wraps is unknown.",
-				{
-					"type": "entries",
-					"name": "Dormant",
-					"entries": [
-						"When the Wraps of Dyamak are in a dormant state, you gain a +1 bonus to attack and damage rolls made with your unarmed strike while wearing them.",
-						"In addition, when you finish a {@quickref resting|PHB|2|0|short or long rest}, you gain a number of temporary hit points equal to your total number of ki points."
-					]
-				}
-			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Wraps of Dyamak (Exalted)",
-			"source": "TDCSR",
-			"_copy": {
-				"name": "Wraps of Dyamak (Awakened)",
-				"source": "TDCSR",
-				"_mod": {
-					"entries": [
-						{
-							"mode": "appendArr",
-							"items": {
-								"entries": [
-									{
-										"type": "entries",
-										"name": "Exalted",
-										"entries": [
-											"When the Wraps of Dyamak reach an exalted state, they gain the following properties:",
-											{
-												"type": "list",
-												"items": [
-													"The bonus to attack and damage rolls with your unarmed strike increases to +3.",
-													"When you hit with an unarmed strike, you can choose to make the attack a ravenous strike. The target takes an extra {@damage 6d6} necrotic damage, and you regain hit points equal to the amount of necrotic damage dealt. This property of the wraps can't be used again until you finish a {@quickref resting|PHB|2|0|long rest}, or until you score a critical hit with an unarmed strike against a hostile creature."
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					]
-				},
-				"_preserve": {
-					"page": true,
-					"fluff": true
-				}
-			},
-			"bonusWeapon": "+3",
-			"hasFluffImages": true
-		},
-		{
 			"name": "Wreath of the Prism (Awakened)",
 			"source": "EGW",
 			"_copy": {
@@ -75608,7 +72550,7 @@
 			"reqAttune": true,
 			"wondrous": true,
 			"property": [
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"entries": [
 				"This loop of golden thorns is inset with dozens of gems representing the five colors of Tiamat.",
@@ -75660,40 +72602,6 @@
 				}
 			},
 			"hasFluffImages": true
-		},
-		{
-			"name": "Writing Kit",
-			"source": "TDCSR",
-			"page": 183,
-			"type": "G",
-			"rarity": "none",
-			"entries": [
-				"Includes:",
-				{
-					"type": "list",
-					"items": [
-						"a {@item pouch|PHB|small pouch}",
-						"a quill",
-						"{@item Ink (1-ounce bottle)|PHB|ink}",
-						"{@item Parchment (one sheet)|PHB|folded parchment}",
-						"a penknife"
-					]
-				}
-			],
-			"packContents": [
-				"pouch|PHB",
-				{
-					"special": "a quill"
-				},
-				"Ink (1-ounce bottle)|PHB",
-				{
-					"item": "Parchment (one sheet)|PHB",
-					"quantity": 10
-				},
-				{
-					"special": "a penknife"
-				}
-			]
 		},
 		{
 			"name": "Wrought-Iron Tower",
@@ -76137,21 +73045,6 @@
 			]
 		},
 		{
-			"name": "Zeal",
-			"source": "TDCSR",
-			"page": 85,
-			"type": "IDG|TDCSR",
-			"rarity": "unknown",
-			"value": 15000,
-			"entries": [
-				"Distilled from the ichor of demons, {@item zeal|TDCSR} was originally used by Tal'Dorei's ancient berserkers to grant them incredible strength and courage before battles. These days, it's most commonly used by criminal bruisers before a brawl. Most modern warriors stay well away from {@item zeal|TDCSR}, due both to its addictive nature and to the mental and physical degeneration it can cause over long periods of time. When prepared properly, {@item zeal|TDCSR} is a purple, ashy-tasting gel that typically costs 150 gp per dose.",
-				"After slathering {@item zeal|TDCSR} across your exposed skin as an action, you must make a {@dc 12} Constitution {@quickref saving throws|PHB|2|1|saving throw}. On a failure, you become {@condition paralyzed} for {@dice 1d4} rounds as your muscles lock up. On a success, your weapon attacks deal an additional {@damage 1d6} damage for the next minute. After this effect ends, you gain one level of {@condition exhaustion}."
-			],
-			"miscTags": [
-				"CNS"
-			]
-		},
-		{
 			"name": "Zhentarim Trinket",
 			"source": "FRHoF",
 			"type": "G|XPHB",
@@ -76338,43 +73231,6 @@
 				"Radiant Absorbing Tattoo|TCE",
 				"Thunder Absorbing Tattoo|TCE"
 			]
-		},
-		{
-			"name": "Agony",
-			"source": "TDCSR",
-			"page": 202,
-			"baseItem": "flail|PHB",
-			"type": "M",
-			"rarity": "legendary",
-			"reqAttune": "by a creature of non-good alignment",
-			"reqAttuneTags": [
-				{
-					"alignment": [
-						"N",
-						"E",
-						"C",
-						"L",
-						"A"
-					]
-				}
-			],
-			"weight": 2,
-			"weaponCategory": "martial",
-			"property": [
-				"Vst|TDCSR"
-			],
-			"dmg1": "1d8",
-			"dmgType": "B",
-			"bonusWeapon": "+2",
-			"entries": [
-				"Utilized in countless tortures and slow executions, the hooked chains of this brutal weapon constantly show dried blood and rot. Legend says that Agony was wielded in the {@book Calamity|TDCSR|1|The Calamity} by the gnoll scion of a flesh-eating Demon Lord."
-			],
-			"items": [
-				"Agony (Dormant)|TDCSR",
-				"Agony (Awakened)|TDCSR",
-				"Agony (Exalted)|TDCSR"
-			],
-			"hasFluffImages": true
 		},
 		{
 			"name": "Arcane Focus",
@@ -76584,47 +73440,6 @@
 			"lootTables": [
 				"Armaments - Rare|XDMG"
 			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Armor of the Valiant Soul",
-			"source": "TDCSR",
-			"page": 202,
-			"baseItem": "scale mail|PHB",
-			"type": "MA",
-			"immune": [
-				"acid"
-			],
-			"resist": [
-				"acid"
-			],
-			"conditionImmune": [
-				"frightened"
-			],
-			"rarity": "legendary",
-			"reqAttune": true,
-			"weight": 45,
-			"property": [
-				"Vst|TDCSR"
-			],
-			"ac": 14,
-			"bonusAc": "+1",
-			"stealth": true,
-			"entries": [
-				"This antique armor forged from jade and black dragon scales was once worn by J'mon Sa Ord of {@book Ank'Harel|TDCSR|3|Marquet}."
-			],
-			"items": [
-				"Armor of the Valiant Soul (Dormant)|TDCSR",
-				"Armor of the Valiant Soul (Awakened)|TDCSR",
-				"Armor of the Valiant Soul (Exalted)|TDCSR"
-			],
-			"attachedSpells": {
-				"daily": {
-					"1e": [
-						"command"
-					]
-				}
-			},
 			"hasFluffImages": true
 		},
 		{
@@ -76870,7 +73685,7 @@
 				"F",
 				"L",
 				"T",
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"range": "20/60",
 			"dmg1": "1d4",
@@ -76883,28 +73698,6 @@
 				"Blade of Broken Mirrors (Awakened)|EGW",
 				"Blade of Broken Mirrors (Exalted)|EGW"
 			]
-		},
-		{
-			"name": "Cabal's Ruin",
-			"source": "TDCSR",
-			"page": 203,
-			"rarity": "legendary",
-			"reqAttune": true,
-			"wondrous": true,
-			"property": [
-				"Vst|TDCSR"
-			],
-			"recharge": "restShort",
-			"charges": 4,
-			"entries": [
-				"This cloak is made of heavy dark cloth trimmed with golden patterns, and occasionally shimmers with sparks of arcane energy. It was once worn by the famed gunslinger {@creature Percival de Rolo|TDCSR|Percival Fredrickstein von Musel Klossowski de Rolo III of Whitestone}."
-			],
-			"items": [
-				"Cabal's Ruin (Dormant)|TDCSR",
-				"Cabal's Ruin (Awakened)|TDCSR",
-				"Cabal's Ruin (Exalted)|TDCSR"
-			],
-			"hasFluffImages": true
 		},
 		{
 			"name": "Carpet of Flying",
@@ -77054,84 +73847,6 @@
 			]
 		},
 		{
-			"name": "Circlet of Barbed Vision",
-			"source": "TDCSR",
-			"page": 203,
-			"immune": [
-				"poison"
-			],
-			"resist": [
-				"poison"
-			],
-			"conditionImmune": [
-				"poisoned"
-			],
-			"rarity": "legendary",
-			"reqAttune": "by a creature of non-good alignment",
-			"reqAttuneTags": [
-				{
-					"alignment": [
-						"N",
-						"E",
-						"C",
-						"L",
-						"A"
-					]
-				}
-			],
-			"wondrous": true,
-			"property": [
-				"Vst|TDCSR"
-			],
-			"entries": [
-				"When you don this circlet of gnarled onyx, black barbs dig into your head, imparting power to you as the circlet twists your appearance to amuse the {@deity The Spider Queen|Exandria|TDCSR}. The current resting place of the Circlet of Barbed Vision is unknown, but rumor has it that a spectral assassin known as {@creature Jourrael, the Caedogeist|TDCSR|the Inevitable End} seeks this relic."
-			],
-			"items": [
-				"Circlet of Barbed Vision (Dormant)|TDCSR",
-				"Circlet of Barbed Vision (Awakened)|TDCSR",
-				"Circlet of Barbed Vision (Exalted)|TDCSR"
-			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Condemner",
-			"source": "TDCSR",
-			"page": 204,
-			"baseItem": "heavy crossbow|PHB",
-			"type": "R",
-			"rarity": "legendary",
-			"reqAttune": true,
-			"weight": 18,
-			"weaponCategory": "martial",
-			"property": [
-				"A",
-				"H",
-				"LD",
-				"2H",
-				"Vst|TDCSR"
-			],
-			"range": "100/400",
-			"dmg1": "1d10",
-			"dmgType": "P",
-			"bonusWeapon": "+1",
-			"entries": [
-				"This shadow-touched {@item heavy crossbow|phb} once served as the weapon of choice for the legendary assassin Todora. Though few know this, Condemner is now in the possession of an equally infamous assassin named {@book Ixrattu Khar|TDCSR|2|Ixrattu Khar}."
-			],
-			"items": [
-				"Condemner (Dormant)|TDCSR",
-				"Condemner (Awakened)|TDCSR",
-				"Condemner (Exalted)|TDCSR"
-			],
-			"ammoType": "crossbow bolt|phb",
-			"attachedSpells": [
-				"blight",
-				"fog cloud",
-				"hold person",
-				"silence"
-			],
-			"hasFluffImages": true
-		},
-		{
 			"name": "Crystal Ball (Legendary Version)",
 			"source": "DMG",
 			"page": 159,
@@ -77160,7 +73875,7 @@
 			"reqAttune": true,
 			"wondrous": true,
 			"property": [
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"entries": [
 				"These mithral-frame goggles with clear diamond lenses were used by the evoker Danoth Oro to spot {@condition invisible} enemies and scout areas from afar."
@@ -77169,39 +73884,6 @@
 				"Danoth's Visor (Dormant)|EGW",
 				"Danoth's Visor (Awakened)|EGW",
 				"Danoth's Visor (Exalted)|EGW"
-			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Deathwalker's Ward",
-			"source": "TDCSR",
-			"page": 204,
-			"baseItem": "studded leather armor|PHB",
-			"type": "LA",
-			"resist": [
-				"acid",
-				"cold",
-				"fire",
-				"lightning",
-				"necrotic",
-				"poison"
-			],
-			"rarity": "legendary",
-			"reqAttune": true,
-			"weight": 13,
-			"property": [
-				"Vst|TDCSR"
-			],
-			"ac": 12,
-			"bonusAc": "+1",
-			"bonusSavingThrow": "+1",
-			"entries": [
-				"This beautiful black leather armor is covered in intricate scrollwork, and has a mantle bearing the black feathers of {@deity The Matron of Ravens|Exandria|TDCSR}. Legends say that it has been worn by a number of that deity's champions over the centuries\u2014most recently, {@creature Champion of Ravens|TDCSR|Vax'ildan of Vox Machina}."
-			],
-			"items": [
-				"Deathwalker's Ward (Dormant)|TDCSR",
-				"Deathwalker's Ward (Awakened)|TDCSR",
-				"Deathwalker's Ward (Exalted)|TDCSR"
 			],
 			"hasFluffImages": true
 		},
@@ -77943,37 +74625,6 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Fenthras",
-			"source": "TDCSR",
-			"page": 205,
-			"baseItem": "longbow|PHB",
-			"type": "R",
-			"rarity": "legendary",
-			"reqAttune": true,
-			"weight": 2,
-			"weaponCategory": "martial",
-			"property": [
-				"A",
-				"H",
-				"2H",
-				"Vst|TDCSR"
-			],
-			"range": "150/600",
-			"dmg1": "1d8",
-			"dmgType": "P",
-			"bonusWeapon": "+1",
-			"entries": [
-				"This gorgeous {@item longbow|phb} made of everbark from the Fey Realm flexes and shifts like a living entity. It is said to have been wielded by the legendary ranger {@creature Vex'ahlia|TDCSR} against great evils."
-			],
-			"items": [
-				"Fenthras (Dormant)|TDCSR",
-				"Fenthras (Awakened)|TDCSR",
-				"Fenthras (Exalted)|TDCSR"
-			],
-			"ammoType": "arrow|phb",
-			"hasFluffImages": true
-		},
-		{
 			"name": "Figurine of Wondrous Power",
 			"source": "DMG",
 			"page": 169,
@@ -78091,7 +74742,7 @@
 			"wondrous": true,
 			"weight": 3,
 			"property": [
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"entries": [
 				"Several of these spellbooks with gilded pages and silver-plated covers were created during the Age of Arcanum, but only one has been found since the Calamity ended. The book has an infinite number of pages, is three inches thick, eight inches wide, twelve inches long, and weighs three pounds."
@@ -78116,7 +74767,7 @@
 			"weaponCategory": "martial",
 			"property": [
 				"V",
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"dmg1": "1d8",
 			"dmgType": "B",
@@ -78188,7 +74839,7 @@
 			"reqAttune": true,
 			"weight": 13,
 			"property": [
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"ac": 12,
 			"entries": [
@@ -78243,42 +74894,6 @@
 				"Emblem|XPHB",
 				"Reliquary|XPHB"
 			]
-		},
-		{
-			"name": "Honor's Last Stand",
-			"source": "TDCSR",
-			"page": 206,
-			"baseItem": "shield|PHB",
-			"type": "S",
-			"rarity": "legendary",
-			"reqAttune": "by a creature of non-evil alignment",
-			"reqAttuneTags": [
-				{
-					"alignment": [
-						"N",
-						"G",
-						"C",
-						"L",
-						"A"
-					]
-				}
-			],
-			"weight": 6,
-			"property": [
-				"Vst|TDCSR"
-			],
-			"ac": 2,
-			"bonusAc": "+3",
-			"entries": [
-				"This massive silvered shield bears the crest of {@deity The Platinum Dragon|Exandria|TDCSR} and never tarnishes. Its metal is always warm to the touch."
-			],
-			"items": [
-				"Honor's Last Stand (Dormant)|TDCSR",
-				"Honor's Last Stand (Awakened)|TDCSR",
-				"Honor's Last Stand (Exalted)|TDCSR"
-			],
-			"hasFluff": true,
-			"hasFluffImages": true
 		},
 		{
 			"name": "Horn of Valhalla",
@@ -78438,7 +75053,7 @@
 			"reqAttune": true,
 			"wondrous": true,
 			"property": [
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"grantsProficiency": true,
 			"entries": [
@@ -78617,7 +75232,7 @@
 			"reqAttune": true,
 			"wondrous": true,
 			"property": [
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"recharge": "dawn",
 			"entries": [
@@ -78638,37 +75253,6 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Kiss of the Changebringer",
-			"source": "TDCSR",
-			"page": 206,
-			"conditionImmune": [
-				"grappled"
-			],
-			"rarity": "legendary",
-			"reqAttune": true,
-			"wondrous": true,
-			"property": [
-				"Vst|TDCSR"
-			],
-			"bonusSavingThrow": "+1",
-			"entries": [
-				"A beautiful, glittering emerald is set within this silver chain, humming with power and possibility. It is said that this amulet was stolen from the neck of {@deity The Changebringer|Exandria|TDCSR} herself by the {@deity The Lord of the Hells|Exandria|TDCSR}, and locked within the vaults of Bazzoxan in {@book Wildemount|TDCSR|3|Wildemount}. It was later claimed there by a group of Aurora Watch soldiers during an expedition into that grim fortress's abandoned temples."
-			],
-			"items": [
-				"Kiss of the Changebringer (Dormant)|TDCSR",
-				"Kiss of the Changebringer (Awakened)|TDCSR",
-				"Kiss of the Changebringer (Exalted)|TDCSR"
-			],
-			"attachedSpells": {
-				"daily": {
-					"1e": [
-						"blink"
-					]
-				}
-			},
-			"hasFluffImages": true
-		},
-		{
 			"name": "Lash of Shadows",
 			"source": "EGW",
 			"page": 276,
@@ -78682,7 +75266,7 @@
 			"property": [
 				"F",
 				"R",
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"dmg1": "1d4",
 			"dmgType": "S",
@@ -78712,7 +75296,7 @@
 			"weight": 4,
 			"weaponCategory": "simple",
 			"property": [
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"dmg1": "1d6",
 			"dmgType": "B",
@@ -78938,40 +75522,6 @@
 			]
 		},
 		{
-			"name": "Mythcarver",
-			"source": "TDCSR",
-			"page": 207,
-			"baseItem": "longsword|PHB",
-			"type": "M",
-			"rarity": "legendary",
-			"reqAttune": "by a bard",
-			"reqAttuneTags": [
-				{
-					"class": "bard"
-				}
-			],
-			"weight": 3,
-			"weaponCategory": "martial",
-			"property": [
-				"V",
-				"Vst|TDCSR"
-			],
-			"dmg1": "1d8",
-			"dmgType": "S",
-			"dmg2": "1d10",
-			"bonusWeapon": "+1",
-			"entries": [
-				"This incredible silvered blade once belonged to the legendary White Duke, a founding member of the {@book Golden Grin|TDCSR|2|Golden Grin}, and many other master bards before him. It resonates with nearby musical tones. In the modern era, it is best known as the personal weapon of famed bard {@creature Scanlan Shorthalt|TDCSR}."
-			],
-			"items": [
-				"Mythcarver (Dormant)|TDCSR",
-				"Mythcarver (Awakened)|TDCSR",
-				"Mythcarver (Exalted)|TDCSR"
-			],
-			"hasFluff": true,
-			"hasFluffImages": true
-		},
-		{
 			"name": "Orb of Shielding",
 			"source": "ERLW",
 			"page": 278,
@@ -79041,35 +75591,6 @@
 				"Orb of Shielding (Shavarran Chert)|ERLW",
 				"Orb of Shielding (Xorian Marble)|ERLW"
 			]
-		},
-		{
-			"name": "Plate of the Dawnmartyr",
-			"source": "TDCSR",
-			"page": 208,
-			"baseItem": "plate armor|PHB",
-			"type": "HA",
-			"resist": [
-				"fire"
-			],
-			"rarity": "legendary",
-			"reqAttune": true,
-			"weight": 65,
-			"property": [
-				"Vst|TDCSR"
-			],
-			"ac": 18,
-			"strength": "15",
-			"bonusAc": "+1",
-			"stealth": true,
-			"entries": [
-				"Beautiful silver scrollwork and priceless cut rubies adorn this set of brass-and-gold armor. Legend holds that it was worn by Duana, High Priest of the {@deity The Dawnfather|Exandria|TDCSR}, when she was martyred in the Battle of Ghor Dranas in the final days of the {@book Calamity|TDCSR|1|The Calamity}. In more recent times, it was worn by {@creature Pike Trickfoot|TDCSR}, a legendary cleric of the {@deity The Everlight|Exandria|TDCSR}, while fighting against {@book the Chroma Conclave|TDCSR|1|The Chroma Conclave} and {@deity The Whispered One|Exandria|TDCSR}."
-			],
-			"items": [
-				"Plate of the Dawnmartyr (Dormant)|TDCSR",
-				"Plate of the Dawnmartyr (Awakened)|TDCSR",
-				"Plate of the Dawnmartyr (Exalted)|TDCSR"
-			],
-			"hasFluffImages": true
 		},
 		{
 			"name": "Potion of Giant Strength",
@@ -79319,41 +75840,6 @@
 				"Prehistoric Figurine of Wondrous Power, Kyanite Pteranodon|BGG",
 				"Prehistoric Figurine of Wondrous Power, Pyrite Plesiosaurus|BGG"
 			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Pyremaul",
-			"source": "TDCSR",
-			"page": 208,
-			"baseItem": "maul|PHB",
-			"type": "M",
-			"rarity": "legendary",
-			"reqAttune": true,
-			"weight": 10,
-			"weaponCategory": "martial",
-			"property": [
-				"H",
-				"2H",
-				"Vst|TDCSR"
-			],
-			"dmg1": "2d6",
-			"dmgType": "B",
-			"bonusWeaponAttack": "+1",
-			"entries": [
-				"Forged from deep red iron, this massive hammer is set with a brilliant fire opal that shimmers with eternal flame. It is rumored to be currently wielded by {@book Grand Legate Phaestor, the fire giant ruler of Vulkanon|TDCSR|6|fire giants}, somewhere beneath the {@book Cliffkeep Mountains|TDCSR|3|Cliffkeep Mountains}."
-			],
-			"items": [
-				"Pyremaul (Dormant)|TDCSR",
-				"Pyremaul (Awakened)|TDCSR",
-				"Pyremaul (Exalted)|TDCSR"
-			],
-			"attachedSpells": {
-				"rest": {
-					"1e": [
-						"burning hands#2"
-					]
-				}
-			},
 			"hasFluffImages": true
 		},
 		{
@@ -79772,7 +76258,7 @@
 			"property": [
 				"T",
 				"V",
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"range": "20/60",
 			"dmg1": "1d6",
@@ -80197,7 +76683,7 @@
 			"weaponCategory": "martial",
 			"property": [
 				"F",
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"dmg1": "1d8",
 			"dmgType": "P",
@@ -80312,108 +76798,6 @@
 			]
 		},
 		{
-			"name": "Spire of Conflux",
-			"source": "TDCSR",
-			"page": 209,
-			"type": "M",
-			"rarity": "legendary",
-			"reqAttune": "by a spellcaster",
-			"reqAttuneTags": [
-				{
-					"spellcasting": true
-				}
-			],
-			"weight": 4,
-			"weaponCategory": "simple",
-			"property": [
-				"V",
-				"Vst|TDCSR"
-			],
-			"dmg1": "1d6",
-			"dmgType": "B",
-			"dmg2": "1d8",
-			"bonusSpellAttack": "+2",
-			"bonusSpellSaveDc": "+2",
-			"recharge": "dawn",
-			"charges": 20,
-			"staff": true,
-			"entries": [
-				"A powerful relic passed down from generation to generation of Ashari leaders, the Spire of Conflux was lost over three centuries ago when Joran the Sea-Speaker, a respected leader of {@book the Water Ashari|TDCSR|2|The Ashari}, was devoured by a demon of the Abyss. It was rediscovered by the legendary druid {@creature Keyleth, Voice of the Tempest|TDCSR|Keyleth of Zephrah, Voice of the Tempest}. However, rumors swirl that she is seeking another hero to wield it\u2014one who can travel the land and do good in small ways as she once did."
-			],
-			"items": [
-				"Spire of Conflux (Dormant)|TDCSR",
-				"Spire of Conflux (Awakened)|TDCSR",
-				"Spire of Conflux (Exalted)|TDCSR"
-			],
-			"attachedSpells": {
-				"charges": {
-					"1": [
-						"burning hands"
-					],
-					"3": [
-						"fireball"
-					],
-					"4": [
-						"ice storm"
-					],
-					"5": [
-						"conjure elemental"
-					],
-					"6": [
-						"chain lightning"
-					],
-					"7": [
-						"fire storm"
-					]
-				}
-			},
-			"hasFluff": true,
-			"hasFluffImages": true
-		},
-		{
-			"name": "Star Razor",
-			"source": "TDCSR",
-			"page": 210,
-			"baseItem": "longsword|PHB",
-			"type": "M",
-			"resist": [
-				"radiant"
-			],
-			"rarity": "legendary",
-			"reqAttune": true,
-			"weight": 3,
-			"weaponCategory": "martial",
-			"property": [
-				"V",
-				"Vst|TDCSR"
-			],
-			"dmg1": "1d8",
-			"dmgType": "S",
-			"dmg2": "1d10",
-			"bonusWeapon": "+1",
-			"entries": [
-				"The thick, grooved blade of this shining silver {@item longsword|phb} is lined with etched runes that sparkle blue in the light. Star Razor\u2014known also as Dwueth'var\u2014was thought to have been destroyed or lost after the {@book Calamity|TDCSR|1|The Calamity}, but new rumors suggest that it might be wielded by a half-orc somewhere in {@book Wildemount|TDCSR|3|Wildemount}."
-			],
-			"items": [
-				"Star Razor (Dormant)|TDCSR",
-				"Star Razor (Awakened)|TDCSR",
-				"Star Razor (Exalted)|TDCSR"
-			],
-			"attachedSpells": {
-				"will": [
-					"fly",
-					"see invisibility"
-				],
-				"daily": {
-					"1e": [
-						"faerie fire"
-					]
-				}
-			},
-			"hasFluff": true,
-			"hasFluffImages": true
-		},
-		{
 			"name": "Stormgirdle",
 			"source": "EGW",
 			"page": 273,
@@ -80425,7 +76809,7 @@
 			"reqAttune": true,
 			"wondrous": true,
 			"property": [
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"ability": {
 				"static": {
@@ -80439,27 +76823,6 @@
 				"Stormgirdle (Dormant)|EGW",
 				"Stormgirdle (Awakened)|EGW",
 				"Stormgirdle (Exalted)|EGW"
-			]
-		},
-		{
-			"name": "Suude",
-			"source": "TDCSR",
-			"page": 85,
-			"type": "IDG|TDCSR",
-			"rarity": "unknown (magic)",
-			"entries": [
-				"Exandria's most infamous drug, {@item suude|TDCSR} is a glittering powder made from {@book residuum|TDCSR|3|An Enchanting Export}. It was first developed by power-hungry archmages in the {@book Age of Arcanum|TDCSR|1|Age of Arcanum} as an incense burned to enhance focus during ritual spellcasting. The secret to its refinement has been lost and rediscovered a variety of times since the {@book Calamity|TDCSR|1|The Calamity}, and many different types of {@item suude|TDCSR} have been developed by arcanists in search of ever-greater power. It has terrible addictive and mentally degenerative properties, even when used sparingly.",
-				"After burning {@item suude|TDCSR} within a vessel and inhaling its fumes as an action, you take 22 ({@damage 4d10}) psychic damage and must make a {@dc 10} Constitution {@quickref saving throws|PHB|2|1|saving throw}. On a failure, you become {@condition poisoned} for 1 hour and fall {@condition unconscious} for 1 minute, or until you are shaken awake as an action. During this time, the world seems to move in slow motion, and your vision is twisted in kaleidoscopic colors\u2014yet your focus is never distorted. If one dose of {@item suude|TDCSR}, or more, is used within 1 hour of another, the DC of the Constitution {@quickref saving throws|PHB|2|1|saving throw} is increased by 5 per additional dose. If you fail this save by 10 or more, you instantly drop to 0 hit points.",
-				"On a success, you gain the ability to use one of the following Metamagic options as a sorcerer for the next minute, requiring no sorcery points. The type of Metamagic you gain access to depends on the type of {@item suude|TDCSR}, and once you use it, you can't use it again until you inhale {@item suude|TDCSR} again.",
-				"{@item Suude (Brown)|TDCSR|Brown suude} allows you to use the {@optfeature Extended Spell|PHB} Metamagic option, {@item Suude (blue)|TDCSR|blue suude} allows you to use {@optfeature Twinned Spell|PHB}, and {@item Suude (Brown)|TDCSR|red suude} grants {@optfeature Distant Spell|PHB}."
-			],
-			"items": [
-				"Suude (Brown)|TDCSR",
-				"Suude (Blue)|TDCSR",
-				"Suude (Red)|TDCSR"
-			],
-			"miscTags": [
-				"CNS"
 			]
 		},
 		{
@@ -80513,7 +76876,7 @@
 			"weight": 4,
 			"weaponCategory": "martial",
 			"property": [
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"dmg1": "1d8",
 			"dmgType": "P",
@@ -80534,44 +76897,6 @@
 					]
 				}
 			}
-		},
-		{
-			"name": "Titanstone Knuckles",
-			"source": "TDCSR",
-			"page": 211,
-			"resist": [
-				"cold",
-				"fire",
-				"lightning",
-				"thunder"
-			],
-			"rarity": "legendary",
-			"reqAttune": true,
-			"wondrous": true,
-			"property": [
-				"Vst|TDCSR"
-			],
-			"ability": {
-				"static": {
-					"str": 26
-				}
-			},
-			"entries": [
-				"Carved from the heartstone of a slain earth primordial, these gauntlets bestow immeasurable might to their wearer. In recent times, they were wielded by the legendary barbarian {@creature Grog Strongjaw|TDCSR}, who continues to use them as he seeks worthy challengers across Tal'Dorei and Exandria."
-			],
-			"items": [
-				"Titanstone Knuckles (Dormant)|TDCSR",
-				"Titanstone Knuckles (Awakened)|TDCSR",
-				"Titanstone Knuckles (Exalted)|TDCSR"
-			],
-			"attachedSpells": {
-				"daily": {
-					"1e": [
-						"enlarge/reduce"
-					]
-				}
-			},
-			"hasFluffImages": true
 		},
 		{
 			"name": "True-Ice Shards",
@@ -80670,7 +76995,7 @@
 			"reqAttune": true,
 			"wondrous": true,
 			"property": [
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"entries": [
 				"This patchy cloak was pieced together from the pelts of rats found feasting on the dead in Blightshore and is dotted with the bloated corpses of magically preserved insects along its seams."
@@ -80735,36 +77060,6 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Whisper",
-			"source": "TDCSR",
-			"page": 211,
-			"baseItem": "dagger|PHB",
-			"type": "M",
-			"rarity": "legendary",
-			"reqAttune": true,
-			"weight": 1,
-			"weaponCategory": "simple",
-			"property": [
-				"F",
-				"L",
-				"T",
-				"Vst|TDCSR"
-			],
-			"range": "20/60",
-			"dmg1": "1d4",
-			"dmgType": "P",
-			"bonusWeapon": "+3",
-			"entries": [
-				"Forged with a mercurial metal accidentally drawn from the Realms Beyond, this dagger shimmers with an unsettling sourceless light. It was once wielded by {@creature Champion of Ravens|TDCSR|Vax'ildan, a legendary champion of the Matron of Ravens}. Two raven feathers are linked to its pommel as a memento of its former bearer."
-			],
-			"items": [
-				"Whisper (Dormant)|TDCSR",
-				"Whisper (Awakened)|TDCSR",
-				"Whisper (Exalted)|TDCSR"
-			],
-			"hasFluffImages": true
-		},
-		{
 			"name": "Will of the Talon",
 			"source": "EGW",
 			"page": 279,
@@ -80776,7 +77071,7 @@
 			"weight": 2,
 			"weaponCategory": "martial",
 			"property": [
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"dmg1": "1d8",
 			"dmgType": "P",
@@ -80788,39 +77083,6 @@
 				"Will of the Talon (Awakened)|EGW",
 				"Will of the Talon (Exalted)|EGW"
 			]
-		},
-		{
-			"name": "Wraps of Dyamak",
-			"source": "TDCSR",
-			"page": 212,
-			"rarity": "legendary",
-			"reqAttune": "by a monk",
-			"reqAttuneTags": [
-				{
-					"class": "monk"
-				}
-			],
-			"wondrous": true,
-			"property": [
-				"Vst|TDCSR"
-			],
-			"bonusWeapon": "+3",
-			"entries": [
-				"Created and wielded by the ancient warrior-monk Dyamak, these thick strips of enchanted cloth are stained to appear dark crimson with blood of unknown origin. The current resting place of the wraps is unknown."
-			],
-			"items": [
-				"Wraps of Dyamak (Dormant)|TDCSR",
-				"Wraps of Dyamak (Awakened)|TDCSR",
-				"Wraps of Dyamak (Exalted)|TDCSR"
-			],
-			"attachedSpells": {
-				"daily": {
-					"1e": [
-						"misty step"
-					]
-				}
-			},
-			"hasFluffImages": true
 		},
 		{
 			"name": "Wraps of Unarmed Power",
@@ -80857,7 +77119,7 @@
 			"reqAttune": true,
 			"wondrous": true,
 			"property": [
-				"Vst|TDCSR"
+				"Vst|EGW"
 			],
 			"entries": [
 				"This loop of golden thorns is inset with dozens of gems representing the five colors of Tiamat."

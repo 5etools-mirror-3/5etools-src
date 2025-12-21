@@ -23,8 +23,8 @@ class RenderRecipes {
 		${Renderer.utils.getExcludedTr({entity: ent, dataProp: "recipe"})}
 		${Renderer.utils.getNameTr(ent, {page: UrlUtil.PG_RECIPES})}
 
-		${ptFluff ? `<tr class="mobile__hidden recipes__wrp-fluff"><td colspan="6">${ptFluff}</td></tr>
-		<tr class="mobile__hidden"><td colspan="6" class="py-0"><div class="ve-tbl-divider"></div></td></tr>` : ""}
+		${ptFluff ? `<tr class="mobile-sm__hidden recipes__wrp-fluff"><td colspan="6">${ptFluff}</td></tr>
+		<tr class="mobile-sm__hidden"><td colspan="6" class="py-0"><div class="ve-tbl-divider"></div></td></tr>` : ""}
 
 		<tr><td colspan="6">
 		<div class="ve-flex w-100 rd-recipes__wrp-recipe">

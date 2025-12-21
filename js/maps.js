@@ -332,7 +332,7 @@ class MapsPage extends BaseComponent {
 		hkAnyVisible();
 
 		ee(root.empty())`
-			<div class="ve-flex-col h-100 no-shrink maps-menu pr-4 py-3 shadow-big ve-overflow-y-auto smooth-scroll scrollbar-stable mobile__w-100 mobile__my-4">
+			<div class="ve-flex-col h-100 no-shrink maps-menu pr-4 py-3 shadow-big ve-overflow-y-auto smooth-scroll scrollbar-stable mobile-sm__w-100 mobile-sm__my-4">
 				<label class="split-v-center pl-2 py-1">
 					<div class="mr-3 no-shrink">Image Scale</div>
 					${sldImageScale}
@@ -348,7 +348,7 @@ class MapsPage extends BaseComponent {
 				${rendersSource.map(({wrpMenu}) => wrpMenu)}
 			</div>
 
-			<div class="w-100 h-100 mobile__h-initial ve-overflow-y-auto smooth-scroll ve-flex-col">
+			<div class="w-100 h-100 mobile-sm__h-initial ve-overflow-y-auto smooth-scroll ve-flex-col">
 				${dispNoneVisible}
 				${rendersSource.map(({wrpContent}) => wrpContent)}
 			</div>

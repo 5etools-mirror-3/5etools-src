@@ -288,8 +288,8 @@ class PageFilterBestiary extends PageFilterBase {
 		} else {
 			mon._fAlign = ["No Alignment"];
 		}
-		FilterCommon.mutateForFilters_damageVulnResImmune(mon);
-		FilterCommon.mutateForFilters_conditionImmune(mon);
+		FilterCommon.mutateForFilters_damageVulnResImmuneNonPlayer(mon);
+		FilterCommon.mutateForFilters_conditionImmuneNonPlayer(mon);
 		mon._fSave = mon.save ? Object.keys(mon.save) : [];
 		mon._fSkill = mon.skill ? Object.keys(mon.skill) : [];
 		mon._fPassive = typeof mon.passive === "number" ? mon.passive : null;

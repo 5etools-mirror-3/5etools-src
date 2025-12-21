@@ -517,7 +517,7 @@ export class BookUtil {
 					const hashParts = [BookUtil.curRender.chapter, text, ele.parente().attr("data-title-relative-index")].map(it => UrlUtil.encodeForHash(it));
 					const toCopy = [`${window.location.href.split("#")[0]}#${BookUtil.curRender.curBookId}`, ...hashParts];
 					await MiscUtil.pCopyTextToClipboard(toCopy.join(HASH_PART_SEP));
-					JqueryUtil.showCopiedEffect(ele, "Copied link!");
+					JqueryUtil.showCopiedEffect(ele, {text: "Copied link!"});
 				}
 			},
 			);
@@ -785,7 +785,7 @@ export class BookUtil {
 
 		em(`.bk__wrp-btns-open-find`)
 			.forEach(ele => ele.remove());
-		ee`<div class="mobile__visible bk__wrp-btns-open-find ve-btn-group">
+		ee`<div class="mobile-sm__visible bk__wrp-btns-open-find ve-btn-group">
 			${btnToTop}${btnOpenFind}${btnOpenGoto}
 		</div>`.appendTo(document.body);
 	}

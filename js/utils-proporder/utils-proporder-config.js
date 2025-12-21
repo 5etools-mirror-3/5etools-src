@@ -800,6 +800,7 @@ const PROPORDER_FOUNDRY_SUBCLASS = [
 	"className",
 	"classSource",
 
+	"identifier",
 	"system",
 	PROPORDER_FOUNDRY_ACTIVITIES,
 	PROPORDER_FOUNDRY_EFFECTS,

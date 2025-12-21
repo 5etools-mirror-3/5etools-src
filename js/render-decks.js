@@ -224,7 +224,7 @@ class RenderDecks {
 
 		const ptText = RenderDecks.getCardTextHtml({card, deck});
 
-		const wrpInfo = ee`<div class="stats stats--book decks-draw__wrp-desc mobile__hidden px-2 ve-text-center mb-4 ve-overflow-y-auto">${ptText}</div>`
+		const wrpInfo = ee`<div class="stats stats--book decks-draw__wrp-desc mobile-sm__hidden px-2 ve-text-center mb-4 ve-overflow-y-auto">${ptText}</div>`
 			.onn("click", evt => evt.stopPropagation());
 
 		Renderer.dice.bindOnclickListener(wrpInfo[0]);
@@ -237,9 +237,9 @@ class RenderDecks {
 				})
 			: null;
 
-		const wrpRhs = ee`<div class="decks-draw__wrp-rhs ve-flex-col mobile__ml-0">
+		const wrpRhs = ee`<div class="decks-draw__wrp-rhs ve-flex-col mobile-sm__ml-0">
 			${wrpInfo}
-			<div class="ve-flex-vh-center mobile__mt-5">${btnFlip}</div>
+			<div class="ve-flex-vh-center mobile-sm__mt-5">${btnFlip}</div>
 		</div>`
 			.onn("click", evt => evt.stopPropagation());
 
@@ -266,7 +266,7 @@ class RenderDecks {
 		};
 
 		const wrpDrawn = ee`<div class="decks-draw__stg ve-flex-vh-center">
-			<div class="ve-flex-v-center mobile__ve-flex-col">
+			<div class="ve-flex-v-center mobile-sm__ve-flex-col">
 				${wrpCardOuter}
 				${wrpRhs}
 			</div>

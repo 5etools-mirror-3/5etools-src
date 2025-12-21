@@ -56,10 +56,10 @@ class _RenderItemsImplBase extends RenderPageImplBase {
 	/* ----- */
 
 	_getCommonHtmlParts_typeRarityAttunement ({ent, renderer}) {
-		const [typeRarityText, subTypeText, tierText] = Renderer.item.getTypeRarityAndAttunementText(ent, {styleHint: this._style});
+		const {typeRarityHtml, subTypeHtml, tierHtml} = Renderer.item.getTypeRarityAndAttunementHtmlParts(ent, {styleHint: this._style});
 
 		return `<tr>
-			<td class="rd-item__type-rarity-attunement" colSpan="6">${Renderer.item.getTypeRarityAndAttunementHtml(typeRarityText, subTypeText, tierText, {styleHint: this._style})}</td>
+			<td class="rd-item__type-rarity-attunement" colSpan="6">${Renderer.item.getTypeRarityAndAttunementHtml({typeRarityHtml, subTypeHtml, tierHtml}, {styleHint: this._style})}</td>
 		</tr>`;
 	}
 

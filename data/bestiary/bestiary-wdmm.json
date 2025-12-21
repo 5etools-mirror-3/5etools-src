@@ -1467,6 +1467,15 @@
 						"with": "Drivvin",
 						"flags": "i"
 					},
+					"_": {
+						"mode": "addSpells",
+						"name": "Innate Spellcasting",
+						"daily": {
+							"1e": [
+								"{@spell levitate} (self only)"
+							]
+						}
+					},
 					"action": {
 						"mode": "appendArr",
 						"items": {
@@ -4304,17 +4313,41 @@
 				"name": "Behir",
 				"source": "MM"
 			},
-			"legendary": [
+			"spellcasting": [
 				{
 					"name": "Lesser Magic",
-					"entries": [
-						"The behir casts {@spell color spray} or {@spell sleep}, requiring no components."
+					"type": "spellcasting",
+					"headerEntries": [
+						"The behir casts {@spell color spray} or {@spell sleep}, requiring no components. Its spellcasting ability is Charisma (spell save {@dc 13})."
+					],
+					"legendary": {
+						"1e": [
+							"{@spell color spray}",
+							"{@spell sleep}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "legendary",
+					"hidden": [
+						"legendary"
 					]
 				},
 				{
 					"name": "Greater Magic (Costs 2 Actions)",
-					"entries": [
+					"type": "spellcasting",
+					"headerEntries": [
 						"The behir casts {@spell invisibility} or {@spell misty step}, requiring no components."
+					],
+					"legendary": {
+						"2e": [
+							"{@spell invisibility}",
+							"{@spell misty step}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "legendary",
+					"hidden": [
+						"legendary"
 					]
 				}
 			],

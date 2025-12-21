@@ -215,7 +215,7 @@ async function main () {
 	sitemap += `</urlset>\n`;
 
 	fs.writeFileSync("./sitemap.xml", sitemap, "utf-8");
-	console.log(`Wrote ${sitemapLinkCount.toLocaleString()} URL${sitemapLinkCount === 1 ? "" : "s"} to sitemap.xml`);
+	console.log(`Wrote ${sitemapLinkCount.toLocaleStringVe()} URL${sitemapLinkCount === 1 ? "" : "s"} to sitemap.xml`);
 
 	ut.unpatchLoadJson();
 }

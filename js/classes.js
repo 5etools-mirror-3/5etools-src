@@ -848,7 +848,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				const href = `${window.location.href.split("#")[0]}#${this._getHashState({state: curState})}`;
 
 				await MiscUtil.pCopyTextToClipboard(href);
-				JqueryUtil.showCopiedEffect($target, "Copied link!");
+				JqueryUtil.showCopiedEffect($target, {text: "Copied link!"});
 			}
 		});
 	}

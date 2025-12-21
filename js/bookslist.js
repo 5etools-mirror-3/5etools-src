@@ -156,7 +156,7 @@ export class AdventuresBooksList {
 				<div class="ve-flex-col w-100 bklist__wrp-rows-inner">${elesContents}</div>
 			</div>`.hideVe();
 
-			const btnToggleExpand = ee`<span class="px-2 py-1p bold mobile__hidden no-select">[+]</span>`
+			const btnToggleExpand = ee`<span class="px-2 py-1p bold mobile-sm__hidden no-select">[+]</span>`
 				.onn("click", evt => {
 					evt.stopPropagation();
 					evt.preventDefault();

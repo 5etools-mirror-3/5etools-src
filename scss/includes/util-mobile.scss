@@ -38,6 +38,11 @@
 				flex-direction: column-reverse !important;
 			}
 
+			&ve-flex-h-right {
+				display: flex !important;
+				justify-content: flex-end !important;
+			}
+
 			&ve-flex-ai-start {
 				align-items: flex-start !important;
 			}
@@ -490,7 +495,11 @@
 		@include mix-mobile-styles(vars.$width-screen-md);
 	}
 
-	.mobile__ {
+	.mobile-sm__ {
 		@include mix-mobile-styles(vars.$width-screen-sm);
+	}
+
+	.mobile-xs__ {
+		@include mix-mobile-styles(vars.$width-screen-xs);
 	}
 }

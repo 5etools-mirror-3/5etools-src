@@ -6,6 +6,78 @@ Shared UI components
 @use "../vars/vars";
 
 @layer vetools {
+	@keyframes clp__fade {
+		0% {
+			opacity: 1;
+			transform: translateX(-50%);
+		}
+
+		100% {
+			opacity: 0;
+			transform: translateX(-50%) translateY(-8px);
+		}
+	}
+
+	@keyframes clp__fade-bubble-1 {
+		0% {
+			opacity: 1;
+			transform: translateX(-50%);
+		}
+
+		100% {
+			opacity: 0;
+			transform: translateX(calc(-50% - 12px)) translateY(-24px) rotateZ(-720deg);
+		}
+	}
+
+	@keyframes clp__fade-bubble-2 {
+		0% {
+			opacity: 1;
+			transform: translateX(-50%);
+		}
+
+		100% {
+			opacity: 0;
+			transform: translateX(calc(-50% + 12px)) translateY(-24px) rotateZ(720deg);
+		}
+	}
+
+	@keyframes clp__fade-bubble-3 {
+		0% {
+			opacity: 1;
+			transform: translateX(-50%);
+		}
+
+		100% {
+			opacity: 0;
+			transform: translateX(calc(-50% - 24px)) translateY(-12px) rotateZ(-480deg);
+		}
+	}
+
+	@keyframes clp__fade-bubble-4 {
+		0% {
+			opacity: 1;
+			transform: translateX(-50%);
+		}
+
+		100% {
+			opacity: 0;
+			transform: translateX(calc(-50% + 24px)) translateY(-12px) rotateZ(480deg);
+		}
+	}
+
+	@keyframes clp__fade-bubble-5 {
+		0% {
+			opacity: 1;
+			transform: translateX(-50%);
+		}
+
+		100% {
+			opacity: 0;
+			transform: translateX(-50%) translateY(-18px) rotateZ(-150deg);
+		}
+	}
+
 	/* region Misc/Shared */
 	.ui__ {
 		&btn-xxl-square {
@@ -720,14 +792,41 @@ Shared UI components
 		&disp-copied {
 			position: fixed;
 			white-space: nowrap;
-			width: auto;
 			transform: translateX(-50%);
 			pointer-events: none;
 			user-select: none;
-			height: 24px;
+			border-radius: 6px;
+			padding: 2px 4px;
+			background: color.adjust(vars.$rgb-bg--alt, $alpha: - 0.2);
 			font-size: 12px;
 			z-index: vars.$z-temp-effect;
-			background: radial-gradient(ellipse at center, vars.$rgb-bg 0%, vars.$rgb-bg 35%, transparent 75%, transparent 100%);
+			animation-iteration-count: 1;
+			animation-fill-mode: forwards;
+			animation-timing-function: ease-in;
+
+			&--basic {
+				animation-name: clp__fade;
+			}
+
+			&--bubble-variant-1 {
+				animation-name: clp__fade-bubble-1;
+			}
+
+			&--bubble-variant-2 {
+				animation-name: clp__fade-bubble-2;
+			}
+
+			&--bubble-variant-3 {
+				animation-name: clp__fade-bubble-3;
+			}
+
+			&--bubble-variant-4 {
+				animation-name: clp__fade-bubble-4;
+			}
+
+			&--bubble-variant-5 {
+				animation-name: clp__fade-bubble-5;
+			}
 		}
 	}
 	/* endregion */

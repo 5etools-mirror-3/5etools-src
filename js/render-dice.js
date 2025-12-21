@@ -385,7 +385,7 @@ Renderer.dice = {
 		const tgt = ele.next(`[data-rd-is-autodice-result="true"]`);
 		const curTxt = tgt.txt();
 		tgt.txt(rollResult);
-		JqueryUtil.showCopiedEffect(tgt, curTxt, true);
+		JqueryUtil.showCopiedEffect(tgt, {text: curTxt, isBubble: true});
 	},
 
 	async _pRollerClick_pGetResult ({parent = null, ele, entry, modRollMeta, rolledBy, additionalData}) {

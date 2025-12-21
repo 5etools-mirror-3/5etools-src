@@ -104,7 +104,7 @@ export class MoneyConverter {
 					if (it || itExtra) {
 						const val = it + itExtra;
 						totalWeight += val * COIN_WEIGHT;
-						outParts.push(`${val.toLocaleString()} ${c.abbv}`);
+						outParts.push(`${val.toLocaleStringVe()} ${c.abbv}`);
 					}
 				});
 			} else {
@@ -131,12 +131,12 @@ export class MoneyConverter {
 						const theseCoins = Math.floor(copper / c.mult);
 						totalWeight += COIN_WEIGHT * theseCoins;
 						copper = remainder;
-						outParts.push(`${theseCoins.toLocaleString()} ${c.abbv}`);
+						outParts.push(`${theseCoins.toLocaleStringVe()} ${c.abbv}`);
 					}
 				});
 			}
 
-			$iptOut.val(`${outParts.join("; ")}${totalWeight ? ` (${totalWeight.toLocaleString()} lb.)` : ""}`);
+			$iptOut.val(`${outParts.join("; ")}${totalWeight ? ` (${totalWeight.toLocaleStringVe()} lb.)` : ""}`);
 
 			board.doSaveStateDebounced();
 		};

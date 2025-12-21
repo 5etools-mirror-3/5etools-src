@@ -36,12 +36,16 @@ class OmnisearchUi {
 			{
 				iptSearch,
 				wrpSearchInput,
+				wrpSearchFilters,
+				wrpSearchResults,
 				dispSearchOutput,
 				wrpSearchOutput,
 			},
 		) {
 			this.iptSearch = iptSearch;
 			this.wrpSearchInput = wrpSearchInput;
+			this.wrpSearchFilters = wrpSearchFilters;
+			this.wrpSearchResults = wrpSearchResults;
 			this.dispSearchOutput = dispSearchOutput;
 			this.wrpSearchOutput = wrpSearchOutput;
 
@@ -56,6 +60,7 @@ class OmnisearchUi {
 		if (globalThis.IS_VTT) return;
 
 		const rdState = this._render_getElements();
+		this._render_wrpSearchFilters({rdState});
 		this._render_doBindElementListeners({rdState});
 		this._render_doBindScrollHandler({rdState});
 		this._render_doBindBodyListeners({rdState});
@@ -102,9 +107,16 @@ class OmnisearchUi {
 		})
 			.appendTo(eleNavbar);
 
+		const wrpSearchFilters = ee`<div class="ve-flex-h-right ve-flex-v-center mobile-sm__ve-flex-col mobile-sm__ve-flex-ai-start mb-2"></div>`;
+		const wrpSearchResults = ee`<div class="ve-flex-col"></div>`;
+
 		const dispSearchOutput = e_({
 			tag: "div",
 			clazz: "omni__output",
+			children: [
+				wrpSearchFilters,
+				wrpSearchResults,
+			],
 		});
 
 		const wrpSearchOutput = e_({
@@ -120,11 +132,59 @@ class OmnisearchUi {
 		const rdState = new this._RenderState({
 			iptSearch,
 			wrpSearchInput,
+			wrpSearchFilters,
+			wrpSearchResults,
 			dispSearchOutput,
 			wrpSearchOutput,
 		});
 
 		return rdState;
+	}
+
+	static _render_wrpSearchFilters ({rdState}) {
+		const btnCyclePartneredMode = ee`<button class="ve-btn ve-btn-default ve-btn-xs omni__btn-partnered-mode" tabindex="-1"></button>`;
+		OmnisearchUtilsUi.bindBtnCyclePartneredMode({
+			btn: btnCyclePartneredMode,
+			omnisearchState: OmnisearchState,
+			fnDoSearch: this._pDoSearch.bind(this, {rdState}),
+		});
+
+		const [
+			btnToggleBrew,
+			btnToggleUa,
+			btnToggleBlocklisted,
+			btnToggleLegacy,
+			btnToggleSrd,
+		] = OmnisearchConsts.BTN_METAS
+			.map(btnMeta => this._getBtnToggleFilter({rdState, btnMeta}));
+
+		const btnHelp = e_({
+			tag: "button",
+			clazz: "ve-btn ve-btn-default ve-btn-xs ml-2",
+			title: "Help",
+			html: `<span class="glyphicon glyphicon-info-sign"></span>`,
+			click: () => OmnisearchUtilsUi.doShowHelp({isIncludeHotkeys: true}),
+		});
+
+		ee(rdState.wrpSearchFilters)`
+			<div class="ve-flex-v-center mr-2 mobile-sm__mr-0 mobile-sm__mb-2 mobile-sm__w-100 mobile-sm__ve-flex-h-right">
+				<span class="mr-2 italic relative top-1p">Include</span>
+				<div class="ve-btn-group ve-flex-v-center">
+					${btnCyclePartneredMode}
+					${btnToggleBrew}
+					${btnToggleUa}
+				</div>
+			</div>
+
+			<div class="ve-flex-v-center mobile-sm__w-100 mobile-sm__ve-flex-h-right">
+				<div class="ve-btn-group ve-flex-v-center mr-2">
+					${btnToggleBlocklisted}
+					${btnToggleLegacy}
+				</div>
+				${btnToggleSrd}
+				${btnHelp}
+			</div>
+		</div>`;
 	}
 
 	static _render_doBindElementListeners ({rdState}) {
@@ -351,43 +411,10 @@ class OmnisearchUi {
 	}
 
 	static _pDoSearch_renderLinks_ ({rdState, results, ixPage}) {
-		const [
-			btnTogglePartnered,
-			btnToggleBrew,
-			btnToggleUa,
-			btnToggleBlocklisted,
-			btnToggleLegacy,
-			btnToggleSrd,
-		] = OmnisearchConsts.BTN_METAS
-			.map(btnMeta => this._getBtnToggleFilter({rdState, btnMeta}));
-
-		rdState.dispSearchOutput.empty();
-
-		const btnHelp = e_({
-			tag: "button",
-			clazz: "ve-btn ve-btn-default ve-btn-xs ml-2",
-			title: "Help",
-			html: `<span class="glyphicon glyphicon-info-sign"></span>`,
-			click: () => OmnisearchUtilsUi.doShowHelp({isIncludeHotkeys: true}),
-		});
-
-		ee(rdState.dispSearchOutput)`<div class="ve-flex-h-right ve-flex-v-center mb-2">
-			<span class="mr-2 italic relative top-1p">Include</span>
-			<div class="ve-btn-group ve-flex-v-center mr-2">
-				${btnTogglePartnered}
-				${btnToggleBrew}
-				${btnToggleUa}
-			</div>
-			<div class="ve-btn-group ve-flex-v-center mr-2">
-				${btnToggleBlocklisted}
-				${btnToggleLegacy}
-			</div>
-			${btnToggleSrd}
-			${btnHelp}
-		</div>`;
+		rdState.wrpSearchResults.empty();
 
 		if (!results.length) {
-			rdState.dispSearchOutput.appends(`<div class="ve-muted"><i>No results found.</i></div>`);
+			rdState.wrpSearchResults.appends(`<div class="ve-muted"><i>No results found.</i></div>`);
 			rdState.wrpSearchOutput.showVe();
 			return {rowMetas: [], results, ixPage};
 		}
@@ -437,12 +464,12 @@ class OmnisearchUi {
 						${Parser.sourceJsonToMarkerHtml(source, {isAddBrackets: true, additionalStyles: "omni__disp-source-marker"})}
 						${ptPage ? `<span class="omni__wrp-page small-caps">${ptPage}</span>` : ""}
 					</div>
-				</div>`.appendTo(rdState.dispSearchOutput);
+				</div>`.appendTo(rdState.wrpSearchResults);
 
 				return {lnk};
 			});
 
-		if (wrpPagination) rdState.dispSearchOutput.appendChild(wrpPagination);
+		if (wrpPagination) rdState.wrpSearchResults.appendChild(wrpPagination);
 
 		rdState.wrpSearchOutput.showVe();
 

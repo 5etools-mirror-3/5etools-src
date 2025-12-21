@@ -25,11 +25,11 @@
 			}
 
 			@media screen and (width > #{vars.$width-screen-xxs}) {
-				max-width: 300px;
-				min-width: 270px;
+				width: calc(100vw - 30px);
 			}
 
 			@media screen and (width > #{vars.$width-screen-xs}) {
+				width: unset;
 				max-width: 460px;
 				min-width: 430px;
 			}
@@ -100,6 +100,10 @@
 				border-top-left-radius: 0 !important;
 				border-top-color: transparent;
 			}
+		}
+
+		&btn-partnered-mode {
+			min-width: 105px;
 		}
 
 		&btn-clear {

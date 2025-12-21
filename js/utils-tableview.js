@@ -111,7 +111,9 @@ class UtilsTableview {
 		return DataUtil.getCsv(headersActive.map(({name}) => name), rows);
 	}
 
-	static _getTableHtml ({rdState, entities, colTransforms, additionalData, sorter}) {
+	static _getTableHtml ({rdState, entities, colTransforms, additionalData, sorter, styleHint = null}) {
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
 		let stack = `<table class="w-100 table-striped stats stats--book stats--book-large min-w-100 w-initial">
 			<thead>
 				<tr>${Object.values(colTransforms).map((c, i) => `<th data-col="${i}" class="ve-text-left px-2" colspan="${c.flex || 1}">${c.name}</th>`).join("")}</tr>
@@ -125,7 +127,7 @@ class UtilsTableview {
 			const row = [];
 			stack += Object.keys(colTransforms).map((k, i) => {
 				const c = colTransforms[k];
-				const val = c.transform == null ? it[k] : c.transform(k[0] === "_" ? it : it[k], additionalData);
+				const val = c.transform == null ? it[k] : c.transform(k[0] === "_" ? it : it[k], additionalData, {styleHint});
 				row.push(val);
 				return `<td data-col="${i}" class="px-2" colspan="${c.flex || 1}">${val || ""}</td>`;
 			}).join("");

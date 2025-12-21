@@ -370,7 +370,7 @@ class MakeCards extends BaseComponent {
 					);
 				} else {
 					await MiscUtil.pCopyTextToClipboard(JSON.stringify(toCopy, null, 2));
-					JqueryUtil.showCopiedEffect(btnCopy, "Copied JSON!");
+					JqueryUtil.showCopiedEffect(btnCopy, {text: "Copied JSON!"});
 				}
 			});
 		const btnDelete = ee`<button class="ve-btn ve-btn-danger ve-btn-xs" title="Remove"><span class="glyphicon glyphicon-trash"></span></button>`
@@ -517,7 +517,7 @@ class MakeCards extends BaseComponent {
 	static _getCardContents_item (item) {
 		MakeCards.utils.enhanceItemAlt(item);
 
-		const [typeRarityText, subTypeText, tierText] = Renderer.item.getTypeRarityAndAttunementText(item);
+		const {typeRarityHtml, subTypeHtml, tierHtml} = Renderer.item.getTypeRarityAndAttunementHtmlParts(item);
 		const [ptDamage, ptProperties] = Renderer.item.getRenderedDamageAndProperties(item);
 		const ptMastery = Renderer.item.getRenderedMastery(item, {isSkipPrefix: true});
 		const ptWeight = Parser.itemWeightToFull(item);
@@ -535,12 +535,12 @@ class MakeCards extends BaseComponent {
 		}
 
 		return [
-			typeRarityText ? this._ct_htmlToText(this._ct_subtitle(typeRarityText.uppercaseFirst())) : null,
+			typeRarityHtml ? this._ct_htmlToText(this._ct_subtitle(typeRarityHtml)) : null,
 			ptDamageCt ? this._ct_property(ptDamageCt.startsWith("AC") ? "Armor Class" : "Damage", ptDamageCt) : null,
 			ptPropertiesCt ? this._ct_property("Properties", ptPropertiesCt.uppercaseFirst()) : null,
 			ptMastery ? this._ct_property("Mastery", ptMastery) : null,
-			subTypeText ? this._ct_property("Type", subTypeText.uppercaseFirst()) : null,
-			tierText ? this._ct_property("Tier", tierText.uppercaseFirst()) : null,
+			subTypeHtml ? this._ct_property("Type", subTypeHtml) : null,
+			tierHtml ? this._ct_property("Tier", tierHtml) : null,
 			ptWeight ? this._ct_property("Weight", ptWeight) : null,
 			ptValue ? this._ct_property("Value", ptValue) : null,
 			itemEntries.length ? this._ct_rule() : null,
@@ -746,8 +746,8 @@ MakeCards._AVAILABLE_TYPES = {
 		pFnSearch: SearchWidget.pGetUserItemSearch,
 		fnGetContents: MakeCards._getCardContents_item.bind(MakeCards),
 		fnGetTags: (item) => {
-			const [typeListText] = Renderer.item.getHtmlAndTextTypes(item);
-			return ["item", Parser.sourceJsonToAbv(item.source), ...typeListText];
+			const [textTypes] = Renderer.item.getHtmlAndTextTypes(item);
+			return ["item", Parser.sourceJsonToAbv(item.source), ...textTypes];
 		},
 	},
 	spell: {

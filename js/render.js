@@ -3704,12 +3704,15 @@ Renderer.utils = class {
 	 * @param entity Entity to build tab for (e.g. a monster; an item)
 	 * @param pFnGetFluff Function which gets the entity's fluff.
 	 * @param $headerControls
+	 * @param wrpHeaderControls
 	 * @param page
 	 */
-	static async pBuildFluffTab ({isImageTab, $content, wrpContent, entity, $headerControls, pFnGetFluff, page} = {}) {
+	static async pBuildFluffTab ({isImageTab, $content, wrpContent, entity, $headerControls, wrpHeaderControls, pFnGetFluff, page} = {}) {
 		if ($content && wrpContent) throw new Error(`Only one of "$content" and "wrpContent" may be specified!`);
+		if ($headerControls && wrpHeaderControls) throw new Error(`Only one of "$headerControls" and "wrpHeaderControls" may be specified!`);
 
 		if (wrpContent) $content = $(wrpContent);
+		if (wrpHeaderControls) $headerControls = $(wrpHeaderControls);
 
 		$content.append(Renderer.utils.getBorderTr());
 		$content.append(Renderer.utils.getNameTr(entity, {controlRhs: $headerControls, asJquery: true, page}));
@@ -10638,8 +10641,8 @@ Renderer.monster = class {
 			? Parser.crToXpNumber(cr) != null ? (Parser.crToXpNumber(cr) * 2) : null
 			: null;
 
-		const ptXp = xp != null ? xp.toLocaleString() : null;
-		const ptXpMythic = xpMythic != null ? xpMythic.toLocaleString() : null;
+		const ptXp = xp != null ? xp.toLocaleStringVe() : null;
+		const ptXpMythic = xpMythic != null ? xpMythic.toLocaleStringVe() : null;
 
 		const ptXps = [
 			ptXp != null ? `${ptXp} XP` : null,
@@ -10680,14 +10683,14 @@ Renderer.monster = class {
 			]
 			// TODO(ODND) speculative text; revise
 			: [
-				xpBase ? xpBase.toLocaleString() : null,
-				Renderer.monster.hasMythicActions(mon) ? `${(xpBase * 2).toLocaleString()} as a mythic encounter` : null,
+				xpBase ? xpBase.toLocaleStringVe() : null,
+				Renderer.monster.hasMythicActions(mon) ? `${(xpBase * 2).toLocaleStringVe()} as a mythic encounter` : null,
 			]
 				.filter(Boolean);
 
 		if (mon.cr != null && typeof mon.cr !== "string") {
-			if (mon.cr.lair || mon.cr.xpLair) ptsXp.push(`${(mon.cr.xpLair ? mon.cr.xpLair.toLocaleString() : null) || Parser.crToXp(mon.cr.lair)} in lair`);
-			if (mon.cr.coven || mon.cr.xpCoven) ptsXp.push(`${(mon.cr.xpCoven ? mon.cr.xpCoven.toLocaleString() : null) || Parser.crToXp(mon.cr.coven)} when part of a coven`);
+			if (mon.cr.lair || mon.cr.xpLair) ptsXp.push(`${(mon.cr.xpLair ? mon.cr.xpLair.toLocaleStringVe() : null) || Parser.crToXp(mon.cr.lair)} in lair`);
+			if (mon.cr.coven || mon.cr.xpCoven) ptsXp.push(`${(mon.cr.xpCoven ? mon.cr.xpCoven.toLocaleStringVe() : null) || Parser.crToXp(mon.cr.coven)} when part of a coven`);
 		}
 
 		const ptPbVal = Renderer.monster.getPbPart(mon, {isPlainText});
@@ -11689,17 +11692,47 @@ Renderer.item = class {
 			.join(" ");
 	}
 
-	static getTypeRarityAndAttunementText (item) {
-		const typeRarity = [
-			item._typeHtml === "other" ? "" : item._typeHtml,
-			(item.rarity && Renderer.item.doRenderRarity(item.rarity) ? item.rarity : ""),
-		].filter(Boolean).join(", ");
+	static getTransformedTypeEntriesMeta ({item, styleHint = null} = {}) {
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
-		return [
-			item.reqAttune ? `${typeRarity} ${item._attunement}` : typeRarity,
-			item._subTypeHtml || "",
-			item.tier ? `${item.tier} tier` : "",
-		];
+		const fnTransform = styleHint === "classic" ? "uppercaseFirst" : "toTitleCase";
+
+		const entryType = (item._entryType || "")[fnTransform]();
+		const entrySubtype = (item._entrySubType || "")[fnTransform]();
+
+		const typeRarity = [
+			item._entryType === "other" ? "" : entryType,
+			(item.rarity && Renderer.item.doRenderRarity(item.rarity) ? (item.rarity)[fnTransform]() : ""),
+		]
+			.filter(Boolean)
+			.join(", ");
+
+		const ptAttunement = item.reqAttune ? (item._attunement || "")[fnTransform]() : "";
+
+		return {
+			entryType,
+			entryTypeRarity: [typeRarity, ptAttunement].filter(Boolean).join(" "),
+			entrySubtype,
+			entryTier: item.tier
+				? `${item.tier} tier`[fnTransform]()
+				: "",
+		};
+	}
+
+	static getTypeRarityAndAttunementHtmlParts (item, {styleHint = null} = {}) {
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
+		const {
+			entryTypeRarity,
+			entrySubtype,
+			entryTier,
+		} = Renderer.item.getTransformedTypeEntriesMeta({item, styleHint});
+
+		return {
+			typeRarityHtml: Renderer.get().render(entryTypeRarity),
+			subTypeHtml: Renderer.get().render(entrySubtype),
+			tierHtml: Renderer.get().render(entryTier),
+		};
 	}
 
 	static getAttunementAndAttunementCatText (item, prop = "reqAttune") {
@@ -11723,70 +11756,74 @@ Renderer.item = class {
 		return [attunement, attunementCat];
 	}
 
-	static getHtmlAndTextTypes (item, {styleHint = null} = {}) {
+	static getRenderableTypeEntriesMeta (item, {styleHint = null} = {}) {
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
-		const typeHtml = [];
-		const typeListText = [];
-		const subTypeHtml = [];
+		const textTypes = [];
+		const ptsEntryType = [];
+		const ptsEntrySubType = [];
 
 		const itemTypeAbv = item.type ? DataUtil.itemType.unpackUid(item.type).abbreviation : null;
 		const itemTypeAltAbv = item.typeAlt ? DataUtil.itemType.unpackUid(item.typeAlt).abbreviation : null;
 
 		let showingBase = false;
 		if (item.wondrous) {
-			typeHtml.push(`wondrous item${item.tattoo ? ` (tattoo)` : ""}`);
-			typeListText.push("wondrous item");
+			ptsEntryType.push(`wondrous item${item.tattoo ? ` (tattoo)` : ""}`);
+			textTypes.push("wondrous item");
 		}
 		if (item.tattoo) {
-			typeListText.push("tattoo");
+			textTypes.push("tattoo");
 		}
 		if (item.staff) {
-			typeHtml.push("staff");
-			typeListText.push("staff");
+			ptsEntryType.push("staff");
+			textTypes.push("staff");
 		}
 		if (item.ammo) {
-			typeHtml.push(`ammunition`);
-			typeListText.push("ammunition");
+			ptsEntryType.push(`ammunition`);
+			textTypes.push("ammunition");
 		}
 		if (item.age) {
-			subTypeHtml.push(item.age);
-			typeListText.push(item.age);
+			ptsEntrySubType.push(item.age);
+			textTypes.push(item.age);
 		}
 		if (item.weaponCategory) {
-			typeHtml.push(`weapon${item.baseItem ? ` (${Renderer.get().render(`{@item ${styleHint === "classic" ? item.baseItem : item.baseItem.toTitleCase()}}`)})` : ""}`);
-			subTypeHtml.push(`${item.weaponCategory} weapon`);
-			typeListText.push(`${item.weaponCategory} weapon`);
+			ptsEntryType.push(`weapon${item.baseItem ? ` ({@item ${styleHint === "classic" ? item.baseItem : item.baseItem.toTitleCase()}})` : ""}`);
+			ptsEntrySubType.push(`${item.weaponCategory} weapon`);
+			textTypes.push(`${item.weaponCategory} weapon`);
 			showingBase = true;
 		}
 		if (item.staff && (itemTypeAbv !== Parser.ITM_TYP_ABV__MELEE_WEAPON && itemTypeAltAbv !== Parser.ITM_TYP_ABV__MELEE_WEAPON)) { // DMG p140: "Unless a staff's description says otherwise, a staff can be used as a quarterstaff."
-			subTypeHtml.push("melee weapon");
-			typeListText.push("melee weapon");
+			ptsEntrySubType.push("melee weapon");
+			textTypes.push("melee weapon");
 		}
-		if (item.type) Renderer.item._getHtmlAndTextTypes_type({type: item.type, typeAbv: itemTypeAbv, typeHtml, typeListText, subTypeHtml, showingBase, item});
-		if (item.typeAlt) Renderer.item._getHtmlAndTextTypes_type({type: item.typeAlt, typeAbv: itemTypeAltAbv, typeHtml, typeListText, subTypeHtml, showingBase, item});
+		if (item.type) Renderer.item._getHtmlAndTextTypes_type({type: item.type, typeAbv: itemTypeAbv, ptsEntryType, textTypes, ptsEntrySubType, showingBase, item});
+		if (item.typeAlt) Renderer.item._getHtmlAndTextTypes_type({type: item.typeAlt, typeAbv: itemTypeAltAbv, ptsEntryType, textTypes, ptsEntrySubType, showingBase, item});
 		if (item.firearm) {
-			subTypeHtml.push("firearm");
-			typeListText.push("firearm");
+			ptsEntrySubType.push("firearm");
+			textTypes.push("firearm");
 		}
 		if (item.poison) {
-			typeHtml.push(`poison${item.poisonTypes ? ` (${item.poisonTypes.joinConjunct(", ", " or ")})` : ""}`);
-			typeListText.push("poison");
+			ptsEntryType.push(`poison${item.poisonTypes ? ` (${item.poisonTypes.joinConjunct(", ", " or ")})` : ""}`);
+			textTypes.push("poison");
 		}
-		return [typeListText, typeHtml.join(", "), subTypeHtml.join(", ")];
+		return {
+			textTypes: textTypes,
+			entryType: ptsEntryType.join(", "),
+			entrySubType: ptsEntrySubType.join(", "),
+		};
 	}
 
-	static _getHtmlAndTextTypes_type ({type, typeAbv, typeHtml, typeListText, subTypeHtml, showingBase, item}) {
+	static _getHtmlAndTextTypes_type ({type, typeAbv, ptsEntryType, textTypes, ptsEntrySubType, showingBase, item}) {
 		const fullType = Renderer.item.getItemTypeName(type);
 
-		const isSub = (typeListText.some(it => it.includes("weapon")) && fullType.includes("weapon"))
-			|| (typeListText.some(it => it.includes("armor")) && fullType.includes("armor"));
+		const isSub = (textTypes.some(it => it.includes("weapon")) && fullType.includes("weapon"))
+			|| (textTypes.some(it => it.includes("armor")) && fullType.includes("armor"));
 
-		if (!showingBase && !!item.baseItem) (isSub ? subTypeHtml : typeHtml).push(`${fullType} (${Renderer.get().render(`{@item ${item.baseItem}}`)})`);
-		else if (typeAbv === Parser.ITM_TYP_ABV__SHIELD) (isSub ? subTypeHtml : typeHtml).push(Renderer.get().render(`armor ({@item shield|phb})`));
-		else (isSub ? subTypeHtml : typeHtml).push(fullType);
+		if (!showingBase && !!item.baseItem) (isSub ? ptsEntrySubType : ptsEntryType).push(`${fullType} ({@item ${item.baseItem}})`);
+		else if (typeAbv === Parser.ITM_TYP_ABV__SHIELD) (isSub ? ptsEntrySubType : ptsEntryType).push(`armor ({@item shield|phb})`);
+		else (isSub ? ptsEntrySubType : ptsEntryType).push(fullType);
 
-		typeListText.push(fullType);
+		textTypes.push(fullType);
 	}
 
 	static _GET_RENDERED_ENTRIES_WALKER = null;
@@ -11898,7 +11935,7 @@ Renderer.item = class {
 
 		const [ptDamage, ptProperties] = Renderer.item.getRenderedDamageAndProperties(item);
 		const ptMastery = Renderer.item.getRenderedMastery(item);
-		const [typeRarityText, subTypeText, tierText] = Renderer.item.getTypeRarityAndAttunementText(item);
+		const {typeRarityHtml, subTypeHtml, tierHtml} = Renderer.item.getTypeRarityAndAttunementHtmlParts(item);
 
 		const textRight = [
 			ptDamage,
@@ -11912,7 +11949,7 @@ Renderer.item = class {
 		return `
 		${Renderer.utils.getExcludedTr({entity: item, dataProp: "item", page: UrlUtil.PG_ITEMS})}
 		${Renderer.utils.getNameTr(item, {page: UrlUtil.PG_ITEMS, isEmbeddedEntity: opts.isEmbeddedEntity})}
-		<tr><td class="rd-item__type-rarity-attunement" colspan="6">${Renderer.item.getTypeRarityAndAttunementHtml(typeRarityText, subTypeText, tierText, {styleHint})}</td></tr>
+		<tr><td class="rd-item__type-rarity-attunement" colspan="6">${Renderer.item.getTypeRarityAndAttunementHtml({typeRarityHtml, subTypeHtml, tierHtml}, {styleHint})}</td></tr>
 		<tr>
 			<td colspan="2">${[Parser.itemValueToFullMultiCurrency(item, {styleHint}), Parser.itemWeightToFull(item)].filter(Boolean).join(", ").uppercaseFirst()}</td>
 			<td colspan="4">
@@ -11926,23 +11963,15 @@ Renderer.item = class {
 		return item._fullAdditionalEntries?.length || item._fullEntries?.length || item.entries?.length;
 	}
 
-	static getTypeRarityAndAttunementHtml (typeRarityText, subTypeText, tierText, {styleHint = null} = {}) {
+	static getTypeRarityAndAttunementHtml ({typeRarityHtml = "", subTypeHtml = "", tierHtml = ""}, {styleHint = null} = {}) {
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
-		typeRarityText ||= "";
-		subTypeText ||= "";
-		tierText ||= "";
-
-		const ptTypeRarity = styleHint === "classic" ? typeRarityText.uppercaseFirst() : typeRarityText.toTitleCase();
-		const ptTier = styleHint === "classic" ? subTypeText.uppercaseFirst() : subTypeText.toTitleCase();
-		const ptSubtype = styleHint === "classic" ? tierText.uppercaseFirst() : tierText.toTitleCase();
-
 		return `<div class="ve-flex-col">
-			${typeRarityText || tierText ? `<div class="split ${subTypeText ? "mb-1" : ""}">
-				<div class="italic">${ptTypeRarity}</div>
-				<div class="no-wrap ${tierText ? `ml-2` : ""}">${ptTier}</div>
+			${typeRarityHtml || tierHtml ? `<div class="split ${subTypeHtml ? "mb-1" : ""}">
+				<div class="italic">${typeRarityHtml || ""}</div>
+				<div class="no-wrap ${tierHtml ? `ml-2` : ""}">${subTypeHtml || ""}</div>
 			</div>` : ""}
-			${subTypeText ? `<div class="italic">${ptSubtype}</div>` : ""}
+			${subTypeHtml ? `<div class="italic">${subTypeHtml}</div>` : ""}
 		</div>`;
 	}
 
@@ -12729,10 +12758,7 @@ Renderer.item = class {
 		}
 
 		// bake in types
-		const [typeListText, typeHtml, subTypeHtml] = Renderer.item.getHtmlAndTextTypes(item, {styleHint});
-		item._typeListText = typeListText;
-		item._typeHtml = typeHtml;
-		item._subTypeHtml = subTypeHtml;
+		({textTypes: item._textTypes, entryType: item._entryType, entrySubType: item._entrySubType} = Renderer.item.getRenderableTypeEntriesMeta(item, {styleHint}));
 
 		// bake in attunement
 		const [attune, attuneCat] = Renderer.item.getAttunementAndAttunementCatText(item);
@@ -13837,7 +13863,7 @@ Renderer.vehicle = class {
 			const ptAc = ent.ac ?? dexMod === 0 ? `19` : `${19 + dexMod} (19 while motionless)`;
 
 			return {
-				entrySizeWeight: `{@i ${Parser.sizeAbvToFull(ent.size)} vehicle (${ent.weight.toLocaleString()} lb.)}`,
+				entrySizeWeight: `{@i ${Parser.sizeAbvToFull(ent.size)} vehicle (${ent.weight.toLocaleStringVe()} lb.)}`,
 				entryCreatureCapacity: `{@b Creature Capacity} ${Renderer.vehicle.getInfwarCreatureCapacity(ent)}`,
 				entryCargoCapacity: `{@b Cargo Capacity} ${Parser.weightToFull(ent.capCargo)}`,
 				entryArmorClass: `{@b Armor Class} ${ptAc}`,

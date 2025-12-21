@@ -172,7 +172,7 @@ class ItemsSublistManager extends SublistManager {
 				const CURRENCIES = ["gp", "sp", "cp"];
 				const coins = {cp: value};
 				CurrencyUtil.doSimplifyCoins(coins);
-				return CURRENCIES.filter(it => coins[it]).map(it => `${coins[it].toLocaleString(undefined, {maximumFractionDigits: 5})} ${it}`).join(", ");
+				return CURRENCIES.filter(it => coins[it]).map(it => `${coins[it].toLocaleStringVe()} ${it}`).join(", ");
 			}
 		}
 	}
@@ -208,7 +208,17 @@ class ItemsPage extends ListPage {
 					source: UtilsTableview.COL_TRANSFORM_SOURCE,
 					page: UtilsTableview.COL_TRANSFORM_PAGE,
 					rarity: {name: "Rarity"},
-					_type: {name: "Type", transform: it => [it._typeHtml || "", it._subTypeHtml || ""].filter(Boolean).join(", ")},
+					_type: {
+						name: "Type",
+						transform: (item, additionalData, {styleHint}) => {
+							const {
+								entryType,
+								entrySubtype,
+							} = Renderer.item.getTransformedTypeEntriesMeta({item, styleHint});
+
+							return [Renderer.get().render(entryType), Renderer.get().render(entrySubtype)].filter(Boolean).join(", ");
+						},
+					},
 					_attunement: {name: "Attunement", transform: it => it._attunement ? it._attunement.slice(1, it._attunement.length - 1) : ""},
 					_damage: {name: "Damage", transform: it => Renderer.item.getRenderedDamageAndProperties(it)[0]},
 					_properties: {name: "Properties", transform: it => Renderer.item.getRenderedDamageAndProperties(it)[1]},
@@ -247,7 +257,7 @@ class ItemsPage extends ListPage {
 		this._pageFilter.mutateAndAddToFilters(item, isExcluded);
 
 		const source = Parser.sourceJsonToAbv(item.source);
-		const type = item._typeListText.join(", ").toTitleCase();
+		const type = item._textTypes.join(", ").toTitleCase();
 
 		if (item._fIsMundane) {
 			const eleLi = e_({

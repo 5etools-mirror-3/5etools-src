@@ -1466,13 +1466,9 @@ RendererMarkdown.item = class {
 
 		const [ptDamage, ptProperties] = Renderer.item.getRenderedDamageAndProperties(item, {renderer: RendererMarkdown.get()});
 		const ptMastery = Renderer.item.getRenderedMastery(item, {renderer: RendererMarkdown.get()});
-		const [typeRarityText, subTypeText, tierText] = RendererMarkdown.item.getTypeRarityAndAttunementText(item);
+		const {typeRarityText, subTypeText, tierText} = RendererMarkdown.item.getTypeRarityAndAttunementTextParts(item, {styleHint});
 
-		const ptTypeRarity = styleHint === "classic" ? typeRarityText.uppercaseFirst() : typeRarityText.toTitleCase();
-		const ptTier = styleHint === "classic" ? subTypeText.uppercaseFirst() : subTypeText.toTitleCase();
-		const ptSubtype = styleHint === "classic" ? tierText.uppercaseFirst() : tierText.toTitleCase();
-
-		const typeRarityTierValueWeight = [ptTypeRarity, ptSubtype, ptTier, Parser.itemValueToFullMultiCurrency(item, {styleHint}), Parser.itemWeightToFull(item)].filter(Boolean).join(", ").uppercaseFirst();
+		const typeRarityTierValueWeight = [typeRarityText, subTypeText, tierText, Parser.itemValueToFullMultiCurrency(item, {styleHint}), Parser.itemWeightToFull(item)].filter(Boolean).join(", ").uppercaseFirst();
 
 		const ptSubtitle = [typeRarityTierValueWeight, ptDamage, ptProperties, ptMastery].filter(Boolean).join("\n\n");
 
@@ -1500,17 +1496,20 @@ RendererMarkdown.item = class {
 		return `\n${itemRender}\n\n`;
 	}
 
-	static getTypeRarityAndAttunementText (item) {
-		const typeRarity = [
-			item._typeHtml === "other" ? "" : $(`<div></div>`).html(item._typeHtml).text(),
-			(item.rarity && Renderer.item.doRenderRarity(item.rarity) ? item.rarity : ""),
-		].filter(Boolean).join(", ");
+	static getTypeRarityAndAttunementTextParts (item, {styleHint = null} = {}) {
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
-		return [
-			item.reqAttune ? `${typeRarity} ${item._attunement}` : typeRarity,
-			item._subTypeHtml || "",
-			item.tier ? `${item.tier} tier` : "",
-		];
+		const {
+			entryTypeRarity,
+			entrySubtype,
+			entryTier,
+		} = Renderer.item.getTransformedTypeEntriesMeta({item, styleHint});
+
+		return {
+			typeRarityText: RendererMarkdown.get().render(entryTypeRarity),
+			subTypeText: RendererMarkdown.get().render(entrySubtype),
+			tierText: RendererMarkdown.get().render(entryTier),
+		};
 	}
 };
 
@@ -1641,29 +1640,11 @@ RendererMarkdown.status = class {
 
 RendererMarkdown.race = class {
 	static getCompactRenderedString (ent, opts = {}) {
+		const entriesMeta = Renderer.race.getRaceRenderableEntriesMeta(ent);
+
 		const entries = [
-			{
-				type: "list",
-				style: "list-hang-notitle",
-				items: [
-					{
-						type: "item",
-						name: "Ability Scores",
-						entry: Renderer.getAbilityData(ent.ability).asText,
-					},
-					{
-						type: "item",
-						name: "Size",
-						entry: Renderer.race.getRenderedSize(ent),
-					},
-					{
-						type: "item",
-						name: "Speed",
-						entry: Parser.getSpeedString(ent),
-					},
-				],
-			},
-			Renderer.race.getRaceRenderableEntriesMeta(ent)?.entryMain,
+			entriesMeta.entryAttributes,
+			entriesMeta.entryMain,
 		]
 			.filter(Boolean);
 

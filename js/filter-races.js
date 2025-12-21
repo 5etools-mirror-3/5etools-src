@@ -159,8 +159,8 @@ class PageFilterRaces extends PageFilterBase {
 		else if (r.age?.mature != null) r._fAge = r.age.mature;
 		else if (r.age?.max != null) r._fAge = r.age.max;
 
-		FilterCommon.mutateForFilters_damageVulnResImmune(r);
-		FilterCommon.mutateForFilters_conditionImmune(r);
+		FilterCommon.mutateForFilters_damageVulnResImmunePlayer(r);
+		FilterCommon.mutateForFilters_conditionImmunePlayer(r);
 	}
 
 	addToFilters (r, isExcluded) {

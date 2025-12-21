@@ -71,22 +71,26 @@ class FilterCommon {
 
 	/* -------------------------------------------- */
 
-	static mutateForFilters_damageVulnResImmune (ent) {
-		ent._fVuln = this._getAllImmRes(ent.vulnerable, "vulnerable");
-		ent._fRes = this._getAllImmRes(ent.resist, "resist");
-		ent._fImm = this._getAllImmRes(ent.immune, "immune");
+	static mutateForFilters_damageVulnResImmuneNonPlayer (ent) {
+		ent._fVuln = this._getAllImmResNonPlayer(ent.vulnerable, "vulnerable");
+		ent._fRes = this._getAllImmResNonPlayer(ent.resist, "resist");
+		ent._fImm = this._getAllImmResNonPlayer(ent.immune, "immune");
 	}
 
-	static _getAllImmRes (val, key) {
+	static mutateForFilters_conditionImmuneNonPlayer (ent) {
+		ent._fCondImm = this._getAllImmResNonPlayer(ent.conditionImmune, "conditionImmune");
+	}
+
+	static _getAllImmResNonPlayer (val, key) {
 		if (!val) return [];
 		const out = [];
-		for (const valSub of val) this._getAllImmRes_recurse(valSub, key, out);
+		for (const valSub of val) this._getAllImmResNonPlayer_recurse(valSub, key, out);
 		return out;
 	}
 
-	static _getAllImmRes_recurse (val, key, out, isConditional) {
+	static _getAllImmResNonPlayer_recurse (val, key, out, isConditional) {
 		if (val[key]) {
-			val[key].forEach(nxt => this._getAllImmRes_recurse(nxt, key, out, !!val.cond));
+			val[key].forEach(nxt => this._getAllImmResNonPlayer_recurse(nxt, key, out, !!val.cond));
 			return;
 		}
 
@@ -96,8 +100,29 @@ class FilterCommon {
 		out.push(isConditional ? `${val} (Conditional)` : val);
 	}
 
-	static mutateForFilters_conditionImmune (ent) {
-		ent._fCondImm = this._getAllImmRes(ent.conditionImmune, "immune");
+	/* -------------------------------------------- */
+
+	static mutateForFilters_damageVulnResImmunePlayer (ent) {
+		ent._fVuln = this._getAllImmResPlayer(ent.vulnerable);
+		ent._fRes = this._getAllImmResPlayer(ent.resist);
+		ent._fImm = this._getAllImmResPlayer(ent.immune);
+	}
+
+	static mutateForFilters_conditionImmunePlayer (ent) {
+		ent._fCondImm = this._getAllImmResPlayer(ent.conditionImmune);
+	}
+
+	static _getAllImmResPlayer (val) {
+		if (!val) return [];
+		const out = [];
+		for (const valSub of val) {
+			if (typeof valSub === "string") {
+				out.push(valSub);
+				break;
+			}
+			valSub.choose?.from?.forEach(it => out.push(it));
+		}
+		return out;
 	}
 
 	/* -------------------------------------------- */

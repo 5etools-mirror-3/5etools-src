@@ -358,7 +358,7 @@ Parser.raceCreatureTypesToFull = function (creatureTypes) {
 };
 
 Parser.crToXp = function (cr, {isDouble = false} = {}) {
-	if (cr != null && cr.xp) return (isDouble ? cr.xp * 2 : cr.xp).toLocaleString();
+	if (cr != null && cr.xp) return (isDouble ? cr.xp * 2 : cr.xp).toLocaleStringVe();
 
 	const toConvert = cr ? (cr.cr || cr) : null;
 	if (toConvert === "Unknown" || toConvert == null || !Parser.XP_CHART_ALT[toConvert]) return "Unknown";
@@ -366,7 +366,7 @@ Parser.crToXp = function (cr, {isDouble = false} = {}) {
 	//   Exceptions, such as MM's Frog and Sea Horse, have their XP set to 0 on the creature
 	if (toConvert === "0") return "10";
 	const xp = Parser.XP_CHART_ALT[toConvert];
-	return (isDouble ? 2 * xp : xp).toLocaleString();
+	return (isDouble ? 2 * xp : xp).toLocaleStringVe();
 };
 
 Parser.crToXpNumber = function (cr) {
@@ -740,7 +740,7 @@ Parser._moneyToFull = function (it, prop, propMult, opts = {isShortForm: false, 
 	if (it[prop] == null && it[propMult] == null) return "";
 	if (it[prop] != null) {
 		const {coin, mult} = Parser.getCurrencyAndMultiplier(it[prop], it.currencyConversion);
-		return `${(it[prop] * mult).toLocaleString(undefined, {maximumFractionDigits: 5})}${opts.isSmallUnits ? `<span class="small ml-1">${coin}</span>` : ` ${coin}`}`;
+		return `${(it[prop] * mult).toLocaleStringVe()}${opts.isSmallUnits ? `<span class="small ml-1">${coin}</span>` : ` ${coin}`}`;
 	} else if (it[propMult] != null) return opts.isShortForm ? `×${it[propMult]}` : `base value ×${it[propMult]}`;
 	return "";
 };
@@ -768,7 +768,7 @@ Parser._moneyToFullMultiCurrency = function (it, prop, propMult, {isShortForm, m
 		return [...conversionTable]
 			.reverse()
 			.filter(meta => simplified[meta.coin])
-			.map(meta => `${simplified[meta.coin].toLocaleString(undefined, {maximumFractionDigits: 5})} ${styleHint === "classic" ? meta.coin : meta.coin.toUpperCase()}`)
+			.map(meta => `${simplified[meta.coin].toLocaleStringVe()} ${styleHint === "classic" ? meta.coin : meta.coin.toUpperCase()}`)
 			.join(", ");
 	}
 
@@ -868,7 +868,7 @@ Parser.getDisplayCurrency = function (currency, {isDisplayEmpty = false, styleHi
 	return [...Parser.COIN_ABVS]
 		.reverse()
 		.filter(abv => isDisplayEmpty ? currency[abv] != null : currency[abv])
-		.map(abv => `${currency[abv].toLocaleString()} ${styleHint === "classic" ? abv : abv.toUpperCase()}`)
+		.map(abv => `${currency[abv].toLocaleStringVe()} ${styleHint === "classic" ? abv : abv.toUpperCase()}`)
 		.join(", ");
 };
 
@@ -884,7 +884,7 @@ Parser.itemWeightToFull = function (item, isShortForm) {
 		if (vulgarGlyph) return `${integerPart || ""}${vulgarGlyph} lb.${(item.weightNote ? ` ${item.weightNote}` : "")}`;
 
 		// Fall back on decimal pounds or ounces
-		return `${(item.weight < 1 ? item.weight * 16 : item.weight).toLocaleString(undefined, {maximumFractionDigits: 5})} ${item.weight < 1 ? "oz" : "lb"}.${(item.weightNote ? ` ${item.weightNote}` : "")}`;
+		return `${(item.weight < 1 ? item.weight * 16 : item.weight).toLocaleStringVe()} ${item.weight < 1 ? "oz" : "lb"}.${(item.weightNote ? ` ${item.weightNote}` : "")}`;
 	}
 	if (item.weightMult) return isShortForm ? `×${item.weightMult}` : `base weight ×${item.weightMult}`;
 	return "";
@@ -938,7 +938,6 @@ Parser.ITM_PROP__TWO_HANDED = "2H";
 Parser.ITM_PROP__AMMUNITION = "A";
 Parser.ITM_PROP__AMMUNITION_FUTURISTIC = "AF|DMG";
 Parser.ITM_PROP__BURST_FIRE = "BF|DMG";
-Parser.ITM_PROP__EXTENDED_REACH = "ER|TDCSR";
 Parser.ITM_PROP__FINESSE = "F";
 Parser.ITM_PROP__HEAVY = "H";
 Parser.ITM_PROP__LIGHT = "L";
@@ -949,7 +948,6 @@ Parser.ITM_PROP__RELOAD = "RLD|DMG";
 Parser.ITM_PROP__SPECIAL = "S";
 Parser.ITM_PROP__THROWN = "T";
 Parser.ITM_PROP__VERSATILE = "V";
-Parser.ITM_PROP__VESTIGE_OF_DIVERGENCE = "Vst|TDCSR";
 
 Parser.ITM_PROP__ODND_TWO_HANDED = "2H|XPHB";
 Parser.ITM_PROP__ODND_AMMUNITION = "A|XPHB";
@@ -1012,7 +1010,6 @@ Parser.ITM_TYP__ADVENTURING_GEAR = "G";
 Parser.ITM_TYP__GAMING_SET = "GS";
 Parser.ITM_TYP__GENERIC_VARIANT = "GV|DMG";
 Parser.ITM_TYP__HEAVY_ARMOR = "HA";
-Parser.ITM_TYP__ILLEGAL_DRUG = "IDG|TDCSR";
 Parser.ITM_TYP__INSTRUMENT = "INS";
 Parser.ITM_TYP__LIGHT_ARMOR = "LA";
 Parser.ITM_TYP__MELEE_WEAPON = "M";
@@ -3205,7 +3202,6 @@ Parser.SRC_DoSI = "DoSI";
 Parser.SRC_DSotDQ = "DSotDQ";
 Parser.SRC_KftGV = "KftGV";
 Parser.SRC_BGG = "BGG";
-Parser.SRC_TDCSR = "TDCSR";
 Parser.SRC_PaBTSO = "PaBTSO";
 Parser.SRC_PAitM = "PAitM";
 Parser.SRC_SatO = "SatO";
@@ -3412,7 +3408,6 @@ Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DoSI] = "Dragons of Stormwreck Isle";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DSotDQ] = "Dragonlance: Shadow of the Dragon Queen";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_KftGV] = "Keys from the Golden Vault";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_BGG] = "Bigby Presents: Glory of the Giants";
-Parser.SOURCE_JSON_TO_FULL[Parser.SRC_TDCSR] = "Tal'Dorei Campaign Setting Reborn";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_PaBTSO] = "Phandelver and Below: The Shattered Obelisk";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_PAitM] = "Planescape: Adventures in the Multiverse";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_SatO] = "Sigil and the Outlands";
@@ -3594,7 +3589,6 @@ Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DoSI] = "DoSI";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DSotDQ] = "DSotDQ";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_KftGV] = "KftGV";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_BGG] = "BGG";
-Parser.SOURCE_JSON_TO_ABV[Parser.SRC_TDCSR] = "TDCSR";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_PaBTSO] = "PaBTSO";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_PAitM] = "PAitM";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_SatO] = "SatO";
@@ -3775,7 +3769,6 @@ Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DoSI] = "2022-07-31";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DSotDQ] = "2022-11-22";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_KftGV] = "2023-02-21";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_BGG] = "2023-08-15";
-Parser.SOURCE_JSON_TO_DATE[Parser.SRC_TDCSR] = "2022-01-18";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_PaBTSO] = "2023-09-19";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_PAitM] = "2023-10-17";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_SatO] = "2023-10-17";
@@ -4015,18 +4008,31 @@ Parser.SOURCES_NON_STANDARD_WOTC = new Set([
 	Parser.SRC_BQGT,
 ]);
 Parser.SOURCES_PARTNERED_WOTC = new Set([
-	Parser.SRC_RMBRE,
-	Parser.SRC_RMR,
-	Parser.SRC_EGW,
-	Parser.SRC_EGW_ToR,
-	Parser.SRC_EGW_DD,
-	Parser.SRC_EGW_FS,
-	Parser.SRC_EGW_US,
-	Parser.SRC_CRCotN,
-	Parser.SRC_TDCSR,
-	Parser.SRC_HftT,
-	Parser.SRC_TD,
-	Parser.SRC_LRDT,
+	/*
+	Previously marked as "Partnered" on D&D Beyond, but as of
+	  ~Dec 2025 marked as "Official" on https://www.dndbeyond.com/en/library?publisher=official
+	// Parser.SRC_RMBRE,
+	// Parser.SRC_RMR,
+	// Parser.SRC_EGW,
+	// Parser.SRC_EGW_ToR,
+	// Parser.SRC_EGW_DD,
+	// Parser.SRC_EGW_FS,
+	// Parser.SRC_EGW_US,
+	// Parser.SRC_CRCotN,
+	// Parser.SRC_HftT,
+	 */
+
+	/*
+	If we have Minecraft, we might as well have LEGO too.
+	// Parser.SRC_LRDT,
+	 */
+
+	/*
+	Previously marked as "Partnered", but is "officially licensed"; going by above
+	  official-izing of dubious sources, and as it doesn't contain any gameplay elements,
+	  this can be considered "official enough."
+	// Parser.SRC_TD,
+	 */
 ]);
 Parser.SOURCES_LEGACY_WOTC = new Set([
 	Parser.SRC_PHB,
@@ -4123,7 +4129,6 @@ Parser.SOURCES_NON_FR = new Set([
 	Parser.SRC_BAM,
 	Parser.SRC_LoX,
 	Parser.SRC_DSotDQ,
-	Parser.SRC_TDCSR,
 	Parser.SRC_PAitM,
 	Parser.SRC_SatO,
 	Parser.SRC_ToFW,
@@ -4175,7 +4180,6 @@ Parser.SOURCES_AVAILABLE_DOCS_BOOK = {};
 	Parser.SRC_SCREEN_DUNGEON_KIT,
 	Parser.SRC_SCREEN_SPELLJAMMER,
 	Parser.SRC_BGG,
-	Parser.SRC_TDCSR,
 	Parser.SRC_SatO,
 	Parser.SRC_MPP,
 	Parser.SRC_HF,

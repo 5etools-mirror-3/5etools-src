@@ -196,7 +196,7 @@ class SublistManager {
 	async _pBindSublistResizeHandlers () {
 		const STORAGE_KEY = "SUBLIST_RESIZE";
 
-		const eleHandle = ee`<div class="sublist__ele-resize mobile__hidden">...</div>`.appendTo(this._wrpContainer);
+		const eleHandle = ee`<div class="sublist__ele-resize mobile-sm__hidden">...</div>`.appendTo(this._wrpContainer);
 
 		let mousePos;
 		const resize = (evt) => {
@@ -2151,7 +2151,7 @@ class ListPage {
 			wrpContent: this._pgContent,
 			pFnGetFluff: this._pFnGetFluff,
 			entity: ent,
-			headerControls: this._renderStats_doBuildFluffTab_getHeaderControls({ent, isImageTab}),
+			wrpHeaderControls: this._renderStats_doBuildFluffTab_getHeaderControls({ent, isImageTab}),
 		});
 	}
 
@@ -2232,7 +2232,7 @@ class ListPage {
 			}
 
 			const isCopy = await MiscUtil.pCopyBlobToClipboard(blob);
-			if (isCopy) JqueryUtil.showCopiedEffect(eleCopyEffect, "Copied!");
+			if (isCopy) JqueryUtil.showCopiedEffect(eleCopyEffect);
 
 			return;
 		}
@@ -2249,7 +2249,7 @@ class ListPage {
 
 				const blob = await domtoimage.toBlob(cpy, optsDomToImage);
 				const isCopy = await MiscUtil.pCopyBlobToClipboard(blob);
-				if (isCopy) JqueryUtil.showCopiedEffect(btnCpy, "Copied!");
+				if (isCopy) JqueryUtil.showCopiedEffect(btnCpy);
 
 				if (isCopy && evt.shiftKey) hoverWindow.doClose();
 			});

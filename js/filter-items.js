@@ -200,7 +200,7 @@ class PageFilterEquipment extends PageFilterBase {
 		if (isExcluded) return;
 
 		this._sourceFilter.addItem(item._fSources);
-		this._typeFilter.addItem(item._typeListText);
+		this._typeFilter.addItem(item._textTypes);
 		this._propertyFilter.addItem(item._fProperties);
 		this._damageTypeFilter.addItem(item.dmgType);
 		this._damageDiceFilter.addItem(item._fDamageDice);
@@ -235,7 +235,7 @@ class PageFilterEquipment extends PageFilterBase {
 		return this._filterBox.toDisplay(
 			values,
 			it._fSources,
-			it._typeListText,
+			it._textTypes,
 			it._fProperties,
 			it._category,
 			it._fValue,
@@ -432,8 +432,8 @@ class PageFilterItems extends PageFilterEquipment {
 
 		this._mutateForFilters_classFeatures(item);
 
-		FilterCommon.mutateForFilters_damageVulnResImmune(item);
-		FilterCommon.mutateForFilters_conditionImmune(item);
+		FilterCommon.mutateForFilters_damageVulnResImmuneNonPlayer(item);
+		FilterCommon.mutateForFilters_conditionImmuneNonPlayer(item);
 	}
 
 	static _mutateForFilters_bonusWeapon ({prop, item, text}) {
@@ -534,7 +534,7 @@ class PageFilterItems extends PageFilterEquipment {
 		return this._filterBox.toDisplay(
 			values,
 			it._fSources,
-			it._typeListText,
+			it._textTypes,
 			it._fTier,
 			it.rarity,
 			it._fProperties,
@@ -622,7 +622,7 @@ class ModalFilterItems extends ModalFilterBase {
 
 		const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS](item);
 		const source = Parser.sourceJsonToAbv(item.source);
-		const type = item._typeListText.join(", ");
+		const type = item._textTypes.join(", ");
 
 		eleRow.innerHTML = `<div class="w-100 ve-flex-vh-center lst__row-border veapp__list-row no-select lst__wrp-cells">
 			<div class="ve-col-0-5 pl-0 ve-flex-vh-center">${this._isRadio ? `<input type="radio" name="radio" class="no-events">` : `<input type="checkbox" class="no-events">`}</div>

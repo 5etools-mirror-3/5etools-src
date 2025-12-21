@@ -152,14 +152,16 @@ class BlocklistUi {
 
 	_removeExclude (hash, category, source) {
 		const ix = this._excludes.findIndex(row => row.source === source && row.category === category && row.hash === hash);
-		if (~ix) {
-			this._excludes.splice(ix, 1);
-			this._pDoPersist().then(null);
-		}
+		if (!~ix) return;
+
+		if (this._excludes[ix].isAuto) return;
+
+		this._excludes.splice(ix, 1);
+		this._pDoPersist().then(null);
 	}
 
 	_resetExcludes () {
-		this._excludes = [];
+		this._excludes = this._excludes.filter(excludeMeta => excludeMeta.isAuto);
 		this._pDoPersist().then(null);
 	}
 
@@ -240,7 +242,7 @@ class BlocklistUi {
 	_renderList () {
 		this._excludes
 			.sort((a, b) => SortUtil.ascSort(a.source, b.source) || SortUtil.ascSort(a.category, b.category) || SortUtil.ascSort(a.displayName, b.displayName))
-			.forEach(({displayName, hash, category, source}) => this._addListItem(displayName, hash, category, source));
+			.forEach(excludeMeta => this._addListItem(excludeMeta));
 		this._list.init();
 		this._list.update();
 	}
@@ -396,8 +398,8 @@ class BlocklistUi {
 			});
 		// endregion
 
-		ee(this._wrpControls.empty())`<div class="${this._isCompactUi ? "mb-2" : "mb-5"} ve-flex-v-center mobile__ve-flex-col mobile__ve-flex-ai-start">
-			<div class="ve-flex-vh-center mr-4 mobile__mr-0 mobile__mb-2">
+		ee(this._wrpControls.empty())`<div class="${this._isCompactUi ? "mb-2" : "mb-5"} ve-flex-v-center mobile-sm__ve-flex-col mobile-sm__ve-flex-ai-start">
+			<div class="ve-flex-vh-center mr-4 mobile-sm__mr-0 mobile-sm__mb-2">
 				<div class="mr-2">UA/Etc. Sources</div>
 				<div class="ve-flex-v-center ve-btn-group">
 					${btnExcludeAllUa}
@@ -405,7 +407,7 @@ class BlocklistUi {
 				</div>
 			</div>
 
-			<div class="ve-flex-vh-center mr-3 mobile__mr-0 mobile__mb-2">
+			<div class="ve-flex-vh-center mr-3 mobile-sm__mr-0 mobile-sm__mb-2">
 				<div class="mr-2">Comedy Sources</div>
 				<div class="ve-flex-v-center ve-btn-group">
 					${btnExcludeAllComedySources}
@@ -413,7 +415,7 @@ class BlocklistUi {
 				</div>
 			</div>
 
-			<div class="ve-flex-vh-center mr-3 mobile__mr-0 mobile__mb-2">
+			<div class="ve-flex-vh-center mr-3 mobile-sm__mr-0 mobile-sm__mb-2">
 				<div class="mr-2">Non-<i>Forgotten Realms</i></div>
 				<div class="ve-flex-v-center ve-btn-group">
 					${btnExcludeAllNonForgottenRealmsSources}
@@ -421,7 +423,7 @@ class BlocklistUi {
 				</div>
 			</div>
 
-			<div class="ve-flex-vh-center mr-3 mobile__mr-0 mobile__mb-2">
+			<div class="ve-flex-vh-center mr-3 mobile-sm__mr-0 mobile-sm__mb-2">
 				<div class="mr-2">&apos;24 Sources</div>
 				<div class="ve-flex-v-center ve-btn-group">
 					${btnExcludeModernSources}
@@ -429,7 +431,7 @@ class BlocklistUi {
 				</div>
 			</div>
 
-			<div class="ve-flex-vh-center mr-3 mobile__mr-0 mobile__mb-2">
+			<div class="ve-flex-vh-center mr-3 mobile-sm__mr-0 mobile-sm__mb-2">
 				<div class="mr-2">All Sources</div>
 				<div class="ve-flex-v-center ve-btn-group">
 					${btnExcludeAllSources}
@@ -438,23 +440,23 @@ class BlocklistUi {
 			</div>
 		</div>
 
-		<div class="ve-flex-v-end ${this._isCompactUi ? "mb-2" : "mb-5"} mobile__ve-flex-col mobile__ve-flex-ai-start">
-			<div class="ve-flex-col w-25 pr-2 mobile__w-100 mobile__mb-2 mobile__p-0">
+		<div class="ve-flex-v-end ${this._isCompactUi ? "mb-2" : "mb-5"} mobile-sm__ve-flex-col mobile-sm__ve-flex-ai-start">
+			<div class="ve-flex-col w-25 pr-2 mobile-sm__w-100 mobile-sm__mb-2 mobile-sm__p-0">
 				<label class="mb-1">Source</label>
 				${selSource}
 			</div>
 
-			<div class="ve-flex-col w-25 px-2 mobile__w-100 mobile__mb-2 mobile__p-0">
+			<div class="ve-flex-col w-25 px-2 mobile-sm__w-100 mobile-sm__mb-2 mobile-sm__p-0">
 				<label class="mb-1">Category</label>
 				${selCategory}
 			</div>
 
-			<div class="ve-flex-col w-25 px-2 mobile__w-100 mobile__mb-2 mobile__p-0">
+			<div class="ve-flex-col w-25 px-2 mobile-sm__w-100 mobile-sm__mb-2 mobile-sm__p-0">
 				<label class="mb-1">Name</label>
 				${this._wrpSelName}
 			</div>
 
-			<div class="ve-flex-col w-25 pl-2 mobile__w-100 mobile__mb-2 mobile__p-0">
+			<div class="ve-flex-col w-25 pl-2 mobile-sm__w-100 mobile-sm__mb-2 mobile-sm__p-0">
 				<div class="mt-auto">
 					${btnAddExclusion}
 				</div>
@@ -588,16 +590,18 @@ class BlocklistUi {
 		}
 	}
 
-	_addListItem (displayName, hash, category, source) {
+	_addListItem ({displayName, hash, category, source, isAuto = false}) {
 		const display = this._getDisplayValues(category, source);
 
 		const id = this._listId++;
 		const sourceFull = Parser.sourceJsonToFull(source);
 
-		const btnRemove = ee`<button class="ve-btn ve-btn-xxs ve-btn-danger">Remove</button>`
-			.onn("click", () => {
-				this._remove(id, hash, category, source);
-			});
+		const btnRemove = isAuto
+			? ee`<button class="ve-btn ve-btn-xxs ve-btn-danger" disabled title="This blocklist entry is automatically managed, and cannot be manually removed.">Remove</button>`
+			: ee`<button class="ve-btn ve-btn-xxs ve-btn-danger">Remove</button>`
+				.onn("click", () => {
+					this._remove(id, hash, category, source);
+				});
 
 		const ele = ee`<div class="${this._addListItem_getItemStyles()}">
 			<span class="ve-col-4 ve-text-center">${sourceFull}</span>
@@ -639,14 +643,14 @@ class BlocklistUi {
 		) return;
 
 		if (this._addExclude(displayName, hash, category, this._comp.source)) {
-			this._addListItem(displayName, hash, category, this._comp.source);
+			this._addListItem({displayName, hash, category, source: this._comp.source, isAuto: false});
 
 			const subBlocklist = MiscUtil.get(this._subBlocklistEntries, category, hash);
 			if (subBlocklist) {
 				subBlocklist.forEach(it => {
 					const {displayName, hash, category, source} = it;
 					this._addExclude(displayName, hash, category, source);
-					this._addListItem(displayName, hash, category, source);
+					this._addListItem({displayName, hash, category, source, isAuto: false});
 				});
 			}
 
@@ -663,9 +667,8 @@ class BlocklistUi {
 			: this._allSources;
 		sources
 			.forEach(source => {
-				if (this._addExclude("*", "*", "*", source)) {
-					this._addListItem("*", "*", "*", source);
-				}
+				if (!this._addExclude("*", "*", "*", source)) return;
+				this._addListItem({displayName: "*", hash: "*", category: "*", source, isAuto: false});
 			});
 		this._list.update();
 	}
@@ -680,9 +683,8 @@ class BlocklistUi {
 		sources
 			.forEach(source => {
 				const item = this._list.items.find(it => it.data.hash === "*" && it.data.category === "*" && it.data.source === source);
-				if (item) {
-					this._remove(item.ix, "*", "*", source, {isSkipListUpdate: true});
-				}
+				if (!item) return;
+				this._remove(item.ix, "*", "*", source, {isSkipListUpdate: true});
 			});
 		this._list.update();
 	}
@@ -709,11 +711,11 @@ class BlocklistUi {
 	}
 
 	async _pDoSendToFoundry () {
-		await ExtensionUtil.pDoSend({type: "5etools.blocklist.excludes", data: this._excludes});
+		await ExtensionUtil.pDoSend({type: "5etools.blocklist.excludes", data: this._excludes.filter(excludeMeta => !excludeMeta.isAuto)});
 	}
 
 	_export () {
-		DataUtil.userDownload(`content-blocklist`, {fileType: "content-blocklist", blocklist: this._excludes});
+		DataUtil.userDownload(`content-blocklist`, {fileType: "content-blocklist", blocklist: this._excludes.filter(excludeMeta => !excludeMeta.isAuto)});
 	}
 
 	async _pImport_getUserUpload () {
@@ -734,10 +736,17 @@ class BlocklistUi {
 		const json = jsons[0];
 
 		// update storage
-		const nxtList = evt.shiftKey
-			// Supports old key "blacklist"
-			? MiscUtil.copy(this._excludes).concat(json.blocklist || json.blacklist || [])
-			: json.blocklist || json.blacklist || [];
+		// Supports old key "blacklist"
+		const importList = json.blocklist || json.blacklist || [];
+		const nxtList = [
+			...(
+				evt.shiftKey
+				// Supports old key "blacklist"
+					? MiscUtil.copy(this._excludes).concat(importList)
+					: importList
+			),
+			...this._excludes.filter(excludeMeta => excludeMeta.isAuto),
+		];
 		this._excludes = nxtList;
 		this._pDoPersist(nxtList).then(null);
 
@@ -748,7 +757,7 @@ class BlocklistUi {
 	_reset () {
 		this._resetExcludes();
 		this._list.removeAllItems();
-		this._list.update();
+		this._renderList();
 	}
 }
 

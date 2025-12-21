@@ -342,8 +342,8 @@ export class ManageBrewUi {
 			</div>`
 			: null;
 
-		const wrpBtns = ee`<div class="ve-flex-v-center no-shrink mobile__ve-flex-col">
-			<div class="ve-flex-v-center mobile__mb-2">
+		const wrpBtns = ee`<div class="ve-flex-v-center no-shrink mobile-sm__ve-flex-col">
+			<div class="ve-flex-v-center mobile-sm__mb-2">
 				<div class="ve-flex-v-center ve-btn-group mr-2">
 					${btnGet}
 					${btnCustomUrl}
@@ -600,8 +600,8 @@ export class ManageBrewUi {
 					clazz: `ve-btn ve-btn-xxs ve-btn-default ${!hasConverters ? "disabled" : ""}`,
 					title: hasConverters ? `Converted by: ${brewSource.convertedBy.join(", ").qq()}` : "(No conversion credit given)",
 					children: [
-						e_({tag: "span", clazz: "mobile__hidden", text: "View Converters"}),
-						e_({tag: "span", clazz: "mobile__visible", text: "Convs.", title: "View Converters"}),
+						e_({tag: "span", clazz: "mobile-sm__hidden", text: "View Converters"}),
+						e_({tag: "span", clazz: "mobile-sm__visible", text: "Convs.", title: "View Converters"}),
 					],
 					click: () => {
 						if (!hasConverters) return;
@@ -690,7 +690,7 @@ export class ManageBrewUi {
 
 		const btnDownload = e_({
 			tag: "button",
-			clazz: `ve-btn ve-btn-default ve-btn-xs mobile__hidden w-24p`,
+			clazz: `ve-btn ve-btn-default ve-btn-xs mobile-sm__hidden w-24p`,
 			title: this._LBL_LIST_EXPORT,
 			children: [
 				e_({
@@ -730,7 +730,7 @@ export class ManageBrewUi {
 
 		const btnDelete = this._isBrewOperationPermitted_delete(brew) ? e_({
 			tag: "button",
-			clazz: `ve-btn ve-btn-danger ve-btn-xs mobile__hidden w-24p`,
+			clazz: `ve-btn ve-btn-danger ve-btn-xs mobile-sm__hidden w-24p`,
 			title: this._LBL_LIST_DELETE,
 			children: [
 				e_({
@@ -768,7 +768,7 @@ export class ManageBrewUi {
 				}),
 				e_({
 					tag: "div",
-					clazz: `ve-col-1 ve-text-center italic mobile__text-clip-ellipsis`,
+					clazz: `ve-col-1 ve-text-center italic mobile-sm__text-clip-ellipsis`,
 					title: ptCategory.title,
 					text: ptCategory.short,
 				}),
@@ -819,7 +819,7 @@ export class ManageBrewUi {
 	static _pRender_getBtnPlaceholder () {
 		return e_({
 			tag: "button",
-			clazz: `ve-btn ve-btn-default ve-btn-xs mobile__hidden w-24p`,
+			clazz: `ve-btn ve-btn-default ve-btn-xs mobile-sm__hidden w-24p`,
 			html: "&nbsp;",
 		})
 			.attr("disabled", true);
@@ -830,7 +830,7 @@ export class ManageBrewUi {
 
 		const btnPull = e_({
 			tag: "button",
-			clazz: `ve-btn ve-btn-default ve-btn-xs mobile__hidden w-24p`,
+			clazz: `ve-btn ve-btn-default ve-btn-xs mobile-sm__hidden w-24p`,
 			title: this._LBL_LIST_UPDATE,
 			children: [
 				e_({
@@ -849,7 +849,7 @@ export class ManageBrewUi {
 
 		return e_({
 			tag: "button",
-			clazz: `ve-btn ve-btn-default ve-btn-xs mobile__hidden w-24p`,
+			clazz: `ve-btn ve-btn-default ve-btn-xs mobile-sm__hidden w-24p`,
 			title: `${this._LBL_LIST_MANAGE_CONTENTS}: ${this.constructor._getBrewJsonTitle({brew, brewName})}`,
 			children: [
 				e_({

@@ -409,7 +409,7 @@ export class EncounterBuilderUi extends BaseComponent {
 	}
 
 	static _getDifficultyHtml ({partyMeta, difficulty}) {
-		return `<span class="help-subtle" title="${this._TITLE_DIFFICULTIES[difficulty]}">${difficulty.toTitleCase()}:</span> ${partyMeta[difficulty].toLocaleString()} XP`;
+		return `<span class="help-subtle" title="${this._TITLE_DIFFICULTIES[difficulty]}">${difficulty.toTitleCase()}:</span> ${partyMeta[difficulty].toLocaleStringVe()} XP`;
 	}
 
 	_renderGroupAndDifficulty_getGroupInfoRhs () {
@@ -451,10 +451,10 @@ export class EncounterBuilderUi extends BaseComponent {
 				.html(`<span class="help" title="${this.constructor._TITLE_TTK}">TTK:</span> ${EncounterBuilderUiTtk.getApproxTurnsToKill({partyMeta, creatureMetas: this._comp.creatureMetas}).toFixed(2)}`);
 
 			dispBudgetDaily
-				.html(`<span class="help-subtle" title="${this.constructor._TITLE_BUDGET_DAILY}">Daily Budget:</span> ${partyMeta.dailyBudget.toLocaleString()} XP`);
+				.html(`<span class="help-subtle" title="${this.constructor._TITLE_BUDGET_DAILY}">Daily Budget:</span> ${partyMeta.dailyBudget.toLocaleStringVe()} XP`);
 
 			dispExpToLevel
-				.html(`<span class="help-subtle" title="${this.constructor._TITLE_XP_TO_NEXT_LEVEL}">XP to Next Level:</span> ${partyMeta.xpToNextLevel.toLocaleString()} XP`);
+				.html(`<span class="help-subtle" title="${this.constructor._TITLE_XP_TO_NEXT_LEVEL}">XP to Next Level:</span> ${partyMeta.xpToNextLevel.toLocaleStringVe()} XP`);
 		})();
 
 		return ee`<div class="w-30 ve-text-right">
@@ -505,8 +505,8 @@ export class EncounterBuilderUi extends BaseComponent {
 				encounterXpInfo = EncounterBuilderXpInfo.getDefault(),
 			} = this._state.derivedGroupAndDifficulty;
 
-			dispXpRawTotal.txt(`Total XP: ${encounterXpInfo.baseXp.toLocaleString()}`);
-			dispXpRawPerPlayer.txt(`(${Math.floor(encounterXpInfo.baseXp / partyMeta.cntPlayers).toLocaleString()} per player)`);
+			dispXpRawTotal.txt(`Total XP: ${encounterXpInfo.baseXp.toLocaleStringVe()}`);
+			dispXpRawPerPlayer.txt(`(${Math.floor(encounterXpInfo.baseXp / partyMeta.cntPlayers).toLocaleStringVe()} per player)`);
 
 			const infoEntry = EncounterBuilderUiHelp.getHelpEntry({partyMeta, encounterXpInfo});
 
@@ -525,8 +525,8 @@ export class EncounterBuilderUi extends BaseComponent {
 				Renderer.hover.updatePredefinedHover(rdState.infoHoverId, infoEntry);
 			}
 
-			dispXpAdjustedTotal.html(`Adjusted XP <span class="ve-small ve-muted ml-2" title="XP Multiplier">(×${encounterXpInfo.playerAdjustedXpMult})</span>: <b class="ml-2">${encounterXpInfo.adjustedXp.toLocaleString()}</b>`);
-			dispXpAdjustedPerPlayer.txt(`(${Math.floor(encounterXpInfo.adjustedXp / partyMeta.cntPlayers).toLocaleString()} per player)`);
+			dispXpAdjustedTotal.html(`Adjusted XP <span class="ve-small ve-muted ml-2" title="XP Multiplier">(×${encounterXpInfo.playerAdjustedXpMult})</span>: <b class="ml-2">${encounterXpInfo.adjustedXp.toLocaleStringVe()}</b>`);
+			dispXpAdjustedPerPlayer.txt(`(${Math.floor(encounterXpInfo.adjustedXp / partyMeta.cntPlayers).toLocaleStringVe()} per player)`);
 		})();
 
 		return ee`<div class="w-50 ve-text-right">

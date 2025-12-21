@@ -35,11 +35,21 @@ describe("Title-case strings", () => {
 		expect("the place between".toTitleCase()).toBe("The Place Between");
 	});
 
+	it("Should handle quotes", () => {
+		expect(`The "Fun" Awaits`.toTitleCase()).toBe(`The "Fun" Awaits`);
+		expect(`The 'Fun' Awaits`.toTitleCase()).toBe(`The 'Fun' Awaits`);
+	});
+
 	it("Should handle modern book rules", () => {
 		// XMM
 		expect("bull-like guardians with petrifying breath".toTitleCase()).toBe("Bull-like Guardians with Petrifying Breath");
 		expect("tyrants among corpses".toTitleCase()).toBe("Tyrants among Corpses");
 		expect("beholder beyond death".toTitleCase()).toBe("Beholder beyond Death");
 		expect("vengeance from beyond the grave".toTitleCase()).toBe("Vengeance from beyond the Grave");
+	});
+
+	it("Should handle @tags and =values", () => {
+		expect("cast the {@spell fireball|PHB|fire ball} spell".toTitleCase()).toBe("Cast the {@spell Fireball|Phb|Fire Ball} Spell");
+		expect("You have a {=bonusAc} bonus to AC while wearing this armor".toTitleCase()).toBe("You Have a {=bonusAc} Bonus to AC While Wearing This Armor");
 	});
 });

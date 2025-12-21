@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.20.0"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.21.0"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -269,13 +269,12 @@ globalThis.StrUtil = class {
 	// Certain minor words should be left lowercase unless they are the first or last words in the string
 	static TITLE_LOWER_WORDS = ["a", "an", "the", "and", "but", "or", "for", "nor", "as", "at", "by", "for", "from", "in", "into", "near", "of", "on", "onto", "to", "with", "over", "von", "between", "per", "beyond", "among"];
 	// Certain words such as initialisms or acronyms should be left uppercase
-	static TITLE_UPPER_WORDS = ["Id", "Tv", "Dm", "Ok", "Npc", "Pc", "Tpk", "Wip", "Dc", "D&d"];
+	static TITLE_UPPER_WORDS = ["Id", "Tv", "Dm", "Ok", "Npc", "Pc", "Tpk", "Wip", "Dc", "D&d", "Ac", "Hp"];
 	static TITLE_UPPER_WORDS_PLURAL = ["Ids", "Tvs", "Dms", "Oks", "Npcs", "Pcs", "Tpks", "Wips", "Dcs"]; // (Manually pluralize, to avoid infinite loop)
 
-	static _TITLE_RE_INITIAL = /(\w+[^-\u2014\s/]*) */g;
-	static _TITLE_RE_SPLIT_PUNCT = /([;:?!.])/g;
+	static _TITLE_RE_INITIAL = /(?<!{[@=])(\b\w+[^-\u2014\s/|]*) */g;
 	static _TITLE_RE_COMPOUND_LOWER = /([a-z]-(?:Like|Kreen|Toa))/g;
-	static _TITLE_RE_POST_PUNCT = /^(\s*)(\S)/;
+	static _TITLE_RE_POST_PUNCT = /([;:?!.])(\s*)(\S)/g;
 
 	static _TITLE_LOWER_WORDS_RE = null;
 	static _TITLE_UPPER_WORDS_RE = null;
@@ -293,13 +292,11 @@ globalThis.StrUtil = class {
 
 		return str
 			.replace(this._TITLE_RE_INITIAL, m0 => m0.charAt(0).toUpperCase() + m0.substring(1).toLowerCase())
-			.replace(this._TITLE_LOWER_WORDS_RE, (...m) => m[0].toLowerCase())
-			.replace(this._TITLE_UPPER_WORDS_RE, (...m) => m[0].toUpperCase())
-			.replace(this._TITLE_UPPER_WORDS_PLURAL_RE, (...m) => `${m[0].slice(0, -1).toUpperCase()}${m[0].slice(-1).toLowerCase()}`)
-			.replace(this._TITLE_RE_COMPOUND_LOWER, (...m) => m[0].toLowerCase())
-			.split(this._TITLE_RE_SPLIT_PUNCT)
-			.map(pt => pt.replace(this._TITLE_RE_POST_PUNCT, (...m) => `${m[1]}${m[2].toUpperCase()}`))
-			.join("");
+			.replace(this._TITLE_LOWER_WORDS_RE, m0 => m0.toLowerCase())
+			.replace(this._TITLE_UPPER_WORDS_RE, m0 => m0.toUpperCase())
+			.replace(this._TITLE_UPPER_WORDS_PLURAL_RE, m0 => `${m0.slice(0, -1).toUpperCase()}${m0.slice(-1).toLowerCase()}`)
+			.replace(this._TITLE_RE_COMPOUND_LOWER, m0 => m0.toLowerCase())
+			.replace(this._TITLE_RE_POST_PUNCT, (_, m1, m2, m3) => `${m1}${m2}${m3.toUpperCase()}`);
 	}
 
 	/* -------------------------------------------- */
@@ -428,7 +425,13 @@ globalThis.StrUtil = class {
 	}
 };
 
+Number.prototype.toLocaleStringVe = Number.prototype.toLocaleStringVe || function () {
+	return NumberUtil._NUMBER_FORMATTER.format(this);
+};
+
 globalThis.NumberUtil = class {
+	static _NUMBER_FORMATTER = new Intl.NumberFormat(undefined, {maximumFractionDigits: 5});
+
 	static toFixedNumber (num, toFixed) {
 		if (num == null || isNaN(num)) return num;
 
@@ -950,9 +953,9 @@ class TemplateUtil {
 
 globalThis.TemplateUtil = TemplateUtil;
 
-globalThis.JqueryUtil = {
-	_isEnhancementsInit: false,
-	initEnhancements () {
+globalThis.JqueryUtil = class {
+	static _isEnhancementsInit = false;
+	static initEnhancements () {
 		if (JqueryUtil._isEnhancementsInit) return;
 		JqueryUtil._isEnhancementsInit = true;
 
@@ -988,66 +991,47 @@ globalThis.JqueryUtil = {
 				else return this.toggleClass("ve-hidden", !val);
 			},
 		});
+	}
 
-		$.event.special.destroyed = {
-			remove: function (o) {
-				if (o.handler) o.handler();
-			},
-		};
-	},
+	static showCopiedEffect ($_ele, {text = "Copied!", isBubble = false} = {}) {
+		const ele = $_ele instanceof $ ? $_ele[0] : $_ele;
 
-	showCopiedEffect ($_ele, text = "Copied!", bubble) {
-		const $ele = $_ele instanceof $ ? $_ele : $($_ele);
+		const {top, left, width} = ele.getBoundingClientRect();
 
-		const top = $(window).scrollTop();
-		const pos = $ele.offset();
-
-		const animationOptions = {
-			top: "-=8",
-			opacity: 0,
-		};
-		if (bubble) {
-			animationOptions.left = `${Math.random() > 0.5 ? "-" : "+"}=${~~(Math.random() * 17)}`;
-		}
 		const seed = Math.random();
-		const duration = bubble ? 250 + seed * 200 : 250;
-		const offsetY = bubble ? 16 : 0;
+		const duration = isBubble ? 250 + seed * 200 : 250;
 
-		const $dispCopied = $(`<div class="clp__disp-copied ve-flex-vh-center py-2 px-4"></div>`);
-		$dispCopied
+		const dispCopied = ee`<div class="clp__disp-copied ve-flex-vh-center"></div>`;
+		dispCopied
 			.html(text)
 			.css({
-				top: (pos.top - 24) + offsetY - top,
-				left: pos.left + ($ele.width() / 2),
+				top: `${(top - 14)}px`,
+				left: `${left + (width / 2)}px`,
+				animationDuration: `${duration}ms`,
 			})
-			.appendTo(document.body)
-			.animate(
-				animationOptions,
-				{
-					duration,
-					complete: () => $dispCopied.remove(),
-					progress: (_, progress) => { // progress is 0..1
-						if (bubble) {
-							const diffProgress = 0.5 - progress;
-							animationOptions.top = `${diffProgress > 0 ? "-" : "+"}=40`;
-							$dispCopied.css("transform", `rotate(${seed > 0.5 ? "-" : ""}${seed * 500 * progress}deg)`);
-						}
-					},
-				},
-			);
-	},
+			.appendTo(document.body);
+		if (isBubble) {
+			dispCopied
+				.addClass(`clp__disp-copied--bubble`)
+				.addClass(`clp__disp-copied--bubble-variant-${RollerUtil.randomise(5)}`);
+		} else {
+			dispCopied.addClass(`clp__disp-copied--basic`);
+		}
 
-	_dropdownInit: false,
-	bindDropdownButton (ele) {
+		setTimeout(() => dispCopied.remove(), duration);
+	}
+
+	static _dropdownInit = false;
+	static bindDropdownButton (ele) {
 		if (!JqueryUtil._dropdownInit) {
 			JqueryUtil._dropdownInit = true;
-			document.addEventListener("click", () => [...document.querySelectorAll(`.open`)].filter(ele => !(ele.className || "").split(" ").includes(`dropdown--navbar`)).forEach(ele => ele.classList.remove("open")));
+			document.addEventListener("click", () => [...document.querySelectorAll(`.open`)].filter(ele => !ele.classList.contains(`dropdown--navbar`)).forEach(ele => ele.classList.remove("open")));
 		}
 		ele.onn("click", () => setTimeout(() => ele.parente().addClass("open"), 1)); // defer to allow the above to complete
-	},
+	}
 
-	_WRP_TOAST: null,
-	_ACTIVE_TOAST: [],
+	static _WRP_TOAST = null;
+	static _ACTIVE_TOAST = [];
 	/**
 	 * @param {{content: jQuery|string, type?: string, autoHideTime?: boolean} | string} options The options for the toast.
 	 * @param {(jQuery|string)} options.content Toast contents. Supports jQuery objects.
@@ -1056,7 +1040,7 @@ globalThis.JqueryUtil = {
 	 * Defaults to 5000 ms.
 	 * @param {boolean} options.isAutoHide
 	 */
-	doToast (options) {
+	static doToast (options) {
 		if (typeof window === "undefined") return;
 
 		if (JqueryUtil._WRP_TOAST == null) {
@@ -1147,19 +1131,19 @@ globalThis.JqueryUtil = {
 						});
 				}
 			});
-	},
+	}
 
-	_doToastCleanup (toastMeta) {
+	static _doToastCleanup (toastMeta) {
 		toastMeta.eleToast.removeClass("toast--animate");
 		JqueryUtil._ACTIVE_TOAST.splice(JqueryUtil._ACTIVE_TOAST.indexOf(toastMeta), 1);
 		setTimeout(() => toastMeta.eleToast.parentElement && toastMeta.eleToast.remove(), 85);
-	},
+	}
 
-	isMobile () {
+	static isMobile () {
 		if (navigator?.userAgentData?.mobile) return true;
 		// Equivalent to `$width-screen-sm`
 		return window.matchMedia("(max-width: 768px)").matches;
-	},
+	}
 };
 
 if (typeof window !== "undefined") window.addEventListener("load", JqueryUtil.initEnhancements);
@@ -1231,8 +1215,6 @@ class ElementUtil {
 	 * @property {function(): HTMLElementExtended} parente
 	 *
 	 * @property {function(): number} outerWidthe
-	 * @property {function(): number} outerWidthe
-	 * @property {function(): number} outerHeighte
 	 * @property {function(): number} outerHeighte
 	 *
 	 * @property {function(): HTMLElementExtended} focuse
@@ -1648,7 +1630,7 @@ class ElementUtil {
 
 	/** @this {HTMLElementExtended} */
 	static _onX (evtName, fn, opts) {
-		((this._listeners ||= {})[evtName] ||= []).push({fn, opts});
+		((this._veListeners ||= {})[evtName] ||= []).push({fn, opts});
 
 		if (opts) this.addEventListener(evtName, fn, opts);
 		else this.addEventListener(evtName, fn);
@@ -1658,7 +1640,7 @@ class ElementUtil {
 	/** @this {HTMLElementExtended} */
 	static _offX (evtName, fn, opts) {
 		if (!fn) {
-			(this._listeners?.[evtName] || [])
+			(this._veListeners?.[evtName] || [])
 				.forEach(({fn, opts}) => {
 					this.removeEventListener(evtName, fn);
 					if (opts) this.removeEventListener(evtName, fn, opts);
@@ -1667,7 +1649,7 @@ class ElementUtil {
 			return this;
 		}
 
-		if (this._listeners?.[evtName]) this._listeners[evtName] = this._listeners[evtName].filter(({fn: fn_, opts: opts_}) => fn_ === fn && MiscUtil.isNearStrictlyEqual(opts_?.capture, opts?.capture));
+		if (this._veListeners?.[evtName]) this._veListeners[evtName] = this._veListeners[evtName].filter(({fn: fn_, opts: opts_}) => fn_ === fn && MiscUtil.isNearStrictlyEqual(opts_?.capture, opts?.capture));
 		this.removeEventListener(evtName, fn);
 		return this;
 	}
@@ -1783,6 +1765,7 @@ class ElementUtil {
 
 	/** @this {HTMLElementExtended} */
 	static _scrollTope (val) {
+		if (val === undefined) return this.scrollTop;
 		this.scrollTop = val;
 		return this;
 	}
@@ -7725,7 +7708,7 @@ globalThis.RollerUtil = {
 };
 RollerUtil.DICE_REGEX = new RegExp(RollerUtil._DICE_REGEX_STR, "g");
 RollerUtil.DICE_REGEX_FULLMATCH = new RegExp(`^\\s*${RollerUtil._DICE_REGEX_STR}\\s*$`);
-RollerUtil.REGEX_DAMAGE_DICE = /(?<average>\d+)(?<prefix> \((?:{@dice |{@damage ))(?<diceExp>[-+0-9d ]*)(?<suffix>}\)(?:\s*\+\s*the spell's level)? [a-z]+( \([-a-zA-Z0-9 ]+\))?( or [a-z]+( \([-a-zA-Z0-9 ]+\))?)? damage)/gi;
+RollerUtil.REGEX_DAMAGE_DICE = /(?<average>\d+)(?<prefix> \((?:{@dice |{@damage ))(?<diceExp>[-+0-9d ]*)(?<suffix>}\)(?:\s*\+\s*the spell's level)?(?: magic(?:al)?)? [a-z]+( \([-a-zA-Z0-9 ]+\))?( or [a-z]+( \([-a-zA-Z0-9 ]+\))?)? damage)/gi;
 RollerUtil.REGEX_DAMAGE_FLAT = /(?<prefix>Hit(?: or Miss)?: |Miss: |{@hom}|{@h}|{@m})(?<flatVal>[0-9]+)(?<suffix> [a-z]+( \([-a-zA-Z0-9 ]+\))?( or [a-z]+( \([-a-zA-Z0-9 ]+\))?)? damage)/gi;
 RollerUtil._REGEX_ROLLABLE_COL_LABEL = /^(.*?\d)(\s*[-+/*^×÷]\s*)([a-zA-Z0-9 ]+)$/;
 RollerUtil._REGEX_ROLLABLE_COL_TRAILING_VARIABLE = /^(.*?\d)(\s*[-+/*^×÷]\s*)(#\$.*?\$#)$/;
@@ -8487,6 +8470,17 @@ Array.prototype.getNext || Object.defineProperty(Array.prototype, "getNext", {
 		let ix = this.indexOf(curVal);
 		if (!~ix) throw new Error("Value was not in array!");
 		if (++ix >= this.length) ix = 0;
+		return this[ix];
+	},
+});
+
+Array.prototype.getPrevious || Object.defineProperty(Array.prototype, "getPrevious", {
+	enumerable: false,
+	writable: true,
+	value: function (curVal) {
+		let ix = this.indexOf(curVal);
+		if (!~ix) throw new Error("Value was not in array!");
+		if (--ix < 0) ix = this.length - 1;
 		return this[ix];
 	},
 });

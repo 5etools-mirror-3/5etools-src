@@ -57,7 +57,7 @@ export class EncounterBuilderUiBestiary extends EncounterBuilderUi {
 				xpTotal += Parser.crToXpNumber(it.values.cr) * it.data.count;
 				return `${it.data.count}× ${it.name}`;
 			});
-		const ptXp = `${xpTotal.toLocaleString()} XP`;
+		const ptXp = `${xpTotal.toLocaleStringVe()} XP`;
 
 		if (evt.shiftKey) {
 			MiscUtil.pCopyTextToClipboard([...ptsCreature, ptXp].join("\n")).then(null);
@@ -146,7 +146,7 @@ export class EncounterBuilderUiBestiary extends EncounterBuilderUi {
 		const encounterXpInfo = EncounterBuilderCreatureMeta.getEncounterXpInfo(this._comp.creatureMetas, this._getPartyMeta());
 
 		const monCount = this._sublistManager.sublistItems.map(it => it.data.count).sum();
-		dispCrTotal.html(`${monCount} creature${monCount === 1 ? "" : "s"}; ${encounterXpInfo.baseXp.toLocaleString()} XP (<span class="help" title="Adjusted Encounter XP">Enc</span>: ${(encounterXpInfo.adjustedXp).toLocaleString()} XP)`);
+		dispCrTotal.html(`${monCount} creature${monCount === 1 ? "" : "s"}; ${encounterXpInfo.baseXp.toLocaleStringVe()} XP (<span class="help" title="Adjusted Encounter XP">Enc</span>: ${(encounterXpInfo.adjustedXp).toLocaleStringVe()} XP)`);
 	}
 
 	/* -------------------------------------------- */

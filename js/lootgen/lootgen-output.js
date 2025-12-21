@@ -209,7 +209,7 @@ export class LootGenOutput {
 			this._artObjects?.length ? this._artObjects.map(it => it.type * it.count * 100).sum() : 0,
 		].sum();
 
-		return ee`<li class="italic ve-muted">A total of ${(totalValue / 100).toLocaleString()} ${LootGenUtils.getCoinageLabel("gp")} worth of coins, art objects, and/or gems, as follows:</li>`;
+		return ee`<li class="italic ve-muted">A total of ${(totalValue / 100).toLocaleStringVe()} ${LootGenUtils.getCoinageLabel("gp")} worth of coins, art objects, and/or gems, as follows:</li>`;
 	}
 
 	_render_getPtCoins () {
@@ -219,10 +219,10 @@ export class LootGenOutput {
 		const breakdown = [...Parser.COIN_ABVS]
 			.reverse()
 			.filter(it => this._coins[it])
-			.map(it => `${this._coins[it].toLocaleString()} ${LootGenUtils.getCoinageLabel(it)}`);
+			.map(it => `${this._coins[it].toLocaleStringVe()} ${LootGenUtils.getCoinageLabel(it)}`);
 
 		return ee`
-			<li>${(total / 100).toLocaleString()} ${LootGenUtils.getCoinageLabel("gp")} in coinage:</li>
+			<li>${(total / 100).toLocaleStringVe()} ${LootGenUtils.getCoinageLabel("gp")} in coinage:</li>
 			<ul>
 				${breakdown.map(it => `<li>${it}</li>`).join("")}
 			</ul>
@@ -245,7 +245,7 @@ export class LootGenOutput {
 
 		return loot.map(lt => {
 			return ee`
-			<li>${(lt.type).toLocaleString()} ${LootGenUtils.getCoinageLabel("gp")} ${name} (×${lt.count}; worth ${((lt.type * lt.count)).toLocaleString()} ${LootGenUtils.getCoinageLabel("gp")} total):</li>
+			<li>${(lt.type).toLocaleStringVe()} ${LootGenUtils.getCoinageLabel("gp")} ${name} (×${lt.count}; worth ${((lt.type * lt.count)).toLocaleStringVe()} ${LootGenUtils.getCoinageLabel("gp")} total):</li>
 			<ul>
 				${Object.entries(lt.breakdown).map(([result, count]) => `<li>${LootGenRender.er(result)}${count > 1 ? `, ×${count}` : ""}</li>`).join("")}
 			</ul>

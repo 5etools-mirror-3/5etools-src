@@ -137,13 +137,13 @@ export class FilterBase extends BaseComponent {
 	_getBtnMobToggleControls (wrpControls) {
 		const btnMobToggleControls = e_({
 			tag: "button",
-			clazz: `ve-btn ve-btn-xs ve-btn-default mobile__visible ml-auto px-3 mr-2`,
+			clazz: `ve-btn ve-btn-xs ve-btn-default mobile-sm__visible ml-auto px-3 mr-2`,
 			html: `<span class="glyphicon glyphicon-option-vertical"></span>`,
 			click: () => this._uiMeta.isMobileHeaderHidden = !this._uiMeta.isMobileHeaderHidden,
 		});
 		const hkMobHeaderHidden = () => {
 			btnMobToggleControls.toggleClass("active", !this._uiMeta.isMobileHeaderHidden);
-			wrpControls.toggleClass("mobile__hidden", !!this._uiMeta.isMobileHeaderHidden);
+			wrpControls.toggleClass("mobile-sm__hidden", !!this._uiMeta.isMobileHeaderHidden);
 		};
 		this._addHook("uiMeta", "isMobileHeaderHidden", hkMobHeaderHidden);
 		hkMobHeaderHidden();

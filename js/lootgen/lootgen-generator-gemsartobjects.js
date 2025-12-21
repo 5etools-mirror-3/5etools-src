@@ -108,7 +108,7 @@ export class LootGenGeneratorGemsArtObjects extends LootGenGeneratorBase {
 
 		const lootOutput = new this._ClsLootGenOutput({
 			type: `Gems/Art Objects`,
-			name: `Gems/Art Objects: Roughly ${this._state.gao_targetGoldAmount.toLocaleString()} ${LootGenUtils.getCoinageLabel("gp")}`,
+			name: `Gems/Art Objects: Roughly ${this._state.gao_targetGoldAmount.toLocaleStringVe()} ${LootGenUtils.getCoinageLabel("gp")}`,
 			gems,
 			artObjects,
 		});

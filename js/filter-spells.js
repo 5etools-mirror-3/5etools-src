@@ -58,7 +58,7 @@ class MultiFilterClasses extends MultiFilter {
 
 		e_({
 			tag: "div",
-			clazz: `ve-btn-group w-100 ve-flex-v-center mobile__m-1 mobile__mb-2`,
+			clazz: `ve-btn-group w-100 ve-flex-v-center mobile-sm__m-1 mobile-sm__mb-2`,
 			children: [
 				btnToggleVariantSplit,
 			],
