@@ -2390,6 +2390,18 @@ const PROPORDER_CONVERTER_SAMPLE = [
 	"text",
 ];
 
+const PROPORDER_ENCOUNTER_SHAPE = [
+	"name",
+	"alias",
+
+	"source",
+	"page",
+	"otherSources",
+	"reprintedAs",
+
+	"shapeTemplate",
+];
+
 export const PROPORDER_PROP_TO_LIST = {
 	"_meta": PROPORDER_META,
 	"_test": PROPORDER_TEST,
@@ -2492,6 +2504,7 @@ export const PROPORDER_PROP_TO_LIST = {
 	"facility": PROPORDER_FACILITY,
 	"facilityFluff": PROPORDER_GENERIC_FLUFF,
 	"converterSample": PROPORDER_CONVERTER_SAMPLE,
+	"encounterShape": PROPORDER_ENCOUNTER_SHAPE,
 };
 
 export const PROPORDER_ROOT = [
@@ -2646,6 +2659,7 @@ export const PROPORDER_ROOT = [
 	// region Tooling
 	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "makebrewCreatureTrait"),
 	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "makebrewCreatureAction"),
+	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "encounterShape"),
 	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "converterSample"),
 	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "monsterfeatures"),
 	// endregion

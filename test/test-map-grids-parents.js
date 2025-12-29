@@ -35,7 +35,7 @@ const logGroup = ({name, lines}) => {
 };
 
 async function main () {
-	console.log(`##### Validating adventure/book map grids #####`);
+	console.log(`##### Validating map grids #####`);
 
 	const warningsNoParent = [];
 	const warningsNoGrid = [];
@@ -44,11 +44,14 @@ async function main () {
 	const IMAGE_TYPES_MAP = new Set(["map", "mapPlayer"]);
 
 	[
-		{filename: "adventures.json", prop: "adventure", dir: "adventure"},
-		{filename: "books.json", prop: "book", dir: "book"},
+		...[
+			{filename: "adventures.json", prop: "adventure", dir: "adventure"},
+			{filename: "books.json", prop: "book", dir: "book"},
+		]
+			.flatMap(({filename, prop, dir}) => ut.readJson(`./data/${filename}`)[prop]
+				.map(({id}) => ({filename: `./data/${dir}/${dir}-${id.toLowerCase()}.json`}))),
+		{filename: "./data/fluff-vehicles.json"},
 	]
-		.flatMap(({filename, prop, dir}) => ut.readJson(`./data/${filename}`)[prop]
-			.map(({id}) => ({filename: `./data/${dir}/${dir}-${id.toLowerCase()}.json`})))
 		.forEach(({filename}) => {
 			const json = ut.readJson(filename);
 

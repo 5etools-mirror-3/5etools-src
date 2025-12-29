@@ -7,12 +7,13 @@ export class EncounterBuilderComponentBestiary extends EncounterBuilderComponent
 			items: this._state.creatureMetas
 				.map(creatureMeta => ({
 					h: creatureMeta.getHash(),
-					c: creatureMeta.count,
-					customHashId: creatureMeta.customHashId || undefined,
-					l: creatureMeta.isLocked,
+					c: creatureMeta.getCount(),
+					customHashId: creatureMeta.getCustomHashId(),
+					cId: creatureMeta.id,
+					l: creatureMeta.getIsLocked(),
 				})),
 			sources: this._state.creatureMetas
-				.map(creatureMeta => creatureMeta.creature.source)
+				.map(creatureMeta => creatureMeta.getCreature().source)
 				.unique(),
 			// endregion
 

@@ -35,7 +35,7 @@ export class LegendaryGroupBuilder extends BuilderBase {
 
 		delete legGroup.uniqueId;
 
-		const meta = {...(opts.meta || {}), ...this._getInitialMetaState()};
+		const meta = {...(opts.meta || {}), ...this._getInitialMetaState({nameOriginal: legGroup.name})};
 
 		this.setStateFromLoaded({s: legGroup, m: meta});
 

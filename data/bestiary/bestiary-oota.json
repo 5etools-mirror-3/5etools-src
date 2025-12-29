@@ -128,7 +128,7 @@
 				"source": "MM",
 				"_templates": [
 					{
-						"name": "Drow",
+						"name": "Drow (Levitate)",
 						"source": "PHB"
 					}
 				],
@@ -1158,7 +1158,7 @@
 				"source": "MM",
 				"_templates": [
 					{
-						"name": "Drow",
+						"name": "Drow (Levitate)",
 						"source": "PHB"
 					}
 				]
@@ -1182,7 +1182,7 @@
 				"source": "MM",
 				"_templates": [
 					{
-						"name": "Drow",
+						"name": "Drow (Levitate)",
 						"source": "PHB"
 					}
 				]
@@ -1205,7 +1205,7 @@
 				"source": "MM",
 				"_templates": [
 					{
-						"name": "Drow",
+						"name": "Drow (Levitate)",
 						"source": "PHB"
 					}
 				]
@@ -1228,7 +1228,7 @@
 				"source": "MM",
 				"_templates": [
 					{
-						"name": "Drow",
+						"name": "Drow (Levitate)",
 						"source": "PHB"
 					}
 				]
@@ -1251,7 +1251,7 @@
 				"source": "MM",
 				"_templates": [
 					{
-						"name": "Drow",
+						"name": "Drow (Levitate)",
 						"source": "PHB"
 					}
 				]
@@ -1274,7 +1274,7 @@
 				"source": "MM",
 				"_templates": [
 					{
-						"name": "Drow",
+						"name": "Drow (Levitate)",
 						"source": "PHB"
 					}
 				]
@@ -1297,7 +1297,7 @@
 				"source": "MM",
 				"_templates": [
 					{
-						"name": "Drow",
+						"name": "Drow (Levitate)",
 						"source": "PHB"
 					}
 				]
@@ -1387,7 +1387,7 @@
 				"source": "MM",
 				"_templates": [
 					{
-						"name": "Drow",
+						"name": "Drow (Levitate)",
 						"source": "PHB"
 					}
 				]
@@ -3125,7 +3125,7 @@
 				"source": "MM",
 				"_templates": [
 					{
-						"name": "Drow",
+						"name": "Drow (Levitate)",
 						"source": "PHB"
 					}
 				],
@@ -3388,39 +3388,33 @@
 									"style": "list-hang-notitle",
 									"items": [
 										{
-											"type": "item",
+											"type": "itemSub",
 											"name": "1. Charm Ray",
-											"style": "italic",
 											"entry": "The targeted creature must succeed on a {@dc 16} Wisdom saving throw or be {@condition charmed} by the beholder for 1 hour, or until the beholder harms the creature."
 										},
 										{
-											"type": "item",
+											"type": "itemSub",
 											"name": "2. Paralyzing Ray",
-											"style": "italic",
 											"entry": "The targeted creature must succeed on a {@dc 16} Constitution saving throw or be {@condition paralyzed} for 1 minute. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
 										},
 										{
-											"type": "item",
+											"type": "itemSub",
 											"name": "3. Fear Ray",
-											"style": "italic",
 											"entry": "The targeted creature must succeed on a {@dc 16} Wisdom saving throw or be {@condition frightened} for 1 minute. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
 										},
 										{
-											"type": "item",
+											"type": "itemSub",
 											"name": "4. Slowing Ray",
-											"style": "italic",
 											"entry": "The targeted creature must succeed on a {@dc 16} Dexterity saving throw. On a failed save, the target's speed is halved for 1 minute. In addition, the creature can't take reactions, and it can take either an action or a bonus action on its turn, not both. The creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
 										},
 										{
-											"type": "item",
+											"type": "itemSub",
 											"name": "5. Enervation Ray",
-											"style": "italic",
 											"entry": "The targeted creature must make a {@dc 16} Constitution saving throw, taking 36 ({@damage 8d8}) necrotic damage on a failed save, or half as much damage on a successful one."
 										},
 										{
-											"type": "item",
+											"type": "itemSub",
 											"name": "6. Telekinetic Ray",
-											"style": "italic",
 											"entries": [
 												"If the target is a creature, it must succeed on a {@dc 16} Strength saving throw or the beholder moves it up to 30 feet in any direction. It is {@condition restrained} by the ray's telekinetic grip until the start of the beholder's next turn or until the beholder is {@condition incapacitated}.",
 												"If the target is an object weighing 300 pounds or less that isn't being worn or carried, it is moved up to 30 feet in any direction. The beholder can also exert fine control on objects with this ray, such as manipulating a simple tool or opening a door or a container."
@@ -5266,7 +5260,7 @@
 				"source": "MM",
 				"_templates": [
 					{
-						"name": "Drow",
+						"name": "Drow (Levitate)",
 						"source": "PHB"
 					}
 				],
@@ -5324,7 +5318,7 @@
 				"source": "MM",
 				"_templates": [
 					{
-						"name": "Drow",
+						"name": "Drow (Levitate)",
 						"source": "PHB"
 					}
 				],
@@ -5334,15 +5328,6 @@
 						"replace": "the archmage",
 						"with": "Vizeran",
 						"flags": "i"
-					},
-					"_": {
-						"mode": "addSpells",
-						"name": "Innate Spellcasting",
-						"daily": {
-							"1e": [
-								"{@spell levitate} (self only)"
-							]
-						}
 					}
 				}
 			},

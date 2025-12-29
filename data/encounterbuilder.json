@@ -1,0 +1,285 @@
+{
+	"encounterShape": [
+		{
+			"name": "Boss",
+			"source": "Generic",
+			"shapeTemplate": [
+				{
+					"groups": [
+						{
+							"count": {
+								"exact": 1
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Boss with Minions",
+			"source": "Generic",
+			"shapeTemplate": [
+				{
+					"groups": [
+						{
+							"count": {
+								"exact": 1
+							},
+							"ratio": {
+								"min": 0.5,
+								"max": 0.6
+							}
+						},
+						{
+							"count": {
+								"formulaMin": "players",
+								"formulaMax": "players * 2"
+							}
+						}
+					]
+				},
+				{
+					"groups": [
+						{
+							"count": {
+								"exact": 1
+							},
+							"ratio": {
+								"min": 0.5,
+								"max": 0.6
+							}
+						},
+						{
+							"count": {
+								"min": 1,
+								"max": 3
+							},
+							"ratio": {
+								"exact": 0.25
+							}
+						},
+						{
+							"count": {
+								"formulaMin": "players",
+								"formulaMax": "players * 2"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Duo",
+			"source": "Generic",
+			"shapeTemplate": [
+				{
+					"groups": [
+						{
+							"count": {
+								"exact": 1
+							},
+							"ratio": {
+								"exact": 0.5
+							}
+						},
+						{
+							"count": {
+								"exact": 1
+							},
+							"ratio": {
+								"exact": 0.5
+							}
+						}
+					]
+				},
+				{
+					"groups": [
+						{
+							"count": {
+								"exact": 1
+							},
+							"ratio": {
+								"exact": 0.6
+							}
+						},
+						{
+							"count": {
+								"exact": 1
+							},
+							"ratio": {
+								"exact": 0.4
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Horde",
+			"source": "Generic",
+			"shapeTemplate": [
+				{
+					"groups": [
+						{
+							"count": {
+								"min": 2,
+								"max": 4
+							},
+							"ratio": {
+								"min": 0.25,
+								"max": 0.35
+							}
+						},
+						{
+							"count": {
+								"formulaMin": "players + 3",
+								"formulaMax": "players * 3"
+							},
+							"ratio": {
+								"exact": 0.2
+							}
+						},
+						{
+							"count": {
+								"formulaMin": "players + 3",
+								"formulaMax": "players * 3"
+							}
+						}
+					]
+				},
+				{
+					"groups": [
+						{
+							"count": {
+								"formulaMin": "2",
+								"formulaMax": "players"
+							},
+							"ratio": {
+								"min": 0.4,
+								"max": 0.6
+							}
+						},
+						{
+							"count": {
+								"formulaMin": "players + 4",
+								"formulaMax": "players * 3"
+							}
+						}
+					]
+				},
+				{
+					"groups": [
+						{
+							"count": {
+								"formulaMin": "players * 3",
+								"formulaMax": "players * 5"
+							},
+							"ratio": {
+								"exact": 1
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Trio",
+			"source": "Generic",
+			"shapeTemplate": [
+				{
+					"groups": [
+						{
+							"count": {
+								"exact": 1
+							},
+							"ratio": {
+								"exact": {
+									"num": 1,
+									"denom": 3
+								}
+							}
+						},
+						{
+							"count": {
+								"exact": 1
+							},
+							"ratio": {
+								"exact": {
+									"num": 1,
+									"denom": 3
+								}
+							}
+						},
+						{
+							"count": {
+								"exact": 1
+							},
+							"ratio": {
+								"exact": {
+									"num": 1,
+									"denom": 3
+								}
+							}
+						}
+					]
+				},
+				{
+					"groups": [
+						{
+							"count": {
+								"exact": 1
+							},
+							"ratio": {
+								"exact": 0.4
+							}
+						},
+						{
+							"count": {
+								"exact": 1
+							},
+							"ratio": {
+								"exact": 0.3
+							}
+						},
+						{
+							"count": {
+								"exact": 1
+							},
+							"ratio": {
+								"exact": 0.3
+							}
+						}
+					]
+				},
+				{
+					"groups": [
+						{
+							"count": {
+								"exact": 1
+							},
+							"ratio": {
+								"exact": 0.5
+							}
+						},
+						{
+							"count": {
+								"exact": 1
+							},
+							"ratio": {
+								"exact": 0.3
+							}
+						},
+						{
+							"count": {
+								"exact": 1
+							},
+							"ratio": {
+								"exact": 0.2
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}

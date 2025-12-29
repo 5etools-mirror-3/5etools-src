@@ -1666,7 +1666,7 @@ globalThis.Renderer = function () {
 		this._renderPrefix(entry, textStack, meta, options);
 		textStack[0] += `<p class="rd__p-list-item" ${entry.name ? `data-roll-name-ancestor="${Renderer.stripTags(entry.name).qq()}"` : ""}>`;
 		if (entry.name) {
-			textStack[0] += `<span class="${this._getMutatedStyleString(entry.style) || entry.type === "itemSub" ? "italic" : "bold"} rd__list-item-name">${this.render(entry.name)}${this._renderItemSubtypes_isAddPeriod(entry) ? "." : ""}</span> `;
+			textStack[0] += `<span class="${entry.type === "itemSub" ? "italic" : "bold"} rd__list-item-name">${this.render(entry.name)}${this._renderItemSubtypes_isAddPeriod(entry) ? "." : ""}</span> `;
 		}
 		if (entry.entry) this._recursiveRender(entry.entry, textStack, meta);
 		else if (entry.entries) {
@@ -11969,9 +11969,9 @@ Renderer.item = class {
 		return `<div class="ve-flex-col">
 			${typeRarityHtml || tierHtml ? `<div class="split ${subTypeHtml ? "mb-1" : ""}">
 				<div class="italic">${typeRarityHtml || ""}</div>
-				<div class="no-wrap ${tierHtml ? `ml-2` : ""}">${subTypeHtml || ""}</div>
+				<div class="no-wrap ${tierHtml ? `ml-2` : ""}">${tierHtml || ""}</div>
 			</div>` : ""}
-			${subTypeHtml ? `<div class="italic">${subTypeHtml}</div>` : ""}
+			${subTypeHtml ? `<div class="italic ve-muted">${subTypeHtml}</div>` : ""}
 		</div>`;
 	}
 

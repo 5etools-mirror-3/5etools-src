@@ -5212,11 +5212,15 @@ class ComponentUiUtil {
 					ipt.focus();
 				};
 
-				const btnUp = ee`<button class="ve-btn ve-btn-default ui-ideco__btn-ticker p-0 bold no-select">+</button>`
-					.onn("click", () => handleClick(1));
+				const btnUp = ee`<button class="ve-btn ve-btn-default ui-ideco__btn-ticker p-0 bold no-select" title="Increase by 1 (SHIFT for 5)">+</button>`
+					.onn("click", evt => {
+						handleClick(evt.shiftKey ? 5 : 1);
+					});
 
-				const btnDown = ee`<button class="ve-btn ve-btn-default ui-ideco__btn-ticker p-0 bold no-select">\u2212</button>`
-					.onn("click", () => handleClick(-1));
+				const btnDown = ee`<button class="ve-btn ve-btn-default ui-ideco__btn-ticker p-0 bold no-select" title="Decrease by 1 (SHIFT for 5)">\u2212</button>`
+					.onn("click", evt => {
+						handleClick(evt.shiftKey ? -5 : -1);
+					});
 
 				// Reverse flex column to stack "+" button as higher z-index
 				return ee`<div class="ui-ideco__wrp ui-ideco__wrp--${side} ve-flex-vh-center ve-flex-col-reverse">
@@ -6855,7 +6859,7 @@ class ComponentUiUtil {
 		} = {},
 	) {
 		const slider = (ele || ee`<input type="range">`)
-			.onn("change", () => comp._state[prop] = Number(slider.val()));
+			.onn("input", () => comp._state[prop] = Number(slider.val()));
 
 		if (min != null) slider.attr("min", min);
 		if (max != null) slider.attr("max", max);

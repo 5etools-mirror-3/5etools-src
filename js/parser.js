@@ -376,19 +376,9 @@ Parser.crToXpNumber = function (cr) {
 	return Parser.XP_CHART_ALT[toConvert] ?? null;
 };
 
-Parser.LEVEL_TO_XP_EASY = [0, 25, 50, 75, 125, 250, 300, 350, 450, 550, 600, 800, 1000, 1100, 1250, 1400, 1600, 2000, 2100, 2400, 2800];
-Parser.LEVEL_TO_XP_MEDIUM = [0, 50, 100, 150, 250, 500, 600, 750, 900, 1100, 1200, 1600, 2000, 2200, 2500, 2800, 3200, 3900, 4100, 4900, 5700];
-Parser.LEVEL_TO_XP_HARD = [0, 75, 150, 225, 375, 750, 900, 1100, 1400, 1600, 1900, 2400, 3000, 3400, 3800, 4300, 4800, 5900, 6300, 7300, 8500];
-Parser.LEVEL_TO_XP_DEADLY = [0, 100, 200, 400, 500, 1100, 1400, 1700, 2100, 2400, 2800, 3600, 4500, 5100, 5700, 6400, 7200, 8800, 9500, 10900, 12700];
-Parser.LEVEL_TO_XP_DAILY = [0, 300, 600, 1200, 1700, 3500, 4000, 5000, 6000, 7500, 9000, 10500, 11500, 13500, 15000, 18000, 20000, 25000, 27000, 30000, 40000];
-
 Parser.LEVEL_XP_REQUIRED = [0, 300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000, 100000, 120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000];
 
 Parser.CRS = ["0", "1/8", "1/4", "1/2", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"];
-
-Parser.levelToXpThreshold = function (level) {
-	return [Parser.LEVEL_TO_XP_EASY[level], Parser.LEVEL_TO_XP_MEDIUM[level], Parser.LEVEL_TO_XP_HARD[level], Parser.LEVEL_TO_XP_DEADLY[level]];
-};
 
 Parser.isValidCr = function (cr) {
 	return Parser.CRS.includes(cr);
@@ -586,19 +576,6 @@ Parser.acToFull = function (ac, {renderer = null, isHideFrom = false} = {}) {
 	if (inBraces) stack += ")";
 
 	return stack.trim();
-};
-
-Parser.MONSTER_COUNT_TO_XP_MULTIPLIER = [1, 1.5, 2, 2, 2, 2, 2.5, 2.5, 2.5, 2.5, 3, 3, 3, 3, 4];
-Parser.numMonstersToXpMult = function (num, playerCount = 3) {
-	const baseVal = (() => {
-		if (num >= Parser.MONSTER_COUNT_TO_XP_MULTIPLIER.length) return 4;
-		return Parser.MONSTER_COUNT_TO_XP_MULTIPLIER[num - 1];
-	})();
-
-	if (playerCount < 3) return baseVal >= 3 ? baseVal + 1 : baseVal + 0.5;
-	else if (playerCount > 5) {
-		return baseVal === 4 ? 3 : baseVal - 0.5;
-	} else return baseVal;
 };
 
 Parser.armorFullToAbv = function (armor) {

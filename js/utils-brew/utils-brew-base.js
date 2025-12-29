@@ -1138,6 +1138,7 @@ export class BrewUtil2Base {
 		switch (dir) {
 			case "creature": return "monster";
 			case "makebrew": return "makebrewCreatureTrait";
+			case "encounterbuilder": return "encounterShape";
 		}
 		return dir;
 	}
@@ -1183,7 +1184,7 @@ export class BrewUtil2Base {
 		this._cache_metas["_sources"] = (this._getBrewMetas() || [])
 			.mergeMap(({_meta}) => {
 				return (_meta?.sources || [])
-					.mergeMap(src => ({[(src.json || "").toLowerCase()]: MiscUtil.copyFast(src)}));
+					.mergeMap(src => ({[(src.json || "").toLowerCase()]: {...MiscUtil.copyFast(src), edition: _meta.edition || SITE_STYLE__CLASSIC}}));
 			});
 	}
 
@@ -1273,6 +1274,12 @@ export class BrewUtil2Base {
 		if (!source) return null;
 		source = source.toLowerCase();
 		return this.getMetaLookup("_sources")[source];
+	}
+
+	isClassicSource (source) {
+		if (!source) return "";
+		source = source.toLowerCase();
+		return this.getMetaLookup("_sources")[source]?.edition === SITE_STYLE__CLASSIC;
 	}
 
 	getSources () {

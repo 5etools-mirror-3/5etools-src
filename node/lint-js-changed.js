@@ -1,3 +1,4 @@
+import fs from "fs";
 import {ESLint} from "eslint";
 import {pGetModifiedFiles} from "./util-git.js";
 
@@ -6,7 +7,7 @@ import {pGetModifiedFiles} from "./util-git.js";
  */
 const pDoLint = async () => {
 	const fileList = (await pGetModifiedFiles({additionalRoots: ["node_"]}))
-		.filter(file => /\.(js|cjs|mjs)$/.test(file));
+		.filter(file => /\.(js|cjs|mjs)$/.test(file) && fs.existsSync(file));
 
 	if (!fileList.length) return console.warn(`Nothing to lint!`);
 

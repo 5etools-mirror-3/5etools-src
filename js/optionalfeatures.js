@@ -160,10 +160,10 @@ class OptionalFeaturesPage extends ListPage {
 				else wrpOptFeatType.prependTo(this._wrpTabs);
 
 				const commonPrefix = ent.featureType.length > 1 ? MiscUtil.findCommonPrefix(ent.featureType.map(fs => Parser.optFeatureTypeToFull(fs)), {isRespectWordBoundaries: true}) : "";
-				if (commonPrefix) wrpOptFeatType.appends(`${commonPrefix.trim()} `);
+				if (commonPrefix) wrpOptFeatType.appends(`<span>${commonPrefix.trim()} </span>`);
 
 				ent.featureType.forEach((ft, i) => {
-					if (i > 0) wrpOptFeatType.appends("/");
+					if (i > 0) wrpOptFeatType.appends(`<span>/</span>`);
 					ee`<span class="roller">${Parser.optFeatureTypeToFull(ft).substring(commonPrefix.length)}</span>`
 						.onn("click", () => {
 							this._filterBox.setFromValues({"Feature Type": {[ft]: 1}});

@@ -38,6 +38,10 @@
 					}
 				}
 			},
+			"hp": {
+				"average": 140,
+				"formula": "14d8 + 28"
+			},
 			"hasToken": true
 		},
 		{
@@ -603,7 +607,7 @@
 						"with": "Berlain",
 						"flags": "i"
 					},
-					"trait": {
+					"bonus": {
 						"mode": "appendArr",
 						"items": {
 							"name": "Extra Parts",
@@ -1322,6 +1326,18 @@
 			"hasFluff": true
 		},
 		{
+			"name": "Crystal Helm Nothic",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "WDMM",
+			"page": 130,
+			"_copy": {
+				"name": "Nothic",
+				"source": "MM"
+			},
+			"hasToken": true
+		},
+		{
 			"name": "Deformed Duergar",
 			"isNpc": true,
 			"source": "WDMM",
@@ -1378,8 +1394,8 @@
 						"with": "Dezmyr",
 						"flags": "i"
 					},
-					"trait": {
-						"mode": "prependArr",
+					"bonus": {
+						"mode": "appendArr",
 						"items": [
 							{
 								"name": "Warp Reality",
@@ -1391,6 +1407,11 @@
 					}
 				}
 			},
+			"languages": [
+				"Abyssal",
+				"Common",
+				"Deep Speech"
+			],
 			"spellcasting": [
 				{
 					"name": "Spellcasting",
@@ -1438,6 +1459,11 @@
 					"ability": "cha"
 				}
 			],
+			"languageTags": [
+				"AB",
+				"C",
+				"DS"
+			],
 			"savingThrowForcedSpell": [
 				"constitution",
 				"wisdom"
@@ -1456,7 +1482,7 @@
 				"source": "MM",
 				"_templates": [
 					{
-						"name": "Drow",
+						"name": "Drow (Levitate)",
 						"source": "PHB"
 					}
 				],
@@ -1466,15 +1492,6 @@
 						"replace": "the archmage",
 						"with": "Drivvin",
 						"flags": "i"
-					},
-					"_": {
-						"mode": "addSpells",
-						"name": "Innate Spellcasting",
-						"daily": {
-							"1e": [
-								"{@spell levitate} (self only)"
-							]
-						}
 					},
 					"action": {
 						"mode": "appendArr",
@@ -1546,6 +1563,11 @@
 					}
 				}
 			},
+			"hp": {
+				"average": 221,
+				"formula": "13d12 + 78"
+			},
+			"tokenCredit": "Paizo",
 			"tokenCustom": true,
 			"damageTags": [
 				"F",
@@ -2632,6 +2654,26 @@
 				"CW",
 				"I"
 			],
+			"hasToken": true
+		},
+		{
+			"name": "Hrossk",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "WDMM",
+			"page": 183,
+			"_copy": {
+				"name": "Fire Giant",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the giant",
+						"with": "Hrossk",
+						"flags": "i"
+					}
+				}
+			},
 			"hasToken": true
 		},
 		{
@@ -3852,27 +3894,23 @@
 									"style": "list-hang-notitle",
 									"items": [
 										{
-											"type": "item",
+											"type": "itemSub",
 											"name": "1. Paralyzing Ray",
-											"style": "italic",
 											"entry": "The targeted creature must succeed on a {@dc 14} Constitution saving throw or be {@condition paralyzed} for 1 minute. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
 										},
 										{
-											"type": "item",
+											"type": "itemSub",
 											"name": "2. Fear Ray",
-											"style": "italic",
 											"entry": "The targeted creature must succeed on a {@dc 14} Wisdom saving throw or be {@condition frightened} for 1 minute. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
 										},
 										{
-											"type": "item",
+											"type": "itemSub",
 											"name": "3. Enervation Ray",
-											"style": "italic",
 											"entry": "The targeted creature must make a {@dc 14} Constitution saving throw, taking 36 ({@damage 8d8}) necrotic damage on a failed save, or half as much damage on a successful one."
 										},
 										{
-											"type": "item",
+											"type": "itemSub",
 											"name": "4. Telekinetic Ray",
-											"style": "italic",
 											"entry": "If the target is a creature, it must succeed on a {@dc 14} Strength saving throw, or the zombie moves it up to 30 feet in any direction. It is restrained by the ray's telekinetic grip until the start of the zombie's next turn or until the zombie is incapacitated. If the target is an object weighing 300 pounds or less that isn't being worn or carried, it is moved up to 30 feet in any direction. The zombie can also exert fine control on objects with this ray, such as manipulating a simple tool or opening a door or container."
 										}
 									]
@@ -3933,6 +3971,10 @@
 				}
 			},
 			"type": "undead",
+			"alignment": [
+				"C",
+				"E"
+			],
 			"senses": [
 				"darkvision 60 ft."
 			],
@@ -4018,6 +4060,9 @@
 							]
 						}
 					}
+				},
+				"_preserve": {
+					"legendaryGroup": true
 				}
 			},
 			"size": [
@@ -4166,6 +4211,12 @@
 						}
 					]
 				}
+			},
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
 			},
 			"alignment": [
 				"L",
@@ -4559,7 +4610,7 @@
 				{
 					"name": "Shadow Stealth",
 					"entries": [
-						"While in dim light or darkness, the assassin can take the Hide action as a bonus action."
+						"While in dim light or darkness, the assassin can take the {@action Hide} action as a bonus action."
 					]
 				},
 				{
@@ -5820,7 +5871,7 @@
 				"source": "MM",
 				"_templates": [
 					{
-						"name": "Drow",
+						"name": "Drow (Levitate)",
 						"source": "PHB"
 					}
 				],
@@ -5836,7 +5887,7 @@
 						"items": {
 							"name": "Special Equipment",
 							"entries": [
-								"Xarann wears a {@i piwafwi}, a drow-made {@item cloak of elvenkind}. It loses its magic if exposed to sunlight for 1 hour without interruption."
+								"Xarann wears a {@item Piwafwi (Cloak of Elvenkind)|OotA|piwafwi}, a drow-made {@item cloak of elvenkind}. It loses its magic if exposed to sunlight for 1 hour without interruption."
 							]
 						}
 					}
@@ -6224,6 +6275,10 @@
 					}
 				}
 			},
+			"alignment": [
+				"C",
+				"G"
+			],
 			"languages": [
 				"Aquan",
 				"Auran",

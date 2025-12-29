@@ -244,6 +244,7 @@ export class LootGenOutput {
 		if (!loot?.length) return [];
 
 		return loot.map(lt => {
+			const typeNum = isNaN(lt.type);
 			return ee`
 			<li>${(lt.type).toLocaleStringVe()} ${LootGenUtils.getCoinageLabel("gp")} ${name} (×${lt.count}; worth ${((lt.type * lt.count)).toLocaleStringVe()} ${LootGenUtils.getCoinageLabel("gp")} total):</li>
 			<ul>

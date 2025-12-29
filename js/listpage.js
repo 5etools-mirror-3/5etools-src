@@ -138,6 +138,8 @@ class SublistManager {
 		this._wrpSummaryControls = null;
 
 		this._pSaveSublistDebounced = MiscUtil.debounce(this._pSaveSublist.bind(this), 50);
+
+		this._hkOnListUpdated = null;
 	}
 
 	set listPage (val) { this._listPage = val; }
@@ -179,9 +181,9 @@ class SublistManager {
 
 		this._wrpSummaryControls = wrpSummaryControls;
 
-		const hkOnListUpdated = () => cbOnListUpdated({cntVisibleItems: this._listSub.visibleItems.length});
-		this._listSub.on("updated", hkOnListUpdated);
-		hkOnListUpdated();
+		this._hkOnListUpdated = () => cbOnListUpdated({cntVisibleItems: this._listSub.visibleItems.length});
+		this._listSub.on("updated", this._hkOnListUpdated);
+		this._hkOnListUpdated();
 
 		this._wrpContainer.aftere(this._wrpSummaryControls);
 
@@ -375,10 +377,6 @@ class SublistManager {
 		// Note that `exportedSublist` keys are case-insensitive here, as we can load from URL
 		await this._plugins.pSerialAwaitMap(plugin => plugin.pMutLegacyData({exportedSublist, isMemoryOnly}));
 
-		if (exportedSublist && !isAdditive) await this.pDoSublistRemoveAll({isNoSave: true});
-
-		await this._listPage.pDoLoadExportedSublistSources(exportedSublist);
-
 		// Do this in series to ensure sublist items are added before having their counts updated
 		//  This only becomes a problem when there are duplicate items in the list, but as we're not finalizing, the
 		//  performance implications are negligible.
@@ -386,6 +384,10 @@ class SublistManager {
 			exportedSublist,
 			dataList: this._listPage.dataList_,
 		});
+
+		if (exportedSublist && !isAdditive) await this.pDoSublistRemoveAll({isNoSave: true});
+
+		await this._listPage.pDoLoadExportedSublistSources(exportedSublist);
 
 		for (const entityInfo of entityInfos) {
 			const {count, entity, ser} = entityInfo;
@@ -514,6 +516,8 @@ class SublistManager {
 
 	async pHandleClick_duplicate (evt) {
 		await this._saveManager.pDoDuplicate(await this.pGetExportableSublist({isForceIncludePlugins: true}));
+		// Simulate a list update, as the list display itself does not change during duplication
+		this._hkOnListUpdated();
 	}
 
 	async pHandleClick_load (evt) {
@@ -657,17 +661,7 @@ class SublistManager {
 			return;
 		}
 
-		const sublistItem = await this.pGetSublistItem(
-			entity,
-			hash,
-			{
-				count: addCount,
-				customHashId: this._getCustomHashId({entity}),
-				initialData,
-			},
-		);
-		this._listSub.addItem(sublistItem);
-		if (doFinalize) await this._pFinaliseSublist();
+		await this._pDoSublistAddInitial({entity, hash, count: addCount, initialData, doFinalize});
 	}
 
 	_getSublistFullHash ({entity}) {
@@ -690,6 +684,41 @@ class SublistManager {
 
 		this._updateSublistItemDisplays(sublistItem);
 		await this._pFinaliseSublist();
+	}
+
+	async pDoSublistSetCount ({entity, doFinalize = false, count, initialData = null}) {
+		if (entity == null) {
+			return JqueryUtil.doToast({
+				content: "Please first view something from the list.",
+				type: "danger",
+			});
+		}
+
+		const hash = this._getSublistFullHash({entity});
+
+		const existingSublistItem = this.getSublistListItem({hash});
+		if (existingSublistItem != null) {
+			existingSublistItem.data.count = count;
+			this._updateSublistItemDisplays(existingSublistItem);
+			if (doFinalize) await this._pFinaliseSublist();
+			return;
+		}
+
+		await this._pDoSublistAddInitial({entity, hash, count, initialData, doFinalize});
+	}
+
+	async _pDoSublistAddInitial ({entity, hash, count, initialData, doFinalize}) {
+		const sublistItem = await this.pGetSublistItem(
+			entity,
+			hash,
+			{
+				count: count,
+				customHashId: this._getCustomHashId({entity}),
+				initialData,
+			},
+		);
+		this._listSub.addItem(sublistItem);
+		if (doFinalize) await this._pFinaliseSublist();
 	}
 
 	async pSetDataEntry ({sublistItem, key, value}) {
@@ -715,7 +744,7 @@ class SublistManager {
 			});
 
 		(sublistItem.data.fnsUpdate || [])
-			.forEach(fn => fn());
+			.forEach(fn => fn({sublistItem}));
 	}
 
 	async _pFinaliseSublist ({isNoSave = false} = {}) {
@@ -724,7 +753,7 @@ class SublistManager {
 		// Manually trigger plugin updates if the list failed to do so
 		if (!isUpdateFired) this._plugins.forEach(plugin => plugin.onSublistUpdate());
 
-		this._updateSublistVisibility();
+		this.doUpdateSublistVisibility();
 		this._onSublistChange();
 		if (!isNoSave) await this._pSaveSublist();
 	}
@@ -740,9 +769,16 @@ class SublistManager {
 		return this._pSaveSublistDebounced();
 	}
 
-	_updateSublistVisibility () {
-		this._wrpContainer.toggleClass("sublist--visible", !!this._listSub.items.length);
-		this._wrpSummaryControls.toggleVe(!!this._listSub.items.length);
+	_isDisplaySublist () {
+		// Always show the controls (including the list's name) if we're editing a previously-saved
+		//   list, to differentiate between "new, unsaved list" and "editing existing list"
+		if (this._saveManager.isActiveListSaved()) return true;
+		return !!this._listSub.items.length;
+	}
+
+	doUpdateSublistVisibility () {
+		this._wrpContainer.toggleClass("sublist--visible", this._isDisplaySublist());
+		this._wrpSummaryControls.toggleVe(this._isDisplaySublist());
 	}
 
 	async pDoSublistRemove ({entity, doFinalize = true} = {}) {
@@ -1216,6 +1252,7 @@ class ListPage {
 
 	async _pOnLoad_pLoadListState () {
 		await this._sublistManager.pLoadState();
+		this._sublistManager.doUpdateSublistVisibility();
 	}
 
 	_pOnLoad_bindMiscButtons () {

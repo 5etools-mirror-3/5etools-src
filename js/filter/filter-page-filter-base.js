@@ -132,8 +132,8 @@ export class PageFilterBase {
 
 	static _hasSoundClip (ent) { return !!ent.soundClip; }
 
-	static _mutateForFilters_commonSources (ent) {
-		ent._fSources = SourceFilter.getCompleteFilterSources(ent);
+	static _mutateForFilters_commonSources (ent, {isIncludeBaseSource = false} = {}) {
+		ent._fSources = SourceFilter.getCompleteFilterSources(ent, {isIncludeBaseSource});
 	}
 
 	static _mutateForFilters_commonMisc (ent) {

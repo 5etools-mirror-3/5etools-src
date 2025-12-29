@@ -35,6 +35,8 @@ export class EncounterBuilderHelpers {
 		const mon = sublistItem.data.entityBase;
 
 		return new EncounterBuilderCreatureMeta({
+			id: sublistItem.data.collectionId,
+
 			creature: sublistItem.data.entity,
 			count: Number(sublistItem.data.count),
 

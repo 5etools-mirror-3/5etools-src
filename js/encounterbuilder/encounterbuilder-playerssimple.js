@@ -44,8 +44,8 @@ export class EncounterBuilderRenderableCollectionPlayersSimple extends Renderabl
 			.attr("tabindex", "-1");
 
 		ee(wrpRow)`
-			<div class="w-20">${selCount}</div>
-			<div class="w-20">${selLevel}</div>
+			<div class="w-80p">${selCount}</div>
+			<div class="w-80p">${selLevel}</div>
 			<div class="ve-flex-v-center">${btnRemove}</div>
 		`;
 	}

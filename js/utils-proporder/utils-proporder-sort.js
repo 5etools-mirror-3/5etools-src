@@ -75,6 +75,7 @@ export const getFnRootPropListSort = (prop) => {
 		case "foundryMap":
 		case "facility":
 		case "facilityFluff":
+		case "encounterShape":
 			return SortUtil.ascSortGenericEntity.bind(SortUtil);
 		case "deity":
 			return SortUtil.ascSortDeity.bind(SortUtil);

@@ -1,5 +1,4 @@
 import {EncounterBuilderUi} from "../encounterbuilder/encounterbuilder-ui.js";
-import {EncounterBuilderCreatureMeta} from "../encounterbuilder/encounterbuilder-models.js";
 import {EncounterBuilderHelpers} from "../utils-list-bestiary.js";
 
 export class EncounterBuilderUiBestiary extends EncounterBuilderUi {
@@ -7,11 +6,12 @@ export class EncounterBuilderUiBestiary extends EncounterBuilderUi {
 
 	_isSuspendSyncToSublist = false;
 
-	constructor ({cache, comp, bestiaryPage, sublistManager}) {
-		super({cache, comp});
+	constructor ({bestiaryPage, sublistManager, dispSummary, ...rest}) {
+		super({...rest});
 
 		this._bestiaryPage = bestiaryPage;
 		this._sublistManager = sublistManager;
+		this._dispSummary = dispSummary;
 
 		this._lock = new VeLock();
 
@@ -24,32 +24,35 @@ export class EncounterBuilderUiBestiary extends EncounterBuilderUi {
 		document.getElementById("wrp-pagecontent").classList.add("best-ecgen__hidden");
 
 		es(`#btn-encounterbuild`).onn("click", () => Hist.setSubhash(this.constructor._HASH_KEY, true));
+
+		this._dispSummary = es(`#totalcr`);
 	}
+
+	/* -------------------------------------------- */
 
 	render () {
-		super.render({
-			parentRandomAndAdjust: es("#wrp-encounterbuild-random-and-adjust"),
-			parentGroupAndDifficulty: es("#wrp-encounterbuild-group-and-difficulty"),
+		const rdState = super.render({
+			stgSettings: es("#wrp-encounterbuild-settings"),
+			stgRandomAndAdjust: es("#wrp-encounterbuild-random-and-adjust"),
+			stgShapeCustom: es("#wrp-encounterbuild-shape-custom"),
+			stgGroup: es("#wrp-encounterbuild-group"),
+			stgDifficulty: es("#wrp-encounterbuild-difficulty"),
 		});
-		this._render_saveLoad();
+
+		this._render_bindOnRulesChange();
+
+		return rdState;
 	}
 
-	_render_saveLoad () {
-		const btnSave = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Save Encounter</button>`
-			.onn("click", evt => this._sublistManager.pHandleClick_save(evt));
-
-		const btnLoad = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Load Encounter</button>`
-			.onn("click", evt => this._sublistManager.pHandleClick_load(evt));
-
-		ee(document.getElementById("best-ecgen__wrp-save-controls"))`<div class="ve-flex-col">
-			<div class="ve-flex-h-right ve-btn-group">
-				${btnSave}
-				${btnLoad}
-			</div>
-		</div>`;
+	_render_bindOnRulesChange () {
+		this._addHookBase("activeRulesId", () => {
+			this._doUpdateDispSummary();
+		});
 	}
 
-	_handleClickCopyAsText (evt) {
+	/* -------------------------------------------- */
+
+	handleClickCopyAsText (evt) {
 		let xpTotal = 0;
 		const ptsCreature = this._sublistManager.sublistItems
 			.sort((a, b) => SortUtil.ascSortLower(a.name, b.name))
@@ -67,43 +70,8 @@ export class EncounterBuilderUiBestiary extends EncounterBuilderUi {
 		JqueryUtil.showCopiedEffect(evt.currentTarget);
 	}
 
-	_handleClickBackToStatblocks () {
+	handleClickBackToStatblocks () {
 		Hist.setSubhash(this.constructor._HASH_KEY, null);
-	}
-
-	_render_groupAndDifficulty ({rdState, parentGroupAndDifficulty}) {
-		super._render_groupAndDifficulty({rdState, parentGroupAndDifficulty});
-
-		const btnSaveToUrl = ee`<button class="ve-btn ve-btn-default ve-btn-xs mr-2">Save to URL</button>`
-			.onn("click", () => this._sublistManager.pHandleClick_download({isUrl: true, eleCopyEffect: btnSaveToUrl}));
-		const btnSaveToFile = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Save to File</button>`
-			.onn("click", () => this._sublistManager.pHandleClick_download());
-		const btnLoadFromFile = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Load from File</button>`
-			.onn("click", evt => this._sublistManager.pHandleClick_upload({isAdditive: evt.shiftKey}));
-		const btnCopyAsText = ee`<button class="ve-btn ve-btn-default ve-btn-xs mr-2" title="SHIFT for Multi-Line Format">Copy as Text</button>`.onn("click", (evt) => this._handleClickCopyAsText(evt));
-		const btnReset = ee`<button class="ve-btn ve-btn-danger ve-btn-xs" title="SHIFT to Reset Players">Reset</button>`
-			.onn("click", (evt) => this._sublistManager.pHandleClick_new(evt));
-
-		const btnBackToStatblocks = ee`<button class="ve-btn ve-btn-success ve-btn-xs">Back to Stat Blocks</button>`.onn("click", (evt) => this._handleClickBackToStatblocks(evt));
-
-		ee`<div class="ve-flex-col w-100">
-			<hr class="hr-1">
-
-			<div class="ve-flex-v-center mb-2">
-				${btnSaveToUrl}
-				<div class="ve-btn-group ve-flex-v-center mr-2">
-					${btnSaveToFile}
-					${btnLoadFromFile}
-				</div>
-				${btnCopyAsText}
-				${btnReset}
-			</div>
-
-			<div class="ve-flex">
-				${btnBackToStatblocks}
-			</div>
-		</div>`
-			.appendTo(parentGroupAndDifficulty);
 	}
 
 	/* -------------------------------------------- */
@@ -142,11 +110,15 @@ export class EncounterBuilderUiBestiary extends EncounterBuilderUi {
 
 	/* -------------------------------------------- */
 
-	onSublistChange ({dispCrTotal}) {
-		const encounterXpInfo = EncounterBuilderCreatureMeta.getEncounterXpInfo(this._comp.creatureMetas, this._getPartyMeta());
+	onSublistChange () {
+		this._doUpdateDispSummary();
+	}
 
+	/* -------------------------------------------- */
+
+	_doUpdateDispSummary () {
 		const monCount = this._sublistManager.sublistItems.map(it => it.data.count).sum();
-		dispCrTotal.html(`${monCount} creature${monCount === 1 ? "" : "s"}; ${encounterXpInfo.baseXp.toLocaleStringVe()} XP (<span class="help" title="Adjusted Encounter XP">Enc</span>: ${(encounterXpInfo.adjustedXp).toLocaleStringVe()} XP)`);
+		this._dispSummary.html(`${monCount} creature${monCount === 1 ? "" : "s"}; ${this._getActiveRulesComp().getDisplaySummary()}`);
 	}
 
 	/* -------------------------------------------- */
@@ -183,7 +155,7 @@ export class EncounterBuilderUiBestiary extends EncounterBuilderUi {
 
 	async _pHandleShuffleClick ({evt, sublistItem}) {
 		const creatureMeta = EncounterBuilderHelpers.getSublistedCreatureMeta({sublistItem});
-		this._doShuffle({creatureMeta});
+		this._comp.doShuffleCreature({creatureMeta});
 	}
 
 	handleSubhash () {
@@ -255,7 +227,7 @@ export class EncounterBuilderUiBestiary extends EncounterBuilderUi {
 				content: `"${iptCr.val()}" is not a valid Challenge Rating! Please enter a valid CR (0-30). For fractions, "1/X" should be used.`,
 				type: "danger",
 			});
-			iptCr.val(Parser.numberToCr(scaledTo || baseCr));
+			iptCr.val(Parser.numberToCr(scaledTo ?? baseCrNum));
 			return;
 		}
 

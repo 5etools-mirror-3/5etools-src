@@ -77,7 +77,7 @@ export class SpellBuilder extends BuilderBase {
 		delete spell.uniqueId;
 		delete spell.reprintedAs;
 
-		const meta = {...(opts.meta || {}), ...this._getInitialMetaState()};
+		const meta = {...(opts.meta || {}), ...this._getInitialMetaState({nameOriginal: spell.name})};
 
 		this.setStateFromLoaded({s: spell, m: meta});
 

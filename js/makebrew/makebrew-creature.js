@@ -101,7 +101,7 @@ export class CreatureBuilder extends BuilderBase {
 		// Semi-gracefully handle e.g. ERLW's Steel Defender
 		if (creature.passive != null && typeof creature.passive === "string") delete creature.passive;
 
-		const meta = {...(opts.meta || {}), ...this._getInitialMetaState()};
+		const meta = {...(opts.meta || {}), ...this._getInitialMetaState({nameOriginal: creature.name})};
 
 		if (ScaleCreature.isCrInScaleRange(creature) && !opts.isForce) {
 			const crDefault = creature.cr.cr || creature.cr;

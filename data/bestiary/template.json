@@ -384,6 +384,86 @@
 			}
 		},
 		{
+			"name": "Drow (Levitate)",
+			"source": "PHB",
+			"page": 21,
+			"ref": "{@race Elf (Drow)||Drow}",
+			"apply": {
+				"_root": {
+					"size": [
+						"M"
+					],
+					"type": {
+						"type": "humanoid",
+						"tags": [
+							"drow",
+							"elf"
+						]
+					}
+				},
+				"_mod": {
+					"_": [
+						{
+							"mode": "addSenses",
+							"senses": {
+								"type": "darkvision",
+								"range": 120
+							}
+						},
+						{
+							"mode": "addSkills",
+							"skills": {
+								"perception": 1
+							}
+						}
+					],
+					"languages": {
+						"mode": "appendIfNotExistsArr",
+						"items": "Elvish"
+					},
+					"spellcasting": {
+						"mode": "appendArr",
+						"items": [
+							{
+								"name": "Innate Spellcasting",
+								"headerEntries": [
+									"<$title_short_name$>'s innate spellcasting ability is Charisma (spell save {@dc <$spell_dc__cha$>}). <$title_short_name$> can innately cast the following spells, requiring no material components:"
+								],
+								"will": [
+									"{@spell dancing lights}"
+								],
+								"daily": {
+									"1e": [
+										"{@spell darkness}",
+										"{@spell faerie fire}",
+										"{@spell levitate} (self only)"
+									]
+								},
+								"ability": "cha"
+							}
+						]
+					},
+					"trait": {
+						"mode": "appendArr",
+						"items": [
+							{
+								"name": "Fey Ancestry",
+								"entries": [
+									"<$title_short_name$> has advantage on saving throws against being {@condition charmed}, and magic can't put <$short_name$> to sleep."
+								]
+							},
+							{
+								"name": "Sunlight Sensitivity",
+								"entries": [
+									"While in sunlight, <$short_name$> has disadvantage on attack rolls, as well as on Wisdom ({@skill Perception}) checks that rely on sight."
+								]
+							}
+						]
+					}
+				}
+			}
+		},
+		{
 			"name": "Duergar",
 			"source": "MTF",
 			"page": 81,
@@ -2324,6 +2404,11 @@
 					"action": [
 						{
 							"mode": "replaceTxt",
+							"replace": "(Acid|Cold|Fire|Lightning|Poison) Breath",
+							"with": "Shadow Breath"
+						},
+						{
+							"mode": "replaceTxt",
 							"replace": "(acid|cold|fire|lightning|poison)",
 							"with": "necrotic"
 						},
@@ -2331,6 +2416,12 @@
 							"mode": "replaceTxt",
 							"replace": "(Acid|Cold|Fire|Lightning|Poison)",
 							"with": "Necrotic"
+						},
+						{
+							"mode": "replaceTxt",
+							"replace": "^(The dragon exhales .* damage on a failed save, or half as much damage on a successful one\\.$)",
+							"with": "$1 A humanoid reduced to 0 hit points by this damage dies, and an undead {@creature shadow} rises from its corpse and acts immediately after the dragon in the initiative count. The {@creature shadow} is under the dragon's control.",
+							"tagInsensitive": true
 						}
 					]
 				}

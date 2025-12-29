@@ -378,6 +378,7 @@ export class BuilderBase extends ProxyBase {
 			m: this._getInitialMetaState({
 				isModified: false,
 				isPersisted: false,
+				nameOriginal: entEditable.name,
 			}),
 		});
 		this.renderInput();
@@ -392,28 +393,34 @@ export class BuilderBase extends ProxyBase {
 	}
 
 	renderInputControls () {
-		const wrpControls = this._ui.wrpInputControls.empty();
+		const dispName = ee`<div class="ve-muted italic"></div>`;
+		this._addHook("meta", "nameOriginal", () => dispName.txt(`Editing "${this._meta.nameOriginal || "?"}"`))();
 
 		const btnSave = ee`<button class="ve-btn ve-btn-xs ve-btn-default mr-2 mkbru__cnt-save">Save</button>`
-			.onn("click", () => this._pHandleClick_pSaveBrew())
-			.appendTo(wrpControls);
-		const hkBtnSaveText = () => btnSave.txt(this._meta.isModified ? "Save *" : "Saved");
-		this._addHook("meta", "isModified", hkBtnSaveText);
-		hkBtnSaveText();
+			.onn("click", () => this._pHandleClick_pSaveBrew());
+		this._addHook("meta", "isModified", () => btnSave.txt(this._meta.isModified ? "Save *" : "Saved"))();
 
-		ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="SHIFT to reset additional state (such as whether or not certain attributes are auto-calculated)">New</button>`
+		const btnNew = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="SHIFT to reset additional state (such as whether or not certain attributes are auto-calculated)">New</button>`
 			.onn("click", async (evt) => {
 				if (!await InputUiUtil.pGetUserBoolean({title: "Reset Builder", htmlDescription: "Are you sure?", textYes: "Yes", textNo: "Cancel"})) return;
 				this.reset({isResetAllMeta: !!evt.shiftKey});
-			})
-			.appendTo(wrpControls);
+			});
+
+		ee(this._ui.wrpInputControls.empty())`
+			${dispName}
+			<div class="ve-flex-v-center">
+				${btnSave}
+				${btnNew}
+			</div>
+		`;
 	}
 
 	reset ({isResetAllMeta = false} = {}) {
-		const metaNext = this._getInitialMetaState();
+		const stateNext = this._getInitialState();
+		const metaNext = this._getInitialMetaState({nameOriginal: stateNext.name});
 		if (!isResetAllMeta) this._reset_mutNextMetaState({metaNext});
 		this.setStateFromLoaded({
-			s: this._getInitialState(),
+			s: stateNext,
 			m: metaNext,
 		});
 		this.renderInput();
@@ -474,6 +481,7 @@ export class BuilderBase extends ProxyBase {
 		}
 
 		this._meta.isModified = false;
+		this._meta.nameOriginal = this._state.name;
 		this.doUiSave();
 		await this.pDoPostSave();
 		await this._pDoUpdateSidemenu();
@@ -646,10 +654,11 @@ export class BuilderBase extends ProxyBase {
 		};
 	}
 
-	_getInitialMetaState ({isModified = false, isPersisted = false} = {}) {
+	_getInitialMetaState ({isModified = false, isPersisted = false, nameOriginal = null} = {}) {
 		return {
 			isModified,
 			isPersisted,
+			nameOriginal,
 			styleHint: VetoolsConfig.get("styleSwitcher", "style"),
 		};
 	}

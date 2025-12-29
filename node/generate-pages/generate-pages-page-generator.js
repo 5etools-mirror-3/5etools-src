@@ -11,6 +11,7 @@ export class PageGeneratorBase {
 	_navbarTitle;
 	_navbarTitleHtml;
 	_navbarDescription;
+	_navbarDescriptionHtml;
 	_navbarPageTitleStyleAdditional;
 	_isFontAwesome = false;
 	_stylesheets;
@@ -57,6 +58,7 @@ export class PageGeneratorBase {
 			navbarTitle: this._navbarTitle ?? this._pageTitle,
 			navbarTitleHtml: this._navbarTitleHtml,
 			navbarDescription: this._navbarDescription,
+			navbarDescriptionHtml: this._navbarDescriptionHtml,
 			navbarPageTitleStyleAdditional: this._navbarPageTitleStyleAdditional,
 			isFontAwesome: this._isFontAwesome,
 			stylesheets: this._stylesheets,

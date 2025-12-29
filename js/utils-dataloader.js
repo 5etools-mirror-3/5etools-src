@@ -630,7 +630,7 @@ class _DataLoaderCache {
 	}
 
 	_set_getPartition_fromSource (partitionSource) {
-		if (SourceUtil.isSiteSource(partitionSource)) return this.constructor._PARTITION_SITE;
+		if (SourceUtil.isSiteSource(partitionSource) || partitionSource === VeCt.STR_GENERIC) return this.constructor._PARTITION_SITE;
 		if (PrereleaseUtil.hasSourceJson(partitionSource)) return this.constructor._PARTITION_PRERELEASE;
 		if (BrewUtil2.hasSourceJson(partitionSource)) return this.constructor._PARTITION_BREW;
 		return this.constructor._PARTITION_UNKNOWN;
@@ -896,6 +896,12 @@ class _DataTypeLoaderItemMastery extends _DataTypeLoaderSingleSource {
 		await Renderer.item.pGetSiteUnresolvedRefItems();
 		Renderer.item.addPrereleaseBrewPropertiesAndTypesFrom({data});
 	}
+}
+
+class _DataTypeLoaderEncounterShape extends _DataTypeLoaderSingleSource {
+	static PROPS = ["encounterShape"];
+
+	_filename = "encounterbuilder.json";
 }
 
 class _DataTypeLoaderBackgroundFluff extends _DataTypeLoaderSingleSource {
@@ -1877,6 +1883,7 @@ class DataLoader {
 		_DataTypeLoaderCustomQuickref.register({fnRegister});
 		_DataTypeLoaderCustomAdventure.register({fnRegister});
 		_DataTypeLoaderCustomBook.register({fnRegister});
+		_DataTypeLoaderCitation.register({fnRegister});
 		// endregion
 
 		// region Single file
@@ -1902,7 +1909,7 @@ class DataLoader {
 		_DataTypeLoaderItemProperty.register({fnRegister});
 		_DataTypeLoaderItemEntry.register({fnRegister});
 		_DataTypeLoaderItemMastery.register({fnRegister});
-		_DataTypeLoaderCitation.register({fnRegister});
+		_DataTypeLoaderEncounterShape.register({fnRegister});
 		// endregion
 
 		// region Fluff

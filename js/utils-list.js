@@ -681,11 +681,10 @@ class SaveManager extends BaseComponent {
 	_isWarnUnsavedChanges (exportedSublist = null) {
 		if (!exportedSublist) return false;
 
-		const save = this._getActiveSave();
-		if (!save?.entity.manager_isSaved) return false;
+		if (!this.isActiveListSaved()) return false;
 
 		return !CollectionUtil.deepEquals(
-			ListUtil.getWithoutManagerState(save.entity),
+			ListUtil.getWithoutManagerState(this._getActiveSave().entity),
 			ListUtil.getWithoutManagerState(exportedSublist),
 		);
 	}
@@ -693,10 +692,13 @@ class SaveManager extends BaseComponent {
 	_isWarnNeverSaved (exportedSublist = null) {
 		if (!exportedSublist) return false;
 
-		const save = this._getActiveSave();
-		if (save?.entity.manager_isSaved) return false;
+		if (this.isActiveListSaved()) return false;
 
 		return !!exportedSublist.items?.length;
+	}
+
+	isActiveListSaved () {
+		return this._getActiveSave()?.entity?.manager_isSaved;
 	}
 
 	getRenderedSummary (

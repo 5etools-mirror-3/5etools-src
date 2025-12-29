@@ -128,7 +128,7 @@ class PageFilterEquipment extends PageFilterBase {
 	}
 
 	static mutateForFilters (item) {
-		this._mutateForFilters_commonSources(item);
+		this._mutateForFilters_commonSources(item, {isIncludeBaseSource: true});
 
 		item._fProperties = item.property ? item.property.map(p => Renderer.item.getProperty(p?.uid || p)?.name).filter(Boolean) : [];
 

@@ -1,5 +1,4 @@
 import {EncounterBuilderHelpers} from "../utils-list-bestiary.js";
-import {EncounterBuilderCreatureMeta} from "../encounterbuilder/encounterbuilder-models.js";
 import {EncounterBuilderComponentBestiary} from "./bestiary-encounterbuilder-component.js";
 
 /**
@@ -47,6 +46,7 @@ export class EncounterBuilderSublistPlugin extends SublistPlugin {
 							extras: it.extras.map(x => EncounterBuilderComponentBestiary.getDefaultPlayerAdvancedExtra(x)),
 							colsExtraAdvanced: nxt.colsExtraAdvanced || this._encounterBuilderComp.colsExtraAdvanced,
 						}));
+						case "customShapeGroups": return nxt[k] = v.map(it => EncounterBuilderComponentBestiary.getDefaultCustomShapeGroup(it));
 
 						default: return nxt[k] = v;
 					}
@@ -73,31 +73,6 @@ export class EncounterBuilderSublistPlugin extends SublistPlugin {
 
 		// Note that we do not set `creatureMetas` here, as `onSublistUpdate` handles this
 		this._encounterBuilderComp.setStateFromLoaded(nxt);
-	}
-
-	async _pLoadData_getCreatureMetas ({exportedSublist}) {
-		if (!exportedSublist.items?.length) return [];
-
-		return exportedSublist.items
-			.pSerialAwaitMap(async serialItem => {
-				const {
-					entity,
-					entityBase,
-					count,
-					isLocked,
-					customHashId,
-				} = await SublistManager.pDeserializeExportedSublistItem(serialItem);
-
-				return new EncounterBuilderCreatureMeta({
-					creature: entity,
-					count,
-
-					isLocked,
-
-					customHashId: customHashId,
-					baseCreature: entityBase,
-				});
-			});
 	}
 
 	static async pMutLegacyData ({exportedSublist, isMemoryOnly}) {
@@ -168,6 +143,7 @@ export class EncounterBuilderSublistPlugin extends SublistPlugin {
 			"isAdvanced",
 			"colsExtraAdvanced",
 			"playersAdvanced",
+			"customShapeGroups",
 		].forEach(k => {
 			exportedSublist[k] = MiscUtil.copyFast(this._encounterBuilderComp[k]);
 
@@ -196,10 +172,11 @@ export class EncounterBuilderSublistPlugin extends SublistPlugin {
 	/* -------------------------------------------- */
 
 	async pDoInitNewState ({prevExportableSublist, evt}) {
-		// If SHIFT pressed, reset players
+		// If SHIFT pressed, reset players and custom shape
 		const nxt = {
 			playersSimple: evt.shiftKey ? [] : MiscUtil.copyFast(prevExportableSublist.playersSimple),
 			playersAdvanced: evt.shiftKey ? [] : MiscUtil.copyFast(prevExportableSublist.playersAdvanced),
+			customShapeGroups: evt.shiftKey ? [] : MiscUtil.copyFast(prevExportableSublist.customShapeGroups),
 		};
 
 		this._encounterBuilderComp.setPartialStateFromLoaded(nxt);

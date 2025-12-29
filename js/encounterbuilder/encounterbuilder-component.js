@@ -1,7 +1,14 @@
-import {EncounterPartyMeta, EncounterPartyPlayerMeta} from "./encounterbuilder-models.js";
+import {EncounterBuilderCreatureMeta, EncounterPartyPlayerMeta} from "./encounterbuilder-models.js";
 
 export class EncounterBuilderComponent extends BaseComponent {
 	static _DEFAULT_PARTY_SIZE = 4;
+
+	/* -------------------------------------------- */
+
+	constructor ({cache}) {
+		super();
+		this._cache = cache;
+	}
 
 	/* -------------------------------------------- */
 
@@ -20,6 +27,11 @@ export class EncounterBuilderComponent extends BaseComponent {
 	get playersAdvanced () { return this._state.playersAdvanced; }
 	set playersAdvanced (val) { this._state.playersAdvanced = val; }
 
+	get customShapeGroups () { return this._state.customShapeGroups; }
+	set customShapeGroups (val) { this._state.customShapeGroups = val; }
+
+	pulseDerivedPartyMeta () { this._state.pulseDerivedPartyMeta = !this._state.pulseDerivedPartyMeta; }
+
 	/* -------------------------------------------- */
 
 	addHookCreatureMetas (hk) { return this._addHookBase("creatureMetas", hk); }
@@ -27,6 +39,65 @@ export class EncounterBuilderComponent extends BaseComponent {
 	addHookPlayersSimple (hk) { return this._addHookBase("playersSimple", hk); }
 	addHookPlayersAdvanced (hk) { return this._addHookBase("playersAdvanced", hk); }
 	addHookColsExtraAdvanced (hk) { return this._addHookBase("colsExtraAdvanced", hk); }
+	addHookCustomShapeGroups (hk) { return this._addHookBase("customShapeGroups", hk); }
+	addHookPulseDeriverPartyMeta (hk) { return this._addHookBase("pulseDerivedPartyMeta", hk); }
+
+	/* -------------------------------------------- */
+
+	_activeRulesComp = null;
+
+	setActiveRulesComp (rulesComp) { this._activeRulesComp = rulesComp; }
+
+	doShuffleCreature ({creatureMeta}) {
+		if (creatureMeta.getIsLocked()) return;
+
+		const ix = this.creatureMetas.findIndex(creatureMeta_ => creatureMeta_.isSameCreature(creatureMeta));
+		if (!~ix) throw new Error(`Could not find creature ${creatureMeta.getHash()} (${creatureMeta.customHashId})`);
+
+		const creatureMeta_ = this.creatureMetas[ix];
+		if (creatureMeta_.getIsLocked()) return;
+
+		const lockedHashes = new Set(
+			this.creatureMetas
+				.filter(creatureMeta => creatureMeta.getIsLocked())
+				.map(creatureMeta => creatureMeta.getHash()),
+		);
+
+		const monRolled = this._doShuffleCreature_getShuffled({creatureMeta: creatureMeta_, lockedHashes});
+		if (!monRolled) return JqueryUtil.doToast({content: "Could not find another creature worth the same amount of XP!", type: "warning"});
+
+		const creatureMetaNxt = new EncounterBuilderCreatureMeta({
+			creature: monRolled,
+			count: creatureMeta_.getCount(),
+		});
+
+		const creatureMetasNxt = [...this.creatureMetas];
+		const withMonRolled = creatureMetasNxt.find(creatureMeta_ => creatureMeta_.hasCreature(monRolled));
+		if (withMonRolled) {
+			withMonRolled.setCount(withMonRolled.getCount() + creatureMetaNxt.getCount());
+			creatureMetasNxt.splice(ix, 1);
+		} else {
+			creatureMetasNxt[ix] = creatureMetaNxt;
+		}
+
+		this.creatureMetas = creatureMetasNxt;
+	}
+
+	_doShuffleCreature_getShuffled ({creatureMeta, lockedHashes}) {
+		const budgetMode = this._activeRulesComp.getBudgetMode();
+
+		const spendValue = creatureMeta.getSpend({budgetMode});
+		const hash = creatureMeta.getHash();
+
+		const availMons = this._cache.getCreatures({budgetMode, spendValue})
+			.filter(mon => {
+				const hash_ = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BESTIARY](mon);
+				return !lockedHashes.has(hash) && hash_ !== hash;
+			});
+		if (!availMons.length) return null;
+
+		return RollerUtil.rollOnArray(availMons);
+	}
 
 	/* -------------------------------------------- */
 
@@ -60,12 +131,10 @@ export class EncounterBuilderComponent extends BaseComponent {
 
 	/* -------------------------------------------- */
 
-	getPartyMeta () {
-		return new EncounterPartyMeta(
-			this._state.isAdvanced
-				? this._getPartyPlayerMetas_advanced()
-				: this._getPartyPlayerMetas_simple(),
-		);
+	getPartyPlayerMetas () {
+		return this._state.isAdvanced
+			? this._getPartyPlayerMetas_advanced()
+			: this._getPartyPlayerMetas_simple();
 	}
 
 	_getPartyPlayerMetas_advanced () {
@@ -167,7 +236,36 @@ export class EncounterBuilderComponent extends BaseComponent {
 		};
 	}
 
+	/* ----- */
+
+	static getDefaultCustomShapeGroup (
+		{
+			countMinMaxMin = 0,
+			countMinMaxMax = 1,
+			ratioPercentage = 0,
+		} = {},
+	) {
+		return {
+			id: CryptUtil.uid(),
+			entity: {
+				// region Count
+				countMinMaxMin,
+				countMinMaxMax,
+				// endregion
+
+				// region Ratio
+				ratioPercentage,
+				// endregion
+			},
+		};
+	}
+
 	/* -------------------------------------------- */
+
+	setStateFrom (toLoad, isOverwrite = false) {
+		if (toLoad.state) this._mutValidateLoadedState(toLoad.state);
+		return super.setStateFrom(toLoad, isOverwrite);
+	}
 
 	setStateFromLoaded (loadedState) {
 		this._mutValidateLoadedState(loadedState);
@@ -185,6 +283,15 @@ export class EncounterBuilderComponent extends BaseComponent {
 
 	_mutValidateLoadedState (loadedState) {
 		const defaultState = this._getDefaultState();
+
+		if (loadedState.creatureMetas?.length) {
+			loadedState.creatureMetas = loadedState.creatureMetas
+				.map(creatureMeta => {
+					return creatureMeta instanceof EncounterBuilderCreatureMeta
+						? creatureMeta
+						: new EncounterBuilderCreatureMeta({...creatureMeta.entity});
+				});
+		}
 
 		if (loadedState.playersSimple && !loadedState.playersSimple.length) loadedState.playersSimple = MiscUtil.copyFast(defaultState.playersSimple);
 
@@ -221,6 +328,10 @@ export class EncounterBuilderComponent extends BaseComponent {
 			playersAdvanced: [
 				this.getDefaultPlayerRow_advanced(),
 			],
+
+			customShapeGroups: [],
+
+			pulseDerivedPartyMeta: false,
 		};
 	}
 

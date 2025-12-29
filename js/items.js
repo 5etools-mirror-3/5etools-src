@@ -58,12 +58,51 @@ class ItemsSublistManager extends SublistManager {
 			item._l_value,
 		];
 
-		const dispCount = ee`<span class="ve-text-center ve-col-2 pr-0">${count}</span>`;
+		const {stg: stgCount, comp: compCount} = (() => {
+			const comp = BaseComponent.fromObject({count});
+
+			const ipt = ComponentUiUtil.getIptNumber(
+				comp,
+				"count",
+				1,
+				{
+					fallbackOnNaN: count,
+					html: `<input class="w-100 ve-text-center form-control form-control--minimal input-xs">`,
+				},
+			);
+
+			comp._addHookBase("count", () => {
+				if (comp._state.count <= 0) {
+					this.pDoSublistRemove({entity: item, doFinalize: true}).then(null);
+					return;
+				}
+
+				this.pDoSublistSetCount({entity: item, doFinalize: true, count: comp._state.count}).then(null);
+			});
+
+			const stg = this._pGetSublistItem_getWrpIptCount()
+				.addClass("absolute")
+				// Match padding
+				.css({right: "2px"})
+				.appends(ipt);
+
+			return {stg, ipt, comp};
+		})();
+
+		const ptsCells = [
+			...this.constructor._getRowCellsHtml({values: cellsText, templates: this.constructor._ROW_TEMPLATE.slice(0, 3)}),
+			// Placeholder to vertically expand row
+			this._pGetSublistItem_getWrpIptCount()
+				.appends(`<input class="w-100 ve-text-center form-control form-control--minimal input-xs" disabled>`),
+		];
+
 		const ele = ee`<div class="lst__row lst__row--sublist ve-flex-col">
-			<a href="#${hash}" class="lst__row-border lst__row-inner">
-				${this.constructor._getRowCellsHtml({values: cellsText, templates: this.constructor._ROW_TEMPLATE.slice(0, 3)})}
-				${dispCount}
-			</a>
+			<div class="lst__wrp-cells lst__row-border lst__row-inner relative">
+				<a href="#${hash}" class="lst__row-lnk-inner">
+					${ptsCells}
+				</a>
+				${stgCount}
+			</div>
 		</div>`
 			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
 			.onn("click", evt => this._listSub.doSelect(listItem, evt));
@@ -81,12 +120,17 @@ class ItemsSublistManager extends SublistManager {
 			},
 			{
 				count,
-				elesCount: [dispCount],
+				elesCount: [],
+				fnsUpdate: [({sublistItem}) => compCount._state.count = sublistItem.data.count],
 				entity: item,
 				mdRow: [...cellsText, ({listItem}) => listItem.data.count],
 			},
 		);
 		return listItem;
+	}
+
+	_pGetSublistItem_getWrpIptCount () {
+		return ee`<span class="ve-text-center ve-col-2 pr-0 col-2"></span>`;
 	}
 
 	_onSublistChange () {

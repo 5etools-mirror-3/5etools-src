@@ -5,7 +5,7 @@ class _PageGeneratorEncountergen extends PageGeneratorTablepageBase {
 
 	_pageTitle = "Encounters";
 	_navbarTitle = "Encounter Generator";
-	_navbarDescription = "Choose a setting and level range, then roll the dice!";
+	_navbarDescriptionHtml = `Choose a table, then roll the dice! Alternatively, try the <a href="${UrlUtil.PG_BESTIARY}#${globalThis.HASH_BLANK},encounterbuilder:true">Bestiary Encounter Builder</a>.`;
 
 	_scripts = [
 		"encountergen.js",
