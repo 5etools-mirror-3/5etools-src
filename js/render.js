@@ -1469,7 +1469,7 @@ globalThis.Renderer = function () {
 
 					// Get custom hash for this creature
 					const [tagName, textArgs] = Renderer.splitFirstSpace(c.creature.slice(1, -1));
-					const {name, source, hash, subhashes} = Renderer.utils.getTagMeta(tagName, textArgs);
+					const {name, displayText, source, hash, subhashes} = Renderer.utils.getTagMeta(tagName, textArgs);
 					const baseMon = await DataLoader.pCacheAndGetHash(page, hash);
 					if (!baseMon || !baseMon.name) throw Error(`Error retrieving monster ${hash} (${name}) from source ${source}.`);
 					const scaledCr = subhashes?.find((item) => item.key === "scaled")?.value;
@@ -1486,6 +1486,7 @@ globalThis.Renderer = function () {
 					// Add multiple entries for creatures with qty > 1
 					for (let i = 0; i < qty; i++) {
 						mon.hash = hash;
+                        mon.name = displayText || name;
 						processedCreatures.push(mon);
 					}
 				}),

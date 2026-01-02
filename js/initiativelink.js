@@ -29,7 +29,14 @@ async function sendEncounterData (data, timeout = 100) {
 				clearTimeout(timer);
 				channel.removeEventListener("message", messageHandler);
 				// showAlert("Data Sent", "<p>New encounter data sent to your Voice Initiative Controller tab.</p>");
-				await InputUiUtil.pGetUserBoolean({title: "Encounter Data Sent", htmlDescription: `<p>New encounter data sent to your Voice Initiative Controller tab.</p>`, isAlert: true});
+				await InputUiUtil.pGetUserBoolean(/** @type {any} */ ({
+					title: "Encounter Data Sent",
+					htmlDescription: `<p>New encounter data sent to your Voice Initiative Controller tab.</p>`,
+					isAlert: true,
+					textYesRemember: "OK, Don't Show Again",
+					storageKey: "encounter-data-sent-dismissed",
+					isGlobal: true,
+				}));
 				resolve(event.data);
 			}
 		}
@@ -84,8 +91,36 @@ window.addEventListener("click", async (evt) => {
 	if (target instanceof HTMLElement && target.classList.contains("initiative-tracker-link")) {
 		evt.preventDefault();
 		const escapedDataJSON = target?.dataset?.encounter;
-		if (!escapedDataJSON) return;
+		const hasEncounterData = escapedDataJSON != null && escapedDataJSON !== "";
 
+		// Helper function to open/focus controller without sending data
+		const openControllerOnly = () => {
+			// First, try to focus existing window if we have a reference
+			if (controllerWindow && !controllerWindow.closed) {
+				controllerWindow.focus();
+				console.log("Focused existing controller window");
+				return;
+			}
+
+			// Open new controller window and store reference
+			controllerWindow = window.open(
+				`${CONTROLLER_APP_PATH}controller.html`,
+				"_blank",
+			);
+
+			if (controllerWindow) {
+				controllerWindow.focus();
+				console.log("Opened new controller window");
+			}
+		};
+
+		// If no encounter data, just open/focus the controller
+		if (!hasEncounterData) {
+			openControllerOnly();
+			return;
+		}
+
+		// If encounter data exists, parse and send it
 		try {
 			const data = JSON.parse(escapedDataJSON);
 			console.log("Encounter Data:", data);
@@ -135,6 +170,8 @@ window.addEventListener("click", async (evt) => {
 			}
 		} catch (e) {
 			console.error("Error processing encounter data:", e);
+			// If parsing fails, still open the controller
+			openControllerOnly();
 		}
 	}
 });
