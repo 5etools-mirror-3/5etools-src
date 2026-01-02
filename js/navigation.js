@@ -414,7 +414,12 @@ class NavBar {
 
 			if (!metas.length) return;
 
-			SourceUtil.ADV_BOOK_GROUPS
+			// Process homebrew group first, then all other groups in their normal order
+			const homebrewGroup = SourceUtil.ADV_BOOK_GROUPS.find(g => g.group === "homebrew");
+			const otherGroups = SourceUtil.ADV_BOOK_GROUPS.filter(g => g.group !== "homebrew");
+			const orderedGroups = homebrewGroup ? [homebrewGroup, ...otherGroups] : SourceUtil.ADV_BOOK_GROUPS;
+
+			orderedGroups
 				.forEach(({group, displayName}) => {
 					const inGroup = metas.filter(it => (it.group || "other") === group);
 					if (!inGroup.length) return;
