@@ -13,7 +13,7 @@ export class AbilityScoreFilter extends FilterBase {
 		this._itemsLookup = {}; // Cache items for fast lookup
 		this._seenUids = {};
 
-		this.__$wrpFilter = null;
+		this.__wrpFilter = null;
 		this.__wrpPills = null;
 		this.__wrpPillsRows = {};
 		this.__wrpMiniPills = null;
@@ -48,12 +48,12 @@ export class AbilityScoreFilter extends FilterBase {
 	 * @param opts Options.
 	 * @param opts.filterBox The FilterBox to which this filter is attached.
 	 * @param opts.isFirst True if this is visually the first filter in the box.
-	 * @param opts.$wrpMini The form mini-view element.
+	 * @param opts.wrpMini The form mini-view element.
 	 * @param opts.isMulti The name of the MultiFilter this filter belongs to, if any.
 	 */
-	$render (opts) {
+	render (opts) {
 		this._filterBox = opts.filterBox;
-		this.__wrpMiniPills = e_({ele: opts.$wrpMini[0]});
+		this.__wrpMiniPills = e_({ele: opts.wrpMini});
 
 		const wrpControls = this._getHeaderControls(opts);
 
@@ -67,7 +67,7 @@ export class AbilityScoreFilter extends FilterBase {
 		// FIXME refactor this so we're not stealing the private method
 		const btnMobToggleControls = Filter.prototype._getBtnMobToggleControls.bind(this)(wrpControls);
 
-		this.__$wrpFilter = $$`<div>
+		this.__wrpFilter = ee`<div>
 			${opts.isFirst ? "" : `<div class="fltr__dropdown-divider ${opts.isMulti ? "fltr__dropdown-divider--indented" : ""} mb-1"></div>`}
 			<div class="split fltr__h mb-1">
 				<div class="ml-2 fltr__h-text ve-flex-h-center">${opts.isMulti ? `<span class="mr-2">\u2212</span>` : ""}${this._getRenderedHeader()}${btnMobToggleControls}</div>
@@ -78,7 +78,7 @@ export class AbilityScoreFilter extends FilterBase {
 
 		this.update(); // Force an update, to properly mute/unmute our pills
 
-		return this.__$wrpFilter;
+		return this.__wrpFilter;
 	}
 
 	_getHeaderControls (opts) {
@@ -276,12 +276,12 @@ export class AbilityScoreFilter extends FilterBase {
 	 * @param opts Options.
 	 * @param opts.filterBox The FilterBox to which this filter is attached.
 	 * @param opts.isFirst True if this is visually the first filter in the box.
-	 * @param opts.$wrpMini The form mini-view element.
+	 * @param opts.wrpMini The form mini-view element.
 	 * @param opts.isMulti The name of the MultiFilter this filter belongs to, if any.
 	 */
-	$renderMinis (opts) {
+	renderMinis (opts) {
 		this._filterBox = opts.filterBox;
-		this.__wrpMiniPills = e_({ele: opts.$wrpMini[0]});
+		this.__wrpMiniPills = e_({ele: opts.wrpMini});
 
 		this._doRenderMiniPills();
 	}
@@ -584,7 +584,7 @@ export class AbilityScoreFilter extends FilterBase {
 		if (isHeaderMatch) {
 			Object.values(this.__wrpPillsRows).forEach(meta => meta.row.removeClass("fltr__hidden--search"));
 
-			if (this.__$wrpFilter) this.__$wrpFilter.toggleClass("fltr__hidden--search", false);
+			if (this.__wrpFilter) this.__wrpFilter.toggleClass("fltr__hidden--search", false);
 
 			return true;
 		}
@@ -599,7 +599,7 @@ export class AbilityScoreFilter extends FilterBase {
 			if (isVisible) visibleCount++;
 		});
 
-		if (this.__$wrpFilter) this.__$wrpFilter.toggleClass("fltr__hidden--search", visibleCount === 0);
+		if (this.__wrpFilter) this.__wrpFilter.toggleClass("fltr__hidden--search", visibleCount === 0);
 
 		return visibleCount !== 0;
 	}

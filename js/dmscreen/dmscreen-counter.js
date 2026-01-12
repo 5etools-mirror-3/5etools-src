@@ -1,11 +1,22 @@
-export class Counter {
-	static $getCounter (board, state) {
-		const $wrpPanel = $(`<div class="w-100 h-100 dm-cnt__root dm__panel-bg dm__data-anchor"></div>`) // root class used to identify for saving
-			.data("getState", () => counters.getSaveableState());
-		const counters = new CounterRoot(board, $wrpPanel);
-		counters.setStateFrom(state);
-		counters.render($wrpPanel);
+import {DmScreenPanelAppBase} from "./dmscreen-panelapp-base.js";
+
+export class Counter extends DmScreenPanelAppBase {
+	constructor (...args) {
+		super(...args);
+
+		this._comp = null;
+	}
+
+	_$getPanelElement (board, state) {
+		const $wrpPanel = $(`<div class="w-100 h-100 dm-cnt__root dm__panel-bg dm__data-anchor"></div>`);
+		this._comp = new CounterRoot(board, $wrpPanel);
+		this._comp.setStateFrom(state);
+		this._comp.render($wrpPanel);
 		return $wrpPanel;
+	}
+
+	getState () {
+		return this._comp?.getSaveableState();
 	}
 }
 
@@ -72,7 +83,7 @@ class CounterRoot extends CounterComponent {
 		const pod = super.getPod();
 		pod.swapRowPositions = this._swapRowPositions.bind(this);
 		pod.removeRow = this._removeRow.bind(this);
-		pod.$getChildren = () => this._childComps.map(comp => comp.$row);
+		pod.getElesChildren = () => this._childComps.map(comp => comp.$row[0]);
 		return pod;
 	}
 
@@ -147,7 +158,7 @@ class CounterRow extends CounterComponent {
 				${$btnUp}
 			</div>
 
-			${DragReorderUiUtil.$getDragPad2(() => this._$row, $parent, this._parent)}
+			${DragReorderUiUtil.getDragPad2(() => this._$row[0], $parent[0], this._parent)}
 			${$btnRemove}
 		</div>`.appendTo($parent);
 	}

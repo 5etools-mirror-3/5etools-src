@@ -536,7 +536,7 @@ class SaveManager extends BaseComponent {
 					this._proxyAssignSimple("state", nxt);
 				});
 
-		const titleSplit = ee`<div class="ve-flex-vh-center">
+		const eleTitleSplit = ee`<div class="ve-flex-vh-center">
 			${wrpIsReference}
 			<div class="ve-flex-v-center ve-btn-group">
 				${btnExportAll}
@@ -551,7 +551,7 @@ class SaveManager extends BaseComponent {
 			isWidth100: true,
 			isUncappedHeight: true,
 			zIndex: VeCt.Z_INDEX_BENEATH_HOVER,
-			titleSplit,
+			eleTitleSplit,
 		});
 
 		const isEveryExpanded = saves => saves.every(it => it.entity.manager_loader_isExpanded);

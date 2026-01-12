@@ -54,9 +54,11 @@ export class ScaleSpellSummonedCreature extends ScaleSummonedCreature {
 		ptBase = ptBase
 			// "40 + 10 for each spell level above 4th"
 			// "40 + 10 for each spell level above 4"
-			.replace(/(\d+)\s*\+\s*(\d+) for each spell level above (\d+)(?:st|nd|rd|th)?/g, (...m) => {
-				const [, hpBase, hpPlus, spLevelMin] = m;
-				return Number(hpBase) + (Number(hpPlus) * (toSpellLevel - Number(spLevelMin)));
+			.replace(/(?<hpBaseRaw>\d+)\s*\+\s*(?<hpBonusRaw>\d+) for each spell level above (?<spLevelThresholdRaw>\d+)(?:st|nd|rd|th)?/g, (...m) => {
+				const {hpBaseRaw, hpBonusRaw, spLevelThresholdRaw} = m.at(-1);
+				const spLevelThreshold = Number(spLevelThresholdRaw);
+				if (toSpellLevel < spLevelThreshold) return Number(hpBaseRaw);
+				return Number(hpBaseRaw) + (Number(hpBonusRaw) * (toSpellLevel - spLevelThreshold));
 			})
 			// "5 + 10 per spell level"
 			.replace(/(\d+)\s*\+\s*(\d+) per spell level/g, (...m) => {

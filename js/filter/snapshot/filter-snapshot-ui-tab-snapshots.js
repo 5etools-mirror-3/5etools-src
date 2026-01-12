@@ -33,7 +33,7 @@ export class FilterSnapshotUiTabSnapshots {
 		const {stgNoRows} = this._pRender_stgNoRows();
 		const {stgRows, compRows} = this._pRender_stgRows({selectClickHandler});
 
-		ee(this._tabMeta.$wrpTab[0])`
+		ee(this._tabMeta.wrpTab)`
 			${stgControls}
 			<hr class="hr-2">
 			${stgNoRows}
@@ -212,7 +212,7 @@ export class FilterSnapshotUiTabSnapshots {
 		const compRows = new RenderableCollectionSnapshots({
 			filterBox: this._filterBox,
 			comp: this._compManager,
-			$wrpRows: $(wrpRows),
+			wrpRows,
 			selectClickHandler,
 		});
 

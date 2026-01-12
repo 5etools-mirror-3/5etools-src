@@ -89,13 +89,13 @@ export class ModalFilterClasses extends ModalFilterBase {
 	async pGetUserSelection ({filterExpression = null, selectedClass = null, selectedSubclass = null, isClassDisabled = false, isSubclassDisabled = false} = {}) {
 		// eslint-disable-next-line no-async-promise-executor
 		return new Promise(async resolve => {
-			const {$modalInner, doClose} = await this._pGetShowModal(resolve);
+			const {eleModalInner, doClose} = await this._pGetShowModal(resolve);
 
-			await this.pPreloadHidden($modalInner);
+			await this.pPreloadHidden(eleModalInner);
 
 			this.doApplyFilterExpression(filterExpression);
 
-			this._filterCache.$btnConfirm.off("click").click(async () => {
+			this._filterCache.btnConfirm.off("click").click(async () => {
 				// Note: use invisible items, as this might be the parent class of a selected subclass
 				const checked = this._filterCache.list.items.filter(it => it.data.tglSel.classList.contains("active"));
 				const out = {};
@@ -159,54 +159,54 @@ export class ModalFilterClasses extends ModalFilterBase {
 			// Handle changes to `fnSearch`
 			this._filterCache.list.update();
 
-			await UiUtil.pDoForceFocus(this._filterCache.$iptSearch[0]);
+			await UiUtil.pDoForceFocus(this._filterCache.iptSearch);
 		});
 	}
 
-	async pPreloadHidden ($modalInner) {
+	async pPreloadHidden (eleModalInner) {
 		// If we're rendering in "hidden" mode, create a dummy element to attach the UI to.
-		$modalInner = $modalInner || $(`<div></div>`);
+		eleModalInner = eleModalInner || ee`<div></div>`;
 
 		if (this._filterCache) {
-			this._filterCache.$wrpModalInner.appendTo($modalInner);
+			this._filterCache.wrpModalInner.appendTo(eleModalInner);
 			return;
 		}
 
 		await this._pInit();
 
-		const $ovlLoading = $(`<div class="w-100 h-100 ve-flex-vh-center"><i class="dnd-font ve-muted">Loading...</i></div>`).appendTo($modalInner);
+		const ovlLoading = ee`<div class="w-100 h-100 ve-flex-vh-center"><i class="dnd-font ve-muted">Loading...</i></div>`.appendTo(eleModalInner);
 
-		const $iptSearch = $(`<input class="form-control h-100" type="search" placeholder="Search...">`);
-		const $btnReset = $(`<button class="ve-btn ve-btn-default">Reset</button>`);
-		const $wrpFormTop = $$`<div class="ve-flex input-group ve-btn-group w-100 lst__form-top">${$iptSearch}${$btnReset}</div>`;
+		const iptSearch = ee`<input class="form-control h-100" type="search" placeholder="Search...">`;
+		const btnReset = ee`<button class="ve-btn ve-btn-default">Reset</button>`;
+		const wrpFormTop = ee`<div class="ve-flex input-group ve-btn-group w-100 lst__form-top">${iptSearch}${btnReset}</div>`;
 
-		const $wrpFormBottom = $(`<div class="w-100"></div>`);
+		const wrpFormBottom = ee`<div class="w-100"></div>`;
 
-		const $wrpFormHeaders = $(`<div class="input-group input-group--bottom ve-flex no-shrink">
+		const wrpFormHeaders = ee`<div class="input-group input-group--bottom ve-flex no-shrink">
 			<div class="ve-btn ve-btn-default disabled ve-col-1 pl-0"></div>
 			<button class="ve-col-9 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
 			<button class="ve-col-2 pr-0 sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Source</button>
-		</div>`);
+		</div>`;
 
-		const $wrpForm = $$`<div class="ve-flex-col w-100 mb-2">${$wrpFormTop}${$wrpFormBottom}${$wrpFormHeaders}</div>`;
-		const $wrpList = this._$getWrpList();
+		const wrpForm = ee`<div class="ve-flex-col w-100 mb-2">${wrpFormTop}${wrpFormBottom}${wrpFormHeaders}</div>`;
+		const wrpList = this._getWrpList();
 
-		const $btnConfirm = $(`<button class="ve-btn ve-btn-default">Confirm</button>`);
+		const btnConfirm = ee`<button class="ve-btn ve-btn-default">Confirm</button>`;
 
 		this._list = new List({
-			$iptSearch,
-			$wrpList,
+			iptSearch,
+			wrpList,
 			fnSort: this._fnSort,
 		});
 
-		SortUtil.initBtnSortHandlers($wrpFormHeaders, this._list);
+		SortUtil.initBtnSortHandlers(wrpFormHeaders, this._list);
 
 		this._allData ||= await this._pGetBlocklistedAllData();
 
 		await this._pageFilter.pInitFilterBox({
-			$wrpFormTop,
-			$btnReset,
-			$wrpMiniPills: $wrpFormBottom,
+			wrpFormTop,
+			btnReset,
+			wrpMiniPills: wrpFormBottom,
 			namespace: this._namespace,
 		});
 
@@ -243,15 +243,15 @@ export class ModalFilterClasses extends ModalFilterBase {
 		this._pageFilter.filterBox.render();
 		this._handleFilterChange();
 
-		$ovlLoading.remove();
+		ovlLoading.remove();
 
-		const $wrpModalInner = $$`<div class="ve-flex-col h-100">
-			${$wrpForm}
-			${$wrpList}
-			<div class="ve-flex-vh-center">${$btnConfirm}</div>
-		</div>`.appendTo($modalInner);
+		const wrpModalInner = ee`<div class="ve-flex-col h-100">
+			${wrpForm}
+			${wrpList}
+			<div class="ve-flex-vh-center">${btnConfirm}</div>
+		</div>`.appendTo(eleModalInner);
 
-		this._filterCache = {$wrpModalInner, $btnConfirm, pageFilter: this._pageFilter, list: this._list, allData: this._allData, $iptSearch};
+		this._filterCache = {wrpModalInner, btnConfirm, pageFilter: this._pageFilter, list: this._list, allData: this._allData, iptSearch};
 	}
 
 	// (Exposed for Plutonium use)

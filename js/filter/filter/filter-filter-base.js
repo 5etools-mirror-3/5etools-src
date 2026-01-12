@@ -358,9 +358,9 @@ export class FilterBase extends BaseComponent {
 	/* -------------------------------------------- */
 
 	/** @abstract */
-	$render () { throw new Error(`Unimplemented!`); }
+	render () { throw new Error(`Unimplemented!`); }
 	/** @abstract */
-	$renderMinis () { throw new Error(`Unimplemented!`); }
+	renderMinis () { throw new Error(`Unimplemented!`); }
 
 	/** @abstract */
 	getValues ({nxtState = null} = {}) { throw new Error(`Unimplemented!`); }

@@ -2,6 +2,7 @@ import {PANEL_TYP_INITIATIVE_TRACKER} from "./dmscreen-consts.js";
 import {DmScreenUtil} from "./dmscreen-util.js";
 import {EncounterBuilderHelpers, ListUtilBestiary} from "../utils-list-bestiary.js";
 import {VetoolsConfig} from "../utils-config/utils-config-config.js";
+import {DmScreenPanelAppBase} from "./dmscreen-panelapp-base.js";
 
 export class TimerTrackerMoonSpriteLoader {
 	static _TIME_TRACKER_MOON_SPRITE = new Image();
@@ -26,15 +27,24 @@ export class TimerTrackerMoonSpriteLoader {
 	static getImage () { return this._TIME_TRACKER_MOON_SPRITE; }
 }
 
-export class TimeTracker {
-	static $getTracker (board, state) {
-		const $wrpPanel = $(`<div class="w-100 h-100 dm-time__root dm__panel-bg dm__data-anchor"></div>`) // root class used to identify for saving
-			.data("getState", () => tracker.getSaveableState());
-		const tracker = new TimeTrackerRoot(board, $wrpPanel);
+export class TimeTracker extends DmScreenPanelAppBase {
+	constructor (...args) {
+		super(...args);
+
+		this._comp = null;
+	}
+
+	_$getPanelElement (board, state) {
+		const $wrpPanel = $(`<div class="w-100 h-100 dm-time__root dm__panel-bg"></div>`);
+		this._comp = new TimeTrackerRoot(board, $wrpPanel);
 		state = TimeTrackerUtil.getMigratedState(state);
-		tracker.setStateFrom(state);
-		tracker.render($wrpPanel);
+		this._comp.setStateFrom(state);
+		this._comp.render($wrpPanel);
 		return $wrpPanel;
+	}
+
+	getState () {
+		return this._comp.getSaveableState();
 	}
 }
 
@@ -806,6 +816,14 @@ class TimeTrackerRoot_Clock extends TimeTrackerComponent {
 		if (toLoad.compWeatherState) this._compWeather.setStateFrom(toLoad.compWeatherState);
 	}
 
+	/* -------------------------------------------- */
+
+	onDestroy () {
+		clearInterval(this._ivTimer);
+	}
+
+	/* -------------------------------------------- */
+
 	render ($parent, parent) {
 		$parent.empty();
 		this._parent = parent;
@@ -822,7 +840,6 @@ class TimeTrackerRoot_Clock extends TimeTrackerComponent {
 
 			this._parent.set("time", this._parent.get("time") + timeDelta);
 		}, 1000);
-		this._$wrpPanel.data("onDestroy", () => clearInterval(this._ivTimer));
 
 		const $dispReadableDate = $(`<div class="small-caps"></div>`);
 		const $dispReadableYear = $(`<div class="small-caps small ve-muted mb-2"></div>`);
@@ -2681,12 +2698,12 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 	static async pDoRunEncounter (parent, encounter) {
 		if (encounter.countUses > 0) return;
 
-		const $elesData = DmScreenUtil.$getPanelDataElements({board: parent.component._board, type: PANEL_TYP_INITIATIVE_TRACKER});
+		const panelApps = DmScreenUtil.getPanelApps({board: parent.component._board, type: PANEL_TYP_INITIATIVE_TRACKER});
 
-		if ($elesData.length) {
-			let $tracker;
-			if ($elesData.length === 1) {
-				$tracker = $elesData[0];
+		if (panelApps.length) {
+			let panelApp;
+			if (panelApps.length === 1) {
+				panelApp = panelApps[0];
 			} else {
 				const ix = await InputUiUtil.pGetUserEnum({
 					default: 0,
@@ -2694,11 +2711,11 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 					placeholder: "Select tracker",
 				});
 				if (ix != null && ~ix) {
-					$tracker = $elesData[ix];
+					panelApp = panelApps[ix];
 				}
 			}
 
-			if ($tracker) {
+			if (panelApp) {
 				const toLoad = await TimeTrackerRoot_Calendar._pGetDereferencedEncounter(encounter);
 
 				if (!toLoad) return JqueryUtil.doToast({content: "Could not find encounter data! Has the encounter been deleted?", type: "warning"});
@@ -2706,7 +2723,7 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 				const {entityInfos, encounterInfo} = await ListUtilBestiary.pGetLoadableSublist({exportedSublist: toLoad.data});
 
 				try {
-					await $tracker.data("pDoLoadEncounter")({entityInfos, encounterInfo});
+					await panelApp.pDoLoadEncounter({entityInfos, encounterInfo});
 				} catch (e) {
 					JqueryUtil.doToast({type: "error", content: `Failed to add encounter! ${VeCt.STR_SEE_CONSOLE}`});
 					throw e;
@@ -2998,11 +3015,11 @@ class TimeTrackerRoot_Settings extends TimeTrackerComponent {
 					.map(it => this._parent.component._rendered[prop][it.id].$wrpRow)
 					.forEach($it => $wrpRows.append($it));
 			},
-			$getChildren: () => {
+			getElesChildren: () => {
 				return this._parent.component._state[prop]
-					.map(it => this._parent.component._rendered[prop][it.id].$wrpRow);
+					.map(it => this._parent.component._rendered[prop][it.id].$wrpRow[0]);
 			},
-			$parent: $wrpRows,
+			eleParent: $wrpRows[0],
 		};
 
 		const renderableCollection = new Cls(
@@ -3052,14 +3069,14 @@ class TimeTrackerRoot_Settings_Day extends RenderableCollectionTimeTracker {
 
 		const $iptName = ComponentUiUtil.$getIptStr(comp, "name", {$ele: $(`<input class="form-control input-xs form-control--minimal mr-2">`)});
 
-		const $padDrag = DragReorderUiUtil.$getDragPadOpts(() => $wrpRow, this._dragMeta);
+		const padDrag = DragReorderUiUtil.getDragPadOpts(() => $wrpRow[0], this._dragMeta);
 
 		const $btnRemove = $(`<button class="ve-btn ve-btn-xs ve-btn-danger no-shrink" title="Delete Day"><span class="glyphicon glyphicon-trash"></span></button>`)
 			.click(() => this._comp._state.days = this._comp._state.days.filter(it => it !== entity));
 
 		const $wrpRow = $$`<div class="ve-flex py-1 dm-time__row-delete">
 			${$iptName}
-			${$padDrag}
+			${padDrag}
 			${$btnRemove}
 			<div class="dm-time__spc-button"></div>
 		</div>`.appendTo(this._$wrpRows);
@@ -3087,7 +3104,7 @@ class TimeTrackerRoot_Settings_Month extends RenderableCollectionTimeTracker {
 		const $iptName = ComponentUiUtil.$getIptStr(comp, "name", {$ele: $(`<input class="form-control input-xs form-control--minimal mr-2">`)});
 		const $iptDays = ComponentUiUtil.$getIptInt(comp, "days", 1, {$ele: $(`<input class="form-control input-xs form-control--minimal ve-text-right mr-2 w-25 no-shrink">`), min: TimeTrackerBase._MIN_TIME, max: TimeTrackerBase._MAX_TIME});
 
-		const $padDrag = DragReorderUiUtil.$getDragPadOpts(() => $wrpRow, this._dragMeta);
+		const padDrag = DragReorderUiUtil.getDragPadOpts(() => $wrpRow[0], this._dragMeta);
 
 		const $btnRemove = $(`<button class="ve-btn ve-btn-xs ve-btn-danger no-shrink" title="Delete Month"><span class="glyphicon glyphicon-trash"></span></button>`)
 			.click(() => this._comp._state.months = this._comp._state.months.filter(it => it !== entity));
@@ -3095,7 +3112,7 @@ class TimeTrackerRoot_Settings_Month extends RenderableCollectionTimeTracker {
 		const $wrpRow = $$`<div class="ve-flex py-1 dm-time__row-delete">
 			${$iptName}
 			${$iptDays}
-			${$padDrag}
+			${padDrag}
 			${$btnRemove}
 			<div class="dm-time__spc-button"></div>
 		</div>`.appendTo(this._$wrpRows);

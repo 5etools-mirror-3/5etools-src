@@ -8,7 +8,7 @@ class CollectionBoxSnapshotDecks extends RenderableCollectionGenericRows {
 			wrpRows,
 		},
 	) {
-		super(comp, "boxSnapshotIds", $(wrpRows));
+		super(comp, "boxSnapshotIds", es(wrpRows));
 		this._compManager = compManager;
 	}
 
@@ -16,12 +16,12 @@ class CollectionBoxSnapshotDecks extends RenderableCollectionGenericRows {
 		return ee`<div class="ve-flex-col w-100 py-1"></div>`;
 	}
 
-	_populateRow ({comp, $wrpRow, entity}) {
-		const $iptName = ComponentUiUtil.$getIptStr(comp, "_manager_name", {placeholder: "Name"});
+	_populateRow ({comp, wrpRow, entity}) {
+		const iptName = ComponentUiUtil.getIptStr(comp, "_manager_name", {placeholder: "Name"});
 
 		const btnDelete = this._utils.getBtnDelete({entity});
 
-		const $padDrag = this._utils.$getPadDrag({$wrpRow});
+		const padDrag = this._utils.getPadDrag({wrpRow});
 
 		// Sync our transient name back to the real snapshot state on change
 		comp._addHookBase("_manager_name", () => {
@@ -33,11 +33,11 @@ class CollectionBoxSnapshotDecks extends RenderableCollectionGenericRows {
 			this._compManager._triggerCollectionUpdate("boxSnapshots");
 		});
 
-		$$($wrpRow)`
+		ee(wrpRow)`
 			<div class="ve-flex-v-center">
-				${$iptName.addClass("mr-2")}
+				${iptName.addClass("mr-2")}
 				${btnDelete.addClass("mr-2")}
-				${$padDrag}
+				${padDrag}
 			</div>
 		`;
 	}
@@ -48,14 +48,14 @@ export class RenderableCollectionSnapshotDecks extends RenderableCollectionFilte
 		{
 			filterBox,
 			comp,
-			$wrpRows,
+			wrpRows,
 			selectClickHandler,
 		},
 	) {
-		super({filterBox, comp, prop: "boxSnapshotDecks", $wrpRows, selectClickHandler});
+		super({filterBox, comp, prop: "boxSnapshotDecks", wrpRows, selectClickHandler});
 	}
 
-	_populateRow ({comp, $wrpRow, entity}) {
+	_populateRow ({comp, wrpRow, entity}) {
 		// region Bind cache-flush hooks
 		comp._addHookBase("boxSnapshotIds", () => {
 			if (this._comp._state.boxSnapshotDeckDefaultId !== entity.id) return;
@@ -66,7 +66,7 @@ export class RenderableCollectionSnapshotDecks extends RenderableCollectionFilte
 		const {stgHeader, wrpCbSel, cbSel, fnCleanup: fnCleanupStgHeader} = this._populateRow_stgHeader({comp, entity});
 		const {stgDetails} = this._populateRow_stgDetails({comp, entity});
 
-		$$($wrpRow)`
+		ee(wrpRow)`
 			${stgHeader}
 			${stgDetails}
 		`;
@@ -106,7 +106,7 @@ export class RenderableCollectionSnapshotDecks extends RenderableCollectionFilte
 				JqueryUtil.doToast("Applied Snapshot Deck as Filters!");
 			});
 
-		const $iptName = ComponentUiUtil.$getIptStr(comp, "manager_name", {placeholder: "Name"});
+		const iptName = ComponentUiUtil.getIptStr(comp, "manager_name", {placeholder: "Name"});
 
 		const btnAddSnapshot = ee`<button class="ve-btn ve-btn-default ve-btn-xs mr-1" title="Add Snapshot"><span class="glyphicon glyphicon-plus"></span></button>`
 			.onn("click", async () => {
@@ -143,7 +143,7 @@ export class RenderableCollectionSnapshotDecks extends RenderableCollectionFilte
 			</div>
 
 			<div class="ve-flex-v-center ve-col-10 px-1">
-				${$iptName[0]}
+				${iptName}
 			</div>
 
 			<div class="ve-flex-vh-center ve-grow">

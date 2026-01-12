@@ -1,8 +1,7 @@
 export class DmScreenUtil {
-	// FIXME(Future) switch to a better interface than `data`
-	static $getPanelDataElements ({board, type, selector = ".dm__data-anchor"}) {
+	static getPanelApps ({board, type}) {
 		return board.getPanelsByType(type)
-			.flatMap(it => it.tabDatas.filter(td => td.type === type).map(td => td.$content.find(selector)));
+			.flatMap(it => it.tabDatas.filter(td => td.type === type).map(td => td.panelApp));
 	}
 
 	/* -------------------------------------------- */

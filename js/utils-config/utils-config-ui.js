@@ -56,7 +56,7 @@ export class ConfigUi {
 			settingsGroups,
 		});
 
-		const {$modalInner, $modalFooter, doClose} = UiUtil.getShowModal({
+		const {eleModalInner, eleModalFooter, doClose} = UiUtil.getShowModal({
 			isUncappedWidth: true,
 			isUncappedHeight: true,
 			title: "Preferences",
@@ -66,7 +66,7 @@ export class ConfigUi {
 			hasFooter: true,
 		});
 
-		ui.render($modalInner[0]);
+		ui.render(eleModalInner);
 
 		const btnClose = ee`<button class="ve-btn ve-btn-default ve-btn-sm ml-auto">Close</button>`
 			.onn("click", () => doClose());
@@ -74,6 +74,6 @@ export class ConfigUi {
 		ee`<div class="py-1 w-100 ve-flex-v-center">
 			${btnClose}
 		</div>`
-			.appendTo($modalFooter[0]);
+			.appendTo(eleModalFooter);
 	}
 }

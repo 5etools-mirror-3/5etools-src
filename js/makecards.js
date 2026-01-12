@@ -746,7 +746,7 @@ MakeCards._AVAILABLE_TYPES = {
 		pFnSearch: SearchWidget.pGetUserItemSearch,
 		fnGetContents: MakeCards._getCardContents_item.bind(MakeCards),
 		fnGetTags: (item) => {
-			const [textTypes] = Renderer.item.getHtmlAndTextTypes(item);
+			const {textTypes} = Renderer.item.getRenderableTypeEntriesMeta(item);
 			return ["item", Parser.sourceJsonToAbv(item.source), ...textTypes];
 		},
 	},

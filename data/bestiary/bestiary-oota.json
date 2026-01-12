@@ -382,7 +382,7 @@
 			"page": 6,
 			"_copy": {
 				"name": "Derro",
-				"source": "MTF",
+				"source": "OotA",
 				"_mod": {
 					"*": {
 						"mode": "replaceTxt",
@@ -1163,6 +1163,40 @@
 					}
 				]
 			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"traitTags": [
+				"Fey Ancestry",
+				"Sunlight Sensitivity"
+			],
+			"spellcastingTags": [
+				"CC",
+				"I"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Drow Assassin",
+			"source": "OotA",
+			"page": 140,
+			"_copy": {
+				"name": "Assassin",
+				"source": "MM",
+				"_templates": [
+					{
+						"name": "Drow (Levitate)",
+						"source": "PHB"
+					}
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"tokenCredit": "SagaSketchBook",
+			"tokenCustom": true,
 			"traitTags": [
 				"Fey Ancestry",
 				"Sunlight Sensitivity"
@@ -1187,6 +1221,10 @@
 					}
 				]
 			},
+			"alignment": [
+				"N",
+				"E"
+			],
 			"traitTags": [
 				"Fey Ancestry",
 				"Sunlight Sensitivity"
@@ -1210,6 +1248,10 @@
 					}
 				]
 			},
+			"alignment": [
+				"N",
+				"E"
+			],
 			"traitTags": [
 				"Fey Ancestry",
 				"Sunlight Sensitivity"
@@ -1233,6 +1275,10 @@
 					}
 				]
 			},
+			"alignment": [
+				"N",
+				"E"
+			],
 			"traitTags": [
 				"Fey Ancestry",
 				"Sunlight Sensitivity"
@@ -1256,6 +1302,10 @@
 					}
 				]
 			},
+			"alignment": [
+				"N",
+				"E"
+			],
 			"traitTags": [
 				"Fey Ancestry",
 				"Sunlight Sensitivity"
@@ -1279,6 +1329,10 @@
 					}
 				]
 			},
+			"alignment": [
+				"N",
+				"E"
+			],
 			"traitTags": [
 				"Fey Ancestry",
 				"Sunlight Sensitivity"
@@ -1302,6 +1356,10 @@
 					}
 				]
 			},
+			"alignment": [
+				"N",
+				"E"
+			],
 			"traitTags": [
 				"Fey Ancestry",
 				"Keen Senses",
@@ -1392,6 +1450,10 @@
 					}
 				]
 			},
+			"alignment": [
+				"N",
+				"E"
+			],
 			"traitTags": [
 				"Fey Ancestry",
 				"Sneak Attack",
@@ -3305,7 +3367,7 @@
 				{
 					"name": "Cunning Action",
 					"entries": [
-						"On each of its turns, the spy can use a bonus action to take the Dash, Disengage, or Hide action."
+						"On each of its turns, the spy can use a bonus action to take the {@action Dash}, {@action Disengage}, or {@action Hide} action."
 					]
 				},
 				{
@@ -3759,15 +3821,35 @@
 							]
 						}
 					},
-					"action": {
-						"mode": "appendArr",
-						"items": {
-							"name": "Throne Activation",
-							"entries": [
-								"While seated on her throne, Quenthel can use an action on her turn to cast {@spell disintegrate} (save {@dc 19}). A target that fails its saving throw takes {@damage 10d6 + 40} force damage. If this damage reduces the target to 0 hit points, it is disintegrated."
+					"action": [
+						{
+							"mode": "replaceArr",
+							"replace": "Multiattack",
+							"items": {
+								"name": "Multiattack",
+								"entries": [
+									"Quenthel makes three tentacle rod attacks."
+								]
+							}
+						},
+						{
+							"mode": "appendArr",
+							"items": [
+								{
+									"name": "Tentacle Rod",
+									"entries": [
+										"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage. If she hits a target with all three tentacles, it must make a {@dc 15} Constitution saving throw. On a failure, the creature's speed is halved, it has disadvantage on Dexterity saving throws, and it can't use reactions for 1 minute. Moreover, on each of its turns, it can take either an action or a bonus action, but not both. At the end of each of its turns, it can repeat the saving throw, ending the effect on itself on a success."
+									]
+								},
+								{
+									"name": "Throne Activation",
+									"entries": [
+										"While seated on her throne, Quenthel can use an action on her turn to cast {@spell disintegrate} (save {@dc 19}). A target that fails its saving throw takes {@damage 10d6 + 40} force damage. If this damage reduces the target to 0 hit points, it is disintegrated."
+									]
+								}
 							]
 						}
-					}
+					]
 				}
 			},
 			"ac": [
@@ -3819,67 +3901,161 @@
 					"name": "Spellcasting",
 					"type": "spellcasting",
 					"headerEntries": [
-						"Quenthel is a 20th-level spellcaster. Her spellcasting ability is Wisdom (save {@dc 20}, {@hit 12} to hit with spell attacks). The drow has the following cleric spells prepared:"
+						"Quenthel is a 20th-level spellcaster. Her spellcasting ability is Wisdom (save {@dc 20}, {@hit 12} to hit with spell attacks). Quenthel can cast any {@filter cleric spell up to 9th level|spells|level=0;1;2;3;4;5;6;7;8;9|class=cleric} at will."
 					],
 					"will": [
-						"Any {@filter cleric spell up to 9th level|spells|level=0;1;2;3;4;5;6;7;8;9|class=cleric}."
+						"aid",
+						"animate dead",
+						"antimagic field",
+						"astral projection",
+						"augury",
+						"aura of life",
+						"aura of purity",
+						"aura of vitality",
+						"bane",
+						"banishment",
+						"beacon of hope",
+						"bestow curse",
+						"blade barrier",
+						"bless",
+						"blindness/deafness",
+						"calm emotions",
+						"ceremony",
+						"clairvoyance",
+						"command",
+						"commune",
+						"conjure celestial",
+						"contagion",
+						"continual flame",
+						"control water",
+						"control weather",
+						"create food and water",
+						"create or destroy water",
+						"create undead",
+						"cure wounds",
+						"dawn",
+						"daylight",
+						"death ward",
+						"detect evil and good",
+						"detect magic",
+						"detect poison and disease",
+						"dispel evil and good",
+						"dispel magic",
+						"divination",
+						"divine word",
+						"earthquake",
+						"enhance ability",
+						"etherealness",
+						"feign death",
+						"find the path",
+						"find traps",
+						"fire storm",
+						"flame strike",
+						"forbiddance",
+						"freedom of movement",
+						"gate",
+						"geas",
+						"gentle repose",
+						"glyph of warding",
+						"greater restoration",
+						"guardian of faith",
+						"guidance",
+						"guiding bolt",
+						"hallow",
+						"harm",
+						"heal",
+						"healing word",
+						"heroes' feast",
+						"hold person",
+						"holy aura",
+						"holy weapon",
+						"inflict wounds",
+						"insect plague",
+						"legend lore",
+						"lesser restoration",
+						"life transference",
+						"light",
+						"locate creature",
+						"locate object",
+						"magic circle",
+						"mass cure wounds",
+						"mass heal",
+						"mass healing word",
+						"meld into stone",
+						"mending",
+						"planar ally",
+						"planar binding",
+						"plane shift",
+						"power word heal",
+						"prayer of healing",
+						"protection from energy",
+						"protection from evil and good",
+						"protection from poison",
+						"purify food and drink",
+						"raise dead",
+						"regenerate",
+						"remove curse",
+						"resistance",
+						"resurrection",
+						"revivify",
+						"sacred flame",
+						"sanctuary",
+						"scrying",
+						"sending",
+						"shield of faith",
+						"silence",
+						"spare the dying",
+						"speak with dead",
+						"spirit guardians",
+						"spirit shroud",
+						"spiritual weapon",
+						"stone shape",
+						"summon celestial",
+						"sunbeam",
+						"sunburst",
+						"symbol",
+						"temple of the gods",
+						"thaumaturgy",
+						"toll the dead",
+						"tongues",
+						"true resurrection",
+						"true seeing",
+						"warding bond",
+						"water walk",
+						"word of radiance",
+						"word of recall",
+						"zone of truth"
 					],
-					"spells": {
-						"0": {
-							"spells": [
-								"{@spell guidance}",
-								"{@spell poison spray}",
-								"{@spell resistance}",
-								"{@spell spare the dying}",
-								"{@spell thaumaturgy}"
-							]
-						},
-						"1": {
-							"slots": 4,
-							"spells": [
-								"{@spell animal friendship}",
-								"{@spell cure wounds}",
-								"{@spell detect poison and disease}",
-								"{@spell ray of sickness}"
-							]
-						},
-						"2": {
-							"slots": 3,
-							"spells": [
-								"{@spell lesser restoration}",
-								"{@spell protection from poison}",
-								"{@spell web}"
-							]
-						},
-						"3": {
-							"slots": 3,
-							"spells": [
-								"{@spell conjure animals} (2 giant spiders)",
-								"{@spell dispel magic}"
-							]
-						},
-						"4": {
-							"slots": 3,
-							"spells": [
-								"{@spell divination}",
-								"{@spell freedom of movement}"
-							]
-						},
-						"5": {
-							"slots": 2,
-							"spells": [
-								"{@spell insect plague}",
-								"{@spell mass cure wounds}"
-							]
-						}
-					},
-					"ability": "wis"
+					"ability": "wis",
+					"hidden": [
+						"will"
+					]
 				}
 			],
 			"tokenCustom": true,
+			"conditionInflictSpell": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"exhaustion",
+				"frightened",
+				"grappled",
+				"incapacitated",
+				"invisible",
+				"paralyzed",
+				"petrified",
+				"poisoned",
+				"prone",
+				"restrained",
+				"stunned",
+				"unconscious"
+			],
 			"savingThrowForcedSpell": [
+				"charisma",
 				"constitution",
 				"dexterity",
+				"intelligence",
+				"strength",
 				"wisdom"
 			],
 			"hasToken": true
@@ -5376,7 +5552,7 @@
 			"page": 29,
 			"_copy": {
 				"name": "Derro Savant",
-				"source": "MTF",
+				"source": "OotA",
 				"_mod": {
 					"*": {
 						"mode": "replaceTxt",

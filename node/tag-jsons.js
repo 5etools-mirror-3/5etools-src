@@ -14,7 +14,7 @@ const program = new Command()
 	.option("--dir [dir]", `Root directory (e.g. "./other/dir/")`)
 	.option("--inplace", `If the tagging should be done in-place`)
 	.option("--bestiary-file [bestiaryFile]", `A linked bestiary JSON to use when producing named creature tags (e.g. "./data/my-file.json")`)
-	.option("--style-hint", `A hint for converters with multiple input style options`)
+	.option("--style-hint [style-hint]", `A hint for converters with multiple input style options`)
 	.option("--strict", `If only strict/caps taggers should be used`)
 ;
 

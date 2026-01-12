@@ -261,14 +261,15 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 			tiers,
 		},
 	) {
-		const stgRandom = this._getRenderedWrpRandomAndAdjust_getStgRandom({tiers});
+		const stgRandom = this._getRenderedWrpRandomAndAdjust_getStgRandom({tiers})
+			.addClass("mobile-lg__mb-2");
 		const stgAdjust = this._getRenderedWrpRandomAndAdjust_getAdjustMeta({tiers});
 
 		return ee`<div class="ve-flex-col">
-			<div class="ve-flex-v-center">
+			<div class="ve-flex-v-center mobile-lg__ve-flex-col mobile-lg__ve-flex-ai-start">
 				${stgRandom}
 
-				<div class="vr-2 min-h-24p"></div>
+				<div class="vr-2 min-h-24p mobile-lg__hidden"></div>
 
 				${stgAdjust}
 			</div>
@@ -291,13 +292,13 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 			this,
 			"shapeHashRandom",
 			{
-				html: `<select class="form-control br-0"></select>`,
+				html: `<select class="form-control br-0 w-100"></select>`,
 				values: this._encounterShapesLookup.getHashList(),
 				fnDisplay: val => this._encounterShapesLookup.getEncounterShape(val).name,
 			},
 		);
 
-		const btnGenerate = ee`<button class="ve-btn ve-btn-primary" title="Generate Encounter"><span class="glyphicon glyphicon-play"></span></button>`
+		const btnGenerate = ee`<button class="ve-btn ve-btn-primary h-34p" title="Generate Encounter"><span class="glyphicon glyphicon-play"></span></button>`
 			.onn("click", async () => {
 				if (
 					this._encounterShapesLookup.isCustomEncounterHash(this._state.shapeHashRandom)
@@ -312,7 +313,7 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 				});
 			});
 
-		return ee`<div class="ve-flex-v-center input-group">
+		return ee`<div class="ve-flex-v-center input-group w-100">
 			${selTier}
 			${selShapeType}
 			${btnGenerate}
@@ -364,7 +365,7 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 				dispCaret.toggleClass("caret--up");
 			});
 
-		return ee`<div class="ve-flex-v-center relative">
+		return ee`<div class="ve-flex-v-center relative no-shrink">
 			<div class="ve-btn-group">
 				${btn}
 				${btnMenu}

@@ -142,7 +142,7 @@ export class InitiativeTrackerNetworking {
 	}
 
 	handleClick_playerWindowV1 ({doUpdateExternalStates}) {
-		const {$modalInner} = UiUtil.getShowModal({
+		const {eleModalInner} = UiUtil.getShowModal({
 			title: "Configure Player View",
 			isUncappedHeight: true,
 			isHeight100: true,
@@ -152,7 +152,7 @@ export class InitiativeTrackerNetworking {
 			},
 		});
 
-		const $wrpHelp = UiUtil.$getAddModalRow($modalInner, "div");
+		const wrpHelp = UiUtil.getAddModalRow(eleModalInner, "div");
 
 		const fnDispServerStoppedState = () => {
 			$btnStartServer.html(`<span class="glyphicon glyphicon-play"></span> Start Server`).prop("disabled", false);
@@ -175,13 +175,13 @@ export class InitiativeTrackerNetworking {
 				showConnected();
 			});
 
-		const $btnGetToken = $(`<button class="ve-btn ve-btn-default" disabled><span class="glyphicon glyphicon-copy"></span> Copy Token</button>`).appendTo($wrpHelp)
+		const $btnGetToken = $(`<button class="ve-btn ve-btn-default" disabled><span class="glyphicon glyphicon-copy"></span> Copy Token</button>`).appendTo(wrpHelp)
 			.click(async () => {
 				await MiscUtil.pCopyTextToClipboard(this._p2pMetaV1.serverPeer.token);
 				JqueryUtil.showCopiedEffect($btnGetToken);
 			});
 
-		const $btnGetLink = $(`<button class="ve-btn ve-btn-default mr-2" disabled><span class="glyphicon glyphicon-link"></span> Copy Link</button>`).appendTo($wrpHelp)
+		const $btnGetLink = $(`<button class="ve-btn ve-btn-default mr-2" disabled><span class="glyphicon glyphicon-link"></span> Copy Link</button>`).appendTo(wrpHelp)
 			.click(async () => {
 				const cleanOrigin = window.location.origin.replace(/\/+$/, "");
 				const cleanPathname = window.location.pathname.split("/").slice(0, -1).join("/");
@@ -206,14 +206,14 @@ export class InitiativeTrackerNetworking {
 				<p>${$btnStartServer}${$btnGetLink}${$btnGetToken}</p>
 				<p><i>Please note that this system is highly experimental. Your experience may vary.</i></p>
 			</div>
-		</div>`.appendTo($wrpHelp);
+		</div>`.appendTo(wrpHelp);
 
-		UiUtil.addModalSep($modalInner);
+		UiUtil.addModalSep(eleModalInner);
 
-		const $wrpConnected = UiUtil.$getAddModalRow($modalInner, "div").addClass("flx-col");
+		const wrpConnected = UiUtil.getAddModalRow(eleModalInner, "div").addClass("flx-col");
 
 		const showConnected = () => {
-			if (!this._p2pMetaV1.serverPeer) return $wrpConnected.html(`<div class="w-100 ve-flex-vh-center"><i>No clients connected.</i></div>`);
+			if (!this._p2pMetaV1.serverPeer) return wrpConnected.html(`<div class="w-100 ve-flex-vh-center"><i>No clients connected.</i></div>`);
 
 			let stack = `<div class="w-100"><h5>Connected Clients:</h5><ul>`;
 			this._p2pMetaV1.serverPeer.getActiveConnections()
@@ -221,7 +221,7 @@ export class InitiativeTrackerNetworking {
 				.sort(SortUtil.ascSortLower)
 				.forEach(it => stack += `<li>${it.escapeQuotes()}</li>`);
 			stack += "</ul></div>";
-			$wrpConnected.html(stack);
+			wrpConnected.html(stack);
 		};
 
 		if (this._p2pMetaV1.serverPeer) this._p2pMetaV1.serverPeer.onTemp("connection", showConnected);
@@ -315,7 +315,7 @@ export class InitiativeTrackerNetworking {
 	}
 
 	handleClick_playerWindowV0 ({doUpdateExternalStates}) {
-		const {$modalInner} = UiUtil.getShowModal({
+		const {eleModalInner, $modalInner} = UiUtil.getShowModal({
 			title: "Configure Player View",
 			isUncappedHeight: true,
 			isHeight100: true,
@@ -324,7 +324,7 @@ export class InitiativeTrackerNetworking {
 			},
 		});
 
-		const $wrpHelp = UiUtil.$getAddModalRow($modalInner, "div");
+		const wrpHelp = UiUtil.getAddModalRow(eleModalInner, "div");
 		const $btnAltAddPlayer = $(`<button class="ve-btn ve-btn-primary ve-btn-text-insert">Add Player</button>`).click(() => $btnAddClient.click());
 		const $btnAltGenAll = $(`<button class="ve-btn ve-btn-primary ve-btn-text-insert">Generate All</button>`).click(() => $btnGenServerTokens.click());
 		const $btnAltCopyAll = $(`<button class="ve-btn ve-btn-primary ve-btn-text-insert">Copy Server Tokens</button>`).click(() => $btnCopyServers.click());
@@ -346,11 +346,11 @@ export class InitiativeTrackerNetworking {
 				</p>
 				<p>Once a player's client has been "accepted," it will receive updates from the DM's tracker. <i>Please note that this system is highly experimental. Your experience may vary.</i></p>
 			</div>
-		</div>`.appendTo($wrpHelp);
+		</div>`.appendTo(wrpHelp);
 
-		UiUtil.addModalSep($modalInner);
+		UiUtil.addModalSep(eleModalInner);
 
-		const $wrpTop = UiUtil.$getAddModalRow($modalInner, "div");
+		const wrpTop = UiUtil.getAddModalRow(eleModalInner, "div");
 
 		const $btnAddClient = $(`<button class="ve-btn ve-btn-xs ve-btn-primary" title="Add Client">Add Player</button>`).click(() => addClientRow());
 
@@ -418,22 +418,20 @@ export class InitiativeTrackerNetworking {
 					</div>
 				</div>
 			</div>
-		`.appendTo($wrpTop);
+		`.appendTo(wrpTop);
 
-		UiUtil.addModalSep($modalInner);
+		UiUtil.addModalSep(eleModalInner);
 
 		const $btnGenServerTokens = $(`<button class="ve-btn ve-btn-primary ve-btn-xs">Generate All</button>`)
 			.click(() => this._playerWindowV0_pGetServerTokens({rowMetas: this._p2pMetaV0.rows}));
 
-		UiUtil.$getAddModalRow($modalInner, "div")
-			.append($$`
-			<div class="ve-flex w-100">
-				<div class="ve-col-2 bold">Player Name</div>
-				<div class="ve-col-3-5 bold">Server Token</div>
-				<div class="ve-col-1 ve-text-center">${$btnGenServerTokens}</div>
-				<div class="ve-col-3-5 bold">Client Token</div>
-			</div>
-		`);
+		$$`<div class="ve-flex w-100">
+			<div class="ve-col-2 bold">Player Name</div>
+			<div class="ve-col-3-5 bold">Server Token</div>
+			<div class="ve-col-1 ve-text-center">${$btnGenServerTokens}</div>
+			<div class="ve-col-3-5 bold">Client Token</div>
+		</div>`
+			.appendTo(UiUtil.getAddModalRow(eleModalInner, "div"));
 
 		const _get$rowTemplate = (
 			$iptName,
@@ -530,8 +528,8 @@ export class InitiativeTrackerNetworking {
 			return rowMeta;
 		};
 
-		const $wrpRows = UiUtil.$getAddModalRow($modalInner, "div");
-		const $wrpRowsInner = $(`<div class="w-100"></div>`).appendTo($wrpRows);
+		const wrpRows = UiUtil.getAddModalRow(eleModalInner, "div");
+		const $wrpRowsInner = $(`<div class="w-100"></div>`).appendTo(wrpRows);
 
 		if (this._p2pMetaV0.rows.length) this._p2pMetaV0.rows.forEach(row => row.$row.appendTo($wrpRowsInner));
 		else addClientRow();
