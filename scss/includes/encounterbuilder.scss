@@ -34,6 +34,7 @@
 
 		&-therm__ {
 			$sz-border-radius: 5px;
+			$sz-border-radius-inner: 4px;
 
 			&wrp {
 				border-radius: $sz-border-radius;
@@ -43,12 +44,12 @@
 			&bar {
 				transition: width vars.$time-5-frames;
 				border: 1px solid transparent;
-				border-top-left-radius: $sz-border-radius;
-				border-bottom-left-radius: $sz-border-radius;
+				border-top-left-radius: $sz-border-radius-inner;
+				border-bottom-left-radius: $sz-border-radius-inner;
 
 				&--max {
-					border-top-right-radius: $sz-border-radius;
-					border-bottom-right-radius: $sz-border-radius;
+					border-top-right-radius: $sz-border-radius-inner;
+					border-bottom-right-radius: $sz-border-radius-inner;
 				}
 			}
 

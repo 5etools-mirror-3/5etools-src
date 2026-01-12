@@ -15,7 +15,7 @@ class VariantClassFilter extends Filter {
 	set parent (multiFilterClasses) { this._parent = multiFilterClasses; }
 
 	handleVariantSplit (isVariantSplit) {
-		this.__$wrpFilter.toggleVe(isVariantSplit);
+		this.__wrpFilter.toggleVe(isVariantSplit);
 	}
 }
 
@@ -33,14 +33,14 @@ class MultiFilterClasses extends MultiFilter {
 	get classFilter_ () { return this._classFilter; }
 	get isVariantSplit () { return this._meta.isVariantSplit; }
 
-	$render (opts) {
-		const $out = super.$render(opts);
+	render (opts) {
+		const out = super.render(opts);
 
 		const hkVariantSplit = () => this._variantClassFilter.handleVariantSplit(this._meta.isVariantSplit);
 		this._addHook("meta", "isVariantSplit", hkVariantSplit);
 		hkVariantSplit();
 
-		return $out;
+		return out;
 	}
 
 	_getHeaderControls_addExtraStateBtns (opts, wrpStateBtnsOuter) {
@@ -625,7 +625,7 @@ class ModalFilterSpells extends ModalFilterBase {
 		});
 	}
 
-	_$getColumnHeaders () {
+	_getColumnHeaders () {
 		const btnMeta = [
 			{sort: "name", text: "Name", width: "3"},
 			{sort: "level", text: "Level", width: "1-5"},
@@ -635,7 +635,7 @@ class ModalFilterSpells extends ModalFilterBase {
 			{sort: "range", text: "Range", width: "2"},
 			{sort: "source", text: "Source", width: "1"},
 		];
-		return ModalFilterBase._$getFilterColumnHeaders(btnMeta);
+		return ModalFilterBase._getFilterColumnHeaders(btnMeta);
 	}
 
 	async _pInit () {

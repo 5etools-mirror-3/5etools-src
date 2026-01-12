@@ -5,16 +5,16 @@ export class RenderableCollectionSnapshots extends RenderableCollectionFilterSna
 		{
 			filterBox,
 			comp,
-			$wrpRows,
+			wrpRows,
 			selectClickHandler,
 		},
 	) {
-		super({filterBox, comp, prop: "boxSnapshots", $wrpRows, selectClickHandler});
+		super({filterBox, comp, prop: "boxSnapshots", wrpRows, selectClickHandler});
 	}
 
 	/* -------------------------------------------- */
 
-	_populateRow ({comp, $wrpRow, entity}) {
+	_populateRow ({comp, wrpRow, entity}) {
 		// region Bind cache-flush hooks
 		comp._addHookBase("filterSnapshots", () => {
 			const activeSnapshotDeck = this._comp.getActiveSnapshotDeck();
@@ -47,7 +47,7 @@ export class RenderableCollectionSnapshots extends RenderableCollectionFilterSna
 
 		const btnToggleExpand = this.constructor._getBtnToggleExpand(comp, {isSibling: true});
 
-		const $iptName = ComponentUiUtil.$getIptStr(comp, "manager_name", {placeholder: "Name"});
+		const iptName = ComponentUiUtil.getIptStr(comp, "manager_name", {placeholder: "Name"});
 
 		// On updating name, find all decks in which this snapshot is used, and update the transient name
 		comp._addHookBase("manager_name", () => {
@@ -108,7 +108,7 @@ export class RenderableCollectionSnapshots extends RenderableCollectionFilterSna
 			</div>
 
 			<div class="ve-flex-v-center ve-col-8-5 px-1">
-				${$iptName[0]}
+				${iptName}
 			</div>
 
 			<div class="ve-flex-vh-center ve-grow">
@@ -154,7 +154,7 @@ export class RenderableCollectionSnapshots extends RenderableCollectionFilterSna
 			.onn("mousedown", evt => evt.stopPropagation());
 		comp._addHookBase("manager_loader_isExpanded", () => stgDetails.toggleVe(!!comp._state.manager_loader_isExpanded))();
 
-		$$($wrpRow)`
+		ee(wrpRow)`
 			${stgHeader}
 			${stgDetails}
 		`;

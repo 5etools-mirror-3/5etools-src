@@ -16860,9 +16860,17 @@
 						"seconds": 60
 					},
 					"statuses": [
-						"incapacitated",
-						"prone"
+						"incapacitated"
 					],
+					"flags": {
+						"dnd5e": {
+							"riders": {
+								"statuses": [
+									"prone"
+								]
+							}
+						}
+					},
 					"description": "has the &Reference[prone apply=false] and &Reference[incapacitated apply=false] conditions for the duration. During that time, it laughs uncontrollably if it's capable of laughter, and it can't end the Prone condition on itself. At the end of each of its turns and each time it takes damage, it makes another [[/save ability=wis dc=@attributes.spell.dc]] saving throw. The target has Advantage on the save if the save is triggered by damage. On a successful save, the spell ends."
 				}
 			],

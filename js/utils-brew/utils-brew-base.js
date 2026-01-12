@@ -2,6 +2,7 @@ import {BrewUtilShared} from "./utils-brew-helpers.js";
 import {BrewDoc} from "./utils-brew-models.js";
 import {SITE_STYLE__CLASSIC, SITE_STYLE__ONE} from "../consts.js";
 import {FontManager} from "../utils-font.js";
+import {BrewDocContentMigrator} from "./utils-brew-content-migrator.js";
 
 export class BrewUtil2Base {
 	_STORAGE_KEY_LEGACY;
@@ -64,6 +65,8 @@ export class BrewUtil2Base {
 
 	pInit () {
 		this._pActiveInit ||= (async () => {
+			await BrewDocContentMigrator.pInit();
+
 			// region Ensure the local homebrew cache is hot, to allow us to fetch from it later in a sync manner.
 			//   This is necessary to replicate the "meta" caching done for non-local brew.
 			await this._pGetBrew_pGetLocalBrew();
@@ -1071,7 +1074,7 @@ export class BrewUtil2Base {
 
 	// region Rendering/etc.
 	_PAGE_TO_PROPS__SPELLS = [...UrlUtil.PAGE_TO_PROPS[UrlUtil.PG_SPELLS], "spellFluff"];
-	_PAGE_TO_PROPS__BESTIARY = ["monster", "legendaryGroup", "monsterFluff"];
+	_PAGE_TO_PROPS__BESTIARY = ["monster", "legendaryGroup", "monsterFluff", "encounterShape"];
 
 	_PAGE_TO_PROPS = {
 		[UrlUtil.PG_SPELLS]: this._PAGE_TO_PROPS__SPELLS,

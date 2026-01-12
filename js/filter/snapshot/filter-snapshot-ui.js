@@ -32,9 +32,6 @@ export class FilterSnapshotUi extends BaseComponent {
 		const rdState = new this.constructor._RenderState();
 
 		const {
-			$modal,
-			doClose,
-			pGetResolved,
 			tabMetaSnapshotDecks,
 			tabMetaSnapshots,
 		} = await this._pRender_pGetShowModal({rdState, activeTab});
@@ -56,7 +53,7 @@ export class FilterSnapshotUi extends BaseComponent {
 			activeTab,
 		},
 	) {
-		const {$modal, doClose, pGetResolved} = await UiUtil.pGetShowModal({
+		const {eleModal, doClose, pGetResolved} = await UiUtil.pGetShowModal({
 			isMinHeight0: true,
 			isHeight100: true,
 			isWidth100: true,
@@ -117,14 +114,14 @@ export class FilterSnapshotUi extends BaseComponent {
 			}),
 		];
 
-		const tabMetas = this._renderTabs(iptTabMetas, {$parent: $modal});
+		const tabMetas = this._renderTabs(iptTabMetas, {eleParent: eleModal});
 
 		const [tabMetaSnapshotDecks, tabMetaSnapshots] = tabMetas;
 
 		this._setActiveTab({tab: activeTab === "snapshots" ? tabMetaSnapshots : tabMetaSnapshotDecks});
 
 		return {
-			$modal,
+			eleModal,
 			doClose,
 			pGetResolved,
 			tabMetaSnapshotDecks,
@@ -137,12 +134,12 @@ export class FilterSnapshotUi extends BaseComponent {
 	}
 
 	_pOnClick_doShowHelp () {
-		const {$modalInner} = UiUtil.getShowModal({
+		const {eleModalInner} = UiUtil.getShowModal({
 			title: "Help",
 			isMinHeight0: true,
 		});
 
-		$modalInner.append(`
+		eleModalInner.appends(`
 			<p>Customize how your filters default upon hitting &quot;Reset&quot;.</p>
 			<p>Save your current filter(s) by taking a <b>Snapshot</b>.</p>
 			<p>Use your snapshots to create a <b>Snapshot Deck</b>.</p>

@@ -1,13 +1,24 @@
 import {RenderMap} from "../render-map.js";
+import {PanelContentManager_DynamicMap} from "./dmscreen-panels.js";
+import {DmScreenPanelAppBase} from "./dmscreen-panelapp-base.js";
 
-export class DmMapper {
-	static $getMapper (board, state) {
-		const $wrpPanel = $(`<div class="w-100 h-100 dm-map__root dm__panel-bg dm__data-anchor"></div>`) // root class used to identify for saving
-			.data("getState", () => mapper.getSaveableState());
-		const mapper = new DmMapperRoot(board, $wrpPanel);
-		mapper.setStateFrom(state);
-		mapper.render($wrpPanel);
+export class DmMapper extends DmScreenPanelAppBase {
+	constructor (...args) {
+		super(...args);
+
+		this._comp = null;
+	}
+
+	_$getPanelElement (board, state) {
+		const $wrpPanel = $(`<div class="w-100 h-100 dm-map__root dm__panel-bg"></div>`);
+		this._comp = new DmMapperRoot(board, $wrpPanel);
+		this._comp.setStateFrom(state);
+		this._comp.render($wrpPanel);
 		return $wrpPanel;
+	}
+
+	getState () {
+		return this._comp.getSaveableState();
 	}
 
 	static _getProps ({catId}) {
@@ -113,9 +124,10 @@ export class DmMapper {
 				<div class="dm-map__picker-img" style="background-image: url(${encodeURI(mapData.hrefThumbnail || mapData.href)})"></div>
 				<span class="absolute ve-text-center dm-map__picker-disp-name">${mapData.name.escapeQuotes()}</span>
 			</div>`)
-				.click(() => {
+				.on("click", async () => {
 					doClose();
-					menu.pnl.doPopulate_AdventureBookDynamicMap({state: mapData});
+					const pcm = new PanelContentManager_DynamicMap({board: menu.pnl.board, panel: menu.pnl});
+					await pcm.pDoPopulate({state: {state: mapData}});
 				})
 				.appendTo($modalInner);
 		});

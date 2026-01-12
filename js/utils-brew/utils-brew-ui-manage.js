@@ -177,7 +177,7 @@ export class ManageBrewUi {
 			isWidth100: true,
 			title: `Manage ${brewUtil.DISPLAY_NAME.toTitleCase()}`,
 			isUncappedHeight: true,
-			titleSplit: ee`<div class="ve-flex-v-center ve-btn-group">
+			eleTitleSplit: ee`<div class="ve-flex-v-center ve-btn-group">
 				${ui._getBtnPullAll(rdState)}
 				${ui._getBtnDeleteAll(rdState)}
 			</div>`,

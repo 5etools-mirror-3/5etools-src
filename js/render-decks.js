@@ -219,7 +219,7 @@ class RenderDecks {
 		</div>`
 			.onn("mouseup", evt => {
 				if (!EventUtil.isMiddleMouse(evt) || !imgBack) return;
-				wrpCardFlip.classList.toggleVe("decks-draw__wrp-card-flip--flipped");
+				wrpCardFlip.classList.toggle("decks-draw__wrp-card-flip--flipped");
 			});
 
 		const ptText = RenderDecks.getCardTextHtml({card, deck});
@@ -233,7 +233,7 @@ class RenderDecks {
 			? ee`<button class="ve-btn ve-btn-default ve-btn-xs px-3" title="Flip Card"><i class="fas fa-rotate"></i> Flip</button>`
 				.onn("click", evt => {
 					evt.stopPropagation();
-					wrpCardFlip.classList.toggleVe("decks-draw__wrp-card-flip--flipped");
+					wrpCardFlip.classList.toggle("decks-draw__wrp-card-flip--flipped");
 				})
 			: null;
 

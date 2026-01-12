@@ -73,7 +73,7 @@ export class OmnisearchUtilsUi {
 	/* -------------------------------------------- */
 
 	static doShowHelp ({isIncludeHotkeys = false} = {}) {
-		const {$modalInner} = UiUtil.getShowModal({
+		const {eleModalInner} = UiUtil.getShowModal({
 			title: "Help",
 			isMinHeight0: true,
 			isUncappedHeight: true,
@@ -91,7 +91,7 @@ export class OmnisearchUtilsUi {
 			})
 			.join("");
 
-		$modalInner.append(`
+		eleModalInner.appends(`
 			<p>The following search syntax is available:</p>
 			<ul>
 				<li><code>source:&lt;abbreviation&gt;</code> where <code>&lt;abbreviation&gt;</code> is an abbreviated source/book name (&quot;PHB&quot;, &quot;MM&quot;, etc.)</li>

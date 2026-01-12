@@ -1,10 +1,17 @@
 import {DmScreenUtil} from "./dmscreen-util.js";
 import {PANEL_TYP_INITIATIVE_TRACKER} from "./dmscreen-consts.js";
 
+// TODO(Future) refactor to subclass `DmScreenPanelAppBase`; move state to `_comp`
 export class InitiativeTrackerCreatureViewer extends BaseComponent {
-	static $getPanelElement (board, savedState) {
-		return new this({board, savedState}).render();
+	static getPanelApp ({board, savedState}) {
+		return new this({board, savedState});
 	}
+
+	$getPanelElement () {
+		return this.render();
+	}
+
+	/* -------------------------------------------- */
 
 	constructor ({board, savedState}) {
 		super();
@@ -16,8 +23,33 @@ export class InitiativeTrackerCreatureViewer extends BaseComponent {
 
 	/* -------------------------------------------- */
 
+	onDestroy () {
+		if (!this._trackerLinked) return;
+		this._trackerLinked.doDisconnectCreatureViewer({creatureViewer: this});
+		this._state.isActive = false;
+	}
+
+	onBoardEvent ({type, payload = {}}) {
+		if (
+			!(
+				type === "panelDestroy"
+				|| (type === "panelPopulate" && payload.type === PANEL_TYP_INITIATIVE_TRACKER)
+				|| (type === "panelIdSetActive" && payload.type === PANEL_TYP_INITIATIVE_TRACKER)
+			)
+		) return;
+
+		this._hkBoardPanels();
+	}
+
+	/* -------------------------------------------- */
+
+	_hkBoardPanels () {
+		const panelApps = DmScreenUtil.getPanelApps({board: this._board, type: PANEL_TYP_INITIATIVE_TRACKER});
+		this._state.cntPanelsAvailable = panelApps.length;
+	}
+
 	render () {
-		const $out = $$`<div class="ve-flex-col w-100 h-100 min-h-0 dm__data-anchor">
+		const $out = $$`<div class="ve-flex-col w-100 h-100 min-h-0">
 			${this._render_$getStgNoTrackerAvailable()}
 			${this._render_$getStgConnect()}
 			${this._render_$getStgCreature()}
@@ -27,34 +59,12 @@ export class InitiativeTrackerCreatureViewer extends BaseComponent {
 			if (prop == null) return;
 			if (prev || val !== 1) return;
 
-			this._setLinkedTrackerFromEle({
-				$eleData: DmScreenUtil.$getPanelDataElements({board: this._board, type: PANEL_TYP_INITIATIVE_TRACKER})[0],
+			this._setLinkedTrackerFromPanelApp({
+				panelApp: DmScreenUtil.getPanelApps({board: this._board, type: PANEL_TYP_INITIATIVE_TRACKER})[0],
 			});
 		})();
 
-		const hkBoardPanels = () => {
-			const $elesData = DmScreenUtil.$getPanelDataElements({board: this._board, type: PANEL_TYP_INITIATIVE_TRACKER});
-			this._state.cntPanelsAvailable = $elesData.length;
-		};
-		hkBoardPanels();
-
-		$out
-			.data("onDestroy", () => {
-				if (!this._trackerLinked) return;
-				this._trackerLinked.doDisconnectCreatureViewer({creatureViewer: this});
-				this._state.isActive = false;
-			})
-			.data("onBoardEvent", ({type, payload = {}}) => {
-				if (
-					!(
-						type === "panelDestroy"
-						|| (type === "panelPopulate" && payload.type === PANEL_TYP_INITIATIVE_TRACKER)
-						|| (type === "panelIdSetActive" && payload.type === PANEL_TYP_INITIATIVE_TRACKER)
-					)
-				) return;
-
-				hkBoardPanels();
-			});
+		this._hkBoardPanels();
 
 		return $out;
 	}
@@ -75,9 +85,9 @@ export class InitiativeTrackerCreatureViewer extends BaseComponent {
 	_render_$getStgConnect () {
 		const $btnConnect = $(`<button class="ve-btn ve-btn-primary min-w-200p">Connect to Tracker</button>`)
 			.on("click", async () => {
-				const $elesData = DmScreenUtil.$getPanelDataElements({board: this._board, type: PANEL_TYP_INITIATIVE_TRACKER});
+				const panelApps = DmScreenUtil.getPanelApps({board: this._board, type: PANEL_TYP_INITIATIVE_TRACKER});
 
-				if ($elesData.length === 1) return this._setLinkedTrackerFromEle({$eleData: $elesData[0]});
+				if (panelApps.length === 1) return this._setLinkedTrackerFromPanelApp({panelApp: panelApps[0]});
 
 				const {$modalInner, doClose, pGetResolved} = UiUtil.getShowModal({
 					isMinHeight0: true,
@@ -87,7 +97,7 @@ export class InitiativeTrackerCreatureViewer extends BaseComponent {
 
 				const $selTracker = $(`<select class="form-control input-xs mb-2">
 					<option value="-1" disabled>Select tracker</option>
-					${$elesData.map(($e, i) => `<option value="${i}">${$e.data("getSummary")()}</option>`).join("")}
+					${panelApps.map((panelApp, i) => `<option value="${i}">${panelApp.getSummary()}</option>`).join("")}
 				</select>`)
 					.on("change", () => $selTracker.removeClass("error-background"));
 
@@ -110,7 +120,7 @@ export class InitiativeTrackerCreatureViewer extends BaseComponent {
 				const [isDataEntered, ixSel] = await pGetResolved();
 				if (!isDataEntered || ixSel == null) return;
 
-				this._setLinkedTrackerFromEle({$eleData: $elesData[ixSel]});
+				this._setLinkedTrackerFromPanelApp({panelApp: panelApps[ixSel]});
 			});
 
 		const $stg = $$`<div class="ve-flex-vh-center w-100 h-100 min-h-0">
@@ -169,8 +179,8 @@ export class InitiativeTrackerCreatureViewer extends BaseComponent {
 
 	/* -------------------------------------------- */
 
-	_setLinkedTrackerFromEle ({$eleData}) {
-		this._trackerLinked = $eleData.data("getApi")().doConnectCreatureViewer({creatureViewer: this});
+	_setLinkedTrackerFromPanelApp ({panelApp}) {
+		this._trackerLinked = panelApp.getApi().doConnectCreatureViewer({creatureViewer: this});
 		this._state.isActive = true;
 	}
 

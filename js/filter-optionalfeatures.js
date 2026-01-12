@@ -217,7 +217,7 @@ class ModalFilterOptionalFeatures extends ModalFilterBase {
 		});
 	}
 
-	_$getColumnHeaders () {
+	_getColumnHeaders () {
 		const btnMeta = [
 			{sort: "name", text: "Name", width: "3"},
 			{sort: "type", text: "Type", width: "2"},
@@ -225,7 +225,7 @@ class ModalFilterOptionalFeatures extends ModalFilterBase {
 			{sort: "level", text: "Level", width: "1"},
 			{sort: "source", text: "Source", width: "1"},
 		];
-		return ModalFilterBase._$getFilterColumnHeaders(btnMeta);
+		return ModalFilterBase._getFilterColumnHeaders(btnMeta);
 	}
 
 	async _pLoadAllData () {

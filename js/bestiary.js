@@ -635,7 +635,7 @@ class BestiaryPage extends ListPageMultiSource {
 		this._profDiceMode = await StorageUtil.pGetForPage("proficiencyDiceMode") || _BestiaryConsts.PROF_MODE_BONUS;
 
 		const hk = () => {
-			this._btnProf.txt(this._profDiceMode === _BestiaryConsts.PROF_MODE_DICE ? "Use Proficiency Bonus" : "Use Proficiency Dice");
+			this._btnProf.toggleClass("active", this._profDiceMode === _BestiaryConsts.PROF_MODE_DICE);
 			this._pgContent.attr("data-proficiency-dice-mode", this._profDiceMode);
 			StorageUtil.pSetForPage("proficiencyDiceMode", this._profDiceMode).then(null);
 		};

@@ -2340,6 +2340,8 @@ class ListPageTokenDisplay {
 		</svg>`,
 	)}`;
 
+	static _CONTAINER_SIZE = 110;
+
 	constructor (
 		{
 			fnHasToken,
@@ -2364,19 +2366,43 @@ class ListPageTokenDisplay {
 	}
 
 	render (ent) {
-		if (!this._wrpContainer) this._wrpContainer ||= e_(document.getElementById("wrp-pagecontent"));
-		if (!this._dispToken) this._dispToken ||= e_(document.getElementById("float-token"));
+		this._wrpContainer ||= e_(document.getElementById("wrp-pagecontent"));
+		this._dispToken ||= e_(document.getElementById("float-token"));
+
 		this._dispToken.empty();
 
 		if (!this._fnHasToken(ent)) return;
 
 		const bcr = this._wrpContainer.getBoundingClientRect();
-		const wMax = Math.max(Math.floor(bcr.height) - 6, 110);
+		const wMax = Math.max(Math.floor(bcr.height) - 6, this.constructor._CONTAINER_SIZE);
 
 		const imgLink = this._fnGetTokenUrl(ent);
-		const img = ee`<img src="${imgLink}" class="stats__token" ${Renderer.utils.getTokenMetadataAttributes(ent)} loading="lazy">`
+		const img = ee`<img src="${imgLink}" class="stats__token stats__token--primary relative" ${Renderer.utils.getTokenMetadataAttributes(ent)} loading="lazy">`
 			.css({"max-width": `${wMax}px`});
-		const lnkToken = ee`<a href="${imgLink}" class="stats__wrp-token" target="_blank" rel="noopener noreferrer">${img}</a>`
+
+		let styleFoundryScale = null;
+		if (ent.foundryTokenScale && ent.foundryTokenScale >= 1.2) {
+			styleFoundryScale = ee`<style>
+				.stats__token--primary {
+					width: ${ent.foundryTokenScale * 100}%;
+					height: ${ent.foundryTokenScale * 100}%;
+					left: -${(ent.foundryTokenScale - 1) / 2 * 100}%;
+					top: -${(ent.foundryTokenScale - 1) / 2 * this.constructor._CONTAINER_SIZE}px;
+					transition: width 34ms, height 34ms, left 34ms, top 34ms;
+				}
+
+				.stats__wrp-token:hover {
+					.stats__token--primary {
+						width: 100%;
+						height: 100%;
+						left: unset;
+						top: unset;
+					}
+				}
+			</style>`;
+		}
+
+		const lnkToken = ee`<a href="${imgLink}" class="stats__wrp-token ve-overflow-hidden" target="_blank" rel="noopener noreferrer">${styleFoundryScale}${img}</a>`
 			.appendTo(this._dispToken);
 
 		const altArtMeta = [];
@@ -2392,12 +2418,18 @@ class ListPageTokenDisplay {
 		// make a fake entry for the original token
 		altArtMeta.unshift({ele: lnkToken});
 
+		const altArtLoaded = {};
 		const buildEle = (meta) => {
 			if (!meta.ele) {
 				const imgLink = this._fnGetTokenUrl(meta);
+				const srcInitial = altArtLoaded[imgLink] ? imgLink : Renderer.utils.lazy.getPlaceholderImgHtml({width: 1000, height: 1000, shapeType: "circle"});
 				const displayName = Renderer.utils.getAltArtDisplayName(meta);
-				const img = ee`<img src="${imgLink}" class="stats__token" ${Renderer.utils.getTokenMetadataAttributes(ent, {displayName})} loading="lazy">`
+				const img = ee`<img src="${srcInitial}" class="stats__token" ${Renderer.utils.getTokenMetadataAttributes(ent, {displayName})} loading="lazy">`
 					.css({"max-width": `${wMax}px`})
+					.onn("load", async () => {
+						img.src = imgLink;
+						altArtLoaded[imgLink] = true;
+					})
 					.onn("error", () => {
 						img.attr("src", this.constructor._SRC_ERROR);
 					});
@@ -2421,15 +2453,15 @@ class ListPageTokenDisplay {
 
 			if (!~direction) { // left
 				if (ix === 0) {
-					btnLeft.hideVe();
+					btnLeft.attr("disabled", true);
 					wrpFooter.hideVe();
 				}
-				btnRight.showVe();
+				btnRight.attr("disabled", false);
 			} else {
-				btnLeft.showVe();
+				btnLeft.attr("disabled", false);
 				wrpFooter.showVe();
 				if (ix === altArtMeta.length - 1) {
-					btnRight.hideVe();
+					btnRight.attr("disabled", true);
 				}
 			}
 			altArtMeta.filter(it => it.ele).forEach(it => it.ele.hideVe());
@@ -2443,21 +2475,20 @@ class ListPageTokenDisplay {
 			footer.html(Renderer.utils.getRenderedAltArtEntry(meta));
 
 			wrpFooter.detach().appendTo(meta.ele);
-			btnLeft.detach().appendTo(meta.ele);
-			btnRight.detach().appendTo(meta.ele);
+			wrpBtns.detach().appendTo(meta.ele);
 		};
 
 		// append footer first to be behind buttons
 		const footer = ee`<div class="stats__token-footer"></div>`;
 		const wrpFooter = ee`<div class="stats__wrp-token-footer">${footer}</div>`.hideVe().appendTo(lnkToken);
 
-		const btnLeft = ee`<div class="stats__btn-token-cycle stats__btn-token-cycle--left"><span class="glyphicon glyphicon-chevron-left"></span></div>`
-			.onn("click", evt => handleClick(evt, -1))
-			.appendTo(lnkToken)
-			.hideVe();
+		const btnLeft = ee`<button class="stats__btn-token-cycle ve-btn ve-btn-default ve-btn-xs" disabled><span class="glyphicon glyphicon-chevron-left"></span></button>`
+			.onn("click", evt => handleClick(evt, -1));
 
-		const btnRight = ee`<div class="stats__btn-token-cycle stats__btn-token-cycle--right"><span class="glyphicon glyphicon-chevron-right"></span></div>`
-			.onn("click", evt => handleClick(evt, 1))
+		const btnRight = ee`<button class="stats__btn-token-cycle ve-btn ve-btn-default ve-btn-xs"><span class="glyphicon glyphicon-chevron-right"></span></button>`
+			.onn("click", evt => handleClick(evt, 1));
+
+		const wrpBtns = ee`<div class="ve-flex-v-center ve-btn-group absolute stats__wrp-btn-token-cycle">${btnLeft}${btnRight}</div>`
 			.appendTo(lnkToken);
 	}
 }

@@ -567,67 +567,66 @@ class UiUtil {
 		return !!UiUtil._MODAL_STACK?.length;
 	}
 
-	static addModalSep ($modalInner) {
-		$modalInner.append(`<hr class="hr-2">`);
+	static addModalSep (eleModalInner) {
+		eleModalInner.appends(`<hr class="hr-2">`);
 	}
 
-	static $getAddModalRow ($modalInner, tag = "div") {
-		return $(`<${tag} class="ui-modal__row"></${tag}>`).appendTo($modalInner);
+	static getAddModalRow (eleModalInner, tag = "div") {
+		return ee`<${tag} class="ui-modal__row"></${tag}>`.appendTo(eleModalInner);
 	}
 
 	/**
-	 * @param $modalInner Element this row should be added to.
+	 * @param eleModalInner Element this row should be added to.
 	 * @param headerText Header text.
 	 * @param [opts] Options object.
 	 * @param [opts.helpText] Help text (title) of select dropdown.
-	 * @param [opts.$eleRhs] Element to attach to the right-hand side of the header.
+	 * @param [opts.eleRhs] Element to attach to the right-hand side of the header.
 	 */
-	static $getAddModalRowHeader ($modalInner, headerText, opts) {
+	static getAddModalRowHeader (eleModalInner, headerText, opts) {
 		opts = opts || {};
-		const $row = UiUtil.$getAddModalRow($modalInner, "h5").addClass("bold");
-		if (opts.$eleRhs) $$`<div class="split ve-flex-v-center w-100 pr-1"><span>${headerText}</span>${opts.$eleRhs}</div>`.appendTo($row);
-		else $row.text(headerText);
-		if (opts.helpText) $row.title(opts.helpText);
-		return $row;
+		const row = UiUtil.getAddModalRow(eleModalInner, "h5").addClass("bold");
+		if (opts.eleRhs) ee`<div class="split ve-flex-v-center w-100 pr-1"><span>${headerText}</span>${opts.eleRhs}</div>`.appendTo(row);
+		else row.txt(headerText);
+		if (opts.helpText) row.tooltip(opts.helpText);
+		return row;
 	}
 
-	static $getAddModalRowCb ($modalInner, labelText, objectWithProp, propName, helpText) {
-		const $row = UiUtil.$getAddModalRow($modalInner, "label").addClass(`ui-modal__row--cb`);
-		if (helpText) $row.title(helpText);
-		$row.append(`<span>${labelText}</span>`);
-		const $cb = $(`<input type="checkbox">`).appendTo($row)
-			.keydown(evt => {
-				if (evt.key === "Escape") $cb.blur();
+	static getAddModalRowCb (eleModalInner, labelText, objectWithProp, propName, helpText) {
+		const row = UiUtil.getAddModalRow(eleModalInner, "label").addClass(`ui-modal__row--cb`);
+		if (helpText) row.tooltip(helpText);
+		row.appends(`<span>${labelText}</span>`);
+		const cb = ee`<input type="checkbox">`.appendTo(row)
+			.onn("keydown", evt => {
+				if (evt.key === "Escape") cb.blure();
 			})
-			.prop("checked", objectWithProp[propName])
-			.on("change", () => objectWithProp[propName] = $cb.prop("checked"));
-		return $cb;
+			.prop("checked", !!objectWithProp[propName])
+			.onn("change", () => objectWithProp[propName] = cb.prop("checked"));
+		return cb;
 	}
 
 	/**
 	 *
-	 * @param $wrp
+	 * @param wrp
 	 * @param comp
 	 * @param prop
 	 * @param text
 	 * @param {?string} title
-	 * @return {jQuery}
+	 * @return {HTMLElementExtended}
 	 */
-	static $getAddModalRowCb2 ({$wrp, comp, prop, text, title = null }) {
-		const $cb = ComponentUiUtil.$getCbBool(comp, prop);
+	static getAddModalRowCb2 ({wrp, comp, prop, text, title = null }) {
+		const cb = ComponentUiUtil.getCbBool(comp, prop);
 
-		const $row = $$`<label class="split-v-center py-1 veapp__ele-hoverable">
+		const row = ee`<label class="split-v-center py-1 veapp__ele-hoverable">
 			<span>${text}</span>
-			${$cb}
+			${cb}
 		</label>`
-			.appendTo($wrp);
-		if (title) $row.title(title);
+			.appendTo(wrp);
+		if (title) row.tooltip(title);
 
-		return $cb;
+		return cb;
 	}
 
 	/**
-	 *
 	 * @param $modalInner Element this row should be added to.
 	 * @param labelText Row label.
 	 * @param objectWithProp Object to mutate when changing select values.
@@ -638,17 +637,31 @@ class UiUtil {
 	 * @param [opts.fnDisplay] Function used to map values to displayable versions.
 	 */
 	static $getAddModalRowSel ($modalInner, labelText, objectWithProp, propName, values, opts) {
+		return $(getAddModalRowSel(eleModalInner, labelText, objectWithProp, propName, values, opts));
+	}
+
+	/**
+	 * @param eleModalInner Element this row should be added to.
+	 * @param labelText Row label.
+	 * @param objectWithProp Object to mutate when changing select values.
+	 * @param propName Property to set in `objectWithProp`.
+	 * @param values Values to display in select dropdown.
+	 * @param [opts] Options object.
+	 * @param [opts.helpText] Help text (title) of select dropdown.
+	 * @param [opts.fnDisplay] Function used to map values to displayable versions.
+	 */
+	static getAddModalRowSel (eleModalInner, labelText, objectWithProp, propName, values, opts) {
 		opts = opts || {};
-		const $row = UiUtil.$getAddModalRow($modalInner, "label").addClass(`ui-modal__row--sel`);
-		if (opts.helpText) $row.title(opts.helpText);
-		$row.append(`<span>${labelText}</span>`);
-		const $sel = $(`<select class="form-control input-xs w-30">`).appendTo($row);
-		values.forEach((val, i) => $(`<option value="${i}"></option>`).text(opts.fnDisplay ? opts.fnDisplay(val) : val).appendTo($sel));
+		const row = UiUtil.getAddModalRow(eleModalInner, "label").addClass(`ui-modal__row--sel`);
+		if (opts.helpText) row.tooltip(opts.helpText);
+		row.appends(`<span>${labelText}</span>`);
+		const sel = ee`<select class="form-control input-xs w-30">`.appendTo(row);
+		values.forEach((val, i) => ee`<option value="${i}"></option>`.txt(opts.fnDisplay ? opts.fnDisplay(val) : val).appendTo(sel));
 		// N.B. this doesn't support null values
 		const ix = values.indexOf(objectWithProp[propName]);
-		$sel.val(`${~ix ? ix : 0}`)
-			.change(() => objectWithProp[propName] = values[$sel.val()]);
-		return $sel;
+		sel.val(`${~ix ? ix : 0}`)
+			.onn("change", () => objectWithProp[propName] = values[sel.val()]);
+		return sel;
 	}
 
 	static _parseStrAsNumber (str, isInt) {
@@ -1022,7 +1035,7 @@ class ListUiUtil {
 				if (elePreviewWrpInner.innerHTML) return;
 
 				if (!fluffEntity) return doAppendStatView();
-				Renderer.hover.$getHoverContent_fluff(page, fluffEntity).appendTo(elePreviewWrpInner);
+				Renderer.hover.getHoverContent_fluff(page, fluffEntity).appendTo(elePreviewWrpInner);
 			});
 	}
 
@@ -1207,6 +1220,25 @@ ListUiUtil.HTML_GLYPHICON_CONTRACT = `[\u2212]`;
 globalThis.ListUiUtil = ListUiUtil;
 
 class ProfUiUtil {
+	static _PROF_TO_FULL = {
+		"0": {
+			name: "No proficiency",
+			mult: 0,
+		},
+		"1": {
+			name: "Proficiency",
+			mult: 1,
+		},
+		"2": {
+			name: "Expertise",
+			mult: 2,
+		},
+		"3": {
+			name: "Half proficiency",
+			mult: 0.5,
+		},
+	};
+
 	/**
 	 * @param state Initial state.
 	 * @param [opts] Options object.
@@ -1215,7 +1247,7 @@ class ProfUiUtil {
 	static getProfCycler (state = 0, opts) {
 		opts = opts || {};
 
-		const STATES = opts.isSimple ? Object.keys(ProfUiUtil.PROF_TO_FULL).slice(0, 2) : Object.keys(ProfUiUtil.PROF_TO_FULL);
+		const STATES = opts.isSimple ? Object.keys(this._PROF_TO_FULL).slice(0, 2) : Object.keys(this._PROF_TO_FULL);
 
 		const NUM_STATES = Object.keys(STATES).length;
 
@@ -1224,51 +1256,33 @@ class ProfUiUtil {
 		if (state >= NUM_STATES) state = NUM_STATES - 1;
 		else if (state < 0) state = 0;
 
-		const $btnCycle = $(`<button class="ui-prof__btn-cycle"></button>`)
-			.click(() => {
-				$btnCycle
+		const btnCycle = ee`<button class="ui-prof__btn-cycle"></button>`
+			.onn("click", () => {
+				btnCycle
 					.attr("data-state", ++state >= NUM_STATES ? state = 0 : state)
-					.title(ProfUiUtil.PROF_TO_FULL[state].name)
+					.tooltip(this._PROF_TO_FULL[state].name)
 					.trigger("change");
 			})
-			.contextmenu(evt => {
+			.onn("contextmenu", evt => {
 				evt.preventDefault();
-				$btnCycle
+				btnCycle
 					.attr("data-state", --state < 0 ? state = NUM_STATES - 1 : state)
-					.title(ProfUiUtil.PROF_TO_FULL[state].name)
+					.tooltip(this._PROF_TO_FULL[state].name)
 					.trigger("change");
 			});
 		const setState = (nuState) => {
 			state = nuState;
 			if (state > NUM_STATES) state = 0;
 			else if (state < 0) state = NUM_STATES - 1;
-			$btnCycle.attr("data-state", state).title(ProfUiUtil.PROF_TO_FULL[state].name);
+			btnCycle.attr("data-state", state).tooltip(this._PROF_TO_FULL[state].name);
 		};
 		return {
-			$ele: $btnCycle,
+			ele: btnCycle,
 			setState,
 			getState: () => state,
 		};
 	}
 }
-ProfUiUtil.PROF_TO_FULL = {
-	"0": {
-		name: "No proficiency",
-		mult: 0,
-	},
-	"1": {
-		name: "Proficiency",
-		mult: 1,
-	},
-	"2": {
-		name: "Expertise",
-		mult: 2,
-	},
-	"3": {
-		name: "Half proficiency",
-		mult: 0.5,
-	},
-};
 
 class TabUiUtilBase {
 	static decorate (obj, {isInitMeta = false} = {}) {
@@ -3452,7 +3466,7 @@ class InputUiUtil {
 
 		let slider;
 
-		const {$modalInner, doClose, pGetResolved, doAutoResize: doAutoResizeModal} = await InputUiUtil._pGetShowModal({
+		const {eleModalInner, doClose, pGetResolved, doAutoResize: doAutoResizeModal} = await InputUiUtil._pGetShowModal({
 			title: opts.title || "Select Challenge Rating",
 			isMinHeight0: true,
 			cbClose: () => {
@@ -3475,13 +3489,13 @@ class InputUiUtil {
 			propCurMin: "cur",
 			fnDisplay: ix => Parser.CRS[ix],
 		});
-		$$`<div class="ve-flex-col w-640p">${slider.$get()}</div>`.appendTo($modalInner);
+		ee`<div class="ve-flex-col w-640p">${slider.get()}</div>`.appendTo(eleModalInner);
 
-		const $btnOk = this._$getBtnOk({opts, doClose});
-		const $btnCancel = this._$getBtnCancel({opts, doClose});
-		const $btnSkip = this._$getBtnSkip({opts, doClose});
+		const btnOk = this._getBtnOk({opts, doClose});
+		const btnCancel = this._getBtnCancel({opts, doClose});
+		const btnSkip = this._getBtnSkip({opts, doClose});
 
-		$$`<div class="ve-flex-v-center ve-flex-h-right pb-1 px-1">${$btnOk}${$btnCancel}${$btnSkip}</div>`.appendTo($modalInner);
+		ee`<div class="ve-flex-v-center ve-flex-h-right pb-1 px-1">${btnOk}${btnCancel}${btnSkip}</div>`.appendTo(eleModalInner);
 
 		if (doAutoResizeModal) doAutoResizeModal();
 
@@ -3574,119 +3588,58 @@ class InputUiUtil {
 
 class DragReorderUiUtil {
 	/**
-	 * Create a draggable pad capable of re-ordering rendered components. This requires to components to have:
-	 *  - an `id` getter
-	 *  - a `pos` getter and setter
-	 *  - a `height` getter
-	 *
+	 * @param fnGetRow Function which returns a `row` element. Is a function instead of a value so it can be lazy-loaded later.
 	 * @param opts Options object.
-	 * @param opts.$parent The parent element containing the rendered components.
-	 * @param opts.componentsParent The object which has the array of components as a property.
-	 * @param opts.componentsProp The property name of the components array.
-	 * @param opts.componentId This component ID.
-	 * @param [opts.marginSide] The margin side; "r" or "l" (defaults to "l").
-	 */
-	static $getDragPad (opts) {
-		opts = opts || {};
-
-		const getComponentById = (id) => opts.componentsParent[opts.componentsProp].find(it => it.id === id);
-
-		const dragMeta = {};
-		const doDragCleanup = () => {
-			dragMeta.on = false;
-			dragMeta.$wrap.remove();
-			dragMeta.$dummies.forEach($d => $d.remove());
-			$(document.body).off(`mouseup.drag__stop`);
-		};
-
-		const doDragRender = () => {
-			if (dragMeta.on) doDragCleanup();
-
-			$(document.body).on(`mouseup.drag__stop`, () => {
-				if (dragMeta.on) doDragCleanup();
-			});
-
-			dragMeta.on = true;
-			dragMeta.$wrap = $(`<div class="ve-flex-col ui-drag__wrp-drag-block"></div>`).appendTo(opts.$parent);
-			dragMeta.$dummies = [];
-
-			const ids = opts.componentsParent[opts.componentsProp].map(it => it.id);
-
-			ids.forEach(id => {
-				const $dummy = $(`<div class="w-100 ${id === opts.componentId ? "ui-drag__wrp-drag-dummy--highlight" : "ui-drag__wrp-drag-dummy--lowlight"}"></div>`)
-					.height(getComponentById(id).height)
-					.mouseup(() => {
-						if (dragMeta.on) doDragCleanup();
-					})
-					.appendTo(dragMeta.$wrap);
-				dragMeta.$dummies.push($dummy);
-
-				if (id !== opts.componentId) { // on entering other areas, swap positions
-					$dummy.mouseenter(() => {
-						const cachedPos = getComponentById(id).pos;
-
-						getComponentById(id).pos = getComponentById(opts.componentId).pos;
-						getComponentById(opts.componentId).pos = cachedPos;
-
-						doDragRender();
-					});
-				}
-			});
-		};
-
-		return $(`<div class="m${opts.marginSide || "l"}-2 ui-drag__patch" title="Drag to Reorder">
-		<div class="ui-drag__patch-col"><div>&#8729</div><div>&#8729</div><div>&#8729</div></div>
-		<div class="ui-drag__patch-col"><div>&#8729</div><div>&#8729</div><div>&#8729</div></div>
-		</div>`).mousedown(() => doDragRender());
-	}
-
-	/**
-	 * @param $fnGetRow Function which returns a $row element. Is a function instead of a value so it can be lazy-loaded later.
-	 * @param opts Options object.
-	 * @param opts.$parent
+	 * @param opts.eleParent
 	 * @param opts.swapRowPositions
-	 * @param [opts.$children] An array of row elements.
-	 * @param [opts.$getChildren] Should return an array as described in the "$children" option.
+	 * @param [opts.elesChildren] An array of row elements.
+	 * @param [opts.getElesChildren] Should return an array as described in the "elesChildren" option.
 	 * @param [opts.fnOnDragComplete] A function to run when dragging is completed.
 	 */
-	static $getDragPadOpts ($fnGetRow, opts) {
-		if (!opts.$parent || !opts.swapRowPositions || (!opts.$children && !opts.$getChildren)) throw new Error("Missing required option(s)!");
+	static getDragPadOpts (fnGetRow, opts) {
+		if (!opts.eleParent || !opts.swapRowPositions || (!opts.elesChildren && !opts.getElesChildren)) throw new Error("Missing required option(s)!");
+
+		const eleBody = e_({ele: document.body});
 
 		const dragMeta = {};
 		const doDragCleanup = () => {
 			dragMeta.on = false;
-			dragMeta.$wrap.remove();
-			dragMeta.$dummies.forEach($d => $d.remove());
-			$(document.body).off(`mouseup.drag__stop`);
+			dragMeta.wrp.remove();
+			dragMeta.elesDummy.forEach(d => d.remove());
+			if (dragMeta.fnMouseUpBody) eleBody.off("mouseup", dragMeta.fnMouseUpBody);
 			if (opts.fnOnDragComplete) opts.fnOnDragComplete();
 		};
 
 		const doDragRender = () => {
 			if (dragMeta.on) doDragCleanup();
 
-			$(document.body).on(`mouseup.drag__stop`, () => {
-				if (dragMeta.on) doDragCleanup();
-			});
-
 			dragMeta.on = true;
-			dragMeta.$wrap = $(`<div class="ve-flex-col ui-drag__wrp-drag-block"></div>`).appendTo(opts.$parent);
-			dragMeta.$dummies = [];
+			dragMeta.wrp = ee`<div class="ve-flex-col ui-drag__wrp-drag-block"></div>`.appendTo(opts.eleParent);
+			dragMeta.elesDummy = [];
+			dragMeta.fnMouseUpBody = () => {
+				if (dragMeta.on) doDragCleanup();
+			};
 
-			const $children = opts.$getChildren ? opts.$getChildren() : opts.$children;
-			const ixRow = $children.indexOf($fnGetRow());
+			eleBody.onn(`mouseup`, dragMeta.fnMouseUpBody);
 
-			$children.forEach(($child, i) => {
-				const dimensions = {w: $child.outerWidth(), h: $child.outerHeight()};
-				const $dummy = $(`<div class="no-shrink ${i === ixRow ? "ui-drag__wrp-drag-dummy--highlight" : "ui-drag__wrp-drag-dummy--lowlight"}"></div>`)
-					.width(dimensions.w).height(dimensions.h)
-					.mouseup(() => {
+			const elesChildren = (opts.getElesChildren ? opts.getElesChildren() : opts.elesChildren).map(ele => e_({ele}));
+			const ixRow = elesChildren.indexOf(fnGetRow());
+
+			elesChildren.forEach((child, i) => {
+				const dimensions = {w: child.outerWidthe(), h: child.outerHeighte()};
+				const eleDummy = ee`<div class="no-shrink ${i === ixRow ? "ui-drag__wrp-drag-dummy--highlight" : "ui-drag__wrp-drag-dummy--lowlight"}"></div>`
+					.css({
+						width: `${dimensions.w}px`,
+						height: `${dimensions.h}px`,
+					})
+					.onn("mouseup", () => {
 						if (dragMeta.on) doDragCleanup();
 					})
-					.appendTo(dragMeta.$wrap);
-				dragMeta.$dummies.push($dummy);
+					.appendTo(dragMeta.wrp);
+				dragMeta.elesDummy.push(eleDummy);
 
 				if (i !== ixRow) { // on entering other areas, swap positions
-					$dummy.mouseenter(() => {
+					eleDummy.onn("mouseenter", () => {
 						opts.swapRowPositions(i, ixRow);
 						doDragRender();
 					});
@@ -3694,22 +3647,22 @@ class DragReorderUiUtil {
 			});
 		};
 
-		return $(`<div class="mr-2 ui-drag__patch" title="Drag to Reorder">
+		return ee`<div class="mr-2 ui-drag__patch" title="Drag to Reorder">
 		<div class="ui-drag__patch-col"><div>&#8729</div><div>&#8729</div><div>&#8729</div></div>
 		<div class="ui-drag__patch-col"><div>&#8729</div><div>&#8729</div><div>&#8729</div></div>
-		</div>`).mousedown(() => doDragRender());
+		</div>`.onn("mousedown", () => doDragRender());
 	}
 
 	/**
-	 * @param $fnGetRow Function which returns a $row element. Is a function instead of a value so it can be lazy-loaded later.
-	 * @param $parent Parent elements to attach row elements to. Should have (e.g.) "relative" CSS positioning.
-	 * @param parent Parent component which has a pod decomposable as {swapRowPositions, <$children|$getChildren>}.
+	 * @param fnGetRow Function which returns a $row element. Is a function instead of a value so it can be lazy-loaded later.
+	 * @param eleParent Parent elements to attach row elements to. Should have (e.g.) "relative" CSS positioning.
+	 * @param parent Parent component which has a pod decomposable as {swapRowPositions, <elesChildren|getElesChildren>}.
 	 * @return jQuery
 	 */
-	static $getDragPad2 ($fnGetRow, $parent, parent) {
-		const {swapRowPositions, $children, $getChildren} = parent;
-		const nxtOpts = {$parent, swapRowPositions, $children, $getChildren};
-		return this.$getDragPadOpts($fnGetRow, nxtOpts);
+	static getDragPad2 (fnGetRow, eleParent, parent) {
+		const {swapRowPositions, elesChildren, getElesChildren} = parent;
+		const nxtOpts = {eleParent, swapRowPositions, elesChildren, getElesChildren};
+		return this.getDragPadOpts(fnGetRow, nxtOpts);
 	}
 }
 
@@ -4418,20 +4371,20 @@ class _RenderableCollectionGenericRowsSyncAsyncUtils {
 
 	/* -------------------------------------------- */
 
-	$getPadDrag ({$wrpRow}) {
-		return DragReorderUiUtil.$getDragPadOpts(
-			() => $wrpRow,
+	getPadDrag ({wrpRow}) {
+		return DragReorderUiUtil.getDragPadOpts(
+			() => wrpRow,
 			{
 				swapRowPositions: (ixA, ixB) => {
 					[this._comp._state[this._prop][ixA], this._comp._state[this._prop][ixB]] = [this._comp._state[this._prop][ixB], this._comp._state[this._prop][ixA]];
 					this._comp._triggerCollectionUpdate(this._prop);
 				},
-				$getChildren: () => {
+				getElesChildren: () => {
 					const rendered = this._comp._getRenderedCollection({prop: this._prop, namespace: this._namespace});
 					return this._comp._state[this._prop]
 						.map(it => rendered[it.id].$wrpRow);
 				},
-				$parent: this._$wrpRows,
+				eleParent: this._wrpRows,
 			},
 		);
 	}
@@ -6824,23 +6777,6 @@ class ComponentUiUtil {
 	 * @param [opts.fnDisplayTooltip]
 	 * @param [opts.sparseValues]
 	 */
-	static $getSliderRange (comp, opts) {
-		opts = opts || {};
-		const slider = new ComponentUiUtil.RangeSlider({comp, ...opts});
-		return slider.$get();
-	}
-
-	/**
-	 * @param comp An instance of a class which extends BaseComponent.
-	 * @param opts Options Object.
-	 * @param opts.propMin
-	 * @param opts.propMax
-	 * @param opts.propCurMin
-	 * @param [opts.propCurMax]
-	 * @param [opts.fnDisplay] Value display function.
-	 * @param [opts.fnDisplayTooltip]
-	 * @param [opts.sparseValues]
-	 */
 	static getSliderRange (comp, opts) {
 		opts = opts || {};
 		const slider = new ComponentUiUtil.RangeSlider({comp, ...opts});
@@ -6869,39 +6805,6 @@ class ComponentUiUtil {
 		hk();
 
 		return asMeta ? ({slider, unhook: () => comp._removeHookBase(prop, hk)}) : slider;
-	}
-
-	static $getSliderNumber (
-		comp,
-		prop,
-		{
-			min,
-			max,
-			step,
-			$ele,
-			asMeta,
-		} = {},
-	) {
-		const ele = $ele?.length ? $ele[0] : undefined;
-
-		const out = this.getSliderNumber(
-			comp,
-			prop,
-			{
-				min,
-				max,
-				step,
-				ele,
-				asMeta,
-			},
-		);
-
-		if (!asMeta) return $(out);
-
-		return {
-			...out,
-			$slider: $(out.slider),
-		};
 	}
 }
 ComponentUiUtil.RangeSlider = class {
@@ -6952,11 +6855,6 @@ ComponentUiUtil.RangeSlider = class {
 		this._thumbLow = null;
 		this._thumbHigh = null;
 		this._dragMeta = null;
-	}
-
-	$get () {
-		const out = this.get();
-		return $(out);
 	}
 
 	get () {

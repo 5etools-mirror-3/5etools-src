@@ -85,10 +85,10 @@ export class Filter extends FilterBase {
 
 		this._filterBox = null;
 		this._items.forEach(it => this._defaultItemState(it, {isForce: true}));
-		this.__$wrpFilter = null;
+		this.__wrpFilter = null;
 		this.__wrpPills = null;
 		this.__wrpMiniPills = null;
-		this.__$wrpNestHeadInner = null;
+		this.__wrpNestHeadInner = null;
 		this._updateNestSummary = null;
 		this.__nestsHidden = {};
 		this._nestsHidden = this._getProxy("nestsHidden", this.__nestsHidden);
@@ -544,10 +544,10 @@ export class Filter extends FilterBase {
 				this._state[item.item] = PILL_STATE__IGNORE;
 				this._filterBox.fireChangeEvent();
 			},
-		}).attr("data-state", PILL_STATES[this._state[item.item]]);
+		}).attr("data-state", PILL_STATES[this._state[item.item] || 0]);
 
 		const hook = () => {
-			const val = PILL_STATES[this._state[item.item]];
+			const val = PILL_STATES[this._state[item.item] || 0];
 			btnMini.attr("data-state", val);
 			// Bind change handlers in the mini-pill render step, as the mini-pills should always be available.
 			if (this._pFnOnChange) this._pFnOnChange(item.item, val);
@@ -715,12 +715,12 @@ export class Filter extends FilterBase {
 	 * @param opts Options.
 	 * @param opts.filterBox The FilterBox to which this filter is attached.
 	 * @param opts.isFirst True if this is visually the first filter in the box.
-	 * @param opts.$wrpMini The form mini-view element.
+	 * @param opts.wrpMini The form mini-view element.
 	 * @param opts.isMulti The name of the MultiFilter this filter belongs to, if any.
 	 */
-	$render (opts) {
+	render (opts) {
 		this._filterBox = opts.filterBox;
-		this.__wrpMiniPills = opts.$wrpMini ? e_({ele: opts.$wrpMini[0]}) : null;
+		this.__wrpMiniPills = opts.wrpMini ? e_({ele: opts.wrpMini}) : null;
 
 		const wrpControls = this._getHeaderControls(opts);
 
@@ -729,7 +729,7 @@ export class Filter extends FilterBase {
 
 		if (this._nests) {
 			const wrpNestHead = e_({tag: "div", clazz: "fltr__wrp-pills--sub"}).appendTo(this.__wrpPills);
-			this.__$wrpNestHeadInner = e_({tag: "div", clazz: "ve-flex ve-flex-wrap fltr__container-pills"}).appendTo(wrpNestHead);
+			this.__wrpNestHeadInner = e_({tag: "div", clazz: "ve-flex ve-flex-wrap fltr__container-pills"}).appendTo(wrpNestHead);
 
 			const wrpNestHeadSummary = e_({tag: "div", clazz: "fltr__summary_nest"}).appendTo(wrpNestHead);
 
@@ -770,7 +770,7 @@ export class Filter extends FilterBase {
 
 		const btnMobToggleControls = this._getBtnMobToggleControls(wrpControls);
 
-		this.__$wrpFilter = $$`<div>
+		this.__wrpFilter = ee`<div>
 			${opts.isFirst ? "" : `<div class="fltr__dropdown-divider ${opts.isMulti ? "fltr__dropdown-divider--indented" : ""} mb-1"></div>`}
 			<div class="split fltr__h ${this._minimalUi ? "fltr__minimal-hide" : ""} mb-1">
 				<div class="fltr__h-text ve-flex-h-center mobile-sm__w-100">
@@ -785,21 +785,21 @@ export class Filter extends FilterBase {
 
 		this._doToggleDisplay();
 
-		return this.__$wrpFilter;
+		return this.__wrpFilter;
 	}
 
 	/**
 	 * @param opts Options.
 	 * @param opts.filterBox The FilterBox to which this filter is attached.
 	 * @param opts.isFirst True if this is visually the first filter in the box.
-	 * @param opts.$wrpMini The form mini-view element.
+	 * @param opts.wrpMini The form mini-view element.
 	 * @param opts.isMulti The name of the MultiFilter this filter belongs to, if any.
 	 */
-	$renderMinis (opts) {
-		if (!opts.$wrpMini) return;
+	renderMinis (opts) {
+		if (!opts.wrpMini) return;
 
 		this._filterBox = opts.filterBox;
-		this.__wrpMiniPills = e_({ele: opts.$wrpMini[0]});
+		this.__wrpMiniPills = e_({ele: opts.wrpMini});
 
 		this._doRenderMiniPills();
 	}
@@ -972,23 +972,23 @@ export class Filter extends FilterBase {
 
 	_doToggleDisplay () {
 		// if there are no items, hide everything
-		if (this.__$wrpFilter) this.__$wrpFilter.toggleClass("fltr__no-items", !this._items.length);
+		if (this.__wrpFilter) this.__wrpFilter.toggleClass("fltr__no-items", !this._items.length);
 	}
 
 	_doRenderNests () {
 		Object.entries(this._nests)
 			.sort((a, b) => SortUtil.ascSort(a[0], b[0])) // array 0 (key) is the nest name
 			.forEach(([nestName, nestMeta]) => {
-				if (nestMeta._$btnNest == null) {
+				if (nestMeta._btnNest == null) {
 					// this can be restored from a saved state, otherwise, initialise it
 					if (this._nestsHidden[nestName] == null) this._nestsHidden[nestName] = !!nestMeta.isHidden;
 
-					const $btnText = $(`<span>${nestName} [${this._nestsHidden[nestName] ? "+" : "\u2212"}]</span>`);
-					nestMeta._$btnNest = $$`<div class="fltr__btn_nest">${$btnText}</div>`
-						.click(() => this._nestsHidden[nestName] = !this._nestsHidden[nestName]);
+					const btnText = ee`<span>${nestName} [${this._nestsHidden[nestName] ? "+" : "\u2212"}]</span>`;
+					nestMeta._btnNest = ee`<div class="fltr__btn_nest">${btnText}</div>`
+						.onn("click", () => this._nestsHidden[nestName] = !this._nestsHidden[nestName]);
 
 					const hook = () => {
-						$btnText.text(`${nestName} [${this._nestsHidden[nestName] ? "+" : "\u2212"}]`);
+						btnText.txt(`${nestName} [${this._nestsHidden[nestName] ? "+" : "\u2212"}]`);
 
 						const stats = {high: 0, low: 0, total: 0};
 						this._items
@@ -1000,7 +1000,7 @@ export class Filter extends FilterBase {
 							});
 						const allHigh = stats.total === stats.high;
 						const allLow = stats.total === stats.low;
-						nestMeta._$btnNest.toggleClass("fltr__btn_nest--include-all", this._nestsHidden[nestName] && allHigh)
+						nestMeta._btnNest.toggleClass("fltr__btn_nest--include-all", this._nestsHidden[nestName] && allHigh)
 							.toggleClass("fltr__btn_nest--exclude-all", this._nestsHidden[nestName] && allLow)
 							.toggleClass("fltr__btn_nest--include", this._nestsHidden[nestName] && !!(!allHigh && !allLow && stats.high && !stats.low))
 							.toggleClass("fltr__btn_nest--exclude", this._nestsHidden[nestName] && !!(!allHigh && !allLow && !stats.high && stats.low))
@@ -1018,7 +1018,7 @@ export class Filter extends FilterBase {
 					this._addHook("nestsHidden", nestName, hook);
 					hook();
 				}
-				nestMeta._$btnNest.appendTo(this.__$wrpNestHeadInner);
+				nestMeta._btnNest.appendTo(this.__wrpNestHeadInner);
 			});
 
 		if (this._updateNestSummary) this._updateNestSummary();
@@ -1232,7 +1232,7 @@ export class Filter extends FilterBase {
 				it.rendered.toggleClass("fltr__hidden--search", false);
 			});
 
-			if (this.__$wrpFilter) this.__$wrpFilter.toggleClass("fltr__hidden--search", false);
+			if (this.__wrpFilter) this.__wrpFilter.toggleClass("fltr__hidden--search", false);
 
 			return true;
 		}
@@ -1245,7 +1245,7 @@ export class Filter extends FilterBase {
 			if (isVisible) visibleCount++;
 		});
 
-		if (this.__$wrpFilter) this.__$wrpFilter.toggleClass("fltr__hidden--search", visibleCount === 0);
+		if (this.__wrpFilter) this.__wrpFilter.toggleClass("fltr__hidden--search", visibleCount === 0);
 
 		return visibleCount !== 0;
 	}
@@ -1264,8 +1264,8 @@ export class Filter extends FilterBase {
 		});
 
 		Object.values(this._nests || {})
-			.filter(nestMeta => nestMeta._$btnNest)
-			.forEach(nestMeta => nestMeta._$btnNest.detach());
+			.filter(nestMeta => nestMeta._btnNest)
+			.forEach(nestMeta => nestMeta._btnNest.detach());
 
 		Object.values(this._pillGroupsMeta || {})
 			.forEach(it => {

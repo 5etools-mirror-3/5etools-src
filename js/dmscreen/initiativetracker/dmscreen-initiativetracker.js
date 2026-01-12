@@ -27,6 +27,7 @@ import {
 import {InitiativeTrackerDefaultParty} from "./dmscreen-initiativetracker-defaultparty.js";
 import {ListUtilBestiary} from "../../utils-list-bestiary.js";
 
+// TODO(Future) refactor to subclass `DmScreenPanelAppBase`; move state to `_comp`
 export class InitiativeTracker extends BaseComponent {
 	constructor ({board, savedState}) {
 		super();
@@ -45,6 +46,39 @@ export class InitiativeTracker extends BaseComponent {
 		this._compDefaultParty = null;
 
 		this._creatureViewers = [];
+
+		this._doUpdateExternalStates = null;
+		this._sendStateToClientsDebounced = null;
+	}
+
+	getState () {
+		return this._getSerializedState();
+	}
+
+	async pDoConnectLocalV1 () {
+		const {token} = await this._networking.startServerV1({doUpdateExternalStates: this._doUpdateExternalStates});
+		return token;
+	}
+
+	async pDoConnectLocalV0 (clientView) {
+		await this._networking.pHandleDoConnectLocalV0({clientView});
+		this._sendStateToClientsDebounced();
+	}
+
+	getSummary () {
+		const names = this._state.rows
+			.map(({entity}) => entity.name)
+			.filter(name => name && name.trim());
+
+		return `${this._state.rows.length} creature${this._state.rows.length === 1 ? "" : "s"} ${names.length ? `(${names.slice(0, 3).join(", ")}${names.length > 3 ? "..." : ""})` : ""}`;
+	}
+
+	async pDoLoadEncounter ({entityInfos, encounterInfo}) {
+		await this._pDoLoadEncounter({entityInfos, encounterInfo});
+	}
+
+	getApi () {
+		return this;
 	}
 
 	render () {
@@ -56,10 +90,10 @@ export class InitiativeTracker extends BaseComponent {
 
 		this._render_bindSortDirHooks();
 
-		const $wrpTracker = $(`<div class="dm-init dm__panel-bg dm__data-anchor"></div>`)
+		const $wrpTracker = $(`<div class="dm-init dm__panel-bg"></div>`)
 			.on("drop", evt => this._pDoHandleImportDrop(evt.originalEvent));
 
-		const sendStateToClientsDebounced = MiscUtil.debounce(
+		this._sendStateToClientsDebounced = MiscUtil.debounce(
 			() => {
 				this._networking.sendStateToClients({fnGetToSend: this._getPlayerFriendlyState.bind(this)});
 				this._sendStateToCreatureViewers();
@@ -67,11 +101,11 @@ export class InitiativeTracker extends BaseComponent {
 			100, // long delay to avoid network spam
 		);
 
-		const doUpdateExternalStates = () => {
+		this._doUpdateExternalStates = () => {
 			this._board.doSaveStateDebounced();
-			sendStateToClientsDebounced();
+			this._sendStateToClientsDebounced();
 		};
-		this._addHookAllBase(doUpdateExternalStates);
+		this._addHookAllBase(this._doUpdateExternalStates);
 
 		this._viewRowsActive = new InitiativeTrackerRowDataViewActive({
 			comp: this,
@@ -83,30 +117,7 @@ export class InitiativeTracker extends BaseComponent {
 		this._viewRowsActiveMeta = this._viewRowsActive.getRenderedView();
 		this._viewRowsActiveMeta.$ele.appendTo($wrpTracker);
 
-		this._render_$getWrpFooter({doUpdateExternalStates}).appendTo($wrpTracker);
-
-		$wrpTracker.data("pDoConnectLocalV1", async () => {
-			const {token} = await this._networking.startServerV1({doUpdateExternalStates});
-			return token;
-		});
-
-		$wrpTracker.data("pDoConnectLocalV0", async (clientView) => {
-			await this._networking.pHandleDoConnectLocalV0({clientView});
-			sendStateToClientsDebounced();
-		});
-
-		$wrpTracker.data("getState", () => this._getSerializedState());
-		$wrpTracker.data("getSummary", () => {
-			const names = this._state.rows
-				.map(({entity}) => entity.name)
-				.filter(name => name && name.trim());
-
-			return `${this._state.rows.length} creature${this._state.rows.length === 1 ? "" : "s"} ${names.length ? `(${names.slice(0, 3).join(", ")}${names.length > 3 ? "..." : ""})` : ""}`;
-		});
-
-		$wrpTracker.data("pDoLoadEncounter", ({entityInfos, encounterInfo}) => this._pDoLoadEncounter({entityInfos, encounterInfo}));
-
-		$wrpTracker.data("getApi", () => this);
+		this._render_$getWrpFooter({doUpdateExternalStates: this._doUpdateExternalStates}).appendTo($wrpTracker);
 
 		return $wrpTracker;
 	}
@@ -735,7 +746,11 @@ export class InitiativeTracker extends BaseComponent {
 
 	/* -------------------------------------------- */
 
-	static $getPanelElement (board, savedState) {
-		return new this({board, savedState}).render();
+	static getPanelApp ({board, savedState}) {
+		return new this({board, savedState});
+	}
+
+	$getPanelElement () {
+		return this.render();
 	}
 }

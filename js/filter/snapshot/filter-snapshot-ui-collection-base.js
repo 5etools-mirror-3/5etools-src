@@ -11,11 +11,11 @@ export class RenderableCollectionFilterSnapshotBase extends RenderableCollection
 			filterBox,
 			comp,
 			prop,
-			$wrpRows,
+			wrpRows,
 			selectClickHandler,
 		},
 	) {
-		super(comp, prop, $wrpRows);
+		super(comp, prop, wrpRows);
 		this._filterBox = filterBox;
 		this._selectClickHandler = selectClickHandler;
 	}
@@ -37,7 +37,7 @@ export class RenderableCollectionFilterSnapshotBase extends RenderableCollection
 	getNewRender (entity, i) {
 		const rendered = super.getNewRender(entity, i);
 
-		const [wrpRow] = rendered.$wrpRow;
+		const [wrpRow] = rendered.wrpRow;
 		e_({ele: wrpRow})
 			.onn("click", evt => this._selectClickHandler.handleSelectClick(rendered, evt, {isPassThroughEvents: true}));
 
