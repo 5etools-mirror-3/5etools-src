@@ -7917,10 +7917,12 @@ Renderer.spell = class {
 	};
 
 	static populatePrereleaseLookup (brew, {isForce = false} = {}) {
+		if (!brew) return;
 		Renderer.spell._spellSourceManagerPrerelease.populate({brew, isForce});
 	}
 
 	static populateBrewLookup (brew, {isForce = false} = {}) {
+		if (!brew) return;
 		Renderer.spell._spellSourceManagerBrew.populate({brew, isForce});
 	}
 

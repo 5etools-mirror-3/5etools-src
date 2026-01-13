@@ -507,6 +507,7 @@ const PROPORDER_ADVENTURE = [
 	"coverUrl",
 	"published",
 	"publishedOrder",
+	"revised",
 	"author",
 	"storyline",
 	"level",
@@ -538,6 +539,7 @@ const PROPORDER_BOOK = [
 	"cover",
 	"coverUrl",
 	"published",
+	"revised",
 	"author",
 
 	"contents",
