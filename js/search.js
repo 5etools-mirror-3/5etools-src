@@ -346,7 +346,9 @@ class SearchPage {
 
 								Renderer.hover.getHoverContent_stats(page, ent)
 									.removeClass("w-100")
-									.addClass("pg-search__wrp-preview mobile-sm__w-100 br-0")
+									.addClass("pg-search__wrp-preview")
+									.addClass("mobile-sm__w-100")
+									.addClass("br-0")
 									.appendTo(dispPreview);
 								// endregion
 							}

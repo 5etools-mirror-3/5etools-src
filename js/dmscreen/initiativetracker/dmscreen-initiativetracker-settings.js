@@ -13,10 +13,10 @@ class _RenderableCollectionStatsCols extends RenderableCollectionGenericRows {
 			comp,
 
 			doClose,
-			$wrpRows,
+			wrpRows,
 		},
 	) {
-		super(comp, "statsCols", $wrpRows);
+		super(comp, "statsCols", wrpRows);
 		this._doClose = doClose;
 	}
 
@@ -41,7 +41,7 @@ class _RenderableCollectionStatsCols extends RenderableCollectionGenericRows {
 
 		const $btnDelete = this._utils.$getBtnDelete({entity});
 
-		const $padDrag = this._utils.$getPadDrag({$wrpRow});
+		const padDrag = this._utils.getPadDrag({wrpRow: $wrpRow[0]});
 
 		$$($wrpRow)`
 			<div class="ve-col-5 pr-1">${meta.constructor.NAME}</div>
@@ -50,7 +50,7 @@ class _RenderableCollectionStatsCols extends RenderableCollectionGenericRows {
 			<div class="ve-col-1-5 ve-text-center">${$btnVisible}</div>
 
 			<div class="ve-col-0-5 ve-flex-vh-center">${$btnDelete}</div>
-			<div class="ve-col-0-5 ve-flex-vh-center">${$padDrag}</div>
+			<div class="ve-col-0-5 ve-flex-vh-center">${padDrag}</div>
 		`;
 	}
 }
@@ -197,14 +197,14 @@ export class InitiativeTrackerSettings extends BaseComponent {
 		this._addHookBase("isStatsAddColumns", () => $wrpTblStatsHead.toggleVe(this._state.isStatsAddColumns))();
 	}
 
-	_pGetShowModalResults_renderSection_additionalCols_body ({$modalInner}) {
-		const $wrpRows = $(`<div class="pr-1 h-120p ve-flex-col ve-overflow-y-auto relative"></div>`).appendTo($modalInner);
-		this._addHookBase("isStatsAddColumns", () => $wrpRows.toggleVe(this._state.isStatsAddColumns))();
+	_pGetShowModalResults_renderSection_additionalCols_body ({eleModalInner}) {
+		const wrpRows = ee`<div class="pr-1 h-120p ve-flex-col ve-overflow-y-auto relative"></div>`.appendTo(eleModalInner);
+		this._addHookBase("isStatsAddColumns", () => wrpRows.toggleVe(this._state.isStatsAddColumns))();
 
 		const renderableCollectionStatsCols = new _RenderableCollectionStatsCols(
 			{
 				comp: this,
-				$wrpRows,
+				wrpRows,
 			},
 		);
 
