@@ -12,6 +12,7 @@ import {ConverterItem} from "./converter/converter-item.js";
 import {TagCondition, TaggerUtils} from "./converter/converterutils-tags.js";
 import {TagJsons} from "./converter/converterutils-entries.js";
 import {RaceTraitTag} from "./converter/converterutils-race.js";
+import {InstrumentBaseItemTag} from "./converter/converterutils-item.js";
 
 const doPageInit = async () => {
 	await Promise.all([
@@ -38,6 +39,7 @@ const doPageInit = async () => {
 	MiscTag.init({items});
 	AttachedItemTag.init({items});
 	await TagCondition.pInit({conditionsBrew: brew.condition});
+	InstrumentBaseItemTag.init({items: itemsNoGroups});
 
 	const ui = new ConverterUi();
 

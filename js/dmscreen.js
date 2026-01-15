@@ -2531,7 +2531,7 @@ class Panel {
 			}
 		};
 
-		const toSave = getSaveableContent(this.type, this.contentMeta, this.tabDatas[0]?.panelApp, this.$content);
+		const toSave = getSaveableContent(this.type, this.contentMeta, this.tabDatas[this.tabIndex]?.panelApp, this.$content);
 		if (toSave) Object.assign(out, toSave);
 
 		if (this.isTabs) {

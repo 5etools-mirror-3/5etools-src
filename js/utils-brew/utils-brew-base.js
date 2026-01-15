@@ -65,8 +65,6 @@ export class BrewUtil2Base {
 
 	pInit () {
 		this._pActiveInit ||= (async () => {
-			await BrewDocContentMigrator.pInit();
-
 			// region Ensure the local homebrew cache is hot, to allow us to fetch from it later in a sync manner.
 			//   This is necessary to replicate the "meta" caching done for non-local brew.
 			await this._pGetBrew_pGetLocalBrew();
@@ -234,6 +232,7 @@ export class BrewUtil2Base {
 			await this._pGetBrewProcessed_({lockToken});
 		} catch (e) {
 			setTimeout(() => { throw e; });
+			this._cache_brewsProc ||= {};
 		} finally {
 			this._LOCK.unlock();
 		}
@@ -329,6 +328,8 @@ export class BrewUtil2Base {
 		if (this._cache_brewsLocal) return this._cache_brewsLocal;
 		if (globalThis.IS_VTT || IS_DEPLOYED || typeof window === "undefined") return this._cache_brewsLocal = [];
 
+		await BrewDocContentMigrator.pInit();
+
 		try {
 			await this._LOCK.pLock({token: lockToken});
 			if (this._cache_brewsLocal) return this._cache_brewsLocal;
@@ -365,6 +366,8 @@ export class BrewUtil2Base {
 	/* -------------------------------------------- */
 
 	async _pGetBrewRaw ({lockToken} = {}) {
+		await BrewDocContentMigrator.pInit();
+
 		try {
 			await this._LOCK.pLock({token: lockToken});
 			return (await this._pGetBrewRaw_());

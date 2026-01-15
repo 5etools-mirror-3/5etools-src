@@ -3191,6 +3191,7 @@ Parser.SRC_VEoR = "VEoR";
 Parser.SRC_XPHB = "XPHB";
 Parser.SRC_XDMG = "XDMG";
 Parser.SRC_XMM = "XMM";
+Parser.SRC_XSAC = "XSAC";
 Parser.SRC_DrDe = "DrDe";
 Parser.SRC_DrDe_DaS = "DrDe-DaS";
 Parser.SRC_DrDe_BD = "DrDe-BD";
@@ -3339,7 +3340,7 @@ Parser.SOURCE_JSON_TO_FULL[Parser.SRC_SDW] = "Sleeping Dragon's Wake";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_BGDIA] = "Baldur's Gate: Descent Into Avernus";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_LR] = "Locathah Rising";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_AL] = "Adventurers' League";
-Parser.SOURCE_JSON_TO_FULL[Parser.SRC_SAC] = "Sage Advice Compendium";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_SAC] = "Sage Advice Compendium (2014)";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_ERLW] = "Eberron: Rising from the Last War";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_EFR] = "Eberron: Forgotten Relics";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_RMBRE] = "The Lost Dungeon of Rickedness: Big Rick Energy";
@@ -3397,6 +3398,7 @@ Parser.SOURCE_JSON_TO_FULL[Parser.SRC_VEoR] = "Vecna: Eve of Ruin";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_XPHB] = "Player's Handbook (2024)";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_XDMG] = "Dungeon Master's Guide (2024)";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_XMM] = "Monster Manual (2025)";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_XSAC] = "Sage Advice Compendium (2025)";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DrDe] = "Dragon Delves";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DrDe_DaS] = "Death at Sunset";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DrDe_BD] = "Baker's Doesn't";
@@ -3520,7 +3522,7 @@ Parser.SOURCE_JSON_TO_ABV[Parser.SRC_SDW] = "SDW";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_BGDIA] = "BGDIA";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_LR] = "LR";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_AL] = "AL";
-Parser.SOURCE_JSON_TO_ABV[Parser.SRC_SAC] = "SAC";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_SAC] = "SAC'14";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_ERLW] = "ERLW";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_EFR] = "EFR";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_RMBRE] = "RMBRE";
@@ -3578,6 +3580,7 @@ Parser.SOURCE_JSON_TO_ABV[Parser.SRC_VEoR] = "VEoR";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_XPHB] = "PHB'24";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_XDMG] = "DMG'24";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_XMM] = "MM'25";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_XSAC] = "SAC'25";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DrDe] = "DrDe";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DrDe_DaS] = "DrDe-DaS";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DrDe_BD] = "DrDe-BD";
@@ -3758,6 +3761,7 @@ Parser.SOURCE_JSON_TO_DATE[Parser.SRC_VEoR] = "2024-05-21";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_XPHB] = "2024-09-17";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_XDMG] = "2024-11-12";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_XMM] = "2025-02-18";
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_XSAC] = "2025-04-30";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe] = "2025-07-08";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe_DaS] = Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe];
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe_BD] = Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe];
@@ -4034,7 +4038,8 @@ Parser.SOURCES_VANILLA = new Set([
 	// Parser.SRC_VGM, // "Legacy" source, removed in favor of MPMM
 	Parser.SRC_XGE,
 	// Parser.SRC_MTF, // "Legacy" source, removed in favor of MPMM
-	Parser.SRC_SAC,
+	// Parser.SRC_SAC, // "Legacy" source, removed in favor of XSAC
+	Parser.SRC_XSAC,
 	Parser.SRC_MFF,
 	Parser.SRC_SADS,
 	Parser.SRC_TCE,

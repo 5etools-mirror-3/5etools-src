@@ -1,61 +1,64 @@
 import {AlignmentUtil} from "./converterutils-utils-alignment.js";
 import {ConverterConst} from "./converterutils-const.js";
 
-class ConverterUtilsItem {}
-ConverterUtilsItem.BASIC_WEAPONS = [
-	"club",
-	"dagger",
-	"greatclub",
-	"handaxe",
-	"javelin",
-	"light hammer",
-	"mace",
-	"quarterstaff",
-	"sickle",
-	"spear",
-	"light crossbow",
-	"dart",
-	"shortbow",
-	"sling",
-	"battleaxe",
-	"flail",
-	"glaive",
-	"greataxe",
-	"greatsword",
-	"halberd",
-	"lance",
-	"longsword",
-	"maul",
-	"morningstar",
-	"pike",
-	"rapier",
-	"scimitar",
-	"shortsword",
-	"trident",
-	"war pick",
-	"warhammer",
-	"whip",
-	"blowgun",
-	"hand crossbow",
-	"heavy crossbow",
-	"longbow",
-	"net",
-];
-ConverterUtilsItem.BASIC_ARMORS = [
-	"padded armor",
-	"leather armor",
-	"studded leather armor",
-	"hide armor",
-	"chain shirt",
-	"scale mail",
-	"breastplate",
-	"half plate armor",
-	"ring mail",
-	"chain mail",
-	"splint armor",
-	"plate armor",
-	"shield",
-];
+class ConverterUtilsItem {
+	static BASIC_WEAPONS = [
+		"club",
+		"dagger",
+		"greatclub",
+		"handaxe",
+		"javelin",
+		"light hammer",
+		"mace",
+		"quarterstaff",
+		"sickle",
+		"spear",
+		"light crossbow",
+		"dart",
+		"shortbow",
+		"sling",
+		"battleaxe",
+		"flail",
+		"glaive",
+		"greataxe",
+		"greatsword",
+		"halberd",
+		"lance",
+		"longsword",
+		"maul",
+		"morningstar",
+		"pike",
+		"rapier",
+		"scimitar",
+		"shortsword",
+		"trident",
+		"war pick",
+		"warhammer",
+		"whip",
+		"blowgun",
+		"hand crossbow",
+		"heavy crossbow",
+		"longbow",
+		"net",
+	];
+	static BASIC_ARMORS = [
+		"padded armor",
+		"leather armor",
+		"studded leather armor",
+		"hide armor",
+		"chain shirt",
+		"scale mail",
+		"breastplate",
+		"half plate armor",
+		"ring mail",
+		"chain mail",
+		"splint armor",
+		"plate armor",
+		"shield",
+	];
+
+	static RE_LANGUAGES = /\b(?<language>Abyssal|Aquan|Auran|Celestial|Common|Deep Speech|Draconic|Druidic|Dwarvish|Elvish|Giant|Gnomish|Goblin|Halfling|Ignan|Infernal|Orc|Primordial|Sylvan|Terran|Thieves' cant|Undercommon)\b/;
+}
 
 export class ChargeTag {
 	static _checkAndTag (obj, opts) {
@@ -501,6 +504,8 @@ export class ItemOtherTagsTag {
 		strEntries.replace(/you are[^.]* considered proficient/gi, () => tgt.grantsProficiency = true);
 
 		strEntries.replace(/[Yy]ou can speak( and understand)? [A-Z]/g, () => tgt.grantsLanguage = true);
+		strEntries.replace(/[Yy]ou can speak, read, and write [A-Z]/g, () => tgt.grantsLanguage = true);
+		strEntries.replace(new RegExp(`[Yy]ou know ${ConverterUtilsItem.RE_LANGUAGES.source}`, "g"), () => tgt.grantsLanguage = true);
 	}
 }
 
@@ -724,8 +729,9 @@ export class ReqAttuneTagTag {
 		});
 
 		// "by a creature that can speak Infernal"
-		req = req.replace(/(?:a creature that can )?speak \b(Abyssal|Aquan|Auran|Celestial|Common|Deep Speech|Draconic|Druidic|Dwarvish|Elvish|Giant|Gnomish|Goblin|Halfling|Ignan|Infernal|Orc|Primordial|Sylvan|Terran|Thieves' cant|Undercommon)\b/g, (...m) => {
-			tags.push({languageProficiency: m[1].toLowerCase()});
+		req = req.replace(new RegExp(`(?:a creature that can )?speak ${ConverterUtilsItem.RE_LANGUAGES.source}`, "g"), (...m) => {
+			const {language} = m.at(-1);
+			tags.push({languageProficiency: language.toLowerCase()});
 			return "";
 		});
 
@@ -987,5 +993,57 @@ export class AttachedSpellChargesTag {
 	static tryRun (ent, opts = {}) {
 		if (ent.entries && ent.attachedSpells) this._checkAndTag(ent, opts);
 		if (ent.inherits?.entries && ent.inherits?.attachedSpells) this._checkAndTag(ent.inherits, opts);
+	}
+}
+
+export class InstrumentBaseItemTag {
+	static _IS_INIT = false;
+	static _RE_INSTRUMENT = null;
+	static _LOOKUP_INSTRUMENT = null;
+
+	static init ({items}) {
+		const itemsBaseInstruments = items.filter(item => item._category === "Basic" && [Parser.ITM_TYP__INSTRUMENT, Parser.ITM_TYP__ODND_INSTRUMENT].includes(item.type));
+		if (!itemsBaseInstruments.length) throw new Error(`No items!`);
+		this._RE_INSTRUMENT = new RegExp(`\\b(?<instrumentName>${itemsBaseInstruments.map(itm => itm.name).unique().map(name => RegExp.escape(name)).join("|")})\\b`);
+		this._LOOKUP_INSTRUMENT = itemsBaseInstruments
+			.reduce((accum, itm) => {
+				(accum[itm.name.toLowerCase()] ||= {})[itm.type] = {baseItemUid: DataUtil.proxy.getUid("item", itm)};
+				return accum;
+			}, {});
+
+		this._IS_INIT = true;
+	}
+
+	static tryRun (ent, opts) {
+		if (!this._IS_INIT) throw new Error(`Uninitialized!`);
+		opts ||= {};
+
+		if (ent.inherits) return;
+		if (ent.type && ent.baseItem) return;
+
+		const m = this._RE_INSTRUMENT.exec(ent.name);
+		if (!m) return;
+
+		const source = SourceUtil.getEntitySource(ent);
+
+		const {instrumentName} = m.groups;
+		const info = this._LOOKUP_INSTRUMENT[instrumentName.toLowerCase()];
+
+		if (SourceUtil.isClassicSource(source)) {
+			if (!info[Parser.ITM_TYP__INSTRUMENT]) {
+				if (opts.cbWarning) opts.cbWarning(`(${ent.name}) Had likely instrument name "${instrumentName}", but no instrument with this name was available in classic sources!`);
+				return;
+			}
+			ent.type ||= Parser.ITM_TYP__INSTRUMENT;
+			ent.baseItem ||= info[Parser.ITM_TYP__INSTRUMENT].baseItemUid;
+			return;
+		}
+
+		if (!info[Parser.ITM_TYP__ODND_INSTRUMENT]) {
+			if (opts.cbWarning) opts.cbWarning(`(${ent.name}) Had likely instrument name "${instrumentName}", but no instrument with this name was available in modern sources!`);
+			return;
+		}
+		ent.type ||= Parser.ITM_TYP__ODND_INSTRUMENT;
+		ent.baseItem ||= info[Parser.ITM_TYP__ODND_INSTRUMENT].baseItemUid;
 	}
 }

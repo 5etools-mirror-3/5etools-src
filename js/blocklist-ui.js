@@ -331,6 +331,11 @@ class BlocklistUi {
 		const btnIncludeAllNonForgottenRealmsSources = this._getBtn_removeFromBlocklist()
 			.onn("click", () => this._removeAllNonForgottenRealms());
 
+		const btnExcludeClassicSources = this._getBtn_addToBlocklist()
+			.onn("click", () => this._addAllNonClassicSources());
+		const btnIncludeClassicSources = this._getBtn_removeFromBlocklist()
+			.onn("click", () => this._removeAllClassicSources());
+
 		const btnExcludeModernSources = this._getBtn_addToBlocklist()
 			.onn("click", () => this._addAllNonModernSources());
 		const btnIncludeModernSources = this._getBtn_removeFromBlocklist()
@@ -398,8 +403,8 @@ class BlocklistUi {
 			});
 		// endregion
 
-		ee(this._wrpControls.empty())`<div class="${this._isCompactUi ? "mb-2" : "mb-5"} ve-flex-v-center mobile-sm__ve-flex-col mobile-sm__ve-flex-ai-start">
-			<div class="ve-flex-vh-center mr-4 mobile-sm__mr-0 mobile-sm__mb-2">
+		ee(this._wrpControls.empty())`<div class="${this._isCompactUi ? "mb-2" : "mb-5"} ve-flex-v-center mobile-md__ve-flex-col mobile-md__ve-flex-ai-start">
+			<div class="ve-flex-vh-center mr-4 mobile-md__mr-0 mobile-md__mb-2">
 				<div class="mr-2">UA/Etc. Sources</div>
 				<div class="ve-flex-v-center ve-btn-group">
 					${btnExcludeAllUa}
@@ -407,7 +412,7 @@ class BlocklistUi {
 				</div>
 			</div>
 
-			<div class="ve-flex-vh-center mr-3 mobile-sm__mr-0 mobile-sm__mb-2">
+			<div class="ve-flex-vh-center mr-3 mobile-md__mr-0 mobile-md__mb-2">
 				<div class="mr-2">Comedy Sources</div>
 				<div class="ve-flex-v-center ve-btn-group">
 					${btnExcludeAllComedySources}
@@ -415,7 +420,7 @@ class BlocklistUi {
 				</div>
 			</div>
 
-			<div class="ve-flex-vh-center mr-3 mobile-sm__mr-0 mobile-sm__mb-2">
+			<div class="ve-flex-vh-center mr-3 mobile-md__mr-0 mobile-md__mb-2">
 				<div class="mr-2">Non-<i>Forgotten Realms</i></div>
 				<div class="ve-flex-v-center ve-btn-group">
 					${btnExcludeAllNonForgottenRealmsSources}
@@ -423,7 +428,15 @@ class BlocklistUi {
 				</div>
 			</div>
 
-			<div class="ve-flex-vh-center mr-3 mobile-sm__mr-0 mobile-sm__mb-2">
+			<div class="ve-flex-vh-center mr-3 mobile-md__mr-0 mobile-md__mb-2">
+				<div class="mr-2">&apos;14 Sources</div>
+				<div class="ve-flex-v-center ve-btn-group">
+					${btnExcludeClassicSources}
+					${btnIncludeClassicSources}
+				</div>
+			</div>
+
+			<div class="ve-flex-vh-center mr-3 mobile-md__mr-0 mobile-md__mb-2">
 				<div class="mr-2">&apos;24 Sources</div>
 				<div class="ve-flex-v-center ve-btn-group">
 					${btnExcludeModernSources}
@@ -431,7 +444,7 @@ class BlocklistUi {
 				</div>
 			</div>
 
-			<div class="ve-flex-vh-center mr-3 mobile-sm__mr-0 mobile-sm__mb-2">
+			<div class="ve-flex-vh-center mr-3 mobile-md__mr-0 mobile-md__mb-2">
 				<div class="mr-2">All Sources</div>
 				<div class="ve-flex-v-center ve-btn-group">
 					${btnExcludeAllSources}
@@ -700,6 +713,9 @@ class BlocklistUi {
 
 	_addAllNonForgottenRealms () { this._addMassSources({fnFilter: source => Parser.SOURCES_NON_FR.has(source)}); }
 	_removeAllNonForgottenRealms () { this._removeMassSources({fnFilter: source => Parser.SOURCES_NON_FR.has(source)}); }
+
+	_addAllNonClassicSources () { this._addMassSources({fnFilter: source => SourceUtil.isClassicSource(source)}); }
+	_removeAllClassicSources () { this._removeMassSources({fnFilter: source => SourceUtil.isClassicSource(source)}); }
 
 	_addAllNonModernSources () { this._addMassSources({fnFilter: source => !SourceUtil.isClassicSource(source)}); }
 	_removeAllModernSources () { this._removeMassSources({fnFilter: source => !SourceUtil.isClassicSource(source)}); }
