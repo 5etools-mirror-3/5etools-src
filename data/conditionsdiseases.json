@@ -1201,6 +1201,7 @@
 		{
 			"name": "Lichen Plague",
 			"source": "FRAiF",
+			"page": 98,
 			"type": "Magical Contagion",
 			"entries": [
 				"A Beast, Giant, Humanoid, or Monstrosity that comes into contact with bile lichen spores is at risk of contracting a horrible disease as the lichen takes root on its body and grows into its brain. A creature suffers the following effects {@dice 1d4} days after infection:",
@@ -1253,6 +1254,7 @@
 		{
 			"name": "Mudpox",
 			"source": "FRAiF",
+			"page": 98,
 			"type": "Magical Contagion",
 			"entries": [
 				"Contact with dead oozes from the Underdark mixed with snowmelt and mud has been making people sick. Any Beast or Humanoid that touches mud contaminated by Mudpox must succeed on a {@dc 12} Constitution saving throw or become infected, suffering the following effect:",
@@ -1372,6 +1374,50 @@
 								"Daily at dawn, an infected creature makes a {@dc 11} Constitution saving throw. On a failed save, the creature gains 1 {@condition Exhaustion|XPHB} level as its fatigue worsens. On a successful save, the creature's Exhaustion level decreases by 1. If the creature's Exhaustion level is reduced to 0, the contagion ends on the creature."
 							]
 						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Shaking Plague",
+			"source": "FRAiF",
+			"page": 70,
+			"type": "Magical Contagion",
+			"entries": [
+				"Magical experiments gone awry gave rise to Shaking Plague, which affects Humanoids. A creature suffers the following effects {@dice 1d4} days after infection:",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Fatigue",
+							"entry": "The creature gains 1 {@condition Exhaustion|XPHB} level. While the creature has any {@condition Exhaustion|XPHB} levels, finishing a {@variantrule Long Rest|XPHB} doesn't reduce the creature's {@condition Exhaustion|XPHB} level."
+						},
+						{
+							"type": "item",
+							"name": "Pus Boils",
+							"entry": "While the creature has any {@condition Exhaustion|XPHB} levels, its skin is covered in pus-filled boils."
+						},
+						{
+							"type": "item",
+							"name": "Shaking",
+							"entry": "While the creature has any {@condition Exhaustion|XPHB} levels, magic-dampening tremors afflict it. The creature has {@variantrule Disadvantage|XPHB} on Dexterity checks and saving throws, and whenever the creature casts a spell with a Somatic component, it must succeed on a {@dc 11} Constitution saving throw, or the spell dissipates with no effect and the action, {@variantrule Bonus Action|XPHB}, or {@variantrule Reaction|XPHB} used to cast it is wasted. If that spell was cast with a spell slot, that slot isn't expended."
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Fighting the Contagion",
+					"entries": [
+						"Daily at dawn, an infected creature makes a {@dc 11} Constitution saving throw. On a failed save, the creature gains 1 {@condition Exhaustion|XPHB} level as its fatigue worsens. On a successful save, the creature's {@condition Exhaustion|XPHB} level decreases by 1. If the creature's {@condition Exhaustion|XPHB} level is reduced to 0, the contagion ends on the creature."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spreading the Contagion",
+					"entries": [
+						"Any Humanoid that makes skin contact with a creature infected with Shaking Plague must succeed on a {@dc 11} Constitution saving throw or also become infected with the contagion. On a successful save, the Humanoid can't catch the contagion from that particular infected creature for the next 24 hours."
 					]
 				}
 			]
@@ -1501,6 +1547,45 @@
 					"page": 154,
 					"entries": [
 						"All forms of rats and wererats are immune to the Gnawing Plague."
+					]
+				}
+			]
+		},
+		{
+			"name": "The Rusting",
+			"source": "FRAiF",
+			"page": 165,
+			"type": "Magical Contagion",
+			"entries": [
+				"The Rusting manifests as a thin, iron coating that grows over a victim's body. When exposed to moisture, this iron skin corrodes into a rust-colored plaque. As the Rusting covers the victim, the victim eventually transforms into a type of creature known as a Rusted (see {@book chapter 9|FRAiF|9}).",
+				"Any creature that is wounded by a Rusted creature or spends 1 hour in an area where the Rusting has manifested makes a {@dc 10} Constitution saving throw. Constructs and Undead automatically succeed on this save. On a failed save, the creature is afflicted by the Rusting and suffers the following effects:",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Curse",
+							"entry": "The creature gains 1 {@condition Exhaustion|XPHB} level and is cursed. While the creature is cursed, finishing a {@variantrule Long Rest|XPHB} doesn't reduce the creature's {@condition Exhaustion|XPHB} level."
+						},
+						{
+							"type": "item",
+							"name": "Plated Joints",
+							"entry": "The creature's {@variantrule Speed|XPHB} is reduced by 5 feet."
+						},
+						{
+							"type": "item",
+							"name": "Rusted Fate",
+							"entry": "When a cursed creature's {@condition Exhaustion|XPHB} level reaches 6, it doesn't die. Instead, the creature transforms into a Rusted version of its former self; its creature type becomes Construct, and it gains {@variantrule Immunity|XPHB} to Poison damage and the {@condition Exhaustion|XPHB}, {@condition Petrified|XPHB}, and {@condition Poisoned|XPHB} conditions. The curse then ends for that creature."
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Fighting the Contagion",
+					"entries": [
+						"Daily at dawn, an afflicted creature makes a {@dc 10} Constitution saving throw. On a failed save, the creature gains 1 {@condition Exhaustion|XPHB} level as more iron coats its skin. On a successful save, the creature's {@condition Exhaustion|XPHB} level decreases by 1. If the creature's {@condition Exhaustion|XPHB} level is reduced to 0, the contagion ends on the creature.",
+						"Removing the curse immediately ends the contagion for a creature."
 					]
 				}
 			]
