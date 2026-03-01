@@ -129,7 +129,7 @@ const main = ({isModificationMode = false} = {}) => {
 	const filesWithMissingPages = Object.keys(FILE_MAP);
 	if (!filesWithMissingPages.length) {
 		console.log(`Page numbers are as expected.`);
-		return;
+		return true;
 	}
 
 	console.warn(`##### Files with Missing Page Numbers #####`);
@@ -137,6 +137,12 @@ const main = ({isModificationMode = false} = {}) => {
 		console.warn(`${f}:`);
 		FILE_MAP[f].forEach(it => console.warn(`\t${it}`));
 	});
+
+	return false;
 };
 
-main();
+const pMain = main();
+
+if (import.meta.main && !(await pMain)) process.exitCode = 1;
+
+export default pMain;

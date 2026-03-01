@@ -52,7 +52,7 @@ export class MoneyConverter extends DmScreenPanelAppBase {
 			}
 
 			Object.entries(this._disabledCurrency).forEach(([currency, disabled]) => {
-				this._selOut.find(`option[value=${currency}]`).toggleVe(!disabled);
+				this._selOut.find(`option[value="${currency}"]`).toggleVe(!disabled);
 			});
 			// if the current choice is disabled, deselect it, and restart
 			if (this._disabledCurrency[this._selOut.val()]) {
@@ -160,16 +160,16 @@ export class MoneyConverter extends DmScreenPanelAppBase {
 			board.doSaveStateDebounced();
 		};
 
-		const buildCurrencySelect = (isOutput) => ee`<select class="form-control input-sm" style="padding: 5px">${isOutput ? `<option value="-1">(No conversion)</option>` : ""}${CURRENCY.map((c, i) => `<option value="${i}">${c.n}</option>`).join("")}</select>`;
+		const buildCurrencySelect = (isOutput) => ee`<select class="form-control input-sm p-2">${isOutput ? `<option value="-1">(No conversion)</option>` : ""}${CURRENCY.map((c, i) => `<option value="${i}">${c.n}</option>`).join("")}</select>`;
 
 		const addRow = (currency, count) => {
 			const eleRow = ee`<div class="dm-money__row"></div>`.appendTo(this._wrpRows);
 			const iptCount = ee`<input type="number" step="1" placeholder="Coins" class="form-control input-sm">`.appendTo(eleRow).onn("change", doUpdate);
 			if (count != null) iptCount.val(count);
 			const selCurrency = buildCurrencySelect()
+				.val(currency == null ? `${DEFAULT_CURRENCY}` : currency)
 				.appendTo(eleRow)
 				.onn("change", doUpdate);
-			selCurrency.val(currency == null ? DEFAULT_CURRENCY : currency);
 			const btnRemove = ee`<button class="ve-btn ve-btn-sm ve-btn-danger" title="Remove Row"><span class="glyphicon glyphicon-trash"></span></button>`
 				.appendTo(eleRow)
 				.onn("click", () => {
@@ -209,10 +209,13 @@ export class MoneyConverter extends DmScreenPanelAppBase {
 
 		const wrpCtrlRhs = ee`<div class="dm-money__ctrl__rhs split-child" style="width: 33%;"></div>`.appendTo(wrpCtrl);
 		this._iptSplit = ee`<input type="number" min="1" step="1" placeholder="Split Between..." class="form-control input-sm">`.appendTo(wrpCtrlRhs).onn("change", doUpdate);
-		this._selOut = buildCurrencySelect(true).appendTo(wrpCtrlRhs).onn("change", doUpdate);
+		this._selOut = buildCurrencySelect(true)
+			.val(`${DEFAULT_CURRENCY}`)
+			.appendTo(wrpCtrlRhs)
+			.onn("change", doUpdate);
 
 		if (state) {
-			this._selOut.val(state.c == null ? DEFAULT_CURRENCY : state.c);
+			this._selOut.val(state.c == null ? `${DEFAULT_CURRENCY}` : state.c);
 			this._iptSplit.val(state.s);
 			(state.r || []).forEach(r => addRow(r.c, r.n));
 		}

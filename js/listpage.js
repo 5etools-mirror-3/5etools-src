@@ -1541,9 +1541,8 @@ class ListPage {
 	_bindPopoutButton_doShowStatblock (evt) {
 		if (!evt.shiftKey) return Renderer.hover.doPopoutCurPage(evt, this._lastRender.entity);
 
-		const content = Renderer.hover.getHoverContent_statsCode(this._lastRender.entity);
 		Renderer.hover.getShowWindow(
-			content,
+			Renderer.hover.getHoverContent_statsCode(this._lastRender.entity),
 			Renderer.hover.getWindowPositionFromEvent(evt),
 			{
 				title: `${this._lastRender.entity.name} \u2014 Source Data`,
@@ -1566,10 +1565,9 @@ class ListPage {
 				},
 			],
 		});
-		const content = Renderer.hover.getHoverContent_miscCode(name, mdText);
 
 		Renderer.hover.getShowWindow(
-			content,
+			Renderer.hover.getHoverContent_miscCode(name, mdText),
 			Renderer.hover.getWindowPositionFromEvent(evt),
 			{
 				title: name,
@@ -2338,7 +2336,7 @@ class ListPage {
 		const hoverWindow = Renderer.hover.getShowWindow(
 			ee`<div class="ve-flex-col">
 				<div class="split-v-center mb-2 px-2 mt-2">
-					<i class="mr-2">Optionally resize the width of the window, then Copy or Save.</i>
+					<i class="mr-2">Optionally resize <kbd title="(The width of)">&harr;</kbd> the window, then Copy or Save.</i>
 					<div class="ve-btn-group">
 						${btnCpy}
 						${btnSave}

@@ -7209,6 +7209,7 @@
 			"rarity": "uncommon",
 			"reqAttune": true,
 			"wondrous": true,
+			"curse": true,
 			"recharge": "dawn",
 			"rechargeAmount": "{@dice 1d3}",
 			"charges": 3,
@@ -42583,6 +42584,9 @@
 			"value": 500,
 			"entries": [
 				"Perfume comes in a 4-ounce vial. For 1 hour after applying Perfume to yourself, you have {@variantrule Advantage|XPHB} on Charisma ({@skill Persuasion|XPHB}) checks made to influence an Indifferent Humanoid within 5 feet of yourself."
+			],
+			"miscTags": [
+				"CNS"
 			]
 		},
 		{
@@ -42599,7 +42603,10 @@
 			],
 			"type": "G",
 			"rarity": "none",
-			"value": 500
+			"value": 500,
+			"miscTags": [
+				"CNS"
+			]
 		},
 		{
 			"name": "Perfume of Bewitching",
@@ -42613,6 +42620,9 @@
 			"lootTables": [
 				"Arcana - Common|XDMG",
 				"Implements - Common|XDMG"
+			],
+			"miscTags": [
+				"CNS"
 			]
 		},
 		{
@@ -42627,6 +42637,9 @@
 			"wondrous": true,
 			"entries": [
 				"This tiny vial contains magic perfume, enough for one use. You can use an action to apply the perfume to yourself, and its effect lasts 1 hour. For the duration, you have advantage on all Charisma checks directed at humanoids of challenge rating 1 or lower. Those subjected to the perfume's effect are not aware that they've been influenced by magic."
+			],
+			"miscTags": [
+				"CNS"
 			]
 		},
 		{
@@ -71182,7 +71195,16 @@
 							"98-00",
 							"If you targeted a creature, it must make a {@dc 15} Constitution saving throw. If you didn't target a creature, you become the target and must make the saving throw. If the saving throw fails by 5 or more, the target is instantly {@condition petrified}. On any other failed save, the target is {@condition restrained} and begins to turn to stone. While {@condition restrained} in this way, the target must repeat the saving throw at the end of its next turn, becoming {@condition petrified} on a failure or ending the effect on a success. The petrification lasts until the target is freed by the {@spell greater restoration} spell or similar magic."
 						]
-					]
+					],
+					"data": {
+						"genTables": {
+							"tableName": "Wand of Wonder Effects",
+							"tableInclude": true,
+							"reprintedAs": [
+								"Wand of Wonder Effects|XDMG"
+							]
+						}
+					}
 				}
 			],
 			"attachedSpells": {
@@ -71315,7 +71337,12 @@
 							"98-00",
 							"The creature closest to the chosen point of origin makes a {@dc 15} Constitution saving throw. On a failed save, the creature has the {@condition Restrained|XPHB} condition and begins to turn to stone. While {@condition Restrained|XPHB} in this way, the creature repeats the save at the end of its next turn. On a successful save, the effect ends. On a failed save, the creature has the {@condition Petrified|XPHB} condition instead of the {@condition Restrained|XPHB} condition. The petrification lasts until the creature is freed by the {@spell Greater Restoration|XPHB} spell or similar magic."
 						]
-					]
+					],
+					"data": {
+						"genTables": {
+							"tableInclude": true
+						}
+					}
 				}
 			],
 			"attachedSpells": {

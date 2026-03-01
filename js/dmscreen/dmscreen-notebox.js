@@ -79,10 +79,8 @@ export class NoteBox extends DmScreenPanelAppBase {
 				const ent = await DataLoader.pCacheAndGet(page, source, hash);
 				if (!ent) return;
 
-				const eleContent = Renderer.hover.getHoverContent_stats(page, ent);
-
 				Renderer.hover.getShowWindow(
-					eleContent,
+					Renderer.hover.getHoverContent_stats(page, ent),
 					Renderer.hover.getWindowPositionExact(bcr.left, bcr.top),
 					{
 						title: ent.name || "",

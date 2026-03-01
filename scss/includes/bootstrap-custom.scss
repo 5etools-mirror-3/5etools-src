@@ -90,11 +90,13 @@
 
 	/* custom scrollbars */
 	// Firefox only--use thinner scrollbars where possible (Chrome uses `-webkit` custom styling instead)
-	@-moz-document url-prefix() {
+	/* stylelint-disable at-rule-no-deprecated */
+	@document url-prefix() {
 		* {
 			scrollbar-width: thin;
 		}
 	}
+	/* stylelint-enable at-rule-no-deprecated */
 
 	::-webkit-scrollbar {
 		width: 9px;

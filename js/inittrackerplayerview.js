@@ -162,16 +162,17 @@ class InitTrackerPlayerViewV1 {
 			</div>
 		</div>`;
 
-		const body = e_(document.body);
-		body.onn("keypress", (evt) => {
-			if (this._parent._getActiveTab() !== tabMeta) return;
+		const eleBody = e_(document.body);
+		eleBody
+			.onn("keypress", (evt) => {
+				if (this._parent._getActiveTab() !== tabMeta) return;
 
-			if (EventUtil.getKeyIgnoreCapsLock(evt) === "f" && EventUtil.noModifierKeys(evt) && !EventUtil.isInInput(evt)) {
-				evt.preventDefault();
+				if (EventUtil.getKeyIgnoreCapsLock(evt) === "f" && EventUtil.noModifierKeys(evt) && !EventUtil.isInInput(evt)) {
+					evt.preventDefault();
 
-				if (view.isActive) body.toggleClass("is-fullscreen");
-			}
-		});
+					if (view.isActive) eleBody.toggleClass("is-fullscreen");
+				}
+			});
 	}
 }
 
@@ -266,14 +267,14 @@ class InitTrackerPlayerViewV0 {
 			</div>
 		</div>`;
 
-		const body = e_(document.body);
-		body.onn("keypress", (evt) => {
+		const eleBody = e_(document.body);
+		eleBody.onn("keypress", (evt) => {
 			if (this._parent._getActiveTab() !== tabMeta) return;
 
 			if (EventUtil.getKeyIgnoreCapsLock(evt) === "f" && EventUtil.noModifierKeys(evt) && !EventUtil.isInInput(evt)) {
 				evt.preventDefault();
 
-				if (view.isActive) body.toggleClass("is-fullscreen");
+				if (view.isActive) eleBody.toggleClass("is-fullscreen");
 			}
 		});
 	}

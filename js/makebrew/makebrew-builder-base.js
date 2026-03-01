@@ -275,10 +275,8 @@ export class BuilderBase extends ProxyBase {
 							),
 						];
 
-						const content = Renderer.hover.getHoverContent_statsCode(this._state);
-
 						Renderer.hover.getShowWindow(
-							content,
+							Renderer.hover.getHoverContent_statsCode(this._state),
 							Renderer.hover.getWindowPositionFromEvent(evt),
 							{
 								title: `${this._state.name} \u2014 Source Data`,
@@ -311,10 +309,9 @@ export class BuilderBase extends ProxyBase {
 								},
 							],
 						});
-						const content = Renderer.hover.getHoverContent_miscCode(name, mdText);
 
 						Renderer.hover.getShowWindow(
-							content,
+							Renderer.hover.getHoverContent_miscCode(name, mdText),
 							Renderer.hover.getWindowPositionFromEvent(evt),
 							{
 								title: name,
@@ -615,9 +612,8 @@ export class BuilderBase extends ProxyBase {
 				const toRender = getState();
 				if (!toRender) return JqueryUtil.doToast({content: "Please enter an image URL", type: "warning"});
 
-				const content = Renderer.hover.getHoverContent_generic(toRender, {isBookContent: true});
 				Renderer.hover.getShowWindow(
-					content,
+					Renderer.hover.getHoverContent_generic(toRender, {isBookContent: true}),
 					Renderer.hover.getWindowPositionFromEvent(evt),
 					{
 						isPermanent: true,

@@ -498,7 +498,7 @@ class SaveManager extends BaseComponent {
 			? null
 			: ee`<label class="ve-flex-v-center mr-2">
 				<div class="mr-1 help" title="Turning this on will make a copy of the list as it currently exists, allowing the original to be modified or deleted without affecting the copy. Leaving this off will instead keep a reference to the list, so any change to the list will be reflected in applications which make use of it.">Make Copy</div>
-				${ComponentUiUtil.$getCbBool(this, "isLoadAsCopy")}
+				${ComponentUiUtil.getCbBool(this, "isLoadAsCopy")}
 			</label>`;
 
 		const btnExportAll = ee`<button class="ve-btn ve-btn-default ve-btn-xs" title="Save All Lists to File">Export All</button>`

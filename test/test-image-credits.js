@@ -63,11 +63,15 @@ async function main () {
 			warnings.push(`Incomplete image credits ${ptCntPct.padStart(20, " ")} in "${filename}"${getJoinedPaths({imagePathsNoCredits})}`);
 		});
 
-	if (!warnings.length) return false;
+	if (!warnings.length) return true;
 
 	warnings.forEach(wrn => console.warn(wrn));
 
-	return true;
+	return false;
 }
 
-export default main();
+const pMain = main();
+
+if (import.meta.main && !(await pMain)) process.exitCode = 1;
+
+export default pMain;

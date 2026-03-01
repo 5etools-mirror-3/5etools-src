@@ -496,14 +496,11 @@ export class BookUtil {
 	}
 
 	static _initLinkGrabbers () {
-		const body = e_({ele: document.body});
-		body
+		e_({ele: document.body})
 			.onn(`mousedown`, (evt) => {
 				if (!evt.target.classList.contains(`entry-title-inner`)) return;
 				evt.preventDefault();
-			});
-
-		body
+			})
 			.onn(`click`, async (evt) => {
 				if (!evt.target.classList.contains(`entry-title-inner`)) return;
 
@@ -519,8 +516,7 @@ export class BookUtil {
 					await MiscUtil.pCopyTextToClipboard(toCopy.join(HASH_PART_SEP));
 					JqueryUtil.showCopiedEffect(ele, {text: "Copied link!"});
 				}
-			},
-			);
+			});
 	}
 
 	static _initScrollTopFloat () {

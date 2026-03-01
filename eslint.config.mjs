@@ -199,6 +199,7 @@ export default [
 			"quotes": ["error", "double", {"allowTemplateLiterals": true}],
 			"no-var": "error",
 			"no-constant-binary-expression": "error",
+			"no-useless-assignment": "off",
 		},
 	},
 	CONFIG_IGNORES,

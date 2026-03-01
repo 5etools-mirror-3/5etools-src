@@ -5280,7 +5280,7 @@
 								"type": "entries",
 								"name": "Reach to the Blaze",
 								"entries": [
-									"You know the {@spell produce flame} cantrip. Starting at 3rd level, you can cast the {@spell burning hands} spell with this trait. Starting at 5th level, you can also cast the {@spell flame blade} spell with this trait, without a material component. Once you cast {@spell burning hands} or {@spell flame blade} with this trait, you can't cast that spell with it again until you finish a long rest. You can also cast either of those spells using any spell slots you have of the appropriate level.",
+									"You know the {@spell produce flame|XPHB} cantrip. Starting at 3rd level, you can cast the {@spell burning hands|XPHB} spell with this trait. Starting at 5th level, you can also cast the {@spell flame blade|XPHB} spell with this trait, without a material component. Once you cast {@spell burning hands|XPHB} or {@spell flame blade|XPHB} with this trait, you can't cast that spell with it again until you finish a long rest. You can also cast either of those spells using any spell slots you have of the appropriate level.",
 									"Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells when you cast them with this trait (choose when you select this race)."
 								]
 							}
@@ -5298,14 +5298,14 @@
 						"3": {
 							"daily": {
 								"1": [
-									"burning hands"
+									"burning hands|xphb"
 								]
 							}
 						},
 						"5": {
 							"daily": {
 								"1": [
-									"flame blade"
+									"flame blade|xphb"
 								]
 							}
 						}
@@ -5319,12 +5319,13 @@
 					},
 					"known": {
 						"1": [
-							"produce flame#c"
+							"produce flame|xphb#c"
 						]
 					}
 				}
 			],
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Genasi",
@@ -13017,6 +13018,7 @@
 			},
 			"additionalSpells": [
 				{
+					"name": "Abyssal",
 					"ability": {
 						"choose": [
 							"int",
@@ -13026,8 +13028,89 @@
 					},
 					"known": {
 						"1": [
-							"thaumaturgy|xphb#c"
+							"thaumaturgy|xphb#c",
+							"poison spray|xphb#c"
 						]
+					},
+					"innate": {
+						"3": {
+							"daily": {
+								"1": [
+									"ray of sickness|xphb"
+								]
+							}
+						},
+						"5": {
+							"daily": {
+								"1": [
+									"hold person|xphb"
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Chthonic",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"1": [
+							"thaumaturgy|xphb#c",
+							"chill touch|xphb#c"
+						]
+					},
+					"innate": {
+						"3": {
+							"daily": {
+								"1": [
+									"false life|xphb"
+								]
+							}
+						},
+						"5": {
+							"daily": {
+								"1": [
+									"ray of enfeeblement|xphb"
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Infernal",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"1": [
+							"thaumaturgy|xphb#c",
+							"fire bolt|xphb#c"
+						]
+					},
+					"innate": {
+						"3": {
+							"daily": {
+								"1": [
+									"hellish rebuke|xphb"
+								]
+							}
+						},
+						"5": {
+							"daily": {
+								"1": [
+									"darkness|xphb"
+								]
+							}
+						}
 					}
 				}
 			],

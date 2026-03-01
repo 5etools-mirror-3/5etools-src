@@ -4,7 +4,7 @@ import "../js/utils.js";
 import "../js/render.js";
 import {Command} from "commander";
 import {writeJsonSync} from "5etools-utils/lib/UtilFs.js";
-import {getCliFiles} from "./util-commander.js";
+import {getCliJsonFiles, mutCommanderJsonFileOptions} from "./util-commander.js";
 
 class AreaTagger {
 	constructor (json) {
@@ -62,20 +62,19 @@ class AreaTagger {
 	}
 }
 
-const program = new Command()
-	.option("--file <file...>", `Input files`)
-	.option("--dir <dir...>", `Input directories`)
-;
+const program = mutCommanderJsonFileOptions({command: new Command()});
 
 program.parse(process.argv);
 const params = program.opts();
 
 console.log(`Running area tagging pass...`);
 
-getCliFiles(
+getCliJsonFiles(
 	{
 		dirs: params.dir,
 		files: params.file,
+		convertedBy: params.convertedBy,
+		filter: params.filter,
 		fnMutDefaultSelection: ({files}) => {
 			[
 				{
@@ -96,7 +95,10 @@ getCliFiles(
 		},
 	},
 )
-	.forEach(({path, json}) => {
+	.forEach(jsonFile => {
+		const path = jsonFile.getFilePath();
+		const json = jsonFile.getContents();
+
 		console.log(`\tTagging "${path}"...`);
 
 		if (json.data) {

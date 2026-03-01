@@ -302,9 +302,9 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		// endregion
 
 		this._fnTableHandleFilterChange = null;
-		this._$wrpOutline = null;
+		this._wrpOutline = null;
 		this._fnOutlineHandleFilterChange = null;
-		this._$trNoContent = null;
+		this._trNoContent = null;
 
 		// region alternate views
 		this._subclassComparisonView = null;
@@ -352,7 +352,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				.filter(Boolean);
 		});
 
-		this._$pgContent = $(`#pagecontent`);
+		this._pgContent = es(`#pagecontent`);
 
 		await Promise.all([
 			PrereleaseUtil.pInit(),
@@ -397,7 +397,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 		this._list.init();
 
-		$(`.initial-message`).text(`Select a class from the list to view it here`);
+		es(`.initial-message`).txt(`Select a class from the list to view it here`);
 
 		// Silently prepare our initial state
 		await this._pSetClassFromHash(Hist.initialLoad);
@@ -405,7 +405,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 		await this._pInitAndRunRender();
 
-		ListPage._checkShowAllExcluded(this._dataList, this._$pgContent[0]);
+		ListPage._checkShowAllExcluded(this._dataList, this._pgContent);
 		this._initLinkRedirectors();
 		this._initLinkGrabbers();
 		this._initScrollToSubclassSelection();
@@ -612,7 +612,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			}
 		} else {
 			// This should never occur (failed loads should pick the first list item), but attempt to handle it semi-gracefully
-			this._$pgContent.empty().append(ClassesPage._render_$getTrNoContent());
+			this._pgContent.empty().appends(ClassesPage._render_getTrNoContent());
 			JqueryUtil.doToast({content: "Could not find the class to load!", type: "error"});
 		}
 	}
@@ -832,45 +832,54 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 	}
 
 	_initLinkGrabbers () {
-		const $body = $(document.body);
-		$body.on(`mousedown`, `.cls-main__linked-titles > td > * > .rd__h .entry-title-inner`, (evt) => evt.preventDefault());
-		$body.on(`click`, `.cls-main__linked-titles > td > * > .rd__h .entry-title-inner`, async (evt) => {
-			const $target = $(evt.target);
+		e_(document.body)
+			.onn("mousedown", evt => {
+				if (!evt.target.closest(".entry-title-inner") || !evt.target.closest(".cls-main__linked-titles")) return;
+				evt.preventDefault();
+			})
+			.onn("click", async evt => {
+				const eleTarget = e_(evt.target).closeste(".entry-title-inner");
 
-			if (evt.shiftKey) {
-				await MiscUtil.pCopyTextToClipboard($target.text().replace(/\.$/, ""));
-				JqueryUtil.showCopiedEffect($target);
-			} else {
-				const featureId = $target.closest(`tr`).attr("data-scroll-id");
+				if (!eleTarget || !evt.target.closest(".cls-main__linked-titles")) return;
+
+				if (evt.shiftKey) {
+					await MiscUtil.pCopyTextToClipboard(eleTarget.txt().replace(/\.$/, ""));
+					JqueryUtil.showCopiedEffect(eleTarget);
+					return;
+				}
+
+				const featureId = eleTarget.closeste(`tr`).attr("data-scroll-id");
 
 				const curState = MiscUtil.copyFast(this.__state);
 				curState.feature = featureId;
 				const href = `${window.location.href.split("#")[0]}#${this._getHashState({state: curState})}`;
 
 				await MiscUtil.pCopyTextToClipboard(href);
-				JqueryUtil.showCopiedEffect($target, {text: "Copied link!"});
-			}
-		});
+				JqueryUtil.showCopiedEffect(eleTarget, {text: "Copied link!"});
+			});
 	}
 
 	_initScrollToSubclassSelection () {
-		const $wrp = $(`#subclasstabs`);
-		$(document.body).on(`click`, `[data-jump-select-a-subclass]`, evt => {
-			$wrp[0].scrollIntoView({block: "center", inline: "center"});
-		});
+		const wrp = es(`#subclasstabs`);
+		e_(document.body)
+			.onn(`click`, evt => {
+				if (!evt.target.closest(`[data-jump-select-a-subclass]`)) return;
+				wrp.scrollIntoView({block: "center", inline: "center"});
+			});
 	}
 
 	_doBindBtnSettingsSidebar () {
 		const menu = ContextUtil.getMenu([
 			new ContextUtil.Action(
-				"Toggle Spell Points Mode",
+				"Toggle &quot;Spell Points&quot; Mode (2014)",
 				() => {
 					this._stateGlobal.isUseSpellPoints = !this._stateGlobal.isUseSpellPoints;
 				},
 			),
 		]);
 
-		$(`#btn-sidebar-settings`).click(evt => ContextUtil.pOpenMenu(evt, menu));
+		es(`#btn-sidebar-settings`)
+			.onn("click", evt => ContextUtil.pOpenMenu(evt, menu));
 	}
 
 	getListItem (cls, clsI, isExcluded) {
@@ -882,11 +891,11 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			<span class="ve-col-4 pl-0 pr-1 ve-text-center ${Parser.sourceJsonToSourceClassname(cls.source)} pr-0" title="${Parser.sourceJsonToFull(cls.source)}">${source}</span>
 		</a>`;
 
-		const $ele = ee`<li class="lst__row ve-flex-col ${isExcluded ? "row--blocklisted" : ""}">${lnk}</li>`;
+		const ele = ee`<li class="lst__row ve-flex-col ${isExcluded ? "row--blocklisted" : ""}">${lnk}</li>`;
 
 		return new ListItem(
 			clsI,
-			$ele,
+			ele,
 			cls.name,
 			{
 				hash,
@@ -962,7 +971,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 	}
 
 	async _pInitAndRunRender () {
-		this._$wrpOutline = $(`#sticky-nav`);
+		this._wrpOutline = es(`#sticky-nav`);
 
 		// Use hookAll to allow us to reset temp hooks on the property itself
 		this._addHookAll("classId", async () => {
@@ -1024,13 +1033,13 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				if (this._lastScrollFeature === this._state.feature) return;
 				this._lastScrollFeature = this._state.feature;
 
-				const $scrollTo = $(`[data-scroll-id="${this._state.feature}"]`);
-				if (!$scrollTo[0]) {
+				const eleScrollTo = es(`[data-scroll-id="${this._state.feature}"]`);
+				if (!eleScrollTo) {
 					// This should never occur, but just in case, clean up
 					this._state.feature = null;
 					this._lastScrollFeature = null;
 				} else {
-					setTimeout(() => $scrollTo[0].scrollIntoView(), 100);
+					setTimeout(() => eleScrollTo.scrollIntoView(), 100);
 				}
 			}
 		};
@@ -1038,46 +1047,45 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		hkScrollToFeature();
 
 		const hkDisplayFluff = () => {
-			$(`.cls-main__cls-fluff`).toggleVe(!!this._state.isShowFluff);
+			em(`.cls-main__cls-fluff`).forEach(ele => ele.toggleVe(!!this._state.isShowFluff));
 
 			if (!this._state.isShowFluff) {
-				$(`.cls-main__sc-fluff`).hideVe();
+				em(`.cls-main__sc-fluff`).forEach(ele => ele.hideVe());
 			} else {
-				$(`.cls-main__sc-fluff`)
-					.each((i, e) => {
-						const $e = $(e);
-						$e.toggleVe(!!this._state[$e.attr("data-subclass-id-fluff")]);
+				em(`.cls-main__sc-fluff`)
+					.forEach(ele => {
+						ele.toggleVe(!!this._state[ele.attr("data-subclass-id-fluff")]);
 					});
 			}
 		};
 		this._addHookBase("isShowFluff", hkDisplayFluff);
 		MiscUtil.pDefer(hkDisplayFluff);
 
-		const hkletDoToggleNoneSubclassMessages = (cntDisplayedSubclasses) => $(`[data-subclass-none-message]`).toggleVe(!cntDisplayedSubclasses && !this._state.isHideFeatures);
+		const hkletDoToggleNoneSubclassMessages = (cntDisplayedSubclasses) => em(`[data-subclass-none-message]`).forEach(ele => ele.toggleVe(!cntDisplayedSubclasses && !this._state.isHideFeatures));
 
 		const hkDisplayFeatures = () => {
 			const cntDisplayedSubclasses = this.activeClass.subclasses.map(sc => Number(this._state[UrlUtil.getStateKeySubclass(sc)] || false)).sum();
 
-			const $dispClassFeatures = $(`[data-feature-type="class"]`);
-			const $dispFeaturesSubclassHeader = $(`[data-feature-type="gain-subclass"]`);
+			const dispsClassFeatures = em(`[data-feature-type="class"]`);
+			const dispsFeaturesSubclassHeader = em(`[data-feature-type="gain-subclass"]`);
 
 			if (this._state.isHideFeatures) {
 				if (this._isAnySubclassActive()) {
-					this._$wrpOutline.toggleVe(true);
-					this._$trNoContent.toggleVe(false);
-					$dispClassFeatures.toggleVe(false);
-					$dispFeaturesSubclassHeader.toggleVe(true);
+					this._wrpOutline.toggleVe(true);
+					this._trNoContent.toggleVe(false);
+					dispsClassFeatures.forEach(ele => ele.toggleVe(false));
+					dispsFeaturesSubclassHeader.forEach(ele => ele.toggleVe(true));
 				} else {
-					this._$wrpOutline.toggleVe(false);
-					this._$trNoContent.toggleVe(true);
-					$dispClassFeatures.toggleVe(false);
-					$dispFeaturesSubclassHeader.toggleVe(false);
+					this._wrpOutline.toggleVe(false);
+					this._trNoContent.toggleVe(true);
+					dispsClassFeatures.forEach(ele => ele.toggleVe(false));
+					dispsFeaturesSubclassHeader.forEach(ele => ele.toggleVe(false));
 				}
 			} else {
-				this._$wrpOutline.toggleVe(true);
-				this._$trNoContent.toggleVe(false);
-				$dispClassFeatures.toggleVe(true);
-				$dispFeaturesSubclassHeader.toggleVe(true);
+				this._wrpOutline.toggleVe(true);
+				this._trNoContent.toggleVe(false);
+				dispsClassFeatures.forEach(ele => ele.toggleVe(true));
+				dispsFeaturesSubclassHeader.forEach(ele => ele.toggleVe(true));
 			}
 
 			hkletDoToggleNoneSubclassMessages(cntDisplayedSubclasses);
@@ -1090,7 +1098,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		// If multiple subclasses are displayed, show name prefixes
 		const hkIsShowNamePrefixes = () => {
 			const cntDisplayedSubclasses = cls.subclasses.map(sc => Number(this._state[UrlUtil.getStateKeySubclass(sc)] || false)).sum();
-			$(`[data-subclass-name-prefix]`).toggleVe(cntDisplayedSubclasses > 1);
+			em(`[data-subclass-name-prefix]`).forEach(ele => ele.toggleVe(cntDisplayedSubclasses > 1));
 
 			hkletDoToggleNoneSubclassMessages(cntDisplayedSubclasses);
 		};
@@ -1106,9 +1114,9 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 					isFirstRun = false;
 
 					const isVisible = this._state[stateKey];
-					$(`[data-subclass-id="${stateKey}"]`).toggleVe(!!isVisible);
+					em(`[data-subclass-id="${stateKey}"]`).forEach(ele => ele.toggleVe(!!isVisible));
 
-					$(`[data-subclass-id-fluff="${stateKey}"]`).toggleVe(!!isVisible && this._state.isShowFluff);
+					em(`[data-subclass-id-fluff="${stateKey}"]`).forEach(ele => ele.toggleVe(!!isVisible && this._state.isShowFluff));
 
 					if (!isFirstRun) hkIsShowNamePrefixes();
 				};
@@ -1133,22 +1141,22 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 	}
 
 	_render_renderClassTable () {
-		const $wrpTblClass = $(`#classtable`).empty();
+		const wrpTblClass = es(`#classtable`).empty();
 		const cls = this.activeClass;
 
 		Renderer.get().resetHeaderIndex();
 
-		const $tblGroupHeaders = [];
-		const $tblHeaders = [];
+		const elesTblGroupHeaders = [];
+		const elesTblHeaders = [];
 
 		if (cls.classTableGroups) {
-			cls.classTableGroups.forEach(tableGroup => this._render_renderClassTable_renderTableGroupHeader({$tblGroupHeaders, $tblHeaders, tableGroup}));
+			cls.classTableGroups.forEach(tableGroup => this._render_renderClassTable_renderTableGroupHeader({elesTblGroupHeaders, elesTblHeaders, tableGroup}));
 		}
 
 		cls.subclasses.forEach(sc => {
 			if (!sc.subclassTableGroups) return;
 			const stateKey = UrlUtil.getStateKeySubclass(sc);
-			sc.subclassTableGroups.forEach(tableGroup => this._render_renderClassTable_renderTableGroupHeader({$tblGroupHeaders, $tblHeaders, tableGroup, stateKey}));
+			sc.subclassTableGroups.forEach(tableGroup => this._render_renderClassTable_renderTableGroupHeader({elesTblGroupHeaders, elesTblHeaders, tableGroup, stateKey}));
 		});
 
 		const metasTblRows = this._render_renderClassTable_getMetasTblRows({
@@ -1177,41 +1185,41 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 								},
 							));
 						metaFeatureLink.isHidden = isHidden;
-						metaFeatureLink.$wrpLink.toggleVe(!isHidden);
+						metaFeatureLink.wrpLink.toggleVe(!isHidden);
 					}
 				});
 
-				metaTblRow.metasFeatureLinks.forEach(metaFeatureLink => metaFeatureLink.$dispComma.toggleVe(true));
+				metaTblRow.metasFeatureLinks.forEach(metaFeatureLink => metaFeatureLink.dispComma.toggleVe(true));
 				const lastVisible = metaTblRow.metasFeatureLinks.filter(metaFeatureLink => !metaFeatureLink.isHidden).last();
-				if (lastVisible) lastVisible.$dispComma.hideVe();
+				if (lastVisible) lastVisible.dispComma.hideVe();
 			});
 		};
 
-		$$`<table class="cls-tbl shadow-big w-100 mb-2">
+		ee`<table class="cls-tbl shadow-big w-100 mb-2">
 			<tbody>
 			<tr><th class="ve-tbl-border" colspan="999"></th></tr>
 			<tr><th class="ve-text-left cls-tbl__disp-name" colspan="999">${cls.name}</th></tr>
 			<tr>
 				<th colspan="3"></th> <!-- spacer to match the 3 default cols (level, prof, features) -->
-				${$tblGroupHeaders}
+				${elesTblGroupHeaders}
 			</tr>
 			<tr>
 				<th class="cls-tbl__col-level">Level</th>
 				<th class="cls-tbl__col-prof-bonus">Proficiency Bonus</th>
 				<th class="ve-text-left">Features</th>
-				${$tblHeaders}
+				${elesTblHeaders}
 			</tr>
-			${metasTblRows.map(it => it.$row)}
+			${metasTblRows.map(meta => meta.eleRow)}
 			<tr><th class="ve-tbl-border" colspan="999"></th></tr>
 			</tbody>
-		</table>`.appendTo($wrpTblClass);
-		$wrpTblClass.showVe();
+		</table>`.appendTo(wrpTblClass);
+		wrpTblClass.showVe();
 	}
 
 	_render_renderClassTable_renderTableGroupHeader (
 		{
-			$tblGroupHeaders,
-			$tblHeaders,
+			elesTblGroupHeaders,
+			elesTblHeaders,
 			tableGroup,
 			stateKey,
 		},
@@ -1219,47 +1227,47 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		const colLabels = tableGroup.colLabels;
 
 		// Render titles (top section)
-		const $thGroupHeader = tableGroup.title
-			? $(`<th class="cls-tbl__col-group" colspan="${colLabels.length}">${tableGroup.title}</th>`)
+		const thEleGroupHeader = tableGroup.title
+			? ee`<th class="cls-tbl__col-group" colspan="${colLabels.length}">${tableGroup.title}</th>`
 			// if there's no title, add a spacer
-			: $(`<th colspan="${colLabels.length}"></th>`);
-		$tblGroupHeaders.push($thGroupHeader);
+			: ee`<th colspan="${colLabels.length}"></th>`;
+		elesTblGroupHeaders.push(thEleGroupHeader);
 
 		// Render column headers (bottom section)
-		const $tblHeadersGroup = colLabels
+		const tblHeadersGroup = colLabels
 			.map(lbl => {
-				const $tblHeader = $(`<th class="cls-tbl__col-generic-center"><div class="cls__squash_header"></div></th>`)
-					.fastSetHtml(Renderer.get().render(lbl));
-				$tblHeaders.push($tblHeader);
-				return $tblHeader;
+				const tblHeader = ee`<th class="cls-tbl__col-generic-center"><div class="cls__squash_header"></div></th>`
+					.html(Renderer.get().render(lbl));
+				elesTblHeaders.push(tblHeader);
+				return tblHeader;
 			});
 
 		// region If it's a "spell progression" group, i.e. one that can be switched for a "Spell Points" column, add
 		//   appropriate handling.
-		let $thGroupHeaderSpellPoints = null;
-		let $tblHeaderSpellPoints = null;
-		let $tblHeaderSpellPointsMaxSpellLevel = null;
-		let $elesDefault = null;
-		let $elesSpellPoints = null;
+		let thGroupHeaderSpellPoints = null;
+		let tblHeaderSpellPoints = null;
+		let tblHeaderSpellPointsMaxSpellLevel = null;
+		let elesDefault = null;
+		let elesSpellPoints = null;
 		if (tableGroup.rowsSpellProgression) {
 			// This is always a "spacer"
-			$thGroupHeaderSpellPoints = $(`<th colspan="1" class="cls-tbl__cell-spell-points"></th>`);
-			$tblGroupHeaders.push($thGroupHeaderSpellPoints);
+			thGroupHeaderSpellPoints = ee`<th colspan="1" class="cls-tbl__cell-spell-points"></th>`;
+			elesTblGroupHeaders.push(thGroupHeaderSpellPoints);
 
-			$tblHeaderSpellPoints = $(`<th class="cls-tbl__col-generic-center cls-tbl__cell-spell-points"><div class="cls__squash_header"></div></th>`)
-				.fastSetHtml(Renderer.get().render(`{@variantrule Spell Points}`));
-			$tblHeaders.push($tblHeaderSpellPoints);
+			tblHeaderSpellPoints = ee`<th class="cls-tbl__col-generic-center cls-tbl__cell-spell-points"><div class="cls__squash_header"></div></th>`
+				.html(Renderer.get().render(`{@variantrule Spell Points}`));
+			elesTblHeaders.push(tblHeaderSpellPoints);
 
-			$tblHeaderSpellPointsMaxSpellLevel = $(`<th class="cls-tbl__col-generic-center cls-tbl__cell-spell-points"><div class="cls__squash_header">Spell Level</div></th>`);
-			$tblHeaders.push($tblHeaderSpellPointsMaxSpellLevel);
+			tblHeaderSpellPointsMaxSpellLevel = ee`<th class="cls-tbl__col-generic-center cls-tbl__cell-spell-points"><div class="cls__squash_header">Spell Level</div></th>`;
+			elesTblHeaders.push(tblHeaderSpellPointsMaxSpellLevel);
 
-			$elesDefault = [$thGroupHeader, ...$tblHeadersGroup];
-			$elesSpellPoints = [$thGroupHeaderSpellPoints, $tblHeaderSpellPoints, $tblHeaderSpellPointsMaxSpellLevel];
+			elesDefault = [thEleGroupHeader, ...tblHeadersGroup];
+			elesSpellPoints = [thGroupHeaderSpellPoints, tblHeaderSpellPoints, tblHeaderSpellPointsMaxSpellLevel];
 
 			if (!stateKey) {
 				const hkSpellPoints = () => {
-					$elesDefault.forEach($it => $it.toggleClass(`cls-tbl__cell-spell-progression--spell-points-enabled`, this._stateGlobal.isUseSpellPoints));
-					$elesSpellPoints.forEach($it => $it.toggleClass(`cls-tbl__cell-spell-points--spell-points-enabled`, this._stateGlobal.isUseSpellPoints));
+					elesDefault.forEach(ele => ele.toggleClass(`cls-tbl__cell-spell-progression--spell-points-enabled`, !!this._stateGlobal.isUseSpellPoints));
+					elesSpellPoints.forEach(ele => ele.toggleClass(`cls-tbl__cell-spell-points--spell-points-enabled`, !!this._stateGlobal.isUseSpellPoints));
 				};
 				this._addHookGlobal("isUseSpellPoints", hkSpellPoints);
 				hkSpellPoints();
@@ -1269,19 +1277,19 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 		// If there is a state key, this is a subclass table group, and may therefore need to be hidden
 		if (!stateKey) return;
-		const $elesSubclass = [
-			$thGroupHeader,
-			...$tblHeadersGroup,
-			$thGroupHeaderSpellPoints,
-			$tblHeaderSpellPoints,
-			$tblHeaderSpellPointsMaxSpellLevel,
+		const elesSubclass = [
+			thEleGroupHeader,
+			...tblHeadersGroup,
+			thGroupHeaderSpellPoints,
+			tblHeaderSpellPoints,
+			tblHeaderSpellPointsMaxSpellLevel,
 		].filter(Boolean);
 
 		const hkShowHideSubclass = () => {
-			$elesSubclass.forEach($ele => $ele.toggleVe(!!this._state[stateKey]));
+			elesSubclass.forEach(ele => ele.toggleVe(!!this._state[stateKey]));
 
-			if ($elesDefault) $elesDefault.forEach($it => $it.toggleClass(`cls-tbl__cell-spell-progression--spell-points-enabled`, !!this._state[stateKey] && this._stateGlobal.isUseSpellPoints));
-			if ($elesSpellPoints) $elesSpellPoints.forEach($it => $it.toggleClass(`cls-tbl__cell-spell-points--spell-points-enabled`, !!this._state[stateKey] && this._stateGlobal.isUseSpellPoints));
+			if (elesDefault) elesDefault.forEach(ele => ele.toggleClass(`cls-tbl__cell-spell-progression--spell-points-enabled`, !!this._state[stateKey] && this._stateGlobal.isUseSpellPoints));
+			if (elesSpellPoints) elesSpellPoints.forEach(ele => ele.toggleClass(`cls-tbl__cell-spell-points--spell-points-enabled`, !!this._state[stateKey] && this._stateGlobal.isUseSpellPoints));
 		};
 		this._addHookBase(stateKey, hkShowHideSubclass);
 		this._addHookGlobal("isUseSpellPoints", hkShowHideSubclass);
@@ -1303,8 +1311,8 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				.map((it, ixFeature) => {
 					const featureId = `${ixLvl}-${ixFeature}`;
 
-					const $lnk = $(`<a>${it._displayNameTable || it._displayName || it.name}</a>`)
-						.click(() => {
+					const lnk = ee`<a>${it._displayNameTable || it._displayName || it.name}</a>`
+						.onn("click", () => {
 							this._lastScrollFeature = null;
 							this._state.feature = null;
 							this._state.feature = featureId;
@@ -1317,47 +1325,47 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 							const curState = MiscUtil.copyFast(this.__state);
 							curState.feature = featureId;
 							const href = `#${this._getHashState({state: curState})}`;
-							$lnk.attr("href", href);
+							lnk.attr("href", href);
 						}, 5);
 					};
 					this._addHookAll("state", hkSetHref);
 					hkSetHref();
 
 					// Make a dummy for the last item
-					const $dispComma = ixFeature === lvlFeaturesFilt.length - 1 ? $(`<span></span>`) : $(`<span class="mr-1">,</span>`);
+					const dispComma = ixFeature === lvlFeaturesFilt.length - 1 ? ee`<span></span>` : ee`<span class="mr-1">,</span>`;
 					return {
-						$wrpLink: $$`<div class="ve-inline-block">${$lnk}${$dispComma}</div>`,
-						$dispComma,
+						wrpLink: ee`<div class="ve-inline-block">${lnk}${dispComma}</div>`,
+						dispComma,
 						source: it.source,
 						otherSources: it.otherSources,
 						isHidden: false,
 					};
 				});
 
-			const $ptTableGroups = [];
+			const ptsTableGroups = [];
 
 			if (cls.classTableGroups) {
-				const $cells = cls.classTableGroups
+				const cells = cls.classTableGroups
 					.map(tableGroup => this._render_renderClassTable_renderTableGroupRow({tableGroup, ixLvl}))
 					.flat();
-				Array.prototype.push.apply($ptTableGroups, $cells);
+				Array.prototype.push.apply(ptsTableGroups, cells);
 			}
 
 			cls.subclasses.forEach(sc => {
 				if (!sc.subclassTableGroups) return;
 				const stateKey = UrlUtil.getStateKeySubclass(sc);
-				const $cells = sc.subclassTableGroups
+				const cells = sc.subclassTableGroups
 					.map(tableGroup => this._render_renderClassTable_renderTableGroupRow({tableGroup, stateKey, ixLvl, sc}))
 					.flat();
-				Array.prototype.push.apply($ptTableGroups, $cells);
+				Array.prototype.push.apply(ptsTableGroups, cells);
 			});
 
 			return {
-				$row: $$`<tr class="cls-tbl__stripe-odd">
+				eleRow: ee`<tr class="cls-tbl__stripe-odd">
 					<td class="cls-tbl__col-level">${Parser.getOrdinalForm(ixLvl + 1)}</td>
 					<td class="cls-tbl__col-prof-bonus">+${pb}</td>
-					<td>${metasFeatureLinks.length ? metasFeatureLinks.map(it => it.$wrpLink) : `\u2014`}</td>
-					${$ptTableGroups}
+					<td>${metasFeatureLinks.length ? metasFeatureLinks.map(it => it.wrpLink) : `\u2014`}</td>
+					${ptsTableGroups}
 				</tr>`,
 				metasFeatureLinks,
 				level: ixLvl + 1,
@@ -1374,39 +1382,39 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		},
 	) {
 		const {
-			$cells,
-			$cellsDefault = null,
-			$cellsSpellPoints = null,
+			cells,
+			cellsDefault = null,
+			cellsSpellPoints = null,
 		} = tableGroup.rowsSpellProgression?.[ixLvl]
-			? this._render_renderClassTable_$getSpellProgressionCells({ixLvl, tableGroup, sc})
-			: this._render_renderClassTable_$getGenericRowCells({ixLvl, tableGroup});
+			? this._render_renderClassTable_getCellsSpellProgression({ixLvl, tableGroup, sc})
+			: this._render_renderClassTable_getCellsGenericRow({ixLvl, tableGroup});
 
 		if (!stateKey) {
 			const hkShowHideSpellPoints = () => {
-				if ($cellsDefault) $cellsDefault.forEach($it => $it.toggleClass(`cls-tbl__cell-spell-progression--spell-points-enabled`, this._stateGlobal.isUseSpellPoints));
-				if ($cellsSpellPoints) $cellsSpellPoints.forEach($it => $it.toggleClass(`cls-tbl__cell-spell-points--spell-points-enabled`, this._stateGlobal.isUseSpellPoints));
+				if (cellsDefault) cellsDefault.forEach(ele => ele.toggleClass(`cls-tbl__cell-spell-progression--spell-points-enabled`, this._stateGlobal.isUseSpellPoints));
+				if (cellsSpellPoints) cellsSpellPoints.forEach(ele => ele.toggleClass(`cls-tbl__cell-spell-points--spell-points-enabled`, this._stateGlobal.isUseSpellPoints));
 			};
 			this._addHookGlobal("isUseSpellPoints", hkShowHideSpellPoints);
 			MiscUtil.pDefer(hkShowHideSpellPoints); // saves ~10ms
 
-			return $cells;
+			return cells;
 		}
 
 		// If there is a state key, this is a subclass table group, and may therefore need to be hidden
 		const hkShowHideSubclass = () => {
-			$cells.forEach($cell => $cell.toggleVe(!!this._state[stateKey]));
+			cells.forEach(eleCell => eleCell.toggleVe(!!this._state[stateKey]));
 
-			if ($cellsDefault) $cellsDefault.forEach($it => $it.toggleClass(`cls-tbl__cell-spell-progression--spell-points-enabled`, !!this._state[stateKey] && this._stateGlobal.isUseSpellPoints));
-			if ($cellsSpellPoints) $cellsSpellPoints.forEach($it => $it.toggleClass(`cls-tbl__cell-spell-points--spell-points-enabled`, !!this._state[stateKey] && this._stateGlobal.isUseSpellPoints));
+			if (cellsDefault) cellsDefault.forEach(ele => ele.toggleClass(`cls-tbl__cell-spell-progression--spell-points-enabled`, !!this._state[stateKey] && this._stateGlobal.isUseSpellPoints));
+			if (cellsSpellPoints) cellsSpellPoints.forEach(ele => ele.toggleClass(`cls-tbl__cell-spell-points--spell-points-enabled`, !!this._state[stateKey] && this._stateGlobal.isUseSpellPoints));
 		};
 		this._addHookBase(stateKey, hkShowHideSubclass);
 		this._addHookGlobal("isUseSpellPoints", hkShowHideSubclass);
 		MiscUtil.pDefer(hkShowHideSubclass); // saves ~10ms
 
-		return $cells;
+		return cells;
 	}
 
-	_render_renderClassTable_$getGenericRowCells (
+	_render_renderClassTable_getCellsGenericRow (
 		{
 			ixLvl,
 			tableGroup,
@@ -1415,25 +1423,24 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 	) {
 		const row = tableGroup[propRows][ixLvl] || [];
 		return {
-			$cells: row.map(cell => {
-				const td = e_({
+			cells: row.map(valCell => {
+				return e_({
 					tag: "td",
 					clazz: "cls-tbl__col-generic-center",
-					html: cell === 0 ? "\u2014" : Renderer.get().render(cell),
+					html: valCell === 0 ? "\u2014" : Renderer.get().render(valCell),
 				});
-				return $(td);
 			}),
 		};
 	}
 
-	_render_renderClassTable_$getSpellProgressionCells (
+	_render_renderClassTable_getCellsSpellProgression (
 		{
 			ixLvl,
 			tableGroup,
 			sc,
 		},
 	) {
-		const $cellsDefault = this._render_renderClassTable_$getGenericRowCells({
+		const cellsDefault = this._render_renderClassTable_getCellsGenericRow({
 			ixLvl,
 			tableGroup,
 			propRows: "rowsSpellProgression",
@@ -1448,80 +1455,80 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			})
 			.sum();
 
-		const $cellSpellPoints = $(e_({
+		const cellSpellPoints = e_({
 			tag: "td",
 			clazz: "cls-tbl__col-generic-center cls-tbl__cell-spell-points",
 			html: spellPoints === 0 ? "\u2014" : spellPoints,
-		}));
+		});
 
 		const ixLastSpellNum = row.findIndex(num => num === 0);
 		const maxSpellLevel = !~ixLastSpellNum ? row.length : !ixLastSpellNum ? 0 : ixLastSpellNum;
 
-		const $cellSpellPointsMaxSpellLevel = $(e_({
+		const cellSpellPointsMaxSpellLevel = e_({
 			tag: "td",
 			clazz: "cls-tbl__col-generic-center cls-tbl__cell-spell-points",
 			html: maxSpellLevel === 0 ? "\u2014" : Renderer.get().render(`{@filter ${maxSpellLevel}|spells|level=${maxSpellLevel}|${sc ? `subclass=${this.activeClass?.name}: ${sc.shortName}` : `class=${this.activeClass?.name}`}}`),
-		}));
+		});
 
-		const $cellsSpellPoints = [
-			$cellSpellPoints,
-			$cellSpellPointsMaxSpellLevel,
+		const cellsSpellPoints = [
+			cellSpellPoints,
+			cellSpellPointsMaxSpellLevel,
 		];
 
 		return {
-			$cells: [
-				...$cellsDefault.$cells,
-				$cellSpellPoints,
-				$cellSpellPointsMaxSpellLevel,
+			cells: [
+				...cellsDefault.cells,
+				cellSpellPoints,
+				cellSpellPointsMaxSpellLevel,
 			],
-			$cellsDefault: $cellsDefault.$cells,
-			$cellsSpellPoints,
+			cellsDefault: cellsDefault.cells,
+			cellsSpellPoints,
 		};
 	}
 
 	_render_renderSidebar () {
-		const $wrpSidebar = $(`#statsprof`)
+		const wrpSidebar = es(`#statsprof`)
 			.empty()
-			.append(RenderClassesSidebar.getRenderedClassSidebar(this, this.activeClass))
+			.appends(RenderClassesSidebar.getRenderedClassSidebar(this, this.activeClass))
 			.showVe();
 	}
 
 	async _render_pRenderSubclassTabs () {
-		const $wrp = $(`#subclasstabs`).empty();
+		const wrp = es(`#subclasstabs`).empty();
 
-		this._render_renderSubclassPrimaryControls($wrp);
-		await this._render_pInitSubclassControls($wrp);
+		this._render_renderSubclassPrimaryControls(wrp);
+		await this._render_pInitSubclassControls(wrp);
 	}
 
-	_render_renderSubclassPrimaryControls ($wrp) {
+	_render_renderSubclassPrimaryControls (wrp) {
 		const cls = this.activeClass;
 
 		// region features/fluff
-		const $btnToggleFeatures = ComponentUiUtil.$getBtnBool(this, "isHideFeatures", {text: "Features", activeClass: "cls__btn-cf--active", isInverted: true}).title("Toggle Class Features");
+		const btnToggleFeatures = ComponentUiUtil.getBtnBool(this, "isHideFeatures", {text: "Features", activeClass: "cls__btn-cf--active", isInverted: true})
+			.tooltip("Toggle Class Features");
 
-		const $btnToggleFeatureVariants = $(`<button class="ve-btn ve-btn-xs ve-btn-default" title="Toggle Class Feature Options/Variants">Variants</button>`)
-			.click(() => {
+		const btnToggleFeatureVariants = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="Toggle Class Feature Options/Variants">Variants</button>`
+			.onn("click", () => {
 				const f = this.filterBox.getValues();
-				const isClassFeatureVariantsDisplayed = f[this._pageFilter.optionsFilter.header].isClassFeatureVariant;
-				this._pageFilter.optionsFilter.setValue("isClassFeatureVariant", !isClassFeatureVariantsDisplayed);
+				this._pageFilter.optionsFilter.setValue("isClassFeatureVariant", !f[this._pageFilter.optionsFilter.header].isClassFeatureVariant);
 				this._pageFilter.filterBox.fireChangeEvent();
 			});
 		const hkUpdateBtnFeatureVariants = () => {
 			const f = this.filterBox.getValues();
-			const isClassFeatureVariantsDisplayed = f[this._pageFilter.optionsFilter.header].isClassFeatureVariant;
-			$btnToggleFeatureVariants.toggleClass("active", isClassFeatureVariantsDisplayed);
+			btnToggleFeatureVariants.toggleClass("active", !!f[this._pageFilter.optionsFilter.header].isClassFeatureVariant);
 		};
 		this.filterBox.on(FILTER_BOX_EVNT_VALCHANGE, () => hkUpdateBtnFeatureVariants());
 		hkUpdateBtnFeatureVariants();
 
-		const $btnToggleFluff = ComponentUiUtil.$getBtnBool(this, "isShowFluff", {text: "Info"}).title("Toggle Class Info");
+		const btnToggleFluff = ComponentUiUtil.getBtnBool(this, "isShowFluff", {text: "Info"})
+			.tooltip("Toggle Class Info");
 
-		$$`<div class="ve-flex-v-center m-1 ve-btn-group mr-3 no-shrink">${$btnToggleFeatures}${$btnToggleFeatureVariants}${$btnToggleFluff}</div>`.appendTo($wrp);
+		ee`<div class="ve-flex-v-center m-1 ve-btn-group mr-3 no-shrink">${btnToggleFeatures}${btnToggleFeatureVariants}${btnToggleFluff}</div>`.appendTo(wrp);
 		// endregion
 
 		// region subclasses
-		const $wrpScTabs = $(`<div class="ve-flex-v-center ve-flex-wrap mr-2 w-100"></div>`).appendTo($wrp);
-		this._listSubclass = new List({$wrpList: $wrpScTabs, isUseJquery: true, fnSort: ClassesPage._fnSortSubclassFilterItems});
+		const wrpScTabs = ee`<div class="ve-flex-v-center ve-flex-wrap mr-2 w-100"></div>`.appendTo(wrp);
+		this._listSubclass = new List({wrpList: wrpScTabs, fnSort: ClassesPage._fnSortSubclassFilterItems});
 
 		cls.subclasses.forEach((sc, i) => {
 			const listItem = this._render_getSubclassTab(cls, sc, i);
@@ -1529,22 +1536,33 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			this._listSubclass.addItem(listItem);
 		});
 
-		const $dispCount = $(`<div class="ve-muted m-1 cls-tabs__sc-not-shown ve-flex-vh-center"></div>`);
+		const dispCount = ee`<div class="ve-muted m-1 cls-tabs__sc-not-shown ve-flex-vh-center"></div>`;
 		this._listSubclass.addItem(new ListItem(
 			-1,
-			$dispCount,
+			dispCount,
 			null,
 			{isAlwaysVisible: true},
 		));
 
 		this._listSubclass.on("updated", () => {
-			$dispCount.off("click");
+			dispCount.off("click");
+
 			if (this._listSubclass.visibleItems.length) {
 				const cntNotShown = this._listSubclass.items.length - this._listSubclass.visibleItems.length;
-				$dispCount.html(cntNotShown ? `<i class="clickable" title="Adjust your filters to see more.">(${cntNotShown} more not shown)</i>` : "").click(() => this._doSelectAllSubclasses());
-			} else if (this._listSubclass.items.length > 1) {
-				$dispCount.html(`<i class="clickable" title="Adjust your filters to see more.">(${this._listSubclass.items.length - 1} subclasses not shown)</i>`).click(() => this._doSelectAllSubclasses());
-			} else $dispCount.html("");
+				dispCount
+					.html(cntNotShown ? `<i class="clickable" title="Adjust your filters to see more.">(${cntNotShown} more not shown)</i>` : "")
+					.onn("click", () => this._doSelectAllSubclasses());
+				return;
+			}
+
+			if (this._listSubclass.items.length > 1) {
+				dispCount
+					.html(`<i class="clickable" title="Adjust your filters to see more.">(${this._listSubclass.items.length - 1} subclasses not shown)</i>`)
+					.onn("click", () => this._doSelectAllSubclasses());
+				return;
+			}
+
+			dispCount.html("");
 		});
 
 		this._listSubclass.init();
@@ -1566,11 +1584,11 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		this._proxyAssign("state", "_state", "__state", allStateKeys.mergeMap(({stateKey, isSelected}) => ({[stateKey]: isSelected})));
 	}
 
-	async _render_pInitSubclassControls ($wrp) {
+	async _render_pInitSubclassControls (wrp) {
 		const cls = this.activeClass;
 
-		const $btnSelAll = $(`<button class="ve-btn ve-btn-xs ve-btn-default" title="Select All (SHIFT to filter for and include most recent; CTRL to select official plus homebrew)"><span class="glyphicon glyphicon-check"></span></button>`)
-			.click(evt => {
+		const btnSelAll = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="Select All (SHIFT to filter for and include most recent; CTRL to select official plus homebrew)"><span class="glyphicon glyphicon-check"></span></button>`
+			.onn("click", evt => {
 				const allStateKeys = cls.subclasses.map(sc => UrlUtil.getStateKeySubclass(sc));
 				if (evt.shiftKey) {
 					this._doSelectAllSubclasses({allowlistMods: new Set(["fresh", "brew", "spicy"])});
@@ -1646,19 +1664,19 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				...cpySubHashes,
 				`flopsource:extend`,
 			].filter(Boolean), {force: true});
-			$selFilterPreset.val("-1");
+			selFilterPreset.val("-1");
 		};
-		const $selFilterPreset = $(`<select class="input-xs form-control cls-tabs__sel-preset"><option value="-1" disabled>Filter...</option></select>`)
-			.change(() => {
-				const val = Number($selFilterPreset.val());
+		const selFilterPreset = ee`<select class="input-xs form-control cls-tabs__sel-preset"><option value="-1" disabled>Filter...</option></select>`
+			.onn("change", () => {
+				const val = Number(selFilterPreset.val());
 				if (val == null) return;
 				setFilterSet(val);
 			});
-		filterSets.forEach((it, i) => $selFilterPreset.append(`<option value="${i}">${it.name}</option>`));
-		$selFilterPreset.val("-1");
+		filterSets.forEach((it, i) => selFilterPreset.appends(`<option value="${i}">${it.name}</option>`));
+		selFilterPreset.val("-1");
 
-		const $btnReset = $(`<button class="ve-btn ve-btn-xs ve-btn-default" title="Reset Selection"><span class="glyphicon glyphicon-refresh"></span></button>`)
-			.click(() => {
+		const btnReset = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="Reset Selection"><span class="glyphicon glyphicon-refresh"></span></button>`
+			.onn("click", () => {
 				this._proxyAssign("state", "_state", "__state", cls.subclasses.mergeMap(sc => ({[UrlUtil.getStateKeySubclass(sc)]: false})));
 			});
 
@@ -1667,10 +1685,10 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		// Remove the temporary "hidden" class used to prevent popping
 		this._listSubclass.items.forEach(it => it.ele.showVe());
 
-		const $btnToggleSources = ComponentUiUtil.$getBtnBool(this, "isShowScSources", {$ele: $(`<button class="ve-btn ve-btn-xs ve-btn-default ve-flex-1" title="Show Subclass Sources"><span class="glyphicon glyphicon-book"></span></button>`)});
+		const btnToggleSources = ComponentUiUtil.getBtnBool(this, "isShowScSources", {ele: ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-flex-1" title="Show Subclass Sources"><span class="glyphicon glyphicon-book"></span></button>`});
 
-		const $btnShuffle = $(`<button title="Feeling Lucky?" class="ve-btn ve-btn-xs ve-btn-default ve-flex-1"><span class="glyphicon glyphicon-random"></span></button>`)
-			.click(() => {
+		const btnShuffle = ee`<button title="Feeling Lucky?" class="ve-btn ve-btn-xs ve-btn-default ve-flex-1"><span class="glyphicon glyphicon-random"></span></button>`
+			.onn("click", () => {
 				if (!this._listSubclass.visibleItems.length) return JqueryUtil.doToast({content: "No subclasses to choose from!", type: "warning"});
 
 				const doDeselAll = () => this._listSubclass.items.filter(it => it.values.stateKey).forEach(it => this._state[it.values.stateKey] = false);
@@ -1691,10 +1709,10 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				}
 			});
 
-		$$`<div class="ve-flex-v-center m-1 no-shrink">${$selFilterPreset}</div>`.appendTo($wrp);
-		$$`<div class="ve-flex-v-center m-1 ve-btn-group no-shrink">
-			${$btnSelAll}${$btnShuffle}${$btnReset}${$btnToggleSources}
-		</div>`.appendTo($wrp);
+		ee`<div class="ve-flex-v-center m-1 no-shrink">${selFilterPreset}</div>`.appendTo(wrp);
+		ee`<div class="ve-flex-v-center m-1 ve-btn-group no-shrink">
+			${btnSelAll}${btnShuffle}${btnReset}${btnToggleSources}
+		</div>`.appendTo(wrp);
 	}
 
 	_handleSubclassFilterChange () {
@@ -1714,21 +1732,21 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 		if (this._state[stateKey] == null) this._state[stateKey] = false;
 
-		const $dispName = $(`<div title="${ClassesPage.getBtnTitleSubclass(sc)}"></div>`);
-		const $dispSource = $(`<div class="ml-1" title="${Parser.sourceJsonToFull(sc.source)}">(${Parser.sourceJsonToAbv(sc.source)})</div>`);
+		const dispName = ee`<div title="${ClassesPage.getBtnTitleSubclass(sc)}"></div>`;
+		const dispSource = ee`<div class="ml-1" title="${Parser.sourceJsonToFull(sc.source)}">(${Parser.sourceJsonToAbv(sc.source)})</div>`;
 		const hkSourcesVisible = () => {
-			$dispName.text(this._state.isShowScSources ? ClassesPage.getBaseShortName(sc) : sc.shortName);
-			$dispSource.toggleVe(!!this._state.isShowScSources);
+			dispName.txt(this._state.isShowScSources ? ClassesPage.getBaseShortName(sc) : sc.shortName);
+			dispSource.toggleVe(!!this._state.isShowScSources);
 		};
 		this._addHookBase("isShowScSources", hkSourcesVisible);
 		MiscUtil.pDefer(hkSourcesVisible);
 
 		// Initially have these "hidden," to prevent them popping out when we filter them
-		const $btn = $$`<button class="ve-btn ve-btn-default ve-btn-xs ve-flex-v-center m-1 ve-hidden ${sc.isReprinted ? "cls__btn-sc--reprinted" : ""}">
-				${$dispName}
-				${$dispSource}
+		const btn = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-flex-v-center m-1 ve-hidden ${sc.isReprinted ? "cls__btn-sc--reprinted" : ""}">
+				${dispName}
+				${dispSource}
 			</button>`
-			.click(evt => {
+			.onn("click", evt => {
 				if (evt.shiftKey) {
 					this._proxyAssignSimple(
 						"state",
@@ -1744,17 +1762,17 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				}
 				this._state[stateKey] = !this._state[stateKey];
 			})
-			.contextmenu(evt => {
+			.onn("contextmenu", evt => {
 				evt.preventDefault();
 				this._state[stateKey] = !this._state[stateKey];
 			});
-		const hkVisible = () => $btn.toggleClass(clsActive, !!this._state[stateKey]);
+		const hkVisible = () => btn.toggleClass(clsActive, !!this._state[stateKey]);
 		this._addHookBase(stateKey, hkVisible);
 		MiscUtil.pDefer(hkVisible);
 
 		return new ListItem(
 			ix,
-			$btn,
+			btn,
 			sc.name,
 			{
 				source: sc.source,
@@ -1785,35 +1803,36 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 	}
 
 	_render_renderOutline () {
-		this._$wrpOutline.empty();
+		this._wrpOutline.empty();
 
 		// Auto-hide the outline on small screens
 		if (Renderer.hover.isSmallScreen()) this._state.isHideOutline = true;
 
-		const $dispShowHide = $(`<div class="cls-nav__disp-toggle"></div>`);
-		const $wrpHeadInner = $$`<div class="cls-nav__head-inner split">
+		const dispShowHide = ee`<div class="cls-nav__disp-toggle"></div>`;
+		const wrpHeadInner = ee`<div class="cls-nav__head-inner split">
 			<div>Outline</div>
-			${$dispShowHide}
+			${dispShowHide}
 		</div>`
-			.click(() => this._state.isHideOutline = !this._state.isHideOutline);
+			.onn("click", () => this._state.isHideOutline = !this._state.isHideOutline);
 
-		const $wrpHead = $$`<div class="cls-nav__head">
-			${$wrpHeadInner}
-			<hr class="cls-nav__hr">
-		</div>`.appendTo(this._$wrpOutline);
-		const $wrpBody = $(`<div class="nav-body"></div>`).appendTo(this._$wrpOutline);
+		const wrpHead = ee`<div class="cls-nav__head">
+				${wrpHeadInner}
+				<hr class="cls-nav__hr">
+			</div>`
+			.appendTo(this._wrpOutline);
+		const wrpBody = ee`<div class="nav-body"></div>`.appendTo(this._wrpOutline);
 
 		const hkShowHide = () => {
-			$wrpHead.toggleClass("cls-nav__head--active", !this._state.isHideOutline);
-			$wrpBody.toggleVe(!this._state.isHideOutline);
-			$dispShowHide.toggleClass("cls-nav__disp-toggle--active", !this._state.isHideOutline);
+			wrpHead.toggleClass("cls-nav__head--active", !this._state.isHideOutline);
+			wrpBody.toggleVe(!this._state.isHideOutline);
+			dispShowHide.toggleClass("cls-nav__disp-toggle--active", !this._state.isHideOutline);
 		};
 		this._addHookBase("isHideOutline", hkShowHide);
 		MiscUtil.pDefer(hkShowHide);
 
 		const _hkRender = async () => {
 			await this._pLock("render-outline");
-			$wrpBody.empty();
+			wrpBody.empty();
 			const filterValues = this.filterBox.getValues();
 			const isUseSubclassSources = !this._pageFilter.isClassNaturallyDisplayed(filterValues, this.activeClassRaw)
 				&& this._pageFilter.isAnySubclassDisplayed(filterValues, this.activeClassRaw);
@@ -1826,7 +1845,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 						this._render_renderOutline_doMakeItem({
 							filterValues,
 							isUseSubclassSources,
-							$wrpBody,
+							wrpBody,
 
 							depthData: it,
 						});
@@ -1850,7 +1869,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 						filterValues,
 						isUseSubclassSources,
-						$wrpBody,
+						wrpBody,
 					});
 				});
 
@@ -1864,7 +1883,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 						filterValues,
 						isUseSubclassSources,
-						$wrpBody,
+						wrpBody,
 					});
 				}
 			});
@@ -1890,7 +1909,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		{
 			filterValues,
 			isUseSubclassSources,
-			$wrpBody,
+			wrpBody,
 
 			depthData,
 			additionalCssClasses = "",
@@ -1905,12 +1924,12 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		) return;
 
 		const displayDepth = Math.min(depthData.depth + 1, 2);
-		$(`<div class="cls-nav__item cls-nav__item--depth-${displayDepth} ${additionalCssClasses}">${depthData.name}</div>`)
-			.click(() => {
-				const $it = $(`[data-title-index="${depthData.ixHeader}"]`);
-				if ($it.get()[0]) $it.get()[0].scrollIntoView();
+		ee`<div class="cls-nav__item cls-nav__item--depth-${displayDepth} ${additionalCssClasses}">${depthData.name}</div>`
+			.onn("click", () => {
+				const ele = es(`[data-title-index="${depthData.ixHeader}"]`);
+				if (ele.scrollIntoView());
 			})
-			.appendTo($wrpBody);
+			.appendTo(wrpBody);
 	}
 
 	_render_renderOutline_isOutlineRenderable (depthEntry) {
@@ -1924,12 +1943,12 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			feature,
 			ixFeature,
 			ptrHasHandledSubclassFeatures,
-			$content,
+			wrpContent,
 			cls,
 
 			filterValues,
 			isUseSubclassSources,
-			$wrpBody,
+			wrpBody,
 		},
 	) {
 		const depthData = MiscUtil.get(this._outlineData.classFeatures, ixLvl, ixFeature);
@@ -1951,7 +1970,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 						additionalCssClasses: additionalCssClassesRaw.join(" "),
 						filterValues,
 						isUseSubclassSources,
-						$wrpBody,
+						wrpBody,
 					});
 				});
 		}
@@ -1981,7 +2000,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 							depthData: it,
 							filterValues,
 							isUseSubclassSources,
-							$wrpBody,
+							wrpBody,
 						});
 					});
 			}
@@ -2013,7 +2032,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 								additionalCssClasses: additionalCssClassesRaw.join(" "),
 								filterValues,
 								isUseSubclassSources,
-								$wrpBody,
+								wrpBody,
 							});
 						});
 
@@ -2038,7 +2057,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 								additionalCssClasses: additionalCssClassesRaw.join(" "),
 								filterValues,
 								isUseSubclassSources,
-								$wrpBody,
+								wrpBody,
 							});
 						});
 				});
@@ -2114,13 +2133,13 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 	}
 
 	async _render_pRenderClassContent () {
-		const $content = $(document.getElementById("pagecontent")).empty();
+		const wrpContent = e_(document.getElementById("pagecontent")).empty();
 		const cls = this.activeClass;
 		this._outlineData = {};
 
 		UtilClassesPage.setRenderFnGetStyleClasses(cls);
 
-		$content.append(Renderer.utils.getBorderTr());
+		wrpContent.appends(Renderer.utils.getBorderTr());
 
 		const clsFluff = await Renderer.class.pGetFluff(cls);
 		if (clsFluff) {
@@ -2129,7 +2148,9 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			const {hasEntries, rendered} = UtilClassesPage.getRenderedClassFluffHeader({cls, clsFluff, depthArr, isAddTrailingHr: true});
 
 			if (rendered) {
-				const $trFluff = $(`<tr class="cls-main__cls-fluff"><td colspan="6"></td></tr>`).fastSetHtml(rendered).appendTo($content);
+				const trFluff = ee`<tr class="cls-main__cls-fluff"></tr>`
+					.html(`<td colspan="6">${rendered}</td>`)
+					.appendTo(wrpContent);
 			}
 
 			if (hasEntries) this._trackOutlineFluffData(depthArr);
@@ -2153,7 +2174,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 					ptrHasHandledSubclassFeatures,
 					ptrsHasRenderedSubclass,
 					ptrIsFirstSubclassLevel,
-					$content,
+					wrpContent,
 					cls,
 				});
 			});
@@ -2167,27 +2188,31 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 					ixFeature: -1,
 					ptrsHasRenderedSubclass,
 					ptrIsFirstSubclassLevel,
-					$content,
+					wrpContent,
 					cls,
 				});
 			}
 		});
 
 		if (cls.otherSources) {
-			const text = Renderer.utils.getSourceAndPageHtml(cls);
-			const $trClassFeature = $(`<tr data-feature-type="class"><td colspan="6"></td></tr>`)
-				.fastSetHtml(`<hr class="hr-1"><b>Class source:</b> ${text}`)
-				.appendTo($content);
+			const htmlSource = Renderer.utils.getSourceAndPageHtml(cls);
+			const trClassFeature = ee`<tr data-feature-type="class"></tr>`
+				.html(`<td colspan="6"><hr class="hr-1"><b>Class source:</b> ${htmlSource}</td>`)
+				.appendTo(wrpContent);
 		}
 
 		if (clsFluff) {
 			const {rendered} = UtilClassesPage.getRenderedClassFluffFooter({cls, clsFluff, isAddLeadingHr: true});
-			if (rendered) $(`<tr class="cls-main__cls-fluff"><td colspan="6"></td></tr>`).fastSetHtml(rendered).appendTo($content);
+			if (rendered) {
+				ee`<tr class="cls-main__cls-fluff"></tr>`
+					.html(`<td colspan="6">${rendered}</td>`)
+					.appendTo(wrpContent);
+			}
 		}
 
-		this._$trNoContent = ClassesPage._render_$getTrNoContent().appendTo($content);
+		this._trNoContent = ClassesPage._render_getTrNoContent().appendTo(wrpContent);
 
-		$content.append(Renderer.utils.getBorderTr());
+		wrpContent.appends(Renderer.utils.getBorderTr());
 
 		UtilClassesPage.unsetRenderFnGetStyleClasses();
 		Renderer.get()
@@ -2202,7 +2227,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			ptrHasHandledSubclassFeatures,
 			ptrsHasRenderedSubclass,
 			ptrIsFirstSubclassLevel,
-			$content,
+			wrpContent,
 			cls,
 		},
 	) {
@@ -2210,7 +2235,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
 
 		const toRenderSource = Renderer.findSource(feature);
-		const $trClassFeature = Renderer.get().withPlugin({
+		const trClassFeature = Renderer.get().withPlugin({
 			pluginTypes: [
 				"entries_styleClass_fromSource",
 				"section_styleClass_fromSource",
@@ -2223,9 +2248,9 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				return Renderer.get().withDepthTracker(
 					depthArr,
 					({renderer}) => {
-						return $(`<tr data-scroll-id="${ixLvl}-${ixFeature}" data-feature-type="class" class="cls-main__linked-titles"><td colspan="6"></td></tr>`)
-							.fastSetHtml(renderer.render(Renderer.class.getDisplayNamedClassFeatureEntry(feature, styleHint)))
-							.appendTo($content);
+						return ee`<tr data-scroll-id="${ixLvl}-${ixFeature}" data-feature-type="class" class="cls-main__linked-titles"></tr>`
+							.html(`<td colspan="6">${renderer.render(Renderer.class.getDisplayNamedClassFeatureEntry(feature, styleHint))}</td>`)
+							.appendTo(wrpContent);
 					},
 					{additionalProps: ["isReprinted"], additionalPropsInherited: ["_isStandardSource", "isClassFeatureVariant"]},
 				);
@@ -2237,12 +2262,12 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 		if (ptrHasHandledSubclassFeatures) ptrHasHandledSubclassFeatures._ = true;
 
-		$trClassFeature.attr("data-feature-type", "gain-subclass");
+		trClassFeature.attr("data-feature-type", "gain-subclass");
 
 		// Add a placeholder feature to display when no subclasses are active
-		const $trSubclassFeature = $(`<tr class="cls-main__sc-feature" data-subclass-none-message="true"><td colspan="6"></td></tr>`)
-			.fastSetHtml(Renderer.get().withDepthTracker([], ({renderer}) => renderer.render({type: "entries", entries: [{name: `{@note No Subclass Selected}`, type: "entries", entries: [`{@note <span class="clickable roller" data-jump-select-a-subclass="true">Select a subclass</span> to view its feature(s) here.}`]}]})))
-			.appendTo($content);
+		const trSubclassFeature = ee`<tr class="cls-main__sc-feature" data-subclass-none-message="true"></tr>`
+			.html(`<td colspan="6">${Renderer.get().withDepthTracker([], ({renderer}) => renderer.render({type: "entries", entries: [{name: `{@note No Subclass Selected}`, type: "entries", entries: [`{@note <span class="clickable roller" data-jump-select-a-subclass="true">Select a subclass</span> to view its feature(s) here.}`]}]}))}</td>`)
+			.appendTo(wrpContent);
 
 		await cls.subclasses.pSerialAwaitMap(async sc => {
 			const stateKey = UrlUtil.getStateKeySubclass(sc);
@@ -2301,11 +2326,9 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 						if (source === sc.source) return {isSkip: true};
 					},
 					fn: () => {
-						const $trSubclassFeature = $(`<tr class="cls-main__sc-feature" data-subclass-id="${UrlUtil.getStateKeySubclass(sc)}"><td colspan="6"></td></tr>`)
-							.fastSetHtml(
-								Renderer.get().withDepthTracker(depthArr, ({renderer}) => renderer.render(Renderer.class.getDisplayNamedSubclassFeatureEntry(toRender, {styleHint, isEditionMismatch})), {additionalProps: ["isReprinted"], additionalPropsInherited: ["_isStandardSource", "isClassFeatureVariant"]}),
-							)
-							.appendTo($content);
+						const trSubclassFeature = ee`<tr class="cls-main__sc-feature" data-subclass-id="${UrlUtil.getStateKeySubclass(sc)}"></tr>`
+							.html(`<td colspan="6">${Renderer.get().withDepthTracker(depthArr, ({renderer}) => renderer.render(Renderer.class.getDisplayNamedSubclassFeatureEntry(toRender, {styleHint, isEditionMismatch})), {additionalProps: ["isReprinted"], additionalPropsInherited: ["_isStandardSource", "isClassFeatureVariant"]})}</td>`)
+							.appendTo(wrpContent);
 					},
 				});
 
@@ -2322,9 +2345,9 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 				if (hasEntries) this._trackOutlineScFluffData(stateKey, ixLvl + 1, ixScFeature, depthArrSubclassFluff);
 
-				$(`<tr class="cls-main__sc-fluff" data-subclass-id-fluff="${UrlUtil.getStateKeySubclass(sc)}"><td colspan="6"></td></tr>`)
-					.fastSetHtml(rdScFluff)
-					.appendTo($content);
+				ee`<tr class="cls-main__sc-fluff" data-subclass-id-fluff="${UrlUtil.getStateKeySubclass(sc)}"></tr>`
+					.html(`<td colspan="6">${rdScFluff}</td>`)
+					.appendTo(wrpContent);
 			});
 		});
 
@@ -2335,8 +2358,8 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		return ExcludeUtil.isExcluded(UrlUtil.URL_TO_HASH_BUILDER["subclass"]({name: sc.name, shortName: sc.shortName, source: sc.source, className: cls.name, classSource: cls.source}), "subclass", sc.source);
 	}
 
-	static _render_$getTrNoContent () {
-		return $(`<tr class="cls-main__msg-no-content"><td colspan="6">Toggle a button to view class and subclass information</td></tr>`);
+	static _render_getTrNoContent () {
+		return ee`<tr class="cls-main__msg-no-content"><td colspan="6">Toggle a button to view class and subclass information</td></tr>`;
 	}
 
 	_getDefaultState () { return MiscUtil.copyFast(ClassesPage._DEFAULT_STATE); }

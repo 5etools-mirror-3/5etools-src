@@ -38,10 +38,10 @@ export class ModalFilterClasses extends ModalFilterBase {
 		opts = opts || {};
 
 		super({
-			...opts,
 			modalTitle: "Class and Subclass",
 			pageFilter: new PageFilterClassesRaw(),
 			fnSort: ModalFilterClasses.fnSort,
+			...opts,
 		});
 
 		this._pLoadingAllData = null;

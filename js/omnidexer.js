@@ -1172,28 +1172,54 @@ class IndexableFileVehicles extends IndexableFile {
 	}
 }
 
-class IndexableFileVehicles_ShipUpgrade extends IndexableFile {
+class IndexableFileVehicles_UpgradeShip extends IndexableFile {
+	static UPGRADE_TYPES = new Set([
+		"SHP:H",
+		"SHP:M",
+		"SHP:W",
+		"SHP:F",
+	]);
+
 	constructor () {
 		super({
-			category: Parser.CAT_ID_SHIP_UPGRADE,
+			category: Parser.CAT_ID_VEHICLE_UPGRADE_SHIP,
 			file: "vehicles.json",
 			listProp: "vehicleUpgrade",
 			baseUrl: "vehicles.html",
 			isHover: true,
-			include: (it) => it.upgradeType.includes("SHP:H") || it.upgradeType.includes("SHP:M") || it.upgradeType.includes("SHP:W") || it.upgradeType.includes("SHP:F"),
+			include: (it) => it.upgradeType?.some(ut => IndexableFileVehicles_UpgradeShip.UPGRADE_TYPES.has(ut)),
 		});
 	}
 }
 
-class IndexableFileVehicles_InfernalWarMachineUpgrade extends IndexableFile {
+class IndexableFileVehicles_UpgradeInfernalWarMachine extends IndexableFile {
+	static UPGRADE_TYPES = new Set([
+		"IWM:W",
+		"IWM:A",
+		"IWM:G",
+	]);
+
 	constructor () {
 		super({
-			category: Parser.CAT_ID_INFERNAL_WAR_MACHINE_UPGRADE,
+			category: Parser.CAT_ID_VEHICLE_UPGRADE_INFERNAL_WAR_MACHINE,
 			file: "vehicles.json",
 			listProp: "vehicleUpgrade",
 			baseUrl: "vehicles.html",
 			isHover: true,
-			include: (it) => it.upgradeType.includes("IWM:W") || it.upgradeType.includes("IWM:A") || it.upgradeType.includes("IWM:G"),
+			include: (it) => it.upgradeType?.some(ut => IndexableFileVehicles_UpgradeInfernalWarMachine.UPGRADE_TYPES.has(ut)),
+		});
+	}
+}
+
+class IndexableFileVehicles_UpgradeOther extends IndexableFile {
+	constructor () {
+		super({
+			category: Parser.CAT_ID_VEHICLE_UPGRADE_OTHER,
+			file: "vehicles.json",
+			listProp: "vehicleUpgrade",
+			baseUrl: "vehicles.html",
+			isHover: true,
+			include: (it) => it.upgradeType?.every(ut => !IndexableFileVehicles_UpgradeShip.UPGRADE_TYPES.has(ut) && !IndexableFileVehicles_UpgradeInfernalWarMachine.UPGRADE_TYPES.has(ut)),
 		});
 	}
 }
@@ -1379,8 +1405,9 @@ Omnidexer.TO_INDEX = [
 	new IndexableLegendaryGroups(),
 
 	new IndexableFileVehicles(),
-	new IndexableFileVehicles_ShipUpgrade(),
-	new IndexableFileVehicles_InfernalWarMachineUpgrade(),
+	new IndexableFileVehicles_UpgradeShip(),
+	new IndexableFileVehicles_UpgradeInfernalWarMachine(),
+	new IndexableFileVehicles_UpgradeOther(),
 
 	new IndexableFileActions(),
 	new IndexableFileLanguages(),

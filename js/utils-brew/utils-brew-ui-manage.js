@@ -961,11 +961,8 @@ export class ManageBrewUi {
 
 	_pRender_doViewBrew ({evt, brew, brewName}) {
 		const title = this.constructor._getBrewJsonTitle({brew, brewName});
-		// eslint-disable-next-line vet-jquery/jquery
-		const $content = Renderer.hover.$getHoverContent_statsCode(brew.body, {isSkipClean: true, title});
 		Renderer.hover.getShowWindow(
-			// eslint-disable-next-line vet-jquery/jquery
-			$content,
+			Renderer.hover.getHoverContent_statsCode(brew.body, {isSkipClean: true, title}),
 			Renderer.hover.getWindowPositionFromEvent(evt),
 			{
 				title,

@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.24.3"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.25.0"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -442,15 +442,55 @@ globalThis.NumberUtil = class {
 	}
 };
 
-globalThis.CleanUtil = {
-	getCleanJson (data, {isMinify = false, isFast = true} = {}) {
+globalThis.CleanUtil = class {
+	static SHARED_REPLACEMENTS = {
+		"’": "'",
+		"‘": "'",
+		"": "'",
+		"\u02BC": "'",
+		"…": "...",
+		"\u200B": "", // zero-width space
+		"\u2002": " ", // em space
+		"ﬀ": "ff",
+		"ﬃ": "ffi",
+		"ﬄ": "ffl",
+		"ﬁ": "fi",
+		"ﬂ": "fl",
+		"Ĳ": "IJ",
+		"ĳ": "ij",
+		"Ǉ": "LJ",
+		"ǈ": "Lj",
+		"ǉ": "lj",
+		"Ǌ": "NJ",
+		"ǋ": "Nj",
+		"ǌ": "nj",
+		"ﬅ": "ft",
+		"“": `"`,
+		"”": `"`,
+		"\u201a": ",",
+	};
+	static STR_REPLACEMENTS = {
+		"—": "\\u2014",
+		"–": "\\u2013",
+		"‑": "\\u2011",
+		"−": "\\u2212",
+		" ": "\\u00A0",
+		" ": "\\u2007",
+	};
+	static SHARED_REPLACEMENTS_REGEX = new RegExp(Object.keys(this.SHARED_REPLACEMENTS).join("|"), "g");
+	static STR_REPLACEMENTS_REGEX = new RegExp(Object.keys(this.STR_REPLACEMENTS).join("|"), "g");
+	static _SOFT_HYPHEN_REMOVE_REGEX = /\u00AD *\r?\n?\r?/g;
+	static _ELLIPSIS_COLLAPSE_REGEX = /\s*(\.\s*\.\s*\.)/g;
+	static _DASH_COLLAPSE_REGEX = /[ ]*([\u2014\u2013])[ ]*/g;
+
+	static getCleanJson (data, {isMinify = false, isFast = true} = {}) {
 		data = MiscUtil.copy(data);
 		data = MiscUtil.getWalker().walk(data, {string: (str) => CleanUtil.getCleanString(str, {isFast})});
 		let str = isMinify ? JSON.stringify(data) : `${JSON.stringify(data, null, "\t")}\n`;
 		return str.replace(CleanUtil.STR_REPLACEMENTS_REGEX, (match) => CleanUtil.STR_REPLACEMENTS[match]);
-	},
+	}
 
-	getCleanString (str, {isFast = true} = {}) {
+	static getCleanString (str, {isFast = true} = {}) {
 		str = str
 			.replace(CleanUtil.SHARED_REPLACEMENTS_REGEX, (match) => CleanUtil.SHARED_REPLACEMENTS[match])
 			.replace(CleanUtil._SOFT_HYPHEN_REMOVE_REGEX, "")
@@ -461,9 +501,9 @@ globalThis.CleanUtil = {
 		const ptrStack = {_: ""};
 		CleanUtil._getCleanString_walkerStringHandler(ptrStack, 0, str);
 		return ptrStack._;
-	},
+	}
 
-	_getCleanString_walkerStringHandler (ptrStack, tagCount, str) {
+	static _getCleanString_walkerStringHandler (ptrStack, tagCount, str) {
 		const tagSplit = Renderer.splitByTags(str);
 		const len = tagSplit.length;
 		for (let i = 0; i < len; ++i) {
@@ -486,47 +526,8 @@ globalThis.CleanUtil = {
 				}
 			}
 		}
-	},
+	}
 };
-CleanUtil.SHARED_REPLACEMENTS = {
-	"’": "'",
-	"‘": "'",
-	"": "'",
-	"\u02BC": "'",
-	"…": "...",
-	"\u200B": "", // zero-width space
-	"\u2002": " ", // em space
-	"ﬀ": "ff",
-	"ﬃ": "ffi",
-	"ﬄ": "ffl",
-	"ﬁ": "fi",
-	"ﬂ": "fl",
-	"Ĳ": "IJ",
-	"ĳ": "ij",
-	"Ǉ": "LJ",
-	"ǈ": "Lj",
-	"ǉ": "lj",
-	"Ǌ": "NJ",
-	"ǋ": "Nj",
-	"ǌ": "nj",
-	"ﬅ": "ft",
-	"“": `"`,
-	"”": `"`,
-	"\u201a": ",",
-};
-CleanUtil.STR_REPLACEMENTS = {
-	"—": "\\u2014",
-	"–": "\\u2013",
-	"‑": "\\u2011",
-	"−": "\\u2212",
-	" ": "\\u00A0",
-	" ": "\\u2007",
-};
-CleanUtil.SHARED_REPLACEMENTS_REGEX = new RegExp(Object.keys(CleanUtil.SHARED_REPLACEMENTS).join("|"), "g");
-CleanUtil.STR_REPLACEMENTS_REGEX = new RegExp(Object.keys(CleanUtil.STR_REPLACEMENTS).join("|"), "g");
-CleanUtil._SOFT_HYPHEN_REMOVE_REGEX = /\u00AD *\r?\n?\r?/g;
-CleanUtil._ELLIPSIS_COLLAPSE_REGEX = /\s*(\.\s*\.\s*\.)/g;
-CleanUtil._DASH_COLLAPSE_REGEX = /[ ]*([\u2014\u2013])[ ]*/g;
 
 // SOURCES =============================================================================================================
 globalThis.SourceUtil = class {
@@ -841,6 +842,9 @@ Math.seed = Math.seed || function (s) {
 
 class TemplateUtil {
 	static initJquery () {
+		// eslint-disable-next-line vet-jquery/jquery
+		if (!globalThis.jQuery) return;
+
 		/* eslint-disable vet-jquery/jquery */
 		/**
 		 * Template strings which can contain jQuery objects.
@@ -888,10 +892,10 @@ class TemplateUtil {
 		 */
 		globalThis.ee = (parts, ...args) => {
 			// eslint-disable-next-line vet-jquery/jquery
-			if (parts instanceof $) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
+			if (globalThis.jQuery && parts instanceof globalThis.jQuery) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
 
 			// eslint-disable-next-line vet-jquery/jquery
-			if (args?.some(arg => arg instanceof $)) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
+			if (globalThis.jQuery && args?.some(arg => arg instanceof globalThis.jQuery)) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
 
 			if (parts instanceof Node) {
 				return (...passed) => {
@@ -969,6 +973,9 @@ globalThis.JqueryUtil = class {
 		TemplateUtil.initJquery();
 
 		// eslint-disable-next-line vet-jquery/jquery
+		if (!globalThis.jQuery) return;
+
+		// eslint-disable-next-line vet-jquery/jquery
 		$.fn.extend({
 			// avoid setting input type to "search" as it visually offsets the contents of the input
 			disableSpellcheck: function () { return this.attr("autocomplete", "new-password").attr("autocapitalize", "off").attr("spellcheck", "false"); },
@@ -1002,7 +1009,9 @@ globalThis.JqueryUtil = class {
 
 	static showCopiedEffect (ele, {text = "Copied!", isBubble = false} = {}) {
 		// eslint-disable-next-line vet-jquery/jquery
-		ele = ele instanceof $ ? ele[0] : ele;
+		ele = (globalThis.jQuery && ele instanceof globalThis.jQuery)
+			? e_({ele: ele[0]})
+			: ele;
 
 		const {top, left, width} = ele.getBoundingClientRect();
 
@@ -1070,7 +1079,9 @@ globalThis.JqueryUtil = class {
 					clazz: "toast__wrp-content",
 					children: [
 						// eslint-disable-next-line vet-jquery/jquery
-						options.content instanceof $ ? options.content[0] : options.content,
+						(globalThis.jQuery && options.content instanceof globalThis.jQuery)
+							? options.content[0]
+							: options.content,
 					],
 				}),
 				e_({
@@ -1455,7 +1466,7 @@ class ElementUtil {
 		if (typeof child === "string") child = ee`${child}`;
 
 		// eslint-disable-next-line vet-jquery/jquery
-		if (child instanceof $) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
+		if (globalThis.jQuery && child instanceof globalThis.jQuery) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
 
 		this.appendChild(child);
 		return this;
@@ -1466,7 +1477,7 @@ class ElementUtil {
 		if (typeof child === "string") child = ee`${child}`;
 
 		// eslint-disable-next-line vet-jquery/jquery
-		if (child instanceof $) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
+		if (globalThis.jQuery && child instanceof globalThis.jQuery) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
 
 		this.prepend(child);
 		return this;
@@ -1475,7 +1486,7 @@ class ElementUtil {
 	/** @this {HTMLElementExtended} */
 	static _appendTo (parent) {
 		// eslint-disable-next-line vet-jquery/jquery
-		if (parent instanceof $) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
+		if (globalThis.jQuery && parent instanceof globalThis.jQuery) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
 
 		parent.appendChild(this);
 		return this;
@@ -1484,7 +1495,7 @@ class ElementUtil {
 	/** @this {HTMLElementExtended} */
 	static _prependTo (parent) {
 		// eslint-disable-next-line vet-jquery/jquery
-		if (parent instanceof $) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
+		if (globalThis.jQuery && parent instanceof globalThis.jQuery) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
 
 		parent.prepend(this);
 		return this;
@@ -1493,7 +1504,7 @@ class ElementUtil {
 	/** @this {HTMLElementExtended} */
 	static _aftere (other) {
 		// eslint-disable-next-line vet-jquery/jquery
-		if (other instanceof $) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
+		if (globalThis.jQuery && other instanceof globalThis.jQuery) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
 
 		if (typeof other === "string") other = ee`${other}`;
 		this.after(other);
@@ -1503,7 +1514,7 @@ class ElementUtil {
 	/** @this {HTMLElementExtended} */
 	static _insertAfter (parent) {
 		// eslint-disable-next-line vet-jquery/jquery
-		if (parent instanceof $) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
+		if (globalThis.jQuery && parent instanceof globalThis.jQuery) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
 
 		parent.after(this);
 		return this;
@@ -1512,7 +1523,7 @@ class ElementUtil {
 	/** @this {HTMLElementExtended} */
 	static _beforee (other) {
 		// eslint-disable-next-line vet-jquery/jquery
-		if (other instanceof $) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
+		if (globalThis.jQuery && other instanceof globalThis.jQuery) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
 
 		if (typeof other === "string") other = ee`${other}`;
 		this.before(other);
@@ -1522,7 +1533,7 @@ class ElementUtil {
 	/** @this {HTMLElementExtended} */
 	static _insertBeforee (parent) {
 		// eslint-disable-next-line vet-jquery/jquery
-		if (parent instanceof $) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
+		if (globalThis.jQuery && parent instanceof globalThis.jQuery) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
 
 		parent.before(this);
 		return this;
@@ -1694,6 +1705,11 @@ class ElementUtil {
 
 	/** @this {HTMLElementExtended} */
 	static _trigger (evtOrEvtName) {
+		// e.g. `<input type="file">` requires a native `.click()` call to show file browser
+		if (evtOrEvtName === "click") {
+			this.click();
+			return this;
+		}
 		const evt = evtOrEvtName instanceof Event ? evtOrEvtName : new Event(evtOrEvtName);
 		this.dispatchEvent(evt);
 		return this;
@@ -1713,6 +1729,17 @@ class ElementUtil {
 
 		switch (this.tagName) {
 			case "SELECT": {
+				if (val == null) {
+					this.selectedIndex = -1;
+					return this;
+				}
+
+				if (typeof val !== "string") {
+					// TODO(jquery) upgrade to blocking error
+					setTimeout(() => { throw new Error(`Attempted to assign SELECT value to non-string "${val}"!`); });
+					return this;
+				}
+
 				let selectedIndexNxt = -1;
 				for (let i = 0, len = this.options.length; i < len; ++i) {
 					if (this.options[i]?.value === val) {
@@ -1813,7 +1840,7 @@ class ElementUtil {
 	/** @this {HTMLElementExtended} */
 	static _is (nodeTypeOrEle) {
 		// eslint-disable-next-line vet-jquery/jquery
-		if (nodeTypeOrEle instanceof $) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
+		if (globalThis.jQuery && nodeTypeOrEle instanceof globalThis.jQuery) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
 
 		if (typeof nodeTypeOrEle === "string") return this.nodeName.toLowerCase() === nodeTypeOrEle.toLowerCase();
 
@@ -1827,7 +1854,7 @@ class ElementUtil {
 	 */
 	static getBySelector (selector, parent) {
 		// eslint-disable-next-line vet-jquery/jquery
-		if (parent instanceof $) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
+		if (globalThis.jQuery && parent instanceof globalThis.jQuery) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
 
 		const ele = (parent || document).querySelector(selector);
 		if (!ele) return null;
@@ -1839,7 +1866,7 @@ class ElementUtil {
 	 */
 	static getBySelectorMulti (selector, parent) {
 		// eslint-disable-next-line vet-jquery/jquery
-		if (parent instanceof $) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
+		if (globalThis.jQuery && parent instanceof globalThis.jQuery) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
 
 		return [...(parent || document).querySelectorAll(selector)]
 			.map(ele => e_({ele}));
@@ -1936,8 +1963,8 @@ if (typeof window !== "undefined") {
 	window.em = ElementUtil.getBySelectorMulti.bind(ElementUtil);
 }
 
-globalThis.ObjUtil = {
-	async pForEachDeep (source, pCallback, options = {depth: Infinity, callEachLevel: false}) {
+globalThis.ObjUtil = class {
+	static async pForEachDeep (source, pCallback, options = {depth: Infinity, callEachLevel: false}) {
 		const path = [];
 		const pDiveDeep = async function (val, path, depth = 0) {
 			if (options.callEachLevel || typeof val !== "object" || options.depth === depth) {
@@ -1952,7 +1979,7 @@ globalThis.ObjUtil = {
 			path.pop();
 		};
 		await pDiveDeep(source, path);
-	},
+	}
 };
 
 // TODO refactor specific utils out of this
@@ -3455,34 +3482,101 @@ globalThis.ContextUtil = class {
 };
 
 // LIST AND SEARCH =====================================================================================================
-globalThis.SearchUtil = {
-	removeStemmer (elasticSearch) {
+globalThis.SearchUtil = class {
+	static removeStemmer (elasticSearch) {
 		const stemmer = elasticlunr.Pipeline.getRegisteredFunction("stemmer");
 		elasticSearch.pipeline.remove(stemmer);
-	},
+	}
 };
 
 // ENCODING/DECODING ===================================================================================================
-globalThis.UrlUtil = {
-	encodeForHash (toEncode) {
+globalThis.UrlUtil = class {
+	static URL_TO_HASH_BUILDER = {};
+	static PG_TO_NAME = {};
+	static CAT_TO_PAGE = {};
+	static CAT_TO_HOVER_PAGE = {};
+	static PAGE_TO_PROPS = {};
+	static PROP_TO_PAGE = {};
+
+	static PG_BESTIARY = "bestiary.html";
+	static PG_SPELLS = "spells.html";
+	static PG_BACKGROUNDS = "backgrounds.html";
+	static PG_ITEMS = "items.html";
+	static PG_CLASSES = "classes.html";
+	static PG_CONDITIONS_DISEASES = "conditionsdiseases.html";
+	static PG_FEATS = "feats.html";
+	static PG_OPT_FEATURES = "optionalfeatures.html";
+	static PG_PSIONICS = "psionics.html";
+	static PG_RACES = "races.html";
+	static PG_REWARDS = "rewards.html";
+	static PG_VARIANTRULES = "variantrules.html";
+	static PG_ADVENTURE = "adventure.html";
+	static PG_ADVENTURES = "adventures.html";
+	static PG_BOOK = "book.html";
+	static PG_BOOKS = "books.html";
+	static PG_DEITIES = "deities.html";
+	static PG_CULTS_BOONS = "cultsboons.html";
+	static PG_OBJECTS = "objects.html";
+	static PG_TRAPS_HAZARDS = "trapshazards.html";
+	static PG_QUICKREF = "quickreference.html";
+	static PG_MANAGE_BREW = "managebrew.html";
+	static PG_MANAGE_PRERELEASE = "manageprerelease.html";
+	static PG_MAKE_BREW = "makebrew.html";
+	static PG_DEMO_RENDER = "renderdemo.html";
+	static PG_TABLES = "tables.html";
+	static PG_VEHICLES = "vehicles.html";
+	static PG_CHARACTERS = "characters.html";
+	static PG_ACTIONS = "actions.html";
+	static PG_LANGUAGES = "languages.html";
+	static PG_STATGEN = "statgen.html";
+	static PG_LIFEGEN = "lifegen.html";
+	static PG_NAMES = "names.html";
+	static PG_DM_SCREEN = "dmscreen.html";
+	static PG_CR_CALCULATOR = "crcalculator.html";
+	static PG_ENCOUNTERGEN = "encountergen.html";
+	static PG_LOOTGEN = "lootgen.html";
+	static PG_TEXT_CONVERTER = "converter.html";
+	static PG_CHANGELOG = "changelog.html";
+	static PG_CHAR_CREATION_OPTIONS = "charcreationoptions.html";
+	static PG_RECIPES = "recipes.html";
+	static PG_CLASS_SUBCLASS_FEATURES = "classfeatures.html";
+	static PG_CREATURE_FEATURES = "creaturefeatures.html";
+	static PG_VEHICLE_FEATURES = "vehiclefeatures.html";
+	static PG_OBJECT_FEATURES = "objectfeatures.html";
+	static PG_TRAP_FEATURES = "trapfeatures.html";
+	static PG_MAPS = "maps.html";
+	static PG_SEARCH = "search.html";
+	static PG_DECKS = "decks.html";
+	static PG_BASTIONS = "bastions.html";
+
+	static URL_TO_HASH_GENERIC = (it) => UrlUtil.encodeArrayForHash(it.name, it.source);
+
+	static encodeForHash (toEncode) {
 		if (toEncode instanceof Array) return toEncode.map(it => `${it}`.toUrlified()).join(HASH_LIST_SEP);
 		else return `${toEncode}`.toUrlified();
-	},
+	}
 
-	encodeArrayForHash (...toEncodes) {
+	static encodeArrayForHash (...toEncodes) {
 		return toEncodes.map(UrlUtil.encodeForHash).join(HASH_LIST_SEP);
-	},
+	}
 
-	autoEncodeHash (obj) {
+	static autoEncodeHash (obj) {
 		const curPage = UrlUtil.getCurrentPage();
 		const encoder = UrlUtil.URL_TO_HASH_BUILDER[curPage];
 		if (!encoder) throw new Error(`No encoder found for page ${curPage}`);
 		return encoder(obj);
-	},
+	}
 
-	decodeHash (hash) {
+	static decodeHash (hash) {
 		return hash.split(HASH_LIST_SEP).map(it => decodeURIComponent(it));
-	},
+	}
+
+	/* -------------------------------------------- */
+
+	static getHashBuilder (propOrPage) {
+		if (!UrlUtil.URL_TO_HASH_BUILDER[propOrPage]) throw new Error(`No hash builder available for "${propOrPage}"!`);
+		return UrlUtil.URL_TO_HASH_BUILDER[propOrPage];
+	}
 
 	/* -------------------------------------------- */
 
@@ -3490,19 +3584,19 @@ globalThis.UrlUtil = {
 	 * @param hash
 	 * @param {?string} page
 	 */
-	async pAutoDecodeHash (hash, {page = null} = {}) {
+	static async pAutoDecodeHash (hash, {page = null} = {}) {
 		page ||= UrlUtil.getCurrentPage();
 
 		if ([UrlUtil.PG_ADVENTURE, UrlUtil.PG_BOOK].includes(page)) return UrlUtil._pAutoDecodeHashAdventureBookHash(hash, {page});
 		return UrlUtil.autoDecodeHash(hash, {page});
-	},
+	}
 
 	// TODO(Future) expand
 	/**
 	 * @param hash
 	 * @param {?string} page
 	 */
-	autoDecodeHash (hash, {page = null} = {}) {
+	static autoDecodeHash (hash, {page = null} = {}) {
 		page ||= UrlUtil.getCurrentPage();
 		const parts = UrlUtil.decodeHash(hash.toLowerCase().trim());
 
@@ -3531,13 +3625,13 @@ globalThis.UrlUtil = {
 
 		const [name, source] = parts;
 		return {name, source};
-	},
+	}
 
 	/**
 	 * @param hash
 	 * @param {?string} page
 	 */
-	async _pAutoDecodeHashAdventureBookHash (hash, {page = null} = {}) {
+	static async _pAutoDecodeHashAdventureBookHash (hash, {page = null} = {}) {
 		page ||= UrlUtil.getCurrentPage();
 		const parts = UrlUtil.decodeHash(hash.toLowerCase().trim());
 
@@ -3568,21 +3662,21 @@ globalThis.UrlUtil = {
 		}
 
 		return {};
-	},
+	}
 
 	/* -------------------------------------------- */
 
-	getSluggedHash (hash) {
+	static getSluggedHash (hash) {
 		return Parser.stringToSlug(decodeURIComponent(hash)).replace(/_/g, "-");
-	},
+	}
 
-	getCurrentPage () {
+	static getCurrentPage () {
 		if (typeof window === "undefined") return VeCt.PG_NONE;
 		const pSplit = window.location.pathname.split("/");
 		let out = pSplit[pSplit.length - 1];
 		if (!out.toLowerCase().endsWith(".html")) out += ".html";
 		return out;
-	},
+	}
 
 	/**
 	 * All internal URL construction should pass through here, to ensure `static.5etools.com` is used when required.
@@ -3590,17 +3684,17 @@ globalThis.UrlUtil = {
 	 * @param href the link
 	 * @param isBustCache If a cache-busting parameter should always be added.
 	 */
-	link (href, {isBustCache = false} = {}) {
+	static link (href, {isBustCache = false} = {}) {
 		if (isBustCache) return UrlUtil._link_getWithParam(href, {param: `t=${Date.now()}`});
 		return href;
-	},
+	}
 
-	_link_getWithParam (href, {param = `v=${VERSION_NUMBER}`} = {}) {
+	static _link_getWithParam (href, {param = `v=${VERSION_NUMBER}`} = {}) {
 		if (href.includes("?")) return `${href}&${param}`;
 		return `${href}?${param}`;
-	},
+	}
 
-	unpackSubHash (subHash, unencode) {
+	static unpackSubHash (subHash, unencode) {
 		// format is "key:value~list~sep~with~tilde"
 		if (subHash.includes(HASH_SUB_KV_SEP)) {
 			const keyValArr = subHash.split(HASH_SUB_KV_SEP).map(s => s.trim());
@@ -3615,7 +3709,7 @@ globalThis.UrlUtil = {
 		} else {
 			throw new Error(`Badly formatted subhash ${subHash}`);
 		}
-	},
+	}
 
 	/**
 	 * @param key The subhash key.
@@ -3626,30 +3720,31 @@ globalThis.UrlUtil = {
 	 * @param [opts.isEncodeValues] If the values should be URL encoded.
 	 * @returns {string}
 	 */
-	packSubHash (key, values, opts) {
+	static packSubHash (key, values, opts) {
 		opts = opts || {};
 		if (opts.isEncodeBoth || opts.isEncodeKey) key = key.toUrlified();
 		if (opts.isEncodeBoth || opts.isEncodeValues) values = values.map(it => it.toUrlified());
 		return `${key}${HASH_SUB_KV_SEP}${values.join(HASH_SUB_LIST_SEP)}`;
-	},
+	}
 
-	categoryToPage (category) { return UrlUtil.CAT_TO_PAGE[category]; },
-	categoryToHoverPage (category) { return UrlUtil.CAT_TO_HOVER_PAGE[category] || UrlUtil.categoryToPage(category); },
+	static categoryToPage (category) { return UrlUtil.CAT_TO_PAGE[category]; }
 
-	pageToDisplayPage (page) { return UrlUtil.PG_TO_NAME[page] || (page || "").replace(/\.html$/, ""); },
+	static categoryToHoverPage (category) { return UrlUtil.CAT_TO_HOVER_PAGE[category] || UrlUtil.categoryToPage(category); }
 
-	getFilename (url) {
+	static pageToDisplayPage (page) { return UrlUtil.PG_TO_NAME[page] || (page || "").replace(/\.html$/, ""); }
+
+	static getFilename (url) {
 		const out = url.slice(url.lastIndexOf("/") + 1);
 		try {
 			return decodeURIComponent(out);
 		} catch (e) {
 			return out;
 		}
-	},
+	}
 
-	isFullUrl (url) { return url && /^.*?:\/\//.test(url); },
+	static isFullUrl (url) { return url && /^.*?:\/\//.test(url); }
 
-	mini: {
+	static mini = {
 		compress (primitive) {
 			const type = typeof primitive;
 			if (primitive === undefined) return "u";
@@ -3673,9 +3768,9 @@ globalThis.UrlUtil = {
 				default: throw new Error(`Unhandled type "${type}"`);
 			}
 		},
-	},
+	};
 
-	class: {
+	static class = {
 		getIndexedClassEntries (cls) {
 			const out = [];
 
@@ -3752,26 +3847,26 @@ globalThis.UrlUtil = {
 
 			return out;
 		},
-	},
+	};
 
-	getStateKeySubclass (sc) {
+	static getStateKeySubclass (sc) {
 		return UrlUtil.encodeArrayForHash(["sub", sc.shortName || sc.name, sc.source]);
-	},
+	}
 
-	unpackStateKeySubclass (str) {
+	static unpackStateKeySubclass (str) {
 		const [, shortName, source] = UrlUtil.decodeHash(str);
 		return {
 			shortName,
 			source,
 		};
-	},
+	}
 
 	/**
 	 * @param opts Options object.
 	 * @param [opts.subclass] Subclass (or object of the form `{shortName: "str", source: "str"}`)
 	 * @param [opts.feature] Object of the form `{ixLevel: 0, ixFeature: 0}`
 	 */
-	getClassesPageStatePart (opts) {
+	static getClassesPageStatePart (opts) {
 		if (!opts.subclass && !opts.feature) return "";
 
 		if (!opts.feature) return UrlUtil.packSubHash("state", [UrlUtil._getClassesPageStatePart_subclass(opts.subclass)]);
@@ -3784,12 +3879,13 @@ globalThis.UrlUtil = {
 				UrlUtil._getClassesPageStatePart_feature(opts.feature),
 			],
 		);
-	},
+	}
 
-	_getClassesPageStatePart_subclass (sc) { return `${UrlUtil.getStateKeySubclass(sc)}=${UrlUtil.mini.compress(true)}`; },
-	_getClassesPageStatePart_feature (feature) { return `feature=${UrlUtil.mini.compress(`${feature.ixLevel}-${feature.ixFeature}`)}`; },
+	static _getClassesPageStatePart_subclass (sc) { return `${UrlUtil.getStateKeySubclass(sc)}=${UrlUtil.mini.compress(true)}`; }
 
-	unpackClassesPageStatePart (href) {
+	static _getClassesPageStatePart_feature (feature) { return `feature=${UrlUtil.mini.compress(`${feature.ixLevel}-${feature.ixFeature}`)}`; }
+
+	static unpackClassesPageStatePart (href) {
 		const [, ...subs] = Hist.util.getHashParts(href);
 		const unpackeds = subs.map(sub => UrlUtil.unpackSubHash(sub));
 		const unpackedState = unpackeds.find(it => it.state)?.state;
@@ -3806,63 +3902,9 @@ globalThis.UrlUtil = {
 			});
 
 		return out;
-	},
+	}
 };
 
-UrlUtil.PG_BESTIARY = "bestiary.html";
-UrlUtil.PG_SPELLS = "spells.html";
-UrlUtil.PG_BACKGROUNDS = "backgrounds.html";
-UrlUtil.PG_ITEMS = "items.html";
-UrlUtil.PG_CLASSES = "classes.html";
-UrlUtil.PG_CONDITIONS_DISEASES = "conditionsdiseases.html";
-UrlUtil.PG_FEATS = "feats.html";
-UrlUtil.PG_OPT_FEATURES = "optionalfeatures.html";
-UrlUtil.PG_PSIONICS = "psionics.html";
-UrlUtil.PG_RACES = "races.html";
-UrlUtil.PG_REWARDS = "rewards.html";
-UrlUtil.PG_VARIANTRULES = "variantrules.html";
-UrlUtil.PG_ADVENTURE = "adventure.html";
-UrlUtil.PG_ADVENTURES = "adventures.html";
-UrlUtil.PG_BOOK = "book.html";
-UrlUtil.PG_BOOKS = "books.html";
-UrlUtil.PG_DEITIES = "deities.html";
-UrlUtil.PG_CULTS_BOONS = "cultsboons.html";
-UrlUtil.PG_OBJECTS = "objects.html";
-UrlUtil.PG_TRAPS_HAZARDS = "trapshazards.html";
-UrlUtil.PG_QUICKREF = "quickreference.html";
-UrlUtil.PG_MANAGE_BREW = "managebrew.html";
-UrlUtil.PG_MANAGE_PRERELEASE = "manageprerelease.html";
-UrlUtil.PG_MAKE_BREW = "makebrew.html";
-UrlUtil.PG_DEMO_RENDER = "renderdemo.html";
-UrlUtil.PG_TABLES = "tables.html";
-UrlUtil.PG_VEHICLES = "vehicles.html";
-UrlUtil.PG_CHARACTERS = "characters.html";
-UrlUtil.PG_ACTIONS = "actions.html";
-UrlUtil.PG_LANGUAGES = "languages.html";
-UrlUtil.PG_STATGEN = "statgen.html";
-UrlUtil.PG_LIFEGEN = "lifegen.html";
-UrlUtil.PG_NAMES = "names.html";
-UrlUtil.PG_DM_SCREEN = "dmscreen.html";
-UrlUtil.PG_CR_CALCULATOR = "crcalculator.html";
-UrlUtil.PG_ENCOUNTERGEN = "encountergen.html";
-UrlUtil.PG_LOOTGEN = "lootgen.html";
-UrlUtil.PG_TEXT_CONVERTER = "converter.html";
-UrlUtil.PG_CHANGELOG = "changelog.html";
-UrlUtil.PG_CHAR_CREATION_OPTIONS = "charcreationoptions.html";
-UrlUtil.PG_RECIPES = "recipes.html";
-UrlUtil.PG_CLASS_SUBCLASS_FEATURES = "classfeatures.html";
-UrlUtil.PG_CREATURE_FEATURES = "creaturefeatures.html";
-UrlUtil.PG_VEHICLE_FEATURES = "vehiclefeatures.html";
-UrlUtil.PG_OBJECT_FEATURES = "objectfeatures.html";
-UrlUtil.PG_TRAP_FEATURES = "trapfeatures.html";
-UrlUtil.PG_MAPS = "maps.html";
-UrlUtil.PG_SEARCH = "search.html";
-UrlUtil.PG_DECKS = "decks.html";
-UrlUtil.PG_BASTIONS = "bastions.html";
-
-UrlUtil.URL_TO_HASH_GENERIC = (it) => UrlUtil.encodeArrayForHash(it.name, it.source);
-
-UrlUtil.URL_TO_HASH_BUILDER = {};
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BESTIARY] = UrlUtil.URL_TO_HASH_GENERIC;
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_SPELLS] = UrlUtil.URL_TO_HASH_GENERIC;
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BACKGROUNDS] = UrlUtil.URL_TO_HASH_GENERIC;
@@ -3982,7 +4024,6 @@ Object.keys(UrlUtil.URL_TO_HASH_BUILDER)
 	});
 // endregion
 
-UrlUtil.PG_TO_NAME = {};
 UrlUtil.PG_TO_NAME[UrlUtil.PG_BESTIARY] = "Bestiary";
 UrlUtil.PG_TO_NAME[UrlUtil.PG_SPELLS] = "Spells";
 UrlUtil.PG_TO_NAME[UrlUtil.PG_BACKGROUNDS] = "Backgrounds";
@@ -4030,7 +4071,6 @@ UrlUtil.PG_TO_NAME[UrlUtil.PG_MAPS] = "Maps";
 UrlUtil.PG_TO_NAME[UrlUtil.PG_DECKS] = "Decks";
 UrlUtil.PG_TO_NAME[UrlUtil.PG_BASTIONS] = "Bastions";
 
-UrlUtil.CAT_TO_PAGE = {};
 UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_CREATURE] = UrlUtil.PG_BESTIARY;
 UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_SPELL] = UrlUtil.PG_SPELLS;
 UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_BACKGROUND] = UrlUtil.PG_BACKGROUNDS;
@@ -4067,8 +4107,9 @@ UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_VEHICLE] = UrlUtil.PG_VEHICLES;
 UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_PACT_BOON] = UrlUtil.PG_OPT_FEATURES;
 UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_ELEMENTAL_DISCIPLINE] = UrlUtil.PG_OPT_FEATURES;
 UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_ARTIFICER_INFUSION] = UrlUtil.PG_OPT_FEATURES;
-UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_SHIP_UPGRADE] = UrlUtil.PG_VEHICLES;
-UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_INFERNAL_WAR_MACHINE_UPGRADE] = UrlUtil.PG_VEHICLES;
+UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_VEHICLE_UPGRADE_SHIP] = UrlUtil.PG_VEHICLES;
+UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_VEHICLE_UPGRADE_INFERNAL_WAR_MACHINE] = UrlUtil.PG_VEHICLES;
+UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_VEHICLE_UPGRADE_OTHER] = UrlUtil.PG_VEHICLES;
 UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_ONOMANCY_RESONANT] = UrlUtil.PG_OPT_FEATURES;
 UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_RUNE_KNIGHT_RUNE] = UrlUtil.PG_OPT_FEATURES;
 UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_ALCHEMICAL_FORMULA] = UrlUtil.PG_OPT_FEATURES;
@@ -4089,7 +4130,6 @@ UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_SENSES] = "sense";
 UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_LEGENDARY_GROUP] = "legendaryGroup";
 UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_ITEM_MASTERY] = "itemMastery";
 
-UrlUtil.CAT_TO_HOVER_PAGE = {};
 UrlUtil.CAT_TO_HOVER_PAGE[Parser.CAT_ID_CLASS_FEATURE] = "classfeature";
 UrlUtil.CAT_TO_HOVER_PAGE[Parser.CAT_ID_SUBCLASS_FEATURE] = "subclassfeature";
 UrlUtil.CAT_TO_HOVER_PAGE[Parser.CAT_ID_CARD] = "card";
@@ -4136,7 +4176,6 @@ UrlUtil.FAUX_PAGES = {
 	[UrlUtil.PG_TRAP_FEATURES]: true,
 };
 
-UrlUtil.PAGE_TO_PROPS = {};
 UrlUtil.PAGE_TO_PROPS[UrlUtil.PG_SPELLS] = ["spell"];
 UrlUtil.PAGE_TO_PROPS[UrlUtil.PG_ITEMS] = ["item", "itemGroup", "itemType", "itemEntry", "itemProperty", "itemTypeAdditionalEntries", "itemMastery", "baseitem", "magicvariant"];
 UrlUtil.PAGE_TO_PROPS[UrlUtil.PG_RACES] = ["race", "subrace"];
@@ -4154,7 +4193,6 @@ UrlUtil.PAGE_TO_PROPS[UrlUtil.PG_REWARDS] = ["reward"];
 UrlUtil.PAGE_TO_PROPS[UrlUtil.PG_TRAPS_HAZARDS] = ["trap", "hazard"];
 UrlUtil.PAGE_TO_PROPS[UrlUtil.PG_VARIANTRULES] = ["variantrule"];
 
-UrlUtil.PROP_TO_PAGE = {};
 UrlUtil.PROP_TO_PAGE["spell"] = UrlUtil.PG_SPELLS;
 UrlUtil.PROP_TO_PAGE["item"] = UrlUtil.PG_ITEMS;
 UrlUtil.PROP_TO_PAGE["baseitem"] = UrlUtil.PG_ITEMS;
@@ -4196,6 +4234,25 @@ globalThis.SortUtil = class {
 		return SortUtil._ascSort(a, b);
 	}
 
+	static _COLLATOR_NORMALIZED = new Intl.Collator(
+		undefined,
+		{
+			sensitivity: "base",
+			usage: "sort",
+		},
+	);
+
+	static ascSortLowerNormalized (a, b) {
+		if (typeof FilterItem !== "undefined") {
+			if (a instanceof FilterItem) a = a.item;
+			if (b instanceof FilterItem) b = b.item;
+		}
+
+		if (a == null || b == null) return SortUtil._ascSort(a, b);
+
+		return SortUtil._COLLATOR_NORMALIZED.compare(`${a}`, `${b}`);
+	}
+
 	static ascSortLowerProp (prop, a, b) { return SortUtil.ascSortLower(a[prop], b[prop]); }
 
 	// warning: slow
@@ -4225,6 +4282,10 @@ globalThis.SortUtil = class {
 	}
 
 	static _ascSort (a, b) {
+		if (a == null && b == null) return 0;
+		if (a == null) return -1;
+		if (b == null) return 1;
+
 		if (b === a) return 0;
 		return b < a ? 1 : -1;
 	}
@@ -7643,12 +7704,23 @@ globalThis.DataUtil = class {
 };
 
 // ROLLING =============================================================================================================
-globalThis.RollerUtil = {
-	isCrypto () {
-		return typeof window !== "undefined" && typeof window.crypto !== "undefined";
-	},
+globalThis.RollerUtil = class {
+	static _DICE_REGEX_STR = /((?:\s*?(?<opLeading>[-+×x*÷/])\s*?)?((?<diceCount>[1-9]\d*)?d(?<diceFace>[1-9]\d*)(?<bonus>(\s*?[-+×x*÷/]\s*?(\d,\d|\d)+(\.\d+)?(?!d))*)))+?/.source;
+	static DICE_REGEX = new RegExp(this._DICE_REGEX_STR, "g");
+	static DICE_REGEX_FULLMATCH = new RegExp(`^\\s*${this._DICE_REGEX_STR}\\s*$`);
+	static REGEX_DAMAGE_DICE = /(?<average>\d+)(?<prefix> \((?:{@dice |{@damage ))(?<diceExp>[-+0-9d ]*)(?<suffix>}\)(?:\s*\+\s*the spell's level)?(?: magic(?:al)?)? [a-z]+( \([-a-zA-Z0-9 ]+\))?( or [a-z]+( \([-a-zA-Z0-9 ]+\))?)? damage)/gi;
+	static REGEX_DAMAGE_FLAT = /(?<prefix>Hit(?: or Miss)?: |Miss: |{@hom}|{@h}|{@m})(?<flatVal>[0-9]+)(?<suffix> [a-z]+( \([-a-zA-Z0-9 ]+\))?( or [a-z]+( \([-a-zA-Z0-9 ]+\))?)? damage)/gi;
+	static _REGEX_ROLLABLE_COL_LABEL = /^(.*?\d)(\s*[-+/*^×÷]\s*)([a-zA-Z0-9 ]+)$/;
+	static _REGEX_ROLLABLE_COL_TRAILING_VARIABLE = /^(.*?\d)(\s*[-+/*^×÷]\s*)(#\$.*?\$#)$/;
+	static ROLL_COL_NONE = 0;
+	static ROLL_COL_STANDARD = 1;
+	static ROLL_COL_VARIABLE = 2;
 
-	randomise (max, min = 1) {
+	static isCrypto () {
+		return typeof window !== "undefined" && typeof window.crypto !== "undefined";
+	}
+
+	static randomise (max, min = 1) {
 		if (min > max) return 0;
 		if (max === min) return max;
 		if (RollerUtil.isCrypto()) {
@@ -7656,16 +7728,13 @@ globalThis.RollerUtil = {
 		} else {
 			return RollerUtil.roll(max) + min;
 		}
-	},
+	}
 
-	rollOnArray (array) {
+	static rollOnArray (array) {
 		return array[RollerUtil.randomise(array.length) - 1];
-	},
+	}
 
-	/**
-	 * Cryptographically secure RNG
-	 */
-	_randomise: (min, max) => {
+	static _randomise = (min, max) => {
 		if (isNaN(min) || isNaN(max)) throw new Error(`Invalid min/max!`);
 
 		const range = max - min;
@@ -7687,7 +7756,7 @@ globalThis.RollerUtil = {
 				return min + randomInteger;
 			}
 		}
-	},
+	};
 
 	/**
 	 * Result in range: 0 to (max-1); inclusive
@@ -7696,11 +7765,11 @@ globalThis.RollerUtil = {
 	 * @param fn function to call to generate random numbers
 	 * @returns {number} rolled
 	 */
-	roll (max, fn = Math.random) {
+	static roll (max, fn = Math.random) {
 		return Math.floor(fn() * max);
-	},
+	}
 
-	getColRollType (colLabel) {
+	static getColRollType (colLabel) {
 		if (typeof colLabel !== "string") return false;
 
 		colLabel = colLabel.trim();
@@ -7730,9 +7799,9 @@ globalThis.RollerUtil = {
 		) return RollerUtil.ROLL_COL_VARIABLE;
 
 		return RollerUtil.ROLL_COL_NONE;
-	},
+	}
 
-	getFullRollCol (lbl) {
+	static getFullRollCol (lbl) {
 		if (typeof lbl !== "string") return lbl;
 
 		if (lbl.includes("@dice")) return lbl;
@@ -7744,19 +7813,8 @@ globalThis.RollerUtil = {
 		if (!m) return lbl;
 
 		return `{@dice ${m[1]}${m[2]}#$prompt_number:title=Enter a ${m[3].trim()}$#|${lbl}}`;
-	},
-
-	_DICE_REGEX_STR: /((?:\s*?(?<opLeading>[-+×x*÷/])\s*?)?((?<diceCount>[1-9]\d*)?d(?<diceFace>[1-9]\d*)(?<bonus>(\s*?[-+×x*÷/]\s*?(\d,\d|\d)+(\.\d+)?(?!d))*)))+?/.source,
+	}
 };
-RollerUtil.DICE_REGEX = new RegExp(RollerUtil._DICE_REGEX_STR, "g");
-RollerUtil.DICE_REGEX_FULLMATCH = new RegExp(`^\\s*${RollerUtil._DICE_REGEX_STR}\\s*$`);
-RollerUtil.REGEX_DAMAGE_DICE = /(?<average>\d+)(?<prefix> \((?:{@dice |{@damage ))(?<diceExp>[-+0-9d ]*)(?<suffix>}\)(?:\s*\+\s*the spell's level)?(?: magic(?:al)?)? [a-z]+( \([-a-zA-Z0-9 ]+\))?( or [a-z]+( \([-a-zA-Z0-9 ]+\))?)? damage)/gi;
-RollerUtil.REGEX_DAMAGE_FLAT = /(?<prefix>Hit(?: or Miss)?: |Miss: |{@hom}|{@h}|{@m})(?<flatVal>[0-9]+)(?<suffix> [a-z]+( \([-a-zA-Z0-9 ]+\))?( or [a-z]+( \([-a-zA-Z0-9 ]+\))?)? damage)/gi;
-RollerUtil._REGEX_ROLLABLE_COL_LABEL = /^(.*?\d)(\s*[-+/*^×÷]\s*)([a-zA-Z0-9 ]+)$/;
-RollerUtil._REGEX_ROLLABLE_COL_TRAILING_VARIABLE = /^(.*?\d)(\s*[-+/*^×÷]\s*)(#\$.*?\$#)$/;
-RollerUtil.ROLL_COL_NONE = 0;
-RollerUtil.ROLL_COL_STANDARD = 1;
-RollerUtil.ROLL_COL_VARIABLE = 2;
 
 // STORAGE =============================================================================================================
 // Dependency: localforage
@@ -7990,10 +8048,12 @@ function StorageUtilBacked () {
 globalThis.StorageUtil = new StorageUtilBacked();
 
 // TODO transition cookie-like storage items over to this
-globalThis.SessionStorageUtil = {
-	_fakeStorage: {},
-	__storage: null,
-	getStorage: () => {
+globalThis.SessionStorageUtil = class {
+	static _fakeStorage = {};
+
+	static __storage = null;
+
+	static getStorage = () => {
 		try {
 			return window.sessionStorage;
 		} catch (e) {
@@ -8014,44 +8074,44 @@ globalThis.SessionStorageUtil = {
 				};
 			}
 		}
-	},
+	};
 
-	isFake () {
+	static isFake () {
 		return SessionStorageUtil.getStorage().isSyncFake;
-	},
+	}
 
-	setForPage: (key, value) => {
+	static setForPage = (key, value) => {
 		SessionStorageUtil.set(`${key}_${UrlUtil.getCurrentPage()}`, value);
-	},
+	};
 
-	set (key, value) {
+	static set (key, value) {
 		SessionStorageUtil.getStorage().setItem(key, JSON.stringify(value));
-	},
+	}
 
-	getForPage: (key) => {
+	static getForPage = (key) => {
 		return SessionStorageUtil.get(`${key}_${UrlUtil.getCurrentPage()}`);
-	},
+	};
 
-	get (key) {
+	static get (key) {
 		const rawOut = SessionStorageUtil.getStorage().getItem(key);
 		if (rawOut && rawOut !== "undefined" && rawOut !== "null") return JSON.parse(rawOut);
 		return null;
-	},
+	}
 
-	removeForPage: (key) => {
+	static removeForPage = (key) => {
 		SessionStorageUtil.remove(`${key}_${UrlUtil.getCurrentPage()}`);
-	},
+	};
 
-	remove (key) {
+	static remove (key) {
 		SessionStorageUtil.getStorage().removeItem(key);
-	},
+	}
 };
 
 // ID GENERATION =======================================================================================================
-globalThis.CryptUtil = {
+globalThis.CryptUtil = class {
 	// region md5 internals
 	// stolen from http://www.myersdaily.org/joseph/javascript/md5.js
-	_md5cycle: (x, k) => {
+	static _md5cycle = (x, k) => {
 		let a = x[0];
 		let b = x[1];
 		let c = x[2];
@@ -8129,30 +8189,30 @@ globalThis.CryptUtil = {
 		x[1] = CryptUtil._add32(b, x[1]);
 		x[2] = CryptUtil._add32(c, x[2]);
 		x[3] = CryptUtil._add32(d, x[3]);
-	},
+	};
 
-	_cmn: (q, a, b, x, s, t) => {
+	static _cmn = (q, a, b, x, s, t) => {
 		a = CryptUtil._add32(CryptUtil._add32(a, q), CryptUtil._add32(x, t));
 		return CryptUtil._add32((a << s) | (a >>> (32 - s)), b);
-	},
+	};
 
-	_ff: (a, b, c, d, x, s, t) => {
+	static _ff = (a, b, c, d, x, s, t) => {
 		return CryptUtil._cmn((b & c) | ((~b) & d), a, b, x, s, t);
-	},
+	};
 
-	_gg: (a, b, c, d, x, s, t) => {
+	static _gg = (a, b, c, d, x, s, t) => {
 		return CryptUtil._cmn((b & d) | (c & (~d)), a, b, x, s, t);
-	},
+	};
 
-	_hh: (a, b, c, d, x, s, t) => {
+	static _hh = (a, b, c, d, x, s, t) => {
 		return CryptUtil._cmn(b ^ c ^ d, a, b, x, s, t);
-	},
+	};
 
-	_ii: (a, b, c, d, x, s, t) => {
+	static _ii = (a, b, c, d, x, s, t) => {
 		return CryptUtil._cmn(c ^ (b | (~d)), a, b, x, s, t);
-	},
+	};
 
-	_md51: (s) => {
+	static _md51 = (s) => {
 		let n = s.length;
 		let state = [1732584193, -271733879, -1732584194, 271733878];
 		let i;
@@ -8170,52 +8230,52 @@ globalThis.CryptUtil = {
 		tail[14] = n * 8;
 		CryptUtil._md5cycle(state, tail);
 		return state;
-	},
+	};
 
-	_md5blk: (s) => {
+	static _md5blk = (s) => {
 		let md5blks = [];
 		for (let i = 0; i < 64; i += 4) {
 			md5blks[i >> 2] = s.charCodeAt(i) + (s.charCodeAt(i + 1) << 8) + (s.charCodeAt(i + 2) << 16) + (s.charCodeAt(i + 3) << 24);
 		}
 		return md5blks;
-	},
+	};
 
-	_hex_chr: "0123456789abcdef".split(""),
+	static _hex_chr = "0123456789abcdef".split("");
 
-	_rhex: (n) => {
+	static _rhex = (n) => {
 		let s = "";
 		for (let j = 0; j < 4; j++) {
 			s += CryptUtil._hex_chr[(n >> (j * 8 + 4)) & 0x0F] + CryptUtil._hex_chr[(n >> (j * 8)) & 0x0F];
 		}
 		return s;
-	},
+	};
 
-	_add32: (a, b) => {
+	static _add32 = (a, b) => {
 		return (a + b) & 0xFFFFFFFF;
-	},
+	};
 	// endregion
 
-	hex: (x) => {
+	static hex = (x) => {
 		for (let i = 0; i < x.length; i++) {
 			x[i] = CryptUtil._rhex(x[i]);
 		}
 		return x.join("");
-	},
+	};
 
-	hex2Dec (hex) {
+	static hex2Dec (hex) {
 		return parseInt(`0x${hex}`);
-	},
+	}
 
-	md5: (s) => {
+	static md5 = (s) => {
 		return CryptUtil.hex(CryptUtil._md51(s));
-	},
+	};
 
 	/**
 	 * Based on Java's implementation.
 	 * @param obj An object to hash.
 	 * @return {*} An integer hashcode for the object.
 	 */
-	hashCode (obj) {
+	static hashCode (obj) {
 		if (typeof obj === "string") {
 			if (!obj) return 0;
 			let h = 0;
@@ -8223,9 +8283,9 @@ globalThis.CryptUtil = {
 			return h;
 		} else if (typeof obj === "number") return obj;
 		else throw new Error(`No hashCode implementation for ${obj}`);
-	},
+	}
 
-	uid () { // https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
+	static uid () { // https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
 		if (RollerUtil.isCrypto()) {
 			return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
 		} else {
@@ -8239,12 +8299,12 @@ globalThis.CryptUtil = {
 				return (c === "x" ? r : (r & 0x3 | 0x8)).toString(16);
 			});
 		}
-	},
+	}
 };
 
 // COLLECTIONS =========================================================================================================
-globalThis.CollectionUtil = {
-	ObjectSet: class ObjectSet {
+globalThis.CollectionUtil = class {
+	static ObjectSet = class ObjectSet {
 		constructor () {
 			this.map = new Map();
 			this[Symbol.iterator] = this.values;
@@ -8258,15 +8318,15 @@ globalThis.CollectionUtil = {
 		values () {
 			return this.map.values();
 		}
-	},
+	};
 
-	setEq (a, b) {
+	static setEq (a, b) {
 		if (a.size !== b.size) return false;
 		for (const it of a) if (!b.has(it)) return false;
 		return true;
-	},
+	}
 
-	objectDiff (obj1, obj2) {
+	static objectDiff (obj1, obj2) {
 		const out = {};
 
 		[...new Set([...Object.keys(obj1), ...Object.keys(obj2)])]
@@ -8276,9 +8336,9 @@ globalThis.CollectionUtil = {
 			});
 
 		return out;
-	},
+	}
 
-	_objectDiff_recurse (a, b) {
+	static _objectDiff_recurse (a, b) {
 		if (CollectionUtil.deepEquals(a, b)) return undefined;
 
 		if (a && b && typeof a === "object" && typeof b === "object") {
@@ -8286,9 +8346,9 @@ globalThis.CollectionUtil = {
 		}
 
 		return b;
-	},
+	}
 
-	objectIntersect (obj1, obj2) {
+	static objectIntersect (obj1, obj2) {
 		const out = {};
 
 		[...new Set([...Object.keys(obj1), ...Object.keys(obj2)])]
@@ -8298,9 +8358,9 @@ globalThis.CollectionUtil = {
 			});
 
 		return out;
-	},
+	}
 
-	_objectIntersect_recurse (a, b) {
+	static _objectIntersect_recurse (a, b) {
 		if (CollectionUtil.deepEquals(a, b)) return a;
 
 		if (a && b && typeof a === "object" && typeof b === "object") {
@@ -8308,9 +8368,9 @@ globalThis.CollectionUtil = {
 		}
 
 		return undefined;
-	},
+	}
 
-	deepEquals (a, b) {
+	static deepEquals (a, b) {
 		if (Object.is(a, b)) return true;
 		if (a && b && typeof a === "object" && typeof b === "object") {
 			if (CollectionUtil._eq_isPlainObject(a) && CollectionUtil._eq_isPlainObject(b)) return CollectionUtil._eq_areObjectsEqual(a, b);
@@ -8323,10 +8383,11 @@ globalThis.CollectionUtil = {
 			return CollectionUtil._eq_areObjectsEqual(a, b);
 		}
 		return false;
-	},
+	}
 
-	_eq_isPlainObject: (value) => value.constructor === Object || value.constructor == null,
-	_eq_areObjectsEqual (a, b) {
+	static _eq_isPlainObject = (value) => value.constructor === Object || value.constructor == null;
+
+	static _eq_areObjectsEqual (a, b) {
 		const keysA = Object.keys(a);
 		const {length} = keysA;
 		if (Object.keys(b).length !== length) return false;
@@ -8335,16 +8396,16 @@ globalThis.CollectionUtil = {
 			if (!CollectionUtil.deepEquals(a[keysA[i]], b[keysA[i]])) return false;
 		}
 		return true;
-	},
-	_eq_areArraysEqual (a, b) {
+	}
+
+	static _eq_areArraysEqual (a, b) {
 		const {length} = a;
 		if (b.length !== length) return false;
 		for (let i = 0; i < length; i++) if (!CollectionUtil.deepEquals(a[i], b[i])) return false;
 		return true;
-	},
+	}
 
-	// region Find first <X>
-	dfs (obj, opts) {
+	static dfs (obj, opts) {
 		const {prop = null, fnMatch = null} = opts;
 		if (!prop && !fnMatch) throw new Error(`One of "prop" or "fnMatch" must be specified!`);
 
@@ -8365,9 +8426,9 @@ globalThis.CollectionUtil = {
 				if (n) return n;
 			}
 		}
-	},
+	}
 
-	bfs (obj, opts) {
+	static bfs (obj, opts) {
 		const {prop = null, fnMatch = null} = opts;
 		if (!prop && !fnMatch) throw new Error(`One of "prop" or "fnMatch" must be specified!`);
 
@@ -8393,8 +8454,7 @@ globalThis.CollectionUtil = {
 
 			return CollectionUtil.bfs(Object.values(obj));
 		}
-	},
-	// endregion
+	}
 };
 
 class _TrieNode {
@@ -9248,21 +9308,32 @@ globalThis.VeLock = function ({name = null, isDbg = false} = {}) {
 ExcludeUtil._lock = new VeLock({name: "blocklist"});
 
 // DATETIME ============================================================================================================
-globalThis.DatetimeUtil = {
-	getDateStr ({date, isShort = false, isPad = false} = {}) {
+globalThis.DatetimeUtil = class {
+	static _MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+	static getDateStr ({date, isShort = false, isPad = false} = {}) {
 		const month = DatetimeUtil._MONTHS[date.getMonth()];
 		return `${isShort ? month.substring(0, 3) : month} ${isPad && date.getDate() < 10 ? "\u00A0" : ""}${Parser.getOrdinalForm(date.getDate())}, ${date.getFullYear()}`;
-	},
+	}
 
-	getDatetimeStr ({date, isPlainText = false} = {}) {
+	/* -------------------------------------------- */
+
+	static _getPad2 (num) { return `${num}`.padStart(2, "0"); }
+
+	static getDatetimeStr ({date, isPlainText = false} = {}) {
 		date = date ?? new Date();
 		const monthName = DatetimeUtil._MONTHS[date.getMonth()];
 		return `${date.getDate()} ${!isPlainText ? `<span title="${monthName}">` : ""}${monthName.substring(0, 3)}.${!isPlainText ? `</span>` : ""} ${date.getFullYear()}, ${DatetimeUtil._getPad2(date.getHours())}:${DatetimeUtil._getPad2(date.getMinutes())}:${DatetimeUtil._getPad2(date.getSeconds())}`;
-	},
+	}
 
-	_getPad2 (num) { return `${num}`.padStart(2, "0"); },
+	/* -------------------------------------------- */
 
-	getIntervalStr (millis) {
+	static _SECS_PER_YEAR = 31536000;
+	static _SECS_PER_DAY = 86400;
+	static _SECS_PER_HOUR = 3600;
+	static _SECS_PER_MINUTE = 60;
+
+	static getIntervalStr (millis) {
 		if (millis < 0 || isNaN(millis)) return "(Unknown interval)";
 
 		const s = number => (number !== 1) ? "s" : "";
@@ -9299,13 +9370,8 @@ globalThis.DatetimeUtil = {
 		else if (!stack.length) stack.push("less than a second"); // avoid adding this if there's already info
 
 		return stack.join(", ");
-	},
+	}
 };
-DatetimeUtil._MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-DatetimeUtil._SECS_PER_YEAR = 31536000;
-DatetimeUtil._SECS_PER_DAY = 86400;
-DatetimeUtil._SECS_PER_HOUR = 3600;
-DatetimeUtil._SECS_PER_MINUTE = 60;
 
 globalThis.EditorUtil = class {
 	static getTheme () {

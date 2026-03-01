@@ -2563,11 +2563,9 @@ class AddMenu {
 
 		this.tabs
 			.forEach(t => {
-				const eleHead = ee`<button class="ve-btn ve-btn-default panel-addmenu-tab-head">${t.label}</button>`.appendTo(tabBar);
-				const eleBody = ee`<div class="panel-addmenu-tab-body"></div>`.appendTo(tabBar);
-				t.eleHead = eleHead;
-				t.eleBody = eleBody;
-				eleHead.onn("click", () => this.pSetActiveTab(t));
+				t.eleHead = ee`<button class="ve-btn ve-btn-default panel-addmenu-tab-head">${t.label}</button>`.appendTo(tabBar);
+				ee`<div class="panel-addmenu-tab-body"></div>`.appendTo(tabBar);
+				t.eleHead.onn("click", () => this.pSetActiveTab(t));
 			});
 	}
 
@@ -2636,19 +2634,36 @@ class AddMenuVideoTab extends AddMenuTab {
 				.appendTo(wrpYT);
 			const btnAddYT = ee`<button class="ve-btn ve-btn-primary ve-btn-sm">Embed</button>`.appendTo(wrpYT);
 			btnAddYT.onn("click", () => {
-				let url = iptUrlYT.val().trim();
-				const m = /https?:\/\/(www\.)?youtube\.com\/watch\?v=(.*?)(&.*$|$)/.exec(url);
-				if (url && m) {
-					url = `https://www.youtube.com/embed/${m[2]}`;
-					this.menu.pnl.doPopulate_YouTube(url);
-					this.menu.doClose();
-					iptUrlYT.val("");
-				} else {
+				let url;
+				try {
+					url = new URL(iptUrlYT.val().trim());
+				} catch (e) {
+					setTimeout(() => { throw e; });
 					JqueryUtil.doToast({
-						content: `Please enter a URL of the form: "https://www.youtube.com/watch?v=XXXXXXX"`,
+						content: `Please enter a valid URL!`,
 						type: "danger",
 					});
+					return;
 				}
+
+				if (!url.searchParams.get("v")) {
+					JqueryUtil.doToast({
+						content: `Please enter a YouTube URL with a "v=..." parameter!`,
+						type: "danger",
+					});
+					return;
+				}
+
+				if (url.searchParams.get("list")) {
+					// FIXME embedding playlists *should* be possible; what gives?
+					// this.menu.pnl.doPopulate_YouTube(`https://www.youtube.com/embed/${url.searchParams.get("v")}?list=${url.searchParams.get("list")}`);
+					this.menu.pnl.doPopulate_YouTube(`https://www.youtube.com/embed/${url.searchParams.get("v")}`);
+				} else {
+					this.menu.pnl.doPopulate_YouTube(`https://www.youtube.com/embed/${url.searchParams.get("v")}`);
+				}
+
+				this.menu.doClose();
+				iptUrlYT.val("");
 			});
 
 			const wrpTwitch = ee`<div class="ui-modal__row"></div>`.appendTo(eleTab);
@@ -2732,54 +2747,59 @@ class AddMenuImageTab extends AddMenuTab {
 			// region Imgur
 			const wrpImgur = ee`<div class="ui-modal__row"></div>`.appendTo(eleTab);
 			ee`<span>Imgur (Anonymous Upload) <i class="ve-muted">(accepts <a href="https://help.imgur.com/hc/en-us/articles/26511665959579-What-files-can-I-upload-Is-there-a-size-limit" target="_blank" rel="noopener noreferrer">imgur-friendly formats</a>)</i></span>`.appendTo(wrpImgur);
-			const iptFile = ee`<input type="file" class="hidden">`.onn("change", (evt) => {
-				const input = evt.target;
-				const reader = new FileReader();
-				reader.onload = () => {
-					const base64 = reader.result.replace(/.*,/, "");
-					ajax({
-						url: "https://api.imgur.com/3/image",
-						type: "POST",
-						data: {
-							image: base64,
+			const iptFile = ee`<input type="file" class="hidden">`
+				.onn("change", (evt) => {
+					const input = evt.target;
+					const reader = new FileReader();
+					reader.onload = async () => {
+						const postBody = new URLSearchParams({
+							image: reader.result.replace(/.*,/, ""),
 							type: "base64",
-						},
-						headers: {
-							Accept: "application/json",
-							Authorization: `Client-ID ${IMGUR_CLIENT_ID}`,
-						},
-						success: (data) => {
-							this.menu.pnl.doPopulate_Image(data.data.link, ix);
-						},
-						error: (error) => {
-							try {
-								JqueryUtil.doToast({
-									content: `Failed to upload: ${JSON.parse(error.responseText).data.error}`,
-									type: "danger",
-								});
-							} catch (e) {
-								JqueryUtil.doToast({
-									content: "Failed to upload: Unknown error",
-									type: "danger",
-								});
-								setTimeout(() => { throw e; });
-							}
+						});
+
+						let response;
+						let data;
+						try {
+							response = await fetch("https://api.imgur.com/3/image", {
+								method: "POST",
+								headers: {
+									"Accept": "application/json",
+									"Authorization": `Client-ID ${IMGUR_CLIENT_ID}`,
+									"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+								},
+								body: postBody,
+							});
+
+							data = await response.json();
+						} catch (error) {
+							JqueryUtil.doToast({
+								content: `Failed to upload: ${error.message || "Unknown error"}`,
+								type: "danger",
+							});
+
 							this.menu.pnl.doPopulate_Empty(ix);
-						},
-					});
-				};
-				reader.onerror = () => {
-					this.menu.pnl.doPopulate_Empty(ix);
-				};
-				reader.fileName = input.files[0].name;
-				reader.readAsDataURL(input.files[0]);
-				const ix = this.menu.pnl.doPopulate_Loading("Uploading"); // will be null if not in tabbed mode
-				this.menu.doClose();
-			}).appendTo(eleTab);
-			const btnAdd = ee`<button class="ve-btn ve-btn-primary ve-btn-sm">Upload</button>`.appendTo(wrpImgur);
-			btnAdd.onn("click", () => {
-				iptFile.trigger("click");
-			});
+						}
+
+						if (!response || !response.ok) {
+							throw new Error(data?.data?.error || "Unknown error");
+						}
+
+						this.menu.pnl.doPopulate_Image(data.data.link, ix);
+					};
+					reader.onerror = () => {
+						this.menu.pnl.doPopulate_Empty(ix);
+					};
+					reader.fileName = input.files[0].name;
+					reader.readAsDataURL(input.files[0]);
+					const ix = this.menu.pnl.doPopulate_Loading("Uploading"); // will be null if not in tabbed mode
+					this.menu.doClose();
+				})
+				.appendTo(eleTab);
+			const btnAdd = ee`<button class="ve-btn ve-btn-primary ve-btn-sm">Upload</button>`
+				.appendTo(wrpImgur)
+				.onn("click", () => {
+					iptFile.trigger("click");
+				});
 			// endregion
 
 			// region URL
@@ -2842,8 +2862,8 @@ class AddMenuSpecialTab extends AddMenuTab {
 			const btnTracker = ee`<button class="ve-btn ve-btn-primary ve-btn-sm">Add</button>`
 				.onn("click", async () => {
 					const pcm = new PanelContentManager_InitiativeTracker({board: this._board, panel: this.menu.pnl});
-					this.menu.doClose();
 					await pcm.pDoPopulate();
+					this.menu.doClose();
 				});
 
 			ee`<div class="ui-modal__row">
@@ -2854,8 +2874,8 @@ class AddMenuSpecialTab extends AddMenuTab {
 			const btnTrackerCreatureViewer = ee`<button class="ve-btn ve-btn-primary ve-btn-sm">Add</button>`
 				.onn("click", async () => {
 					const pcm = new PanelContentManager_InitiativeTrackerCreatureViewer({board: this._board, panel: this.menu.pnl});
-					this.menu.doClose();
 					await pcm.pDoPopulate();
+					this.menu.doClose();
 				});
 
 			ee`<div class="ui-modal__row">
@@ -2866,8 +2886,8 @@ class AddMenuSpecialTab extends AddMenuTab {
 			const btnPlayerTrackerV1 = ee`<button class="ve-btn ve-btn-primary ve-btn-sm">Add</button>`
 				.onn("click", async () => {
 					const pcm = new PanelContentManager_InitiativeTrackerPlayerViewV1({board: this._board, panel: this.menu.pnl});
-					this.menu.doClose();
 					await pcm.pDoPopulate();
+					this.menu.doClose();
 				});
 
 			ee`<div class="ui-modal__row">
@@ -2878,8 +2898,8 @@ class AddMenuSpecialTab extends AddMenuTab {
 			const btnPlayerTrackerV0 = ee`<button class="ve-btn ve-btn-primary ve-btn-sm">Add</button>`
 				.onn("click", async () => {
 					const pcm = new PanelContentManager_InitiativeTrackerPlayerViewV0({board: this._board, panel: this.menu.pnl});
-					this.menu.doClose();
 					await pcm.pDoPopulate();
+					this.menu.doClose();
 				});
 
 			ee`<div class="ui-modal__row">
@@ -2911,8 +2931,8 @@ class AddMenuSpecialTab extends AddMenuTab {
 			const btnText = ee`<button class="ve-btn ve-btn-primary ve-btn-sm">Add</button>`.appendTo(wrpText);
 			btnText.onn("click", async () => {
 				const pcm = new PanelContentManager_NoteBox({board: this._board, panel: this.menu.pnl});
-				this.menu.doClose();
 				await pcm.pDoPopulate();
+				this.menu.doClose();
 			});
 			ee`<hr class="hr-2">`.appendTo(eleTab);
 
@@ -2920,24 +2940,24 @@ class AddMenuSpecialTab extends AddMenuTab {
 			const btnUnitConverter = ee`<button class="ve-btn ve-btn-primary ve-btn-sm">Add</button>`.appendTo(wrpUnitConverter);
 			btnUnitConverter.onn("click", async () => {
 				const pcm = new PanelContentManager_UnitConverter({board: this._board, panel: this.menu.pnl});
-				this.menu.doClose();
 				await pcm.pDoPopulate();
+				this.menu.doClose();
 			});
 
 			const wrpMoneyConverter = ee`<div class="ui-modal__row"><span>Coin Converter</span></div>`.appendTo(eleTab);
 			const btnMoneyConverter = ee`<button class="ve-btn ve-btn-primary ve-btn-sm">Add</button>`.appendTo(wrpMoneyConverter);
 			btnMoneyConverter.onn("click", async () => {
 				const pcm = new PanelContentManager_MoneyConverter({board: this._board, panel: this.menu.pnl});
-				this.menu.doClose();
 				await pcm.pDoPopulate();
+				this.menu.doClose();
 			});
 
 			const wrpCounter = ee`<div class="ui-modal__row"><span>Counter</span></div>`.appendTo(eleTab);
 			const btnCounter = ee`<button class="ve-btn ve-btn-primary ve-btn-sm">Add</button>`.appendTo(wrpCounter);
 			btnCounter.onn("click", async () => {
 				const pcm = new PanelContentManager_Counter({board: this._board, panel: this.menu.pnl});
-				this.menu.doClose();
 				await pcm.pDoPopulate();
+				this.menu.doClose();
 			});
 
 			ee`<hr class="hr-2">`.appendTo(eleTab);
@@ -2946,8 +2966,8 @@ class AddMenuSpecialTab extends AddMenuTab {
 			const btnTimeTracker = ee`<button class="ve-btn ve-btn-primary ve-btn-sm">Add</button>`.appendTo(wrpTimeTracker);
 			btnTimeTracker.onn("click", async () => {
 				const pcm = new PanelContentManager_TimeTracker({board: this._board, panel: this.menu.pnl});
-				this.menu.doClose();
 				await pcm.pDoPopulate();
+				this.menu.doClose();
 			});
 
 			ee`<hr class="hr-2">`.appendTo(eleTab);

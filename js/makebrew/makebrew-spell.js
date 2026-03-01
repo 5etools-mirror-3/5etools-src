@@ -743,7 +743,7 @@ export class SpellBuilder extends BuilderBase {
 	});
 
 		// AMOUNT
-		const ixInitialAmount = duration.duration ? AMOUNT_TYPES.indexOf(duration.duration.type) : "0";
+		const ixInitialAmount = duration.duration ? `${AMOUNT_TYPES.indexOf(duration.duration.type)}` : "0";
 		const selAmountType = ee`<select class="form-control input-xs">
 			${AMOUNT_TYPES.map((it, i) => `<option value="${i}">${it.toTitleCase()}s</option>`).join("")}
 		</select>`.val(ixInitialAmount).onn("change", () => doUpdateState());

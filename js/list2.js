@@ -60,7 +60,8 @@ class ListItem {
 		if (this._isSelected === val) return;
 		this._isSelected = val;
 
-		if (this.ele instanceof $) {
+		// eslint-disable-next-line vet-jquery/jquery
+		if (globalThis.jQuery && this.ele instanceof globalThis.jQuery) {
 			if (this._isSelected) this.ele.addClass("list-multi-selected");
 			else this.ele.removeClass("list-multi-selected");
 		} else {
@@ -122,11 +123,15 @@ class List {
 	constructor (opts) {
 		if (opts.fnSearch && opts.isFuzzy) throw new Error(`The options "fnSearch" and "isFuzzy" are mutually incompatible!`);
 
+		// eslint-disable-next-line vet-jquery/jquery
 		if (opts.$iptSearch && opts.iptSearch) throw new Error(`Only one of "$iptSearch" and "iptSearch" may be passed!`);
+		// eslint-disable-next-line vet-jquery/jquery
 		if (opts.$wrpList && opts.wrpList) throw new Error(`Only one of "$iptSearch" and "iptSearch" may be passed!`);
 
-		const iptSearch = opts.iptSearch || opts.$iptSearch?.[0];
-		const wrpList = opts.wrpList || opts.$wrpList?.[0];
+		// eslint-disable-next-line vet-jquery/jquery
+		const iptSearch = opts.iptSearch || (opts.$iptSearch?.[0] ? e_({ele: opts.$iptSearch?.[0]}) : undefined);
+		// eslint-disable-next-line vet-jquery/jquery
+		const wrpList = opts.wrpList || (opts.$wrpList?.[0] ? e_({ele: opts.$wrpList?.[0]}) : undefined);
 
 		this._iptSearch = iptSearch ? e_(iptSearch) : iptSearch;
 		this._wrpList = wrpList ? e_(wrpList) : wrpList;

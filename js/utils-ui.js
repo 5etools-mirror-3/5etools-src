@@ -383,7 +383,7 @@ class UiUtil {
 
 		/* eslint-disable vet-jquery/jquery */
 		if (opts.$titleSplit && opts.eleTitleSplit) throw new Error(`Only one of "$titleSplit" and "eleTitleSplit" may be specified!`);
-		const eleTitleSplit = opts.eleTitleSplit || opts.$titleSplit?.[0];
+		const eleTitleSplit = opts.eleTitleSplit || (opts.$titleSplit ? e_({ele: opts.$titleSplit?.[0]}) : undefined);
 		/* eslint-enable vet-jquery/jquery */
 
 		UiUtil._initModalEscapeHandler({doc});
@@ -509,11 +509,6 @@ class UiUtil {
 		if (!opts.isClosed) UiUtil._pushToModalStack(modalStackMeta);
 
 		const out = {
-			/* eslint-disable vet-jquery/jquery */
-			$modal: $(modal),
-			$modalInner: $(wrpScroller),
-			$modalFooter: $(modalFooter),
-			/* eslint-enable vet-jquery/jquery */
 			eleModal: modal,
 			eleModalInner: wrpScroller,
 			eleModalFooter: modalFooter,
@@ -521,6 +516,14 @@ class UiUtil {
 			doTeardown,
 			pGetResolved: () => pResolveModal,
 		};
+
+		/* eslint-disable vet-jquery/jquery */
+		if (globalThis.jQuery) {
+			out.$modal = globalThis.jQuery(modal);
+			out.$modalInner = globalThis.jQuery(wrpScroller);
+			out.$modalFooter = globalThis.jQuery(modalFooter);
+		}
+		/* eslint-enable vet-jquery/jquery */
 
 		if (opts.isIndestructible || opts.isClosed) {
 			out.doOpen = () => {
@@ -894,11 +897,13 @@ class ListSelectClickHandlerBase {
 
 	bindSelectAllCheckbox (cbAll) {
 		// eslint-disable-next-line vet-jquery/jquery
-		const _cbAll = cbAll instanceof jQuery ? cbAll[0] : cbAll;
-		if (!_cbAll) return;
-		_cbAll
+		cbAll = (globalThis.jQuery && cbAll instanceof globalThis.jQuery)
+			? e_({ele: cbAll[0]})
+			: cbAll;
+		if (!cbAll) return;
+		cbAll
 			.addEventListener("change", () => {
-				const isChecked = _cbAll.checked;
+				const isChecked = cbAll.checked;
 				this.setCheckboxes({isChecked});
 			});
 	}
@@ -940,10 +945,13 @@ class ListSelectClickHandler extends ListSelectClickHandlerBase {
 	}
 
 	_setHighlighted (item, {toVal = false} = {}) {
-		/* eslint-disable vet-jquery/jquery */
-		if (toVal) item.ele instanceof $ ? item.ele.addClass("list-multi-selected") : item.ele.classList.add("list-multi-selected");
-		else item.ele instanceof $ ? item.ele.removeClass("list-multi-selected") : item.ele.classList.remove("list-multi-selected");
-		/* eslint-enable vet-jquery/jquery */
+		// eslint-disable-next-line vet-jquery/jquery
+		const eleTgt = globalThis.jQuery && item.ele instanceof globalThis.jQuery
+			? item.ele[0]
+			: item.ele;
+
+		if (toVal) eleTgt.classList.add("list-multi-selected");
+		else eleTgt.classList.remove("list-multi-selected");
 	}
 
 	/* -------------------------------------------- */
@@ -1345,12 +1353,15 @@ class TabUiUtilBase {
 				return {
 					...it,
 					ix: i,
-					// eslint-disable-next-line vet-jquery/jquery
-					$btnTab: $(btnTab),
 					btnTab,
-					// eslint-disable-next-line vet-jquery/jquery
-					$wrpTab: $(wrpTab),
 					wrpTab: wrpTab,
+
+					/* eslint-disable vet-jquery/jquery */
+					...globalThis.jQuery ? {
+						$btnTab: globalThis.jQuery(btnTab),
+						$wrpTab: globalThis.jQuery(wrpTab),
+					} : {},
+					/* eslint-enable vet-jquery/jquery */
 				};
 			};
 
@@ -1528,8 +1539,18 @@ class TabUiUtil extends TabUiUtilBase {
 			const btns = tabMeta.buttons
 				.map((meta, j) => {
 					const btn = ee`<button class="ve-btn ui-tab__btn-tab-head ${isStacked ? `ui-tab__btn-tab-head--stacked` : ""} pt-2p px-4p pb-0 bbr-0 bbl-0 ${meta.type ? `ve-btn-${meta.type}` : "ve-btn-primary"}" ${meta.title ? `title="${meta.title.qq()}"` : ""}>${meta.html}</button>`
-						// eslint-disable-next-line vet-jquery/jquery
-						.onn("click", evt => meta.pFnClick({evt, $btn: $(btn), btn}));
+						.onn("click", evt => {
+							meta.pFnClick({
+								evt,
+								btn,
+
+								/* eslint-disable vet-jquery/jquery */
+								...globalThis.jQuery ? {
+									$btn: globalThis.jQuery(btn),
+								} : {},
+								/* eslint-enable vet-jquery/jquery */
+							});
+						});
 					return btn;
 				});
 
@@ -1538,12 +1559,15 @@ class TabUiUtil extends TabUiUtilBase {
 			return {
 				...tabMeta,
 				ix: ixTab,
-				// eslint-disable-next-line vet-jquery/jquery
-				$btns: btns.map(btn => $(btn)),
-				// eslint-disable-next-line vet-jquery/jquery
-				$btnTab: $(btnTab),
 				btns,
 				btnTab,
+
+				/* eslint-disable vet-jquery/jquery */
+				...globalThis.jQuery ? {
+					$btns: btns.map(btn => globalThis.jQuery(btn)),
+					$btnTab: globalThis.jQuery(btnTab),
+				} : {},
+				/* eslint-enable vet-jquery/jquery */
 			};
 		};
 
@@ -1597,8 +1621,18 @@ class TabUiUtilSide extends TabUiUtilBase {
 		obj.__renderTypedTabMeta_buttons = function ({tabMeta, ixTab}) {
 			const btns = tabMeta.buttons.map((meta, j) => {
 				const btn = ee`<button class="ve-btn ${meta.type ? `ve-btn-${meta.type}` : "ve-btn-primary"} ve-btn-sm" ${meta.title ? `title="${meta.title.qq()}"` : ""}>${meta.html}</button>`
-					// eslint-disable-next-line vet-jquery/jquery
-					.onn("click", evt => meta.pFnClick({evt, $btn: $(btn), btn}));
+					.onn("click", evt => {
+						meta.pFnClick({
+							evt,
+							btn,
+
+							/* eslint-disable vet-jquery/jquery */
+							...globalThis.jQuery ? {
+								$btn: globalThis.jQuery(btn),
+							} : {},
+							/* eslint-enable vet-jquery/jquery */
+						});
+					});
 
 				if (j === tabMeta.buttons.length - 1) {
 					btn.addClass(`br-0`)
@@ -1615,8 +1649,12 @@ class TabUiUtilSide extends TabUiUtilBase {
 				...tabMeta,
 				ix: ixTab,
 				btnTab,
-				// eslint-disable-next-line vet-jquery/jquery
-				$btnTab: $(btnTab),
+
+				/* eslint-disable vet-jquery/jquery */
+				...globalThis.jQuery ? {
+					$btnTab: globalThis.jQuery($btnTab),
+				} : {},
+				/* eslint-enable vet-jquery/jquery */
 			};
 		};
 
@@ -4690,12 +4728,6 @@ class ComponentUiUtil {
 		return ele;
 	}
 
-	/* eslint-disable vet-jquery/jquery */
-	static $getDisp (comp, prop, {html, $ele, fnGetText} = {}) {
-		return this.getDisp(comp, prop, {html, ele: $ele?.[0], fnGetText});
-	}
-	/* eslint-enable vet-jquery/jquery */
-
 	/**
 	 * @param component An instance of a class which extends BaseComponent.
 	 * @param prop Component to hook on.
@@ -4762,13 +4794,13 @@ class ComponentUiUtil {
 	 * @return {jQuery}
 	 */
 	static $getIptInt (component, prop, fallbackEmpty = 0, opts) {
-		if (opts?.$ele) opts.ele = opts.$ele[0];
+		if (opts?.$ele) opts.ele = e_({ele: opts.$ele[0]});
 
 		const out = ComponentUiUtil._getIptNumeric(component, prop, UiUtil.strToInt, fallbackEmpty, opts);
-		if (!opts?.asMeta) return $(out);
+		if (!opts?.asMeta) return globalThis.jQuery(out);
 
-		out.$ipt = $(out.ipt);
-		out.$wrp = $(out.wrp);
+		out.$ipt = globalThis.jQuery(out.ipt);
+		out.$wrp = globalThis.jQuery(out.wrp);
 
 		return out;
 	}
@@ -4794,13 +4826,13 @@ class ComponentUiUtil {
 	 * @return {jQuery}
 	 */
 	static $getIptNumber (component, prop, fallbackEmpty = 0, opts) {
-		if (opts?.$ele) opts.ele = opts.$ele[0];
+		if (opts?.$ele) opts.ele = e_({ele: opts.$ele[0]});
 
 		const out = ComponentUiUtil._getIptNumeric(component, prop, UiUtil.strToNumber, fallbackEmpty, opts);
-		if (!opts?.asMeta) return $(out);
+		if (!opts?.asMeta) return globalThis.jQuery(out);
 
-		out.$ipt = $(out.ipt);
-		out.$wrp = $(out.wrp);
+		out.$ipt = globalThis.jQuery(out.ipt);
+		out.$wrp = globalThis.jQuery(out.wrp);
 
 		return out;
 	}
@@ -4929,13 +4961,13 @@ class ComponentUiUtil {
 	 * @param [opts.placeholder] Placeholder for the input.
 	 */
 	static $getIptStr (component, prop, opts) {
-		if (opts?.$ele) opts.ele = opts.$ele[0];
+		if (opts?.$ele) opts.ele = e_({ele: opts.$ele[0]});
 
 		const out = ComponentUiUtil.getIptStr(component, prop, opts);
-		if (!opts?.asMeta) return $(out);
+		if (!opts?.asMeta) return globalThis.jQuery(out);
 
-		out.$ipt = $(out.ipt);
-		out.$wrp = $(out.wrp);
+		out.$ipt = globalThis.jQuery(out.ipt);
+		out.$wrp = globalThis.jQuery(out.wrp);
 
 		return out;
 	}
@@ -5070,7 +5102,7 @@ class ComponentUiUtil {
 	 */
 	static $getIptColor (component, prop, opts) {
 		const ipt = this.getIptColor(component, prop, opts);
-		return $(ipt);
+		return globalThis.jQuery(ipt);
 	}
 	/* eslint-enable vet-jquery/jquery */
 
@@ -5144,11 +5176,8 @@ class ComponentUiUtil {
 	 */
 	static $getBtnBool (component, prop, opts) {
 		const nxtOpts = {...opts};
-		if (nxtOpts.$ele) {
-			nxtOpts.ele = nxtOpts.$ele[0];
-			delete nxtOpts.$ele;
-		}
-		return $(this.getBtnBool(component, prop, nxtOpts));
+		if (nxtOpts.$ele) nxtOpts.ele = e_({ele: nxtOpts.$ele[0]});
+		return globalThis.jQuery(this.getBtnBool(component, prop, nxtOpts));
 	}
 	/* eslint-enable vet-jquery/jquery */
 
@@ -5217,8 +5246,8 @@ class ComponentUiUtil {
 	static $getCbBool (component, prop, opts) {
 		opts ||= {};
 		const out = this.getCbBool(component, prop, opts);
-		if (!opts.asMeta) return $(out);
-		return {...out, $cb: $(out.cb)};
+		if (!opts.asMeta) return globalThis.jQuery(out);
+		return {...out, $cb: globalThis.jQuery(out.cb)};
 	}
 	/* eslint-enable vet-jquery/jquery */
 
@@ -5712,12 +5741,12 @@ class ComponentUiUtil {
 				isDisabled,
 			},
 		);
-		if (!asMeta) return $(out);
+		if (!asMeta) return globalThis.jQuery(out);
 		return {
 			...out,
-			$wrp: $(out.wrp),
-			$iptDisplay: $(out.iptDisplay),
-			$iptSearch: $(out.iptSearch),
+			$wrp: globalThis.jQuery(out.wrp),
+			$iptDisplay: globalThis.jQuery(out.iptDisplay),
+			$iptSearch: globalThis.jQuery(out.iptSearch),
 		};
 	}
 	/* eslint-enable vet-jquery/jquery */
@@ -5790,7 +5819,7 @@ class ComponentUiUtil {
 			prop,
 			{
 				values,
-				ele: $ele?.[0],
+				ele: $ele ? e_({ele: $ele[0]}) : null,
 				html,
 				isAllowNull,
 				fnDisplay,
@@ -5800,10 +5829,10 @@ class ComponentUiUtil {
 				isSetIndexes,
 			},
 		);
-		if (!asMeta) return $(out);
+		if (!asMeta) return globalThis.jQuery(out);
 		return {
 			...out,
-			$sel: $(out.sel),
+			$sel: globalThis.jQuery(out.sel),
 		};
 	}
 	/* eslint-enable vet-jquery/jquery */
@@ -6483,14 +6512,18 @@ class ComponentUiUtil {
 
 				rowMetas.push({
 					cb: cb,
-					// eslint-disable-next-line vet-jquery/jquery
-					$cb: $(cb),
 					displayValue,
 					value: value,
 					propIsActive,
 					unhook: () => {
 						if (hk) comp._removeHookBase(propIsActive, hk);
 					},
+
+					/* eslint-disable vet-jquery/jquery */
+					...globalThis.jQuery ? {
+						$cb: globalThis.jQuery(cb),
+					} : {},
+					/* eslint-enable vet-jquery/jquery */
 				});
 
 				const ele = ee`<label class="ve-flex-v-center py-1 stripe-even">
@@ -6538,11 +6571,7 @@ class ComponentUiUtil {
 		const unhook = () => rowMetas.forEach(it => it.unhook());
 		return {
 			ele: ele,
-			// eslint-disable-next-line vet-jquery/jquery
-			$ele: $(ele),
 			iptSearch,
-			// eslint-disable-next-line vet-jquery/jquery
-			$iptSearch: iptSearch ? $(iptSearch) : null,
 			rowMetas, // Return this to allow for creating custom UI
 			propIsAcceptable,
 			propPulse,
@@ -6557,6 +6586,13 @@ class ComponentUiUtil {
 					.filter(it => it.startsWith(`${prop}__`))
 					.forEach(it => delete comp._state[it]);
 			},
+
+			/* eslint-disable vet-jquery/jquery */
+			...globalThis.jQuery ? {
+				$ele: globalThis.jQuery(ele),
+				$iptSearch: iptSearch ? globalThis.jQuery(iptSearch) : null,
+			} : {},
+			/* eslint-enable vet-jquery/jquery */
 		};
 	}
 

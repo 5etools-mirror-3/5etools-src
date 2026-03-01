@@ -154,10 +154,11 @@ export class LootGenMagicItem extends BaseComponent {
 				isItemsAltChooseRoll,
 				fnGetIsPreferAltChoose,
 				baseEntry,
-				item: RollerUtil.rollOnArray(subItems),
+				item,
 				roll: rowRoll,
 				rollAdditionalText: ptAdditionalText ? `; ${ptAdditionalText}` : "",
 				subItems,
+				isInlineReroll: true,
 			});
 		}
 
@@ -540,33 +541,42 @@ class LootGenMagicItemSubItems extends LootGenMagicItem {
 	constructor (
 		{
 			subItems,
+			isInlineReroll = false,
 			...others
 		},
 	) {
 		super(others);
 		this._subItems = subItems;
+		this._isInlineReroll = isInlineReroll;
 	}
 
 	_getRender () {
 		const dispBaseEntry = this._getRender_getDispBaseEntry();
 		const dispRoll = this._getRender_getDispRoll();
 
-		const btnRerollSubItem = ee`<span class="roller render-roller mr-2">[reroll]</span>`
+		const btnRerollSubItem = ee`<span class="roller render-roller">[reroll]</span>`
 			.onn("mousedown", evt => evt.preventDefault())
 			.onn("click", () => {
-				this._state.item = RollerUtil.rollOnArray(this._subItems);
+				const itemRolled = RollerUtil.rollOnArray(this._subItems);
+				if (!itemRolled) return;
+				this._state.item = itemRolled;
+				if (this._isInlineReroll) this._state.baseEntry = `{@item ${DataUtil.proxy.getUidPacked("item", itemRolled, "item", {isMaintainCase: true})}}`;
 			});
 
-		const dispSubItem = ee`<div></div>`;
-		this._addHookBase("item", () => {
-			if (!this._state.item) return;
-			dispSubItem.html(LootGenRender.er(`{@item ${DataUtil.proxy.getUidPacked("item", this._state.item, "item", {isMaintainCase: true})}}`));
-		})();
+		const dispSubItem = this._isInlineReroll
+			? null
+			: ee`<div class="ml-2"></div>`;
+		if (!this._isInlineReroll) {
+			this._addHookBase("item", () => {
+				if (!this._state.item) return;
+				dispSubItem.html(LootGenRender.er(`{@item ${DataUtil.proxy.getUidPacked("item", this._state.item, "item", {isMaintainCase: true})}}`));
+			})();
+		}
 
 		const btnReroll = this._getBtnReroll();
 
 		const ptSubItem = this._subItems.length
-			? ee`<div class="ve-flex-v-center italic mr-2">
+			? ee`<div class="ve-flex-v-center italic mr-2 ml-auto">
 					<span>(</span>
 					${btnRerollSubItem}
 					${dispSubItem}

@@ -215,13 +215,14 @@ else:
 		code: `if not (@user_bool|Pick| true = Good| false = Evil |true|false|true=Lawful): 2`,
 	},
 ];
-LangDemoUi.RESOLVER = {
-	has: () => true,
-	get: (path) => {
+LangDemoUi.RESOLVER = class {
+	static has = () => true;
+
+	static get = (path) => {
 		const out = Math.round(Math.random() * 50);
 		JqueryUtil.doToast(`Randomized ${path} as ${out}`);
 		return out;
-	},
+	};
 };
 
 window.addEventListener("load", () => LangDemoUi.init());

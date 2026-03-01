@@ -4,15 +4,12 @@ import "../js/render.js";
 import * as ut from "../node/util.js";
 import {CorpusMapImageExtractor} from "../js/foundry/foundry-maps.js";
 import {Command} from "commander";
-import {getCliFiles, pInitConsoleOut} from "../node/util-commander.js";
-import path from "path";
-import {readJsonSync} from "5etools-utils/lib/UtilFs.js";
+import {getCliJsonFiles, mutCommanderJsonFileOptions, pInitConsoleOut} from "../node/util-commander.js";
+import {getCleanPath, JsonFile} from "../node/util-json-files.js";
 
-const getJoinedWarnings = ({filename, warnings}) => {
-	return `in "${filename}"\n${warnings.map(it => `\t${it}`).join("\n")}`;
+const getJoinedWarnings = ({jsonFile, warnings}) => {
+	return `in "${jsonFile.getFilePath()}"\n${warnings.map(it => `\t${it}`).join("\n")}`;
 };
-
-const getCleanPath = pth => path.normalize(pth).toString().replace(/\\/g, "/");
 
 let ixLogGroup = 0;
 const logGroup = ({name, lines}) => {
@@ -23,16 +20,13 @@ const logGroup = ({name, lines}) => {
 	lines.forEach(wrn => console.warn(wrn));
 };
 
-const program = new Command()
-	.option("--file <file...>", `Input files`)
-	.option("--dir <dir...>", `Input directories`)
-;
+const program = mutCommanderJsonFileOptions({command: new Command()});
 
 program.parse(process.argv);
 const params = program.opts();
 
-const getFauxCorporaVehicleFluff = ({json}) => {
-	return (json.vehicleFluff || [])
+const getFauxCorporaVehicleFluff = ({jsonFile}) => {
+	return (jsonFile.getContents().vehicleFluff || [])
 		.filter(fluff => fluff?.images?.some(img => ["map", "mapPlayer"].includes(img?.imageType)))
 		.map(fluff => {
 			const {prop} = Parser.SOURCES_ADVENTURES.has(fluff.source)
@@ -84,24 +78,28 @@ async function main () {
 		.forEach(({head, prop, filename}) => {
 			lookupOfficial[getCleanPath(filename)] = [{head, corpusType: prop}];
 		});
-	lookupOfficial[getCleanPath("./data/fluff-vehicles.json")] = getFauxCorporaVehicleFluff({json: readJsonSync("./data/fluff-vehicles.json")});
+	lookupOfficial[getCleanPath("./data/fluff-vehicles.json")] = getFauxCorporaVehicleFluff({
+		jsonFile: new JsonFile({
+			filePath: "./data/fluff-vehicles.json",
+		}),
+	});
 
-	const files = getCliFiles(
+	const jsonFiles = getCliJsonFiles(
 		{
 			dirs: params.dir,
 			files: params.file,
+			convertedBy: params.convertedBy,
+			filter: params.filter,
+			fnMutDefaultSelection: ({files}) => {
+				files.push(...Object.keys(lookupOfficial));
+			},
 		},
-	)
-		.map(({json, path}) => ({json, path: getCleanPath(path)}));
-	if (!files.length) {
-		Object.keys(lookupOfficial)
-			.forEach(filePath => files.push({json: readJsonSync(filePath), path: filePath}));
-	}
+	);
 
-	const getCorpora = ({json, path}) => {
-		if (lookupOfficial[path]) {
-			return lookupOfficial[path]
-				.map(fromLookup => ({body: json, ...fromLookup}));
+	const getCorpora = ({jsonFile}) => {
+		if (lookupOfficial[jsonFile.getFilePath()]) {
+			return lookupOfficial[jsonFile.getFilePath()]
+				.map(fromLookup => ({body: jsonFile.getContents(), ...fromLookup}));
 		}
 
 		return [
@@ -110,23 +108,23 @@ async function main () {
 				{prop: "book", propData: "bookData"},
 			]
 				.flatMap(({prop, propData}) => {
-					if (!json[prop]?.length) return [];
+					if (!jsonFile.getContents()[prop]?.length) return [];
 
-					return json[prop]
+					return jsonFile.getContents()[prop]
 						.map(head => {
-							const body = json[propData]?.find(body => body.id === head.id);
+							const body = jsonFile.getContents()[propData]?.find(body => body.id === head.id);
 							if (!body) return null;
 							return {head, corpusType: prop, body};
 						})
 						.filter(Boolean);
 				}),
-			...getFauxCorporaVehicleFluff({json}),
+			...getFauxCorporaVehicleFluff({jsonFile}),
 		];
 	};
 
-	files
-		.forEach(({json, path}) => {
-			getCorpora({json, path})
+	jsonFiles
+		.forEach(jsonFile => {
+			getCorpora({jsonFile})
 				.forEach(({head, corpusType, propOriginal, body}) => {
 					console.log(`\tValidating ${corpusType}${propOriginal ? ` (from ${propOriginal})` : ""} "${head.id}"...`);
 
@@ -150,7 +148,7 @@ async function main () {
 						});
 					if (!withDuplicates.length) return;
 
-					warnings.push(`Found ${cntCollisions} collision${cntCollisions === 1 ? "" : "s"} ${getJoinedWarnings({filename: path, warnings: withDuplicates})}`);
+					warnings.push(`Found ${cntCollisions} collision${cntCollisions === 1 ? "" : "s"} ${getJoinedWarnings({jsonFile, warnings: withDuplicates})}`);
 				});
 		});
 
@@ -161,4 +159,8 @@ async function main () {
 	return true;
 }
 
-export default main();
+const pMain = main();
+
+if (import.meta.main && !(await pMain)) process.exitCode = 1;
+
+export default pMain;

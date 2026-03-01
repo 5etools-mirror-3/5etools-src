@@ -380,9 +380,8 @@ export class RenderMap {
 					return;
 				}
 
-				const eleContent = Renderer.hover.getHoverContent_generic(area.entry, {isLargeBookContent: true, depth: area.depth});
 				mapData.activeWindows[area.entry.id] = Renderer.hover.getShowWindow(
-					eleContent,
+					Renderer.hover.getHoverContent_generic(area.entry, {isLargeBookContent: true, depth: area.depth}),
 					Renderer.hover.getWindowPositionExactVisibleBottom(
 						EventUtil.getClientX(evt),
 						EventUtil.getClientY(evt),

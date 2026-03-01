@@ -3219,13 +3219,13 @@ Renderer.getFilterSubhashes = function (filters, namespace = null) {
 	};
 };
 
-Renderer._cache = {
-	inlineStatblock: {},
+Renderer._cache = class {
+	static inlineStatblock = {};
 
-	async pRunFromEle (ele) {
+	static async pRunFromEle (ele) {
 		const cached = Renderer._cache[ele.dataset.rdCache][ele.dataset.rdCacheId];
 		await cached.pFn(ele);
-	},
+	}
 };
 
 Renderer.utils = class {
@@ -3403,8 +3403,8 @@ Renderer.utils = class {
 	}
 
 	static async _pHandleNameClick (ele) {
-		await MiscUtil.pCopyTextToClipboard($(ele).text());
-		JqueryUtil.showCopiedEffect($(ele));
+		await MiscUtil.pCopyTextToClipboard(e_(ele).txt());
+		JqueryUtil.showCopiedEffect(ele);
 	}
 
 	static getPageTr (it) {
@@ -3555,11 +3555,15 @@ Renderer.utils = class {
 	static bindPronounceButtons () {
 		if (Renderer.utils._pronounceButtonsBound) return;
 		Renderer.utils._pronounceButtonsBound = true;
-		$(`body`).on("click", ".stats__btn-name-pronounce", function () {
-			const audio = $(this).find(`[data-name="aud-pronounce"]`)[0];
-			audio.currentTime = 0;
-			audio.play();
-		});
+		e_({ele: document.body})
+			.onn("click", evt => {
+				const eleMatch = evt.target.closest(`.stats__btn-name-pronounce`);
+				if (!eleMatch) return;
+
+				const eleAudio = e_({ele: eleMatch}).find(`[data-name="aud-pronounce"]`);
+				eleAudio.currentTime = 0;
+				eleAudio.play();
+			});
 	}
 
 	static getAltArtDisplayName (meta) { return meta.displayName || meta.name || meta.token?.name; }
@@ -6163,30 +6167,36 @@ Renderer.tag = class {
 
 Renderer.events = class {
 	static handleClick_copyCode (evt, ele) {
-		const $e = $(ele).parent().next("pre");
-		MiscUtil.pCopyTextToClipboard($e.text());
-		JqueryUtil.showCopiedEffect($e);
+		const elePre = e_(ele).parente().next("pre");
+		MiscUtil.pCopyTextToClipboard(elePre.txt());
+		JqueryUtil.showCopiedEffect(elePre);
 	}
 
 	static handleClick_toggleCodeWrap (evt, ele) {
 		const nxt = !StorageUtil.syncGet("rendererCodeWrap");
 		StorageUtil.syncSet("rendererCodeWrap", nxt);
-		const $btn = $(ele).toggleClass("active", nxt);
-		const $e = $btn.parent().next("pre");
-		$e.toggleClass("rd__pre-wrap", nxt);
+		const btn = e_(ele).toggleClass("active", nxt);
+		const elePre = btn.parente().next("pre");
+		elePre.toggleClass("rd__pre-wrap", nxt);
 	}
 
-	static bindGeneric ({element = document.body} = {}) {
-		const $ele = $(element)
-			.on("click", `[data-rd-data-embed-header]`, evt => {
-				Renderer.events.handleClick_dataEmbedHeader(evt, evt.currentTarget);
+	static bindGeneric ({element = null} = {}) {
+		element ||= document.body;
+
+		const ele = e_({ele: element})
+			.onn("click", evt => {
+				const eleMatch = evt.target.closest(`[data-rd-data-embed-header]`);
+				if (!eleMatch) return;
+				Renderer.events.handleClick_dataEmbedHeader(evt, e_({ele: eleMatch}));
 			});
 
 		Renderer.events._HEADER_TOGGLE_CLICK_SELECTORS
 			.forEach(selector => {
-				$ele
-					.on("click", selector, evt => {
-						Renderer.events.handleClick_headerToggleButton(evt, evt.currentTarget, {selector});
+				ele
+					.onn("click", evt => {
+						const eleMatch = evt.target.closest(selector);
+						if (!eleMatch) return;
+						Renderer.events.handleClick_headerToggleButton(evt, e_({ele: eleMatch}), {selector});
 					});
 			})
 		;
@@ -6198,13 +6208,12 @@ Renderer.events = class {
 		evt.stopPropagation();
 		evt.preventDefault();
 
-		const $ele = $(ele);
-		const $eleToggle = $ele.find(".rd__data-embed-toggle");
-		const isHidden = $eleToggle.text().includes("+");
-		$ele.find(".rd__data-embed-name").toggleVe(!isHidden);
-		$ele.find(".rd__data-embed-name-expanded").toggleVe(isHidden);
-		$eleToggle.text(isHidden ? "[\u2013]" : "[+]");
-		$ele.closest("table").find("tbody").toggleVe();
+		const eleToggle = ele.find(".rd__data-embed-toggle");
+		const isHidden = eleToggle.txt().includes("+");
+		ele.find(".rd__data-embed-name").toggleVe(!isHidden);
+		ele.find(".rd__data-embed-name-expanded").toggleVe(isHidden);
+		eleToggle.txt(isHidden ? "[\u2013]" : "[+]");
+		ele.closeste("table").find("tbody").toggleVe();
 	}
 
 	static _HEADER_TOGGLE_CLICK_SELECTORS = [
@@ -8768,23 +8777,23 @@ Renderer.race = class {
 		if (!race.heightAndWeight) return;
 		if (race._isBaseRace) return;
 
-		const $render = $(ele);
+		ele = e_({ele});
 
-		const $dispResult = $render.find(`.race__disp-result-height-weight`);
-		const $dispHeight = $render.find(`.race__disp-result-height`);
-		const $dispWeight = $render.find(`.race__disp-result-weight`);
+		const dispResult = ele.find(`.race__disp-result-height-weight`);
+		const dispHeight = ele.find(`.race__disp-result-height`);
+		const dispWeight = ele.find(`.race__disp-result-weight`);
 
 		const lock = new VeLock();
 		let hasRolled = false;
 		let resultHeight;
 		let resultWeightMod;
 
-		const $btnRollHeight = $render
+		const btnRollHeight = ele
 			.find(`[data-race-heightmod="true"]`)
 			.html(race.heightAndWeight.heightMod)
 			.addClass("roller")
-			.mousedown(evt => evt.preventDefault())
-			.click(async () => {
+			.onn("mousedown", evt => evt.preventDefault())
+			.onn("click", async () => {
 				try {
 					await lock.pLock();
 
@@ -8797,10 +8806,10 @@ Renderer.race = class {
 			});
 
 		const isWeightRoller = race.heightAndWeight.weightMod && isNaN(race.heightAndWeight.weightMod);
-		const $btnRollWeight = $render
+		const btnRollWeight = ele
 			.find(`[data-race-weightmod="true"]`)
 			.html(isWeightRoller ? `(<span class="roller">${race.heightAndWeight.weightMod}</span>)` : race.heightAndWeight.weightMod || "1")
-			.click(async () => {
+			.onn("click", async () => {
 				try {
 					await lock.pLock();
 
@@ -8811,11 +8820,11 @@ Renderer.race = class {
 					lock.unlock();
 				}
 			});
-		if (isWeightRoller) $btnRollWeight.mousedown(evt => evt.preventDefault());
+		if (isWeightRoller) btnRollWeight.onn("mousedown", evt => evt.preventDefault());
 
-		const $btnRoll = $render
+		const btnRoll = ele
 			.find(`button.race__btn-roll-height-weight`)
-			.click(async () => pDoFullRoll());
+			.onn("click", async () => pDoFullRoll());
 
 		const pRollHeight = async () => {
 			const mResultHeight = await Renderer.dice.pRoll2(race.heightAndWeight.heightMod, {
@@ -8841,18 +8850,18 @@ Renderer.race = class {
 		const updateDisplay = () => {
 			const renderedHeight = Renderer.race.getRenderedHeight(race.heightAndWeight.baseHeight + resultHeight);
 			const totalWeight = race.heightAndWeight.baseWeight + (resultWeightMod * resultHeight);
-			$dispHeight.text(renderedHeight);
-			$dispWeight.text(Number(totalWeight.toFixed(3)));
+			dispHeight.txt(renderedHeight);
+			dispWeight.txt(Number(totalWeight.toFixed(3)));
 		};
 
 		const pDoFullRoll = async isPreLocked => {
 			try {
 				if (!isPreLocked) await lock.pLock();
 
-				$btnRoll.parent().removeClass(`ve-flex-vh-center`).addClass(`split-v-center`);
+				btnRoll.parente().removeClass(`ve-flex-vh-center`).addClass(`split-v-center`);
 				await pRollHeight();
 				await pRollWeight();
-				$dispResult.removeClass(`ve-hidden`);
+				dispResult.removeClass(`ve-hidden`);
 				updateDisplay();
 
 				hasRolled = true;
@@ -10412,19 +10421,11 @@ Renderer.monster = class {
 		{
 			win,
 			btnScale,
-			// eslint-disable-next-line vet-jquery/jquery
-			$btnScale,
 			initialCr,
 			cbRender,
 			isCompact,
 		},
 	) {
-		// eslint-disable-next-line vet-jquery/jquery
-		if (btnScale && $btnScale) throw new Error(`Only one of "$btnScale" and "btnScale" may be provided!`);
-
-		// eslint-disable-next-line vet-jquery/jquery
-		btnScale ||= e_($btnScale[0]);
-
 		let slider;
 
 		const eleBody = e_(win.document.body);
@@ -11338,27 +11339,27 @@ Renderer.monster = class {
 	}
 
 	static _bindListenersScale (mon, ele) {
+		ele = e_({ele});
+
 		const page = UrlUtil.PG_BESTIARY;
 		const source = mon.source;
 		const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BESTIARY](mon);
 
 		const fnRender = Renderer.hover.getFnRenderCompact(page);
 
-		const $content = $(ele);
-
-		$content
+		ele
 			.find(".mon__btn-scale-cr")
-			.click(evt => {
+			?.onn("click", evt => {
 				evt.stopPropagation();
 				const win = (evt.view || {}).window;
 
-				const $btn = $(evt.target).closest("button");
+				const btn = evt.target.closest("button");
 				const initialCr = mon._originalCr != null ? mon._originalCr : mon.cr.cr || mon.cr;
 				const lastCr = mon.cr.cr || mon.cr;
 
 				Renderer.monster.getCrScaleTarget({
 					win,
-					$btnScale: $btn,
+					btnScale: btn,
 					initialCr: lastCr,
 					isCompact: true,
 					cbRender: async (targetCr) => {
@@ -11367,49 +11368,49 @@ Renderer.monster = class {
 							? original
 							: await ScaleCreature.scale(original, targetCr);
 
-						$content.empty().append(fnRender(toRender));
+						ele.empty().appends(fnRender(toRender));
 
 						Renderer.monster._bindListenersScale(toRender, ele);
 					},
 				});
 			});
 
-		$content
+		ele
 			.find(".mon__btn-reset-cr")
-			.click(async () => {
+			?.onn("click", async () => {
 				const toRender = await DataLoader.pCacheAndGet(page, source, hash);
-				$content.empty().append(fnRender(toRender));
+				ele.empty().appends(fnRender(toRender));
 
 				Renderer.monster._bindListenersScale(toRender, ele);
 			});
 
-		const $selSummonSpellLevel = $content
+		const selSummonSpellLevel = ele
 			.find(`[name="mon__sel-summon-spell-level"]`)
-			.change(async () => {
+			?.onn("change", async () => {
 				const original = await DataLoader.pCacheAndGet(page, source, hash);
-				const spellLevel = Number($selSummonSpellLevel.val());
+				const spellLevel = Number(selSummonSpellLevel.val());
 
 				const toRender = ~spellLevel
 					? await ScaleSpellSummonedCreature.scale(original, spellLevel)
 					: original;
 
-				$content.empty().append(fnRender(toRender));
+				ele.empty().append(fnRender(toRender));
 
 				Renderer.monster._bindListenersScale(toRender, ele);
 			})
 			.val(mon._summonedBySpell_level != null ? `${mon._summonedBySpell_level}` : "-1");
 
-		const $selSummonClassLevel = $content
+		const selSummonClassLevel = ele
 			.find(`[name="mon__sel-summon-class-level"]`)
-			.change(async () => {
+			?.onn("change", async () => {
 				const original = await DataLoader.pCacheAndGet(page, source, hash);
-				const classLevel = Number($selSummonClassLevel.val());
+				const classLevel = Number(selSummonClassLevel.val());
 
 				const toRender = ~classLevel
 					? await ScaleClassSummonedCreature.scale(original, classLevel)
 					: original;
 
-				$content.empty().append(fnRender(toRender));
+				ele.empty().appends(fnRender(toRender));
 
 				Renderer.monster._bindListenersScale(toRender, ele);
 			})
@@ -11421,38 +11422,36 @@ Renderer.monster = class {
 	}
 
 	static hover = class {
-		static bindFluffImageMouseover ({mon, ele, $ele}) {
-			if ($ele && ele) throw new Error(`Only one of "ele" and "$ele" may be provided!`);
-			if (ele) $ele = $(ele);
-			$ele
-				.on("mouseover", evt => this._pOnFluffImageMouseover({evt, mon, $ele}));
+		static bindFluffImageMouseover ({mon, ele}) {
+			e_({ele})
+				.onn("mouseover", evt => this._pOnFluffImageMouseover({evt, mon, ele}));
 		}
 
-		static async _pOnFluffImageMouseover ({evt, mon, $ele}) {
+		static async _pOnFluffImageMouseover ({evt, mon, ele}) {
 			// We'll rebuild the mouseover handler with whatever we load
-			$ele.off("mouseover");
+			ele.off("mouseover");
 
 			const fluff = mon ? await Renderer.monster.pGetFluff(mon) : null;
 
-			if (fluff?.images?.length) return this._pOnFluffImageMouseover_hasImage({mon, $ele, fluff});
-			return this._pOnFluffImageMouseover_noImage({mon, $ele});
+			if (fluff?.images?.length) return this._pOnFluffImageMouseover_hasImage({mon, ele, fluff});
+			return this._pOnFluffImageMouseover_noImage({mon, ele});
 		}
 
-		static _pOnFluffImageMouseover_noImage ({mon, $ele}) {
+		static _pOnFluffImageMouseover_noImage ({mon, ele}) {
 			const hoverMeta = this.getMakePredefinedFluffImageHoverNoImage({name: mon?.name});
-			$ele
-				.on("mouseover", evt => hoverMeta.mouseOver(evt, $ele[0]))
-				.on("mousemove", evt => hoverMeta.mouseMove(evt, $ele[0]))
-				.on("mouseleave", evt => hoverMeta.mouseLeave(evt, $ele[0]))
+			ele
+				.onn("mouseover", evt => hoverMeta.onn("mouseover", evt, ele))
+				.onn("mousemove", evt => hoverMeta.onn("mousemove", evt, ele))
+				.onn("mouseleave", evt => hoverMeta.onn("mouseleave", evt, ele))
 				.trigger("mouseover");
 		}
 
-		static _pOnFluffImageMouseover_hasImage ({mon, $ele, fluff}) {
+		static _pOnFluffImageMouseover_hasImage ({mon, ele, fluff}) {
 			const hoverMeta = this.getMakePredefinedFluffImageHoverHasImage({imageHref: fluff.images[0].href, name: mon.name});
-			$ele
-				.on("mouseover", evt => hoverMeta.mouseOver(evt, $ele[0]))
-				.on("mousemove", evt => hoverMeta.mouseMove(evt, $ele[0]))
-				.on("mouseleave", evt => hoverMeta.mouseLeave(evt, $ele[0]))
+			ele
+				.onn("mouseover", evt => hoverMeta.mouseOver(evt, ele[0]))
+				.onn("mousemove", evt => hoverMeta.mouseMove(evt, ele[0]))
+				.onn("mouseleave", evt => hoverMeta.mouseLeave(evt, ele[0]))
 				.trigger("mouseover");
 		}
 
@@ -12371,6 +12370,7 @@ Renderer.item = class {
 		delete specificVariant.basicRules2024;
 		delete specificVariant.page;
 		delete specificVariant.reprintedAs;
+		delete specificVariant.referenceSources;
 
 		// Remove fluff specifiers
 		delete specificVariant.hasFluff;
@@ -14059,7 +14059,7 @@ Renderer.language = class {
 };
 
 Renderer.adventureBook = class {
-	static getEntryIdLookup (bookData, doThrowError = true) {
+	static getEntryIdLookup (bookData, {isSilent = false} = {}) {
 		const out = {};
 		const titlesRel = {};
 		const titlesRelChapter = {};
@@ -14132,7 +14132,7 @@ Renderer.adventureBook = class {
 				.walk(chap, handlers);
 		});
 
-		if (doThrowError) if (out.__BAD) throw new Error(`IDs were already in storage: ${out.__BAD.map(it => `"${it}"`).join(", ")}`);
+		if (!isSilent) if (out.__BAD) throw new Error(`IDs were already in storage: ${out.__BAD.map(it => `"${it}"`).join(", ")}`);
 
 		return out;
 	}
@@ -15319,15 +15319,13 @@ Renderer.hover = class {
 			new ContextUtil.Action(
 				"Maximize All",
 				() => {
-					const $permWindows = $(`.hoverborder[data-perm="true"]`);
-					$permWindows.attr("data-display-title", "false");
+					em(`.hoverborder[data-perm="true"]`).forEach(ele => ele.attr("data-display-title", "false"));
 				},
 			),
 			new ContextUtil.Action(
 				"Minimize All",
 				() => {
-					const $permWindows = $(`.hoverborder[data-perm="true"]`);
-					$permWindows.attr("data-display-title", "true");
+					em(`.hoverborder[data-perm="true"]`).forEach(ele => ele.attr("data-display-title", "true"));
 				},
 			),
 			null,
@@ -15516,9 +15514,9 @@ Renderer.hover = class {
 		// TODO(Future) avoid rendering e.g. creature scaling controls if `win?._IS_POPOUT`
 		const win = (evt.view || {}).window;
 
-		const $content = meta.isFluff
-			? Renderer.hover.$getHoverContent_fluff(page, toRender)
-			: Renderer.hover.$getHoverContent_stats(page, toRender);
+		const eleContent = meta.isFluff
+			? Renderer.hover.getHoverContent_fluff(page, toRender)
+			: Renderer.hover.getHoverContent_stats(page, toRender);
 
 		// FIXME(Future) replace this with something maintainable
 		const compactReferenceData = {
@@ -15533,7 +15531,7 @@ Renderer.hover = class {
 		}
 
 		meta.windowMeta = Renderer.hover.getShowWindow(
-			$content,
+			eleContent,
 			Renderer.hover.getWindowPositionFromEvent(tmpEvt || evt, {isPreventFlicker: !meta.isPermanent}),
 			{
 				title: toRender?.name || "",
@@ -15548,7 +15546,7 @@ Renderer.hover = class {
 
 		if (!meta.isFluff && !win?._IS_POPOUT) {
 			const fnBind = Renderer.hover.getFnBindListenersCompact(page);
-			if (fnBind && toRender) fnBind(toRender, $content);
+			if (fnBind && toRender) fnBind(toRender, eleContent);
 		}
 	}
 
@@ -15602,15 +15600,13 @@ Renderer.hover = class {
 
 		const win = (evt.view || {}).window;
 
-		const $content = Renderer.hover.$getHoverContent_generic(entry, opts);
-
 		if (meta.windowMeta && !meta.isPermanent) {
 			meta.windowMeta.doClose();
 			meta.windowMeta = null;
 		}
 
 		meta.windowMeta = Renderer.hover.getShowWindow(
-			$content,
+			Renderer.hover.getEleHoverContent_generic(entry, opts),
 			Renderer.hover.getWindowPositionFromEvent(tmpEvt || evt, {isPreventFlicker: !meta.isPermanent}),
 			{
 				title: entry?.name || "",
@@ -15687,9 +15683,8 @@ Renderer.hover = class {
 		// Check if we're still hovering the entity
 		if (!meta.isHovered && !meta.isPermanent) return;
 
-		const $content = Renderer.hover.$getHoverContent_generic(toRender, opts);
 		meta.windowMeta = Renderer.hover.getShowWindow(
-			$content,
+			Renderer.hover.getEleHoverContent_generic(toRender, opts),
 			Renderer.hover.getWindowPositionFromEvent(evt, {isPreventFlicker: !meta.isPermanent}),
 			{
 				title: toRender.data && toRender.data.hoverTitle != null ? toRender.data.hoverTitle : toRender.name,
@@ -15755,9 +15750,8 @@ Renderer.hover = class {
 
 		const toRender = Renderer.hover._entryCache[entryId];
 
-		const $content = Renderer.hover.$getHoverContent_generic(toRender, opts);
 		meta.windowMeta = Renderer.hover.getShowWindow(
-			$content,
+			Renderer.hover.getEleHoverContent_generic(toRender, opts),
 			Renderer.hover.getWindowPositionExact((window.innerWidth / 2) - (Renderer.hover._DEFAULT_WIDTH_PX / 2), 100),
 			{
 				title: toRender.data && toRender.data.hoverTitle != null ? toRender.data.hoverTitle : toRender.name,
@@ -15868,8 +15862,10 @@ Renderer.hover = class {
 
 	/* -------------------------------------------- */
 
-	static async pDoShowBrowserWindow ($content, opts) {
-		const dimensions = opts.fnGetPopoutSize ? opts.fnGetPopoutSize() : {width: 600, height: $content.height()};
+	static async pDoShowBrowserWindow (eleContent, opts) {
+		eleContent = e_({ele: eleContent});
+
+		const dimensions = opts.fnGetPopoutSize ? opts.fnGetPopoutSize() : {width: 600, height: eleContent.outerHeighte()};
 		const win = window.open(
 			"",
 			opts.title || "",
@@ -15928,7 +15924,6 @@ Renderer.hover = class {
 				<div class="hwin hoverbox--popout hwin--popout"></div>
 				<script type="text/javascript" defer src="js/parser.js"></script>
 				<script type="text/javascript" defer src="js/utils.js"></script>
-				<script type="text/javascript" defer src="lib/jquery.js"></script>
 				</body></html>
 			`);
 
@@ -15941,25 +15936,35 @@ Renderer.hover = class {
 			window.addEventListener("beforeunload", () => win.close());
 		}
 
-		let $cpyContent;
-		if (opts.$pFnGetPopoutContent) {
-			$cpyContent = await opts.$pFnGetPopoutContent();
-		} else if (opts.pFnGetPopoutContent) {
-			$cpyContent = $(await opts.pFnGetPopoutContent());
+		let cpyEleContent;
+		if (opts.pFnGetPopoutContent) {
+			cpyEleContent = await opts.pFnGetPopoutContent();
 		} else {
-			$cpyContent = $content.clone(true, true);
+			// TODO(jquery) consider implementing .clonee; consider cloning registered event handlers
+			cpyEleContent = e_({ele: eleContent.cloneNode(true)});
 		}
 
 		win._wrpHoverContent.innerHTML = "";
-		$cpyContent.appendTo(win._wrpHoverContent);
+		cpyEleContent.appendTo(win._wrpHoverContent);
 
 		return win;
 	}
 
 	/* -------------------------------------------- */
 
+	static _DRAG_TYP_NONE = 0;
+	static _DRAG_TYP_RESIZE_NE = 1;
+	static _DRAG_TYP_RESIZE_E = 2;
+	static _DRAG_TYP_RESIZE_SE = 3;
+	static _DRAG_TYP_RESIZE_S = 4;
+	static _DRAG_TYP_RESIZE_SW = 5;
+	static _DRAG_TYP_RESIZE_W = 6;
+	static _DRAG_TYP_RESIZE_NW = 7;
+	static _DRAG_TYP_RESIZE_N = 8;
+	static _DRAG_TYP_MOVE = 9;
+
 	/**
-	 * @param $content Content to append to the window.
+	 * @param eleContent Content to append to the window.
 	 * @param position The position of the window. Can be specified in various formats.
 	 * @param [opts] Options object.
 	 * @param [opts.isPermanent] If the window should have the expanded toolbar of a "permanent" window.
@@ -15969,8 +15974,7 @@ Renderer.hover = class {
 	 * @param [opts.cbClose] Callback to run on window close.
 	 * @param [opts.width] An initial width for the window.
 	 * @param [opts.height] An initial height fot the window.
-	 * @param [opts.$pFnGetPopoutContent] A function which loads content for this window when it is popped out.
-	 * @param [opts.pFnGetPopoutContent] A jquery-free version of the function which loads content for this window when it is popped out.
+	 * @param [opts.pFnGetPopoutContent] A function which loads content for this window when it is popped out.
 	 * @param [opts.fnGetPopoutSize] A function which gets a `{width: ..., height: ...}` object with dimensions for a
 	 * popout window.
 	 * @param [opts.isPopout] If the window should be immediately popped out.
@@ -15979,14 +15983,12 @@ Renderer.hover = class {
 	 * @param [opts.isResizeOnlyWidth]
 	 * @param [opts.isHideBottomBorder]
 	 */
-	static getShowWindow ($content, position, opts) {
-		// eslint-disable-next-line vet-jquery/jquery
-		$content = $($content);
+	static getShowWindow (eleContent, position, opts) {
+		if (eleContent instanceof DocumentFragment) throw new Error(`Expected "eleContent" to be a node, but was a "DocumentFragment"!`);
 
 		opts = opts || {};
 		const {isHideBottomBorder, isResizeOnlyWidth} = opts;
 
-		if (opts.$pFnGetPopoutContent && opts.pFnGetPopoutContent) throw new Error(`Only one of "$pFnGetPopoutContent" and "pFnGetPopoutContent" may be provided!`);
 		if (isHideBottomBorder && !isResizeOnlyWidth) throw new Error(`"isHideBottomBorder" option requires "isResizeOnlyWidth"!`);
 
 		Renderer.hover._doInit();
@@ -15994,70 +15996,67 @@ Renderer.hover = class {
 		const initialWidth = opts.width == null ? Renderer.hover._DEFAULT_WIDTH_PX : opts.width;
 		const initialZIndex = Renderer.hover._getNextZIndex();
 
-		const $body = $(position.window.document.body);
-		const $hov = $(`<div class="hwin"></div>`)
+		const eleHov = ee`<div class="hwin"></div>`
 			.css({
-				"right": -initialWidth,
-				"width": initialWidth,
+				"right": `${-initialWidth}px`,
+				"width": `${initialWidth}px`,
 				"zIndex": initialZIndex,
 			});
-		const $wrpContent = $(`<div class="hwin__wrp-table"></div>`);
-		if (opts.height != null) $wrpContent.css("height", opts.height);
+		const wrpContent = ee`<div class="hwin__wrp-table"></div>`;
+		if (opts.height != null) wrpContent.css("height", `${opts.height}px`);
 		const hovTitle = ee`<span class="window-title min-w-0 ve-overflow-ellipsis" title="${`${opts.title || ""}`.qq()}">${opts.title || ""}</span>`;
 
 		const hoverWindow = {};
 		const hoverId = Renderer.hover._getNextId();
 		Renderer.hover._WINDOW_METAS[hoverId] = hoverWindow;
-		const mouseUpId = `mouseup.${hoverId} touchend.${hoverId}`;
-		const mouseMoveId = `mousemove.${hoverId} touchmove.${hoverId}`;
-		const resizeId = `resize.${hoverId}`;
 		const drag = {};
 		const eventChannel = new EventTarget();
+		const fnsCleanup = [];
 
 		const brdrTopRightResize = ee`<div class="hoverborder__resize-ne ve-touch-action-none"></div>`
-			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 1, isResizeOnlyWidth}))
-			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 1, isResizeOnlyWidth}));
+			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_NE, isResizeOnlyWidth}))
+			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_NE, isResizeOnlyWidth}));
 		if (isResizeOnlyWidth) brdrTopRightResize.hideVe();
 
 		const brdrRightResize = ee`<div class="hoverborder__resize-e ve-touch-action-none"></div>`
-			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 2, isResizeOnlyWidth}))
-			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 2, isResizeOnlyWidth}));
+			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_E, isResizeOnlyWidth}))
+			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_E, isResizeOnlyWidth}));
 
 		const brdrBottomRightResize = ee`<div class="hoverborder__resize-se ve-touch-action-none"></div>`
-			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 3, isResizeOnlyWidth}))
-			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 3, isResizeOnlyWidth}));
+			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_SE, isResizeOnlyWidth}))
+			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_SE, isResizeOnlyWidth}));
 		if (isResizeOnlyWidth) brdrBottomRightResize.hideVe();
 
 		const brdrBtmResize = ee`<div class="hoverborder__resize-s ve-touch-action-none"></div>`
-			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 4, isResizeOnlyWidth}))
-			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 4, isResizeOnlyWidth}));
+			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_S, isResizeOnlyWidth}))
+			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_S, isResizeOnlyWidth}));
 		if (isResizeOnlyWidth) brdrBtmResize.hideVe();
 
 		const brdrBtm = ee`<div class="hoverborder hoverborder--btm ${opts.isBookContent ? "hoverborder-book" : ""} ve-touch-action-none">${brdrBtmResize}</div>`;
 		if (isHideBottomBorder) brdrBtm.hideVe();
 
 		const brdrBtmLeftResize = ee`<div class="hoverborder__resize-sw ve-touch-action-none"></div>`
-			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 5, isResizeOnlyWidth}))
-			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 5, isResizeOnlyWidth}));
+			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_SW, isResizeOnlyWidth}))
+			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_SW, isResizeOnlyWidth}));
 		if (isResizeOnlyWidth) brdrBtmLeftResize.hideVe();
 
 		const brdrLeftResize = ee`<div class="hoverborder__resize-w ve-touch-action-none"></div>`
-			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 6, isResizeOnlyWidth}))
-			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 6, isResizeOnlyWidth}));
+			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_W, isResizeOnlyWidth}))
+			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_W, isResizeOnlyWidth}));
 
 		const brdrTopLeftResize = ee`<div class="hoverborder__resize-nw ve-touch-action-none"></div>`
-			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 7, isResizeOnlyWidth}))
-			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 7, isResizeOnlyWidth}));
+			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_NW, isResizeOnlyWidth}))
+			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_NW, isResizeOnlyWidth}));
 		if (isResizeOnlyWidth) brdrTopLeftResize.hideVe();
 
 		const brdrTopResize = ee`<div class="hoverborder__resize-n ve-touch-action-none"></div>`
-			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 8, isResizeOnlyWidth}))
-			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 8, isResizeOnlyWidth}));
+			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_N, isResizeOnlyWidth}))
+			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_N, isResizeOnlyWidth}));
 		if (isResizeOnlyWidth) brdrTopResize.hideVe();
 
 		const brdrTop = ee`<div class="hoverborder hoverborder--top ${opts.isBookContent ? "hoverborder-book" : ""} ve-touch-action-none" ${opts.isPermanent ? `data-perm="true"` : ""}></div>`
-			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 9, isResizeOnlyWidth}))
-			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 9, isResizeOnlyWidth}))
+			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_MOVE, isResizeOnlyWidth}))
+			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_MOVE, isResizeOnlyWidth}))
 			.onn("contextmenu", (evt) => {
 				Renderer.hover._contextMenuLastClicked = {
 					hoverId,
@@ -16065,95 +16064,124 @@ Renderer.hover = class {
 				ContextUtil.pOpenMenu(evt, Renderer.hover._contextMenu);
 			});
 
-		$(position.window.document)
-			.on(mouseUpId, (evt) => {
-				if (drag.type) {
-					if (drag.type < 9) {
-						$wrpContent.css("max-height", "");
-						$hov.css("max-width", "");
-					}
-					Renderer.hover._getShowWindow_adjustPosition({$hov, $wrpContent, position, eventChannel});
+		/* ----- */
 
-					if (drag.type === 9) {
-						// handle mobile button touches
-						if (EventUtil.isUsingTouch() && evt.target.classList.contains("hwin__top-border-icon")) {
-							evt.preventDefault();
-							drag.type = 0;
-							$(evt.target).click();
-							return;
-						}
+		const fnMouseUp = (evt) => {
+			if (drag.type === this._DRAG_TYP_NONE) return;
 
-						// handle DM screen integration
-						if (this._dmScreen && opts.compactReferenceData) {
-							const panel = this._dmScreen.getPanelPx(EventUtil.getClientX(evt), EventUtil.getClientY(evt));
-							if (!panel) return;
-							this._dmScreen.setHoveringPanel(panel);
-							const target = panel.getAddButtonPos();
+			if (drag.type !== this._DRAG_TYP_MOVE) {
+				wrpContent.css("max-height", "");
+				eleHov.css("max-width", "");
+			}
+			Renderer.hover._getShowWindow_adjustPosition({eleHov, wrpContent, position, eventChannel});
 
-							if (Renderer.hover._getShowWindow_isOverHoverTarget({evt, target})) {
-								panel.doPopulate_Stats(opts.compactReferenceData.page, opts.compactReferenceData.source, opts.compactReferenceData.hash);
-								Renderer.hover._getShowWindow_doClose({$hov, position, mouseUpId, mouseMoveId, resizeId, hoverId, opts, hoverWindow});
-							}
-							this._dmScreen.resetHoveringButton();
-						}
-					}
-					drag.type = 0;
+			if (drag.type === this._DRAG_TYP_MOVE) {
+				// handle mobile button touches
+				if (EventUtil.isUsingTouch() && evt.target.classList.contains("hwin__top-border-icon")) {
+					evt.preventDefault();
+					drag.type = this._DRAG_TYP_NONE;
+					e_(evt.target).trigger("click");
+					return;
 				}
-			})
-			.on(mouseMoveId, (evt) => {
-				const args = {$wrpContent, $hov, drag, evt};
-				switch (drag.type) {
-					case 1: Renderer.hover._getShowWindow_handleNorthDrag(args); Renderer.hover._getShowWindow_handleEastDrag(args); break;
-					case 2: Renderer.hover._getShowWindow_handleEastDrag(args); break;
-					case 3: Renderer.hover._getShowWindow_handleSouthDrag(args); Renderer.hover._getShowWindow_handleEastDrag(args); break;
-					case 4: Renderer.hover._getShowWindow_handleSouthDrag(args); break;
-					case 5: Renderer.hover._getShowWindow_handleSouthDrag(args); Renderer.hover._getShowWindow_handleWestDrag(args); break;
-					case 6: Renderer.hover._getShowWindow_handleWestDrag(args); break;
-					case 7: Renderer.hover._getShowWindow_handleNorthDrag(args); Renderer.hover._getShowWindow_handleWestDrag(args); break;
-					case 8: Renderer.hover._getShowWindow_handleNorthDrag(args); break;
-					case 9: {
-						const diffX = drag.startX - EventUtil.getClientX(evt);
-						const diffY = drag.startY - EventUtil.getClientY(evt);
-						$hov.css("left", drag.baseLeft - diffX)
-							.css("top", drag.baseTop - diffY);
-						drag.startX = EventUtil.getClientX(evt);
-						drag.startY = EventUtil.getClientY(evt);
-						drag.baseTop = parseFloat($hov.css("top"));
-						drag.baseLeft = parseFloat($hov.css("left"));
 
-						// handle DM screen integration
-						if (this._dmScreen) {
-							const panel = this._dmScreen.getPanelPx(EventUtil.getClientX(evt), EventUtil.getClientY(evt));
-							if (!panel) return;
-							this._dmScreen.setHoveringPanel(panel);
-							const target = panel.getAddButtonPos();
+				// handle DM screen integration
+				if (this._dmScreen && opts.compactReferenceData) {
+					const panel = this._dmScreen.getPanelPx(EventUtil.getClientX(evt), EventUtil.getClientY(evt));
+					if (!panel) return;
+					this._dmScreen.setHoveringPanel(panel);
+					const target = panel.getAddButtonPos();
 
-							if (Renderer.hover._getShowWindow_isOverHoverTarget({evt, target})) this._dmScreen.setHoveringButton(panel);
-							else this._dmScreen.resetHoveringButton();
-						}
-						break;
+					if (Renderer.hover._getShowWindow_isOverHoverTarget({evt, target})) {
+						panel.doPopulate_Stats(opts.compactReferenceData.page, opts.compactReferenceData.source, opts.compactReferenceData.hash);
+						Renderer.hover._getShowWindow_doClose({eleHov, position, fnsCleanup, hoverId, opts, hoverWindow});
 					}
+					this._dmScreen.resetHoveringButton();
 				}
+			}
+
+			drag.type = this._DRAG_TYP_NONE;
+		};
+
+		const fnOnMouseMove = (evt) => {
+			const args = {wrpContent, eleHov, drag, evt};
+			switch (drag.type) {
+				case this._DRAG_TYP_RESIZE_NE: Renderer.hover._getShowWindow_handleNorthDrag(args); Renderer.hover._getShowWindow_handleEastDrag(args); break;
+				case this._DRAG_TYP_RESIZE_E: Renderer.hover._getShowWindow_handleEastDrag(args); break;
+				case this._DRAG_TYP_RESIZE_SE: Renderer.hover._getShowWindow_handleSouthDrag(args); Renderer.hover._getShowWindow_handleEastDrag(args); break;
+				case this._DRAG_TYP_RESIZE_S: Renderer.hover._getShowWindow_handleSouthDrag(args); break;
+				case this._DRAG_TYP_RESIZE_SW: Renderer.hover._getShowWindow_handleSouthDrag(args); Renderer.hover._getShowWindow_handleWestDrag(args); break;
+				case this._DRAG_TYP_RESIZE_W: Renderer.hover._getShowWindow_handleWestDrag(args); break;
+				case this._DRAG_TYP_RESIZE_NW: Renderer.hover._getShowWindow_handleNorthDrag(args); Renderer.hover._getShowWindow_handleWestDrag(args); break;
+				case this._DRAG_TYP_RESIZE_N: Renderer.hover._getShowWindow_handleNorthDrag(args); break;
+				case this._DRAG_TYP_MOVE: {
+					const diffX = drag.startX - EventUtil.getClientX(evt);
+					const diffY = drag.startY - EventUtil.getClientY(evt);
+					eleHov
+						.css({
+							"left": `${drag.baseLeft - diffX}px`,
+							"top": `${drag.baseTop - diffY}px`,
+						});
+					drag.startX = EventUtil.getClientX(evt);
+					drag.startY = EventUtil.getClientY(evt);
+					drag.baseTop = parseFloat(eleHov.css("top").slice(0, -2));
+					drag.baseLeft = parseFloat(eleHov.css("left").slice(0, -2));
+
+					// handle DM screen integration
+					if (this._dmScreen) {
+						const panel = this._dmScreen.getPanelPx(EventUtil.getClientX(evt), EventUtil.getClientY(evt));
+						if (!panel) return;
+						this._dmScreen.setHoveringPanel(panel);
+						const target = panel.getAddButtonPos();
+
+						if (Renderer.hover._getShowWindow_isOverHoverTarget({evt, target})) this._dmScreen.setHoveringButton(panel);
+						else this._dmScreen.resetHoveringButton();
+					}
+					break;
+				}
+			}
+		};
+
+		position.window.document.addEventListener("mouseup", fnMouseUp);
+		position.window.document.addEventListener("touchend", fnMouseUp);
+		position.window.document.addEventListener("mousemove", fnOnMouseMove);
+		position.window.document.addEventListener("touchmove", fnOnMouseMove);
+		fnsCleanup
+			.push(() => {
+				position.window.document.removeEventListener("mouseup", fnMouseUp);
+				position.window.document.removeEventListener("touchend", fnMouseUp);
+				position.window.document.removeEventListener("mousemove", fnOnMouseMove);
+				position.window.document.removeEventListener("touchmove", fnOnMouseMove);
 			});
-		$(position.window).on(resizeId, () => Renderer.hover._getShowWindow_adjustPosition({$hov, $wrpContent, position, eventChannel}));
+
+		/* ----- */
+
+		const fnOnResize = () => Renderer.hover._getShowWindow_adjustPosition({eleHov, wrpContent, position, eventChannel});
+
+		position.window.addEventListener("resize", fnOnResize);
+		fnsCleanup
+			.push(() => {
+				position.window.removeEventListener("resize", fnOnResize);
+			});
+
+		/* ----- */
 
 		brdrTop.attr("data-display-title", false);
-		brdrTop.onn("dblclick", () => Renderer.hover._getShowWindow_doToggleMinimizedMaximized({$brdrTop: brdrTop, $hov}));
+		brdrTop.onn("dblclick", () => Renderer.hover._getShowWindow_doToggleMinimizedMaximized({brdrEleTop: brdrTop, eleHov}));
 		brdrTop.appends(hovTitle);
-		const $brdTopRhs = $(`<div class="ve-flex ml-auto no-shrink"></div>`).appendTo(brdrTop);
+		const brdEleTopRhs = ee`<div class="ve-flex ml-auto no-shrink"></div>`.appendTo(brdrTop);
 
 		if (opts.pageUrl && !position.window._IS_POPOUT && !Renderer.get().isInternalLinksDisabled()) {
-			const $btnGotoPage = $(`<a class="hwin__top-border-icon glyphicon glyphicon-modal-window" title="Go to Page" href="${opts.pageUrl}"></a>`)
-				.appendTo($brdTopRhs);
+			const btnGotoPage = ee`<a class="hwin__top-border-icon glyphicon glyphicon-modal-window" title="Go to Page" href="${opts.pageUrl}"></a>`
+				.appendTo(brdEleTopRhs);
 		}
 
 		if (!position.window._IS_POPOUT && !opts.isPopout) {
-			const $btnPopout = $(`<span class="hwin__top-border-icon glyphicon glyphicon-new-window hvr__popout" title="Open as Popup Window"></span>`)
-				.on("click", evt => {
+			const btnPopout = ee`<span class="hwin__top-border-icon glyphicon glyphicon-new-window hvr__popout" title="Open as Popup Window"></span>`
+				.onn("click", evt => {
 					evt.stopPropagation();
-					return Renderer.hover._getShowWindow_pDoPopout({$hov, position, mouseUpId, mouseMoveId, resizeId, hoverId, opts, hoverWindow, $content}, {evt});
+					return Renderer.hover._getShowWindow_pDoPopout({eleHov, position, fnsCleanup, hoverId, opts, hoverWindow, eleContent}, {evt});
 				})
-				.appendTo($brdTopRhs);
+				.appendTo(brdEleTopRhs);
 		}
 
 		if (opts.sourceData) {
@@ -16166,9 +16194,8 @@ Renderer.hover = class {
 					evt.stopPropagation();
 					evt.preventDefault();
 
-					const $content = Renderer.hover.$getHoverContent_statsCode(opts.sourceData);
 					Renderer.hover.getShowWindow(
-						$content,
+						Renderer.hover.getHoverContent_statsCode(opts.sourceData),
 						Renderer.hover.getWindowPositionFromEvent(evt),
 						{
 							title: [opts.sourceData._displayName || opts.sourceData.name, "Source Data"].filter(Boolean).join(" \u2014 "),
@@ -16178,11 +16205,11 @@ Renderer.hover = class {
 					);
 				},
 			});
-			$brdTopRhs.append(btnPopout);
+			brdEleTopRhs.appends(btnPopout);
 		}
 
-		const $btnClose = $(`<span class="hwin__top-border-icon glyphicon glyphicon-remove" title="Close (CTRL to Close All)"></span>`)
-			.on("click", (evt) => {
+		const btnClose = ee`<span class="hwin__top-border-icon glyphicon glyphicon-remove" title="Close (CTRL to Close All)"></span>`
+			.onn("click", (evt) => {
 				evt.stopPropagation();
 
 				if (EventUtil.isCtrlMetaKey(evt)) {
@@ -16190,78 +16217,88 @@ Renderer.hover = class {
 					return;
 				}
 
-				Renderer.hover._getShowWindow_doClose({$hov, position, mouseUpId, mouseMoveId, resizeId, hoverId, opts, hoverWindow});
-			}).appendTo($brdTopRhs);
+				Renderer.hover._getShowWindow_doClose({eleHov, position, fnsCleanup, hoverId, opts, hoverWindow});
+			})
+			.appendTo(brdEleTopRhs);
 
-		$wrpContent.append($content);
+		wrpContent.appends(eleContent);
 
-		$hov.append(brdrTopResize).append(brdrTopRightResize).append(brdrRightResize).append(brdrBottomRightResize)
-			.append(brdrBtmLeftResize).append(brdrLeftResize).append(brdrTopLeftResize)
+		eleHov
+			.appends(brdrTopResize)
+			.appends(brdrTopRightResize)
+			.appends(brdrRightResize)
+			.appends(brdrBottomRightResize)
+			.appends(brdrBtmLeftResize)
+			.appends(brdrLeftResize)
+			.appends(brdrTopLeftResize)
 
-			.append(brdrTop)
-			.append($wrpContent)
-			.append(brdrBtm);
+			.appends(brdrTop)
+			.appends(wrpContent)
+			.appends(brdrBtm);
 
-		$body.append($hov);
+		e_(position.window.document.body)
+			.appends(eleHov);
 
-		Renderer.hover._getShowWindow_setPosition({$hov, $wrpContent, position, eventChannel}, position);
+		Renderer.hover._getShowWindow_setPosition({eleHov, wrpContent, position, eventChannel}, position);
 
 		hoverWindow.zIndex = initialZIndex;
-		hoverWindow.setZIndex = Renderer.hover._getNextZIndex.bind(this, {$hov, hoverWindow});
+		hoverWindow.setZIndex = Renderer.hover._getNextZIndex.bind(this, {eleHov, hoverWindow});
 
-		hoverWindow.setPosition = Renderer.hover._getShowWindow_setPosition.bind(this, {$hov, $wrpContent, position, eventChannel});
-		hoverWindow.mutScroll = Renderer.hover._getShowWindow_mutScroll.bind(this, {$hov, $wrpContent, position});
-		hoverWindow.setIsPermanent = Renderer.hover._getShowWindow_setIsPermanent.bind(this, {opts, $brdrTop: brdrTop});
-		hoverWindow.doClose = Renderer.hover._getShowWindow_doClose.bind(this, {$hov, position, mouseUpId, mouseMoveId, resizeId, hoverId, opts, hoverWindow});
-		hoverWindow.doMaximize = Renderer.hover._getShowWindow_doMaximize.bind(this, {$brdrTop: brdrTop, $hov});
-		hoverWindow.doZIndexToFront = Renderer.hover._getShowWindow_doZIndexToFront.bind(this, {$hov, hoverWindow, hoverId});
+		hoverWindow.setPosition = Renderer.hover._getShowWindow_setPosition.bind(this, {eleHov, wrpContent, position, eventChannel});
+		hoverWindow.mutScroll = Renderer.hover._getShowWindow_mutScroll.bind(this, {eleHov, wrpContent, position});
+		hoverWindow.setIsPermanent = Renderer.hover._getShowWindow_setIsPermanent.bind(this, {opts, brdrEleTop: brdrTop});
+		hoverWindow.doClose = Renderer.hover._getShowWindow_doClose.bind(this, {eleHov, position, fnsCleanup, hoverId, opts, hoverWindow});
+		hoverWindow.doMaximize = Renderer.hover._getShowWindow_doMaximize.bind(this, {brdrEleTop: brdrTop, eleHov});
+		hoverWindow.doZIndexToFront = Renderer.hover._getShowWindow_doZIndexToFront.bind(this, {eleHov, hoverWindow, hoverId});
 
-		hoverWindow.getPosition = Renderer.hover._getShowWindow_getPosition.bind(this, {$hov, hoverWindow, $wrpContent, position});
+		hoverWindow.getPosition = Renderer.hover._getShowWindow_getPosition.bind(this, {eleHov, hoverWindow, wrpContent, position});
 
-		hoverWindow.$setContent = ($contentNxt) => $wrpContent.empty().append($contentNxt);
-		hoverWindow.setContent = (contentNxt) => $wrpContent.empty().append(contentNxt);
+		hoverWindow.setContent = (eleContentNxt) => {
+			wrpContent.empty().appends(eleContentNxt);
+			eleContent = eleContentNxt;
+		};
 
 		hoverWindow.eventChannel = eventChannel;
 
 		if (opts.isPopout) {
-			hoverWindow.pPoppingOut = Renderer.hover._getShowWindow_pDoPopout({$hov, position, mouseUpId, mouseMoveId, resizeId, hoverId, opts, hoverWindow, $content});
+			hoverWindow.pPoppingOut = Renderer.hover._getShowWindow_pDoPopout({eleHov, position, fnsCleanup, hoverId, opts, hoverWindow, eleContent});
 		}
 
 		return hoverWindow;
 	}
 
-	static _getShowWindow_doClose ({$hov, position, mouseUpId, mouseMoveId, resizeId, hoverId, opts, hoverWindow}) {
-		$hov.remove();
-		$(position.window.document).off(mouseUpId);
-		$(position.window.document).off(mouseMoveId);
-		$(position.window).off(resizeId);
+	static _getShowWindow_doClose ({eleHov, position, fnsCleanup, hoverId, opts, hoverWindow}) {
+		eleHov.remove();
+
+		fnsCleanup.splice(0).forEach(fn => fn());
 
 		delete Renderer.hover._WINDOW_METAS[hoverId];
 
 		if (opts.cbClose) opts.cbClose(hoverWindow);
 	}
 
-	static _getShowWindow_handleDragMousedown ({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type, isResizeOnlyWidth}) {
+	static _getShowWindow_handleDragMousedown ({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type, isResizeOnlyWidth}) {
 		if (evt.button === 0) evt.preventDefault();
 
 		hoverWindow.zIndex = Renderer.hover._getNextZIndex(hoverId);
-		$hov.css({
+		eleHov.css({
 			"z-index": hoverWindow.zIndex,
 			"animation": "initial",
 		});
 		drag.type = type;
 		drag.startX = EventUtil.getClientX(evt);
 		drag.startY = EventUtil.getClientY(evt);
-		drag.baseTop = parseFloat($hov.css("top"));
-		drag.baseLeft = parseFloat($hov.css("left"));
-		if (!isResizeOnlyWidth) drag.baseHeight = $wrpContent.height();
-		drag.baseWidth = parseFloat($hov.css("width"));
-		if (type < 9) {
-			$wrpContent.css({
-				...(isResizeOnlyWidth ? {} : {"height": drag.baseHeight}),
+		drag.baseTop = parseFloat(eleHov.css("top").slice(0, -2));
+		drag.baseLeft = parseFloat(eleHov.css("left").slice(0, -2));
+		if (!isResizeOnlyWidth) drag.baseHeight = wrpContent.outerHeighte();
+		drag.baseWidth = parseFloat(eleHov.css("width").slice(0, -2));
+
+		if (type !== this._DRAG_TYP_MOVE) {
+			wrpContent.css({
+				...(isResizeOnlyWidth ? {} : {"height": `${drag.baseHeight}px`}),
 				"max-height": "initial",
 			});
-			$hov.css("max-width", "initial");
+			eleHov.css("max-width", "initial");
 		}
 	}
 
@@ -16272,67 +16309,70 @@ Renderer.hover = class {
 			&& EventUtil.getClientY(evt) <= target.top + target.height;
 	}
 
-	static _getShowWindow_handleNorthDrag ({$wrpContent, $hov, drag, evt}) {
+	static _getShowWindow_handleNorthDrag ({wrpContent, eleHov, drag, evt}) {
 		const diffY = Math.max(drag.startY - EventUtil.getClientY(evt), 80 - drag.baseHeight); // prevent <80 height, as this will cause the box to move downwards
-		$wrpContent.css("height", drag.baseHeight + diffY);
-		$hov.css("top", drag.baseTop - diffY);
+		wrpContent.css("height", `${drag.baseHeight + diffY}px`);
+		eleHov.css("top", `${drag.baseTop - diffY}px`);
 		drag.startY = EventUtil.getClientY(evt);
-		drag.baseHeight = $wrpContent.height();
-		drag.baseTop = parseFloat($hov.css("top"));
+		drag.baseHeight = wrpContent.outerHeighte();
+		drag.baseTop = parseFloat(eleHov.css("top").slice(0, -2));
 	}
 
-	static _getShowWindow_handleEastDrag ({$wrpContent, $hov, drag, evt}) {
+	static _getShowWindow_handleEastDrag ({wrpContent, eleHov, drag, evt}) {
 		const diffX = drag.startX - EventUtil.getClientX(evt);
-		$hov.css("width", drag.baseWidth - diffX);
+		eleHov.css("width", `${drag.baseWidth - diffX}px`);
 		drag.startX = EventUtil.getClientX(evt);
-		drag.baseWidth = parseFloat($hov.css("width"));
+		drag.baseWidth = parseFloat(eleHov.css("width").slice(0, -2));
 	}
 
-	static _getShowWindow_handleSouthDrag ({$wrpContent, $hov, drag, evt}) {
+	static _getShowWindow_handleSouthDrag ({wrpContent, eleHov, drag, evt}) {
 		const diffY = drag.startY - EventUtil.getClientY(evt);
-		$wrpContent.css("height", drag.baseHeight - diffY);
+		wrpContent.css("height", `${drag.baseHeight - diffY}px`);
 		drag.startY = EventUtil.getClientY(evt);
-		drag.baseHeight = $wrpContent.height();
+		drag.baseHeight = wrpContent.outerHeighte();
 	}
 
-	static _getShowWindow_handleWestDrag ({$wrpContent, $hov, drag, evt}) {
+	static _getShowWindow_handleWestDrag ({wrpContent, eleHov, drag, evt}) {
 		const diffX = Math.max(drag.startX - EventUtil.getClientX(evt), 150 - drag.baseWidth);
-		$hov.css("width", drag.baseWidth + diffX)
-			.css("left", drag.baseLeft - diffX);
+		eleHov
+			.css({
+				"width": `${drag.baseWidth + diffX}px`,
+				"left": `${drag.baseLeft - diffX}px`,
+			});
 		drag.startX = EventUtil.getClientX(evt);
-		drag.baseWidth = parseFloat($hov.css("width"));
-		drag.baseLeft = parseFloat($hov.css("left"));
+		drag.baseWidth = parseFloat(eleHov.css("width").slice(0, -2));
+		drag.baseLeft = parseFloat(eleHov.css("left").slice(0, -2));
 	}
 
-	static _getShowWindow_doToggleMinimizedMaximized ({$brdrTop, $hov}) {
-		const curState = $brdrTop.attr("data-display-title");
+	static _getShowWindow_doToggleMinimizedMaximized ({brdrEleTop, eleHov}) {
+		const curState = brdrEleTop.attr("data-display-title");
 		const isNextMinified = curState === "false";
-		$brdrTop.attr("data-display-title", isNextMinified);
-		$brdrTop.attr("data-perm", true);
-		$hov.toggleClass("hwin--minified", isNextMinified);
+		brdrEleTop.attr("data-display-title", isNextMinified);
+		brdrEleTop.attr("data-perm", true);
+		eleHov.toggleClass("hwin--minified", isNextMinified);
 	}
 
-	static _getShowWindow_doMaximize ({$brdrTop, $hov}) {
-		$brdrTop.attr("data-display-title", false);
-		$hov.toggleClass("hwin--minified", false);
+	static _getShowWindow_doMaximize ({brdrEleTop, eleHov}) {
+		brdrEleTop.attr("data-display-title", false);
+		eleHov.toggleClass("hwin--minified", false);
 	}
 
-	static async _getShowWindow_pDoPopout ({$hov, position, mouseUpId, mouseMoveId, resizeId, hoverId, opts, hoverWindow, $content}, {evt} = {}) {
-		const winPopup = await Renderer.hover.pDoShowBrowserWindow($content, opts);
-		Renderer.hover._getShowWindow_doClose({$hov, position, mouseUpId, mouseMoveId, resizeId, hoverId, opts, hoverWindow});
+	static async _getShowWindow_pDoPopout ({eleHov, position, fnsCleanup, hoverId, opts, hoverWindow, eleContent}, {evt} = {}) {
+		const winPopup = await Renderer.hover.pDoShowBrowserWindow(eleContent, opts);
+		Renderer.hover._getShowWindow_doClose({eleHov, position, fnsCleanup, hoverId, opts, hoverWindow});
 		hoverWindow._winPopup = winPopup;
 	}
 
-	static _getShowWindow_setPosition ({$hov, $wrpContent, position, eventChannel}, positionNxt) {
+	static _getShowWindow_setPosition ({eleHov, wrpContent, position, eventChannel}, positionNxt) {
 		switch (positionNxt.mode) {
 			case "autoFromElement": {
-				const bcr = $hov[0].getBoundingClientRect();
+				const bcr = eleHov.getBoundingClientRect();
 
-				if (positionNxt.isFromBottom) $hov.css("top", positionNxt.bcr.top - (bcr.height + 10));
-				else $hov.css("top", positionNxt.bcr.top + positionNxt.bcr.height + 10);
+				if (positionNxt.isFromBottom) eleHov.css("top", `${positionNxt.bcr.top - (bcr.height + 10)}px`);
+				else eleHov.css("top", `${positionNxt.bcr.top + positionNxt.bcr.height + 10}px`);
 
-				if (positionNxt.isFromRight) $hov.css("left", (positionNxt.clientX || positionNxt.bcr.left) - (bcr.width + 10));
-				else $hov.css("left", (positionNxt.clientX || (positionNxt.bcr.left + positionNxt.bcr.width)) + 10);
+				if (positionNxt.isFromRight) eleHov.css("left", `${(positionNxt.clientX || positionNxt.bcr.left) - (bcr.width + 10)}px`);
+				else eleHov.css("left", `${(positionNxt.clientX || (positionNxt.bcr.left + positionNxt.bcr.width)) + 10}px`);
 
 				// region Sync position info when updating
 				if (position !== positionNxt) {
@@ -16346,27 +16386,27 @@ Renderer.hover = class {
 				break;
 			}
 			case "exact": {
-				$hov.css({
-					"left": positionNxt.x,
-					"top": positionNxt.y,
+				eleHov.css({
+					"left": `${positionNxt.x}px`,
+					"top": `${positionNxt.y}px`,
 				});
 				break;
 			}
 			case "exactVisibleBottom": {
-				$hov.css({
-					"left": positionNxt.x,
-					"top": positionNxt.y,
+				eleHov.css({
+					"left": `${positionNxt.x}px`,
+					"top": `${positionNxt.y}px`,
 					"animation": "initial", // Briefly remove the animation so we can calculate the height
 				});
 
 				let yPos = positionNxt.y;
 
-				const {bottom: posBottom, height: winHeight} = $hov[0].getBoundingClientRect();
+				const {bottom: posBottom, height: winHeight} = eleHov.getBoundingClientRect();
 				const height = position.window.innerHeight;
 				if (posBottom > height) {
 					yPos = position.window.innerHeight - winHeight;
-					$hov.css({
-						"top": yPos,
+					eleHov.css({
+						"top": `${yPos}px`,
 						"animation": "",
 					});
 				}
@@ -16376,18 +16416,15 @@ Renderer.hover = class {
 			default: throw new Error(`Positioning mode unimplemented: "${positionNxt.mode}"`);
 		}
 
-		Renderer.hover._getShowWindow_adjustPosition({$hov, $wrpContent, position, eventChannel});
+		Renderer.hover._getShowWindow_adjustPosition({eleHov, wrpContent, position, eventChannel});
 	}
 
-	static _getShowWindow_mutScroll ({$hov, $wrpContent, position}, {deltaPixelsX, deltaPixelsY}) {
+	static _getShowWindow_mutScroll ({eleHov, wrpContent, position}, {deltaPixelsX, deltaPixelsY}) {
 		if (!deltaPixelsX && !deltaPixelsY) return;
-		$wrpContent[0].scrollBy(deltaPixelsX, deltaPixelsY);
+		wrpContent.scrollBy(deltaPixelsX, deltaPixelsY);
 	}
 
-	static _getShowWindow_adjustPosition ({$hov, $wrpContent, position, eventChannel}) {
-		const eleHov = $hov[0];
-		const wrpContent = $wrpContent[0];
-
+	static _getShowWindow_adjustPosition ({eleHov, wrpContent, position, eventChannel}) {
 		const bcr = eleHov.getBoundingClientRect().toJSON();
 		const screenHeight = position.window.innerHeight;
 		const screenWidth = position.window.innerWidth;
@@ -16432,33 +16469,33 @@ Renderer.hover = class {
 		eventChannel.dispatchEvent(new Event("resize"));
 	}
 
-	static _getShowWindow_getPosition ({$hov, hoverWindow, $wrpContent}) {
+	static _getShowWindow_getPosition ({eleHov, hoverWindow, wrpContent}) {
 		if (hoverWindow._winPopup && !hoverWindow._winPopup.closed) {
 			return {
-				wWrpContent: $(hoverWindow._winPopup.document.body).width(),
-				hWrapContent: $(hoverWindow._winPopup.document.body).height(),
+				wWrpContent: e_({ele: hoverWindow._winPopup.document.body}).outerWidthe(),
+				hWrapContent: e_({ele: hoverWindow._winPopup.document.body}).outerHeighte(),
 			};
 		}
 
 		return {
-			wWrpContent: $wrpContent.width(),
-			hWrapContent: $wrpContent.height(),
+			wWrpContent: wrpContent.outerWidthe(),
+			hWrapContent: wrpContent.outerHeighte(),
 		};
 	}
 
-	static _getShowWindow_setIsPermanent ({opts, $brdrTop}, isPermanent) {
+	static _getShowWindow_setIsPermanent ({opts, brdrEleTop}, isPermanent) {
 		opts.isPermanent = isPermanent;
-		$brdrTop.attr("data-perm", isPermanent);
+		brdrEleTop.attr("data-perm", isPermanent);
 	}
 
-	static _getShowWindow_setZIndex ({$hov, hoverWindow}, zIndex) {
-		$hov.css("z-index", zIndex);
+	static _getShowWindow_setZIndex ({eleHov, hoverWindow}, zIndex) {
+		eleHov.css("z-index", zIndex);
 		hoverWindow.zIndex = zIndex;
 	}
 
-	static _getShowWindow_doZIndexToFront ({$hov, hoverWindow, hoverId}) {
+	static _getShowWindow_doZIndexToFront ({eleHov, hoverWindow, hoverId}) {
 		const nxtZIndex = Renderer.hover._getNextZIndex(hoverId);
-		Renderer.hover._getShowWindow_setZIndex({$hov, hoverWindow}, nxtZIndex);
+		Renderer.hover._getShowWindow_setZIndex({eleHov, hoverWindow}, nxtZIndex);
 	}
 
 	/**
@@ -16512,21 +16549,23 @@ Renderer.hover = class {
 	}
 
 	static handleTouchStart (evt, ele) {
+		if (Renderer.hover.isSmallScreen(evt)) return;
+
+		ele = e_({ele});
+
 		// on large touchscreen devices only (e.g. iPads)
-		if (!Renderer.hover.isSmallScreen(evt)) {
-			// cache the link location and redirect it to void
-			$(ele).data("href", $(ele).data("href") || $(ele).attr("href"));
-			$(ele).attr("href", "javascript:void(0)");
-			// restore the location after 100ms; if the user long-presses the link will be restored by the time they
-			//   e.g. attempt to open a new tab
-			setTimeout(() => {
-				const data = $(ele).data("href");
-				if (data) {
-					$(ele).attr("href", data);
-					$(ele).data("href", null);
-				}
-			}, 100);
-		}
+		// cache the link location and redirect it to void
+		ele.attr("data-tmp-href", ele.attr("data-tmp-href") || ele.attr("href"));
+		ele.attr("href", "javascript:void(0)");
+		// restore the location after 100ms; if the user long-presses the link will be restored by the time they
+		//   e.g. attempt to open a new tab
+		setTimeout(() => {
+			const href = ele.attr("data-tmp-href");
+			if (href) {
+				ele.attr("href", href);
+				ele.attr("data-tmp-href", null);
+			}
+		}, 100);
 	}
 
 	// region entry fetching
@@ -16725,8 +16764,10 @@ Renderer.hover = class {
 		return out;
 	}
 
+	// eslint-disable-next-line vet-jquery/jquery
 	static $getHoverContent_stats (page, toRender, opts, renderFnOpts) {
-		return $(Renderer.hover.getHoverContent_stats(page, toRender, opts, renderFnOpts));
+		// eslint-disable-next-line vet-jquery/jquery
+		return globalThis.jQuery(Renderer.hover.getHoverContent_stats(page, toRender, opts, renderFnOpts));
 	}
 
 	/**
@@ -16776,20 +16817,24 @@ Renderer.hover = class {
 	 * @param [opts.isBookContent]
 	 * @param [renderFnOpts]
 	 */
+	// eslint-disable-next-line vet-jquery/jquery
 	static $getHoverContent_fluff (page, toRender, opts, renderFnOpts) {
-		return $(this.getHoverContent_fluff(page, toRender, opts, renderFnOpts));
+		// eslint-disable-next-line vet-jquery/jquery
+		return globalThis.jQuery(this.getHoverContent_fluff(page, toRender, opts, renderFnOpts));
 	}
 
 	static getHoverContent_statsCode (toRender, {isSkipClean = false, title = null} = {}) {
 		const cleanCopy = isSkipClean ? toRender : DataUtil.cleanJson(MiscUtil.copyFast(toRender));
-		return Renderer.hover.$getHoverContent_miscCode(
+		return Renderer.hover.getHoverContent_miscCode(
 			title || [cleanCopy.name, "Source Data"].filter(Boolean).join(" \u2014 "),
 			JSON.stringify(cleanCopy, null, "\t"),
 		);
 	}
 
+	// eslint-disable-next-line vet-jquery/jquery
 	static $getHoverContent_statsCode (toRender, {isSkipClean = false, title = null} = {}) {
-		return $(Renderer.hover.getHoverContent_statsCode(toRender, {isSkipClean, title}));
+		// eslint-disable-next-line vet-jquery/jquery
+		return globalThis.jQuery(Renderer.hover.getHoverContent_statsCode(toRender, {isSkipClean, title}));
 	}
 
 	static getHoverContent_miscCode (name, code) {
@@ -16798,11 +16843,7 @@ Renderer.hover = class {
 			name,
 			preformatted: code,
 		};
-		return ee`<table class="w-100 stats stats--book">${Renderer.get().render(toRenderCode)}</table>`;
-	}
-
-	static $getHoverContent_miscCode (name, code) {
-		return $(Renderer.hover.getHoverContent_miscCode(name, code));
+		return ee`<table class="w-100 stats stats--book"><tr><td>${Renderer.get().render(toRenderCode)}</td></tr></table>`;
 	}
 
 	/**
@@ -16812,8 +16853,10 @@ Renderer.hover = class {
 	 * @param [opts.isLargeBookContent]
 	 * @param [opts.depth]
 	 */
+	// eslint-disable-next-line vet-jquery/jquery
 	static $getHoverContent_generic (toRender, opts) {
-		return $(Renderer.hover.getHoverContent_generic(toRender, opts));
+		// eslint-disable-next-line vet-jquery/jquery
+		return globalThis.jQuery(Renderer.hover.getHoverContent_generic(toRender, opts));
 	}
 
 	/**
@@ -16836,9 +16879,8 @@ Renderer.hover = class {
 	 */
 	static doPopoutCurPage (evt, entity) {
 		const page = UrlUtil.getCurrentPage();
-		const $content = Renderer.hover.$getHoverContent_stats(page, entity);
 		Renderer.hover.getShowWindow(
-			$content,
+			Renderer.hover.getHoverContent_stats(page, entity),
 			Renderer.hover.getWindowPositionFromEvent(evt),
 			{
 				pageUrl: `#${UrlUtil.autoEncodeHash(entity)}`,
@@ -16856,10 +16898,10 @@ Renderer.hover = class {
 	 */
 	static async pDoBrowserPopoutCurPage (evt, entity) {
 		const page = UrlUtil.getCurrentPage();
-		const $content = Renderer.hover.$getHoverContent_stats(page, entity);
+		const content = Renderer.hover.getHoverContent_stats(page, entity);
 
 		await Renderer.hover.pDoShowBrowserWindow(
-			$content,
+			content,
 			{
 				title: entity._displayName || entity.name,
 			},

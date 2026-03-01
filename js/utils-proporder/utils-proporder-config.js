@@ -64,7 +64,27 @@ const getFoundryGeneric = ({propsMatchAdditional = [], isFeature = false} = {}) 
 };
 
 const PROPORDER_META = [
-	"sources",
+	new ArrayKey("sources", {
+		fnGetOrder: () => [
+			"json",
+			"abbreviation",
+			"full",
+
+			"url",
+			"version",
+			"dateReleased",
+
+			new ArrayKey("authors", {fnSort: SortUtil.ascSortLower}),
+			new ArrayKey("convertedBy", {fnSort: SortUtil.ascSortLower}),
+
+			"partnered",
+
+			"color",
+			"colorNight",
+
+			"targetSchema",
+		],
+	}),
 
 	"dependencies",
 	"includes",
@@ -91,6 +111,8 @@ const PROPORDER_META = [
 	"_dateLastModifiedHash",
 ];
 const PROPORDER_TEST = [
+	"references",
+
 	"additionalImageSources",
 ];
 const PROPORDER_FOUNDRY_GENERIC = getFoundryGeneric();
@@ -456,8 +478,8 @@ const PROPORDER_SPELL = [
 
 	...PROPS_FOUNDRY_DATA_INLINE,
 
-	new ObjectKey("roll20Spell", {
-		order: PROPORDER_ROLL20_SPELL,
+	new ArrayKey("roll20Spell", {
+		fnGetOrder: () => PROPORDER_ROLL20_SPELL,
 	}),
 ];
 const PROPORDER_SPELL__COPY_MOD = [
@@ -1673,6 +1695,7 @@ const PROPORDER_MAGICVARIANT = [
 	"alias",
 	"group",
 	"source",
+	"referenceSources",
 
 	ObjectKey.getCopyKey({fnGetModOrder: () => PROPORDER_MAGICVARIANT__COPY_MOD}),
 
@@ -2518,7 +2541,7 @@ export const PROPORDER_PROP_TO_LIST = {
 	"item": PROPORDER_ITEM,
 	"foundryItem": PROPORDER_FOUNDRY_GENERIC,
 	"baseitem": PROPORDER_ITEM,
-	"foundryBaseItem": PROPORDER_FOUNDRY_GENERIC,
+	"foundryBaseitem": PROPORDER_FOUNDRY_GENERIC,
 	"magicvariant": PROPORDER_MAGICVARIANT,
 	"foundryMagicvariant": PROPORDER_FOUNDRY_GENERIC,
 	"itemGroup": PROPORDER_ITEM,
@@ -2622,6 +2645,7 @@ export const PROPORDER_ROOT = [
 	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "itemGroup"),
 	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "magicvariant"),
 	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "itemFluff"),
+	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "foundryBaseitem"),
 	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "foundryItem"),
 	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "foundryMagicvariant"),
 

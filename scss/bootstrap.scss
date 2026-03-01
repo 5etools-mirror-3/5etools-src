@@ -148,7 +148,7 @@
 	html input[type="button"],
 	input[type="reset"],
 	input[type="submit"] {
-		appearance: button;
+		appearance: auto;
 		cursor: pointer;
 	}
 
@@ -239,14 +239,14 @@
 		blockquote,
 		pre {
 			border: 1px solid #999;
-			page-break-inside: avoid;
+			break-inside: avoid;
 		}
 		thead {
 			display: table-header-group;
 		}
 		img,
 		tr {
-			page-break-inside: avoid;
+			break-inside: avoid;
 		}
 		img {
 			max-width: 100% !important;
@@ -259,7 +259,7 @@
 		}
 		h2,
 		h3 {
-			page-break-after: avoid;
+			break-after: avoid;
 		}
 		.navbar {
 			display: none;
@@ -1442,26 +1442,26 @@
 		border-top: 1px solid #eee;
 	}
 
-	.sr-only {
-		position: absolute;
-		width: 1px;
-		height: 1px;
-		padding: 0;
-		margin: -1px;
-		overflow: hidden;
-		clip: rect(0, 0, 0, 0);
-		border: 0;
-	}
+		.sr-only {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			padding: 0;
+			margin: -1px;
+			overflow: hidden;
+			clip-path: inset(50%);
+			border: 0;
+		}
 
 	.sr-only-focusable:active,
 	.sr-only-focusable:focus {
 		position: static;
-		width: auto;
-		height: auto;
-		margin: 0;
-		overflow: visible;
-		clip: auto;
-	}
+			width: auto;
+			height: auto;
+			margin: 0;
+			overflow: visible;
+			clip-path: none;
+		}
 
 	[role="button"] {
 		cursor: pointer;
@@ -1867,7 +1867,7 @@
 		line-height: vars.$font-line-height;
 		color: #333;
 		word-break: break-all;
-		word-wrap: break-word;
+		overflow-wrap: break-word;
 		background-color: #f5f5f5;
 		border: 1px solid #ccc;
 		border-radius: 4px;
@@ -4448,12 +4448,12 @@
 
 	[data-toggle="buttons"] > .ve-btn input[type="checkbox"],
 	[data-toggle="buttons"] > .ve-btn input[type="radio"],
-	[data-toggle="buttons"] > .ve-btn-group > .ve-btn input[type="checkbox"],
-	[data-toggle="buttons"] > .ve-btn-group > .ve-btn input[type="radio"] {
-		position: absolute;
-		clip: rect(0, 0, 0, 0);
-		pointer-events: none;
-	}
+		[data-toggle="buttons"] > .ve-btn-group > .ve-btn input[type="checkbox"],
+		[data-toggle="buttons"] > .ve-btn-group > .ve-btn input[type="radio"] {
+			position: absolute;
+			clip-path: inset(50%);
+			pointer-events: none;
+		}
 
 	.input-group {
 		position: relative;
@@ -6928,7 +6928,7 @@
 		letter-spacing: normal;
 		word-break: normal;
 		word-spacing: normal;
-		word-wrap: normal;
+		overflow-wrap: normal;
 		white-space: normal;
 		filter: alpha(opacity=0);
 		opacity: 0;
@@ -7062,7 +7062,7 @@
 		letter-spacing: normal;
 		word-break: normal;
 		word-spacing: normal;
-		word-wrap: normal;
+		overflow-wrap: normal;
 		white-space: normal;
 		background-color: #fff;
 		background-clip: padding-box;
@@ -7284,10 +7284,6 @@
 
 	.affix {
 		position: fixed;
-	}
-
-	@viewport {
-		width: device-width;
 	}
 
 	.visible-lg,

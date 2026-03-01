@@ -512,16 +512,16 @@ export class BrewUtil2Base {
 
 	/* -------------------------------------------- */
 
-	async _pGetBrewDependencies ({brewDocs, brewsRaw = null, brewsRawLocal = null, isIgnoreNetworkErrors = false, lockToken}) {
+	async _pGetBrewDependencies ({brewDocs, brewsRaw = null, brewsRawLocal = null, isIgnoreNetworkErrors = false, isLoadReferences = false, lockToken}) {
 		try {
 			lockToken = await this._LOCK.pLock({token: lockToken});
-			return (await this._pGetBrewDependencies_({brewDocs, brewsRaw, brewsRawLocal, isIgnoreNetworkErrors, lockToken}));
+			return (await this._pGetBrewDependencies_({brewDocs, brewsRaw, brewsRawLocal, isIgnoreNetworkErrors, isLoadReferences, lockToken}));
 		} finally {
 			this._LOCK.unlock();
 		}
 	}
 
-	async _pGetBrewDependencies_ ({brewDocs, brewsRaw = null, brewsRawLocal = null, isIgnoreNetworkErrors = false, lockToken}) {
+	async _pGetBrewDependencies_ ({brewDocs, brewsRaw = null, brewsRawLocal = null, isIgnoreNetworkErrors = false, isLoadReferences = false, lockToken}) {
 		const urlRoot = await this.pGetCustomUrl();
 		const brewIndex = await this._pGetBrewDependencies_getBrewIndex({urlRoot, isIgnoreNetworkErrors});
 
@@ -540,7 +540,7 @@ export class BrewUtil2Base {
 
 		brewDocs
 			.forEach(brewDoc => {
-				const {available, unavailable} = this._getBrewDependencySources({brewDoc, brewIndex});
+				const {available, unavailable} = this._getBrewDependencySources({brewDoc, brewIndex, isLoadReferences});
 				available.forEach(src => this._pGetBrewDependencies_mutAddToLoad({loadedSources, toLoadSources, src}));
 				unavailable.forEach(src => unavailableSources.add(src));
 			});
@@ -555,7 +555,7 @@ export class BrewUtil2Base {
 			brewDocsDependencies.push(brewDocDep);
 			this._pGetBrewDependencies_mutAddLoaded({loadedSources, brewDoc: brewDocDep});
 
-			const {available, unavailable} = this._getBrewDependencySources({brewDoc: brewDocDep, brewIndex});
+			const {available, unavailable} = this._getBrewDependencySources({brewDoc: brewDocDep, brewIndex, isLoadReferences});
 			available.forEach(src => this._pGetBrewDependencies_mutAddToLoad({loadedSources, toLoadSources, src}));
 			unavailable.forEach(src => unavailableSources.add(src));
 		}
@@ -699,9 +699,8 @@ export class BrewUtil2Base {
 	/* -------------------------------------------- */
 
 	_PROPS_DEPS = ["dependencies", "includes"];
-	_PROPS_DEPS_DEEP = ["otherSources"];
 
-	_getBrewDependencySources ({brewDoc, brewIndex}) {
+	_getBrewDependencySources ({brewDoc, brewIndex, isLoadReferences = false}) {
 		const sources = new Set();
 
 		this._PROPS_DEPS.forEach(prop => {
@@ -712,14 +711,10 @@ export class BrewUtil2Base {
 				.forEach(src => sources.add(src));
 		});
 
-		this._PROPS_DEPS_DEEP.forEach(prop => {
-			const obj = brewDoc.body._meta?.[prop];
-			if (!obj || !Object.keys(obj).length) return;
-			return Object.values(obj)
-				.map(objSub => Object.keys(objSub))
-				.flat()
-				.forEach(src => sources.add(src));
-		});
+		if (isLoadReferences) {
+			brewDoc.body._test?.references
+				?.forEach(src => sources.add(src));
+		}
 
 		const [available, unavailable] = [...sources]
 			.segregate(src => brewIndex[src]);
@@ -727,11 +722,11 @@ export class BrewUtil2Base {
 		return {available, unavailable};
 	}
 
-	async pAddBrewFromUrl (url, {isLazy} = {}) {
+	async pAddBrewFromUrl (url, {isLazy, isLoadReferences = false} = {}) {
 		let brewDocs = []; let unavailableSources = [];
 
 		try {
-			({brewDocs, unavailableSources} = await this._pAddBrewFromUrl({url, isLazy}));
+			({brewDocs, unavailableSources} = await this._pAddBrewFromUrl({url, isLazy, isLoadReferences}));
 		} catch (e) {
 			JqueryUtil.doToast({type: "danger", content: `Failed to load ${this.DISPLAY_NAME} from URL "${url}"! ${VeCt.STR_SEE_CONSOLE}`});
 			setTimeout(() => { throw e; });
@@ -747,7 +742,7 @@ export class BrewUtil2Base {
 		return this._getBrewDoc({json, url, filename: UrlUtil.getFilename(url)});
 	}
 
-	async _pAddBrewFromUrl ({url, lockToken, isLazy}) {
+	async _pAddBrewFromUrl ({url, lockToken, isLazy, isLoadReferences}) {
 		const brewDoc = await this._pGetBrewDocFromUrl({url});
 
 		if (isLazy) {
@@ -766,7 +761,7 @@ export class BrewUtil2Base {
 			lockToken = await this._LOCK.pLock({token: lockToken});
 			const brews = MiscUtil.copyFast(await this._pGetBrewRaw({lockToken}));
 
-			const {brewDocsDependencies, unavailableSources: unavailableSources_} = await this._pGetBrewDependencies({brewDocs, brewsRaw: brews, lockToken});
+			const {brewDocsDependencies, unavailableSources: unavailableSources_} = await this._pGetBrewDependencies({brewDocs, brewsRaw: brews, isLoadReferences, lockToken});
 			brewDocs.push(...brewDocsDependencies);
 			unavailableSources.push(...unavailableSources_);
 

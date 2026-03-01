@@ -44,6 +44,11 @@ function main () {
 	}
 
 	console.error(`##### Multisource source test failed! #####\n${sourceIncorrect.map(it => `\t${it}`).join("\n")}`);
+	return false;
 }
 
-export default main();
+const pMain = main();
+
+if (import.meta.main && !(await pMain)) process.exitCode = 1;
+
+export default pMain;

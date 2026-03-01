@@ -17,8 +17,6 @@ export default {
 				let isAnyFound = false;
 				return {
 					"Identifier": node => {
-						if (!process.env["VET_LINT_JQUERY"]) return;
-
 						if (
 							node.name === "jQuery"
 							|| node.name.includes("$")

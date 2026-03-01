@@ -42,6 +42,7 @@ export const getFnRootPropListSort = (prop) => {
 		case "item":
 		case "foundryItem":
 		case "baseitem":
+		case "foundryBaseitem":
 		case "magicvariant":
 		case "foundryMagicvariant":
 		case "itemGroup":

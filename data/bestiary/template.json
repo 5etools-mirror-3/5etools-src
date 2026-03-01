@@ -2943,6 +2943,10 @@
 					}
 				},
 				"_mod": {
+					"resist": {
+						"mode": "appendIfNotExistsArr",
+						"items": "poison"
+					},
 					"languages": {
 						"mode": "appendIfNotExistsArr",
 						"items": "Halfling"
@@ -2960,6 +2964,12 @@
 								"name": "Brave",
 								"entries": [
 									"<$title_short_name$> has advantage on saving throws against being {@condition frightened}."
+								]
+							},
+							{
+								"name": "Stout Resilience",
+								"entries": [
+									"<$title_short_name$> has advantage on saving throws against poison."
 								]
 							}
 						]

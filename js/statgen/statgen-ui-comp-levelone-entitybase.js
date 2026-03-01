@@ -136,8 +136,7 @@ export class StatGenUiRenderLevelOneEntityBase {
 			const entity = this._parent._state[this._propIxEntity] != null ? this._parent[this._propData][this._parent._state[this._propIxEntity]] : null;
 			if (!entity) return dispPreview.hideVe();
 
-			// eslint-disable-next-line vet-jquery/jquery
-			dispPreview.empty().showVe().appends(Renderer.hover.$getHoverContent_stats(this._page, entity)[0]);
+			dispPreview.empty().showVe().appends(Renderer.hover.getHoverContent_stats(this._page, entity));
 		};
 		this._parent._addHookBase(this._propIxEntity, hkPreviewEntity);
 		this._parent._addHookBase(this._propIsPreview, hkPreviewEntity);

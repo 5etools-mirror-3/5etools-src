@@ -3363,18 +3363,17 @@ export class CreatureBuilder extends BuilderBase {
 			.onn("click", (evt) => {
 				if (!Renderer.monster.hasToken(this._state)) return JqueryUtil.doToast({content: "Please set a token first!", type: "warning"});
 
-				const content = Renderer.hover.getHoverContent_generic(
-					{
-						type: "image",
-						href: {
-							type: "external",
-							url: Renderer.monster.getTokenUrl(this._state),
-						},
-					},
-					{isBookContent: true},
-				);
 				Renderer.hover.getShowWindow(
-					content,
+					Renderer.hover.getHoverContent_generic(
+						{
+							type: "image",
+							href: {
+								type: "external",
+								url: Renderer.monster.getTokenUrl(this._state),
+							},
+						},
+						{isBookContent: true},
+					),
 					Renderer.hover.getWindowPositionFromEvent(evt),
 					{
 						isPermanent: true,

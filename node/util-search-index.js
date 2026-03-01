@@ -3,8 +3,6 @@ import "../js/utils-dataloader.js";
 import "../js/render.js";
 import "../js/omnidexer.js";
 import * as ut from "./util.js";
-import {readJsonSync} from "5etools-utils/lib/UtilFs.js";
-import path from "path";
 
 export class UtilSearchIndex {
 	/**
@@ -104,23 +102,25 @@ export class UtilSearchIndex {
 	}
 
 	// this should be generalised if further specific indexes are required
-	static async pGetIndexAdditionalItem ({baseIndex = 0, doLogging = true} = {}) {
+	static async pGetIndexAdditional (forCatId, {baseIndex = 0, doLogging = true} = {}) {
 		ut.patchLoadJson();
 
 		const indexer = new Omnidexer(baseIndex);
 
-		await Promise.all(Omnidexer.TO_INDEX.filter(it => it.category === Parser.CAT_ID_ITEM).map(async ti => {
-			const filename = `./data/${ti.file}`;
-			const data = ut.readJson(filename);
+		await Omnidexer.TO_INDEX
+			.filter(it => it.additionalIndexes && it.category === forCatId)
+			.pMap(async ti => {
+				const filename = `./data/${ti.file}`;
+				const data = ut.readJson(filename);
 
-			if (ti.postLoad) ti.postLoad(data);
+				if (ti.postLoad) ti.postLoad(data);
 
-			if (ti.additionalIndexes && ti.additionalIndexes.item) {
-				if (doLogging) console.log(`\tindexing ${filename}`);
-				const extra = await ti.additionalIndexes.item(indexer, data);
-				extra.forEach(add => indexer.pushToIndex(add));
-			}
-		}));
+				for (const [prop, fn] of Object.entries(ti.additionalIndexes)) {
+					if (doLogging) console.log(`\tIndexing ${filename} (additional; "${prop}")`);
+					const extra = await fn(indexer, data);
+					extra.forEach(add => indexer.pushToIndex(add));
+				}
+			});
 
 		const out = indexer.getIndex();
 		ut.unpatchLoadJson();
@@ -140,30 +140,6 @@ export class UtilSearchIndex {
 			isDecompress: false,
 			isIncludeExtendedSourceInfo: true,
 			isSkipNonPartnered: true,
-		});
-
-		ut.unpatchLoadJson();
-
-		return out;
-	}
-
-	// TODO(Future) expand support; follow dependencies
-	static async pGetIndexLocalHomebrew ({baseIndex = 0, filepath}) {
-		ut.patchLoadJson();
-
-		const filename = path.basename(filepath);
-
-		await BrewUtil2.pAddBrewsFromFiles([
-			{
-				json: readJsonSync(filepath),
-				filename: filename,
-			},
-		]);
-
-		const out = await BrewUtil2.pGetSearchIndex({
-			id: baseIndex,
-			isDecompress: false,
-			isIncludeExtendedSourceInfo: true,
 		});
 
 		ut.unpatchLoadJson();
