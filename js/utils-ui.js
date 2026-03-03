@@ -249,6 +249,20 @@ class ProxyBase extends MixinProxyBase(class {}) {}
 globalThis.ProxyBase = ProxyBase;
 
 class UiUtil {
+	static getBtnClassName (btnType) {
+		if (!btnType) return "ve-btn-primary";
+		switch (btnType) {
+			case "default": return "ve-btn-default";
+			case "primary": return "ve-btn-primary";
+			case "success": return "ve-btn-success";
+			case "info": return "ve-btn-info";
+			case "warning": return "ve-btn-warning";
+			case "danger": return "ve-btn-danger";
+			case "link": return "ve-btn-link";
+			default: throw new Error(`Unhandled button type "${btnType}"!`);
+		}
+	}
+
 	/**
 	 * @param string String to parse.
 	 * @param [fallbackEmpty] Fallback number if string is empty.
@@ -897,9 +911,10 @@ class ListSelectClickHandlerBase {
 
 	bindSelectAllCheckbox (cbAll) {
 		// eslint-disable-next-line vet-jquery/jquery
-		cbAll = (globalThis.jQuery && cbAll instanceof globalThis.jQuery)
-			? e_({ele: cbAll[0]})
-			: cbAll;
+		if (globalThis.jQuery && cbAll instanceof globalThis.jQuery) {
+			if (!cbAll.length) return;
+			cbAll = e_({ele: cbAll[0]});
+		}
 		if (!cbAll) return;
 		cbAll
 			.addEventListener("change", () => {
@@ -1538,7 +1553,7 @@ class TabUiUtil extends TabUiUtilBase {
 		obj.__renderTypedTabMeta_buttons = function ({tabMeta, ixTab, isStacked = false}) {
 			const btns = tabMeta.buttons
 				.map((meta, j) => {
-					const btn = ee`<button class="ve-btn ui-tab__btn-tab-head ${isStacked ? `ui-tab__btn-tab-head--stacked` : ""} pt-2p px-4p pb-0 bbr-0 bbl-0 ${meta.type ? `ve-btn-${meta.type}` : "ve-btn-primary"}" ${meta.title ? `title="${meta.title.qq()}"` : ""}>${meta.html}</button>`
+					const btn = ee`<button class="ve-btn ui-tab__btn-tab-head ${isStacked ? `ui-tab__btn-tab-head--stacked` : ""} pt-2p px-4p pb-0 bbr-0 bbl-0 ${UiUtil.getBtnClassName(meta.type)}" ${meta.title ? `title="${meta.title.qq()}"` : ""}>${meta.html}</button>`
 						.onn("click", evt => {
 							meta.pFnClick({
 								evt,
@@ -1620,7 +1635,7 @@ class TabUiUtilSide extends TabUiUtilBase {
 
 		obj.__renderTypedTabMeta_buttons = function ({tabMeta, ixTab}) {
 			const btns = tabMeta.buttons.map((meta, j) => {
-				const btn = ee`<button class="ve-btn ${meta.type ? `ve-btn-${meta.type}` : "ve-btn-primary"} ve-btn-sm" ${meta.title ? `title="${meta.title.qq()}"` : ""}>${meta.html}</button>`
+				const btn = ee`<button class="ve-btn ${UiUtil.getBtnClassName(meta.type)} ve-btn-sm" ${meta.title ? `title="${meta.title.qq()}"` : ""}>${meta.html}</button>`
 					.onn("click", evt => {
 						meta.pFnClick({
 							evt,
@@ -2705,7 +2720,7 @@ class InputUiUtil {
 					doClose(VeCt.SYM_UI_SKIP);
 				});
 
-		if (eleDescription?.length) ee`<div class="ve-flex w-100 mb-1">${eleDescription}</div>`.appendTo(eleModalInner);
+		if (eleDescription) ee`<div class="ve-flex w-100 mb-1">${eleDescription}</div>`.appendTo(eleModalInner);
 		else if (htmlDescription && htmlDescription.trim()) ee`<div class="ve-flex w-100 mb-1">${htmlDescription}</div>`.appendTo(eleModalInner);
 		ee`<div class="ve-flex-v-center ve-flex-h-right py-1 px-1">${btns}${btnSkip}</div>`.appendTo(eleModalInner);
 
@@ -4996,13 +5011,19 @@ class ComponentUiUtil {
 		return out;
 	}
 
+	static _DECOR_SIDE_TO_CSS_CLASS = {
+		"left": "ui-ideco__wrp--left",
+		"right": "ui-ideco__wrp--right",
+	};
+
 	static _getEleDecor (component, prop, ipt, decorType, side, opts) {
+		const classNameSide = this._DECOR_SIDE_TO_CSS_CLASS[side] || "";
 		switch (decorType) {
 			case "search": {
-				return ee`<div class="ui-ideco__wrp ui-ideco__wrp--${side} no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>`;
+				return ee`<div class="ui-ideco__wrp ${classNameSide} no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>`;
 			}
 			case "clear": {
-				return ee`<div class="ui-ideco__wrp ui-ideco__wrp--${side} ve-flex-vh-center clickable" title="Clear"><span class="glyphicon glyphicon-remove"></span></div>`
+				return ee`<div class="ui-ideco__wrp ${classNameSide} ve-flex-vh-center clickable" title="Clear"><span class="glyphicon glyphicon-remove"></span></div>`
 					.onn("click", () => {
 						ipt
 							.val("")
@@ -5041,7 +5062,7 @@ class ComponentUiUtil {
 					});
 
 				// Reverse flex column to stack "+" button as higher z-index
-				return ee`<div class="ui-ideco__wrp ui-ideco__wrp--${side} ve-flex-vh-center ve-flex-col-reverse">
+				return ee`<div class="ui-ideco__wrp ${classNameSide} ve-flex-vh-center ve-flex-col-reverse">
 					${btnDown}
 					${btnUp}
 				</div>`;
@@ -6900,10 +6921,15 @@ ComponentUiUtil.RangeSlider = class {
 		if (this._cacheRendered) this._cacheRendered.remove();
 	}
 
+	static _SLIDER_SIDE_TO_CSS_CLASS = {
+		"left": "ui-slidr__disp-value--left",
+		"right": "ui-slidr__disp-value--right",
+	};
+
 	_getDispValue ({isVisible, side}) {
 		return e_({
 			tag: "div",
-			clazz: `ve-overflow-hidden ui-slidr__disp-value no-shrink no-grow no-wrap ve-flex-vh-center bold no-select ${isVisible ? `ui-slidr__disp-value--visible` : ""} ui-slidr__disp-value--${side}`,
+			clazz: `ve-overflow-hidden ui-slidr__disp-value no-shrink no-grow no-wrap ve-flex-vh-center bold no-select ${isVisible ? `ui-slidr__disp-value--visible` : ""} ${this.constructor._SLIDER_SIDE_TO_CSS_CLASS[side] || ""}`,
 		});
 	}
 

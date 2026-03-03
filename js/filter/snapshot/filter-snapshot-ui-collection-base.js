@@ -61,7 +61,7 @@ export class RenderableCollectionFilterSnapshotBase extends RenderableCollection
 	}
 
 	static _getBtnToggleExpand (comp, {isSibling = false} = {}) {
-		const btnExpand = ee`<div class="py-1 ve-flex-vh-center h-100 clickable no-select${isSibling ? ` mr-1 px-2` : ` w-100`}"></div>`
+		const btnExpand = ee`<div class="py-1 ve-flex-vh-center h-100 clickable no-select ${isSibling ? `mr-1 px-2` : `w-100`}"></div>`
 			.onn("click", evt => {
 				evt.stopPropagation();
 				comp._state.manager_loader_isExpanded = !comp._state.manager_loader_isExpanded;

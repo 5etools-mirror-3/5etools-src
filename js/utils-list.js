@@ -645,6 +645,8 @@ class SaveManager extends BaseComponent {
 	async pDoSave (exportedSublist) {
 		const save = this._getOrCreateActiveSave();
 
+		Object.assign(save.entity, exportedSublist);
+
 		if (!save.entity.name) {
 			const name = await InputUiUtil.pGetUserString({title: "List Name"});
 			if (!name || !name.trim().length) return;
@@ -652,7 +654,6 @@ class SaveManager extends BaseComponent {
 			save.entity.name = name;
 		}
 
-		Object.assign(save.entity, exportedSublist);
 		save.entity.manager_isSaved = true;
 
 		this._triggerCollectionUpdate("saves");

@@ -179,7 +179,8 @@ export class ConverterUiBase extends BaseComponent {
 
 		const getBtnIncrementDecrement = (dir) => {
 			const verb = ~dir ? "Increment" : "Decrement";
-			return ee`<button class="ve-btn ve-btn-xs ve-btn-default h-100" title="${verb} Page Number (SHIFT to ${verb} by 5)"><span class="glyphicon glyphicon-${~dir ? "plus" : "minus"}"></span></button>`
+			const iconClassName = ~dir ? "glyphicon-plus" : "glyphicon-minus";
+			return ee`<button class="ve-btn ve-btn-xs ve-btn-default h-100" title="${verb} Page Number (SHIFT to ${verb} by 5)"><span class="glyphicon ${iconClassName}"></span></button>`
 				.onn("click", evt => this._state.page += dir * (evt.shiftKey ? 5 : 1));
 		};
 

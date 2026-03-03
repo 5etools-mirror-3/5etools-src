@@ -157,11 +157,11 @@ export class InitiativeTrackerPlayerMessageHandlerV1 {
 		}
 
 		this._eleHead.appends(`
-			<div class="w-100 split-v-center min-w-100p ${this._isCompact ? "ve-text-center" : ""}">Creature/Status</div>
-			<div class="min-w-100p ${this._isCompact ? "ve-text-center" : ""}">Health</div>
-			${(data.statsCols || []).map(statCol => `<div class="initp__h_stat">${statCol.abbreviation || ""}</div>`).join("")}
-			<div class="initp__h_score${this._isCompact ? " initp__h_score--compact" : ""}">${this._isCompact ? "#" : "Init."}</div>
-		`);
+				<div class="w-100 split-v-center min-w-100p ${this._isCompact ? "ve-text-center" : ""}">Creature/Status</div>
+				<div class="min-w-100p ${this._isCompact ? "ve-text-center" : ""}">Health</div>
+				${(data.statsCols || []).map(statCol => `<div class="initp__h_stat">${statCol.abbreviation || ""}</div>`).join("")}
+				<div class="initp__h_score ${this._isCompact ? "initp__h_score--compact" : ""}">${this._isCompact ? "#" : "Init."}</div>
+			`);
 
 		(data.rows || []).forEach(rowData => {
 			this._eleRows.appends(this._getRow(rowData));
@@ -204,18 +204,18 @@ export class InitiativeTrackerPlayerMessageHandlerV1 {
 		});
 
 		return ee`
-			<div class="initp__r${rowData.isActive ? ` initp__r--active` : ""}">
-				<div class="w-100 split-v-center min-w-100p">
-					${dispName}
-					${wrpConds}
-				</div>
+				<div class="initp__r ${rowData.isActive ? `initp__r--active` : ""}">
+					<div class="w-100 split-v-center min-w-100p">
+						${dispName}
+						${wrpConds}
+					</div>
 				<div class="min-w-100p">
 					<div class="initp__r_hp_pill" style="background: ${hpColor};">${hpText}</div>
 				</div>
 				${this._getRenderedStatsCells({rowData})}
-				<div class="initp__r_score${this._isCompact ? " initp__r_score--compact" : ""}">${rowData.initiative}</div>
-			</div>
-		`;
+					<div class="initp__r_score ${this._isCompact ? "initp__r_score--compact" : ""}">${rowData.initiative}</div>
+				</div>
+			`;
 	}
 
 	_getRenderedStatsCells ({rowData}) {

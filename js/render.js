@@ -1124,7 +1124,7 @@ globalThis.Renderer = function () {
 
 		const ptText = `${pluginDataNamePrefix.join("")}${this.render({type: "inline", entries: [displayName]})}${isAddPeriod ? "." : ""}`;
 
-		return `<${headerTag} class="rd__h ${headerClass}" data-title-index="${this._headerIndex++}" ${this._getEnumeratedTitleRel(entry.name)}> <span class="entry-title-inner${!pagePart && entry.source ? ` help-subtle` : ""}"${!pagePart && entry.source ? ` title="Source: ${Parser.sourceJsonToFull(entry.source)}${entry.page ? `, p${entry.page}` : ""}"` : ""}>${ptText}</span>${partPageExpandCollapse}</${headerTag}> `;
+		return `<${headerTag} class="rd__h ${headerClass}" data-title-index="${this._headerIndex++}" ${this._getEnumeratedTitleRel(entry.name)}> <span class="entry-title-inner ${!pagePart && entry.source ? `help-subtle` : ""}"${!pagePart && entry.source ? ` title="Source: ${Parser.sourceJsonToFull(entry.source)}${entry.page ? `, p${entry.page}` : ""}"` : ""}>${ptText}</span>${partPageExpandCollapse}</${headerTag}> `;
 	};
 
 	this._renderEntriesSubtypes_renderPreReqText = function (entry, textStack, meta) {
@@ -3393,9 +3393,9 @@ Renderer.utils = class {
 				? `${isText ? "" : `the <span title="Systems Reference Document (5.1)">`}SRD 5.1${isText ? "" : `</span>`}${typeof ent.srd === "string" ? ` (as &quot;${ent.srd}&quot;)` : ""}`
 				: "";
 		const basicRulesText = ent.basicRules2024
-			? `the Basic Rules (2024)${typeof ent.basicRules2024 === "string" ? ` (as &quot;${ent.basicRules2024}&quot;)` : ""}`
+			? `the Basic Rules (5.5e/2024)${typeof ent.basicRules2024 === "string" ? ` (as &quot;${ent.basicRules2024}&quot;)` : ""}`
 			: ent.basicRules
-				? `the Basic Rules (2014)${typeof ent.basicRules === "string" ? ` (as &quot;${ent.basicRules}&quot;)` : ""}`
+				? `the Basic Rules (5e/2014)${typeof ent.basicRules === "string" ? ` (as &quot;${ent.basicRules}&quot;)` : ""}`
 				: "";
 		const srdAndBasicRulesText = (srdText || basicRulesText) ? `Available in ${[srdText, basicRulesText].filter(it => it).join(" and ")}` : "";
 
@@ -10942,6 +10942,16 @@ Renderer.monster = class {
 		<tr>${abvsRemaining.map(ab => `<td class="ve-text-center">${Renderer.utils.getAbilityRoller(mon, ab)}</td>`).join("")}</tr>`;
 	}
 
+	static _ABILITY_ROW_STYLE_TO_CLASS_SCORE = {
+		"physical": "stats__disp-as-score--physical",
+		"mental": "stats__disp-as-score--mental",
+	};
+
+	static _ABILITY_ROW_STYLE_TO_CLASS_BONUS = {
+		"physical": "stats__disp-as-bonus--physical",
+		"mental": "stats__disp-as-bonus--mental",
+	};
+
 	static _getRenderedAbilityScores_one ({mon, renderer}) {
 		renderer ||= Renderer.get();
 
@@ -10965,6 +10975,8 @@ Renderer.monster = class {
 		const ptsCells = Parser.ABIL_ABVS
 			.flatMap((abv, i) => {
 				const styleName = i < 3 ? "physical" : "mental";
+				const styleClassNameScore = this._ABILITY_ROW_STYLE_TO_CLASS_SCORE[styleName];
+				const styleClassNameBonus = this._ABILITY_ROW_STYLE_TO_CLASS_BONUS[styleName];
 
 				const numScore = abvsRemaining.includes(abv) ? mon[abv] : null;
 				const ptScore = numScore != null ? `${mon[abv]}` : `\u2013`;
@@ -10974,10 +10986,10 @@ Renderer.monster = class {
 					: renderer.render(`{@savingThrow ${abv} ${mon.save[abv]}}`);
 
 				return [
-					`<td class="stats-tbl-ability-scores__lbl-abv stats__disp-as-score--${styleName} stats__disp-as-score--label"><div class="bold small-caps ve-text-right">${abv.toTitleCase()}</div></td>`,
-					`<td class="stats-tbl-ability-scores__lbl-score stats__disp-as-score--${styleName}"><div class="ve-text-center">${ptScore}</div></td>`,
-					`<td class="stats-tbl-ability-scores__lbl-score stats__disp-as-bonus--${styleName}"><div class="ve-text-center">${ptBonus}</div></td>`,
-					`<td class="stats-tbl-ability-scores__lbl-score stats__disp-as-bonus--${styleName}"><div class="ve-text-center">${ptSave}</div></td>`,
+					`<td class="stats-tbl-ability-scores__lbl-abv ${styleClassNameScore} stats__disp-as-score--label"><div class="bold small-caps ve-text-right">${abv.toTitleCase()}</div></td>`,
+					`<td class="stats-tbl-ability-scores__lbl-score ${styleClassNameScore}"><div class="ve-text-center">${ptScore}</div></td>`,
+					`<td class="stats-tbl-ability-scores__lbl-score ${styleClassNameBonus}"><div class="ve-text-center">${ptBonus}</div></td>`,
+					`<td class="stats-tbl-ability-scores__lbl-score ${styleClassNameBonus}"><div class="ve-text-center">${ptSave}</div></td>`,
 					i % 3 !== 2 ? `<td class="stats-tbl-ability-scores__lbl-spacer"><div></div></td>` : "",
 				];
 			});
@@ -11739,7 +11751,7 @@ Renderer.item = class {
 			.filter(Boolean)
 			.join(", ");
 
-		const ptAttunement = item.reqAttune ? (item._attunement || "")[fnTransform]() : "";
+		const ptAttunement = item.reqAttune ? (item._attunement || "") : "";
 
 		return {
 			entryType,
@@ -11767,25 +11779,42 @@ Renderer.item = class {
 		};
 	}
 
-	static getAttunementAndAttunementCatText (item, prop = "reqAttune") {
-		let attunement = null;
-		let attunementCat = VeCt.STR_NO_ATTUNEMENT;
-		if (item[prop] != null && item[prop] !== false) {
-			if (item[prop] === true) {
-				attunementCat = "Requires Attunement";
-				attunement = "(requires attunement)";
-			} else if (item[prop] === "optional") {
-				attunementCat = "Attunement Optional";
-				attunement = "(attunement optional)";
-			} else if (item[prop].toLowerCase().startsWith("by")) {
-				attunementCat = "Requires Attunement By...";
-				attunement = `(requires attunement ${Renderer.get().render(item[prop])})`;
-			} else {
-				attunementCat = "Requires Attunement"; // throw any weird ones in the "Yes" category (e.g. "outdoors at night")
-				attunement = `(requires attunement ${Renderer.get().render(item[prop])})`;
-			}
+	static getAttunementHtmlMeta (item, {prop = "reqAttune", styleHint = null}) {
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
+		if (item[prop] == null || item[prop] === false) {
+			return {attunement: null, attunementCategory: VeCt.STR_NO_ATTUNEMENT};
 		}
-		return [attunement, attunementCat];
+
+		if (item[prop] === true) {
+			return {
+				attunementCategory: "Requires Attunement",
+				attunement: "(requires attunement)"[styleHint === "classic" ? "toString" : "toTitleCase"](),
+			};
+		}
+
+		if (item[prop] === "optional") {
+			return {
+				attunementCategory: "Attunement Optional",
+				attunement: "(attunement optional)"[styleHint === "classic" ? "toString" : "toTitleCase"](),
+			};
+		}
+
+		if (item[prop].toLowerCase().startsWith("by")) {
+			return {
+				attunementCategory: "Requires Attunement By...",
+				attunement: styleHint === "classic"
+					? `(requires attunement ${Renderer.get().render(item[prop])})`
+					: `(Requires Attunement ${Renderer.get().render(item[prop].toTitleCase())})`,
+			};
+		}
+
+		return {
+			attunementCategory: "Requires Attunement", // throw any weird ones in the "Yes" category (e.g. "outdoors at night")
+			attunement: styleHint === "classic"
+				? `(requires attunement ${Renderer.get().render(item[prop])})`
+				: `(Requires Attunement ${Renderer.get().render(item[prop].toTitleCase())})`,
+		};
 	}
 
 	static getRenderableTypeEntriesMeta (item, {styleHint = null} = {}) {
@@ -12794,13 +12823,13 @@ Renderer.item = class {
 		({textTypes: item._textTypes, entryType: item._entryType, entrySubType: item._entrySubType} = Renderer.item.getRenderableTypeEntriesMeta(item, {styleHint}));
 
 		// bake in attunement
-		const [attune, attuneCat] = Renderer.item.getAttunementAndAttunementCatText(item);
-		item._attunement = attune;
-		item._attunementCategory = attuneCat;
+		const {attunementCategory, attunement} = Renderer.item.getAttunementHtmlMeta(item, {styleHint});
+		item._attunement = attunement;
+		item._attunementCategory = attunementCategory;
 
 		if (item.reqAttuneAlt) {
-			const [attuneAlt, attuneCatAlt] = Renderer.item.getAttunementAndAttunementCatText(item, "reqAttuneAlt");
-			item._attunementCategory = [attuneCat, attuneCatAlt];
+			const {attunementCategory: attunementCategoryAlt} = Renderer.item.getAttunementHtmlMeta(item, {prop: "reqAttuneAlt", styleHint});
+			item._attunementCategory = [attunementCategory, attunementCategoryAlt];
 		}
 
 		// bake in rarity-based value
@@ -15606,7 +15635,7 @@ Renderer.hover = class {
 		}
 
 		meta.windowMeta = Renderer.hover.getShowWindow(
-			Renderer.hover.getEleHoverContent_generic(entry, opts),
+			Renderer.hover.getHoverContent_generic(entry, opts),
 			Renderer.hover.getWindowPositionFromEvent(tmpEvt || evt, {isPreventFlicker: !meta.isPermanent}),
 			{
 				title: entry?.name || "",
@@ -15684,7 +15713,7 @@ Renderer.hover = class {
 		if (!meta.isHovered && !meta.isPermanent) return;
 
 		meta.windowMeta = Renderer.hover.getShowWindow(
-			Renderer.hover.getEleHoverContent_generic(toRender, opts),
+			Renderer.hover.getHoverContent_generic(toRender, opts),
 			Renderer.hover.getWindowPositionFromEvent(evt, {isPreventFlicker: !meta.isPermanent}),
 			{
 				title: toRender.data && toRender.data.hoverTitle != null ? toRender.data.hoverTitle : toRender.name,
@@ -15751,7 +15780,7 @@ Renderer.hover = class {
 		const toRender = Renderer.hover._entryCache[entryId];
 
 		meta.windowMeta = Renderer.hover.getShowWindow(
-			Renderer.hover.getEleHoverContent_generic(toRender, opts),
+			Renderer.hover.getHoverContent_generic(toRender, opts),
 			Renderer.hover.getWindowPositionExact((window.innerWidth / 2) - (Renderer.hover._DEFAULT_WIDTH_PX / 2), 100),
 			{
 				title: toRender.data && toRender.data.hoverTitle != null ? toRender.data.hoverTitle : toRender.name,

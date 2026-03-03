@@ -1,6 +1,6 @@
 import {FilterBase} from "./filter-filter-base.js";
 import {Filter} from "./filter-filter-generic.js";
-import {PILL_STATE__IGNORE, PILL_STATE__NO, PILL_STATE__YES, PILL_STATES} from "../filter-constants.js";
+import {PILL_STATE__IGNORE, PILL_STATE__NO, PILL_STATE__YES, PILL_STATES, getPillStateDisplayClass} from "../filter-constants.js";
 
 export class AbilityScoreFilter extends FilterBase {
 	static _MODIFIER_SORT_OFFSET = 10000; // Arbitrarily large value
@@ -696,7 +696,7 @@ export class AbilityScoreFilter extends FilterBase {
 
 				if (isPlainText) return `${v === PILL_STATE__NO ? "not " : ""}${item.getMiniPillDisplayText()}`;
 
-				return `<span class="fltr__disp-state fltr__disp-state--${PILL_STATES[v]}">${item.getMiniPillDisplayText()}</span>`;
+				return `<span class="fltr__disp-state ${getPillStateDisplayClass(v)}">${item.getMiniPillDisplayText()}</span>`;
 			})
 			.filter(Boolean)
 			.join(", ");

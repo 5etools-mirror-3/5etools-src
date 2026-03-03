@@ -16,7 +16,7 @@ class _TierHtmlProviderOne extends TierHtmlProviderBase {
 
 export class EncounterBuilderRulesOne extends EncounterBuilderRulesBase {
 	rulesId = "one";
-	displayName = "Modern (2024)";
+	displayName = "Modern (5.5e/2024)";
 	_tierHtmlProvider = new _TierHtmlProviderOne();
 
 	_budgetMode = BUDGET_MODE_XP;

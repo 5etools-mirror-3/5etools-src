@@ -1,5 +1,5 @@
 import {FilterBase} from "./filter-filter-base.js";
-import {PILL_STATES} from "../filter-constants.js";
+import {PILL_STATES, PILL_STATE__NO, PILL_STATE__YES, getPillStateDisplayClass} from "../filter-constants.js";
 
 export class OptionsFilter extends FilterBase {
 	/**
@@ -143,7 +143,7 @@ export class OptionsFilter extends FilterBase {
 			.map(({v, dispKey}) => {
 				if (isPlainText) return `${v ? "" : "not "}${dispKey}`;
 
-				return `<span class="fltr__disp-state fltr__disp-state--${v ? "yes" : "no"}">${dispKey}</span>`;
+				return `<span class="fltr__disp-state ${getPillStateDisplayClass(v ? PILL_STATE__YES : PILL_STATE__NO)}">${dispKey}</span>`;
 			})
 			.join(", ");
 

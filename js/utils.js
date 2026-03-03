@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.25.0"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.25.1"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -1007,6 +1007,14 @@ globalThis.JqueryUtil = class {
 		});
 	}
 
+	static _COPY_BUBBLE_CLASS_NAMES = [
+		"clp__disp-copied--bubble-variant-1",
+		"clp__disp-copied--bubble-variant-2",
+		"clp__disp-copied--bubble-variant-3",
+		"clp__disp-copied--bubble-variant-4",
+		"clp__disp-copied--bubble-variant-5",
+	];
+
 	static showCopiedEffect (ele, {text = "Copied!", isBubble = false} = {}) {
 		// eslint-disable-next-line vet-jquery/jquery
 		ele = (globalThis.jQuery && ele instanceof globalThis.jQuery)
@@ -1030,7 +1038,7 @@ globalThis.JqueryUtil = class {
 		if (isBubble) {
 			dispCopied
 				.addClass(`clp__disp-copied--bubble`)
-				.addClass(`clp__disp-copied--bubble-variant-${RollerUtil.randomise(5)}`);
+				.addClass(RollerUtil.rollOnArray(this._COPY_BUBBLE_CLASS_NAMES));
 		} else {
 			dispCopied.addClass(`clp__disp-copied--basic`);
 		}
@@ -4042,7 +4050,7 @@ UrlUtil.PG_TO_NAME[UrlUtil.PG_DEITIES] = "Deities";
 UrlUtil.PG_TO_NAME[UrlUtil.PG_CULTS_BOONS] = "Cults & Supernatural Boons";
 UrlUtil.PG_TO_NAME[UrlUtil.PG_OBJECTS] = "Objects";
 UrlUtil.PG_TO_NAME[UrlUtil.PG_TRAPS_HAZARDS] = "Traps & Hazards";
-UrlUtil.PG_TO_NAME[UrlUtil.PG_QUICKREF] = "Quick Reference (2014)";
+UrlUtil.PG_TO_NAME[UrlUtil.PG_QUICKREF] = "Quick Reference (5e/2014)";
 UrlUtil.PG_TO_NAME[UrlUtil.PG_MANAGE_BREW] = "Homebrew Manager";
 UrlUtil.PG_TO_NAME[UrlUtil.PG_MANAGE_PRERELEASE] = "Prerelease Content Manager";
 UrlUtil.PG_TO_NAME[UrlUtil.PG_MAKE_BREW] = "Homebrew Builder";

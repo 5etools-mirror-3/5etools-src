@@ -32,7 +32,7 @@ async function onJsonLoad (data) {
 	BookUtil.baseDataUrl = "data/generated/";
 	BookUtil.bookIndex = reference;
 	BookUtil.referenceId = "bookref-quick";
-	BookUtil.typeTitle = "Quick Reference (2014)";
+	BookUtil.typeTitle = "Quick Reference (5e/2014)";
 	await BookUtil.pInit();
 
 	window.onhashchange = BookUtil.booksHashChange.bind(BookUtil);

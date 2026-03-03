@@ -154,7 +154,7 @@ export class InitiativeTrackerRowStateBuilderActive extends _InitiativeTrackerRo
 			conditions = null,
 		} = {},
 	) {
-		const isMon = name && source;
+		const isMon = !!(name && source);
 		const mon = await this.pGetScaledCreature({isMon, name, source, scaledCr, scaledSummonSpellLevel, scaledSummonClassLevel});
 		if (isMon && !mon) return null;
 

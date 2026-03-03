@@ -612,13 +612,15 @@ class Board {
 		return pGetResolved();
 	}
 
-	doReset () {
+	doReset ({isRetainWidthHeight = false} = {}) {
 		this.exiledPanels.forEach(p => p.destroy());
 		this.exiledPanels = [];
 		this.sideMenu.doUpdateHistory();
 		Object.values(this.panels).forEach(p => p.destroy());
 		this.panels = {};
-		this.setDimensions(this.getInitialWidth(), this.getInitialHeight());
+
+		if (isRetainWidthHeight) this.setDimensions(this.getWidth(), this.getHeight());
+		else this.setDimensions(this.getInitialWidth(), this.getInitialHeight());
 	}
 
 	setHoveringButton (panel) {
@@ -849,8 +851,18 @@ class SideMenu {
 		const wrpReset = ee`<div class="w-100 split-v-center"></div>`.appendTo(this.eleMnu);
 		const btnReset = ee`<button class="ve-btn ve-btn-danger" style="width: 100%;">Reset Screen</button>`.appendTo(wrpReset);
 		btnReset.onn("click", async () => {
-			if (!await InputUiUtil.pGetUserBoolean({title: "Reset", htmlDescription: "Are you sure?", textYes: "Yes", textNo: "Cancel"})) return;
-			this.board.doReset();
+			const comp = BaseComponent.fromObject({isRetainWidthHeight: true});
+			const cbKeepWidthHeight = ComponentUiUtil.getCbBool(comp, "isRetainWidthHeight");
+
+			const eleDescription = ee`<div class="w-320p">
+				<label class="split-v-center mb-2"><span>Keep Current Width/Height</span> ${cbKeepWidthHeight}</label>
+				<hr class="hr-1">
+				<div>Are you sure?</div>
+			</div>`
+
+			if (!await InputUiUtil.pGetUserBoolean({title: "Reset", eleDescription, textYes: "Yes", textNo: "Cancel"})) return;
+
+			this.board.doReset({isRetainWidthHeight: comp._state.isRetainWidthHeight});
 		});
 		renderDivider();
 

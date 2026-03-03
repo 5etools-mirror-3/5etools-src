@@ -1,6 +1,6 @@
 import {FilterItem} from "../filter-item.js";
 import {FilterBase} from "./filter-filter-base.js";
-import {MISC_FILTER_VALUE__BASIC_RULES_2014, MISC_FILTER_VALUE__BASIC_RULES_2024, MISC_FILTER_VALUE__SRD_5_1, MISC_FILTER_VALUE__SRD_5_2, PILL_STATE__IGNORE, PILL_STATE__NO, PILL_STATE__YES, PILL_STATES} from "../filter-constants.js";
+import {MISC_FILTER_VALUE__BASIC_RULES_2014, MISC_FILTER_VALUE__BASIC_RULES_2024, MISC_FILTER_VALUE__SRD_5_1, MISC_FILTER_VALUE__SRD_5_2, PILL_STATE__IGNORE, PILL_STATE__NO, PILL_STATE__YES, PILL_STATES, getPillStateDisplayClass} from "../filter-constants.js";
 import {FilterUtils} from "../filter-utils.js";
 
 class FilterTransientOptions {
@@ -271,7 +271,7 @@ export class Filter extends FilterBase {
 			.map(({v, dispItem}) => {
 				if (isPlainText) return `${v === PILL_STATE__NO ? "not " : ""}${dispItem}`;
 
-				return `<span class="fltr__disp-state fltr__disp-state--${PILL_STATES[v]}">${dispItem}</span>`;
+				return `<span class="fltr__disp-state ${getPillStateDisplayClass(v)}">${dispItem}</span>`;
 			})
 			.join(", ");
 

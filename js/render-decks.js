@@ -109,9 +109,8 @@ class RenderDecks {
 
 		const hkCardLayout = settingsManager.addHookBase("cardLayout", () => {
 			const mode = settingsManager.get("cardLayout");
-			wrpCardRows.toggleClass(`decks__wrp-card-rows--list`, false);
-			wrpCardRows.toggleClass(`decks__wrp-card-rows--grid`, false);
-			wrpCardRows.toggleClass(`decks__wrp-card-rows--${mode}`);
+			wrpCardRows.toggleClass(`decks__wrp-card-rows--list`, mode === "list");
+			wrpCardRows.toggleClass(`decks__wrp-card-rows--grid`, mode === "grid");
 		});
 		fnsCleanup.push(() => settingsManager.removeHookBase("cardLayout", hkCardLayout));
 		hkCardLayout();

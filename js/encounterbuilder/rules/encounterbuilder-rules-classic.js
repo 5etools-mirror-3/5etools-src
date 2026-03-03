@@ -100,7 +100,7 @@ class _EncounterBuilderUiHelp {
 
 export class EncounterBuilderRulesClassic extends EncounterBuilderRulesBase {
 	rulesId = "classic";
-	displayName = "Classic (2014)";
+	displayName = "Classic (5e/2014)";
 	_tierHtmlProvider = new _TierHtmlProviderClassic();
 
 	_budgetMode = BUDGET_MODE_XP;

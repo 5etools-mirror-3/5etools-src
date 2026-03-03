@@ -1,6 +1,5 @@
 import {VetoolsConfig} from "./utils-config/utils-config-config.js";
 import {RenderClassesSidebar} from "./render-class.js";
-import {SITE_STYLE__CLASSIC} from "./consts.js";
 
 import {OmnisearchUtilsUi} from "./omnisearch/omnisearch-utils-ui.js";
 
@@ -59,15 +58,29 @@ class UtilClassesPage {
 
 	/* -------------------------------------------- */
 
-	static getSubclassCssMod (cls, sc) {
-		if (sc.source !== cls.source) {
-			return BrewUtil2.hasSourceJson(sc.source)
-				? sc.isReprinted ? "rebrewed" : "brew"
-				: (SourceUtil.isNonstandardSource(sc.source) || PrereleaseUtil.hasSourceJson(sc.source))
-					? sc.isReprinted ? "stale" : "spicy"
-					: sc.isReprinted ? "reprinted" : "fresh";
+	static getSubclassDisplayType (cls, sc) {
+		if (sc.source === cls.source) return "fresh";
+
+		if (BrewUtil2.hasSourceJson(sc.source)) {
+			return sc.isReprinted ? "rebrewed" : "brew";
 		}
-		return "fresh";
+
+		return (SourceUtil.isNonstandardSource(sc.source) || PrereleaseUtil.hasSourceJson(sc.source))
+			? sc.isReprinted ? "stale" : "spicy"
+			: sc.isReprinted ? "reprinted" : "fresh";
+	}
+
+	static _SUBCLASS_DISPLAY_TYPE_TO_CSS_CLASS_BTN = {
+		"fresh": "cls__btn-sc--active-fresh",
+		"reprinted": "cls__btn-sc--active-reprinted",
+		"spicy": "cls__btn-sc--active-spicy",
+		"stale": "cls__btn-sc--active-stale",
+		"brew": "cls__btn-sc--active-brew",
+		"rebrewed": "cls__btn-sc--active-rebrewed",
+	};
+
+	static getSubclassDisplayClassButton ({displayType}) {
+		return this._SUBCLASS_DISPLAY_TYPE_TO_CSS_CLASS_BTN[displayType] || this._SUBCLASS_DISPLAY_TYPE_TO_CSS_CLASS_BTN["fresh"];
 	}
 
 	/* -------------------------------------------- */
@@ -871,7 +884,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 	_doBindBtnSettingsSidebar () {
 		const menu = ContextUtil.getMenu([
 			new ContextUtil.Action(
-				"Toggle &quot;Spell Points&quot; Mode (2014)",
+				"Toggle &quot;Spell Points&quot; Mode (5e)",
 				() => {
 					this._stateGlobal.isUseSpellPoints = !this._stateGlobal.isUseSpellPoints;
 				},
@@ -1569,13 +1582,13 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		// endregion
 	}
 
-	_doSelectAllSubclasses ({allowlistMods = null} = {}) {
+	_doSelectAllSubclasses ({allowlistDisplayTypes = null} = {}) {
 		const cls = this.activeClass;
 		const allStateKeys = cls.subclasses
 			.map(sc => {
 				return {
 					stateKey: UrlUtil.getStateKeySubclass(sc),
-					isSelected: allowlistMods == null || allowlistMods.has(UtilClassesPage.getSubclassCssMod(cls, sc)),
+					isSelected: allowlistDisplayTypes == null || allowlistDisplayTypes.has(UtilClassesPage.getSubclassDisplayType(cls, sc)),
 				};
 			});
 
@@ -1591,12 +1604,12 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			.onn("click", evt => {
 				const allStateKeys = cls.subclasses.map(sc => UrlUtil.getStateKeySubclass(sc));
 				if (evt.shiftKey) {
-					this._doSelectAllSubclasses({allowlistMods: new Set(["fresh", "brew", "spicy"])});
+					this._doSelectAllSubclasses({allowlistDisplayTypes: new Set(["fresh", "brew", "spicy"])});
 				} else if (EventUtil.isCtrlMetaKey(evt)) {
 					const nxtState = {};
 					allStateKeys.forEach(k => nxtState[k] = false);
 					this._listSubclass.visibleItems
-						.filter(it => it.values.mod === "brew" || it.values.mod === "fresh")
+						.filter(it => it.values.displayType === "brew" || it.values.displayType === "fresh")
 						.map(it => it.values.stateKey)
 						.forEach(stateKey => nxtState[stateKey] = true);
 					this._proxyAssign("state", "_state", "__state", nxtState);
@@ -1727,8 +1740,8 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		const isExcluded = this.constructor.isSubclassExcluded_(cls, sc);
 
 		const stateKey = UrlUtil.getStateKeySubclass(sc);
-		const mod = UtilClassesPage.getSubclassCssMod(cls, sc);
-		const clsActive = `cls__btn-sc--active-${mod}`;
+		const displayType = UtilClassesPage.getSubclassDisplayType(cls, sc);
+		const clsActive = UtilClassesPage.getSubclassDisplayClassButton({displayType});
 
 		if (this._state[stateKey] == null) this._state[stateKey] = false;
 
@@ -1779,7 +1792,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				page: sc.page,
 				shortName: sc.shortName,
 				stateKey,
-				mod,
+				displayType,
 			},
 			{
 				isExcluded,
@@ -1905,6 +1918,11 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		return (cls.subclasses || []).some(it => (it.subclassFeatures || []).some(lvlFeatures => lvlFeatures.some(scf => scf.level === level)));
 	}
 
+	static _CLASS_NAV_ITEM_DEPTH_TO_CSS_CLASS = {
+		"0": "cls-nav__item--depth-0",
+		"2": "cls-nav__item--depth-2",
+	};
+
 	_render_renderOutline_doMakeItem (
 		{
 			filterValues,
@@ -1924,10 +1942,10 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		) return;
 
 		const displayDepth = Math.min(depthData.depth + 1, 2);
-		ee`<div class="cls-nav__item cls-nav__item--depth-${displayDepth} ${additionalCssClasses}">${depthData.name}</div>`
+		ee`<div class="cls-nav__item ${this.constructor._CLASS_NAV_ITEM_DEPTH_TO_CSS_CLASS[displayDepth] || ""} ${additionalCssClasses}">${depthData.name}</div>`
 			.onn("click", () => {
 				const ele = es(`[data-title-index="${depthData.ixHeader}"]`);
-				if (ele.scrollIntoView());
+				if (ele) ele.scrollIntoView();
 			})
 			.appendTo(wrpBody);
 	}
@@ -2778,7 +2796,7 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
 			.filter(sc => !ClassesPage.isSubclassExcluded_(cls, sc))
 			.forEach((sc, i) => {
 				const name = sc.isReprinted ? `${ClassesPage.getBaseShortName(sc)} (${Parser.sourceJsonToAbv(sc.source)})` : sc.shortName;
-				const mod = UtilClassesPage.getSubclassCssMod(cls, sc);
+				const activeClassName = UtilClassesPage.getSubclassDisplayClassButton({displayType: UtilClassesPage.getSubclassDisplayType(cls, sc)});
 				const stateKey = UrlUtil.getStateKeySubclass(sc);
 
 				const btnToggleSc = ee`<span class="cls-bkmv__btn-tab ${sc.isReprinted ? "cls__btn-sc--reprinted" : ""}" title="${ClassesPage.getBtnTitleSubclass(sc)}">${name}</span>`
@@ -2789,7 +2807,7 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
 				const hkShowHide = () => {
 					const elesDispFeatures = em(`[data-cls-book-sc-ix="${i}"]`, wrpContent);
 					const isActive = !!this._parent.get(stateKey);
-					btnToggleSc.toggleClass(`cls__btn-sc--active-${mod}`, isActive);
+					btnToggleSc.toggleClass(activeClassName, isActive);
 					elesDispFeatures.forEach(ele => ele.toggleVe(!!isActive));
 				};
 				(this._hooks[stateKey] = this._hooks[stateKey] || []).push(hkShowHide);

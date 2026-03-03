@@ -1835,8 +1835,7 @@ class DataLoader {
 	}
 
 	static _registerPropToHashPages () {
-		Object.entries(this._PROP_TO_HASH_PAGE)
-			.forEach(([k, v]) => this._PROP_TO_HASH_PAGE[`${k}Fluff`] = v);
+		// (Implement as required)
 	}
 
 	static _registerDataTypeLoader ({loader, props, page, isFluff}) {

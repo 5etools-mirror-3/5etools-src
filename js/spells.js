@@ -49,7 +49,7 @@ class SpellsSublistManager extends SublistManager {
 			new SublistCell({
 				text: school,
 				title: Parser.spSchoolAndSubschoolsAbvsToFull(spell.school, spell.subschools),
-				css: `sp__school-${spell.school}`,
+				css: Parser.spSchoolAbvToStyleClass(spell.school),
 				style: Parser.spSchoolAbvToStyle(spell.school),
 			}),
 			new SublistCell({
@@ -250,7 +250,7 @@ class SpellsPage extends ListPageMultiSource {
 						name: "School",
 						transform: (sp) => {
 							const ptMeta = Parser.spMetaToArr(sp.meta);
-							return `<span class="sp__school-${sp.school}" ${Parser.spSchoolAbvToStyle(sp.school)}>${Parser.spSchoolAndSubschoolsAbvsToFull(sp.school, sp.subschools)}</span>${ptMeta.length ? ` (${ptMeta.join(", ")})` : ""}`;
+							return `<span class="${Parser.spSchoolAbvToStyleClass(sp.school)}" ${Parser.spSchoolAbvToStyle(sp.school)}>${Parser.spSchoolAndSubschoolsAbvsToFull(sp.school, sp.subschools)}</span>${ptMeta.length ? ` (${ptMeta.join(", ")})` : ""}`;
 						},
 					},
 					range: {name: "Range", transform: (it) => Parser.spRangeToFull(it)},
@@ -332,6 +332,7 @@ class SpellsPage extends ListPageMultiSource {
 		const source = Parser.sourceJsonToAbv(spell.source);
 		const time = PageFilterSpells.getTblTimeStr(spell.time[0]);
 		const school = Parser.spSchoolAndSubschoolsAbvsShort(spell.school, spell.subschools);
+		const schoolClassName = Parser.spSchoolAbvToStyleClass(spell.school);
 		const concentration = spell._isConc ? "×" : "";
 		const range = Parser.spRangeToFull(spell.range, {isDisplaySelfArea: true});
 
@@ -351,7 +352,7 @@ class SpellsPage extends ListPageMultiSource {
 						e_({tag: "span", clazz: `ve-col-1-7 px-1 ve-text-center`, text: time}),
 						e_({
 							tag: "span",
-							clazz: `ve-col-1-2 px-1 sp__school-${spell.school} ve-text-center`,
+							clazz: `ve-col-1-2 px-1 ${schoolClassName} ve-text-center`,
 							title: Parser.spSchoolAndSubschoolsAbvsToFull(spell.school, spell.subschools),
 							style: Parser.spSchoolAbvToStylePart(spell.school),
 							text: school,
