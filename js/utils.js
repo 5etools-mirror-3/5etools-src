@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.25.1"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.25.2"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -1232,8 +1232,8 @@ class ElementUtil {
 	 *
 	 * @property {function(string=): HTMLElementExtended} first
 	 * @property {function(string): HTMLElementExtended} closeste
-	 * @property {function(string): Array<HTMLElementExtended>} childrene
-	 * @property {function(string): Array<HTMLElementExtended>} siblings
+	 * @property {function(string=): Array<HTMLElementExtended>} childrene
+	 * @property {function(string=): Array<HTMLElementExtended>} siblings
 	 * @property {function(): HTMLElementExtended} parente
 	 *
 	 * @property {function(): number} outerWidthe
@@ -7728,11 +7728,38 @@ globalThis.RollerUtil = class {
 		return typeof window !== "undefined" && typeof window.crypto !== "undefined";
 	}
 
+	static #_DBG_MODE = null;
+	static #_DBG_REPEAT_STORE = null;
+	static #_DBG_REPEAT = null;
+
+	static dbg_setMode (mode) {
+		this.#_DBG_MODE = mode;
+		switch (mode) {
+			case "none": this.#_DBG_REPEAT_STORE = null; this.#_DBG_REPEAT = null; break;
+			case "capture": this.#_DBG_REPEAT_STORE = null; this.#_DBG_REPEAT = null; break;
+			case "replay": this.#_DBG_REPEAT = [...this.#_DBG_REPEAT_STORE]; break;
+			default: throw new Error(`Unhandled mode "${mode}"!`);
+		}
+	}
+
 	static randomise (max, min = 1) {
+		if (this.#_DBG_MODE === "replay") {
+			if (!this.#_DBG_REPEAT?.length) throw new Error(`Exhausted replay!`);
+			return this.#_DBG_REPEAT.shift();
+		}
+
+		const out = this._randomise({min, max});
+		if (this.#_DBG_MODE === "capture") {
+			(this.#_DBG_REPEAT_STORE ||= []).push(out);
+		}
+		return out;
+	}
+
+	static _randomise ({min, max}) {
 		if (min > max) return 0;
 		if (max === min) return max;
 		if (RollerUtil.isCrypto()) {
-			return RollerUtil._randomise(min, max + 1);
+			return RollerUtil._getRandomCryptoRoll(min, max + 1);
 		} else {
 			return RollerUtil.roll(max) + min;
 		}
@@ -7742,7 +7769,7 @@ globalThis.RollerUtil = class {
 		return array[RollerUtil.randomise(array.length) - 1];
 	}
 
-	static _randomise = (min, max) => {
+	static _getRandomCryptoRoll = (min, max) => {
 		if (isNaN(min) || isNaN(max)) throw new Error(`Invalid min/max!`);
 
 		const range = max - min;
@@ -9481,7 +9508,7 @@ if (!globalThis.IS_VTT && typeof window !== "undefined") {
 			].forEach(id => {
 				const iv = setInterval(() => {
 					const wrp = es(`#${id}`);
-					if (!wrp.length) return;
+					if (!wrp) return;
 					if (!wrp.childrene().length) return;
 					if (wrp.childrene()[0].tagName === "SCRIPT") return;
 					const tgt = wrp.closeste(".cancer__anchor")?.find(".cancer__disp-cancer");

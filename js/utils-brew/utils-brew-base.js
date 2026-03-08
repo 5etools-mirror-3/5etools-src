@@ -847,7 +847,7 @@ export class BrewUtil2Base {
 		return {brewDocs, unavailableSources};
 	}
 
-	async pPullAllBrews ({brews} = {}) {
+	async pPullAllBrews ({brews = null} = {}) {
 		try {
 			const lockToken = await this._LOCK.pLock();
 			return (await this._pPullAllBrews_({lockToken, brews}));
@@ -856,24 +856,33 @@ export class BrewUtil2Base {
 		}
 	}
 
-	async _pPullAllBrews_ ({lockToken, brews}) {
+	async _pPullAllBrews_ ({lockToken, brews = null}) {
 		const brewDocsUpdated = [];
 
-		brews = brews || MiscUtil.copyFast(await this._pGetBrewRaw({lockToken}));
-		const brewsNxt = await brews.pMap(async brew => {
-			if (!this.isPullable(brew)) return brew;
+		const brewsCur = MiscUtil.copyFast(await this._pGetBrewRaw({lockToken}));
+		const allowlistDocIdLocals = new Set(
+			brews
+				? brews.map(brew => brew.head.docIdLocal)
+				: brewsCur.map(brew => brew.head.docIdLocal),
+		);
 
-			const json = await DataUtil.loadRawJSON(brew.head.url, {isBustCache: true});
+		const brewsNxt = await brewsCur
+			.pMap(async brew => {
+				if (!allowlistDocIdLocals.has(brew.head.docIdLocal)) return brew;
 
-			const localLastModified = brew.body._meta?.dateLastModified ?? 0;
-			const sourceLastModified = json._meta?.dateLastModified ?? 0;
+				if (!this.isPullable(brew)) return brew;
 
-			if (sourceLastModified <= localLastModified) return brew;
+				const json = await DataUtil.loadRawJSON(brew.head.url, {isBustCache: true});
 
-			const brewDoc = BrewDoc.fromObject(brew).mutUpdate({json});
-			brewDocsUpdated.push(brewDoc);
-			return brewDoc.toObject();
-		});
+				const localLastModified = brew.body._meta?.dateLastModified ?? 0;
+				const sourceLastModified = json._meta?.dateLastModified ?? 0;
+
+				if (sourceLastModified <= localLastModified) return brew;
+
+				const brewDoc = BrewDoc.fromObject(brew).mutUpdate({json});
+				brewDocsUpdated.push(brewDoc);
+				return brewDoc.toObject();
+			});
 
 		if (!brewDocsUpdated.length) return brewDocsUpdated;
 

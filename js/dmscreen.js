@@ -858,7 +858,7 @@ class SideMenu {
 				<label class="split-v-center mb-2"><span>Keep Current Width/Height</span> ${cbKeepWidthHeight}</label>
 				<hr class="hr-1">
 				<div>Are you sure?</div>
-			</div>`
+			</div>`;
 
 			if (!await InputUiUtil.pGetUserBoolean({title: "Reset", eleDescription, textYes: "Yes", textNo: "Cancel"})) return;
 

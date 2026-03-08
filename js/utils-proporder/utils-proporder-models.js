@@ -80,7 +80,7 @@ export class ArrayKey {
 			prop,
 			{
 				fnGetOrder: () => propToList[prop],
-				fnSort: getFnRootPropListSort(prop),
+				fnSort: getFnRootPropListSort(prop, {isRequired: true}),
 			},
 		);
 	}

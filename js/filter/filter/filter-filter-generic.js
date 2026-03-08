@@ -975,7 +975,9 @@ export class Filter extends FilterBase {
 		if (this.__wrpFilter) this.__wrpFilter.toggleClass("fltr__no-items", !this._items.length);
 	}
 
-	_doRenderNests () {
+	_doRenderNests_doUpdateElements () {
+		if (!this.__wrpNestHeadInner) return;
+
 		Object.entries(this._nests)
 			.sort((a, b) => SortUtil.ascSort(a[0], b[0])) // array 0 (key) is the nest name
 			.forEach(([nestName, nestMeta]) => {
@@ -1018,9 +1020,13 @@ export class Filter extends FilterBase {
 					this._addHook("nestsHidden", nestName, hook);
 					hook();
 				}
+
 				nestMeta._btnNest.appendTo(this.__wrpNestHeadInner);
 			});
+	}
 
+	_doRenderNests () {
+		this._doRenderNests_doUpdateElements();
 		if (this._updateNestSummary) this._updateNestSummary();
 	}
 

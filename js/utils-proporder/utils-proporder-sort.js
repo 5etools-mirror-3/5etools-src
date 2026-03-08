@@ -1,4 +1,4 @@
-export const getFnRootPropListSort = (prop) => {
+export const getFnRootPropListSort = (prop, {isRequired = false} = {}) => {
 	switch (prop) {
 		case "spell":
 		case "roll20Spell":
@@ -128,6 +128,8 @@ export const getFnRootPropListSort = (prop) => {
 			return (a, b) => SortUtil.ascSortLower(a.abbreviation, b.abbreviation) || SortUtil.ascSortLower(a.source, b.source);
 		case "converterSample":
 			return (a, b) => SortUtil.ascSortLower(a.converterId, b.converterId) || SortUtil.ascSortLower(a.format, b.format) || SortUtil.ascSortLower(a.edition, b.edition);
-		default: throw new Error(`Unhandled prop "${prop}"`);
+		default:
+			if (!isRequired) return null;
+			throw new Error(`Unhandled prop "${prop}"`);
 	}
 };

@@ -11370,19 +11370,31 @@
 			"level": 3,
 			"activities": [
 				{
-					"type": "damage",
-					"damage": {
-						"parts": [
+					"type": "heal",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
 							{
-								"custom": {
-									"enabled": true,
-									"formula": "@classes.artificer.levels"
-								},
-								"types": [
-									"temphp"
-								]
+								"type": "itemUses",
+								"value": "1"
 							}
 						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"temphp"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "@classes.artificer.levels"
+						}
 					}
 				}
 			],

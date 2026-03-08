@@ -11406,7 +11406,7 @@ Renderer.monster = class {
 					? await ScaleSpellSummonedCreature.scale(original, spellLevel)
 					: original;
 
-				ele.empty().append(fnRender(toRender));
+				ele.empty().appends(fnRender(toRender));
 
 				Renderer.monster._bindListenersScale(toRender, ele);
 			})

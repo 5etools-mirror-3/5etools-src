@@ -1,8 +1,9 @@
 import fs from "fs";
 import "../js/parser.js";
 import "../js/utils.js";
-import {spawn} from "child_process";
+import {Worker} from "node:worker_threads";
 import {Command} from "commander";
+import {Deferred, WorkerList, getCntWorkers} from "5etools-utils/lib/WorkerList.js";
 import {getCliJsonFiles, mutCommanderJsonFileOptions} from "../node/util-commander.js";
 
 const _PATH_REPORT = "test/test-homebrew-tags.log";
@@ -27,51 +28,6 @@ const getTargetFiles = () => {
 	return jsonFiles.map(jsonFile => jsonFile.getFilePath());
 };
 
-const pRunFile = ({filePath}) => {
-	return new Promise(resolve => {
-		const args = [
-			"test/test-tags.js",
-			"--file-additional",
-			filePath,
-			"--skip-non-additional",
-		];
-
-		const proc = spawn(
-			process.execPath,
-			args,
-			{
-				env: process.env,
-				stdio: ["ignore", "pipe", "pipe"],
-			},
-		);
-
-		let output = "";
-		proc.stdout.on("data", chunk => {
-			const text = chunk.toString();
-			output += text;
-			process.stdout.write(text);
-		});
-		proc.stderr.on("data", chunk => {
-			const text = chunk.toString();
-			output += text;
-			process.stderr.write(text);
-		});
-		proc.on("error", err => {
-			const text = `${err?.stack || err}`;
-			output += `${text}\n`;
-			process.stderr.write(`${text}\n`);
-		});
-
-		proc.on("close", (code, signal) => {
-			resolve({
-				filePath,
-				exitCode: code ?? (signal ? 1 : 0),
-				output,
-			});
-		});
-	});
-};
-
 const doWriteReport = ({runInfosFailed}) => {
 	const out = runInfosFailed
 		.map(runInfo => {
@@ -90,6 +46,73 @@ const doWriteReport = ({runInfosFailed}) => {
 	fs.writeFileSync(_PATH_REPORT, out.join("\n"), "utf8");
 };
 
+const pDoProcessFiles = async ({files}) => {
+	const cntWorkers = Math.min(files.length, getCntWorkers());
+	const workerList = new WorkerList();
+
+	const runInfos = [];
+	let cntUnknownFailures = 0;
+
+	const workers = [...new Array(cntWorkers)]
+		.map(() => {
+			const worker = new Worker(new URL("./test-homebrew-tags-worker.js", import.meta.url));
+
+			worker.on("message", msg => {
+				switch (msg.type) {
+					case "ready": {
+						workerList.add(worker);
+						break;
+					}
+
+					case "done": {
+						if (msg.payload?.runInfo) {
+							runInfos.push(msg.payload.runInfo);
+
+							const {filePath, output = ""} = msg.payload.runInfo;
+							process.stdout.write(`\n=====\nTesting tags in file "${filePath}"...\n`);
+							process.stdout.write(output);
+							if (!output.endsWith("\n")) process.stdout.write("\n");
+						}
+						if (worker.dIsActive) worker.dIsActive.resolve();
+						workerList.add(worker);
+						break;
+					}
+				}
+			});
+
+			worker.on("error", err => {
+				cntUnknownFailures++;
+				process.stderr.write(`${err?.stack || err}\n`);
+				if (worker.dIsActive) worker.dIsActive.resolve();
+			});
+
+			worker.postMessage({type: "init"});
+			return worker;
+		});
+
+	for (let i = 0; i < files.length; ++i) {
+		const worker = await workerList.get();
+		const filePath = files[i];
+
+		worker.dIsActive = new Deferred();
+		worker.postMessage({
+			type: "work",
+			payload: {
+				filePath,
+				fileNumber: i + 1,
+			},
+		});
+	}
+
+	await Promise.all(workers.map(worker => worker.dIsActive?.promise));
+	await Promise.all(workers.map(worker => worker.terminate()));
+
+	return {
+		runInfos,
+		cntUnknownFailures,
+	};
+};
+
 const main = async () => {
 	const files = getTargetFiles();
 
@@ -99,24 +122,24 @@ const main = async () => {
 	}
 
 	console.log(`Running test-tags on ${files.length} file${files.length === 1 ? "" : "s"}...`);
+	const tStart = Date.now();
 
-	const runInfosFailed = [];
-	await files.pSerialAwaitMap(async filePath => {
-		console.log(`\n=====\nTesting tags in file "${filePath}"...`);
-
-		const runInfo = await pRunFile({filePath});
-		if (runInfo.exitCode) runInfosFailed.push(runInfo);
-	});
+	const {runInfos, cntUnknownFailures} = await pDoProcessFiles({files});
+	const runInfosFailed = runInfos
+		.filter(runInfo => runInfo.exitCode)
+		.sort((a, b) => SortUtil.ascSort(a.fileNumber, b.fileNumber));
 
 	doWriteReport({runInfosFailed});
 
-	if (runInfosFailed.length) {
-		console.log(`\n${runInfosFailed.length} tag test${runInfosFailed.length === 1 ? "" : "s"} failed! Output report to "${_PATH_REPORT}".`);
+	console.log(`\nCompleted in ${((Date.now() - tStart) / 1000).toFixed(2)}s.`);
+	if (runInfosFailed.length || cntUnknownFailures) {
+		console.log(`${runInfosFailed.length} tag test${runInfosFailed.length === 1 ? "" : "s"} failed! Output report to "${_PATH_REPORT}".`);
+		if (cntUnknownFailures) console.log(`${cntUnknownFailures} worker failure${cntUnknownFailures === 1 ? "" : "s"} occurred.`);
 	} else {
-		console.log(`\nAll tag tests passed!`);
+		console.log(`All tag tests passed!`);
 	}
 
-	return !runInfosFailed.length;
+	return !(runInfosFailed.length || cntUnknownFailures);
 };
 
 const pMain = main();
