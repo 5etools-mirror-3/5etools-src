@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/fonts/DMSans-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  --bg-desktop: #121212;
+  --bg-base: #1a1a1a;
+  --bg-panel: #202020;
+  --bg-raised: #2b2b2b;
+  --border-subtle: #3a3a3a;
+  --border-strong: #4a4a4a;
+  --text-primary: #f2ede4;
+  --text-secondary: #c8c3b8;
+  --text-muted: #9a9488;
+  --text-disabled: #7a756c;
+  --accent-primary: #2b5ca6;
+  --accent-warning: #e8a820;
+  --accent-danger: #d94032;
+  --accent-success: #1a7a6d;
+  --accent-secondary: #6b3fa0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  background: var(--bg-desktop);
+  color: var(--text-primary);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #5a5a5a;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
