@@ -4,7 +4,7 @@
 @use "../vars/vars-night";
 
 @layer vetools {
-	.ve-night-mode .fltr {
+	.ve-night-mode .ve-fltr {
 		$flt-ignore: vars-night.$rgb-bg--night;
 		$flt-ignore--hover: #323232;
 
@@ -85,7 +85,7 @@
 				&[data-state="ignore"] {
 					background: $flt-ignore;
 
-					&:hover:not(.fltr__pill--display-only) {
+					&:hover:not(.ve-fltr__pill--display-only) {
 						background: $flt-ignore--hover;
 					}
 				}

@@ -19,10 +19,10 @@ export class ConfigSettingsGroup {
 	render (rdState, {isLast = false} = {}) {
 		const wrpRows = ee`<div></div>`;
 
-		ee`<div class="w-100">
+		ee`<div class="ve-w-100">
 			<h4>${this._name}</h4>
 			${wrpRows}
-			${isLast ? null : `<hr class="hr-3 mb-1">`}
+			${isLast ? null : `<hr class="ve-hr-3 ve-mb-1">`}
 		</div>`
 			.appendTo(rdState.wrp);
 

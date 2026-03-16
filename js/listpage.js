@@ -49,7 +49,7 @@ class SublistCellTemplate {
 		return [
 			this._css,
 			text === VeCt.STR_NONE
-				? "italic"
+				? "ve-italic"
 				: "",
 		]
 			.filter(Boolean)
@@ -198,7 +198,7 @@ class SublistManager {
 	async _pBindSublistResizeHandlers () {
 		const STORAGE_KEY = "SUBLIST_RESIZE";
 
-		const eleHandle = ee`<div class="sublist__ele-resize mobile-sm__hidden">...</div>`.appendTo(this._wrpContainer);
+		const eleHandle = ee`<div class="sublist__ele-resize ve-mobile-sm__hidden">...</div>`.appendTo(this._wrpContainer);
 
 		let mousePos;
 		const resize = (evt) => {
@@ -1016,14 +1016,14 @@ class ListPageSettingsManager extends ListPageStateManager {
 						.map(([prop, setting]) => {
 							switch (setting.type) {
 								case "boolean": {
-									return ee`<label class="split-v-center stripe-even py-1">
+									return ee`<label class="ve-split-v-center stripe-even ve-py-1">
 										<span>${setting.name}</span>
 										${ComponentUiUtil.getCbBool(this, prop)}
 									</label>`;
 								}
 
 								case "enum": {
-									return ee`<label class="split-v-center stripe-even py-1">
+									return ee`<label class="ve-split-v-center stripe-even ve-py-1">
 										<span>${setting.name}</span>
 										${ComponentUiUtil.getSelEnum(this, prop, {values: setting.enumVals})}
 									</label>`;
@@ -1246,7 +1246,7 @@ class ListPage {
 	}
 
 	_pOnLoad_initVisibleItemsDisplay () {
-		const outVisibleResults = es(`.lst__wrp-search-visible`);
+		const outVisibleResults = es(`.ve-lst__wrp-search-visible`);
 		this._list.on("updated", () => outVisibleResults.html(`${this._list.visibleItems.length}/${this._list.items.length}`));
 	}
 
@@ -1477,7 +1477,7 @@ class ListPage {
 		btnReset.beforee(btnHideSearch);
 
 		const btnShowSearch = ee`<button class="ve-btn ve-btn-block ve-btn-default ve-btn-xs" type="button">Show List</button>`;
-		const wrpBtnShowSearch = ee`<div class="ve-col-12 mb-1 ve-hidden">${btnShowSearch}</div>`.prependTo(wrpContent);
+		const wrpBtnShowSearch = ee`<div class="ve-col-12 ve-mb-1 ve-hidden">${btnShowSearch}</div>`.prependTo(wrpContent);
 
 		btnHideSearch.onn("click", () => {
 			wrpList.hideVe();
@@ -1492,7 +1492,7 @@ class ListPage {
 	}
 
 	_renderListFeelingLucky ({isCompact, btnReset, isScrollablePage = false}) {
-		const btnRoll = ee`<button class="ve-btn ve-btn-default ${isCompact ? "px-2" : ""}" title="Feeling Lucky?"><span class="glyphicon glyphicon-random"></span></button>`;
+		const btnRoll = ee`<button class="ve-btn ve-btn-default ${isCompact ? "ve-px-2" : ""}" title="Feeling Lucky?"><span class="glyphicon glyphicon-random"></span></button>`;
 
 		btnRoll
 			.onn("click", () => {
@@ -1622,8 +1622,8 @@ class ListPage {
 				const hasText = !!iptSearch.val().length;
 
 				btnClear
-					.toggleClass("no-events", !hasText)
-					.toggleClass("clickable", hasText)
+					.toggleClass("ve-no-events", !hasText)
+					.toggleClass("ve-clickable", hasText)
 					.tooltip(hasText ? "Clear" : null)
 					.html(`<span class="glyphicon ${hasText ? `glyphicon-remove` : `glyphicon-search`}"></span>`);
 			});
@@ -1835,7 +1835,7 @@ class ListPage {
 
 		this._btnsTabs[ident] = e_({
 			tag: "button",
-			clazz: "ui-tab__btn-tab-head ve-btn ve-btn-default pt-2p px-4p pb-0",
+			clazz: "ve-ui-tab__btn-tab-head ve-btn ve-btn-default ve-pt-2p ve-px-4p ve-pb-0",
 			children: [
 				e_({
 					tag: "span",
@@ -2214,10 +2214,10 @@ class ListPage {
 		];
 		const menu = ContextUtil.getMenu(actions);
 
-		const btnOptions = ee`<button class="ve-btn ve-btn-default ve-btn-xs stats__btn-stats-name" title="Other Options"><span class="glyphicon glyphicon-option-vertical"></span></button>`
+		const btnOptions = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-stats__btn-stats-name" title="Other Options"><span class="glyphicon glyphicon-option-vertical"></span></button>`
 			.onn("click", evt => ContextUtil.pOpenMenu(evt, menu));
 
-		return ee`<div class="ve-flex-v-center ve-btn-group ml-2">${btnOptions}</div>`;
+		return ee`<div class="ve-flex-v-center ve-btn-group ve-ml-2">${btnOptions}</div>`;
 	}
 
 	/** @abstract */
@@ -2269,9 +2269,9 @@ class ListPage {
 		const ent = this._dataList[Hist.lastLoadedId];
 
 		const optsDomToImage = {
-			// FIXME(Future) doesn't seem to have the desired effect; `lst__is-exporting-image` bodge used instead
+			// FIXME(Future) doesn't seem to have the desired effect; `ve-lst__is-exporting-image` bodge used instead
 			adjustClonedNode: (node, clone, isAfter) => {
-				if (node.classList && node.classList.contains("stats__wrp-h-source--token") && !isAfter) {
+				if (node.classList && node.classList.contains("ve-stats__wrp-h-source--token") && !isAfter) {
 					clone.style.paddingRight = "0px";
 				}
 				return clone;
@@ -2285,7 +2285,7 @@ class ListPage {
 				ele: this._pgContent,
 				optsDomToImage,
 				isForceDayTheme,
-				clazzAdditional: "lst__is-exporting-image",
+				clazzAdditional: "ve-lst__is-exporting-image",
 			});
 
 			const isCopy = await MiscUtil.pCopyBlobToClipboard(blob);
@@ -2298,7 +2298,7 @@ class ListPage {
 		const page = UrlUtil.getCurrentPage();
 
 		const cpy = e_({outer: html})
-			.addClass("lst__is-exporting-image");
+			.addClass("ve-lst__is-exporting-image");
 
 		const btnCpy = ee`<button class="ve-btn ve-btn-default ve-btn-xs" title="SHIFT to Copy and Close; ALT to Copy in Day Theme">Copy</button>`
 			.onn("click", async evt => {
@@ -2335,8 +2335,8 @@ class ListPage {
 		const posBtn = eleCopyEffect.getBoundingClientRect().toJSON();
 		const hoverWindow = Renderer.hover.getShowWindow(
 			ee`<div class="ve-flex-col">
-				<div class="split-v-center mb-2 px-2 mt-2">
-					<i class="mr-2">Optionally resize <kbd title="(The width of)">&harr;</kbd> the window, then Copy or Save.</i>
+				<div class="ve-split-v-center ve-mb-2 ve-px-2 ve-mt-2">
+					<i class="ve-mr-2">Optionally resize <kbd title="(The width of)">&harr;</kbd> the window, then Copy or Save.</i>
 					<div class="ve-btn-group">
 						${btnCpy}
 						${btnSave}
@@ -2407,13 +2407,13 @@ class ListPageTokenDisplay {
 		const wMax = Math.max(Math.floor(bcr.height) - 6, this.constructor._CONTAINER_SIZE);
 
 		const imgLink = this._fnGetTokenUrl(ent);
-		const img = ee`<img src="${imgLink}" class="stats__token stats__token--primary relative" ${Renderer.utils.getTokenMetadataAttributes(ent)} loading="lazy">`
+		const img = ee`<img src="${imgLink}" class="ve-stats__token ve-stats__token--primary ve-relative" ${Renderer.utils.getTokenMetadataAttributes(ent)} loading="lazy">`
 			.css({"max-width": `${wMax}px`});
 
 		let styleFoundryScale = null;
 		if (ent.foundryTokenScale && ent.foundryTokenScale >= 1.2) {
 			styleFoundryScale = ee`<style>
-				.stats__token--primary {
+				.ve-stats__token--primary {
 					width: ${ent.foundryTokenScale * 100}%;
 					height: ${ent.foundryTokenScale * 100}%;
 					left: -${(ent.foundryTokenScale - 1) / 2 * 100}%;
@@ -2421,8 +2421,8 @@ class ListPageTokenDisplay {
 					transition: width 34ms, height 34ms, left 34ms, top 34ms;
 				}
 
-				.stats__wrp-token:hover {
-					.stats__token--primary {
+				.ve-stats__wrp-token:hover {
+					.ve-stats__token--primary {
 						width: 100%;
 						height: 100%;
 						left: unset;
@@ -2432,7 +2432,7 @@ class ListPageTokenDisplay {
 			</style>`;
 		}
 
-		const lnkToken = ee`<a href="${imgLink}" class="stats__wrp-token ve-overflow-hidden" target="_blank" rel="noopener noreferrer">${styleFoundryScale}${img}</a>`
+		const lnkToken = ee`<a href="${imgLink}" class="ve-stats__wrp-token ve-overflow-hidden" target="_blank" rel="noopener noreferrer">${styleFoundryScale}${img}</a>`
 			.appendTo(this._dispToken);
 
 		const altArtMeta = [];
@@ -2454,7 +2454,7 @@ class ListPageTokenDisplay {
 				const imgLink = this._fnGetTokenUrl(meta);
 				const srcInitial = altArtLoaded[imgLink] ? imgLink : Renderer.utils.lazy.getPlaceholderImgHtml({width: 1000, height: 1000, shapeType: "circle"});
 				const displayName = Renderer.utils.getAltArtDisplayName(meta);
-				const img = ee`<img src="${srcInitial}" class="stats__token" ${Renderer.utils.getTokenMetadataAttributes(ent, {displayName})} loading="lazy">`
+				const img = ee`<img src="${srcInitial}" class="ve-stats__token" ${Renderer.utils.getTokenMetadataAttributes(ent, {displayName})} loading="lazy">`
 					.css({"max-width": `${wMax}px`})
 					.onn("load", async () => {
 						img.src = imgLink;
@@ -2463,7 +2463,7 @@ class ListPageTokenDisplay {
 					.onn("error", () => {
 						img.attr("src", this.constructor._SRC_ERROR);
 					});
-				meta.ele = ee`<a href="${imgLink}" class="stats__wrp-token" target="_blank" rel="noopener noreferrer">${img}</a>`
+				meta.ele = ee`<a href="${imgLink}" class="ve-stats__wrp-token" target="_blank" rel="noopener noreferrer">${img}</a>`
 					.hideVe()
 					.appendTo(this._dispToken);
 			}
@@ -2509,16 +2509,16 @@ class ListPageTokenDisplay {
 		};
 
 		// append footer first to be behind buttons
-		const footer = ee`<div class="stats__token-footer"></div>`;
-		const wrpFooter = ee`<div class="stats__wrp-token-footer">${footer}</div>`.hideVe().appendTo(lnkToken);
+		const footer = ee`<div class="ve-stats__token-footer"></div>`;
+		const wrpFooter = ee`<div class="ve-stats__wrp-token-footer">${footer}</div>`.hideVe().appendTo(lnkToken);
 
-		const btnLeft = ee`<button class="stats__btn-token-cycle ve-btn ve-btn-default ve-btn-xs" disabled><span class="glyphicon glyphicon-chevron-left"></span></button>`
+		const btnLeft = ee`<button class="ve-stats__btn-token-cycle ve-btn ve-btn-default ve-btn-xs" disabled><span class="glyphicon glyphicon-chevron-left"></span></button>`
 			.onn("click", evt => handleClick(evt, -1));
 
-		const btnRight = ee`<button class="stats__btn-token-cycle ve-btn ve-btn-default ve-btn-xs"><span class="glyphicon glyphicon-chevron-right"></span></button>`
+		const btnRight = ee`<button class="ve-stats__btn-token-cycle ve-btn ve-btn-default ve-btn-xs"><span class="glyphicon glyphicon-chevron-right"></span></button>`
 			.onn("click", evt => handleClick(evt, 1));
 
-		const wrpBtns = ee`<div class="ve-flex-v-center ve-btn-group absolute stats__wrp-btn-token-cycle">${btnLeft}${btnRight}</div>`
+		const wrpBtns = ee`<div class="ve-flex-v-center ve-btn-group ve-absolute ve-stats__wrp-btn-token-cycle">${btnLeft}${btnRight}</div>`
 			.appendTo(lnkToken);
 	}
 }
@@ -2566,8 +2566,8 @@ class ListPageBookView extends BookModeViewBase {
 	}
 
 	_getEleNoneVisible () {
-		return ee`<div class="w-100 ve-flex-col ve-flex-h-center no-shrink no-print mb-3 mt-auto">
-			<div class="mb-2 ve-flex-vh-center min-h-0">
+		return ee`<div class="ve-w-100 ve-flex-col ve-flex-h-center ve-no-shrink no-print ve-mb-3 ve-mt-auto">
+			<div class="ve-mb-2 ve-flex-vh-center ve-min-h-0">
 				<span class="initial-message initial-message--med">If you wish to view multiple ${this._namePlural}, please first make a list</span>
 			</div>
 			<div class="ve-flex-vh-center">${this._getBtnNoneVisibleClose()}</div>
@@ -2598,7 +2598,7 @@ class ListPageBookView extends BookModeViewBase {
 	}
 
 	async _pGetRenderContentMeta ({wrpContent, wrpContentOuter}) {
-		wrpContent.addClass("p-2");
+		wrpContent.addClass("ve-p-2");
 
 		this._bookViewToShow = this._sublistManager.getSublistedEntityMetas()
 			.sort(this._getSorted.bind(this));
@@ -2632,7 +2632,7 @@ class ListPageBookView extends BookModeViewBase {
 
 	_getRenderedEnt (ent) {
 		return `<div class="bkmv__wrp-item ve-inline-block print__ve-block print__my-2">
-			<table class="w-100 stats stats--book stats--bkmv"><tbody>
+			<table class="ve-w-100 ve-stats ve-stats--book ve-stats--bkmv"><tbody>
 			${Renderer.hover.getFnRenderCompact(UrlUtil.getCurrentPage(), {isStatic: true})(ent)}
 			</tbody></table>
 		</div>`;
@@ -2666,16 +2666,16 @@ class ListPageBookView extends BookModeViewBase {
 		const btnDownloadMarkdown = ee`<button class="ve-btn ve-btn-default ve-btn-sm">Download as Markdown</button>`
 			.onn("click", () => DataUtil.userDownloadText(`${UrlUtil.getCurrentPage().replace(".html", "")}.md`, this._getVisibleAsMarkdown()));
 
-		const btnCopyMarkdown = ee`<button class="ve-btn ve-btn-default ve-btn-sm px-2" title="Copy Markdown to Clipboard"><span class="glyphicon glyphicon-copy"></span></button>`
+		const btnCopyMarkdown = ee`<button class="ve-btn ve-btn-default ve-btn-sm ve-px-2" title="Copy Markdown to Clipboard"><span class="glyphicon glyphicon-copy"></span></button>`
 			.onn("click", async () => {
 				await MiscUtil.pCopyTextToClipboard(this._getVisibleAsMarkdown());
 				JqueryUtil.showCopiedEffect(btnCopyMarkdown);
 			});
 
-		const btnDownloadMarkdownSettings = ee`<button class="ve-btn ve-btn-default ve-btn-sm px-2" title="Markdown Settings"><span class="glyphicon glyphicon-cog"></span></button>`
+		const btnDownloadMarkdownSettings = ee`<button class="ve-btn ve-btn-default ve-btn-sm ve-px-2" title="Markdown Settings"><span class="glyphicon glyphicon-cog"></span></button>`
 			.onn("click", async () => RendererMarkdown.pShowSettingsModal());
 
-		return ee`<div class="ve-flex-v-center ve-btn-group ml-3">
+		return ee`<div class="ve-flex-v-center ve-btn-group ve-ml-3">
 			${btnDownloadMarkdown}
 			${btnCopyMarkdown}
 			${btnDownloadMarkdownSettings}
@@ -2690,8 +2690,8 @@ class ListPageBookView extends BookModeViewBase {
 		this._comp._addHookBase("isRenderCopies", hkIsRenderCopies);
 		this._fnsCleanupCompRender.push(() => this._comp._removeHookBase("isRenderCopies", hkIsRenderCopies));
 
-		return ee`<label class="ve-flex-vh-center ml-3">
-			<span class="mr-2 help" title="If enabled, each copy of a listed ${this._nameSingular} will be displayed separately. This may be preferable when printing handouts.">Show Duplicates</span>
+		return ee`<label class="ve-flex-vh-center ve-ml-3">
+			<span class="ve-mr-2 ve-help" title="If enabled, each copy of a listed ${this._nameSingular} will be displayed separately. This may be preferable when printing handouts.">Show Duplicates</span>
 			${cbIsRenderCopies}
 		</label>`;
 	}

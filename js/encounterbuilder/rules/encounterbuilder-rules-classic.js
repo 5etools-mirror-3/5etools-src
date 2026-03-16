@@ -123,7 +123,7 @@ export class EncounterBuilderRulesClassic extends EncounterBuilderRulesBase {
 
 	_render_settingsRules ({stgSettingsRules}) {
 		const wrpSettingsRules = ee`<div class="ve-flex-col">
-			<div class="ve-flex mb-2">${Renderer.get().render(`{@note Based on the encounter building rules on page 81 of the {@book ${Parser.sourceJsonToFull(Parser.SRC_DMG)}|DMG|3|Creating a Combat Encounter}}`)}</div>
+			<div class="ve-flex ve-mb-2">${Renderer.get().render(`{@note Based on the encounter building rules on page 81 of the {@book ${Parser.sourceJsonToFull(Parser.SRC_DMG)}|DMG|3|Creating a Combat Encounter}}`)}</div>
 		</div>`
 			.appendTo(stgSettingsRules);
 
@@ -175,7 +175,7 @@ export class EncounterBuilderRulesClassic extends EncounterBuilderRulesBase {
 		const dispExpToLevel = ee`<div class="ve-muted"></div>`;
 
 		const dispThermometer = thermometer.render()
-			.addClass("mt-2");
+			.addClass("ve-mt-2");
 
 		this._comp.addHookPulseDeriverPartyMeta(() => {
 			const partyMeta = this.getEncounterPartyMeta();
@@ -199,7 +199,7 @@ export class EncounterBuilderRulesClassic extends EncounterBuilderRulesBase {
 				.html(this._getTtkHtml({partyMeta}));
 
 			dispBudgetDaily
-				.html(`<span class="help-subtle" title="${this.constructor._TITLE_BUDGET_DAILY}">Daily Budget:</span> ${partyMeta?.getDailyBudget().toLocaleStringVe() || "?"} XP`);
+				.html(`<span class="ve-help-subtle" title="${this.constructor._TITLE_BUDGET_DAILY}">Daily Budget:</span> ${partyMeta?.getDailyBudget().toLocaleStringVe() || "?"} XP`);
 
 			dispExpToLevel.html(this._getRenderedExpToLevel({partyMeta}));
 		})();
@@ -207,9 +207,9 @@ export class EncounterBuilderRulesClassic extends EncounterBuilderRulesBase {
 		const wrpGroupSummary = ee`<div class="ve-text-right">
 			${dispsTierXp}
 			${dispThermometer}
-			<hr class="hr-2">
+			<hr class="ve-hr-2">
 			${dispTtk}
-			<hr class="hr-2">
+			<hr class="ve-hr-2">
 			${dispBudgetDaily}
 			${dispExpToLevel}
 		</div>`
@@ -224,7 +224,7 @@ export class EncounterBuilderRulesClassic extends EncounterBuilderRulesBase {
 	/* -------------------------------------------- */
 
 	_render_difficulty ({stgDifficulty}) {
-		const hrHasCreatures = ee`<hr class="hr-1">`;
+		const hrHasCreatures = ee`<hr class="ve-hr-1">`;
 		const wrpDifficultyCols = ee`<div class="ve-flex">
 			${this._renderGroupAndDifficulty_getDifficultyLhs()}
 			${this._renderGroupAndDifficulty_getDifficultyRhs()}
@@ -236,7 +236,7 @@ export class EncounterBuilderRulesClassic extends EncounterBuilderRulesBase {
 			wrpDifficultyCols.toggleVe(encounterSpendInfo.relevantCount);
 		})();
 
-		const wrpDifficulty = ee`<div class="ve-flex-col w-100">
+		const wrpDifficulty = ee`<div class="ve-flex-col ve-w-100">
 			${hrHasCreatures}
 			${wrpDifficultyCols}
 		</div>`
@@ -249,7 +249,7 @@ export class EncounterBuilderRulesClassic extends EncounterBuilderRulesBase {
 	}
 
 	_renderGroupAndDifficulty_getDifficultyLhs () {
-		const dispDifficulty = ee`<h4 class="my-2"></h4>`;
+		const dispDifficulty = ee`<h4 class="ve-my-2"></h4>`;
 
 		this._comp.addHookPulseDeriverPartyMeta(() => {
 			const partyMeta = this.getEncounterPartyMeta();
@@ -259,11 +259,11 @@ export class EncounterBuilderRulesClassic extends EncounterBuilderRulesBase {
 			const tier = partyMeta.getEncounterTier(encounterSpendInfo);
 
 			dispDifficulty
-				.html(`Difficulty: <span class="help-subtle">${tier.toTitleCase()}</span>`)
+				.html(`Difficulty: <span class="ve-help-subtle">${tier.toTitleCase()}</span>`)
 				.tooltip(new _TierHtmlProviderClassic().getTierTitle({tier}));
 		})();
 
-		return ee`<div class="w-50">
+		return ee`<div class="ve-w-50">
 			${dispDifficulty}
 		</div>`;
 	}
@@ -272,7 +272,7 @@ export class EncounterBuilderRulesClassic extends EncounterBuilderRulesBase {
 		const dispXpRawTotal = ee`<h4></h4>`;
 		const dispXpRawPerPlayer = ee`<i></i>`;
 
-		const hovXpAdjustedInfo = ee`<span class="glyphicon glyphicon-info-sign mr-2"></span>`;
+		const hovXpAdjustedInfo = ee`<span class="glyphicon glyphicon-info-sign ve-mr-2"></span>`;
 
 		const dispXpAdjustedTotal = ee`<h4 class="ve-flex-v-center"></h4>`;
 		const dispXpAdjustedPerPlayer = ee`<i></i>`;
@@ -307,7 +307,7 @@ export class EncounterBuilderRulesClassic extends EncounterBuilderRulesBase {
 				Renderer.hover.updatePredefinedHover(infoHoverId, infoEntry);
 			}
 
-			dispXpAdjustedTotal.html(`Adjusted XP <span class="ve-small ve-muted ml-2" title="XP Multiplier">(×${encounterSpendInfo.playerAdjustedSpendMult})</span>: <b class="ml-2">${encounterSpendInfo.adjustedSpend.toLocaleStringVe()}</b>`);
+			dispXpAdjustedTotal.html(`Adjusted XP <span class="ve-small ve-muted ve-ml-2" title="XP Multiplier">(×${encounterSpendInfo.playerAdjustedSpendMult})</span>: <b class="ve-ml-2">${encounterSpendInfo.adjustedSpend.toLocaleStringVe()}</b>`);
 
 			dispXpAdjustedPerPlayer.txt(
 				partyMeta?.cntPlayers
@@ -316,7 +316,7 @@ export class EncounterBuilderRulesClassic extends EncounterBuilderRulesBase {
 			);
 		})();
 
-		return ee`<div class="w-50 ve-text-right">
+		return ee`<div class="ve-w-50 ve-text-right">
 			${dispXpRawTotal}
 			<div>${dispXpRawPerPlayer}</div>
 			<div class="ve-flex-v-center ve-flex-h-right">${hovXpAdjustedInfo}${dispXpAdjustedTotal}</div>
@@ -338,7 +338,7 @@ export class EncounterBuilderRulesClassic extends EncounterBuilderRulesBase {
 		return [
 			`${encounterXpInfo.baseSpend.toLocaleStringVe()} XP`,
 			encounterXpInfo.baseSpend !== encounterXpInfo.adjustedSpend
-				? `(<span class="help" title="Adjusted Encounter XP">Enc</span>: ${encounterXpInfo.adjustedSpend.toLocaleStringVe()} XP)`
+				? `(<span class="ve-help" title="Adjusted Encounter XP">Enc</span>: ${encounterXpInfo.adjustedSpend.toLocaleStringVe()} XP)`
 				: "",
 		]
 			.filter(Boolean)

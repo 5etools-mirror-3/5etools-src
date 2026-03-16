@@ -61,11 +61,11 @@ class MakeCards extends BaseComponent {
 					});
 			});
 
-		ee(wrpConfig)`<h5 class="split-v-center"><div>New Card Defaults</div>${btnResetDefaults}</h5>
-		<div class="ve-flex-v-center bold">
-			<div class="ve-col-4 ve-text-center pr-2">Type</div>
-			<div class="ve-col-4 ve-text-center p-2">Color</div>
-			<div class="ve-col-4 ve-text-center pl-2">Icon</div>
+		ee(wrpConfig)`<h5 class="ve-split-v-center"><div>New Card Defaults</div>${btnResetDefaults}</h5>
+		<div class="ve-flex-v-center ve-bold">
+			<div class="ve-col-4 ve-text-center ve-pr-2">Type</div>
+			<div class="ve-col-4 ve-text-center ve-p-2">Color</div>
+			<div class="ve-col-4 ve-text-center ve-pl-2">Icon</div>
 		</div>`;
 
 		const getColorIconConfigRow = (entityType) => {
@@ -84,10 +84,10 @@ class MakeCards extends BaseComponent {
 			this._addHookBase(kIcon, hkIcon);
 			hkIcon();
 
-			return ee`<div class="ve-flex-v-center stripe-even m-1">
-				<div class="ve-col-4 ve-flex-vh-center pr-2">${entityMeta.searchTitle}</div>
-				<div class="ve-col-4 ve-flex-vh-center p-2">${iptColor}</div>
-				<div class="ve-col-4 ve-flex-vh-center pl-2">${btnChooseIcon}</div>
+			return ee`<div class="ve-flex-v-center stripe-even ve-m-1">
+				<div class="ve-col-4 ve-flex-vh-center ve-pr-2">${entityMeta.searchTitle}</div>
+				<div class="ve-col-4 ve-flex-vh-center ve-p-2">${iptColor}</div>
+				<div class="ve-col-4 ve-flex-vh-center ve-pl-2">${btnChooseIcon}</div>
 			</div>`;
 		};
 
@@ -100,10 +100,10 @@ class MakeCards extends BaseComponent {
 		// region Search bar/add button
 		const menuSearch = ContextUtil.getMenu(this._render_getContextMenuOptions());
 
-		const iptSearch = ee`<input type="search" class="form-control mr-2" placeholder="Search cards...">`;
-		const btnAdd = ee`<button class="ve-btn ve-btn-primary mr-2"><span class="glyphicon glyphicon-plus"></span> Add</button>`
+		const iptSearch = ee`<input type="search" class="ve-form-control ve-mr-2" placeholder="Search cards...">`;
+		const btnAdd = ee`<button class="ve-btn ve-btn-primary ve-mr-2"><span class="glyphicon glyphicon-plus"></span> Add</button>`
 			.onn("click", evt => ContextUtil.pOpenMenu(evt, menuSearch));
-		const btnReset = ee`<button class="ve-btn ve-btn-danger mr-2"><span class="glyphicon glyphicon-trash"></span> Reset</button>`
+		const btnReset = ee`<button class="ve-btn ve-btn-danger ve-mr-2"><span class="glyphicon glyphicon-trash"></span> Reset</button>`
 			.onn("click", async () => {
 				if (!await InputUiUtil.pGetUserBoolean({title: "Reset", htmlDescription: "Are you sure?", textYes: "Yes", textNo: "Cancel"})) return;
 				this._list.removeAllItems();
@@ -126,7 +126,7 @@ class MakeCards extends BaseComponent {
 				});
 				DataUtil.userDownload("rpg-cards", toDownload, {isSkipAdditionalMetadata: true});
 			});
-		ee`<div class="w-100 no-shrink ve-flex-v-center mb-3">${iptSearch}${btnAdd}${btnReset}${btnExport}</div>`.appendTo(wrpContainer);
+		ee`<div class="ve-w-100 ve-no-shrink ve-flex-v-center ve-mb-3">${iptSearch}${btnAdd}${btnReset}${btnExport}</div>`.appendTo(wrpContainer);
 		// endregion
 
 		// region Mass operations bar
@@ -172,7 +172,7 @@ class MakeCards extends BaseComponent {
 
 		const btnMass = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="Carry out actions on selected cards">Mass...</button>`
 			.onn("click", evt => ContextUtil.pOpenMenu(evt, menuMass));
-		ee`<div class="w-100 no-shrink ve-flex-v-center mb-2">${btnMass}</div>`.appendTo(wrpContainer);
+		ee`<div class="ve-w-100 ve-no-shrink ve-flex-v-center ve-mb-2">${btnMass}</div>`.appendTo(wrpContainer);
 		// endregion
 
 		// region Main content
@@ -182,19 +182,19 @@ class MakeCards extends BaseComponent {
 				const isSel = cbSelAll.prop("checked");
 				this._list.visibleItems.forEach(it => it.data.cbSel.prop("checked", isSel));
 			});
-		ee`<div class="w-100 no-shrink ve-flex-v-center bold">
-			<div class="ve-col-1 mr-2 ve-flex-vh-center">${cbSelAll}</div>
-			<div class="ve-col-3 mr-2 ve-flex-vh-center">Name</div>
-			<div class="ve-col-1-5 mr-2 ve-flex-vh-center">Source</div>
-			<div class="ve-col-1-5 mr-2 ve-flex-vh-center">Type</div>
-			<div class="ve-col-1-1 mr-2 ve-flex-vh-center">Color</div>
-			<div class="ve-col-1-1 mr-2 ve-flex-vh-center">Icon</div>
-			<div class="ve-col-1 mr-2 ve-flex-vh-center">Count</div>
+		ee`<div class="ve-w-100 ve-no-shrink ve-flex-v-center ve-bold">
+			<div class="ve-col-1 ve-mr-2 ve-flex-vh-center">${cbSelAll}</div>
+			<div class="ve-col-3 ve-mr-2 ve-flex-vh-center">Name</div>
+			<div class="ve-col-1-5 ve-mr-2 ve-flex-vh-center">Source</div>
+			<div class="ve-col-1-5 ve-mr-2 ve-flex-vh-center">Type</div>
+			<div class="ve-col-1-1 ve-mr-2 ve-flex-vh-center">Color</div>
+			<div class="ve-col-1-1 ve-mr-2 ve-flex-vh-center">Icon</div>
+			<div class="ve-col-1 ve-mr-2 ve-flex-vh-center">Count</div>
 			<div class="ve-col-1-1 ve-flex-v-center ve-flex-h-right"></div>
 		</div>`.appendTo(wrpContainer);
 
-		const wrpList = ee`<div class="w-100 h-100"></div>`;
-		ee`<div class="ve-flex-col h-100 w-100 ve-overflow-y-auto mt-2 ve-overflow-x-hidden">${wrpList}</div>`.appendTo(wrpContainer);
+		const wrpList = ee`<div class="ve-w-100 ve-h-100"></div>`;
+		ee`<div class="ve-flex-col ve-h-100 ve-w-100 ve-overflow-y-auto ve-mt-2 ve-overflow-x-hidden">${wrpList}</div>`.appendTo(wrpContainer);
 		this._list = new List({iptSearch, wrpList});
 		this._list.init();
 		// endregion
@@ -309,7 +309,7 @@ class MakeCards extends BaseComponent {
 
 		const cbSel = ee`<input type="checkbox">`;
 
-		const iptRgb = ee`<input type="color" class="form-control input-xs form-control--minimal">`
+		const iptRgb = ee`<input type="color" class="ve-form-control ve-input-xs form-control--minimal">`
 			.val(cardMeta.color)
 			.onn("change", () => setColor(iptRgb.val()));
 		const setColor = (rgb) => {
@@ -331,7 +331,7 @@ class MakeCards extends BaseComponent {
 			this._doSaveStateDebounced();
 		};
 
-		const iptCount = ee`<input class="form-control form-control--minimal input-xs ve-text-center">`
+		const iptCount = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-text-center">`
 			.onn("change", () => {
 				const asNum = UiUtil.strToInt(iptCount.val(), 1, {min: 1, fallbackOnNaN: 1});
 				listItem.values.count = asNum;
@@ -340,7 +340,7 @@ class MakeCards extends BaseComponent {
 			})
 			.val(cardMeta.count);
 
-		const btnCopy = ee`<button class="ve-btn ve-btn-default ve-btn-xs mr-2" title="Copy JSON (SHIFT to view JSON)"><span class="glyphicon glyphicon-copy"></span></button>`
+		const btnCopy = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" title="Copy JSON (SHIFT to view JSON)"><span class="glyphicon glyphicon-copy"></span></button>`
 			.onn("click", async evt => {
 				const entityMeta = MakeCards._AVAILABLE_TYPES[listItem.values.entityType];
 				const toCopy = {
@@ -375,14 +375,14 @@ class MakeCards extends BaseComponent {
 				this._doSaveStateDebounced();
 			});
 
-		const ele = ee`<label class="ve-flex-v-center my-1 w-100 lst__row lst__row-border lst__row-inner">
-			<div class="ve-col-1 mr-2 ve-flex-vh-center">${cbSel}</div>
-			<div class="ve-col-3 mr-2 ve-flex-v-center">${Renderer.get().render(`{@${Parser.getPropTag(cardMeta.entityType)} ${DataUtil.proxy.getUid(loaded.__prop, loaded, {isMaintainCase: true})}}`)}</div>
-			<div class="ve-col-1-5 mr-2 ve-flex-vh-center ${Parser.sourceJsonToSourceClassname(loaded.source)}" title="${Parser.sourceJsonToFull(loaded.source)}">${Parser.sourceJsonToAbv(loaded.source)}</div>
-			<div class="ve-col-1-5 mr-2 ve-flex-vh-center">${Parser.getPropDisplayName(cardMeta.entityType)}</div>
-			<div class="ve-col-1-1 mr-2 ve-flex-vh-center">${iptRgb}</div>
-			<div class="ve-col-1-1 mr-2 ve-flex-vh-center">${btnIcon}</div>
-			<div class="ve-col-1 mr-2 ve-flex-vh-center">${iptCount}</div>
+		const ele = ee`<label class="ve-flex-v-center ve-my-1 ve-w-100 ve-lst__row ve-lst__row-border ve-lst__row-inner">
+			<div class="ve-col-1 ve-mr-2 ve-flex-vh-center">${cbSel}</div>
+			<div class="ve-col-3 ve-mr-2 ve-flex-v-center">${Renderer.get().render(`{@${Parser.getPropTag(cardMeta.entityType)} ${DataUtil.proxy.getUid(loaded.__prop, loaded, {isMaintainCase: true})}}`)}</div>
+			<div class="ve-col-1-5 ve-mr-2 ve-flex-vh-center ${Parser.sourceJsonToSourceClassname(loaded.source)}" title="${Parser.sourceJsonToFull(loaded.source)}">${Parser.sourceJsonToAbv(loaded.source)}</div>
+			<div class="ve-col-1-5 ve-mr-2 ve-flex-vh-center">${Parser.getPropDisplayName(cardMeta.entityType)}</div>
+			<div class="ve-col-1-1 ve-mr-2 ve-flex-vh-center">${iptRgb}</div>
+			<div class="ve-col-1-1 ve-mr-2 ve-flex-vh-center">${btnIcon}</div>
+			<div class="ve-col-1 ve-mr-2 ve-flex-vh-center">${iptCount}</div>
 			<div class="ve-col-1-1 ve-flex-v-center ve-flex-h-right">${btnCopy}${btnDelete}</div>
 		</label>`;
 
@@ -629,15 +629,15 @@ class MakeCards extends BaseComponent {
 
 			const btnMetas = icon_names
 				.reduce((accum, iconName) => {
-					const btn = ee`<button class="ve-btn ve-btn-default m-2 no-grow ve-self-flex-start">
-						<img src="${MakeCards._getIconPath(iconName)}" title="${iconName}" loading="lazy" class="w-50p h-50p">
+					const btn = ee`<button class="ve-btn ve-btn-default ve-m-2 ve-no-grow ve-self-flex-start">
+						<img src="${MakeCards._getIconPath(iconName)}" title="${iconName}" loading="lazy" class="ve-w-50p ve-h-50p">
 					</button>`
 						.onn("click", () => {
 							comp._state.selectedIcon = iconName;
 						});
 
 					comp._addHookBase("selectedIcon", () => {
-						btn.toggleClass("active", comp._state.selectedIcon === iconName);
+						btn.toggleClass("ve-active", comp._state.selectedIcon === iconName);
 					})();
 
 					accum[iconName] = {btn};
@@ -652,7 +652,7 @@ class MakeCards extends BaseComponent {
 					});
 			});
 
-			const iptSearch = ee`<input class="form-control mb-2">`;
+			const iptSearch = ee`<input class="ve-form-control ve-mb-2">`;
 
 			UiUtil.bindTypingEnd({
 				ipt: iptSearch,
@@ -675,7 +675,7 @@ class MakeCards extends BaseComponent {
 
 			ee(eleModalInner)`
 				<div>${iptSearch}</div>
-				<div class="ve-overflow-y-auto ve-flex ve-flex-wrap w-100 min-h-0 h-100 py-1 bb-1p mb-1 smooth-scroll">
+				<div class="ve-overflow-y-auto ve-flex ve-flex-wrap ve-w-100 ve-min-h-0 ve-h-100 ve-py-1 ve-bb-1p ve-mb-1 ve-smooth-scroll">
 					${Object.values(btnMetas).map(({btn}) => btn)}
 				</div>
 				<div class="ve-flex-vh-center">${btnOk}</div>

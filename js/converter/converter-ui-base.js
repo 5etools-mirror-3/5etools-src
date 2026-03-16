@@ -88,7 +88,7 @@ export class ConverterUiBase extends BaseComponent {
 	/* -------------------------------------------- */
 
 	renderSidebar (parent, eleParent) {
-		const wrpSidebar = ee`<div class="w-100 ve-flex-col"></div>`.appendTo(eleParent);
+		const wrpSidebar = ee`<div class="ve-w-100 ve-flex-col"></div>`.appendTo(eleParent);
 		const hkShowSidebar = () => wrpSidebar.toggleClass("hidden", parent.get("converter") !== this._converterId);
 		parent.addHook("converter", hkShowSidebar);
 		hkShowSidebar();
@@ -141,7 +141,7 @@ export class ConverterUiBase extends BaseComponent {
 				});
 		});
 
-		ee`<div class="w-100 ve-flex-vh-center-around">${btnsSamples}</div>`.appendTo(wrpSidebar);
+		ee`<div class="ve-w-100 ve-flex-vh-center-around">${btnsSamples}</div>`.appendTo(wrpSidebar);
 
 		ConverterUiUtil.renderSideMenuDivider(wrpSidebar);
 	}
@@ -160,13 +160,13 @@ export class ConverterUiBase extends BaseComponent {
 		hkMode();
 
 		if (hasModes) {
-			const selMode = ComponentUiUtil.getSelEnum(this, "mode", {values: this._modes, html: `<select class="form-control input-xs select-inline"></select>`, fnDisplay: it => `Parse as ${ConverterUiBase._getDisplayMode(it)}`});
-			ee`<div class="w-100 mt-2 ve-flex-vh-center-around">${selMode}</div>`.appendTo(wrpSidebar);
+			const selMode = ComponentUiUtil.getSelEnum(this, "mode", {values: this._modes, html: `<select class="ve-form-control ve-input-xs select-inline"></select>`, fnDisplay: it => `Parse as ${ConverterUiBase._getDisplayMode(it)}`});
+			ee`<div class="ve-w-100 ve-mt-2 ve-flex-vh-center-around">${selMode}</div>`.appendTo(wrpSidebar);
 		}
 
 		if (this._titleCaseFields) {
 			const cbTitleCase = ComponentUiUtil.getCbBool(this, "isTitleCase");
-			ee`<div class="w-100 mt-2 split-v-center">
+			ee`<div class="ve-w-100 ve-mt-2 ve-split-v-center">
 				<label class="sidemenu__row__label sidemenu__row__label--cb-label" title="Should the creature's name be converted to title-case? Useful when pasting a name which is all-caps."><span>Title-Case Name</span>
 				${cbTitleCase}
 			</label></div>`.appendTo(wrpSidebar);
@@ -180,15 +180,15 @@ export class ConverterUiBase extends BaseComponent {
 		const getBtnIncrementDecrement = (dir) => {
 			const verb = ~dir ? "Increment" : "Decrement";
 			const iconClassName = ~dir ? "glyphicon-plus" : "glyphicon-minus";
-			return ee`<button class="ve-btn ve-btn-xs ve-btn-default h-100" title="${verb} Page Number (SHIFT to ${verb} by 5)"><span class="glyphicon ${iconClassName}"></span></button>`
+			return ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-h-100" title="${verb} Page Number (SHIFT to ${verb} by 5)"><span class="glyphicon ${iconClassName}"></span></button>`
 				.onn("click", evt => this._state.page += dir * (evt.shiftKey ? 5 : 1));
 		};
 
 		const iptPage = ComponentUiUtil.getIptInt(this, "page", 0)
-			.addClass("max-w-80p");
-		ee`<div class="w-100 split-v-center">
-			<div class="sidemenu__row__label mr-2 help" title="Note that a line of the form &quot;PAGE=&lt;page number&gt;&quot; in the Input will set the page in the Output, ignoring any value set here. This is especially useful when parsing multiple inputs delimited by a separator.">Page</div>
-			<div class="ve-btn-group input-group ve-flex-v-center h-100">
+			.addClass("ve-max-w-80p");
+		ee`<div class="ve-w-100 ve-split-v-center">
+			<div class="sidemenu__row__label ve-mr-2 ve-help" title="Note that a line of the form &quot;PAGE=&lt;page number&gt;&quot; in the Input will set the page in the Output, ignoring any value set here. This is especially useful when parsing multiple inputs delimited by a separator.">Page</div>
+			<div class="ve-btn-group input-group ve-flex-v-center ve-h-100">
 				${getBtnIncrementDecrement(-1)}
 				${iptPage}
 				${getBtnIncrementDecrement(1)}
@@ -201,7 +201,7 @@ export class ConverterUiBase extends BaseComponent {
 	_renderSidebarSourcePart (parent, wrpSidebar) {
 		if (!this._hasSource) return;
 
-		const wrpSourceOverlay = ee`<div class="h-100 w-100"></div>`;
+		const wrpSourceOverlay = ee`<div class="ve-h-100 ve-w-100"></div>`;
 		let modalMeta = null;
 
 		const rebuildStageSource = (options) => {
@@ -230,7 +230,7 @@ export class ConverterUiBase extends BaseComponent {
 			});
 		};
 
-		const selSource = ee`<select class="form-control input-xs"><option value="">(None)</option></select>`
+		const selSource = ee`<select class="ve-form-control ve-input-xs"><option value="">(None)</option></select>`
 			.onn("change", () => this._state.source = selSource.val());
 
 		const eleDivider = e_({tag: "option", val: "5e_divider", txt: `\u2014`, attrs: {disabled: true}}).appendTo(selSource);
@@ -280,7 +280,7 @@ export class ConverterUiBase extends BaseComponent {
 		this._addHookBase("source", hkSource);
 		hkSource();
 
-		ee`<div class="w-100 mb-2 split-v-center"><div class="sidemenu__row__label mr-2">Source</div>${selSource}</div>`.appendTo(wrpSidebar);
+		ee`<div class="ve-w-100 ve-mb-2 ve-split-v-center"><div class="sidemenu__row__label ve-mr-2">Source</div>${selSource}</div>`.appendTo(wrpSidebar);
 
 		const btnSourceEdit = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Edit Selected</button>`
 			.onn("click", () => {
@@ -310,7 +310,7 @@ export class ConverterUiBase extends BaseComponent {
 			});
 			wrpSourceOverlay.appendTo(modalMeta.eleModalInner);
 		});
-		ee`<div class="w-100 ve-btn-group ve-flex-v-center ve-flex-h-right">${btnSourceEdit}${btnSourceAdd}</div>`.appendTo(wrpSidebar);
+		ee`<div class="ve-w-100 ve-btn-group ve-flex-v-center ve-flex-h-right">${btnSourceEdit}${btnSourceAdd}</div>`.appendTo(wrpSidebar);
 
 		ConverterUiUtil.renderSideMenuDivider(wrpSidebar);
 	}
@@ -328,7 +328,7 @@ export class ConverterUiBase extends BaseComponent {
 			},
 		);
 
-		ee`<div class="w-100 mb-2 split-v-center"><div class="sidemenu__row__label mr-2">Style</div>${selStyleHint}</div>`.appendTo(wrpSidebar);
+		ee`<div class="ve-w-100 ve-mb-2 ve-split-v-center"><div class="sidemenu__row__label ve-mr-2">Style</div>${selStyleHint}</div>`.appendTo(wrpSidebar);
 
 		ConverterUiUtil.renderSideMenuDivider(wrpSidebar);
 	}
@@ -338,11 +338,11 @@ export class ConverterUiBase extends BaseComponent {
 	renderFooterLhs (parent, {wrpFooterLhs}) {
 		if (!this._hasPageNumbers) return;
 
-		const dispPage = ee`<div class="ve-muted italic" title="Use &quot;+&quot; and &quot;-&quot; (when the cursor is not in a text input) to increase/decrease."></div>`
+		const dispPage = ee`<div class="ve-muted ve-italic" title="Use &quot;+&quot; and &quot;-&quot; (when the cursor is not in a text input) to increase/decrease."></div>`
 			.appendTo(wrpFooterLhs);
 
 		this._addHookBase("page", () => {
-			dispPage.html(this._state.page != null ? `<b class="mr-1">Page:</b> ${this._state.page}` : "");
+			dispPage.html(this._state.page != null ? `<b class="ve-mr-1">Page:</b> ${this._state.page}` : "");
 		})();
 
 		parent.addHook("converter", () => dispPage.toggleClass("ve-hidden", parent.get("converter") !== this._converterId))();

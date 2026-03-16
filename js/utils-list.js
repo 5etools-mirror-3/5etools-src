@@ -479,7 +479,7 @@ class SaveManager extends BaseComponent {
 
 		const dispCaret = e_({
 			tag: "span",
-			clazz: "lst__caret lst__caret--active",
+			clazz: "ve-lst__caret ve-lst__caret--active",
 		});
 
 		const doSortSaves = (isDescending) => {
@@ -488,7 +488,7 @@ class SaveManager extends BaseComponent {
 				isDescending ? a.entity.name || "" : b.entity.name || ""),
 			);
 			this._triggerCollectionUpdate("saves");
-			dispCaret.toggleClass("lst__caret--reverse", !isDescending);
+			dispCaret.toggleClass("ve-lst__caret--reverse", !isDescending);
 		};
 
 		// Sort (and save) on opening
@@ -496,8 +496,8 @@ class SaveManager extends BaseComponent {
 
 		const wrpIsReference = !this._isReferencable
 			? null
-			: ee`<label class="ve-flex-v-center mr-2">
-				<div class="mr-1 help" title="Turning this on will make a copy of the list as it currently exists, allowing the original to be modified or deleted without affecting the copy. Leaving this off will instead keep a reference to the list, so any change to the list will be reflected in applications which make use of it.">Make Copy</div>
+			: ee`<label class="ve-flex-v-center ve-mr-2">
+				<div class="ve-mr-1 ve-help" title="Turning this on will make a copy of the list as it currently exists, allowing the original to be modified or deleted without affecting the copy. Leaving this off will instead keep a reference to the list, so any change to the list will be reflected in applications which make use of it.">Make Copy</div>
 				${ComponentUiUtil.getCbBool(this, "isLoadAsCopy")}
 			</label>`;
 
@@ -560,7 +560,7 @@ class SaveManager extends BaseComponent {
 
 		const dispNoSaves = ee`<div class="ve-flex-col"><i class="ve-muted ve-text-center">No saves found.</i></div>`;
 
-		const btnExpandCollapseAll = ee`<button class="ve-btn ve-btn-default ve-btn-xs px-1 ve-flex-vh-center h-100 no-shrink"></button>`
+		const btnExpandCollapseAll = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-px-1 ve-flex-vh-center ve-h-100 ve-no-shrink"></button>`
 			.onn("click", () => {
 				const usableSaves = this._getUsableSaves();
 				if (!usableSaves.length) return;
@@ -571,7 +571,7 @@ class SaveManager extends BaseComponent {
 			});
 
 		let isDescending = false;
-		const btnSortName = ee`<button class="ve-btn ve-btn-default ve-btn-xs w-100">
+		const btnSortName = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-w-100">
 			<span>Name</span>
 			${dispCaret}
 		</button>`
@@ -608,11 +608,11 @@ class SaveManager extends BaseComponent {
 		this._addHookBase("saves", hkSaves);
 
 		ee(eleModalInner)`
-		<div class="ve-flex-v-center my-1 px-2p ve-btn-group">
-			<button class="ve-btn ve-btn-default ve-btn-xs w-30p no-shrink" disabled>&nbsp;</button>
+		<div class="ve-flex-v-center ve-my-1 ve-px-2p ve-btn-group">
+			<button class="ve-btn ve-btn-default ve-btn-xs ve-w-30p ve-no-shrink" disabled>&nbsp;</button>
 			${btnExpandCollapseAll}
 			${btnSortName}
-			<button class="ve-btn ve-btn-default ve-btn-xs w-50p no-shrink" disabled>&nbsp;</button>
+			<button class="ve-btn ve-btn-default ve-btn-xs ve-w-50p ve-no-shrink" disabled>&nbsp;</button>
 		</div>
 		${dispNoSaves}
 		${wrpRows}`;
@@ -712,7 +712,7 @@ class SaveManager extends BaseComponent {
 			cbOnUpload,
 		},
 	) {
-		const wrp = ee`<div class="pt-2 ve-flex-col no-print"></div>`;
+		const wrp = ee`<div class="ve-pt-2 ve-flex-col no-print"></div>`;
 
 		const renderableCollectionSummary = new SaveManager._RenderableCollectionSaves_Summary(
 			{
@@ -838,15 +838,15 @@ SaveManager._RenderableCollectionSaves_Load = class extends RenderableCollection
 	getNewRender (save, i) {
 		const comp = this._utils.getNewRenderComp(save, i);
 
-		const wrpPreviewInner = ee`<div class="ve-flex-col py-3 ml-4 accordion__wrp-preview-inner w-100"></div>`;
+		const wrpPreviewInner = ee`<div class="ve-flex-col ve-py-3 ve-ml-4 ve-accordion__wrp-preview-inner ve-w-100"></div>`;
 
-		const wrpPreview = ee`<div class="ve-flex ve-hidden relative accordion__wrp-preview">
-			<div class="vr-0 absolute accordion__vr-preview"></div>
+		const wrpPreview = ee`<div class="ve-flex ve-hidden ve-relative ve-accordion__wrp-preview">
+			<div class="ve-vr-0 ve-absolute ve-accordion__vr-preview"></div>
 			${wrpPreviewInner}
 		</div>`;
 
 		let pExpandLoadList = null;
-		const btnExpand = ee`<div class="px-1 ve-flex-vh-center h-100 mr-2 relative top-n1p clickable no-select"></div>`;
+		const btnExpand = ee`<div class="ve-px-1 ve-flex-vh-center ve-h-100 ve-mr-2 ve-relative ve-top-n1p ve-clickable ve-no-select"></div>`;
 		const hkIsExpanded = () => {
 			wrpPreview.toggleVe(!!comp._state.manager_loader_isExpanded);
 			btnExpand
@@ -870,7 +870,7 @@ SaveManager._RenderableCollectionSaves_Load = class extends RenderableCollection
 
 					wrpPreviewInner
 						.empty()
-						.html(lis ? `<ul class="my-0" onclick="event.stopPropagation()">${lis}</ul>` : Renderer.get().render(`{@note This list is empty.}`));
+						.html(lis ? `<ul class="ve-my-0" onclick="event.stopPropagation()">${lis}</ul>` : Renderer.get().render(`{@note This list is empty.}`));
 				});
 		};
 		comp._addHookBase("manager_loader_isExpanded", hkIsExpanded);
@@ -883,7 +883,7 @@ SaveManager._RenderableCollectionSaves_Load = class extends RenderableCollection
 				this._doClose(true, ListUtil.getWithoutManagerState(comp.toObject("*")));
 			});
 
-		const dispName = ComponentUiUtil.getDisp(comp, "name", {ele: ee`<div class="w-100"></div>`});
+		const dispName = ComponentUiUtil.getDisp(comp, "name", {ele: ee`<div class="ve-w-100"></div>`});
 
 		const btnDownload = this._comp.getBtnDownloadSave_({save});
 
@@ -896,14 +896,14 @@ SaveManager._RenderableCollectionSaves_Load = class extends RenderableCollection
 					if (this._comp._state.activeId === save.id) this._comp._doNew();
 				});
 
-		const wrpRow = ee`<div class="ve-flex-col w-100">
-			<div class="ve-flex-v-center w-100 py-1 clickable lst__row lst__row-border lst__row-inner">
-				<div class="ve-flex-vh-center w-30p no-shrink">
+		const wrpRow = ee`<div class="ve-flex-col ve-w-100">
+			<div class="ve-flex-v-center ve-w-100 ve-py-1 ve-clickable ve-lst__row ve-lst__row-border ve-lst__row-inner">
+				<div class="ve-flex-vh-center ve-w-30p ve-no-shrink">
 					${btnLoad}
 				</div>
 				${btnExpand}
 				${dispName}
-				<div class="ve-flex-vh-center ve-btn-group ml-2 w-50p">
+				<div class="ve-flex-vh-center ve-btn-group ve-ml-2 ve-w-50p">
 					${btnDownload}
 					${btnDelete}
 				</div>
@@ -951,7 +951,7 @@ SaveManager._RenderableCollectionSaves_Summary = class extends RenderableCollect
 
 	cbOnListUpdated ({cntVisibleItems}) {
 		const renderedCollection = this._comp._getRenderedCollection({prop: "saves", namespace: "summary"});
-		Object.values(renderedCollection).forEach(renderedMeta => renderedMeta.dispCount.html(`<span class="glyphicon glyphicon-pushpin mr-1"></span> ${cntVisibleItems}`));
+		Object.values(renderedCollection).forEach(renderedMeta => renderedMeta.dispCount.html(`<span class="glyphicon glyphicon-pushpin ve-mr-1"></span> ${cntVisibleItems}`));
 	}
 
 	getNewRender (save, i) {
@@ -963,7 +963,7 @@ SaveManager._RenderableCollectionSaves_Summary = class extends RenderableCollect
 
 		const iptName = ComponentUiUtil.getIptStr(comp, "name", {placeholder: "(Unnamed List)"});
 
-		const dispCount = ee`<div class="absolute right-0 z-index-1 no-events ve-flex-vh-center ve-muted pr-2 ve-small" title="Number of Pinned List Items"></div>`;
+		const dispCount = ee`<div class="ve-absolute ve-right-0 ve-z-index-1 ve-no-events ve-flex-vh-center ve-muted ve-pr-2 ve-small" title="Number of Pinned List Items"></div>`;
 
 		const btnNew = ee`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-default" title="New Pinned List"><span class="glyphicon glyphicon-file"></span></button>`
 			.onn("click", evt => this._cbOnNew(evt));
@@ -990,14 +990,14 @@ SaveManager._RenderableCollectionSaves_Summary = class extends RenderableCollect
 		comp._addHookBase("manager_isSaved", hkBtnReset);
 		hkBtnReset();
 
-		const wrpRow = ee`<div class="ve-flex-col my-2 w-100">
+		const wrpRow = ee`<div class="ve-flex-col ve-my-2 ve-w-100">
 			<div class="ve-flex-v-center">
-				<div class="ve-flex-v-center mr-1 w-100 min-w-0 relative">
-					<div class="mr-2 ve-muted">List:</div>
+				<div class="ve-flex-v-center ve-mr-1 ve-w-100 ve-min-w-0 ve-relative">
+					<div class="ve-mr-2 ve-muted">List:</div>
 					${iptName}
 					${dispCount}
 				</div>
-				<div class="ve-flex-h-right ve-flex-v-center ve-btn-group no-shrink">
+				<div class="ve-flex-h-right ve-flex-v-center ve-btn-group ve-no-shrink">
 					${btnNew}
 					${btnDuplicate}
 					${btnSave}

@@ -87,10 +87,10 @@ function addMonsterFeatures (mfData) {
 		if (f.dpr) effectOnCr.push(`DPR: ${f.dpr}`);
 		if (f.attackBonus) effectOnCr.push(`AB: ${f.attackBonus}`);
 
-		const numBox = f.hasNumberParam ? `<input type="number" value="0" min="0" class="form-control form-control--minimal crc__mon_feature_num input-xs ml-2">` : "";
+		const numBox = f.hasNumberParam ? `<input type="number" value="0" min="0" class="ve-form-control form-control--minimal crc__mon_feature_num ve-input-xs ve-ml-2">` : "";
 
 		wrpMonFeatures.appends(`
-			<label class="row crc__mon_feature ui-tip__parent">
+			<label class="row crc__mon_feature ve-ui-tip__parent">
 				<div class="ve-col-1 crc__mon_feature_wrp_cb">
 					<input type="checkbox" id="mf-${Parser.stringToSlug(f.name)}" title="${f.name}" data-hp="${f.hp || ""}" data-ac="${f.ac || ""}" data-dpr="${f.dpr || ""}" data-attackbonus="${f.attackBonus || ""}" class="crc__mon_feature_cb">${numBox}
 				</div>

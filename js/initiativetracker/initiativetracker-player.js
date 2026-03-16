@@ -149,16 +149,16 @@ export class InitiativeTrackerPlayerMessageHandlerV1 {
 
 		if (data.round) {
 			this._eleMeta.appends(`
-				<div class="${this._isCompact ? "ve-flex-vh-center" : "ve-flex-v-center"}${this._isCompact ? " mb-3" : ""}">
-					<div class="mr-2">Round: </div>
-					<div class="bold">${data.round}</div>
+				<div class="${this._isCompact ? "ve-flex-vh-center" : "ve-flex-v-center"}${this._isCompact ? " ve-mb-3" : ""}">
+					<div class="ve-mr-2">Round: </div>
+					<div class="ve-bold">${data.round}</div>
 				</div>
 			`);
 		}
 
 		this._eleHead.appends(`
-				<div class="w-100 split-v-center min-w-100p ${this._isCompact ? "ve-text-center" : ""}">Creature/Status</div>
-				<div class="min-w-100p ${this._isCompact ? "ve-text-center" : ""}">Health</div>
+				<div class="ve-w-100 ve-split-v-center ve-min-w-100p ${this._isCompact ? "ve-text-center" : ""}">Creature/Status</div>
+				<div class="ve-min-w-100p ${this._isCompact ? "ve-text-center" : ""}">Health</div>
 				${(data.statsCols || []).map(statCol => `<div class="initp__h_stat">${statCol.abbreviation || ""}</div>`).join("")}
 				<div class="initp__h_score ${this._isCompact ? "initp__h_score--compact" : ""}">${this._isCompact ? "#" : "Init."}</div>
 			`);
@@ -176,7 +176,7 @@ export class InitiativeTrackerPlayerMessageHandlerV1 {
 			"*",
 		);
 
-		const wrpConds = ee`<div class="init__wrp_conds h-100"></div>`;
+		const wrpConds = ee`<div class="init__wrp_conds ve-h-100"></div>`;
 
 		const collectionConditions = new RenderableCollectionConditions({
 			comp: comp,
@@ -205,11 +205,11 @@ export class InitiativeTrackerPlayerMessageHandlerV1 {
 
 		return ee`
 				<div class="initp__r ${rowData.isActive ? `initp__r--active` : ""}">
-					<div class="w-100 split-v-center min-w-100p">
+					<div class="ve-w-100 ve-split-v-center ve-min-w-100p">
 						${dispName}
 						${wrpConds}
 					</div>
-				<div class="min-w-100p">
+				<div class="ve-min-w-100p">
 					<div class="initp__r_hp_pill" style="background: ${hpColor};">${hpText}</div>
 				</div>
 				${this._getRenderedStatsCells({rowData})}
@@ -230,7 +230,7 @@ export class InitiativeTrackerPlayerMessageHandlerV1 {
 	_getRenderedStatsCellInner ({cell}) {
 		const {isUnknown, value, type} = cell.entity;
 
-		if (isUnknown) return `<span class="ve-muted italic" title="This value is hidden!">?</span>`;
+		if (isUnknown) return `<span class="ve-muted ve-italic" title="This value is hidden!">?</span>`;
 
 		if (type) {
 			switch (type) {
@@ -264,10 +264,10 @@ export class InitiativeTrackerPlayerMessageHandlerV1 {
 			imageHref: InitiativeTrackerUtil.getImageOrTokenHref({imageHref, tokenUrl}),
 		});
 
-		const ele = ee`<img src="${tokenUrl}" class="w-24p w-24p" alt="Token Image">`
-			.onn("mouseover", evt => hoverMeta.mouseOver(evt, ele[0]))
-			.onn("mousemove", evt => hoverMeta.mouseMove(evt, ele[0]))
-			.onn("mouseleave", evt => hoverMeta.mouseLeave(evt, ele[0]));
+		const ele = ee`<img src="${tokenUrl}" class="ve-w-24p ve-w-24p" alt="Token Image">`
+			.onn("mouseover", evt => hoverMeta.mouseOver(evt, ele))
+			.onn("mousemove", evt => hoverMeta.mouseMove(evt, ele))
+			.onn("mouseleave", evt => hoverMeta.mouseLeave(evt, ele));
 
 		return ele;
 	}

@@ -36,7 +36,7 @@ export class FilterBase extends BaseComponent {
 	}
 
 	_getRenderedHeader () {
-		return `<span ${this._headerHelp ? `title="${this._headerHelp.escapeQuotes()}" class="help-subtle"` : ""}>${this._getHeaderDisplayName()}</span>`;
+		return `<span ${this._headerHelp ? `title="${this._headerHelp.escapeQuotes()}" class="ve-help-subtle"` : ""}>${this._getHeaderDisplayName()}</span>`;
 	}
 
 	set filterBox (it) { this._filterBox = it; }
@@ -137,13 +137,13 @@ export class FilterBase extends BaseComponent {
 	_getBtnMobToggleControls (wrpControls) {
 		const btnMobToggleControls = e_({
 			tag: "button",
-			clazz: `ve-btn ve-btn-xs ve-btn-default mobile-sm__visible ml-auto px-3 mr-2`,
+			clazz: `ve-btn ve-btn-xs ve-btn-default ve-mobile-sm__visible ve-ml-auto ve-px-3 ve-mr-2`,
 			html: `<span class="glyphicon glyphicon-option-vertical"></span>`,
 			click: () => this._uiMeta.isMobileHeaderHidden = !this._uiMeta.isMobileHeaderHidden,
 		});
 		const hkMobHeaderHidden = () => {
-			btnMobToggleControls.toggleClass("active", !this._uiMeta.isMobileHeaderHidden);
-			wrpControls.toggleClass("mobile-sm__hidden", !!this._uiMeta.isMobileHeaderHidden);
+			btnMobToggleControls.toggleClass("ve-active", !this._uiMeta.isMobileHeaderHidden);
+			wrpControls.toggleClass("ve-mobile-sm__hidden", !!this._uiMeta.isMobileHeaderHidden);
 		};
 		this._addHook("uiMeta", "isMobileHeaderHidden", hkMobHeaderHidden);
 		hkMobHeaderHidden();
@@ -340,7 +340,7 @@ export class FilterBase extends BaseComponent {
 
 	_getDisplayStatePart_getHeader ({isPlainText = false} = {}) {
 		if (isPlainText) return `${this._getHeaderDisplayName()}: `;
-		return `<span class="ve-text-right w-140p no-shrink mr-2 bold">${this._getHeaderDisplayName()}:</span>`;
+		return `<span class="ve-text-right ve-w-140p ve-no-shrink ve-mr-2 ve-bold">${this._getHeaderDisplayName()}:</span>`;
 	}
 
 	/* -------------------------------------------- */

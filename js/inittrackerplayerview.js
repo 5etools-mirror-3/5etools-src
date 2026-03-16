@@ -101,11 +101,11 @@ class InitTrackerPlayerViewV1 {
 	render ({tabMeta, token}) {
 		const view = new InitiativeTrackerPlayerMessageHandlerPageV1(tabMeta.wrpTab);
 
-		const iptPlayerName = ee`<input class="form-control code">`
+		const iptPlayerName = ee`<input class="ve-form-control ve-code">`
 			.onn("change", () => iptServerToken.removeClass("form-control--error"))
 			.disableSpellcheck();
 
-		const iptServerToken = ee`<input class="form-control code">`
+		const iptServerToken = ee`<input class="ve-form-control ve-code">`
 			.onn("change", () => iptPlayerName.removeClass("form-control--error"))
 			.disableSpellcheck();
 
@@ -128,7 +128,7 @@ class InitTrackerPlayerViewV1 {
 				}
 			});
 
-		ee(tabMeta.wrpTab)`<div class="ve-flex-col initp__content px-2 py-3 min-h-0">
+		ee(tabMeta.wrpTab)`<div class="ve-flex-col initp__content ve-px-2 ve-py-3 ve-min-h-0">
 			<div class="initp__initial row">
 				<div class="ve-col-12">
 					<p>
@@ -144,14 +144,14 @@ class InitTrackerPlayerViewV1 {
 
 			<hr class="initp__initial">
 
-			<div class="initp__initial row w-100 ve-flex">
-				<div class="ve-col-5 bold mr-4">Player Name</div>
-				<div class="ve-col-5 bold">Server Token</div>
+			<div class="initp__initial row ve-w-100 ve-flex">
+				<div class="ve-col-5 ve-bold ve-mr-4">Player Name</div>
+				<div class="ve-col-5 ve-bold">Server Token</div>
 				<div class="ve-col-2 ve-text-center"></div>
 			</div>
-			<div class="initp__initial row w-100 ve-flex mb-4">
-				<div class="ve-col-5 bold mr-4">${iptPlayerName}</div>
-				<div class="ve-col-5 bold">${iptServerToken}</div>
+			<div class="initp__initial row ve-w-100 ve-flex ve-mb-4">
+				<div class="ve-col-5 ve-bold ve-mr-4">${iptPlayerName}</div>
+				<div class="ve-col-5 ve-bold">${iptServerToken}</div>
 				<div class="ve-col-2 ve-flex-vh-center">${btnConnect}</div>
 			</div>
 
@@ -216,23 +216,23 @@ class InitTrackerPlayerViewV0 {
 	render ({tabMeta, token}) {
 		const view = new InitiativeTrackerPlayerMessageHandlerPageV0(tabMeta.wrpTab);
 
-		const iptServerToken = ee`<input class="form-control code">`.disableSpellcheck();
+		const iptServerToken = ee`<input class="ve-form-control ve-code">`.disableSpellcheck();
 
 		if (token) iptServerToken.val(token);
 
 		const btnGenClientToken = ee`<button class="ve-btn ve-btn-xs ve-btn-primary">Generate Client Token</button>`
 			.onn("click", () => dispWarning.remove());
 
-		const iptClientToken = ee`<input class="form-control code copyable" readonly disabled>`.disableSpellcheck();
+		const iptClientToken = ee`<input class="ve-form-control ve-code ve-copyable" readonly disabled>`.disableSpellcheck();
 
 		const ui = new InitiativeTrackerPlayerUiV0(view, iptServerToken, btnGenClientToken, iptClientToken);
 		ui.init();
 
-		const dispWarning = ee`<div class="alert alert-warning my-3">
+		const dispWarning = ee`<div class="alert alert-warning ve-my-3">
 			<p>Use of &quot;Standard&quot; mode is strongly recommended, as it provides a simplified workflow. If Standard mode is unavailable, &quot;Manual&quot; mode may be used instead.</p>
 		</div>`;
 
-		ee(tabMeta.wrpTab)`<div class="ve-flex-col initp__content px-2 py-3 min-h-0">
+		ee(tabMeta.wrpTab)`<div class="ve-flex-col initp__content ve-px-2 ve-py-3 ve-min-h-0">
 			${dispWarning}
 
 			<div class="initp__initial ve-flex">
@@ -249,15 +249,15 @@ class InitTrackerPlayerViewV0 {
 
 			<hr class="initp__initial">
 
-			<div class="initp__initial ve-flex-h-center w-100">
-				<div class="ve-col-5 bold">Server Token</div>
+			<div class="initp__initial ve-flex-h-center ve-w-100">
+				<div class="ve-col-5 ve-bold">Server Token</div>
 				<div class="ve-col-2 ve-text-center"></div>
-				<div class="ve-col-5 bold">Client Token</div>
+				<div class="ve-col-5 ve-bold">Client Token</div>
 			</div>
-			<div class="initp__initial ve-flex-h-center w-100 flex mb-4">
-				<div class="ve-col-5 bold">${iptServerToken}</div>
+			<div class="initp__initial ve-flex-h-center ve-w-100 flex ve-mb-4">
+				<div class="ve-col-5 ve-bold">${iptServerToken}</div>
 				<div class="ve-col-2 ve-flex-vh-center">${btnGenClientToken}</div>
-				<div class="ve-col-5 bold">${iptClientToken}</div>
+				<div class="ve-col-5 ve-bold">${iptClientToken}</div>
 			</div>
 
 			<div class="initp__wrp_active">

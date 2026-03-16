@@ -204,26 +204,26 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 
 		const btnReset = ee`<button class="ve-btn ve-btn-default">Reset</button>`;
 
-		const wrpMiniPills = ee`<div class="fltr__mini-view ve-btn-group"></div>`;
+		const wrpMiniPills = ee`<div class="ve-fltr__mini-view ve-btn-group"></div>`;
 
 		const cbAll = this._isReadOnly ? null : ee`<input type="checkbox">`;
-		const wrpRows = ee`<div class="list ve-flex-col w-100 max-h-unset"></div>`;
-		const iptSearch = ee`<input type="search" class="search manbrew__search form-control w-100 lst__search lst__search--no-border-h" placeholder="Search entries...">`;
-		const disp = ee`<div class="lst__wrp-search-visible no-events ve-flex-vh-center"></div>`;
-		const wrpBtnsSort = ee`<div class="filtertools manbrew__filtertools input-group input-group--bottom ve-flex no-shrink">
-			${this._isReadOnly ? "" : ee`<label class="ve-btn ve-btn-default ve-btn-xs ve-col-1 pr-0 ve-flex-vh-center">${cbAll}</label>`}
+		const wrpRows = ee`<div class="list ve-flex-col ve-w-100 ve-max-h-unset"></div>`;
+		const iptSearch = ee`<input type="search" class="search manbrew__search ve-form-control ve-w-100 ve-lst__search ve-lst__search--no-border-h" placeholder="Search entries...">`;
+		const disp = ee`<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>`;
+		const wrpBtnsSort = ee`<div class="filtertools manbrew__filtertools input-group input-group--bottom ve-flex ve-no-shrink">
+			${this._isReadOnly ? "" : ee`<label class="ve-btn ve-btn-default ve-btn-xs ve-col-1 ve-pr-0 ve-flex-vh-center">${cbAll}</label>`}
 			<button class="${this._isReadOnly ? `ve-col-6` : `ve-col-5`} sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
 			<button class="ve-col-1 sort ve-btn ve-btn-default ve-btn-xs" data-sort="source">Source</button>
 			<button class="ve-col-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="category">Category</button>
 		</div>`;
 
 		ee(tabMeta.wrpTab)`
-		<div class="ve-flex-v-stretch input-group input-group--top no-shrink mt-1">
+		<div class="ve-flex-v-stretch input-group input-group--top ve-no-shrink ve-mt-1">
 			${btnFilter}
 			${btnToggleSummaryHidden}
-			<div class="w-100 relative">
+			<div class="ve-w-100 ve-relative">
 				${iptSearch}
-				<div id="lst__search-glass" class="lst__wrp-search-glass no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
+				<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
 				${disp}
 			</div>
 			${btnReset}
@@ -292,17 +292,17 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 
 	_pRender_getEntityRowMeta ({rdState, prop, ent, ixParent}) {
 		const eleLi = document.createElement("div");
-		eleLi.className = "lst__row ve-flex-col px-0";
+		eleLi.className = "ve-lst__row ve-flex-col ve-px-0";
 
 		const dispName = this.constructor._getDisplayName({brew: this._brew, ent, prop});
 		const sourceMeta = this.constructor._getSourceMeta({brew: this._brew, ent});
 		const dispProp = this.constructor._getDisplayProp({ent, prop});
 
-		eleLi.innerHTML = `<label class="lst__row-border lst__row-inner no-select mb-0 ve-flex-v-center">
-			${this._isReadOnly ? "" : `<div class="pl-0 ve-col-1 ve-flex-vh-center"><input type="checkbox" class="no-events"></div>`}
-			<div class="${this._isReadOnly ? `ve-col-6` : `ve-col-5`} bold">${dispName}</div>
+		eleLi.innerHTML = `<label class="ve-lst__row-border ve-lst__row-inner ve-no-select ve-mb-0 ve-flex-v-center">
+			${this._isReadOnly ? "" : `<div class="ve-pl-0 ve-col-1 ve-flex-vh-center"><input type="checkbox" class="ve-no-events"></div>`}
+			<div class="${this._isReadOnly ? `ve-col-6` : `ve-col-5`} ve-bold">${dispName}</div>
 			<div class="ve-col-1 ve-text-center ${Parser.sourceJsonToSourceClassname(sourceMeta.json)}" title="${(sourceMeta.full || "").qq()}">${sourceMeta.abbreviation}</div>
-			<div class="ve-col-5 ve-flex-vh-center pr-0">${dispProp}</div>
+			<div class="ve-col-5 ve-flex-vh-center ve-pr-0">${dispProp}</div>
 		</label>`;
 
 		const listItem = new ListItem(
@@ -342,8 +342,8 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 			.map(([prop, info]) => this._pRender_getMetaRowMeta({prop, info}));
 
 		ee(tabMeta.wrpTab)`
-			<div class="pt-2"><i>Warning: deleting metadata may invalidate or otherwise corrupt homebrew which depends on it. Use with caution.</i></div>
-			<hr class="hr-3">
+			<div class="ve-pt-2"><i>Warning: deleting metadata may invalidate or otherwise corrupt homebrew which depends on it. Use with caution.</i></div>
+			<hr class="ve-hr-3">
 			${metasSections.map(({wrp}) => wrp)}
 		`;
 	}
@@ -368,8 +368,8 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 							wrp.remove();
 						});
 
-				const row = ee`<div class="lst__row ve-flex-col px-0">
-					<div class="split-v-center lst__row-border lst__row-inner no-select mb-0 ve-flex-v-center">
+				const row = ee`<div class="ve-lst__row ve-flex-col ve-px-0">
+					<div class="ve-split-v-center ve-lst__row-border ve-lst__row-inner ve-no-select ve-mb-0 ve-flex-v-center">
 						<div class="${this._isReadOnly ? `ve-col-12` : `ve-col-10`}">${displayFn(this._brew, prop, k)}</div>
 						${this._isReadOnly ? "" : ee`<div class="ve-col-2 ve-btn-group ve-flex-v-center ve-flex-h-right">${btnDelete}</div>`}
 					</div>
@@ -378,8 +378,8 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 				return row;
 			});
 
-		const wrp = ee`<div class="ve-flex-col mb-4">
-			<div class="bold mb-2">${displayName}:</div>
+		const wrp = ee`<div class="ve-flex-col ve-mb-4">
+			<div class="ve-bold ve-mb-2">${displayName}:</div>
 			<div class="ve-flex-col list-display-only">${rows}</div>
 		</div>`;
 
@@ -390,10 +390,10 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 
 	_pRender_tabSources ({tabMeta, rdState}) {
 		const cbAll = this._isReadOnly ? null : ee`<input type="checkbox">`;
-		const wrpRows = ee`<div class="list ve-flex-col w-100 max-h-unset"></div>`;
-		const iptSearch = ee`<input type="search" class="search manbrew__search form-control w-100 mt-1" placeholder="Search source...">`;
-		const wrpBtnsSort = ee`<div class="filtertools manbrew__filtertools input-group input-group--bottom ve-flex no-shrink">
-			${this._isReadOnly ? "" : ee`<label class="ve-btn ve-btn-default ve-btn-xs ve-col-1 pr-0 ve-flex-vh-center">${cbAll}</label>`}
+		const wrpRows = ee`<div class="list ve-flex-col ve-w-100 ve-max-h-unset"></div>`;
+		const iptSearch = ee`<input type="search" class="search manbrew__search ve-form-control ve-w-100 ve-mt-1" placeholder="Search source...">`;
+		const wrpBtnsSort = ee`<div class="filtertools manbrew__filtertools input-group input-group--bottom ve-flex ve-no-shrink">
+			${this._isReadOnly ? "" : ee`<label class="ve-btn ve-btn-default ve-btn-xs ve-col-1 ve-pr-0 ve-flex-vh-center">${cbAll}</label>`}
 			<button class="${this._isReadOnly ? `ve-col-6` : `ve-col-5`} sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
 			<button class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="abbreviation">Abbreviation</button>
 			<button class="ve-col-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="json">JSON</button>
@@ -428,16 +428,16 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 
 	_pRender_getSourceRowMeta ({rdState, source, ix}) {
 		const eleLi = document.createElement("div");
-		eleLi.className = "lst__row ve-flex-col px-0";
+		eleLi.className = "ve-lst__row ve-flex-col ve-px-0";
 
 		const name = source.full || SOURCE_UNKNOWN_FULL;
 		const abv = source.abbreviation || SOURCE_UNKNOWN_ABBREVIATION;
 
-		eleLi.innerHTML = `<label class="lst__row-border lst__row-inner no-select mb-0 ve-flex-v-center">
-			${this._isReadOnly ? `` : `<div class="pl-0 ve-col-1 ve-flex-vh-center"><input type="checkbox" class="no-events"></div>`}
-			<div class="${this._isReadOnly ? `ve-col-6` : `ve-col-5`} bold">${name}</div>
+		eleLi.innerHTML = `<label class="ve-lst__row-border ve-lst__row-inner ve-no-select ve-mb-0 ve-flex-v-center">
+			${this._isReadOnly ? `` : `<div class="ve-pl-0 ve-col-1 ve-flex-vh-center"><input type="checkbox" class="ve-no-events"></div>`}
+			<div class="${this._isReadOnly ? `ve-col-6` : `ve-col-5`} ve-bold">${name}</div>
 			<div class="ve-col-2 ve-text-center">${abv}</div>
-			<div class="ve-col-4 ve-flex-vh-center pr-0">${source.json}</div>
+			<div class="ve-col-4 ve-flex-vh-center ve-pr-0">${source.json}</div>
 		</label>`;
 
 		const listItem = new ListItem(

@@ -44,7 +44,7 @@ export class MoneyConverter extends DmScreenPanelAppBase {
 		}).reverse();
 		const DEFAULT_CURRENCY = 3;
 
-		const wrpConverter = ee`<div class="dm_money dm__panel-bg split-column"></div>`;
+		const wrpConverter = ee`<div class="dm_money dm__panel-bg ve-split-column"></div>`;
 
 		const doUpdate = () => {
 			if (!this._wrpRows.findAll(`.dm-money__row`)) {
@@ -160,11 +160,11 @@ export class MoneyConverter extends DmScreenPanelAppBase {
 			board.doSaveStateDebounced();
 		};
 
-		const buildCurrencySelect = (isOutput) => ee`<select class="form-control input-sm p-2">${isOutput ? `<option value="-1">(No conversion)</option>` : ""}${CURRENCY.map((c, i) => `<option value="${i}">${c.n}</option>`).join("")}</select>`;
+		const buildCurrencySelect = (isOutput) => ee`<select class="ve-form-control ve-input-sm ve-p-2">${isOutput ? `<option value="-1">(No conversion)</option>` : ""}${CURRENCY.map((c, i) => `<option value="${i}">${c.n}</option>`).join("")}</select>`;
 
 		const addRow = (currency, count) => {
 			const eleRow = ee`<div class="dm-money__row"></div>`.appendTo(this._wrpRows);
-			const iptCount = ee`<input type="number" step="1" placeholder="Coins" class="form-control input-sm">`.appendTo(eleRow).onn("change", doUpdate);
+			const iptCount = ee`<input type="number" step="1" placeholder="Coins" class="ve-form-control ve-input-sm">`.appendTo(eleRow).onn("change", doUpdate);
 			if (count != null) iptCount.val(count);
 			const selCurrency = buildCurrencySelect()
 				.val(currency == null ? `${DEFAULT_CURRENCY}` : currency)
@@ -180,9 +180,9 @@ export class MoneyConverter extends DmScreenPanelAppBase {
 
 		this._wrpRows = ee`<div class="dm-money__rows"></div>`.appendTo(wrpConverter);
 
-		const wrpCtrl = ee`<div class="split dm-money__ctrl"></div>`.appendTo(wrpConverter);
-		const wrpCtrlLhs = ee`<div class="dm-money__ctrl__lhs split-child" style="width: 66%;"></div>`.appendTo(wrpCtrl);
-		const wrpBtnAddSettings = ee`<div class="split"></div>`.appendTo(wrpCtrlLhs);
+		const wrpCtrl = ee`<div class="ve-split dm-money__ctrl"></div>`.appendTo(wrpConverter);
+		const wrpCtrlLhs = ee`<div class="dm-money__ctrl__lhs ve-split-child" style="width: 66%;"></div>`.appendTo(wrpCtrl);
+		const wrpBtnAddSettings = ee`<div class="ve-split"></div>`.appendTo(wrpCtrlLhs);
 		const btnAddRow = ee`<button class="ve-btn ve-btn-primary ve-btn-sm" title="Add Row"><span class="glyphicon glyphicon-plus"></span></button>`
 			.appendTo(wrpBtnAddSettings)
 			.onn("click", () => {
@@ -200,15 +200,15 @@ export class MoneyConverter extends DmScreenPanelAppBase {
 					UiUtil.getAddModalRowCb(eleModalInner, `Disable ${cx.n} in Output`, this._disabledCurrency, cx.ix);
 				});
 			});
-		const iptOut = ee`<input class="form-control input-sm dm-money__out" disabled/>`
+		const iptOut = ee`<input class="ve-form-control ve-input-sm dm-money__out" disabled/>`
 			.appendTo(wrpCtrlLhs)
 			.onn("mousedown", async () => {
 				await MiscUtil.pCopyTextToClipboard(iptOut.val());
 				JqueryUtil.showCopiedEffect(iptOut);
 			});
 
-		const wrpCtrlRhs = ee`<div class="dm-money__ctrl__rhs split-child" style="width: 33%;"></div>`.appendTo(wrpCtrl);
-		this._iptSplit = ee`<input type="number" min="1" step="1" placeholder="Split Between..." class="form-control input-sm">`.appendTo(wrpCtrlRhs).onn("change", doUpdate);
+		const wrpCtrlRhs = ee`<div class="dm-money__ctrl__rhs ve-split-child" style="width: 33%;"></div>`.appendTo(wrpCtrl);
+		this._iptSplit = ee`<input type="number" min="1" step="1" placeholder="Split Between..." class="ve-form-control ve-input-sm">`.appendTo(wrpCtrlRhs).onn("change", doUpdate);
 		this._selOut = buildCurrencySelect(true)
 			.val(`${DEFAULT_CURRENCY}`)
 			.appendTo(wrpCtrlRhs)

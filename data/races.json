@@ -7154,7 +7154,8 @@
 						"You can speak, read, and write Grung."
 					]
 				}
-			]
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Hadozee",
@@ -7493,6 +7494,7 @@
 			"name": "Halfling",
 			"source": "XPHB",
 			"page": 193,
+			"srd52": true,
 			"basicRules2024": true,
 			"edition": "one",
 			"creatureTypes": [
@@ -10011,7 +10013,12 @@
 			"darkvision": 120,
 			"skillProficiencies": [
 				{
-					"performance": true
+					"choose": {
+						"from": [
+							"deception",
+							"performance"
+						]
+					}
 				}
 			],
 			"sizeEntry": {
@@ -10040,14 +10047,14 @@
 					"type": "entries",
 					"name": "Delightful Imitator",
 					"entries": [
-						"You have proficiency in the {@skill Performance|XPHB} skill."
+						"You have proficiency in the {@skill Deception|XPHB} or {@skill Performance|XPHB} skill."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Unpredictable Movement",
 					"entries": [
-						"When you roll {@variantrule Initiative|XPHB} and don't have {@variantrule Disadvantage|XPHB} on that roll, you can take the {@action Dash|XPHB} action as a {@variantrule Reaction|XPHB}."
+						"When you roll {@variantrule Initiative|XPHB}, you can immediately move up to half your {@variantrule Speed|XPHB}, provided you don't have {@variantrule Disadvantage|XPHB} on the {@variantrule Initiative|XPHB} roll."
 					]
 				}
 			],

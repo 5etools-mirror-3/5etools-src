@@ -258,9 +258,9 @@ class BlocklistUi {
 	}
 
 	_pInit_initUi () {
-		this._wrpControls = ee`<div ${this._isCompactUi ? "" : `class="bg-solid py-5 px-3 shadow-big b-1p"`}></div>`;
+		this._wrpControls = ee`<div ${this._isCompactUi ? "" : `class="bg-solid ve-py-5 ve-px-3 shadow-big ve-b-1p"`}></div>`;
 
-		const iptSearch = ee`<input type="search" class="search form-control lst__search lst__search--no-border-h h-100">`.disableSpellcheck();
+		const iptSearch = ee`<input type="search" class="search ve-form-control ve-lst__search ve-lst__search--no-border-h ve-h-100">`.disableSpellcheck();
 
 		const btnReset = ee`<button class="ve-btn ve-btn-default">Reset Search</button>`
 			.onn("click", () => {
@@ -268,29 +268,29 @@ class BlocklistUi {
 				this._list.reset();
 			});
 
-		const wrpFilterTools = ee`<div class="input-group input-group--bottom ve-flex no-shrink">
+		const wrpFilterTools = ee`<div class="input-group input-group--bottom ve-flex ve-no-shrink">
 			<button class="ve-col-4 sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Source</button>
 			<button class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="category">Category</button>
 			<button class="ve-col-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
 			<button class="ve-col-1 sort ve-btn ve-btn-default ve-btn-xs" disabled>&nbsp;</button>
 		</div>`;
 
-		const wrpList = ee`<div class="list-display-only smooth-scroll ve-overflow-y-auto h-100 min-h-0"></div>`;
+		const wrpList = ee`<div class="list-display-only ve-smooth-scroll ve-overflow-y-auto ve-h-100 ve-min-h-0"></div>`;
 
 		ee(this._wrpContent.empty())`
 			${this._wrpControls}
 
-			<hr class="${this._isCompactUi ? "hr-2" : "hr-5"}">
+			<hr class="${this._isCompactUi ? "ve-hr-2" : "ve-hr-5"}">
 
-			<h4 class="my-0">Blocklist</h4>
-			<div class="ve-muted ${this._isCompactUi ? "mb-2" : "mb-3"}"><i>Rows marked with an asterisk (*) in a field match everything in that field.</i></div>
+			<h4 class="ve-my-0">Blocklist</h4>
+			<div class="ve-muted ${this._isCompactUi ? "ve-mb-2" : "ve-mb-3"}"><i>Rows marked with an asterisk (*) in a field match everything in that field.</i></div>
 
-			<div class="ve-flex-col min-h-0">
-				<div class="ve-flex-v-stretch input-group input-group--top no-shrink">
-					<div class="w-100 relative">
+			<div class="ve-flex-col ve-min-h-0">
+				<div class="ve-flex-v-stretch input-group input-group--top ve-no-shrink">
+					<div class="ve-w-100 ve-relative">
 						${iptSearch}
-						<div class="lst__wrp-search-glass no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
-						<div class="lst__wrp-search-visible no-events ve-flex-vh-center"></div>
+						<div class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
+						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
 					</div>
 					${btnReset}
 				</div>
@@ -380,7 +380,7 @@ class BlocklistUi {
 		);
 		this._comp.addHook("category", () => this._doHandleSourceCategorySelChange());
 
-		this._wrpSelName = ee`<div class="w-100 ve-flex"></div>`;
+		this._wrpSelName = ee`<div class="ve-w-100 ve-flex"></div>`;
 		this._doHandleSourceCategorySelChange();
 
 		const btnAddExclusion = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Add to Blocklist</button>`
@@ -389,7 +389,7 @@ class BlocklistUi {
 
 		// Utility controls
 		const btnSendToFoundry = !globalThis.IS_VTT && ExtensionUtil.ACTIVE
-			? ee`<button title="Send to Foundry" class="ve-btn ve-btn-xs ve-btn-default mr-2"><span class="glyphicon glyphicon-send"></span></button>`
+			? ee`<button title="Send to Foundry" class="ve-btn ve-btn-xs ve-btn-default ve-mr-2"><span class="glyphicon glyphicon-send"></span></button>`
 				.onn("click", evt => this._pDoSendToFoundry({isTemp: !!evt.shiftKey}))
 			: null;
 		const btnExport = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Export List</button>`
@@ -403,49 +403,49 @@ class BlocklistUi {
 			});
 		// endregion
 
-		ee(this._wrpControls.empty())`<div class="${this._isCompactUi ? "mb-2" : "mb-5"} ve-flex-v-center mobile-md__ve-flex-col mobile-md__ve-flex-ai-start">
-			<div class="ve-flex-vh-center mr-4 mobile-md__mr-0 mobile-md__mb-2">
-				<div class="mr-2">UA/Etc. Sources</div>
+		ee(this._wrpControls.empty())`<div class="${this._isCompactUi ? "ve-mb-2" : "ve-mb-5"} ve-flex-v-center ve-mobile-md__ve-flex-col ve-mobile-md__ve-flex-ai-start">
+			<div class="ve-flex-vh-center ve-mr-4 ve-mobile-md__mr-0 ve-mobile-md__mb-2">
+				<div class="ve-mr-2">UA/Etc. Sources</div>
 				<div class="ve-flex-v-center ve-btn-group">
 					${btnExcludeAllUa}
 					${btnIncludeAllUa}
 				</div>
 			</div>
 
-			<div class="ve-flex-vh-center mr-3 mobile-md__mr-0 mobile-md__mb-2">
-				<div class="mr-2">Comedy Sources</div>
+			<div class="ve-flex-vh-center ve-mr-3 ve-mobile-md__mr-0 ve-mobile-md__mb-2">
+				<div class="ve-mr-2">Comedy Sources</div>
 				<div class="ve-flex-v-center ve-btn-group">
 					${btnExcludeAllComedySources}
 					${btnIncludeAllComedySources}
 				</div>
 			</div>
 
-			<div class="ve-flex-vh-center mr-3 mobile-md__mr-0 mobile-md__mb-2">
-				<div class="mr-2">Non-<i>Forgotten Realms</i></div>
+			<div class="ve-flex-vh-center ve-mr-3 ve-mobile-md__mr-0 ve-mobile-md__mb-2">
+				<div class="ve-mr-2">Non-<i>Forgotten Realms</i></div>
 				<div class="ve-flex-v-center ve-btn-group">
 					${btnExcludeAllNonForgottenRealmsSources}
 					${btnIncludeAllNonForgottenRealmsSources}
 				</div>
 			</div>
 
-			<div class="ve-flex-vh-center mr-3 mobile-md__mr-0 mobile-md__mb-2">
-				<div class="mr-2">&apos;14 Sources</div>
+			<div class="ve-flex-vh-center ve-mr-3 ve-mobile-md__mr-0 ve-mobile-md__mb-2">
+				<div class="ve-mr-2">5e (&apos;14) Sources</div>
 				<div class="ve-flex-v-center ve-btn-group">
 					${btnExcludeClassicSources}
 					${btnIncludeClassicSources}
 				</div>
 			</div>
 
-			<div class="ve-flex-vh-center mr-3 mobile-md__mr-0 mobile-md__mb-2">
-				<div class="mr-2">&apos;24 Sources</div>
+			<div class="ve-flex-vh-center ve-mr-3 ve-mobile-md__mr-0 ve-mobile-md__mb-2">
+				<div class="ve-mr-2">5.5e (&apos;24) Sources</div>
 				<div class="ve-flex-v-center ve-btn-group">
 					${btnExcludeModernSources}
 					${btnIncludeModernSources}
 				</div>
 			</div>
 
-			<div class="ve-flex-vh-center mr-3 mobile-md__mr-0 mobile-md__mb-2">
-				<div class="mr-2">All Sources</div>
+			<div class="ve-flex-vh-center ve-mr-3 ve-mobile-md__mr-0 ve-mobile-md__mb-2">
+				<div class="ve-mr-2">All Sources</div>
 				<div class="ve-flex-v-center ve-btn-group">
 					${btnExcludeAllSources}
 					${btnIncludeAllSources}
@@ -453,32 +453,32 @@ class BlocklistUi {
 			</div>
 		</div>
 
-		<div class="ve-flex-v-end ${this._isCompactUi ? "mb-2" : "mb-5"} mobile-sm__ve-flex-col mobile-sm__ve-flex-ai-start">
-			<div class="ve-flex-col w-25 pr-2 mobile-sm__w-100 mobile-sm__mb-2 mobile-sm__p-0">
-				<label class="mb-1">Source</label>
+		<div class="ve-flex-v-end ${this._isCompactUi ? "ve-mb-2" : "ve-mb-5"} ve-mobile-sm__ve-flex-col ve-mobile-sm__ve-flex-ai-start">
+			<div class="ve-flex-col ve-w-25 ve-pr-2 ve-mobile-sm__w-100 ve-mobile-sm__mb-2 ve-mobile-sm__p-0">
+				<label class="ve-mb-1">Source</label>
 				${selSource}
 			</div>
 
-			<div class="ve-flex-col w-25 px-2 mobile-sm__w-100 mobile-sm__mb-2 mobile-sm__p-0">
-				<label class="mb-1">Category</label>
+			<div class="ve-flex-col ve-w-25 ve-px-2 ve-mobile-sm__w-100 ve-mobile-sm__mb-2 ve-mobile-sm__p-0">
+				<label class="ve-mb-1">Category</label>
 				${selCategory}
 			</div>
 
-			<div class="ve-flex-col w-25 px-2 mobile-sm__w-100 mobile-sm__mb-2 mobile-sm__p-0">
-				<label class="mb-1">Name</label>
+			<div class="ve-flex-col ve-w-25 ve-px-2 ve-mobile-sm__w-100 ve-mobile-sm__mb-2 ve-mobile-sm__p-0">
+				<label class="ve-mb-1">Name</label>
 				${this._wrpSelName}
 			</div>
 
-			<div class="ve-flex-col w-25 pl-2 mobile-sm__w-100 mobile-sm__mb-2 mobile-sm__p-0">
-				<div class="mt-auto">
+			<div class="ve-flex-col ve-w-25 ve-pl-2 ve-mobile-sm__w-100 ve-mobile-sm__mb-2 ve-mobile-sm__p-0">
+				<div class="ve-mt-auto">
 					${btnAddExclusion}
 				</div>
 			</div>
 		</div>
 
-		<div class="w-100 ve-flex-v-center">
+		<div class="ve-w-100 ve-flex-v-center">
 			${btnSendToFoundry}
-			<div class="ve-flex-v-center ve-btn-group mr-2">
+			<div class="ve-flex-v-center ve-btn-group ve-mr-2">
 				${btnExport}
 				${btnImport}
 			</div>
@@ -487,11 +487,11 @@ class BlocklistUi {
 	}
 
 	_getBtn_addToBlocklist () {
-		return ee`<button class="ve-btn ve-btn-danger ve-btn-xs w-20p h-21p ve-flex-vh-center" title="Add to Blocklist"><span class="glyphicon glyphicon-trash"></span></button>`;
+		return ee`<button class="ve-btn ve-btn-danger ve-btn-xs ve-w-20p ve-h-21p ve-flex-vh-center" title="Add to Blocklist"><span class="glyphicon glyphicon-trash"></span></button>`;
 	}
 
 	_getBtn_removeFromBlocklist () {
-		return ee`<button class="ve-btn ve-btn-success ve-btn-xs w-20p h-21p ve-flex-vh-center" title="Remove from Blocklist"><span class="glyphicon glyphicon-thumbs-up"></span></button>`;
+		return ee`<button class="ve-btn ve-btn-success ve-btn-xs ve-w-20p ve-h-21p ve-flex-vh-center" title="Remove from Blocklist"><span class="glyphicon glyphicon-thumbs-up"></span></button>`;
 	}
 
 	_doHandleSourceCategorySelChange () {
@@ -642,7 +642,7 @@ class BlocklistUi {
 		this._list.addItem(listItem);
 	}
 
-	_addListItem_getItemStyles () { return `no-click ve-flex-v-center lst__row lst__row-border veapp__list-row lst__row-inner no-shrink`; }
+	_addListItem_getItemStyles () { return `no-click ve-flex-v-center ve-lst__row ve-lst__row-border veapp__list-row ve-lst__row-inner ve-no-shrink`; }
 
 	async _pAdd () {
 		const {hash, name: displayName, category: categoryName} = this._comp.name;

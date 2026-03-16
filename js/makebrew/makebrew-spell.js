@@ -187,7 +187,7 @@ export class SpellBuilder extends BuilderBase {
 			},
 		);
 		const [infoTab, detailsTab, sourcesTab, miscTab] = tabs;
-		ee`<div class="ve-flex-v-center w-100 no-shrink ui-tab__wrp-tab-heads--border">${tabs.map(it => it.btnTab)}</div>`.appendTo(wrp);
+		ee`<div class="ve-flex-v-center ve-w-100 ve-no-shrink ve-ui-tab__wrp-tab-heads--border">${tabs.map(it => it.btnTab)}</div>`.appendTo(wrp);
 		tabs.forEach(it => it.wrpTab.appendTo(wrp));
 
 		// INFO
@@ -266,7 +266,7 @@ export class SpellBuilder extends BuilderBase {
 
 		// FLAVOR/MISC
 		this.getFluffInput(cb).appendTo(miscTab.wrpTab);
-		ee`<div class="ve-flex-vh-center w-100 mb-2"><i>Note: the following data is used by filters on the Spells page.</i></div>`.appendTo(miscTab.wrpTab);
+		ee`<div class="ve-flex-vh-center ve-w-100 ve-mb-2"><i>Note: the following data is used by filters on the Spells page.</i></div>`.appendTo(miscTab.wrpTab);
 		BuilderUi.getStateIptBooleanArray(
 			"Damage Inflicted",
 			cb,
@@ -393,7 +393,7 @@ export class SpellBuilder extends BuilderBase {
 			return out;
 		};
 
-		const iptPage = ee`<input class="form-control form-control--minimal input-xs">`
+		const iptPage = ee`<input class="ve-form-control form-control--minimal ve-input-xs">`
 			.onn("change", () => doUpdateState())
 			.val(os && os.page ? os.page : null);
 
@@ -401,10 +401,10 @@ export class SpellBuilder extends BuilderBase {
 
 		const out = {getOtherSource};
 
-		const wrpBtnRemove = ee`<div class="ve-text-right mb-2"></div>`;
+		const wrpBtnRemove = ee`<div class="ve-text-right ve-mb-2"></div>`;
 		const wrp = ee`<div class="ve-flex-col mkbru__wrp-rows mkbru__wrp-rows--removable">
-			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Source</span>${compSelSource.getWrp()}</div>
-			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Page</span>${iptPage}</div>
+			<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33">Source</span>${compSelSource.getWrp()}</div>
+			<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33">Page</span>${iptPage}</div>
 			${wrpBtnRemove}
 		</div>`;
 		this.constructor.getBtnRemoveRow(doUpdateState, otherSourceRows, out, wrp, "Other Source").appendTo(wrpBtnRemove);
@@ -451,12 +451,12 @@ export class SpellBuilder extends BuilderBase {
 			return out;
 		};
 
-		const iptNum = ee`<input class="form-control form-control--minimal input-xs mr-2">`
+		const iptNum = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`
 			.onn("change", () => doUpdateState())
 			.val(time.number);
 
 		const ixInitial = keys.indexOf(time.unit);
-		const selUnit = ee`<select class="form-control input-xs">
+		const selUnit = ee`<select class="ve-form-control ve-input-xs">
 			${keys.map((it, i) => `<option value="${i}">${Parser.spTimeUnitToFull(it)}</option>`).join("")}
 		</select>`
 			.val(~ixInitial ? `${ixInitial}` : "0")
@@ -464,17 +464,17 @@ export class SpellBuilder extends BuilderBase {
 				doUpdateState();
 			});
 
-		const iptCond = ee`<input class="form-control form-control--minimal input-xs" placeholder="which you take when...">`
+		const iptCond = ee`<input class="ve-form-control form-control--minimal ve-input-xs" placeholder="which you take when...">`
 			.onn("change", () => doUpdateState())
 			.val(time.condition);
 
 		const out = {getTime};
 
-		const wrpBtnRemove = ee`<div class="ve-text-right mb-2"></div>`;
+		const wrpBtnRemove = ee`<div class="ve-text-right ve-mb-2"></div>`;
 		const wrp = ee`<div class="ve-flex-col mkbru__wrp-rows mkbru__wrp-rows--removable">
-			<div class="ve-flex-v-center mb-2">${iptNum}${selUnit}</div>
-			<div class="ve-flex-v-center mb-2">
-				<span class="mr-2 mkbru__sub-name--33">Condition</span>${iptCond}
+			<div class="ve-flex-v-center ve-mb-2">${iptNum}${selUnit}</div>
+			<div class="ve-flex-v-center ve-mb-2">
+				<span class="ve-mr-2 mkbru__sub-name--33">Condition</span>${iptCond}
 			</div>
 			${wrpBtnRemove}
 		</div>`;
@@ -507,7 +507,7 @@ export class SpellBuilder extends BuilderBase {
 		};
 
 		const ixInitialRange = _SPELL_RANGE_TYPES.findIndex(it => it.type === this._state.range.type);
-		const selRange = ee`<select class="form-control input-xs">
+		const selRange = ee`<select class="ve-form-control ve-input-xs">
 			${_SPELL_RANGE_TYPES.map((it, i) => `<option value="${i}">${Parser.spRangeTypeToFull(it.type)}</option>`).join("")}
 		</select>`
 			.val(~ixInitialRange ? `${ixInitialRange}` : "0")
@@ -521,13 +521,13 @@ export class SpellBuilder extends BuilderBase {
 				} else doUpdateState();
 			});
 		ee`<div class="ve-flex-v-center">
-			<span class="mr-2 mkbru__sub-name--33">Range Type</span>
+			<span class="ve-mr-2 mkbru__sub-name--33">Range Type</span>
 			${selRange}
 		</div>`.appendTo(rowInner);
 
 		// DISTANCE TYPE
 		const ixInitialDist = this._state.range.distance ? _SPELL_DIST_TYPES.findIndex(it => it.type === this._state.range.distance.type) : -1;
-		const selDistance = ee`<select class="form-control input-xs">
+		const selDistance = ee`<select class="ve-form-control ve-input-xs">
 			${_SPELL_DIST_TYPES.map((it, i) => `<option value="${i}">${Parser.spDistanceTypeToFull(it.type)}</option>`).join("")}
 		</select>`
 			.val(~ixInitialDist ? `${ixInitialDist}` : "0")
@@ -539,18 +539,18 @@ export class SpellBuilder extends BuilderBase {
 					selDistance.val(`${_SPELL_DIST_TYPES.findIndex(it => it.hasAmount)}`).trigger("change");
 				} else doUpdateState();
 			});
-		const stageDistance = ee`<div class="ve-flex-v-center mt-2">
-			<span class="mr-2 mkbru__sub-name--33">Distance Type</span>
+		const stageDistance = ee`<div class="ve-flex-v-center ve-mt-2">
+			<span class="ve-mr-2 mkbru__sub-name--33">Distance Type</span>
 			${selDistance}
 		</div>`.appendTo(rowInner).toggleVe(isInitialDistance);
 
 		// AMOUNT
 		const initialAmount = MiscUtil.get(this._state, "range", "distance", "amount");
-		const iptAmount = ee`<input class="form-control form-control--minimal input-xs">`
+		const iptAmount = ee`<input class="ve-form-control form-control--minimal ve-input-xs">`
 			.onn("change", () => doUpdateState())
 			.val(initialAmount);
-		const stageAmount = ee`<div class="ve-flex-v-center mt-2">
-			<span class="mr-2 mkbru__sub-name--33">Distance Amount</span>
+		const stageAmount = ee`<div class="ve-flex-v-center ve-mt-2">
+			<span class="ve-mr-2 mkbru__sub-name--33">Distance Amount</span>
 			${iptAmount}
 		</div>`.appendTo(rowInner).toggleVe(isInitialAmount);
 
@@ -605,11 +605,11 @@ export class SpellBuilder extends BuilderBase {
 		const cbRoyalty = ee`<input type="checkbox" class="mkbru__ipt-cb--plain">`
 			.prop("checked", !!(this._state.components && this._state.components.r))
 			.onn("change", () => doUpdateState());
-		const iptMaterial = ee`<input class="form-control form-control--minimal input-xs">`
+		const iptMaterial = ee`<input class="ve-form-control form-control--minimal ve-input-xs">`
 			.val(initialMaterialMode === "1" ? this._state.components.m : initialMaterialMode === "2" ? this._state.components.m.text : null)
 			.onn("change", () => doUpdateState());
 
-		const selMaterial = ee`<select class="form-control input-xs">
+		const selMaterial = ee`<select class="ve-form-control ve-input-xs">
 			<option value="0">(None)</option>
 			<option value="1">Has Material Component</option>
 			<option value="2">Has Consumable/Costed Material Component</option>
@@ -626,26 +626,26 @@ export class SpellBuilder extends BuilderBase {
 			});
 
 		ee`<div>
-			<div class="ve-flex-v-center mb-2"><div class="mr-2 mkbru__sub-name--33">Verbal</div>${cbVerbal}</div>
-			<div class="ve-flex-v-center mb-2"><div class="mr-2 mkbru__sub-name--33">Somatic</div>${cbSomatic}</div>
-			<div class="ve-flex-v-center mt-2"><div class="mr-2 mkbru__sub-name--33">Royalty</div>${cbRoyalty}</div>
-			<div class="ve-flex-v-center"><div class="mr-2 mkbru__sub-name--33">Material Type</div>${selMaterial}</div>
+			<div class="ve-flex-v-center ve-mb-2"><div class="ve-mr-2 mkbru__sub-name--33">Verbal</div>${cbVerbal}</div>
+			<div class="ve-flex-v-center ve-mb-2"><div class="ve-mr-2 mkbru__sub-name--33">Somatic</div>${cbSomatic}</div>
+			<div class="ve-flex-v-center ve-mt-2"><div class="ve-mr-2 mkbru__sub-name--33">Royalty</div>${cbRoyalty}</div>
+			<div class="ve-flex-v-center"><div class="ve-mr-2 mkbru__sub-name--33">Material Type</div>${selMaterial}</div>
 		</div>`.appendTo(rowInner);
 
 		// BASIC MATERIAL
-		const stageMaterial = ee`<div class="ve-flex-v-center mt-2"><div class="mr-2 mkbru__sub-name--33">Materials</div>${iptMaterial}</div>`.appendTo(rowInner).toggleVe(initialMaterialMode === "1" || initialMaterialMode === "2");
+		const stageMaterial = ee`<div class="ve-flex-v-center ve-mt-2"><div class="ve-mr-2 mkbru__sub-name--33">Materials</div>${iptMaterial}</div>`.appendTo(rowInner).toggleVe(initialMaterialMode === "1" || initialMaterialMode === "2");
 
 		// CONSUMABLE MATERIAL
 		const cbConsumed = ee`<input type="checkbox" class="mkbru__ipt-cb--plain">`
 			.prop("checked", !!(this._state.components && this._state.components.m && this._state.components.m.consume))
 			.onn("change", () => doUpdateState());
-		const iptCost = ee`<input class="form-control form-control--minimal input-xs mr-1">`
+		const iptCost = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-1">`
 			.val(this._state.components && this._state.components.m && this._state.components.m.cost ? this._state.components.m.cost : null)
 			.onn("change", () => doUpdateState());
 		const TITLE_FILTERS_EXTERNAL = "Used in filtering/external applications. The full text of the material component should be entered in the &quot;Materials&quot; field, above.";
-		const stageMaterialConsumable = ee`<div class="mt-2">
-			<div class="ve-flex-v-center mb-2"><div class="mr-2 mkbru__sub-name--33 help" title="${TITLE_FILTERS_EXTERNAL}">Is Consumed</div>${cbConsumed}</div>
-			<div class="ve-flex-v-center"><div class="mr-2 mkbru__sub-name--33 help" title="${TITLE_FILTERS_EXTERNAL} Specified in copper pieces (1gp = 100cp).">Component Cost</div>${iptCost}<div>cp</div></div>
+		const stageMaterialConsumable = ee`<div class="ve-mt-2">
+			<div class="ve-flex-v-center ve-mb-2"><div class="ve-mr-2 mkbru__sub-name--33 ve-help" title="${TITLE_FILTERS_EXTERNAL}">Is Consumed</div>${cbConsumed}</div>
+			<div class="ve-flex-v-center"><div class="ve-mr-2 mkbru__sub-name--33 ve-help" title="${TITLE_FILTERS_EXTERNAL} Specified in copper pieces (1gp = 100cp).">Component Cost</div>${iptCost}<div>cp</div></div>
 		</div>`.appendTo(rowInner).toggleVe(initialMaterialMode === "2");
 
 		return row;
@@ -672,8 +672,8 @@ export class SpellBuilder extends BuilderBase {
 			.onn("change", () => doUpdateState());
 
 		ee`<div>
-			<div class="ve-flex-v-center mb-2"><div class="mr-2 mkbru__sub-name--33">Ritual</div>${cbRitual}</div>
-			<div class="ve-flex-v-center"><div class="mr-2 mkbru__sub-name--33">Technomagic</div>${cbTechnomagic}</div>
+			<div class="ve-flex-v-center ve-mb-2"><div class="ve-mr-2 mkbru__sub-name--33">Ritual</div>${cbRitual}</div>
+			<div class="ve-flex-v-center"><div class="ve-mr-2 mkbru__sub-name--33">Technomagic</div>${cbTechnomagic}</div>
 		</div>`.appendTo(rowInner);
 
 		return row;
@@ -733,7 +733,7 @@ export class SpellBuilder extends BuilderBase {
 		};
 
 		const ixInitialDuration = DURATION_TYPES.findIndex(it => it.type === duration.type);
-		const selDurationType = ee`<select class="form-control input-xs">
+		const selDurationType = ee`<select class="ve-form-control ve-input-xs">
 			${DURATION_TYPES.map((it, i) => `<option value="${i}">${it.full || it.type.toTitleCase()}</option>`).join("")}
 		</select>`.val(~ixInitialDuration ? `${ixInitialDuration}` : "0").onn("change", () => {
 		const meta = DURATION_TYPES[selDurationType.val()];
@@ -744,10 +744,10 @@ export class SpellBuilder extends BuilderBase {
 
 		// AMOUNT
 		const ixInitialAmount = duration.duration ? `${AMOUNT_TYPES.indexOf(duration.duration.type)}` : "0";
-		const selAmountType = ee`<select class="form-control input-xs">
+		const selAmountType = ee`<select class="ve-form-control ve-input-xs">
 			${AMOUNT_TYPES.map((it, i) => `<option value="${i}">${it.toTitleCase()}s</option>`).join("")}
 		</select>`.val(ixInitialAmount).onn("change", () => doUpdateState());
-		const iptAmount = ee`<input class="form-control form-control--minimal input-xs mr-2">`
+		const iptAmount = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`
 			.val(duration.duration ? duration.duration.amount : null)
 			.onn("change", () => doUpdateState());
 		const cbConc = ee`<input type="checkbox" class="mkbru__ipt-cb--plain">`
@@ -756,9 +756,9 @@ export class SpellBuilder extends BuilderBase {
 		const cbUpTo = ee`<input type="checkbox" class="mkbru__ipt-cb--plain">`
 			.prop("checked", !!(duration.duration ? duration.duration.upTo : false))
 			.onn("change", () => doUpdateState());
-		const stageAmount = ee`<div class="ve-flex-col mb-2">
-			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Concentration</span>${cbConc}</div>
-			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33 help" title="For a spell with Concentration, this has no effect, as it is assumed that the spell can be ended at any time by ending concentration.">Up To...</span>${cbUpTo}</div>
+		const stageAmount = ee`<div class="ve-flex-col ve-mb-2">
+			<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33">Concentration</span>${cbConc}</div>
+			<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33 ve-help" title="For a spell with Concentration, this has no effect, as it is assumed that the spell can be ended at any time by ending concentration.">Up To...</span>${cbUpTo}</div>
 			<div class="ve-flex-v-center">${iptAmount}${selAmountType}</div>
 		</div>`.toggleVe(!!typeInitial.hasAmount);
 
@@ -770,7 +770,7 @@ export class SpellBuilder extends BuilderBase {
 				SpellBuilder.__getDurationInput__getDurationRow__getEndRow(doUpdateState, endRows, "dispel").wrp.appendTo(wrpEndRows);
 				doUpdateState();
 			});
-		const stageEnds = ee`<div class="mb-2">
+		const stageEnds = ee`<div class="ve-mb-2">
 			${wrpEndRows}
 			<div class="ve-text-right">${btnAddEnd}</div>
 		</div>`.toggleVe(!!typeInitial.hasEnds);
@@ -778,9 +778,9 @@ export class SpellBuilder extends BuilderBase {
 
 		const out = {getDuration};
 
-		const wrpBtnRemove = ee`<div class="ve-text-right mb-2"></div>`;
+		const wrpBtnRemove = ee`<div class="ve-text-right ve-mb-2"></div>`;
 		const wrp = ee`<div class="ve-flex-col mkbru__wrp-rows mkbru__wrp-rows--removable">
-			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Duration Type</span>${selDurationType}</div>
+			<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33">Duration Type</span>${selDurationType}</div>
 			${stageAmount}
 			${stageEnds}
 			${wrpBtnRemove}
@@ -798,7 +798,7 @@ export class SpellBuilder extends BuilderBase {
 		const getEnd = () => keys[selEndType.val()];
 
 		const ixInitialEnd = end ? keys.indexOf(end) : "0";
-		const selEndType = ee`<select class="form-control input-xs mr-2">
+		const selEndType = ee`<select class="ve-form-control ve-input-xs ve-mr-2">
 			${keys.map((it, i) => `<option value="${i}">Until ${Parser.spEndTypeToFull(it)}</option>`).join("")}
 		</select>`.val(ixInitialEnd).onn("change", () => doUpdateState());
 
@@ -806,8 +806,8 @@ export class SpellBuilder extends BuilderBase {
 
 		const wrpBtnRemove = ee`<div></div>`;
 		const wrp = ee`<div class="ve-flex">
-			<div class="mkbru__sub-name--33 mr-2"></div>
-			<div class="mb-2 ve-flex-v-center w-100">${selEndType}${wrpBtnRemove}</div>
+			<div class="mkbru__sub-name--33 ve-mr-2"></div>
+			<div class="ve-mb-2 ve-flex-v-center ve-w-100">${selEndType}${wrpBtnRemove}</div>
 		</div>`;
 		this.getBtnRemoveRow(doUpdateState, endRows, out, wrp, "Until Clause", {isExtraSmall: true}).appendTo(wrpBtnRemove);
 
@@ -883,17 +883,17 @@ export class SpellBuilder extends BuilderBase {
 			};
 		};
 
-		const iptClass = ee`<input class="form-control form-control--minimal input-xs">`
+		const iptClass = ee`<input class="ve-form-control form-control--minimal ve-input-xs">`
 			.onn("change", () => doUpdateState())
 			.val(cls.name);
 		const compSelSource = this._getCompSelSource("classSources", doUpdateState, cls.source);
 
 		const out = {getClass};
 
-		const wrpBtnRemove = ee`<div class="ve-text-right mb-2"></div>`;
+		const wrpBtnRemove = ee`<div class="ve-text-right ve-mb-2"></div>`;
 		const wrp = ee`<div class="ve-flex-col mkbru__wrp-rows mkbru__wrp-rows--removable">
-			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Class Name</span>${iptClass}</div>
-			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Class Source</span>${compSelSource.getWrp()}</div>
+			<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33">Class Name</span>${iptClass}</div>
+			<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33">Class Source</span>${compSelSource.getWrp()}</div>
 			${wrpBtnRemove}
 		</div>`;
 		this.constructor.getBtnRemoveRow(doUpdateState, classRows, out, wrp, "Class").appendTo(wrpBtnRemove);
@@ -925,33 +925,33 @@ export class SpellBuilder extends BuilderBase {
 			return out;
 		};
 
-		const iptClass = ee`<input class="form-control form-control--minimal input-xs">`
+		const iptClass = ee`<input class="ve-form-control form-control--minimal ve-input-xs">`
 			.onn("change", () => doUpdateState())
 			.val(subclass.class.name);
 		const compSelSourceClass = this._getCompSelSource("classSources", doUpdateState, subclass.class.source);
 
-		const iptSubclass = ee`<input class="form-control form-control--minimal input-xs">`
+		const iptSubclass = ee`<input class="ve-form-control form-control--minimal ve-input-xs">`
 			.onn("change", () => doUpdateState())
 			.val(subclass.subclass.name);
-		const iptSubclassShort = ee`<input class="form-control form-control--minimal input-xs">`
+		const iptSubclassShort = ee`<input class="ve-form-control form-control--minimal ve-input-xs">`
 			.onn("change", () => doUpdateState())
 			.val(subclass.subclass.shortName);
 		const compSelSourceSubclass = this._getCompSelSource("subclassSources", doUpdateState, subclass.subclass.source);
 
-		const iptSubSubclass = ee`<input class="form-control form-control--minimal input-xs">`
+		const iptSubSubclass = ee`<input class="ve-form-control form-control--minimal ve-input-xs">`
 			.onn("change", () => doUpdateState())
 			.val(subclass.subclass.subSubclass ? subclass.subclass.subSubclass : null);
 
 		const out = {getSubclass};
 
-		const wrpBtnRemove = ee`<div class="ve-text-right mb-2"></div>`;
+		const wrpBtnRemove = ee`<div class="ve-text-right ve-mb-2"></div>`;
 		const wrp = ee`<div class="ve-flex-col mkbru__wrp-rows">
-			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Class Name</span>${iptClass}</div>
-			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Class Source</span>${compSelSourceClass.getWrp()}</div>
-			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Subclass Name</span>${iptSubclass}</div>
-			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Subclass Short Name</span>${iptSubclassShort}</div>
-			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Subclass Source</span>${compSelSourceSubclass.getWrp()}</div>
-			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33 help" title="For example, for a Circle of the Coast Land Druid, enter &quot;Coast&quot;">Sub-Subclass Name</span>${iptSubSubclass}</div>
+			<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33">Class Name</span>${iptClass}</div>
+			<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33">Class Source</span>${compSelSourceClass.getWrp()}</div>
+			<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33">Subclass Name</span>${iptSubclass}</div>
+			<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33">Subclass Short Name</span>${iptSubclassShort}</div>
+			<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33">Subclass Source</span>${compSelSourceSubclass.getWrp()}</div>
+			<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33 ve-help" title="For example, for a Circle of the Coast Land Druid, enter &quot;Coast&quot;">Sub-Subclass Name</span>${iptSubSubclass}</div>
 			${wrpBtnRemove}
 		</div>`;
 		this.constructor.getBtnRemoveRow(doUpdateState, subclassRows, out, wrp, "Subclass").appendTo(wrpBtnRemove);
@@ -1010,10 +1010,10 @@ export class SpellBuilder extends BuilderBase {
 			} else return null;
 		};
 
-		const iptRace = ee`<input class="form-control form-control--minimal input-xs">`
+		const iptRace = ee`<input class="ve-form-control form-control--minimal ve-input-xs">`
 			.onn("change", () => doUpdateState())
 			.val(race ? race.name : null);
-		const iptBaseRace = ee`<input class="form-control form-control--minimal input-xs">`
+		const iptBaseRace = ee`<input class="ve-form-control form-control--minimal ve-input-xs">`
 			.onn("change", () => doUpdateState())
 			.val(race ? race.baseName : null);
 
@@ -1022,12 +1022,12 @@ export class SpellBuilder extends BuilderBase {
 
 		const out = {getRace};
 
-		const wrpBtnRemove = ee`<div class="ve-text-right mb-2"></div>`;
+		const wrpBtnRemove = ee`<div class="ve-text-right ve-mb-2"></div>`;
 		const wrp = ee`<div class="ve-flex-col mkbru__wrp-rows">
-			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Name</span>${iptRace}</div>
-			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Source</span>${compSelSource.getWrp()}</div>
-			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33 help" title="The name of the base race, e.g. &quot;Elf&quot;. This is used in filtering.">Base Name</span>${iptBaseRace}</div>
-			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33 help" title="For example, the &quot;Elf&quot; base race has a source of &quot;${Parser.SRC_PHB}&quot;">Base Source</span>${compSelSourceBase.getWrp()}</div>
+			<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33">Name</span>${iptRace}</div>
+			<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33">Source</span>${compSelSource.getWrp()}</div>
+			<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33 ve-help" title="The name of the base race, e.g. &quot;Elf&quot;. This is used in filtering.">Base Name</span>${iptBaseRace}</div>
+			<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33 ve-help" title="For example, the &quot;Elf&quot; base race has a source of &quot;${Parser.SRC_PHB}&quot;">Base Source</span>${compSelSourceBase.getWrp()}</div>
 			${wrpBtnRemove}
 		</div>`;
 		this.constructor.getBtnRemoveRow(doUpdateState, raceRows, out, wrp, "Species").appendTo(wrpBtnRemove);
@@ -1081,7 +1081,7 @@ export class SpellBuilder extends BuilderBase {
 			};
 		};
 
-		const iptName = ee`<input class="form-control form-control--minimal input-xs">`
+		const iptName = ee`<input class="ve-form-control form-control--minimal ve-input-xs">`
 			.onn("change", () => doUpdateState())
 			.val(identObj ? identObj.name : null);
 
@@ -1089,10 +1089,10 @@ export class SpellBuilder extends BuilderBase {
 
 		const out = {getIdentObject};
 
-		const wrpBtnRemove = ee`<div class="ve-text-right mb-2"></div>`;
+		const wrpBtnRemove = ee`<div class="ve-text-right ve-mb-2"></div>`;
 		const wrp = ee`<div class="ve-flex-col mkbru__wrp-rows">
-			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Name</span>${iptName}</div>
-			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Source</span>${compSelSource.getWrp()}</div>
+			<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33">Name</span>${iptName}</div>
+			<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33">Source</span>${compSelSource.getWrp()}</div>
 			${wrpBtnRemove}
 		</div>`;
 		this.constructor.getBtnRemoveRow(doUpdateState, rows, out, wrp, nameSingle).appendTo(wrpBtnRemove);
@@ -1272,18 +1272,18 @@ export class SpellBuilder extends BuilderBase {
 			},
 		);
 		const [spellTab, infoTab, imageTab, dataTab, markdownTab] = tabs;
-		ee`<div class="ve-flex-v-center w-100 no-shrink">${tabs.map(it => it.btnTab)}</div>`.appendTo(wrp);
+		ee`<div class="ve-flex-v-center ve-w-100 ve-no-shrink">${tabs.map(it => it.btnTab)}</div>`.appendTo(wrp);
 		tabs.forEach(it => it.wrpTab.appendTo(wrp));
 
 		// Spell
-		const tblSpell = ee`<table class="w-100 stats"></table>`.appendTo(spellTab.wrpTab);
+		const tblSpell = ee`<table class="ve-w-100 ve-stats"></table>`.appendTo(spellTab.wrpTab);
 		// Make a copy of the spell, and add the data that would be displayed in the spells page
 		const procSpell = MiscUtil.copy(this._state);
 		Renderer.spell.initBrewSources(procSpell);
 		tblSpell.appends(RenderSpells.getRenderedSpell(procSpell, {subclassLookup: this._subclassLookup, isSkipExcludesRender: true}));
 
 		// Info
-		const tblInfo = ee`<table class="w-100 stats"></table>`.appendTo(infoTab.wrpTab);
+		const tblInfo = ee`<table class="ve-w-100 ve-stats"></table>`.appendTo(infoTab.wrpTab);
 		Renderer.utils.pBuildFluffTab({
 			isImageTab: false,
 			wrpContent: tblInfo,
@@ -1292,7 +1292,7 @@ export class SpellBuilder extends BuilderBase {
 		});
 
 		// Images
-		const tblImages = ee`<table class="w-100 stats"></table>`.appendTo(imageTab.wrpTab);
+		const tblImages = ee`<table class="ve-w-100 ve-stats"></table>`.appendTo(imageTab.wrpTab);
 		Renderer.utils.pBuildFluffTab({
 			isImageTab: true,
 			wrpContent: tblImages,
@@ -1301,7 +1301,7 @@ export class SpellBuilder extends BuilderBase {
 		});
 
 		// Data
-		const tblData = ee`<table class="w-100 stats stats--book mkbru__wrp-output-tab-data"></table>`.appendTo(dataTab.wrpTab);
+		const tblData = ee`<table class="ve-w-100 ve-stats ve-stats--book mkbru__wrp-output-tab-data"></table>`.appendTo(dataTab.wrpTab);
 		const asCode = Renderer.get().render({
 			type: "entries",
 			entries: [
@@ -1317,7 +1317,7 @@ export class SpellBuilder extends BuilderBase {
 		tblData.appends(Renderer.utils.getBorderTr());
 
 		// Markdown
-		const tblMarkdown = ee`<table class="w-100 stats stats--book mkbru__wrp-output-tab-data"></table>`.appendTo(markdownTab.wrpTab);
+		const tblMarkdown = ee`<table class="ve-w-100 ve-stats ve-stats--book mkbru__wrp-output-tab-data"></table>`.appendTo(markdownTab.wrpTab);
 		tblMarkdown.appends(Renderer.utils.getBorderTr());
 		tblMarkdown.appends(`<tr><td colspan="6">${this._getRenderedMarkdownCode()}</td></tr>`);
 		tblMarkdown.appends(Renderer.utils.getBorderTr());

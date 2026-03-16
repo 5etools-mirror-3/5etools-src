@@ -51,17 +51,17 @@ export class RenderableCollectionFilterSnapshotBase extends RenderableCollection
 	}
 
 	_getWrpRow () {
-		return ee`<div class="ve-flex-col w-100"></div>`;
+		return ee`<div class="ve-flex-col ve-w-100"></div>`;
 	}
 
 	/* -------------------------------------------- */
 
 	static _getCbSel () {
-		return ee`<input type="checkbox" class="no-events">`;
+		return ee`<input type="checkbox" class="ve-no-events">`;
 	}
 
 	static _getBtnToggleExpand (comp, {isSibling = false} = {}) {
-		const btnExpand = ee`<div class="py-1 ve-flex-vh-center h-100 clickable no-select ${isSibling ? `mr-1 px-2` : `w-100`}"></div>`
+		const btnExpand = ee`<div class="ve-py-1 ve-flex-vh-center ve-h-100 ve-clickable ve-no-select ${isSibling ? `ve-mr-1 ve-px-2` : `ve-w-100`}"></div>`
 			.onn("click", evt => {
 				evt.stopPropagation();
 				comp._state.manager_loader_isExpanded = !comp._state.manager_loader_isExpanded;
@@ -125,7 +125,7 @@ export class RenderableCollectionFilterSnapshotBase extends RenderableCollection
 			[
 				...ptsFilter,
 				filtersDefault.length
-					? `<span class="ve-text-right w-140p no-shrink mr-2 bold ve-muted">Default:</span><span class="ve-muted">${filtersDefault.join(" | ")}</span>`
+					? `<span class="ve-text-right ve-w-140p ve-no-shrink ve-mr-2 ve-bold ve-muted">Default:</span><span class="ve-muted">${filtersDefault.join(" | ")}</span>`
 					: null,
 			],
 		);
@@ -134,7 +134,7 @@ export class RenderableCollectionFilterSnapshotBase extends RenderableCollection
 	_getPreviewStateDisplayState_getJoined (pts) {
 		return pts
 			.filter(Boolean)
-			.map((pt, i, arr) => `<div class="ve-flex-v-center ${arr.length - 1 === i ? "" : "mb-1"}">${pt}</div>`)
+			.map((pt, i, arr) => `<div class="ve-flex-v-center ${arr.length - 1 === i ? "" : "ve-mb-1"}">${pt}</div>`)
 			.join("\n");
 	}
 

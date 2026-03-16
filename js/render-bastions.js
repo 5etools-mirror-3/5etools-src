@@ -27,14 +27,14 @@ class _RenderFacilitiesImplBase extends RenderPageImplBase {
 
 	_getCommonHtmlParts_prerequisites ({ent}) {
 		if (ent.level == null) return "";
-		return `<tr><td colspan="6" class="pb-2 pt-0"><i>Level ${ent.level} Bastion Facility</i></td></tr>`;
+		return `<tr><td colspan="6" class="ve-pb-2 ve-pt-0"><i>Level ${ent.level} Bastion Facility</i></td></tr>`;
 	}
 
 	/* ----- */
 
 	_getCommonHtmlParts_entries ({ent, renderer}) {
 		const entriesMeta = Renderer.facility.getFacilityRenderableEntriesMeta(ent);
-		return entriesMeta.entriesDescription.map(entry => `<div class="my-1p">${renderer.render(entry, 2)}</div>`).join("");
+		return entriesMeta.entriesDescription.map(entry => `<div class="ve-my-1p">${renderer.render(entry, 2)}</div>`).join("");
 	}
 }
 

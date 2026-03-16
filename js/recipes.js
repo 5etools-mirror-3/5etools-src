@@ -9,13 +9,13 @@ class RecipesSublistManager extends SublistManager {
 		return [
 			new SublistCellTemplate({
 				name: "Name",
-				css: "bold ve-col-9 pl-0 pr-1",
+				css: "ve-bold ve-col-9 ve-pl-0 ve-pr-1",
 				colStyle: "",
 			}),
 			new SublistCellTemplate({
 				name: "Type",
-				css: "ve-col-3 ve-text-center pl-1 pr-0",
-				colStyle: "text-center",
+				css: "ve-col-3 ve-text-center ve-pl-1 ve-pr-0",
+				colStyle: "ve-text-center",
 			}),
 		];
 	}
@@ -25,8 +25,8 @@ class RecipesSublistManager extends SublistManager {
 		const name = it._displayName || it.name;
 		const cellsText = [name, it.type || "\u2014"];
 
-		const ele = ee`<div class="lst__row lst__row--sublist ve-flex-col">
-			<a href="#${hash}" class="lst__row-border lst__row-inner">
+		const ele = ee`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`
@@ -68,6 +68,12 @@ class RecipesPage extends ListPage {
 
 			dataProps: ["recipe"],
 
+			bookViewOptions: {
+				nameSingular: "recipe",
+				namePlural: "recipes",
+				pageTitle: "Recipes Book View",
+			},
+
 			listSyntax: new ListSyntaxRecipes({fnGetDataList: () => this._dataList, pFnGetFluff}),
 		});
 	}
@@ -76,15 +82,15 @@ class RecipesPage extends ListPage {
 		this._pageFilter.mutateAndAddToFilters(ent, isExcluded);
 
 		const eleLi = document.createElement("div");
-		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blocklisted" : ""}`;
+		eleLi.className = `ve-lst__row ve-flex-col ${isExcluded ? "ve-lst__row--blocklisted" : ""}`;
 
 		const source = Parser.sourceJsonToAbv(ent.source);
 		const hash = UrlUtil.autoEncodeHash(ent);
 
-		eleLi.innerHTML = `<a href="#${hash}" class="lst__row-border lst__row-inner">
-			<span class="ve-col-6 bold pl-0 pr-1">${ent.name}</span>
-			<span class="ve-col-4 px-1 ve-text-center">${ent.type || "\u2014"}</span>
-			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(ent.source)} pl-1 pr-0" title="${Parser.sourceJsonToFull(ent.source)}">${source}</span>
+		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+			<span class="ve-col-6 ve-bold ve-pl-0 ve-pr-1">${ent.name}</span>
+			<span class="ve-col-4 ve-px-1 ve-text-center">${ent.type || "\u2014"}</span>
+			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(ent.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(ent.source)}">${source}</span>
 		</a>`;
 
 		const listItem = new ListItem(
@@ -115,7 +121,7 @@ class RecipesPage extends ListPage {
 		if (scaleFactor != null) ent = Renderer.recipe.getScaledRecipe(ent, scaleFactor);
 
 		const selScaleFactor = ee`
-			<select title="Scale Recipe" class="form-control input-xs form-control--minimal ve-popwindow__hidden">
+			<select title="Scale Recipe" class="ve-form-control ve-input-xs form-control--minimal ve-popwindow__hidden">
 				${[0.5, 1, 2, 3, 4].map(it => `<option value="${it}" ${(scaleFactor || 1) === it ? "selected" : ""}>×${it}</option>`)}
 			</select>`
 			.onn("change", () => {

@@ -79,7 +79,7 @@ Shared UI components
 	}
 
 	/* region Misc/Shared */
-	.ui__ {
+	.ve-ui__ {
 		&btn-xxl-square {
 			width: 110px;
 			height: 110px;
@@ -101,7 +101,7 @@ Shared UI components
 	/* endregion */
 
 	/* region List */
-	.ui-list__ {
+	.ve-ui-list__ {
 		// TODO refactor all "list" class to use this:
 		//  - add "relative" class to each as required
 		//  - add "ve-overflow-x-hidden" and "ve-overflow-y-auto" classes
@@ -132,7 +132,7 @@ Shared UI components
 	/* endregion */
 
 	/* region Source overlay */
-	.ui-source__ {
+	.ve-ui-source__ {
 		&row {
 			margin-left: calc(-96px - 0.5rem);
 		}
@@ -154,7 +154,7 @@ Shared UI components
 	/* endregion */
 
 	/* region Modals */
-	.ui-modal__ {
+	.ve-ui-modal__ {
 		&body-active {
 			overflow-y: hidden !important;
 		}
@@ -307,7 +307,7 @@ Shared UI components
 	/* endregion */
 
 	/* region Search */
-	.ui-search__ {
+	.ve-ui-search__ {
 		&wrp-output {
 			position: relative;
 			height: 100%;
@@ -421,7 +421,7 @@ Shared UI components
 	/* endregion */
 
 	/* region Tabs */
-	.ui-tab__ {
+	.ve-ui-tab__ {
 		&btn-tab-head {
 			display: inline-block;
 			border-bottom-right-radius: 0;
@@ -430,7 +430,7 @@ Shared UI components
 			user-select: none;
 			border-bottom: 0;
 
-			&.active {
+			&.ve-active {
 				background-color: #e6e6e6;
 				border-color: #adadad;
 			}
@@ -469,7 +469,7 @@ Shared UI components
 		}
 	}
 
-	.ui-tab-side__ {
+	.ve-ui-tab-side__ {
 		$w-tab: 120px;
 		$w-tab-mobile-ish: 33px;
 
@@ -509,7 +509,7 @@ Shared UI components
 	/* endregion */
 
 	/* region Proficiency */
-	.ui-prof__ {
+	.ve-ui-prof__ {
 		&btn-cycle {
 			@include vars.mix-cb-custom;
 
@@ -551,7 +551,7 @@ Shared UI components
 	/* endregion */
 
 	/* region Direction picker */
-	.ui-dir__ {
+	.ve-ui-dir__ {
 		&face {
 			position: relative;
 			width: 92px;
@@ -580,7 +580,7 @@ Shared UI components
 	/* endregion */
 
 	/* region Icon picker */
-	.ui-icn__ {
+	.ve-ui-icn__ {
 		&wrp-icon {
 			font-size: 24px;
 		}
@@ -588,7 +588,7 @@ Shared UI components
 	/* endregion */
 
 	/* region Drag to re-order */
-	.ui-drag__ {
+	.ve-ui-drag__ {
 		&wrp-drag-block {
 			position: absolute;
 			inset: 0;
@@ -631,7 +631,7 @@ Shared UI components
 	/* endregion */
 
 	/* region Hover tips */
-	.ui-tip__ {
+	.ve-ui-tip__ {
 		&parent {
 			cursor: help;
 			position: relative;
@@ -653,7 +653,7 @@ Shared UI components
 			pointer-events: none;
 		}
 
-		&parent:hover .ui-tip__child {
+		&parent:hover .ve-ui-tip__child {
 			display: flex;
 			opacity: 1;
 		}
@@ -661,7 +661,7 @@ Shared UI components
 	/* endregion */
 
 	/* region Context menu */
-	.ui-ctx {
+	.ve-ui-ctx {
 		&__wrp {
 			@include vars.mix-shadow-1--dark;
 
@@ -689,8 +689,8 @@ Shared UI components
 				background: vars.$rgb-bg--alt;
 			}
 
-			&.disabled,
-			&.disabled:hover {
+			&.ve-disabled,
+			&.ve-disabled:hover {
 				cursor: default;
 				background: vars.$rgb-bg;
 			}
@@ -699,7 +699,7 @@ Shared UI components
 	/* endregion */
 
 	/* region Picker */
-	.ui-pick {
+	.ve-ui-pick {
 		&__ {
 			&wrp-btns {
 				// Match the height of a pill -- 1 line of text, mb-1, 1px top/bottom border
@@ -780,7 +780,7 @@ Shared UI components
 	/* endregion */
 
 	/* region "Copied" tooltip */
-	.clp__ {
+	.ve-clp__ {
 		&wrp-temp {
 			position: fixed;
 			top: -10000px;
@@ -832,7 +832,7 @@ Shared UI components
 	/* endregion */
 
 	/* region Decorated inputs */
-	.ui-ideco__ {
+	.ve-ui-ideco__ {
 		&ipt {
 			&--left {
 				padding-left: 22px !important;
@@ -898,8 +898,8 @@ Shared UI components
 			}
 		}
 
-		&ipt:hover + .ui-ideco__wrp .ui-ideco__btn-ticker,
-		&wrp:hover .ui-ideco__btn-ticker {
+		&ipt:hover + .ve-ui-ideco__wrp .ve-ui-ideco__btn-ticker,
+		&wrp:hover .ve-ui-ideco__btn-ticker {
 			transition: opacity vars.$time-2-frames;
 			opacity: 1;
 		}
@@ -907,7 +907,7 @@ Shared UI components
 	/* endregion */
 
 	/* region Select2 */
-	.ui-sel2__ {
+	.ve-ui-sel2__ {
 		&ipt-search {
 			top: 0;
 			right: 0;
@@ -923,17 +923,17 @@ Shared UI components
 		&wrp {
 			&:focus,
 			&:focus-within {
-				> .ui-sel2__ipt-search {
+				> .ve-ui-sel2__ipt-search {
 					opacity: 1;
 				}
 
-				> .ui-sel2__ipt-display {
+				> .ve-ui-sel2__ipt-display {
 					text-align: right;
 					color: vars.$rgb-font--muted;
 					font-weight: bold;
 				}
 
-				> .ui-sel2__wrp-options {
+				> .ve-ui-sel2__wrp-options {
 					display: flex;
 				}
 			}
@@ -960,14 +960,14 @@ Shared UI components
 		}
 
 		&disp-option {
-			&.active,
+			&.ve-active,
 			&:focus,
 			&:hover {
 				background: vars.$rgb-bg--alt;
 			}
 
-			&:focus.active,
-			&:hover.active {
+			&:focus.ve-active,
+			&:hover.ve-active {
 				background: color.adjust(vars.$rgb-bg--alt, $lightness: - vars.$pct-darken-active);
 			}
 		}
@@ -982,7 +982,7 @@ Shared UI components
 	/* endregion */
 
 	/* region Range Slider */
-	.ui-slidr {
+	.ve-ui-slidr {
 		&__ {
 			$sz-top-row-pad: 6px;
 

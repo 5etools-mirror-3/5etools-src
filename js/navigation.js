@@ -60,8 +60,8 @@ class NavBar {
 		btnShowHide.className = "ve-btn ve-btn-default page__btn-toggle-nav";
 		btnShowHide.innerHTML = "Menu";
 		btnShowHide.onclick = () => {
-			btnShowHide.classList.toggle("active");
-			em(`.page__nav-hidden-mobile`).forEach(ele => ele.toggleClass("block", btnShowHide.classList.contains("active")));
+			btnShowHide.classList.toggle("ve-active");
+			em(`.page__nav-hidden-mobile`).forEach(ele => ele.toggleClass("ve-block", btnShowHide.classList.contains("ve-active")));
 		};
 		document.getElementById("navigation").prepend(btnShowHide);
 
@@ -433,15 +433,15 @@ class NavBar {
 		a.href = href;
 		a.innerHTML = `${this._addElement_getDatePrefix({date: date, isAddDateSpacer: isAddDateSpacer})}${this._addElement_getSourcePrefix({source: source})}${aText}${this._addElement_getSourceSuffix({source: source})}`;
 		a.classList.add("nav__link");
-		if (isInAccordion) a.classList.add(`nav2-accord__lnk-item`, `ve-inline-block`, `w-100`);
+		if (isInAccordion) a.classList.add(`nav2-accord__lnk-item`, `ve-inline-block`, `ve-w-100`);
 
 		if (isExternal) {
 			a.setAttribute("target", "_blank");
 			a.setAttribute("rel", "noopener noreferrer");
 		}
 		if (isExternalMark) {
-			a.classList.add("inline-split-v-center");
-			a.classList.add("w-100");
+			a.classList.add("ve-inline-split-v-center");
+			a.classList.add("ve-w-100");
 			a.innerHTML = `<span>${aText}</span><span class="glyphicon glyphicon-new-window"></span>`;
 		}
 
@@ -477,7 +477,7 @@ class NavBar {
 
 		// region Header button
 		const wrpHead = document.createElement("div");
-		wrpHead.className = "nav2-accord__head split-v-center clickable";
+		wrpHead.className = "nav2-accord__head ve-split-v-center ve-clickable";
 		wrpHead.onclick = evt => {
 			evt.stopPropagation();
 			evt.preventDefault();
@@ -517,12 +517,12 @@ class NavBar {
 		});
 	}
 
-	static _addElement_getDatePrefix ({date, isAddDateSpacer}) { return `${(date != null || isAddDateSpacer) ? `<div class="ve-small mr-2 page__nav-date ve-inline-block ve-text-right inline-block" aria-hidden="true">${date || ""}</div>` : ""}`; }
+	static _addElement_getDatePrefix ({date, isAddDateSpacer}) { return `${(date != null || isAddDateSpacer) ? `<div class="ve-small ve-mr-2 page__nav-date ve-inline-block ve-text-right ve-inline-block" aria-hidden="true">${date || ""}</div>` : ""}`; }
 	static _addElement_getSourcePrefix ({source}) { return `${source != null ? `<div class="nav2-list__disp-source ${Parser.sourceJsonToSourceClassname(source)}"></div>` : ""}`; }
 
 	static _addElement_getSourceSuffix ({source}) {
 		if (source == null) return "";
-		return Parser.sourceJsonToMarkerHtml(source, {isAddBrackets: true, additionalStyles: "ml-1 nav2-list__disp-legacy-marker"});
+		return Parser.sourceJsonToMarkerHtml(source, {isAddBrackets: true, additionalStyles: "ve-ml-1 nav2-list__disp-legacy-marker"});
 	}
 
 	static _addElement_divider ({keyPath}) {
@@ -540,7 +540,7 @@ class NavBar {
 
 		const li = document.createElement("li");
 		li.setAttribute("role", "presentation");
-		li.className = "italic ve-muted ve-small nav2-list__label";
+		li.className = "ve-italic ve-muted ve-small nav2-list__label";
 		li.innerHTML = `${this._addElement_getDatePrefix({date, isAddDateSpacer})}${html}`;
 
 		parentNode.getBodyElement().appendChild(li);
@@ -666,7 +666,7 @@ class NavBar {
 				eleSpan.className = [
 					className,
 					"ve-inline-block",
-					i ? null : "w-100 min-w-0",
+					i ? null : "ve-w-100 ve-min-w-0",
 				]
 					.filter(Boolean)
 					.join(" ");
@@ -1006,7 +1006,7 @@ NavBar.Node = class {
 
 	set isActive (val) {
 		this._isActive = !!val;
-		this?._head?.classList?.toggle("active", this._isActive);
+		this?._head?.classList?.toggle("ve-active", this._isActive);
 		if (this._parent) this._parent.isActive = this._isActive;
 	}
 

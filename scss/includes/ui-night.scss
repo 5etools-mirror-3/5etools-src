@@ -8,7 +8,7 @@ Shared UI components
 
 @layer vetools {
 	/* region Misc/Shared */
-	.ve-night-mode .ui__ {
+	.ve-night-mode .ve-ui__ {
 		&ipt-color {
 			&::-webkit-color-swatch {
 				border: 0;
@@ -18,7 +18,7 @@ Shared UI components
 	/* endregion */
 
 	/* region List */
-	.ve-night-mode .ui-list__ {
+	.ve-night-mode .ve-ui-list__ {
 		&wrp-preview {
 			background: vars-night.$rgb-bg--night;
 		}
@@ -35,7 +35,7 @@ Shared UI components
 	/* endregion */
 
 	/* region Source overlay */
-	.ve-night-mode .ui-source__ {
+	.ve-night-mode .ve-ui-source__ {
 		&divider {
 			background: vars-night.$rgb-border-grey--night;
 		}
@@ -43,7 +43,7 @@ Shared UI components
 	/* endregion */
 
 	/* region Modals */
-	.ve-night-mode .ui-modal__ {
+	.ve-night-mode .ve-ui-modal__ {
 		&header {
 			&--border {
 				border-color: vars-night.$rgb-border-grey--trans-night;
@@ -75,7 +75,7 @@ Shared UI components
 	/* endregion */
 
 	/* region Search */
-	.ve-night-mode .ui-search__ {
+	.ve-night-mode .ve-ui-search__ {
 		&row {
 			border-color: vars-night.$rgb-border-grey--night;
 
@@ -91,7 +91,7 @@ Shared UI components
 	/* endregion */
 
 	/* region Tabs */
-	.ve-night-mode .ui-tab__ {
+	.ve-night-mode .ve-ui-tab__ {
 		&btn-tab-head {
 			&--active,
 			&--active:focus,
@@ -119,7 +119,7 @@ Shared UI components
 		}
 	}
 
-	.ve-night-mode .ui-tab-side__ {
+	.ve-night-mode .ve-ui-tab-side__ {
 		&wrp-tab {
 			background: vars-night.$rgb-bg--night;
 			border-color: vars-night.$rgb-border-grey--trans-night;
@@ -128,7 +128,7 @@ Shared UI components
 	/* endregion */
 
 	/* region Proficiency */
-	.ve-night-mode .ui-prof__ {
+	.ve-night-mode .ve-ui-prof__ {
 		&btn-cycle {
 			border-color: vars-night.$rgb-border-grey--night;
 
@@ -163,7 +163,7 @@ Shared UI components
 	/* endregion */
 
 	/* region Direction picker */
-	.ve-night-mode .ui-dir__ {
+	.ve-night-mode .ve-ui-dir__ {
 		&face {
 			background: vars-night.$rgb-bg--night;
 			border-color: vars-night.$rgb-border-grey--night;
@@ -177,7 +177,7 @@ Shared UI components
 	/* endregion */
 
 	/* region Hover tips */
-	.ve-night-mode .ui-tip__ {
+	.ve-night-mode .ve-ui-tip__ {
 		&child {
 			border-color: vars-night.$rgb-border-grey--night;
 			background: vars-night.$rgb-bg--night;
@@ -186,7 +186,7 @@ Shared UI components
 	/* endregion */
 
 	/* region Context menu */
-	.ve-night-mode .ui-ctx {
+	.ve-night-mode .ve-ui-ctx {
 		&__wrp {
 			background: vars-night.$rgb-bg--night;
 			border: 1px solid vars-night.$rgb-border-grey--trans-night;
@@ -205,8 +205,8 @@ Shared UI components
 				color: #fff;
 			}
 
-			&.disabled,
-			&.disabled:hover {
+			&.ve-disabled,
+			&.ve-disabled:hover {
 				background: vars-night.$rgb-bg--night;
 				color: vars-night.$rgb-font--night;
 			}
@@ -215,7 +215,7 @@ Shared UI components
 	/* endregion */
 
 	/* region Picker */
-	.ve-night-mode .ui-pick {
+	.ve-night-mode .ve-ui-pick {
 		&__ {
 			&disp-text {
 				border-color: vars-night.$rgb-border-grey--night;
@@ -225,7 +225,7 @@ Shared UI components
 	/* endregion */
 
 	/* region "Copied" tooltip */
-	.ve-night-mode .clp__ {
+	.ve-night-mode .ve-clp__ {
 		&disp-copied {
 			background: color.adjust(vars-night.$rgb-bg--night, $alpha: - 0.3);
 		}
@@ -233,7 +233,7 @@ Shared UI components
 	/* endregion */
 
 	/* region Decorated inputs */
-	.ve-night-mode .ui-ideco__ {
+	.ve-night-mode .ve-ui-ideco__ {
 		&btn-ticker {
 			background: vars-night.$rgb-border-grey--night;
 			color: #fff;
@@ -262,7 +262,7 @@ Shared UI components
 	/* endregion */
 
 	/* region Select2 */
-	.ve-night-mode .ui-sel2__ {
+	.ve-night-mode .ve-ui-sel2__ {
 		&ipt-search {
 			background: vars-night.$rgb-bg--night;
 		}
@@ -273,14 +273,14 @@ Shared UI components
 		}
 
 		&disp-option {
-			&.active,
+			&.ve-active,
 			&:focus,
 			&:hover {
 				background: vars-night.$rgb-bg--alt-night;
 			}
 
-			&:focus.active,
-			&:hover.active {
+			&:focus.ve-active,
+			&:hover.ve-active {
 				background: color.adjust(vars-night.$rgb-bg--alt-night, $lightness: vars.$pct-darken-active);
 			}
 		}
@@ -288,7 +288,7 @@ Shared UI components
 	/* endregion */
 
 	/* region Range Slider */
-	.ve-night-mode .ui-slidr {
+	.ve-night-mode .ve-ui-slidr {
 		&__ {
 			&thumb {
 				background: vars.$rgb-border-grey--trans;

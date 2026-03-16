@@ -5,12 +5,12 @@ class VehiclesSublistManager extends SublistManager {
 		return [
 			new SublistCellTemplate({
 				name: "Type",
-				css: "ve-col-8 pl-0 pr-1 ve-text-center",
-				colStyle: "text-center",
+				css: "ve-col-8 ve-pl-0 ve-pr-1 ve-text-center",
+				colStyle: "ve-text-center",
 			}),
 			new SublistCellTemplate({
 				name: "Name",
-				css: "bold ve-col-4 pl-1 pr-0",
+				css: "ve-bold ve-col-4 ve-pl-1 ve-pr-0",
 				colStyle: "",
 			}),
 		];
@@ -20,8 +20,8 @@ class VehiclesSublistManager extends SublistManager {
 		const displayType = it.vehicleType ? Parser.vehicleTypeToFull(it.vehicleType) : it.upgradeType.map(t => Parser.vehicleTypeToFull(t));
 		const cellsText = [displayType, it.name];
 
-		const ele = ee`<div class="lst__row lst__row--sublist ve-flex-col">
-			<a href="#${hash}" class="lst__row-border lst__row-inner">
+		const ele = ee`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`
@@ -62,6 +62,12 @@ class VehiclesPage extends ListPage {
 
 			dataProps: ["vehicle", "vehicleUpgrade"],
 
+			bookViewOptions: {
+				nameSingular: "vehicle",
+				namePlural: "vehicles",
+				pageTitle: "Vehicles Book View",
+			},
+
 			listSyntax: new ListSyntaxVehicles({fnGetDataList: () => this._dataList, pFnGetFluff}),
 		});
 
@@ -75,16 +81,16 @@ class VehiclesPage extends ListPage {
 		this._pageFilter.mutateAndAddToFilters(it, isExcluded);
 
 		const eleLi = document.createElement("div");
-		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blocklisted" : ""}`;
+		eleLi.className = `ve-lst__row ve-flex-col ${isExcluded ? "ve-lst__row--blocklisted" : ""}`;
 
 		const source = Parser.sourceJsonToAbv(it.source);
 		const hash = UrlUtil.autoEncodeHash(it);
 		const displayType = it.vehicleType ? Parser.vehicleTypeToFull(it.vehicleType) : it.upgradeType.map(t => Parser.vehicleTypeToFull(t));
 
-		eleLi.innerHTML = `<a href="#${UrlUtil.autoEncodeHash(it)}" class="lst__row-border lst__row-inner">
-			<span class="ve-col-6 pl-0 pr-1 ve-text-center">${displayType}</span>
-			<span class="bold ve-col-4 px-1">${it.name}</span>
-			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)} pl-1 pr-0" title="${Parser.sourceJsonToFull(it.source)}">${source}</span>
+		eleLi.innerHTML = `<a href="#${UrlUtil.autoEncodeHash(it)}" class="ve-lst__row-border ve-lst__row-inner">
+			<span class="ve-col-6 ve-pl-0 ve-pr-1 ve-text-center">${displayType}</span>
+			<span class="ve-bold ve-col-4 ve-px-1">${it.name}</span>
+			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(it.source)}">${source}</span>
 		</a>`;
 
 		const listItem = new ListItem(

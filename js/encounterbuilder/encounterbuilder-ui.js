@@ -17,7 +17,7 @@ class _RenderableCollectionCustomShapeGroups extends RenderableCollectionGeneric
 
 	_getWrpRow () {
 		return super._getWrpRow()
-			.addClass("py-1");
+			.addClass("ve-py-1");
 	}
 
 	_populateRow ({comp, wrpRow, entity}) {
@@ -43,9 +43,9 @@ class _RenderableCollectionCustomShapeGroups extends RenderableCollectionGeneric
 
 		// region Ratio
 		const sldRatio = ComponentUiUtil.getSliderNumber(comp, "ratioPercentage", {min: 0, max: 100, step: 1})
-			.addClass("mr-2");
+			.addClass("ve-mr-2");
 
-		const dispSpent = ee`<div class="ve-small ve-self-flex-end no-shrink w-140p ve-text-right no-wrap ve-overflow-x-hidden mr-2"></div>`;
+		const dispSpent = ee`<div class="ve-small ve-self-flex-end ve-no-shrink ve-w-140p ve-text-right ve-no-wrap ve-overflow-x-hidden ve-mr-2"></div>`;
 		const setHtmlDispSpent = (html) => {
 			dispSpent.html(html);
 		};
@@ -57,13 +57,13 @@ class _RenderableCollectionCustomShapeGroups extends RenderableCollectionGeneric
 			});
 
 		ee(wrpRow)`
-			<div class="ve-col-3 ve-flex-vh-center pr-1">
+			<div class="ve-col-3 ve-flex-vh-center ve-pr-1">
 				${iptCountMinMaxMin}
-				<div class="mx-1">\u2013</div>
+				<div class="ve-mx-1">\u2013</div>
 				${iptCountMinMaxMax}
 			</div>
 
-			<div class="ve-col-9 ve-flex-vh-center pl-1">
+			<div class="ve-col-9 ve-flex-vh-center ve-pl-1">
 				${sldRatio}
 				${dispSpent}
 				${btnDelete}
@@ -88,17 +88,17 @@ class _RenderableCollectionViewerCreatures extends RenderableCollectionGenericRo
 
 	_getWrpRow () {
 		return super._getWrpRow()
-			.addClass("py-1p")
-			.addClass("px-1");
+			.addClass("ve-py-1p")
+			.addClass("ve-px-1");
 	}
 
 	_populateRow ({comp, wrpRow, entity}) {
 		const {wrp: wrpIptCount} = ComponentUiUtil.getIptNumber(comp, "count", 1, {min: 1, decorationRight: "ticker", asMeta: true});
 		wrpIptCount
-			.addClass("w-50p")
-			.addClass("mr-2");
+			.addClass("ve-w-50p")
+			.addClass("ve-mr-2");
 
-		const dispCreature = ee`<div class="mr-2 mr-auto ve-grow"></div>`;
+		const dispCreature = ee`<div class="ve-mr-2 ve-mr-auto ve-grow"></div>`;
 
 		const pDoScaleCr = async ({targetCr}) => {
 			// Fetch original
@@ -148,7 +148,7 @@ class _RenderableCollectionViewerCreatures extends RenderableCollectionGenericRo
 		};
 
 		let pScalingCr = null;
-		const iptCr = ee`<input class="ve-text-center form-control form-control--minimal input-xs w-50p">`
+		const iptCr = ee`<input class="ve-text-center ve-form-control form-control--minimal ve-input-xs ve-w-50p">`
 			.onn("click", () => iptCr.selecte())
 			.onn("change", async () => {
 				await pScalingCr;
@@ -156,7 +156,7 @@ class _RenderableCollectionViewerCreatures extends RenderableCollectionGenericRo
 				await pScalingCr;
 				pScalingCr = null;
 			});
-		const stgCr = ee`<div class="mr-2 no-wrap ve-flex-v-center"><span class="mr-2">CR</span>${iptCr}</div>`;
+		const stgCr = ee`<div class="ve-mr-2 ve-no-wrap ve-flex-v-center"><span class="ve-mr-2">CR</span>${iptCr}</div>`;
 
 		comp._addHookBase("creature", () => {
 			// TODO(customHashId) this doesn't display the scaled creature on hover
@@ -188,15 +188,15 @@ class _RenderableCollectionViewerCreatures extends RenderableCollectionGenericRo
 			});
 
 		comp._addHookBase("isLocked", () => {
-			btnShuffle.toggleClass("disabled", comp._state.isLocked);
-			btnDelete.toggleClass("disabled", comp._state.isLocked);
+			btnShuffle.toggleClass("ve-disabled", comp._state.isLocked);
+			btnDelete.toggleClass("ve-disabled", comp._state.isLocked);
 		})();
 
 		ee(wrpRow)`
 			${wrpIptCount}
 			${dispCreature}
 			${stgCr}
-			<div class="ve-btn-group no-wrap">
+			<div class="ve-btn-group ve-no-wrap">
 				${btnShuffle}
 				${btnLock}
 				${btnDelete}
@@ -349,8 +349,8 @@ export class EncounterBuilderUi extends BaseComponent {
 		const stgSettingsRules = ee`<div class="ve-flex-col"></div>`;
 
 		ee(stgSettings)`
-			<h4 class="my-2">Settings</h4>
-			<label class="ve-flex-v-center mb-2"><b class="mr-2">Rules:</b> ${selRulesId}</label>
+			<h4 class="ve-my-2">Settings</h4>
+			<label class="ve-flex-v-center ve-mb-2"><b class="ve-mr-2">Rules:</b> ${selRulesId}</label>
 			${stgSettingsRules}
 		`;
 
@@ -366,7 +366,7 @@ export class EncounterBuilderUi extends BaseComponent {
 
 		if (!stgViewer) return;
 
-		const wrpOutput = ee`<div class="py-2 mt-5 ecgen-viewer__wrp-output"></div>`
+		const wrpOutput = ee`<div class="ve-py-2 ve-mt-5 ecgen-viewer__wrp-output"></div>`
 			.hideVe();
 
 		ee(stgViewer)`${wrpOutput}`;
@@ -384,7 +384,7 @@ export class EncounterBuilderUi extends BaseComponent {
 	}
 
 	_render_group ({rdState, stgGroup}) {
-		stgGroup.appends(`<h4 class="my-2">Group Info</h4>`);
+		stgGroup.appends(`<h4 class="ve-my-2">Group Info</h4>`);
 
 		const {
 			stg: stgSimple,
@@ -402,10 +402,10 @@ export class EncounterBuilderUi extends BaseComponent {
 		rdState.wrpHeadersAdvanced = wrpHeadersAdvanced;
 		rdState.wrpFootersAdvanced = wrpFootersAdvanced;
 
-		const stgGroupSummary = ee`<div class="ve-flex-col w-40"></div>`;
+		const stgGroupSummary = ee`<div class="ve-flex-col ve-w-40"></div>`;
 
 		ee`<div class="ve-flex">
-			<div class="ve-flex-col w-60">
+			<div class="ve-flex-col ve-w-60">
 				${stgSimple}
 				${stgAdvanced}
 			</div>
@@ -433,20 +433,20 @@ export class EncounterBuilderUi extends BaseComponent {
 	}
 
 	_renderGroupAndDifficulty_getGroupEles_simple () {
-		const btnAddPlayers = ee`<button class="ve-btn ve-btn-primary ve-btn-xs"><span class="glyphicon glyphicon-plus"></span> Add Another Level</button>`
+		const btnAddPlayers = ee`<button class="ve-btn ve-btn-primary ve-btn-xs"><span class="glyphicon glyphicon-plus"></span> Add Players</button>`
 			.onn("click", () => this._comp.doAddPlayer());
 
-		const wrpRows = ee`<div class="ve-flex-col w-100"></div>`;
+		const wrpRows = ee`<div class="ve-flex-col ve-w-100"></div>`;
 
 		const stg = ee`<div class="ve-flex-col">
 			<div class="ve-flex">
-				<div class="w-80p">Players:</div>
-				<div class="w-80p">Level:</div>
+				<div class="ve-w-80p">Players:</div>
+				<div class="ve-w-80p">Level:</div>
 			</div>
 
 			${wrpRows}
 
-			<div class="mb-1 ve-flex">
+			<div class="ve-mb-1 ve-flex">
 				<div class="ecgen__wrp_add_players_btn_wrp">
 					${btnAddPlayers}
 				</div>
@@ -467,10 +467,10 @@ export class EncounterBuilderUi extends BaseComponent {
 	}
 
 	_renderGroupAndDifficulty_getGroupEles_advanced () {
-		const btnAddPlayers = ee`<button class="ve-btn ve-btn-primary ve-btn-xs"><span class="glyphicon glyphicon-plus"></span> Add Another Player</button>`
+		const btnAddPlayers = ee`<button class="ve-btn ve-btn-primary ve-btn-xs"><span class="glyphicon glyphicon-plus"></span> Add Player</button>`
 			.onn("click", () => this._comp.doAddPlayer());
 
-		const btnAddAdvancedCol = ee`<button class="ve-btn ve-btn-primary ve-btn-xxs ecgen-player__btn-inline h-ipt-xs bl-0 bb-0 bbl-0 bbr-0 btl-0 ml-n1" title="Add Column" tabindex="-1"><span class="glyphicon glyphicon-list-alt"></span></button>`
+		const btnAddAdvancedCol = ee`<button class="ve-btn ve-btn-primary ve-btn-xxs ecgen-player__btn-inline ve-h-ipt-xs ve-bl-0 ve-bb-0 ve-bbl-0 ve-bbr-0 ve-btl-0 ve-ml-n1" title="Add Column" tabindex="-1"><span class="glyphicon glyphicon-list-alt"></span></button>`
 			.onn("click", () => this._comp.doAddColExtraAdvanced());
 
 		const wrpHeaders = ee`<div class="ve-flex"></div>`;
@@ -479,17 +479,17 @@ export class EncounterBuilderUi extends BaseComponent {
 		const wrpRows = ee`<div class="ve-flex-col"></div>`;
 
 		const stg = ee`<div class="ve-overflow-x-auto ve-flex-col">
-			<div class="ve-flex-h-center mb-2 bb-1p small-caps ve-self-flex-start">
-				<div class="w-100p mr-1 h-ipt-xs no-shrink">Name</div>
-				<div class="w-40p ve-text-center mr-1 h-ipt-xs no-shrink">Level</div>
+			<div class="ve-flex-h-center ve-mb-2 ve-bb-1p ve-small-caps ve-self-flex-start">
+				<div class="ve-w-100p ve-mr-1 ve-h-ipt-xs ve-no-shrink">Name</div>
+				<div class="ve-w-40p ve-text-center ve-mr-1 ve-h-ipt-xs ve-no-shrink">Level</div>
 				${wrpHeaders}
 				${btnAddAdvancedCol}
 			</div>
 
 			${wrpRows}
 
-			<div class="mb-1 ve-flex">
-				<div class="ecgen__wrp_add_players_btn_wrp no-shrink no-grow">
+			<div class="ve-mb-1 ve-flex">
+				<div class="ecgen__wrp_add_players_btn_wrp ve-no-shrink ve-no-grow">
 					${btnAddPlayers}
 				</div>
 				${wrpFooters}
@@ -498,7 +498,7 @@ export class EncounterBuilderUi extends BaseComponent {
 			${this._renderGroupAndDifficulty_getPtAdvancedMode()}
 
 			<div class="row">
-				<div class="w-100">
+				<div class="ve-w-100">
 					${Renderer.get().render(`{@note Additional columns will be imported into the DM Screen.}`)}
 				</div>
 			</div>
@@ -521,7 +521,7 @@ export class EncounterBuilderUi extends BaseComponent {
 
 		return ee`<div class="ve-flex-v-center">
 			<label class="ve-flex-v-center">
-				<div class="mr-2">Advanced Mode</div>
+				<div class="ve-mr-2">Advanced Mode</div>
 				${cbAdvanced}
 			</label>
 		</div>`;
@@ -591,7 +591,7 @@ export class EncounterBuilderUi extends BaseComponent {
 				this._comp.customShapeGroups = [...this._comp.customShapeGroups];
 			});
 
-		const dispSpent = ee`<div class="ml-auto ve-small ve-self-flex-end"></div>`;
+		const dispSpent = ee`<div class="ve-ml-auto ve-small ve-self-flex-end"></div>`;
 		const getUnspentInfo = () => {
 			const ratioPercentageTotal = this._comp.customShapeGroups
 				.map(({entity}) => entity.ratioPercentage)
@@ -631,7 +631,7 @@ export class EncounterBuilderUi extends BaseComponent {
 				isComplete,
 			} = getUnspentInfo();
 			dispSpent
-				.html(`<span class="split-v-center w-140p no-shrink" title="The percentage of the encounter budget, for the currently-selected difficulty, allocated to encounter groups.">${htmlUnspentHeader}</span>`)
+				.html(`<span class="ve-split-v-center ve-w-140p ve-no-shrink" title="The percentage of the encounter budget, for the currently-selected difficulty, allocated to encounter groups.">${htmlUnspentHeader}</span>`)
 				.toggleClass("text-danger", !isComplete);
 
 			const renderedCustomShapeGroups = this._comp._getRenderedCollection({prop: "customShapeGroups"});
@@ -639,9 +639,9 @@ export class EncounterBuilderUi extends BaseComponent {
 				.forEach(([id, meta]) => meta.setHtmlDispSpent(htmlRowsLookup[id]));
 		};
 
-		const wrpGroupsCustom = ee`<div class="pb-2 ve-flex-col"></div>`;
-		const wrpGroupsCustomEmpty = ee`<div class="pb-2 ve-flex-vh-center">
-			<i class="ve-muted pt-2">Add a Custom Creature Group to begin.</i>
+		const wrpGroupsCustom = ee`<div class="ve-pb-2 ve-flex-col"></div>`;
+		const wrpGroupsCustomEmpty = ee`<div class="ve-pb-2 ve-flex-vh-center">
+			<i class="ve-muted ve-pt-2">Add a Custom Creature Group to begin.</i>
 		</div>`;
 
 		const renderableCollectionCustomShapeGroups = new _RenderableCollectionCustomShapeGroups({
@@ -652,7 +652,7 @@ export class EncounterBuilderUi extends BaseComponent {
 		const ratioState = new _RatioState();
 
 		this._comp.addHookCustomShapeGroups(() => {
-			btnAutoAllocate.toggleClass("disabled", !this._comp.customShapeGroups?.length);
+			btnAutoAllocate.toggleClass("ve-disabled", !this._comp.customShapeGroups?.length);
 
 			renderableCollectionCustomShapeGroups.render();
 
@@ -713,30 +713,30 @@ export class EncounterBuilderUi extends BaseComponent {
 			});
 
 		ee(stgShapeCustom)`
-			<div class="split-v-center my-2">
-				<h4 class="my-0">Custom Encounter</h4>
+			<div class="ve-split-v-center ve-my-2">
+				<h4 class="ve-my-0">Custom Encounter</h4>
 				<div class="ve-btn-group">
 					${btnAddGroup}
 					${btnClearGroups}
 				</div>
 			</div>
 
-			<div class="w-100 ve-flex bb-1p-trans pb-1p">
-				<div class="ve-col-3 no-shrink small-caps pr-1">Creatures</div>
-				<div class="w-100 small-caps px-1 split-v-center">
+			<div class="ve-w-100 ve-flex ve-bb-1p-trans ve-pb-1p">
+				<div class="ve-col-3 ve-no-shrink ve-small-caps ve-pr-1">Creatures</div>
+				<div class="ve-w-100 ve-small-caps ve-px-1 ve-split-v-center">
 					<div class="ve-flex-v-center">
-						<div class="mr-2">Budget Allocation</div>
+						<div class="ve-mr-2">Budget Allocation</div>
 						${btnAutoAllocate}
 					</div>
 					${dispSpent}
 				</div>
-				<div class="w-20p no-shrink"></div>
+				<div class="ve-w-20p ve-no-shrink"></div>
 			</div>
 
 			${wrpGroupsCustom}
 			${wrpGroupsCustomEmpty}
 
-			<hr class="hr-2">
+			<hr class="ve-hr-2">
 		`;
 	}
 

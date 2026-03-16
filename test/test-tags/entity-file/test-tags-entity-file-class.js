@@ -19,13 +19,13 @@ export class EntityFileHandlerClass extends EntityFileHandlerBase {
 	_doCheckClassRef ({logIdentOriginal, uidOriginal, filePath, name, source}) {
 		const uidClass = DataUtil.proxy.getUid("class", {name, source}, {isMaintainCase: true});
 		const urlClass = this._tagTestUrlLookup.getEncodedProxy(uidClass, "class");
-		if (!this._tagTestUrlLookup.hasUrl(urlClass)) this._addMessage(`Missing class in ${logIdentOriginal}: ${uidOriginal} in file ${filePath} class part, "${uidClass}"\n${this._tagTestUrlLookup.getLogPtSimilarUrls({urlClass})}`);
+		if (!this._tagTestUrlLookup.hasUrl(urlClass)) this._addMessage(`Missing class in ${logIdentOriginal}: ${uidOriginal} in file ${filePath} class part, "${uidClass}"\n${this._tagTestUrlLookup.getLogPtSimilarUrls({url: urlClass})}`);
 	};
 
 	_doCheckSubclassRef ({logIdentOriginal, uidOriginal, filePath, shortName, source, className, classSource}) {
 		const uidSubclass = DataUtil.proxy.getUid("subclass", {name: shortName, shortName, source, className, classSource}, {isMaintainCase: true});
 		const urlSubclass = this._tagTestUrlLookup.getEncodedProxy(uidSubclass, "subclass", "subclass");
-		if (!this._tagTestUrlLookup.hasUrl(urlSubclass)) this._addMessage(`Missing subclass in ${logIdentOriginal}: ${uidOriginal} in file ${filePath} subclass part, "${uidSubclass}"\n${this._tagTestUrlLookup.getLogPtSimilarUrls({urlSubclass})}`);
+		if (!this._tagTestUrlLookup.hasUrl(urlSubclass)) this._addMessage(`Missing subclass in ${logIdentOriginal}: ${uidOriginal} in file ${filePath} subclass part, "${uidSubclass}"\n${this._tagTestUrlLookup.getLogPtSimilarUrls({url: urlSubclass})}`);
 	};
 
 	/* -------------------------------------------- */

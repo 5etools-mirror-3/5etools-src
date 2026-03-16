@@ -271,14 +271,14 @@ export class Filter extends FilterBase {
 			.map(({v, dispItem}) => {
 				if (isPlainText) return `${v === PILL_STATE__NO ? "not " : ""}${dispItem}`;
 
-				return `<span class="fltr__disp-state ${getPillStateDisplayClass(v)}">${dispItem}</span>`;
+				return `<span class="ve-fltr__disp-state ${getPillStateDisplayClass(v)}">${dispItem}</span>`;
 			})
 			.join(", ");
 
 		if (!ptState) {
 			if (isPlainText) return [`${this._getHeaderDisplayName()}: (cleared)`];
 			return [
-				`${this._getDisplayStatePart_getHeader({isPlainText})}<span class="italic fltr__disp-state fltr__disp-state--ignore">(cleared)</span>`,
+				`${this._getDisplayStatePart_getHeader({isPlainText})}<span class="ve-italic ve-fltr__disp-state ve-fltr__disp-state--ignore">(cleared)</span>`,
 			];
 		}
 
@@ -316,18 +316,18 @@ export class Filter extends FilterBase {
 			.sort(({item: itemA}, {item: itemB}) => this._itemSortFn ? this._itemSortFn(itemA, itemB) : 0)
 			.map(({item, v}) => {
 				const rdDisplay = this._getDisplayText(item);
-				return `<span class="fltr__pill fltr__pill--display-only" data-state="${PILL_STATES[v]}">${rdDisplay}</span>`;
+				return `<span class="ve-fltr__pill ve-fltr__pill--display-only" data-state="${PILL_STATES[v]}">${rdDisplay}</span>`;
 			})
 			.join("");
 
 		const ptWithoutItems = entriesWithoutItems.length
-			? `<span class="ve-muted italic fltr__pill fltr__pill--display-only" data-state="${PILL_STATES[PILL_STATE__IGNORE]}">And ${entriesWithoutItems.length} more item${entriesWithoutItems.length === 1 ? "" : "s"}.</span>`
+			? `<span class="ve-muted ve-italic ve-fltr__pill ve-fltr__pill--display-only" data-state="${PILL_STATES[PILL_STATE__IGNORE]}">And ${entriesWithoutItems.length} more item${entriesWithoutItems.length === 1 ? "" : "s"}.</span>`
 			: "";
 
 		return [
-			`<div class="ve-flex-col my-1">
-				<h5 class="mt-0 mb-1">${this._getHeaderDisplayName()}</h5>
-				<div class="ve-flex-wrap w-100">
+			`<div class="ve-flex-col ve-my-1">
+				<h5 class="ve-mt-0 ve-mb-1">${this._getHeaderDisplayName()}</h5>
+				<div class="ve-flex-wrap ve-w-100">
 					${ptWithItems}${ptWithoutItems}
 				</div>
 			</div>`,
@@ -478,7 +478,7 @@ export class Filter extends FilterBase {
 
 		const btnPill = e_({
 			tag: "div",
-			clazz: "fltr__pill",
+			clazz: "ve-fltr__pill",
 			html: displayText,
 			click: evt => this._getPill_handleClick({evt, item}),
 			contextmenu: evt => this._getPill_handleContextmenu({evt, item}),
@@ -527,8 +527,8 @@ export class Filter extends FilterBase {
 			const isDefaultDesel = this._deselFn && this._deselFn(it.item);
 			const isDefaultSel = this._selFn && this._selFn(it.item);
 			it.btnMini
-				.toggleClass("fltr__mini-pill--default-desel", isDefaultDesel)
-				.toggleClass("fltr__mini-pill--default-sel", isDefaultSel);
+				.toggleClass("ve-fltr__mini-pill--default-desel", isDefaultDesel)
+				.toggleClass("ve-fltr__mini-pill--default-sel", isDefaultSel);
 		});
 	}
 
@@ -537,7 +537,7 @@ export class Filter extends FilterBase {
 
 		const btnMini = e_({
 			tag: "div",
-			clazz: `fltr__mini-pill ${this._filterBox.isMinisHidden(this.header) ? "ve-hidden" : ""} ${this._deselFn && this._deselFn(item.item) ? "fltr__mini-pill--default-desel" : ""} ${this._selFn && this._selFn(item.item) ? "fltr__mini-pill--default-sel" : ""}`,
+			clazz: `ve-fltr__mini-pill ${this._filterBox.isMinisHidden(this.header) ? "ve-hidden" : ""} ${this._deselFn && this._deselFn(item.item) ? "ve-fltr__mini-pill--default-desel" : ""} ${this._selFn && this._selFn(item.item) ? "ve-fltr__mini-pill--default-sel" : ""}`,
 			html: toDisplay,
 			title: `${this._displayFnTitle ? `${this._displayFnTitle(item.item, item)} (` : ""}Filter: ${this._getHeaderDisplayName()}${this._displayFnTitle ? ")" : ""}`,
 			click: () => {
@@ -594,36 +594,36 @@ export class Filter extends FilterBase {
 	_getHeaderControls (opts) {
 		const btnAll = e_({
 			tag: "button",
-			clazz: `ve-btn ve-btn-default ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"} fltr__h-btn--all w-100`,
+			clazz: `ve-btn ve-btn-default ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"} ve-fltr__h-btn--all ve-w-100`,
 			click: () => this._doSetPillsAll(),
 			html: "All",
 		});
 		const btnClear = e_({
 			tag: "button",
-			clazz: `ve-btn ve-btn-default ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"} fltr__h-btn--clear w-100`,
+			clazz: `ve-btn ve-btn-default ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"} ve-fltr__h-btn--clear ve-w-100`,
 			click: () => this._doSetPillsClear(),
 			html: "Clear",
 		});
 		const btnNone = e_({
 			tag: "button",
-			clazz: `ve-btn ve-btn-default ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"} fltr__h-btn--none w-100`,
+			clazz: `ve-btn ve-btn-default ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"} ve-fltr__h-btn--none ve-w-100`,
 			click: () => this._doSetPillsNone(),
 			html: "None",
 		});
 		const btnDefault = e_({
 			tag: "button",
-			clazz: `ve-btn ve-btn-default ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"} w-100`,
+			clazz: `ve-btn ve-btn-default ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"} ve-w-100`,
 			click: () => this._doSetPinsDefault(),
 			html: "Default",
 		});
 
 		const wrpStateBtnsOuter = e_({
 			tag: "div",
-			clazz: "ve-flex-v-center fltr__h-wrp-state-btns-outer",
+			clazz: "ve-flex-v-center ve-fltr__h-wrp-state-btns-outer",
 			children: [
 				e_({
 					tag: "div",
-					clazz: "ve-btn-group ve-flex-v-center w-100",
+					clazz: "ve-btn-group ve-flex-v-center ve-w-100",
 					children: [
 						btnAll,
 						btnClear,
@@ -639,7 +639,7 @@ export class Filter extends FilterBase {
 
 		const btnCombineBlue = e_({
 			tag: "button",
-			clazz: `ve-btn ve-btn-default ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"} fltr__h-btn-logic--blue fltr__h-btn-logic w-100`,
+			clazz: `ve-btn ve-btn-default ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"} ve-fltr__h-btn-logic--blue ve-fltr__h-btn-logic ve-w-100`,
 			click: () => this._meta.combineBlue = Filter._getNextCombineMode(this._meta.combineBlue),
 			title: `Blue match mode for this filter. "AND" requires all blues to match, "OR" requires at least one blue to match, "XOR" requires exactly one blue to match.`,
 		});
@@ -649,7 +649,7 @@ export class Filter extends FilterBase {
 
 		const btnCombineRed = e_({
 			tag: "button",
-			clazz: `ve-btn ve-btn-default ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"} fltr__h-btn-logic--red fltr__h-btn-logic w-100`,
+			clazz: `ve-btn ve-btn-default ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"} ve-fltr__h-btn-logic--red ve-fltr__h-btn-logic ve-w-100`,
 			click: () => this._meta.combineRed = Filter._getNextCombineMode(this._meta.combineRed),
 			title: `Red match mode for this filter. "AND" requires all reds to match, "OR" requires at least one red to match, "XOR" requires exactly one red to match.`,
 		});
@@ -659,7 +659,7 @@ export class Filter extends FilterBase {
 
 		const btnShowHide = this._getBtnShowHide({isMulti: opts.isMulti});
 		const hookShowHide = () => {
-			e_({ele: btnShowHide}).toggleClass("active", this._uiMeta.isHidden);
+			e_({ele: btnShowHide}).toggleClass("ve-active", this._uiMeta.isHidden);
 			wrpStateBtnsOuter.toggleVe(!this._uiMeta.isHidden);
 
 			// Skip updating renders if results would be invisible
@@ -673,13 +673,13 @@ export class Filter extends FilterBase {
 
 			const htmlSummary = [
 				cur._totals.yes
-					? `<span class="fltr__summary_item fltr__summary_item--include" title="${cur._totals.yes} hidden &quot;required&quot; tags">${cur._totals.yes}</span>`
+					? `<span class="ve-fltr__summary_item ve-fltr__summary_item--include" title="${cur._totals.yes} hidden &quot;required&quot; tags">${cur._totals.yes}</span>`
 					: null,
 				cur._totals.yes && cur._totals.no
-					? `<span class="fltr__summary_item_spacer"></span>`
+					? `<span class="ve-fltr__summary_item_spacer"></span>`
 					: null,
 				cur._totals.no
-					? `<span class="fltr__summary_item fltr__summary_item--exclude" title="${cur._totals.no} hidden &quot;excluded&quot; tags">${cur._totals.no}</span>`
+					? `<span class="ve-fltr__summary_item ve-fltr__summary_item--exclude" title="${cur._totals.no} hidden &quot;excluded&quot; tags">${cur._totals.no}</span>`
 					: null,
 			].filter(Boolean).join("");
 			e_({ele: wrpSummary, html: htmlSummary}).toggleVe(this._uiMeta.isHidden);
@@ -690,14 +690,14 @@ export class Filter extends FilterBase {
 
 		return e_({
 			tag: "div",
-			clazz: `ve-flex-v-center fltr__h-wrp-btns-outer`,
+			clazz: `ve-flex-v-center ve-fltr__h-wrp-btns-outer`,
 			children: [
 				wrpSummary,
 				wrpStateBtnsOuter,
-				e_({tag: "span", clazz: `ve-btn-group ml-2 ve-flex-v-center`, children: [btnCombineBlue, btnCombineRed]}),
+				e_({tag: "span", clazz: `ve-btn-group ve-ml-2 ve-flex-v-center`, children: [btnCombineBlue, btnCombineRed]}),
 				e_({
 					tag: "div",
-					clazz: "ve-btn-group ve-flex-v-center ml-2",
+					clazz: "ve-btn-group ve-flex-v-center ve-ml-2",
 					children: [
 						btnShowHide,
 						this._getBtnMenu({isMulti: opts.isMulti}),
@@ -724,14 +724,14 @@ export class Filter extends FilterBase {
 
 		const wrpControls = this._getHeaderControls(opts);
 
-		this.__wrpPills = e_({tag: "div", clazz: `fltr__wrp-pills ${this._groupFn ? "fltr__wrp-subs" : "fltr__container-pills"}`});
+		this.__wrpPills = e_({tag: "div", clazz: `ve-fltr__wrp-pills ${this._groupFn ? "ve-fltr__wrp-subs" : "ve-fltr__container-pills"}`});
 		this._addHook("uiMeta", "isHidden", () => this.__wrpPills.toggleVe(!this._uiMeta.isHidden))();
 
 		if (this._nests) {
-			const wrpNestHead = e_({tag: "div", clazz: "fltr__wrp-pills--sub"}).appendTo(this.__wrpPills);
-			this.__wrpNestHeadInner = e_({tag: "div", clazz: "ve-flex ve-flex-wrap fltr__container-pills"}).appendTo(wrpNestHead);
+			const wrpNestHead = e_({tag: "div", clazz: "ve-fltr__wrp-pills--sub"}).appendTo(this.__wrpPills);
+			this.__wrpNestHeadInner = e_({tag: "div", clazz: "ve-flex ve-flex-wrap ve-fltr__container-pills"}).appendTo(wrpNestHead);
 
-			const wrpNestHeadSummary = e_({tag: "div", clazz: "fltr__summary_nest"}).appendTo(wrpNestHead);
+			const wrpNestHeadSummary = e_({tag: "div", clazz: "ve-fltr__summary_nest"}).appendTo(wrpNestHead);
 
 			this._updateNestSummary = () => {
 				const stats = {high: 0, low: 0};
@@ -745,18 +745,18 @@ export class Filter extends FilterBase {
 				if (stats.high) {
 					e_({
 						tag: "span",
-						clazz: "fltr__summary_item fltr__summary_item--include",
+						clazz: "ve-fltr__summary_item ve-fltr__summary_item--include",
 						text: stats.high,
 						title: `${stats.high} hidden "required" tag${stats.high === 1 ? "" : "s"}`,
 					}).appendTo(wrpNestHeadSummary);
 				}
 
-				if (stats.high && stats.low) e_({tag: "span", clazz: "fltr__summary_item_spacer"}).appendTo(wrpNestHeadSummary);
+				if (stats.high && stats.low) e_({tag: "span", clazz: "ve-fltr__summary_item_spacer"}).appendTo(wrpNestHeadSummary);
 
 				if (stats.low) {
 					e_({
 						tag: "span",
-						clazz: "fltr__summary_item fltr__summary_item--exclude",
+						clazz: "ve-fltr__summary_item ve-fltr__summary_item--exclude",
 						text: stats.low,
 						title: `${stats.low} hidden "excluded" tag${stats.low === 1 ? "" : "s"}`,
 					}).appendTo(wrpNestHeadSummary);
@@ -771,10 +771,10 @@ export class Filter extends FilterBase {
 		const btnMobToggleControls = this._getBtnMobToggleControls(wrpControls);
 
 		this.__wrpFilter = ee`<div>
-			${opts.isFirst ? "" : `<div class="fltr__dropdown-divider ${opts.isMulti ? "fltr__dropdown-divider--indented" : ""} mb-1"></div>`}
-			<div class="split fltr__h ${this._minimalUi ? "fltr__minimal-hide" : ""} mb-1">
-				<div class="fltr__h-text ve-flex-h-center mobile-sm__w-100">
-					${opts.isMulti ? `<span class="mr-2">\u2012</span>` : ""}
+			${opts.isFirst ? "" : `<div class="ve-fltr__dropdown-divider ${opts.isMulti ? "ve-fltr__dropdown-divider--indented" : ""} ve-mb-1"></div>`}
+			<div class="ve-split ve-fltr__h ${this._minimalUi ? "ve-fltr__minimal-hide" : ""} ve-mb-1">
+				<div class="ve-fltr__h-text ve-flex-h-center ve-mobile-sm__w-100">
+					${opts.isMulti ? `<span class="ve-mr-2">\u2012</span>` : ""}
 					${this._getRenderedHeader()}
 					${btnMobToggleControls}
 				</div>
@@ -928,7 +928,7 @@ export class Filter extends FilterBase {
 
 		return e_({
 			tag: "div",
-			clazz: "ve-flex-col w-100",
+			clazz: "ve-flex-col ve-w-100",
 			children: [
 				hr,
 				...elesHeader,
@@ -937,7 +937,7 @@ export class Filter extends FilterBase {
 		});
 	}
 
-	_doRenderPills_doRenderWrpGroup_getDividerHr (group) { return e_({tag: "hr", clazz: `fltr__dropdown-divider--sub hr-2 mx-3`}); }
+	_doRenderPills_doRenderWrpGroup_getDividerHr (group) { return e_({tag: "hr", clazz: `ve-fltr__dropdown-divider--sub ve-hr-2 ve-mx-3`}); }
 
 	_doRenderPills_doRenderWrpGroup_getDividerHeaders (group) {
 		const groupName = this._groupNameFn?.(group);
@@ -946,13 +946,13 @@ export class Filter extends FilterBase {
 		return [
 			e_({
 				tag: "div",
-				clazz: `fltr__divider-header ve-muted italic ve-small`,
+				clazz: `ve-fltr__divider-header ve-muted ve-italic ve-small`,
 				text: groupName,
 			}),
 		];
 	}
 
-	_doRenderPills_doRenderWrpGroup_getWrpPillsSub () { return e_({tag: "div", clazz: `fltr__wrp-pills--sub fltr__container-pills`}); }
+	_doRenderPills_doRenderWrpGroup_getWrpPillsSub () { return e_({tag: "div", clazz: `ve-fltr__wrp-pills--sub ve-fltr__container-pills`}); }
 
 	_doRenderMiniPills () {
 		// create a list view so we can freely sort
@@ -972,7 +972,7 @@ export class Filter extends FilterBase {
 
 	_doToggleDisplay () {
 		// if there are no items, hide everything
-		if (this.__wrpFilter) this.__wrpFilter.toggleClass("fltr__no-items", !this._items.length);
+		if (this.__wrpFilter) this.__wrpFilter.toggleClass("ve-fltr__no-items", !this._items.length);
 	}
 
 	_doRenderNests_doUpdateElements () {
@@ -986,7 +986,7 @@ export class Filter extends FilterBase {
 					if (this._nestsHidden[nestName] == null) this._nestsHidden[nestName] = !!nestMeta.isHidden;
 
 					const btnText = ee`<span>${nestName} [${this._nestsHidden[nestName] ? "+" : "\u2212"}]</span>`;
-					nestMeta._btnNest = ee`<div class="fltr__btn_nest">${btnText}</div>`
+					nestMeta._btnNest = ee`<div class="ve-fltr__btn_nest">${btnText}</div>`
 						.onn("click", () => this._nestsHidden[nestName] = !this._nestsHidden[nestName]);
 
 					const hook = () => {
@@ -1002,11 +1002,11 @@ export class Filter extends FilterBase {
 							});
 						const allHigh = stats.total === stats.high;
 						const allLow = stats.total === stats.low;
-						nestMeta._btnNest.toggleClass("fltr__btn_nest--include-all", this._nestsHidden[nestName] && allHigh)
-							.toggleClass("fltr__btn_nest--exclude-all", this._nestsHidden[nestName] && allLow)
-							.toggleClass("fltr__btn_nest--include", this._nestsHidden[nestName] && !!(!allHigh && !allLow && stats.high && !stats.low))
-							.toggleClass("fltr__btn_nest--exclude", this._nestsHidden[nestName] && !!(!allHigh && !allLow && !stats.high && stats.low))
-							.toggleClass("fltr__btn_nest--both", this._nestsHidden[nestName] && !!(!allHigh && !allLow && stats.high && stats.low));
+						nestMeta._btnNest.toggleClass("ve-fltr__btn_nest--include-all", this._nestsHidden[nestName] && allHigh)
+							.toggleClass("ve-fltr__btn_nest--exclude-all", this._nestsHidden[nestName] && allLow)
+							.toggleClass("ve-fltr__btn_nest--include", this._nestsHidden[nestName] && !!(!allHigh && !allLow && stats.high && !stats.low))
+							.toggleClass("ve-fltr__btn_nest--exclude", this._nestsHidden[nestName] && !!(!allHigh && !allLow && !stats.high && stats.low))
+							.toggleClass("ve-fltr__btn_nest--both", this._nestsHidden[nestName] && !!(!allHigh && !allLow && stats.high && stats.low));
 
 						if (this._updateNestSummary) this._updateNestSummary();
 					};
@@ -1235,10 +1235,10 @@ export class Filter extends FilterBase {
 		if (isHeaderMatch) {
 			this._items.forEach(it => {
 				if (!it.rendered) return;
-				it.rendered.toggleClass("fltr__hidden--search", false);
+				it.rendered.toggleClass("ve-fltr__hidden--search", false);
 			});
 
-			if (this.__wrpFilter) this.__wrpFilter.toggleClass("fltr__hidden--search", false);
+			if (this.__wrpFilter) this.__wrpFilter.toggleClass("ve-fltr__hidden--search", false);
 
 			return true;
 		}
@@ -1247,11 +1247,11 @@ export class Filter extends FilterBase {
 		this._items.forEach(it => {
 			if (!it.rendered) return;
 			const isVisible = it.searchText.includes(searchTerm);
-			it.rendered.toggleClass("fltr__hidden--search", !isVisible);
+			it.rendered.toggleClass("ve-fltr__hidden--search", !isVisible);
 			if (isVisible) visibleCount++;
 		});
 
-		if (this.__wrpFilter) this.__wrpFilter.toggleClass("fltr__hidden--search", visibleCount === 0);
+		if (this.__wrpFilter) this.__wrpFilter.toggleClass("ve-fltr__hidden--search", visibleCount === 0);
 
 		return visibleCount !== 0;
 	}

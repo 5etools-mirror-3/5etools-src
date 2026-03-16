@@ -5,21 +5,21 @@ class BastionsSublistManager extends SublistManager {
 		return [
 			new SublistCellTemplate({
 				name: "Type",
-				css: "ve-col-2 pl-0 pr-1 ve-text-center",
-				colStyle: "text-center",
+				css: "ve-col-2 ve-pl-0 ve-pr-1 ve-text-center",
+				colStyle: "ve-text-center",
 			}),
 			new SublistCellTemplate({
 				name: "Name",
-				css: "bold ve-col-3 px-1",
+				css: "ve-bold ve-col-3 ve-px-1",
 			}),
 			new SublistCellTemplate({
 				name: "Level",
-				css: "ve-col-2 px-1 ve-text-center",
-				colStyle: "text-center",
+				css: "ve-col-2 ve-px-1 ve-text-center",
+				colStyle: "ve-text-center",
 			}),
 			new SublistCellTemplate({
 				name: "Prerequisite",
-				css: "ve-col-5 pl-1 pr-0",
+				css: "ve-col-5 ve-pl-1 ve-pr-0",
 			}),
 		];
 	}
@@ -34,8 +34,8 @@ class BastionsSublistManager extends SublistManager {
 			ent._slPrereq,
 		];
 
-		const ele = ee`<div class="lst__row lst__row--sublist ve-flex-col">
-			<a href="#${hash}" class="lst__row-border lst__row-inner">
+		const ele = ee`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`
@@ -113,18 +113,18 @@ class BastionsPage extends ListPage {
 		this._pageFilter.mutateAndAddToFilters(ent, isExcluded);
 
 		const eleLi = document.createElement("div");
-		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blocklisted" : ""}`;
+		eleLi.className = `ve-lst__row ve-flex-col ${isExcluded ? "ve-lst__row--blocklisted" : ""}`;
 
 		const hash = UrlUtil.autoEncodeHash(ent);
 		const source = Parser.sourceJsonToAbv(ent.source);
 		const facilityType = (ent.facilityType || "Unknown").toTitleCase();
 
-		eleLi.innerHTML = `<a href="#${hash}" class="lst__row-border lst__row-inner">
-			<span class="ve-col-2 ve-text-center pl-0 pr-1">${facilityType}</span>
-			<span class="bold ve-col-3 px-1">${ent.name}</span>
-			<span class="ve-col-1 ve-text-center px-1 ${ent.level == null ? "italic" : ""}">${ent.level || "\u2014"}</span>
-			<span class="ve-col-4 px-1 ${ent._slPrereq === VeCt.STR_NONE ? "italic " : ""}">${ent._slPrereq}</span>
-			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(ent.source)}  pl-1 pr-0" title="${Parser.sourceJsonToFull(ent.source)}">${source}</span>
+		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+			<span class="ve-col-2 ve-text-center ve-pl-0 ve-pr-1">${facilityType}</span>
+			<span class="ve-bold ve-col-3 ve-px-1">${ent.name}</span>
+			<span class="ve-col-1 ve-text-center ve-px-1 ${ent.level == null ? "ve-italic" : ""}">${ent.level || "\u2014"}</span>
+			<span class="ve-col-4 ve-px-1 ${ent._slPrereq === VeCt.STR_NONE ? "ve-italic " : ""}">${ent._slPrereq}</span>
+			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(ent.source)}  ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(ent.source)}">${source}</span>
 		</a>`;
 
 		const listItem = new ListItem(

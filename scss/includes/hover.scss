@@ -1,7 +1,7 @@
 @use "../vars/vars";
 
 @layer vetools {
-	.hwin {
+	.ve-hwin {
 		position: fixed;
 		width: 600px;
 		max-width: 92vw;
@@ -15,7 +15,7 @@
 		background: vars.$rgb-bg--alt;
 
 		&--minified {
-			.hoverborder {
+			.ve-hoverborder {
 				&__resize-n,
 				&__resize-ne,
 				&__resize-e,
@@ -63,11 +63,11 @@
 			margin-bottom: 5px;
 		}
 
-		.stats__th-name {
+		.ve-stats__th-name {
 			font-size: 22.4px;
 		}
 
-		td div.border {
+		td div.ve-border {
 			height: 2px;
 			background-color: vars.$rgb-name-red;
 			margin: 0 3px;
@@ -76,7 +76,7 @@
 		}
 	}
 
-	.hoverborder {
+	.ve-hoverborder {
 		position: relative;
 		min-height: 3px;
 		max-height: 16px;
@@ -89,15 +89,15 @@
 			justify-content: space-between;
 		}
 
-		.hwin__top-border-icon {
+		.ve-hwin__top-border-icon {
 			display: none;
 		}
 
-		&[data-perm="true"] .hwin__top-border-icon {
+		&[data-perm="true"] .ve-hwin__top-border-icon {
 			display: block;
 		}
 
-		.window-title {
+		.ve-window-title {
 			max-width: calc(100% - 45px);
 			text-align: left;
 			margin-left: 4px;
@@ -110,7 +110,7 @@
 			font-weight: bold;
 		}
 
-		&[data-perm="true"] .window-title {
+		&[data-perm="true"] .ve-window-title {
 			display: block;
 		}
 
@@ -187,8 +187,8 @@
 		}
 	}
 
-	.hoverborder[data-display-title="true"] ~ .hwin__wrp-table,
-	.hoverborder[data-display-title="true"] ~ .hoverborder {
+	.ve-hoverborder[data-display-title="true"] ~ .ve-hwin__wrp-table,
+	.ve-hoverborder[data-display-title="true"] ~ .ve-hoverborder {
 		display: none;
 	}
 }

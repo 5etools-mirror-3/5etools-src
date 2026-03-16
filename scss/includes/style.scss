@@ -68,7 +68,7 @@
 
 	/* *** */
 
-	.hwin__top-border-icon {
+	.ve-hwin__top-border-icon {
 		top: 0;
 		margin-left: auto;
 		padding: 2px;
@@ -177,14 +177,14 @@
 		@include vars.mix-row-glow-active;
 	}
 
-	.list-multi-selected .lst__row-border {
+	.list-multi-selected .ve-lst__row-border {
 		border-color: #6fa4d0;
 	}
 
-	.list-multi-selected.lst__row--sublist {
+	.list-multi-selected.ve-lst__row--sublist {
 		@include vars.mix-row-glow-active--alt;
 
-		.lst__row-border {
+		.ve-lst__row-border {
 			border-color: vars.$rgb-border-grey;
 		}
 	}
@@ -199,7 +199,7 @@
 	}
 
 	/**** Search and filter bar ****/
-	.lst__ {
+	.ve-lst__ {
 		&form-top {
 			display: flex;
 			flex-shrink: 0;
@@ -253,11 +253,11 @@
 		}
 	}
 
-	*:first-child > input.lst__search--no-border-h {
+	*:first-child > input.ve-lst__search--no-border-h {
 		border-top-left-radius: 4px;
 	}
 
-	.lst__wrp-cells {
+	.ve-lst__wrp-cells {
 		color: inherit;
 		display: flex;
 		align-items: center;
@@ -274,7 +274,7 @@
 		}
 	}
 
-	.lst__row--focusable:focus {
+	.ve-lst__row--focusable:focus {
 		@include vars.mix-row-glow-active;
 	}
 
@@ -351,7 +351,7 @@
 	.linked-titles {
 		@include vars.linked-titles-base;
 
-		.rd__h .entry-title-inner {
+		.ve-rd__h .entry-title-inner {
 			@include vars.linked-titles-base-inner;
 		}
 	}
@@ -576,11 +576,11 @@
 		background: #c0c0c060;
 	}
 
-	.hwin .hoverborder {
+	.ve-hwin .ve-hoverborder {
 		background: vars.$rgb-border-yellow--statblock;
 	}
 
-	.hwin .hoverborder.hoverborder-book {
+	.ve-hwin .ve-hoverborder.ve-hoverborder--book {
 		background: #c0c0c0;
 	}
 
@@ -769,7 +769,7 @@
 		background: #f4f4f4;
 	}
 
-	.hwin .hoverborder .window-title {
+	.ve-hwin .ve-hoverborder .ve-window-title {
 		color: vars.$rgb-name-red;
 	}
 
@@ -842,11 +842,11 @@
 		}
 
 		a,
-		.roller {
+		.ve-roller {
 			color: vars-night.$rgb-link-blue--night;
 		}
 
-		.hwin__top-border-icon {
+		.ve-hwin__top-border-icon {
 			color: vars-night.$rgb-font--night;
 
 			&:hover {
@@ -915,7 +915,7 @@
 			color: vars-night.$rgb-font--night;
 		}
 
-		.ve-btn-default.active {
+		.ve-btn-default.ve-active {
 			background-color: #888;
 			box-shadow: inset 0 3px 7px #111e;
 			color: #222;
@@ -925,11 +925,11 @@
 			}
 		}
 
-		.ve-btn-primary.active,
-		.ve-btn-danger.active,
-		.ve-btn-warning.active,
-		.ve-btn-info.active,
-		.ve-btn-success.active {
+		.ve-btn-primary.ve-active,
+		.ve-btn-danger.ve-active,
+		.ve-btn-warning.ve-active,
+		.ve-btn-info.ve-active,
+		.ve-btn-success.ve-active {
 			box-shadow: inset 0 3px 7px #111e;
 		}
 
@@ -970,14 +970,14 @@
 				}
 			}
 
-			&.active {
+			&.ve-active {
 				> a,
 				> span {
 					color: #fff;
 				}
 			}
 
-			&.disabled {
+			&.ve-disabled {
 				> a,
 				> span {
 					color: vars.$rgb-ctx-item-text-disabled;
@@ -1056,13 +1056,13 @@
 		}
 
 		.input-group-addon,
-		.form-control {
+		.ve-form-control {
 			background: vars-night.$rgb-form-control-bg--night;
 			color: vars-night.$rgb-font--night;
 			border-color: vars-night.$rgb-border-grey--night;
 		}
 
-		.form-control[disabled] {
+		.ve-form-control[disabled] {
 			background: #0e0e0e88;
 		}
 
@@ -1100,7 +1100,7 @@
 
 		/* *** */
 
-		.lst__ {
+		.ve-lst__ {
 			&btn-toggle-expand {
 				&:hover {
 					background: #ffffff30;
@@ -1132,11 +1132,11 @@
 			}
 		}
 
-		.hwin .hoverborder {
+		.ve-hwin .ve-hoverborder {
 			background: vars-night.$rgb-border-grey--statblock-night;
 		}
 
-		.hwin__wrp-table {
+		.ve-hwin__wrp-table {
 			background: vars-night.$rgb-bg--night;
 		}
 
@@ -1175,12 +1175,12 @@
 			background-color: vars-night.$rgb-border-grey--statblock-night;
 		}
 
-		.list-multi-selected .lst__row-border {
+		.list-multi-selected .ve-lst__row-border {
 			border-color: #416482;
 		}
 
-		.list-multi-selected.lst__row--sublist {
-			.lst__row-border {
+		.list-multi-selected.ve-lst__row--sublist {
+			.ve-lst__row-border {
 				border-color: vars-night.$rgb-border-grey--night;
 			}
 		}
@@ -1225,7 +1225,7 @@
 		}
 
 		strong,
-		.bold {
+		.ve-bold {
 			font-weight: 600;
 		}
 
@@ -1233,8 +1233,8 @@
 			content: none !important; // Remove auto-expanded link URLs
 		}
 
-		.help,
-		.help--hover {
+		.ve-help,
+		.ve-help--hover {
 			text-decoration: none !important;
 		}
 
@@ -1245,15 +1245,15 @@
 		}
 
 		a,
-		.roller {
+		.ve-roller {
 			color: #000 !important;
 		}
 		// endregion
 
 		// region stats
-		.stats__wrp-h-source,
-		.stats__h-source-abbreviation,
-		.stats th {
+		.ve-stats__wrp-h-source,
+		.ve-stats__h-source-abbreviation,
+		.ve-stats th {
 			color: #000 !important;
 		}
 
@@ -1272,20 +1272,20 @@
 			margin: 0 !important;
 		}
 
-		.stats td,
-		.stats th {
+		.ve-stats td,
+		.ve-stats th {
 			padding: 1px 2px !important;
 		}
 
-		.stats--book-large {
-			.rd__b--3,
+		.ve-stats--book-large {
+			.ve-rd__b--3,
 			table,
 			p {
 				margin: 0 0 3px !important;
 			}
 		}
 
-		.stats--book {
+		.ve-stats--book {
 			box-shadow: none !important;
 		}
 		// endregion
@@ -1314,11 +1314,11 @@
 		// endregion
 
 		// region bestiary.html
-		.stats__wrp-h-source--token {
+		.ve-stats__wrp-h-source--token {
 			padding-right: 0 !important;
 		}
 
-		.stats__sect-header-inner {
+		.ve-stats__sect-header-inner {
 			border-bottom: 1px solid #000 !important;
 			color: #000 !important;
 		}
@@ -1358,7 +1358,7 @@
 			}
 		}
 
-		.stats--bkmv {
+		.ve-stats--bkmv {
 			break-before: auto !important;
 			break-after: auto !important;
 			break-inside: avoid !important;

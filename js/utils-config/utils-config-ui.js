@@ -68,10 +68,10 @@ export class ConfigUi {
 
 		ui.render(eleModalInner);
 
-		const btnClose = ee`<button class="ve-btn ve-btn-default ve-btn-sm ml-auto">Close</button>`
+		const btnClose = ee`<button class="ve-btn ve-btn-default ve-btn-sm ve-ml-auto">Close</button>`
 			.onn("click", () => doClose());
 
-		ee`<div class="py-1 w-100 ve-flex-v-center">
+		ee`<div class="ve-py-1 ve-w-100 ve-flex-v-center">
 			${btnClose}
 		</div>`
 			.appendTo(eleModalFooter);

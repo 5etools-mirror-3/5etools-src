@@ -68,8 +68,8 @@ class RenderDecks {
 						}
 					});
 
-				const wrpFace = ee`<div class="no-shrink px-1 decks__wrp-card-face relative">
-					<div class="absolute pt-2 pr-2 decks__wrp-btn-show-card">
+				const wrpFace = ee`<div class="ve-no-shrink ve-px-1 decks__wrp-card-face ve-relative">
+					<div class="ve-absolute ve-pt-2 ve-pr-2 decks__wrp-btn-show-card">
 						<div class="ve-btn-group ve-flex-v-center">
 							${btnMarkDrawn}
 							${btnReplace}
@@ -94,7 +94,7 @@ class RenderDecks {
 
 				return ee`<div class="ve-flex-v-center decks__wrp-row">
 					${wrpFace}
-					<div class="ml-2 decks__wrp-card-text w-100">${ptText}</div>
+					<div class="ve-ml-2 decks__wrp-card-text ve-w-100">${ptText}</div>
 				</div>`;
 			});
 
@@ -103,7 +103,7 @@ class RenderDecks {
 		</div>`;
 
 		const ptCards = ee`<div class="ve-flex-col">
-			<h3 class="dnd-font my-0 mb-1 decks__h-cards">Cards</h3>
+			<h3 class="ve-dnd-font ve-my-0 ve-mb-1 decks__h-cards">Cards</h3>
 			${wrpCardRows}
 		</div>`;
 
@@ -122,7 +122,7 @@ class RenderDecks {
 
 		<tr><td colspan="6">
 			${Renderer.get().setFirstSection(true).render({entries: ent.entries}, 1)}
-			<hr class="hr-3">
+			<hr class="ve-hr-3">
 			${ptCards}
 		</td></tr>
 
@@ -142,7 +142,7 @@ class RenderDecks {
 		if (imgBack) {
 			e_({
 				ele: imgBack,
-				clazz: "decks-draw__img-card-back absolute",
+				clazz: "decks-draw__img-card-back ve-absolute",
 			});
 		}
 
@@ -154,12 +154,12 @@ class RenderDecks {
 
 		const dispGlint = e_({
 			tag: "div",
-			clazz: "decks-draw__disp-glint no-events no-select absolute",
+			clazz: "decks-draw__disp-glint ve-no-events ve-no-select ve-absolute",
 		});
 
 		const wrpCard = e_({
 			tag: "div",
-			clazz: "decks-draw__wrp-card relative",
+			clazz: "decks-draw__wrp-card ve-relative",
 			children: [
 				imgBack,
 				imgCard,
@@ -175,7 +175,7 @@ class RenderDecks {
 			],
 		});
 
-		const wrpCardSway = ee`<div class="decks-draw__wrp-card-sway ve-flex-col no-select relative">${wrpCardFlip}</div>`
+		const wrpCardSway = ee`<div class="decks-draw__wrp-card-sway ve-flex-col ve-no-select ve-relative">${wrpCardFlip}</div>`
 			.onn("click", evt => evt.stopPropagation());
 
 		const metasSparkles = await [...new Array(8)]
@@ -186,7 +186,7 @@ class RenderDecks {
 
 				e_({
 					ele: imgSparkle,
-					clazz: "decks-draw__img-sparkle relative",
+					clazz: "decks-draw__img-sparkle ve-relative",
 				});
 
 				imgSparkle.style.animationDuration = `${4_500 + (Math.random() * 3_000)}ms, ${60_000 + (Math.random() * 60_000)}ms`;
@@ -194,7 +194,7 @@ class RenderDecks {
 
 				const wrpSparkleSway = e_({
 					tag: "div",
-					clazz: "decks-draw__wrp-sparkle-sway ve-flex-col absolute",
+					clazz: "decks-draw__wrp-sparkle-sway ve-flex-col ve-absolute",
 					children: [
 						imgSparkle,
 					],
@@ -212,7 +212,7 @@ class RenderDecks {
 				return {wrpSparkleSway, imgSparkle};
 			});
 
-		const wrpCardOuter = ee`<div class="ve-flex-col no-select relative">
+		const wrpCardOuter = ee`<div class="ve-flex-col ve-no-select ve-relative">
 			${metasSparkles.map(it => it.wrpSparkleSway)}
 			${wrpCardSway}
 		</div>`
@@ -223,22 +223,22 @@ class RenderDecks {
 
 		const ptText = RenderDecks.getCardTextHtml({card, deck});
 
-		const wrpInfo = ee`<div class="stats stats--book decks-draw__wrp-desc mobile-sm__hidden px-2 ve-text-center mb-4 ve-overflow-y-auto">${ptText}</div>`
+		const wrpInfo = ee`<div class="ve-stats ve-stats--book decks-draw__wrp-desc ve-mobile-sm__hidden ve-px-2 ve-text-center ve-mb-4 ve-overflow-y-auto">${ptText}</div>`
 			.onn("click", evt => evt.stopPropagation());
 
 		Renderer.dice.bindOnclickListener(wrpInfo);
 
 		const btnFlip = imgBack
-			? ee`<button class="ve-btn ve-btn-default ve-btn-xs px-3" title="Flip Card"><i class="fas fa-rotate"></i> Flip</button>`
+			? ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-px-3" title="Flip Card"><i class="fas fa-rotate"></i> Flip</button>`
 				.onn("click", evt => {
 					evt.stopPropagation();
 					wrpCardFlip.classList.toggle("decks-draw__wrp-card-flip--flipped");
 				})
 			: null;
 
-		const wrpRhs = ee`<div class="decks-draw__wrp-rhs ve-flex-col mobile-sm__ml-0">
+		const wrpRhs = ee`<div class="decks-draw__wrp-rhs ve-flex-col ve-mobile-sm__ml-0">
 			${wrpInfo}
-			<div class="ve-flex-vh-center mobile-sm__mt-5">${btnFlip}</div>
+			<div class="ve-flex-vh-center ve-mobile-sm__mt-5">${btnFlip}</div>
 		</div>`
 			.onn("click", evt => evt.stopPropagation());
 
@@ -265,7 +265,7 @@ class RenderDecks {
 		};
 
 		const wrpDrawn = ee`<div class="decks-draw__stg ve-flex-vh-center">
-			<div class="ve-flex-v-center mobile-sm__ve-flex-col">
+			<div class="ve-flex-v-center ve-mobile-sm__ve-flex-col">
 				${wrpCardOuter}
 				${wrpRhs}
 			</div>

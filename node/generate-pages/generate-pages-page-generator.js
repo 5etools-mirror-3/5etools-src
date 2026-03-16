@@ -141,7 +141,6 @@ export class PageGeneratorListBase extends PageGeneratorGeneric {
 	_styleListContainerAdditional;
 	_styleContentWrapperAdditional;
 	_stylePageContentAdditional;
-	_isPrinterView = false;
 	_isTableView = false;
 
 	_registerPartials () {
@@ -205,7 +204,6 @@ export class PageGeneratorListBase extends PageGeneratorGeneric {
 			identPartialListListcontainer: "listListcontainer",
 			identPartialListContentwrapper: "listContentwrapper",
 			identPartialListSublistContainer: "listSublistContainer",
-			isPrinterView: this._isPrinterView,
 			isTableView: this._isTableView,
 		};
 	}

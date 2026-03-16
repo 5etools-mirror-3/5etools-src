@@ -143,7 +143,7 @@ export class OptionsFilter extends FilterBase {
 			.map(({v, dispKey}) => {
 				if (isPlainText) return `${v ? "" : "not "}${dispKey}`;
 
-				return `<span class="fltr__disp-state ${getPillStateDisplayClass(v ? PILL_STATE__YES : PILL_STATE__NO)}">${dispKey}</span>`;
+				return `<span class="ve-fltr__disp-state ${getPillStateDisplayClass(v ? PILL_STATE__YES : PILL_STATE__NO)}">${dispKey}</span>`;
 			})
 			.join(", ");
 
@@ -221,14 +221,14 @@ export class OptionsFilter extends FilterBase {
 
 		if (opts.isMulti) {
 			return this.__wrpFilter = ee`<div class="ve-flex">
-				<div class="fltr__range-inline-label mr-2">${this._getRenderedHeader()}</div>
+				<div class="ve-fltr__range-inline-label ve-mr-2">${this._getRenderedHeader()}</div>
 				${wrpButtons}
 			</div>`;
 		} else {
 			return this.__wrpFilter = ee`<div class="ve-flex-col">
-				${opts.isFirst ? "" : `<div class="fltr__dropdown-divider mb-1"></div>`}
-				<div class="split fltr__h ${this._minimalUi ? "fltr__minimal-hide" : ""} mb-1">
-					<div class="fltr__h-text ve-flex-h-center">${this._getRenderedHeader()}</div>
+				${opts.isFirst ? "" : `<div class="ve-fltr__dropdown-divider ve-mb-1"></div>`}
+				<div class="ve-split ve-fltr__h ${this._minimalUi ? "ve-fltr__minimal-hide" : ""} ve-mb-1">
+					<div class="ve-fltr__h-text ve-flex-h-center">${this._getRenderedHeader()}</div>
 					${wrpControls}
 				</div>
 				${wrpButtons}
@@ -239,7 +239,7 @@ export class OptionsFilter extends FilterBase {
 	_render_getPill (key) {
 		const displayText = this._displayFn(key);
 
-		const btnPill = ee`<div class="fltr__pill">${displayText}</div>`
+		const btnPill = ee`<div class="ve-fltr__pill">${displayText}</div>`
 			.onn("click", () => {
 				this._state[key] = !this._state[key];
 			})
@@ -278,7 +278,7 @@ export class OptionsFilter extends FilterBase {
 		const displayTextFull = this._displayFnMini ? this._displayFn(key) : null;
 		const displayText = this._displayFnMini ? this._displayFnMini(key) : this._displayFn(key);
 
-		const btnMini = ee`<div class="fltr__mini-pill ${this._filterBox.isMinisHidden(this.header) ? "ve-hidden" : ""}" data-state="${PILL_STATES[this._defaultState[key] === this._state[key] ? 0 : this._state[key] ? 1 : 2]}">${displayText}</div>`
+		const btnMini = ee`<div class="ve-fltr__mini-pill ${this._filterBox.isMinisHidden(this.header) ? "ve-hidden" : ""}" data-state="${PILL_STATES[this._defaultState[key] === this._state[key] ? 0 : this._state[key] ? 1 : 2]}">${displayText}</div>`
 			.tooltip(`${displayTextFull ? `${displayTextFull} (` : ""}Filter: ${this._getHeaderDisplayName()}${displayTextFull ? ")" : ""}`)
 			.onn("click", () => {
 				this._state[key] = this._defaultState[key];
@@ -298,11 +298,11 @@ export class OptionsFilter extends FilterBase {
 		const btnReset = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Reset</button>`.onn("click", () => this.reset());
 		const wrpBtns = ee`<div class="ve-flex-v-center">${btnReset}</div>`;
 
-		const wrpSummary = ee`<div class="ve-flex-v-center fltr__summary_item fltr__summary_item--include"></div>`.hideVe();
+		const wrpSummary = ee`<div class="ve-flex-v-center ve-fltr__summary_item ve-fltr__summary_item--include"></div>`.hideVe();
 
 		const btnShowHide = this._getBtnShowHide();
 		const hkIsHidden = () => {
-			btnShowHide.toggleClass("active", this._uiMeta.isHidden);
+			btnShowHide.toggleClass("ve-active", this._uiMeta.isHidden);
 			wrpBtns.toggleVe(!this._uiMeta.isHidden);
 			wrpSummary.toggleVe(this._uiMeta.isHidden);
 
@@ -324,7 +324,7 @@ export class OptionsFilter extends FilterBase {
 		<div class="ve-flex-v-center">
 			${wrpBtns}
 			${wrpSummary}
-			<div class="ve-btn-group ve-flex-v-center ml-2">
+			<div class="ve-btn-group ve-flex-v-center ve-ml-2">
 				${btnShowHide}
 				${this._getBtnMenu()}
 			</div>
@@ -373,7 +373,7 @@ export class OptionsFilter extends FilterBase {
 		const isVisible = this._getHeaderDisplayName().toLowerCase().includes(searchTerm)
 			|| Object.keys(this._defaultState).map(it => this._displayFn(it).toLowerCase()).some(it => it.includes(searchTerm));
 
-		this.__wrpFilter.toggleClass("fltr__hidden--search", !isVisible);
+		this.__wrpFilter.toggleClass("ve-fltr__hidden--search", !isVisible);
 
 		return isVisible;
 	}

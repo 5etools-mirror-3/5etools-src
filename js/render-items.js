@@ -59,7 +59,7 @@ class _RenderItemsImplBase extends RenderPageImplBase {
 		const {typeRarityHtml, subTypeHtml, tierHtml} = Renderer.item.getTypeRarityAndAttunementHtmlParts(ent, {styleHint: this._style});
 
 		return `<tr>
-			<td class="rd-item__type-rarity-attunement" colSpan="6">${Renderer.item.getTypeRarityAndAttunementHtml({typeRarityHtml, subTypeHtml, tierHtml}, {styleHint: this._style})}</td>
+			<td class="ve-rd-item__type-rarity-attunement" colSpan="6">${Renderer.item.getTypeRarityAndAttunementHtml({typeRarityHtml, subTypeHtml, tierHtml}, {styleHint: this._style})}</td>
 		</tr>`;
 	}
 
@@ -82,7 +82,7 @@ class _RenderItemsImplBase extends RenderPageImplBase {
 		renderedText += this._getRenderedSeeAlso({ent, prop: "seeAlsoDeck", tag: "deck"});
 		renderedText += this._getRenderedSeeAlso({ent, prop: "seeAlsoVehicle", tag: "vehicle"});
 
-		return renderedText ? `<tr><td colspan="6" class="py-0"><div class="ve-tbl-divider"></div></td></tr>
+		return renderedText ? `<tr><td colspan="6" class="ve-py-0"><div class="ve-tbl-divider"></div></td></tr>
 			<tr><td colspan="6">${renderedText}</td></tr>` : "";
 	}
 }

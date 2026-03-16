@@ -4,7 +4,7 @@
 @use "../vars/vars-night";
 
 @layer vetools {
-	.stats {
+	.ve-stats {
 		font-family: Convergence, Arial, sans-serif;
 		width: 100%;
 		font-size: 12.6px;
@@ -72,11 +72,11 @@
 					right: 0;
 					opacity: 1 !important;
 
-					.stats__btn-token-cycle {
+					.ve-stats__btn-token-cycle {
 						opacity: 1 !important;
 					}
 
-					.stats__wrp-token-footer {
+					.ve-stats__wrp-token-footer {
 						opacity: 1;
 					}
 				}
@@ -193,17 +193,17 @@
 		}
 	}
 
-	.lst__is-exporting-image {
-		.stats__wrp-h-source--token {
+	.ve-lst__is-exporting-image {
+		.ve-stats__wrp-h-source--token {
 			padding-right: 0;
 		}
 
-		.stats__wrp-avoid-token {
+		.ve-stats__wrp-avoid-token {
 			max-width: initial;
 		}
 	}
 
-	.ve-night-mode .stats {
+	.ve-night-mode .ve-stats {
 		background-color: vars-night.$rgb-bg--night;
 
 		&__ {
@@ -292,7 +292,7 @@
 
 	/* -------------------------------------------- */
 
-	.stats--book {
+	.ve-stats--book {
 		@include vars.mix-shadow-1;
 
 		font-family: Roboto, Helvetica, sans-serif;
@@ -309,7 +309,7 @@
 		}
 	}
 
-	.ve-night-mode .stats--book {
+	.ve-night-mode .ve-stats--book {
 		::selection {
 			color: #242527;
 			background: #fff;
@@ -323,7 +323,7 @@
 	/* -------------------------------------------- */
 
 	// Book mode adjustments
-	.stats--book-large {
+	.ve-stats--book-large {
 		--sz-font-h0: 2.5em;
 		--sz-font-h1: 1.9em;
 		--sz-font-h2: 1.6em;
@@ -340,25 +340,25 @@
 		line-height: 1.7;
 		font-size: 1em;
 
-		.rd__list-hang-notitle {
-			> .rd__li {
-				> .rd__p-list-item {
+		.ve-rd__list-hang-notitle {
+			> .ve-rd__li {
+				> .ve-rd__p-list-item {
 					text-indent: -1.1em;
 				}
 			}
 		}
 
-		.rd__p-cont-indent {
+		.ve-rd__p-cont-indent {
 			text-indent: 0;
 			margin-top: 5px;
 		}
 
-		.rd__h--2-inset {
+		.ve-rd__h--2-inset {
 			margin-bottom: var(--h-mb-p);
 			margin-top: var(--h-mb-p);
 		}
 
-		.rd__h--2-inset-no-name {
+		.ve-rd__h--2-inset-no-name {
 			margin-bottom: 0;
 			margin-top: 0;
 		}

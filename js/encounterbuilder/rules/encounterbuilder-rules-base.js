@@ -20,7 +20,7 @@ export class TierHtmlProviderBase {
 		const ptTierName = this.getTierName({tier}) || "?";
 		const ptTierBudget = partyMeta?.getTierDisplayBudget(tier) || "?";
 
-		return `<span class="help-subtle" ${title ? `title="${title}"` : ""}>${ptTierName}:</span> ${ptTierBudget} ${this._getBudgetUnit()}`;
+		return `<span class="ve-help-subtle" ${title ? `title="${title}"` : ""}>${ptTierName}:</span> ${ptTierBudget} ${this._getBudgetUnit()}`;
 	}
 
 	getTierTitle ({tier}) {
@@ -41,7 +41,7 @@ export class TierHtmlProviderBase {
 		const ptPct = (ratioSpent * 100).toFixed(2).replace(/\.0+$/, "")
 			.padStart(3, "\u2007");
 
-		return `<span class="mr-1">${ptPct}%</span>`;
+		return `<span class="ve-mr-1">${ptPct}%</span>`;
 	}
 
 	getSpentHtml (
@@ -77,7 +77,7 @@ export class TierHtmlProviderBase {
 			const ptTierBudgetSpentPerCreature = cntMin
 				? partyMeta.getTierDisplayBudget(tier, {multiplier: ratioSpent / cntMin})
 				: 0;
-			return `<span class="ve-small small-caps split-v-center" title="${ptTierBudgetSpentPerCreature} ${unit} Per Creature (${ptTierBudgetSpent} ${unit} Total)">
+			return `<span class="ve-small ve-small-caps ve-split-v-center" title="${ptTierBudgetSpentPerCreature} ${unit} Per Creature (${ptTierBudgetSpent} ${unit} Total)">
 				${this._getPtRatioSpentPct({ratioSpent})}
 				<span class="ve-muted">(${ptTierBudgetSpentPerCreature} ${unit} ea.)</span>
 			</span>`;
@@ -95,7 +95,7 @@ export class TierHtmlProviderBase {
 		const ptTierBudgetSpentMax = cntMax
 			? partyMeta.getTierDisplayBudget(tier, {multiplier: ratioSpent})
 			: 0;
-		return `<span class="ve-small small-caps split-v-center" title="${ptTierBudgetSpentPerCreatureMin}\u2013${ptTierBudgetSpentPerCreatureMax} ${unit} Per Creature (${ptTierBudgetSpentMin}\u2013${ptTierBudgetSpentMax} ${unit} Total)">
+		return `<span class="ve-small ve-small-caps ve-split-v-center" title="${ptTierBudgetSpentPerCreatureMin}\u2013${ptTierBudgetSpentPerCreatureMax} ${unit} Per Creature (${ptTierBudgetSpentMin}\u2013${ptTierBudgetSpentMax} ${unit} Total)">
 			${this._getPtRatioSpentPct({ratioSpent})}
 			<span class="ve-muted">(${ptTierBudgetSpentPerCreatureMin}\u2013${ptTierBudgetSpentPerCreatureMax} ${unit} ea.)</span>
 		</span>`;
@@ -262,14 +262,14 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 		},
 	) {
 		const stgRandom = this._getRenderedWrpRandomAndAdjust_getStgRandom({tiers})
-			.addClass("mobile-lg__mb-2");
+			.addClass("ve-mobile-lg__mb-2");
 		const stgAdjust = this._getRenderedWrpRandomAndAdjust_getAdjustMeta({tiers});
 
 		return ee`<div class="ve-flex-col">
-			<div class="ve-flex-v-center mobile-lg__ve-flex-col mobile-lg__ve-flex-ai-start">
+			<div class="ve-flex-v-center ve-mobile-lg__ve-flex-col ve-mobile-lg__ve-flex-ai-start">
 				${stgRandom}
 
-				<div class="vr-2 min-h-24p mobile-lg__hidden"></div>
+				<div class="ve-vr-2 ve-min-h-24p ve-mobile-lg__hidden"></div>
 
 				${stgAdjust}
 			</div>
@@ -282,7 +282,7 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 			this,
 			"tierRandom",
 			{
-				html: `<select class="form-control br-0"></select>`,
+				html: `<select class="ve-form-control ve-br-0"></select>`,
 				values: tiers,
 				fnDisplay: val => val.toTitleCase(),
 			},
@@ -292,13 +292,13 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 			this,
 			"shapeHashRandom",
 			{
-				html: `<select class="form-control br-0 w-100"></select>`,
+				html: `<select class="ve-form-control ve-br-0 ve-w-100"></select>`,
 				values: this._encounterShapesLookup.getHashList(),
 				fnDisplay: val => this._encounterShapesLookup.getEncounterShape(val).name,
 			},
 		);
 
-		const btnGenerate = ee`<button class="ve-btn ve-btn-primary h-34p" title="Generate Encounter"><span class="glyphicon glyphicon-play"></span></button>`
+		const btnGenerate = ee`<button class="ve-btn ve-btn-primary ve-h-34p" title="Generate Encounter"><span class="glyphicon glyphicon-play"></span></button>`
 			.onn("click", async () => {
 				if (
 					this._encounterShapesLookup.isCustomEncounterHash(this._state.shapeHashRandom)
@@ -313,7 +313,7 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 				});
 			});
 
-		return ee`<div class="ve-flex-v-center input-group w-100">
+		return ee`<div class="ve-flex-v-center input-group ve-w-100">
 			${selTier}
 			${selShapeType}
 			${btnGenerate}
@@ -359,13 +359,13 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 			wrpMenu.hideVe();
 			dispCaret.removeClass("caret--up");
 		});
-		const btnMenu = ee`<button class="ve-btn ve-btn-primary w-24p px-0">${dispCaret}</button>`
+		const btnMenu = ee`<button class="ve-btn ve-btn-primary ve-w-24p ve-px-0">${dispCaret}</button>`
 			.onn("click", () => {
 				wrpMenu.toggleVe(!dispCaret.hasClass("caret--up"));
 				dispCaret.toggleClass("caret--up");
 			});
 
-		return ee`<div class="ve-flex-v-center relative no-shrink">
+		return ee`<div class="ve-flex-v-center ve-relative ve-no-shrink">
 			<div class="ve-btn-group">
 				${btn}
 				${btnMenu}
@@ -391,7 +391,7 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 			Object.entries(dispsLookup)
 				.forEach(([tier_, disp]) => {
 					disp
-						.toggleClass("bold", tier === tier_)
+						.toggleClass("ve-bold", tier === tier_)
 						.html(
 							this._tierHtmlProvider.getTierHtml({
 								partyMeta,
@@ -412,7 +412,7 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 	static _TITLE_XP_TO_NEXT_LEVEL = "The total XP required to allow each member of the party to level up to their next level.";
 
 	_getRenderedExpToLevel ({partyMeta}) {
-		return `<span class="help-subtle" title="${this.constructor._TITLE_XP_TO_NEXT_LEVEL}">XP to Next Level:</span> ${partyMeta?.xpToNextLevel.toLocaleStringVe() || "?"} XP`;
+		return `<span class="ve-help-subtle" title="${this.constructor._TITLE_XP_TO_NEXT_LEVEL}">XP to Next Level:</span> ${partyMeta?.xpToNextLevel.toLocaleStringVe() || "?"} XP`;
 	}
 
 	/* -------------------------------------------- */
@@ -443,7 +443,7 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 	_getTtkHtml ({partyMeta, styleHint = null}) {
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
-		return `<span class="help" title="${this.constructor._TITLE_TTK}">TTK:</span> ${this._getTtkProvider({partyMeta, styleHint}).getApproxTurnsToKill().toFixed(2)}`;
+		return `<span class="ve-help" title="${this.constructor._TITLE_TTK}">TTK:</span> ${this._getTtkProvider({partyMeta, styleHint}).getApproxTurnsToKill().toFixed(2)}`;
 	}
 
 	/* -------------------------------------------- */

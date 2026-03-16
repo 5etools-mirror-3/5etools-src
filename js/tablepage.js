@@ -5,11 +5,11 @@ class _GroupHeaderManager {
 		this._wrpList = wrpList;
 		this._isVisible = true;
 
-		this._dispShowHide = ee`<div class="lst__tgl-item-group relative top-n1p">[\u2013]</div>`;
+		this._dispShowHide = ee`<div class="ve-lst__tgl-item-group ve-relative ve-top-n1p">[\u2013]</div>`;
 
-		this._btnHeader = ee`<div class="lst__item-group-header mt-3 split-v-center py-1 no-select clickable" title="SHIFT to Toggle All">
-			<div class="split-v-center w-100 min-w-0 mr-2">
-				<div class="bold">${ent.name}</div>
+		this._btnHeader = ee`<div class="ve-lst__item-group-header ve-mt-3 ve-split-v-center ve-py-1 ve-no-select ve-clickable" title="SHIFT to Toggle All">
+			<div class="ve-split-v-center ve-w-100 ve-min-w-0 ve-mr-2">
+				<div class="ve-bold">${ent.name}</div>
 				<div class="${Parser.sourceJsonToSourceClassname(ent.source)}" title="${Parser.sourceJsonToFull(ent.source).qq()}">${Parser.sourceJsonToAbv(ent.source)}</div>
 			</div>
 			${this._dispShowHide}
@@ -40,8 +40,15 @@ class _GroupHeaderManager {
 }
 
 class TableListPage extends ListPage {
-	constructor (...args) {
-		super(...args);
+	constructor (opts = {}) {
+		super({
+			...opts,
+			bookViewOptions: opts.bookViewOptions ?? {
+				nameSingular: "table",
+				namePlural: "tables",
+				pageTitle: "Tables Book View",
+			},
+		});
 
 		this._listMetas = {};
 	}
@@ -84,7 +91,7 @@ class TableListPage extends ListPage {
 
 			const headerId = this._getHeaderId(ent);
 			if (!this._listMetas[headerId]) {
-				const wrpList = ee`<div class="ve-flex-col w-100 list"></div>`;
+				const wrpList = ee`<div class="ve-flex-col ve-w-100 list"></div>`;
 
 				const isFirst = !Object.keys(this._listMetas).length;
 				const list = this._initList({
@@ -102,7 +109,7 @@ class TableListPage extends ListPage {
 				const groupHeader = new _GroupHeaderManager({ent, wrpList, groupHeaderManagers});
 				list.on("updated", () => groupHeader.onListUpdate({list}));
 
-				ee`<div class="flex-col">
+				ee`<div class="ve-flex-col">
 					${groupHeader.btnHeader}
 					${wrpList}
 				</div>`.appendTo(wrpLists);
@@ -115,8 +122,8 @@ class TableListPage extends ListPage {
 			const displayName = this._getDisplayName(ent);
 			const hash = this._getHash(ent);
 
-			const ele = ee`<div class="lst__row ve-flex-col">
-				<a href="#${hash}" class="lst__row-border lst__row-inner">${displayName}</a>
+			const ele = ee`<div class="ve-lst__row ve-flex-col">
+				<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">${displayName}</a>
 			</div>`;
 
 			const listItem = new ListItem(
@@ -160,7 +167,7 @@ class TableListPage extends ListPage {
 			.empty()
 			.appends(htmlTable);
 
-		const btnRoll = ee`<span class="roller" data-name="btn-roll">${ent.diceExpression}</span>`
+		const btnRoll = ee`<span class="ve-roller" data-name="btn-roll">${ent.diceExpression}</span>`
 			.onn("click", async () => {
 				await this._pRoll(ent);
 			})
@@ -231,7 +238,7 @@ class TableListPage extends ListPage {
 			.forEach((ele, i) => {
 				const {rollText, displayText} = diceTagMetas[i];
 
-				const eleRoller = ee`<span class="roller render-roller">${displayText || rollText}</span>`
+				const eleRoller = ee`<span class="ve-roller render-roller">${displayText || rollText}</span>`
 					.onn("click", () => {
 						const res = doRoll(rollText);
 						eleRoller.next(`[data-tablepage-is-attitude-result="true"]`)

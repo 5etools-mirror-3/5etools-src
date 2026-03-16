@@ -131,7 +131,7 @@ export class BookUtil {
 				});
 			} else BookUtil._renderer.recursiveRender(data[ixChapter], textStack);
 			// If there is no source, we're probably in the Quick Reference, so avoid adding the "Excluded" text, as this is a composite source.
-			BookUtil.dispBook.appends(`<tr><td colspan="6" class="py-2 px-5">${fromIndex.source ? Renderer.utils.getExcludedHtml({entity: fromIndex, dataProp: BookUtil.contentType, page: UrlUtil.getCurrentPage()}) : ""}${textStack.join("")}</td></tr>`);
+			BookUtil.dispBook.appends(`<tr><td colspan="6" class="ve-py-2 ve-px-5">${fromIndex.source ? Renderer.utils.getExcludedHtml({entity: fromIndex, dataProp: BookUtil.contentType, page: UrlUtil.getCurrentPage()}) : ""}${textStack.join("")}</td></tr>`);
 			Renderer.initLazyImageLoaders();
 			BookUtil._renderer
 				.setLazyImages(false)
@@ -200,7 +200,7 @@ export class BookUtil {
 	static _showBookContent_handleQuickReferenceShowAll () {
 		em(`.${Renderer.HEAD_NEG_1}`)
 			.forEach(ele => ele.showVe());
-		em(`.rd__hr--section`)
+		em(`.ve-rd__hr--section`)
 			.forEach(ele => ele.showVe());
 	}
 
@@ -218,7 +218,7 @@ export class BookUtil {
 			const toShow = allSects
 				.filter(ele => {
 					const matches = ele
-						.findAll(`.rd__h .entry-title-inner`)
+						.findAll(`.ve-rd__h .entry-title-inner`)
 						.filter(eleSub => eleSub.txt().trim().toLowerCase() === cleanSectionHead);
 					return !!matches.length;
 				});
@@ -227,7 +227,7 @@ export class BookUtil {
 				BookUtil.curRender.lastRefHeader = sectionHeader.toLowerCase();
 				allSects
 					.forEach(ele => ele.hideVe());
-				em(`hr.rd__hr--section`)
+				em(`hr.ve-rd__hr--section`)
 					.forEach(ele => ele.hideVe());
 				toShow
 					.forEach(ele => ele.showVe());
@@ -271,7 +271,7 @@ export class BookUtil {
 
 	static _showBookContent_renderNavButtons ({isTop, ixChapter, bookId, data}) {
 		const tdStyle = `padding-${isTop ? "top" : "bottom"}: 6px; padding-left: 9px; padding-right: 9px;`;
-		const wrpControls = ee`<div class="split"></div>`;
+		const wrpControls = ee`<div class="ve-split"></div>`;
 
 		ee`<tr><td colspan="6" style="${tdStyle}">${wrpControls}</td></tr>`.appendTo(BookUtil.dispBook);
 
@@ -360,7 +360,7 @@ export class BookUtil {
 		const href = ~this.curRender.chapter
 			? this._getHrefShowAll(bookId)
 			: `#${UrlUtil.encodeForHash(bookId)}`;
-		const btnEntireBook = ee`<a href="${href}" class="ve-btn ve-btn-xs ve-btn-default no-print ${~this.curRender.chapter ? "" : "active"}" title="Warning: Slow">View Entire ${this.contentType.uppercaseFirst()}</a>`;
+		const btnEntireBook = ee`<a href="${href}" class="ve-btn ve-btn-xs ve-btn-default no-print ${~this.curRender.chapter ? "" : "ve-active"}" title="Warning: Slow">View Entire ${this.contentType.uppercaseFirst()}</a>`;
 
 		if (this._isNarrow == null) {
 			const saved = StorageUtil.syncGetForPage("narrowMode");
@@ -369,7 +369,7 @@ export class BookUtil {
 		}
 
 		const hdlNarrowUpdate = () => {
-			btnToggleNarrow.toggleClass("active", this._isNarrow);
+			btnToggleNarrow.toggleClass("ve-active", this._isNarrow);
 			es(`#pagecontent`).toggleClass(`bk__stats--narrow`, this._isNarrow);
 		};
 		const btnToggleNarrow = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="Toggle Narrow Reading Width"><span class="glyphicon glyphicon-resize-small"></span></button>`
@@ -521,7 +521,7 @@ export class BookUtil {
 
 	static _initScrollTopFloat () {
 		const wrpScrollTop = OmnisearchUtilsUi.addScrollTopFloat();
-		BookUtil.wrpFloatControls = ee`<div class="ve-flex-vh-center w-100 mb-2 ve-btn-group"></div>`.prependTo(wrpScrollTop);
+		BookUtil.wrpFloatControls = ee`<div class="ve-flex-vh-center ve-w-100 ve-mb-2 ve-btn-group"></div>`.prependTo(wrpScrollTop);
 	}
 
 	static _initLinkReNav () {
@@ -725,7 +725,7 @@ export class BookUtil {
 	}
 
 	static _doPopulateContents ({wrpContents, book}) {
-		wrpContents.html(BookUtil.allPageUrl ? `<div><a href="${BookUtil.allPageUrl}" class="lst__row-border lst__row-inner"><span class="bold">\u21FD ${this._getAllTitle()}</span></a></div>` : "");
+		wrpContents.html(BookUtil.allPageUrl ? `<div><a href="${BookUtil.allPageUrl}" class="ve-lst__row-border ve-lst__row-inner"><span class="ve-bold">\u21FD ${this._getAllTitle()}</span></a></div>` : "");
 
 		if (book) BookUtil._getRenderedContents({book}).appendTo(wrpContents);
 	}
@@ -761,7 +761,7 @@ export class BookUtil {
 			});
 
 		// region Mobile only "open find bar" buttons
-		const btnToTop = ee`<button class="ve-btn ve-btn-default ve-btn-sm no-print bbl-0" title="To Top"><span class="glyphicon glyphicon-arrow-up"></span></button>`
+		const btnToTop = ee`<button class="ve-btn ve-btn-default ve-btn-sm no-print ve-bbl-0" title="To Top"><span class="glyphicon glyphicon-arrow-up"></span></button>`
 			.onn("click", evt => {
 				evt.stopPropagation();
 				MiscUtil.scrollPageTop();
@@ -773,7 +773,7 @@ export class BookUtil {
 				BookUtil._showSearchBox(indexData, bookId, false);
 			});
 
-		const btnOpenGoto = ee`<button class="ve-btn ve-btn-default ve-btn-sm no-print bbr-0" title="Go to Page"><kbd>G</kbd></button>`
+		const btnOpenGoto = ee`<button class="ve-btn ve-btn-default ve-btn-sm no-print ve-bbr-0" title="Go to Page"><kbd>G</kbd></button>`
 			.onn("click", evt => {
 				evt.stopPropagation();
 				BookUtil._showSearchBox(indexData, bookId, true);
@@ -781,7 +781,7 @@ export class BookUtil {
 
 		em(`.bk__wrp-btns-open-find`)
 			.forEach(ele => ele.remove());
-		ee`<div class="mobile-sm__visible bk__wrp-btns-open-find ve-btn-group">
+		ee`<div class="ve-mobile-sm__visible bk__wrp-btns-open-find ve-btn-group">
 			${btnToTop}${btnOpenFind}${btnOpenGoto}
 		</div>`.appendTo(document.body);
 	}
@@ -803,7 +803,7 @@ export class BookUtil {
 		const wrpResults = ee`<div class="f-all-out"></div>`
 			.hideVe();
 
-		const iptSearch = ee`<input class="form-control" placeholder="${isPageMode ? "Go to page number..." : "Find text..."}">`
+		const iptSearch = ee`<input class="ve-form-control" placeholder="${isPageMode ? "Go to page number..." : "Find text..."}">`
 			.onn("keydown", (evt) => {
 				evt.stopPropagation();
 
@@ -907,7 +907,7 @@ export class BookUtil {
 		BookUtil.curRender.lnksChapter = [];
 		BookUtil.curRender.lnksHeader = {};
 
-		BookUtil.curRender.btnToggleExpandAll = ee`<span title="Expand All" class="px-2 bold py-1p no-select clickable no-select">${BookUtil.isDefaultExpandedContents ? `[\u2212]` : `[+]`}</span>`
+		BookUtil.curRender.btnToggleExpandAll = ee`<span title="Expand All" class="ve-px-2 ve-bold ve-py-1p ve-no-select ve-clickable ve-no-select">${BookUtil.isDefaultExpandedContents ? `[\u2212]` : `[+]`}</span>`
 			.onn("click", () => {
 				const isExpanded = BookUtil.curRender.btnToggleExpandAll.txt() !== `[+]`;
 				BookUtil.curRender.btnToggleExpandAll.txt(isExpanded ? `[+]` : `[\u2212]`).tooltip(isExpanded ? `Collapse All` : `Expand All`);
@@ -920,14 +920,14 @@ export class BookUtil {
 
 		const eles = [];
 		options.book.contents.map((chapter, ixChapter) => {
-			const btnToggleExpand = !chapter.headers ? null : ee`<span class="px-2 bold">[\u2212]</span>`
+			const btnToggleExpand = !chapter.headers ? null : ee`<span class="ve-px-2 ve-bold">[\u2212]</span>`
 				.onn("click", evt => {
 					BookUtil._sectToggle(evt, btnToggleExpand, chapterBlock);
 				});
 			BookUtil.curRender.btnsToggleExpand.push(btnToggleExpand);
 
-			const lnk = ee`<a href="${options.isAddPrefix || ""}#${UrlUtil.encodeForHash(options.book.id)},${ixChapter}" class="lst__row-border lst__row-inner lst__row lst__wrp-cells bold">
-					<span class="w-100">${Parser.bookOrdinalToAbv(chapter.ordinal)}${chapter.name}</span>
+			const lnk = ee`<a href="${options.isAddPrefix || ""}#${UrlUtil.encodeForHash(options.book.id)},${ixChapter}" class="ve-lst__row-border ve-lst__row-inner ve-lst__row ve-lst__wrp-cells ve-bold">
+					<span class="ve-w-100">${Parser.bookOrdinalToAbv(chapter.ordinal)}${chapter.name}</span>
 					${btnToggleExpand}
 			</a>`
 				.onn("click", () => BookUtil._scrollPageTop(ixChapter));
@@ -944,17 +944,17 @@ export class BookUtil {
 
 		return ee`<div class="contents-item" data-bookid="${UrlUtil.encodeForHash(book.id)}">
 			<div class="bk__contents-header">
-				<a href="#${UrlUtil.encodeForHash(book.id)}" class="bk__contents_header_link lst__wrp-cells lst__row-inner bold" title="${book.name}">
+				<a href="#${UrlUtil.encodeForHash(book.id)}" class="bk__contents_header_link ve-lst__wrp-cells ve-lst__row-inner ve-bold" title="${book.name}">
 					<span class="name">${book.name}</span>
 				</a>
 				<div class="ve-flex-v-center">
-					<a href="${this._getHrefShowAll(book.id)}" class="bk__contents_show_all px-2 py-1p ve-flex-v-center lst__wrp-cells lst__row-inner" title="View Entire ${BookUtil.contentType.uppercaseFirst()} (Warning: Slow)">
+					<a href="${this._getHrefShowAll(book.id)}" class="bk__contents_show_all ve-px-2 ve-py-1p ve-flex-v-center ve-lst__wrp-cells ve-lst__row-inner" title="View Entire ${BookUtil.contentType.uppercaseFirst()} (Warning: Slow)">
 						<span class="glyphicon glyphicon glyphicon-book" style="top: 0;"></span>
 					</a>
 					${BookUtil.curRender.btnToggleExpandAll}
 				</div>
 			</div>
-			<div class="bk-contents pl-4 ml-2">
+			<div class="bk-contents ve-pl-4 ve-ml-2">
 				${eles}
 			</div>
 		</div>`;
@@ -984,7 +984,7 @@ export class BookUtil {
 
 			const displayText = this._getContentsSectionHeader(h);
 
-			const lnk = ee`<a href="${isAddPrefix || ""}#${UrlUtil.encodeForHash(bookId)},${ixChapter},${UrlUtil.encodeForHash(headerText)}${headerIndex > 0 ? `,${headerIndex}` : ""}" data-book="${bookId}" data-chapter="${ixChapter}" data-header="${headerText.escapeQuotes()}" class="lst__row lst__row-border lst__row-inner lst__wrp-cells">${displayText}</a>`
+			const lnk = ee`<a href="${isAddPrefix || ""}#${UrlUtil.encodeForHash(bookId)},${ixChapter},${UrlUtil.encodeForHash(headerText)}${headerIndex > 0 ? `,${headerIndex}` : ""}" data-book="${bookId}" data-chapter="${ixChapter}" data-header="${headerText.escapeQuotes()}" class="ve-lst__row ve-lst__row-border ve-lst__row-inner ve-lst__wrp-cells">${displayText}</a>`
 				.onn("click", () => {
 					BookUtil._scrollClick(ixChapter, headerText, headerIndex);
 				});
@@ -997,7 +997,7 @@ export class BookUtil {
 			(this.curRender.lnksHeader[ixChapter] ||= []).push(lnk);
 		});
 
-		return ee`<div class="ve-flex-col pl-4 ml-2">
+		return ee`<div class="ve-flex-col ve-pl-4 ve-ml-2">
 			${eles}
 		</div>`;
 	}

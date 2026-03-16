@@ -23,7 +23,7 @@ class _RenderConditionDiseaseStatusImplBase extends RenderPageImplBase {
 	/* ----- */
 
 	_getCommonHtmlParts_type ({ent, renderer}) {
-		return ent.type ? `<tr><td colspan="6" class="pb-2 pt-0">${renderer.render(`{@i ${ent.type}}`)}</td></tr>` : "";
+		return ent.type ? `<tr><td colspan="6" class="ve-pb-2 ve-pt-0">${renderer.render(`{@i ${ent.type}}`)}</td></tr>` : "";
 	}
 
 	/* ----- */
@@ -50,7 +50,7 @@ class _RenderConditionDiseaseStatusImplBase extends RenderPageImplBase {
 			opts,
 		});
 
-		const ptDivider = this._style === SITE_STYLE__CLASSIC ? `<tr><td colspan="6" class="py-0"><div class="ve-tbl-divider"></div></td></tr>` : "";
+		const ptDivider = this._style === SITE_STYLE__CLASSIC ? `<tr><td colspan="6" class="ve-py-0"><div class="ve-tbl-divider"></div></td></tr>` : "";
 
 		return `
 			${Renderer.utils.getBorderTr()}

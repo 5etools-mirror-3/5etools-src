@@ -170,7 +170,7 @@ export class InitiativeTrackerNetworking {
 			btnGetLink.prop("disabled", false);
 		};
 
-		const btnStartServer = ee`<button class="ve-btn ve-btn-default mr-2"></button>`
+		const btnStartServer = ee`<button class="ve-btn ve-btn-default ve-mr-2"></button>`
 			.onn("click", async () => {
 				const {isRunning} = await this.startServerV1({doUpdateExternalStates, btnStartServer, btnGetToken, btnGetLink, fnDispServerStoppedState, fnDispServerRunningState});
 				if (!isRunning) return;
@@ -185,7 +185,7 @@ export class InitiativeTrackerNetworking {
 				JqueryUtil.showCopiedEffect(btnGetToken);
 			});
 
-		const btnGetLink = ee`<button class="ve-btn ve-btn-default mr-2" disabled><span class="glyphicon glyphicon-link"></span> Copy Link</button>`.appendTo(wrpHelp)
+		const btnGetLink = ee`<button class="ve-btn ve-btn-default ve-mr-2" disabled><span class="glyphicon glyphicon-link"></span> Copy Link</button>`.appendTo(wrpHelp)
 			.onn("click", async () => {
 				const cleanOrigin = window.location.origin.replace(/\/+$/, "");
 				const cleanPathname = window.location.pathname.split("/").slice(0, -1).join("/");
@@ -197,7 +197,7 @@ export class InitiativeTrackerNetworking {
 		if (this._p2pMetaV1.serverPeer) fnDispServerRunningState();
 		else fnDispServerStoppedState();
 
-		ee`<div class="row w-100">
+		ee`<div class="row ve-w-100">
 			<div class="ve-col-12">
 				<p>
 				The Player View is part of a peer-to-peer system to allow players to connect to a DM's initiative tracker. Players should use the <a href="inittrackerplayerview.html">Initiative Tracker Player View</a> page to connect to the DM's instance. As a DM, the usage is as follows:
@@ -217,9 +217,9 @@ export class InitiativeTrackerNetworking {
 		const wrpConnected = UiUtil.getAddModalRow(eleModalInner, "div").addClass("flx-col");
 
 		const showConnected = () => {
-			if (!this._p2pMetaV1.serverPeer) return wrpConnected.html(`<div class="w-100 ve-flex-vh-center"><i>No clients connected.</i></div>`);
+			if (!this._p2pMetaV1.serverPeer) return wrpConnected.html(`<div class="ve-w-100 ve-flex-vh-center"><i>No clients connected.</i></div>`);
 
-			let stack = `<div class="w-100"><h5>Connected Clients:</h5><ul>`;
+			let stack = `<div class="ve-w-100"><h5>Connected Clients:</h5><ul>`;
 			this._p2pMetaV1.serverPeer.getActiveConnections()
 				.map(it => it.label || "(Unknown)")
 				.sort(SortUtil.ascSortLower)
@@ -342,7 +342,7 @@ export class InitiativeTrackerNetworking {
 		const btnAltAddPlayer = ee`<button class="ve-btn ve-btn-primary ve-btn-text-insert">Add Player</button>`.onn("click", () => btnAddClient.trigger("click"));
 		const btnAltGenAll = ee`<button class="ve-btn ve-btn-primary ve-btn-text-insert">Generate All</button>`.onn("click", () => btnGenServerTokens.trigger("click"));
 		const btnAltCopyAll = ee`<button class="ve-btn ve-btn-primary ve-btn-text-insert">Copy Server Tokens</button>`.onn("click", () => btnCopyServers.trigger("click"));
-		ee`<div class="ve-flex w-100">
+		ee`<div class="ve-flex ve-w-100">
 			<div class="ve-col-12">
 				<p>
 				The Player View is part of a peer-to-peer (i.e., serverless) system to allow players to connect to a DM's initiative tracker. Players should use the <a href="inittrackerplayerview.html">Initiative Tracker Player View</a> page to connect to the DM's instance. As a DM, the usage is as follows:
@@ -388,10 +388,10 @@ export class InitiativeTrackerNetworking {
 			.onn("click", () => {
 				const {eleModalInner, doClose} = UiUtil.getShowModal({title: "Accept Multiple Clients"});
 
-				const iptText = ee`<textarea class="form-control dm-init-pl__textarea block mb-2"></textarea>`
+				const iptText = ee`<textarea class="ve-form-control dm-init-pl__textarea ve-block ve-mb-2"></textarea>`
 					.onn("keydown", () => iptText.removeClass("error-background"));
 
-				const btnAccept = ee`<button class="ve-btn ve-btn-xs ve-btn-primary block ve-text-center" title="Add Client">Accept Multiple Clients</button>`
+				const btnAccept = ee`<button class="ve-btn ve-btn-xs ve-btn-primary ve-block ve-text-center" title="Add Client">Accept Multiple Clients</button>`
 					.onn("click", async () => {
 						iptText.removeClass("error-background");
 						const txt = iptText.val();
@@ -418,18 +418,18 @@ export class InitiativeTrackerNetworking {
 			});
 
 		ee`
-			<div class="ve-flex w-100">
+			<div class="ve-flex ve-w-100">
 				<div class="ve-col-12">
-					<div class="ve-flex-inline-v-center mr-2">
-						<span class="mr-1">Add a player (client):</span>
+					<div class="ve-flex-inline-v-center ve-mr-2">
+						<span class="ve-mr-1">Add a player (client):</span>
 						${btnAddClient}
 					</div>
-					<div class="ve-flex-inline-v-center mr-2">
-						<span class="mr-1">Copy all un-paired server tokens:</span>
+					<div class="ve-flex-inline-v-center ve-mr-2">
+						<span class="ve-mr-1">Copy all un-paired server tokens:</span>
 						${btnCopyServers}
 					</div>
-					<div class="ve-flex-inline-v-center mr-2">
-						<span class="mr-1">Mass-accept clients:</span>
+					<div class="ve-flex-inline-v-center ve-mr-2">
+						<span class="ve-mr-1">Mass-accept clients:</span>
 						${btnAcceptClients}
 					</div>
 				</div>
@@ -441,11 +441,11 @@ export class InitiativeTrackerNetworking {
 		const btnGenServerTokens = ee`<button class="ve-btn ve-btn-primary ve-btn-xs">Generate All</button>`
 			.onn("click", () => this._playerWindowV0_pGetServerTokens({rowMetas: this._p2pMetaV0.rows}));
 
-		ee`<div class="ve-flex w-100">
-			<div class="ve-col-2 bold">Player Name</div>
-			<div class="ve-col-3-5 bold">Server Token</div>
+		ee`<div class="ve-flex ve-w-100">
+			<div class="ve-col-2 ve-bold">Player Name</div>
+			<div class="ve-col-3-5 ve-bold">Server Token</div>
 			<div class="ve-col-1 ve-text-center">${btnGenServerTokens}</div>
-			<div class="ve-col-3-5 bold">Client Token</div>
+			<div class="ve-col-3-5 ve-bold">Client Token</div>
 		</div>`
 			.appendTo(UiUtil.getAddModalRow(eleModalInner, "div"));
 
@@ -456,13 +456,13 @@ export class InitiativeTrackerNetworking {
 			iptTokenClient,
 			btnAcceptClientToken,
 			btnDeleteClient,
-		) => ee`<div class="w-100 mb-2 ve-flex">
-			<div class="ve-col-2 pr-1">${iptName}</div>
-			<div class="ve-col-3-5 px-1">${iptTokenServer}</div>
-			<div class="ve-col-1 px-1 ve-flex-vh-center">${btnGenServerToken}</div>
-			<div class="ve-col-3-5 px-1">${iptTokenClient}</div>
-			<div class="ve-col-1-5 px-1 ve-flex-vh-center">${btnAcceptClientToken}</div>
-			<div class="ve-col-0-5 pl-1 ve-flex-vh-center">${btnDeleteClient}</div>
+		) => ee`<div class="ve-w-100 ve-mb-2 ve-flex">
+			<div class="ve-col-2 ve-pr-1">${iptName}</div>
+			<div class="ve-col-3-5 ve-px-1">${iptTokenServer}</div>
+			<div class="ve-col-1 ve-px-1 ve-flex-vh-center">${btnGenServerToken}</div>
+			<div class="ve-col-3-5 ve-px-1">${iptTokenClient}</div>
+			<div class="ve-col-1-5 ve-px-1 ve-flex-vh-center">${btnAcceptClientToken}</div>
+			<div class="ve-col-0-5 ve-pl-1 ve-flex-vh-center">${btnDeleteClient}</div>
 		</div>`;
 
 		const clientRowMetas = [];
@@ -470,13 +470,13 @@ export class InitiativeTrackerNetworking {
 			const rowMeta = {id: CryptUtil.uid()};
 			clientRowMetas.push(rowMeta);
 
-			const iptName = ee`<input class="form-control input-sm">`
+			const iptName = ee`<input class="ve-form-control ve-input-sm">`
 				.onn("keydown", evt => {
 					iptName.removeClass("error-background");
 					if (evt.key === "Enter") btnGenServerToken.trigger("click");
 				});
 
-			const iptTokenServer = ee`<input class="form-control input-sm copyable code" readonly disabled>`
+			const iptTokenServer = ee`<input class="ve-form-control ve-input-sm ve-copyable ve-code" readonly disabled>`
 				.onn("click", async () => {
 					await MiscUtil.pCopyTextToClipboard(iptTokenServer.val());
 					JqueryUtil.showCopiedEffect(iptTokenServer);
@@ -485,7 +485,7 @@ export class InitiativeTrackerNetworking {
 			const btnGenServerToken = ee`<button class="ve-btn ve-btn-xs ve-btn-primary" title="Generate Server Token">Generate</button>`
 				.onn("click", () => this._playerWindowV0_pGetServerTokens({rowMetas: [rowMeta]}));
 
-			const iptTokenClient = ee`<input class="form-control input-sm code" disabled>`
+			const iptTokenClient = ee`<input class="ve-form-control ve-input-sm ve-code" disabled>`
 				.onn("keydown", evt => {
 					iptTokenClient.removeClass("error-background");
 					if (evt.key === "Enter") btnAcceptClientToken.trigger("click");
@@ -545,7 +545,7 @@ export class InitiativeTrackerNetworking {
 		};
 
 		const wrpRows = UiUtil.getAddModalRow(eleModalInner, "div");
-		const wrpRowsInner = ee`<div class="w-100"></div>`.appendTo(wrpRows);
+		const wrpRowsInner = ee`<div class="ve-w-100"></div>`.appendTo(wrpRows);
 
 		if (!this._p2pMetaV0.rows.length) {
 			addClientRow();

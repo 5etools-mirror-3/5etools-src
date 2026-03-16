@@ -272,7 +272,48 @@ class Omnidexer {
 
 globalThis.Omnidexer = Omnidexer;
 
-class IndexableDirectory {
+/**
+ * @abstract
+ */
+class _IndexableBase {
+	/**
+	 * @param opts Options object.
+	 * @param opts.category a category from utils.js (see `Parser.pageCategoryToFull`)
+	 * @param [opts.primary] (default "name") JSON property to index, per item. Can be a chain of properties e.g. `outer.inner.name`
+	 * @param [opts.source] (default "source") JSON property containing the item's source, per item. Can be a chan of properties, e.g. `outer.inner.source`
+	 * @param opts.listProp the JSON always has a root property containing the list of items. Provide the name of this property here. Can be a chain of properties e.g. `outer.inner.name`
+	 * @param opts.baseUrl the base URL (which page) to use when forming index URLs
+	 * @param [opts.isHover] a boolean indicating if the generated link should have `Renderer` isHover functionality.
+	 * @param opts.isOnlyDeep
+	 * @param opts.isSkipBrew
+	 * @param [opts.pFnPreProcBrew] An un-bound function
+	 * @param [opts.fnGetToken]
+	 * @param [opts.brewProps] Additional homebrew properties associated with this indexable category.
+	 */
+	constructor (opts) {
+		this._brewProps = opts.brewProps;
+
+		this.category = opts.category;
+		this.primary = opts.primary;
+		this.source = opts.source;
+		this.listProp = opts.listProp;
+		this.baseUrl = opts.baseUrl;
+		this.isHover = opts.isHover;
+		this.isOnlyDeep = opts.isOnlyDeep;
+		this.isSkipBrew = opts.isSkipBrew;
+		this.pFnPreProcBrew = opts.pFnPreProcBrew;
+		this.fnGetToken = opts.fnGetToken;
+	}
+
+	hasBrewProp (prop) {
+		return this._brewProps?.includes(prop);
+	}
+}
+
+/**
+ * @extends _IndexableBase
+ */
+class IndexableDirectory extends _IndexableBase {
 	/**
 	 * @param opts Options object.
 	 * @param [opts.category]
@@ -280,7 +321,7 @@ class IndexableDirectory {
 	 * @param [opts.primary]
 	 * @param [opts.source]
 	 * @param [opts.listProp]
-	 * @param [opts.brewProp]
+	 * @param [opts.brewProps]
 	 * @param [opts.baseUrl]
 	 * @param [opts.isHover]
 	 * @param [opts.alternateIndexes]
@@ -289,18 +330,10 @@ class IndexableDirectory {
 	 * @param [opts.fnGetToken]
 	 */
 	constructor (opts) {
-		this.category = opts.category;
+		super(opts);
+
 		this.dir = opts.dir;
-		this.primary = opts.primary;
-		this.source = opts.source;
-		this.listProp = opts.listProp;
-		this.brewProp = opts.brewProp;
-		this.baseUrl = opts.baseUrl;
-		this.isHover = opts.isHover;
 		this.alternateIndexes = opts.alternateIndexes;
-		this.isOnlyDeep = opts.isOnlyDeep;
-		this.pFnPreProcBrew = opts.pFnPreProcBrew;
-		this.fnGetToken = opts.fnGetToken;
 	}
 
 	pGetDeepIndex () { return []; }
@@ -367,7 +400,7 @@ class IndexableDirectorySubclass extends IndexableDirectory {
 			primary: "name",
 			source: "source",
 			listProp: "subclass",
-			brewProp: "subclass",
+			brewProps: ["subclass"],
 			baseUrl: "classes.html",
 			isHover: true,
 			isOnlyDeep: true,
@@ -461,50 +494,34 @@ Omnidexer.TO_INDEX__FROM_INDEX_JSON = [
 	new IndexableDirectorySubclassFeature(),
 ];
 
-class IndexableFile {
+/**
+ * @extends _IndexableBase
+ */
+class IndexableFile extends _IndexableBase {
 	/**
 	 * @param opts Options object.
-	 * @param opts.category a category from utils.js (see `Parser.pageCategoryToFull`)
 	 * @param opts.file source JSON file
-	 * @param [opts.primary] (default "name") JSON property to index, per item. Can be a chain of properties e.g. `outer.inner.name`
-	 * @param [opts.source] (default "source") JSON property containing the item's source, per item. Can be a chan of properties, e.g. `outer.inner.source`
 	 * @param [opts.page] (default "page") JSON property containing the item's page in the relevant book, per item. Can be a chain of properties, e.g. `outer.inner.page`
-	 * @param opts.listProp the JSON always has a root property containing the list of items. Provide the name of this property here. Can be a chain of properties e.g. `outer.inner.name`
 	 * @param [opts.fluffBaseListProp]
-	 * @param opts.baseUrl the base URL (which page) to use when forming index URLs
 	 * @param [opts.hashBuilder] a function which takes a data item and returns a hash for it. Generally not needed, as UrlUtils has a defined list of hash-building functions for each page.
 	 * @param [opts.test_extraIndex] a function which can optionally be called per item if `doExtraIndex` is true. Used to generate a complete list of links for testing; should not be used for production index. Should return full index objects.
-	 * @param [opts.isHover] a boolean indicating if the generated link should have `Renderer` isHover functionality.
 	 * @param [opts.filter] a function which takes a data item and returns true if it should not be indexed, false otherwise
 	 * @param [opts.include] a function which takes a data item and returns true if it should be indexed, false otherwise
 	 * @param [opts.postLoad] a function which takes the data set, does some post-processing, and runs a callback when done (synchronously)
-	 * @param opts.isOnlyDeep
 	 * @param opts.additionalIndexes
-	 * @param opts.isSkipBrew
-	 * @param [opts.pFnPreProcBrew] An un-bound function
-	 * @param [opts.fnGetToken]
 	 * @param [opts.isFauxPage]
 	 */
 	constructor (opts) {
-		this.category = opts.category;
+		super(opts);
 		this.file = opts.file;
-		this.primary = opts.primary;
-		this.source = opts.source;
 		this.page = opts.page;
-		this.listProp = opts.listProp;
 		this.fluffBaseListProp = opts.fluffBaseListProp;
-		this.baseUrl = opts.baseUrl;
 		this.hashBuilder = opts.hashBuilder;
 		this.test_extraIndex = opts.test_extraIndex;
-		this.isHover = opts.isHover;
 		this.filter = opts.filter;
 		this.include = opts.include;
 		this.postLoad = opts.postLoad;
-		this.isOnlyDeep = opts.isOnlyDeep;
 		this.additionalIndexes = opts.additionalIndexes;
-		this.isSkipBrew = opts.isSkipBrew;
-		this.pFnPreProcBrew = opts.pFnPreProcBrew;
-		this.fnGetToken = opts.fnGetToken;
 		this.isFauxPage = !!opts.isFauxPage;
 	}
 
@@ -889,6 +906,7 @@ class IndexableFileRaces extends IndexableFile {
 			listProp: "race",
 			baseUrl: "races.html",
 			isHover: true,
+			brewProps: ["race", "subrace"],
 			postLoad: data => {
 				return DataUtil.race.getPostProcessedSiteJson(data, {isAddBaseRaces: true});
 			},

@@ -5,18 +5,18 @@ class DeitiesSublistManager extends SublistManager {
 		return [
 			new SublistCellTemplate({
 				name: "Name",
-				css: "bold ve-col-4 pl-0",
+				css: "ve-bold ve-col-4 ve-pl-0",
 				colStyle: "",
 			}),
 			new SublistCellTemplate({
 				name: "Pantheon",
 				css: "ve-col-2 ve-text-center",
-				colStyle: "text-center",
+				colStyle: "ve-text-center",
 			}),
 			new SublistCellTemplate({
 				name: "Alignment",
 				css: "ve-col-2 ve-text-center",
-				colStyle: "text-center",
+				colStyle: "ve-text-center",
 			}),
 			new SublistCellTemplate({
 				name: "Domains",
@@ -31,8 +31,8 @@ class DeitiesSublistManager extends SublistManager {
 		const domains = it.domains.join(", ");
 		const cellsText = [it.name, it.pantheon, alignment, domains];
 
-		const ele = ee`<div class="lst__row lst__row--sublist ve-flex-col">
-			<a href="#${hash}" class="lst__row-border lst__row-inner">
+		const ele = ee`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`
@@ -69,6 +69,12 @@ class DeitiesPage extends ListPage {
 
 			dataProps: ["deity"],
 
+			bookViewOptions: {
+				nameSingular: "deity",
+				namePlural: "deities",
+				pageTitle: "Deities Book View",
+			},
+
 			listSyntax: new ListSyntaxDeities({fnGetDataList: () => this._dataList}),
 		});
 	}
@@ -77,19 +83,19 @@ class DeitiesPage extends ListPage {
 		this._pageFilter.mutateAndAddToFilters(ent, isExcluded);
 
 		const eleLi = document.createElement("div");
-		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blocklisted" : ""}`;
+		eleLi.className = `ve-lst__row ve-flex-col ${isExcluded ? "ve-lst__row--blocklisted" : ""}`;
 
 		const source = Parser.sourceJsonToAbv(ent.source);
 		const hash = UrlUtil.autoEncodeHash(ent);
 		const alignment = ent.alignment ? ent.alignment.join("") : "\u2014";
 		const domains = ent.domains.join(", ");
 
-		eleLi.innerHTML = `<a href="#${hash}" class="lst__row-border lst__row-inner">
-			<span class="bold ve-col-3 pl-0 pr-1">${ent.name}</span>
-			<span class="ve-col-2 px-1 ve-text-center">${ent.pantheon}</span>
-			<span class="ve-col-2 px-1 ve-text-center">${alignment}</span>
-			<span class="ve-col-3 px-1 ${ent.domains[0] === VeCt.STR_NONE ? `italic` : ""}">${domains}</span>
-			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(ent.source)} pl-1 pr-0" title="${Parser.sourceJsonToFull(ent.source)}">${source}</span>
+		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+			<span class="ve-bold ve-col-3 ve-pl-0 ve-pr-1">${ent.name}</span>
+			<span class="ve-col-2 ve-px-1 ve-text-center">${ent.pantheon}</span>
+			<span class="ve-col-2 ve-px-1 ve-text-center">${alignment}</span>
+			<span class="ve-col-3 ve-px-1 ${ent.domains[0] === VeCt.STR_NONE ? `ve-italic` : ""}">${domains}</span>
+			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(ent.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(ent.source)}">${source}</span>
 		</a>`;
 
 		const listItem = new ListItem(

@@ -45,7 +45,7 @@ export class LootGenOutput {
 	render (eleParent) {
 		const eleTitleSplit = this._getEleTitleSplit();
 
-		const dispTitle = ee`<h4 class="mt-1 mb-2 split-v-center ve-draggable">
+		const dispTitle = ee`<h4 class="ve-mt-1 ve-mb-2 ve-split-v-center ve-draggable">
 			<div>${LootGenRender.er(this._name)}</div>
 			${eleTitleSplit}
 		</h4>`;
@@ -61,10 +61,10 @@ export class LootGenOutput {
 			.filter(Boolean)
 			.flat();
 
-		this._wrp = ee`<div class="ve-flex-col lootg__wrp-output py-3 px-2 my-2 mr-1">
+		this._wrp = ee`<div class="ve-flex-col ve-lootg__wrp-output ve-py-3 ve-px-2 ve-my-2 ve-mr-1">
 			${dispTitle}
 			${elesParts.length ? ee`<ul>${elesParts}</ul>` : null}
-			${!elesParts.length ? `<div class="ve-muted help-subtle italic" title="${TOOLTIP_NOTHING.qq()}">(No loot!)</div>` : null}
+			${!elesParts.length ? `<div class="ve-muted ve-help-subtle ve-italic" title="${TOOLTIP_NOTHING.qq()}">(No loot!)</div>` : null}
 		</div>`
 			.prependTo(eleParent);
 
@@ -209,7 +209,7 @@ export class LootGenOutput {
 			this._artObjects?.length ? this._artObjects.map(it => it.type * it.count * 100).sum() : 0,
 		].sum();
 
-		return ee`<li class="italic ve-muted">A total of ${(totalValue / 100).toLocaleStringVe()} ${LootGenUtils.getCoinageLabel("gp")} worth of coins, art objects, and/or gems, as follows:</li>`;
+		return ee`<li class="ve-italic ve-muted">A total of ${(totalValue / 100).toLocaleStringVe()} ${LootGenUtils.getCoinageLabel("gp")} worth of coins, art objects, and/or gems, as follows:</li>`;
 	}
 
 	_render_getPtCoins () {

@@ -107,7 +107,7 @@ export class LegendaryGroupBuilder extends BuilderBase {
 			},
 		);
 		const [infoTab, lairActionsTab, regionalEffectsTab, mythicEncounterTab] = tabs;
-		ee`<div class="ve-flex-v-center w-100 no-shrink ui-tab__wrp-tab-heads--border">${tabs.map(it => it.btnTab)}</div>`.appendTo(wrp);
+		ee`<div class="ve-flex-v-center ve-w-100 ve-no-shrink ve-ui-tab__wrp-tab-heads--border">${tabs.map(it => it.btnTab)}</div>`.appendTo(wrp);
 		tabs.forEach(it => it.wrpTab.appendTo(wrp));
 
 		// INFO
@@ -156,11 +156,11 @@ export class LegendaryGroupBuilder extends BuilderBase {
 			},
 		);
 		const [legGroupTab, dataTab] = tabs;
-		ee`<div class="ve-flex-v-center w-100 no-shrink">${tabs.map(it => it.btnTab)}</div>`.appendTo(wrp);
+		ee`<div class="ve-flex-v-center ve-w-100 ve-no-shrink">${tabs.map(it => it.btnTab)}</div>`.appendTo(wrp);
 		tabs.forEach(it => it.wrpTab.appendTo(wrp));
 
 		// Legendary Group
-		const tblLegGroup = ee`<table class="w-100 stats"></table>`.appendTo(legGroupTab.wrpTab);
+		const tblLegGroup = ee`<table class="ve-w-100 ve-stats"></table>`.appendTo(legGroupTab.wrpTab);
 		tblLegGroup.appends(RenderBestiary.getRenderedLegendaryGroup(this._state));
 
 		// Data
@@ -174,7 +174,7 @@ export class LegendaryGroupBuilder extends BuilderBase {
 				},
 			],
 		});
-		ee`<table class="stats stats--book mkbru__wrp-output-tab-data">
+		ee`<table class="ve-stats ve-stats--book mkbru__wrp-output-tab-data">
 			${Renderer.utils.getBorderTr()}
 			<tr><td colspan="6">${asCode}</td></tr>
 			${Renderer.utils.getBorderTr()}

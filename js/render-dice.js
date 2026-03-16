@@ -138,12 +138,12 @@ Renderer.dice = class {
 				Renderer.dice._showBox();
 				Renderer.dice._iptRoll.focuse();
 			});
-		const eleHead = ee`<div class="head-roll"><span class="hdr-roll">Dice Roller</span><span class="p-2 glyphicon glyphicon-remove"></span></div>`
+		const eleHead = ee`<div class="head-roll"><span class="hdr-roll">Dice Roller</span><span class="ve-p-2 glyphicon glyphicon-remove"></span></div>`
 			.onn("click", () => {
 				if (!Renderer.dice._panel) Renderer.dice._hideBox();
 			});
 		const outRoll = ee`<div class="out-roll"></div>`;
-		const iptRoll = ee`<input class="ipt-roll form-control" autocomplete="off" spellcheck="false">`
+		const iptRoll = ee`<input class="ipt-roll ve-form-control" autocomplete="off" spellcheck="false">`
 			.onn("keypress", async evt => {
 				evt.stopPropagation();
 				if (evt.key !== "Enter") return;
@@ -178,7 +178,7 @@ Renderer.dice = class {
 					Renderer.dice._nextHistory();
 				}
 			});
-		const wrpRoll = ee`<div class="rollbox ve-flex-col min-h-0">
+		const wrpRoll = ee`<div class="rollbox ve-flex-col ve-min-h-0">
 			${eleHead}
 			${outRoll}
 			${iptRoll}
@@ -358,7 +358,7 @@ Renderer.dice = class {
 
 	static getEleUnknownTableRoll (total) { return e_({outer: Renderer.dice._pRollerClick_getMsgBug(total)}); }
 
-	static _pRollerClick_getMsgBug (total) { return `<span class="message">No result found matching roll ${total}?! <span class="help-subtle" title="Bug!">🐛</span></span>`; }
+	static _pRollerClick_getMsgBug (total) { return `<span class="message">No result found matching roll ${total}?! <span class="ve-help-subtle" title="Bug!">🐛</span></span>`; }
 
 	static async pRollerClick (evtMock, ele, packed, name) {
 		ele = e_({ele});
@@ -784,7 +784,7 @@ Renderer.dice = class {
 		if (!tree) return JqueryUtil.doToast({type: "danger", content: `Invalid roll input!`});
 
 		const title = (rolledBy.label || "").toTitleCase() || "Roll Dice";
-		const dispDice = ee`<div class="p-2 bold ve-flex-vh-center rll__prompt-header">${tree.toString()}</div>`;
+		const dispDice = ee`<div class="ve-p-2 ve-bold ve-flex-vh-center rll__prompt-header">${tree.toString()}</div>`;
 		if (opts.isResultUsed) {
 			return InputUiUtil.pGetUserNumber({
 				title,

@@ -113,14 +113,14 @@ const initDownloadBar = () => {
 	if (downloadBar !== null) removeDownloadBar();
 
 	const displayProgress = ee`<div class="page__disp-download-progress-bar"></div>`;
-	const displayPercent = ee`<div class="page__disp-download-progress-text ve-flex-vh-center bold">0%</div>`;
+	const displayPercent = ee`<div class="page__disp-download-progress-text ve-flex-vh-center ve-bold">0%</div>`;
 
 	const btnCancel = ee`<button class="ve-btn ve-btn-default"><span class="glyphicon glyphicon-remove"></span></button>`
 		.onn("click", () => {
 			swCancelCacheRoutes();
 		});
 
-	const wrapBar = ee`<div class="page__wrp-download-bar w-100 relative mr-2">${displayProgress}${displayPercent}</div>`;
+	const wrapBar = ee`<div class="page__wrp-download-bar ve-w-100 ve-relative ve-mr-2">${displayProgress}${displayPercent}</div>`;
 	const wrapOuter = ee`<div class="page__wrp-download">
 		${wrapBar}
 		${btnCancel}

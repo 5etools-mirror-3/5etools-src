@@ -12,7 +12,7 @@
 	$flt-ignore: #f0f0f0;
 	$flt-ignore--hover: #e6e6e6;
 
-	.fltr {
+	.ve-fltr {
 		$sz-font-pill: 10.5px;
 
 		&__ {
@@ -272,7 +272,7 @@
 				border: 1px solid vars.$rgb-border-grey;
 				float: left;
 
-				&:hover:not(.fltr__pill--display-only) {
+				&:hover:not(.ve-fltr__pill--display-only) {
 					background-color: $flt-ignore--hover;
 				}
 
@@ -281,7 +281,7 @@
 					color: #fff;
 					border-color: color.adjust(vars.$rgb-active-blue, $lightness: - vars.$pct-darken-border);
 
-					&:hover:not(.fltr__pill--display-only) {
+					&:hover:not(.ve-fltr__pill--display-only) {
 						background: color.adjust(vars.$rgb-active-blue, $lightness: - vars.$pct-darken-hover);
 					}
 				}
@@ -291,7 +291,7 @@
 					color: #fff;
 					border-color: color.adjust(vars.$rgb-active-red, $lightness: - vars.$pct-darken-border);
 
-					&:hover:not(.fltr__pill--display-only) {
+					&:hover:not(.ve-fltr__pill--display-only) {
 						background: color.adjust(vars.$rgb-active-red, $lightness: - vars.$pct-darken-hover);
 					}
 				}
@@ -450,7 +450,7 @@
 				&:focus-within,
 				&:focus-visible,
 				&:active {
-					.fltr-search__wrp-values {
+					.ve-fltr-search__wrp-values {
 						display: flex;
 					}
 				}
@@ -526,11 +526,11 @@
 		}
 
 		&__pill {
-			&[data-state="yes"] > .fltr-src__spc-pill {
+			&[data-state="yes"] > .ve-fltr-src__spc-pill {
 				color: #fff9;
 			}
 
-			&[data-state="no"] > .fltr-src__spc-pill {
+			&[data-state="no"] > .ve-fltr-src__spc-pill {
 				color: #fffa;
 			}
 		}

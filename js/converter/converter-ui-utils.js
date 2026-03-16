@@ -1,5 +1,5 @@
 export class ConverterUiUtil {
-	static renderSideMenuDivider (menu, isHeavy) { menu.appends(`<hr class="sidemenu__row__divider ${isHeavy ? "sidemenu__row__divider--heavy" : ""} w-100 hr-2">`); }
+	static renderSideMenuDivider (menu, isHeavy) { menu.appends(`<hr class="sidemenu__row__divider ${isHeavy ? "sidemenu__row__divider--heavy" : ""} ve-w-100 ve-hr-2">`); }
 
 	static getAceMode (inputMode) {
 		return {

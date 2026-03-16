@@ -93,7 +93,7 @@ export class SourceFilter extends Filter {
 	_getHeaderControls_addExtraStateBtns (opts, wrpStateBtnsOuter) {
 		const btnSupplements = e_({
 			tag: "button",
-			clazz: `ve-btn ve-btn-default w-100 ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"}`,
+			clazz: `ve-btn ve-btn-default ve-w-100 ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"}`,
 			title: `SHIFT to add to existing selection; CTRL to include UA/etc.`,
 			html: `Core/Supplements`,
 			click: evt => this._doSetPinsSupplements({isIncludeUnofficial: EventUtil.isCtrlMetaKey(evt), isAdditive: evt.shiftKey}),
@@ -101,7 +101,7 @@ export class SourceFilter extends Filter {
 
 		const btnAdventures = e_({
 			tag: "button",
-			clazz: `ve-btn ve-btn-default w-100 ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"}`,
+			clazz: `ve-btn ve-btn-default ve-w-100 ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"}`,
 			title: `SHIFT to add to existing selection; CTRL to include UA`,
 			html: `Adventures`,
 			click: evt => this._doSetPinsAdventures({isIncludeUnofficial: EventUtil.isCtrlMetaKey(evt), isAdditive: evt.shiftKey}),
@@ -109,7 +109,7 @@ export class SourceFilter extends Filter {
 
 		const btnPartnered = e_({
 			tag: "button",
-			clazz: `ve-btn ve-btn-default w-100 ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"}`,
+			clazz: `ve-btn ve-btn-default ve-w-100 ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"}`,
 			title: `SHIFT to add to existing selection`,
 			html: `Partnered`,
 			click: evt => this._doSetPinsPartnered({isAdditive: evt.shiftKey}),
@@ -117,7 +117,7 @@ export class SourceFilter extends Filter {
 
 		const btnHomebrew = e_({
 			tag: "button",
-			clazz: `ve-btn ve-btn-default w-100 ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"}`,
+			clazz: `ve-btn ve-btn-default ve-w-100 ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"}`,
 			title: `SHIFT to add to existing selection`,
 			html: `Homebrew`,
 			click: evt => this._doSetPinsHomebrew({isAdditive: evt.shiftKey}),
@@ -212,20 +212,20 @@ export class SourceFilter extends Filter {
 
 		const btnOnlyPrimary = e_({
 			tag: "button",
-			clazz: `ve-btn ve-btn-default w-100 ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"}`,
+			clazz: `ve-btn ve-btn-default ve-w-100 ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"}`,
 			html: `Include References`,
 			title: `Consider entities as belonging to every source they are referenced in (i.e. in bolded/italic text), in addition to their primary source`,
 			click: () => this._meta.isIncludeReferenceSources = !this._meta.isIncludeReferenceSources,
 		});
 		const hkIsIncludeOtherSources = () => {
-			btnOnlyPrimary.toggleClass("active", !!this._meta.isIncludeReferenceSources);
+			btnOnlyPrimary.toggleClass("ve-active", !!this._meta.isIncludeReferenceSources);
 		};
 		hkIsIncludeOtherSources();
 		this._addHook("meta", "isIncludeReferenceSources", hkIsIncludeOtherSources);
 
 		e_({
 			tag: "div",
-			clazz: `ve-btn-group mr-2 w-100 ve-flex-v-center mobile-sm__m-1 mobile-sm__mb-2`,
+			clazz: `ve-btn-group ve-mr-2 ve-w-100 ve-flex-v-center ve-mobile-sm__m-1 ve-mobile-sm__mb-2`,
 			children: [
 				btnSupplements,
 				btnAdventures,
@@ -397,7 +397,7 @@ export class SourceFilter extends Filter {
 
 		const wrpWrpSlider = e_({
 			tag: "div",
-			clazz: `"w-100 ve-flex pt-2 pb-5 mb-2 mt-1 fltr-src__wrp-slider`,
+			clazz: `"ve-w-100 ve-flex ve-pt-2 ve-pb-5 ve-mb-2 ve-mt-1 ve-fltr-src__wrp-slider`,
 			children: [
 				wrpSlider,
 			],
@@ -405,7 +405,7 @@ export class SourceFilter extends Filter {
 
 		const btnCancel = e_({
 			tag: "button",
-			clazz: `ve-btn ve-btn-xs ve-btn-default px-1`,
+			clazz: `ve-btn ve-btn-xs ve-btn-default ve-px-1`,
 			html: "Cancel",
 			click: () => {
 				grpBtnsInactive.showVe();
@@ -416,7 +416,7 @@ export class SourceFilter extends Filter {
 
 		const btnConfirm = e_({
 			tag: "button",
-			clazz: `ve-btn ve-btn-xs ve-btn-default px-1`,
+			clazz: `ve-btn ve-btn-xs ve-btn-default ve-px-1`,
 			html: "Confirm",
 			click: () => {
 				grpBtnsInactive.showVe();
@@ -440,7 +440,7 @@ export class SourceFilter extends Filter {
 
 		const btnShowSlider = e_({
 			tag: "button",
-			clazz: `ve-btn ve-btn-xxs ve-btn-default px-1`,
+			clazz: `ve-btn ve-btn-xxs ve-btn-default ve-px-1`,
 			html: "Select by Date",
 			click: () => {
 				grpBtnsInactive.hideVe();
@@ -470,7 +470,7 @@ export class SourceFilter extends Filter {
 
 		const btnClear = e_({
 			tag: "button",
-			clazz: `ve-btn ve-btn-xxs ve-btn-default px-1`,
+			clazz: `ve-btn ve-btn-xxs ve-btn-default ve-px-1`,
 			html: "Clear",
 			click: () => {
 				const nxtState = {};
@@ -506,12 +506,12 @@ export class SourceFilter extends Filter {
 		return [
 			e_({
 				tag: "div",
-				clazz: `split-v-center w-100`,
+				clazz: `ve-split-v-center ve-w-100`,
 				children: [
 					...elesDividerHeaders,
 					e_({
 						tag: "div",
-						clazz: `mb-1 ve-flex-h-right`,
+						clazz: `ve-mb-1 ve-flex-h-right`,
 						children: [
 							grpBtnsActive,
 							grpBtnsInactive,
@@ -526,7 +526,7 @@ export class SourceFilter extends Filter {
 	_doRenderPills_doRenderWrpGroup_getDividerHeaders_groupBrew (group) {
 		const btnClear = e_({
 			tag: "button",
-			clazz: `ve-btn ve-btn-xxs ve-btn-default px-1`,
+			clazz: `ve-btn ve-btn-xxs ve-btn-default ve-px-1`,
 			html: "Clear",
 			click: () => {
 				const nxtState = {};
@@ -544,12 +544,12 @@ export class SourceFilter extends Filter {
 		return [
 			e_({
 				tag: "div",
-				clazz: `split-v-center w-100`,
+				clazz: `ve-split-v-center ve-w-100`,
 				children: [
 					...elesDividerHeaders,
 					e_({
 						tag: "div",
-						clazz: `mb-1 ve-flex-h-right`,
+						clazz: `ve-mb-1 ve-flex-h-right`,
 						children: [
 							e_({
 								tag: "div",
@@ -582,7 +582,7 @@ export class SourceFilter extends Filter {
 
 		const spc = e_({
 			tag: "span",
-			clazz: "px-2 fltr-src__spc-pill",
+			clazz: "ve-px-2 ve-fltr-src__spc-pill",
 			text: "|",
 		});
 
@@ -593,7 +593,7 @@ export class SourceFilter extends Filter {
 
 		const btnPill = e_({
 			tag: "div",
-			clazz: "fltr__pill",
+			clazz: "ve-fltr__pill",
 			children: [
 				dispAbbreviation,
 				spc,

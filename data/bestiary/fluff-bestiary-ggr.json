@@ -176,39 +176,23 @@
 		{
 			"name": "Battleforce Angel",
 			"source": "GGR",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"entries": [
-										"Battleforce angels are the radiant hosts that soar into combat, bathed in the light of Boros zeal. They lead companies of mortal soldiers from above or fly ahead of roc-mounted skyknights. They don't shy away from the blood, pain, and confusion of combat; rather, they immerse themselves in the shifting tides of battle. Only by wading into the battle can they fulfill their responsibility to carry out the commands of the warleaders by adapting their tactics to the shifting situation on the ground."
-									]
-								},
-								{
-									"type": "entries",
-									"name": "Boros Angels",
-									"entries": [
-										"Angels of the Boros Legion view themselves as the embodiments of what their creator intended. They are fierce warriors devoted to justice and dedicated to protecting the weak against evil and oppression. They are commanders, advisors, strategists, and soldiers. Their presence in battle inspires the mortal soldiers of the legion with righteous zeal.",
-										"Most Boros soldiers assume that angels are paragons of goodness, wisdom, and mercy. The reality is that angels aren't immune to the temptations of corruption, and the necessities of political machination can compromise the best of them.",
-										{
-											"name": "Warleaders",
-											"type": "entries",
-											"entries": [
-												"The wisest, most visionary angels are responsible for forming and implementing the military strategy of the Boros Legion. Since they are immortal, their plans might span centuries, and they have been known to accept decades of losses as a reasonable cost for a more significant victory many years later. These warleaders have the statistics of planetars or solars (as presented in the Monster Manual), but their appearance is similar to other Boros angels."
-											]
-										}
-									]
-								}
-							]
-						}
-					]
+			"_copy": {
+				"name": "Boros Angel",
+				"source": "GGR",
+				"_mod": {
+					"entries": {
+						"mode": "prependArr",
+						"items": [
+							{
+								"type": "section",
+								"entries": [
+									"Battleforce angels are the radiant hosts that soar into combat, bathed in the light of Boros zeal. They lead companies of mortal soldiers from above or fly ahead of roc-mounted skyknights. They don't shy away from the blood, pain, and confusion of combat; rather, they immerse themselves in the shifting tides of battle. Only by wading into the battle can they fulfill their responsibility to carry out the commands of the warleaders by adapting their tactics to the shifting situation on the ground."
+								]
+							}
+						]
+					}
 				}
-			],
+			},
 			"images": [
 				{
 					"type": "image",
@@ -253,6 +237,28 @@
 					"credit": "Mike Bierek",
 					"width": 958,
 					"height": 700
+				}
+			]
+		},
+		{
+			"name": "Blastseeker",
+			"source": "GGR",
+			"entries": [
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"entries": [
+								{
+									"type": "entries",
+									"entries": [
+										"While chemisters focus on inventing new tools, weapons, and other devices for the guild to use, the role of a blastseeker is to put those devices to work. Despite the name, not all such devices produce explosions, but all the most interesting ones (from the Izzet perspective) do."
+									]
+								}
+							]
+						}
+					]
 				}
 			]
 		},
@@ -307,46 +313,48 @@
 		{
 			"name": "Blood Drinker Vampire",
 			"source": "GGR",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"entries": [
-										"Plenty of blood drinkers haunt Ravnica's alleys and sewers, preying on those who are foolish enough to leave the relative safety of the crowds.",
-										{
-											"name": "Orzhov Vampires",
-											"type": "entries",
-											"entries": [
-												"Vampires thrive in the Orzhov Syndicate, where they can collect tithes and payments from their debtors in the form of blood. Their undead nature gives them the same immortality enjoyed by the oligarch spirits, but they remain capable of experiencing all the delights of their corporeal forms. In contrast to Orzhov spirits, they also retain their personalities, which are almost uniformly cruel."
-											]
-										},
-										{
-											"type": "entries",
-											"name": "Blood Bond",
-											"entries": [
-												"Consuming a creature's blood creates a sort of empathic bond that allows the blood drinker vampire to exert some magical influence over its victim."
-											]
-										}
-									]
-								},
-								{
-									"type": "entries",
-									"name": "Vampires",
-									"entries": [
-										"Creatures of the night, vampires are ageless undead beings who subsist on the blood of the living. They are fierce predators who mask their ravenous thirst behind a facade of sophistication and sensuality. Those who sip blood from golden chalices are no less voracious than those who tear out their victims' throats with their fangs; they just hide it better.",
-										"The vampires of Ravnica differ from those in the Monster Manual in important ways. They lack the traits and abilities that those other vampires boast, but also lack the weaknesses that hinder such vampires. What they have in common is an unquenchable thirst for the blood that sustains their undead existence."
-									]
-								}
-							]
-						}
-					]
+			"_copy": {
+				"name": "Vampire",
+				"source": "GGR",
+				"_mod": {
+					"entries": {
+						"mode": "prependArr",
+						"items": [
+							{
+								"type": "section",
+								"name": "Blood Drinker Vampire",
+								"entries": [
+									"Plenty of blood drinkers haunt Ravnica's alleys and sewers, preying on those who are foolish enough to leave the relative safety of the crowds.",
+									{
+										"type": "entries",
+										"entries": [
+											{
+												"type": "entries",
+												"entries": [
+													{
+														"name": "Orzhov Vampires",
+														"type": "entries",
+														"entries": [
+															"Vampires thrive in the Orzhov Syndicate, where they can collect tithes and payments from their debtors in the form of blood. Their undead nature gives them the same immortality enjoyed by the oligarch spirits, but they remain capable of experiencing all the delights of their corporeal forms. In contrast to Orzhov spirits, they also retain their personalities, which are almost uniformly cruel."
+														]
+													},
+													{
+														"type": "entries",
+														"name": "Blood Bond",
+														"entries": [
+															"Consuming a creature's blood creates a sort of empathic bond that allows the blood drinker vampire to exert some magical influence over its victim."
+														]
+													}
+												]
+											}
+										]
+									}
+								]
+							}
+						]
+					}
 				}
-			],
+			},
 			"images": [
 				{
 					"type": "image",
@@ -479,39 +487,26 @@
 			]
 		},
 		{
-			"name": "Cackler",
+			"name": "Boros Angel",
 			"source": "GGR",
 			"entries": [
 				{
-					"type": "entries",
+					"type": "section",
+					"name": "Boros Angels",
 					"entries": [
+						"Angels of the Boros Legion view themselves as the embodiments of what their creator intended. They are fierce warriors devoted to justice and dedicated to protecting the weak against evil and oppression. They are commanders, advisors, strategists, and soldiers. Their presence in battle inspires the mortal soldiers of the legion with righteous zeal.",
+						"Most Boros soldiers assume that angels are paragons of goodness, wisdom, and mercy. The reality is that angels aren't immune to the temptations of corruption, and the necessities of political machination can compromise the best of them.",
 						{
 							"type": "entries",
 							"entries": [
 								{
 									"type": "entries",
 									"entries": [
-										"Cacklers are small, jabbering jesters that spice up Rakdos performances with their chaotic antics. Their incessant cackling can inspire uncontrollable laughter by making everything\u2014even the most horrifying spectacles\u2014seem hilarious. Some cacklers excel at vocal mimicry and perform as impressionists; others put their sadistic bent to use by lurking in shadows and terrifying passersby. Rakdos performers enjoy dressing cacklers in a variety of masks, hats, and costumes to lampoon public figures."
-									]
-								},
-								{
-									"type": "entries",
-									"name": "Demons",
-									"entries": [
-										"Just as angels are incarnations of the ideals of justice, demons embody depraved impulses: selfishness, cruelty, hatred, greed, and lust for power. Demons are strongly associated with the Cult of Rakdos; in fact, the demons of Ravnica might have been created by Rakdos in the same way that angels were created by the Boros Legion's founder. As a demon lord who has chosen to live in Ravnica, Rakdos claims authority over all the demons of this world-even if some of them, ambitious and headstrong as demons are, rebel against his authority.",
-										"Demons are agents of destruction that work their acts of terror in plain sight under the auspices of the Cult of Rakdos. They exhibit their cruelty in dramatic performances that leave the audience members blood-soaked but ecstatic. They incite mob riots that raze entire city blocks. The only thing demons fear is Rakdos himself, who doesn't tolerate rivals and hates to be upstaged.",
 										{
-											"name": "Demonic \"Devils\"",
-											"entries": [
-												"The creatures called \"devils\" in Ravnica are minor demons akin to {@creature quasit||quasits}. While the larger demons embody evil qualities such as blood lust and torment, these lesser demons reflect the whimsical and chaotic side of Rakdos and his cult. Their mischievous antics cause disorder and destruction out of proportion to the demons' small size."
-											],
-											"type": "entries"
-										},
-										{
-											"name": "Diabolic Demons",
+											"name": "Warleaders",
 											"type": "entries",
 											"entries": [
-												"Many of the demons of Ravnica are monstrous, winged creatures of human-like form. They are best represented by the statistics of the {@creature nalfeshnee}, the {@creature shadow demon}, or the {@creature vrock} in the Monster Manual. Demons associated with the Cult of Rakdos often have fiery attacks that make them similar to barbed devils or horned devils, except that they are demons. (They are chaotic evil, they speak Abyssal and not Infernal, and they lack Devil's Sight.)"
+												"The wisest, most visionary angels are responsible for forming and implementing the military strategy of the Boros Legion. Since they are immortal, their plans might span centuries, and they have been known to accept decades of losses as a reasonable cost for a more significant victory many years later. These warleaders have the statistics of planetars or solars (as presented in the Monster Manual), but their appearance is similar to other Boros angels."
 											]
 										}
 									]
@@ -520,7 +515,28 @@
 						}
 					]
 				}
-			],
+			]
+		},
+		{
+			"name": "Cackler",
+			"source": "GGR",
+			"_copy": {
+				"name": "Ravnos Demon",
+				"source": "GGR",
+				"_mod": {
+					"entries": {
+						"mode": "prependArr",
+						"items": [
+							{
+								"type": "section",
+								"entries": [
+									"Cacklers are small, jabbering jesters that spice up Rakdos performances with their chaotic antics. Their incessant cackling can inspire uncontrollable laughter by making everything\u2014even the most horrifying spectacles\u2014seem hilarious. Some cacklers excel at vocal mimicry and perform as impressionists; others put their sadistic bent to use by lurking in shadows and terrifying passersby. Rakdos performers enjoy dressing cacklers in a variety of masks, hats, and costumes to lampoon public figures."
+								]
+							}
+						]
+					}
+				}
+			},
 			"images": [
 				{
 					"type": "image",
@@ -537,125 +553,10 @@
 		{
 			"name": "Category 1 Krasis",
 			"source": "GGR",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"name": "Krasis",
-									"entries": [
-										"In the deep sinkholes that serve as laboratories and guildhalls for the Simic Combine, biomancers employ a combination of magic and scientific method to create novel life forms. They coax new morphologies from existing creatures or combine traits from multiple organisms into one, producing the creatures known as krasis. Some krasis are unique creatures that can't reproduce. A few multiply and become part of the guild's standard menagerie."
-									]
-								},
-								{
-									"type": "entries",
-									"name": "Creating a Krasis",
-									"entries": [
-										"To create a krasis, choose the appropriate stat block: category 1 (Medium), category 2 (Large), or category 3 (Huge). Then roll once on the Major Adaptations table and once on the Minor Adaptations table (or choose an option from each table) to determine its additional characteristics. The potency of some adaptations varies based on the category of the krasis, as indicated in the descriptions of those adaptations.",
-										"Just a few examples of krasis are the battering krasis (a fusion of hammerhead shark and a powerfully built beast), the crocanura (a crocodile-frog), the drakewing krasis (a lizard-drake), the teratosuchus (a crocodile-crab), the shambleshark (a shark-crab), and the sharktocrab (an improved shambleshark that includes octopus elements as well).",
-										{
-											"type": "table",
-											"caption": "Major Adaptations",
-											"colLabels": [
-												"d8",
-												"Major Adaptation"
-											],
-											"colStyles": [
-												"col-2 text-center",
-												"col-10"
-											],
-											"rows": [
-												[
-													"1",
-													"Acidic Skin. Any creature that touches the krasis or hits it with a melee attack while within 5 feet of it takes 2 ({@damage 1d4}) acid damage (category 1), 4 ({@damage 1d8}) acid damage (category 2), or 6 ({@damage 1d12}) acid damage (category 3)."
-												],
-												[
-													"2",
-													"Armored Hide. The krasis has better natural armor afforded by a shell or thick scales, increasing its Armor Class by 4."
-												],
-												[
-													"3",
-													"Bioluminescent Markings. The krasis has glowing patterns on its skin that take the shape of defensive runes, granting it advantage on saving throws against spells and other magical effects."
-												],
-												[
-													"4",
-													"Flight. The krasis has wings and gains a flying speed equal to its walking speed."
-												],
-												[
-													"5",
-													"Grabber. When the krasis hits a creature with its claws, the target is {@condition grappled} (escape {@dc 13} for category 1, {@dc 15} for category 2, and {@dc 19} for category 3) by a specialized grasping appendage on the krasis. It can have only one creature {@condition grappled} in this way at a time."
-												],
-												[
-													"6",
-													"Hypnotic Display {@recharge 5}. As an action, the krasis creates mesmerizing colors and shapes around itself. Each creature within 15 feet of it that can see it must succeed on a Wisdom saving throw ({@dc 12} for category 1, {@dc 14} for category 2, and {@dc 18} for category 3) or be {@condition stunned} for 1 minute. The {@condition stunned} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. A creature that succeeds on a saving throw against this effect becomes immune to the Hypnotic Display of all krasis for 24 hours."
-												],
-												[
-													"7",
-													"Venomous Sting. When the krasis hits a creature with its claws, the creature must succeed on a Constitution saving throw ({@dc 12} for category 1, {@dc 14} for category 2, and {@dc 18} for category 3) or be {@condition poisoned} for 1 minute. If the krasis is a category 2 or 3, the creature is {@condition paralyzed} while {@condition poisoned} in this way. The {@condition poisoned} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
-												],
-												[
-													"8",
-													"Regeneration. The krasis regains hit points (2 for a category 1, 5 for a category 2, and 10 for a category 3) at the start of each of its turns if it has at least 1 hit point."
-												]
-											]
-										},
-										{
-											"type": "table",
-											"caption": "Minor Adaptations",
-											"colLabels": [
-												"d8",
-												"Minor Adaptation"
-											],
-											"colStyles": [
-												"col-2 text-center",
-												"col-10"
-											],
-											"rows": [
-												[
-													"1",
-													"Amorphous Structure. The krasis can move through a space as narrow as 1 inch wide without squeezing."
-												],
-												[
-													"2",
-													"Aquatic. The krasis gains a swimming speed equal to its walking speed."
-												],
-												[
-													"3",
-													"Climbing Speed. The krasis gains a climbing speed equal to its walking speed."
-												],
-												[
-													"4",
-													"Cryptic Skin. The krasis can change color to match its surroundings. It has advantage on Dexterity ({@skill Stealth}) checks made to hide."
-												],
-												[
-													"5",
-													"Heightened Awareness. The krasis can't be {@status surprised}, as a result of having sensitive barbels like a catfish, stereoscopic vision like a chameleon, a tongue like a snake, eye stalks like a lobster, or an array of several eyes."
-												],
-												[
-													"6",
-													"Ink Cloud (Recharges after a Short or Long Rest). While underwater, the krasis can use a bonus action to expel a cloud of ink and then move up to its speed. The ink cloud is stationary and fills a 20-foot-radius sphere centered on a point in the krasis's space before it moves. The sphere is heavily obscured until the ink disperses after 1 minute. A strong current also disperses the ink cloud."
-												],
-												[
-													"7",
-													"Leaping Legs. With or without a running start, the krasis's long jump is 20 feet (category 1), 30 feet (category 2), or 40 feet (category 3). Its high jump is 10 feet (category 1), 20 feet (category 2), or 30 feet (category 3)."
-												],
-												[
-													"8",
-													"Stabilizing Legs. The krasis has several crablike legs. As a result, it has advantage on Strength and Dexterity saving throws made against effects that would knock it {@condition prone}."
-												]
-											]
-										}
-									]
-								}
-							]
-						}
-					]
-				}
-			],
+			"_copy": {
+				"name": "Krasis",
+				"source": "GGR"
+			},
 			"images": [
 				{
 					"type": "image",
@@ -672,125 +573,10 @@
 		{
 			"name": "Category 2 Krasis",
 			"source": "GGR",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"name": "Krasis",
-									"entries": [
-										"In the deep sinkholes that serve as laboratories and guildhalls for the Simic Combine, biomancers employ a combination of magic and scientific method to create novel life forms. They coax new morphologies from existing creatures or combine traits from multiple organisms into one, producing the creatures known as krasis. Some krasis are unique creatures that can't reproduce. A few multiply and become part of the guild's standard menagerie."
-									]
-								},
-								{
-									"type": "entries",
-									"name": "Creating a Krasis",
-									"entries": [
-										"To create a krasis, choose the appropriate stat block: category 1 (Medium), category 2 (Large), or category 3 (Huge). Then roll once on the Major Adaptations table and once on the Minor Adaptations table (or choose an option from each table) to determine its additional characteristics. The potency of some adaptations varies based on the category of the krasis, as indicated in the descriptions of those adaptations.",
-										"Just a few examples of krasis are the battering krasis (a fusion of hammerhead shark and a powerfully built beast), the crocanura (a crocodile-frog), the drakewing krasis (a lizard-drake), the teratosuchus (a crocodile-crab), the shambleshark (a shark-crab), and the sharktocrab (an improved shambleshark that includes octopus elements as well).",
-										{
-											"type": "table",
-											"caption": "Major Adaptations",
-											"colLabels": [
-												"d8",
-												"Major Adaptation"
-											],
-											"colStyles": [
-												"col-2 text-center",
-												"col-10"
-											],
-											"rows": [
-												[
-													"1",
-													"Acidic Skin. Any creature that touches the krasis or hits it with a melee attack while within 5 feet of it takes 2 ({@damage 1d4}) acid damage (category 1), 4 ({@damage 1d8}) acid damage (category 2), or 6 ({@damage 1d12}) acid damage (category 3)."
-												],
-												[
-													"2",
-													"Armored Hide. The krasis has better natural armor afforded by a shell or thick scales, increasing its Armor Class by 4."
-												],
-												[
-													"3",
-													"Bioluminescent Markings. The krasis has glowing patterns on its skin that take the shape of defensive runes, granting it advantage on saving throws against spells and other magical effects."
-												],
-												[
-													"4",
-													"Flight. The krasis has wings and gains a flying speed equal to its walking speed."
-												],
-												[
-													"5",
-													"Grabber. When the krasis hits a creature with its claws, the target is {@condition grappled} (escape {@dc 13} for category 1, {@dc 15} for category 2, and {@dc 19} for category 3) by a specialized grasping appendage on the krasis. It can have only one creature {@condition grappled} in this way at a time."
-												],
-												[
-													"6",
-													"Hypnotic Display {@recharge 5}. As an action, the krasis creates mesmerizing colors and shapes around itself. Each creature within 15 feet of it that can see it must succeed on a Wisdom saving throw ({@dc 12} for category 1, {@dc 14} for category 2, and {@dc 18} for category 3) or be {@condition stunned} for 1 minute. The {@condition stunned} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. A creature that succeeds on a saving throw against this effect becomes immune to the Hypnotic Display of all krasis for 24 hours."
-												],
-												[
-													"7",
-													"Venomous Sting. When the krasis hits a creature with its claws, the creature must succeed on a Constitution saving throw ({@dc 12} for category 1, {@dc 14} for category 2, and {@dc 18} for category 3) or be {@condition poisoned} for 1 minute. If the krasis is a category 2 or 3, the creature is {@condition paralyzed} while {@condition poisoned} in this way. The {@condition poisoned} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
-												],
-												[
-													"8",
-													"Regeneration. The krasis regains hit points (2 for a category 1, 5 for a category 2, and 10 for a category 3) at the start of each of its turns if it has at least 1 hit point."
-												]
-											]
-										},
-										{
-											"type": "table",
-											"caption": "Minor Adaptations",
-											"colLabels": [
-												"d8",
-												"Minor Adaptation"
-											],
-											"colStyles": [
-												"col-2 text-center",
-												"col-10"
-											],
-											"rows": [
-												[
-													"1",
-													"Amorphous Structure. The krasis can move through a space as narrow as 1 inch wide without squeezing."
-												],
-												[
-													"2",
-													"Aquatic. The krasis gains a swimming speed equal to its walking speed."
-												],
-												[
-													"3",
-													"Climbing Speed. The krasis gains a climbing speed equal to its walking speed."
-												],
-												[
-													"4",
-													"Cryptic Skin. The krasis can change color to match its surroundings. It has advantage on Dexterity ({@skill Stealth}) checks made to hide."
-												],
-												[
-													"5",
-													"Heightened Awareness. The krasis can't be {@status surprised}, as a result of having sensitive barbels like a catfish, stereoscopic vision like a chameleon, a tongue like a snake, eye stalks like a lobster, or an array of several eyes."
-												],
-												[
-													"6",
-													"Ink Cloud (Recharges after a Short or Long Rest). While underwater, the krasis can use a bonus action to expel a cloud of ink and then move up to its speed. The ink cloud is stationary and fills a 20-foot-radius sphere centered on a point in the krasis's space before it moves. The sphere is heavily obscured until the ink disperses after 1 minute. A strong current also disperses the ink cloud."
-												],
-												[
-													"7",
-													"Leaping Legs. With or without a running start, the krasis's long jump is 20 feet (category 1), 30 feet (category 2), or 40 feet (category 3). Its high jump is 10 feet (category 1), 20 feet (category 2), or 30 feet (category 3)."
-												],
-												[
-													"8",
-													"Stabilizing Legs. The krasis has several crablike legs. As a result, it has advantage on Strength and Dexterity saving throws made against effects that would knock it {@condition prone}."
-												]
-											]
-										}
-									]
-								}
-							]
-						}
-					]
-				}
-			],
+			"_copy": {
+				"name": "Krasis",
+				"source": "GGR"
+			},
 			"images": [
 				{
 					"type": "image",
@@ -807,125 +593,10 @@
 		{
 			"name": "Category 3 Krasis",
 			"source": "GGR",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"name": "Krasis",
-									"entries": [
-										"In the deep sinkholes that serve as laboratories and guildhalls for the Simic Combine, biomancers employ a combination of magic and scientific method to create novel life forms. They coax new morphologies from existing creatures or combine traits from multiple organisms into one, producing the creatures known as krasis. Some krasis are unique creatures that can't reproduce. A few multiply and become part of the guild's standard menagerie."
-									]
-								},
-								{
-									"type": "entries",
-									"name": "Creating a Krasis",
-									"entries": [
-										"To create a krasis, choose the appropriate stat block: category 1 (Medium), category 2 (Large), or category 3 (Huge). Then roll once on the Major Adaptations table and once on the Minor Adaptations table (or choose an option from each table) to determine its additional characteristics. The potency of some adaptations varies based on the category of the krasis, as indicated in the descriptions of those adaptations.",
-										"Just a few examples of krasis are the battering krasis (a fusion of hammerhead shark and a powerfully built beast), the crocanura (a crocodile-frog), the drakewing krasis (a lizard-drake), the teratosuchus (a crocodile-crab), the shambleshark (a shark-crab), and the sharktocrab (an improved shambleshark that includes octopus elements as well).",
-										{
-											"type": "table",
-											"caption": "Major Adaptations",
-											"colLabels": [
-												"d8",
-												"Major Adaptation"
-											],
-											"colStyles": [
-												"col-2 text-center",
-												"col-10"
-											],
-											"rows": [
-												[
-													"1",
-													"Acidic Skin. Any creature that touches the krasis or hits it with a melee attack while within 5 feet of it takes 2 ({@damage 1d4}) acid damage (category 1), 4 ({@damage 1d8}) acid damage (category 2), or 6 ({@damage 1d12}) acid damage (category 3)."
-												],
-												[
-													"2",
-													"Armored Hide. The krasis has better natural armor afforded by a shell or thick scales, increasing its Armor Class by 4."
-												],
-												[
-													"3",
-													"Bioluminescent Markings. The krasis has glowing patterns on its skin that take the shape of defensive runes, granting it advantage on saving throws against spells and other magical effects."
-												],
-												[
-													"4",
-													"Flight. The krasis has wings and gains a flying speed equal to its walking speed."
-												],
-												[
-													"5",
-													"Grabber. When the krasis hits a creature with its claws, the target is {@condition grappled} (escape {@dc 13} for category 1, {@dc 15} for category 2, and {@dc 19} for category 3) by a specialized grasping appendage on the krasis. It can have only one creature {@condition grappled} in this way at a time."
-												],
-												[
-													"6",
-													"Hypnotic Display {@recharge 5}. As an action, the krasis creates mesmerizing colors and shapes around itself. Each creature within 15 feet of it that can see it must succeed on a Wisdom saving throw ({@dc 12} for category 1, {@dc 14} for category 2, and {@dc 18} for category 3) or be {@condition stunned} for 1 minute. The {@condition stunned} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. A creature that succeeds on a saving throw against this effect becomes immune to the Hypnotic Display of all krasis for 24 hours."
-												],
-												[
-													"7",
-													"Venomous Sting. When the krasis hits a creature with its claws, the creature must succeed on a Constitution saving throw ({@dc 12} for category 1, {@dc 14} for category 2, and {@dc 18} for category 3) or be {@condition poisoned} for 1 minute. If the krasis is a category 2 or 3, the creature is {@condition paralyzed} while {@condition poisoned} in this way. The {@condition poisoned} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
-												],
-												[
-													"8",
-													"Regeneration. The krasis regains hit points (2 for a category 1, 5 for a category 2, and 10 for a category 3) at the start of each of its turns if it has at least 1 hit point."
-												]
-											]
-										},
-										{
-											"type": "table",
-											"caption": "Minor Adaptations",
-											"colLabels": [
-												"d8",
-												"Minor Adaptation"
-											],
-											"colStyles": [
-												"col-2 text-center",
-												"col-10"
-											],
-											"rows": [
-												[
-													"1",
-													"Amorphous Structure. The krasis can move through a space as narrow as 1 inch wide without squeezing."
-												],
-												[
-													"2",
-													"Aquatic. The krasis gains a swimming speed equal to its walking speed."
-												],
-												[
-													"3",
-													"Climbing Speed. The krasis gains a climbing speed equal to its walking speed."
-												],
-												[
-													"4",
-													"Cryptic Skin. The krasis can change color to match its surroundings. It has advantage on Dexterity ({@skill Stealth}) checks made to hide."
-												],
-												[
-													"5",
-													"Heightened Awareness. The krasis can't be {@status surprised}, as a result of having sensitive barbels like a catfish, stereoscopic vision like a chameleon, a tongue like a snake, eye stalks like a lobster, or an array of several eyes."
-												],
-												[
-													"6",
-													"Ink Cloud (Recharges after a Short or Long Rest). While underwater, the krasis can use a bonus action to expel a cloud of ink and then move up to its speed. The ink cloud is stationary and fills a 20-foot-radius sphere centered on a point in the krasis's space before it moves. The sphere is heavily obscured until the ink disperses after 1 minute. A strong current also disperses the ink cloud."
-												],
-												[
-													"7",
-													"Leaping Legs. With or without a running start, the krasis's long jump is 20 feet (category 1), 30 feet (category 2), or 40 feet (category 3). Its high jump is 10 feet (category 1), 20 feet (category 2), or 30 feet (category 3)."
-												],
-												[
-													"8",
-													"Stabilizing Legs. The krasis has several crablike legs. As a result, it has advantage on Strength and Dexterity saving throws made against effects that would knock it {@condition prone}."
-												]
-											]
-										}
-									]
-								}
-							]
-						}
-					]
-				}
-			],
+			"_copy": {
+				"name": "Krasis",
+				"source": "GGR"
+			},
 			"images": [
 				{
 					"type": "image",
@@ -984,46 +655,18 @@
 		{
 			"name": "Cosmotronic Blastseeker",
 			"source": "GGR",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"entries": [
-										"While chemisters focus on inventing new tools, weapons, and other devices for the guild to use, the role of a blastseeker is to put those devices to work. Despite the name, not all such devices produce explosions, but all the most interesting ones (from the Izzet perspective) do."
-									]
-								}
-							]
-						}
-					]
-				}
-			]
+			"_copy": {
+				"name": "Blastseeker",
+				"source": "GGR"
+			}
 		},
 		{
 			"name": "Counterflux Blastseeker",
 			"source": "GGR",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"entries": [
-										"While chemisters focus on inventing new tools, weapons, and other devices for the guild to use, the role of a blastseeker is to put those devices to work. Despite the name, not all such devices produce explosions, but all the most interesting ones (from the Izzet perspective) do."
-									]
-								}
-							]
-						}
-					]
-				}
-			],
+			"_copy": {
+				"name": "Blastseeker",
+				"source": "GGR"
+			},
 			"images": [
 				{
 					"type": "image",
@@ -1249,40 +892,24 @@
 		{
 			"name": "Firemane Angel",
 			"source": "GGR",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"entries": [
-										"Firemane angels are holy champions and paragons of war who specialize in single combat. They are powerful warriors who seek out the mightiest foes in any conflict, trusting lesser soldiers to handle lesser opponents.",
-										"Like many other Boros angels, firemanes typically have red hair. In the heat of battle, a firemane's hair can ignite, transforming into a mane of flames cascading over its shoulders and down its back."
-									]
-								},
-								{
-									"type": "entries",
-									"name": "Boros Angels",
-									"entries": [
-										"Angels of the Boros Legion view themselves as the embodiments of what their creator intended. They are fierce warriors devoted to justice and dedicated to protecting the weak against evil and oppression. They are commanders, advisors, strategists, and soldiers. Their presence in battle inspires the mortal soldiers of the legion with righteous zeal.",
-										"Most Boros soldiers assume that angels are paragons of goodness, wisdom, and mercy. The reality is that angels aren't immune to the temptations of corruption, and the necessities of political machination can compromise the best of them.",
-										{
-											"name": "Warleaders",
-											"type": "entries",
-											"entries": [
-												"The wisest, most visionary angels are responsible for forming and implementing the military strategy of the Boros Legion. Since they are immortal, their plans might span centuries, and they have been known to accept decades of losses as a reasonable cost for a more significant victory many years later. These warleaders have the statistics of planetars or solars (as presented in the Monster Manual), but their appearance is similar to other Boros angels."
-											]
-										}
-									]
-								}
-							]
-						}
-					]
+			"_copy": {
+				"name": "Boros Angel",
+				"source": "GGR",
+				"_mod": {
+					"entries": {
+						"mode": "prependArr",
+						"items": [
+							{
+								"type": "section",
+								"entries": [
+									"Firemane angels are holy champions and paragons of war who specialize in single combat. They are powerful warriors who seek out the mightiest foes in any conflict, trusting lesser soldiers to handle lesser opponents.",
+									"Like many other Boros angels, firemanes typically have red hair. In the heat of battle, a firemane's hair can ignite, transforming into a mane of flames cascading over its shoulders and down its back."
+								]
+							}
+						]
+					}
 				}
-			],
+			},
 			"images": [
 				{
 					"type": "image",
@@ -1299,24 +926,10 @@
 		{
 			"name": "Flux Blastseeker",
 			"source": "GGR",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"entries": [
-										"While chemisters focus on inventing new tools, weapons, and other devices for the guild to use, the role of a blastseeker is to put those devices to work. Despite the name, not all such devices produce explosions, but all the most interesting ones (from the Izzet perspective) do."
-									]
-								}
-							]
-						}
-					]
-				}
-			]
+			"_copy": {
+				"name": "Blastseeker",
+				"source": "GGR"
+			}
 		},
 		{
 			"name": "Fluxcharger",
@@ -1370,134 +983,10 @@
 		{
 			"name": "Flying Horror",
 			"source": "GGR",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"name": "Horrors and Madness",
-									"entries": [
-										"Horrors on Ravnica are terror and madness personified. You can represent this reality by using the madness rules in the Dungeon Master's Guide.",
-										"Whenever a character fails a saving throw against the flying horror's Frightening Screech, the shadow horror's claw attack, or the skittering horror's Maddening Presence, note that fact. At the end of the encounter, have each character who failed at least one of those saving throws make a {@dc 13} Wisdom saving throw. On a successful save, nothing happens. On a failed save, a character gains a form of madness from the Dungeon Master's Guide, with the severity depending on how many of the saving throws that character failed during the encounter, as shown on the Madness Severity table."
-									]
-								},
-								{
-									"type": "entries",
-									"entries": [
-										{
-											"type": "table",
-											"caption": "Madness Severity",
-											"colLabels": [
-												"Failed Saves",
-												"Madness"
-											],
-											"colStyles": [
-												"col-2 text-center",
-												"col-10"
-											],
-											"rows": [
-												[
-													"1",
-													"Short-term"
-												],
-												[
-													"2-3",
-													"Long-term"
-												],
-												[
-													"4+",
-													"Indefinite"
-												]
-											]
-										}
-									]
-								},
-								{
-									"type": "entries",
-									"name": "Horrors",
-									"entries": [
-										"Terrifying evils stalk, fly, and scuttle in the dark corners of Ravnica, from the depths of the undercity to the blackest parts of the night sky. Collectively, these creatures are called horrors-a variety of things that lurk in the dark and embody the deepest fears of Ravnica's people. All are evil creatures with dim reason and preternatural cunning.",
-										"At least three guilds have been known to compel horrors into service. For House Dimir, horrors spread fear and despair in the citizenry and carry out assassinations or kidnappings against well-protected targets. For the Cult of Rakdos, horrors are simply one more weapon in an arsenal of terrifying and shock-inspiring creatures that might appear on stage. For the Golgari Swarm, horrors scavenge the sewers and protect the guild's territory.",
-										"House Dimir uses all three base kinds of horrors. The Cult of Rakdos prefers shadow horrors, and the Golgari Swarm uses skittering horrors."
-									]
-								},
-								{
-									"type": "entries",
-									"name": "Customizing a Horror",
-									"entries": [
-										"Horrors share some common body types but vary wildly in other characteristics. A particular horror's form might incorporate elements that resemble fiendish, insectile, or reptilian features. To customize a horror, choose a base creature (flying horror, shadow horror, or skittering horror), then roll once on the Primary Features table and once on the Secondary Features table (or choose an option from each table). Add those features to the base creature.",
-										"",
-										{
-											"type": "table",
-											"caption": "Primary Features",
-											"colLabels": [
-												"d4",
-												"Feature"
-											],
-											"colStyles": [
-												"col-2 text-center",
-												"col-10"
-											],
-											"rows": [
-												[
-													"1",
-													"Avoidance. If the horror is subjected to an effect that allows it to make a saving throw to take only half damage, it instead takes no damage if it succeeds on the saving throw, and only half damage if it fails."
-												],
-												[
-													"2",
-													"Damage Resistances. The horror has resistance to necrotic and psychic damage."
-												],
-												[
-													"3",
-													"Innate Spellcasting. The horror's innate spellcasting ability is Charisma (spell save {@dc 13} for flying horror, {@dc 16} for shadow horror, and {@dc 17} for skittering horror). It can innately cast the following spells, requiring no material components: 3/day: {@spell darkness} 1/day each: {@spell fear} (shadow horror and skittering horror only), {@spell phantasmal killer} (skittering horror only)"
-												],
-												[
-													"4",
-													"Psychic Rebuke. When the horror takes damage from a melee attack, it can use its reaction to emit psychic energy within a 5-foot radius. Each creature in that area takes 3 ({@damage 1d6}) psychic damage (flying horror), 7 ({@damage 2d6}) psychic damage (shadow horror), or 10 ({@damage 3d6}) psychic damage (skittering horror)."
-												]
-											]
-										},
-										{
-											"type": "table",
-											"caption": "Secondary Features",
-											"colLabels": [
-												"d4",
-												"Feature"
-											],
-											"colStyles": [
-												"col-2 text-center",
-												"col-10"
-											],
-											"rows": [
-												[
-													"1",
-													"Grasping Tendrils. The horror has four tendrils. Each tendril can be attacked (AC 12, 10 hit points). Destroying one deals no damage to the horror. As a bonus action, the horror can target one creature it can see within 10 feet of it. The target must succeed on a Dexterity saving throw or be {@condition grappled} by the horror. The DC of the saving throw and the DC to escape the grapple are the same: 9 for the flying horror, 13 for the shadow horror, and 19 for the skittering horror. Until the grapple ends, the horror can't use the same tendril to grapple another target."
-												],
-												[
-													"2",
-													"Indomitable Mind. The horror is immune to the {@condition charmed} condition."
-												],
-												[
-													"3",
-													"Keen Senses. The horror has advantage on Wisdom ({@skill Perception}) checks that rely on sight, sound, or smell."
-												],
-												[
-													"4",
-													"Mind Sight. Magical darkness doesn't impede the horror's {@sense darkvision}."
-												]
-											]
-										}
-									]
-								}
-							]
-						}
-					]
-				}
-			],
+			"_copy": {
+				"name": "Horror",
+				"source": "GGR"
+			},
 			"images": [
 				{
 					"type": "image",
@@ -1536,24 +1025,10 @@
 		{
 			"name": "Galvanic Blastseeker",
 			"source": "GGR",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"entries": [
-										"While chemisters focus on inventing new tools, weapons, and other devices for the guild to use, the role of a blastseeker is to put those devices to work. Despite the name, not all such devices produce explosions, but all the most interesting ones (from the Izzet perspective) do."
-									]
-								}
-							]
-						}
-					]
-				}
-			],
+			"_copy": {
+				"name": "Blastseeker",
+				"source": "GGR"
+			},
 			"images": [
 				{
 					"type": "image",
@@ -1756,6 +1231,138 @@
 			]
 		},
 		{
+			"name": "Horror",
+			"source": "GGR",
+			"entries": [
+				{
+					"type": "section",
+					"name": "Horrors and Madness",
+					"entries": [
+						"Horrors on Ravnica are terror and madness personified. You can represent this reality by using the madness rules in the Dungeon Master's Guide.",
+						"Whenever a character fails a saving throw against the flying horror's Frightening Screech, the shadow horror's claw attack, or the skittering horror's Maddening Presence, note that fact. At the end of the encounter, have each character who failed at least one of those saving throws make a {@dc 13} Wisdom saving throw. On a successful save, nothing happens. On a failed save, a character gains a form of madness from the Dungeon Master's Guide, with the severity depending on how many of the saving throws that character failed during the encounter, as shown on the Madness Severity table.",
+						{
+							"type": "entries",
+							"entries": [
+								{
+									"type": "entries",
+									"entries": [
+										{
+											"type": "entries",
+											"entries": [
+												{
+													"type": "table",
+													"caption": "Madness Severity",
+													"colLabels": [
+														"Failed Saves",
+														"Madness"
+													],
+													"colStyles": [
+														"col-2 text-center",
+														"col-10"
+													],
+													"rows": [
+														[
+															"1",
+															"Short-term"
+														],
+														[
+															"2-3",
+															"Long-term"
+														],
+														[
+															"4+",
+															"Indefinite"
+														]
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Horrors",
+											"entries": [
+												"Terrifying evils stalk, fly, and scuttle in the dark corners of Ravnica, from the depths of the undercity to the blackest parts of the night sky. Collectively, these creatures are called horrors-a variety of things that lurk in the dark and embody the deepest fears of Ravnica's people. All are evil creatures with dim reason and preternatural cunning.",
+												"At least three guilds have been known to compel horrors into service. For House Dimir, horrors spread fear and despair in the citizenry and carry out assassinations or kidnappings against well-protected targets. For the Cult of Rakdos, horrors are simply one more weapon in an arsenal of terrifying and shock-inspiring creatures that might appear on stage. For the Golgari Swarm, horrors scavenge the sewers and protect the guild's territory.",
+												"House Dimir uses all three base kinds of horrors. The Cult of Rakdos prefers shadow horrors, and the Golgari Swarm uses skittering horrors."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Customizing a Horror",
+											"entries": [
+												"Horrors share some common body types but vary wildly in other characteristics. A particular horror's form might incorporate elements that resemble fiendish, insectile, or reptilian features. To customize a horror, choose a base creature (flying horror, shadow horror, or skittering horror), then roll once on the Primary Features table and once on the Secondary Features table (or choose an option from each table). Add those features to the base creature.",
+												"",
+												{
+													"type": "table",
+													"caption": "Primary Features",
+													"colLabels": [
+														"d4",
+														"Feature"
+													],
+													"colStyles": [
+														"col-2 text-center",
+														"col-10"
+													],
+													"rows": [
+														[
+															"1",
+															"Avoidance. If the horror is subjected to an effect that allows it to make a saving throw to take only half damage, it instead takes no damage if it succeeds on the saving throw, and only half damage if it fails."
+														],
+														[
+															"2",
+															"Damage Resistances. The horror has resistance to necrotic and psychic damage."
+														],
+														[
+															"3",
+															"Innate Spellcasting. The horror's innate spellcasting ability is Charisma (spell save {@dc 13} for flying horror, {@dc 16} for shadow horror, and {@dc 17} for skittering horror). It can innately cast the following spells, requiring no material components: 3/day: {@spell darkness} 1/day each: {@spell fear} (shadow horror and skittering horror only), {@spell phantasmal killer} (skittering horror only)"
+														],
+														[
+															"4",
+															"Psychic Rebuke. When the horror takes damage from a melee attack, it can use its reaction to emit psychic energy within a 5-foot radius. Each creature in that area takes 3 ({@damage 1d6}) psychic damage (flying horror), 7 ({@damage 2d6}) psychic damage (shadow horror), or 10 ({@damage 3d6}) psychic damage (skittering horror)."
+														]
+													]
+												},
+												{
+													"type": "table",
+													"caption": "Secondary Features",
+													"colLabels": [
+														"d4",
+														"Feature"
+													],
+													"colStyles": [
+														"col-2 text-center",
+														"col-10"
+													],
+													"rows": [
+														[
+															"1",
+															"Grasping Tendrils. The horror has four tendrils. Each tendril can be attacked (AC 12, 10 hit points). Destroying one deals no damage to the horror. As a bonus action, the horror can target one creature it can see within 10 feet of it. The target must succeed on a Dexterity saving throw or be {@condition grappled} by the horror. The DC of the saving throw and the DC to escape the grapple are the same: 9 for the flying horror, 13 for the shadow horror, and 19 for the skittering horror. Until the grapple ends, the horror can't use the same tendril to grapple another target."
+														],
+														[
+															"2",
+															"Indomitable Mind. The horror is immune to the {@condition charmed} condition."
+														],
+														[
+															"3",
+															"Keen Senses. The horror has advantage on Wisdom ({@skill Perception}) checks that rely on sight, sound, or smell."
+														],
+														[
+															"4",
+															"Mind Sight. Magical darkness doesn't impede the horror's {@sense darkvision}."
+														]
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Hybrid Brute",
 			"source": "GGR",
 			"entries": [
@@ -1781,25 +1388,10 @@
 		{
 			"name": "Hybrid Flier",
 			"source": "GGR",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"name": "Simic Hybrids",
-									"entries": [
-										"The Guardian Project is a consequence of increasing tension within the Simic Combine as the threat of interguild conflict looms. Believing that the Simic must be prepared to fight for their lives when that conflict comes to a head, biomancers have created soldiers to help defend the guild. These hybrids (also called guardians, after the name of the project) are created from human, vedalken, and elf guild members who volunteer to be transformed."
-									]
-								}
-							]
-						}
-					]
-				}
-			],
+			"_copy": {
+				"name": "Hybrid Brute",
+				"source": "GGR"
+			},
 			"images": [
 				{
 					"type": "image",
@@ -1816,48 +1408,18 @@
 		{
 			"name": "Hybrid Poisoner",
 			"source": "GGR",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"name": "Simic Hybrids",
-									"entries": [
-										"The Guardian Project is a consequence of increasing tension within the Simic Combine as the threat of interguild conflict looms. Believing that the Simic must be prepared to fight for their lives when that conflict comes to a head, biomancers have created soldiers to help defend the guild. These hybrids (also called guardians, after the name of the project) are created from human, vedalken, and elf guild members who volunteer to be transformed."
-									]
-								}
-							]
-						}
-					]
-				}
-			]
+			"_copy": {
+				"name": "Hybrid Brute",
+				"source": "GGR"
+			}
 		},
 		{
 			"name": "Hybrid Shocker",
 			"source": "GGR",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"name": "Simic Hybrids",
-									"entries": [
-										"The Guardian Project is a consequence of increasing tension within the Simic Combine as the threat of interguild conflict looms. Believing that the Simic must be prepared to fight for their lives when that conflict comes to a head, biomancers have created soldiers to help defend the guild. These hybrids (also called guardians, after the name of the project) are created from human, vedalken, and elf guild members who volunteer to be transformed."
-									]
-								}
-							]
-						}
-					]
-				}
-			],
+			"_copy": {
+				"name": "Hybrid Brute",
+				"source": "GGR"
+			},
 			"images": [
 				{
 					"type": "image",
@@ -1874,25 +1436,10 @@
 		{
 			"name": "Hybrid Spy",
 			"source": "GGR",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"name": "Simic Hybrids",
-									"entries": [
-										"The Guardian Project is a consequence of increasing tension within the Simic Combine as the threat of interguild conflict looms. Believing that the Simic must be prepared to fight for their lives when that conflict comes to a head, biomancers have created soldiers to help defend the guild. These hybrids (also called guardians, after the name of the project) are created from human, vedalken, and elf guild members who volunteer to be transformed."
-									]
-								}
-							]
-						}
-					]
-				}
-			]
+			"_copy": {
+				"name": "Hybrid Brute",
+				"source": "GGR"
+			}
 		},
 		{
 			"name": "Indentured Spirit",
@@ -2008,34 +1555,162 @@
 			]
 		},
 		{
-			"name": "Kraul Death Priest",
+			"name": "Krasis",
 			"source": "GGR",
 			"entries": [
 				{
-					"type": "entries",
+					"type": "section",
+					"name": "Krasis",
 					"entries": [
+						"In the deep sinkholes that serve as laboratories and guildhalls for the Simic Combine, biomancers employ a combination of magic and scientific method to create novel life forms. They coax new morphologies from existing creatures or combine traits from multiple organisms into one, producing the creatures known as krasis. Some krasis are unique creatures that can't reproduce. A few multiply and become part of the guild's standard menagerie.",
 						{
 							"type": "entries",
 							"entries": [
 								{
 									"type": "entries",
 									"entries": [
-										"The death priests occupy the highest roles in kraul society. They lead the buzzing chants of the kraul rites. Their inscrutable clicks and buzzing can summon crippling necromantic magic, and the presence of death seems to fortify them. They draw power from the defeat of their enemies and channel it to their followers, ensuring the continuation of the cycle.",
-										"The current leader of the kraul is a death priest named Mazirek."
-									]
-								},
-								{
-									"type": "entries",
-									"name": "Kraul",
-									"entries": [
-										"The kraul are an ascendant power group within the Golgari Swarm, long content to linger at the margins of the undercity but now increasingly making their buzzing voices heard in the subterranean Golgari guildhall. These six-legged, insectile beings are hard-headed and literal-minded, with little grasp of metaphor or nuance."
+										{
+											"type": "entries",
+											"name": "Creating a Krasis",
+											"entries": [
+												"To create a krasis, choose the appropriate stat block: category 1 (Medium), category 2 (Large), or category 3 (Huge). Then roll once on the Major Adaptations table and once on the Minor Adaptations table (or choose an option from each table) to determine its additional characteristics. The potency of some adaptations varies based on the category of the krasis, as indicated in the descriptions of those adaptations.",
+												"Just a few examples of krasis are the battering krasis (a fusion of hammerhead shark and a powerfully built beast), the crocanura (a crocodile-frog), the drakewing krasis (a lizard-drake), the teratosuchus (a crocodile-crab), the shambleshark (a shark-crab), and the sharktocrab (an improved shambleshark that includes octopus elements as well).",
+												{
+													"type": "table",
+													"caption": "Major Adaptations",
+													"colLabels": [
+														"d8",
+														"Major Adaptation"
+													],
+													"colStyles": [
+														"col-2 text-center",
+														"col-10"
+													],
+													"rows": [
+														[
+															"1",
+															"Acidic Skin. Any creature that touches the krasis or hits it with a melee attack while within 5 feet of it takes 2 ({@damage 1d4}) acid damage (category 1), 4 ({@damage 1d8}) acid damage (category 2), or 6 ({@damage 1d12}) acid damage (category 3)."
+														],
+														[
+															"2",
+															"Armored Hide. The krasis has better natural armor afforded by a shell or thick scales, increasing its Armor Class by 4."
+														],
+														[
+															"3",
+															"Bioluminescent Markings. The krasis has glowing patterns on its skin that take the shape of defensive runes, granting it advantage on saving throws against spells and other magical effects."
+														],
+														[
+															"4",
+															"Flight. The krasis has wings and gains a flying speed equal to its walking speed."
+														],
+														[
+															"5",
+															"Grabber. When the krasis hits a creature with its claws, the target is {@condition grappled} (escape {@dc 13} for category 1, {@dc 15} for category 2, and {@dc 19} for category 3) by a specialized grasping appendage on the krasis. It can have only one creature {@condition grappled} in this way at a time."
+														],
+														[
+															"6",
+															"Hypnotic Display {@recharge 5}. As an action, the krasis creates mesmerizing colors and shapes around itself. Each creature within 15 feet of it that can see it must succeed on a Wisdom saving throw ({@dc 12} for category 1, {@dc 14} for category 2, and {@dc 18} for category 3) or be {@condition stunned} for 1 minute. The {@condition stunned} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. A creature that succeeds on a saving throw against this effect becomes immune to the Hypnotic Display of all krasis for 24 hours."
+														],
+														[
+															"7",
+															"Venomous Sting. When the krasis hits a creature with its claws, the creature must succeed on a Constitution saving throw ({@dc 12} for category 1, {@dc 14} for category 2, and {@dc 18} for category 3) or be {@condition poisoned} for 1 minute. If the krasis is a category 2 or 3, the creature is {@condition paralyzed} while {@condition poisoned} in this way. The {@condition poisoned} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+														],
+														[
+															"8",
+															"Regeneration. The krasis regains hit points (2 for a category 1, 5 for a category 2, and 10 for a category 3) at the start of each of its turns if it has at least 1 hit point."
+														]
+													]
+												},
+												{
+													"type": "table",
+													"caption": "Minor Adaptations",
+													"colLabels": [
+														"d8",
+														"Minor Adaptation"
+													],
+													"colStyles": [
+														"col-2 text-center",
+														"col-10"
+													],
+													"rows": [
+														[
+															"1",
+															"Amorphous Structure. The krasis can move through a space as narrow as 1 inch wide without squeezing."
+														],
+														[
+															"2",
+															"Aquatic. The krasis gains a swimming speed equal to its walking speed."
+														],
+														[
+															"3",
+															"Climbing Speed. The krasis gains a climbing speed equal to its walking speed."
+														],
+														[
+															"4",
+															"Cryptic Skin. The krasis can change color to match its surroundings. It has advantage on Dexterity ({@skill Stealth}) checks made to hide."
+														],
+														[
+															"5",
+															"Heightened Awareness. The krasis can't be {@status surprised}, as a result of having sensitive barbels like a catfish, stereoscopic vision like a chameleon, a tongue like a snake, eye stalks like a lobster, or an array of several eyes."
+														],
+														[
+															"6",
+															"Ink Cloud (Recharges after a Short or Long Rest). While underwater, the krasis can use a bonus action to expel a cloud of ink and then move up to its speed. The ink cloud is stationary and fills a 20-foot-radius sphere centered on a point in the krasis's space before it moves. The sphere is heavily obscured until the ink disperses after 1 minute. A strong current also disperses the ink cloud."
+														],
+														[
+															"7",
+															"Leaping Legs. With or without a running start, the krasis's long jump is 20 feet (category 1), 30 feet (category 2), or 40 feet (category 3). Its high jump is 10 feet (category 1), 20 feet (category 2), or 30 feet (category 3)."
+														],
+														[
+															"8",
+															"Stabilizing Legs. The krasis has several crablike legs. As a result, it has advantage on Strength and Dexterity saving throws made against effects that would knock it {@condition prone}."
+														]
+													]
+												}
+											]
+										}
 									]
 								}
 							]
 						}
 					]
 				}
-			],
+			]
+		},
+		{
+			"name": "Kraul",
+			"source": "GGR",
+			"entries": [
+				{
+					"type": "section",
+					"name": "Kraul",
+					"entries": [
+						"The kraul are an ascendant power group within the Golgari Swarm, long content to linger at the margins of the undercity but now increasingly making their buzzing voices heard in the subterranean Golgari guildhall. These six-legged, insectile beings are hard-headed and literal-minded, with little grasp of metaphor or nuance."
+					]
+				}
+			]
+		},
+		{
+			"name": "Kraul Death Priest",
+			"source": "GGR",
+			"_copy": {
+				"name": "Kraul",
+				"source": "GGR",
+				"_mod": {
+					"entries": {
+						"mode": "prependArr",
+						"items": [
+							{
+								"type": "section",
+								"entries": [
+									"The death priests occupy the highest roles in kraul society. They lead the buzzing chants of the kraul rites. Their inscrutable clicks and buzzing can summon crippling necromantic magic, and the presence of death seems to fortify them. They draw power from the defeat of their enemies and channel it to their followers, ensuring the continuation of the cycle.",
+									"The current leader of the kraul is a death priest named Mazirek."
+								]
+							}
+						]
+					}
+				}
+			},
 			"images": [
 				{
 					"type": "image",
@@ -2052,31 +1727,23 @@
 		{
 			"name": "Kraul Warrior",
 			"source": "GGR",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"entries": [
-										"Kraul society is organized into well-defined roles and castes. The vast majority of the kraul occupy various tiers of soldiery, from commanders and elite troops down to the lowliest infantry."
-									]
-								},
-								{
-									"type": "entries",
-									"name": "Kraul",
-									"entries": [
-										"The kraul are an ascendant power group within the Golgari Swarm, long content to linger at the margins of the undercity but now increasingly making their buzzing voices heard in the subterranean Golgari guildhall. These six-legged, insectile beings are hard-headed and literal-minded, with little grasp of metaphor or nuance."
-									]
-								}
-							]
-						}
-					]
+			"_copy": {
+				"name": "Kraul",
+				"source": "GGR",
+				"_mod": {
+					"entries": {
+						"mode": "prependArr",
+						"items": [
+							{
+								"type": "section",
+								"entries": [
+									"Kraul society is organized into well-defined roles and castes. The vast majority of the kraul occupy various tiers of soldiery, from commanders and elite troops down to the lowliest infantry."
+								]
+							}
+						]
+					}
 				}
-			],
+			},
 			"images": [
 				{
 					"type": "image",
@@ -2149,47 +1816,24 @@
 		{
 			"name": "Master of Cruelties",
 			"source": "GGR",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"entries": [
-										"When a master of cruelties steps up as ringleader of a Rakdos show, the audience can be assured of a performance they will remember for the rest of their lives\u2014however brief that might be.",
-										"The mesmerizing presence of a master of cruelties draws every eye to the demon and commands an audience's full attention. With every act of depraved torment the demon performs, onlookers are drawn more and more into the blood lust. Audiences clamor for more violence, and those who get too caught up in the revelry feel compelled to partake in the indiscriminate killing."
-									]
-								},
-								{
-									"type": "entries",
-									"name": "Demons",
-									"entries": [
-										"Just as angels are incarnations of the ideals of justice, demons embody depraved impulses: selfishness, cruelty, hatred, greed, and lust for power. Demons are strongly associated with the Cult of Rakdos; in fact, the demons of Ravnica might have been created by Rakdos in the same way that angels were created by the Boros Legion's founder. As a demon lord who has chosen to live in Ravnica, Rakdos claims authority over all the demons of this world-even if some of them, ambitious and headstrong as demons are, rebel against his authority.",
-										"Demons are agents of destruction that work their acts of terror in plain sight under the auspices of the Cult of Rakdos. They exhibit their cruelty in dramatic performances that leave the audience members blood-soaked but ecstatic. They incite mob riots that raze entire city blocks. The only thing demons fear is Rakdos himself, who doesn't tolerate rivals and hates to be upstaged.",
-										{
-											"name": "Demonic \"Devils.\"",
-											"type": "entries",
-											"entries": [
-												"The creatures called \"devils\" in Ravnica are minor demons akin to {@creature quasit||quasits}. While the larger demons embody evil qualities such as blood lust and torment, these lesser demons reflect the whimsical and chaotic side of Rakdos and his cult. Their mischievous antics cause disorder and destruction out of proportion to the demons' small size."
-											]
-										},
-										{
-											"name": "Diabolic Demons",
-											"type": "entries",
-											"entries": [
-												"Many of the demons of Ravnica are monstrous, winged creatures of human-like form. They are best represented by the statistics of the {@creature nalfeshnee}, the {@creature shadow demon}, or the {@creature vrock} in the Monster Manual. Demons associated with the Cult of Rakdos often have fiery attacks that make them similar to barbed devils or horned devils, except that they are demons. (They are chaotic evil, they speak Abyssal and not Infernal, and they lack Devil's Sight.)"
-											]
-										}
-									]
-								}
-							]
-						}
-					]
+			"_copy": {
+				"name": "Ravnos Demon",
+				"source": "GGR",
+				"_mod": {
+					"entries": {
+						"mode": "prependArr",
+						"items": [
+							{
+								"type": "section",
+								"entries": [
+									"When a master of cruelties steps up as ringleader of a Rakdos show, the audience can be assured of a performance they will remember for the rest of their lives\u2014however brief that might be.",
+									"The mesmerizing presence of a master of cruelties draws every eye to the demon and commands an audience's full attention. With every act of depraved torment the demon performs, onlookers are drawn more and more into the blood lust. Audiences clamor for more violence, and those who get too caught up in the revelry feel compelled to partake in the indiscriminate killing."
+								]
+							}
+						]
+					}
 				}
-			],
+			},
 			"images": [
 				{
 					"type": "image",
@@ -2206,46 +1850,48 @@
 		{
 			"name": "Mind Drinker Vampire",
 			"source": "GGR",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"entries": [
-										"When vampires join House Dimir, they can learn to siphon mental energy and memories along with the blood of their victims. They also study the magic favored by Dimir mind mages, giving them a powerful combination of abilities ideal for espionage and infiltration.",
-										{
-											"name": "Szadek's Heirs",
-											"type": "entries",
-											"entries": [
-												"The founder of House Dimir, Szadek, was the first of the so-called mind drinkers. His secrets are passed on only to other members of his guild, and mind drinkers who leave House Dimir become enemies of the guild-the only exceptions to a rule that prohibits mind drinkers from feeding on others of their kind."
-											]
-										},
-										{
-											"name": "Cell Leaders",
-											"type": "entries",
-											"entries": [
-												"Thanks to their particular gifts, mind drinkers are often placed as leaders of small cells of covert Dimir operatives. They rarely trust their own agents, though, and often follow their cell members to make sure those members carry out missions as ordered. The most suspicious vampires might even siphon thoughts from their subordinates to detect any hint of betrayal."
-											]
-										}
-									]
-								},
-								{
-									"type": "entries",
-									"name": "Vampires",
-									"entries": [
-										"Creatures of the night, vampires are ageless undead beings who subsist on the blood of the living. They are fierce predators who mask their ravenous thirst behind a facade of sophistication and sensuality. Those who sip blood from golden chalices are no less voracious than those who tear out their victims' throats with their fangs; they just hide it better.",
-										"The vampires of Ravnica differ from those in the Monster Manual in important ways. They lack the traits and abilities that those other vampires boast, but also lack the weaknesses that hinder such vampires. What they have in common is an unquenchable thirst for the blood that sustains their undead existence."
-									]
-								}
-							]
-						}
-					]
+			"_copy": {
+				"name": "Vampire",
+				"source": "GGR",
+				"_mod": {
+					"entries": {
+						"mode": "prependArr",
+						"items": [
+							{
+								"type": "section",
+								"name": "Mind Drinker Vampire",
+								"entries": [
+									"When vampires join House Dimir, they can learn to siphon mental energy and memories along with the blood of their victims. They also study the magic favored by Dimir mind mages, giving them a powerful combination of abilities ideal for espionage and infiltration.",
+									{
+										"type": "entries",
+										"entries": [
+											{
+												"type": "entries",
+												"entries": [
+													{
+														"name": "Szadek's Heirs",
+														"type": "entries",
+														"entries": [
+															"The founder of House Dimir, Szadek, was the first of the so-called mind drinkers. His secrets are passed on only to other members of his guild, and mind drinkers who leave House Dimir become enemies of the guild-the only exceptions to a rule that prohibits mind drinkers from feeding on others of their kind."
+														]
+													},
+													{
+														"name": "Cell Leaders",
+														"type": "entries",
+														"entries": [
+															"Thanks to their particular gifts, mind drinkers are often placed as leaders of small cells of covert Dimir operatives. They rarely trust their own agents, though, and often follow their cell members to make sure those members carry out missions as ordered. The most suspicious vampires might even siphon thoughts from their subordinates to detect any hint of betrayal."
+														]
+													}
+												]
+											}
+										]
+									}
+								]
+							}
+						]
+					}
 				}
-			],
+			},
 			"images": [
 				{
 					"type": "image",
@@ -2661,6 +2307,44 @@
 			}
 		},
 		{
+			"name": "Ravnos Demon",
+			"source": "GGR",
+			"entries": [
+				{
+					"type": "section",
+					"name": "Demons",
+					"entries": [
+						"Just as angels are incarnations of the ideals of justice, demons embody depraved impulses: selfishness, cruelty, hatred, greed, and lust for power. Demons are strongly associated with the Cult of Rakdos; in fact, the demons of Ravnica might have been created by Rakdos in the same way that angels were created by the Boros Legion's founder. As a demon lord who has chosen to live in Ravnica, Rakdos claims authority over all the demons of this world-even if some of them, ambitious and headstrong as demons are, rebel against his authority.",
+						"Demons are agents of destruction that work their acts of terror in plain sight under the auspices of the Cult of Rakdos. They exhibit their cruelty in dramatic performances that leave the audience members blood-soaked but ecstatic. They incite mob riots that raze entire city blocks. The only thing demons fear is Rakdos himself, who doesn't tolerate rivals and hates to be upstaged.",
+						{
+							"type": "entries",
+							"entries": [
+								{
+									"type": "entries",
+									"entries": [
+										{
+											"name": "Demonic \"Devils\"",
+											"entries": [
+												"The creatures called \"devils\" in Ravnica are minor demons akin to {@creature quasit||quasits}. While the larger demons embody evil qualities such as blood lust and torment, these lesser demons reflect the whimsical and chaotic side of Rakdos and his cult. Their mischievous antics cause disorder and destruction out of proportion to the demons' small size."
+											],
+											"type": "entries"
+										},
+										{
+											"name": "Diabolic Demons",
+											"type": "entries",
+											"entries": [
+												"Many of the demons of Ravnica are monstrous, winged creatures of human-like form. They are best represented by the statistics of the {@creature nalfeshnee}, the {@creature shadow demon}, or the {@creature vrock} in the Monster Manual. Demons associated with the Cult of Rakdos often have fiery attacks that make them similar to barbed devils or horned devils, except that they are demons. (They are chaotic evil, they speak Abyssal and not Infernal, and they lack Devil's Sight.)"
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Reckoner",
 			"source": "GGR",
 			"entries": [
@@ -2719,24 +2403,10 @@
 		{
 			"name": "Scorchbringer Guard",
 			"source": "GGR",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"entries": [
-										"While chemisters focus on inventing new tools, weapons, and other devices for the guild to use, the role of a blastseeker is to put those devices to work. Despite the name, not all such devices produce explosions, but all the most interesting ones (from the Izzet perspective) do."
-									]
-								}
-							]
-						}
-					]
-				}
-			],
+			"_copy": {
+				"name": "Blastseeker",
+				"source": "GGR"
+			},
 			"images": [
 				{
 					"type": "image",
@@ -2753,169 +2423,31 @@
 		{
 			"name": "Servitor Thrull",
 			"source": "GGR",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"entries": [
-										"The most wretched of thrulls are the servitors, small and slender, that serve as playthings for their Orzhov masters. They run trivial errands, transport small items, caper and dance, and keep their masters' expensive robes from trailing on the dirty street. They are utterly loyal, lacking any concept of thinking for themselves."
-									]
-								},
-								{
-									"type": "entries",
-									"name": "Thrulls",
-									"entries": [
-										"When the Orzhov Syndicate rips a soul from its body to create a spirit, the cast-off remains go to the fleshmages, who use their necromantic magic to liquefy the corpse and transform it into something useful. These creations become thrulls, obedient slaves that serve in a variety of menial roles: laborers, messengers, beasts of burden, and even fashion accessories for the elite. Whatever tasks they perform, they wear faceplates forged from devalued coinage to conceal their ghastly features.",
-										{
-											"name": "Construct Nature",
-											"type": "entries",
-											"entries": [
-												"A thrull doesn't require air, food, drink, or sleep."
-											]
-										}
-									]
-								}
-							]
-						}
-					]
+			"_copy": {
+				"name": "Thull",
+				"source": "GGR",
+				"_mod": {
+					"entries": {
+						"mode": "prependArr",
+						"items": [
+							{
+								"type": "section",
+								"entries": [
+									"The most wretched of thrulls are the servitors, small and slender, that serve as playthings for their Orzhov masters. They run trivial errands, transport small items, caper and dance, and keep their masters' expensive robes from trailing on the dirty street. They are utterly loyal, lacking any concept of thinking for themselves."
+								]
+							}
+						]
+					}
 				}
-			]
+			}
 		},
 		{
 			"name": "Shadow Horror",
 			"source": "GGR",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"name": "Horrors and Madness",
-									"entries": [
-										"Horrors on Ravnica are terror and madness personified. You can represent this reality by using the madness rules in the Dungeon Master's Guide.",
-										"Whenever a character fails a saving throw against the flying horror's Frightening Screech, the shadow horror's claw attack, or the skittering horror's Maddening Presence, note that fact. At the end of the encounter, have each character who failed at least one of those saving throws make a {@dc 13} Wisdom saving throw. On a successful save, nothing happens. On a failed save, a character gains a form of madness from the Dungeon Master's Guide, with the severity depending on how many of the saving throws that character failed during the encounter, as shown on the Madness Severity table."
-									]
-								},
-								{
-									"type": "entries",
-									"entries": [
-										{
-											"type": "table",
-											"caption": "Madness Severity",
-											"colLabels": [
-												"Failed Saves",
-												"Madness"
-											],
-											"colStyles": [
-												"col-2 text-center",
-												"col-10"
-											],
-											"rows": [
-												[
-													"1",
-													"Short-term"
-												],
-												[
-													"2-3",
-													"Long-term"
-												],
-												[
-													"4+",
-													"Indefinite"
-												]
-											]
-										}
-									]
-								},
-								{
-									"type": "entries",
-									"name": "Horrors",
-									"entries": [
-										"Terrifying evils stalk, fly, and scuttle in the dark corners of Ravnica, from the depths of the undercity to the blackest parts of the night sky. Collectively, these creatures are called horrors-a variety of things that lurk in the dark and embody the deepest fears of Ravnica's people. All are evil creatures with dim reason and preternatural cunning.",
-										"At least three guilds have been known to compel horrors into service. For House Dimir, horrors spread fear and despair in the citizenry and carry out assassinations or kidnappings against well-protected targets. For the Cult of Rakdos, horrors are simply one more weapon in an arsenal of terrifying and shock-inspiring creatures that might appear on stage. For the Golgari Swarm, horrors scavenge the sewers and protect the guild's territory.",
-										"House Dimir uses all three base kinds of horrors. The Cult of Rakdos prefers shadow horrors, and the Golgari Swarm uses skittering horrors."
-									]
-								},
-								{
-									"type": "entries",
-									"name": "Customizing a Horror",
-									"entries": [
-										"Horrors share some common body types but vary wildly in other characteristics. A particular horror's form might incorporate elements that resemble fiendish, insectile, or reptilian features. To customize a horror, choose a base creature (flying horror, shadow horror, or skittering horror), then roll once on the Primary Features table and once on the Secondary Features table (or choose an option from each table). Add those features to the base creature.",
-										{
-											"type": "table",
-											"caption": "Primary Features",
-											"colLabels": [
-												"d4",
-												"Feature"
-											],
-											"colStyles": [
-												"col-2 text-center",
-												"col-10"
-											],
-											"rows": [
-												[
-													"1",
-													"Avoidance. If the horror is subjected to an effect that allows it to make a saving throw to take only half damage, it instead takes no damage if it succeeds on the saving throw, and only half damage if it fails."
-												],
-												[
-													"2",
-													"Damage Resistances. The horror has resistance to necrotic and psychic damage."
-												],
-												[
-													"3",
-													"Innate Spellcasting. The horror's innate spellcasting ability is Charisma (spell save {@dc 13} for flying horror, {@dc 16} for shadow horror, and {@dc 17} for skittering horror). It can innately cast the following spells, requiring no material components: 3/day: {@spell darkness} 1/day each: {@spell fear} (shadow horror and skittering horror only), {@spell phantasmal killer} (skittering horror only)"
-												],
-												[
-													"4",
-													"Psychic Rebuke. When the horror takes damage from a melee attack, it can use its reaction to emit psychic energy within a 5-foot radius. Each creature in that area takes 3 ({@damage 1d6}) psychic damage (flying horror), 7 ({@damage 2d6}) psychic damage (shadow horror), or 10 ({@damage 3d6}) psychic damage (skittering horror)."
-												]
-											]
-										},
-										{
-											"type": "table",
-											"caption": "Secondary Features",
-											"colLabels": [
-												"d4",
-												"Feature"
-											],
-											"colStyles": [
-												"col-2 text-center",
-												"col-10"
-											],
-											"rows": [
-												[
-													"1",
-													"Grasping Tendrils. The horror has four tendrils. Each tendril can be attacked (AC 12, 10 hit points). Destroying one deals no damage to the horror. As a bonus action, the horror can target one creature it can see within 10 feet of it. The target must succeed on a Dexterity saving throw or be {@condition grappled} by the horror. The DC of the saving throw and the DC to escape the grapple are the same: 9 for the flying horror, 13 for the shadow horror, and 19 for the skittering horror. Until the grapple ends, the horror can't use the same tendril to grapple another target."
-												],
-												[
-													"2",
-													"Indomitable Mind. The horror is immune to the {@condition charmed} condition."
-												],
-												[
-													"3",
-													"Keen Senses. The horror has advantage on Wisdom ({@skill Perception}) checks that rely on sight, sound, or smell."
-												],
-												[
-													"4",
-													"Mind Sight. Magical darkness doesn't impede the horror's {@sense darkvision}."
-												]
-											]
-										}
-									]
-								}
-							]
-						}
-					]
-				}
-			],
+			"_copy": {
+				"name": "Horror",
+				"source": "GGR"
+			},
 			"images": [
 				{
 					"type": "image",
@@ -2923,56 +2455,33 @@
 						"type": "internal",
 						"path": "bestiary/GGR/Shadow Horror.webp"
 					},
-					"credit": "Igor Kieryluk",
-					"width": 958,
-					"height": 700
+					"credit": "Adam Paquette",
+					"width": 1000,
+					"height": 730
 				}
 			]
 		},
 		{
 			"name": "Sire of Insanity",
 			"source": "GGR",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"entries": [
-										"Rakdos nightclubs, where visitors can indulge any dark desire and revel in sadistic spectacle, are the favored haunts of the demons known as sires of insanity. Lurking in an underground vault beneath a Rakdos operation, a sire of insanity feasts on the violence, torment, and depravity unfolding above. Occasionally, cultists bring would-be recruits to the demon's presence, and\u2014true to its name\u2014the sire of insanity breaks the new cultist's mind.",
-										"A sire of insanity is a bloated demon resembling a bipedal lizard. It stands some thirty feet tall and weighs many thousands of pounds, so it tends to keep hidden away in its subterranean lair, working its evil from the shadows."
-									]
-								},
-								{
-									"type": "entries",
-									"name": "Demons",
-									"entries": [
-										"Just as angels are incarnations of the ideals of justice, demons embody depraved impulses: selfishness, cruelty, hatred, greed, and lust for power. Demons are strongly associated with the Cult of Rakdos; in fact, the demons of Ravnica might have been created by Rakdos in the same way that angels were created by the Boros Legion's founder. As a demon lord who has chosen to live in Ravnica, Rakdos claims authority over all the demons of this world-even if some of them, ambitious and headstrong as demons are, rebel against his authority.",
-										"Demons are agents of destruction that work their acts of terror in plain sight under the auspices of the Cult of Rakdos. They exhibit their cruelty in dramatic performances that leave the audience members blood-soaked but ecstatic. They incite mob riots that raze entire city blocks. The only thing demons fear is Rakdos himself, who doesn't tolerate rivals and hates to be upstaged.",
-										{
-											"name": "Demonic \"Devils\"",
-											"entries": [
-												"The creatures called \"devils\" in Ravnica are minor demons akin to {@creature quasit||quasits}. While the larger demons embody evil qualities such as blood lust and torment, these lesser demons reflect the whimsical and chaotic side of Rakdos and his cult. Their mischievous antics cause disorder and destruction out of proportion to the demons' small size."
-											],
-											"type": "entries"
-										},
-										{
-											"name": "Diabolic Demons",
-											"type": "entries",
-											"entries": [
-												"Many of the demons of Ravnica are monstrous, winged creatures of human-like form. They are best represented by the statistics of the {@creature nalfeshnee}, the {@creature shadow demon}, or the {@creature vrock} in the Monster Manual. Demons associated with the Cult of Rakdos often have fiery attacks that make them similar to barbed devils or horned devils, except that they are demons. (They are chaotic evil, they speak Abyssal and not Infernal, and they lack Devil's Sight.)"
-											]
-										}
-									]
-								}
-							]
-						}
-					]
+			"_copy": {
+				"name": "Ravnos Demon",
+				"source": "GGR",
+				"_mod": {
+					"entries": {
+						"mode": "prependArr",
+						"items": [
+							{
+								"type": "section",
+								"entries": [
+									"Rakdos nightclubs, where visitors can indulge any dark desire and revel in sadistic spectacle, are the favored haunts of the demons known as sires of insanity. Lurking in an underground vault beneath a Rakdos operation, a sire of insanity feasts on the violence, torment, and depravity unfolding above. Occasionally, cultists bring would-be recruits to the demon's presence, and\u2014true to its name\u2014the sire of insanity breaks the new cultist's mind.",
+									"A sire of insanity is a bloated demon resembling a bipedal lizard. It stands some thirty feet tall and weighs many thousands of pounds, so it tends to keep hidden away in its subterranean lair, working its evil from the shadows."
+								]
+							}
+						]
+					}
 				}
-			],
+			},
 			"images": [
 				{
 					"type": "image",
@@ -2989,133 +2498,10 @@
 		{
 			"name": "Skittering Horror",
 			"source": "GGR",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"name": "Horrors and Madness",
-									"entries": [
-										"Horrors on Ravnica are terror and madness personified. You can represent this reality by using the madness rules in the Dungeon Master's Guide.",
-										"Whenever a character fails a saving throw against the flying horror's Frightening Screech, the shadow horror's claw attack, or the skittering horror's Maddening Presence, note that fact. At the end of the encounter, have each character who failed at least one of those saving throws make a {@dc 13} Wisdom saving throw. On a successful save, nothing happens. On a failed save, a character gains a form of madness from the Dungeon Master's Guide, with the severity depending on how many of the saving throws that character failed during the encounter, as shown on the Madness Severity table."
-									]
-								},
-								{
-									"type": "entries",
-									"entries": [
-										{
-											"type": "table",
-											"caption": "Madness Severity",
-											"colLabels": [
-												"Failed Saves",
-												"Madness"
-											],
-											"colStyles": [
-												"col-2 text-center",
-												"col-10"
-											],
-											"rows": [
-												[
-													"1",
-													"Short-term"
-												],
-												[
-													"2-3",
-													"Long-term"
-												],
-												[
-													"4+",
-													"Indefinite"
-												]
-											]
-										}
-									]
-								},
-								{
-									"type": "entries",
-									"name": "Horrors",
-									"entries": [
-										"Terrifying evils stalk, fly, and scuttle in the dark corners of Ravnica, from the depths of the undercity to the blackest parts of the night sky. Collectively, these creatures are called horrors-a variety of things that lurk in the dark and embody the deepest fears of Ravnica's people. All are evil creatures with dim reason and preternatural cunning.",
-										"At least three guilds have been known to compel horrors into service. For House Dimir, horrors spread fear and despair in the citizenry and carry out assassinations or kidnappings against well-protected targets. For the Cult of Rakdos, horrors are simply one more weapon in an arsenal of terrifying and shock-inspiring creatures that might appear on stage. For the Golgari Swarm, horrors scavenge the sewers and protect the guild's territory.",
-										"House Dimir uses all three base kinds of horrors. The Cult of Rakdos prefers shadow horrors, and the Golgari Swarm uses skittering horrors."
-									]
-								},
-								{
-									"type": "entries",
-									"name": "Customizing a Horror",
-									"entries": [
-										"Horrors share some common body types but vary wildly in other characteristics. A particular horror's form might incorporate elements that resemble fiendish, insectile, or reptilian features. To customize a horror, choose a base creature (flying horror, shadow horror, or skittering horror), then roll once on the Primary Features table and once on the Secondary Features table (or choose an option from each table). Add those features to the base creature.",
-										{
-											"type": "table",
-											"caption": "Primary Features",
-											"colLabels": [
-												"d4",
-												"Feature"
-											],
-											"colStyles": [
-												"col-2 text-center",
-												"col-10"
-											],
-											"rows": [
-												[
-													"1",
-													"Avoidance. If the horror is subjected to an effect that allows it to make a saving throw to take only half damage, it instead takes no damage if it succeeds on the saving throw, and only half damage if it fails."
-												],
-												[
-													"2",
-													"Damage Resistances. The horror has resistance to necrotic and psychic damage."
-												],
-												[
-													"3",
-													"Innate Spellcasting. The horror's innate spellcasting ability is Charisma (spell save {@dc 13} for flying horror, {@dc 16} for shadow horror, and {@dc 17} for skittering horror). It can innately cast the following spells, requiring no material components: 3/day: {@spell darkness} 1/day each: {@spell fear} (shadow horror and skittering horror only), {@spell phantasmal killer} (skittering horror only)"
-												],
-												[
-													"4",
-													"Psychic Rebuke. When the horror takes damage from a melee attack, it can use its reaction to emit psychic energy within a 5-foot radius. Each creature in that area takes 3 ({@damage 1d6}) psychic damage (flying horror), 7 ({@damage 2d6}) psychic damage (shadow horror), or 10 ({@damage 3d6}) psychic damage (skittering horror)."
-												]
-											]
-										},
-										{
-											"type": "table",
-											"caption": "Secondary Features",
-											"colLabels": [
-												"d4",
-												"Feature"
-											],
-											"colStyles": [
-												"col-2 text-center",
-												"col-10"
-											],
-											"rows": [
-												[
-													"1",
-													"Grasping Tendrils. The horror has four tendrils. Each tendril can be attacked (AC 12, 10 hit points). Destroying one deals no damage to the horror. As a bonus action, the horror can target one creature it can see within 10 feet of it. The target must succeed on a Dexterity saving throw or be {@condition grappled} by the horror. The DC of the saving throw and the DC to escape the grapple are the same: 9 for the flying horror, 13 for the shadow horror, and 19 for the skittering horror. Until the grapple ends, the horror can't use the same tendril to grapple another target."
-												],
-												[
-													"2",
-													"Indomitable Mind. The horror is immune to the {@condition charmed} condition."
-												],
-												[
-													"3",
-													"Keen Senses. The horror has advantage on Wisdom ({@skill Perception}) checks that rely on sight, sound, or smell."
-												],
-												[
-													"4",
-													"Mind Sight. Magical darkness doesn't impede the horror's {@sense darkvision}."
-												]
-											]
-										}
-									]
-								}
-							]
-						}
-					]
-				}
-			],
+			"_copy": {
+				"name": "Horror",
+				"source": "GGR"
+			},
 			"images": [
 				{
 					"type": "image",
@@ -3286,6 +2672,36 @@
 			]
 		},
 		{
+			"name": "Thull",
+			"source": "GGR",
+			"entries": [
+				{
+					"type": "section",
+					"name": "Thrulls",
+					"entries": [
+						"When the Orzhov Syndicate rips a soul from its body to create a spirit, the cast-off remains go to the fleshmages, who use their necromantic magic to liquefy the corpse and transform it into something useful. These creations become thrulls, obedient slaves that serve in a variety of menial roles: laborers, messengers, beasts of burden, and even fashion accessories for the elite. Whatever tasks they perform, they wear faceplates forged from devalued coinage to conceal their ghastly features.",
+						{
+							"type": "entries",
+							"entries": [
+								{
+									"type": "entries",
+									"entries": [
+										{
+											"name": "Construct Nature",
+											"type": "entries",
+											"entries": [
+												"A thrull doesn't require air, food, drink, or sleep."
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Trostani",
 			"source": "GGR",
 			"entries": [
@@ -3358,40 +2774,39 @@
 			]
 		},
 		{
-			"name": "Winged Thrull",
+			"name": "Vampire",
 			"source": "GGR",
 			"entries": [
 				{
-					"type": "entries",
+					"type": "section",
+					"name": "Vampires",
 					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"entries": [
-										"Winged thrulls are at once the most intelligent of Orzhov thrulls (which isn't saying much), as well as the smallest, most unobtrusive, and most mobile. They act as messengers and spies for their Orzhov masters and tend to mimic the mannerisms and movements of the oligarchs they serve."
-									]
-								},
-								{
-									"type": "entries",
-									"name": "Thrulls",
-									"entries": [
-										"When the Orzhov Syndicate rips a soul from its body to create a spirit, the cast-off remains go to the fleshmages, who use their necromantic magic to liquefy the corpse and transform it into something useful. These creations become thrulls, obedient slaves that serve in a variety of menial roles: laborers, messengers, beasts of burden, and even fashion accessories for the elite. Whatever tasks they perform, they wear faceplates forged from devalued coinage to conceal their ghastly features.",
-										{
-											"name": "Construct Nature",
-											"type": "entries",
-											"entries": [
-												"A thrull doesn't require air, food, drink, or sleep."
-											]
-										}
-									]
-								}
-							]
-						}
+						"Creatures of the night, vampires are ageless undead beings who subsist on the blood of the living. They are fierce predators who mask their ravenous thirst behind a facade of sophistication and sensuality. Those who sip blood from golden chalices are no less voracious than those who tear out their victims' throats with their fangs; they just hide it better.",
+						"The vampires of Ravnica differ from those in the Monster Manual in important ways. They lack the traits and abilities that those other vampires boast, but also lack the weaknesses that hinder such vampires. What they have in common is an unquenchable thirst for the blood that sustains their undead existence."
 					]
 				}
-			],
+			]
+		},
+		{
+			"name": "Winged Thrull",
+			"source": "GGR",
+			"_copy": {
+				"name": "Thull",
+				"source": "GGR",
+				"_mod": {
+					"entries": {
+						"mode": "prependArr",
+						"items": [
+							{
+								"type": "section",
+								"entries": [
+									"Winged thrulls are at once the most intelligent of Orzhov thrulls (which isn't saying much), as well as the smallest, most unobtrusive, and most mobile. They act as messengers and spies for their Orzhov masters and tend to mimic the mannerisms and movements of the oligarchs they serve."
+								]
+							}
+						]
+					}
+				}
+			},
 			"images": [
 				{
 					"type": "image",

@@ -8,7 +8,7 @@ export class Counter extends DmScreenPanelAppBase {
 	}
 
 	_getPanelElement (board, state) {
-		const wrpPanel = ee`<div class="w-100 h-100 dm-cnt__root dm__panel-bg dm__data-anchor"></div>`;
+		const wrpPanel = ee`<div class="ve-w-100 ve-h-100 dm-cnt__root dm__panel-bg dm__data-anchor"></div>`;
 		this._comp = new CounterRoot(board, wrpPanel);
 		this._comp.setStateFrom(state);
 		this._comp.render(wrpPanel);
@@ -42,7 +42,7 @@ class CounterRoot extends CounterComponent {
 
 		const pod = this.getPod();
 
-		this._wrpRows = ee`<div class="ve-flex-col w-100 h-100 ve-overflow-y-auto relative"></div>`;
+		this._wrpRows = ee`<div class="ve-flex-col ve-w-100 ve-h-100 ve-overflow-y-auto ve-relative"></div>`;
 		this._childComps.forEach(comp => comp.render(this._wrpRows, pod));
 
 		const btnAdd = ee`<button class="ve-btn ve-btn-primary ve-btn-xs"><span class="glyphicon glyphicon-plus"></span> Add Counter</button>`
@@ -53,10 +53,10 @@ class CounterRoot extends CounterComponent {
 				this._board.doSaveStateDebounced();
 			});
 
-		ee`<div class="w-100 h-100 ve-flex-col px-2 pb-3">
-			<div class="no-shrink pt-4"></div>
+		ee`<div class="ve-w-100 ve-h-100 ve-flex-col ve-px-2 ve-pb-3">
+			<div class="ve-no-shrink ve-pt-4"></div>
 			${this._wrpRows}
-			<div class="no-shrink ve-flex-h-right">${btnAdd}</div>
+			<div class="ve-no-shrink ve-flex-h-right">${btnAdd}</div>
 		</div>`.appendTo(eleParent);
 	}
 
@@ -120,10 +120,10 @@ class CounterRow extends CounterComponent {
 	render (eleParent, parent) {
 		this._parent = parent;
 
-		const iptName = ComponentUiUtil.getIptStr(this, "name").addClass("mr-2").addClass("small-caps");
+		const iptName = ComponentUiUtil.getIptStr(this, "name").addClass("ve-mr-2").addClass("ve-small-caps");
 
-		const iptCur = ComponentUiUtil.getIptInt(this, "current", 0, {ele: ee`<input class="form-control input-xs form-control--minimal ve-text-center dm-cnt__ipt dm-cnt__ipt--cur bold">`});
-		const iptMax = ComponentUiUtil.getIptInt(this, "max", 0, {ele: ee`<input class="form-control input-xs form-control--minimal ve-text-center dm-cnt__ipt dm-cnt__ipt--max mr-2 ve-muted bold">`});
+		const iptCur = ComponentUiUtil.getIptInt(this, "current", 0, {ele: ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-center dm-cnt__ipt dm-cnt__ipt--cur ve-bold">`});
+		const iptMax = ComponentUiUtil.getIptInt(this, "max", 0, {ele: ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-center dm-cnt__ipt dm-cnt__ipt--max ve-mr-2 ve-muted ve-bold">`});
 
 		const hookDisplayMinMax = () => {
 			iptCur.removeClass("text-success").removeClass("text-danger");
@@ -146,14 +146,14 @@ class CounterRow extends CounterComponent {
 				removeRow(this);
 			});
 
-		this._eleRow = ee`<div class="ve-flex-v-center w-100 py-1">
+		this._eleRow = ee`<div class="ve-flex-v-center ve-w-100 ve-py-1">
 			${iptName}
-			<div class="relative ve-flex-vh-center">
+			<div class="ve-relative ve-flex-vh-center">
 				${iptCur}
 				<div class="dm-cnt__slash ve-muted ve-text-center">/</div>
 				${iptMax}
 			</div>
-			<div class="ve-flex ve-btn-group mr-2">
+			<div class="ve-flex ve-btn-group ve-mr-2">
 				${btnDown}
 				${btnUp}
 			</div>

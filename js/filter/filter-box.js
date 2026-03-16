@@ -55,12 +55,12 @@ export class FilterBox extends ProxyBase {
 		if (opts.$wrpMiniPills && opts.wrpMiniPills) throw new Error(`Only one of "$wrpMiniPills" and "wrpMiniPills" may be specified!`);
 		if (opts.$btnToggleSummaryHidden && opts.btnToggleSummaryHidden) throw new Error(`Only one of "$btnToggleSummaryHidden" and "btnToggleSummaryHidden" may be specified!`);
 
-		if (opts.$wrpFormTop && !opts.wrpFormTop) opts.wrpFormTop = e_({ele: opts.$wrpFormTop[0]});
-		if (opts.$btnReset && !opts.btnReset) opts.btnReset = e_({ele: opts.$btnReset[0]});
-		if (opts.$btnOpen && !opts.btnOpen) opts.btnOpen = e_({ele: opts.$btnOpen[0]});
-		if (opts.$iptSearch && !opts.iptSearch) opts.iptSearch = e_({ele: opts.$iptSearch[0]});
-		if (opts.$wrpMiniPills && !opts.wrpMiniPills) opts.wrpMiniPills = e_({ele: opts.$wrpMiniPills[0]});
-		if (opts.$btnToggleSummaryHidden && !opts.btnToggleSummaryHidden) opts.btnToggleSummaryHidden = e_({ele: opts.$btnToggleSummaryHidden[0]});
+		if (opts.$wrpFormTop?.length && !opts.wrpFormTop) opts.wrpFormTop = e_({ele: opts.$wrpFormTop[0]});
+		if (opts.$btnReset?.length && !opts.btnReset) opts.btnReset = e_({ele: opts.$btnReset[0]});
+		if (opts.$btnOpen?.length && !opts.btnOpen) opts.btnOpen = e_({ele: opts.$btnOpen[0]});
+		if (opts.$iptSearch?.length && !opts.iptSearch) opts.iptSearch = e_({ele: opts.$iptSearch[0]});
+		if (opts.$wrpMiniPills?.length && !opts.wrpMiniPills) opts.wrpMiniPills = e_({ele: opts.$wrpMiniPills[0]});
+		if (opts.$btnToggleSummaryHidden?.length && !opts.btnToggleSummaryHidden) opts.btnToggleSummaryHidden = e_({ele: opts.$btnToggleSummaryHidden[0]});
 		/* eslint-enable vet-jquery/jquery */
 		// endregion
 
@@ -217,9 +217,9 @@ export class FilterBox extends ProxyBase {
 
 		if (this._wrpFormTop || this._wrpMiniPills) {
 			if (!this._wrpMiniPills) {
-				this._wrpMiniPills = ee`<div class="fltr__mini-view ve-btn-group"></div>`.insertAfter(this._wrpFormTop);
+				this._wrpMiniPills = ee`<div class="ve-fltr__mini-view ve-btn-group"></div>`.insertAfter(this._wrpFormTop);
 			} else {
-				this._wrpMiniPills.addClass("fltr__mini-view");
+				this._wrpMiniPills.addClass("ve-fltr__mini-view");
 			}
 		}
 
@@ -231,7 +231,7 @@ export class FilterBox extends ProxyBase {
 
 		if (this._wrpFormTop || this._btnToggleSummaryHidden) {
 			if (!this._btnToggleSummaryHidden) {
-				this._btnToggleSummaryHidden = ee`<button class="ve-btn ve-btn-default ${this._isCompact ? "p-2" : ""}" title="Toggle Filter Summary"><span class="glyphicon glyphicon-resize-small"></span></button>`
+				this._btnToggleSummaryHidden = ee`<button class="ve-btn ve-btn-default ${this._isCompact ? "ve-p-2" : ""}" title="Toggle Filter Summary"><span class="glyphicon glyphicon-resize-small"></span></button>`
 					.prependTo(this._wrpFormTop);
 			} else if (!this._btnToggleSummaryHidden.parente()) {
 				this._btnToggleSummaryHidden.prependTo(this._wrpFormTop);
@@ -242,8 +242,8 @@ export class FilterBox extends ProxyBase {
 					this._doSaveStateThrottled();
 				});
 			const summaryHiddenHook = () => {
-				this._btnToggleSummaryHidden.toggleClass("active", !!this._meta.isSummaryHidden);
-				this._wrpMiniPills.toggleClass("ve-hidden", !!this._meta.isSummaryHidden);
+				this._btnToggleSummaryHidden.toggleClass("ve-active", !!this._meta.isSummaryHidden);
+				if (this._wrpMiniPills) this._wrpMiniPills.toggleClass("ve-hidden", !!this._meta.isSummaryHidden);
 			};
 			this._addHook("meta", "isSummaryHidden", summaryHiddenHook);
 			summaryHiddenHook();
@@ -251,7 +251,7 @@ export class FilterBox extends ProxyBase {
 
 		if (this._wrpFormTop || this._btnOpen) {
 			if (!this._btnOpen) {
-				this._btnOpen = ee`<button class="ve-btn ve-btn-default ${this._isCompact ? "px-2" : ""}">Filter</button>`
+				this._btnOpen = ee`<button class="ve-btn ve-btn-default ${this._isCompact ? "ve-px-2" : ""}">Filter</button>`
 					.prependTo(this._wrpFormTop);
 			} else if (!this._btnOpen.parente()) {
 				this._btnOpen.prependTo(this._wrpFormTop);
@@ -300,7 +300,7 @@ export class FilterBox extends ProxyBase {
 
 		this._metaIptSearch = ComponentUiUtil.getIptStr(
 			this._compSearch, "search",
-			{decorationRight: "clear", asMeta: true, html: `<input class="form-control input-xs" placeholder="Search...">`},
+			{decorationRight: "clear", asMeta: true, html: `<input class="ve-form-control ve-input-xs" placeholder="Search...">`},
 		);
 		this._compSearch._addHookBase("search", () => {
 			const searchTerm = this._compSearch._state.search.toLowerCase();
@@ -312,7 +312,7 @@ export class FilterBox extends ProxyBase {
 		const btnHideAllFilters = ee`<button class="ve-btn ve-btn-xs ve-btn-default">Hide All</button>`
 			.onn("click", () => this.hideAllFilters());
 
-		const btnReset = ee`<button class="ve-btn ve-btn-xs ve-btn-default mr-3" title="${TITLE_BTN_RESET}">Reset</button>`
+		const btnReset = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-3" title="${TITLE_BTN_RESET}">Reset</button>`
 			.onn("click", evt => this.reset(evt.shiftKey));
 
 		const btnSnapshotManager = this._snapshotManager.getBtn();
@@ -323,7 +323,7 @@ export class FilterBox extends ProxyBase {
 		const btnSaveAlt = ee`<button class="ve-btn ve-btn-xs ve-btn-primary" title="Save"><span class="glyphicon glyphicon-ok"></span></button>`
 			.onn("click", () => this._modalMeta.doClose(true));
 
-		const wrpBtnCombineFilters = ee`<div class="ve-btn-group mr-3"></div>`;
+		const wrpBtnCombineFilters = ee`<div class="ve-btn-group ve-mr-3"></div>`;
 		const btnCombineFilterSettings = ee`<button class="ve-btn ve-btn-xs ve-btn-default"><span class="glyphicon glyphicon-cog"></span></button>`
 			.onn("click", () => this._pOpenCombineAsModal());
 
@@ -343,29 +343,29 @@ export class FilterBox extends ProxyBase {
 		this._addHook("meta", "modeCombineFilters", hook);
 		hook();
 
-		const btnSave = ee`<button class="ve-btn ve-btn-primary fltr__btn-close mr-2">Save</button>`
+		const btnSave = ee`<button class="ve-btn ve-btn-primary ve-fltr__btn-close ve-mr-2">Save</button>`
 			.onn("click", () => this._modalMeta.doClose(true));
 
-		const btnCancel = ee`<button class="ve-btn ve-btn-default fltr__btn-close">Cancel</button>`
+		const btnCancel = ee`<button class="ve-btn ve-btn-default ve-fltr__btn-close">Cancel</button>`
 			.onn("click", () => this._modalMeta.doClose(false));
 
-		ee(this._modalMeta.eleModal)`<div class="split mb-2 mt-2 ve-flex-v-center mobile-sm__ve-flex-col">
-			<div class="ve-flex-v-baseline mobile-sm__ve-flex-col">
-				<h4 class="m-0 mr-2 mobile-sm__mb-2">Filters</h4>
-				${this._metaIptSearch.wrp.addClass("mobile-sm__mb-2")}
+		ee(this._modalMeta.eleModal)`<div class="ve-split ve-mb-2 ve-mt-2 ve-flex-v-center ve-mobile-sm__ve-flex-col">
+			<div class="ve-flex-v-baseline ve-mobile-sm__ve-flex-col">
+				<h4 class="ve-m-0 ve-mr-2 ve-mobile-sm__mb-2">Filters</h4>
+				${this._metaIptSearch.wrp.addClass("ve-mobile-sm__mb-2")}
 			</div>
-			<div class="ve-flex-v-center mobile-sm__ve-flex-col">
-				<div class="ve-flex-v-center mobile-sm__m-1">
-					<div class="mr-2">Combine as</div>
+			<div class="ve-flex-v-center ve-mobile-sm__ve-flex-col">
+				<div class="ve-flex-v-center ve-mobile-sm__m-1">
+					<div class="ve-mr-2">Combine as</div>
 					${wrpBtnCombineFilters}
 				</div>
-				<div class="ve-flex-v-center mobile-sm__m-1">
-					<div class="ve-btn-group mr-2 ve-flex-h-center">
+				<div class="ve-flex-v-center ve-mobile-sm__m-1">
+					<div class="ve-btn-group ve-mr-2 ve-flex-h-center">
 						${btnShowAllFilters}
 						${btnHideAllFilters}
 					</div>
 					${btnReset}
-					<div class="ve-btn-group mr-3 ve-flex-h-center">
+					<div class="ve-btn-group ve-mr-3 ve-flex-h-center">
 						${btnSnapshotManager}
 						${btnSettings}
 					</div>
@@ -373,13 +373,13 @@ export class FilterBox extends ProxyBase {
 				</div>
 			</div>
 		</div>
-		<hr class="w-100 m-0 mb-2">
+		<hr class="ve-w-100 ve-m-0 ve-mb-2">
 
-		<div class="ui-modal__scroller smooth-scroll px-1">
+		<div class="ve-ui-modal__scroller ve-smooth-scroll ve-px-1">
 			${children}
 		</div>
-		<hr class="my-1 w-100">
-		<div class="w-100 ve-flex-vh-center my-1">${btnSave}${btnCancel}</div>`;
+		<hr class="ve-my-1 ve-w-100">
+		<div class="ve-w-100 ve-flex-vh-center ve-my-1">${btnSave}${btnCancel}</div>`;
 	}
 
 	async _pOpenSettingsModal () {
@@ -395,7 +395,7 @@ export class FilterBox extends ProxyBase {
 
 		UiUtil.addModalSep(eleModalInner);
 
-		const rowResetAlwaysSave = UiUtil.getAddModalRow(eleModalInner, "div").addClass("pr-2");
+		const rowResetAlwaysSave = UiUtil.getAddModalRow(eleModalInner, "div").addClass("ve-pr-2");
 		rowResetAlwaysSave.appends(`<span>Always Save on Close</span>`);
 		ee`<button class="ve-btn ve-btn-xs ve-btn-default">Reset</button>`
 			.appendTo(rowResetAlwaysSave)

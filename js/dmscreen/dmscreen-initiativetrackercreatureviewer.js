@@ -49,7 +49,7 @@ export class InitiativeTrackerCreatureViewer extends BaseComponent {
 	}
 
 	render () {
-		const out = ee`<div class="ve-flex-col w-100 h-100 min-h-0">
+		const out = ee`<div class="ve-flex-col ve-w-100 ve-h-100 ve-min-h-0">
 			${this._render_getStgNoTrackerAvailable()}
 			${this._render_getStgConnect()}
 			${this._render_getStgCreature()}
@@ -70,8 +70,8 @@ export class InitiativeTrackerCreatureViewer extends BaseComponent {
 	}
 
 	_render_getStgNoTrackerAvailable () {
-		const stg = ee`<div class="ve-flex-vh-center w-100 h-100 min-h-0">
-			<div class="dnd-font italic small-caps ve-muted">No Initiative Tracker available.</div>
+		const stg = ee`<div class="ve-flex-vh-center ve-w-100 ve-h-100 ve-min-h-0">
+			<div class="ve-dnd-font ve-italic ve-small-caps ve-muted">No Initiative Tracker available.</div>
 		</div>`;
 
 		const hkIsVisible = () => stg.toggleVe(!this._state.isActive && !this._state.cntPanelsAvailable);
@@ -83,7 +83,7 @@ export class InitiativeTrackerCreatureViewer extends BaseComponent {
 	}
 
 	_render_getStgConnect () {
-		const btnConnectConnect = ee`<button class="ve-btn ve-btn-primary min-w-200p">Connect to Tracker</button>`
+		const btnConnectConnect = ee`<button class="ve-btn ve-btn-primary ve-min-w-200p">Connect to Tracker</button>`
 			.onn("click", async () => {
 				const panelApps = DmScreenUtil.getPanelApps({board: this._board, type: PANEL_TYP_INITIATIVE_TRACKER});
 
@@ -95,7 +95,7 @@ export class InitiativeTrackerCreatureViewer extends BaseComponent {
 					title: "Select Tracker",
 				});
 
-				const selTracker = ee`<select class="form-control input-xs mb-2">
+				const selTracker = ee`<select class="ve-form-control ve-input-xs ve-mb-2">
 					<option value="-1" disabled>Select tracker</option>
 					${panelApps.map((panelApp, i) => `<option value="${i}">${panelApp.getSummary()}</option>`).join("")}
 				</select>`
@@ -123,7 +123,7 @@ export class InitiativeTrackerCreatureViewer extends BaseComponent {
 				this._setLinkedTrackerFromPanelApp({panelApp: panelApps[ixSel]});
 			});
 
-		const stg = ee`<div class="ve-flex-vh-center w-100 h-100 min-h-0">
+		const stg = ee`<div class="ve-flex-vh-center ve-w-100 ve-h-100 ve-min-h-0">
 			${btnConnectConnect}
 		</div>`;
 
@@ -138,7 +138,7 @@ export class InitiativeTrackerCreatureViewer extends BaseComponent {
 	_render_getStgCreature () {
 		const dispCreature = e_({
 			tag: "div",
-			clazz: "ve-flex-col w-100 h-100 min-h-0",
+			clazz: "ve-flex-col ve-w-100 ve-h-100 ve-min-h-0",
 		});
 
 		const lock = new VeLock({name: "Creature display"});
@@ -154,9 +154,9 @@ export class InitiativeTrackerCreatureViewer extends BaseComponent {
 				})
 				: null;
 
-			if (!mon) return dispCreature.innerHTML = `<div class="dnd-font italic small-caps ve-muted ve-flex-vh-center w-100 h-100">No active creature.</div>`;
+			if (!mon) return dispCreature.innerHTML = `<div class="ve-dnd-font ve-italic ve-small-caps ve-muted ve-flex-vh-center ve-w-100 ve-h-100">No active creature.</div>`;
 
-			dispCreature.innerHTML = `<table class="w-100 stats"><tbody>${Renderer.monster.getCompactRenderedString(mon, {isShowScalers: false})}</tbody></table>`;
+			dispCreature.innerHTML = `<table class="ve-w-100 ve-stats"><tbody>${Renderer.monster.getCompactRenderedString(mon, {isShowScalers: false})}</tbody></table>`;
 		};
 
 		this._addHookBase("creaturePulse", async () => {
@@ -168,7 +168,7 @@ export class InitiativeTrackerCreatureViewer extends BaseComponent {
 			}
 		})().then(null);
 
-		const stg = ee`<div class="ve-flex-col w-100 h-100 min-h-0 ve-overflow-y-auto">
+		const stg = ee`<div class="ve-flex-col ve-w-100 ve-h-100 ve-min-h-0 ve-overflow-y-auto">
 			${dispCreature}
 		</div>`;
 

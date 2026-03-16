@@ -9,7 +9,7 @@ const onLoadSeo = async () => {
 	document.title = `${it.name} - 5etools`;
 	es(`.page__title`).txt(`${globalThis._SEO_PAGE.toTitleCase()}: ${it.name}`);
 
-	ee`<div class="ve-col-12 ve-flex-vh-center my-2 pt-3 no-print">
+	ee`<div class="ve-col-12 ve-flex-vh-center ve-my-2 ve-pt-3 no-print">
 		<button class="ve-btn ve-btn-primary">
 			<a href="/${globalThis._SEO_PAGE}.html" style="font-size: 1.7em; color: white;">View All</a>
 		</button>
@@ -48,9 +48,9 @@ const onLoadSeo = async () => {
 		if (fluff) {
 			const eleFluff = Renderer.hover.getHoverContent_fluff(globalThis._SEO_PAGE, fluff, null, {isSkipNameRow: true, isSkipPageRow: true})
 				.addClass("shadow-big")
-				.addClass("stats--book")
-				.addClass("stats--book-large");
-			ee`<div class="mt-5 py-2">${eleFluff}</div>`.insertAfter(wrpContent);
+				.addClass("ve-stats--book")
+				.addClass("ve-stats--book-large");
+			ee`<div class="ve-mt-5 ve-py-2">${eleFluff}</div>`.insertAfter(wrpContent);
 		}
 	}
 };

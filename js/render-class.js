@@ -52,7 +52,7 @@ class _RenderClassesSidebarImplBase {
 
 		const btnToggleSidebar = e_({
 			tag: "div",
-			clazz: "cls-side__btn-toggle no-select",
+			clazz: "cls-side__btn-toggle ve-no-select",
 			text: `[\u2212]`,
 			click: () => comp._state.isHideSidebar = !comp._state.isHideSidebar,
 		});
@@ -61,7 +61,7 @@ class _RenderClassesSidebarImplBase {
 		})();
 
 		return ee`<tr><th colspan="6" class="ve-text-left">
-			<div class="split-v-center pr-1" ${dataPartSendToFoundry}>
+			<div class="ve-split-v-center ve-pr-1" ${dataPartSendToFoundry}>
 				<div class="cls-side__name">${cls.name}</div>
 				<div class="ve-flex-v-center">${btnSendToFoundry}${btnToggleSidebar}</div>
 			</div>
@@ -216,7 +216,7 @@ class _RenderClassesSidebarImplBase {
 	_getCommonElements_page ({comp, cls, renderer}) {
 		const ele = e_({
 			tag: "tr",
-			html: `<td class="cls-side__section pt-3" colspan="6">
+			html: `<td class="cls-side__section ve-pt-3" colspan="6">
 				${Renderer.utils.getSourceAndPageTrHtml(cls)}
 			</td>`,
 		});
@@ -346,7 +346,7 @@ class _RenderClassesSidebarImplClassic extends _RenderClassesSidebarImplBase {
 			renderer,
 		});
 
-		return ee`<table class="w-100 stats shadow-big cls__stats">
+		return ee`<table class="ve-w-100 ve-stats shadow-big cls__stats">
 			<tr><th class="ve-tbl-border" colspan="6"></th></tr>
 
 			${eleName}
@@ -396,7 +396,7 @@ class _RenderClassesSidebarImplOne extends _RenderClassesSidebarImplBase {
 			Renderer.class.getHtmlPtStartingEquipment(cls, {renderer, styleHint: this._style}),
 		]
 			.filter(Boolean)
-			.join(`<div class="py-2 w-100"></div>`);
+			.join(`<div class="ve-py-2 ve-w-100"></div>`);
 
 		const ele = e_({
 			tag: "tr",
@@ -436,7 +436,7 @@ class _RenderClassesSidebarImplOne extends _RenderClassesSidebarImplBase {
 			renderer,
 		});
 
-		return ee`<table class="w-100 stats shadow-big cls__stats">
+		return ee`<table class="ve-w-100 ve-stats shadow-big cls__stats">
 			<tr><th class="ve-tbl-border" colspan="6"></th></tr>
 
 			${eleName}

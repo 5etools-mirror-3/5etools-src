@@ -202,14 +202,14 @@ export class MultiFilter extends FilterBase {
 	_getHeaderControls (opts) {
 		const wrpSummary = e_({
 			tag: "div",
-			clazz: "fltr__summary_item",
+			clazz: "ve-fltr__summary_item",
 		}).hideVe();
 
 		const btnForceMobile = this._isAddDropdownToggle ? ComponentUiUtil.getBtnBool(
 			this,
 			"isUseDropdowns",
 			{
-				ele: ee`<button class="ve-btn ve-btn-default ve-btn-xs ml-2">Show as Dropdowns</button>`,
+				ele: ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-ml-2">Show as Dropdowns</button>`,
 				stateName: "uiMeta",
 				stateProp: "_uiMeta",
 			},
@@ -225,7 +225,7 @@ export class MultiFilter extends FilterBase {
 
 		const btnResetAll = e_({
 			tag: "button",
-			clazz: "ve-btn ve-btn-default ve-btn-xs ml-2",
+			clazz: "ve-btn ve-btn-default ve-btn-xs ve-ml-2",
 			text: "Reset All",
 			click: () => this._filters.forEach(it => it.reset()),
 		});
@@ -242,7 +242,7 @@ export class MultiFilter extends FilterBase {
 				wrpBtns,
 				e_({
 					tag: "div",
-					clazz: "ve-btn-group ve-flex-v-center ml-2",
+					clazz: "ve-btn-group ve-flex-v-center ve-ml-2",
 					children: [
 						btnShowHide,
 						this._getBtnMenu({isMulti: opts.isMulti}),
@@ -253,7 +253,7 @@ export class MultiFilter extends FilterBase {
 
 		const hkIsHidden = () => {
 			wrpBtns.toggleVe(!this._uiMeta.isHidden);
-			btnShowHide.toggleClass("active", this._uiMeta.isHidden);
+			btnShowHide.toggleClass("ve-active", this._uiMeta.isHidden);
 			this._wrpChildren.toggleVe(!this._uiMeta.isHidden);
 			wrpSummary.toggleVe(this._uiMeta.isHidden);
 
@@ -277,7 +277,7 @@ export class MultiFilter extends FilterBase {
 	render (opts) {
 		const btnAndOr = e_({
 			tag: "button",
-			clazz: `ve-btn ve-btn-default ve-btn-xxs italic w-70p`,
+			clazz: `ve-btn ve-btn-default ve-btn-xxs ve-italic ve-w-70p`,
 			click: () => this._state.mode = this._state.mode === "and" ? "or" : "and",
 			contextmenu: () => this._state.mode = this._state.mode === "and" ? "or" : "and",
 			title: `"Group AND" requires all filters in this group to match. "Group OR" required any filter in this group to match.`,
@@ -293,10 +293,10 @@ export class MultiFilter extends FilterBase {
 		const wrpControls = this._getHeaderControls(opts);
 
 		return this.__wrpFilter = ee`<div class="ve-flex-col">
-			${opts.isFirst ? "" : `<div class="fltr__dropdown-divider mb-1"></div>`}
-			<div class="split fltr__h fltr__h--multi ${this._minimalUi ? "fltr__minimal-hide" : ""} mb-1">
+			${opts.isFirst ? "" : `<div class="ve-fltr__dropdown-divider ve-mb-1"></div>`}
+			<div class="ve-split ve-fltr__h ve-fltr__h--multi ${this._minimalUi ? "ve-fltr__minimal-hide" : ""} ve-mb-1">
 				<div class="ve-flex-v-center">
-					<div class="mr-2">${this._getRenderedHeader()}</div>
+					<div class="ve-mr-2">${this._getRenderedHeader()}</div>
 					${btnAndOr}
 				</div>
 				${wrpControls}
@@ -377,7 +377,7 @@ export class MultiFilter extends FilterBase {
 		const isHeaderMatch = this._getHeaderDisplayName().toLowerCase().includes(searchTerm);
 
 		if (isHeaderMatch) {
-			if (this.__wrpFilter) this.__wrpFilter.toggleClass("fltr__hidden--search", false);
+			if (this.__wrpFilter) this.__wrpFilter.toggleClass("ve-fltr__hidden--search", false);
 			// Force-display the children if the parent is visible
 			this._filters.forEach(it => it.handleSearch(""));
 			return true;
@@ -385,7 +385,7 @@ export class MultiFilter extends FilterBase {
 
 		const numVisible = this._filters.map(it => it.handleSearch(searchTerm)).reduce((a, b) => a + b, 0);
 		if (!this.__wrpFilter) return;
-		this.__wrpFilter.toggleClass("fltr__hidden--search", numVisible === 0);
+		this.__wrpFilter.toggleClass("ve-fltr__hidden--search", numVisible === 0);
 	}
 
 	getDefaultMeta () {

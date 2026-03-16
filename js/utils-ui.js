@@ -422,15 +422,15 @@ class UiUtil {
 
 		const doTeardown = () => {
 			UiUtil._popFromModalStack(modalStackMeta);
-			if (!UiUtil._MODAL_STACK.length) doc.body.classList.remove(`ui-modal__body-active`);
+			if (!UiUtil._MODAL_STACK.length) doc.body.classList.remove(`ve-ui-modal__body-active`);
 		};
 
 		const doOpen = () => {
 			wrpOverlay.appendTo(doc.body);
-			doc.body.classList.add(`ui-modal__body-active`);
+			doc.body.classList.add(`ve-ui-modal__body-active`);
 		};
 
-		const wrpOverlay = e_({tag: "div", clazz: "ui-modal__overlay"});
+		const wrpOverlay = e_({tag: "div", clazz: "ve-ui-modal__overlay"});
 		if (opts.zIndex != null) wrpOverlay.style.zIndex = `${opts.zIndex}`;
 		if (opts.overlayColor != null) wrpOverlay.style.backgroundColor = `${opts.overlayColor}`;
 
@@ -438,54 +438,54 @@ class UiUtil {
 		const overlayBlind = opts.isFullscreenModal
 			? e_({
 				tag: "div",
-				clazz: `ui-modal__overlay-blind w-100 h-100 ve-flex-col`,
+				clazz: `ve-ui-modal__overlay-blind ve-w-100 ve-h-100 ve-flex-col`,
 			}).appendTo(wrpOverlay)
 			: null;
 
 		const wrpScroller = e_({
 			tag: "div",
-			clazz: `ui-modal__scroller ve-flex-col`,
+			clazz: `ve-ui-modal__scroller ve-flex-col`,
 		});
 
 		const modalWindowClasses = [
-			opts.isWidth100 ? `w-100` : "",
-			opts.isHeight100 ? "h-100" : "",
-			opts.isUncappedHeight ? "ui-modal__inner--uncap-height" : "",
-			opts.isUncappedWidth ? "ui-modal__inner--uncap-width" : "",
-			opts.isMinHeight0 ? `ui-modal__inner--no-min-height` : "",
-			opts.isMinWidth0 ? `ui-modal__inner--no-min-width` : "",
-			opts.isMaxWidth640p ? `ui-modal__inner--max-width-640p` : "",
-			opts.isFullscreenModal ? `ui-modal__inner--mode-fullscreen my-0 pt-0` : "",
-			opts.hasFooter ? `pb-0` : "",
+			opts.isWidth100 ? `ve-w-100` : "",
+			opts.isHeight100 ? "ve-h-100" : "",
+			opts.isUncappedHeight ? "ve-ui-modal__inner--uncap-height" : "",
+			opts.isUncappedWidth ? "ve-ui-modal__inner--uncap-width" : "",
+			opts.isMinHeight0 ? `ve-ui-modal__inner--no-min-height` : "",
+			opts.isMinWidth0 ? `ve-ui-modal__inner--no-min-width` : "",
+			opts.isMaxWidth640p ? `ve-ui-modal__inner--max-width-640p` : "",
+			opts.isFullscreenModal ? `ve-ui-modal__inner--mode-fullscreen ve-my-0 ve-pt-0` : "",
+			opts.hasFooter ? `ve-pb-0` : "",
 		].filter(Boolean);
 
 		const btnCloseModal = opts.isFullscreenModal ? e_({
 			tag: "button",
 			clazz: `ve-btn ve-btn-danger ve-btn-xs`,
-			html: `<span class="glyphicon glyphicon-remove></span>`,
+			html: `<span class="glyphicon glyphicon-remove"></span>`,
 			click: pHandleCloseClick(false),
 		}) : null;
 
 		const modalFooter = opts.hasFooter
 			? e_({
 				tag: "div",
-				clazz: `no-shrink w-100 ve-flex-col ui-modal__footer ${opts.isFullscreenModal ? `ui-modal__footer--fullscreen mt-1` : "mt-auto"}`,
+				clazz: `ve-no-shrink ve-w-100 ve-flex-col ve-ui-modal__footer ${opts.isFullscreenModal ? `ve-ui-modal__footer--fullscreen ve-mt-1` : "ve-mt-auto"}`,
 			})
 			: null;
 
 		const modal = e_({
 			tag: "div",
-			clazz: `ui-modal__inner ve-flex-col ${modalWindowClasses.join(" ")}`,
+			clazz: `ve-ui-modal__inner ve-flex-col ${modalWindowClasses.join(" ")}`,
 			children: [
 				!opts.isEmpty && opts.title
 					? e_({
 						tag: "div",
-						clazz: `split-v-center no-shrink ${opts.isHeaderBorder ? `ui-modal__header--border` : ""} ${opts.isFullscreenModal ? `ui-modal__header--fullscreen mb-1` : ""}`,
+						clazz: `ve-split-v-center ve-no-shrink ${opts.isHeaderBorder ? `ve-ui-modal__header--border` : ""} ${opts.isFullscreenModal ? `ve-ui-modal__header--fullscreen ve-mb-1` : ""}`,
 						children: [
 							opts.title
 								? e_({
 									tag: `h${opts.headerType || 4}`,
-									clazz: `my-2`,
+									clazz: `ve-my-2`,
 									html: opts.title.qq(),
 								})
 								: null,
@@ -594,11 +594,11 @@ class UiUtil {
 	}
 
 	static addModalSep (eleModalInner) {
-		eleModalInner.appends(`<hr class="hr-2">`);
+		eleModalInner.appends(`<hr class="ve-hr-2">`);
 	}
 
 	static getAddModalRow (eleModalInner, tag = "div") {
-		return ee`<${tag} class="ui-modal__row"></${tag}>`.appendTo(eleModalInner);
+		return ee`<${tag} class="ve-ui-modal__row"></${tag}>`.appendTo(eleModalInner);
 	}
 
 	/**
@@ -610,15 +610,15 @@ class UiUtil {
 	 */
 	static getAddModalRowHeader (eleModalInner, headerText, opts) {
 		opts = opts || {};
-		const row = UiUtil.getAddModalRow(eleModalInner, "h5").addClass("bold");
-		if (opts.eleRhs) ee`<div class="split ve-flex-v-center w-100 pr-1"><span>${headerText}</span>${opts.eleRhs}</div>`.appendTo(row);
+		const row = UiUtil.getAddModalRow(eleModalInner, "h5").addClass("ve-bold");
+		if (opts.eleRhs) ee`<div class="ve-split ve-flex-v-center ve-w-100 ve-pr-1"><span>${headerText}</span>${opts.eleRhs}</div>`.appendTo(row);
 		else row.txt(headerText);
 		if (opts.helpText) row.tooltip(opts.helpText);
 		return row;
 	}
 
 	static getAddModalRowCb (eleModalInner, labelText, objectWithProp, propName, helpText) {
-		const row = UiUtil.getAddModalRow(eleModalInner, "label").addClass(`ui-modal__row--cb`);
+		const row = UiUtil.getAddModalRow(eleModalInner, "label").addClass(`ve-ui-modal__row--cb`);
 		if (helpText) row.tooltip(helpText);
 		row.appends(`<span>${labelText}</span>`);
 		const cb = ee`<input type="checkbox">`.appendTo(row)
@@ -642,7 +642,7 @@ class UiUtil {
 	static getAddModalRowCb2 ({wrp, comp, prop, text, title = null }) {
 		const cb = ComponentUiUtil.getCbBool(comp, prop);
 
-		const row = ee`<label class="split-v-center py-1 veapp__ele-hoverable">
+		const row = ee`<label class="ve-split-v-center ve-py-1 veapp__ele-hoverable">
 			<span>${text}</span>
 			${cb}
 		</label>`
@@ -664,10 +664,10 @@ class UiUtil {
 	 */
 	static getAddModalRowSel (eleModalInner, labelText, objectWithProp, propName, values, opts) {
 		opts = opts || {};
-		const row = UiUtil.getAddModalRow(eleModalInner, "label").addClass(`ui-modal__row--sel`);
+		const row = UiUtil.getAddModalRow(eleModalInner, "label").addClass(`ve-ui-modal__row--sel`);
 		if (opts.helpText) row.tooltip(opts.helpText);
 		row.appends(`<span>${labelText}</span>`);
-		const sel = ee`<select class="form-control input-xs w-30">`.appendTo(row);
+		const sel = ee`<select class="ve-form-control ve-input-xs ve-w-30">`.appendTo(row);
 		values.forEach((val, i) => ee`<option value="${i}"></option>`.txt(opts.fnDisplay ? opts.fnDisplay(val) : val).appendTo(sel));
 		// N.B. this doesn't support null values
 		const ix = values.indexOf(objectWithProp[propName]);
@@ -1076,7 +1076,7 @@ class ListUiUtil {
 				clazz: "ve-hidden ve-flex",
 				children: [
 					e_({tag: "div", clazz: "ve-col-0-5"}),
-					e_({tag: "div", clazz: "ve-col-11-5 ui-list__wrp-preview py-2 pr-2"}),
+					e_({tag: "div", clazz: "ve-col-11-5 ve-ui-list__wrp-preview ve-py-2 ve-pr-2"}),
 				],
 			}).appendTo(item.ele);
 		} else elePreviewWrp = item.ele.lastElementChild;
@@ -1283,7 +1283,7 @@ class ProfUiUtil {
 		if (state >= NUM_STATES) state = NUM_STATES - 1;
 		else if (state < 0) state = 0;
 
-		const btnCycle = ee`<button class="ui-prof__btn-cycle"></button>`
+		const btnCycle = ee`<button class="ve-ui-prof__btn-cycle"></button>`
 			.onn("click", () => {
 				btnCycle
 					.attr("data-state", ++state >= NUM_STATES ? state = 0 : state)
@@ -1393,7 +1393,7 @@ class TabUiUtilBase {
 
 					const isActive = it.ix === this[_propProxy][propActive];
 					if (isActive && dispTabTitle) dispTabTitle.txt(isSingleTab ? "" : it.name);
-					if (it.btnTab) it.btnTab.toggleClass("active", isActive);
+					if (it.btnTab) it.btnTab.toggleClass("ve-active", isActive);
 					it.wrpTab.toggleVe(isActive);
 				});
 
@@ -1443,11 +1443,11 @@ class TabUiUtilBase {
 
 		obj.__renderTabs_addToParent = function ({dispTabTitle, eleParent, tabMetasOut, additionalClassesWrpHeads, isStacked}) {
 			const hasBorder = tabMetasOut.some(it => it.hasBorder);
-			ee`<div class="ve-flex-col w-100 h-100">
+			ee`<div class="ve-flex-col ve-w-100 ve-h-100">
 				${dispTabTitle}
-				<div class="ve-flex-col w-100 h-100 min-h-0">
-					<div class="ve-flex ${isStacked ? `ve-flex-wrap ui-tab__wrp-tab-heads--stacked` : ""} ${hasBorder ? `ui-tab__wrp-tab-heads--border` : ""} ${additionalClassesWrpHeads || ""}">${tabMetasOut.map(it => it.btnTab)}</div>
-					<div class="ve-flex w-100 h-100 min-h-0">${tabMetasOut.map(it => it.wrpTab).filter(Boolean)}</div>
+				<div class="ve-flex-col ve-w-100 ve-h-100 ve-min-h-0">
+					<div class="ve-flex ${isStacked ? `ve-flex-wrap ve-ui-tab__wrp-tab-heads--stacked` : ""} ${hasBorder ? `ve-ui-tab__wrp-tab-heads--border` : ""} ${additionalClassesWrpHeads || ""}">${tabMetasOut.map(it => it.btnTab)}</div>
+					<div class="ve-flex ve-w-100 ve-h-100 ve-min-h-0">${tabMetasOut.map(it => it.wrpTab).filter(Boolean)}</div>
 				</div>
 			</div>`.appendTo(eleParent);
 		};
@@ -1535,12 +1535,12 @@ class TabUiUtil extends TabUiUtilBase {
 		super.decorate(obj, {isInitMeta});
 
 		obj.__getBtnTab = function ({tabMeta, _propProxy, propActive, ixTab, isStacked = false}) {
-			return ee`<button class="ve-btn ve-btn-default ui-tab__btn-tab-head ${isStacked ? `ui-tab__btn-tab-head--stacked` : ""} pt-2p px-4p pb-0 ${tabMeta.isHeadHidden ? "ve-hidden" : ""}" ${tabMeta.title ? `title="${tabMeta.title.qq()}"` : ""}>${tabMeta.name.qq()}</button>`
+			return ee`<button class="ve-btn ve-btn-default ve-ui-tab__btn-tab-head ${isStacked ? `ve-ui-tab__btn-tab-head--stacked` : ""} ve-pt-2p ve-px-4p ve-pb-0 ${tabMeta.isHeadHidden ? "ve-hidden" : ""}" ${tabMeta.title ? `title="${tabMeta.title.qq()}"` : ""}>${tabMeta.name.qq()}</button>`
 				.onn("click", () => obj[_propProxy][propActive] = ixTab);
 		};
 
 		obj.__getWrpTab = function ({tabMeta}) {
-			return ee`<div class="ui-tab__wrp-tab-body ve-flex-col ve-hidden ${tabMeta.hasBorder ? "ui-tab__wrp-tab-body--border" : ""} ${tabMeta.hasBackground ? "ui-tab__wrp-tab-body--background" : ""}"></div>`;
+			return ee`<div class="ve-ui-tab__wrp-tab-body ve-flex-col ve-hidden ${tabMeta.hasBorder ? "ve-ui-tab__wrp-tab-body--border" : ""} ${tabMeta.hasBackground ? "ve-ui-tab__wrp-tab-body--background" : ""}"></div>`;
 		};
 
 		obj.__renderTypedTabMeta = function ({tabMeta, ixTab, isStacked = false}) {
@@ -1553,7 +1553,7 @@ class TabUiUtil extends TabUiUtilBase {
 		obj.__renderTypedTabMeta_buttons = function ({tabMeta, ixTab, isStacked = false}) {
 			const btns = tabMeta.buttons
 				.map((meta, j) => {
-					const btn = ee`<button class="ve-btn ui-tab__btn-tab-head ${isStacked ? `ui-tab__btn-tab-head--stacked` : ""} pt-2p px-4p pb-0 bbr-0 bbl-0 ${UiUtil.getBtnClassName(meta.type)}" ${meta.title ? `title="${meta.title.qq()}"` : ""}>${meta.html}</button>`
+					const btn = ee`<button class="ve-btn ve-ui-tab__btn-tab-head ${isStacked ? `ve-ui-tab__btn-tab-head--stacked` : ""} ve-pt-2p ve-px-4p ve-pb-0 ve-bbr-0 ve-bbl-0 ${UiUtil.getBtnClassName(meta.type)}" ${meta.title ? `title="${meta.title.qq()}"` : ""}>${meta.html}</button>`
 						.onn("click", evt => {
 							meta.pFnClick({
 								evt,
@@ -1569,7 +1569,7 @@ class TabUiUtil extends TabUiUtilBase {
 					return btn;
 				});
 
-			const btnTab = ee`<div class="ve-btn-group ve-flex-v-center ${tabMeta.isSplitStart ? "ml-auto" : "ml-2"}">${btns}</div>`;
+			const btnTab = ee`<div class="ve-btn-group ve-flex-v-center ${tabMeta.isSplitStart ? "ve-ml-auto" : "ve-ml-2"}">${btns}</div>`;
 
 			return {
 				...tabMeta,
@@ -1608,20 +1608,20 @@ class TabUiUtilSide extends TabUiUtilBase {
 		super.decorate(obj, {isInitMeta});
 
 		obj.__getBtnTab = function ({isSingleTab, tabMeta, _propProxy, propActive, ixTab}) {
-			return isSingleTab ? null : ee`<button class="ve-btn ve-btn-default ve-btn-sm ui-tab-side__btn-tab mb-2 br-0 btr-0 bbr-0 ve-text-left ve-flex-v-center" title="${tabMeta.title ? tabMeta.title.qq() : tabMeta.name.qq()}"><div class="${tabMeta.icon} ui-tab-side__icon-tab mr-2 mobile-lg__mr-0 ve-text-center"></div><div class="mobile-lg__hidden">${tabMeta.name.qq()}</div></button>`
+			return isSingleTab ? null : ee`<button class="ve-btn ve-btn-default ve-btn-sm ve-ui-tab-side__btn-tab ve-mb-2 ve-br-0 ve-btr-0 ve-bbr-0 ve-text-left ve-flex-v-center" title="${tabMeta.title ? tabMeta.title.qq() : tabMeta.name.qq()}"><div class="${tabMeta.icon} ve-ui-tab-side__icon-tab ve-mr-2 ve-mobile-lg__mr-0 ve-text-center"></div><div class="ve-mobile-lg__hidden">${tabMeta.name.qq()}</div></button>`
 				.onn("click", () => this[_propProxy][propActive] = ixTab);
 		};
 
 		obj.__getWrpTab = function ({tabMeta}) {
-			return ee`<div class="ve-flex-col w-100 h-100 ui-tab-side__wrp-tab ${tabMeta.isNoPadding ? "" : "px-3 py-2"} ve-overflow-y-auto"></div>`;
+			return ee`<div class="ve-flex-col ve-w-100 ve-h-100 ve-ui-tab-side__wrp-tab ${tabMeta.isNoPadding ? "" : "ve-px-3 ve-py-2"} ve-overflow-y-auto"></div>`;
 		};
 
 		obj.__renderTabs_addToParent = function ({dispTabTitle, eleParent, tabMetasOut}) {
-			ee`<div class="ve-flex-col w-100 h-100">
+			ee`<div class="ve-flex-col ve-w-100 ve-h-100">
 				${dispTabTitle}
-				<div class="ve-flex w-100 h-100 min-h-0">
-					<div class="ve-flex-col h-100 pt-2">${tabMetasOut.map(it => it.btnTab)}</div>
-					<div class="ve-flex-col w-100 h-100 min-w-0">${tabMetasOut.map(it => it.wrpTab).filter(Boolean)}</div>
+				<div class="ve-flex ve-w-100 ve-h-100 ve-min-h-0">
+					<div class="ve-flex-col ve-h-100 ve-pt-2">${tabMetasOut.map(it => it.btnTab)}</div>
+					<div class="ve-flex-col ve-w-100 ve-h-100 ve-min-w-0">${tabMetasOut.map(it => it.wrpTab).filter(Boolean)}</div>
 				</div>
 			</div>`.appendTo(eleParent);
 		};
@@ -1650,15 +1650,15 @@ class TabUiUtilSide extends TabUiUtilBase {
 					});
 
 				if (j === tabMeta.buttons.length - 1) {
-					btn.addClass(`br-0`)
-						.addClass(`btr-0`)
-						.addClass(`bbr-0`);
+					btn.addClass(`ve-br-0`)
+						.addClass(`ve-btr-0`)
+						.addClass(`ve-bbr-0`);
 				}
 
 				return btn;
 			});
 
-			const btnTab = ee`<div class="ve-btn-group ve-flex-v-center ve-flex-h-right mb-2">${btns}</div>`;
+			const btnTab = ee`<div class="ve-btn-group ve-flex-v-center ve-flex-h-right ve-mb-2">${btns}</div>`;
 
 			return {
 				...tabMeta,
@@ -1674,7 +1674,7 @@ class TabUiUtilSide extends TabUiUtilBase {
 		};
 
 		obj.__getDispTabTitle = function ({isSingleTab}) {
-			return ee`<div class="ui-tab-side__disp-active-tab-name ${isSingleTab ? `ui-tab-side__disp-active-tab-name--single` : ""} bold"></div>`;
+			return ee`<div class="ve-ui-tab-side__disp-active-tab-name ${isSingleTab ? `ve-ui-tab-side__disp-active-tab-name--single` : ""} ve-bold"></div>`;
 		};
 	}
 }
@@ -1802,15 +1802,15 @@ SearchUiUtil.NO_HOVER_CATEGORIES = new Set([
 // based on DM screen's AddMenuSearchTab
 class SearchWidget {
 	static getSearchNoResults () {
-		return `<div class="ui-search__message"><i>No results.</i></div>`;
+		return `<div class="ve-ui-search__message"><i>No results.</i></div>`;
 	}
 
 	static getSearchLoading () {
-		return `<div class="ui-search__message"><i>\u2022\u2022\u2022</i></div>`;
+		return `<div class="ve-ui-search__message"><i>\u2022\u2022\u2022</i></div>`;
 	}
 
 	static getSearchEnter () {
-		return `<div class="ui-search__message"><i>Enter a search.</i></div>`;
+		return `<div class="ve-ui-search__message"><i>Enter a search.</i></div>`;
 	}
 
 	/**
@@ -1990,7 +1990,7 @@ class SearchWidget {
 	}
 
 	__getRow (r) {
-		return ee`<div class="ui-search__row" tabindex="0">
+		return ee`<div class="ve-ui-search__row" tabindex="0">
 			<span>${r.doc.n}</span>
 			<span>${r.doc.s ? `<i title="${Parser.sourceJsonToFull(r.doc.s)}">${Parser.sourceJsonToAbv(r.doc.s)}${r.doc.p ? ` p${r.doc.p}` : ""}</i>` : ""}</span>
 		</div>`;
@@ -2096,7 +2096,7 @@ class SearchWidget {
 
 			if (resultCount > UiUtil.SEARCH_RESULTS_CAP) {
 				const diff = resultCount - UiUtil.SEARCH_RESULTS_CAP;
-				this._wrpResults.appends(`<div class="ui-search__row ui-search__row--readonly">...${diff} more result${diff === 1 ? " was" : "s were"} hidden. Refine your search!</div>`);
+				this._wrpResults.appends(`<div class="ve-ui-search__row ve-ui-search__row--readonly">...${diff} more result${diff === 1 ? " was" : "s were"} hidden. Refine your search!</div>`);
 			}
 		} else {
 			if (!searchTerm.trim()) this.__showMsgInputRequired();
@@ -2107,10 +2107,10 @@ class SearchWidget {
 	_render () {
 		if (this._rendered) return;
 
-		this._iptSearch = ee`<input class="ui-search__ipt-search search form-control" autocomplete="off" placeholder="Search...">`;
-		this._wrpResults = ee`<div class="ui-search__wrp-results"></div>`;
+		this._iptSearch = ee`<input class="ve-ui-search__ipt-search search ve-form-control" autocomplete="off" placeholder="Search...">`;
+		this._wrpResults = ee`<div class="ve-ui-search__wrp-results"></div>`;
 
-		this._selCat = ee`<select class="form-control ui-search__sel-category">
+		this._selCat = ee`<select class="ve-form-control ve-ui-search__sel-category">
 			<option value="ALL">${SearchWidget.__getAllTitle()}</option>
 			${Object.keys(this._indexes).sort().filter(it => it !== "ALL").map(it => `<option value="${it}">${SearchWidget.__getCatOptionText(it)}</option>`).join("")}
 		</select>`
@@ -2120,8 +2120,8 @@ class SearchWidget {
 				await this.__pDoSearch();
 			});
 
-		this._rendered = ee`<div class="ui-search__wrp-output">
-			<div class="ui-search__wrp-controls">
+		this._rendered = ee`<div class="ve-ui-search__wrp-output">
+			<div class="ve-ui-search__wrp-controls">
 				${this._iptSearch}
 				${this._selCat}
 			</div>
@@ -2601,7 +2601,7 @@ class SearchWidget {
 
 	static _showLoadingModal () {
 		const {eleModalInner, doClose} = UiUtil.getShowModal({isPermanent: true});
-		ee`<div class="ve-flex-vh-center w-100 h-100"><span class="dnd-font italic ve-muted">Loading...</span></div>`.appendTo(eleModalInner);
+		ee`<div class="ve-flex-vh-center ve-w-100 ve-h-100"><span class="ve-dnd-font ve-italic ve-muted">Loading...</span></div>`.appendTo(eleModalInner);
 		return doClose;
 	}
 	// endregion
@@ -2616,7 +2616,7 @@ class InputUiUtil {
 	}
 
 	static _getBtnOk ({comp = null, opts, doClose}) {
-		return ee`<button class="ve-btn ve-btn-primary mr-2">${opts.buttonText || "OK"}</button>`
+		return ee`<button class="ve-btn ve-btn-primary ve-mr-2">${opts.buttonText || "OK"}</button>`
 			.onn("click", evt => {
 				evt.stopPropagation();
 				if (comp && !comp._state.isValid) return JqueryUtil.doToast({content: `Please enter valid input!`, type: "warning"});
@@ -2633,7 +2633,7 @@ class InputUiUtil {
 	}
 
 	static _getBtnSkip ({comp = null, opts, doClose}) {
-		return !opts.isSkippable ? null : ee`<button class="ve-btn ve-btn-default ml-3">Skip</button>`
+		return !opts.isSkippable ? null : ee`<button class="ve-btn ve-btn-default ve-ml-3">Skip</button>`
 			.onn("click", evt => {
 				evt.stopPropagation();
 				doClose(VeCt.SYM_UI_SKIP);
@@ -2666,8 +2666,8 @@ class InputUiUtil {
 		getBtn ({doClose, fnRemember, isGlobal, storageKey}) {
 			if (this._isRemember && !storageKey && !fnRemember) throw new Error(`No "storageKey" or "fnRemember" provided for button with saveable value!`);
 
-			return ee`<button class="ve-btn ${this._isPrimary ? "ve-btn-primary" : "ve-btn-default"} ${this._isSmall ? "ve-btn-sm" : ""} ve-flex-v-center mr-3">
-				<span class="${this._clazzIcon} mr-2"></span><span>${this._text}</span>
+			return ee`<button class="ve-btn ${this._isPrimary ? "ve-btn-primary" : "ve-btn-default"} ${this._isSmall ? "ve-btn-sm" : ""} ve-flex-v-center ve-mr-3">
+				<span class="${this._clazzIcon} ve-mr-2"></span><span>${this._text}</span>
 			</button>`
 				.onn("click", evt => {
 					evt.stopPropagation();
@@ -2714,15 +2714,15 @@ class InputUiUtil {
 
 		const btnSkip = !isSkippable
 			? null
-			: ee`<button class="ve-btn ve-btn-default ve-btn-sm ml-3"><span class="glyphicon glyphicon-forward"></span><span>${textSkip || "Skip"}</span></button>`
+			: ee`<button class="ve-btn ve-btn-default ve-btn-sm ve-ml-3"><span class="glyphicon glyphicon-forward"></span><span>${textSkip || "Skip"}</span></button>`
 				.onn("click", evt => {
 					evt.stopPropagation();
 					doClose(VeCt.SYM_UI_SKIP);
 				});
 
-		if (eleDescription) ee`<div class="ve-flex w-100 mb-1">${eleDescription}</div>`.appendTo(eleModalInner);
-		else if (htmlDescription && htmlDescription.trim()) ee`<div class="ve-flex w-100 mb-1">${htmlDescription}</div>`.appendTo(eleModalInner);
-		ee`<div class="ve-flex-v-center ve-flex-h-right py-1 px-1">${btns}${btnSkip}</div>`.appendTo(eleModalInner);
+		if (eleDescription) ee`<div class="ve-flex ve-w-100 ve-mb-1">${eleDescription}</div>`.appendTo(eleModalInner);
+		else if (htmlDescription && htmlDescription.trim()) ee`<div class="ve-flex ve-w-100 ve-mb-1">${htmlDescription}</div>`.appendTo(eleModalInner);
+		ee`<div class="ve-flex-v-center ve-flex-h-right ve-py-1 ve-px-1">${btns}${btnSkip}</div>`.appendTo(eleModalInner);
 
 		if (doAutoResizeModal) doAutoResizeModal();
 
@@ -2850,7 +2850,7 @@ class InputUiUtil {
 			if (prev != null) defaultVal = prev;
 		}
 
-		const iptNumber = ee`<input class="form-control mb-2 ve-text-right" ${opts.min ? `min="${opts.min}"` : ""} ${opts.max ? `max="${opts.max}"` : ""}>`
+		const iptNumber = ee`<input class="ve-form-control ve-mb-2 ve-text-right" ${opts.min ? `min="${opts.min}"` : ""} ${opts.max ? `max="${opts.max}"` : ""}>`
 			.onn("keydown", evt => {
 				if (evt.key === "Escape") { iptNumber.blure(); return; }
 
@@ -2874,7 +2874,7 @@ class InputUiUtil {
 		if (opts.elePre) eleModalInner.appends(opts.elePre);
 		eleModalInner.appends(iptNumber);
 		if (opts.elePost) eleModalInner.appends(opts.elePost);
-		ee`<div class="ve-flex-v-center ve-flex-h-right pb-1 px-1">${btnOk}${btnCancel}${btnSkip}</div>`.appendTo(eleModalInner);
+		ee`<div class="ve-flex-v-center ve-flex-h-right ve-pb-1 ve-px-1">${btnOk}${btnCancel}${btnSkip}</div>`.appendTo(eleModalInner);
 
 		if (doAutoResizeModal) doAutoResizeModal();
 
@@ -2921,7 +2921,7 @@ class InputUiUtil {
 	static async pGetUserEnum (opts) {
 		opts = opts || {};
 
-		const selEnum = ee`<select class="form-control mb-2"><option value="-1" disabled>${opts.placeholder || "Select..."}</option></select>`
+		const selEnum = ee`<select class="ve-form-control ve-mb-2"><option value="-1" disabled>${opts.placeholder || "Select..."}</option></select>`
 			.onn("keydown", async evt => {
 				evt.stopPropagation();
 				if (evt.key === "Enter") {
@@ -2951,7 +2951,7 @@ class InputUiUtil {
 
 		selEnum.appendTo(eleModalInner);
 		if (opts.elePost) opts.elePost.appendTo(eleModalInner);
-		ee`<div class="ve-flex-v-center ve-flex-h-right pb-1 px-1">${btnOk}${btnCancel}${btnSkip}</div>`.appendTo(eleModalInner);
+		ee`<div class="ve-flex-v-center ve-flex-h-right ve-pb-1 ve-px-1">${btnOk}${btnCancel}${btnSkip}</div>`.appendTo(eleModalInner);
 
 		if (doAutoResizeModal) doAutoResizeModal();
 
@@ -3017,7 +3017,7 @@ class InputUiUtil {
 		}
 
 		const {ele: wrpList, iptSearch, propIsAcceptable} = ComponentUiUtil.getMetaWrpMultipleChoice(comp, prop, opts);
-		wrpList.addClass("mb-1");
+		wrpList.addClass("ve-mb-1");
 
 		const {eleModalInner, doClose, pGetResolved, doAutoResize: doAutoResizeModal} = await InputUiUtil._pGetShowModal({
 			...(opts.modalOpts || {}),
@@ -3036,13 +3036,13 @@ class InputUiUtil {
 
 		if (opts.htmlDescription) eleModalInner.appends(opts.htmlDescription);
 		if (iptSearch) {
-			ee`<label class="mb-1">
+			ee`<label class="ve-mb-1">
 				${iptSearch}
 			</label>`
 				.appendTo(eleModalInner);
 		}
 		wrpList.appendTo(eleModalInner);
-		ee`<div class="ve-flex-v-center ve-flex-h-right no-shrink pb-1 px-1">${btnOk}${btnCancel}${btnSkip}</div>`.appendTo(eleModalInner);
+		ee`<div class="ve-flex-v-center ve-flex-h-right ve-no-shrink ve-pb-1 ve-px-1">${btnOk}${btnCancel}${btnSkip}</div>`.appendTo(eleModalInner);
 
 		if (doAutoResizeModal) doAutoResizeModal();
 
@@ -3091,13 +3091,13 @@ class InputUiUtil {
 			isMinHeight0: true,
 		});
 
-		ee`<div class="ve-flex ve-flex-wrap ve-flex-h-center mb-2">${opts.values.map((v, i) => {
-			const buttonClassesActiveToggle = v.buttonClassesActive || ["active"];
+		ee`<div class="ve-flex ve-flex-wrap ve-flex-h-center ve-mb-2">${opts.values.map((v, i) => {
+			const buttonClassesActiveToggle = v.buttonClassesActive || ["ve-active"];
 
-			const btn = ee`<div class="m-2 ve-btn ${v.buttonClass || "ve-btn-default"} ui__btn-xxl-square ve-flex-col ve-flex-h-center">
-					${v.iconClass ? `<div class="ui-icn__wrp-icon ${v.iconClass} mb-1"></div>` : ""}
+			const btn = ee`<div class="ve-m-2 ve-btn ${v.buttonClass || "ve-btn-default"} ve-ui__btn-xxl-square ve-flex-col ve-flex-h-center">
+					${v.iconClass ? `<div class="ve-ui-icn__wrp-icon ${v.iconClass} ve-mb-1"></div>` : ""}
 					${v.iconContent ? v.iconContent : ""}
-					<div class="whitespace-normal w-100">${v.name}</div>
+					<div class="ve-whitespace-normal ve-w-100">${v.name}</div>
 				</div>`
 				.onn("click", () => {
 					lastIx = i;
@@ -3124,7 +3124,7 @@ class InputUiUtil {
 		const btnCancel = this._getBtnCancel({opts, doClose});
 		const btnSkip = this._getBtnSkip({opts, doClose});
 
-		ee`<div class="ve-flex-v-center ve-flex-h-right pb-1 px-1">${btnOk}${btnCancel}${btnSkip}</div>`.appendTo(eleModalInner);
+		ee`<div class="ve-flex-v-center ve-flex-h-right ve-pb-1 ve-px-1">${btnOk}${btnCancel}${btnSkip}</div>`.appendTo(eleModalInner);
 
 		// region Output
 		const [isDataEntered] = await pGetResolved();
@@ -3164,7 +3164,7 @@ class InputUiUtil {
 			comp,
 			propValue,
 			{
-				html: `<input class="form-control mb-2" type="text">`,
+				html: `<input class="ve-form-control ve-mb-2" type="text">`,
 				autocomplete: opts.autocomplete,
 			},
 		)
@@ -3177,7 +3177,7 @@ class InputUiUtil {
 					doClose(true);
 				}
 			});
-		if (opts.isCode) iptStr.addClass("code");
+		if (opts.isCode) iptStr.addClass("ve-code");
 
 		if (opts.fnIsValid) {
 			const hkText = () => comp._state.isValid = !comp._state.text.trim() || !!opts.fnIsValid(comp._state.text);
@@ -3200,11 +3200,11 @@ class InputUiUtil {
 		const btnSkip = this._getBtnSkip({comp, opts, doClose});
 
 		if (opts.elePre) opts.elePre.appendTo(eleModalInner);
-		if (opts.eleDescription) ee`<div class="ve-flex w-100 mb-1">${opts.eleDescription}</div>`.appendTo(eleModalInner);
-		else if (opts.htmlDescription && opts.htmlDescription.trim()) ee`<div class="ve-flex w-100 mb-1">${opts.htmlDescription}</div>`.appendTo(eleModalInner);
+		if (opts.eleDescription) ee`<div class="ve-flex ve-w-100 ve-mb-1">${opts.eleDescription}</div>`.appendTo(eleModalInner);
+		else if (opts.htmlDescription && opts.htmlDescription.trim()) ee`<div class="ve-flex ve-w-100 ve-mb-1">${opts.htmlDescription}</div>`.appendTo(eleModalInner);
 		iptStr.appendTo(eleModalInner);
 		if (opts.elePost) opts.elePost.appendTo(eleModalInner);
-		ee`<div class="ve-flex-v-center ve-flex-h-right pb-1 px-1">${btnOk}${btnCancel}${btnSkip}</div>`.appendTo(eleModalInner);
+		ee`<div class="ve-flex-v-center ve-flex-h-right ve-pb-1 ve-px-1">${btnOk}${btnCancel}${btnSkip}</div>`.appendTo(eleModalInner);
 
 		if (doAutoResizeModal) doAutoResizeModal();
 
@@ -3242,9 +3242,9 @@ class InputUiUtil {
 	static async pGetUserText (opts) {
 		opts = opts || {};
 
-		const iptStr = ee`<textarea class="form-control mb-2 resize-vertical w-100" ${opts.disabled ? "disabled" : ""}></textarea>`
+		const iptStr = ee`<textarea class="ve-form-control ve-mb-2 ve-resize-vertical ve-w-100" ${opts.disabled ? "disabled" : ""}></textarea>`
 			.val(opts.default);
-		if (opts.isCode) iptStr.addClass("code");
+		if (opts.isCode) iptStr.addClass("ve-code");
 
 		const {eleModalInner, doClose, pGetResolved, doAutoResize: doAutoResizeModal} = await InputUiUtil._pGetShowModal({
 			title: opts.title || "Enter Text",
@@ -3256,7 +3256,7 @@ class InputUiUtil {
 		const btnSkip = this._getBtnSkip({opts, doClose});
 
 		iptStr.appendTo(eleModalInner);
-		ee`<div class="ve-flex-v-center ve-flex-h-right pb-1 px-1">${btnOk}${btnCancel}${btnSkip}</div>`.appendTo(eleModalInner);
+		ee`<div class="ve-flex-v-center ve-flex-h-right ve-pb-1 ve-px-1">${btnOk}${btnCancel}${btnSkip}</div>`.appendTo(eleModalInner);
 
 		if (doAutoResizeModal) doAutoResizeModal();
 
@@ -3284,7 +3284,7 @@ class InputUiUtil {
 	static async pGetUserColor (opts) {
 		opts = opts || {};
 
-		const iptRgb = ee`<input class="form-control mb-2" ${opts.default != null ? `value="${opts.default}"` : ""} type="color">`;
+		const iptRgb = ee`<input class="ve-form-control ve-mb-2" ${opts.default != null ? `value="${opts.default}"` : ""} type="color">`;
 
 		const {eleModalInner, doClose, pGetResolved, doAutoResize: doAutoResizeModal} = await InputUiUtil._pGetShowModal({
 			title: opts.title || "Choose Color",
@@ -3296,7 +3296,7 @@ class InputUiUtil {
 		const btnSkip = this._getBtnSkip({opts, doClose});
 
 		iptRgb.appendTo(eleModalInner);
-		ee`<div class="ve-flex-v-center ve-flex-h-right pb-1 px-1">${btnOk}${btnCancel}${btnSkip}</div>`.appendTo(eleModalInner);
+		ee`<div class="ve-flex-v-center ve-flex-h-right ve-pb-1 ve-px-1">${btnOk}${btnCancel}${btnSkip}</div>`.appendTo(eleModalInner);
 
 		if (doAutoResizeModal) doAutoResizeModal();
 
@@ -3340,11 +3340,11 @@ class InputUiUtil {
 		let active = false;
 		let curAngle = Math.min(DEG_CIRCLE, opts.default) || 0;
 
-		const eleArm = ee`<div class="ui-dir__arm"></div>`;
+		const eleArm = ee`<div class="ve-ui-dir__arm"></div>`;
 		const handleAngle = () => eleArm.css({transform: `rotate(${curAngle + 180}deg)`});
 		handleAngle();
 
-		const elePad = ee`<div class="ui-dir__face">${eleArm}</div>`
+		const elePad = ee`<div class="ve-ui-dir__face">${eleArm}</div>`
 			.onn("mousedown", evt => {
 				active = true;
 				handleEvent(evt);
@@ -3400,7 +3400,7 @@ class InputUiUtil {
 				const x = CONTROLS_RADIUS * Math.cos(theta);
 				const y = CONTROLS_RADIUS * Math.sin(theta);
 				btns.push(
-					ee`<button class="ve-btn ve-btn-default ve-btn-xxs absolute">${steps[i]}</button>`
+					ee`<button class="ve-btn ve-btn-default ve-btn-xxs ve-absolute">${steps[i]}</button>`
 						.css({
 							top: `${y + CONTROLS_RADIUS - (BTN_STEP_SIZE / 2)}px`,
 							left: `${x + CONTROLS_RADIUS - (BTN_STEP_SIZE / 2)}px`,
@@ -3415,7 +3415,7 @@ class InputUiUtil {
 				);
 			}
 
-			const wrpInner = ee`<div class="ve-flex-vh-center relative">${btns}${elePad}</div>`
+			const wrpInner = ee`<div class="ve-flex-vh-center ve-relative">${btns}${elePad}</div>`
 				.css({
 					width: `${CONTROLS_RADIUS * 2}px`,
 					height: `${CONTROLS_RADIUS * 2}px`,
@@ -3437,10 +3437,10 @@ class InputUiUtil {
 		const btnCancel = this._getBtnCancel({opts, doClose});
 		const btnSkip = this._getBtnSkip({opts, doClose});
 
-		ee`<div class="ve-flex-vh-center mb-3">
+		ee`<div class="ve-flex-vh-center ve-mb-3">
 				${elePadOuter || elePad}
 			</div>`.appendTo(eleModalInner);
-		ee`<div class="ve-flex-v-center ve-flex-h-right pb-1 px-1">${btnOk}${btnCancel}${btnSkip}</div>`.appendTo(eleModalInner);
+		ee`<div class="ve-flex-v-center ve-flex-h-right ve-pb-1 ve-px-1">${btnOk}${btnCancel}${btnSkip}</div>`.appendTo(eleModalInner);
 
 		if (doAutoResizeModal) doAutoResizeModal();
 
@@ -3482,7 +3482,7 @@ class InputUiUtil {
 		comp.render = function (eleParent) {
 			eleParent.empty();
 
-			const iptNum = ComponentUiUtil.getIptInt(this, "num", 0, {ele: ee`<input class="form-control input-xs form-control--minimal ve-text-center mr-1">`})
+			const iptNum = ComponentUiUtil.getIptInt(this, "num", 0, {ele: ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-center ve-mr-1">`})
 				.appendTo(eleParent)
 				.onn("keydown", evt => {
 					if (evt.key === "Escape") { iptNum.blure(); return; }
@@ -3490,11 +3490,11 @@ class InputUiUtil {
 					evt.stopPropagation();
 				});
 			const selFaces = ComponentUiUtil.getSelEnum(this, "faces", {values: Renderer.dice.DICE})
-				.addClass("mr-2")
+				.addClass("ve-mr-2")
 				.addClass("ve-text-center")
 				.css({"textAlignLast": "center"});
 
-			const iptBonus = ee`<input class="form-control input-xs form-control--minimal ve-text-center">`
+			const iptBonus = ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-center">`
 				.onn("change", () => this._state.bonus = UiUtil.strToInt(iptBonus.val(), null, {fallbackOnNaN: null}))
 				.onn("keydown", evt => {
 					if (evt.key === "Escape") { iptBonus.blure(); return; }
@@ -3505,7 +3505,7 @@ class InputUiUtil {
 			comp._addHookBase("bonus", hook);
 			hook();
 
-			ee`<div class="ve-flex-vh-center">${iptNum}<div class="mr-1">d</div>${selFaces}${iptBonus}</div>`.appendTo(eleParent);
+			ee`<div class="ve-flex-vh-center">${iptNum}<div class="ve-mr-1">d</div>${selFaces}${iptBonus}</div>`.appendTo(eleParent);
 		};
 
 		comp.getAsString = function () {
@@ -3523,7 +3523,7 @@ class InputUiUtil {
 
 		comp.render(eleModalInner);
 
-		ee`<div class="ve-flex-v-center ve-flex-h-right pb-1 px-1 mt-2">${btnOk}${btnCancel}${btnSkip}</div>`.appendTo(eleModalInner);
+		ee`<div class="ve-flex-v-center ve-flex-h-right ve-pb-1 ve-px-1 ve-mt-2">${btnOk}${btnCancel}${btnSkip}</div>`.appendTo(eleModalInner);
 
 		if (doAutoResizeModal) doAutoResizeModal();
 
@@ -3573,13 +3573,13 @@ class InputUiUtil {
 			propCurMin: "cur",
 			fnDisplay: ix => Parser.CRS[ix],
 		});
-		ee`<div class="ve-flex-col w-640p">${slider.get()}</div>`.appendTo(eleModalInner);
+		ee`<div class="ve-flex-col ve-w-640p">${slider.get()}</div>`.appendTo(eleModalInner);
 
 		const btnOk = this._getBtnOk({opts, doClose});
 		const btnCancel = this._getBtnCancel({opts, doClose});
 		const btnSkip = this._getBtnSkip({opts, doClose});
 
-		ee`<div class="ve-flex-v-center ve-flex-h-right pb-1 px-1">${btnOk}${btnCancel}${btnSkip}</div>`.appendTo(eleModalInner);
+		ee`<div class="ve-flex-v-center ve-flex-h-right ve-pb-1 ve-px-1">${btnOk}${btnCancel}${btnSkip}</div>`.appendTo(eleModalInner);
 
 		if (doAutoResizeModal) doAutoResizeModal();
 
@@ -3698,7 +3698,7 @@ class DragReorderUiUtil {
 			if (dragMeta.on) doDragCleanup();
 
 			dragMeta.on = true;
-			dragMeta.wrp = ee`<div class="ve-flex-col ui-drag__wrp-drag-block"></div>`.appendTo(opts.eleParent);
+			dragMeta.wrp = ee`<div class="ve-flex-col ve-ui-drag__wrp-drag-block"></div>`.appendTo(opts.eleParent);
 			dragMeta.elesDummy = [];
 			dragMeta.fnMouseUpBody = () => {
 				if (dragMeta.on) doDragCleanup();
@@ -3711,7 +3711,7 @@ class DragReorderUiUtil {
 
 			elesChildren.forEach((child, i) => {
 				const dimensions = {w: child.outerWidthe(), h: child.outerHeighte()};
-				const eleDummy = ee`<div class="no-shrink ${i === ixRow ? "ui-drag__wrp-drag-dummy--highlight" : "ui-drag__wrp-drag-dummy--lowlight"}"></div>`
+				const eleDummy = ee`<div class="ve-no-shrink ${i === ixRow ? "ve-ui-drag__wrp-drag-dummy--highlight" : "ve-ui-drag__wrp-drag-dummy--lowlight"}"></div>`
 					.css({
 						width: `${dimensions.w}px`,
 						height: `${dimensions.h}px`,
@@ -3731,9 +3731,9 @@ class DragReorderUiUtil {
 			});
 		};
 
-		return ee`<div class="mr-2 ui-drag__patch" title="Drag to Reorder">
-		<div class="ui-drag__patch-col"><div>&#8729</div><div>&#8729</div><div>&#8729</div></div>
-		<div class="ui-drag__patch-col"><div>&#8729</div><div>&#8729</div><div>&#8729</div></div>
+		return ee`<div class="ve-mr-2 ve-ui-drag__patch" title="Drag to Reorder">
+		<div class="ve-ui-drag__patch-col"><div>&#8729</div><div>&#8729</div><div>&#8729</div></div>
+		<div class="ve-ui-drag__patch-col"><div>&#8729</div><div>&#8729</div><div>&#8729</div></div>
 		</div>`.onn("mousedown", () => doDragRender());
 	}
 
@@ -4323,7 +4323,7 @@ class RenderableCollectionGenericRows extends RenderableCollectionBase {
 	}
 
 	_getWrpRow () {
-		return ee`<div class="ve-flex-v-center w-100"></div>`;
+		return ee`<div class="ve-flex-v-center ve-w-100"></div>`;
 	}
 
 	/**
@@ -4444,7 +4444,7 @@ class RenderableCollectionAsyncGenericRows extends RenderableCollectionAsyncBase
 	}
 
 	_getWrpRow () {
-		return ee`<div class="ve-flex-v-center w-100"></div>`;
+		return ee`<div class="ve-flex-v-center ve-w-100"></div>`;
 	}
 
 	/**
@@ -4867,7 +4867,7 @@ class ComponentUiUtil {
 			ipt.val(val);
 		};
 
-		const ipt = (opts.ele ? e_({ele: opts.ele}) : e_({outer: opts.html || `<input class="form-control input-xs form-control--minimal ve-text-right">`}))
+		const ipt = (opts.ele ? e_({ele: opts.ele}) : e_({outer: opts.html || `<input class="ve-form-control ve-input-xs form-control--minimal ve-text-right">`}))
 			.disableSpellcheck()
 			.onn("keydown", evt => { if (evt.key === "Escape") ipt.blur(); })
 			.onn("change", () => {
@@ -4932,7 +4932,7 @@ class ComponentUiUtil {
 		// Validate options
 		if ((opts.decorationLeft || opts.decorationRight) && !opts.asMeta) throw new Error(`Input must be created with "asMeta" option`);
 
-		const ipt = (opts.ele ? e_({ele: opts.ele}) : e_({outer: opts.html || `<input class="form-control input-xs form-control--minimal">`}))
+		const ipt = (opts.ele ? e_({ele: opts.ele}) : e_({outer: opts.html || `<input class="ve-form-control ve-input-xs form-control--minimal">`}))
 			.onn("keydown", evt => { if (evt.key === "Escape") ipt.blur(); })
 			.disableSpellcheck();
 		UiUtil.bindTypingEnd({
@@ -4996,34 +4996,34 @@ class ComponentUiUtil {
 			let decorRight;
 
 			if (opts.decorationLeft) {
-				ipt.addClass("ui-ideco__ipt").addClass("ui-ideco__ipt--left");
+				ipt.addClass("ve-ui-ideco__ipt").addClass("ve-ui-ideco__ipt--left");
 				decorLeft = ComponentUiUtil._getEleDecor(component, prop, ipt, opts.decorationLeft, "left", opts);
 			}
 
 			if (opts.decorationRight) {
-				ipt.addClass("ui-ideco__ipt").addClass("ui-ideco__ipt--right");
+				ipt.addClass("ve-ui-ideco__ipt").addClass("ve-ui-ideco__ipt--right");
 				decorRight = ComponentUiUtil._getEleDecor(component, prop, ipt, opts.decorationRight, "right", opts);
 			}
 
-			out.wrp = ee`<div class="relative w-100">${ipt}${decorLeft}${decorRight}</div>`;
+			out.wrp = ee`<div class="ve-relative ve-w-100">${ipt}${decorLeft}${decorRight}</div>`;
 		}
 
 		return out;
 	}
 
 	static _DECOR_SIDE_TO_CSS_CLASS = {
-		"left": "ui-ideco__wrp--left",
-		"right": "ui-ideco__wrp--right",
+		"left": "ve-ui-ideco__wrp--left",
+		"right": "ve-ui-ideco__wrp--right",
 	};
 
 	static _getEleDecor (component, prop, ipt, decorType, side, opts) {
 		const classNameSide = this._DECOR_SIDE_TO_CSS_CLASS[side] || "";
 		switch (decorType) {
 			case "search": {
-				return ee`<div class="ui-ideco__wrp ${classNameSide} no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>`;
+				return ee`<div class="ve-ui-ideco__wrp ${classNameSide} ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>`;
 			}
 			case "clear": {
-				return ee`<div class="ui-ideco__wrp ${classNameSide} ve-flex-vh-center clickable" title="Clear"><span class="glyphicon glyphicon-remove"></span></div>`
+				return ee`<div class="ve-ui-ideco__wrp ${classNameSide} ve-flex-vh-center ve-clickable" title="Clear"><span class="glyphicon glyphicon-remove"></span></div>`
 					.onn("click", () => {
 						ipt
 							.val("")
@@ -5051,18 +5051,18 @@ class ComponentUiUtil {
 					ipt.focus();
 				};
 
-				const btnUp = ee`<button class="ve-btn ve-btn-default ui-ideco__btn-ticker p-0 bold no-select" title="Increase by 1 (SHIFT for 5)">+</button>`
+				const btnUp = ee`<button class="ve-btn ve-btn-default ve-ui-ideco__btn-ticker ve-p-0 ve-bold ve-no-select" title="Increase by 1 (SHIFT for 5)">+</button>`
 					.onn("click", evt => {
 						handleClick(evt.shiftKey ? 5 : 1);
 					});
 
-				const btnDown = ee`<button class="ve-btn ve-btn-default ui-ideco__btn-ticker p-0 bold no-select" title="Decrease by 1 (SHIFT for 5)">\u2212</button>`
+				const btnDown = ee`<button class="ve-btn ve-btn-default ve-ui-ideco__btn-ticker ve-p-0 ve-bold ve-no-select" title="Decrease by 1 (SHIFT for 5)">\u2212</button>`
 					.onn("click", evt => {
 						handleClick(evt.shiftKey ? -5 : -1);
 					});
 
 				// Reverse flex column to stack "+" button as higher z-index
-				return ee`<div class="ui-ideco__wrp ${classNameSide} ve-flex-vh-center ve-flex-col-reverse">
+				return ee`<div class="ve-ui-ideco__wrp ${classNameSide} ve-flex-vh-center ve-flex-col-reverse">
 					${btnDown}
 					${btnUp}
 				</div>`;
@@ -5084,7 +5084,7 @@ class ComponentUiUtil {
 	static getIptEntries (component, prop, opts) {
 		opts = opts || {};
 
-		const ipt = (opts.ele || ee`<textarea class="form-control input-xs form-control--minimal resize-vertical"></textarea>`)
+		const ipt = (opts.ele || ee`<textarea class="ve-form-control ve-input-xs form-control--minimal ve-resize-vertical"></textarea>`)
 			.onn("keydown", evt => { if (evt.key === "Escape") ipt.blur(); })
 			.onn("change", () => component._state[prop] = UiUtil.getTextAsEntries(ipt.val().trim()));
 		const hook = () => ipt.val(UiUtil.getEntriesAsText(component._state[prop]));
@@ -5104,7 +5104,7 @@ class ComponentUiUtil {
 	static getIptColor (component, prop, opts) {
 		opts = opts || {};
 
-		const ipt = (opts.ele || e_({outer: opts.html || `<input class="form-control input-xs form-control--minimal ui__ipt-color" type="color">`}))
+		const ipt = (opts.ele || e_({outer: opts.html || `<input class="ve-form-control ve-input-xs form-control--minimal ve-ui__ipt-color" type="color">`}))
 			.onn("change", () => component._state[prop] = ipt.val());
 		const hook = () => ipt.val(component._state[prop]);
 		component._addHookBase(prop, hook);
@@ -5150,7 +5150,7 @@ class ComponentUiUtil {
 		let ele = opts.ele;
 		if (opts.html) ele = e_({outer: opts.html});
 
-		const activeClass = opts.activeClass || "active";
+		const activeClass = opts.activeClass || "ve-active";
 		const stateName = opts.stateName || "state";
 		const stateProp = opts.stateProp || `_${stateName}`;
 
@@ -5415,8 +5415,8 @@ class ComponentUiUtil {
 		}
 
 		_render_iptDisplay () {
-			const iptDisplay = ee`<input class="form-control input-xs form-control--minimal">`
-				.addClass("ui-sel2__ipt-display")
+			const iptDisplay = ee`<input class="ve-form-control ve-input-xs form-control--minimal">`
+				.addClass("ve-ui-sel2__ipt-display")
 				.attr("tabindex", "-1")
 				.onn("click", () => {
 					if (this._state.isDisabled) return;
@@ -5428,7 +5428,7 @@ class ComponentUiUtil {
 			this._addHookBase("selected", () => {
 				if (!this._isMultiSelect) {
 					iptDisplay
-						.toggleClass("italic", this._state.selected == null)
+						.toggleClass("ve-italic", this._state.selected == null)
 						.toggleClass("ve-muted", this._state.selected == null);
 
 					if (this._state.selected == null) {
@@ -5454,9 +5454,9 @@ class ComponentUiUtil {
 		}
 
 		_render_iptSearch () {
-			const iptSearch = ee`<input class="form-control input-xs form-control--minimal">`
-				.addClass("absolute")
-				.addClass("ui-sel2__ipt-search")
+			const iptSearch = ee`<input class="ve-form-control ve-input-xs form-control--minimal">`
+				.addClass("ve-absolute")
+				.addClass("ve-ui-sel2__ipt-search")
 				.onn("keydown", evt => {
 					if (this._state.isDisabled) return;
 
@@ -5506,13 +5506,13 @@ class ComponentUiUtil {
 		}
 
 		_render_wrp ({iptDisplay, iptSearch}) {
-			const wrpChoices = ee`<div class="absolute ui-sel2__wrp-options ve-overflow-y-scroll"></div>`;
+			const wrpChoices = ee`<div class="ve-absolute ve-ui-sel2__wrp-options ve-overflow-y-scroll"></div>`;
 
-			const wrp = ee`<div class="ve-flex relative ui-sel2__wrp w-100">
+			const wrp = ee`<div class="ve-flex ve-relative ve-ui-sel2__wrp ve-w-100">
 				${iptDisplay}
 				${iptSearch}
 				${wrpChoices}
-				<div class="ui-sel2__disp-arrow absolute no-events bold"><span class="glyphicon glyphicon-menu-down"></span></div>
+				<div class="ve-ui-sel2__disp-arrow ve-absolute ve-no-events ve-bold"><span class="glyphicon glyphicon-menu-down"></span></div>
 			</div>`;
 
 			return {
@@ -5539,7 +5539,7 @@ class ComponentUiUtil {
 						const display = v == null ? (this._displayNullAs || "\u2014") : this._fnDisplay ? this._fnDisplay(v) : v;
 						const additionalStyleClasses = this._fnGetAdditionalStyleClasses ? this._fnGetAdditionalStyleClasses(v) : null;
 
-						const ele = ee`<div class="ve-flex-v-center py-1 px-1 clickable ui-sel2__disp-option ${v == null ? `italic` : ""} ${additionalStyleClasses ? additionalStyleClasses.join(" ") : ""}" tabindex="0">${display}</div>`
+						const ele = ee`<div class="ve-flex-v-center ve-py-1 ve-px-1 ve-clickable ve-ui-sel2__disp-option ${v == null ? `ve-italic` : ""} ${additionalStyleClasses ? additionalStyleClasses.join(" ") : ""}" tabindex="0">${display}</div>`
 							.onn("click", () => {
 								if (this._state.isDisabled) return;
 
@@ -5548,8 +5548,8 @@ class ComponentUiUtil {
 								document.activeElement.blur();
 
 								// Temporarily remove pointer events from the dropdown, so it collapses thanks to its :hover CSS
-								this._rdState.wrp.addClass("no-events");
-								setTimeout(() => this._rdState.wrp.removeClass("no-events"), 50);
+								this._rdState.wrp.addClass("ve-no-events");
+								setTimeout(() => this._rdState.wrp.removeClass("ve-no-events"), 50);
 							})
 							.onn("keydown", evt => {
 								if (this._state.isDisabled) return;
@@ -5608,11 +5608,11 @@ class ComponentUiUtil {
 			this._addHookBase("selected", () => {
 				if (!this._isMultiSelect) {
 					this._rdState.optionMetas
-						.forEach(it => it.ele.removeClass("active"));
+						.forEach(it => it.ele.removeClass("ve-active"));
 
 					const optionMetaActive = this._rdState.optionMetas
 						.find(optionMeta => MiscUtil.isNearStrictlyEqual(optionMeta.value, this._state.selected));
-					if (optionMetaActive) optionMetaActive.ele.addClass("active");
+					if (optionMetaActive) optionMetaActive.ele.addClass("ve-active");
 				}
 
 				// TODO(Future) implement as required
@@ -5893,7 +5893,7 @@ class ComponentUiUtil {
 
 		const sel = ele
 			|| (html ? e_({outer: html}) : null)
-			|| e_({tag: "select", clazz: "form-control input-xs"});
+			|| e_({tag: "select", clazz: "ve-form-control ve-input-xs"});
 
 		sel
 			.onn("change", () => {
@@ -6070,7 +6070,7 @@ class ComponentUiUtil {
 			Object.entries(this._state).forEach(([k, v]) => {
 				if (v === false) return;
 
-				const btnRemove = ee`<button class="ve-btn ve-btn-danger ui-pick__btn-remove ve-text-center">×</button>`
+				const btnRemove = ee`<button class="ve-btn ve-btn-danger ve-ui-pick__btn-remove ve-text-center">×</button>`
 					.onn("click", () => this._state[k] = false)
 					.prop("disabled", !!this._meta.isDisabled);
 
@@ -6078,8 +6078,8 @@ class ComponentUiUtil {
 
 				const titlePill = this._fnGetTitlePill ? this._fnGetTitlePill(k) : k;
 				const elePill = this._fnGetElePill ? this._fnGetElePill(k) : k;
-				ee`<div class="ve-flex mx-1 mb-1 ui-pick__disp-pill max-w-100 min-w-0">
-					<div class="px-1 ui-pick__disp-text ve-flex-v-center text-clip-ellipsis no-select" title="${titlePill.qq()}">
+				ee`<div class="ve-flex ve-mx-1 ve-mb-1 ve-ui-pick__disp-pill ve-max-w-100 ve-min-w-0">
+					<div class="ve-px-1 ve-ui-pick__disp-text ve-flex-v-center ve-text-clip-ellipsis ve-no-select" title="${titlePill.qq()}">
 						${elePill}
 					</div>
 					${btnRemove}
@@ -6120,7 +6120,7 @@ class ComponentUiUtil {
 			fnGetTitlePill = null,
 		},
 	) {
-		const wrpPills = ee`<div class="ve-flex ve-flex-wrap max-w-100 min-w-0"></div>`;
+		const wrpPills = ee`<div class="ve-flex ve-flex-wrap ve-max-w-100 ve-min-w-0"></div>`;
 
 		const pickComp = new this._PickerDisplayComponent({
 			compParent: comp,
@@ -6173,7 +6173,7 @@ class ComponentUiUtil {
 
 		let menu = getMenu();
 
-		const btnAdd = ee`<button class="ve-btn ve-btn-xxs ve-btn-default ui-pick__btn-add ve-flex-vh-center">+</button>`
+		const btnAdd = ee`<button class="ve-btn ve-btn-xxs ve-btn-default ve-ui-pick__btn-add ve-flex-vh-center">+</button>`
 			.onn("click", evt => ContextUtil.pOpenMenu(evt, menu));
 
 		const {
@@ -6191,7 +6191,7 @@ class ComponentUiUtil {
 			fnGetTitlePill: opts.fnGetTitlePill,
 		});
 
-		const wrp = ee`<div class="ve-flex-v-center w-100 ui-pick__wrp-btns">${btnAdd}${wrpPills}</div>`;
+		const wrp = ee`<div class="ve-flex-v-center ve-w-100 ve-ui-pick__wrp-btns">${btnAdd}${wrpPills}</div>`;
 
 		const {hkParent} = bindParent({comp, prop, elesDisable: [btnAdd]});
 
@@ -6228,7 +6228,7 @@ class ComponentUiUtil {
 	static getPickString (comp, prop, opts) {
 		opts = opts || {};
 
-		const btnAdd = ee`<button class="ve-btn ve-btn-xxs ve-btn-default ui-pick__btn-add ve-flex-vh-center">+</button>`
+		const btnAdd = ee`<button class="ve-btn ve-btn-xxs ve-btn-default ve-ui-pick__btn-add ve-flex-vh-center">+</button>`
 			.onn("click", async () => {
 				const input = await InputUiUtil.pGetUserString();
 				if (input == null || input === VeCt.SYM_UI_SKIP) return;
@@ -6250,7 +6250,7 @@ class ComponentUiUtil {
 			fnGetTitlePill: opts.fnGetTitlePill,
 		});
 
-		const wrp = ee`<div class="ve-flex-v-center w-100">${btnAdd}${wrpPills}</div>`;
+		const wrp = ee`<div class="ve-flex-v-center ve-w-100">${btnAdd}${wrpPills}</div>`;
 
 		const {hkParent} = bindParent({comp, prop, elesDisable: [btnAdd]});
 
@@ -6312,7 +6312,7 @@ class ComponentUiUtil {
 			iptText.val("");
 		};
 
-		const iptText = ee`<input class="form-control form-control--minimal input-xs ${additionalStyleClassesInput || ""}" type="text">`
+		const iptText = ee`<input class="ve-form-control form-control--minimal ve-input-xs ${additionalStyleClassesInput || ""}" type="text">`
 			.disableSpellcheck()
 			.placeholdere(placeholderInput)
 			.onn("keydown", evt => {
@@ -6327,9 +6327,9 @@ class ComponentUiUtil {
 				addInputValue();
 			});
 
-		const wrp = ee`<div class="ve-flex-col w-100">
-			${wrpPills.addClass("mb-1").addClass("ve-flex-h-right")}
-			<div class="ve-flex-v-center w-100 input-group">
+		const wrp = ee`<div class="ve-flex-col ve-w-100">
+			${wrpPills.addClass("ve-mb-1").addClass("ve-flex-h-right")}
+			<div class="ve-flex-v-center ve-w-100 input-group">
 				${iptText}
 				${btnAdd}
 			</div>
@@ -6380,7 +6380,7 @@ class ComponentUiUtil {
 	static getCbsEnum (component, prop, opts) {
 		opts = opts || {};
 
-		const wrp = ee`<div class="ve-flex-col w-100"></div>`;
+		const wrp = ee`<div class="ve-flex-col ve-w-100"></div>`;
 		const metas = opts.values.map(value => {
 			const cb = ee`<input type="checkbox">`
 				.onn("keydown", evt => {
@@ -6394,7 +6394,7 @@ class ComponentUiUtil {
 					component._state[prop] = stateNxt;
 				});
 
-			ee`<label class="split-v-center my-1 stripe-odd ${opts.isIndent ? "ml-4" : ""}"><div class="no-wrap ve-flex-v-center">${opts.fnDisplay ? opts.fnDisplay(value) : value}</div>${cb}</label>`.appendTo(wrp);
+			ee`<label class="ve-split-v-center ve-my-1 stripe-odd ${opts.isIndent ? "ve-ml-4" : ""}"><div class="ve-no-wrap ve-flex-v-center">${opts.fnDisplay ? opts.fnDisplay(value) : value}</div>${cb}</label>`.appendTo(wrp);
 
 			return {cb, value};
 		});
@@ -6454,17 +6454,17 @@ class ComponentUiUtil {
 
 		let ixValue = 0;
 		valueGroups.forEach((group, i) => {
-			if (i !== 0) eles.push(ee`<hr class="w-100 hr-2 hr--dotted">`);
+			if (i !== 0) eles.push(ee`<hr class="ve-w-100 ve-hr-2 ve-hr--dotted">`);
 
 			if (group.name) {
-				const wrpName = ee`<div class="split-v-center py-1">
-					<div class="ve-flex-v-center"><span class="mr-2">‒</span><span>${group.name}</span></div>
+				const wrpName = ee`<div class="ve-split-v-center ve-py-1">
+					<div class="ve-flex-v-center"><span class="ve-mr-2">‒</span><span>${group.name}</span></div>
 					${opts.valueGroupSplitControlsLookup?.[group.name]}
 				</div>`;
 				eles.push(wrpName);
 			}
 
-			if (group.text) eles.push(ee`<div class="ve-flex-v-center py-1"><div class="ml-1 mr-3"></div><i>${group.text}</i></div>`);
+			if (group.text) eles.push(ee`<div class="ve-flex-v-center ve-py-1"><div class="ve-ml-1 ve-mr-3"></div><i>${group.text}</i></div>`);
 
 			group.values.forEach(value => {
 				const ixValueFrozen = ixValue;
@@ -6547,7 +6547,7 @@ class ComponentUiUtil {
 					/* eslint-enable vet-jquery/jquery */
 				});
 
-				const ele = ee`<label class="ve-flex-v-center py-1 stripe-even">
+				const ele = ee`<label class="ve-flex-v-center ve-py-1 stripe-even">
 					<div class="ve-col-1 ve-flex-vh-center">${cb}</div>
 					<div class="ve-col-11 ve-flex-v-center">${displayValue}</div>
 				</label>`;
@@ -6586,7 +6586,7 @@ class ComponentUiUtil {
 			hkSearch();
 		}
 
-		const ele = ee`<div class="ve-flex-col w-100 ve-overflow-y-auto min-h-40p">${eles}</div>`;
+		const ele = ee`<div class="ve-flex-col ve-w-100 ve-overflow-y-auto ve-min-h-40p">${eles}</div>`;
 
 		// Always return this as a "meta" object
 		const unhook = () => rowMetas.forEach(it => it.unhook());
@@ -6760,7 +6760,7 @@ ComponentUiUtil.RangeSlider = class {
 
 		this._dispTrackInner = this._isSingle ? null : e_({
 			tag: "div",
-			clazz: "ui-slidr__track-inner h-100 absolute",
+			clazz: "ve-ui-slidr__track-inner ve-h-100 ve-absolute",
 		});
 
 		this._thumbLow = this._getThumb();
@@ -6768,7 +6768,7 @@ ComponentUiUtil.RangeSlider = class {
 
 		this._dispTrackOuter = e_({
 			tag: "div",
-			clazz: `relative w-100 ui-slidr__track-outer`,
+			clazz: `ve-relative ve-w-100 ve-ui-slidr__track-outer`,
 			children: [
 				this._dispTrackInner,
 				this._thumbLow,
@@ -6782,7 +6782,7 @@ ComponentUiUtil.RangeSlider = class {
 		};
 		const wrpTrack = e_({
 			tag: "div",
-			clazz: `ve-flex-v-center w-100 h-100 ui-slidr__wrp-track clickable`,
+			clazz: `ve-flex-v-center ve-w-100 ve-h-100 ve-ui-slidr__wrp-track ve-clickable`,
 			children: [
 				this._dispTrackOuter,
 			],
@@ -6792,7 +6792,7 @@ ComponentUiUtil.RangeSlider = class {
 
 		const wrpTop = e_({
 			tag: "div",
-			clazz: "ve-flex-v-center w-100 ui-slidr__wrp-top",
+			clazz: "ve-flex-v-center ve-w-100 ve-ui-slidr__wrp-top",
 			children: [
 				dispValueLeft,
 				wrpTrack,
@@ -6808,14 +6808,14 @@ ComponentUiUtil.RangeSlider = class {
 		};
 		const wrpPips = e_({
 			tag: "div",
-			clazz: `w-100 ve-flex relative clickable h-100 ui-slidr__wrp-pips`,
+			clazz: `ve-w-100 ve-flex ve-relative ve-clickable ve-h-100 ve-ui-slidr__wrp-pips`,
 		})
 			.onn("mousedown", evt => onDownWrpPips(evt))
 			.onn("touchstart", evt => onDownWrpPips(evt));
 
 		const wrpBottom = e_({
 			tag: "div",
-			clazz: "w-100 ve-flex-vh-center ui-slidr__wrp-bottom",
+			clazz: "ve-w-100 ve-flex-vh-center ve-ui-slidr__wrp-bottom",
 			children: [
 				this._isSingle ? this._getSpcSingleValue() : this._getDispValue({side: "left"}), // Pad the start
 				wrpPips,
@@ -6906,7 +6906,7 @@ ComponentUiUtil.RangeSlider = class {
 
 		const wrp = e_({
 			tag: "div",
-			clazz: "ve-flex-col w-100 ui-slidr__wrp ve-touch-action-none",
+			clazz: "ve-flex-col ve-w-100 ve-ui-slidr__wrp ve-touch-action-none",
 			children: [
 				wrpTop,
 				wrpBottom,
@@ -6922,28 +6922,28 @@ ComponentUiUtil.RangeSlider = class {
 	}
 
 	static _SLIDER_SIDE_TO_CSS_CLASS = {
-		"left": "ui-slidr__disp-value--left",
-		"right": "ui-slidr__disp-value--right",
+		"left": "ve-ui-slidr__disp-value--left",
+		"right": "ve-ui-slidr__disp-value--right",
 	};
 
 	_getDispValue ({isVisible, side}) {
 		return e_({
 			tag: "div",
-			clazz: `ve-overflow-hidden ui-slidr__disp-value no-shrink no-grow no-wrap ve-flex-vh-center bold no-select ${isVisible ? `ui-slidr__disp-value--visible` : ""} ${this.constructor._SLIDER_SIDE_TO_CSS_CLASS[side] || ""}`,
+			clazz: `ve-overflow-hidden ve-ui-slidr__disp-value ve-no-shrink ve-no-grow ve-no-wrap ve-flex-vh-center ve-bold ve-no-select ${isVisible ? `ve-ui-slidr__disp-value--visible` : ""} ${this.constructor._SLIDER_SIDE_TO_CSS_CLASS[side] || ""}`,
 		});
 	}
 
 	_getSpcSingleValue () {
 		return e_({
 			tag: "div",
-			clazz: `px-2`,
+			clazz: `ve-px-2`,
 		});
 	}
 
 	_getThumb () {
 		const thumb = e_({
 			tag: "div",
-			clazz: "ui-slidr__thumb absolute clickable ve-touch-action-none",
+			clazz: "ve-ui-slidr__thumb ve-absolute ve-clickable ve-touch-action-none",
 			mousedown: evt => this._handleMouseDown(evt, thumb),
 		}).attr("draggable", true);
 
@@ -6955,19 +6955,19 @@ ComponentUiUtil.RangeSlider = class {
 
 		const pip = e_({
 			tag: "div",
-			clazz: `ui-slidr__pip ${isMajor ? `ui-slidr__pip--major` : `absolute`}`,
+			clazz: `ve-ui-slidr__pip ${isMajor ? `ve-ui-slidr__pip--major` : `absolute`}`,
 		});
 
 		const dispLabel = e_({
 			tag: "div",
-			clazz: "absolute ui-slidr__pip-label ve-flex-vh-center ve-small no-wrap",
+			clazz: "ve-absolute ve-ui-slidr__pip-label ve-flex-vh-center ve-small ve-no-wrap",
 			html: isMajor ? this._fnDisplay ? `${this._fnDisplay(value)}`.qq() : value : "",
 			title: isMajor && this._fnDisplayTooltip ? `${this._fnDisplayTooltip(value)}`.qq() : null,
 		});
 
 		return e_({
 			tag: "div",
-			clazz: "ve-flex-col ve-flex-vh-center absolute no-select",
+			clazz: "ve-flex-col ve-flex-vh-center ve-absolute ve-no-select",
 			children: [
 				pip,
 				dispLabel,
@@ -7068,7 +7068,7 @@ ComponentUiUtil.RangeSlider = class {
 		// region Set drag metadata
 		const {x: trackOriginX, width: trackWidth} = this._dispTrackOuter.getBoundingClientRect();
 
-		thumb.addClass(`ui-slidr__thumb--hover`);
+		thumb.addClass(`ve-ui-slidr__thumb--hover`);
 
 		this._dragMeta = {
 			trackOriginX,
@@ -7113,7 +7113,7 @@ ComponentUiUtil.RangeSlider = class {
 	_doDragCleanup () {
 		const isActive = this._dragMeta != null;
 
-		if (this._dragMeta?.thumb) this._dragMeta.thumb.removeClass(`ui-slidr__thumb--hover`);
+		if (this._dragMeta?.thumb) this._dragMeta.thumb.removeClass(`ve-ui-slidr__thumb--hover`);
 
 		this._dragMeta = null;
 

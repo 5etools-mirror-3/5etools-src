@@ -69,16 +69,16 @@ $rgb-alert-success-border-green--night: color.adjust($rgb-alert-success-green--n
 		@include mix-shadow-active--night;
 	}
 
-	&.active {
+	&.ve-active {
 		background: $rgb-border-grey--night;
 		border-color: color.adjust($rgb-border-grey--night, $lightness: 10%);
 
-		&.disabled {
+		&.ve-disabled {
 			background-color: color.adjust($rgb-border-grey--night, $lightness: 20%);
 		}
 	}
 
-	&.disabled {
+	&.ve-disabled {
 		box-shadow: none;
 	}
 }

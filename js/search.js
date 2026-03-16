@@ -48,7 +48,7 @@ class SearchPage {
 		const btn = ee`<button class="ve-btn ve-btn-default" title="${btnMeta.title.qq()}">${btnMeta.text.qq()}</button>`
 			.onn("click", () => OmnisearchState[btnMeta.fnDoToggleOmnisearch]());
 		const hkBrew = (val) => {
-			btn.toggleClass("active", OmnisearchState[btnMeta.propOmnisearch]);
+			btn.toggleClass("ve-active", OmnisearchState[btnMeta.propOmnisearch]);
 			if (val == null) return;
 			this._pDoSearch().then(null);
 		};
@@ -59,7 +59,7 @@ class SearchPage {
 	}
 
 	static _render () {
-		const iptSearch = ee`<input class="form-control pg-search__ipt" placeholder="Search everywhere..." title="Disclaimer: unlikely to search everywhere. Use with caution.">`
+		const iptSearch = ee`<input class="ve-form-control pg-search__ipt" placeholder="Search everywhere..." title="Disclaimer: unlikely to search everywhere. Use with caution.">`
 			.onn("keydown", evt => {
 				if (evt.key !== "Enter") return;
 				btnSearch.trigger("click");
@@ -73,7 +73,7 @@ class SearchPage {
 				});
 			});
 
-		const btnHelp = ee`<button class="ve-btn ve-btn-default mr-2 mobile-sm__hidden" title="Help"><span class="glyphicon glyphicon-info-sign"></span></button>`
+		const btnHelp = ee`<button class="ve-btn ve-btn-default ve-mr-2 ve-mobile-sm__hidden" title="Help"><span class="glyphicon glyphicon-info-sign"></span></button>`
 			.onn("click", () => OmnisearchUtilsUi.doShowHelp());
 
 		const btnCyclePartneredMode = ee`<button class="ve-btn ve-btn-default pg-search__btn-partnered-mode"></button>`;
@@ -108,25 +108,25 @@ class SearchPage {
 		const btnExpandAll = ee`<button class="ve-btn ve-btn-default" title="Expand All Results"><span class="glyphicon glyphicon-plus"></span></button>`
 			.onn("click", () => handleMassExpandCollapse(true));
 
-		SearchPage._wrpResults = ee`<div class="ve-flex-col w-100">${this._getWrpResult_message("Loading...")}</div>`;
+		SearchPage._wrpResults = ee`<div class="ve-flex-col ve-w-100">${this._getWrpResult_message("Loading...")}</div>`;
 
-		ee(SearchPage._wrp)`<div class="ve-flex-col w-100 pg-search__wrp">
-			<div class="ve-flex-v-center mb-2 mobile-lg__ve-flex-col">
-				<div class="ve-flex-v-center input-group ve-btn-group mr-2 w-100 mobile-lg__mb-2">${iptSearch}${btnSearch}</div>
+		ee(SearchPage._wrp)`<div class="ve-flex-col ve-w-100 pg-search__wrp">
+			<div class="ve-flex-v-center ve-mb-2 ve-mobile-lg__ve-flex-col">
+				<div class="ve-flex-v-center input-group ve-btn-group ve-mr-2 ve-w-100 ve-mobile-lg__mb-2">${iptSearch}${btnSearch}</div>
 
-				<div class="ve-flex-v-center mobile-sm__ve-flex-col mobile-lg__ve-flex-ai-start mobile-lg__w-100">
+				<div class="ve-flex-v-center ve-mobile-sm__ve-flex-col ve-mobile-lg__ve-flex-ai-start ve-mobile-lg__w-100">
 					${btnHelp}
-					<div class="mr-2 ml-1 mobile-sm__ml-0 mobile-sm__mb-2 italic">Include</div>
-					<div class="ve-flex-v-center ve-btn-group mr-2 mobile-sm__mb-2 mobile-sm__mr-0">
+					<div class="ve-mr-2 ve-ml-1 ve-mobile-sm__ml-0 ve-mobile-sm__mb-2 ve-italic">Include</div>
+					<div class="ve-flex-v-center ve-btn-group ve-mr-2 ve-mobile-sm__mb-2 ve-mobile-sm__mr-0">
 						${btnCyclePartneredMode}
 						${btnToggleBrew}
 						${btnToggleUa}
 					</div>
-					<div class="ve-flex-v-center ve-btn-group mr-2 mobile-sm__mb-2 mobile-sm__mr-0">
+					<div class="ve-flex-v-center ve-btn-group ve-mr-2 ve-mobile-sm__mb-2 ve-mobile-sm__mr-0">
 						${btnToggleBlocklisted}
 						${btnToggleLegacy}
 					</div>
-					<div class="ve-flex-v-center mr-2 mobile-sm__mb-2 mobile-sm__mr-0">
+					<div class="ve-flex-v-center ve-mr-2 ve-mobile-sm__mb-2 ve-mobile-sm__mr-0">
 						${btnToggleSrd}
 					</div>
 					<div class="ve-btn-group ve-flex-v-center">
@@ -211,8 +211,8 @@ class SearchPage {
 				? `<a href="${adventureBookSourceHref}">${ptPageInner}</a>`
 				: ptPageInner;
 
-			const ptSrd = isSrd ? `<span class="ve-muted relative help-subtle pg-search__disp-srd" title="Available in the Systems Reference Document (5.1)">[SRD]</span>` : "";
-			const ptSrd52 = isSrd52 ? `<span class="ve-muted relative help-subtle pg-search__disp-srd" title="Available in the Systems Reference Document (5.2)">[SRD]</span>` : "";
+			const ptSrd = isSrd ? `<span class="ve-muted ve-relative ve-help-subtle pg-search__disp-srd" title="Available in the Systems Reference Document (5.1)">[SRD]</span>` : "";
+			const ptSrd52 = isSrd52 ? `<span class="ve-muted ve-relative ve-help-subtle pg-search__disp-srd" title="Available in the Systems Reference Document (5.2)">[SRD]</span>` : "";
 
 			const ptSourceInner = source
 				? `<i>${sourceFull}</i> (<span class="${Parser.sourceJsonToSourceClassname(source)}">${sourceAbv}</span>)${ptSrd}${ptSrd52}${Parser.sourceJsonToMarkerHtml(source, {isAddBrackets: true, additionalStyles: "pg-search__disp-source-marker"})}`
@@ -221,21 +221,21 @@ class SearchPage {
 				? ptSourceInner
 				: `<a href="${adventureBookSourceHref}">${ptSourceInner}</a>`;
 
-			const dispImage = ee`<div class="ve-flex-col pg-search__disp-token mr-3 no-shrink"></div>`;
-			const dispPreview = ee`<div class="ve-flex-col mobile-sm__w-100"></div>`;
-			const wrpPreviewControls = ee`<div class="ve-flex-col mobile-sm__mb-2 mobile-sm__w-100 h-100"></div>`;
+			const dispImage = ee`<div class="ve-flex-col pg-search__disp-token ve-mr-3 ve-no-shrink"></div>`;
+			const dispPreview = ee`<div class="ve-flex-col ve-mobile-sm__w-100"></div>`;
+			const wrpPreviewControls = ee`<div class="ve-flex-col ve-mobile-sm__mb-2 ve-mobile-sm__w-100 ve-h-100"></div>`;
 
 			const out = {};
 
-			const row = ee`<div class="my-2 py-2 pl-3 pr-2 pg-search__wrp-result ve-flex relative mobile-sm__ve-flex-col">
-				<div class="ve-flex-v-center mobile-sm__mb-2 w-100">
+			const row = ee`<div class="ve-my-2 ve-py-2 ve-pl-3 ve-pr-2 pg-search__wrp-result ve-flex ve-relative ve-mobile-sm__ve-flex-col">
+				<div class="ve-flex-v-center ve-mobile-sm__mb-2 ve-w-100">
 					${dispImage}
-					<div class="ve-flex-col ve-flex-h-center mr-auto">
-						<div class="mb-2">${lnk}</div>
+					<div class="ve-flex-col ve-flex-h-center ve-mr-auto">
+						<div class="ve-mb-2">${lnk}</div>
 						<div>${ptSource}${ptPage ? `, ${ptPage}` : ""}</div>
 					</div>
 				</div>
-				<div class="ve-flex-v-center mobile-sm__ve-flex-col-reverse mobile-sm__ve-flex-ai-start">
+				<div class="ve-flex-v-center ve-mobile-sm__ve-flex-col-reverse ve-mobile-sm__ve-flex-ai-start">
 					${dispPreview}
 					${wrpPreviewControls}
 				</div>
@@ -256,7 +256,7 @@ class SearchPage {
 					handleIsExpanded();
 				};
 
-				const btnTogglePreview = ee`<button class="ve-btn ve-btn-default ve-btn-xs h-100" title="Toggle Preview"></button>`
+				const btnTogglePreview = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-h-100" title="Toggle Preview"></button>`
 					.onn("click", () => {
 						out.isExpanded = !out.isExpanded;
 						handleIsExpanded();
@@ -272,7 +272,7 @@ class SearchPage {
 					onObserve: () => {
 						const page = UrlUtil.categoryToHoverPage(category);
 						if (!page) {
-							dispImage.addClass(`mobile-sm__hidden`);
+							dispImage.addClass(`ve-mobile-sm__hidden`);
 							return;
 						}
 
@@ -295,7 +295,7 @@ class SearchPage {
 
 								isImagePopulated = true;
 								const tokenUrl = fnGetTokenUrl(ent);
-								dispImage.html(`<img src="${tokenUrl}" class="w-100 h-100" ${Renderer.utils.getTokenMetadataAttributes(ent)} loading="lazy">`);
+								dispImage.html(`<img src="${tokenUrl}" class="ve-w-100 ve-h-100" ${Renderer.utils.getTokenMetadataAttributes(ent)} loading="lazy">`);
 							};
 
 							switch (category) {
@@ -334,21 +334,21 @@ class SearchPage {
 								case Parser.CAT_ID_ADVENTURE: {
 									const prop = category === Parser.CAT_ID_BOOK ? "book" : "adventure";
 									isImagePopulated = true;
-									dispImage.html(`<img src="${Renderer.adventureBook.getCoverUrl(ent[prop])}" class="w-100 h-100" alt="Cover Image: ${(ent[prop].name || "").qq()}" loading="lazy">`);
+									dispImage.html(`<img src="${Renderer.adventureBook.getCoverUrl(ent[prop])}" class="ve-w-100 ve-h-100" alt="Cover Image: ${(ent[prop].name || "").qq()}" loading="lazy">`);
 								}
 							}
 
-							if (!isImagePopulated) dispImage.addClass(`mobile-sm__hidden`);
+							if (!isImagePopulated) dispImage.addClass(`ve-mobile-sm__hidden`);
 							// endregion
 
 							if (isHoverable) {
 								// region Render preview
 
 								Renderer.hover.getHoverContent_stats(page, ent)
-									.removeClass("w-100")
+									.removeClass("ve-w-100")
 									.addClass("pg-search__wrp-preview")
-									.addClass("mobile-sm__w-100")
-									.addClass("br-0")
+									.addClass("ve-mobile-sm__w-100")
+									.addClass("ve-br-0")
 									.appendTo(dispPreview);
 								// endregion
 							}
@@ -363,7 +363,7 @@ class SearchPage {
 	}
 
 	static _getWrpResult_message (message) {
-		return `<div class="my-2 py-2 px-3 pg-search__wrp-result ve-flex-vh-center"><i>${message.qq()}</i></div>`;
+		return `<div class="ve-my-2 ve-py-2 ve-px-3 pg-search__wrp-result ve-flex-vh-center"><i>${message.qq()}</i></div>`;
 	}
 }
 

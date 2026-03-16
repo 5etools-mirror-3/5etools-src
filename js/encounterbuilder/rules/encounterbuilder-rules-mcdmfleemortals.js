@@ -47,7 +47,7 @@ export class EncounterBuilderRulesMcdmFleeMortals extends EncounterBuilderRulesB
 
 	_render_settingsRules ({stgSettingsRules}) {
 		const wrpSettingsRules = ee`<div class="ve-flex-col">
-			<div class="ve-flex mb-2">${Renderer.get().render(`{@note Based on the encounter building rules on page 16 of {@link MCDM|https://www.mcdmproductions.com}'s {@book Flee, Mortals!|FleeMortals|0|Encounter Building}}`)}</div>
+			<div class="ve-flex ve-mb-2">${Renderer.get().render(`{@note Based on the encounter building rules on page 16 of {@link MCDM|https://www.mcdmproductions.com}'s {@book Flee, Mortals!|FleeMortals|0|Encounter Building}}`)}</div>
 		</div>`
 			.appendTo(stgSettingsRules);
 
@@ -98,7 +98,7 @@ export class EncounterBuilderRulesMcdmFleeMortals extends EncounterBuilderRulesB
 		const dispExpToLevel = ee`<div class="ve-muted"></div>`;
 
 		const dispThermometer = thermometer.render()
-			.addClass("mt-2");
+			.addClass("ve-mt-2");
 
 		this._comp.addHookPulseDeriverPartyMeta(() => {
 			const partyMeta = this.getEncounterPartyMeta();
@@ -129,12 +129,12 @@ export class EncounterBuilderRulesMcdmFleeMortals extends EncounterBuilderRulesB
 		const wrpGroupSummary = ee`<div class="ve-text-right ve-flex-col">
 			${dispsTierXp}
 			${dispThermometer}
-			<hr class="hr-2">
+			<hr class="ve-hr-2">
 			${dispTtk}
-			<hr class="hr-2">
+			<hr class="ve-hr-2">
 			${dispPointsEncounter}
-			<div class="ve-muted"><span class="help-subtle" title="Daily encounter points budget. To give the characters a good but survivable challenge, fill each adventuring day with encounters that total 6 to 8 points over the course of the day.">Daily Budget:</span> 6-8</div>
-			<div class="my-2">
+			<div class="ve-muted"><span class="ve-help-subtle" title="Daily encounter points budget. To give the characters a good but survivable challenge, fill each adventuring day with encounters that total 6 to 8 points over the course of the day.">Daily Budget:</span> 6-8</div>
+			<div class="ve-my-2">
 			${dispExpEncounter}
 			${dispExpToLevel}
 		</div>`
@@ -149,7 +149,7 @@ export class EncounterBuilderRulesMcdmFleeMortals extends EncounterBuilderRulesB
 	/* -------------------------------------------- */
 
 	_render_difficulty ({stgDifficulty}) {
-		const hrHasCreatures = ee`<hr class="hr-1">`;
+		const hrHasCreatures = ee`<hr class="ve-hr-1">`;
 		const wrpDifficultyCols = ee`<div class="ve-flex">
 			${this._renderGroupAndDifficulty_getDifficultyLhs()}
 			${this._renderGroupAndDifficulty_getDifficultyRhs()}
@@ -161,7 +161,7 @@ export class EncounterBuilderRulesMcdmFleeMortals extends EncounterBuilderRulesB
 			wrpDifficultyCols.toggleVe(encounterSpendInfo.relevantCount);
 		})();
 
-		const wrpDifficulty = ee`<div class="ve-flex-col w-100">
+		const wrpDifficulty = ee`<div class="ve-flex-col ve-w-100">
 			${hrHasCreatures}
 			${wrpDifficultyCols}
 		</div>`
@@ -174,7 +174,7 @@ export class EncounterBuilderRulesMcdmFleeMortals extends EncounterBuilderRulesB
 	}
 
 	_renderGroupAndDifficulty_getDifficultyLhs () {
-		const dispDifficulty = ee`<h4 class="my-2"></h4>`;
+		const dispDifficulty = ee`<h4 class="ve-my-2"></h4>`;
 
 		this._comp.addHookPulseDeriverPartyMeta(() => {
 			const partyMeta = this.getEncounterPartyMeta();
@@ -184,11 +184,11 @@ export class EncounterBuilderRulesMcdmFleeMortals extends EncounterBuilderRulesB
 			const tier = partyMeta.getEncounterTier(encounterSpendInfo);
 
 			dispDifficulty
-				.html(`Difficulty: <span class="help-subtle">${tier.toTitleCase()}</span>`)
+				.html(`Difficulty: <span class="ve-help-subtle">${tier.toTitleCase()}</span>`)
 				.tooltip(new _TierHtmlProviderMcdmFleeMortals().getTierTitle({tier}));
 		})();
 
-		return ee`<div class="w-50">
+		return ee`<div class="ve-w-50">
 			${dispDifficulty}
 		</div>`;
 	}
@@ -210,7 +210,7 @@ export class EncounterBuilderRulesMcdmFleeMortals extends EncounterBuilderRulesB
 			);
 		})();
 
-		return ee`<div class="w-50 ve-text-right">
+		return ee`<div class="ve-w-50 ve-text-right">
 			${dispCrTotal}
 			<div>${dispCrPerPlayer}</div>
 		</div>`;

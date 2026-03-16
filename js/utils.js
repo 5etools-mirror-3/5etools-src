@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.25.2"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.25.3"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -608,7 +608,6 @@ globalThis.SourceUtil = class {
 	static isNonstandardSourceWotc (source) {
 		return SourceUtil.isPrereleaseSource(source)
 			|| source.startsWith(Parser.SRC_PS_PREFIX)
-			|| source.startsWith(Parser.SRC_AL_PREFIX)
 			|| source.startsWith(Parser.SRC_MCVX_PREFIX)
 			|| Parser.SOURCES_NON_STANDARD_WOTC.has(source);
 	}
@@ -886,8 +885,8 @@ class TemplateUtil {
 	static initVanilla () {
 		/**
 		 * Template strings which can contain DOM elements.
-		 * Usage: ee`<div>Press this button: ${ve-btn}</div>`
-		 * or:    ee(ele)`<div>Press this button: ${ve-btn}</div>`
+		 * Usage: ee`<div>Press this button: ${btn}</div>`
+		 * or:    ee(ele)`<div>Press this button: ${btn}</div>`
 		 * @return {HTMLElementExtended}
 		 */
 		globalThis.ee = (parts, ...args) => {
@@ -1008,11 +1007,11 @@ globalThis.JqueryUtil = class {
 	}
 
 	static _COPY_BUBBLE_CLASS_NAMES = [
-		"clp__disp-copied--bubble-variant-1",
-		"clp__disp-copied--bubble-variant-2",
-		"clp__disp-copied--bubble-variant-3",
-		"clp__disp-copied--bubble-variant-4",
-		"clp__disp-copied--bubble-variant-5",
+		"ve-clp__disp-copied--bubble-variant-1",
+		"ve-clp__disp-copied--bubble-variant-2",
+		"ve-clp__disp-copied--bubble-variant-3",
+		"ve-clp__disp-copied--bubble-variant-4",
+		"ve-clp__disp-copied--bubble-variant-5",
 	];
 
 	static showCopiedEffect (ele, {text = "Copied!", isBubble = false} = {}) {
@@ -1026,7 +1025,7 @@ globalThis.JqueryUtil = class {
 		const seed = Math.random();
 		const duration = isBubble ? 250 + seed * 200 : 250;
 
-		const dispCopied = ee`<div class="clp__disp-copied ve-flex-vh-center"></div>`;
+		const dispCopied = ee`<div class="ve-clp__disp-copied ve-flex-vh-center"></div>`;
 		dispCopied
 			.html(text)
 			.css({
@@ -1037,10 +1036,10 @@ globalThis.JqueryUtil = class {
 			.appendTo(document.body);
 		if (isBubble) {
 			dispCopied
-				.addClass(`clp__disp-copied--bubble`)
+				.addClass(`ve-clp__disp-copied--bubble`)
 				.addClass(RollerUtil.rollOnArray(this._COPY_BUBBLE_CLASS_NAMES));
 		} else {
-			dispCopied.addClass(`clp__disp-copied--basic`);
+			dispCopied.addClass(`ve-clp__disp-copied--basic`);
 		}
 
 		setTimeout(() => dispCopied.remove(), duration);
@@ -1062,7 +1061,7 @@ globalThis.JqueryUtil = class {
 		if (JqueryUtil._WRP_TOAST == null) {
 			JqueryUtil._WRP_TOAST = e_({
 				tag: "div",
-				clazz: "toast__container no-events w-100 ve-overflow-y-hidden ve-flex-col",
+				clazz: "toast__container ve-no-events ve-w-100 ve-overflow-y-hidden ve-flex-col",
 			});
 			document.body.appendChild(JqueryUtil._WRP_TOAST);
 		}
@@ -1080,7 +1079,7 @@ globalThis.JqueryUtil = class {
 
 		const eleToast = e_({
 			tag: "div",
-			clazz: `toast toast--type-${options.type} events-initial relative my-2 mx-auto`,
+			clazz: `toast toast--type-${options.type} ve-events-initial ve-relative ve-my-2 ve-mx-auto`,
 			children: [
 				e_({
 					tag: "div",
@@ -2021,7 +2020,7 @@ globalThis.MiscUtil = class {
 
 	static async pCopyTextToClipboard (text) {
 		function doCompatibilityCopy () {
-			const iptTemp = ee`<textarea class="clp__wrp-temp"></textarea>`
+			const iptTemp = ee`<textarea class="ve-clp__wrp-temp"></textarea>`
 				.appendTo(document.body)
 				.val(text)
 				.selecte();
@@ -3193,14 +3192,14 @@ globalThis.ContextUtil = class {
 			}
 
 			const elesAction = this._actions.map(it => {
-				if (it == null) return ee`<div class="my-1 w-100 ui-ctx__divider"></div>`;
+				if (it == null) return ee`<div class="ve-my-1 ve-w-100 ve-ui-ctx__divider"></div>`;
 
 				const rdMeta = it.render({menu: this});
 				this._metasActions.push(rdMeta);
 				return rdMeta.eleRow;
 			});
 
-			this._ele = ee`<div class="ve-flex-col ui-ctx__wrp py-2 absolute">${elesAction}</div>`
+			this._ele = ee`<div class="ve-flex-col ve-ui-ctx__wrp ve-py-2 ve-absolute">${elesAction}</div>`
 				.hideVe()
 				.appendTo(document.body);
 		}
@@ -3289,7 +3288,7 @@ globalThis.ContextUtil = class {
 
 			return {
 				action: this,
-				eleRow: ee`<div class="ui-ctx__row ve-flex-v-center ${this.style || ""}">${btnAction}${btnActionAlt}</div>`,
+				eleRow: ee`<div class="ve-ui-ctx__row ve-flex-v-center ${this.style || ""}">${btnAction}${btnActionAlt}</div>`,
 				btn: btnAction,
 			};
 		}
@@ -3307,7 +3306,7 @@ globalThis.ContextUtil = class {
 				if (menu.resolveResult_) menu.resolveResult_(result);
 			};
 
-			const btnAction = ee`<div class="w-100 min-w-0 ui-ctx__btn py-1 pl-5 ${this.fnActionAlt ? "" : "pr-5"}" ${this.isDisabled ? "disabled" : ""} tabindex="0">${this.text}</div>`
+			const btnAction = ee`<div class="ve-w-100 ve-min-w-0 ve-ui-ctx__btn ve-py-1 ve-pl-5 ${this.fnActionAlt ? "" : "ve-pr-5"}" ${this.isDisabled ? "disabled" : ""} tabindex="0">${this.text}</div>`
 				.onn("click", evt => pOnClick(evt))
 				.onn("mousedown", evt => {
 					evt.preventDefault();
@@ -3324,7 +3323,7 @@ globalThis.ContextUtil = class {
 		_render_btnActionAlt ({menu}) {
 			if (!this.fnActionAlt) return null;
 
-			const btnActionAlt = ee`<div class="ui-ctx__btn ml-1 bl-1 py-1 px-4" ${this.isDisabled ? "disabled" : ""}>${this.textAlt ?? `<span class="glyphicon glyphicon-cog"></span>`}</div>`
+			const btnActionAlt = ee`<div class="ve-ui-ctx__btn ve-ml-1 ve-bl-1 ve-py-1 ve-px-4" ${this.isDisabled ? "disabled" : ""}>${this.textAlt ?? `<span class="glyphicon glyphicon-cog"></span>`}</div>`
 				.onn("click", async evt => {
 					if (this.isDisabled) return;
 
@@ -3356,7 +3355,7 @@ globalThis.ContextUtil = class {
 		}
 
 		_render_btnAction () {
-			this._btnAction = ee`<a href="${this.fnHref()}" class="w-100 min-w-0 ui-ctx__btn py-1 pl-5 ${this.fnActionAlt ? "" : "pr-5"}" ${this.isDisabled ? "disabled" : ""} tabindex="0">${this.text}</a>`;
+			this._btnAction = ee`<a href="${this.fnHref()}" class="ve-w-100 ve-min-w-0 ve-ui-ctx__btn ve-py-1 ve-pl-5 ${this.fnActionAlt ? "" : "ve-pr-5"}" ${this.isDisabled ? "disabled" : ""} tabindex="0">${this.text}</a>`;
 			if (this.title) this._btnAction.tooltip(this.title);
 
 			return this._btnAction;
@@ -3394,14 +3393,14 @@ globalThis.ContextUtil = class {
 
 			return {
 				action: this,
-				eleRow: ee`<div class="ui-ctx__row ve-flex-v-center">${this._sel}</div>`,
+				eleRow: ee`<div class="ve-ui-ctx__row ve-flex-v-center">${this._sel}</div>`,
 			};
 		}
 
 		_render_sel ({menu}) {
 			const sel = e_({
 				tag: "select",
-				clazz: "w-100 min-w-0 mx-5 py-1",
+				clazz: "ve-w-100 ve-min-w-0 ve-mx-5 ve-py-1",
 				tabindex: 0,
 				children: this._values
 					.map((val, i) => {
@@ -3452,9 +3451,9 @@ globalThis.ContextUtil = class {
 			const menuSub = ContextUtil.getMenu(this._actions, {menuParent: menu});
 			menu.addSubMenu(menuSub);
 
-			const eleRow = ee`<div class="ui-ctx__btn py-1 px-5 split-v-center">
+			const eleRow = ee`<div class="ve-ui-ctx__btn ve-py-1 ve-px-5 ve-split-v-center">
 				<div>${this._name}</div>
-				<div class="pl-4"><span class="caret caret--right"></span></div>
+				<div class="ve-pl-4"><span class="caret caret--right"></span></div>
 			</div>`
 				.onn("click", async evt => {
 					evt.stopPropagation();
@@ -4396,7 +4395,7 @@ globalThis.SortUtil = class {
 			.map(btnSort => {
 				const dispCaret = e_({
 					tag: "span",
-					clazz: "lst__caret",
+					clazz: "ve-lst__caret",
 				})
 					.appendTo(btnSort);
 
@@ -4429,8 +4428,8 @@ globalThis.SortUtil = class {
 			direction,
 		},
 	) {
-		dispCarets.forEach(it => it.removeClass("lst__caret--active"));
-		dispCaret.addClass("lst__caret--active").toggleClass("lst__caret--reverse", direction === "asc");
+		dispCarets.forEach(it => it.removeClass("ve-lst__caret--active"));
+		dispCaret.addClass("ve-lst__caret--active").toggleClass("ve-lst__caret--reverse", direction === "asc");
 	}
 
 	/** Add more list sort on-clicks to existing sort buttons. */
@@ -8890,18 +8889,18 @@ class BookModeViewBase {
 	}
 
 	_getBtnWindowClose () {
-		return ee`<button class="ve-btn ve-btn-xs ve-btn-danger br-0 bt-0 btl-0 btr-0 bbr-0 bbl-0 h-20p" title="Close"><span class="glyphicon glyphicon-remove"></span></button>`
+		return ee`<button class="ve-btn ve-btn-xs ve-btn-danger ve-br-0 ve-bt-0 ve-btl-0 ve-btr-0 ve-bbr-0 ve-bbl-0 ve-h-20p" title="Close"><span class="glyphicon glyphicon-remove"></span></button>`
 			.onn("click", () => this.setStateClosed());
 	}
 
 	/* -------------------------------------------- */
 
 	async _pGetWrpControls ({wrpContent}) {
-		const wrp = ee`<div class="w-100 ve-flex-col no-shrink no-print"></div>`;
+		const wrp = ee`<div class="ve-w-100 ve-flex-col ve-no-shrink no-print"></div>`;
 
 		if (!this._hasPrintColumns) return {wrp};
 
-		["px-2", "mt-2", "bb-1p", "pb-1"].forEach(clz => wrp.addClass(clz));
+		["ve-px-2", "ve-mt-2", "ve-bb-1p", "ve-pb-1"].forEach(clz => wrp.addClass(clz));
 
 		const onChangeColumnCount = (cols) => {
 			wrpContent.toggleClass(`bkmv__wrp--columns-1`, cols === 1);
@@ -8918,7 +8917,7 @@ class BookModeViewBase {
 			StorageUtil.syncSetForPage(BookModeViewBase._BOOK_VIEW_COLUMNS_K, val);
 		};
 
-		const selColumns = ee`<select class="form-control input-sm">
+		const selColumns = ee`<select class="ve-form-control ve-input-sm">
 			<option value="0">Two (book style)</option>
 			<option value="1">One</option>
 		</select>`
@@ -8926,8 +8925,8 @@ class BookModeViewBase {
 		selColumns.val(`${lastColumns ?? 0}`);
 		onChangeSelColumns();
 
-		const wrpPrint = ee`<div class="w-100 ve-flex">
-			<div class="ve-flex-vh-center"><div class="mr-2 no-wrap help-subtle" title="Applied when printing the page.">Print columns:</div>${selColumns}</div>
+		const wrpPrint = ee`<div class="ve-w-100 ve-flex">
+			<div class="ve-flex-vh-center"><div class="ve-mr-2 ve-no-wrap ve-help-subtle" title="Applied when printing the page.">Print columns:</div>${selColumns}</div>
 		</div>`.appendTo(wrp);
 
 		return {wrp, wrpPrint};
@@ -8976,7 +8975,7 @@ class BookModeViewBase {
 		if (this._wrpBook) this._wrpBook.remove();
 
 		this._wrpBook = ee`<div class="bkmv print__h-initial ve-flex-col print__ve-block">
-			<div class="bkmv__spacer-name no-print split-v-center no-shrink no-print">${this._getWindowHeaderLhs()}${this._getBtnWindowClose()}</div>
+			<div class="bkmv__spacer-name no-print ve-split-v-center ve-no-shrink no-print">${this._getWindowHeaderLhs()}${this._getBtnWindowClose()}</div>
 			${(await this._pGetWrpControls({wrpContent})).wrp}
 			${wrpContentOuter}
 		</div>`
@@ -8984,9 +8983,9 @@ class BookModeViewBase {
 	}
 
 	async _pGetContentElementMetas () {
-		const wrpContent = ee`<div class="bkmv__scroller smooth-scroll ve-overflow-y-auto print__overflow-visible ${this._isColumns ? "bkmv__wrp" : "ve-flex-col"} w-100 min-h-0"></div>`;
+		const wrpContent = ee`<div class="bkmv__scroller ve-smooth-scroll ve-overflow-y-auto print__overflow-visible ${this._isColumns ? "bkmv__wrp" : "ve-flex-col"} ve-w-100 ve-min-h-0"></div>`;
 
-		const wrpContentOuter = ee`<div class="h-100 print__h-initial w-100 min-h-0 ve-flex-col print__ve-block">${wrpContent}</div>`;
+		const wrpContentOuter = ee`<div class="ve-h-100 print__h-initial ve-w-100 ve-min-h-0 ve-flex-col print__ve-block">${wrpContent}</div>`;
 
 		const out = {
 			wrpContentOuter,
@@ -9527,7 +9526,7 @@ if (!globalThis.IS_VTT && typeof window !== "undefined") {
 				if (isPadded) return;
 				isPadded = true;
 				// Pad the bottom of the page so the adhesive unit doesn't overlap the content
-				em(`.view-col-group--cancer`).forEach(ele => ele.appends(`<div class="w-100 no-shrink" style="height: 110px;"></div>`));
+				em(`.view-col-group--cancer`).forEach(ele => ele.appends(`<div class="ve-w-100 ve-no-shrink" style="height: 110px;"></div>`));
 			}, 300);
 			ivsCancer.push(ivPad);
 		});

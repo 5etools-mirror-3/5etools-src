@@ -27,7 +27,7 @@ export class EncounterbuilderUiThermometer extends BaseComponent {
 		const elesNotchLookup = Object.fromEntries(
 			this._tiers
 				.slice(0, -1)
-				.map(tier => [tier, ee`<div class="ecgen-therm__notch absolute"></div>`]),
+				.map(tier => [tier, ee`<div class="ecgen-therm__notch ve-absolute"></div>`]),
 		);
 		const elesHotzoneLookup = Object.fromEntries(
 			this._tiers
@@ -42,7 +42,7 @@ export class EncounterbuilderUiThermometer extends BaseComponent {
 					]
 						.filter(Boolean)
 						.join(" ");
-					const eleHotzone = ee`<div class="ecgen-therm__hotzone ${isActionableTier ? `clickable` : `help-subtle`} absolute" title="${ptTitle}"></div>`;
+					const eleHotzone = ee`<div class="ecgen-therm__hotzone ${isActionableTier ? `ve-clickable` : `ve-help-subtle`} ve-absolute" title="${ptTitle}"></div>`;
 
 					if (isActionableTier) {
 						eleHotzone
@@ -80,13 +80,13 @@ export class EncounterbuilderUiThermometer extends BaseComponent {
 		this._addHookBase("spendCap", hkNotches)();
 		hkNotches();
 
-		const dispBar = ee`<div class="h-100 ecgen-therm__bar"></div>`;
+		const dispBar = ee`<div class="ve-h-100 ecgen-therm__bar"></div>`;
 
 		const hkSpendInfo = () => {
 			dispBar
 				.css({width: `${this._getWidthPct(this._state.spendValue)}%`})
 				.toggleClass(`ecgen-therm__bar--max`, this._state.spendValue >= this._state.spendCap)
-				.toggleClass(`b-0`, !this._state.spendValue);
+				.toggleClass(`ve-b-0`, !this._state.spendValue);
 		};
 		this._addHookBase("spendValue", hkSpendInfo);
 		this._addHookBase("spendCap", hkSpendInfo);
@@ -115,7 +115,7 @@ export class EncounterbuilderUiThermometer extends BaseComponent {
 				});
 		})();
 
-		return ee`<div class="ve-flex w-100 h-20p b-1p relative ecgen-therm__wrp">
+		return ee`<div class="ve-flex ve-w-100 ve-h-20p ve-b-1p ve-relative ecgen-therm__wrp">
 			${dispBar}
 			${Object.values(elesNotchLookup)}
 			${Object.values(elesHotzoneLookup)}

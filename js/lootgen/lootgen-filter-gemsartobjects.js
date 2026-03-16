@@ -70,15 +70,15 @@ export class ModalFilterGemsArtObjects extends ModalFilterBase {
 
 	_getListItem (pageFilter, ent, ix) {
 		const eleRow = document.createElement("div");
-		eleRow.className = "px-0 w-100 ve-flex-col no-shrink";
+		eleRow.className = "ve-px-0 ve-w-100 ve-flex-col ve-no-shrink";
 
 		const source = Parser.sourceJsonToAbv(ent.source);
 
-		eleRow.innerHTML = `<div class="w-100 ve-flex-vh-center lst__row-border veapp__list-row no-select lst__wrp-cells">
-			<div class="ve-col-0-5 pl-0 ve-flex-vh-center">${this._isRadio ? `<input type="radio" name="radio" class="no-events">` : `<input type="checkbox" class="no-events">`}</div>
+		eleRow.innerHTML = `<div class="ve-w-100 ve-flex-vh-center ve-lst__row-border veapp__list-row ve-no-select ve-lst__wrp-cells">
+			<div class="ve-col-0-5 ve-pl-0 ve-flex-vh-center">${this._isRadio ? `<input type="radio" name="radio" class="ve-no-events">` : `<input type="checkbox" class="ve-no-events">`}</div>
 
-			<div class="ve-col-9 px-1 ${this._getNameStyle()}">${ent.name}</div>
-			<div class="ve-col-2 pl-1 pr-0 ve-flex-h-center ${Parser.sourceJsonToSourceClassname(ent.source)}" title="${Parser.sourceJsonToFull(ent.source)}">${source}${Parser.sourceJsonToMarkerHtml(ent.source, {isList: true})}</div>
+			<div class="ve-col-9 ve-px-1 ${this._getNameStyle()}">${ent.name}</div>
+			<div class="ve-col-2 ve-pl-1 ve-pr-0 ve-flex-h-center ${Parser.sourceJsonToSourceClassname(ent.source)}" title="${Parser.sourceJsonToFull(ent.source)}">${source}${Parser.sourceJsonToMarkerHtml(ent.source, {isList: true})}</div>
 		</div>`;
 
 		return new ListItem(

@@ -3,11 +3,6 @@
 
 @layer vetools {
 	// region Custom statblock styling
-	#pagecontent .stats__th-name .source {
-		position: relative;
-		margin-right: 0.2em;
-	}
-
 	#pagecontent {
 		background:
 			url("../img/bestiary/stat-block-top-texture.webp") no-repeat,
@@ -24,35 +19,35 @@
 
 	// region Proficiency dice rollers
 	[data-proficiency-dice-mode="dice"] {
-		.rd__dc--rollable {
+		.ve-rd__dc--rollable {
 			color: vars.$rgb-link-blue;
 			cursor: pointer;
 		}
 
-		.rd__dc--rollable-text,
-		.rd__roller--roll-prof-bonus {
+		.ve-rd__dc--rollable-text,
+		.ve-rd__roller--roll-prof-bonus {
 			display: none;
 		}
 
-		.rd__dc--rollable-dice,
-		.rd__roller--roll-prof-dice {
+		.ve-rd__dc--rollable-dice,
+		.ve-rd__roller--roll-prof-dice {
 			display: inline;
 		}
 	}
 
 	[data-proficiency-dice-mode="bonus"] {
-		.rd__dc--rollable-text,
-		.rd__roller--roll-prof-bonus {
+		.ve-rd__dc--rollable-text,
+		.ve-rd__roller--roll-prof-bonus {
 			display: inline;
 		}
 
-		.rd__dc--rollable-dice,
-		.rd__roller--roll-prof-dice {
+		.ve-rd__dc--rollable-dice,
+		.ve-rd__roller--roll-prof-dice {
 			display: none;
 		}
 	}
 
-	.ve-night-mode [data-proficiency-dice-mode="dice"] .rd__dc--rollable {
+	.ve-night-mode [data-proficiency-dice-mode="dice"] .ve-rd__dc--rollable {
 		color: vars-night.$rgb-link-blue--night;
 	}
 	// endregion
@@ -60,11 +55,11 @@
 	// region Encounter builder
 	.best__ {
 		&ecgen-active {
-			.lst__row--bestiary-sublist {
+			.ve-lst__row--bestiary-sublist {
 				cursor: default;
 			}
 
-			.lst__row--bestiary-sublist:hover {
+			.ve-lst__row--bestiary-sublist:hover {
 				background: initial;
 			}
 		}

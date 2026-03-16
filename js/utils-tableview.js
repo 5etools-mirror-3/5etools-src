@@ -38,7 +38,7 @@ class UtilsTableview {
 			.map(([prop, meta]) => {
 				const cb = ComponentUiUtil.getCbBool(rdState.comp, prop);
 
-				const wrp = ee`<label class="px-2 py-1 no-wrap ve-flex-inline-v-center">
+				const wrp = ee`<label class="ve-px-2 ve-py-1 ve-no-wrap ve-flex-inline-v-center">
 					${cb}
 					<span>${meta.name}</span>
 				</label>`;
@@ -68,19 +68,19 @@ class UtilsTableview {
 			JqueryUtil.showCopiedEffect(btnCopy);
 		});
 
-		const wrpRows = ee`<div class="ve-overflow-y-auto w-100 h-100 ve-flex-col ve-overflow-x-auto"></div>`;
+		const wrpRows = ee`<div class="ve-overflow-y-auto ve-w-100 ve-h-100 ve-flex-col ve-overflow-x-auto"></div>`;
 
-		ee(eleModal)`<div class="ve-flex-v-center my-3">
-			<label class="ve-flex-vh-center pl-2 pr-3 h-100">${cbAll}</label>
-			<div class="vr-2 ml-0 h-100"></div>
-			<div class="ve-flex-v-center ve-flex-wrap w-100 min-w-0">${rdState.metasCbs.map(({wrp}) => wrp)}</div>
-			<div class="vr-2 h-100"></div>
-			<div class="ve-btn-group no-shrink ve-flex-v-center ml-3">
+		ee(eleModal)`<div class="ve-flex-v-center ve-my-3">
+			<label class="ve-flex-vh-center ve-pl-2 ve-pr-3 ve-h-100">${cbAll}</label>
+			<div class="ve-vr-2 ve-ml-0 ve-h-100"></div>
+			<div class="ve-flex-v-center ve-flex-wrap ve-w-100 ve-min-w-0">${rdState.metasCbs.map(({wrp}) => wrp)}</div>
+			<div class="ve-vr-2 ve-h-100"></div>
+			<div class="ve-btn-group ve-no-shrink ve-flex-v-center ve-ml-3">
 				${btnCsv}
 				${btnCopy}
 			</div>
 		</div>
-		<hr class="hr-1">
+		<hr class="ve-hr-1">
 		${wrpRows}
 		`;
 
@@ -114,9 +114,9 @@ class UtilsTableview {
 	static _getTableHtml ({rdState, entities, colTransforms, additionalData, sorter, styleHint = null}) {
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
-		let stack = `<table class="w-100 table-striped stats stats--book stats--book-large min-w-100 w-initial">
+		let stack = `<table class="ve-w-100 table-striped ve-stats ve-stats--book ve-stats--book-large ve-min-w-100 ve-w-initial">
 			<thead>
-				<tr>${Object.values(colTransforms).map((c, i) => `<th data-col="${i}" class="ve-text-left px-2" colspan="${c.flex || 1}">${c.name}</th>`).join("")}</tr>
+				<tr>${Object.values(colTransforms).map((c, i) => `<th data-col="${i}" class="ve-text-left ve-px-2" colspan="${c.flex || 1}">${c.name}</th>`).join("")}</tr>
 			</thead>
 			<tbody>`;
 
@@ -129,7 +129,7 @@ class UtilsTableview {
 				const c = colTransforms[k];
 				const val = c.transform == null ? it[k] : c.transform(k[0] === "_" ? it : it[k], additionalData, {styleHint});
 				row.push(val);
-				return `<td data-col="${i}" class="px-2" colspan="${c.flex || 1}">${val || ""}</td>`;
+				return `<td data-col="${i}" class="ve-px-2" colspan="${c.flex || 1}">${val || ""}</td>`;
 			}).join("");
 			rdState.rows.push(row);
 			stack += `</tr>`;

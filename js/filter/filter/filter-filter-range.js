@@ -305,7 +305,7 @@ export class RangeFilter extends FilterBase {
 			this,
 			"isUseDropdowns",
 			{
-				ele: ee`<button class="ve-btn ve-btn-default ve-btn-xs mr-2">Show as Dropdowns</button>`,
+				ele: ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">Show as Dropdowns</button>`,
 				stateName: "uiMeta",
 				stateProp: "_uiMeta",
 			},
@@ -313,11 +313,11 @@ export class RangeFilter extends FilterBase {
 		const btnReset = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Reset</button>`.onn("click", () => this.reset());
 		const wrpBtns = ee`<div>${btnForceMobile}${btnReset}</div>`;
 
-		const wrpSummary = ee`<div class="ve-flex-v-center fltr__summary_item fltr__summary_item--include"></div>`.hideVe();
+		const wrpSummary = ee`<div class="ve-flex-v-center ve-fltr__summary_item ve-fltr__summary_item--include"></div>`.hideVe();
 
 		const btnShowHide = this._getBtnShowHide();
 		const hkIsHidden = () => {
-			btnShowHide.toggleClass("active", this._uiMeta.isHidden);
+			btnShowHide.toggleClass("ve-active", this._uiMeta.isHidden);
 			wrpBtns.toggleVe(!this._uiMeta.isHidden);
 			wrpSummary.toggleVe(this._uiMeta.isHidden);
 
@@ -338,7 +338,7 @@ export class RangeFilter extends FilterBase {
 		<div class="ve-flex-v-center">
 			${wrpBtns}
 			${wrpSummary}
-			<div class="ve-btn-group ve-flex-v-center ml-2">
+			<div class="ve-btn-group ve-flex-v-center ve-ml-2">
 				${btnShowHide}
 				${this._getBtnMenu()}
 			</div>
@@ -376,8 +376,8 @@ export class RangeFilter extends FilterBase {
 
 		const wrpControls = opts.isMulti ? null : this._getHeaderControls();
 
-		const wrpSlider = ee`<div class="fltr__wrp-pills fltr__wrp-pills--flex"></div>`;
-		const wrpDropdowns = ee`<div class="fltr__wrp-pills fltr__wrp-pills--flex"></div>`;
+		const wrpSlider = ee`<div class="ve-fltr__wrp-pills ve-fltr__wrp-pills--flex"></div>`;
+		const wrpDropdowns = ee`<div class="ve-fltr__wrp-pills ve-fltr__wrp-pills--flex"></div>`;
 		const hookHidden = () => {
 			wrpSlider.toggleVe(!this._uiMeta.isHidden && !this._uiMeta.isUseDropdowns);
 			wrpDropdowns.toggleVe(!this._uiMeta.isHidden && !!this._uiMeta.isUseDropdowns);
@@ -434,7 +434,7 @@ export class RangeFilter extends FilterBase {
 		// region Dropdowns
 		const selMin = e_({
 			tag: "select",
-			clazz: `form-control mr-2`,
+			clazz: `ve-form-control ve-mr-2`,
 			change: () => {
 				const nxtMin = Number(selMin.val());
 				const [min, max] = [nxtMin, this._state.curMax].sort(SortUtil.ascSort);
@@ -444,7 +444,7 @@ export class RangeFilter extends FilterBase {
 		});
 		const selMax = e_({
 			tag: "select",
-			clazz: `form-control`,
+			clazz: `ve-form-control`,
 			change: () => {
 				const nxMax = Number(selMax.val());
 				const [min, max] = [this._state.curMin, nxMax].sort(SortUtil.ascSort);
@@ -452,7 +452,7 @@ export class RangeFilter extends FilterBase {
 				this._state.curMax = max;
 			},
 		});
-		ee`<div class="ve-flex-v-center w-100 px-3 py-1">${selMin}${selMax}</div>`.appendTo(wrpDropdowns);
+		ee`<div class="ve-flex-v-center ve-w-100 ve-px-3 ve-py-1">${selMin}${selMax}</div>`.appendTo(wrpDropdowns);
 		// endregion
 
 		const handleCurUpdate = () => {
@@ -480,7 +480,7 @@ export class RangeFilter extends FilterBase {
 			wrpDropdowns.addClass("ve-grow");
 
 			return this.__wrpFilter = ee`<div class="ve-flex">
-				<div class="fltr__range-inline-label mr-2">${this._getRenderedHeader()}</div>
+				<div class="ve-fltr__range-inline-label ve-mr-2">${this._getRenderedHeader()}</div>
 				${wrpSlider}
 				${wrpDropdowns}
 			</div>`;
@@ -488,9 +488,9 @@ export class RangeFilter extends FilterBase {
 			const btnMobToggleControls = this._getBtnMobToggleControls(wrpControls);
 
 			return this.__wrpFilter = ee`<div class="ve-flex-col">
-				${opts.isFirst ? "" : `<div class="fltr__dropdown-divider mb-1"></div>`}
-				<div class="split fltr__h ${this._minimalUi ? "fltr__minimal-hide" : ""} mb-1">
-					<div class="fltr__h-text ve-flex-h-center">${this._getRenderedHeader()}${btnMobToggleControls}</div>
+				${opts.isFirst ? "" : `<div class="ve-fltr__dropdown-divider ve-mb-1"></div>`}
+				<div class="ve-split ve-fltr__h ${this._minimalUi ? "ve-fltr__minimal-hide" : ""} ve-mb-1">
+					<div class="ve-fltr__h-text ve-flex-h-center">${this._getRenderedHeader()}${btnMobToggleControls}</div>
 					${wrpControls}
 				</div>
 				${wrpSlider}
@@ -506,21 +506,21 @@ export class RangeFilter extends FilterBase {
 		this.__wrpMini = opts.wrpMini;
 
 		// region Mini pills
-		this._btnMiniGt = this._btnMiniGt || ee`<div class="fltr__mini-pill" data-state="${PILL_STATES[PILL_STATE__IGNORE]}"></div>`
+		this._btnMiniGt = this._btnMiniGt || ee`<div class="ve-fltr__mini-pill" data-state="${PILL_STATES[PILL_STATE__IGNORE]}"></div>`
 			.onn("click", () => {
 				this._state.curMin = this._state.min;
 				this._filterBox.fireChangeEvent();
 			});
 		this._btnMiniGt.appendTo(this.__wrpMini);
 
-		this._btnMiniLt = this._btnMiniLt || ee`<div class="fltr__mini-pill" data-state="${PILL_STATES[PILL_STATE__IGNORE]}"></div>`
+		this._btnMiniLt = this._btnMiniLt || ee`<div class="ve-fltr__mini-pill" data-state="${PILL_STATES[PILL_STATE__IGNORE]}"></div>`
 			.onn("click", () => {
 				this._state.curMax = this._state.max;
 				this._filterBox.fireChangeEvent();
 			});
 		this._btnMiniLt.appendTo(this.__wrpMini);
 
-		this._btnMiniEq = this._btnMiniEq || ee`<div class="fltr__mini-pill" data-state="${PILL_STATES[PILL_STATE__IGNORE]}"></div>`
+		this._btnMiniEq = this._btnMiniEq || ee`<div class="ve-fltr__mini-pill" data-state="${PILL_STATES[PILL_STATE__IGNORE]}"></div>`
 			.onn("click", () => {
 				this._state.curMin = this._state.min;
 				this._state.curMax = this._state.max;
@@ -735,7 +735,7 @@ export class RangeFilter extends FilterBase {
 				? this._labelSearchCache.includes(searchTerm)
 				: [...new Array(this._state.max - this._state.min)].map((_, n) => n + this._state.min).join(" -- ").includes(searchTerm));
 
-		this.__wrpFilter.toggleClass("fltr__hidden--search", !isVisible);
+		this.__wrpFilter.toggleClass("ve-fltr__hidden--search", !isVisible);
 
 		return isVisible;
 	}

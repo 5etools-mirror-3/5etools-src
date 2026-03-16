@@ -18,7 +18,7 @@ class RenderCultsBoons {
 			${Renderer.utils.getBorderTr()}
 			${Renderer.utils.getExcludedTr({entity: it, dataProp: "cult"})}
 			${Renderer.utils.getNameTr(it, {page: UrlUtil.PG_CULTS_BOONS})}
-			<tr><td colspan="6" class="py-0"><div class="ve-tbl-divider"></div></td></tr>
+			<tr><td colspan="6" class="ve-py-0"><div class="ve-tbl-divider"></div></td></tr>
 			<tr><td colspan="6">${renderStack.join("")}</td></tr>
 			${Renderer.utils.getPageTr(it)}
 			${Renderer.utils.getBorderTr()}

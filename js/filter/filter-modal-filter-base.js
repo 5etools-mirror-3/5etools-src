@@ -5,7 +5,7 @@ import {FilterUtils} from "./filter-utils.js";
 /** @abstract */
 export class ModalFilterBase {
 	static _getFilterColumnHeaders (btnMeta) {
-		return btnMeta.map((it, i) => ee`<button class="ve-col-${it.width} ${i === 0 ? "pl-0" : i === btnMeta.length ? "pr-0" : ""} ${it.disabled ? "" : "sort"} ve-btn ve-btn-default ve-btn-xs" ${it.disabled ? "" : `data-sort="${it.sort}"`} ${it.title ? `title="${it.title}"` : ""} ${it.disabled ? "disabled" : ""}>${it.text}</button>`);
+		return btnMeta.map((it, i) => ee`<button class="ve-col-${it.width} ${i === 0 ? "ve-pl-0" : i === btnMeta.length ? "ve-pr-0" : ""} ${it.disabled ? "" : "sort"} ve-btn ve-btn-default ve-btn-xs" ${it.disabled ? "" : `data-sort="${it.sort}"`} ${it.title ? `title="${it.title}"` : ""} ${it.disabled ? "disabled" : ""}>${it.text}</button>`);
 	}
 
 	/**
@@ -37,7 +37,7 @@ export class ModalFilterBase {
 
 	get allData () { return this._allData; }
 
-	_getWrpList () { return ee`<div class="list ui-list__wrp ve-overflow-x-hidden ve-overflow-y-auto h-100 min-h-0"></div>`; }
+	_getWrpList () { return ee`<div class="list ve-ui-list__wrp ve-overflow-x-hidden ve-overflow-y-auto ve-h-100 ve-min-h-0"></div>`; }
 
 	_getColumnHeaderPreviewAll (opts) {
 		return ee`<button class="ve-btn ve-btn-default ve-btn-xs ${opts.isBuildUi ? "ve-col-1" : "ve-col-0-5"}">${ListUiUtil.HTML_GLYPHICON_EXPAND}</button>`;
@@ -58,23 +58,23 @@ export class ModalFilterBase {
 
 		await this._pInit();
 
-		const ovlLoading = ee`<div class="w-100 h-100 ve-flex-vh-center"><i class="dnd-font ve-muted">Loading...</i></div>`.appendTo(wrp);
+		const ovlLoading = ee`<div class="ve-w-100 ve-h-100 ve-flex-vh-center"><i class="ve-dnd-font ve-muted">Loading...</i></div>`.appendTo(wrp);
 
-		const iptSearch = (opts.iptSearch || ee`<input class="form-control lst__search lst__search--no-border-h h-100" type="search" placeholder="Search...">`).disableSpellcheck();
+		const iptSearch = (opts.iptSearch || ee`<input class="ve-form-control ve-lst__search ve-lst__search--no-border-h ve-h-100" type="search" placeholder="Search...">`).disableSpellcheck();
 		const btnReset = opts.btnReset || ee`<button class="ve-btn ve-btn-default">Reset</button>`;
-		const dispNumVisible = ee`<div class="lst__wrp-search-visible no-events ve-flex-vh-center"></div>`;
+		const dispNumVisible = ee`<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>`;
 
-		const wrpIptSearch = ee`<div class="w-100 relative">
+		const wrpIptSearch = ee`<div class="ve-w-100 ve-relative">
 			${iptSearch}
-			<div class="lst__wrp-search-glass no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
+			<div class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
 			${dispNumVisible}
 		</div>`;
 
-		const wrpFormTop = ee`<div class="ve-flex input-group ve-btn-group w-100 lst__form-top">${wrpIptSearch}${btnReset}</div>`;
+		const wrpFormTop = ee`<div class="ve-flex input-group ve-btn-group ve-w-100 ve-lst__form-top">${wrpIptSearch}${btnReset}</div>`;
 
-		const wrpFormBottom = opts.wrpMiniPills || ee`<div class="w-100"></div>`;
+		const wrpFormBottom = opts.wrpMiniPills || ee`<div class="ve-w-100"></div>`;
 
-		const wrpFormHeaders = ee`<div class="input-group input-group--bottom ve-flex no-shrink"></div>`;
+		const wrpFormHeaders = ee`<div class="input-group input-group--bottom ve-flex ve-no-shrink"></div>`;
 		const cbSelAll = opts.isBuildUi || this._isRadio ? null : ee`<input type="checkbox">`;
 		const btnSendAllToRight = opts.isBuildUi ? ee`<button class="ve-btn ve-btn-xxs ve-btn-default ve-col-1" title="Add All"><span class="glyphicon glyphicon-arrow-right"></span></button>` : null;
 
@@ -89,7 +89,7 @@ export class ModalFilterBase {
 		this._getColumnHeaders().forEach(ele => wrpFormHeaders.appends(ele));
 		if (opts.isBuildUi) btnSendAllToRight.appendTo(wrpFormHeaders);
 
-		const wrpForm = ee`<div class="ve-flex-col w-100 mb-1">${wrpFormTop}${wrpFormBottom}${wrpFormHeaders}</div>`;
+		const wrpForm = ee`<div class="ve-flex-col ve-w-100 ve-mb-1">${wrpFormTop}${wrpFormBottom}${wrpFormHeaders}</div>`;
 		const wrpList = this._getWrpList();
 
 		const btnConfirm = opts.isBuildUi ? null : ee`<button class="ve-btn ve-btn-default">Confirm</button>`;
@@ -140,10 +140,10 @@ export class ModalFilterBase {
 
 		ovlLoading.remove();
 
-		const wrpInner = ee`<div class="ve-flex-col h-100">
+		const wrpInner = ee`<div class="ve-flex-col ve-h-100">
 			${wrpForm}
 			${wrpList}
-			${opts.isBuildUi ? null : ee`<hr class="hr-1"><div class="ve-flex-vh-center">${btnConfirm}</div>`}
+			${opts.isBuildUi ? null : ee`<hr class="ve-hr-1"><div class="ve-flex-vh-center">${btnConfirm}</div>`}
 		</div>`.appendTo(wrp.empty());
 
 		return {
@@ -306,7 +306,7 @@ export class ModalFilterBase {
 		this.pageFilter.filterBox.setFromSubHashes(subhashes, {force: true, iptSearch: this._filterCache.iptSearch});
 	}
 
-	_getNameStyle () { return `bold`; }
+	_getNameStyle () { return `ve-bold`; }
 
 	/**
 	 * Pre-heat the modal, thus allowing access to the filter box underneath.

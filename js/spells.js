@@ -5,33 +5,33 @@ class SpellsSublistManager extends SublistManager {
 		return [
 			new SublistCellTemplate({
 				name: "Name",
-				css: "bold ve-col-3-2 pl-0 pr-1",
+				css: "ve-bold ve-col-3-2 ve-pl-0 ve-pr-1",
 				colStyle: "",
 			}),
 			new SublistCellTemplate({
 				name: "Level",
-				css: "capitalize ve-col-1-5 px-1 ve-text-center",
-				colStyle: "text-center",
+				css: "ve-capitalize ve-col-1-5 ve-px-1 ve-text-center",
+				colStyle: "ve-text-center",
 			}),
 			new SublistCellTemplate({
 				name: "Time",
-				css: "ve-col-1-8 px-1 ve-text-center",
-				colStyle: "text-center",
+				css: "ve-col-1-8 ve-px-1 ve-text-center",
+				colStyle: "ve-text-center",
 			}),
 			new SublistCellTemplate({
 				name: "School",
-				css: "capitalize ve-col-1-6 px-1 ve-text-center",
-				colStyle: "text-center",
+				css: "ve-capitalize ve-col-1-6 ve-px-1 ve-text-center",
+				colStyle: "ve-text-center",
 			}),
 			new SublistCellTemplate({
 				name: "C.",
-				css: "concentration--sublist ve-col-0-7 px-1 ve-text-center",
-				colStyle: "text-center",
+				css: "concentration--sublist ve-col-0-7 ve-px-1 ve-text-center",
+				colStyle: "ve-text-center",
 			}),
 			new SublistCellTemplate({
 				name: "Range",
-				css: "range ve-col-3-2 pl-1 pr-0 ve-text-right",
-				colStyle: "text-right",
+				css: "range ve-col-3-2 ve-pl-1 ve-pr-0 ve-text-right",
+				colStyle: "ve-text-right",
 			}),
 		];
 	}
@@ -59,8 +59,8 @@ class SpellsSublistManager extends SublistManager {
 			range,
 		];
 
-		const ele = ee`<div class="lst__row lst__row--sublist ve-flex-col">
-			<a href="#${UrlUtil.autoEncodeHash(spell)}" title="${spell.name}" class="lst__row-border lst__row-inner">
+		const ele = ee`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+			<a href="#${UrlUtil.autoEncodeHash(spell)}" title="${spell.name}" class="ve-lst__row-border ve-lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`
@@ -139,20 +139,20 @@ class SpellPageBookView extends ListPageBookView {
 			StorageUtil.syncSetForPage(SpellPageBookView._BOOK_VIEW_MODE_K, val);
 		};
 
-		const selSortMode = ee`<select class="form-control input-sm">
+		const selSortMode = ee`<select class="ve-form-control ve-input-sm">
 			<option value="0">Spell Level</option>
 			<option value="1">Alphabetical</option>
 		</select>`
 			.onn("change", () => onChangeSortMode());
 
 		selSortMode.val(`${this._bookViewLastOrder ?? 0}`);
-		ee`<div class="ve-flex-vh-center ml-3"><div class="mr-2 no-wrap">Sort order:</div>${selSortMode}</div>`.appendTo(wrpPrint);
+		ee`<div class="ve-flex-vh-center ve-ml-3"><div class="ve-mr-2 ve-no-wrap">Sort order:</div>${selSortMode}</div>`.appendTo(wrpPrint);
 
 		return out;
 	}
 
 	_renderSpell ({stack, sp}) {
-		stack.push(`<div class="bkmv__wrp-item ve-inline-block print__ve-block print__my-2"><table class="w-100 stats stats--book stats--bkmv"><tbody>`);
+		stack.push(`<div class="bkmv__wrp-item ve-inline-block print__ve-block print__my-2"><table class="ve-w-100 ve-stats ve-stats--book ve-stats--bkmv"><tbody>`);
 		stack.push(Renderer.spell.getCompactRenderedString(sp));
 		stack.push(`</tbody></table></div>`);
 	}
@@ -164,7 +164,7 @@ class SpellPageBookView extends ListPageBookView {
 			const atLvl = this._bookViewToShow.filter(({entity}) => entity.level === i);
 			if (atLvl.length) {
 				stack.push(`<div class="bkmv__no-breaks">`);
-				stack.push(`<div class="bkmv__spacer-name ve-flex-v-center no-shrink no-print pl-2">${Parser.spLevelToFullLevelText(i)}</div>`);
+				stack.push(`<div class="bkmv__spacer-name ve-flex-v-center ve-no-shrink no-print ve-pl-2">${Parser.spLevelToFullLevelText(i)}</div>`);
 				atLvl.forEach(({entity}) => this._renderSpell({stack, sp: entity}));
 				isAnyEntityRendered = true;
 				stack.push(`</div>`);
@@ -185,7 +185,7 @@ class SpellPageBookView extends ListPageBookView {
 
 	_renderNoneSelected () {
 		const stack = [];
-		stack.push(`<div class="w-100 h-100 no-breaks">`);
+		stack.push(`<div class="ve-w-100 ve-h-100 ve-no-breaks">`);
 		this._renderSpell({stack, sp: this._fnGetEntLastLoaded()});
 		stack.push(`</div>`);
 		this._wrpContent.empty().appends(stack.join(""));
@@ -200,7 +200,7 @@ class SpellPageBookView extends ListPageBookView {
 
 	async _pGetRenderContentMeta ({wrpContent, wrpControls}) {
 		this._wrpContent = wrpContent;
-		wrpContent.addClass("p-2");
+		wrpContent.addClass("ve-p-2");
 
 		this._bookViewToShow = this._sublistManager.getSublistedEntityMetas()
 			.sort(this._getSorted.bind(this));
@@ -338,30 +338,30 @@ class SpellsPage extends ListPageMultiSource {
 
 		const eleLi = e_({
 			tag: "div",
-			clazz: `lst__row ve-flex-col ${isExcluded ? "lst__row--blocklisted" : ""}`,
+			clazz: `ve-lst__row ve-flex-col ${isExcluded ? "ve-lst__row--blocklisted" : ""}`,
 			click: (evt) => this._list.doSelect(listItem, evt),
 			contextmenu: (evt) => this._openContextMenu(evt, this._list, listItem),
 			children: [
 				e_({
 					tag: "a",
 					href: `#${hash}`,
-					clazz: "lst__row-border lst__row-inner",
+					clazz: "ve-lst__row-border ve-lst__row-inner",
 					children: [
-						e_({tag: "span", clazz: `bold ve-col-2-9 pl-0 pr-1`, text: spell.name}),
-						e_({tag: "span", clazz: `ve-col-1-5 px-1 ve-text-center`, text: PageFilterSpells.getTblLevelStr(spell)}),
-						e_({tag: "span", clazz: `ve-col-1-7 px-1 ve-text-center`, text: time}),
+						e_({tag: "span", clazz: `ve-bold ve-col-2-9 ve-pl-0 ve-pr-1`, text: spell.name}),
+						e_({tag: "span", clazz: `ve-col-1-5 ve-px-1 ve-text-center`, text: PageFilterSpells.getTblLevelStr(spell)}),
+						e_({tag: "span", clazz: `ve-col-1-7 ve-px-1 ve-text-center`, text: time}),
 						e_({
 							tag: "span",
-							clazz: `ve-col-1-2 px-1 ${schoolClassName} ve-text-center`,
+							clazz: `ve-col-1-2 ve-px-1 ${schoolClassName} ve-text-center`,
 							title: Parser.spSchoolAndSubschoolsAbvsToFull(spell.school, spell.subschools),
 							style: Parser.spSchoolAbvToStylePart(spell.school),
 							text: school,
 						}),
-						e_({tag: "span", clazz: `ve-col-0-6 px-1 ve-text-center`, title: "Concentration", text: concentration}),
-						e_({tag: "span", clazz: `ve-col-2-4 px-1 ve-text-right`, text: range}),
+						e_({tag: "span", clazz: `ve-col-0-6 ve-px-1 ve-text-center`, title: "Concentration", text: concentration}),
+						e_({tag: "span", clazz: `ve-col-2-4 ve-px-1 ve-text-right`, text: range}),
 						e_({
 							tag: "span",
-							clazz: `ve-col-1-7 ve-text-center ${Parser.sourceJsonToSourceClassname(spell.source)} pl-1 pr-0`,
+							clazz: `ve-col-1-7 ve-text-center ${Parser.sourceJsonToSourceClassname(spell.source)} ve-pl-1 ve-pr-0`,
 							title: `${Parser.sourceJsonToFull(spell.source)}${Renderer.utils.getSourceSubText(spell)}`,
 							text: source,
 						}),

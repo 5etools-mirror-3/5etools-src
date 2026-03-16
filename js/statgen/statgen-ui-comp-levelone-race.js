@@ -60,30 +60,30 @@ export class StatGenUiRenderLevelOneRace extends StatGenUiRenderLevelOneEntityBa
 			this._parent,
 			"common_isShowTashasRules",
 			{
-				html: `<button class="ve-btn ve-btn-xxs ve-btn-default ve-small p-0 statgen-shared__btn-toggle-tashas-rules ve-flex-vh-center" title="Toggle &quot;Customizing Your Origin&quot; Section"><span class="glyphicon glyphicon-eye-open"></span></button>`,
+				html: `<button class="ve-btn ve-btn-xxs ve-btn-default ve-small ve-p-0 ve-statgen-shared__btn-toggle-tashas-rules ve-flex-vh-center" title="Toggle &quot;Customizing Your Origin&quot; Section"><span class="glyphicon glyphicon-eye-open"></span></button>`,
 			},
 		);
 
-		const stgTashasControls = ee`<div class="ve-flex-col w-100">
-			<label class="ve-flex-v-center mb-1">
-				<div class="mr-2">Allow Origin Customization</div>
+		const stgTashasControls = ee`<div class="ve-flex-col ve-w-100">
+			<label class="ve-flex-v-center ve-mb-1">
+				<div class="ve-mr-2">Allow Origin Customization</div>
 				${ComponentUiUtil.getCbBool(this._parent, "common_isTashas")}
 			</label>
 
 			<div class="ve-flex">
-				<div class="ve-small ve-muted italic mr-1">${Renderer.get().render(`An {@variantrule Customizing Your Origin|TCE|optional rule}`)}</div>
+				<div class="ve-small ve-muted ve-italic ve-mr-1">${Renderer.get().render(`An {@variantrule Customizing Your Origin|TCE|optional rule}`)}</div>
 				${btnToggleTashasPin}
-				<div class="ve-small ve-muted italic ml-1">${Renderer.get().render(`from Tasha's Cauldron of Everything, page 8.`)}</div>
+				<div class="ve-small ve-muted ve-italic ve-ml-1">${Renderer.get().render(`from Tasha's Cauldron of Everything, page 8.`)}</div>
 			</div>
 		</div>`;
 		this._parent._addHookBase("common_isAllowTashasRules", () => {
 			stgTashasControls.toggleVe(this._parent._state.common_isAllowTashasRules);
 		})();
 
-		const dispTashas = ee`<div class="ve-flex-col"><div class="italic ve-muted">Loading...</div></div>`;
+		const dispTashas = ee`<div class="ve-flex-col"><div class="ve-italic ve-muted">Loading...</div></div>`;
 		DataLoader.pCacheAndGet(UrlUtil.PG_VARIANTRULES, Parser.SRC_TCE, UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_VARIANTRULES]({name: "Customizing Your Origin", source: Parser.SRC_TCE}))
 			.then(rule => {
-				ee(dispTashas.empty())`${Renderer.hover.getHoverContent_stats(UrlUtil.PG_VARIANTRULES, rule)}<hr class="hr-3">`;
+				ee(dispTashas.empty())`${Renderer.hover.getHoverContent_stats(UrlUtil.PG_VARIANTRULES, rule)}<hr class="ve-hr-3">`;
 			});
 		const hkIsShowTashas = () => {
 			dispTashas.toggleVe(this._parent._state.common_isShowTashasRules && this._parent._state.common_isAllowTashasRules);

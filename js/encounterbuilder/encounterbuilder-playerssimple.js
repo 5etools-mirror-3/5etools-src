@@ -9,7 +9,7 @@ export class EncounterBuilderRenderableCollectionPlayersSimple extends Renderabl
 	}
 
 	_getWrpRow () {
-		return ee`<div class="ve-flex-v-center mb-2 ecgen-player__wrp-row"></div>`;
+		return ee`<div class="ve-flex-v-center ve-mb-2 ecgen-player__wrp-row"></div>`;
 	}
 
 	_populateRow ({comp, wrpRow, entity}) {
@@ -21,7 +21,7 @@ export class EncounterBuilderRenderableCollectionPlayersSimple extends Renderabl
 			},
 		)
 			.addClass("form-control--minimal")
-			.addClass("no-shrink");
+			.addClass("ve-no-shrink");
 
 		const selLevel = ComponentUiUtil.getSelEnum(
 			comp,
@@ -31,21 +31,21 @@ export class EncounterBuilderRenderableCollectionPlayersSimple extends Renderabl
 			},
 		)
 			.addClass("form-control--minimal")
-			.addClass("no-shrink")
-			.addClass("bl-0");
+			.addClass("ve-no-shrink")
+			.addClass("ve-bl-0");
 
 		const btnRemove = this._utils.getBtnDelete({entity, title: "Remove Player Group"})
 			.addClass("ecgen-player__btn-inline")
-			.addClass("h-ipt-xs")
-			.addClass("no-shrink")
-			.addClass("bl-0")
-			.addClass("bbl-0")
-			.addClass("btl-0")
+			.addClass("ve-h-ipt-xs")
+			.addClass("ve-no-shrink")
+			.addClass("ve-bl-0")
+			.addClass("ve-bbl-0")
+			.addClass("ve-btl-0")
 			.attr("tabindex", "-1");
 
 		ee(wrpRow)`
-			<div class="w-80p">${selCount}</div>
-			<div class="w-80p">${selLevel}</div>
+			<div class="ve-w-80p">${selCount}</div>
+			<div class="ve-w-80p">${selLevel}</div>
 			<div class="ve-flex-v-center">${btnRemove}</div>
 		`;
 	}

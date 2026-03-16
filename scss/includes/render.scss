@@ -44,7 +44,7 @@ Renderer
 		}
 	}
 
-	.rd {
+	.ve-rd {
 		&__ {
 			&b {
 				p {
@@ -83,11 +83,11 @@ Renderer
 				padding-left: var(--w-pl-list);
 				list-style-type: disc;
 
-				> .rd__list:last-child {
+				> .ve-rd__list:last-child {
 					margin-bottom: 0;
 				}
 
-				> .rd__list-name {
+				> .ve-rd__list-name {
 					margin-left: calc(-1 * var(--w-pl-list));
 				}
 			}
@@ -290,11 +290,11 @@ Renderer
 				padding: 0;
 				list-style: none;
 
-				> .rd__list-name {
+				> .ve-rd__list-name {
 					margin-left: 0;
 				}
 
-				> .rd__li {
+				> .ve-rd__li {
 					margin-bottom: var(--h-mb-li);
 					text-indent: var(--w-text-indent-li-hang--inv);
 					margin-left: var(--w-text-indent-li-hang);
@@ -319,7 +319,7 @@ Renderer
 				padding: 0;
 				list-style: none;
 
-				> .rd__li {
+				> .ve-rd__li {
 					margin-bottom: var(--h-mb-li);
 					text-indent: var(--w-text-indent-li-hang);
 
@@ -335,7 +335,7 @@ Renderer
 			}
 
 			&list-caption {
-				> .rd__list-name {
+				> .ve-rd__list-name {
 					font-variant: small-caps;
 					font-weight: bold;
 					font-size: 1.08em;
@@ -345,7 +345,7 @@ Renderer
 			&list-hang {
 				list-style: none;
 
-				> .rd__list-name {
+				> .ve-rd__list-name {
 					margin-left: calc(-1 * var(--w-pl-list));
 				}
 
@@ -372,7 +372,7 @@ Renderer
 				list-style: none;
 				padding: 0 0 0 var(--w-pl-list-no-bullets);
 
-				> .rd__list-name {
+				> .ve-rd__list-name {
 					margin-left: calc(-1 * var(--w-pl-list-no-bullets));
 				}
 			}
@@ -545,7 +545,7 @@ Renderer
 				}
 			}
 
-			&li > .rd__b-data {
+			&li > .ve-rd__b-data {
 				margin: 0;
 			}
 
@@ -788,7 +788,7 @@ Renderer
 	}
 
 	// Entries embedded in tables
-	td > .rd__b:last-child {
+	td > .ve-rd__b:last-child {
 		margin-bottom: 0;
 	}
 
@@ -797,38 +797,38 @@ Renderer
 	/* ****************************************************************************************************************** */
 
 	// region Recipes
-	.rd-recipes {
+	.ve-rd-recipes {
 		&__ {
 			&wrp-recipe {
 				--w-text-indent-inline-p: 0;
 			}
 
 			&wrp-instructions {
-				.rd__h--3 {
+				.ve-rd__h--3 {
 					font-style: initial;
 					font-variant: small-caps;
 				}
 
-				.rd__b--3 > p,
-				.rd__b--4 > p {
+				.ve-rd__b--3 > p,
+				.ve-rd__b--4 > p {
 					margin-bottom: 10px;
 				}
 
-				.rd__b--3 > p:nth-of-type(2),
-				.rd__b--4 > p:nth-of-type(2) {
+				.ve-rd__b--3 > p:nth-of-type(2),
+				.ve-rd__b--4 > p:nth-of-type(2) {
 					margin-top: 10px;
 				}
 			}
 
 			&wrp-ingredients {
-				.rd__h--2 {
+				.ve-rd__h--2 {
 					font-size: 1em;
 					font-family: Roboto, Helvetica, sans-serif;
 					color: inherit;
 					font-weight: bold;
 				}
 
-				.rd__b p {
+				.ve-rd__b p {
 					margin-bottom: 0;
 				}
 			}

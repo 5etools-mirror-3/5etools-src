@@ -5,13 +5,13 @@ class VariantRulesSublistManager extends SublistManager {
 		return [
 			new SublistCellTemplate({
 				name: "Name",
-				css: "bold ve-col-10 pl-0 pr-1",
+				css: "ve-bold ve-col-10 ve-pl-0 ve-pr-1",
 				colStyle: "",
 			}),
 			new SublistCellTemplate({
 				name: "Type",
-				css: "ve-col-3 ve-text-center pl-1 pr-0",
-				colStyle: "text-center",
+				css: "ve-col-3 ve-text-center ve-pl-1 ve-pr-0",
+				colStyle: "ve-text-center",
 			}),
 		];
 	}
@@ -19,8 +19,8 @@ class VariantRulesSublistManager extends SublistManager {
 	pGetSublistItem (it, hash) {
 		const cellsText = [it.name, it.ruleType ? Parser.ruleTypeToFull(it.ruleType) : "\u2014"];
 
-		const ele = ee`<div class="lst__row lst__row--sublist ve-flex-col">
-			<a href="#${hash}" class="lst__row-border lst__row-inner">
+		const ele = ee`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`
@@ -54,6 +54,12 @@ class VariantRulesPage extends ListPage {
 			pageFilter,
 
 			dataProps: ["variantrule"],
+
+			bookViewOptions: {
+				nameSingular: "variant rule",
+				namePlural: "variant rules",
+				pageTitle: "Variant Rules Book View",
+			},
 		});
 	}
 
@@ -66,15 +72,15 @@ class VariantRulesPage extends ListPage {
 		}
 
 		const eleLi = document.createElement("div");
-		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blocklisted" : ""}`;
+		eleLi.className = `ve-lst__row ve-flex-col ${isExcluded ? "ve-lst__row--blocklisted" : ""}`;
 
 		const source = Parser.sourceJsonToAbv(rule.source);
 		const hash = UrlUtil.autoEncodeHash(rule);
 
-		eleLi.innerHTML = `<a href="#${hash}" class="lst__row-border lst__row-inner">
-			<span class="bold ve-col-7 pl-0 pr-1">${rule.name}</span>
-			<span class="ve-col-3 px-1 ve-text-center">${rule.ruleType ? Parser.ruleTypeToFull(rule.ruleType) : "\u2014"}</span>
-			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(rule.source)} pl-1 pr-0" title="${Parser.sourceJsonToFull(rule.source)}">${source}</span>
+		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+			<span class="ve-bold ve-col-7 ve-pl-0 ve-pr-1">${rule.name}</span>
+			<span class="ve-col-3 ve-px-1 ve-text-center">${rule.ruleType ? Parser.ruleTypeToFull(rule.ruleType) : "\u2014"}</span>
+			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(rule.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(rule.source)}">${source}</span>
 		</a>`;
 
 		const listItem = new ListItem(
@@ -109,7 +115,7 @@ class VariantRulesPage extends ListPage {
 		if (!sub.length) return;
 
 		const ixHeader = UrlUtil.unpackSubHash(sub[0], true)?.header;
-		const eleTitle = es(`.rd__h[data-title-index="${ixHeader}"]`);
+		const eleTitle = es(`.ve-rd__h[data-title-index="${ixHeader}"]`);
 		if (eleTitle) eleTitle.scrollIntoView();
 	}
 }

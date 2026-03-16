@@ -928,13 +928,13 @@ export class BrewUtil2Base {
 
 	async pAddBrewFromLoaderTag (ele) {
 		ele = e_(ele);
-		if (!ele.hasClass("rd__wrp-loadbrew--ready")) return; // an existing click is being handled
+		if (!ele.hasClass("ve-rd__wrp-loadbrew--ready")) return; // an existing click is being handled
 		let jsonPath = ele.dataset.rdLoaderPath;
 		const name = ele.dataset.rdLoaderName;
 		const cached = ele.html();
 		const cachedTitle = ele.tooltip();
 		ele.tooltip("");
-		ele.removeClass("rd__wrp-loadbrew--ready").html(`${name.qq()}<span class="glyphicon glyphicon-refresh rd__loadbrew-icon rd__loadbrew-icon--active"></span>`);
+		ele.removeClass("ve-rd__wrp-loadbrew--ready").html(`${name.qq()}<span class="glyphicon glyphicon-refresh ve-rd__loadbrew-icon ve-rd__loadbrew-icon--active"></span>`);
 
 		jsonPath = jsonPath.unescapeQuotes();
 		if (!UrlUtil.isFullUrl(jsonPath)) {
@@ -943,8 +943,8 @@ export class BrewUtil2Base {
 		}
 
 		await this.pAddBrewFromUrl(jsonPath);
-		ele.html(`${name.qq()}<span class="glyphicon glyphicon-saved rd__loadbrew-icon"></span>`);
-		setTimeout(() => ele.html(cached).addClass("rd__wrp-loadbrew--ready").tooltip(cachedTitle), 500);
+		ele.html(`${name.qq()}<span class="glyphicon glyphicon-saved ve-rd__loadbrew-icon"></span>`);
+		setTimeout(() => ele.html(cached).addClass("ve-rd__wrp-loadbrew--ready").tooltip(cachedTitle), 500);
 	}
 
 	_isMatchingCombinedIndexInfo (info) {
@@ -1341,7 +1341,11 @@ export class BrewUtil2Base {
 		await [...Omnidexer.TO_INDEX__FROM_INDEX_JSON, ...Omnidexer.TO_INDEX]
 			.pSerialAwaitMap(async arbiter => {
 				if (arbiter.isSkipBrew) return;
-				if (!brew[arbiter.brewProp || arbiter.listProp]?.length) return;
+
+				if (
+					!Object.keys(brew).some(prop => arbiter.hasBrewProp(prop))
+					&& !brew[arbiter.listProp]?.length
+				) return;
 
 				if (arbiter.pFnPreProcBrew) {
 					const toProc = await arbiter.pFnPreProcBrew.bind(arbiter)(brew);

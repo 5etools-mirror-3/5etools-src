@@ -30,23 +30,23 @@ class ItemsSublistManager extends SublistManager {
 		return [
 			new SublistCellTemplate({
 				name: "Name",
-				css: "bold ve-col-6 pl-0 pr-1",
+				css: "ve-bold ve-col-6 ve-pl-0 ve-pr-1",
 				colStyle: "",
 			}),
 			new SublistCellTemplate({
 				name: "Weight",
-				css: "ve-text-center ve-col-2 px-1",
-				colStyle: "text-center",
+				css: "ve-text-center ve-col-2 ve-px-1",
+				colStyle: "ve-text-center",
 			}),
 			new SublistCellTemplate({
 				name: "Cost",
-				css: "ve-text-center ve-col-2 px-1",
-				colStyle: "text-center",
+				css: "ve-text-center ve-col-2 ve-px-1",
+				colStyle: "ve-text-center",
 			}),
 			new SublistCellTemplate({
 				name: "Number",
-				css: "ve-text-center ve-col-2 pl-1 pr-0",
-				colStyle: "text-center",
+				css: "ve-text-center ve-col-2 ve-pl-1 ve-pr-0",
+				colStyle: "ve-text-center",
 			}),
 		];
 	}
@@ -67,7 +67,7 @@ class ItemsSublistManager extends SublistManager {
 				1,
 				{
 					fallbackOnNaN: count,
-					html: `<input class="w-100 ve-text-center form-control form-control--minimal input-xs">`,
+					html: `<input class="ve-w-100 ve-text-center ve-form-control form-control--minimal ve-input-xs">`,
 				},
 			);
 
@@ -81,7 +81,7 @@ class ItemsSublistManager extends SublistManager {
 			});
 
 			const stg = this._pGetSublistItem_getWrpIptCount()
-				.addClass("absolute")
+				.addClass("ve-absolute")
 				// Match padding
 				.css({right: "2px"})
 				.appends(ipt);
@@ -93,12 +93,12 @@ class ItemsSublistManager extends SublistManager {
 			...this.constructor._getRowCellsHtml({values: cellsText, templates: this.constructor._ROW_TEMPLATE.slice(0, 3)}),
 			// Placeholder to vertically expand row
 			this._pGetSublistItem_getWrpIptCount()
-				.appends(`<input class="w-100 ve-text-center form-control form-control--minimal input-xs" disabled>`),
+				.appends(`<input class="ve-w-100 ve-text-center ve-form-control form-control--minimal ve-input-xs" disabled>`),
 		];
 
-		const ele = ee`<div class="lst__row lst__row--sublist ve-flex-col">
-			<div class="lst__wrp-cells lst__row-border lst__row-inner relative">
-				<a href="#${hash}" class="lst__row-lnk-inner">
+		const ele = ee`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+			<div class="ve-lst__wrp-cells ve-lst__row-border ve-lst__row-inner ve-relative">
+				<a href="#${hash}" class="ve-lst__row-lnk-inner">
 					${ptsCells}
 				</a>
 				${stgCount}
@@ -130,7 +130,7 @@ class ItemsSublistManager extends SublistManager {
 	}
 
 	_pGetSublistItem_getWrpIptCount () {
-		return ee`<span class="ve-text-center ve-col-2 pr-0 col-2"></span>`;
+		return ee`<span class="ve-text-center ve-col-2 ve-pr-0"></span>`;
 	}
 
 	_onSublistChange () {
@@ -304,22 +304,22 @@ class ItemsPage extends ListPage {
 		if (item._fIsMundane) {
 			const eleLi = e_({
 				tag: "div",
-				clazz: `lst__row ve-flex-col ${isExcluded ? "lst__row--blocklisted" : ""}`,
+				clazz: `ve-lst__row ve-flex-col ${isExcluded ? "ve-lst__row--blocklisted" : ""}`,
 				click: (evt) => this._mundaneList.doSelect(listItem, evt),
 				contextmenu: (evt) => this._openContextMenu(evt, this._mundaneList, listItem),
 				children: [
 					e_({
 						tag: "a",
 						href: `#${hash}`,
-						clazz: "lst__row-border lst__row-inner",
+						clazz: "ve-lst__row-border ve-lst__row-inner",
 						children: [
-							e_({tag: "span", clazz: `ve-col-3-5 pl-0 pr-1 bold`, text: item.name}),
-							e_({tag: "span", clazz: `ve-col-4-5 px-1`, text: type}),
-							e_({tag: "span", clazz: `ve-col-1-5 px-1 ve-text-center`, text: item._l_value}),
-							e_({tag: "span", clazz: `ve-col-1-5 px-1 ve-text-center`, text: item._l_weight}),
+							e_({tag: "span", clazz: `ve-col-3-5 ve-pl-0 ve-pr-1 ve-bold`, text: item.name}),
+							e_({tag: "span", clazz: `ve-col-4-5 ve-px-1`, text: type}),
+							e_({tag: "span", clazz: `ve-col-1-5 ve-px-1 ve-text-center`, text: item._l_value}),
+							e_({tag: "span", clazz: `ve-col-1-5 ve-px-1 ve-text-center`, text: item._l_weight}),
 							e_({
 								tag: "span",
-								clazz: `ve-col-1 ve-text-center ${Parser.sourceJsonToSourceClassname(item.source)} pl-1 pr-0`,
+								clazz: `ve-col-1 ve-text-center ${Parser.sourceJsonToSourceClassname(item.source)} ve-pl-1 ve-pr-0`,
 								title: `${Parser.sourceJsonToFull(item.source)}${Renderer.utils.getSourceSubText(item)}`,
 								text: source,
 							}),
@@ -349,28 +349,28 @@ class ItemsPage extends ListPage {
 		} else {
 			const eleLi = e_({
 				tag: "div",
-				clazz: `lst__row ve-flex-col ${isExcluded ? "lst__row--blocklisted" : ""}`,
+				clazz: `ve-lst__row ve-flex-col ${isExcluded ? "ve-lst__row--blocklisted" : ""}`,
 				click: (evt) => this._magicList.doSelect(listItem, evt),
 				contextmenu: (evt) => this._openContextMenu(evt, this._magicList, listItem),
 				children: [
 					e_({
 						tag: "a",
 						href: `#${hash}`,
-						clazz: "lst__row-border lst__row-inner",
+						clazz: "ve-lst__row-border ve-lst__row-inner",
 						children: [
-							e_({tag: "span", clazz: `ve-col-3-5 pl-0 bold`, text: item.name}),
+							e_({tag: "span", clazz: `ve-col-3-5 ve-pl-0 ve-bold`, text: item.name}),
 							e_({tag: "span", clazz: `ve-col-4`, text: type}),
 							e_({tag: "span", clazz: `ve-col-1-5 ve-text-center`, text: item._l_weight}),
 							e_({tag: "span", clazz: `ve-col-0-6 ve-text-center`, text: item._attunementCategory !== VeCt.STR_NO_ATTUNEMENT ? "×" : ""}),
 							e_({
 								tag: "span",
-								clazz: `ve-col-1-4 ve-text-center ${item.rarity ? `itm__rarity-${item.rarity}` : ""}`,
+								clazz: `ve-col-1-4 ve-text-center ${item.rarity ? `ve-itm__rarity-${item.rarity}` : ""}`,
 								title: (item.rarity || "").toTitleCase(),
 								text: Parser.itemRarityToShort(item.rarity) || "",
 							}),
 							e_({
 								tag: "span",
-								clazz: `ve-col-1 ve-text-center ${Parser.sourceJsonToSourceClassname(item.source)} pr-0`,
+								clazz: `ve-col-1 ve-text-center ${Parser.sourceJsonToSourceClassname(item.source)} ve-pr-0`,
 								title: `${Parser.sourceJsonToFull(item.source)}${Renderer.utils.getSourceSubText(item)}`,
 								text: source,
 							}),
@@ -474,9 +474,9 @@ class ItemsPage extends ListPage {
 				},
 			});
 		});
-		const outVisibleResults = es(`.lst__wrp-search-visible`);
-		const wrpListMundane = es(`.itm__wrp-list--mundane`);
-		const wrpListMagic = es(`.itm__wrp-list--magic`);
+		const outVisibleResults = es(`.ve-lst__wrp-search-visible`);
+		const wrpListMundane = es(`.ve-itm__wrp-list--mundane`);
+		const wrpListMagic = es(`.ve-itm__wrp-list--magic`);
 		const elesMundane = em(`.ele-mundane`);
 		const elesMagic = em(`.ele-magic`);
 		this._mundaneList.on("updated", () => {
@@ -490,7 +490,7 @@ class ItemsPage extends ListPage {
 			outVisibleResults.html(`${current}/${total}`);
 
 			// Collapse the mundane section if there are no magic items displayed
-			wrpListMundane.toggleClass(`itm__wrp-list--empty`, this._mundaneList.visibleItems.length === 0);
+			wrpListMundane.toggleClass(`ve-itm__wrp-list--empty`, this._mundaneList.visibleItems.length === 0);
 		});
 		this._magicList.on("updated", () => {
 			elesMagic.forEach(ele => ele.toggleVe(!!this._magicList.visibleItems.length));
@@ -504,7 +504,7 @@ class ItemsPage extends ListPage {
 			outVisibleResults.html(`${current}/${total}`);
 
 			// Collapse the magic section if there are no magic items displayed
-			wrpListMagic.toggleClass(`itm__wrp-list--empty`, this._magicList.visibleItems.length === 0);
+			wrpListMagic.toggleClass(`ve-itm__wrp-list--empty`, this._magicList.visibleItems.length === 0);
 		});
 	}
 

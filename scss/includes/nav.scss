@@ -23,7 +23,7 @@
 	}
 
 	.ve-night-mode {
-		.nav > li:not(.active) > a {
+		.nav > li:not(.ve-active) > a {
 			color: vars-night.$rgb-font--night;
 			background-color: vars-night.$rgb-bg--night;
 			border: 1px solid vars-night.$rgb-border-grey--trans-night;
@@ -40,7 +40,7 @@
 			}
 		}
 
-		.nav > li.active > a {
+		.nav > li.ve-active > a {
 			&:focus,
 			&:hover {
 				color: #fff;
@@ -56,9 +56,9 @@
 			border-color: vars.$rgb-link-blue;
 		}
 
-		.nav li.active.open > a,
-		.nav li.active.open > a:focus,
-		.nav li.active.open > a:hover {
+		.nav li.ve-active.open > a,
+		.nav li.ve-active.open > a:focus,
+		.nav li.ve-active.open > a:hover {
 			background-color: vars.$rgb-off-black;
 		}
 	}
@@ -189,9 +189,9 @@
 	}
 	// endregion
 
-	.ve-dropdown-menu > .active > a,
-	.ve-dropdown-menu > .active > a:focus,
-	.ve-dropdown-menu > .active > a:hover {
+	.ve-dropdown-menu > .ve-active > a,
+	.ve-dropdown-menu > .ve-active > a:focus,
+	.ve-dropdown-menu > .ve-active > a:hover {
 		.nav2 {
 			&-list__ {
 				&disp-legacy-marker {

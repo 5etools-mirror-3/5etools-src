@@ -17,7 +17,22 @@
 	}
 	// endregion
 
-	.clickable {
+	// Firefox only--make `number` inputs less ugly
+	/* stylelint-disable at-rule-no-deprecated */
+	@document url-prefix() {
+		input[type="number"] {
+			appearance: textfield;
+			padding-right: 18px;
+		}
+
+		input[type="number"]:hover {
+			appearance: unset;
+			padding-right: 0;
+		}
+	}
+	/* stylelint-enable at-rule-no-deprecated */
+
+	.ve-clickable {
 		&--link {
 			color: vars.$rgb-link-blue !important;
 		}

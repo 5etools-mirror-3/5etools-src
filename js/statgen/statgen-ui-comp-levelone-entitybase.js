@@ -20,7 +20,7 @@ export class StatGenUiRenderLevelOneEntityBase {
 	render () {
 		const wrp = ee`<div class="ve-flex"></div>`;
 		const wrpOuter = ee`<div class="ve-flex-col">
-			<div class="my-1 statgen-pb__header statgen-pb__header--group mr-3 ve-text-center italic ve-small help-subtle" title="Ability Score Changes from ${this._title}">${this._titleShort}</div>
+			<div class="ve-my-1 ve-statgen-pb__header ve-statgen-pb__header--group ve-mr-3 ve-text-center ve-italic ve-small ve-help-subtle" title="Ability Score Changes from ${this._title}">${this._titleShort}</div>
 
 			${wrp}
 		</div>`;
@@ -69,7 +69,7 @@ export class StatGenUiRenderLevelOneEntityBase {
 		this._parent[this._propModalFilter].pageFilter.filterBox.on(FILTER_BOX_EVNT_VALCHANGE, () => doApplyFilterToSelEntity());
 		doApplyFilterToSelEntity();
 
-		const btnFilterForEntity = ee`<button class="ve-btn ve-btn-xs ve-btn-default br-0 pr-2" title="Filter for ${this._title}"><span class="glyphicon glyphicon-filter"></span> Filter</button>`
+		const btnFilterForEntity = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-br-0 ve-pr-2" title="Filter for ${this._title}"><span class="glyphicon glyphicon-filter"></span> Filter</button>`
 			.onn("click", async () => {
 				const selected = await this._parent[this._propModalFilter].pGetUserSelection();
 				if (selected == null || !selected.length) return;
@@ -106,8 +106,8 @@ export class StatGenUiRenderLevelOneEntityBase {
 			},
 		);
 
-		const stgAbilityScoreSet = ee`<div class="ve-flex-v-center mb-2">
-			<div class="mr-2 no-wrap">Ability Score Increase</div>
+		const stgAbilityScoreSet = ee`<div class="ve-flex-v-center ve-mb-2">
+			<div class="ve-mr-2 ve-no-wrap">Ability Score Increase</div>
 			<div>${selAbilitySet}</div>
 		</div>`;
 
@@ -129,7 +129,7 @@ export class StatGenUiRenderLevelOneEntityBase {
 		hkSetValuesSelAbilitySet();
 		// endregion
 
-		const dispPreview = ee`<div class="ve-flex-col mb-2"></div>`;
+		const dispPreview = ee`<div class="ve-flex-col ve-mb-2"></div>`;
 		const hkPreviewEntity = () => {
 			if (!this._parent._state[this._propIsPreview]) return dispPreview.hideVe();
 
@@ -144,10 +144,10 @@ export class StatGenUiRenderLevelOneEntityBase {
 
 		const {hrPreview} = this._getHrPreviewMeta();
 
-		const stgSel = ee`<div class="ve-flex-col mt-3">
-			<div class="mb-1">Select a ${this._title}</div>
-			<div class="ve-flex-v-center mb-2">
-				<div class="ve-flex-v-center ve-btn-group w-100 mr-2">${btnFilterForEntity}${selEntity}</div>
+		const stgSel = ee`<div class="ve-flex-col ve-mt-3">
+			<div class="ve-mb-1">Select a ${this._title}</div>
+			<div class="ve-flex-v-center ve-mb-2">
+				<div class="ve-flex-v-center ve-btn-group ve-w-100 ve-mr-2">${btnFilterForEntity}${selEntity}</div>
 				<div>${btnPreview}</div>
 			</div>
 			${stgAbilityScoreSet}
@@ -177,13 +177,13 @@ export class StatGenUiRenderLevelOneEntityBase {
 		let ptBase = null;
 		if (Parser.ABIL_ABVS.some(it => fromEntity[it])) {
 			const wrpsEntity = Parser.ABIL_ABVS.map(ab => {
-				return ee`<div class="my-1 statgen-pb__cell">
-					<input class="form-control form-control--minimal statgen-shared__ipt ve-text-right" type="number" readonly value="${fromEntity[ab] || 0}">
+				return ee`<div class="ve-my-1 ve-statgen-pb__cell">
+					<input class="ve-form-control form-control--minimal ve-statgen-shared__ipt ve-text-right" type="number" readonly value="${fromEntity[ab] || 0}">
 				</div>`;
 			});
 
-			ptBase = ee`<div class="ve-flex-col mr-3">
-				<div class="my-1 statgen-pb__header ve-flex-vh-center">Static</div>
+			ptBase = ee`<div class="ve-flex-col ve-mr-3">
+				<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center">Static</div>
 				${wrpsEntity}
 			</div>`;
 		}
@@ -194,7 +194,7 @@ export class StatGenUiRenderLevelOneEntityBase {
 			const count = fromEntity.choose.count || 1;
 
 			const wrpsChoose = Parser.ABIL_ABVS.map(ab => {
-				if (!fromEntity.choose.from.includes(ab)) return `<div class="my-1 statgen-pb__cell"></div>`;
+				if (!fromEntity.choose.from.includes(ab)) return `<div class="ve-my-1 ve-statgen-pb__cell"></div>`;
 
 				const cb = ee`<input type="checkbox">`
 					.onn("change", () => {
@@ -221,12 +221,12 @@ export class StatGenUiRenderLevelOneEntityBase {
 				this._pbHookMetas.push({unhook: () => this._parent._removeHookBase(this._propChoiceMetasFrom, hk)});
 				hk();
 
-				return ee`<label class="my-1 statgen-pb__cell ve-flex-vh-center">${cb}</label>`;
+				return ee`<label class="ve-my-1 ve-statgen-pb__cell ve-flex-vh-center">${cb}</label>`;
 			});
 
-			ptChooseFrom = ee`<div class="ve-flex-col mr-3">
-				<div class="my-1 statgen-pb__header statgen-pb__header--choose-from ve-flex-vh-center">
-					<div class="${count !== 1 ? `mr-1` : ""}">${UiUtil.intToBonus(amount, {isPretty: true})}</div>${count !== 1 ? `<div class="ve-small ve-muted">(x${count})</div>` : ""}
+			ptChooseFrom = ee`<div class="ve-flex-col ve-mr-3">
+				<div class="ve-my-1 ve-statgen-pb__header ve-statgen-pb__header--choose-from ve-flex-vh-center">
+					<div class="${count !== 1 ? `ve-mr-1` : ""}">${UiUtil.intToBonus(amount, {isPretty: true})}</div>${count !== 1 ? `<div class="ve-small ve-muted">(x${count})</div>` : ""}
 				</div>
 				${wrpsChoose}
 			</div>`;
@@ -236,7 +236,7 @@ export class StatGenUiRenderLevelOneEntityBase {
 		if (fromEntity.choose && fromEntity.choose.weighted && fromEntity.choose.weighted.weights) {
 			ptsChooseWeighted = fromEntity.choose.weighted.weights.map((weight, ixWeight) => {
 				const wrpsChoose = Parser.ABIL_ABVS.map(ab => {
-					if (!fromEntity.choose.weighted.from.includes(ab)) return `<div class="my-1 statgen-pb__cell"></div>`;
+					if (!fromEntity.choose.weighted.from.includes(ab)) return `<div class="ve-my-1 ve-statgen-pb__cell"></div>`;
 
 					const cb = ee`<input type="checkbox">`
 						.onn("change", () => {
@@ -265,11 +265,11 @@ export class StatGenUiRenderLevelOneEntityBase {
 					this._pbHookMetas.push({unhook: () => this._parent._removeHookBase(this._propChoiceWeighted, hk)});
 					hk();
 
-					return ee`<label class="my-1 statgen-pb__cell ve-flex-vh-center">${cb}</label>`;
+					return ee`<label class="ve-my-1 ve-statgen-pb__cell ve-flex-vh-center">${cb}</label>`;
 				});
 
-				return ee`<div class="ve-flex-col mr-3">
-					<div class="my-1 statgen-pb__header statgen-pb__header--choose-from ve-flex-vh-center">${UiUtil.intToBonus(weight, {isPretty: true})}</div>
+				return ee`<div class="ve-flex-col ve-mr-3">
+					<div class="ve-my-1 ve-statgen-pb__header ve-statgen-pb__header--choose-from ve-flex-vh-center">${UiUtil.intToBonus(weight, {isPretty: true})}</div>
 					${wrpsChoose}
 				</div>`;
 			});
@@ -294,7 +294,7 @@ export class StatGenUiRenderLevelOneEntityBase {
 	_bindAdditionalHooks_hkSetValuesSelAbilitySet (hkSetValuesSelAbilitySet) { /* Implement as required */ }
 
 	_getHrPreviewMeta () {
-		const hrPreview = ee`<hr class="hr-3">`;
+		const hrPreview = ee`<hr class="ve-hr-3">`;
 		const hkPreview = this._getHkPreview({hrPreview});
 		this._parent._addHookBase(this._propIsPreview, hkPreview);
 		hkPreview();

@@ -35,7 +35,7 @@ export class FilterSnapshotUiTabSnapshots {
 
 		ee(this._tabMeta.wrpTab)`
 			${stgControls}
-			<hr class="hr-2">
+			<hr class="ve-hr-2">
 			${stgNoRows}
 			${stgRows}
 		`;
@@ -55,12 +55,12 @@ export class FilterSnapshotUiTabSnapshots {
 
 		const {menuMass} = this._pRender_stgControls_menuMass({selectClickHandler});
 
-		const btnMass = ee`<button class="ve-btn ve-btn-primary ve-btn-xs mr-2">Mass...</button>`
+		const btnMass = ee`<button class="ve-btn ve-btn-primary ve-btn-xs ve-mr-2">Mass...</button>`
 			.onn("click", async evt => {
 				await ContextUtil.pOpenMenu(evt, menuMass);
 			});
 
-		const btnTakeSnapshot = ee`<button class="ve-btn ve-btn-primary ve-btn-xs mr-2">Take Snapshot</button>`
+		const btnTakeSnapshot = ee`<button class="ve-btn ve-btn-primary ve-btn-xs ve-mr-2">Take Snapshot</button>`
 			.onn("click", async () => {
 				await this._compManager.pHandleClick_takeSnapshot();
 			});
@@ -166,7 +166,7 @@ export class FilterSnapshotUiTabSnapshots {
 			});
 
 		ee(stgNoRows)`<div class="ve-flex-col">
-			<div class="mb-2 ve-muted"><i>No Snapshots.</i></div>
+			<div class="ve-mb-2 ve-muted"><i>No Snapshots.</i></div>
 			${btnAddSnapshotNoRows}
 		</div>`;
 
@@ -179,7 +179,7 @@ export class FilterSnapshotUiTabSnapshots {
 
 		const isEveryExpanded = boxSnapshots => boxSnapshots.every(boxSnapshot => boxSnapshot.entity.manager_loader_isExpanded);
 
-		const btnExpandCollapseAll = ee`<button class="ve-btn ve-btn-default ve-btn-xs px-1 ve-flex-vh-center h-100 no-shrink ve-col-1 no-select">[+]</button>`
+		const btnExpandCollapseAll = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-px-1 ve-flex-vh-center ve-h-100 ve-no-shrink ve-col-1 ve-no-select">[+]</button>`
 			.onn("click", () => {
 				if (!this._compManager._state.boxSnapshots.length) return;
 
@@ -198,8 +198,8 @@ export class FilterSnapshotUiTabSnapshots {
 		this._rdState.fnsCleanup.push(() => this._compManager._removeHookBase("boxSnapshots", hkBtnExpandCollapseAll));
 		hkBtnExpandCollapseAll();
 
-		const wrpRowBtns = ee`<div class="ve-flex-v-center my-1 pl-1p pr-10p ve-btn-group">
-			<label class="ve-btn ve-btn-default ve-btn-xs ve-col-0-5 ve-flex-vh-center h-100">
+		const wrpRowBtns = ee`<div class="ve-flex-v-center ve-my-1 ve-pl-1p ve-pr-10p ve-btn-group">
+			<label class="ve-btn ve-btn-default ve-btn-xs ve-col-0-5 ve-flex-vh-center ve-h-100">
 				${cbMulti}
 			</label>
 			${btnExpandCollapseAll}
@@ -207,7 +207,7 @@ export class FilterSnapshotUiTabSnapshots {
 			<button class="ve-btn ve-btn-default ve-btn-xs ve-grow" disabled>&nbsp;</button>
 		</div>`;
 
-		const wrpRows = ee`<div class="h-100 w-100 ve-overflow-y-scroll ve-flex-col"></div>`;
+		const wrpRows = ee`<div class="ve-h-100 ve-w-100 ve-overflow-y-scroll ve-flex-col"></div>`;
 
 		const compRows = new RenderableCollectionSnapshots({
 			filterBox: this._filterBox,
@@ -216,7 +216,7 @@ export class FilterSnapshotUiTabSnapshots {
 			selectClickHandler,
 		});
 
-		const stgRows = ee`<div class="h-100 min-h-0 w-100 ve-flex-col">
+		const stgRows = ee`<div class="ve-h-100 ve-min-h-0 ve-w-100 ve-flex-col">
 			${wrpRowBtns}
 			${wrpRows}
 		</div>`;

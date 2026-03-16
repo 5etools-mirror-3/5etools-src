@@ -210,7 +210,7 @@ export class RenderMap {
 		const X = 0;
 		const Y = 1;
 
-		const cvs = ee`<canvas class="p-0 m-0"></canvas>`;
+		const cvs = ee`<canvas class="ve-p-0 ve-m-0"></canvas>`;
 		cvs.width = mapData.width;
 		cvs.height = mapData.height;
 		const ctx = cvs.getContext("2d");
@@ -471,13 +471,13 @@ export class RenderMap {
 		const btnZoomPlus = ee`<button class="ve-btn ve-btn-xs ve-btn-default"><span class="glyphicon glyphicon-zoom-in"></span> Zoom In</button>`
 			.onn("click", () => zoomChange("in"));
 
-		const btnZoomReset = ee`<button class="ve-btn ve-btn-xs ve-btn-default mr-2"><span class="glyphicon glyphicon-search"></span> Reset Zoom</button>`
+		const btnZoomReset = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2"><span class="glyphicon glyphicon-search"></span> Reset Zoom</button>`
 			.onn("click", () => zoomChange("fill"));
 
 		const btnZoomFit = ee`<button class="ve-btn ve-btn-xs ve-btn-default"><span class="glyphicon glyphicon-search"></span> Zoom to Fit</button>`
 			.onn("click", () => zoomChange("fit"));
 
-		const btnHelp = ee`<button class="ve-btn ve-btn-xs ve-btn-default ml-auto mr-4" title="Help"><span class="glyphicon glyphicon-info-sign"></span> Help</button>`
+		const btnHelp = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-ml-auto ve-mr-4" title="Help"><span class="glyphicon glyphicon-info-sign"></span> Help</button>`
 			.onn("click", evt => {
 				const {eleModalInner} = UiUtil.getShowModal({
 					title: "Help",
@@ -508,15 +508,15 @@ export class RenderMap {
 			zoomChangeDebounced(direction);
 		};
 
-		const wrpCvs = ee`<div class="w-100 h-100 ve-overflow-x-scroll ve-overflow-y-scroll rd__scroller-viewer ${mapData.expectsLightBackground ? "rd__scroller-viewer--bg-light" : mapData.expectsDarkBackground ? "rd__scroller-viewer--bg-dark" : ""}">
+		const wrpCvs = ee`<div class="ve-w-100 ve-h-100 ve-overflow-x-scroll ve-overflow-y-scroll ve-rd__scroller-viewer ${mapData.expectsLightBackground ? "ve-rd__scroller-viewer--bg-light" : mapData.expectsDarkBackground ? "ve-rd__scroller-viewer--bg-dark" : ""}">
 			${cvs}
 		</div>`
 			.onn("mousewheel", onMouseWheelCanvas)
 			.onn("DOMMouseScroll", onMouseWheelCanvas);
 
-		const out = ee`<div class="ve-flex-col w-100 h-100">
-			<div class="ve-flex no-shrink p-2">
-				<div class="ve-btn-group ve-flex mr-2">
+		const out = ee`<div class="ve-flex-col ve-w-100 ve-h-100">
+			<div class="ve-flex ve-no-shrink ve-p-2">
+				<div class="ve-btn-group ve-flex ve-mr-2">
 					${btnZoomMinus}
 					${btnZoomPlus}
 				</div>

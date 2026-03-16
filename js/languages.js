@@ -5,18 +5,18 @@ class LanguagesSublistManager extends SublistManager {
 		return [
 			new SublistCellTemplate({
 				name: "Name",
-				css: "bold ve-col-8 pl-1 pr-0",
+				css: "ve-bold ve-col-8 ve-pl-1 ve-pr-0",
 				colStyle: "",
 			}),
 			new SublistCellTemplate({
 				name: "Type",
-				css: "ve-col-2 px-1 ve-text-center",
-				colStyle: "text-center",
+				css: "ve-col-2 ve-px-1 ve-text-center",
+				colStyle: "ve-text-center",
 			}),
 			new SublistCellTemplate({
 				name: "Script",
-				css: "ve-col-2 ve-text-center pl-1 pr-0",
-				colStyle: "text-center",
+				css: "ve-col-2 ve-text-center ve-pl-1 ve-pr-0",
+				colStyle: "ve-text-center",
 			}),
 		];
 	}
@@ -28,8 +28,8 @@ class LanguagesSublistManager extends SublistManager {
 			(it.script || "\u2014").toTitleCase(),
 		];
 
-		const ele = ee`<div class="lst__row lst__row--sublist ve-flex-col">
-			<a href="#${hash}" class="lst__row-border lst__row-inner">
+		const ele = ee`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`
@@ -66,6 +66,12 @@ class LanguagesPage extends ListPage {
 			pageFilter,
 
 			dataProps: ["language"],
+
+			bookViewOptions: {
+				nameSingular: "language",
+				namePlural: "languages",
+				pageTitle: "Languages Book View",
+			},
 		});
 	}
 
@@ -73,16 +79,16 @@ class LanguagesPage extends ListPage {
 		this._pageFilter.mutateAndAddToFilters(it, isExcluded);
 
 		const eleLi = document.createElement("div");
-		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blocklisted" : ""}`;
+		eleLi.className = `ve-lst__row ve-flex-col ${isExcluded ? "ve-lst__row--blocklisted" : ""}`;
 
 		const source = Parser.sourceJsonToAbv(it.source);
 		const hash = UrlUtil.autoEncodeHash(it);
 
-		eleLi.innerHTML = `<a href="#${hash}" class="lst__row-border lst__row-inner">
-			<span class="ve-col-6 bold pl-0 pr-1">${it.name}</span>
-			<span class="ve-col-2 px-1 ve-text-center">${(it.type || "\u2014").uppercaseFirst()}</span>
-			<span class="ve-col-2 px-1 ve-text-center">${(it.script || "\u2014").toTitleCase()}</span>
-			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)} pl-1 pr-0" title="${Parser.sourceJsonToFull(it.source)}">${source}</span>
+		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+			<span class="ve-col-6 ve-bold ve-pl-0 ve-pr-1">${it.name}</span>
+			<span class="ve-col-2 ve-px-1 ve-text-center">${(it.type || "\u2014").uppercaseFirst()}</span>
+			<span class="ve-col-2 ve-px-1 ve-text-center">${(it.script || "\u2014").toTitleCase()}</span>
+			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(it.source)}">${source}</span>
 		</a>`;
 
 		const listItem = new ListItem(
@@ -119,7 +125,7 @@ class LanguagesPage extends ListPage {
 				fnPopulate: () => {
 					this._pgContent.empty().appends(Renderer.utils.getBorderTr());
 					this._pgContent.appends(Renderer.utils.getNameTr(ent));
-					const td = ee`<td colspan="6" class="pb-3"></td>`;
+					const td = ee`<td colspan="6" class="ve-pb-3"></td>`;
 					ee`<tr>${td}</tr>`.appendTo(this._pgContent);
 					this._pgContent.appends(Renderer.utils.getBorderTr());
 
@@ -163,19 +169,19 @@ class LanguagesPage extends ListPage {
 
 					const DEFAULT_TEXT = "The big quick brown flumph jumped over the lazy dire xorn";
 
-					const iptSample = ee`<textarea class="form-control w-100 mr-2 resize-vertical font-ui mb-2" style="height: 110px">${DEFAULT_TEXT}</textarea>`
+					const iptSample = ee`<textarea class="ve-form-control ve-w-100 ve-mr-2 ve-resize-vertical font-ui ve-mb-2" style="height: 110px">${DEFAULT_TEXT}</textarea>`
 						.onn("keyup", () => updateText())
 						.onn("change", () => updateText());
 
 					const selFont = allFonts.length === 1
 						? null
-						: ee`<select class="form-control font-ui languages__sel-sample input-xs">${allFonts.map((f, i) => `<option value="${i}">${f.split("/").last().split(".")[0]}</option>`).join("")}</select>`
+						: ee`<select class="ve-form-control font-ui languages__sel-sample ve-input-xs">${allFonts.map((f, i) => `<option value="${i}">${f.split("/").last().split(".")[0]}</option>`).join("")}</select>`
 							.onn("change", () => {
 								const ix = Number(selFont.val());
 								renderStyle(ix);
 							});
 
-					const ptOutput = ee`<pre class="languages__sample p-2 mb-0">${DEFAULT_TEXT}</pre>`;
+					const ptOutput = ee`<pre class="languages__sample ve-p-2 ve-mb-0">${DEFAULT_TEXT}</pre>`;
 
 					renderStyle(0);
 
@@ -184,14 +190,14 @@ class LanguagesPage extends ListPage {
 							if (val != null) updateText(val);
 						});
 
-					ee`<div class="ve-flex-col w-100">
+					ee`<div class="ve-flex-col ve-w-100">
 						${styleFont}
-						${selFont ? ee`<label class="ve-flex-v-center mb-2"><div class="mr-2">Font:</div>${selFont}</div>` : ""}
+						${selFont ? ee`<label class="ve-flex-v-center ve-mb-2"><div class="ve-mr-2">Font:</div>${selFont}</div>` : ""}
 						${iptSample}
 						${ptOutput}
-						<hr class="hr-4">
-						<h5 class="mb-2 mt-0">Downloads</h5>
-						<ul class="pl-5 mb-0">
+						<hr class="ve-hr-4">
+						<h5 class="ve-mb-2 ve-mt-0">Downloads</h5>
+						<ul class="ve-pl-5 ve-mb-0">
 							${allFonts.map(f => `<li><a href="${f}" target="_blank">${f.split("/").last()}</a></li>`).join("")}
 						</ul>
 					</div>`.appendTo(td);

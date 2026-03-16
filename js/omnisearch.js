@@ -71,7 +71,7 @@ class OmnisearchUi {
 
 		const iptSearch = e_({
 			tag: "input",
-			clazz: "form-control search omni__input",
+			clazz: "ve-form-control search omni__input",
 			placeholder: this._PLACEHOLDER_TEXT,
 			title: `Search Everywhere. Hotkey: F. Disclaimer: unlikely to search everywhere. Use with caution.`,
 			type: "search",
@@ -80,7 +80,7 @@ class OmnisearchUi {
 
 		const btnClearSearch = e_({
 			tag: "span",
-			clazz: "absolute glyphicon glyphicon-remove omni__btn-clear",
+			clazz: "ve-absolute glyphicon glyphicon-remove omni__btn-clear",
 			mousedown: evt => {
 				evt.stopPropagation();
 				evt.preventDefault();
@@ -107,7 +107,7 @@ class OmnisearchUi {
 		})
 			.appendTo(eleNavbar);
 
-		const wrpSearchFilters = ee`<div class="ve-flex-h-right ve-flex-v-center mobile-sm__ve-flex-col mobile-sm__ve-flex-ai-start mb-2"></div>`;
+		const wrpSearchFilters = ee`<div class="ve-flex-h-right ve-flex-v-center ve-mobile-sm__ve-flex-col ve-mobile-sm__ve-flex-ai-start ve-mb-2"></div>`;
 		const wrpSearchResults = ee`<div class="ve-flex-col"></div>`;
 
 		const dispSearchOutput = e_({
@@ -160,15 +160,15 @@ class OmnisearchUi {
 
 		const btnHelp = e_({
 			tag: "button",
-			clazz: "ve-btn ve-btn-default ve-btn-xs ml-2",
+			clazz: "ve-btn ve-btn-default ve-btn-xs ve-ml-2",
 			title: "Help",
 			html: `<span class="glyphicon glyphicon-info-sign"></span>`,
 			click: () => OmnisearchUtilsUi.doShowHelp({isIncludeHotkeys: true}),
 		});
 
 		ee(rdState.wrpSearchFilters)`
-			<div class="ve-flex-v-center mr-2 mobile-sm__mr-0 mobile-sm__mb-2 mobile-sm__w-100 mobile-sm__ve-flex-h-right">
-				<span class="mr-2 italic relative top-1p">Include</span>
+			<div class="ve-flex-v-center ve-mr-2 ve-mobile-sm__mr-0 ve-mobile-sm__mb-2 ve-mobile-sm__w-100 ve-mobile-sm__ve-flex-h-right">
+				<span class="ve-mr-2 ve-italic ve-relative ve-top-1p">Include</span>
 				<div class="ve-btn-group ve-flex-v-center">
 					${btnCyclePartneredMode}
 					${btnToggleBrew}
@@ -176,8 +176,8 @@ class OmnisearchUi {
 				</div>
 			</div>
 
-			<div class="ve-flex-v-center mobile-sm__w-100 mobile-sm__ve-flex-h-right">
-				<div class="ve-btn-group ve-flex-v-center mr-2">
+			<div class="ve-flex-v-center ve-mobile-sm__w-100 ve-mobile-sm__ve-flex-h-right">
+				<div class="ve-btn-group ve-flex-v-center ve-mr-2">
 					${btnToggleBlocklisted}
 					${btnToggleLegacy}
 				</div>
@@ -397,7 +397,7 @@ class OmnisearchUi {
 			.onn("click", () => OmnisearchState[btnMeta.propOmnisearch] = !OmnisearchState[btnMeta.propOmnisearch]);
 
 		OmnisearchState[btnMeta.fnAddHookOmnisearch]((val) => {
-			btn.toggleClass("active", OmnisearchState[btnMeta.propOmnisearch]);
+			btn.toggleClass("ve-active", OmnisearchState[btnMeta.propOmnisearch]);
 			if (val != null) this._pDoSearch({rdState}).then(null);
 		})();
 
@@ -455,14 +455,14 @@ class OmnisearchUi {
 					? ptSourceInner
 					: `<a href="${adventureBookSourceHref}">${ptSourceInner}</a>`;
 
-				ee`<div class="omni__row-result split-v-center stripe-odd">
+				ee`<div class="omni__row-result ve-split-v-center stripe-odd">
 					${lnk}
 					<div class="ve-flex-v-center">
 						${ptSource}
-						${isSrd && category !== Parser.CAT_ID_PAGE ? `<span class="ve-muted omni__disp-srd help-subtle relative" title="Available in the Systems Reference Document (5.1)">[SRD]</span>` : ""}
-						${isSrd52 && category !== Parser.CAT_ID_PAGE ? `<span class="ve-muted omni__disp-srd help-subtle relative" title="Available in the Systems Reference Document (5.2)">[SRD]</span>` : ""}
+						${isSrd && category !== Parser.CAT_ID_PAGE ? `<span class="ve-muted omni__disp-srd ve-help-subtle ve-relative" title="Available in the Systems Reference Document (5.1)">[SRD]</span>` : ""}
+						${isSrd52 && category !== Parser.CAT_ID_PAGE ? `<span class="ve-muted omni__disp-srd ve-help-subtle ve-relative" title="Available in the Systems Reference Document (5.2)">[SRD]</span>` : ""}
 						${Parser.sourceJsonToMarkerHtml(source, {isAddBrackets: true, additionalStyles: "omni__disp-source-marker"})}
-						${ptPage ? `<span class="omni__wrp-page small-caps">${ptPage}</span>` : ""}
+						${ptPage ? `<span class="omni__wrp-page ve-small-caps">${ptPage}</span>` : ""}
 					</div>
 				</div>`.appendTo(rdState.wrpSearchResults);
 

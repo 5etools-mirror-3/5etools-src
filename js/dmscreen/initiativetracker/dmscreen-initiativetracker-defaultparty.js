@@ -68,10 +68,10 @@ export class InitiativeTrackerDefaultParty extends BaseComponent {
 	/* -------------------------------------------- */
 
 	_render_renderFooter ({rdState, eleModalFooter}) {
-		const btnSave = ee`<button class="ve-btn ve-btn-primary ve-btn-sm w-100">Save</button>`
+		const btnSave = ee`<button class="ve-btn ve-btn-primary ve-btn-sm ve-w-100">Save</button>`
 			.onn("click", () => rdState.cbDoClose(true));
 
-		ee(eleModalFooter)`<div class="w-100 py-3 no-shrink">
+		ee(eleModalFooter)`<div class="ve-w-100 ve-py-3 ve-no-shrink">
 			${btnSave}
 		</div>`;
 	}

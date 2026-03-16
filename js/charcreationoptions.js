@@ -5,12 +5,12 @@ class CharCreationOptionsSublistManager extends SublistManager {
 		return [
 			new SublistCellTemplate({
 				name: "Type",
-				css: "ve-col-5 ve-text-center pl-0 pr-1",
-				colStyle: "text-center",
+				css: "ve-col-5 ve-text-center ve-pl-0 ve-pr-1",
+				colStyle: "ve-text-center",
 			}),
 			new SublistCellTemplate({
 				name: "Name",
-				css: "bold ve-col-7 pl-1 pr-0",
+				css: "ve-bold ve-col-7 ve-pl-1 ve-pr-0",
 				colStyle: "",
 			}),
 		];
@@ -19,8 +19,8 @@ class CharCreationOptionsSublistManager extends SublistManager {
 	pGetSublistItem (it, hash) {
 		const cellsText = [it.name, it._fOptionType];
 
-		const ele = ee`<div class="lst__row lst__row--sublist ve-flex-col">
-			<a href="#${hash}" class="lst__row-border lst__row-inner">
+		const ele = ee`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`
@@ -57,6 +57,12 @@ class CharCreationOptionsPage extends ListPage {
 			pageFilter,
 
 			dataProps: ["charoption"],
+
+			bookViewOptions: {
+				nameSingular: "character creation option",
+				namePlural: "character creation options",
+				pageTitle: "Character Creation Options Book View",
+			},
 		});
 	}
 
@@ -64,15 +70,15 @@ class CharCreationOptionsPage extends ListPage {
 		this._pageFilter.mutateAndAddToFilters(it, isExcluded);
 
 		const eleLi = document.createElement("div");
-		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blocklisted" : ""}`;
+		eleLi.className = `ve-lst__row ve-flex-col ${isExcluded ? "ve-lst__row--blocklisted" : ""}`;
 
 		const hash = UrlUtil.autoEncodeHash(it);
 		const source = Parser.sourceJsonToAbv(it.source);
 
-		eleLi.innerHTML = `<a href="#${hash}" class="lst__row-border lst__row-inner">
-			<span class="ve-col-5 ve-text-center pl-0 pr-1">${it._fOptionType}</span>
-			<span class="bold ve-col-5 px-1">${it.name}</span>
-			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)}" title="${Parser.sourceJsonToFull(it.source)} pl-1 pr-0">${source}</span>
+		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+			<span class="ve-col-5 ve-text-center ve-pl-0 ve-pr-1">${it._fOptionType}</span>
+			<span class="ve-bold ve-col-5 ve-px-1">${it.name}</span>
+			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)}" title="${Parser.sourceJsonToFull(it.source)} ve-pl-1 ve-pr-0">${source}</span>
 		</a>`;
 
 		const listItem = new ListItem(

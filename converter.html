@@ -74,8 +74,8 @@
 
 	<header class="hidden-xs hidden-sm page__header">
 		<div class="container ve-flex-v-baseline">
-			<h1 class="page__title no-wrap my-0" id="page__title">Text Converter</h1>
-			<p class="page__subtitle no-wrap my-0" id="page__subtitle">Input text on left, hit parse, copy JSON from right.</p>
+			<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Text Converter</h1>
+			<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Input text on left, hit parse, copy JSON from right.</p>
 		</div>
 	</header>
 
@@ -88,7 +88,7 @@
 		<div class="view-col">
 			<h3 class="conv__head">Input</h3>
 			<pre id="converter_input" class="inputArea ace_editor"></pre>
-			<div class="split-v-center">
+			<div class="ve-split-v-center">
 				<div id="wrp-footer-lhs" class="ve-flex-v-center"></div>
 				<div class="ve-flex-v-center ve-btn-group">
 					<button id="parsestatblock" class="ve-btn ve-btn-sm ve-btn-default">Parse</button>
@@ -102,11 +102,11 @@
 
 			<pre id="converter_output" class="outputArea ace_editor"></pre>
 
-			<div class="split-v-center conv__out_control__wrp">
+			<div class="ve-split-v-center conv__out_control__wrp">
 				<button id="editable" class="ve-btn ve-btn-sm ve-btn-default">Enable Editing</button>
 				<div class="ve-flex-v-center">
-					<button id="preview" class="ve-btn ve-btn-sm ve-btn-default mr-2">Preview</button>
-					<button id="save_local" class="ve-btn ve-btn-sm ve-btn-default hidden mr-2">Save to Homebrew</button>
+					<button id="preview" class="ve-btn ve-btn-sm ve-btn-default ve-mr-2">Preview</button>
+					<button id="save_local" class="ve-btn ve-btn-sm ve-btn-default hidden ve-mr-2">Save to Homebrew</button>
 
 					<div class="ve-btn-group ve-flex-vh-center">
 						<button id="btn-output-copy" class="ve-btn ve-btn-sm ve-btn-default">Copy</button>
@@ -115,8 +115,8 @@
 				</div>
 			</div>
 
-			<div class="code mt-2 p-2 ve-flex-col ve-hidden conv__disp-message conv__disp-message--warning" id="lastWarnings"></div>
-			<div class="code mt-2 p-2 ve-flex-col ve-hidden conv__disp-message conv__disp-message--error" id="lastError"></div>
+			<div class="ve-code ve-mt-2 ve-p-2 ve-flex-col ve-hidden conv__disp-message conv__disp-message--warning" id="lastWarnings"></div>
+			<div class="ve-code ve-mt-2 ve-p-2 ve-flex-col ve-hidden conv__disp-message conv__disp-message--error" id="lastError"></div>
 		</div>
 	</div>
 </div>

@@ -4,7 +4,7 @@ export class StatGenUiRenderableCollectionPbRules extends RenderableCollectionGe
 	}
 
 	_getWrpRow () {
-		return ee`<div class="ve-flex py-1 stripe-even statgen-pb__row-cost"></div>`;
+		return ee`<div class="ve-flex ve-py-1 stripe-even ve-statgen-pb__row-cost"></div>`;
 	}
 
 	_populateRow ({comp, wrpRow, entity}) {
@@ -15,7 +15,7 @@ export class StatGenUiRenderableCollectionPbRules extends RenderableCollectionGe
 		comp._addHookBase("cost", hkCost);
 		hkCost();
 
-		const iptCost = ComponentUiUtil.getIptInt(comp, "cost", 0, {html: `<input class="form-control input-xs form-control--minimal ve-text-center">`, fallbackOnNaN: 0});
+		const iptCost = ComponentUiUtil.getIptInt(comp, "cost", 0, {html: `<input class="ve-form-control ve-input-xs form-control--minimal ve-text-center">`, fallbackOnNaN: 0});
 
 		const hkIsCustom = () => {
 			dispCost.toggleVe(!parentComp.state.pb_isCustom);
@@ -31,13 +31,13 @@ export class StatGenUiRenderableCollectionPbRules extends RenderableCollectionGe
 			});
 
 		ee(wrpRow)`
-			<div class="statgen-pb__col-cost ve-flex-vh-center">${comp._state.score}</div>
-			<div class="statgen-pb__col-cost ve-flex-vh-center">${Parser.getAbilityModifier(comp._state.score)}</div>
-			<div class="statgen-pb__col-cost ve-flex-vh-center px-3">
+			<div class="ve-statgen-pb__col-cost ve-flex-vh-center">${comp._state.score}</div>
+			<div class="ve-statgen-pb__col-cost ve-flex-vh-center">${Parser.getAbilityModifier(comp._state.score)}</div>
+			<div class="ve-statgen-pb__col-cost ve-flex-vh-center ve-px-3">
 				${dispCost}
 				${iptCost}
 			</div>
-			<div class="statgen-pb__col-cost-delete">${btnDelete}</div>
+			<div class="ve-statgen-pb__col-cost-delete">${btnDelete}</div>
 		`;
 
 		const hkRules = () => {

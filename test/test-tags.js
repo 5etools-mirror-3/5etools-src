@@ -33,6 +33,7 @@ import {EntityFileHandlerSenses} from "./test-tags/entity-file/test-tags-entity-
 import {EntityFileHandlerSkills} from "./test-tags/entity-file/test-tags-entity-file-skills.js";
 import {EntityFileHandlerSpell} from "./test-tags/entity-file/test-tags-entity-file-spell.js";
 import {EntityFileHandlerVariantrule} from "./test-tags/entity-file/test-tags-entity-file-variantrule.js";
+import {EntityFileHandlerSpellList} from "./test-tags/entity-file/test-tags-entity-file-spelllist.js";
 
 const program = new Command()
 	.option("--log-similar", `If, when logging a missing link, a list of potentially-similar links should additionally be logged.`)
@@ -944,6 +945,7 @@ async function main () {
 		new EntityFileHandlerSkills(sharedParamsEntityTypeTester),
 		new EntityFileHandlerSpell(sharedParamsEntityTypeTester),
 		new EntityFileHandlerVariantrule(sharedParamsEntityTypeTester),
+		new EntityFileHandlerSpellList(sharedParamsEntityTypeTester),
 
 		new EntityFileHandlerFoundryClass(sharedParamsEntityTypeTester),
 		new EntityFileHandlerFoundrySpells(sharedParamsEntityTypeTester),

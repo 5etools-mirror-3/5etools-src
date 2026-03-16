@@ -268,7 +268,7 @@ export class EncounterBuilderUiBestiary extends EncounterBuilderUi {
 	getButtons (monId) {
 		return e_({
 			tag: "span",
-			clazz: `best-ecgen__visible ve-col-1 no-wrap pl-0 ve-btn-group`,
+			clazz: `best-ecgen__visible ve-col-1 ve-no-wrap ve-pl-0 ve-btn-group`,
 			click: evt => {
 				evt.preventDefault();
 				evt.stopPropagation();
@@ -314,9 +314,9 @@ export class EncounterBuilderUiBestiary extends EncounterBuilderUi {
 
 		const btnLock = ee`<button title="Lock Monster against Randomizing/Adjusting" class="ve-btn ve-btn-default ve-btn-xs best-ecgen__btn-list"><span class="glyphicon glyphicon-lock"></span></button>`
 			.onn("click", () => this._sublistManager.pSetDataEntry({sublistItem, key: "isLocked", value: !sublistItem.data.isLocked}))
-			.toggleClass("active", sublistItem.data.isLocked);
+			.toggleClass("ve-active", sublistItem.data.isLocked);
 
-		const wrp = ee`<span class="best-ecgen__visible ve-col-1-5 no-wrap pl-0 ve-btn-group">
+		const wrp = ee`<span class="best-ecgen__visible ve-col-1-5 ve-no-wrap ve-pl-0 ve-btn-group">
 			${btnAdd}
 			${btnSub}
 			${btnRandomize}
@@ -329,7 +329,7 @@ export class EncounterBuilderUiBestiary extends EncounterBuilderUi {
 
 		return {
 			wrp,
-			fnUpdate: () => btnLock.toggleClass("active", sublistItem.data.isLocked),
+			fnUpdate: () => btnLock.toggleClass("ve-active", sublistItem.data.isLocked),
 		};
 	}
 }

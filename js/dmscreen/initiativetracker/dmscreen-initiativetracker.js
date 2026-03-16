@@ -148,8 +148,8 @@ export class InitiativeTracker extends BaseComponent {
 			});
 
 		const hkSortDir = () => {
-			btnSortAlpha.toggleClass("active", this._state.sort === InitiativeTrackerConst.SORT_ORDER_ALPHA);
-			btnSortNumber.toggleClass("active", this._state.sort === InitiativeTrackerConst.SORT_ORDER_NUM);
+			btnSortAlpha.toggleClass("ve-active", this._state.sort === InitiativeTrackerConst.SORT_ORDER_ALPHA);
+			btnSortNumber.toggleClass("ve-active", this._state.sort === InitiativeTrackerConst.SORT_ORDER_NUM);
 		};
 		this._addHookBase("sort", hkSortDir);
 		this._addHookBase("dir", hkSortDir);
@@ -174,7 +174,7 @@ export class InitiativeTracker extends BaseComponent {
 					.filter(Boolean);
 			});
 
-		const btnAddMonster = ee`<button class="ve-btn ve-btn-success ve-btn-xs dm-init-lockable mr-2" title="Add Creature"><span class="glyphicon glyphicon-print"></span></button>`
+		const btnAddMonster = ee`<button class="ve-btn ve-btn-success ve-btn-xs dm-init-lockable ve-mr-2" title="Add Creature"><span class="glyphicon glyphicon-print"></span></button>`
 			.onn("click", async () => {
 				if (this._state.isLocked) return;
 
@@ -224,7 +224,7 @@ export class InitiativeTracker extends BaseComponent {
 
 		const btnSetPrevActive = ee`<button class="ve-btn ve-btn-default ve-btn-xs" title="Previous Turn"><span class="glyphicon glyphicon-step-backward"></span></button>`
 			.onn("click", () => this._viewRowsActive.pDoShiftActiveRow({direction: InitiativeTrackerConst.DIR_BACKWARDS}));
-		const btnSetNextActive = ee`<button class="ve-btn ve-btn-default ve-btn-xs mr-2" title="Next Turn"><span class="glyphicon glyphicon-step-forward"></span></button>`
+		const btnSetNextActive = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" title="Next Turn"><span class="glyphicon glyphicon-step-forward"></span></button>`
 			.onn("click", () => this._viewRowsActive.pDoShiftActiveRow({direction: InitiativeTrackerConst.DIR_FORWARDS}));
 
 		const iptRound = ComponentUiUtil.getIptInt(this, "round", 1, {min: 1})
@@ -248,7 +248,7 @@ export class InitiativeTracker extends BaseComponent {
 			),
 		]);
 
-		const btnNetworking = ee`<button class="ve-btn ve-btn-primary ve-btn-xs mr-2" title="Player View (SHIFT to Open &quot;Standard&quot; View)"><span class="glyphicon glyphicon-user"></span></button>`
+		const btnNetworking = ee`<button class="ve-btn ve-btn-primary ve-btn-xs ve-mr-2" title="Player View (SHIFT to Open &quot;Standard&quot; View)"><span class="glyphicon glyphicon-user"></span></button>`
 			.onn("click", evt => {
 				if (evt.shiftKey) return this._networking.handleClick_playerWindowV1({doUpdateExternalStates});
 				return ContextUtil.pOpenMenu(evt, menuPlayerWindow);
@@ -261,7 +261,7 @@ export class InitiativeTracker extends BaseComponent {
 				.toggleClass("ve-btn-success", !!this._state.isLocked)
 				.toggleClass("ve-btn-danger", !this._state.isLocked)
 				.tooltip(this._state.isLocked ? "Unlock Tracker" : "Lock Tracker");
-			wrpTracker.findAll(".dm-init-lockable").forEach(ele => ele.toggleClass("disabled", !!this._state.isLocked));
+			wrpTracker.findAll(".dm-init-lockable").forEach(ele => ele.toggleClass("ve-disabled", !!this._state.isLocked));
 			wrpTracker.findAll("input.dm-init-lockable").forEach(ele => ele.prop("disabled", !!this._state.isLocked));
 		})();
 
@@ -287,7 +287,7 @@ export class InitiativeTracker extends BaseComponent {
 			),
 		]);
 
-		const btnConfigure = ee`<button class="ve-btn ve-btn-default ve-btn-xs mr-2" title="Configure (SHIFT to Open &quot;Settings&quot;)"><span class="glyphicon glyphicon-cog"></span></button>`
+		const btnConfigure = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" title="Configure (SHIFT to Open &quot;Settings&quot;)"><span class="glyphicon glyphicon-cog"></span></button>`
 			.onn("click", async evt => {
 				if (evt.shiftKey) return pHandleClickSettings();
 				return ContextUtil.pOpenMenu(evt, menuConfigure);

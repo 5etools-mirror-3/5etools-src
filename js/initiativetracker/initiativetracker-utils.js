@@ -41,7 +41,7 @@ export class RenderableCollectionConditions extends RenderableCollectionGenericR
 			.filter(Boolean)
 			.join(" ");
 
-		return ee`<div class="init__cond relative" ${ptStyle ? `style="${ptStyle}"` : ""}></div>`;
+		return ee`<div class="init__cond ve-relative" ${ptStyle ? `style="${ptStyle}"` : ""}></div>`;
 	}
 
 	/* -------------------------------------------- */

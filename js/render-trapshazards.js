@@ -12,7 +12,7 @@ class RenderTrapsHazards {
 		${Renderer.utils.getBorderTr()}
 		${Renderer.utils.getExcludedTr({entity: ent, dataProp: ent.__prop})}
 		${Renderer.utils.getNameTr(ent, {page: UrlUtil.PG_TRAPS_HAZARDS})}
-		${subtitle ? `<tr><td colspan="6" class="pb-2"><i>${Renderer.traphazard.getSubtitle(ent, {styleHint})}</i></td>` : ""}
+		${subtitle ? `<tr><td colspan="6" class="ve-pb-2"><i>${Renderer.traphazard.getSubtitle(ent, {styleHint})}</i></td>` : ""}
 		<tr><td colspan="6">${ptBody}</td></tr>
 		${Renderer.utils.getPageTr(ent)}
 		${Renderer.utils.getBorderTr()}`;

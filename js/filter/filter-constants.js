@@ -9,9 +9,9 @@ export const PILL_STATE__YES = 1;
 export const PILL_STATE__NO = 2;
 export const PILL_STATES = ["ignore", "yes", "no"];
 export const PILL_STATE_TO_DISPLAY_CLASS = {
-	[PILL_STATE__IGNORE]: "fltr__disp-state--ignore",
-	[PILL_STATE__YES]: "fltr__disp-state--yes",
-	[PILL_STATE__NO]: "fltr__disp-state--no",
+	[PILL_STATE__IGNORE]: "ve-fltr__disp-state--ignore",
+	[PILL_STATE__YES]: "ve-fltr__disp-state--yes",
+	[PILL_STATE__NO]: "ve-fltr__disp-state--no",
 };
 
 export const getPillStateDisplayClass = pillState => PILL_STATE_TO_DISPLAY_CLASS[pillState] ?? PILL_STATE_TO_DISPLAY_CLASS[PILL_STATE__IGNORE];

@@ -382,12 +382,12 @@ export class LootGenUi extends BaseComponent {
 	_render_getStages ({stg, stgLhs, stgRhs}) {
 		if (!stg) return {stgLhs, stgRhs};
 
-		stgLhs = ee`<div class="ve-flex w-50 h-100"></div>`;
-		stgRhs = ee`<div class="ve-flex-col w-50 h-100"></div>`;
+		stgLhs = ee`<div class="ve-flex ve-w-50 ve-h-100"></div>`;
+		stgRhs = ee`<div class="ve-flex-col ve-w-50 ve-h-100"></div>`;
 
-		ee`<div class="ve-flex w-100 h-100">
+		ee`<div class="ve-flex ve-w-100 ve-h-100">
 			${stgLhs}
-			<div class="vr-2 h-100"></div>
+			<div class="ve-vr-2 ve-h-100"></div>
 			${stgRhs}
 		</div>`.appendTo(stg.empty());
 
@@ -455,7 +455,7 @@ export class LootGenUi extends BaseComponent {
 
 		const hkIsActive = () => {
 			const tab = this._getActiveTab();
-			tabMeta.btns[0].toggleClass("active", !!tab.isHeadHidden);
+			tabMeta.btns[0].toggleClass("ve-active", !!tab.isHeadHidden);
 		};
 		this._addHookActiveTab(hkIsActive);
 		hkIsActive();
@@ -470,25 +470,25 @@ export class LootGenUi extends BaseComponent {
 
 				const cb = ComponentUiUtil.getCbBool(this._stateManager, propIsAllowed);
 
-				return ee`<label class="split-v-center stripe-odd--faint">
-					<div class="no-wrap mr-2">${Parser.coinAbvToFull(it).toTitleCase()}</div>
+				return ee`<label class="ve-split-v-center stripe-odd--faint">
+					<div class="ve-no-wrap ve-mr-2">${Parser.coinAbvToFull(it).toTitleCase()}</div>
 					${cb}
 				</label>`;
 			});
 
 		ee(eleModalInner)`
-			<div class="mb-1" title="Disabled currencies will be converted to equivalent amounts of another currency.">Allowed Currencies:</div>
-			<div class="pl-4 ve-flex-col">
+			<div class="ve-mb-1" title="Disabled currencies will be converted to equivalent amounts of another currency.">Allowed Currencies:</div>
+			<div class="ve-pl-4 ve-flex-col">
 				${rowsCurrency}
 			</div>
 		`;
 	}
 
 	_render_output ({wrp}) {
-		const wrpOutputRows = this._outputManager.setWrpOutputRows(ee`<div class="w-100 h-100 ve-flex-col ve-overflow-y-auto smooth-scroll"></div>`);
+		const wrpOutputRows = this._outputManager.setWrpOutputRows(ee`<div class="ve-w-100 ve-h-100 ve-flex-col ve-overflow-y-auto ve-smooth-scroll"></div>`);
 
-		ee`<div class="ve-flex-col w-100 h-100">
-			<h4 class="my-0"><i>Output</i></h4>
+		ee`<div class="ve-flex-col ve-w-100 ve-h-100">
+			<h4 class="ve-my-0"><i>Output</i></h4>
 			${wrpOutputRows}
 		</div>`
 			.appendTo(wrp);

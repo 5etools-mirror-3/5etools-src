@@ -62,7 +62,7 @@ export class StyleSwitcher {
 	static getSelStyle () {
 		const selStyle = e_({
 			tag: "select",
-			clazz: "form-control input-xs",
+			clazz: "ve-form-control ve-input-xs",
 			children: Object.entries(this._STYLE_THEME_TO_DISPLAY_NAME)
 				.map(([id, name]) => ee`<option value="${id}">${name}</option>`),
 			change: () => {
@@ -79,7 +79,7 @@ export class StyleSwitcher {
 	static getSelRollboxPosition () {
 		const selStyle = e_({
 			tag: "select",
-			clazz: "form-control input-xs",
+			clazz: "ve-form-control ve-input-xs",
 			children: Object.entries(this._STYLE_ROLLBOX_TO_DISPLAY_NAME)
 				.map(([id, name]) => ee`<option value="${id}">${name}</option>`),
 			change: () => {

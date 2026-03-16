@@ -2,11 +2,11 @@
 
 @layer vetools {
 	// region Font
-	.code {
+	.ve-code {
 		font-family: monospace !important;
 	}
 
-	.dnd-font {
+	.ve-dnd-font {
 		font-family: "Times New Roman", serif;
 		font-variant: small-caps;
 		font-weight: 500;
@@ -22,13 +22,13 @@
 		font-size: 125% !important;
 
 		// Additional size bump for small-caps fonts, to visually match size of non-caps text
-		&.small-caps,
-		&.dnd-font {
+		&.ve-small-caps,
+		&.ve-dnd-font {
 			font-size: 140% !important;
 		}
 	}
 
-	.font-size-24p {
+	.ve-font-size-24p {
 		font-size: 24px !important;
 	}
 	// endregion
@@ -38,12 +38,12 @@
 		color: vars.$rgb-font--muted !important;
 
 		a,
-		.roller {
+		.ve-roller {
 			color: vars.$rgb-link-blue--muted;
 		}
 	}
 
-	.bold {
+	.ve-bold {
 		font-weight: bold !important;
 	}
 
@@ -51,7 +51,7 @@
 		font-weight: bolder !important;
 	}
 
-	.italic {
+	.ve-italic {
 		font-style: italic !important;
 	}
 
@@ -59,7 +59,7 @@
 		font-style: initial;
 	}
 
-	.underline {
+	.ve-underline {
 		text-decoration: underline !important;
 	}
 
@@ -68,7 +68,7 @@
 		text-decoration-style: double !important;
 	}
 
-	.no-underline {
+	.ve-no-underline {
 		text-decoration: none !important;
 	}
 
@@ -77,7 +77,7 @@
 		text-decoration-style: double !important;
 	}
 
-	.help {
+	.ve-help {
 		cursor: help !important;
 		text-decoration: underline !important;
 		text-decoration-style: dotted !important;
@@ -104,25 +104,25 @@
 	// endregion
 
 	// region Font misc
-	.no-wrap {
+	.ve-no-wrap {
 		white-space: nowrap !important;
 	}
 
-	.text-clip-ellipsis {
+	.ve-text-clip-ellipsis {
 		white-space: nowrap !important;
 		text-overflow: ellipsis !important;
 		overflow: hidden !important;
 	}
 
-	.whitespace-normal {
+	.ve-whitespace-normal {
 		white-space: normal;
 	}
 
-	.whitespace-pre {
+	.ve-whitespace-pre {
 		white-space: pre;
 	}
 
-	.word-break-all {
+	.ve-word-break-all {
 		word-break: break-all;
 	}
 
@@ -130,15 +130,15 @@
 		text-wrap: balance !important;
 	}
 
-	.small-caps {
+	.ve-small-caps {
 		font-variant: small-caps;
 	}
 
-	.capitalize {
+	.ve-capitalize {
 		text-transform: capitalize;
 	}
 
-	.no-breaks {
+	.ve-no-breaks {
 		break-before: auto;
 		break-after: auto;
 		break-inside: avoid;
@@ -160,35 +160,35 @@
 		text-align: justify !important;
 	}
 
-	.text-rtl {
+	.ve-text-rtl {
 		direction: rtl;
 	}
 	// endregion
 
 	// region Transforms
-	.trans-x-flip {
+	.ve-trans-x-flip {
 		transform: scaleX(-1) !important;
 	}
 
-	.trans-y-flip {
+	.ve-trans-y-flip {
 		transform: scaleY(-1) !important;
 	}
 
-	.trans-z-flip {
+	.ve-trans-z-flip {
 		transform: scaleZ(-1) !important;
 	}
 	// endregion
 
 	// region Cursor
-	.clickable {
+	.ve-clickable {
 		cursor: pointer !important;
 	}
 
-	.not-clickable {
+	.ve-not-clickable {
 		cursor: default !important;
 	}
 
-	.copyable {
+	.ve-copyable {
 		cursor: copy !important;
 	}
 
@@ -198,23 +198,23 @@
 	// endregion
 
 	// region Events
-	.no-events {
+	.ve-no-events {
 		pointer-events: none !important;
 	}
 
-	.events-initial {
+	.ve-events-initial {
 		pointer-events: initial !important;
 	}
 
-	.no-select {
+	.ve-no-select {
 		user-select: none !important;
 	}
 
-	.user-select-text {
+	.ve-user-select-text {
 		user-select: text !important;
 	}
 
-	.user-select-all {
+	.ve-user-select-all {
 		user-select: all !important;
 	}
 
@@ -224,11 +224,11 @@
 	// endregion
 
 	// region Scrolling
-	.smooth-scroll {
+	.ve-smooth-scroll {
 		transform: translateZ(0) !important;
 	}
 
-	.scrollbar-stable {
+	.ve-scrollbar-stable {
 		scrollbar-gutter: stable;
 	}
 
@@ -274,46 +274,46 @@
 	// endregion
 
 	// region Resizing
-	.resize-vertical {
+	.ve-resize-vertical {
 		resize: vertical;
 	}
 
-	.resize-none {
+	.ve-resize-none {
 		resize: none;
 	}
 	// endregion
 
 	// region Width
 
-	.w-10 {
+	.ve-w-10 {
 		width: 10% !important;
 	}
 
-	.w-15 {
+	.ve-w-15 {
 		width: 15% !important;
 	}
 
-	.w-20 {
+	.ve-w-20 {
 		width: 20% !important;
 	}
 
-	.w-25 {
+	.ve-w-25 {
 		width: 25% !important;
 	}
 
-	.w-30 {
+	.ve-w-30 {
 		width: 30% !important;
 	}
 
-	.w-33 {
+	.ve-w-33 {
 		width: 33.3333% !important;
 	}
 
-	.w-40 {
+	.ve-w-40 {
 		width: 40% !important;
 	}
 
-	.w-50 {
+	.ve-w-50 {
 		width: 50% !important;
 
 		&--mr-2 {
@@ -321,296 +321,296 @@
 		}
 	}
 
-	.w-60 {
+	.ve-w-60 {
 		width: 60% !important;
 	}
 
-	.w-66 {
+	.ve-w-66 {
 		width: 66.6666% !important;
 	}
 
-	.w-70 {
+	.ve-w-70 {
 		width: 70% !important;
 	}
 
-	.w-75 {
+	.ve-w-75 {
 		width: 75% !important;
 	}
 
-	.w-80 {
+	.ve-w-80 {
 		width: 80% !important;
 	}
 
-	.w-90 {
+	.ve-w-90 {
 		width: 90% !important;
 	}
 
-	.w-100 {
+	.ve-w-100 {
 		width: 100% !important;
 	}
 
-	.w-100w {
+	.ve-w-100w {
 		width: 100vw !important;
 	}
 
-	.w-initial {
+	.ve-w-initial {
 		width: initial !important;
 	}
 
-	.w-20p {
+	.ve-w-20p {
 		width: 20px !important;
 	}
 
-	.w-24p {
+	.ve-w-24p {
 		width: 24px !important;
 	}
 
-	.w-30p {
+	.ve-w-30p {
 		width: 30px !important;
 	}
 
-	.w-40p {
+	.ve-w-40p {
 		width: 40px !important;
 	}
 
-	.w-48p {
+	.ve-w-48p {
 		width: 48px !important;
 	}
 
-	.w-50p {
+	.ve-w-50p {
 		width: 50px !important;
 	}
 
-	.w-60p {
+	.ve-w-60p {
 		width: 60px !important;
 	}
 
-	.w-70p {
+	.ve-w-70p {
 		width: 70px !important;
 	}
 
-	.w-80p {
+	.ve-w-80p {
 		width: 80px !important;
 	}
 
-	.w-90p {
+	.ve-w-90p {
 		width: 90px !important;
 	}
 
-	.w-100p {
+	.ve-w-100p {
 		width: 100px !important;
 	}
 
-	.w-110p {
+	.ve-w-110p {
 		width: 110px !important;
 	}
 
-	.w-120p {
+	.ve-w-120p {
 		width: 120px !important;
 	}
 
-	.w-140p {
+	.ve-w-140p {
 		width: 140px !important;
 	}
 
-	.w-200p {
+	.ve-w-200p {
 		width: 200px !important;
 	}
 
-	.w-320p {
+	.ve-w-320p {
 		width: 320px !important;
 	}
 
-	.w-640p {
+	.ve-w-640p {
 		width: 640px !important;
 	}
 
-	.min-w-0 {
+	.ve-min-w-0 {
 		min-width: 0 !important;
 	}
 
-	.min-w-25 {
+	.ve-min-w-25 {
 		min-width: 25% !important;
 	}
 
-	.min-w-80 {
+	.ve-min-w-80 {
 		min-width: 80% !important;
 	}
 
-	.min-w-100 {
+	.ve-min-w-100 {
 		min-width: 100% !important;
 	}
 
-	.min-w-20p {
+	.ve-min-w-20p {
 		min-width: 20px !important;
 	}
 
-	.min-w-60p {
+	.ve-min-w-60p {
 		min-width: 60px !important;
 	}
 
-	.min-w-100p {
+	.ve-min-w-100p {
 		min-width: 100px !important;
 	}
 
-	.min-w-200p {
+	.ve-min-w-200p {
 		min-width: 200px !important;
 	}
 
-	.max-w-25 {
+	.ve-max-w-25 {
 		max-width: 25% !important;
 	}
 
-	.max-w-33 {
+	.ve-max-w-33 {
 		max-width: 33.3333% !important;
 	}
 
-	.max-w-75 {
+	.ve-max-w-75 {
 		max-width: 75% !important;
 	}
 
-	.max-w-80 {
+	.ve-max-w-80 {
 		max-width: 80% !important;
 	}
 
-	.max-w-100 {
+	.ve-max-w-100 {
 		max-width: 100% !important;
 	}
 
-	.max-w-80p {
+	.ve-max-w-80p {
 		max-width: 80px !important;
 	}
 
-	.max-w-100p {
+	.ve-max-w-100p {
 		max-width: 100px !important;
 	}
 
-	.max-w-200p {
+	.ve-max-w-200p {
 		max-width: 200px !important;
 	}
 
-	.max-w-300p {
+	.ve-max-w-300p {
 		max-width: 300px !important;
 	}
 
-	.max-w-500p {
+	.ve-max-w-500p {
 		max-width: 500px !important;
 	}
 
-	.max-w-640p {
+	.ve-max-w-640p {
 		max-width: 640px !important;
 	}
 	// endregion
 
 	// region Height
-	.h-initial {
+	.ve-h-initial {
 		height: initial !important;
 	}
 
-	.h-50 {
+	.ve-h-50 {
 		height: 50% !important;
 	}
 
-	.h-100 {
+	.ve-h-100 {
 		height: 100% !important;
 	}
 
-	.h-100h {
+	.ve-h-100h {
 		height: 100vh !important;
 	}
 
-	.h-20p {
+	.ve-h-20p {
 		height: 20px !important;
 	}
 
-	.h-21p {
+	.ve-h-21p {
 		height: 21px !important;
 	}
 
-	.h-25p {
+	.ve-h-25p {
 		height: 25px !important;
 	}
 
-	.h-27p {
+	.ve-h-27p {
 		height: 27px !important;
 	}
 
-	.h-30p {
+	.ve-h-30p {
 		height: 30px !important;
 	}
 
-	.h-34p {
+	.ve-h-34p {
 		height: 34px !important;
 	}
 
-	.h-50p {
+	.ve-h-50p {
 		height: 50px !important;
 	}
 
-	.h-100p {
+	.ve-h-100p {
 		height: 100px !important;
 	}
 
-	.h-120p {
+	.ve-h-120p {
 		height: 120px !important;
 	}
 
-	.h-480p {
+	.ve-h-480p {
 		height: 480px !important;
 	}
 
-	.h-ipt-xs {
+	.ve-h-ipt-xs {
 		height: vars.$h-ipt-xs;
 	}
 
 	// Often useful as a hack to force flexbox to behave
-	.min-h-0 {
+	.ve-min-h-0 {
 		min-height: 0 !important;
 	}
 
-	.min-h-100 {
+	.ve-min-h-100 {
 		min-height: 100% !important;
 	}
 
-	.min-h-24p {
+	.ve-min-h-24p {
 		min-height: 24px !important;
 	}
 
-	.min-h-40p {
+	.ve-min-h-40p {
 		min-height: 40px !important;
 	}
 
-	.min-h-100p {
+	.ve-min-h-100p {
 		min-height: 100px !important;
 	}
 
-	.min-h-360p {
+	.ve-min-h-360p {
 		min-height: 360px !important;
 	}
 
-	.max-h-40 {
+	.ve-max-h-40 {
 		max-height: 40% !important;
 	}
 
-	.max-h-unset {
+	.ve-max-h-unset {
 		max-height: unset !important;
 	}
 	// endregion
 
 	// region Position
-	.pos-fixed {
+	.ve-pos-fixed {
 		position: fixed !important;
 	}
 
-	.relative {
+	.ve-relative {
 		position: relative !important;
 	}
 
-	.absolute {
+	.ve-absolute {
 		position: absolute !important;
 	}
 
-	.sticky {
+	.ve-sticky {
 		position: sticky !important;
 	}
 	// endregion
@@ -620,7 +620,7 @@
 		display: grid !important;
 	}
 
-	.block {
+	.ve-block {
 		display: block !important;
 	}
 
@@ -745,11 +745,11 @@
 		flex-shrink: 1 !important;
 	}
 
-	.no-shrink {
+	.ve-no-shrink {
 		flex-shrink: 0 !important;
 	}
 
-	.no-grow {
+	.ve-no-grow {
 		flex-grow: 0 !important;
 	}
 
@@ -790,48 +790,48 @@
 		flex-wrap: wrap !important;
 	}
 
-	.split {
+	.ve-split {
 		display: flex !important;
 		justify-content: space-between !important;
 	}
 
-	.split-v-center {
+	.ve-split-v-center {
 		display: flex !important;
 		justify-content: space-between !important;
 		align-items: center !important;
 	}
 
-	.inline-split-v-center {
+	.ve-inline-split-v-center {
 		display: inline-flex !important;
 		justify-content: space-between;
 		align-items: center;
 	}
 
-	.split-v-end {
+	.ve-split-v-end {
 		display: flex !important;
 		justify-content: space-between !important;
 		align-items: flex-end !important;
 	}
 
-	.split-child {
+	.ve-split-child {
 		width: 50%;
 		flex-shrink: 0;
 		flex-grow: 0;
 	}
 
-	.split-column {
+	.ve-split-column {
 		display: flex;
 		justify-content: space-between;
 		flex-direction: column;
 	}
 
-	.split-column--inline {
+	.ve-split-column--inline {
 		display: inline-flex;
 	}
 	// endregion
 
 	// region Columns
-	.columns-2 {
+	.ve-columns-2 {
 		column-count: 2;
 		break-inside: avoid-column;
 		column-gap: 1.75rem;
@@ -845,7 +845,7 @@
 		}
 	}
 
-	.columns-3 {
+	.ve-columns-3 {
 		column-count: 3;
 		break-inside: avoid-column;
 		column-gap: 1.75rem;
@@ -863,7 +863,7 @@
 		}
 	}
 
-	.columns-4 {
+	.ve-columns-4 {
 		column-count: 4;
 		break-inside: avoid-column;
 		column-gap: 1.75rem;
@@ -881,7 +881,7 @@
 		}
 	}
 
-	.columns-5 {
+	.ve-columns-5 {
 		column-count: 5;
 		break-inside: avoid-column;
 		column-gap: 1.75rem;
@@ -899,7 +899,7 @@
 		}
 	}
 
-	.columns-6 {
+	.ve-columns-6 {
 		column-count: 6;
 		break-inside: avoid-column;
 		column-gap: 1.75rem;
@@ -919,31 +919,31 @@
 	// endregion
 
 	// region Tables
-	.table-layout-fixed {
+	.ve-table-layout-fixed {
 		table-layout: fixed !important;
 	}
 	// endregion
 
 	// region HRs/borders
-	.hr--dotted {
+	.ve-hr--dotted {
 		border-style: dashed;
 		border-left: 0;
 		border-right: 0;
 	}
 
-	.hr--heavy {
+	.ve-hr--heavy {
 		border-bottom-width: 2px;
 		border-top-width: 3px;
 		border-style: outset;
 	}
 
-	.border-dotted {
+	.ve-border-dotted {
 		border-style: dotted !important;
 	}
 	// endregion
 
 	// region Opacity
-	.opacity-50 {
+	.ve-opacity-50 {
 		opacity: 0.5 !important;
 	}
 	// endregion

@@ -146,8 +146,8 @@ class _InitiativeTrackerStatColumnBase {
 
 	getRendered ({comp, mon, networking = null}) {
 		const ipt = ComponentUiUtil.getIptStr(comp, "value")
-			.removeClass("input-xs")
-			.addClass("input-sm")
+			.removeClass("ve-input-xs")
+			.addClass("ve-input-sm")
 			.addClass("dm-init__stat_ipt")
 			.addClass("ve-text-center")
 			.onn("click", () => ipt.selecte());
@@ -360,7 +360,7 @@ class InitiativeTrackerStatColumn_LegendaryActions extends _InitiativeTrackerSta
 
 	getEleRenderedHeader () {
 		return super.getEleRenderedHeader()
-			.addClass("w-48p");
+			.addClass("ve-w-48p");
 	}
 
 	getRendered ({comp, mon}) {
@@ -371,7 +371,7 @@ class InitiativeTrackerStatColumn_LegendaryActions extends _InitiativeTrackerSta
 			{
 				isAllowNull: true,
 				fallbackOnNaN: null,
-				html: `<input class="form-control input-sm hp dm-init__row-input ve-text-right w-24p mr-0 br-0">`,
+				html: `<input class="ve-form-control ve-input-sm hp dm-init__row-input ve-text-right ve-w-24p ve-mr-0 ve-br-0">`,
 			},
 		)
 			.onn("click", () => iptCurrent.selecte());
@@ -383,7 +383,7 @@ class InitiativeTrackerStatColumn_LegendaryActions extends _InitiativeTrackerSta
 			{
 				isAllowNull: true,
 				fallbackOnNaN: null,
-				html: `<input class="form-control input-sm hp-max dm-init__row-input w-24p mr-0 bl-0">`,
+				html: `<input class="ve-form-control ve-input-sm hp-max dm-init__row-input ve-w-24p ve-mr-0 ve-bl-0">`,
 			},
 		)
 			.onn("click", () => iptMax.selecte());
@@ -395,7 +395,7 @@ class InitiativeTrackerStatColumn_LegendaryActions extends _InitiativeTrackerSta
 			})();
 		}
 
-		return ee`<div class="ve-flex relative mr-3p">
+		return ee`<div class="ve-flex ve-relative ve-mr-3p">
 			<div class="ve-text-right">${iptCurrent}</div>
 			<div class="dm-init__sep-fields-slash ve-flex-vh-center">/</div>
 			<div class="ve-text-left">${iptMax}</div>
@@ -444,8 +444,8 @@ class InitiativeTrackerStatColumn_Image extends _InitiativeTrackerStatColumnBase
 	}
 
 	getRendered ({comp, mon, networking = null}) {
-		const ele = ee`<div class="mr-3p ve-flex-vh-center w-40p">
-			<img src="${comp._state.tokenUrl}" class="w-30p h-30p" alt="Token Image">
+		const ele = ee`<div class="ve-mr-3p ve-flex-vh-center ve-w-40p">
+			<img src="${comp._state.tokenUrl}" class="ve-w-30p ve-h-30p" alt="Token Image">
 		</div>`;
 
 		if (networking != null) {
@@ -569,7 +569,7 @@ class _InitiativeTrackerStatColumnCheckboxBase extends _InitiativeTrackerStatCol
 			})();
 		}
 
-		return ee`<label class="dm-init__wrp-stat-cb h-100 ve-flex-vh-center">${cb}</label>`;
+		return ee`<label class="dm-init__wrp-stat-cb ve-h-100 ve-flex-vh-center">${cb}</label>`;
 	}
 }
 

@@ -1,4 +1,9 @@
 {
+	"_meta": {
+		"internalCopies": [
+			"monsterFluff"
+		]
+	},
 	"monsterFluff": [
 		{
 			"name": "Acererak",
@@ -61,30 +66,14 @@
 			]
 		},
 		{
-			"name": "Albino Dwarf Spirit Warrior",
+			"name": "Albino Dwarf",
 			"source": "ToA",
 			"entries": [
 				{
-					"type": "entries",
+					"type": "section",
+					"name": "Albino Dwarf",
 					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"entries": [
-										"The albino dwarves of Chult were driven from their subterranean homes by volcanic activity, and those who didn't seek refuge in Port Nyanzaru adapted to living in the jungle. They make armor out of dinosaur hide; shape weapons out of dinosaur bones, flint, and wood; and craft ornate jewelry out of bones, feathers, tusks, and stone beads. Albino dwarves haven't forgotten how to forge metal, but they seldom have the means to do so."
-									]
-								},
-								{
-									"type": "entries",
-									"name": "Albino Dwarf Spirit Warriors",
-									"entries": [
-										"An albino dwarf can become so attuned to the land of Chult that a benevolent nature spirit takes notice and bestows a powerful charm on the dwarf, granting it innate spellcasting abilities. These dwarf spirit warriors dedicate themselves to preserving the natural beauty of Chult and battling unnatural threats. An albino dwarf spirit warrior has the statistics of an albino dwarf warrior, except it has a challenge rating of 1 (200 XP) and gains an Innate Spellcasting feature."
-									]
-								}
-							]
-						}
+						"The albino dwarves of Chult were driven from their subterranean homes by volcanic activity, and those who didn't seek refuge in Port Nyanzaru adapted to living in the jungle. They make armor out of dinosaur hide; shape weapons out of dinosaur bones, flint, and wood; and craft ornate jewelry out of bones, feathers, tusks, and stone beads. Albino dwarves haven't forgotten how to forge metal, but they seldom have the means to do so."
 					]
 				}
 			],
@@ -101,37 +90,34 @@
 			]
 		},
 		{
+			"name": "Albino Dwarf Spirit Warrior",
+			"source": "ToA",
+			"_copy": {
+				"name": "Albino Dwarf",
+				"source": "ToA",
+				"_mod": {
+					"entries": {
+						"mode": "prependArr",
+						"items": [
+							{
+								"type": "section",
+								"name": "Albino Dwarf Spirit Warriors",
+								"entries": [
+									"An albino dwarf can become so attuned to the land of Chult that a benevolent nature spirit takes notice and bestows a powerful charm on the dwarf, granting it innate spellcasting abilities. These dwarf spirit warriors dedicate themselves to preserving the natural beauty of Chult and battling unnatural threats. An albino dwarf spirit warrior has the statistics of an albino dwarf warrior, except it has a challenge rating of 1 (200 XP) and gains an Innate Spellcasting feature."
+								]
+							}
+						]
+					}
+				}
+			}
+		},
+		{
 			"name": "Albino Dwarf Warrior",
 			"source": "ToA",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"entries": [
-										"The albino dwarves of Chult were driven from their subterranean homes by volcanic activity, and those who didn't seek refuge in Port Nyanzaru adapted to living in the jungle. They make armor out of dinosaur hide; shape weapons out of dinosaur bones, flint, and wood; and craft ornate jewelry out of bones, feathers, tusks, and stone beads. Albino dwarves haven't forgotten how to forge metal, but they seldom have the means to do so."
-									]
-								}
-							]
-						}
-					]
-				}
-			],
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "bestiary/ToA/Albino Dwarf.webp"
-					},
-					"width": 1000,
-					"height": 1039
-				}
-			]
+			"_copy": {
+				"name": "Albino Dwarf",
+				"source": "ToA"
+			}
 		},
 		{
 			"name": "Aldani (Lobsterfolk)",
@@ -219,43 +205,7 @@
 			"name": "Ankylosaurus Zombie",
 			"source": "ToA",
 			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"entries": [
-										"Several new zombie variants are presented below. For more information on zombies, see the Monster Manual.",
-										{
-											"name": "Ankylosaurus Zombie",
-											"type": "entries",
-											"entries": [
-												"This creature is slow and barely aware of its surroundings."
-											]
-										},
-										{
-											"name": "Girallon Zombie",
-											"type": "entries",
-											"entries": [
-												"Girallons are four-armed apes with white fur. Girallon zombies are slower than their non-undead counterparts but no less fierce. The necromantic energy empowering them fuels their murderous hearts and their hunger for living flesh."
-											]
-										},
-										{
-											"name": "Tyrannosaurus Zombie",
-											"type": "entries",
-											"entries": [
-												"A tyrannosaurus zombie has a gullet full of smaller zombies, which it can disgorge. These zombies aren't under the tyrannosaurus zombie's control."
-											]
-										}
-									]
-								}
-							]
-						}
-					]
-				}
+				"This creature is slow and barely aware of its surroundings."
 			]
 		},
 		{
@@ -832,43 +782,7 @@
 			"name": "Girallon Zombie",
 			"source": "ToA",
 			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"entries": [
-										"Several new zombie variants are presented below. For more information on zombies, see the Monster Manual.",
-										{
-											"name": "Ankylosaurus Zombie",
-											"type": "entries",
-											"entries": [
-												"This creature is slow and barely aware of its surroundings."
-											]
-										},
-										{
-											"name": "Girallon Zombie",
-											"type": "entries",
-											"entries": [
-												"Girallons are four-armed apes with white fur. Girallon zombies are slower than their non-undead counterparts but no less fierce. The necromantic energy empowering them fuels their murderous hearts and their hunger for living flesh."
-											]
-										},
-										{
-											"name": "Tyrannosaurus Zombie",
-											"type": "entries",
-											"entries": [
-												"A tyrannosaurus zombie has a gullet full of smaller zombies, which it can disgorge. These zombies aren't under the tyrannosaurus zombie's control."
-											]
-										}
-									]
-								}
-							]
-						}
-					]
-				}
+				"Girallons are four-armed apes with white fur. Girallon zombies are slower than their non-undead counterparts but no less fierce. The necromantic energy empowering them fuels their murderous hearts and their hunger for living flesh."
 			],
 			"images": [
 				{
@@ -1543,20 +1457,21 @@
 			]
 		},
 		{
-			"name": "Tabaxi Hunter",
+			"name": "Tabaxi",
 			"source": "ToA",
 			"entries": [
 				{
-					"type": "entries",
+					"type": "section",
+					"name": "Tabaxi",
 					"entries": [
+						"Tabaxi are catfolk who hail from the land of Maztica. The ultimate wanderers, Tabaxi rarely stay in one place for long. They love to collect interesting artifacts, gather tales, and lay eyes on all the world's wonders. This curiosity pushes them to leave no secrets uncovered, and no treasures or legends lost. They revere a fickle deity called the Cat Lord, who is said to wander the world.",
+						"Tabaxi hunters are trained to survive in the wild, making them excellent guides. Tabaxi minstrels gather in small troupes and make themselves at home in any settlement, earning coin through music and storytelling.",
 						{
 							"type": "entries",
 							"entries": [
 								{
 									"type": "entries",
 									"entries": [
-										"Tabaxi are catfolk who hail from the land of Maztica. The ultimate wanderers, Tabaxi rarely stay in one place for long. They love to collect interesting artifacts, gather tales, and lay eyes on all the world's wonders. This curiosity pushes them to leave no secrets uncovered, and no treasures or legends lost. They revere a fickle deity called the Cat Lord, who is said to wander the world.",
-										"Tabaxi hunters are trained to survive in the wild, making them excellent guides. Tabaxi minstrels gather in small troupes and make themselves at home in any settlement, earning coin through music and storytelling.",
 										{
 											"name": "Names",
 											"type": "entries",
@@ -1573,34 +1488,20 @@
 			]
 		},
 		{
+			"name": "Tabaxi Hunter",
+			"source": "ToA",
+			"_copy": {
+				"name": "Tabaxi",
+				"source": "ToA"
+			}
+		},
+		{
 			"name": "Tabaxi Minstrel",
 			"source": "ToA",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"entries": [
-										"Tabaxi are catfolk who hail from the land of Maztica. The ultimate wanderers, Tabaxi rarely stay in one place for long. They love to collect interesting artifacts, gather tales, and lay eyes on all the world's wonders. This curiosity pushes them to leave no secrets uncovered, and no treasures or legends lost. They revere a fickle deity called the Cat Lord, who is said to wander the world.",
-										"Tabaxi hunters are trained to survive in the wild, making them excellent guides. Tabaxi minstrels gather in small troupes and make themselves at home in any settlement, earning coin through music and storytelling.",
-										{
-											"name": "Names",
-											"type": "entries",
-											"entries": [
-												"A tabaxi typically has a single name, determined by his or her clan and based on a complex formula involving astrology, prophecy, clan history, and other factors. Male and female tabaxi use the same names, and most use nicknames derived from or inspired by their full names. Tabaxi clan names are usually based on a geographical feature located in or near a clan's territory. Sample tabaxi names include Nest of Eggs (\"Eggs\"), Dead Leaf (\"Leaf\"), Eyes of Onyx (\"Onyx\"), Lost Spear (\"Lost\"), and Daylight Moon (\"Moon\"). Clan names include Distant Rain, Hundred Feathers, Sleeping Creek, Bright Cliffs, and Snoring Mountain."
-											]
-										}
-									]
-								}
-							]
-						}
-					]
-				}
-			],
+			"_copy": {
+				"name": "Tabaxi",
+				"source": "ToA"
+			},
 			"images": [
 				{
 					"type": "image",
@@ -1717,43 +1618,7 @@
 			"name": "Tyrannosaurus Zombie",
 			"source": "ToA",
 			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"entries": [
-										"Several new zombie variants are presented below. For more information on zombies, see the Monster Manual.",
-										{
-											"name": "Ankylosaurus Zombie",
-											"type": "entries",
-											"entries": [
-												"This creature is slow and barely aware of its surroundings."
-											]
-										},
-										{
-											"name": "Girallon Zombie",
-											"type": "entries",
-											"entries": [
-												"Girallons are four-armed apes with white fur. Girallon zombies are slower than their non-undead counterparts but no less fierce. The necromantic energy empowering them fuels their murderous hearts and their hunger for living flesh."
-											]
-										},
-										{
-											"name": "Tyrannosaurus Zombie",
-											"type": "entries",
-											"entries": [
-												"A tyrannosaurus zombie has a gullet full of smaller zombies, which it can disgorge. These zombies aren't under the tyrannosaurus zombie's control."
-											]
-										}
-									]
-								}
-							]
-						}
-					]
-				}
+				"A tyrannosaurus zombie has a gullet full of smaller zombies, which it can disgorge. These zombies aren't under the tyrannosaurus zombie's control."
 			],
 			"images": [
 				{
@@ -1972,38 +1837,23 @@
 		{
 			"name": "Yellow Musk Creeper",
 			"source": "ToA",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"entries": [
-										"A yellow musk creeper is an unholy vine whose flowers resemble an orchid's. Bright yellow with splashes of purple, these flowers expel a musk that attracts prey. A yellow musk creeper clings to walls, pillars, gravestones, door frames, or statuary in shadowy locations, remaining motionless until it strikes.",
-										{
-											"name": "Humanoid Hosts",
-											"type": "entries",
-											"entries": [
-												"A yellow musk creeper destroys the minds of humanoids, then implants bulbs in those it kills. Twenty-four hours after being implanted, a bulb sprouts a creeper vine that magically animates the host corpse, turning it into a yellow musk zombie under the young vine's control. In addition to protecting the defenseless plant, the zombie acts as fertilizer for the young creeper vine, which grows to full size in seven days. Once it is fully grown, the new yellow musk creeper becomes mobile and bursts from its zombie host, whereupon the zombie collapses into a mound of dead offal. If the zombie is destroyed before the creeper emerges, the creeper withers and dies."
-											]
-										},
-										{
-											"name": "Small Yellow Musk Zombies",
-											"type": "entries",
-											"entries": [
-												"A Medium humanoid transformed into a yellow musk zombie uses the stat block presented in this section. A Small humanoid transformed into a yellow musk zombie becomes a Small undead with 27 ({@dice 6d6 + 6}) hit points, but otherwise has the same statistics."
-											]
-										}
-									]
-								}
-							]
-						}
-					]
+			"_copy": {
+				"name": "Yellow Musk Vine",
+				"source": "ToA",
+				"_mod": {
+					"entries": {
+						"mode": "prependArr",
+						"items": [
+							{
+								"type": "section",
+								"entries": [
+									"A yellow musk creeper destroys the minds of humanoids, then implants bulbs in those it kills. Twenty-four hours after being implanted, a bulb sprouts a creeper vine that magically animates the host corpse, turning it into a yellow musk zombie under the young vine's control. In addition to protecting the defenseless plant, the zombie acts as fertilizer for the young creeper vine, which grows to full size in seven days. Once it is fully grown, the new yellow musk creeper becomes mobile and bursts from its zombie host, whereupon the zombie collapses into a mound of dead offal. If the zombie is destroyed before the creeper emerges, the creeper withers and dies."
+								]
+							}
+						]
+					}
 				}
-			],
+			},
 			"images": [
 				{
 					"type": "image",
@@ -2017,40 +1867,37 @@
 			]
 		},
 		{
-			"name": "Yellow Musk Zombie",
+			"name": "Yellow Musk Vine",
 			"source": "ToA",
 			"entries": [
 				{
-					"type": "entries",
+					"type": "section",
 					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"entries": [
-										"A yellow musk creeper is an unholy vine whose flowers resemble an orchid's. Bright yellow with splashes of purple, these flowers expel a musk that attracts prey. A yellow musk creeper clings to walls, pillars, gravestones, door frames, or statuary in shadowy locations, remaining motionless until it strikes.",
-										{
-											"name": "Humanoid Hosts",
-											"type": "entries",
-											"entries": [
-												"A yellow musk creeper destroys the minds of humanoids, then implants bulbs in those it kills. Twenty-four hours after being implanted, a bulb sprouts a creeper vine that magically animates the host corpse, turning it into a yellow musk zombie under the young vine's control. In addition to protecting the defenseless plant, the zombie acts as fertilizer for the young creeper vine, which grows to full size in seven days. Once it is fully grown, the new yellow musk creeper becomes mobile and bursts from its zombie host, whereupon the zombie collapses into a mound of dead offal. If the zombie is destroyed before the creeper emerges, the creeper withers and dies."
-											]
-										},
-										{
-											"name": "Small Yellow Musk Zombies",
-											"type": "entries",
-											"entries": [
-												"A Medium humanoid transformed into a yellow musk zombie uses the stat block presented in this section. A Small humanoid transformed into a yellow musk zombie becomes a Small undead with 27 ({@dice 6d6 + 6}) hit points, but otherwise has the same statistics."
-											]
-										}
-									]
-								}
-							]
-						}
+						"A yellow musk creeper is an unholy vine whose flowers resemble an orchid's. Bright yellow with splashes of purple, these flowers expel a musk that attracts prey. A yellow musk creeper clings to walls, pillars, gravestones, door frames, or statuary in shadowy locations, remaining motionless until it strikes."
 					]
 				}
-			],
+			]
+		},
+		{
+			"name": "Yellow Musk Zombie",
+			"source": "ToA",
+			"_copy": {
+				"name": "Yellow Musk Vine",
+				"source": "ToA",
+				"_mod": {
+					"entries": {
+						"mode": "prependArr",
+						"items": [
+							{
+								"type": "section",
+								"entries": [
+									"A Medium humanoid transformed into a yellow musk zombie uses the stat block presented in this section. A Small humanoid transformed into a yellow musk zombie becomes a Small undead with 27 ({@dice 6d6 + 6}) hit points, but otherwise has the same statistics."
+								]
+							}
+						]
+					}
+				}
+			},
 			"images": [
 				{
 					"type": "image",

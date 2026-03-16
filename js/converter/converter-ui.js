@@ -245,7 +245,7 @@ export class ConverterUi extends BaseComponent {
 			if (!metaCurr?.entities?.length) return JqueryUtil.doToast({content: "Nothing to download!", type: "warning"});
 			if (metaCurr.error) {
 				JqueryUtil.doToast({
-					content: `Current output was not valid JSON. Downloading as <span class="code">.txt</span> instead.`,
+					content: `Current output was not valid JSON. Downloading as <span class="ve-code">.txt</span> instead.`,
 					type: "warning",
 				});
 				DataUtil.userDownloadText(`converter-output.txt`, metaCurr.text);
@@ -345,7 +345,7 @@ export class ConverterUi extends BaseComponent {
 		const stgWarnings = es(`#lastWarnings`);
 
 		const getRow = ({prefix, text, prop}) => {
-			const btnClose = ee`<button class="ve-btn ve-btn-danger ve-btn-xs w-24p" title="Dismiss ${prefix} (SHIFT to Dismiss All)">×</button>`
+			const btnClose = ee`<button class="ve-btn ve-btn-danger ve-btn-xs ve-w-24p" title="Dismiss ${prefix} (SHIFT to Dismiss All)">×</button>`
 				.onn("click", evt => {
 					if (evt.shiftKey) {
 						this._meta[prop] = [];
@@ -358,7 +358,7 @@ export class ConverterUi extends BaseComponent {
 					this._meta[prop] = [...this._meta[prop]];
 				});
 
-			return ee`<div class="split-v-center py-1">
+			return ee`<div class="ve-split-v-center ve-py-1">
 				<div>[${prefix}] ${text}</div>
 				${btnClose}
 			</div>`;
@@ -413,14 +413,14 @@ export class ConverterUi extends BaseComponent {
 			},
 		);
 
-		ee`<div class="w-100 split-v-center"><div class="sidemenu__row__label">Mode</div>${selConverter}</div>`
+		ee`<div class="ve-w-100 ve-split-v-center"><div class="sidemenu__row__label">Mode</div>${selConverter}</div>`
 			.appendTo(mnu);
 
 		ConverterUiUtil.renderSideMenuDivider(mnu);
 
 		// region mult-part parsing options
-		const iptInputSeparator = ComponentUiUtil.getIptStr(this, "inputSeparator").addClass("code");
-		ee`<div class="w-100 split-v-center mb-2"><div class="sidemenu__row__label help mr-2" title="A separator used to mark the end of one to-be-converted entity (creature, spell, etc.) so that multiple entities can be converted in one run. If left blank, the entire input text will be parsed as one entity.">Separator</div>${iptInputSeparator}</div>`
+		const iptInputSeparator = ComponentUiUtil.getIptStr(this, "inputSeparator").addClass("ve-code");
+		ee`<div class="ve-w-100 ve-split-v-center ve-mb-2"><div class="sidemenu__row__label ve-help ve-mr-2" title="A separator used to mark the end of one to-be-converted entity (creature, spell, etc.) so that multiple entities can be converted in one run. If left blank, the entire input text will be parsed as one entity.">Separator</div>${iptInputSeparator}</div>`
 			.appendTo(mnu);
 
 		const selAppendPrependMode = ComponentUiUtil.getSelEnum(
@@ -434,13 +434,13 @@ export class ConverterUi extends BaseComponent {
 				fnDisplay: val => val.toTitleCase(),
 			},
 		);
-		ee`<div class="w-100 split-v-center"><div class="sidemenu__row__label mr-2" title="Sets output order when using the &quot;Parse and Add&quot; button, or parsing multiple blocks of text using a separator.">On Add</div>${selAppendPrependMode}</div>`
+		ee`<div class="ve-w-100 ve-split-v-center"><div class="sidemenu__row__label ve-mr-2" title="Sets output order when using the &quot;Parse and Add&quot; button, or parsing multiple blocks of text using a separator.">On Add</div>${selAppendPrependMode}</div>`
 			.appendTo(mnu);
 
 		ConverterUiUtil.renderSideMenuDivider(mnu);
 		// endregion
 
-		const wrpConverters = ee`<div class="w-100 ve-flex-col"></div>`.appendTo(mnu);
+		const wrpConverters = ee`<div class="ve-w-100 ve-flex-col"></div>`.appendTo(mnu);
 		Object.entries(this._converters)
 			.sort(([, vA], [, vB]) => SortUtil.ascSortLower(vA.name, vB.name))
 			.forEach(([, converter]) => converter.renderSidebar(this.getPod(), wrpConverters));

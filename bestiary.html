@@ -70,8 +70,8 @@
 
 	<header class="hidden-xs hidden-sm page__header">
 		<div class="container ve-flex-v-baseline">
-			<h1 class="page__title no-wrap my-0" id="page__title">Bestiary</h1>
-			<p class="page__subtitle no-wrap my-0" id="page__subtitle">Search by name on the left, click a name to display on the right.</p>
+			<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Bestiary</h1>
+			<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Search by name on the left, click a name to display on the right.</p>
 		</div>
 	</header>
 
@@ -79,19 +79,19 @@
 		<ul class="nav nav-pills page__nav-inner" id="navbar"></ul>
 	</nav>
 
-	<div class="view-col-group--cancer h-100 mh-0">
+	<div class="view-col-group--cancer ve-h-100 mh-0">
 		<div class="container view-col-wrapper view-col-wrapper--cancer">
 			<div class="view-col" id="listcontainer">
-				<div class="lst__form-top" id="filter-search-group">
-					<div class="w-100 relative">
-						<input type="search" id="lst__search" autocomplete="off" autocapitalize="off" spellcheck="false" class="search form-control lst__search lst__search--no-border-h">
-						<div id="lst__search-glass" class="lst__wrp-search-glass no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
-						<div class="lst__wrp-search-visible no-events ve-flex-vh-center"></div>
+				<div class="ve-lst__form-top" id="filter-search-group">
+					<div class="ve-w-100 ve-relative">
+						<input type="search" id="lst__search" autocomplete="off" autocapitalize="off" spellcheck="false" class="search ve-form-control ve-lst__search ve-lst__search--no-border-h">
+						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
+						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
 					</div>
 					<button type="button" class="ve-btn ve-btn-default" id="reset">Reset</button>
 				</div>
 
-				<div id="filtertools" class="input-group input-group--bottom ve-flex no-shrink">
+				<div id="filtertools" class="input-group input-group--bottom ve-flex ve-no-shrink">
 					<button type="button" class="ve-col-4-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
 					<button type="button" class="ve-col-4-1 sort ve-btn ve-btn-default ve-btn-xs" data-sort="type">Type</button>
 					<button type="button" class="ve-col-1-7 sort ve-btn ve-btn-default ve-btn-xs" data-sort="cr">CR</button>
@@ -104,12 +104,12 @@
 			<div class="cancer__wrp-mobile-1 cancer__anchor"><div class="cancer__disp-cancer"></div><!--5ETOOLS_AD_MOB_PLAYER_1--></div>
 
 			<div id="contentwrapper" class="view-col">
-				<div class="best-ecgen__visible mb-2" id="wrp-encounterbuild-settings"></div>
+				<div class="best-ecgen__visible ve-mb-2" id="wrp-encounterbuild-settings"></div>
 
-				<hr class="best-ecgen__visible hr-2 mt-0">
+				<hr class="best-ecgen__visible ve-hr-2 ve-mt-0">
 
-				<div class="best-ecgen__visible my-2" id="wrp-encounterbuild-random-and-adjust"></div>
-				<div class="best-ecgen__visible--flex-col my-2" id="wrp-encounterbuild-shape-custom"></div>
+				<div class="best-ecgen__visible ve-my-2" id="wrp-encounterbuild-random-and-adjust"></div>
+				<div class="best-ecgen__visible--flex-col ve-my-2" id="wrp-encounterbuild-shape-custom"></div>
 
 				<div id="sublistcontainer" class="sublist sublist--resizable no-print">
 					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
@@ -123,35 +123,35 @@
 					<div id="sublist" class="list"></div>
 
 					<div class="row best-ecgen__hidden ve-small">
-						<span class="ve-col-6 ve-text-right pr-2">Total:</span>
-						<span class="ve-col-6 no-wrap pl-0" id="totalcr"></span>
+						<span class="ve-col-6 ve-text-right ve-pr-2">Total:</span>
+						<span class="ve-col-6 ve-no-wrap ve-pl-0" id="totalcr"></span>
 					</div>
 				</div>
 
-				<div class="w-100 ve-flex" id="stat-tabs">
-					<div class="ml-auto ve-flex" id="tabs-right"></div>
+				<div class="ve-w-100 ve-flex" id="stat-tabs">
+					<div class="ve-ml-auto ve-flex" id="tabs-right"></div>
 				</div>
 
-				<div id="wrp-pagecontent" class="relative wrp-stats-table">
-					<div id="float-token" class="relative"></div>
+				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table">
+					<div id="float-token" class="ve-relative"></div>
 
-					<table id="pagecontent" class="w-100 stats">
+					<table id="pagecontent" class="ve-w-100 ve-stats">
 						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
 						<tr><td colspan="6" class="initial-message initial-message--med">Select an entry from the list to view it here</td></tr>
 						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
 					</table>
 				</div>
 
-				<div class="ve-flex-vh-center mt-2 no-print mobile-sm__ve-flex-col best-ecgen__hidden">
-					<div class="ve-flex-v-center mr-2 mobile-sm__mb-2 mobile-sm__mr-0">
-						<button type="button" class="ve-btn ve-btn-success ve-btn-xs mr-2" id="btn-encounterbuild">Encounter Builder</button>
+				<div class="ve-flex-vh-center ve-mt-2 no-print ve-mobile-sm__ve-flex-col best-ecgen__hidden">
+					<div class="ve-flex-v-center ve-mr-2 ve-mobile-sm__mb-2 ve-mobile-sm__mr-0">
+						<button type="button" class="ve-btn ve-btn-success ve-btn-xs ve-mr-2" id="btn-encounterbuild">Encounter Builder</button>
 						<div id="wrp-profbonusdice" class="ve-flex-v-center">
 							<button type="button" class="ve-btn ve-btn-default ve-btn-xs" id="profbonusdice" title="See the 2014 Dungeon Master&apos;s Guide, p263.">Proficiency Dice <span class="ve-muted">('14)</span></button>
 						</div>
 					</div>
 
-					<div class="ve-flex-v-center mr-2 mobile-sm__mb-2 mobile-sm__mr-0">
-						<button type="button" class="ve-btn ve-btn-default ve-btn-xs mr-2" id="btn-book">Printer View</button>
+					<div class="ve-flex-v-center ve-mr-2 ve-mobile-sm__mb-2 ve-mobile-sm__mr-0">
+						<button type="button" class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" id="btn-book">Printer View</button>
 						<button type="button" class="ve-btn ve-btn-default ve-btn-xs" id="btn-show-table" title="View and Download Creatures in Tabular Format">Table View</button>
 					</div>
 
@@ -162,11 +162,11 @@
 					</div>
 				</div>
 
-				<div class="best-ecgen__visible--flex-col best-ecgen__wrp pb-1 px-2" id="wrp-encounterbuild-shape-custom"></div>
-				<div class="best-ecgen__visible--flex-col best-ecgen__wrp pb-1 px-2" id="wrp-encounterbuild-group"></div>
-				<div class="best-ecgen__visible--flex-col best-ecgen__wrp pb-1 px-2" id="wrp-encounterbuild-difficulty"></div>
+				<div class="best-ecgen__visible--flex-col best-ecgen__wrp ve-pb-1 ve-px-2" id="wrp-encounterbuild-shape-custom"></div>
+				<div class="best-ecgen__visible--flex-col best-ecgen__wrp ve-pb-1 ve-px-2" id="wrp-encounterbuild-group"></div>
+				<div class="best-ecgen__visible--flex-col best-ecgen__wrp ve-pb-1 ve-px-2" id="wrp-encounterbuild-difficulty"></div>
 
-				<div class="best-ecgen__visible--flex-col pb-1" id="wrp-encounterbuild-footer"></div>
+				<div class="best-ecgen__visible--flex-col ve-pb-1" id="wrp-encounterbuild-footer"></div>
 			</div>
 		</div>
 	</div>

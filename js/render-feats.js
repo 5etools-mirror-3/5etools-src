@@ -33,7 +33,7 @@ class _RenderFeatsImplBase extends RenderPageImplBase {
 			ent.category,
 			Renderer.utils.prerequisite.getHtml(ent.prerequisite, {styleHint: this._style}),
 		);
-		return ptCategoryPrerequisite ? `<tr><td colspan="6" class="pb-2 pt-0"><i>${ptCategoryPrerequisite}</i></td></tr>` : "";
+		return ptCategoryPrerequisite ? `<tr><td colspan="6" class="ve-pb-2 ve-pt-0"><i>${ptCategoryPrerequisite}</i></td></tr>` : "";
 	}
 
 	/* ----- */
@@ -86,7 +86,7 @@ class _RenderFeatsImplClassic extends _RenderFeatsImplBase {
 			${htmlPtPrerequisites}
 			${htmlPtRepeatable}
 
-			<tr><td colspan="6" class="py-0"><div class="ve-tbl-divider"></div></td></tr>
+			<tr><td colspan="6" class="ve-py-0"><div class="ve-tbl-divider"></div></td></tr>
 
 			<tr><td colspan="6">
 				${htmlPtEntries}

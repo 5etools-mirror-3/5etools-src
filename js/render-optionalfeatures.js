@@ -32,14 +32,14 @@ class _RenderOptionalfeaturesImplBase extends RenderPageImplBase {
 
 	_getCommonHtmlParts_prerequisites ({ent}) {
 		const ptPrerequisites = Renderer.utils.prerequisite.getHtml(ent.prerequisite, {styleHint: this._style});
-		return ptPrerequisites ? `<tr><td colspan="6" class="pt-0 ${this._style === SITE_STYLE__CLASSIC ? "" : "italic"}">${ptPrerequisites}</td></tr>` : "";
+		return ptPrerequisites ? `<tr><td colspan="6" class="ve-pt-0 ${this._style === SITE_STYLE__CLASSIC ? "" : "ve-italic"}">${ptPrerequisites}</td></tr>` : "";
 	}
 
 	/* ----- */
 
 	_getCommonHtmlParts_cost ({ent}) {
 		const ptCost = Renderer.optionalfeature.getCostHtml(ent);
-		return ptCost ? `<tr><td colspan="6" ${ent.prerequisite ? "" : `class="pt-0"`}>${ptCost}</td></tr>` : "";
+		return ptCost ? `<tr><td colspan="6" ${ent.prerequisite ? "" : `class="ve-pt-0"`}>${ptCost}</td></tr>` : "";
 	}
 
 	/* ----- */
@@ -88,7 +88,7 @@ class _RenderOptionalfeaturesImplClassic extends _RenderOptionalfeaturesImplBase
 
 			${htmlPtCost}
 
-			<tr><td colspan="6" class="py-0"><div class="ve-tbl-divider"></div></td></tr>
+			<tr><td colspan="6" class="ve-py-0"><div class="ve-tbl-divider"></div></td></tr>
 
 			<tr><td colspan="6">
 				${htmlPtEntries}
@@ -134,7 +134,7 @@ class _RenderOptionalfeaturesImplOne extends _RenderOptionalfeaturesImplBase {
 
 			${htmlPtCost}
 
-			<tr><td colspan="6" ${htmlPtPrerequisites || htmlPtCost ? `class="pt-2"` : `class="pt-0"`}>
+			<tr><td colspan="6" ${htmlPtPrerequisites || htmlPtCost ? `class="ve-pt-2"` : `class="ve-pt-0"`}>
 				${htmlPtEntries}
 			</td></tr>
 

@@ -57,7 +57,7 @@ export class AbilityScoreFilter extends FilterBase {
 
 		const wrpControls = this._getHeaderControls(opts);
 
-		this.__wrpPills = e_({tag: "div", clazz: `fltr__wrp-pills ve-overflow-x-auto ve-flex-col w-100`});
+		this.__wrpPills = e_({tag: "div", clazz: `ve-fltr__wrp-pills ve-overflow-x-auto ve-flex-col ve-w-100`});
 		const hook = () => this.__wrpPills.toggleVe(!this._uiMeta.isHidden);
 		this._addHook("uiMeta", "isHidden", hook);
 		hook();
@@ -68,9 +68,9 @@ export class AbilityScoreFilter extends FilterBase {
 		const btnMobToggleControls = Filter.prototype._getBtnMobToggleControls.bind(this)(wrpControls);
 
 		this.__wrpFilter = ee`<div>
-			${opts.isFirst ? "" : `<div class="fltr__dropdown-divider ${opts.isMulti ? "fltr__dropdown-divider--indented" : ""} mb-1"></div>`}
-			<div class="split fltr__h mb-1">
-				<div class="ml-2 fltr__h-text ve-flex-h-center">${opts.isMulti ? `<span class="mr-2">\u2212</span>` : ""}${this._getRenderedHeader()}${btnMobToggleControls}</div>
+			${opts.isFirst ? "" : `<div class="ve-fltr__dropdown-divider ${opts.isMulti ? "ve-fltr__dropdown-divider--indented" : ""} ve-mb-1"></div>`}
+			<div class="ve-split ve-fltr__h ve-mb-1">
+				<div class="ve-ml-2 ve-fltr__h-text ve-flex-h-center">${opts.isMulti ? `<span class="ve-mr-2">\u2212</span>` : ""}${this._getRenderedHeader()}${btnMobToggleControls}</div>
 				${wrpControls}
 			</div>
 			${this.__wrpPills}
@@ -84,18 +84,18 @@ export class AbilityScoreFilter extends FilterBase {
 	_getHeaderControls (opts) {
 		const btnClear = e_({
 			tag: "button",
-			clazz: `ve-btn ve-btn-default ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"} fltr__h-btn--clear w-100`,
+			clazz: `ve-btn ve-btn-default ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"} ve-fltr__h-btn--clear ve-w-100`,
 			click: () => this._doSetPillsClear(),
 			html: "Clear",
 		});
 
 		const wrpStateBtnsOuter = e_({
 			tag: "div",
-			clazz: "ve-flex-v-center fltr__h-wrp-state-btns-outer",
+			clazz: "ve-flex-v-center ve-fltr__h-wrp-state-btns-outer",
 			children: [
 				e_({
 					tag: "div",
-					clazz: "ve-btn-group ve-flex-v-center w-100",
+					clazz: "ve-btn-group ve-flex-v-center ve-w-100",
 					children: [
 						btnClear,
 					],
@@ -107,7 +107,7 @@ export class AbilityScoreFilter extends FilterBase {
 
 		const btnShowHide = this._getBtnShowHide({isMulti: opts.isMulti});
 		const hkIsHidden = () => {
-			e_({ele: btnShowHide}).toggleClass("active", this._uiMeta.isHidden);
+			e_({ele: btnShowHide}).toggleClass("ve-active", this._uiMeta.isHidden);
 			wrpStateBtnsOuter.toggleVe(!this._uiMeta.isHidden);
 
 			// Skip updating renders if results would be invisible
@@ -119,7 +119,7 @@ export class AbilityScoreFilter extends FilterBase {
 
 			const htmlSummary = [
 				cur._totals?.yes
-					? `<span class="fltr__summary_item fltr__summary_item--include" title="${cur._totals.yes} hidden &quot;required&quot; tags">${cur._totals.yes}</span>`
+					? `<span class="ve-fltr__summary_item ve-fltr__summary_item--include" title="${cur._totals.yes} hidden &quot;required&quot; tags">${cur._totals.yes}</span>`
 					: null,
 			].filter(Boolean).join("");
 			e_({ele: wrpSummary, html: htmlSummary}).toggleVe(this._uiMeta.isHidden);
@@ -131,13 +131,13 @@ export class AbilityScoreFilter extends FilterBase {
 
 		return e_({
 			tag: "div",
-			clazz: `ve-flex-v-center fltr__h-wrp-btns-outer`,
+			clazz: `ve-flex-v-center ve-fltr__h-wrp-btns-outer`,
 			children: [
 				wrpSummary,
 				wrpStateBtnsOuter,
 				e_({
 					tag: "div",
-					clazz: "ve-btn-group ve-flex-v-center ml-2",
+					clazz: "ve-btn-group ve-flex-v-center ve-ml-2",
 					children: [
 						btnShowHide,
 						this._getBtnMenu({isMulti: opts.isMulti}),
@@ -153,17 +153,17 @@ export class AbilityScoreFilter extends FilterBase {
 		if (!this.__wrpPills) return;
 		this._items.forEach(it => {
 			if (!it.rendered) it.rendered = this._getPill(it);
-			if (!it.isAnyIncrease && !it.isAnyDecrease) it.rendered.toggleClass("fltr__pill--muted", !this._seenUids[it.uid]);
+			if (!it.isAnyIncrease && !it.isAnyDecrease) it.rendered.toggleClass("ve-fltr__pill--muted", !this._seenUids[it.uid]);
 
 			if (!this.__wrpPillsRows[it.ability]) {
 				this.__wrpPillsRows[it.ability] = {
 					row: e_({
 						tag: "div",
-						clazz: "ve-flex-v-center w-100 my-1",
+						clazz: "ve-flex-v-center ve-w-100 ve-my-1",
 						children: [
 							e_({
 								tag: "div",
-								clazz: "mr-3 ve-text-right fltr__label-ability-score no-shrink no-grow",
+								clazz: "ve-mr-3 ve-text-right ve-fltr__label-ability-score ve-no-shrink ve-no-grow",
 								text: Parser.attAbvToFull(it.ability),
 							}),
 						],
@@ -193,7 +193,7 @@ export class AbilityScoreFilter extends FilterBase {
 
 		const btnPill = e_({
 			tag: "div",
-			clazz: `fltr__pill fltr__pill--ability-bonus px-2`,
+			clazz: `ve-fltr__pill ve-fltr__pill--ability-bonus ve-px-2`,
 			html: item.getPillDisplayHtml(),
 			click: evt => {
 				if (evt.shiftKey) {
@@ -236,7 +236,7 @@ export class AbilityScoreFilter extends FilterBase {
 	_getBtnMini (item) {
 		const btnMini = e_({
 			tag: "div",
-			clazz: `fltr__mini-pill ${this._filterBox.isMinisHidden(this.header) ? "ve-hidden" : ""}`,
+			clazz: `ve-fltr__mini-pill ${this._filterBox.isMinisHidden(this.header) ? "ve-hidden" : ""}`,
 			text: item.getMiniPillDisplayText(),
 			title: `Filter: ${this._getHeaderDisplayName()}`,
 			click: () => {
@@ -582,9 +582,9 @@ export class AbilityScoreFilter extends FilterBase {
 		const isHeaderMatch = this._getHeaderDisplayName().toLowerCase().includes(searchTerm);
 
 		if (isHeaderMatch) {
-			Object.values(this.__wrpPillsRows).forEach(meta => meta.row.removeClass("fltr__hidden--search"));
+			Object.values(this.__wrpPillsRows).forEach(meta => meta.row.removeClass("ve-fltr__hidden--search"));
 
-			if (this.__wrpFilter) this.__wrpFilter.toggleClass("fltr__hidden--search", false);
+			if (this.__wrpFilter) this.__wrpFilter.toggleClass("ve-fltr__hidden--search", false);
 
 			return true;
 		}
@@ -595,11 +595,11 @@ export class AbilityScoreFilter extends FilterBase {
 		let visibleCount = 0;
 		Object.values(this.__wrpPillsRows).forEach(({row, searchText}) => {
 			const isVisible = isModNumber || searchText.includes(searchTerm);
-			row.toggleClass("fltr__hidden--search", !isVisible);
+			row.toggleClass("ve-fltr__hidden--search", !isVisible);
 			if (isVisible) visibleCount++;
 		});
 
-		if (this.__wrpFilter) this.__wrpFilter.toggleClass("fltr__hidden--search", visibleCount === 0);
+		if (this.__wrpFilter) this.__wrpFilter.toggleClass("ve-fltr__hidden--search", visibleCount === 0);
 
 		return visibleCount !== 0;
 	}
@@ -696,7 +696,7 @@ export class AbilityScoreFilter extends FilterBase {
 
 				if (isPlainText) return `${v === PILL_STATE__NO ? "not " : ""}${item.getMiniPillDisplayText()}`;
 
-				return `<span class="fltr__disp-state ${getPillStateDisplayClass(v)}">${item.getMiniPillDisplayText()}</span>`;
+				return `<span class="ve-fltr__disp-state ${getPillStateDisplayClass(v)}">${item.getMiniPillDisplayText()}</span>`;
 			})
 			.filter(Boolean)
 			.join(", ");
@@ -704,7 +704,7 @@ export class AbilityScoreFilter extends FilterBase {
 		if (!ptState) {
 			if (isPlainText) return [`${this._getHeaderDisplayName()}: (cleared)`];
 			return [
-				`${this._getDisplayStatePart_getHeader({isPlainText})}<span class="italic fltr__disp-state fltr__disp-state--ignore">(cleared)</span>`,
+				`${this._getDisplayStatePart_getHeader({isPlainText})}<span class="ve-italic ve-fltr__disp-state ve-fltr__disp-state--ignore">(cleared)</span>`,
 			];
 		}
 

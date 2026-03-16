@@ -255,7 +255,7 @@ export class StatGenUi extends BaseComponent {
 	}
 
 	render (parent) {
-		parent.empty().addClass("statgen");
+		parent.empty().addClass("ve-statgen");
 
 		const iptTabMetas = this._isLevelUp
 			? [
@@ -284,20 +284,20 @@ export class StatGenUi extends BaseComponent {
 						propProxy: propProxyTabs,
 					},
 				)
-					.addClass("max-w-200p");
-				ee`<div class="ve-flex-v-center statgen-shared__wrp-header">
-					<div class="mr-2"><b>Mode</b></div>
+					.addClass("ve-max-w-200p");
+				ee`<div class="ve-flex-v-center ve-statgen-shared__wrp-header">
+					<div class="ve-mr-2"><b>Mode</b></div>
 					${selMode}
 				</div>`
 					.appendTo(parent);
-				ee`<hr class="hr-2">`
+				ee`<hr class="ve-hr-2">`
 					.appendTo(parent);
 			}
 
 			tabMetas.forEach(it => it.wrpTab.appendTo(parent));
 		}
 
-		const wrpAll = ee`<div class="ve-flex-col w-100 h-100"></div>`;
+		const wrpAll = ee`<div class="ve-flex-col ve-w-100 ve-h-100"></div>`;
 		this._render_all(wrpAll);
 
 		const hkTab = () => {
@@ -313,20 +313,20 @@ export class StatGenUi extends BaseComponent {
 	_render_getStgRolledHeader () {
 		this._rollIptFormula = ComponentUiUtil.getIptStr(this, "rolled_formula")
 			.addClass("ve-text-center")
-			.addClass("max-w-100p")
+			.addClass("ve-max-w-100p")
 			.onn("keydown", evt => {
 				if (evt.key === "Enter") setTimeout(() => btnRoll.trigger("click")); // Defer to allow `.change` to fire first
 			})
 			.onn("change", () => this._rollIptFormula.removeClass("form-control--error"));
 
-		const iptRollCount = this._isCharacterMode ? null : ComponentUiUtil.getIptInt(this, "rolled_rollCount", 1, {min: 1, fallbackOnNaN: 1, html: `<input type="text" class="form-control input-xs form-control--minimal ve-text-center max-w-100p">`})
+		const iptRollCount = this._isCharacterMode ? null : ComponentUiUtil.getIptInt(this, "rolled_rollCount", 1, {min: 1, fallbackOnNaN: 1, html: `<input type="text" class="ve-form-control ve-input-xs form-control--minimal ve-text-center ve-max-w-100p">`})
 			.onn("keydown", evt => {
 				if (evt.key === "Enter") setTimeout(() => btnRoll.trigger("click")); // Defer to allow `.change` to fire first
 			})
 			.onn("change", () => this._rollIptFormula.removeClass("form-control--error"));
 
 		const lockRoll = new VeLock();
-		const btnRoll = ee`<button class="ve-btn ve-btn-primary bold">Roll</button>`
+		const btnRoll = ee`<button class="ve-btn ve-btn-primary ve-bold">Roll</button>`
 			.onn("click", async () => {
 				try {
 					await lockRoll.pLock();
@@ -336,7 +336,7 @@ export class StatGenUi extends BaseComponent {
 				}
 			});
 
-		const btnRandom = ee`<button class="ve-btn ve-btn-xs ve-btn-default mt-2">Randomly Assign</button>`
+		const btnRandom = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mt-2">Randomly Assign</button>`
 			.hideVe()
 			.onn("click", () => {
 				const abs = [...Parser.ABIL_ABVS].shuffle();
@@ -346,10 +346,10 @@ export class StatGenUi extends BaseComponent {
 				});
 			});
 
-		const wrpRolled = ee`<div class="ve-flex-v-center mr-auto statgen-rolled__wrp-results py-1"></div>`;
-		const wrpTotal = ee`<div class="ve-muted ve-small italic ve-text-right pr-1 help-subtle" title="The sum total of the above rolls."></div>`;
+		const wrpRolled = ee`<div class="ve-flex-v-center ve-mr-auto ve-statgen-rolled__wrp-results ve-py-1"></div>`;
+		const wrpTotal = ee`<div class="ve-muted ve-small ve-italic ve-text-right ve-pr-1 ve-help-subtle" title="The sum total of the above rolls."></div>`;
 		const wrpRolledOuter = ee`<div class="ve-flex-col">
-			<div class="ve-flex-v-center mb-1"><div class="mr-2">=</div>${wrpRolled}</div>
+			<div class="ve-flex-v-center ve-mb-1"><div class="ve-mr-2">=</div>${wrpRolled}</div>
 			${wrpTotal}
 		</div>`;
 
@@ -359,19 +359,19 @@ export class StatGenUi extends BaseComponent {
 
 			wrpRolled.html(this._state.rolled_rolls.map((it, i) => {
 				const cntPrevRolls = this._state.rolled_rolls.slice(0, i).filter(r => r.total === it.total).length;
-				return `<div class="px-3 py-1 help-subtle ve-flex-vh-center" title="${it.text}"><div class="ve-muted">[</div><div class="ve-flex-vh-center statgen-rolled__disp-result">${it.total}${cntPrevRolls ? Parser.numberToSubscript(cntPrevRolls) : ""}</div><div class="ve-muted">]</div></div>`;
+				return `<div class="ve-px-3 ve-py-1 ve-help-subtle ve-flex-vh-center" title="${it.text}"><div class="ve-muted">[</div><div class="ve-flex-vh-center ve-statgen-rolled__disp-result">${it.total}${cntPrevRolls ? Parser.numberToSubscript(cntPrevRolls) : ""}</div><div class="ve-muted">]</div></div>`;
 			}));
 			wrpTotal.txt(`Total: ${this._state.rolled_rolls.map(roll => roll.total).sum()}`);
 		};
 		this._addHookBase("rolled_rolls", hkRolled);
 		hkRolled();
 
-		return ee`<div class="ve-flex-col mb-3 mr-auto">
-			<div class="ve-flex mb-2">
-				<div class="ve-flex-col ve-flex-h-center mr-3">
-					<label class="ve-flex-v-center"><div class="mr-2 no-shrink w-100p">Formula:</div>${this._rollIptFormula}</label>
+		return ee`<div class="ve-flex-col ve-mb-3 ve-mr-auto">
+			<div class="ve-flex ve-mb-2">
+				<div class="ve-flex-col ve-flex-h-center ve-mr-3">
+					<label class="ve-flex-v-center"><div class="ve-mr-2 ve-no-shrink ve-w-100p">Formula:</div>${this._rollIptFormula}</label>
 
-					${this._isCharacterMode ? null : ee`<label class="ve-flex-v-center mt-2"><div class="mr-2 no-shrink w-100p">Number of rolls:</div>${iptRollCount}</label>`}
+					${this._isCharacterMode ? null : ee`<label class="ve-flex-v-center ve-mt-2"><div class="ve-mr-2 ve-no-shrink ve-w-100p">Number of rolls:</div>${iptRollCount}</label>`}
 				</div>
 				${btnRoll}
 			</div>
@@ -392,15 +392,15 @@ export class StatGenUi extends BaseComponent {
 				});
 			});
 
-		return ee`<div class="ve-flex-col mb-3 mr-auto">
-			<div class="mb-2">Assign these numbers to your abilities as desired:</div>
-			<div class="bold mb-2">${StatGenUi._STANDARD_ARRAY.join(", ")}</div>
+		return ee`<div class="ve-flex-col ve-mb-3 ve-mr-auto">
+			<div class="ve-mb-2">Assign these numbers to your abilities as desired:</div>
+			<div class="ve-bold ve-mb-2">${StatGenUi._STANDARD_ARRAY.join(", ")}</div>
 			<div class="ve-flex">${btnRandom}</div>
 		</div>`;
 	}
 
 	_render_getStgManualHeader () {
-		return ee`<div class="ve-flex-col mb-3 mr-auto">
+		return ee`<div class="ve-flex-col ve-mb-3 ve-mr-auto">
 			<div>Enter your desired ability scores in the &quot;Base&quot; column below.</div>
 		</div>`;
 	}
@@ -431,7 +431,7 @@ export class StatGenUi extends BaseComponent {
 			"pb_budget",
 			0,
 			{
-				html: `<input type="text" class="form-control statgen-pb__ipt-budget ve-text-center statgen-shared__ipt">`,
+				html: `<input type="text" class="ve-form-control ve-statgen-pb__ipt-budget ve-text-center ve-statgen-shared__ipt">`,
 				min: 0,
 				fallbackOnNaN: 0,
 			},
@@ -447,7 +447,7 @@ export class StatGenUi extends BaseComponent {
 			"pb_points",
 			0,
 			{
-				html: `<input type="text" class="form-control statgen-pb__ipt-budget ve-text-center statgen-shared__ipt">`,
+				html: `<input type="text" class="ve-form-control ve-statgen-pb__ipt-budget ve-text-center ve-statgen-shared__ipt">`,
 				min: 0,
 				fallbackOnNaN: 0,
 			},
@@ -455,7 +455,7 @@ export class StatGenUi extends BaseComponent {
 
 		const hkPoints = () => {
 			this._state.pb_points = this._pb_getPointsRemaining(this._state);
-			iptRemaining.toggleClass(`statgen-pb__ipt-budget--error`, this._state.pb_points < 0);
+			iptRemaining.toggleClass(`ve-statgen-pb__ipt-budget--error`, this._state.pb_points < 0);
 		};
 		this._addHookAll("state", hkPoints);
 		hkPoints();
@@ -497,29 +497,29 @@ export class StatGenUi extends BaseComponent {
 				}
 			});
 
-		return ee`<div class="ve-flex mobile-sm__ve-flex-col mb-2">
+		return ee`<div class="ve-flex ve-mobile-sm__ve-flex-col ve-mb-2">
 			<div class="ve-flex-v-center">
-				<div class="statgen-pb__cell mr-4 mobile-sm__hidden"></div>
+				<div class="ve-statgen-pb__cell ve-mr-4 ve-mobile-sm__hidden"></div>
 
-				<label class="ve-flex-col mr-2">
-					<div class="mb-1 ve-text-center">Budget</div>
+				<label class="ve-flex-col ve-mr-2">
+					<div class="ve-mb-1 ve-text-center">Budget</div>
 					${iptBudget}
 				</label>
 
-				<label class="ve-flex-col mr-2">
-					<div class="mb-1 ve-text-center">Remain</div>
+				<label class="ve-flex-col ve-mr-2">
+					<div class="ve-mb-1 ve-text-center">Remain</div>
 					${iptRemaining}
 				</label>
 			</div>
 
-			<div class="ve-flex-v-center mobile-sm__mt-2">
-				<div class="ve-flex-col mr-2">
-					<div class="mb-1 ve-text-center mobile-sm__hidden">&nbsp;</div>
+			<div class="ve-flex-v-center ve-mobile-sm__mt-2">
+				<div class="ve-flex-col ve-mr-2">
+					<div class="ve-mb-1 ve-text-center ve-mobile-sm__hidden">&nbsp;</div>
 					${btnReset}
 				</div>
 
 				<div class="ve-flex-col">
-					<div class="mb-1 ve-text-center mobile-sm__hidden">&nbsp;</div>
+					<div class="ve-mb-1 ve-text-center ve-mobile-sm__hidden">&nbsp;</div>
 					${btnRandom}
 				</div>
 			</div>
@@ -549,7 +549,7 @@ export class StatGenUi extends BaseComponent {
 				this._state.pb_rules = [...this._state.pb_rules, this._getDefaultState_pb_rule(score, cost)];
 			});
 
-		const btnResetRules = ee`<button class="ve-btn ve-btn-danger ve-btn-xs mr-2">Reset</button>`
+		const btnResetRules = ee`<button class="ve-btn ve-btn-danger ve-btn-xs ve-mr-2">Reset</button>`
 			.onn("click", () => {
 				this._state.pb_rules = this._getDefaultStatePointBuyCosts().pb_rules;
 			});
@@ -587,8 +587,8 @@ export class StatGenUi extends BaseComponent {
 		const btnContext = ee`<button class="ve-btn ve-btn-default ve-btn-xs" title="Menu"><span class="glyphicon glyphicon-option-vertical"></span></button>`
 			.onn("click", evt => ContextUtil.pOpenMenu(evt, menuCustom));
 
-		const stgCustomCostControls = ee`<div class="ve-flex-col mb-auto ml-2 mobile-sm__ml-0 mobile-sm__mt-3">
-			<div class="ve-btn-group-vertical ve-flex-col mb-2">${btnAddLower}${btnAddHigher}</div>
+		const stgCustomCostControls = ee`<div class="ve-flex-col ve-mb-auto ve-ml-2 ve-mobile-sm__ml-0 ve-mobile-sm__mt-3">
+			<div class="ve-btn-group-vertical ve-flex-col ve-mb-2">${btnAddLower}${btnAddHigher}</div>
 			<div class="ve-flex-v-center">
 				${btnResetRules}
 				${btnContext}
@@ -632,13 +632,13 @@ export class StatGenUi extends BaseComponent {
 			<h4>Ability Score Point Cost</h4>
 
 			<div class="ve-flex-col">
-				<div class="ve-flex mobile-sm__ve-flex-col">
-					<div class="ve-flex-col mr-3mobile-sm__mr-0">
-						<div class="ve-flex-v-center mb-1">
-							<div class="statgen-pb__col-cost ve-flex-vh-center bold">Score</div>
-							<div class="statgen-pb__col-cost ve-flex-vh-center bold">Modifier</div>
-							<div class="statgen-pb__col-cost ve-flex-vh-center bold">Point Cost</div>
-							<div class="statgen-pb__col-cost-delete"></div>
+				<div class="ve-flex ve-mobile-sm__ve-flex-col">
+					<div class="ve-flex-col ve-mr-3 ve-mobile-sm__mr-0">
+						<div class="ve-flex-v-center ve-mb-1">
+							<div class="ve-statgen-pb__col-cost ve-flex-vh-center ve-bold">Score</div>
+							<div class="ve-statgen-pb__col-cost ve-flex-vh-center ve-bold">Modifier</div>
+							<div class="ve-statgen-pb__col-cost ve-flex-vh-center ve-bold">Point Cost</div>
+							<div class="ve-statgen-pb__col-cost-delete"></div>
 						</div>
 
 						${stgCostRows}
@@ -648,10 +648,10 @@ export class StatGenUi extends BaseComponent {
 				</div>
 			</div>
 
-			<hr class="hr-4 mb-2">
+			<hr class="ve-hr-4 ve-mb-2">
 
 			<label class="ve-flex-v-center">
-				<div class="mr-2">Custom Rules</div>
+				<div class="ve-mr-2">Custom Rules</div>
 				${ComponentUiUtil.getCbBool(this, "pb_isCustom")}
 			</label>
 		</div>`;
@@ -716,8 +716,8 @@ export class StatGenUi extends BaseComponent {
 		// region Point Buy stages
 		const stgPbHeader = this._render_getStgPbHeader();
 		const stgPbCustom = this._render_getStgPbCustom();
-		const vrPbCustom = ee`<div class="vr-5 mobile-lg__hidden"></div>`;
-		const hrPbCustom = ee`<hr class="hr-5 mobile-lg__visible">`;
+		const vrPbCustom = ee`<div class="ve-vr-5 ve-mobile-lg__hidden"></div>`;
+		const hrPbCustom = ee`<hr class="ve-hr-5 ve-mobile-lg__visible">`;
 		const hkStgPb = () => {
 			stgPbHeader.toggleVe(this.ixActiveTab === this._IX_TAB_PB);
 			stgPbCustom.toggleVe(this.ixActiveTab === this._IX_TAB_PB);
@@ -755,7 +755,7 @@ export class StatGenUi extends BaseComponent {
 		this._addHookActiveTab(hkElesMode);
 		// endregion
 
-		const btnResetRolledOrArrayOrManual = ee`<button class="ve-btn ve-btn-default ve-btn-xxs relative statgen-shared__btn-reset" title="Reset"><span class="glyphicon glyphicon-refresh"></span></button>`
+		const btnResetRolledOrArrayOrManual = ee`<button class="ve-btn ve-btn-default ve-btn-xxs ve-relative ve-statgen-shared__btn-reset" title="Reset"><span class="glyphicon glyphicon-refresh"></span></button>`
 			.onn("click", () => this._doReset());
 		const hkRolledOrArray = () => btnResetRolledOrArrayOrManual.toggleVe(this.ixActiveTab === this._IX_TAB_ROLLED || this.ixActiveTab === this._IX_TAB_ARRAY || this.ixActiveTab === this._IX_TAB_MANUAL);
 		this._addHookActiveTab(hkRolledOrArray);
@@ -765,7 +765,7 @@ export class StatGenUi extends BaseComponent {
 			// region Rolled
 			const {propAbilSelectedRollIx} = this.constructor._rolled_getProps(ab);
 
-			const selRolled = ee`<select class="form-control input-xs form-control--minimal statgen-shared__ipt statgen-shared__ipt--sel"></select>`
+			const selRolled = ee`<select class="ve-form-control ve-input-xs form-control--minimal ve-statgen-shared__ipt ve-statgen-shared__ipt--sel"></select>`
 				.onn("change", () => {
 					const ix = Number(selRolled.val());
 
@@ -811,7 +811,7 @@ export class StatGenUi extends BaseComponent {
 			// region Array
 			const {propAbilSelectedScoreIx} = this.constructor._array_getProps(ab);
 
-			const selArray = ee`<select class="form-control input-xs form-control--minimal statgen-shared__ipt statgen-shared__ipt--sel"></select>`
+			const selArray = ee`<select class="ve-form-control ve-input-xs form-control--minimal ve-statgen-shared__ipt ve-statgen-shared__ipt--sel"></select>`
 				.onn("change", () => {
 					const ix = Number(selArray.val());
 
@@ -847,7 +847,7 @@ export class StatGenUi extends BaseComponent {
 				{
 					fallbackOnNaN: 0,
 					min: 0,
-					html: `<input class="form-control form-control--minimal statgen-shared__ipt ve-text-right" type="number">`,
+					html: `<input class="ve-form-control form-control--minimal ve-statgen-shared__ipt ve-text-right" type="number">`,
 				},
 			);
 
@@ -869,14 +869,14 @@ export class StatGenUi extends BaseComponent {
 				0,
 				{
 					fallbackOnNaN: 0,
-					html: `<input class="form-control form-control--minimal statgen-shared__ipt ve-text-right" type="number">`,
+					html: `<input class="ve-form-control form-control--minimal ve-statgen-shared__ipt ve-text-right" type="number">`,
 				},
 			);
 
 			elesManual.push(iptManual);
 			// endregion
 
-			return ee`<label class="my-1 statgen-pb__cell">
+			return ee`<label class="ve-my-1 ve-statgen-pb__cell">
 				${selRolled}
 				${selArray}
 				${iptPb}
@@ -905,51 +905,51 @@ export class StatGenUi extends BaseComponent {
 
 		const wrpAsi = this._render_getWrpAsi();
 
-		stgNone = ee`<div class="ve-flex-col w-100 h-100">
+		stgNone = ee`<div class="ve-flex-col ve-w-100 ve-h-100">
 			<div class="ve-flex-v-center"><i>Please select a mode.</i></div>
 		</div>`;
 
-		stgMain = ee`<div class="ve-flex-col w-100 h-100">
+		stgMain = ee`<div class="ve-flex-col ve-w-100 ve-h-100">
 			${stgRolledHeader}
 			${stgArrayHeader}
 			${stgManualHeader}
 
-			<div class="ve-flex mobile-lg__ve-flex-col w-100 px-3">
+			<div class="ve-flex ve-mobile-lg__ve-flex-col ve-w-100 ve-px-3">
 				<div class="ve-flex-col">
 					${stgPbHeader}
 
 					<div class="ve-flex">
-						<div class="ve-flex-col mr-3">
-							<div class="my-1 statgen-pb__header"></div>
-							<div class="my-1 statgen-pb__header ve-flex-h-right">${btnResetRolledOrArrayOrManual}</div>
+						<div class="ve-flex-col ve-mr-3">
+							<div class="ve-my-1 ve-statgen-pb__header"></div>
+							<div class="ve-my-1 ve-statgen-pb__header ve-flex-h-right">${btnResetRolledOrArrayOrManual}</div>
 
-							${Parser.ABIL_ABVS.map(it => `<div class="my-1 bold statgen-pb__cell ve-flex-v-center ve-flex-h-right" title="${Parser.attAbvToFull(it)}">${it.toUpperCase()}</div>`)}
+							${Parser.ABIL_ABVS.map(it => `<div class="ve-my-1 ve-bold ve-statgen-pb__cell ve-flex-v-center ve-flex-h-right" title="${Parser.attAbvToFull(it)}">${it.toUpperCase()}</div>`)}
 						</div>
 
-						<div class="ve-flex-col mr-3">
-							<div class="my-1 statgen-pb__header"></div>
-							<div class="my-1 bold statgen-pb__header ve-flex-vh-center">Base</div>
+						<div class="ve-flex-col ve-mr-3">
+							<div class="ve-my-1 ve-statgen-pb__header"></div>
+							<div class="ve-my-1 ve-bold ve-statgen-pb__header ve-flex-vh-center">Base</div>
 							${wrpsBase}
 						</div>
 
 						${wrpBackgroundOuter}
 						${wrpRaceOuter}
 
-						<div class="ve-flex-col mr-3">
-							<div class="my-1 statgen-pb__header"></div>
-							<div class="my-1 statgen-pb__header ve-flex-vh-center help ve-muted" title="Input any additional/custom bonuses here">User</div>
+						<div class="ve-flex-col ve-mr-3">
+							<div class="ve-my-1 ve-statgen-pb__header"></div>
+							<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center ve-help ve-muted" title="Input any additional/custom bonuses here">User</div>
 							${wrpsUser}
 						</div>
 
-						<div class="ve-flex-col mr-3">
-							<div class="my-1 statgen-pb__header"></div>
-							<div class="my-1 statgen-pb__header ve-flex-vh-center">Total</div>
+						<div class="ve-flex-col ve-mr-3">
+							<div class="ve-my-1 ve-statgen-pb__header"></div>
+							<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center">Total</div>
 							${metasTotalAndMod.map(it => it.wrpIptTotal)}
 						</div>
 
-						<div class="ve-flex-col mr-3">
-							<div class="my-1 statgen-pb__header"></div>
-							<div class="my-1 statgen-pb__header ve-flex-vh-center" title="Modifier">Mod.</div>
+						<div class="ve-flex-col ve-mr-3">
+							<div class="ve-my-1 ve-statgen-pb__header"></div>
+							<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center" title="Modifier">Mod.</div>
 							${metasTotalAndMod.map(it => it.wrpIptMod)}
 						</div>
 					</div>
@@ -964,7 +964,7 @@ export class StatGenUi extends BaseComponent {
 				${stgPbCustom}
 			</div>
 
-			<hr class="hr-3">
+			<hr class="ve-hr-3">
 
 			${dispPreviewBackground}
 
@@ -990,10 +990,10 @@ export class StatGenUi extends BaseComponent {
 
 	_render_isLevelUp (wrpTab) {
 		const wrpsExisting = Parser.ABIL_ABVS.map(ab => {
-			const iptExisting = ee`<input class="form-control form-control--minimal statgen-shared__ipt ve-text-right" type="number" readonly>`
+			const iptExisting = ee`<input class="ve-form-control form-control--minimal ve-statgen-shared__ipt ve-text-right" type="number" readonly>`
 				.val(this._existingScores[ab]);
 
-			return ee`<label class="my-1 statgen-pb__cell">
+			return ee`<label class="ve-my-1 ve-statgen-pb__cell">
 				${iptExisting}
 			</label>`;
 		});
@@ -1005,39 +1005,39 @@ export class StatGenUi extends BaseComponent {
 		const wrpAsi = this._render_getWrpAsi();
 
 		ee(wrpTab)`
-			<div class="ve-flex mobile-lg__ve-flex-col w-100 px-3">
+			<div class="ve-flex ve-mobile-lg__ve-flex-col ve-w-100 ve-px-3">
 				<div class="ve-flex-col">
 					<div class="ve-flex">
-						<div class="ve-flex-col mr-3">
-							<div class="my-1 statgen-pb__header"></div>
+						<div class="ve-flex-col ve-mr-3">
+							<div class="ve-my-1 ve-statgen-pb__header"></div>
 
-							${Parser.ABIL_ABVS.map(it => `<div class="my-1 bold statgen-pb__cell ve-flex-v-center ve-flex-h-right" title="${Parser.attAbvToFull(it)}">${it.toUpperCase()}</div>`)}
+							${Parser.ABIL_ABVS.map(it => `<div class="ve-my-1 ve-bold ve-statgen-pb__cell ve-flex-v-center ve-flex-h-right" title="${Parser.attAbvToFull(it)}">${it.toUpperCase()}</div>`)}
 						</div>
 
-						<div class="ve-flex-col mr-3">
-							<div class="my-1 bold statgen-pb__header ve-flex-vh-center" title="Current">Curr.</div>
+						<div class="ve-flex-col ve-mr-3">
+							<div class="ve-my-1 ve-bold ve-statgen-pb__header ve-flex-vh-center" title="Current">Curr.</div>
 							${wrpsExisting}
 						</div>
 
-						<div class="ve-flex-col mr-3">
-							<div class="my-1 statgen-pb__header ve-flex-vh-center help ve-muted" title="Input any additional/custom bonuses here">User</div>
+						<div class="ve-flex-col ve-mr-3">
+							<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center ve-help ve-muted" title="Input any additional/custom bonuses here">User</div>
 							${wrpsUser}
 						</div>
 
-						<div class="ve-flex-col mr-3">
-							<div class="my-1 statgen-pb__header ve-flex-vh-center">Total</div>
+						<div class="ve-flex-col ve-mr-3">
+							<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center">Total</div>
 							${metasTotalAndMod.map(it => it.wrpIptTotal)}
 						</div>
 
-						<div class="ve-flex-col mr-3">
-							<div class="my-1 statgen-pb__header ve-flex-vh-center" title="Modifier">Mod.</div>
+						<div class="ve-flex-col ve-mr-3">
+							<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center" title="Modifier">Mod.</div>
 							${metasTotalAndMod.map(it => it.wrpIptMod)}
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<hr class="hr-3">
+			<hr class="ve-hr-3">
 
 			${wrpAsi}
 		`;
@@ -1052,20 +1052,20 @@ export class StatGenUi extends BaseComponent {
 				0,
 				{
 					fallbackOnNaN: 0,
-					html: `<input class="form-control form-control--minimal statgen-shared__ipt ve-text-right" type="number">`,
+					html: `<input class="ve-form-control form-control--minimal ve-statgen-shared__ipt ve-text-right" type="number">`,
 				},
 			);
-			return ee`<label class="my-1 statgen-pb__cell">${ipt}</label>`;
+			return ee`<label class="ve-my-1 ve-statgen-pb__cell">${ipt}</label>`;
 		});
 	}
 
 	_render_getMetasTotalAndMod () {
 		return Parser.ABIL_ABVS.map(ab => {
-			const iptTotal = ee`<input class="form-control form-control--minimal statgen-shared__ipt ve-text-center" type="text" readonly>`;
-			const iptMod = ee`<input class="form-control form-control--minimal statgen-shared__ipt ve-text-center" type="text" readonly>`;
+			const iptTotal = ee`<input class="ve-form-control form-control--minimal ve-statgen-shared__ipt ve-text-center" type="text" readonly>`;
+			const iptMod = ee`<input class="ve-form-control form-control--minimal ve-statgen-shared__ipt ve-text-center" type="text" readonly>`;
 
-			const wrpIptTotal = ee`<label class="my-1 statgen-pb__cell">${iptTotal}</label>`;
-			const wrpIptMod = ee`<label class="my-1 statgen-pb__cell">${iptMod}</label>`;
+			const wrpIptTotal = ee`<label class="ve-my-1 ve-statgen-pb__cell">${iptTotal}</label>`;
+			const wrpIptMod = ee`<label class="ve-my-1 ve-statgen-pb__cell">${iptMod}</label>`;
 
 			const exportedStateProp = `common_export_${ab}`;
 
@@ -1104,7 +1104,7 @@ export class StatGenUi extends BaseComponent {
 	}
 
 	_render_getWrpAsi () {
-		const wrpAsi = ee`<div class="ve-flex-col w-100"></div>`;
+		const wrpAsi = ee`<div class="ve-flex-col ve-w-100"></div>`;
 		this._compAsi.render(wrpAsi);
 		return wrpAsi;
 	}

@@ -9,15 +9,15 @@ export class EncounterBuilderRenderableCollectionPlayersAdvanced extends Rendera
 	}
 
 	_getWrpRow () {
-		return ee`<div class="ve-flex-v-center mb-2 ecgen-player__wrp-row"></div>`;
+		return ee`<div class="ve-flex-v-center ve-mb-2 ecgen-player__wrp-row"></div>`;
 	}
 
 	_populateRow ({comp, wrpRow, entity}) {
 		const iptName = ComponentUiUtil.getIptStr(comp, "name")
-			.addClass(`w-100p`)
+			.addClass(`ve-w-100p`)
 			.addClass(`form-control--minimal`)
-			.addClass(`no-shrink`)
-			.addClass(`mr-1`);
+			.addClass(`ve-no-shrink`)
+			.addClass(`ve-mr-1`);
 
 		const iptLevel = ComponentUiUtil.getIptInt(
 			comp,
@@ -29,10 +29,10 @@ export class EncounterBuilderRenderableCollectionPlayersAdvanced extends Rendera
 				fallbackOnNaN: 1,
 			},
 		)
-			.addClass("w-40p")
+			.addClass("ve-w-40p")
 			.addClass("form-control--minimal")
-			.addClass("no-shrink")
-			.addClass("mr-1")
+			.addClass("ve-no-shrink")
+			.addClass("ve-mr-1")
 			.addClass("ve-text-center");
 
 		const wrpIptsExtra = ee`<div class="ve-flex-v-center"></div>`;
@@ -46,12 +46,12 @@ export class EncounterBuilderRenderableCollectionPlayersAdvanced extends Rendera
 
 		const btnRemove = this._utils.getBtnDelete({entity, title: "Remove Player"})
 			.addClass("ecgen-player__btn-inline")
-			.addClass("h-ipt-xs")
-			.addClass("no-shrink")
-			.addClass("ml-n1")
-			.addClass("bl-0")
-			.addClass("bbl-0")
-			.addClass("btl-0")
+			.addClass("ve-h-ipt-xs")
+			.addClass("ve-no-shrink")
+			.addClass("ve-ml-n1")
+			.addClass("ve-bl-0")
+			.addClass("ve-bbl-0")
+			.addClass("ve-btl-0")
 			.attr("tabindex", "-1");
 
 		ee(wrpRow)`
@@ -87,11 +87,11 @@ class EncounterBuilderRenderableCollectionPlayerAdvancedExtras extends Renderabl
 		});
 
 		const iptVal = ComponentUiUtil.getIptStr(comp, "value")
-			.addClass(`w-40p`)
-			.addClass(`no-shrink`)
+			.addClass(`ve-w-40p`)
+			.addClass(`ve-no-shrink`)
 			.addClass(`form-control--minimal`)
 			.addClass(`ve-text-center`)
-			.addClass(`mr-1`)
+			.addClass(`ve-mr-1`)
 		;
 
 		const wrpRow = ee`<div class="ve-flex-v-h-center">

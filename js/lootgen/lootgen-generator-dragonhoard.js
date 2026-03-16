@@ -23,31 +23,31 @@ export class LootGenGeneratorDragonHoard extends LootGenGeneratorBase {
 
 		const cbIsPreferRandomMagicItems = ComponentUiUtil.getCbBool(this, "dh_isPreferRandomMagicItems");
 
-		const btnRoll = ee`<button class="ve-btn ve-btn-default ve-btn-xs mr-2">Roll Loot</button>`
+		const btnRoll = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">Roll Loot</button>`
 			.onn("click", () => this._dh_pDoHandleClickRollLoot());
 
 		const btnClear = ee`<button class="ve-btn ve-btn-danger ve-btn-xs">Clear Output</button>`
 			.onn("click", () => this._outputManager.doClearOutput());
 
-		ee`<div class="ve-flex-col py-2 px-3">
-			<label class="split-v-center mb-2">
-				<div class="mr-2 w-66 no-shrink">Dragon Age</div>
+		ee`<div class="ve-flex-col ve-py-2 ve-px-3">
+			<label class="ve-split-v-center ve-mb-2">
+				<div class="ve-mr-2 ve-w-66 ve-no-shrink">Dragon Age</div>
 				${selDragonAge}
 			</label>
 
-			<label class="split-v-center mb-3">
-				<div class="mr-2 w-66 no-shrink" title="If selected, random magic items (of a matching rarity and tier) will be preferred over rolling on the standard ${Parser.sourceJsonToAbv(Parser.SRC_DMG).qq()} &quot;Magic Items Table [A-I]&quot; when generating magic items.">Prefer Random Magic Items</div>
+			<label class="ve-split-v-center ve-mb-3">
+				<div class="ve-mr-2 ve-w-66 ve-no-shrink" title="If selected, random magic items (of a matching rarity and tier) will be preferred over rolling on the standard ${Parser.sourceJsonToAbv(Parser.SRC_DMG).qq()} &quot;Magic Items Table [A-I]&quot; when generating magic items.">Prefer Random Magic Items</div>
 				${cbIsPreferRandomMagicItems}
 			</label>
 
-			<div class="ve-flex-v-center mb-2">
+			<div class="ve-flex-v-center ve-mb-2">
 				${btnRoll}
 				${btnClear}
 			</div>
 
-			<hr class="hr-3">
+			<hr class="ve-hr-3">
 
-			<div class="ve-small italic">${LootGenRender.er(`Based on the tables and rules in {@book Fizban's Treasury of Dragons|FTD|4|Creating a Hoard}`)}, pages 72.</div>
+			<div class="ve-small ve-italic">${LootGenRender.er(`Based on the tables and rules in {@book Fizban's Treasury of Dragons|FTD|4|Creating a Hoard}`)}, pages 72.</div>
 		</div>`.appendTo(tabMeta.wrpTab);
 	}
 

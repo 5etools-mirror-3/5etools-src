@@ -12,8 +12,8 @@ class _HtmlGenerator {
 }
 
 export class HtmlGeneratorListButtons extends _HtmlGenerator {
-	static getBtnPreviewToggle () {
-		return `<button type="button" class="ve-col-0-3 ve-btn ve-btn-default ve-btn-xs p-0 lst__btn-collapse-all-previews no-select" name="list-toggle-all-previews">[+]</button>`;
+	static getBtnPreviewToggle ({width = "0-3"} = {}) {
+		return `<button type="button" class="ve-col-${width} ve-btn ve-btn-default ve-btn-xs ve-p-0 ve-lst__btn-collapse-all-previews ve-no-select" name="list-toggle-all-previews">[+]</button>`;
 	}
 
 	static getBtnSource () {

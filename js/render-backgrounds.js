@@ -62,7 +62,7 @@ class _RenderBackgroundsImplClassic extends _RenderBackgroundsImplBase {
 
 			${htmlPtPrerequisites}
 
-			<tr><td colspan="6" class="py-0"><div class="ve-tbl-divider"></div></td></tr>
+			<tr><td colspan="6" class="ve-py-0"><div class="ve-tbl-divider"></div></td></tr>
 
 			<tr><td colspan="6">
 				${htmlPtEntries}
@@ -101,7 +101,7 @@ class _RenderBackgroundsImplOne extends _RenderBackgroundsImplBase {
 
 			${htmlPtPrerequisites}
 
-			<tr><td colspan="6" class="pt-0">
+			<tr><td colspan="6" class="ve-pt-0">
 				${htmlPtEntries}
 			</td></tr>
 

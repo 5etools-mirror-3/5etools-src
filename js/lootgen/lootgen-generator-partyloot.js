@@ -110,9 +110,9 @@ export class LootGenGeneratorPartyLoot extends LootGenGeneratorBase {
 			},
 		);
 
-		const stgDefault = ee`<div class="ve-flex-col w-100">
-			<label class="split-v-center mb-2">
-				<div class="mr-2 w-66 no-shrink">Character Level</div>
+		const stgDefault = ee`<div class="ve-flex-col ve-w-100">
+			<label class="ve-split-v-center ve-mb-2">
+				<div class="ve-mr-2 ve-w-66 ve-no-shrink">Character Level</div>
 				${selCharLevel}
 			</label>
 		</div>`;
@@ -128,16 +128,16 @@ export class LootGenGeneratorPartyLoot extends LootGenGeneratorBase {
 			},
 		);
 
-		const stgExactLevel = ee`<div class="ve-flex-col w-100">
-			<div class="ve-flex-col mb-2">
-				<div class="mb-2">Character Level</div>
+		const stgExactLevel = ee`<div class="ve-flex-col ve-w-100">
+			<div class="ve-flex-col ve-mb-2">
+				<div class="ve-mb-2">Character Level</div>
 				${sliderLevel}
 			</div>
 		</div>`;
 		// endregion
 
 		// region Buttons
-		const btnRoll = ee`<button class="ve-btn ve-btn-default ve-btn-xs mr-2">Roll Loot</button>`
+		const btnRoll = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">Roll Loot</button>`
 			.onn("click", () => this._pl_pDoHandleClickRollLoot());
 
 		const btnClear = ee`<button class="ve-btn ve-btn-danger ve-btn-xs">Clear Output</button>`
@@ -151,28 +151,28 @@ export class LootGenGeneratorPartyLoot extends LootGenGeneratorBase {
 		this._addHookBase("pl_isExactLevel", hkIsExactLevel);
 		hkIsExactLevel();
 
-		ee`<div class="ve-flex-col py-2 px-3">
+		ee`<div class="ve-flex-col ve-py-2 ve-px-3">
 			<p>
 				Generates a set of magical items for a party, based on the tables and rules in ${LootGenRender.er(`{@book Xanathar's Guide to Everything|XGE|2|awarding magic items}`)}, pages 135-136.
 			</p>
 			<p><i>If &quot;Exact Level&quot; is selected, the output will include a proportional number of items for any partially-completed tier.</i></p>
 
-			<hr class="hr-3">
+			<hr class="ve-hr-3">
 
 			${stgDefault}
 			${stgExactLevel}
 
-			<label class="split-v-center mb-2">
-				<div class="mr-2 w-66 no-shrink">Cumulative with Previous Tiers</div>
+			<label class="ve-split-v-center ve-mb-2">
+				<div class="ve-mr-2 ve-w-66 ve-no-shrink">Cumulative with Previous Tiers</div>
 				${cbIsCumulative}
 			</label>
 
-			<label class="split-v-center mb-3">
-				<div class="mr-2 w-66 no-shrink">Is Exact Level</div>
+			<label class="ve-split-v-center ve-mb-3">
+				<div class="ve-mr-2 ve-w-66 ve-no-shrink">Is Exact Level</div>
 				${cbIsExactLevel}
 			</label>
 
-			<div class="ve-flex-v-center mb-2">
+			<div class="ve-flex-v-center ve-mb-2">
 				${btnRoll}
 				${btnClear}
 			</div>

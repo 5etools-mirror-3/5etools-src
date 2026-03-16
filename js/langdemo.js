@@ -53,11 +53,11 @@ class LangDemoUi {
 		};
 
 		const addContextRow = (name, value) => {
-			const iptName = ee`<input class="form-control form-control--minimal input-xs mr-2 code" placeholder="Identifier">`
+			const iptName = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2 ve-code" placeholder="Identifier">`
 				.onn("change", () => saveContext())
 				.val(name);
 
-			const iptVal = ee`<input class="form-control form-control--minimal input-xs mr-2 code" type="number" placeholder="Value">`
+			const iptVal = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2 ve-code" type="number" placeholder="Value">`
 				.onn("change", () => saveContext())
 				.val(value);
 
@@ -73,13 +73,13 @@ class LangDemoUi {
 
 			const out = {iptName, iptVal};
 			LangDemoUi._metasContext.push(out);
-			const row = ee`<div class="mb-2 ve-flex-v-center">${iptName}<span class="mr-2">=</span>${iptVal}${btnDel}</div>`.appendTo(LangDemoUi._wrpContext);
+			const row = ee`<div class="ve-mb-2 ve-flex-v-center">${iptName}<span class="ve-mr-2">=</span>${iptVal}${btnDel}</div>`.appendTo(LangDemoUi._wrpContext);
 		};
 
 		LangDemoUi._wrpContext = es(`#wrp_context`);
 		const btnAdd = ee`<button class="ve-btn ve-btn-xs ve-btn-default">Add Context</button>`
 			.onn("click", () => addContextRow());
-		ee`<div class="mb-2 ve-flex-v-center">${btnAdd}</div>`.appendTo(LangDemoUi._wrpContext);
+		ee`<div class="ve-mb-2 ve-flex-v-center">${btnAdd}</div>`.appendTo(LangDemoUi._wrpContext);
 
 		loadContext();
 		// endregion

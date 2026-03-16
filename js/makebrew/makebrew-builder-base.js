@@ -160,28 +160,28 @@ export class BuilderBase extends ProxyBase {
 		if (!this._eleSideMenuStageSaved) {
 			const btnLoadExisting = ee`<button class="ve-btn ve-btn-xs ve-btn-default">${this._titleSidebarLoadExisting}</button>`
 				.onn("click", () => this.pHandleSidebarLoadExistingClick());
-			this._wrpBtnLoadExisting = ee`<div class="w-100 mb-2">${btnLoadExisting}</div>`;
+			this._wrpBtnLoadExisting = ee`<div class="ve-w-100 ve-mb-2">${btnLoadExisting}</div>`;
 
-			const btnDownloadJson = ee`<button class="ve-btn ve-btn-default ve-btn-xs mb-2">${this._titleSidebarDownloadJson}</button>`
+			const btnDownloadJson = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-mb-2">${this._titleSidebarDownloadJson}</button>`
 				.onn("click", () => this.pHandleSidebarDownloadJsonClick());
 
 			const wrpDownloadMarkdown = (() => {
 				if (!this._metaSidebarDownloadMarkdown) return null;
 
-				const btnDownload = ee`<button class="ve-btn ve-btn-default ve-btn-xs mb-2">${this._metaSidebarDownloadMarkdown.title}</button>`
+				const btnDownload = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-mb-2">${this._metaSidebarDownloadMarkdown.title}</button>`
 					.onn("click", async () => {
 						const entities = await this._pGetSideMenuBrewEntities();
 						const mdOut = await this._metaSidebarDownloadMarkdown.pFnGetText(entities);
 						DataUtil.userDownloadText(`${DataUtil.getCleanFilename(BrewUtil2.sourceJsonToFull(this._ui.source))}.md`, mdOut);
 					});
 
-				const btnSettings = ee`<button class="ve-btn ve-btn-default ve-btn-xs mb-2"><span class="glyphicon glyphicon-cog"></span></button>`
+				const btnSettings = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-mb-2"><span class="glyphicon glyphicon-cog"></span></button>`
 					.onn("click", () => RendererMarkdown.pShowSettingsModal());
 
 				return ee`<div class="ve-flex-v-center ve-btn-group">${btnDownload}${btnSettings}</div>`;
 			})();
 
-			this._eleSideMenuWrpList = this._eleSideMenuWrpList || ee`<div class="w-100 ve-flex-col">`;
+			this._eleSideMenuWrpList = this._eleSideMenuWrpList || ee`<div class="ve-w-100 ve-flex-col">`;
 			this._eleSideMenuStageSaved = ee`<div>
 				${PageUiUtil.getSideMenuDivider().hideVe()}
 				<div class="ve-flex-v-center">${btnDownloadJson}</div>
@@ -242,7 +242,7 @@ export class BuilderBase extends ProxyBase {
 				return;
 			}
 
-			const btnEdit = ee`<button class="ve-btn ve-btn-xs ve-btn-default mr-2" title="Edit"><span class="glyphicon glyphicon-pencil"></span></button>`
+			const btnEdit = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2" title="Edit"><span class="glyphicon glyphicon-pencil"></span></button>`
 				.onn("click", async () => {
 					if (
 						this.getOnNavMessage()
@@ -331,7 +331,7 @@ export class BuilderBase extends ProxyBase {
 				),
 			]);
 
-			const btnBurger = ee`<button class="ve-btn ve-btn-xs ve-btn-default mr-2" title="More Options"><span class="glyphicon glyphicon-option-vertical"></span></button>`
+			const btnBurger = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2" title="More Options"><span class="glyphicon glyphicon-option-vertical"></span></button>`
 				.onn("click", evt => ContextUtil.pOpenMenu(evt, menu));
 
 			const btnDelete = ee`<button class="ve-btn ve-btn-xs ve-btn-danger" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>`
@@ -344,11 +344,11 @@ export class BuilderBase extends ProxyBase {
 					await this.pDoPostDelete();
 				});
 
-			const dispName = ee`<span class="py-1">${ent.name}</span>`;
+			const dispName = ee`<span class="ve-py-1">${ent.name}</span>`;
 
-			const row = ee`<div class="mkbru__sidebar-entry ve-flex-v-center split px-2" style="order: ${ix}">
+			const row = ee`<div class="mkbru__sidebar-entry ve-flex-v-center ve-split ve-px-2" style="order: ${ix}">
 			${dispName}
-			<div class="py-1 no-shrink">${btnEdit}${btnBurger}${btnDelete}</div>
+			<div class="ve-py-1 ve-no-shrink">${btnEdit}${btnBurger}${btnDelete}</div>
 			</div>`.appendTo(this._eleSideMenuWrpList);
 
 			this._sidemenuListRenderCache[ent.uniqueId] = {
@@ -390,10 +390,10 @@ export class BuilderBase extends ProxyBase {
 	}
 
 	renderInputControls () {
-		const dispName = ee`<div class="ve-muted italic"></div>`;
+		const dispName = ee`<div class="ve-muted ve-italic"></div>`;
 		this._addHook("meta", "nameOriginal", () => dispName.txt(`Editing "${this._meta.nameOriginal || "?"}"`))();
 
-		const btnSave = ee`<button class="ve-btn ve-btn-xs ve-btn-default mr-2 mkbru__cnt-save">Save</button>`
+		const btnSave = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2 mkbru__cnt-save">Save</button>`
 			.onn("click", () => this._pHandleClick_pSaveBrew());
 		this._addHook("meta", "isModified", () => btnSave.txt(this._meta.isModified ? "Save *" : "Saved"))();
 
@@ -533,12 +533,12 @@ export class BuilderBase extends ProxyBase {
 			doUpdateState();
 		};
 
-		const wrpRows = ee`<div class="ve-flex-col mb-1 mt-n1"></div>`;
-		const wrpRowsOuter = ee`<div class="relative">${wrpRows}</div>`;
+		const wrpRows = ee`<div class="ve-flex-col ve-mb-1 ve-mt-n1"></div>`;
+		const wrpRowsOuter = ee`<div class="ve-relative">${wrpRows}</div>`;
 
 		const rowOptions = {wrpRowsOuter};
 
-		const iptEntries = ee`<textarea class="form-control form-control--minimal resize-vertical mb-2"></textarea>`
+		const iptEntries = ee`<textarea class="ve-form-control form-control--minimal ve-resize-vertical ve-mb-2"></textarea>`
 			.onn("change", () => doUpdateState());
 
 		const btnAddImage = ee`<button class="ve-btn ve-btn-xs ve-btn-default">Add Image</button>`
@@ -586,13 +586,13 @@ export class BuilderBase extends ProxyBase {
 			};
 		};
 
-		const iptUrl = ee`<input class="form-control form-control--minimal input-xs mr-2">`
+		const iptUrl = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`
 			.onn("change", () => doUpdateState());
-		const iptTitle = ee`<input class="form-control form-control--minimal input-xs mr-2">`
+		const iptTitle = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`
 			.onn("change", () => doUpdateState());
-		const iptCredit = ee`<input class="form-control form-control--minimal input-xs mr-2">`
+		const iptCredit = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`
 			.onn("change", () => doUpdateState());
-		const iptAltText = ee`<input class="form-control form-control--minimal input-xs mr-2">`
+		const iptAltText = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`
 			.onn("change", () => doUpdateState());
 
 		if (image) {
@@ -607,7 +607,7 @@ export class BuilderBase extends ProxyBase {
 			if (image.altText) iptAltText.val(image.altText);
 		}
 
-		const btnPreview = ee`<button class="ve-btn ve-btn-xs ve-btn-default mr-2" title="Preview Image"><span class="glyphicon glyphicon-fullscreen"></span></button>`
+		const btnPreview = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2" title="Preview Image"><span class="glyphicon glyphicon-fullscreen"></span></button>`
 			.onn("click", (evt) => {
 				const toRender = getState();
 				if (!toRender) return JqueryUtil.doToast({content: "Please enter an image URL", type: "warning"});
@@ -634,22 +634,22 @@ export class BuilderBase extends ProxyBase {
 			wrpRowsOuter: options.wrpRowsOuter,
 		});
 
-		out.ele = ee`<div class="ve-flex-v-center py-1 mkbru__wrp-rows--removable">
-			<div class="ve-flex-col mr-2 w-100">
-				<label class="ve-flex-v-center mb-2">
-					<span class="w-60p no-shrink mr-2 ve-text-right bold">URL</span>
+		out.ele = ee`<div class="ve-flex-v-center ve-py-1 mkbru__wrp-rows--removable">
+			<div class="ve-flex-col ve-mr-2 ve-w-100">
+				<label class="ve-flex-v-center ve-mb-2">
+					<span class="ve-w-60p ve-no-shrink ve-mr-2 ve-text-right ve-bold">URL</span>
 					${iptUrl}${btnPreview}
 				</label>
-				<label class="ve-flex-v-center mb-2">
-					<span class="w-60p no-shrink mr-2 ve-text-right">Title</span>
+				<label class="ve-flex-v-center ve-mb-2">
+					<span class="ve-w-60p ve-no-shrink ve-mr-2 ve-text-right">Title</span>
 					${iptTitle}
 				</label>
-				<label class="ve-flex-v-center mb-2">
-					<span class="w-60p no-shrink mr-2 ve-text-right">Credit</span>
+				<label class="ve-flex-v-center ve-mb-2">
+					<span class="ve-w-60p ve-no-shrink ve-mr-2 ve-text-right">Credit</span>
 					${iptCredit}
 				</label>
 				<label class="ve-flex-v-center">
-					<span class="w-60p no-shrink mr-2 ve-text-right">Alt Text</span>
+					<span class="ve-w-60p ve-no-shrink ve-mr-2 ve-text-right">Alt Text</span>
 					${iptAltText}
 				</label>
 			</div>

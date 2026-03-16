@@ -97,7 +97,7 @@ export class ModalFilterClasses extends ModalFilterBase {
 
 			this._filterCache.btnConfirm.off("click").onn("click", async () => {
 				// Note: use invisible items, as this might be the parent class of a selected subclass
-				const checked = this._filterCache.list.items.filter(it => it.data.tglSel.classList.contains("active"));
+				const checked = this._filterCache.list.items.filter(it => it.data.tglSel.classList.contains("ve-active"));
 				const out = {};
 				checked.forEach(it => {
 					if (it.data.ixSubclass == null) out.class = this._filterCache.allData[it.data.ixClass];
@@ -119,9 +119,9 @@ export class ModalFilterClasses extends ModalFilterBase {
 			this._filterCache.list.items.forEach(li => {
 				const isScLi = li.data.ixSubclass != null;
 				if (isScLi) {
-					li.data.tglSel.classList.toggle("disabled", this._isSubclassDisabled || (this._isClassDisabled && li.data.ixClass !== this._ixPrevSelectedClass));
+					li.data.tglSel.classList.toggle("ve-disabled", this._isSubclassDisabled || (this._isClassDisabled && li.data.ixClass !== this._ixPrevSelectedClass));
 				} else {
-					li.data.tglSel.classList.toggle("disabled", this._isClassDisabled);
+					li.data.tglSel.classList.toggle("ve-disabled", this._isClassDisabled);
 				}
 			});
 
@@ -134,13 +134,13 @@ export class ModalFilterClasses extends ModalFilterBase {
 
 					const clsItem = this._filterCache.list.items.find(it => it.data.ixClass === this._ixPrevSelectedClass && it.data.ixSubclass == null);
 					if (clsItem) {
-						clsItem.data.tglSel.classList.add("active");
+						clsItem.data.tglSel.classList.add("ve-active");
 						clsItem.ele.classList.add("list-multi-selected");
 					}
 
 					if (~ixSubclass && clsItem) {
 						const scItem = this._filterCache.list.items.find(it => it.data.ixClass === this._ixPrevSelectedClass && it.data.ixSubclass === ixSubclass);
-						scItem.data.tglSel.classList.add("active");
+						scItem.data.tglSel.classList.add("ve-active");
 						scItem.ele.classList.add("list-multi-selected");
 					}
 				}
@@ -174,21 +174,21 @@ export class ModalFilterClasses extends ModalFilterBase {
 
 		await this._pInit();
 
-		const ovlLoading = ee`<div class="w-100 h-100 ve-flex-vh-center"><i class="dnd-font ve-muted">Loading...</i></div>`.appendTo(eleModalInner);
+		const ovlLoading = ee`<div class="ve-w-100 ve-h-100 ve-flex-vh-center"><i class="ve-dnd-font ve-muted">Loading...</i></div>`.appendTo(eleModalInner);
 
-		const iptSearch = ee`<input class="form-control h-100" type="search" placeholder="Search...">`;
+		const iptSearch = ee`<input class="ve-form-control ve-h-100" type="search" placeholder="Search...">`;
 		const btnReset = ee`<button class="ve-btn ve-btn-default">Reset</button>`;
-		const wrpFormTop = ee`<div class="ve-flex input-group ve-btn-group w-100 lst__form-top">${iptSearch}${btnReset}</div>`;
+		const wrpFormTop = ee`<div class="ve-flex input-group ve-btn-group ve-w-100 ve-lst__form-top">${iptSearch}${btnReset}</div>`;
 
-		const wrpFormBottom = ee`<div class="w-100"></div>`;
+		const wrpFormBottom = ee`<div class="ve-w-100"></div>`;
 
-		const wrpFormHeaders = ee`<div class="input-group input-group--bottom ve-flex no-shrink">
-			<div class="ve-btn ve-btn-default disabled ve-col-1 pl-0"></div>
+		const wrpFormHeaders = ee`<div class="input-group input-group--bottom ve-flex ve-no-shrink">
+			<div class="ve-btn ve-btn-default ve-disabled ve-col-1 ve-pl-0"></div>
 			<button class="ve-col-9 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
-			<button class="ve-col-2 pr-0 sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Source</button>
+			<button class="ve-col-2 ve-pr-0 sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Source</button>
 		</div>`;
 
-		const wrpForm = ee`<div class="ve-flex-col w-100 mb-2">${wrpFormTop}${wrpFormBottom}${wrpFormHeaders}</div>`;
+		const wrpForm = ee`<div class="ve-flex-col ve-w-100 ve-mb-2">${wrpFormTop}${wrpFormBottom}${wrpFormHeaders}</div>`;
 		const wrpList = this._getWrpList();
 
 		const btnConfirm = ee`<button class="ve-btn ve-btn-default">Confirm</button>`;
@@ -245,7 +245,7 @@ export class ModalFilterClasses extends ModalFilterBase {
 
 		ovlLoading.remove();
 
-		const wrpModalInner = ee`<div class="ve-flex-col h-100">
+		const wrpModalInner = ee`<div class="ve-flex-col ve-h-100">
 			${wrpForm}
 			${wrpList}
 			<div class="ve-flex-vh-center">${btnConfirm}</div>
@@ -293,7 +293,7 @@ export class ModalFilterClasses extends ModalFilterBase {
 		list.items.forEach(it => {
 			if (isSubclassItemsOnly && it.data.ixSubclass == null) return;
 
-			if (it.data.tglSel) it.data.tglSel.classList.remove("active");
+			if (it.data.tglSel) it.data.tglSel.classList.remove("ve-active");
 			it.ele.classList.remove("list-multi-selected");
 		});
 	}
@@ -306,14 +306,14 @@ export class ModalFilterClasses extends ModalFilterBase {
 
 		// When only allowing subclass to be changed, avoid de-selecting the entire list
 		if (this._isClassDisabled && this._ixPrevSelectedClass != null && isScLi) {
-			if (!filterListItem.data.tglSel.classList.contains("active")) this.constructor._doListDeselectAll(this._list, {isSubclassItemsOnly: true});
-			filterListItem.data.tglSel.classList.toggle("active");
+			if (!filterListItem.data.tglSel.classList.contains("ve-active")) this.constructor._doListDeselectAll(this._list, {isSubclassItemsOnly: true});
+			filterListItem.data.tglSel.classList.toggle("ve-active");
 			filterListItem.ele.classList.toggle("list-multi-selected");
 			return;
 		}
 
 		// region De-selecting the currently-selected item
-		if (filterListItem.data.tglSel.classList.contains("active")) {
+		if (filterListItem.data.tglSel.classList.contains("ve-active")) {
 			this.constructor._doListDeselectAll(this._list);
 			return;
 		}
@@ -324,11 +324,11 @@ export class ModalFilterClasses extends ModalFilterBase {
 
 		if (isScLi) {
 			const classItem = filterListItems[0];
-			classItem.data.tglSel.classList.add("active");
+			classItem.data.tglSel.classList.add("ve-active");
 			classItem.ele.classList.add("list-multi-selected");
 		}
 
-		filterListItem.data.tglSel.classList.add("active");
+		filterListItem.data.tglSel.classList.add("ve-active");
 		filterListItem.ele.classList.add("list-multi-selected");
 		// endregion
 	}
@@ -504,13 +504,13 @@ export class ModalFilterClasses extends ModalFilterBase {
 
 	_getListItems_getClassItem (pageFilter, cls, clsI) {
 		const eleLabel = document.createElement("label");
-		eleLabel.className = `w-100 ve-flex lst__row-border veapp__list-row no-select lst__wrp-cells`;
+		eleLabel.className = `ve-w-100 ve-flex ve-lst__row-border veapp__list-row ve-no-select ve-lst__wrp-cells`;
 
 		const source = Parser.sourceJsonToAbv(cls.source);
 
-		eleLabel.innerHTML = `<div class="ve-col-1 pl-0 ve-flex-vh-center"><div class="fltr-cls__tgl"></div></div>
-		<div class="bold ve-col-9 ${cls._versionBase_isVersion ? "italic" : ""}">${cls._versionBase_isVersion ? `<span class="px-3"></span>` : ""}${cls.name}</div>
-		<div class="ve-col-2 pr-0 ve-flex-h-center ${Parser.sourceJsonToSourceClassname(cls.source)}" title="${Parser.sourceJsonToFull(cls.source)}">${source}${Parser.sourceJsonToMarkerHtml(cls.source, {isList: true})}</div>`;
+		eleLabel.innerHTML = `<div class="ve-col-1 ve-pl-0 ve-flex-vh-center"><div class="ve-fltr-cls__tgl"></div></div>
+		<div class="ve-bold ve-col-9 ${cls._versionBase_isVersion ? "ve-italic" : ""}">${cls._versionBase_isVersion ? `<span class="ve-px-3"></span>` : ""}${cls.name}</div>
+		<div class="ve-col-2 ve-pr-0 ve-flex-h-center ${Parser.sourceJsonToSourceClassname(cls.source)}" title="${Parser.sourceJsonToFull(cls.source)}">${source}${Parser.sourceJsonToMarkerHtml(cls.source, {isList: true})}</div>`;
 
 		return new ListItem(
 			clsI,
@@ -529,13 +529,13 @@ export class ModalFilterClasses extends ModalFilterBase {
 
 	_getListItems_getSubclassItem (pageFilter, cls, clsI, sc, scI) {
 		const eleLabel = document.createElement("label");
-		eleLabel.className = `w-100 ve-flex lst__row-border veapp__list-row no-select lst__wrp-cells`;
+		eleLabel.className = `ve-w-100 ve-flex ve-lst__row-border veapp__list-row ve-no-select ve-lst__wrp-cells`;
 
 		const source = Parser.sourceJsonToAbv(sc.source);
 
-		eleLabel.innerHTML = `<div class="ve-col-1 pl-0 ve-flex-vh-center"><div class="fltr-cls__tgl"></div></div>
-		<div class="ve-col-9 pl-1 ve-flex-v-center ${sc._versionBase_isVersion ? "italic" : ""}">${sc._versionBase_isVersion ? `<span class="px-3"></span>` : ""}<span class="mx-3">\u2014</span> ${sc.name}</div>
-		<div class="ve-col-2 pr-0 ve-flex-h-center ${Parser.sourceJsonToSourceClassname(sc.source)}" title="${Parser.sourceJsonToFull(sc.source)}">${source}${Parser.sourceJsonToMarkerHtml(sc.source, {isList: true})}</div>`;
+		eleLabel.innerHTML = `<div class="ve-col-1 ve-pl-0 ve-flex-vh-center"><div class="ve-fltr-cls__tgl"></div></div>
+		<div class="ve-col-9 ve-pl-1 ve-flex-v-center ${sc._versionBase_isVersion ? "ve-italic" : ""}">${sc._versionBase_isVersion ? `<span class="ve-px-3"></span>` : ""}<span class="ve-mx-3">\u2014</span> ${sc.name}</div>
+		<div class="ve-col-2 ve-pr-0 ve-flex-h-center ${Parser.sourceJsonToSourceClassname(sc.source)}" title="${Parser.sourceJsonToFull(sc.source)}">${source}${Parser.sourceJsonToMarkerHtml(sc.source, {isList: true})}</div>`;
 
 		return new ListItem(
 			`${clsI}--${scI}`,

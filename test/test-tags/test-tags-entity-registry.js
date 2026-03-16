@@ -37,11 +37,15 @@ export class TagTestUrlLookup {
 		const url = `${propOrPage.toLowerCase()}#${(UrlUtil.getHashBuilder(propOrPage)(ent)).toLowerCase().trim()}`;
 
 		if (ent._versionBase_isVersion) {
-			this._ALL_URLS_SET__VERSIONS.add(url);
-			this._ALL_URLS_LIST__VERSIONS.push(url);
+			if (!this._ALL_URLS_SET__VERSIONS.has(url)) {
+				this._ALL_URLS_SET__VERSIONS.add(url);
+				this._ALL_URLS_LIST__VERSIONS.push(url);
+			}
 		} else {
-			this._ALL_URLS_SET.add(url);
-			this._ALL_URLS_LIST.push(url);
+			if (!this._ALL_URLS_SET.has(url)) {
+				this._ALL_URLS_SET.add(url);
+				this._ALL_URLS_LIST.push(url);
+			}
 		}
 
 		const propPage = DataLoader.getPropPage(propOrPage);

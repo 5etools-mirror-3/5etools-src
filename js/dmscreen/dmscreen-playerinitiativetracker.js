@@ -25,18 +25,18 @@ export class InitiativeTrackerPlayerV1 extends DmScreenPanelAppBase {
 		view.setElements(eleMeta, eleHead, eleRows);
 
 		let ui;
-		const btnConnectRemote = ee`<button class="ve-btn ve-btn-primary mb-2 min-w-200p" title="Connect to a tracker outside of this browser tab.">Connect to Remote Tracker</button>`
+		const btnConnectRemote = ee`<button class="ve-btn ve-btn-primary ve-mb-2 ve-min-w-200p" title="Connect to a tracker outside of this browser tab.">Connect to Remote Tracker</button>`
 			.onn("click", async () => {
 				btnConnectRemote.detach();
 				btnConnectLocal.detach();
 
-				const iptPlayerName = ee`<input class="form-control input-sm code">`
+				const iptPlayerName = ee`<input class="ve-form-control ve-input-sm ve-code">`
 					.onn("change", () => iptPlayerName.removeClass("form-control--error"))
 					.disableSpellcheck();
-				const iptServerToken = ee`<input class="form-control input-sm code">`
+				const iptServerToken = ee`<input class="ve-form-control ve-input-sm ve-code">`
 					.onn("change", () => iptServerToken.removeClass("form-control--error"))
 					.disableSpellcheck();
-				const btnGenConnect = ee`<button class="ve-btn ve-btn-primary ve-btn-xs mr-2">Connect</button>`;
+				const btnGenConnect = ee`<button class="ve-btn ve-btn-primary ve-btn-xs ve-mr-2">Connect</button>`;
 
 				const btnCancel = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Back</button>`
 					.onn("click", () => {
@@ -45,18 +45,18 @@ export class InitiativeTrackerPlayerV1 extends DmScreenPanelAppBase {
 						view.wrpInitial.appends(btnConnectRemote).appends(btnConnectLocal);
 					});
 
-				const wrpClient = ee`<div class="ve-flex-col w-100">
-					<div class="ve-flex-vh-center px-4 mb-2">
-						<span style="min-width: fit-content;" class="mr-2">Player Name</span>
+				const wrpClient = ee`<div class="ve-flex-col ve-w-100">
+					<div class="ve-flex-vh-center ve-px-4 ve-mb-2">
+						<span style="min-width: fit-content;" class="ve-mr-2">Player Name</span>
 						${iptPlayerName}
 					</div>
 
-					<div class="ve-flex-vh-center px-4 mb-2">
-						<span style="min-width: fit-content;" class="mr-2">Server Token</span>
+					<div class="ve-flex-vh-center ve-px-4 ve-mb-2">
+						<span style="min-width: fit-content;" class="ve-mr-2">Server Token</span>
 						${iptServerToken}
 					</div>
 
-					<div class="split px-4 ve-flex-vh-center">
+					<div class="ve-split ve-px-4 ve-flex-vh-center">
 						${btnGenConnect}${btnCancel}
 					</div>
 				</div>`.appendTo(view.wrpInitial);
@@ -79,7 +79,7 @@ export class InitiativeTrackerPlayerV1 extends DmScreenPanelAppBase {
 				});
 			});
 
-		const btnConnectLocal = ee`<button class="ve-btn ve-btn-primary min-w-200p">Connect to Local Tracker</button>`
+		const btnConnectLocal = ee`<button class="ve-btn ve-btn-primary ve-min-w-200p">Connect to Local Tracker</button>`
 			.onn("click", async () => {
 				const panelApps = DmScreenUtil.getPanelApps({board, type: PANEL_TYP_INITIATIVE_TRACKER});
 
@@ -101,7 +101,7 @@ export class InitiativeTrackerPlayerV1 extends DmScreenPanelAppBase {
 				btnConnectRemote.detach();
 				btnConnectLocal.detach();
 
-				const selTracker = ee`<select class="form-control input-xs mr-1">
+				const selTracker = ee`<select class="ve-form-control ve-input-xs ve-mr-1">
 					<option value="-1" disabled>Select a local tracker</option>
 				</select>`.onn("change", () => selTracker.removeClass("form-control--error"));
 				panelApps.forEach((panelApp, i) => selTracker.appends(`<option value="${i}">${panelApp.getSummary()}</option>`));
@@ -129,7 +129,7 @@ export class InitiativeTrackerPlayerV1 extends DmScreenPanelAppBase {
 						}
 					});
 
-				const wrpSel = ee`<div class="ve-flex-vh-center mb-2">
+				const wrpSel = ee`<div class="ve-flex-vh-center ve-mb-2">
 						${selTracker}
 						${btnOk}
 					</div>`.appendTo(view.wrpInitial);
@@ -144,7 +144,7 @@ export class InitiativeTrackerPlayerV1 extends DmScreenPanelAppBase {
 					.appendTo(view.wrpInitial);
 			});
 
-		view.wrpInitial = ee`<div class="ve-flex-vh-center h-100 ve-flex-col dm__panel-bg">
+		view.wrpInitial = ee`<div class="ve-flex-vh-center ve-h-100 ve-flex-col dm__panel-bg">
 			${btnConnectRemote}
 			${btnConnectLocal}
 		</div>`.appendTo(wrpTracker);
@@ -201,14 +201,14 @@ export class InitiativeTrackerPlayerV0 extends DmScreenPanelAppBase {
 		const view = new InitiativeTrackerPlayerMessageHandlerScreenV0();
 		view.setElements(eleMeta, eleHead, eleRows);
 
-		const btnConnectRemote = ee`<button class="ve-btn ve-btn-primary mb-2 min-w-200p" title="Connect to a tracker outside of this browser tab.">Connect to Remote Tracker</button>`
+		const btnConnectRemote = ee`<button class="ve-btn ve-btn-primary ve-mb-2 ve-min-w-200p" title="Connect to a tracker outside of this browser tab.">Connect to Remote Tracker</button>`
 			.onn("click", () => {
 				btnConnectRemote.detach();
 				btnConnectLocal.detach();
 
-				const iptServerToken = ee`<input class="form-control input-sm code">`.disableSpellcheck();
+				const iptServerToken = ee`<input class="ve-form-control ve-input-sm ve-code">`.disableSpellcheck();
 				const btnGenClientToken = ee`<button class="ve-btn ve-btn-primary ve-btn-xs">Generate Client Token</button>`;
-				const iptClientToken = ee`<input class="form-control input-sm code copyable">`.disableSpellcheck();
+				const iptClientToken = ee`<input class="ve-form-control ve-input-sm ve-code ve-copyable">`.disableSpellcheck();
 
 				const btnCancel = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Back</button>`
 					.onn("click", () => {
@@ -217,22 +217,22 @@ export class InitiativeTrackerPlayerV0 extends DmScreenPanelAppBase {
 						view.wrpInitial.appends(btnConnectRemote).appends(btnConnectLocal);
 					});
 
-				const wrpClient = ee`<div class="ve-flex-col w-100">
-					<div class="ve-flex-vh-center px-4 mb-2">
-						<span style="min-width: fit-content;" class="mr-2">Server Token</span>
+				const wrpClient = ee`<div class="ve-flex-col ve-w-100">
+					<div class="ve-flex-vh-center ve-px-4 ve-mb-2">
+						<span style="min-width: fit-content;" class="ve-mr-2">Server Token</span>
 						${iptServerToken}
 					</div>
 
-					<div class="ve-flex-v-center ve-flex-h-right px-4 mb-2">
+					<div class="ve-flex-v-center ve-flex-h-right ve-px-4 ve-mb-2">
 						${btnGenClientToken}
 					</div>
 
-					<div class="ve-flex-vh-center px-4 mb-2">
-						<span style="min-width: fit-content;" class="mr-2">Client Token</span>
+					<div class="ve-flex-vh-center ve-px-4 ve-mb-2">
+						<span style="min-width: fit-content;" class="ve-mr-2">Client Token</span>
 						${iptClientToken}
 					</div>
 
-					<div class="ve-flex-vh-center px-4">
+					<div class="ve-flex-vh-center ve-px-4">
 						${btnCancel}
 					</div>
 				</div>`.appendTo(view.wrpInitial);
@@ -241,7 +241,7 @@ export class InitiativeTrackerPlayerV0 extends DmScreenPanelAppBase {
 				ui.init();
 			});
 
-		const btnConnectLocal = ee`<button class="ve-btn ve-btn-primary min-w-200p" title="Connect to a tracker in this browser tab.">Connect to Local Tracker</button>`
+		const btnConnectLocal = ee`<button class="ve-btn ve-btn-primary ve-min-w-200p" title="Connect to a tracker in this browser tab.">Connect to Local Tracker</button>`
 			.onn("click", async () => {
 				const panelApps = DmScreenUtil.getPanelApps({board, type: PANEL_TYP_INITIATIVE_TRACKER});
 
@@ -258,7 +258,7 @@ export class InitiativeTrackerPlayerV0 extends DmScreenPanelAppBase {
 				btnConnectRemote.detach();
 				btnConnectLocal.detach();
 
-				const selTracker = ee`<select class="form-control input-xs mr-1">
+				const selTracker = ee`<select class="ve-form-control ve-input-xs ve-mr-1">
 					<option value="-1" disabled>Select a local tracker</option>
 				</select>`
 					.onn("change", () => selTracker.removeClass("error-background"));
@@ -277,7 +277,7 @@ export class InitiativeTrackerPlayerV0 extends DmScreenPanelAppBase {
 						view.wrpInitial.appends(btnConnectRemote).appends(btnConnectLocal);
 					});
 
-				const wrpSel = ee`<div class="ve-flex-vh-center mb-2">
+				const wrpSel = ee`<div class="ve-flex-vh-center ve-mb-2">
 					${selTracker}
 					${btnOk}
 				</div>`.appendTo(view.wrpInitial);
@@ -292,7 +292,7 @@ export class InitiativeTrackerPlayerV0 extends DmScreenPanelAppBase {
 					.appendTo(view.wrpInitial);
 			});
 
-		view.wrpInitial = ee`<div class="ve-flex-vh-center h-100 ve-flex-col dm__panel-bg">
+		view.wrpInitial = ee`<div class="ve-flex-vh-center ve-h-100 ve-flex-col dm__panel-bg">
 			${btnConnectRemote}
 			${btnConnectLocal}
 		</div>`.appendTo(wrpTracker);

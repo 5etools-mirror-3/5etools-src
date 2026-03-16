@@ -10,7 +10,7 @@ export class DmMapper extends DmScreenPanelAppBase {
 	}
 
 	_getPanelElement (board, state) {
-		const wrpPanel = ee`<div class="w-100 h-100 dm-map__root dm__panel-bg"></div>`;
+		const wrpPanel = ee`<div class="ve-w-100 ve-h-100 dm-map__root dm__panel-bg"></div>`;
 		this._comp = new DmMapperRoot(board, wrpPanel);
 		this._comp.setStateFrom(state);
 		this._comp.render(wrpPanel);
@@ -64,7 +64,7 @@ export class DmMapper extends DmScreenPanelAppBase {
 			isUncappedHeight: true,
 		});
 
-		eleModalInner.appends(`<div class="ve-flex-vh-center w-100 h-100"><i class="dnd-font ve-muted">Loading...</i></div>`);
+		eleModalInner.appends(`<div class="ve-flex-vh-center ve-w-100 ve-h-100"><i class="ve-dnd-font ve-muted">Loading...</i></div>`);
 
 		const {page, source, hash} = SearchWidget.docToPageSourceHash(chosenDoc);
 		const adventureBookPack = await DataLoader.pCacheAndGet(page, source, hash);
@@ -110,7 +110,7 @@ export class DmMapper extends DmScreenPanelAppBase {
 		if (!mapDatas.length) {
 			eleModalInner
 				.empty()
-				.appends(`<div class="ve-flex-vh-center w-100 h-100"><span class="dnd-font">Adventure did not contain any valid maps!</span></div>`);
+				.appends(`<div class="ve-flex-vh-center ve-w-100 ve-h-100"><span class="ve-dnd-font">Adventure did not contain any valid maps!</span></div>`);
 			return;
 		}
 
@@ -120,9 +120,9 @@ export class DmMapper extends DmScreenPanelAppBase {
 			.addClass("ve-text-center");
 
 		mapDatas.map(mapData => {
-			ee`<div class="m-1 p-1 clickable dm-map__picker-wrp-img relative">
+			ee`<div class="ve-m-1 ve-p-1 ve-clickable dm-map__picker-wrp-img ve-relative">
 				<div class="dm-map__picker-img" style="background-image: url(${encodeURI(mapData.hrefThumbnail || mapData.href)})"></div>
-				<span class="absolute ve-text-center dm-map__picker-disp-name">${mapData.name.escapeQuotes()}</span>
+				<span class="ve-absolute ve-text-center dm-map__picker-disp-name">${mapData.name.escapeQuotes()}</span>
 			</div>`
 				.onn("click", async () => {
 					doClose();
@@ -148,7 +148,7 @@ class DmMapperRoot extends BaseComponent {
 	render (eleParent) {
 		eleParent.empty();
 
-		eleParent.appends(`<div class="ve-flex-vh-center w-100 h-100"><i class="dnd-font ve-muted">Loading...</i></div>`);
+		eleParent.appends(`<div class="ve-flex-vh-center ve-w-100 ve-h-100"><i class="ve-dnd-font ve-muted">Loading...</i></div>`);
 
 		RenderMap.pGetRendered(
 			this._state,

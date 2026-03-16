@@ -17,22 +17,22 @@ export class EncounterBuilderRenderableCollectionColsExtraAdvanced extends Rende
 		});
 
 		const iptName = ComponentUiUtil.getIptStr(comp, "name")
-			.addClass("w-40p")
+			.addClass("ve-w-40p")
 			.addClass("form-control--minimal")
-			.addClass("no-shrink")
+			.addClass("ve-no-shrink")
 			.addClass("ve-text-center")
-			.addClass("mr-1")
-			.addClass("bb-0");
+			.addClass("ve-mr-1")
+			.addClass("ve-bb-0");
 
 		const wrpHeader = ee`<div class="ve-flex">
 			${iptName}
 		</div>`
 			.appendTo(this._rdState.wrpHeadersAdvanced);
 
-		const btnDelete = ee`<button class="ve-btn ve-btn-xxs ecgen-player__btn-inline w-40p ve-btn-danger no-shrink mt-n2 bt-0 btl-0 btr-0" title="Remove Column" tabindex="-1"><span class="glyphicon-trash glyphicon"></span></button>`
+		const btnDelete = ee`<button class="ve-btn ve-btn-xxs ecgen-player__btn-inline ve-w-40p ve-btn-danger ve-no-shrink ve-mt-n2 ve-bt-0 ve-btl-0 ve-btr-0" title="Remove Column" tabindex="-1"><span class="glyphicon-trash glyphicon"></span></button>`
 			.onn("click", () => this._comp.doRemoveColExtraAdvanced(colExtra.id));
 
-		const wrpFooter = ee`<div class="w-40p ve-flex-v-baseline ve-flex-h-center no-shrink no-grow mr-1">
+		const wrpFooter = ee`<div class="ve-w-40p ve-flex-v-baseline ve-flex-h-center ve-no-shrink ve-no-grow ve-mr-1">
 			${btnDelete}
 		</div>`
 			.appendTo(this._rdState.wrpFootersAdvanced);
