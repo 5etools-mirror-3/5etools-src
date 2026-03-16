@@ -684,6 +684,46 @@ describe("loadAllSpells", () => {
     expect(warnings.length).toBeGreaterThan(0);
   });
 
+  it("deduplicates spells preferring XPHB over PHB", async () => {
+    const xphbSpell = {
+      name: "Fireball",
+      source: "XPHB",
+      level: 3,
+      school: "V",
+      time: [{ number: 1, unit: "action" }],
+      range: { type: "point", distance: { type: "feet", amount: 120 } },
+      components: { v: true, s: true, m: "bat guano" },
+      duration: [{ type: "instant" }],
+      entries: ["Updated 2024 version."],
+      page: 262,
+    } as RawSpell;
+
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (url: string) => {
+        if (url.includes("index.json")) {
+          return { ok: true, json: async () => ({ PHB: "spells-phb.json", XPHB: "spells-xphb.json" }) };
+        }
+        if (url.includes("sources.json")) {
+          return { ok: true, json: async () => mockSources };
+        }
+        if (url.includes("spells-phb.json")) {
+          return { ok: true, json: async () => mockSpellFile };
+        }
+        if (url.includes("spells-xphb.json")) {
+          return { ok: true, json: async () => ({ spell: [xphbSpell] }) };
+        }
+        return { ok: false, status: 404 };
+      })
+    );
+
+    const { spells } = await loadAllSpells("/data/spells");
+    const fireballs = spells.filter((s) => s.name === "Fireball");
+    expect(fireballs).toHaveLength(1);
+    expect(fireballs[0].source).toBe("XPHB");
+    expect(fireballs[0].description).toEqual(["Updated 2024 version."]);
+  });
+
   it("throws if index.json fails", async () => {
     vi.stubGlobal(
       "fetch",

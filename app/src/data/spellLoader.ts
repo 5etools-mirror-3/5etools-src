@@ -305,8 +305,37 @@ export async function loadAllSpells(basePath: string = "/data/spells"): Promise<
     }
   }
 
-  // Sort by name
-  allSpells.sort((a, b) => a.name.localeCompare(b.name));
+  // Deduplicate: when the same spell name appears in multiple sources,
+  // keep the newest version. XPHB (2024) > PHB/XGE/TCE (2014-era).
+  const SOURCE_PRIORITY: Record<string, number> = {
+    XPHB: 100,  // 2024 Player's Handbook — highest priority
+    EFA: 90,    // 2024 era supplements
+    FRHoF: 85,
+    TCE: 50,    // Tasha's Cauldron
+    XGE: 40,    // Xanathar's Guide
+    PHB: 10,    // 2014 Player's Handbook — lowest priority for reprints
+  };
 
-  return { spells: allSpells, warnings };
+  const deduped = new Map<string, SpellData>();
+  for (const spell of allSpells) {
+    const key = spell.name.toLowerCase();
+    const existing = deduped.get(key);
+    if (!existing) {
+      deduped.set(key, spell);
+    } else {
+      // Keep the one with higher source priority
+      const existingPriority = SOURCE_PRIORITY[existing.source] ?? 30;
+      const newPriority = SOURCE_PRIORITY[spell.source] ?? 30;
+      if (newPriority > existingPriority) {
+        deduped.set(key, spell);
+      }
+    }
+  }
+
+  const dedupedSpells = Array.from(deduped.values());
+
+  // Sort by name
+  dedupedSpells.sort((a, b) => a.name.localeCompare(b.name));
+
+  return { spells: dedupedSpells, warnings };
 }
