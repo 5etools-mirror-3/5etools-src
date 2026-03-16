@@ -1,13 +1,15 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { Link } from "react-router";
 import { useSpellStore } from "../../store/useSpellStore";
+import { useSavedSpellsStore } from "../../store/useSavedSpellsStore";
 import { useSpellFilters } from "../../hooks/useSpellFilters";
 import { useSpellSearch } from "../../hooks/useSpellSearch";
 import { SpellSearch } from "./SpellSearch";
 import { SpellFilters } from "./SpellFilters";
 import { SpellList } from "./SpellList";
 import { SpellDetail } from "./SpellDetail";
+import { ConfirmDialog } from "../ui/ConfirmDialog";
 
 export function SpellListView() {
   const navigate = useNavigate();
@@ -15,6 +17,10 @@ export function SpellListView() {
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   const { spells, loading, error, loadSpells, allClasses, allSources } = useSpellStore();
+  const { savedIds, clear } = useSavedSpellsStore();
+
+  const [showSaved, setShowSaved] = useState(false);
+  const [showClearConfirm, setShowClearConfirm] = useState(false);
 
   // Load spells on mount if not loaded
   useEffect(() => {
@@ -22,6 +28,11 @@ export function SpellListView() {
       loadSpells();
     }
   }, []);
+
+  // Filter to saved spells first if in saved view
+  const baseSpells = showSaved
+    ? spells.filter((s) => savedIds.includes(s.id))
+    : spells;
 
   const {
     filters,
@@ -37,7 +48,7 @@ export function SpellListView() {
     setDamageTypes,
     setSources,
     clearAll,
-  } = useSpellFilters(spells);
+  } = useSpellFilters(baseSpells);
 
   const { query, setQuery, results } = useSpellSearch(filtered);
 
@@ -158,10 +169,77 @@ export function SpellListView() {
           >
             Spells
           </span>
+
+          {/* All / Saved toggle */}
+          <div className="flex items-center ml-2" style={{ gap: "2px" }}>
+            <button
+              type="button"
+              onClick={() => setShowSaved(false)}
+              className="px-2 py-0.5 text-[11px] font-medium border rounded-[2px] cursor-pointer transition-colors duration-[120ms]"
+              style={{
+                background: !showSaved ? "var(--accent-primary)" : "var(--bg-panel)",
+                border: !showSaved
+                  ? "1px solid var(--accent-primary)"
+                  : "1px solid var(--border-subtle)",
+                color: !showSaved ? "var(--text-primary)" : "var(--text-secondary)",
+              }}
+            >
+              All
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowSaved(true)}
+              className="flex items-center gap-1 px-2 py-0.5 text-[11px] font-medium border rounded-[2px] cursor-pointer transition-colors duration-[120ms]"
+              style={{
+                background: showSaved ? "var(--accent-primary)" : "var(--bg-panel)",
+                border: showSaved
+                  ? "1px solid var(--accent-primary)"
+                  : "1px solid var(--border-subtle)",
+                color: showSaved ? "var(--text-primary)" : "var(--text-secondary)",
+              }}
+            >
+              Saved
+              {savedIds.length > 0 && (
+                <span
+                  className="px-1 rounded-[2px] text-[10px] font-bold"
+                  style={{
+                    background: showSaved
+                      ? "rgba(255,255,255,0.2)"
+                      : "var(--accent-primary)",
+                    color: "var(--text-primary)",
+                  }}
+                >
+                  {savedIds.length}
+                </span>
+              )}
+            </button>
+          </div>
         </div>
-        <span style={{ fontSize: "12px", color: "var(--text-muted)" }}>
-          {results.length.toLocaleString()} spells
-        </span>
+
+        <div className="flex items-center gap-2">
+          {/* Clear All button — shown in saved view when there are saved spells */}
+          {showSaved && savedIds.length > 0 && (
+            <button
+              type="button"
+              onClick={() => setShowClearConfirm(true)}
+              className="px-2 py-0.5 rounded-[2px] cursor-pointer hover:bg-[var(--bg-panel)] transition-colors duration-[120ms]"
+              style={{
+                fontSize: "11px",
+                color: "var(--accent-danger)",
+                border: "1px solid var(--accent-danger)",
+                background: "transparent",
+              }}
+            >
+              Clear All
+            </button>
+          )}
+
+          <span style={{ fontSize: "12px", color: "var(--text-muted)" }}>
+            {showSaved
+              ? `${results.length.toLocaleString()} saved`
+              : `${results.length.toLocaleString()} spells`}
+          </span>
+        </div>
       </div>
 
       {/* Search */}
@@ -199,6 +277,18 @@ export function SpellListView() {
           onClose={() => navigate("/spells")}
           onPrev={selectedIndex > 0 ? handlePrev : undefined}
           onNext={selectedIndex < results.length - 1 ? handleNext : undefined}
+        />
+      )}
+
+      {/* Clear all confirm dialog */}
+      {showClearConfirm && (
+        <ConfirmDialog
+          message="Clear all saved spells?"
+          onConfirm={() => {
+            clear();
+            setShowClearConfirm(false);
+          }}
+          onCancel={() => setShowClearConfirm(false)}
         />
       )}
     </div>

@@ -4,6 +4,7 @@ import { getSchoolColor } from "../../data/schoolColors";
 import { SpellHeader } from "./SpellHeader";
 import { SpellStatsGrid } from "./SpellStatsGrid";
 import { SpellDescription } from "./SpellDescription";
+import { useSavedSpellsStore } from "../../store/useSavedSpellsStore";
 
 interface SpellDetailProps {
   spell: SpellData;
@@ -14,6 +15,8 @@ interface SpellDetailProps {
 
 export function SpellDetail({ spell, onClose, onPrev, onNext }: SpellDetailProps) {
   const schoolColor = getSchoolColor(spell.schoolIndex);
+  const { isSaved, add, remove } = useSavedSpellsStore();
+  const saved = isSaved(spell.id);
 
   // Keyboard navigation
   useEffect(() => {
@@ -87,6 +90,21 @@ export function SpellDetail({ spell, onClose, onPrev, onNext }: SpellDetailProps
             >
               {spell.name}
             </span>
+            <button
+              type="button"
+              onClick={() => (saved ? remove(spell.id) : add(spell.id))}
+              className="cursor-pointer"
+              style={{
+                background: "transparent",
+                border: "none",
+                fontSize: "16px",
+                color: saved ? "var(--accent-primary)" : "var(--text-muted)",
+                marginLeft: "2px",
+              }}
+              aria-label={saved ? "Unsave spell" : "Save spell"}
+            >
+              {saved ? "★" : "☆"}
+            </button>
           </div>
 
           <div className="flex items-center gap-2">

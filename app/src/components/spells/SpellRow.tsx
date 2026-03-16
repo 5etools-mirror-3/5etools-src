@@ -1,6 +1,7 @@
 import { getSchoolColor } from "../../data/schoolColors";
 import { getSchoolDisplayAbbr } from "../../data/schools";
 import type { SpellData } from "../../data/spellTypes";
+import { useSavedSpellsStore } from "../../store/useSavedSpellsStore";
 
 interface SpellRowProps {
   spell: SpellData;
@@ -18,11 +19,14 @@ export function SpellRow({ spell, selected, onClick, even }: SpellRowProps) {
   const schoolAbbr = getSchoolDisplayAbbr(spell.schoolIndex);
   const lvl = levelLabel(spell.level);
 
+  const { isSaved, add, remove } = useSavedSpellsStore();
+  const saved = isSaved(spell.id);
+
   return (
     <button
       type="button"
       onClick={onClick}
-      className="w-full flex items-center gap-3 px-4 text-left"
+      className="group w-full flex items-center gap-3 px-4 text-left"
       style={{
         height: "36px",
         background: selected
@@ -58,6 +62,26 @@ export function SpellRow({ spell, selected, onClick, even }: SpellRowProps) {
       >
         {spell.name}
       </span>
+
+      {/* Save/unsave bookmark button */}
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          saved ? remove(spell.id) : add(spell.id);
+        }}
+        className={`sm:${saved ? "opacity-100" : "opacity-0 group-hover:opacity-100"} px-1 cursor-pointer`}
+        style={{
+          background: "none",
+          border: "none",
+          fontSize: "14px",
+          color: saved ? "var(--accent-primary)" : "var(--text-muted)",
+          flexShrink: 0,
+        }}
+        aria-label={saved ? "Unsave spell" : "Save spell"}
+      >
+        {saved ? "★" : "☆"}
+      </button>
 
       {/* Desktop metadata */}
       <span
