@@ -12,11 +12,15 @@ import type {
 // ── ID ────────────────────────────────────────────────────────────────────────
 
 export function buildSpellId(name: string, source: string): string {
-  return (
-    encodeURIComponent(name.toLowerCase()) +
-    "_" +
-    encodeURIComponent(source.toLowerCase())
-  );
+  // Use a URL-safe slug: lowercase, replace spaces with hyphens,
+  // strip non-alphanumeric chars (except hyphens), collapse multiple hyphens
+  const slug = (s: string) =>
+    s
+      .toLowerCase()
+      .replace(/['']/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "");
+  return `${slug(name)}_${slug(source)}`;
 }
 
 // ── Casting time ──────────────────────────────────────────────────────────────

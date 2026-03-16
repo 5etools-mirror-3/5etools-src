@@ -18,14 +18,14 @@ describe("buildSpellId", () => {
     expect(buildSpellId("Fireball", "PHB")).toBe("fireball_phb");
   });
 
-  it("encodes special characters in name", () => {
+  it("slugifies special characters in name", () => {
     expect(buildSpellId("Drawmij's Instant Summons", "PHB")).toBe(
-      "drawmij's%20instant%20summons_phb"
+      "drawmijs-instant-summons_phb"
     );
   });
 
-  it("encodes spaces in name", () => {
-    expect(buildSpellId("Magic Missile", "PHB")).toBe("magic%20missile_phb");
+  it("slugifies spaces in name", () => {
+    expect(buildSpellId("Magic Missile", "PHB")).toBe("magic-missile_phb");
   });
 
   it("handles source with mixed case", () => {

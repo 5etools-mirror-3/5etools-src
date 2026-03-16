@@ -85,8 +85,8 @@ export function SpellFilters({
 
   return (
     <div
-      className="px-4 py-2 flex flex-col gap-1.5 border-b"
-      style={{ borderColor: "var(--border-subtle)", background: "var(--bg-base)" }}
+      className="px-4 py-2 flex flex-col gap-1.5 border-b flex-shrink-0"
+      style={{ borderColor: "var(--border-subtle)", background: "var(--bg-base)", position: "relative", zIndex: 10 }}
     >
       {/* Row 1: Level */}
       <div className="flex items-center gap-2 flex-wrap">
