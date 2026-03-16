@@ -123,7 +123,7 @@ export function SpellListView() {
 
   return (
     <div
-      className="flex flex-col h-full"
+      className="flex flex-col h-full overflow-hidden"
       style={{ background: "var(--bg-base)" }}
     >
       {/* Header bar */}

@@ -69,7 +69,7 @@ export function SpellList({ spells, selectedId, onSelect }: SpellListProps) {
   }
 
   return (
-    <div ref={listRef} className="overflow-y-auto flex-1">
+    <div ref={listRef} className="overflow-y-auto flex-1 min-h-0">
       {spells.map((spell, index) => (
         <SpellRow
           key={spell.id}
