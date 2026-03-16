@@ -77,7 +77,7 @@ export function SpellListView() {
   if (loading) {
     return (
       <div
-        className="flex flex-col items-center justify-center h-full"
+        className="flex flex-col items-center justify-center h-screen"
         style={{ background: "var(--bg-base)" }}
       >
         <div
@@ -101,7 +101,7 @@ export function SpellListView() {
   if (error) {
     return (
       <div
-        className="flex flex-col items-center justify-center h-full gap-3"
+        className="flex flex-col items-center justify-center h-screen gap-3"
         style={{ background: "var(--bg-base)" }}
       >
         <p style={{ color: "var(--accent-danger)" }}>{error}</p>
@@ -123,7 +123,7 @@ export function SpellListView() {
 
   return (
     <div
-      className="flex flex-col h-full overflow-hidden"
+      className="flex flex-col h-screen overflow-hidden"
       style={{ background: "var(--bg-base)" }}
     >
       {/* Header bar */}
