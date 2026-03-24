@@ -1,0 +1,9 @@
+services:
+  5etools:
+    build:
+      context: .
+      dockerfile: Dockerfile.personal
+    image: 5etools-personal:latest
+    ports:
+      - "5050:80"
+    restart: unless-stopped
