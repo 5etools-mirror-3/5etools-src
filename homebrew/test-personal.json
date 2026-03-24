@@ -1,0 +1,56 @@
+{
+	"_meta": {
+		"sources": [
+			{
+				"json": "TestPersonal",
+				"abbreviation": "TP",
+				"full": "Test Personal Homebrew",
+				"version": "1.0.0",
+				"authors": [
+					"David Hoover"
+				]
+			}
+		]
+	},
+	"spell": [
+		{
+			"name": "Test Cantrip",
+			"source": "TestPersonal",
+			"level": 0,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"You conjure a spark of arcane energy and hurl it at a creature within range. Make a ranged spell attack against the target. On a hit, the target takes {@damage 1d8} force damage."
+			],
+			"classes": {
+				"fromClassList": [
+					{
+						"name": "Wizard",
+						"source": "PHB"
+					}
+				]
+			}
+		}
+	]
+}
