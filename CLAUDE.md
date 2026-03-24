@@ -5,7 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-# Serve locally (port 5050, CORS-enabled, no caching)
+# Serve locally (port 5051, CORS-enabled, no caching)
 npm run serve:dev
 
 # Build CSS from SCSS
