@@ -187,7 +187,7 @@ export class BrewUtil2Base {
 			? this._storage.pRemove(this._STORAGE_KEY_CUSTOM_URL)
 			: this._storage.pSet(this._STORAGE_KEY_CUSTOM_URL, val));
 
-		location.reload();
+		if (typeof location !== "undefined") location.reload();
 	}
 
 	/* -------------------------------------------- */

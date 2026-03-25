@@ -5,6 +5,8 @@ export class EntityFileHandlerClass extends EntityFileHandlerBase {
 	_props = ["class", "subclass", "classFeature", "subclassFeature"];
 
 	static _FileState = class extends EntityFileHandlerBase._FileState {
+		isNonSiteData = false;
+
 		classFeatureLookup = {};
 		subclassFeatureLookup = {};
 
@@ -16,8 +18,14 @@ export class EntityFileHandlerClass extends EntityFileHandlerBase {
 
 	/* -------------------------------------------- */
 
+	static _UID_CLASS_GENERIC = null;
+
 	_doCheckClassRef ({logIdentOriginal, uidOriginal, filePath, name, source}) {
+		this.constructor._UID_CLASS_GENERIC ||= DataUtil.proxy.getUid("class", {name: VeCt.STR_GENERIC, source: VeCt.STR_GENERIC});
+
 		const uidClass = DataUtil.proxy.getUid("class", {name, source}, {isMaintainCase: true});
+		if (uidClass.toLowerCase() === this.constructor._UID_CLASS_GENERIC) return;
+
 		const urlClass = this._tagTestUrlLookup.getEncodedProxy(uidClass, "class");
 		if (!this._tagTestUrlLookup.hasUrl(urlClass)) this._addMessage(`Missing class in ${logIdentOriginal}: ${uidOriginal} in file ${filePath} class part, "${uidClass}"\n${this._tagTestUrlLookup.getLogPtSimilarUrls({url: urlClass})}`);
 	};
@@ -54,7 +62,7 @@ export class EntityFileHandlerClass extends EntityFileHandlerBase {
 					const unpacked = DataUtil.class.unpackUidClassFeature(uid, {isLower: true});
 					const hash = UrlUtil.URL_TO_HASH_BUILDER["classFeature"](unpacked);
 
-					if (!fileState.classFeatureLookup[hash]) this._addMessage(`Missing class feature: ${uid} in file ${fileState.filePath} not found in the files "classFeature" array\n`);
+					if (!fileState.isNonSiteData && !fileState.classFeatureLookup[hash]) this._addMessage(`Missing class feature: ${uid} in file ${fileState.filePath} not found in the files "classFeature" array\n`);
 
 					this._doCheckClassRef({
 						logIdentOriginal: `"refClassFeature"`,
@@ -77,7 +85,7 @@ export class EntityFileHandlerClass extends EntityFileHandlerBase {
 					const unpacked = DataUtil.class.unpackUidSubclassFeature(uid, {isLower: true});
 					const hash = UrlUtil.URL_TO_HASH_BUILDER["subclassFeature"](unpacked);
 
-					if (!fileState.subclassFeatureLookup[hash]) this._addMessage(`Missing subclass feature in "refSubclassFeature": ${uid} in file ${filePath} not found in the files "subclassFeature" array\n`);
+					if (!fileState.isNonSiteData && !fileState.subclassFeatureLookup[hash]) this._addMessage(`Missing subclass feature in "refSubclassFeature": ${uid} in file ${filePath} not found in the files "subclassFeature" array\n`);
 
 					this._doCheckClassRef({
 						logIdentOriginal: `"refClassFeature"`,
@@ -127,6 +135,7 @@ export class EntityFileHandlerClass extends EntityFileHandlerBase {
 	}
 
 	async _pHandleFile_preProcess ({filePath, contents, fileState}) {
+		fileState.isNonSiteData = this._isNonSiteData(filePath, contents);
 		this._pHandleFile_preProcess_initLookups({filePath, contents, fileState});
 		this._pHandleFile_preProcess_initWalkerHandlers({filePath, contents, fileState});
 	}
@@ -138,7 +147,8 @@ export class EntityFileHandlerClass extends EntityFileHandlerBase {
 			const uid = ref.classFeature || ref;
 			const unpacked = DataUtil.class.unpackUidClassFeature(uid, {isLower: true});
 			const hash = UrlUtil.URL_TO_HASH_BUILDER["classFeature"](unpacked);
-			if (!fileState.classFeatureLookup[hash]) this._addMessage(`Missing class feature: ${uid} in file ${filePath} not found in the files "classFeature" array\n`);
+
+			if (!fileState.isNonSiteData && !fileState.classFeatureLookup[hash]) this._addMessage(`Missing class feature: ${uid} in file ${filePath} not found in the files "classFeature" array\n`);
 
 			this._doCheckClassRef({
 				logIdentOriginal: `"classFeature" array`,
@@ -167,7 +177,7 @@ export class EntityFileHandlerClass extends EntityFileHandlerBase {
 			const unpacked = DataUtil.class.unpackUidSubclassFeature(uid, {isLower: true});
 			const hash = UrlUtil.URL_TO_HASH_BUILDER["subclassFeature"](unpacked);
 
-			if (!fileState.subclassFeatureLookup[hash]) this._addMessage(`Missing subclass feature: ${uid} in file ${filePath} not found in the files "subclassFeature" array\n`);
+			if (!fileState.isNonSiteData && !fileState.subclassFeatureLookup[hash]) this._addMessage(`Missing subclass feature: ${uid} in file ${filePath} not found in the files "subclassFeature" array\n`);
 		});
 	}
 

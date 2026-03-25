@@ -1,4 +1,5 @@
 import * as utS from "../../node/util-search-index.js";
+import {readJsonSync} from "5etools-utils/lib/UtilFs.js";
 
 export class TagTestUrlLookup {
 	constructor (
@@ -61,7 +62,13 @@ export class TagTestUrlLookup {
 	}
 
 	async _pInit_pPopulateUrls () {
-		if (this._fileAdditional) await BrewUtil2.pAddBrewFromUrl(this._fileAdditional, {isLoadReferences: true});
+		if (this._fileAdditional) {
+			const contents = readJsonSync(this._fileAdditional);
+			const brewUtil = contents._meta?.sources?.some(source => source?.json?.startsWith("UA") || source?.json?.startsWith("XUA"))
+				? PrereleaseUtil
+				: BrewUtil2;
+			await brewUtil.pAddBrewFromUrl(this._fileAdditional, {isLoadReferences: true});
+		}
 
 		const primaryIndex = Omnidexer.decompressIndex(await utS.UtilSearchIndex.pGetIndex({doLogging: false, noFilter: true}));
 		primaryIndex
@@ -71,6 +78,13 @@ export class TagTestUrlLookup {
 			.forEach(indexItem => this._addIndexItem(indexItem));
 
 		if (this._fileAdditional) {
+			const prereleaseIndexItems = await PrereleaseUtil.pGetSearchIndex({
+				id: secondaryIndexItem.at(-1).id,
+				isIncludeExtendedSourceInfo: true,
+			});
+			prereleaseIndexItems
+				.forEach(indexItem => this._addIndexItem(indexItem));
+
 			const brewIndexItems = await BrewUtil2.pGetSearchIndex({
 				id: secondaryIndexItem.at(-1).id,
 				isIncludeExtendedSourceInfo: true,

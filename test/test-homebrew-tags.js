@@ -5,11 +5,13 @@ import {Worker} from "node:worker_threads";
 import {Command} from "commander";
 import {Deferred, WorkerList, getCntWorkers} from "5etools-utils/lib/WorkerList.js";
 import {getCliJsonFiles, mutCommanderJsonFileOptions} from "../node/util-commander.js";
+import {PATH_DEFAULT_HOMEBREW_DIR, PATH_DEFAULT_PRERELEASE_DIR} from "./util-test.js";
 
-const _PATH_REPORT = "test/test-homebrew-tags.log";
-const _PATH_DEFAULT_HOMEBREW_DIR = "../homebrew";
+const _PATH_REPORT = "test/temp/test-homebrew-tags.log";
 
-const program = mutCommanderJsonFileOptions({command: new Command()});
+const program = mutCommanderJsonFileOptions({command: new Command()})
+	.option("--prerelease-root <filepath>", `When loading additional files, nested prerelease dependencies will be loaded against this root`, PATH_DEFAULT_PRERELEASE_DIR)
+	.option("--homebrew-root <filepath>", `When loading additional files, nested homebrew dependencies will be loaded against this root`, PATH_DEFAULT_HOMEBREW_DIR);
 program.parse(process.argv);
 
 const params = program.opts();
@@ -19,7 +21,7 @@ const getTargetFiles = () => {
 		{
 			dirs: params.dir,
 			files: params.file,
-			fnMutDefaultSelection: ({dirs}) => dirs.push(_PATH_DEFAULT_HOMEBREW_DIR),
+			fnMutDefaultSelection: ({dirs}) => dirs.push(PATH_DEFAULT_HOMEBREW_DIR),
 			convertedBy: params.convertedBy,
 			filter: params.filter,
 		},
@@ -100,6 +102,8 @@ const pDoProcessFiles = async ({files}) => {
 			payload: {
 				filePath,
 				fileNumber: i + 1,
+				prereleaseRoot: params.prereleaseRoot,
+				homebrewRoot: params.homebrewRoot,
 			},
 		});
 	}

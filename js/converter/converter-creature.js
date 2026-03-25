@@ -1859,7 +1859,7 @@ export class ConverterCreature extends ConverterBase {
 		TagImmResVulnConditional.tryRun(stats);
 		DragonAgeTag.tryRun(stats);
 		FamiliarTag.tryRun(stats);
-		if (!stats.gear) AttachedItemTag.tryRun(stats);
+		if (!stats.gear) AttachedItemTag.tryRun(stats, {styleHint: options.styleHint});
 		HazardTag.tryRunPropsStrictCapsWords(stats, Renderer.monster.CHILD_PROPS_EXTENDED, {styleHint: options.styleHint});
 		CoreRuleTag.tryRunProps(stats, Renderer.monster.CHILD_PROPS_EXTENDED, {styleHint: options.styleHint});
 		this._doStatblockPostProcess_doCleanup(stats, options);

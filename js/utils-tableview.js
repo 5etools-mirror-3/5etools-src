@@ -98,8 +98,9 @@ class UtilsTableview {
 			.map(row => {
 				return headersActive
 					.map(({ix}) => {
-						const asText = parser.parseFromString(`<div>${row[ix]}</div>`, "text/html").documentElement.textContent || "";
-						return asText
+						const docParsed = parser.parseFromString(`<div>${row[ix]}</div>`, "text/html").documentElement;
+						[...docParsed.querySelectorAll("p")].forEach(ele => ele.innerHTML += "\n\n");
+						return (docParsed.textContent || "")
 							.trim()
 							.split("\n")
 							.map(it => it.trim())

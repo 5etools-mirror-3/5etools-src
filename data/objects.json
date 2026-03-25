@@ -1,6 +1,53 @@
 {
 	"object": [
 		{
+			"name": "Animated Ghaunadaur Statue",
+			"isNpc": true,
+			"source": "WDMM",
+			"page": 250,
+			"size": [
+				"L"
+			],
+			"objectType": "U",
+			"ac": 17,
+			"hp": 50,
+			"speed": 0,
+			"str": 14,
+			"dex": 10,
+			"int": 3,
+			"wis": 3,
+			"cha": 1,
+			"senses": [
+				"blindsight 10 ft. (blind beyond this radius)"
+			],
+			"immune": [
+				"acid",
+				"poison",
+				"psychic"
+			],
+			"actionEntries": [
+				{
+					"type": "actions",
+					"name": "Claw",
+					"entries": [
+						{
+							"type": "attack",
+							"attackType": "MW",
+							"attackEntries": [
+								"{@hit +10} to hit, reach 5 ft., one target."
+							],
+							"hitEntries": [
+								"22 ({@damage 2d6 + 5}) slashing damage."
+							]
+						}
+					]
+				}
+			],
+			"tokenCredit": "Elderbrain_com",
+			"tokenCustom": true,
+			"hasToken": true
+		},
+		{
 			"name": "Automatic Ballista",
 			"source": "HBTD",
 			"page": 4,

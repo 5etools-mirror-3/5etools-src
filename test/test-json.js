@@ -47,7 +47,7 @@ async function main () {
 	const {errors, errorsFull} = results;
 
 	if (errors.length) {
-		if (!process.env.CI) fs.writeFileSync(`test/test-json.error.log`, errorsFull.join("\n\n=====\n\n"));
+		if (!process.env.CI) fs.writeFileSync(`test/temp/test-json.error.log`, errorsFull.join("\n\n=====\n\n"));
 		console.error(`Schema test failed (${errors.length} failure${errors.length === 1 ? "`" : "s"}).`);
 		return false;
 	}

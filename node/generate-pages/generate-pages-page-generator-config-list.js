@@ -231,7 +231,7 @@ class _PageGeneratorListFeats extends PageGeneratorListBase {
 
 	_btnsSublist = [
 		HtmlGeneratorListButtons.getBtn({width: "4", sortIdent: "name", text: "Name"}),
-		HtmlGeneratorListButtons.getBtn({width: "2", sortIdent: "ability", text: "Category"}),
+		HtmlGeneratorListButtons.getBtn({width: "2", sortIdent: "category", text: "Category"}),
 		HtmlGeneratorListButtons.getBtn({width: "2", sortIdent: "ability", text: "Ability"}),
 		HtmlGeneratorListButtons.getBtn({width: "4", sortIdent: "prerequisite", text: "Prerequisite"}),
 	];

@@ -815,6 +815,8 @@ export class TraitActionTag {
 			"beast of burden": "Beast of Burden",
 
 			"mimicry": "Mimicry",
+
+			"sure-footed": "Sure-Footed",
 		},
 		_other: {
 			"multiattack": "Multiattack",
@@ -2368,46 +2370,66 @@ export class DragonAgeTag {
 
 export class AttachedItemTag {
 	static _WEAPON_DETAIL_CACHE;
+	static _WEAPON_DETAIL_CACHE_CLASSIC;
 
 	static init ({items}) {
 		this._WEAPON_DETAIL_CACHE ||= {};
+		this._WEAPON_DETAIL_CACHE_CLASSIC ||= {};
 
-		for (const item of items) {
-			const itemTypeAbv = item.type ? DataUtil.itemType.unpackUid(item.type).abbreviation : null;
+		items
+			.forEach(item => {
+				const itemTypeAbv = item.type ? DataUtil.itemType.unpackUid(item.type).abbreviation : null;
 
-			if (itemTypeAbv === Parser.ITM_TYP_ABV__GENERIC_VARIANT) continue;
-			if (![Parser.ITM_TYP_ABV__MELEE_WEAPON, Parser.ITM_TYP_ABV__RANGED_WEAPON].includes(itemTypeAbv)) continue;
+				if (itemTypeAbv === Parser.ITM_TYP_ABV__GENERIC_VARIANT) return;
+				if (![Parser.ITM_TYP_ABV__MELEE_WEAPON, Parser.ITM_TYP_ABV__RANGED_WEAPON].includes(itemTypeAbv)) return;
 
-			const lowName = item.name.toLowerCase();
-			// If there's e.g. a " +1" suffix on the end, make a copy with it as a prefix instead
-			const prefixBonusKey = lowName.replace(/^(.*?)( \+\d+)$/, (...m) => `${m[2].trim()} ${m[1].trim()}`);
-			// And vice-versa
-			const suffixBonusKey = lowName.replace(/^(\+\d+) (.*?)$/, (...m) => `${m[2].trim()} ${m[1].trim()}`);
-			const suffixBonusKeyComma = lowName.replace(/^(\+\d+) (.*?)$/, (...m) => `${m[2].trim()}, ${m[1].trim()}`);
+				const lowName = item.name.toLowerCase();
+				// If there's e.g. a " +1" suffix on the end, make a copy with it as a prefix instead
+				const prefixBonusKey = lowName.replace(/^(.*?)( \+\d+)$/, (...m) => `${m[2].trim()} ${m[1].trim()}`);
+				// And vice-versa
+				const suffixBonusKey = lowName.replace(/^(\+\d+) (.*?)$/, (...m) => `${m[2].trim()} ${m[1].trim()}`);
+				const suffixBonusKeyComma = lowName.replace(/^(\+\d+) (.*?)$/, (...m) => `${m[2].trim()}, ${m[1].trim()}`);
 
-			const itemKeys = [
-				lowName,
-				prefixBonusKey === lowName ? null : prefixBonusKey,
-				suffixBonusKey === lowName ? null : suffixBonusKey,
-				suffixBonusKeyComma === lowName ? null : suffixBonusKeyComma,
-			].filter(Boolean);
+				const itemKeys = [
+					lowName,
+					prefixBonusKey === lowName ? null : prefixBonusKey,
+					suffixBonusKey === lowName ? null : suffixBonusKey,
+					suffixBonusKeyComma === lowName ? null : suffixBonusKeyComma,
+				].filter(Boolean);
 
-			const cpy = MiscUtil.copy(item);
+				const cpy = MiscUtil.copy(item);
 
-			itemKeys.forEach(k => {
-				if (!this._WEAPON_DETAIL_CACHE[k]) {
-					this._WEAPON_DETAIL_CACHE[k] = cpy;
-					return;
-				}
+				itemKeys
+					.forEach(k => {
+						if (!this._WEAPON_DETAIL_CACHE[k]) {
+							this._WEAPON_DETAIL_CACHE[k] = cpy;
+							return;
+						}
 
-				// If there is already something in the cache, prefer DMG + PHB entries, then official sources
-				const existing = this._WEAPON_DETAIL_CACHE[k];
-				if (existing.source === Parser.SRC_XDMG || existing.source === Parser.SRC_XPHB) return;
-				if (existing.source === Parser.SRC_DMG || existing.source === Parser.SRC_PHB) return;
-				if (SourceUtil.isNonstandardSource(existing.source)) return;
-				this._WEAPON_DETAIL_CACHE[k] = cpy;
+						// If there is already something in the cache, prefer DMG + PHB entries, then official sources
+						const existing = this._WEAPON_DETAIL_CACHE[k];
+						if (existing.source === Parser.SRC_XDMG || existing.source === Parser.SRC_XPHB) return;
+						if ((existing.source === Parser.SRC_DMG && cpy.source !== Parser.SRC_XDMG) || (existing.source === Parser.SRC_PHB && cpy.source !== Parser.SRC_XPHB)) return;
+						if (SourceUtil.isNonstandardSource(existing.source)) return;
+						this._WEAPON_DETAIL_CACHE[k] = cpy;
+					});
+
+				itemKeys
+					.forEach(k => {
+						if (!SourceUtil.isClassicSource(cpy.source)) return;
+
+						if (!this._WEAPON_DETAIL_CACHE_CLASSIC[k]) {
+							this._WEAPON_DETAIL_CACHE_CLASSIC[k] = cpy;
+							return;
+						}
+
+						// If there is already something in the cache, prefer DMG + PHB entries, then official sources
+						const existing = this._WEAPON_DETAIL_CACHE_CLASSIC[k];
+						if (existing.source === Parser.SRC_DMG || existing.source === Parser.SRC_PHB) return;
+						if (SourceUtil.isNonstandardSource(existing.source)) return;
+						this._WEAPON_DETAIL_CACHE_CLASSIC[k] = cpy;
+					});
 			});
-		}
 	}
 
 	static _isLikelyWeapon (act) {
@@ -2421,16 +2443,22 @@ export class AttachedItemTag {
 	//   - for creatures with a known "book" source, never use items from a known "adventure" source
 	//   - for creatures with a known "adventure" source, never use items from a *different* "adventure" source
 	//   - for a creature from a known source, never tag items from a more recent known source
-	static tryRun (mon, {cbNotFound = null, isAddOnly = false} = {}) {
+	static tryRun (mon, {cbNotFound = null, isAddOnly = false, styleHint = null} = {}) {
 		if (!this._WEAPON_DETAIL_CACHE) throw new Error(`Attached item cache was not initialized!`);
 
 		if (!mon.action?.length) return;
+
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
 		const itemSet = new Set();
 
 		mon.action
 			.forEach(act => {
-				const weapon = this._WEAPON_DETAIL_CACHE[Renderer.monsterAction.getWeaponLookupName(act)];
+				const lookup = styleHint === SITE_STYLE__CLASSIC
+					? this._WEAPON_DETAIL_CACHE_CLASSIC
+					: this._WEAPON_DETAIL_CACHE;
+
+				const weapon = lookup[Renderer.monsterAction.getWeaponLookupName(act)];
 				if (weapon) return itemSet.add(DataUtil.proxy.getUid("item", weapon));
 
 				if (!cbNotFound) return;

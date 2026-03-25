@@ -17,6 +17,10 @@ export class UtilsEntityRace {
 		//   -- XPHB, p38
 		delete ent.ability;
 
+		if (ent.entries) {
+			ent.entries.push(`{@note This species has been migrated for use with 5.5e (2024) rules, as per the rules in the {@book Player's Handbook (2024)|XPHB|2|Backgrounds and Species from Older Books}.}`);
+		}
+
 		return true;
 	}
 }

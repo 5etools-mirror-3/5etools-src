@@ -34,11 +34,14 @@ import {EntityFileHandlerSkills} from "./test-tags/entity-file/test-tags-entity-
 import {EntityFileHandlerSpell} from "./test-tags/entity-file/test-tags-entity-file-spell.js";
 import {EntityFileHandlerVariantrule} from "./test-tags/entity-file/test-tags-entity-file-variantrule.js";
 import {EntityFileHandlerSpellList} from "./test-tags/entity-file/test-tags-entity-file-spelllist.js";
+import {PATH_DEFAULT_HOMEBREW_DIR, PATH_DEFAULT_PRERELEASE_DIR} from "./util-test.js";
 
 const program = new Command()
 	.option("--log-similar", `If, when logging a missing link, a list of potentially-similar links should additionally be logged.`)
 	.option("--file-additional <filepath>", `An additional file (e.g. homebrew JSON) to load/check.`)
 	.option("--skip-non-additional", `If checking non-additional files (i.e., the "data" directory) should be skipped.`)
+	.option("--prerelease-root <filepath>", `When loading additional files, nested prerelease dependencies will be loaded against this root`, PATH_DEFAULT_PRERELEASE_DIR)
+	.option("--homebrew-root <filepath>", `When loading additional files, nested homebrew dependencies will be loaded against this root`, PATH_DEFAULT_HOMEBREW_DIR)
 ;
 
 program.parse(process.argv);
@@ -426,11 +429,11 @@ class AreaCheck extends DataTesterBase {
 	}
 
 	handleFile (file, contents) {
-		const isHomebrew = !!contents._meta?.sources?.length;
+		const isNonSiteData = !!this._isNonSiteData(file, contents);
 
-		if (!this._fileMatcherValid.test(file) && !isHomebrew) return this._handleObject_areaNotSupported({file, obj: contents, reason: "not a corpus data file"});
+		if (!this._fileMatcherValid.test(file) && !isNonSiteData) return this._handleObject_areaNotSupported({file, obj: contents, reason: "not a corpus data file"});
 
-		const propsValid = new Set(isHomebrew ? ["adventureData", "bookData"] : ["data"]);
+		const propsValid = new Set(isNonSiteData ? ["adventureData", "bookData"] : ["data"]);
 
 		if (!contents || typeof contents !== "object") return this._handleObject_areaNotSupported({file, obj: contents, reason: "root was not an object"});
 		if (contents instanceof Array) return this._handleObject_areaNotSupported({file, obj: contents, reason: "root was not an object"});
@@ -905,6 +908,10 @@ async function main () {
 	console.time(TIME_TAG);
 
 	ut.patchLoadJson();
+	if (params.fileAdditional) {
+		await PrereleaseUtil.pSetCustomUrl(params.prereleaseRoot);
+		await BrewUtil2.pSetCustomUrl(params.homebrewRoot);
+	}
 
 	await tagTestUrlLookup.pInit();
 
@@ -968,6 +975,10 @@ async function main () {
 		await DataTester.pRun(params.fileAdditional, dataTesters);
 	}
 
+	if (params.fileAdditional) {
+		await PrereleaseUtil.pSetCustomUrl(null);
+		await BrewUtil2.pSetCustomUrl(null);
+	}
 	ut.unpatchLoadJson();
 
 	const outMessage = DataTester.getLogReport(dataTesters);

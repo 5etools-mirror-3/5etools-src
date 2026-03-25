@@ -5,13 +5,17 @@ if (isMainThread) throw new Error(`Worker must not be started in main thread!`);
 
 let isCancelled = false;
 
-const pRunFile = ({filePath, fileNumber}) => {
+const pRunFile = ({filePath, fileNumber, prereleaseRoot, homebrewRoot}) => {
 	return new Promise(resolve => {
 		const args = [
 			"test/test-tags.js",
 			"--file-additional",
 			filePath,
 			"--skip-non-additional",
+			"--prerelease-root",
+			prereleaseRoot,
+			"--homebrew-root",
+			homebrewRoot,
 		];
 
 		const proc = spawn(
