@@ -403,7 +403,7 @@ class BlocklistUi {
 			});
 		// endregion
 
-		ee(this._wrpControls.empty())`<div class="${this._isCompactUi ? "ve-mb-2" : "ve-mb-5"} ve-flex-v-center ve-mobile-md__ve-flex-col ve-mobile-md__ve-flex-ai-start">
+		ee(this._wrpControls.empty())`<div class="${this._isCompactUi ? "ve-mb-2" : "ve-mb-5"} ve-flex-v-center ve-mobile-md__flex-col ve-mobile-md__flex-ai-start">
 			<div class="ve-flex-vh-center ve-mr-4 ve-mobile-md__mr-0 ve-mobile-md__mb-2">
 				<div class="ve-mr-2">UA/Etc. Sources</div>
 				<div class="ve-flex-v-center ve-btn-group">
@@ -453,7 +453,7 @@ class BlocklistUi {
 			</div>
 		</div>
 
-		<div class="ve-flex-v-end ${this._isCompactUi ? "ve-mb-2" : "ve-mb-5"} ve-mobile-sm__ve-flex-col ve-mobile-sm__ve-flex-ai-start">
+		<div class="ve-flex-v-end ${this._isCompactUi ? "ve-mb-2" : "ve-mb-5"} ve-mobile-sm__flex-col ve-mobile-sm__flex-ai-start">
 			<div class="ve-flex-col ve-w-25 ve-pr-2 ve-mobile-sm__w-100 ve-mobile-sm__mb-2 ve-mobile-sm__p-0">
 				<label class="ve-mb-1">Source</label>
 				${selSource}

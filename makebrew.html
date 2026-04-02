@@ -65,14 +65,6 @@
 <div class="cancer__wrp-sidebar cancer__wrp-sidebar-rhs cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__sidebar-inner cancer__sidebar-inner--top cancer__wrp-interactive"><!--5ETOOLS_AD_RIGHT_1--></div><div class="cancer__sidebar-inner cancer__sidebar-inner--bottom cancer__wrp-interactive"><!--5ETOOLS_AD_RIGHT_2--></div></div>
 
 <div class="viewport-wrapper">
-	<div class="sidemenu__toggle ve-hidden">
-		<div class="sidemenu__hotzone"></div>
-		<div class="sidemenu__burger"></div>
-		<div class="sidemenu__burger"></div>
-		<div class="sidemenu__burger"></div>
-		<div class="sidemenu"></div>
-	</div>
-
 	<div class="cancer__wrp-leaderboard cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__wrp-leaderboard-inner cancer__wrp-interactive"><!--5ETOOLS_AD_LEADERBOARD--></div></div>
 
 	<header class="hidden-xs hidden-sm page__header">
@@ -92,13 +84,21 @@
 
 	<div id="page_source" class="container view-col-wrapper ve-hidden"></div>
 
-	<div id="page_main" class="container view-col-wrapper ve-hidden">
-		<div class="view-col">
-			<div id="content_input"></div>
-			<div id="content_input_controls" class="ve-split-v-center ve-pt-2 ve-px-1"></div>
-		</div>
+	<div id="page_main" class="ve-h-100 ve-flex-col ve-min-h-0 ve-hidden">
+		<div class="container ve-h-100 ve-flex-col">
+			<div class="ve-w-100 ve-pt-2 ve-mb-1 ve-pl-7p ve-flex-v-center ve-mobile-md__flex-col ve-mobile-md__flex-ai-start" id="wrp-settings"></div>
 
-		<div class="view-col" id="content_output"></div>
+			<hr class="ve-hr-3 ve-w-initial ve-mx-7p">
+
+			<div class="view-col-wrapper">
+				<div class="view-col">
+					<div id="content_input"></div>
+					<div id="content_input_controls" class="ve-split-v-center ve-pt-2 ve-px-1"></div>
+				</div>
+
+				<div class="view-col" id="content_output"></div>
+			</div>
+		</div>
 	</div>
 </div>
 

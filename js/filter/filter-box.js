@@ -349,12 +349,12 @@ export class FilterBox extends ProxyBase {
 		const btnCancel = ee`<button class="ve-btn ve-btn-default ve-fltr__btn-close">Cancel</button>`
 			.onn("click", () => this._modalMeta.doClose(false));
 
-		ee(this._modalMeta.eleModal)`<div class="ve-split ve-mb-2 ve-mt-2 ve-flex-v-center ve-mobile-sm__ve-flex-col">
-			<div class="ve-flex-v-baseline ve-mobile-sm__ve-flex-col">
+		ee(this._modalMeta.eleModal)`<div class="ve-split ve-mb-2 ve-mt-2 ve-flex-v-center ve-mobile-sm__flex-col">
+			<div class="ve-flex-v-baseline ve-mobile-sm__flex-col">
 				<h4 class="ve-m-0 ve-mr-2 ve-mobile-sm__mb-2">Filters</h4>
 				${this._metaIptSearch.wrp.addClass("ve-mobile-sm__mb-2")}
 			</div>
-			<div class="ve-flex-v-center ve-mobile-sm__ve-flex-col">
+			<div class="ve-flex-v-center ve-mobile-sm__flex-col">
 				<div class="ve-flex-v-center ve-mobile-sm__m-1">
 					<div class="ve-mr-2">Combine as</div>
 					${wrpBtnCombineFilters}

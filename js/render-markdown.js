@@ -864,6 +864,53 @@ ${prefix}|${Parser.ABIL_ABVS.map(ab => ent[ab] == null ? `\u2014|` : `${ent[ab]}
 	}
 };
 
+RendererMarkdown.exporting = class {
+	static async pGetMarkdownDoc ({ents, prop, pFnGetFluff = null}) {
+		const asEntries = (await Promise.all(ents
+			.map(async (ent, i) => {
+				const monEntry = ({type: "statblockInline", dataType: prop, data: ent});
+
+				const fluff = pFnGetFluff ? await pFnGetFluff(ent) : null;
+
+				const fluffEntries = (fluff || {}).entries || [];
+
+				RendererMarkdown.get().setFirstSection(true);
+				const fluffText = fluffEntries.map(ent => RendererMarkdown.get().render(ent)).join("\n\n");
+
+				const out = [monEntry];
+
+				const isAddPageBreaks = VetoolsConfig.get("markdown", "isAddPageBreaks");
+				if (fluffText) {
+					// Insert a page break before every fluff section
+					if (isAddPageBreaks) out.push("", "\\pagebreak", "");
+
+					out.push(`## ${ent.name}`);
+
+					// Split into runs of <X characters, and join these with page breaks
+					let stack = [];
+					let charLimit = RendererMarkdown.CHARS_PER_PAGE;
+					fluffText.split("\n").forEach(l => {
+						if ((charLimit -= l.length) < 0) {
+							out.push(stack.join("\n"));
+							if (isAddPageBreaks) out.push("", "\\pagebreak", "");
+							stack = [];
+							charLimit = RendererMarkdown.CHARS_PER_PAGE - l.length;
+						}
+						stack.push(l);
+					});
+					if (stack.length) out.push(stack.join("\n"));
+				}
+
+				// Insert a page break after every creature statblock or fluff section
+				if (i !== ents.length - 1 && isAddPageBreaks) out.push("", "\\pagebreak", "");
+				return out;
+			})))
+			.flat();
+
+		return RendererMarkdown.get().render({entries: asEntries});
+	}
+};
+
 /** @abstract */
 class _RenderCompactMarkdownBestiaryImplBase {
 	_style;
@@ -1372,53 +1419,6 @@ RendererMarkdown.monster = class {
 		meta.depth = cacheDepth;
 		return out;
 	}
-
-	// region Exporting
-	static async pGetMarkdownDoc (monsters) {
-		const asEntries = (await Promise.all(monsters
-			.map(async (mon, i) => {
-				const monEntry = ({type: "statblockInline", dataType: "monster", data: mon});
-
-				const fluff = await Renderer.monster.pGetFluff(mon);
-
-				const fluffEntries = (fluff || {}).entries || [];
-
-				RendererMarkdown.get().setFirstSection(true);
-				const fluffText = fluffEntries.map(ent => RendererMarkdown.get().render(ent)).join("\n\n");
-
-				const out = [monEntry];
-
-				const isAddPageBreaks = VetoolsConfig.get("markdown", "isAddPageBreaks");
-				if (fluffText) {
-					// Insert a page break before every fluff section
-					if (isAddPageBreaks) out.push("", "\\pagebreak", "");
-
-					out.push(`## ${mon.name}`);
-
-					// Split into runs of <X characters, and join these with page breaks
-					let stack = [];
-					let charLimit = RendererMarkdown.CHARS_PER_PAGE;
-					fluffText.split("\n").forEach(l => {
-						if ((charLimit -= l.length) < 0) {
-							out.push(stack.join("\n"));
-							if (isAddPageBreaks) out.push("", "\\pagebreak", "");
-							stack = [];
-							charLimit = RendererMarkdown.CHARS_PER_PAGE - l.length;
-						}
-						stack.push(l);
-					});
-					if (stack.length) out.push(stack.join("\n"));
-				}
-
-				// Insert a page break after every creature statblock or fluff section
-				if (i !== monsters.length - 1 && isAddPageBreaks) out.push("", "\\pagebreak", "");
-				return out;
-			})))
-			.flat();
-
-		return RendererMarkdown.get().render({entries: asEntries});
-	}
-	// endregion
 };
 
 RendererMarkdown.spell = class {

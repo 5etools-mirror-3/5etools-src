@@ -266,7 +266,7 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 		const stgAdjust = this._getRenderedWrpRandomAndAdjust_getAdjustMeta({tiers});
 
 		return ee`<div class="ve-flex-col">
-			<div class="ve-flex-v-center ve-mobile-lg__ve-flex-col ve-mobile-lg__ve-flex-ai-start">
+			<div class="ve-flex-v-center ve-mobile-lg__flex-col ve-mobile-lg__flex-ai-start">
 				${stgRandom}
 
 				<div class="ve-vr-2 ve-min-h-24p ve-mobile-lg__hidden"></div>

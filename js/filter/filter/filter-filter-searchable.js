@@ -1,22 +1,18 @@
-import {Filter} from "./filter-filter-generic.js";
+import {CompSearch, Filter} from "./filter-filter-generic.js";
 import {PILL_STATE__IGNORE, PILL_STATE__NO, PILL_STATE__YES} from "../filter-constants.js";
+
+class _CompSearchSearchable extends CompSearch {
+	_getDefaultState () {
+		return {
+			...super._getDefaultState(),
+			search: "",
+		};
+	}
+}
 
 export class SearchableFilter extends Filter {
 	constructor (opts) {
-		super(opts);
-
-		this._compSearch = BaseComponent.fromObject({
-			search: "",
-			searchTermParent: "",
-		});
-	}
-
-	handleSearch (searchTerm) {
-		const out = super.handleSearch(searchTerm);
-
-		this._compSearch._state.searchTermParent = searchTerm;
-
-		return out;
+		super({...opts, compSearch: new _CompSearchSearchable()});
 	}
 
 	_getPill (item) {

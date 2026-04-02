@@ -13,6 +13,14 @@ class FilterTransientOptions {
 	}
 }
 
+export class CompSearch extends BaseComponent {
+	_getDefaultState () {
+		return {
+			searchTermParent: "",
+		};
+	}
+}
+
 export class Filter extends FilterBase {
 	static _getAsFilterItems (items) {
 		return items ? items.map(it => it instanceof FilterItem ? it : new FilterItem({item: it})) : null;
@@ -56,6 +64,7 @@ export class Filter extends FilterBase {
 	 * @param [opts.isSortByDisplayItems] If items should be sorted by their display value, rather than their internal value.
 	 * @param [opts.pFnOnChange] Function to be run when a filter item changes.
 	 * @param [opts.isMiscFilter] If this is the Misc. filter (containing "SRD" and "Basic Rules" tags).
+	 * @param [opts.compSearch] Component responsible for managing search term update propagation.
 	 */
 	constructor (opts) {
 		super(opts);
@@ -95,6 +104,8 @@ export class Filter extends FilterBase {
 		this._isNestsDirty = false;
 		this._isItemsDirty = false;
 		this._pillGroupsMeta = {};
+
+		this._compSearch = opts.compSearch || new CompSearch();
 	}
 
 	get isReprintedFilter () { return this._isReprintedFilter; }
@@ -560,29 +571,56 @@ export class Filter extends FilterBase {
 		return btnMini;
 	}
 
-	_doSetPillsAll () {
-		this._proxyAssignSimple(
-			"state",
-			Object.keys(this._state)
-				.mergeMap(k => ({[k]: PILL_STATE__YES})),
-			true,
-		);
+	_doSetPillsAll ({isIgnoreSearchTermParent = false} = {}) {
+		this._doSetPillsBulk({stateTarget: PILL_STATE__YES, isIgnoreSearchTermParent});
 	}
 
-	_doSetPillsClear () {
-		this._proxyAssignSimple(
-			"state",
-			Object.keys(this._state)
-				.mergeMap(k => ({[k]: PILL_STATE__IGNORE})),
-			true,
-		);
+	_doSetPillsClear ({isIgnoreSearchTermParent = false} = {}) {
+		this._doSetPillsBulk({stateTarget: PILL_STATE__IGNORE, isIgnoreSearchTermParent});
 	}
 
-	_doSetPillsNone () {
+	_doSetPillsNone ({isIgnoreSearchTermParent = false} = {}) {
+		this._doSetPillsBulk({stateTarget: PILL_STATE__NO, isIgnoreSearchTermParent});
+	}
+
+	_doSetPillsBulk ({stateTarget, isIgnoreSearchTermParent = false} = {}) {
+		if (isIgnoreSearchTermParent || !this._compSearch._state.searchTermParent) {
+			this._proxyAssignSimple(
+				"state",
+				Object.keys(this._state)
+					.mergeMap(k => ({[k]: stateTarget})),
+				true,
+			);
+			return;
+		}
+
+		const {
+			itemsVisible: searchVisibleItems,
+			itemsNotVisible: searchNotVisibleItems,
+		} = this._getSearchVisibleItems({searchTerm: this._compSearch._state.searchTermParent});
+
+		if (!searchVisibleItems.length) {
+			this._proxyAssignSimple(
+				"state",
+				Object.keys(this._state)
+					.mergeMap(k => ({[k]: stateTarget})),
+				true,
+			);
+			return;
+		}
+
 		this._proxyAssignSimple(
 			"state",
-			Object.keys(this._state)
-				.mergeMap(k => ({[k]: PILL_STATE__NO})),
+			{
+				...Object.fromEntries(
+					searchVisibleItems
+						.map(itm => [itm.item, stateTarget]),
+				),
+				...Object.fromEntries(
+					searchNotVisibleItems
+						.map(itm => [itm.item, PILL_STATE__IGNORE]),
+				),
+			},
 			true,
 		);
 	}
@@ -595,21 +633,30 @@ export class Filter extends FilterBase {
 		const btnAll = e_({
 			tag: "button",
 			clazz: `ve-btn ve-btn-default ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"} ve-fltr__h-btn--all ve-w-100`,
-			click: () => this._doSetPillsAll(),
+			click: evt => this._doSetPillsAll({isIgnoreSearchTermParent: !!evt.shiftKey}),
 			html: "All",
 		});
 		const btnClear = e_({
 			tag: "button",
 			clazz: `ve-btn ve-btn-default ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"} ve-fltr__h-btn--clear ve-w-100`,
-			click: () => this._doSetPillsClear(),
+			click: evt => this._doSetPillsClear({isIgnoreSearchTermParent: !!evt.shiftKey}),
 			html: "Clear",
 		});
 		const btnNone = e_({
 			tag: "button",
 			clazz: `ve-btn ve-btn-default ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"} ve-fltr__h-btn--none ve-w-100`,
-			click: () => this._doSetPillsNone(),
+			click: evt => this._doSetPillsNone({isIgnoreSearchTermParent: !!evt.shiftKey}),
 			html: "None",
 		});
+		this._compSearch._addHookBase("searchTermParent", () => {
+			const tooltipIgnoreSearch = this._compSearch._state.searchTermParent
+				? `SHIFT to Ignore Search`
+				: null;
+			btnAll.tooltip(tooltipIgnoreSearch);
+			btnClear.tooltip(tooltipIgnoreSearch);
+			btnNone.tooltip(tooltipIgnoreSearch);
+		})();
+
 		const btnDefault = e_({
 			tag: "button",
 			clazz: `ve-btn ve-btn-default ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"} ve-w-100`,
@@ -1230,30 +1277,37 @@ export class Filter extends FilterBase {
 	}
 
 	handleSearch (searchTerm) {
-		const isHeaderMatch = this._getHeaderDisplayName().toLowerCase().includes(searchTerm);
+		this._compSearch._state.searchTermParent = searchTerm;
 
-		if (isHeaderMatch) {
-			this._items.forEach(it => {
+		const {
+			itemsVisible: searchVisibleItems,
+			itemsNotVisible: searchNotVisibleItems,
+		} = this._getSearchVisibleItems({searchTerm});
+
+		searchVisibleItems
+			.forEach(it => {
 				if (!it.rendered) return;
 				it.rendered.toggleClass("ve-fltr__hidden--search", false);
 			});
 
-			if (this.__wrpFilter) this.__wrpFilter.toggleClass("ve-fltr__hidden--search", false);
+		searchNotVisibleItems
+			.forEach(it => {
+				if (!it.rendered) return;
+				it.rendered.toggleClass("ve-fltr__hidden--search", true);
+			});
 
-			return true;
-		}
+		if (this.__wrpFilter) this.__wrpFilter.toggleClass("ve-fltr__hidden--search", !searchVisibleItems.length);
 
-		let visibleCount = 0;
-		this._items.forEach(it => {
-			if (!it.rendered) return;
-			const isVisible = it.searchText.includes(searchTerm);
-			it.rendered.toggleClass("ve-fltr__hidden--search", !isVisible);
-			if (isVisible) visibleCount++;
-		});
+		return !!searchVisibleItems.length;
+	}
 
-		if (this.__wrpFilter) this.__wrpFilter.toggleClass("ve-fltr__hidden--search", visibleCount === 0);
+	_getSearchVisibleItems ({searchTerm}) {
+		const isHeaderMatch = this._getHeaderDisplayName().toLowerCase().includes(searchTerm);
 
-		return visibleCount !== 0;
+		if (isHeaderMatch) return {itemsVisible: this._items, itemsNotVisible: []};
+
+		const [itemsVisible, itemsNotVisible] = this._items.segregate(it => it.searchText.includes(searchTerm));
+		return {itemsVisible, itemsNotVisible};
 	}
 
 	static _getNextCombineMode (combineMode) {

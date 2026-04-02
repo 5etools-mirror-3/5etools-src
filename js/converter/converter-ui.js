@@ -1,6 +1,54 @@
 import {ConverterUiUtil} from "./converter-ui-utils.js";
 
+const _APPEND_PREPEND_MODE__APPEND = "append";
+const _APPEND_PREPEND_MODE__PREPEND = "prepend";
+
+class _ConverterUiSettings extends BaseComponent {
+	constructor ({comp, converter, ...rest}) {
+		super({...rest});
+
+		this._comp = comp;
+		this._converter = converter;
+	}
+
+	render ({eleParent}) {
+		const iptInputSeparator = ComponentUiUtil.getIptStr(this._comp, "inputSeparator").addClass("ve-code");
+
+		const selAppendPrependMode = ComponentUiUtil.getSelEnum(
+			this._comp,
+			"appendPrependMode",
+			{
+				values: [
+					_APPEND_PREPEND_MODE__APPEND,
+					_APPEND_PREPEND_MODE__PREPEND,
+				],
+				fnDisplay: val => val.toTitleCase(),
+			},
+		);
+
+		ee`<div class="ve-flex-col ve-mt-3">
+			<label class="ve-split-v-center ve-w-100 ve-mb-2" title="A separator used to mark the end of one to-be-converted entity (creature, spell, etc.) so that multiple entities can be converted in one run. If left blank, the entire input text will be parsed as one entity.">
+				<span class="ve-w-66 ve-no-shrink ve-mr-2 ve-flex-v-center">Input Separator</span>
+				${iptInputSeparator}
+			</label>
+			
+			<label class="ve-split-v-center ve-w-100" title="Sets output order when using the &quot;Parse and Add&quot; button, or parsing multiple blocks of text using a separator.">
+				<span class="ve-w-66 ve-no-shrink ve-mr-2 ve-flex-v-center">&quot;Parse and Add&quot; Behaviour</span>
+				${selAppendPrependMode}
+			</label>
+			
+			<hr class="ve-hr-3">
+		</div>`
+			.appendTo(eleParent);
+
+		this._converter.renderSettingsModal({compParent: this._comp, eleParent});
+	}
+}
+
 export class ConverterUi extends BaseComponent {
+	static _STORAGE_INPUT = "converterInput";
+	static _STORAGE_STATE = "converterState";
+
 	constructor () {
 		super();
 
@@ -9,8 +57,8 @@ export class ConverterUi extends BaseComponent {
 
 		this._converters = {};
 
-		this._saveInputDebounced = MiscUtil.debounce(() => StorageUtil.pSetForPage(ConverterUi.STORAGE_INPUT, this._editorIn.getValue()), 50);
-		this.saveSettingsDebounced = MiscUtil.debounce(() => StorageUtil.pSetForPage(ConverterUi.STORAGE_STATE, this.getBaseSaveableState()), 50);
+		this._saveInputDebounced = MiscUtil.debounce(() => StorageUtil.pSetForPage(this.constructor._STORAGE_INPUT, this._editorIn.getValue()), 50);
+		this.saveSettingsDebounced = MiscUtil.debounce(() => StorageUtil.pSetForPage(this.constructor._STORAGE_STATE, this.getBaseSaveableState()), 50);
 
 		this._addHookAll("state", () => this.saveSettingsDebounced());
 
@@ -37,21 +85,18 @@ export class ConverterUi extends BaseComponent {
 		super.setBaseSaveableStateFrom(toLoad, ...rest);
 	}
 
-	getPod () {
-		return {
-			...super.getPod(),
-			doRefreshAvailableSources: this._doRefreshAvailableSources.bind(this),
-		};
-	}
-
 	_doRefreshAvailableSources () {
 		this._state.availableSources = BrewUtil2.getSources().sort((a, b) => SortUtil.ascSortLower(a.full, b.full))
 			.map(it => it.json);
 	}
 
+	doRefreshAvailableSources () {
+		return this._doRefreshAvailableSources();
+	}
+
 	async pInit () {
 		// region load state
-		const savedState = await StorageUtil.pGetForPage(ConverterUi.STORAGE_STATE);
+		const savedState = await StorageUtil.pGetForPage(this.constructor._STORAGE_STATE);
 		if (savedState) {
 			this.setBaseSaveableStateFrom(savedState);
 			Object.values(this._converters)
@@ -69,22 +114,26 @@ export class ConverterUi extends BaseComponent {
 		this._state.hasAppended = false;
 		// endregion
 
-		this._editorIn = await EditorUtil.pInitEditor("converter_input");
+		this._editorIn = await EditorUtil.pInitEditor("ipt-converter-input");
 		try {
-			const prevInput = await StorageUtil.pGetForPage(ConverterUi.STORAGE_INPUT);
+			const prevInput = await StorageUtil.pGetForPage(this.constructor._STORAGE_INPUT);
 			if (prevInput) this._editorIn.setValue(prevInput, -1);
 		} catch (ignored) { setTimeout(() => { throw ignored; }); }
 		this._editorIn.on("change", () => this._saveInputDebounced());
 
-		this._editorOut = await EditorUtil.pInitEditor("converter_output", {readOnly: true, mode: "ace/mode/json"});
+		this._editorOut = await EditorUtil.pInitEditor("ipt-converter-output", {readOnly: true, mode: "ace/mode/json"});
 
-		es(`#editable`).onn("click", () => {
-			this._outReadOnly = false;
-			JqueryUtil.doToast({type: "warning", content: "Enabled editing. Note that edits will be overwritten as you parse new stat blocks."});
-		});
+		const btnEnableEditing = es(`#btn-enable-edit`)
+			.onn("click", () => {
+				this._state.outputEnableEditing = !this._state.outputEnableEditing;
+			});
+		this._addHookBase("outputEnableEditing", () => {
+			btnEnableEditing.toggleClass("ve-active", !!this._state.outputEnableEditing);
+			this._editorOut.setOptions({readOnly: !this._state.outputEnableEditing});
+		})();
 
 		let hovWindowPreview = null;
-		es(`#preview`)
+		es(`#btn-preview`)
 			.onn("click", async evt => {
 				const metaCurr = this._getCurrentEntities();
 
@@ -135,7 +184,7 @@ export class ConverterUi extends BaseComponent {
 				);
 			});
 
-		const btnSaveLocal = es(`#save_local`).onn("click", async () => {
+		const btnSaveLocal = es(`#btn-save-local`).onn("click", async () => {
 			const metaCurr = this._getCurrentEntities();
 
 			if (!metaCurr?.entities?.length) return JqueryUtil.doToast({content: "Nothing to save!", type: "warning"});
@@ -158,7 +207,7 @@ export class ConverterUi extends BaseComponent {
 				.map(ent => ent.source);
 			if (uneditableSources.length) {
 				JqueryUtil.doToast({
-					content: `One or more entries have sources which belong to non-editable homebrew: ${uneditableSources.join(", ")}`,
+					content: `One or more entries have sources which belong to non-btn-enable-edit homebrew: ${uneditableSources.join(", ")}`,
 					type: "danger",
 				});
 				return;
@@ -316,8 +365,8 @@ export class ConverterUi extends BaseComponent {
 			});
 		};
 
-		es("#parsestatblock").onn("click", () => doConversion(false));
-		es(`#parsestatblockadd`).onn("click", () => doConversion(true));
+		es("#btn-parse").onn("click", () => doConversion(false));
+		es(`#btn-parse-and-add`).onn("click", () => doConversion(true));
 
 		e_(document.body)
 			.onn("keydown", evt => {
@@ -326,14 +375,15 @@ export class ConverterUi extends BaseComponent {
 				const key = EventUtil.getKeyIgnoreCapsLock(evt);
 				if (!["+", "-"].includes(key)) return;
 
+				if (!this.activeConverter?.getHasPageNumbers()) return;
+
 				evt.stopPropagation();
 				evt.preventDefault();
 
 				this.activeConverter.page += (key === "+" ? 1 : -1);
 			});
 
-		this._initSideMenu();
-		this._initFooterLhs();
+		this._initSettings();
 
 		this._pInit_dispErrorsWarnings();
 
@@ -341,8 +391,8 @@ export class ConverterUi extends BaseComponent {
 	}
 
 	_pInit_dispErrorsWarnings () {
-		const stgErrors = es(`#lastError`);
-		const stgWarnings = es(`#lastWarnings`);
+		const stgErrors = es(`#disp-errors`);
+		const stgWarnings = es(`#disp-warnings`);
 
 		const getRow = ({prefix, text, prop}) => {
 			const btnClose = ee`<button class="ve-btn ve-btn-danger ve-btn-xs ve-w-24p" title="Dismiss ${prefix} (SHIFT to Dismiss All)">×</button>`
@@ -401,65 +451,44 @@ export class ConverterUi extends BaseComponent {
 		}
 	}
 
-	_initSideMenu () {
-		const mnu = es(`.sidemenu`);
-
-		const selConverter = ComponentUiUtil.getSelEnum(
+	_initSettings () {
+		ComponentUiUtil.getSelEnum(
 			this,
 			"converter",
 			{
+				ele: es(`#sel-mode`)
+					.attr("disabled", false),
 				values: Object.keys(this._converters),
 				fnDisplay: converterId => this._converters[converterId].name,
 			},
 		);
 
-		ee`<div class="ve-w-100 ve-split-v-center"><div class="sidemenu__row__label">Mode</div>${selConverter}</div>`
-			.appendTo(mnu);
+		es(`#btn-settings`)
+			.attr("disabled", false)
+			.onn("click", () => {
+				const {eleModalInner} = UiUtil.getShowModal({
+					title: "Settings",
+					isHeaderBorder: true,
+					isUncappedHeight: true,
+				});
 
-		ConverterUiUtil.renderSideMenuDivider(mnu);
+				const compSettings = new _ConverterUiSettings({
+					comp: this,
+					converter: this.activeConverter,
+				});
+				compSettings.render({eleParent: eleModalInner});
+			});
 
-		// region mult-part parsing options
-		const iptInputSeparator = ComponentUiUtil.getIptStr(this, "inputSeparator").addClass("ve-code");
-		ee`<div class="ve-w-100 ve-split-v-center ve-mb-2"><div class="sidemenu__row__label ve-help ve-mr-2" title="A separator used to mark the end of one to-be-converted entity (creature, spell, etc.) so that multiple entities can be converted in one run. If left blank, the entire input text will be parsed as one entity.">Separator</div>${iptInputSeparator}</div>`
-			.appendTo(mnu);
+		const wrpSettings = es(`#wrp-settings`);
 
-		const selAppendPrependMode = ComponentUiUtil.getSelEnum(
-			this,
-			"appendPrependMode",
-			{
-				values: [
-					ConverterUi._APPEND_PREPEND_MODE__APPEND,
-					ConverterUi._APPEND_PREPEND_MODE__PREPEND,
-				],
-				fnDisplay: val => val.toTitleCase(),
-			},
-		);
-		ee`<div class="ve-w-100 ve-split-v-center"><div class="sidemenu__row__label ve-mr-2" title="Sets output order when using the &quot;Parse and Add&quot; button, or parsing multiple blocks of text using a separator.">On Add</div>${selAppendPrependMode}</div>`
-			.appendTo(mnu);
+		this._addHookBase("converter", () => {
+			wrpSettings.empty();
+			this.activeConverter.renderSettings({compParent: this, wrpSettings});
 
-		ConverterUiUtil.renderSideMenuDivider(mnu);
-		// endregion
-
-		const wrpConverters = ee`<div class="ve-w-100 ve-flex-col"></div>`.appendTo(mnu);
-		Object.entries(this._converters)
-			.sort(([, vA], [, vB]) => SortUtil.ascSortLower(vA.name, vB.name))
-			.forEach(([, converter]) => converter.renderSidebar(this.getPod(), wrpConverters));
-
-		const hkMode = () => {
 			this._editorIn.setOptions({
 				mode: ConverterUiUtil.getAceMode(this.activeConverter?.mode),
 			});
-		};
-		this._addHookBase("converter", hkMode);
-		hkMode();
-	}
-
-	_initFooterLhs () {
-		const wrpFooterLhs = es(`#wrp-footer-lhs`);
-
-		Object.entries(this._converters)
-			.sort(([, vA], [, vB]) => SortUtil.ascSortLower(vA.name, vB.name))
-			.forEach(([, converter]) => converter.renderFooterLhs(this.getPod(), {wrpFooterLhs}));
+		})();
 	}
 
 	doCleanAndOutput (obj, append) {
@@ -475,15 +504,22 @@ export class ConverterUi extends BaseComponent {
 		}
 	}
 
-	set _outReadOnly (val) { this._editorOut.setOptions({readOnly: val}); }
-
 	get _outText () { return this._editorOut.getValue(); }
 	set _outText (text) { this._editorOut.setValue(text, -1); }
 
 	get inText () { return CleanUtil.getCleanString((this._editorIn.getValue() || "").trim(), {isFast: false}); }
 	set inText (text) { this._editorIn.setValue(text, -1); }
 
-	_getDefaultState () { return MiscUtil.copy(ConverterUi._DEFAULT_STATE); }
+	static _DEFAULT_STATE = {
+		hasAppended: false,
+		appendPrependMode: _APPEND_PREPEND_MODE__APPEND,
+		converter: "Creature",
+		sourceJson: "",
+		inputSeparator: "===",
+		outputEnableEditing: false,
+	};
+
+	_getDefaultState () { return MiscUtil.copy(this.constructor._DEFAULT_STATE); }
 
 	_getDefaultMetaState () {
 		return {
@@ -492,14 +528,3 @@ export class ConverterUi extends BaseComponent {
 		};
 	}
 }
-ConverterUi.STORAGE_INPUT = "converterInput";
-ConverterUi.STORAGE_STATE = "converterState";
-ConverterUi._APPEND_PREPEND_MODE__APPEND = "append";
-ConverterUi._APPEND_PREPEND_MODE__PREPEND = "prepend";
-ConverterUi._DEFAULT_STATE = {
-	hasAppended: false,
-	appendPrependMode: ConverterUi._APPEND_PREPEND_MODE__APPEND,
-	converter: "Creature",
-	sourceJson: "",
-	inputSeparator: "===",
-};

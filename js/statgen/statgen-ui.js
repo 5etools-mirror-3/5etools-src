@@ -497,7 +497,7 @@ export class StatGenUi extends BaseComponent {
 				}
 			});
 
-		return ee`<div class="ve-flex ve-mobile-sm__ve-flex-col ve-mb-2">
+		return ee`<div class="ve-flex ve-mobile-sm__flex-col ve-mb-2">
 			<div class="ve-flex-v-center">
 				<div class="ve-statgen-pb__cell ve-mr-4 ve-mobile-sm__hidden"></div>
 
@@ -632,7 +632,7 @@ export class StatGenUi extends BaseComponent {
 			<h4>Ability Score Point Cost</h4>
 
 			<div class="ve-flex-col">
-				<div class="ve-flex ve-mobile-sm__ve-flex-col">
+				<div class="ve-flex ve-mobile-sm__flex-col">
 					<div class="ve-flex-col ve-mr-3 ve-mobile-sm__mr-0">
 						<div class="ve-flex-v-center ve-mb-1">
 							<div class="ve-statgen-pb__col-cost ve-flex-vh-center ve-bold">Score</div>
@@ -914,7 +914,7 @@ export class StatGenUi extends BaseComponent {
 			${stgArrayHeader}
 			${stgManualHeader}
 
-			<div class="ve-flex ve-mobile-lg__ve-flex-col ve-w-100 ve-px-3">
+			<div class="ve-flex ve-mobile-lg__flex-col ve-w-100 ve-px-3">
 				<div class="ve-flex-col">
 					${stgPbHeader}
 
@@ -1005,7 +1005,7 @@ export class StatGenUi extends BaseComponent {
 		const wrpAsi = this._render_getWrpAsi();
 
 		ee(wrpTab)`
-			<div class="ve-flex ve-mobile-lg__ve-flex-col ve-w-100 ve-px-3">
+			<div class="ve-flex ve-mobile-lg__flex-col ve-w-100 ve-px-3">
 				<div class="ve-flex-col">
 					<div class="ve-flex">
 						<div class="ve-flex-col ve-mr-3">

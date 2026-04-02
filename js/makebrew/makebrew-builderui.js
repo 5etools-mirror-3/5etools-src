@@ -397,9 +397,3 @@ export class BuilderUi {
 			.onn("mousedown", () => doDragRender());
 	}
 }
-
-export class PageUiUtil {
-	static getSideMenuDivider (heavy) {
-		return ee`<hr class="ve-w-100 ve-hr-2 sidemenu__row__divider ${heavy ? "sidemenu__row__divider--heavy" : ""}">`;
-	}
-}

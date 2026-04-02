@@ -111,10 +111,10 @@ class SearchPage {
 		SearchPage._wrpResults = ee`<div class="ve-flex-col ve-w-100">${this._getWrpResult_message("Loading...")}</div>`;
 
 		ee(SearchPage._wrp)`<div class="ve-flex-col ve-w-100 pg-search__wrp">
-			<div class="ve-flex-v-center ve-mb-2 ve-mobile-lg__ve-flex-col">
+			<div class="ve-flex-v-center ve-mb-2 ve-mobile-lg__flex-col">
 				<div class="ve-flex-v-center input-group ve-btn-group ve-mr-2 ve-w-100 ve-mobile-lg__mb-2">${iptSearch}${btnSearch}</div>
 
-				<div class="ve-flex-v-center ve-mobile-sm__ve-flex-col ve-mobile-lg__ve-flex-ai-start ve-mobile-lg__w-100">
+				<div class="ve-flex-v-center ve-mobile-sm__flex-col ve-mobile-lg__flex-ai-start ve-mobile-lg__w-100">
 					${btnHelp}
 					<div class="ve-mr-2 ve-ml-1 ve-mobile-sm__ml-0 ve-mobile-sm__mb-2 ve-italic">Include</div>
 					<div class="ve-flex-v-center ve-btn-group ve-mr-2 ve-mobile-sm__mb-2 ve-mobile-sm__mr-0">
@@ -227,7 +227,7 @@ class SearchPage {
 
 			const out = {};
 
-			const row = ee`<div class="ve-my-2 ve-py-2 ve-pl-3 ve-pr-2 pg-search__wrp-result ve-flex ve-relative ve-mobile-sm__ve-flex-col">
+			const row = ee`<div class="ve-my-2 ve-py-2 ve-pl-3 ve-pr-2 pg-search__wrp-result ve-flex ve-relative ve-mobile-sm__flex-col">
 				<div class="ve-flex-v-center ve-mobile-sm__mb-2 ve-w-100">
 					${dispImage}
 					<div class="ve-flex-col ve-flex-h-center ve-mr-auto">
@@ -235,7 +235,7 @@ class SearchPage {
 						<div>${ptSource}${ptPage ? `, ${ptPage}` : ""}</div>
 					</div>
 				</div>
-				<div class="ve-flex-v-center ve-mobile-sm__ve-flex-col-reverse ve-mobile-sm__ve-flex-ai-start">
+				<div class="ve-flex-v-center ve-mobile-sm__flex-col-reverse ve-mobile-sm__flex-ai-start">
 					${dispPreview}
 					${wrpPreviewControls}
 				</div>

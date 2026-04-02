@@ -1,12 +1,24 @@
-import {BuilderUi, PageUiUtil} from "./makebrew-builderui.js";
+import {BuilderUi} from "./makebrew-builderui.js";
 import {VetoolsConfig} from "../utils-config/utils-config-config.js";
 import {SITE_STYLE__CLASSIC, SITE_STYLE_DISPLAY} from "../consts.js";
 import {PropOrder} from "../utils-proporder.js";
 
-class SidemenuRenderCache {
-	constructor ({lastStageSaved, lastWrpBtnLoadExisting}) {
-		this.lastStageSaved = lastStageSaved;
-		this.lastWrpBtnLoadExisting = lastWrpBtnLoadExisting;
+class _RenderStateEntityList {
+	constructor () {
+		this.renderCacheListItems = {};
+		this.wrpRows = ee`<div class="ve-flex-col"></div>`;
+	}
+
+	doToggleVisible (val) {
+		this.wrpRows.toggleVe(!!val);
+	}
+
+	doDetach () {
+		this.wrpRows.detach();
+	}
+
+	doAttach ({eleModalInner}) {
+		this.wrpRows.appendTo(eleModalInner);
 	}
 }
 
@@ -17,20 +29,10 @@ export class BuilderBase extends ProxyBase {
 		return Promise.all(BuilderBase._BUILDERS.map(b => b.pInit()));
 	}
 
-	/**
-	 * @param opts Options object.
-	 * @param opts.titleSidebarLoadExisting Text for "Load Existing" sidebar button.
-	 * @param opts.titleSidebarDownloadJson Text for "Download JSON" sidebar button.
-	 * @param opts.metaSidebarDownloadMarkdown Meta for a "Download Markdown" sidebar button.
-	 * @param opts.prop Homebrew prop.
-	 */
-	constructor (opts) {
+	constructor ({prop, pFnGetFluff = null}) {
 		super();
-		opts = opts || {};
-		this._titleSidebarLoadExisting = opts.titleSidebarLoadExisting;
-		this._titleSidebarDownloadJson = opts.titleSidebarDownloadJson;
-		this._metaSidebarDownloadMarkdown = opts.metaSidebarDownloadMarkdown;
-		this._prop = opts.prop;
+		this._prop = prop;
+		this._pFnGetFluff = pFnGetFluff;
 
 		BuilderBase._BUILDERS.push(this);
 		TabUiUtil.decorate(this);
@@ -47,11 +49,11 @@ export class BuilderBase extends ProxyBase {
 		this.__meta = this._getInitialMetaState(); // meta state
 		this._meta = null; // proxy used to access meta state
 
-		this._wrpBtnLoadExisting = null;
-		this._eleSideMenuStageSaved = null;
-		this._eleSideMenuWrpList = null;
+		this._rdStateEntityList = null;
 		this._eles = {}; // Generic internal element storage
 		this._compsSource = {};
+
+		this._isLastRenderInputFail = false;
 	}
 
 	_doResetProxies () {
@@ -119,7 +121,7 @@ export class BuilderBase extends ProxyBase {
 
 		this.renderInput();
 		this.renderOutput();
-		await this.pRenderSideMenu();
+		await this.pRenderEntityList();
 		this.doUiSave();
 	}
 
@@ -147,66 +149,27 @@ export class BuilderBase extends ProxyBase {
 		this._ui.doSaveDebounced();
 	}
 
-	async pRenderSideMenu () {
-		// region Detach any sidemenu renders from other builders
-		if (this._ui.sidemenuRenderCache) {
-			if (this._ui.sidemenuRenderCache.lastStageSaved !== this._eleSideMenuStageSaved) this._ui.sidemenuRenderCache.lastStageSaved.detach();
+	/* -------------------------------------------- */
 
-			if (this._ui.sidemenuRenderCache.lastWrpBtnLoadExisting !== this._wrpBtnLoadExisting) this._ui.sidemenuRenderCache.lastWrpBtnLoadExisting.detach();
-		}
-		// endregion
+	async pDoHandleClickDownloadMarkdown () {
+		const entities = await this._pGetSideMenuBrewEntities();
 
-		// region If this is our first sidemenu render, create elements
-		if (!this._eleSideMenuStageSaved) {
-			const btnLoadExisting = ee`<button class="ve-btn ve-btn-xs ve-btn-default">${this._titleSidebarLoadExisting}</button>`
-				.onn("click", () => this.pHandleSidebarLoadExistingClick());
-			this._wrpBtnLoadExisting = ee`<div class="ve-w-100 ve-mb-2">${btnLoadExisting}</div>`;
-
-			const btnDownloadJson = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-mb-2">${this._titleSidebarDownloadJson}</button>`
-				.onn("click", () => this.pHandleSidebarDownloadJsonClick());
-
-			const wrpDownloadMarkdown = (() => {
-				if (!this._metaSidebarDownloadMarkdown) return null;
-
-				const btnDownload = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-mb-2">${this._metaSidebarDownloadMarkdown.title}</button>`
-					.onn("click", async () => {
-						const entities = await this._pGetSideMenuBrewEntities();
-						const mdOut = await this._metaSidebarDownloadMarkdown.pFnGetText(entities);
-						DataUtil.userDownloadText(`${DataUtil.getCleanFilename(BrewUtil2.sourceJsonToFull(this._ui.source))}.md`, mdOut);
-					});
-
-				const btnSettings = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-mb-2"><span class="glyphicon glyphicon-cog"></span></button>`
-					.onn("click", () => RendererMarkdown.pShowSettingsModal());
-
-				return ee`<div class="ve-flex-v-center ve-btn-group">${btnDownload}${btnSettings}</div>`;
-			})();
-
-			this._eleSideMenuWrpList = this._eleSideMenuWrpList || ee`<div class="ve-w-100 ve-flex-col">`;
-			this._eleSideMenuStageSaved = ee`<div>
-				${PageUiUtil.getSideMenuDivider().hideVe()}
-				<div class="ve-flex-v-center">${btnDownloadJson}</div>
-				${wrpDownloadMarkdown}
-				${this._eleSideMenuWrpList}
-			</div>`;
-		}
-		// endregion
-
-		// Make our sidemenu internal wrapper visible
-		this._wrpBtnLoadExisting.appendTo(this._ui.wrpSideMenu);
-		this._eleSideMenuStageSaved.appendTo(this._ui.wrpSideMenu);
-
-		this._ui.sidemenuRenderCache = new SidemenuRenderCache({
-			lastWrpBtnLoadExisting: this._wrpBtnLoadExisting,
-			lastStageSaved: this._eleSideMenuStageSaved,
+		const mdOut = await RendererMarkdown.exporting.pGetMarkdownDoc({
+			ents: entities,
+			prop: this._prop,
+			pFnGetFluff: this._pFnGetFluff,
 		});
-
-		await this._pDoUpdateSidemenu();
+		DataUtil.userDownloadText(`${DataUtil.getCleanFilename(BrewUtil2.sourceJsonToFull(this._ui.source))}.md`, mdOut);
 	}
+
+	/* -------------------------------------------- */
 
 	getOnNavMessage () {
 		if (this._meta.isModified) return "You have unsaved changes! Are you sure you want to leave?";
 		else return null;
 	}
+
+	/* -------------------------------------------- */
 
 	async _pGetSideMenuBrewEntities () {
 		const brew = await BrewUtil2.pGetOrCreateEditableBrewDoc();
@@ -214,18 +177,52 @@ export class BuilderBase extends ProxyBase {
 			.sort((a, b) => SortUtil.ascSort(a.name, b.name));
 	}
 
-	async _pDoUpdateSidemenu () {
-		this._sidemenuListRenderCache = this._sidemenuListRenderCache || {};
+	/* -------------------------------------------- */
 
-		const toList = await this._pGetSideMenuBrewEntities();
-		this._eleSideMenuStageSaved.toggleVe(!!toList.length);
+	async pHandleClickEditExisting () {
+		const entities = await this._pGetSideMenuBrewEntities();
+		if (!entities.length) {
+			return JqueryUtil.doToast({type: "warning", content: `Nothing to edit for source "${BrewUtil2.sourceJsonToFull(this._state.source)}"! Save a ${Parser.getPropDisplayName(this._prop)} first.`});
+		}
+
+		const {eleModalInner} = UiUtil.getShowModal({
+			title: `${BrewUtil2.sourceJsonToFull(this._state.source)} \u2014 Edit ${Parser.getPropDisplayName(this._prop)}`,
+			isHeaderBorder: true,
+			isHeight100: true,
+			isUncappedHeight: true,
+			cbClose: () => this._rdStateEntityList.doDetach(),
+			zIndex: VeCt.Z_INDEX_BENEATH_HOVER,
+		});
+
+		if (this._rdStateEntityList) {
+			this._rdStateEntityList.doAttach({eleModalInner});
+			return;
+		}
+
+		this._rdStateEntityList = new _RenderStateEntityList({
+			renderCacheListItems: {},
+		});
+		this._rdStateEntityList.doAttach({eleModalInner});
+
+		await this._pRenderEntityList_entities({entities});
+	}
+
+	async pRenderEntityList () {
+		await this._pRenderEntityList_entities();
+	}
+
+	async _pRenderEntityList_entities ({entities = null} = {}) {
+		if (!this._rdStateEntityList) return;
+
+		entities ||= await this._pGetSideMenuBrewEntities();
+		this._rdStateEntityList.doToggleVisible(!!entities.length);
 
 		const metasVisible = new Set();
-		toList.forEach((ent, ix) => {
+		entities.forEach((ent, ix) => {
 			metasVisible.add(ent.uniqueId);
 
-			if (this._sidemenuListRenderCache[ent.uniqueId]) {
-				const meta = this._sidemenuListRenderCache[ent.uniqueId];
+			if (this._rdStateEntityList.renderCacheListItems[ent.uniqueId]) {
+				const meta = this._rdStateEntityList.renderCacheListItems[ent.uniqueId];
 
 				meta.row.showVe();
 
@@ -260,7 +257,7 @@ export class BuilderBase extends ProxyBase {
 
 						await BrewUtil2.pPersistEditableBrewEntity(this._prop, copy);
 
-						await this._pDoUpdateSidemenu();
+						await this._pRenderEntityList_entities();
 					},
 				),
 				new ContextUtil.Action(
@@ -325,7 +322,7 @@ export class BuilderBase extends ProxyBase {
 					"Download Markdown",
 					async () => {
 						const entry = MiscUtil.copy(await BrewUtil2.pGetEditableBrewEntity(this._prop, ent.uniqueId));
-						const mdText = CreatureBuilder._getAsMarkdown(entry).trim();
+						const mdText = this._getAsMarkdown(entry).trim();
 						DataUtil.userDownloadText(`${DataUtil.getCleanFilename(entry.name)}.md`, mdText);
 					},
 				),
@@ -340,7 +337,7 @@ export class BuilderBase extends ProxyBase {
 
 					if (this._state.uniqueId === ent.uniqueId) this.reset();
 					await BrewUtil2.pRemoveEditableBrewEntity(this._prop, ent.uniqueId);
-					await this._pDoUpdateSidemenu();
+					await this._pRenderEntityList_entities();
 					await this.pDoPostDelete();
 				});
 
@@ -349,9 +346,9 @@ export class BuilderBase extends ProxyBase {
 			const row = ee`<div class="mkbru__sidebar-entry ve-flex-v-center ve-split ve-px-2" style="order: ${ix}">
 			${dispName}
 			<div class="ve-py-1 ve-no-shrink">${btnEdit}${btnBurger}${btnDelete}</div>
-			</div>`.appendTo(this._eleSideMenuWrpList);
+			</div>`.appendTo(this._rdStateEntityList.wrpRows);
 
-			this._sidemenuListRenderCache[ent.uniqueId] = {
+			this._rdStateEntityList.renderCacheListItems[ent.uniqueId] = {
 				dispName,
 				row,
 				name: ent.name,
@@ -359,7 +356,7 @@ export class BuilderBase extends ProxyBase {
 			};
 		});
 
-		Object.entries(this._sidemenuListRenderCache)
+		Object.entries(this._rdStateEntityList.renderCacheListItems)
 			.filter(([uniqueId]) => !metasVisible.has(uniqueId))
 			.forEach(([, meta]) => meta.row.hideVe());
 	}
@@ -383,7 +380,7 @@ export class BuilderBase extends ProxyBase {
 		this.doUiSave();
 	}
 
-	async pHandleSidebarDownloadJsonClick () {
+	async pDoHandleClickDownloadJson () {
 		const out = this._ui._getJsonOutputTemplate();
 		out[this._prop] = (await this._pGetSideMenuBrewEntities()).map(entry => PropOrder.getOrdered(DataUtil.cleanJson(MiscUtil.copy(entry)), this._prop));
 		DataUtil.userDownload(DataUtil.getCleanFilename(BrewUtil2.sourceJsonToFull(this._ui.source)), out);
@@ -434,7 +431,7 @@ export class BuilderBase extends ProxyBase {
 		const clean = DataUtil.cleanJson(MiscUtil.copy(this.__state), {isDeleteUniqueId: false});
 		if (this._meta.isPersisted) {
 			await BrewUtil2.pPersistEditableBrewEntity(this._prop, clean);
-			await this.pRenderSideMenu();
+			await this.pRenderEntityList();
 		} else {
 			// If we are e.g. editing a copy of a non-editable brew's entity, we need to first convert the parent brew
 			//   to "editable."
@@ -481,7 +478,11 @@ export class BuilderBase extends ProxyBase {
 		this._meta.nameOriginal = this._state.name;
 		this.doUiSave();
 		await this.pDoPostSave();
-		await this._pDoUpdateSidemenu();
+		await this._pRenderEntityList_entities();
+	}
+
+	_getAsMarkdown (ent) {
+		return RendererMarkdown.get().render({entries: [{type: "statblockInline", dataType: this._prop, data: ent}]});
 	}
 
 	// TODO use this in creature builder
@@ -665,7 +666,7 @@ export class BuilderBase extends ProxyBase {
 	}
 
 	_getRenderedMarkdownCode () {
-		const mdText = this.constructor._getAsMarkdown(this._state);
+		const mdText = this._getAsMarkdown(this._state);
 		return Renderer.get().render({
 			type: "entries",
 			entries: [
@@ -713,8 +714,8 @@ export class BuilderBase extends ProxyBase {
 	doHandleSourcesAdd () { throw new TypeError(`Unimplemented method!`); }
 	_renderInputImpl () { throw new TypeError(`Unimplemented method!`); }
 	renderOutput () { throw new TypeError(`Unimplemented method!`); }
-	async pHandleSidebarLoadExistingClick () { throw new TypeError(`Unimplemented method!`); }
-	async pHandleSidebarLoadExistingData (entity, opts) { throw new TypeError(`Unimplemented method!`); }
+	async pHandleClickLoadExisting () { throw new TypeError(`Unimplemented method!`); }
+	async pHandleLoadExistingData (entity, opts) { throw new TypeError(`Unimplemented method!`); }
 	async _pInit () {}
 	async pDoPostSave () {}
 	async pDoPostDelete () {}

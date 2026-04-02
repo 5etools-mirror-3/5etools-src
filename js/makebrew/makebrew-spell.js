@@ -37,10 +37,8 @@ const _SPELL_DIST_TYPES = [
 export class SpellBuilder extends BuilderBase {
 	constructor () {
 		super({
-			titleSidebarLoadExisting: "Copy Existing Spell",
-			titleSidebarDownloadJson: "Download Spells as JSON",
 			prop: "spell",
-			titleSelectDefaultSource: "(Same as Spell)",
+			pFnGetFluff: Renderer.spell.pGetFluff.bind(Renderer.spell),
 		});
 
 		this._subclassLookup = {};
@@ -48,15 +46,11 @@ export class SpellBuilder extends BuilderBase {
 		this._renderOutputDebounced = MiscUtil.debounce(() => this._renderOutput(), 50);
 	}
 
-	static _getAsMarkdown (sp) {
-		return RendererMarkdown.get().render({entries: [{type: "statblockInline", dataType: "spell", data: sp}]});
-	}
-
-	async pHandleSidebarLoadExistingClick () {
+	async pHandleClickLoadExisting () {
 		const result = await SearchWidget.pGetUserSpellSearch();
 		if (result) {
 			const spell = MiscUtil.copy(await DataLoader.pCacheAndGet(result.page, result.source, result.hash));
-			return this.pHandleSidebarLoadExistingData(spell);
+			return this.pHandleLoadExistingData(spell);
 		}
 	}
 
@@ -65,7 +59,7 @@ export class SpellBuilder extends BuilderBase {
 	 * @param [opts]
 	 * @param [opts.meta]
 	 */
-	async pHandleSidebarLoadExistingData (spell, opts) {
+	async pHandleLoadExistingData (spell, opts) {
 		opts = opts || {};
 
 		spell.source = this._ui.source;
@@ -191,7 +185,7 @@ export class SpellBuilder extends BuilderBase {
 		tabs.forEach(it => it.wrpTab.appendTo(wrp));
 
 		// INFO
-		BuilderUi.getStateIptString("Name", cb, this._state, {nullable: false, callback: () => this.pRenderSideMenu()}, "name").appendTo(infoTab.wrpTab);
+		BuilderUi.getStateIptString("Name", cb, this._state, {nullable: false, callback: () => this.pRenderEntityList()}, "name").appendTo(infoTab.wrpTab);
 		this._selSource = this.getSourceInput(cb).appendTo(infoTab.wrpTab);
 		this.__getOtherSourcesInput(cb).appendTo(infoTab.wrpTab);
 		BuilderUi.getStateIptString("Page", cb, this._state, {}, "page").appendTo(infoTab.wrpTab);
