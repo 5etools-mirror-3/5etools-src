@@ -9,15 +9,8 @@ import {RenderBestiary} from "../render-bestiary.js";
 export class CreatureBuilder extends BuilderBase {
 	constructor () {
 		super({
-			titleSidebarLoadExisting: "Copy Existing Creature",
-			titleSidebarDownloadJson: "Download Creatures as JSON",
-			metaSidebarDownloadMarkdown: {
-				title: "Download Creatures as Markdown",
-				pFnGetText: (mons) => {
-					return RendererMarkdown.monster.pGetMarkdownDoc(mons);
-				},
-			},
 			prop: "monster",
+			pFnGetFluff: Renderer.monster.pGetFluff.bind(Renderer.monster),
 		});
 
 		this._bestiaryFluffIndex = null;
@@ -40,15 +33,11 @@ export class CreatureBuilder extends BuilderBase {
 		this._generateAttackCache = null;
 	}
 
-	static _getAsMarkdown (mon) {
-		return RendererMarkdown.get().render({entries: [{type: "statblockInline", dataType: "monster", data: mon}]});
-	}
-
-	async pHandleSidebarLoadExistingClick () {
+	async pHandleClickLoadExisting () {
 		const result = await SearchWidget.pGetUserCreatureSearch();
 		if (result) {
 			const creature = MiscUtil.copy(await DataLoader.pCacheAndGet(result.page, result.source, result.hash));
-			return this.pHandleSidebarLoadExistingData(creature);
+			return this.pHandleLoadExistingData(creature);
 		}
 	}
 
@@ -58,7 +47,7 @@ export class CreatureBuilder extends BuilderBase {
 	 * @param [opts.isForce]
 	 * @param [opts.meta]
 	 */
-	async pHandleSidebarLoadExistingData (creature, opts) {
+	async pHandleLoadExistingData (creature, opts) {
 		opts = opts || [];
 
 		const cleanOrigin = window.location.origin.replace(/\/+$/, "");
@@ -449,7 +438,6 @@ export class CreatureBuilder extends BuilderBase {
 			MiscTag.tryRun(this._state);
 			TagImmResVulnConditional.tryRun(this._state);
 			DragonAgeTag.tryRun(this._state);
-			AttachedItemTag.tryRun(this._state, {styleHint: this._meta.styleHint, isAddOnly: true});
 
 			this.renderOutput();
 			this.doUiSave();
@@ -481,7 +469,7 @@ export class CreatureBuilder extends BuilderBase {
 		tabs.forEach(it => it.wrpTab.appendTo(wrp));
 
 		// INFO
-		BuilderUi.getStateIptString("Name", cb, this._state, {nullable: false, callback: () => this.pRenderSideMenu()}, "name").appendTo(infoTab.wrpTab);
+		BuilderUi.getStateIptString("Name", cb, this._state, {nullable: false, callback: () => this.pRenderEntityList()}, "name").appendTo(infoTab.wrpTab);
 		this.__getShortNameInput(cb).appendTo(infoTab.wrpTab);
 		this._selSource = this.getSourceInput(cb).appendTo(infoTab.wrpTab);
 		BuilderUi.getStateIptString("Page", cb, this._state, {}, "page").appendTo(infoTab.wrpTab);
@@ -568,7 +556,9 @@ export class CreatureBuilder extends BuilderBase {
 
 		// GEAR
 		this.__getGearInput(cb).appendTo(tabGear.wrpTab);
-		this.__getAttachedItemInput(cb).appendTo(tabGear.wrpTab);
+		const {row: rowAttachedItemInput, doRefresh: doRefreshAttachedItems} = this.__getAttachedItemInput(cb);
+		rowAttachedItemInput.appendTo(tabGear.wrpTab);
+		this.__getAttachedItemInputGenerated(cb, [doRefreshAttachedItems]).appendTo(tabGear.wrpTab);
 
 		// FLAVOR/MISC
 		this.__getTokenInput(cb).appendTo(miscTab.wrpTab);
@@ -3442,15 +3432,40 @@ export class CreatureBuilder extends BuilderBase {
 
 		const wrpRows = ee`<div></div>`.appendTo(rowInner);
 
-		this._state.attachedItems?.forEach(gear => CreatureBuilder.__getAttachedItemInput__getAttachedItemRow(doUpdateState, rowMetas, gear).wrp.appendTo(wrpRows));
+		const doRefresh = () => {
+			wrpRows.empty();
+			rowMetas.splice(0, rowMetas.length);
+			this._state.attachedItems?.forEach(gear => CreatureBuilder.__getAttachedItemInput__getAttachedItemRow(doUpdateState, rowMetas, gear).wrp.appendTo(wrpRows));
+		};
+		doRefresh();
 
-		const wrpBtnAdd = ee`<div></div>`.appendTo(rowInner);
-		ee`<button class="ve-btn ve-btn-xs ve-btn-default">Add Attached Item</button>`
-			.appendTo(wrpBtnAdd)
+		const btnAdd = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2">Add Attached Item</button>`
 			.onn("click", () => {
 				CreatureBuilder.__getAttachedItemInput__getAttachedItemRow(doUpdateState, rowMetas).wrp.appendTo(wrpRows);
 				doUpdateState();
 			});
+
+		ee`<div>${btnAdd}</div>`.appendTo(rowInner);
+
+		return {
+			row,
+			doRefresh,
+		};
+	}
+
+	__getAttachedItemInputGenerated (cb, fnsDoRefresh) {
+		const [row, rowInner] = BuilderUi.getLabelledRowTuple("Generated", {isMarked: true});
+
+		const btnAdd = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="Generate additional attached items based on the creatures's current actions">Generate Additional Attached Items</button>`
+			.onn("click", async () => {
+				AttachedItemTag.tryRun(this._state, {styleHint: this._meta.styleHint, isAddOnly: true});
+				cb();
+				fnsDoRefresh.forEach(fn => fn());
+			});
+
+		ee`<div class="ve-flex-v-center">
+			${btnAdd}
+		</div>`.appendTo(rowInner);
 
 		return row;
 	}

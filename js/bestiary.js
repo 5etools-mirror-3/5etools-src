@@ -245,7 +245,11 @@ class BestiaryPageBookView extends ListPageBookView {
 		// TODO refactor this and spell markdown section
 		const pGetAsMarkdown = async () => {
 			const toRender = this._bookViewToShow.length ? this._bookViewToShow.map(({entity}) => entity) : [this._fnGetEntLastLoaded()];
-			return RendererMarkdown.monster.pGetMarkdownDoc(toRender);
+			return RendererMarkdown.exporting.pGetMarkdownDoc({
+				ents: toRender,
+				prop: "monster",
+				pFnGetFluff: Renderer.monster.pGetFluff.bind(Renderer.monster),
+			});
 		};
 
 		const btnDownloadMarkdown = ee`<button class="ve-btn ve-btn-default ve-btn-sm">Download as Markdown</button>`

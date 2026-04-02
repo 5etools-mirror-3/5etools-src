@@ -342,7 +342,7 @@ export class ManageBrewUi {
 			</div>`
 			: null;
 
-		const wrpBtns = ee`<div class="ve-flex-v-center ve-no-shrink ve-mobile-sm__ve-flex-col">
+		const wrpBtns = ee`<div class="ve-flex-v-center ve-no-shrink ve-mobile-sm__flex-col">
 			<div class="ve-flex-v-center ve-mobile-sm__mb-2">
 				<div class="ve-flex-v-center ve-btn-group ve-mr-2">
 					${btnGet}

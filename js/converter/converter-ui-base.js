@@ -60,9 +60,10 @@ export class ConverterUiBase extends BaseComponent {
 
 	get mode () { return this._state.mode; }
 
+	getHasPageNumbers () { return !!this._hasPageNumbers; }
+
 	/* -------------------------------------------- */
 
-	_renderSidebar () { throw new Error("Unimplemented!"); }
 	handleParse () { throw new Error("Unimplemented!"); }
 
 	/* -------------------------------------------- */
@@ -87,18 +88,197 @@ export class ConverterUiBase extends BaseComponent {
 
 	/* -------------------------------------------- */
 
-	renderSidebar (parent, eleParent) {
-		const wrpSidebar = ee`<div class="ve-w-100 ve-flex-col"></div>`.appendTo(eleParent);
-		const hkShowSidebar = () => wrpSidebar.toggleClass("hidden", parent.get("converter") !== this._converterId);
-		parent.addHook("converter", hkShowSidebar);
-		hkShowSidebar();
+	renderSettings ({compParent, wrpSettings}) {
+		this._renderSettings_source({compParent, wrpSettings});
+		this._renderSettings_page({wrpSettings});
 
-		this._renderSidebar(parent, wrpSidebar);
-		this._renderSidebarSamplesPart(parent, wrpSidebar);
-		this._renderSidebarConverterOptionsPart(parent, wrpSidebar);
-		this._renderSidebarPagePart(parent, wrpSidebar);
-		this._renderSidebarSourcePart(parent, wrpSidebar);
-		this._renderSidebarStyleHintPart(parent, wrpSidebar);
+		const wrpModesSamples = ee`<div class="ve-btn-group ve-flex-v-center ve-mobile-md__mb-2">
+			<div class="ve-vr-3 ve-mobile-md__hidden"></div>
+		</div>`
+			.appendTo(wrpSettings);
+		this._renderSettings_modes({wrpModesSamples});
+		this._renderSettings_samples({wrpModesSamples});
+	}
+
+	_renderSettings_source ({compParent, wrpSettings}) {
+		if (!this._hasSource) return;
+
+		const wrpSourceOverlay = ee`<div class="ve-h-100 ve-w-100"></div>`;
+		let modalMeta = null;
+
+		const rebuildStageSource = (options) => {
+			SourceUiUtil.render({
+				...options,
+				eleParent: wrpSourceOverlay,
+				cbConfirm: async (source) => {
+					const isNewSource = options.mode !== "edit";
+
+					if (isNewSource) await BrewUtil2.pAddSource(source);
+					else await BrewUtil2.pEditSource(source);
+
+					if (isNewSource) compParent.doRefreshAvailableSources();
+					this._state.source = source.json;
+
+					if (modalMeta) modalMeta.doClose();
+				},
+				cbConfirmExisting: (source) => {
+					this._state.source = source.json;
+
+					if (modalMeta) modalMeta.doClose();
+				},
+				cbCancel: () => {
+					if (modalMeta) modalMeta.doClose();
+				},
+			});
+		};
+
+		const selSource = ee`<select class="ve-form-control ve-input-xs ve-br-0 ve-w-120p"><option value="">(None)</option></select>`
+			.onn("change", () => this._state.source = selSource.val());
+
+		const optDivider = e_({tag: "option", val: "5e_divider", txt: `\u2014`, attrs: {disabled: true}}).appendTo(selSource);
+
+		const srcToOption = Object.fromEntries(
+			Object.keys(Parser.SOURCE_JSON_TO_FULL)
+				.map(src => [src, e_({tag: "option", val: src, txt: Parser.sourceJsonToFull(src)}).appendTo(selSource)]),
+		);
+
+		compParent._addHookBase("availableSources", () => {
+			const curSources = new Set(Object.keys(srcToOption));
+			curSources.add("");
+			const nxtSources = new Set(compParent._state.availableSources);
+			nxtSources.add("");
+			nxtSources.add("5e_divider");
+			Object.keys(Parser.SOURCE_JSON_TO_FULL).forEach(it => nxtSources.add(it));
+
+			const optionsToAdd = [];
+
+			compParent._state.availableSources.forEach(source => {
+				nxtSources.add(source);
+				if (!curSources.has(source)) {
+					optionsToAdd.push(source);
+				}
+			});
+
+			if (optionsToAdd.length) {
+				const optBrewLast = optDivider.prev();
+				optionsToAdd.forEach(source => {
+					const fullSource = BrewUtil2.sourceJsonToSource(source);
+					srcToOption[source] = e_({tag: "option", val: fullSource.json, txt: fullSource.full}).insertAfter(optBrewLast);
+				});
+			}
+
+			const toDelete = curSources.difference(nxtSources);
+			if (toDelete.size) {
+				toDelete.forEach(src => {
+					srcToOption[src].remove();
+					delete srcToOption[src];
+				});
+			}
+		})();
+
+		const btnSourceEdit = ee`<button class="ve-btn ve-btn-default ve-btn-xs" title="Edit Selected Source"><span class="glyphicon glyphicon-pencil"></span></button>`
+			.onn("click", () => {
+				const curSourceJson = this._state.source;
+				if (!curSourceJson) {
+					JqueryUtil.doToast({type: "warning", content: "No source selected!"});
+					return;
+				}
+
+				const curSource = BrewUtil2.sourceJsonToSource(curSourceJson);
+				if (!curSource) return;
+
+				rebuildStageSource({mode: "edit", source: MiscUtil.copy(curSource)});
+				modalMeta = UiUtil.getShowModal({
+					isHeight100: true,
+					isUncappedHeight: true,
+					cbClose: () => wrpSourceOverlay.detach(),
+				});
+				wrpSourceOverlay.appendTo(modalMeta.eleModalInner);
+			});
+
+		const btnSourceAdd = ee`<button class="ve-btn ve-btn-default ve-btn-xs" title="Add New Source"><span class="glyphicon glyphicon-plus"></span></button>`
+			.onn("click", () => {
+				rebuildStageSource({mode: "add"});
+				modalMeta = UiUtil.getShowModal({
+					isHeight100: true,
+					isUncappedHeight: true,
+					cbClose: () => wrpSourceOverlay.detach(),
+				});
+				wrpSourceOverlay.appendTo(modalMeta.eleModalInner);
+			});
+
+		ee`<div class="ve-flex-v-stretch ve-mobile-md__mb-2">
+			<div class="ve-vr-3 ve-mr-2 ve-mobile-md__hidden"></div>
+			
+			<div class="ve-flex-v-stretch">
+				<div class="ve-mr-2 ve-flex-v-center">Source</div>
+				<div class="ve-flex-v-stretch input-group ve-btn-group ve-mr-2">
+					${selSource}
+					${btnSourceEdit}
+				</div>
+				${btnSourceAdd}
+			</div>
+		</div>`
+			.appendTo(wrpSettings);
+
+		this._addHookBase("source", () => {
+			selSource.val(this._state.source);
+			btnSourceEdit.attr("disabled", !this._state.source || !BrewUtil2.sourceJsonToSource(this._state.source));
+		})();
+	}
+
+	_renderSettings_page ({wrpSettings}) {
+		if (!this._hasPageNumbers) return;
+
+		const getBtnIncrementDecrement = (dir) => {
+			const verb = ~dir ? "Increment" : "Decrement";
+			const iconClassName = ~dir ? "glyphicon-plus" : "glyphicon-minus";
+			return ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="${verb} Page Number (SHIFT to ${verb} by 5)"><span class="glyphicon ${iconClassName}"></span></button>`
+				.onn("click", evt => this._state.page += dir * (evt.shiftKey ? 5 : 1));
+		};
+
+		const iptPage = ComponentUiUtil.getIptInt(this, "page", 0)
+			.addClass("ve-w-40p");
+		ee`<div class="ve-flex-v-center ve-mobile-md__mb-2">
+			<div class="ve-vr-3 ve-mobile-md__hidden"></div>
+
+			<div class="ve-mr-2 ve-help" title="Note that a line of the form &quot;PAGE=&lt;page number&gt;&quot; in the Input will set the page in the Output, ignoring any value set here. This is especially useful when parsing multiple inputs delimited by a separator.">Page</div>
+			<div class="ve-btn-group input-group ve-flex-v-stretch">
+				${getBtnIncrementDecrement(-1)}
+				${iptPage}
+				${getBtnIncrementDecrement(1)}
+			</div>
+		</div>`.appendTo(wrpSettings);
+	}
+
+	_renderSettings_modes ({wrpModesSamples}) {
+		if (this._modes.length < 2) return;
+
+		this._addHookBase("mode", () => {
+			this._ui._editorIn.setOptions({
+				mode: ConverterUiUtil.getAceMode(this._state.mode),
+			});
+		})();
+
+		const selMode = ComponentUiUtil.getSelEnum(this, "mode", {values: this._modes, html: `<select class="ve-form-control ve-input-xs ve-min-w-140p"></select>`, fnDisplay: it => `Parse as ${ConverterUiBase._getDisplayMode(it)}`})
+			.appendTo(wrpModesSamples);
+	}
+
+	_renderSettings_samples ({wrpModesSamples}) {
+		const btnsSamples = this._modes.map(mode => {
+			return ee`<button class="ve-btn ve-btn-xs ve-btn-default">Sample ${ConverterUiBase._getDisplayMode(mode)}</button>`
+				.onn("click", () => {
+					const sample = this._getSample(mode);
+					if (!sample) {
+						JqueryUtil.doToast({type: "warning", content: `No ${ConverterUiBase._getDisplayMode(mode)} sample available!`});
+						return;
+					}
+					this._ui.inText = sample;
+					this._state.mode = mode;
+				});
+		});
+
+		ee`<div class="ve-btn-group ve-flex-v-stretch ve-ml-2">${btnsSamples}</div>`.appendTo(wrpModesSamples);
 	}
 
 	/* -------------------------------------------- */
@@ -127,195 +307,28 @@ export class ConverterUiBase extends BaseComponent {
 
 	/* -------------------------------------------- */
 
-	_renderSidebarSamplesPart (parent, wrpSidebar) {
-		const btnsSamples = this._modes.map(mode => {
-			return ee`<button class="ve-btn ve-btn-xs ve-btn-default">Sample ${ConverterUiBase._getDisplayMode(mode)}</button>`
-				.onn("click", () => {
-					const sample = this._getSample(mode);
-					if (!sample) {
-						JqueryUtil.doToast({type: "warning", content: `No ${ConverterUiBase._getDisplayMode(mode)} sample available!`});
-						return;
-					}
-					this._ui.inText = sample;
-					this._state.mode = mode;
-				});
-		});
-
-		ee`<div class="ve-w-100 ve-flex-vh-center-around">${btnsSamples}</div>`.appendTo(wrpSidebar);
-
-		ConverterUiUtil.renderSideMenuDivider(wrpSidebar);
+	renderSettingsModal ({compParent, eleParent}) {
+		this._renderSettingsModal_converterOptions({eleParent});
+		this._renderSettingsModal_styleHint({eleParent});
 	}
 
-	_renderSidebarConverterOptionsPart (parent, wrpSidebar) {
-		const hasModes = this._modes.length > 1;
+	_renderSettingsModal_converterOptions ({eleParent}) {
+		if (!this._titleCaseFields) return;
 
-		if (!hasModes && !this._titleCaseFields) return;
+		const cbTitleCase = ComponentUiUtil.getCbBool(this, "isTitleCase");
 
-		const hkMode = () => {
-			this._ui._editorIn.setOptions({
-				mode: ConverterUiUtil.getAceMode(this._state.mode),
-			});
-		};
-		this._addHookBase("mode", hkMode);
-		hkMode();
-
-		if (hasModes) {
-			const selMode = ComponentUiUtil.getSelEnum(this, "mode", {values: this._modes, html: `<select class="ve-form-control ve-input-xs select-inline"></select>`, fnDisplay: it => `Parse as ${ConverterUiBase._getDisplayMode(it)}`});
-			ee`<div class="ve-w-100 ve-mt-2 ve-flex-vh-center-around">${selMode}</div>`.appendTo(wrpSidebar);
-		}
-
-		if (this._titleCaseFields) {
-			const cbTitleCase = ComponentUiUtil.getCbBool(this, "isTitleCase");
-			ee`<div class="ve-w-100 ve-mt-2 ve-split-v-center">
-				<label class="sidemenu__row__label sidemenu__row__label--cb-label" title="Should the creature's name be converted to title-case? Useful when pasting a name which is all-caps."><span>Title-Case Name</span>
+		ee`<div class="ve-flex-col">
+			<label class="ve-split-v-center ve-w-100" title="Should the entity's name be converted to title-case? Useful when pasting a name which is all-caps.">
+				<span class="ve-w-66 ve-no-shrink ve-mr-2 ve-flex-v-center">Title-Case Name</span>
 				${cbTitleCase}
-			</label></div>`.appendTo(wrpSidebar);
-		}
-		ConverterUiUtil.renderSideMenuDivider(wrpSidebar);
+			</label>
+			
+			<hr class="ve-hr-3">
+		</div>`
+			.appendTo(eleParent);
 	}
 
-	_renderSidebarPagePart (parent, wrpSidebar) {
-		if (!this._hasPageNumbers) return;
-
-		const getBtnIncrementDecrement = (dir) => {
-			const verb = ~dir ? "Increment" : "Decrement";
-			const iconClassName = ~dir ? "glyphicon-plus" : "glyphicon-minus";
-			return ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-h-100" title="${verb} Page Number (SHIFT to ${verb} by 5)"><span class="glyphicon ${iconClassName}"></span></button>`
-				.onn("click", evt => this._state.page += dir * (evt.shiftKey ? 5 : 1));
-		};
-
-		const iptPage = ComponentUiUtil.getIptInt(this, "page", 0)
-			.addClass("ve-max-w-80p");
-		ee`<div class="ve-w-100 ve-split-v-center">
-			<div class="sidemenu__row__label ve-mr-2 ve-help" title="Note that a line of the form &quot;PAGE=&lt;page number&gt;&quot; in the Input will set the page in the Output, ignoring any value set here. This is especially useful when parsing multiple inputs delimited by a separator.">Page</div>
-			<div class="ve-btn-group input-group ve-flex-v-center ve-h-100">
-				${getBtnIncrementDecrement(-1)}
-				${iptPage}
-				${getBtnIncrementDecrement(1)}
-			</div>
-		</div>`.appendTo(wrpSidebar);
-
-		ConverterUiUtil.renderSideMenuDivider(wrpSidebar);
-	}
-
-	_renderSidebarSourcePart (parent, wrpSidebar) {
-		if (!this._hasSource) return;
-
-		const wrpSourceOverlay = ee`<div class="ve-h-100 ve-w-100"></div>`;
-		let modalMeta = null;
-
-		const rebuildStageSource = (options) => {
-			SourceUiUtil.render({
-				...options,
-				eleParent: wrpSourceOverlay,
-				cbConfirm: async (source) => {
-					const isNewSource = options.mode !== "edit";
-
-					if (isNewSource) await BrewUtil2.pAddSource(source);
-					else await BrewUtil2.pEditSource(source);
-
-					if (isNewSource) parent.doRefreshAvailableSources();
-					this._state.source = source.json;
-
-					if (modalMeta) modalMeta.doClose();
-				},
-				cbConfirmExisting: (source) => {
-					this._state.source = source.json;
-
-					if (modalMeta) modalMeta.doClose();
-				},
-				cbCancel: () => {
-					if (modalMeta) modalMeta.doClose();
-				},
-			});
-		};
-
-		const selSource = ee`<select class="ve-form-control ve-input-xs"><option value="">(None)</option></select>`
-			.onn("change", () => this._state.source = selSource.val());
-
-		const eleDivider = e_({tag: "option", val: "5e_divider", txt: `\u2014`, attrs: {disabled: true}}).appendTo(selSource);
-
-		const srcToOption = Object.fromEntries(
-			Object.keys(Parser.SOURCE_JSON_TO_FULL)
-				.map(src => [src, e_({tag: "option", val: src, txt: Parser.sourceJsonToFull(src)}).appendTo(selSource)]),
-		);
-
-		const hkAvailSources = () => {
-			const curSources = new Set(Object.keys(srcToOption));
-			curSources.add("");
-			const nxtSources = new Set(parent.get("availableSources"));
-			nxtSources.add("");
-			nxtSources.add("5e_divider");
-			Object.keys(Parser.SOURCE_JSON_TO_FULL).forEach(it => nxtSources.add(it));
-
-			const optionsToAdd = [];
-
-			parent.get("availableSources").forEach(source => {
-				nxtSources.add(source);
-				if (!curSources.has(source)) {
-					optionsToAdd.push(source);
-				}
-			});
-
-			if (optionsToAdd.length) {
-				const optBrewLast = eleDivider.prev();
-				optionsToAdd.forEach(source => {
-					const fullSource = BrewUtil2.sourceJsonToSource(source);
-					srcToOption[source] = e_({tag: "option", val: fullSource.json, txt: fullSource.full}).insertAfter(optBrewLast);
-				});
-			}
-
-			const toDelete = curSources.difference(nxtSources);
-			if (toDelete.size) {
-				toDelete.forEach(src => {
-					srcToOption[src].remove();
-					delete srcToOption[src];
-				});
-			}
-		};
-		parent.addHook("availableSources", hkAvailSources);
-		hkAvailSources();
-
-		const hkSource = () => selSource.val(this._state.source);
-		this._addHookBase("source", hkSource);
-		hkSource();
-
-		ee`<div class="ve-w-100 ve-mb-2 ve-split-v-center"><div class="sidemenu__row__label ve-mr-2">Source</div>${selSource}</div>`.appendTo(wrpSidebar);
-
-		const btnSourceEdit = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Edit Selected</button>`
-			.onn("click", () => {
-				const curSourceJson = this._state.source;
-				if (!curSourceJson) {
-					JqueryUtil.doToast({type: "warning", content: "No source selected!"});
-					return;
-				}
-
-				const curSource = BrewUtil2.sourceJsonToSource(curSourceJson);
-				if (!curSource) return;
-				rebuildStageSource({mode: "edit", source: MiscUtil.copy(curSource)});
-				modalMeta = UiUtil.getShowModal({
-					isHeight100: true,
-					isUncappedHeight: true,
-					cbClose: () => wrpSourceOverlay.detach(),
-				});
-				wrpSourceOverlay.appendTo(modalMeta.eleModalInner);
-			});
-
-		const btnSourceAdd = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Add New</button>`.onn("click", () => {
-			rebuildStageSource({mode: "add"});
-			modalMeta = UiUtil.getShowModal({
-				isHeight100: true,
-				isUncappedHeight: true,
-				cbClose: () => wrpSourceOverlay.detach(),
-			});
-			wrpSourceOverlay.appendTo(modalMeta.eleModalInner);
-		});
-		ee`<div class="ve-w-100 ve-btn-group ve-flex-v-center ve-flex-h-right">${btnSourceEdit}${btnSourceAdd}</div>`.appendTo(wrpSidebar);
-
-		ConverterUiUtil.renderSideMenuDivider(wrpSidebar);
-	}
-
-	_renderSidebarStyleHintPart (parent, wrpSidebar) {
+	_renderSettingsModal_styleHint ({eleParent}) {
 		const selStyleHint = ComponentUiUtil.getSelEnum(
 			this,
 			"styleHint",
@@ -328,24 +341,15 @@ export class ConverterUiBase extends BaseComponent {
 			},
 		);
 
-		ee`<div class="ve-w-100 ve-mb-2 ve-split-v-center"><div class="sidemenu__row__label ve-mr-2">Style</div>${selStyleHint}</div>`.appendTo(wrpSidebar);
-
-		ConverterUiUtil.renderSideMenuDivider(wrpSidebar);
-	}
-
-	/* -------------------------------------------- */
-
-	renderFooterLhs (parent, {wrpFooterLhs}) {
-		if (!this._hasPageNumbers) return;
-
-		const dispPage = ee`<div class="ve-muted ve-italic" title="Use &quot;+&quot; and &quot;-&quot; (when the cursor is not in a text input) to increase/decrease."></div>`
-			.appendTo(wrpFooterLhs);
-
-		this._addHookBase("page", () => {
-			dispPage.html(this._state.page != null ? `<b class="ve-mr-1">Page:</b> ${this._state.page}` : "");
-		})();
-
-		parent.addHook("converter", () => dispPage.toggleClass("ve-hidden", parent.get("converter") !== this._converterId))();
+		ee`<div class="ve-flex-col">
+			<label class="ve-split-v-center ve-w-100" title="Which game version the input text is intended to be used with.">
+				<span class="ve-w-66 ve-no-shrink ve-mr-2 ve-flex-v-center">Version</span>
+				${selStyleHint}
+			</label>
+			
+			<hr class="ve-hr-3">
+		</div>`
+			.appendTo(eleParent);
 	}
 
 	/* -------------------------------------------- */

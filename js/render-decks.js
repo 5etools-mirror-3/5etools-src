@@ -265,7 +265,7 @@ class RenderDecks {
 		};
 
 		const wrpDrawn = ee`<div class="decks-draw__stg ve-flex-vh-center">
-			<div class="ve-flex-v-center ve-mobile-sm__ve-flex-col">
+			<div class="ve-flex-v-center ve-mobile-sm__flex-col">
 				${wrpCardOuter}
 				${wrpRhs}
 			</div>

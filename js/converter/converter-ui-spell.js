@@ -20,10 +20,6 @@ export class SpellConverterUi extends ConverterUiBase {
 		);
 	}
 
-	_renderSidebar (parent, wrpSidebar) {
-		wrpSidebar.empty();
-	}
-
 	handleParse (input, cbOutput, cbWarning, isAppend) {
 		const opts = this._handleParse_getOpts({cbOutput, cbWarning, isAppend});
 

@@ -2,7 +2,6 @@ import {BuilderBase} from "./makebrew/makebrew-builder-base.js";
 import {SpellBuilder} from "./makebrew/makebrew-spell.js";
 import {CreatureBuilder} from "./makebrew/makebrew-creature.js";
 import {LegendaryGroupBuilder} from "./makebrew/makebrew-legendarygroup.js";
-import {PageUiUtil} from "./makebrew/makebrew-builderui.js";
 import {TagCondition, TaggerUtils} from "./converter/converterutils-tags.js";
 import {SITE_STYLE__CLASSIC} from "./consts.js";
 import {SourceUiUtil} from "./utils-ui/utils-ui-sourcebuilder.js";
@@ -11,7 +10,6 @@ class PageUi {
 	constructor () {
 		this._builders = {};
 
-		this._eleMenuInner = null;
 		this._selBuilderMode = null;
 		this._wrpSource = null;
 		this._wrpMain = null;
@@ -27,11 +25,6 @@ class PageUi {
 
 		this._settings = {};
 		this._saveSettingsDebounced = MiscUtil.debounce(() => this._doSaveSettings(), 50);
-
-		this._isLastRenderInputFail = false;
-
-		this._sidemenuRenderCache = null;
-		this._sidemenuListRenderCache = null;
 	}
 
 	set creatureBuilder (creatureBuilder) { this._builders.creatureBuilder = creatureBuilder; }
@@ -50,14 +43,9 @@ class PageUi {
 
 	get wrpOutput () { return this._wrpOutput; }
 
-	get wrpSideMenu () { return this._eleMenuInner; }
-
 	get source () { return this._settings.activeSource || ""; }
 
 	get allSources () { return this._allSources; }
-
-	get sidemenuRenderCache () { return this._sidemenuRenderCache; }
-	set sidemenuRenderCache (val) { this._sidemenuRenderCache = val; }
 
 	_doSave () {
 		if (this._isInitialLoad) return;
@@ -80,9 +68,9 @@ class PageUi {
 
 		this._settings.activeBuilder = this._settings.activeBuilder || PageUi._DEFAULT_ACTIVE_BUILDER;
 
+		this._initHeader();
 		this._initLhs();
 		this._initRhs();
-		await this._pInitSideMenu();
 
 		const storedState = await StorageUtil.pGetForPage(PageUi._STORAGE_STATE) || {};
 		if (storedState.builders) {
@@ -91,13 +79,12 @@ class PageUi {
 			});
 		}
 
-		this._doRenderActiveBuilder();
+		await this._pSetActiveBuilder({nxtActiveBuilder: this._settings.activeBuilder});
 		this._doInitNavHandler();
 
 		const brewSources = BrewUtil2.getSources();
 		if (this._settings.activeSource && brewSources.some(it => it.json === this._settings.activeSource)) {
 			this.__setStageMain();
-			this._sideMenuEnabled = true;
 		} else if (brewSources.length) {
 			this._doRebuildStageSource({mode: "select", isRequired: true});
 			this.__setStageSource();
@@ -133,20 +120,137 @@ class PageUi {
 
 				if (isNewSource) this._doAddSourceOption(source);
 				await this._pDoHandleUpdateSource();
-				this._sideMenuEnabled = true;
 				this.__setStageMain();
 			},
 			cbConfirmExisting: async (source) => {
 				this._settings.activeSource = source.json;
 				await this._pDoHandleUpdateSource();
-				this._sideMenuEnabled = true;
 				this.__setStageMain();
 			},
 			cbCancel: () => {
-				this._sideMenuEnabled = true;
 				this.__setStageMain();
 			},
 		});
+	}
+
+	_initHeader () {
+		const wrpSettings = es(`#wrp-settings`);
+
+		this._initHeader_mode({wrpSettings});
+		this._initHeader_source({wrpSettings});
+		this._initHeader_existing({wrpSettings});
+		this._initHeader_download({wrpSettings});
+	}
+
+	_initHeader_mode ({wrpSettings}) {
+		this._selBuilderMode = ee`<select class="ve-form-control ve-input-xs">
+			<option value="creatureBuilder">Creature</option>
+			<option value="legendaryGroupBuilder">Legendary Group</option>
+			<option value="spellBuilder">Spell</option>
+			<option value="none" class="ve-italic">Everything Else?</option>
+		</select>`
+			.onn("change", async () => {
+				const val = this._selBuilderMode.val();
+				if (val === "none") {
+					InputUiUtil.pGetUserBoolean({
+						title: "Homebrew Builder Support",
+						htmlDescription: `<p>The Homebrew Builder only supports a limited set of entity types. For everything else, you will need to <a href="https://github.com/TheGiddyLimit/homebrew/blob/master/README.md" rel="noopener noreferrer">manually</a> create or convert content.</p>`,
+						isAlert: true,
+					}).then(null);
+					this._selBuilderMode.val(this._settings.activeBuilder);
+					return;
+				}
+				await this._pSetActiveBuilder({nxtActiveBuilder: val});
+			});
+
+		ee`<div class="ve-flex-v-center ve-mr-2 ve-mobile-md__mr-0 ve-mobile-md__mb-2">
+			<div class="ve-mr-2 ve-bold">Mode</div>
+			${this._selBuilderMode}
+		</div>`
+			.appendTo(wrpSettings);
+	}
+
+	_initHeader_source ({wrpSettings}) {
+		this._allSources = BrewUtil2.getSources().sort((a, b) => SortUtil.ascSortLower(a.full, b.full))
+			.map(it => it.json);
+
+		this._selSource = ee`<select class="ve-form-control ve-input-xs ve-br-0 ve-w-120p">
+			<option disabled>Select</option>
+			${this._allSources.map(srcJson => `<option value="${srcJson.qq()}">${Parser.sourceJsonToFull(srcJson).qq()}</option>`)}
+		</select>`
+			.onn("change", async () => {
+				this._settings.activeSource = this._selSource.val();
+				await this._pDoHandleUpdateSource();
+			});
+		if (this._settings.activeSource) this._selSource.val(this._settings.activeSource);
+		else this._selSource.selectedIndex = 0;
+
+		const btnSourceEdit = ee`<button class="ve-btn ve-btn-default ve-btn-xs" title="Edit Selected Source"><span class="glyphicon glyphicon-pencil"></span></button>`
+			.onn("click", () => {
+				const curSourceJson = this._settings.activeSource;
+				const curSource = BrewUtil2.sourceJsonToSource(curSourceJson);
+				if (!curSource) return;
+				this._doRebuildStageSource({mode: "edit", source: MiscUtil.copy(curSource)});
+				this.__setStageSource();
+			});
+
+		const btnSourceAdd = ee`<button class="ve-btn ve-btn-default ve-btn-xs" title="Add New Source"><span class="glyphicon glyphicon-plus"></span></button>`
+			.onn("click", () => {
+				this._doRebuildStageSource({mode: "add"});
+				this.__setStageSource();
+			});
+
+		ee`<div class="ve-flex-v-center ve-mobile-md__mb-2">
+			<div class="ve-vr-3 ve-h-21p ve-mr-2 ve-mobile-md__hidden"></div>
+				
+			<div class="ve-flex-v-center">
+				<div class="ve-mr-2 ve-flex-v-center">Source</div>
+				<div class="ve-flex-v-stretch input-group ve-btn-group ve-mr-2">
+					${this._selSource}
+					${btnSourceEdit}
+				</div>
+				${btnSourceAdd}
+			</div>
+		</div>`
+			.appendTo(wrpSettings);
+	}
+
+	_initHeader_existing ({wrpSettings}) {
+		const btnEditExisting = ee`<button class="ve-btn ve-btn-xs ve-btn-default">Edit Existing</button>`
+			.onn("click", () => this._builders[this._settings.activeBuilder].pHandleClickEditExisting())
+			.appendTo(wrpSettings);
+
+		const btnLoadExisting = ee`<button class="ve-btn ve-btn-xs ve-btn-default">Copy Existing</button>`
+			.onn("click", () => this._builders[this._settings.activeBuilder].pHandleClickLoadExisting())
+			.appendTo(wrpSettings);
+
+		ee`<div class="ve-flex-v-center ve-mobile-md__mb-2">
+			<div class="ve-vr-2 ve-h-21p ve-mobile-md__hidden"></div>
+
+			<div class="ve-flex-v-center ve-btn-group">
+				${btnEditExisting}
+				${btnLoadExisting}
+			</div>
+		</div>`
+			.appendTo(wrpSettings);
+	}
+
+	_initHeader_download ({wrpSettings}) {
+		const btnDownloadJson = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">JSON</button>`
+			.onn("click", () => this._builders[this._settings.activeBuilder].pDoHandleClickDownloadJson());
+
+		const btnMarkdownDownload = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Markdown</button>`
+			.onn("click", async () => this._builders[this._settings.activeBuilder].pDoHandleClickDownloadMarkdown());
+
+		const btnMarkdownSettings = ee`<button class="ve-btn ve-btn-default ve-btn-xs"><span class="glyphicon glyphicon-cog"></span></button>`
+			.onn("click", () => RendererMarkdown.pShowSettingsModal());
+
+		ee`<div class="ve-flex-v-center ve-ml-auto ve-mobile-md__ml-0">
+				<div class="ve-mr-2">Download</div>
+				${btnDownloadJson}
+				<div class="ve-flex-v-center ve-btn-group">${btnMarkdownDownload}${btnMarkdownSettings}</div>
+			</div>`
+			.appendTo(wrpSettings);
 	}
 
 	_initLhs () {
@@ -167,10 +271,10 @@ class PageUi {
 	async pSetActiveBuilderById (id) {
 		id = id.toLowerCase().trim();
 		const key = Object.keys(this._builders).find(k => k.toLowerCase().trim() === id);
-		await this._pSetActiveBuilder(key);
+		await this._pSetActiveBuilder({nxtActiveBuilder: key});
 	}
 
-	async _pSetActiveBuilder (nxtActiveBuilder) {
+	async _pSetActiveBuilder ({nxtActiveBuilder, isInitialLoad = false}) {
 		if (!this._builders[nxtActiveBuilder]) throw new Error(`Builder "${nxtActiveBuilder}" does not exist!`);
 
 		this._selBuilderMode.val(nxtActiveBuilder);
@@ -179,85 +283,9 @@ class PageUi {
 		const builder = this._builders[this._settings.activeBuilder];
 		builder.renderInput();
 		builder.renderOutput();
-		await builder.pRenderSideMenu();
-		this._saveSettingsDebounced();
-	}
+		await builder.pRenderEntityList();
 
-	async _pInitSideMenu () {
-		const mnu = es(`.sidemenu`);
-
-		const prevMode = this._settings.activeBuilder;
-
-		const wrpMode = ee`<div class="ve-w-100 ve-split-v-center"><div class="sidemenu__row__label ve-mr-2">Mode</div></div>`.appendTo(mnu);
-		this._selBuilderMode = ee`
-			<select class="ve-form-control ve-input-xs">
-				<option value="creatureBuilder">Creature</option>
-				<option value="legendaryGroupBuilder">Legendary Group</option>
-				<option value="spellBuilder">Spell</option>
-				<option value="none" class="ve-italic">Everything Else?</option>
-			</select>
-		`
-			.appendTo(wrpMode)
-			.onn("change", async () => {
-				const val = this._selBuilderMode.val();
-				if (val === "none") {
-					InputUiUtil.pGetUserBoolean({
-						title: "Homebrew Builder Support",
-						htmlDescription: `<p>The Homebrew Builder only supports a limited set of entity types. For everything else, you will need to <a href="https://github.com/TheGiddyLimit/homebrew/blob/master/README.md" rel="noopener noreferrer">manually</a> create or convert content.</p>`,
-						isAlert: true,
-					}).then(null);
-					this._selBuilderMode.val(this._settings.activeBuilder);
-					return;
-				}
-				await this._pSetActiveBuilder(val);
-			});
-
-		mnu.appends(PageUiUtil.getSideMenuDivider(true));
-
-		const wrpSource = ee`<div class="ve-w-100 ve-mb-2 ve-split-v-center"><div class="sidemenu__row__label ve-mr-2">Source</div></div>`.appendTo(mnu);
-		this._allSources = BrewUtil2.getSources().sort((a, b) => SortUtil.ascSortLower(a.full, b.full))
-			.map(it => it.json);
-		this._selSource = ee`
-			<select class="ve-form-control ve-input-xs">
-				<option disabled>Select</option>
-				${this._allSources.map(s => `<option value="${s.qq()}">${Parser.sourceJsonToFull(s).qq()}</option>`)}
-			</select>`
-			.appendTo(wrpSource)
-			.onn("change", async () => {
-				this._settings.activeSource = this._selSource.val();
-				await this._pDoHandleUpdateSource();
-			});
-		if (this._settings.activeSource) this._selSource.val(this._settings.activeSource);
-		else this._selSource.selectedIndex = 0;
-
-		const btnSourceEdit = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">Edit Selected Source</button>`
-			.onn("click", () => {
-				const curSourceJson = this._settings.activeSource;
-				const curSource = BrewUtil2.sourceJsonToSource(curSourceJson);
-				if (!curSource) return;
-				this._doRebuildStageSource({mode: "edit", source: MiscUtil.copy(curSource)});
-				this.__setStageSource();
-			});
-		ee`<div class="ve-w-100 ve-mb-2">${btnSourceEdit}</div>`.appendTo(mnu);
-
-		const btnSourceAdd = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Add New Source</button>`.onn("click", () => {
-			this._doRebuildStageSource({mode: "add"});
-			this.__setStageSource();
-		});
-		ee`<div class="ve-w-100">${btnSourceAdd}</div>`.appendTo(mnu);
-
-		mnu.appends(PageUiUtil.getSideMenuDivider(true));
-		this._eleMenuInner = ee`<div></div>`.appendTo(mnu);
-
-		if (prevMode) await this._pSetActiveBuilder(prevMode);
-	}
-
-	set _sideMenuEnabled (val) { es(`.sidemenu__toggle`).toggleVe(!!val); }
-
-	_doRenderActiveBuilder () {
-		const activeBuilder = this._builders[this._settings.activeBuilder];
-		activeBuilder.renderInput();
-		activeBuilder.renderOutput();
+		if (!isInitialLoad) this._saveSettingsDebounced();
 	}
 
 	_doInitNavHandler () {
@@ -385,7 +413,7 @@ class Makebrew {
 			!isAllowEditExisting
 			|| !BrewUtil2.hasSourceJson(toLoad.source)
 			|| !toLoad.uniqueId
-		) return builder.pHandleSidebarLoadExistingData(toLoad, {isForce: true});
+		) return builder.pHandleLoadExistingData(toLoad, {isForce: true});
 
 		return builder.pHandleSidebarEditUniqueId(toLoad.uniqueId);
 	}

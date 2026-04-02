@@ -107,7 +107,7 @@ class OmnisearchUi {
 		})
 			.appendTo(eleNavbar);
 
-		const wrpSearchFilters = ee`<div class="ve-flex-h-right ve-flex-v-center ve-mobile-sm__ve-flex-col ve-mobile-sm__ve-flex-ai-start ve-mb-2"></div>`;
+		const wrpSearchFilters = ee`<div class="ve-flex-h-right ve-flex-v-center ve-mobile-sm__flex-col ve-mobile-sm__flex-ai-start ve-mb-2"></div>`;
 		const wrpSearchResults = ee`<div class="ve-flex-col"></div>`;
 
 		const dispSearchOutput = e_({
@@ -167,7 +167,7 @@ class OmnisearchUi {
 		});
 
 		ee(rdState.wrpSearchFilters)`
-			<div class="ve-flex-v-center ve-mr-2 ve-mobile-sm__mr-0 ve-mobile-sm__mb-2 ve-mobile-sm__w-100 ve-mobile-sm__ve-flex-h-right">
+			<div class="ve-flex-v-center ve-mr-2 ve-mobile-sm__mr-0 ve-mobile-sm__mb-2 ve-mobile-sm__w-100 ve-mobile-sm__flex-h-right">
 				<span class="ve-mr-2 ve-italic ve-relative ve-top-1p">Include</span>
 				<div class="ve-btn-group ve-flex-v-center">
 					${btnCyclePartneredMode}
@@ -176,7 +176,7 @@ class OmnisearchUi {
 				</div>
 			</div>
 
-			<div class="ve-flex-v-center ve-mobile-sm__w-100 ve-mobile-sm__ve-flex-h-right">
+			<div class="ve-flex-v-center ve-mobile-sm__w-100 ve-mobile-sm__flex-h-right">
 				<div class="ve-btn-group ve-flex-v-center ve-mr-2">
 					${btnToggleBlocklisted}
 					${btnToggleLegacy}
