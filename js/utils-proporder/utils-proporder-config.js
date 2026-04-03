@@ -2289,6 +2289,7 @@ const PROPORDER_PATTERN = [
 	"abbreviations",
 	"stitches",
 	"notes",
+	"finishing",
 
 	"instructions",
 
