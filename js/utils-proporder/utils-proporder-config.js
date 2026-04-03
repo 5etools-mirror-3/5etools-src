@@ -2281,6 +2281,7 @@ const PROPORDER_PATTERN = [
 	"level",
 	"type",
 	"size",
+	"sizeNote",
 	"yarn",
 	"hooks",
 	"notions",
