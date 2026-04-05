@@ -2360,6 +2360,7 @@ Parser.CHAR_OPTIONAL_FEATURE_TYPE_TO_FULL = {
 	"DG": "Dark Gift",
 	"RF:B": "Replacement Feature: Background",
 	"CS": "Character Secret", // Specific to IDRotF (rules on page 14)
+	"PTH": "Path",
 };
 
 Parser.charCreationOptionTypeToFull = function (type) {

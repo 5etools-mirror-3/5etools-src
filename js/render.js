@@ -2304,6 +2304,20 @@ globalThis.Renderer = function () {
 
 				break;
 			}
+			case "@5etoolsAudio": {
+				const [displayText, page] = Renderer.splitTagByPipe(text);
+				const fauxEntry = {
+					type: "link",
+					href: {
+						type: "external",
+						url: UrlUtil.link(this.getMediaUrl("audio", page)),
+					},
+					text: displayText,
+				};
+				this._recursiveRender(fauxEntry, textStack, meta);
+
+				break;
+			}
 
 			// OTHER HOVERABLES ////////////////////////////////////////////////////////////////////////////////
 			case "@footnote": {
@@ -4053,14 +4067,22 @@ Renderer.utils = class {
 
 		static _getHtml_featCategory ({v, isListMode, keyOptions, isTextOnly, styleHint}) {
 			if (isListMode) {
-				const ptTypes = v.map(featCategory => Parser.featCategoryToFull(featCategory))
+				const ptTypes = v
+					.map(featCategoryMeta => {
+						if (typeof featCategoryMeta === "string") return Parser.featCategoryToFull(featCategoryMeta);
+						return `${featCategoryMeta.count}× ${Parser.featCategoryToFull(featCategoryMeta)}`;
+					})
 					.join("/");
 				return `Any ${ptTypes}`;
 			}
 
-			const ptTypes = v.map(featCategory => Parser.featCategoryToFull(featCategory))
+			const ptTypes = v
+				.map(featCategoryMeta => {
+					if (typeof featCategoryMeta === "string") return Parser.featCategoryToFull(featCategoryMeta);
+					return `${Parser.numberToText(featCategoryMeta.count)} ${Parser.featCategoryToFull(featCategoryMeta.category)}`;
+				})
 				.joinConjunct(", ", " or ");
-			return `Any ${ptTypes} Feat`;
+			return `Any ${ptTypes} Feat${typeof v.at(-1) !== "string" ? "s" : ""}`;
 		}
 
 		static _getHtml_exclusiveFeatCategory ({v, isListMode, keyOptions, isTextOnly, styleHint}) {
@@ -5625,6 +5647,10 @@ Renderer.tag = class {
 		tagName = "5etoolsImg";
 	};
 
+	static Tag5etoolsAudio = class extends this._TagPipedNoDisplayText {
+		tagName = "5etoolsAudio";
+	};
+
 	static TagAdventure = class extends this._TagPipedNoDisplayText {
 		tagName = "adventure";
 	};
@@ -6077,6 +6103,7 @@ Renderer.tag = class {
 
 		new this.Tag5etools(),
 		new this.Tag5etoolsImg(),
+		new this.Tag5etoolsAudio(),
 		new this.TagAdventure(),
 		new this.TagBook(),
 		new this.TagFilter(),
@@ -10899,7 +10926,7 @@ Renderer.monster = class {
 		return mon[abv] != null && typeof mon[abv] !== "number";
 	}
 
-	static _getRenderedAbilityScores_getSpecialMeta ({mon}) {
+	static _getRenderedAbilityScores_getSpecialMeta ({mon, styleHint}) {
 		const specialByAbil = {};
 		const specialByValue = {};
 
@@ -10919,7 +10946,7 @@ Renderer.monster = class {
 				if (!specialByAbil[abv]) return null;
 				if (specialSeenAbs.has(specialByAbil[abv].abil)) return null;
 				specialByAbil[abv].family.forEach(meta => specialSeenAbs.add(meta.abil));
-				return `<b>${specialByAbil[abv].family.map(meta => meta.abil.toUpperCase()).join(", ")}</b> ${specialByAbil[abv].value}`;
+				return `<b>${specialByAbil[abv].family.map(meta => styleHint === "classic" ? meta.abil.toUpperCase() : `${meta.abil.uppercaseFirst()}.`).join(", ")}</b> ${specialByAbil[abv].value}`;
 			})
 			.filter(Boolean);
 
@@ -10932,7 +10959,7 @@ Renderer.monster = class {
 	}
 
 	static _getRenderedAbilityScores_classic ({mon}) {
-		const {abvsRemaining, ptsSpecial} = this._getRenderedAbilityScores_getSpecialMeta({mon});
+		const {abvsRemaining, ptsSpecial} = this._getRenderedAbilityScores_getSpecialMeta({mon, styleHint: "classic"});
 		const ptSpecial = ptsSpecial.map(pt => `<tr><td colspan="6">${pt}</td></tr>`).join("");
 
 		if (Parser.ABIL_ABVS.every(abv => this._getRenderedAbilityScores_isSpecial({mon, abv}))) return ptSpecial;
@@ -10955,8 +10982,11 @@ Renderer.monster = class {
 	static _getRenderedAbilityScores_one ({mon, renderer}) {
 		renderer ||= Renderer.get();
 
-		const {abvsRemaining, ptsSpecial} = this._getRenderedAbilityScores_getSpecialMeta({mon});
+		const {abvsRemaining, ptsSpecial} = this._getRenderedAbilityScores_getSpecialMeta({mon, styleHint: "one"});
 		const ptSpecial = ptsSpecial.map(pt => `<tr><td colspan="6">${pt}</td></tr>`).join("");
+
+		// e.g. "Behemoth" (XUA2026VillainousOptions)
+		if (!abvsRemaining.length) return ptSpecial;
 
 		const ptHeaders = Array.from(
 			{length: 14},

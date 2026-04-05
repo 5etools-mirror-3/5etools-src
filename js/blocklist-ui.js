@@ -268,7 +268,7 @@ class BlocklistUi {
 				this._list.reset();
 			});
 
-		const wrpFilterTools = ee`<div class="input-group input-group--bottom ve-flex ve-no-shrink">
+		const wrpFilterTools = ee`<div class="ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
 			<button class="ve-col-4 sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Source</button>
 			<button class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="category">Category</button>
 			<button class="ve-col-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
@@ -286,7 +286,7 @@ class BlocklistUi {
 			<div class="ve-muted ${this._isCompactUi ? "ve-mb-2" : "ve-mb-3"}"><i>Rows marked with an asterisk (*) in a field match everything in that field.</i></div>
 
 			<div class="ve-flex-col ve-min-h-0">
-				<div class="ve-flex-v-stretch input-group input-group--top ve-no-shrink">
+				<div class="ve-flex-v-stretch ve-input-group ve-input-group--top ve-no-shrink">
 					<div class="ve-w-100 ve-relative">
 						${iptSearch}
 						<div class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
