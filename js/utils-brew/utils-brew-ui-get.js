@@ -221,7 +221,7 @@ export class GetBrewUi {
 			? `<button class="ve-col-1-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="added">Added</button>`
 			: `<button class="ve-col-1-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="published">Published</button>`;
 
-		const wrpSort = ee`<div class="filtertools manbrew__filtertools ve-btn-group input-group input-group--bottom ve-flex ve-no-shrink">
+		const wrpSort = ee`<div class="filtertools manbrew__filtertools ve-btn-group ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
 			<label class="ve-col-0-5 ve-pr-0 ve-btn ve-btn-default ve-btn-xs ve-flex-vh-center">${rdState.cbAll}</label>
 			<button class="ve-col-3-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
 			<button class="ve-col-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="author">Author</button>

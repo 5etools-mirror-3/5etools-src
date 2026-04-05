@@ -6329,7 +6329,7 @@ class ComponentUiUtil {
 
 		const wrp = ee`<div class="ve-flex-col ve-w-100">
 			${wrpPills.addClass("ve-mb-1").addClass("ve-flex-h-right")}
-			<div class="ve-flex-v-center ve-w-100 input-group">
+			<div class="ve-flex-v-center ve-w-100 ve-input-group">
 				${iptText}
 				${btnAdd}
 			</div>

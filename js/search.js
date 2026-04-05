@@ -112,7 +112,7 @@ class SearchPage {
 
 		ee(SearchPage._wrp)`<div class="ve-flex-col ve-w-100 pg-search__wrp">
 			<div class="ve-flex-v-center ve-mb-2 ve-mobile-lg__flex-col">
-				<div class="ve-flex-v-center input-group ve-btn-group ve-mr-2 ve-w-100 ve-mobile-lg__mb-2">${iptSearch}${btnSearch}</div>
+				<div class="ve-flex-v-center ve-input-group ve-btn-group ve-mr-2 ve-w-100 ve-mobile-lg__mb-2">${iptSearch}${btnSearch}</div>
 
 				<div class="ve-flex-v-center ve-mobile-sm__flex-col ve-mobile-lg__flex-ai-start ve-mobile-lg__w-100">
 					${btnHelp}

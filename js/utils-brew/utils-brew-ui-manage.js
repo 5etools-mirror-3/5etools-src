@@ -476,7 +476,7 @@ export class ManageBrewUi {
 			sortDirInitial: rdState.list ? rdState.list.sortDir : undefined,
 		});
 
-		const wrpBtnsSort = ee`<div class="filtertools manbrew__filtertools ve-btn-group input-group input-group--bottom ve-flex ve-no-shrink">
+		const wrpBtnsSort = ee`<div class="filtertools manbrew__filtertools ve-btn-group ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
 			<label class="ve-col-0-5 ve-pr-0 ve-btn ve-btn-default ve-btn-xs ve-flex-vh-center">${cbAll}</label>
 			<button class="ve-col-1 ve-btn ve-btn-default ve-btn-xs" disabled>Type</button>
 			<button class="ve-col-3 ve-btn ve-btn-default ve-btn-xs" data-sort="source">Source</button>
@@ -487,7 +487,7 @@ export class ManageBrewUi {
 
 		ee(rdState.stgBrewList)`
 		<div class="ve-flex-col ve-h-100">
-			<div class="input-group ve-flex-vh-center">
+			<div class="ve-input-group ve-flex-vh-center">
 				${btnMass}
 				${iptSearch}
 			</div>

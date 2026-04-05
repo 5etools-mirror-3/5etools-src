@@ -205,7 +205,7 @@ class PageUi {
 				
 			<div class="ve-flex-v-center">
 				<div class="ve-mr-2 ve-flex-v-center">Source</div>
-				<div class="ve-flex-v-stretch input-group ve-btn-group ve-mr-2">
+				<div class="ve-flex-v-stretch ve-input-group ve-btn-group ve-mr-2">
 					${this._selSource}
 					${btnSourceEdit}
 				</div>

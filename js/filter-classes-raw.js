@@ -178,11 +178,11 @@ export class ModalFilterClasses extends ModalFilterBase {
 
 		const iptSearch = ee`<input class="ve-form-control ve-h-100" type="search" placeholder="Search...">`;
 		const btnReset = ee`<button class="ve-btn ve-btn-default">Reset</button>`;
-		const wrpFormTop = ee`<div class="ve-flex input-group ve-btn-group ve-w-100 ve-lst__form-top">${iptSearch}${btnReset}</div>`;
+		const wrpFormTop = ee`<div class="ve-flex ve-input-group ve-btn-group ve-w-100 ve-lst__form-top">${iptSearch}${btnReset}</div>`;
 
 		const wrpFormBottom = ee`<div class="ve-w-100"></div>`;
 
-		const wrpFormHeaders = ee`<div class="input-group input-group--bottom ve-flex ve-no-shrink">
+		const wrpFormHeaders = ee`<div class="ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
 			<div class="ve-btn ve-btn-default ve-disabled ve-col-1 ve-pl-0"></div>
 			<button class="ve-col-9 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
 			<button class="ve-col-2 ve-pr-0 sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Source</button>

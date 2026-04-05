@@ -23,6 +23,10 @@ jobs:
    create-release:
       runs-on: ubuntu-latest
       steps:
+         - uses: actions/setup-node@v4
+           with:
+              node-version: 'lts/*'
+
          -  uses: actions/checkout@master
 
          -  name: Generate Release Notes
@@ -54,6 +58,10 @@ jobs:
               remove_folders: "/usr/share/swift /usr/share/miniconda /usr/share/az* /usr/local/share/chromium /usr/local/share/powershell /usr/local/julia /usr/local/aws-cli /usr/local/aws-sam-cli /usr/share/gradle"
               rm_cmd: "rmz"
               rmz_version: "3.1.1"
+
+         - uses: actions/setup-node@v4
+           with:
+              node-version: 'lts/*'
 
          -  uses: actions/checkout@master
 

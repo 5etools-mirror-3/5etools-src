@@ -43,6 +43,10 @@ jobs:
               rm_cmd: "rmz"
               rmz_version: "3.1.1"
 
+         - uses: actions/setup-node@v4
+           with:
+              node-version: 'lts/*'
+
          -  name: Checkout
             uses: actions/checkout@master
 

@@ -70,11 +70,11 @@ export class ModalFilterBase {
 			${dispNumVisible}
 		</div>`;
 
-		const wrpFormTop = ee`<div class="ve-flex input-group ve-btn-group ve-w-100 ve-lst__form-top">${wrpIptSearch}${btnReset}</div>`;
+		const wrpFormTop = ee`<div class="ve-flex ve-input-group ve-btn-group ve-w-100 ve-lst__form-top">${wrpIptSearch}${btnReset}</div>`;
 
 		const wrpFormBottom = opts.wrpMiniPills || ee`<div class="ve-w-100"></div>`;
 
-		const wrpFormHeaders = ee`<div class="input-group input-group--bottom ve-flex ve-no-shrink"></div>`;
+		const wrpFormHeaders = ee`<div class="ve-input-group ve-input-group--bottom ve-flex ve-no-shrink"></div>`;
 		const cbSelAll = opts.isBuildUi || this._isRadio ? null : ee`<input type="checkbox">`;
 		const btnSendAllToRight = opts.isBuildUi ? ee`<button class="ve-btn ve-btn-xxs ve-btn-default ve-col-1" title="Add All"><span class="glyphicon glyphicon-arrow-right"></span></button>` : null;
 

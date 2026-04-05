@@ -156,6 +156,22 @@ class FilterCommon {
 
 	/* -------------------------------------------- */
 
+	static _getNameSourceFilterDisplay (str) {
+		const [name, sourceJson] = str.split("|");
+		return `${name.toTitleCase()}${sourceJson ? ` (${Parser.sourceJsonToAbv(sourceJson)})` : ""}`;
+	}
+
+	/* -------------------------------------------- */
+
+	static getSkillProficienciesFilter () {
+		return new Filter({
+			header: "Skill Proficiencies",
+			displayFn: this._getNameSourceFilterDisplay.bind(this),
+		});
+	}
+
+	/* -------------------------------------------- */
+
 	static _LANG_TO_DISPLAY = {
 		"anyStandard": "Any Standard",
 		"anyExotic": "Any Exotic",
@@ -166,7 +182,29 @@ class FilterCommon {
 	static getLanguageProficienciesFilter () {
 		return new Filter({
 			header: "Language Proficiencies",
-			displayFn: it => this._LANG_TO_DISPLAY[it] || StrUtil.toTitleCase(it),
+			displayFn: it => {
+				if (this._LANG_TO_DISPLAY[it]) return this._LANG_TO_DISPLAY[it];
+				return this._getNameSourceFilterDisplay(it);
+			},
+		});
+	}
+
+	/* -------------------------------------------- */
+
+	static _TOOL_TO_DISPLAY = {
+		"anyTool": "Any Tool",
+		"anyArtisansTool": "Any Artisan's Tool",
+		"anyMusicalInstrument": "Any Musical Instrument",
+		"anyGamingSet": "Any Gaming Set",
+	};
+
+	static getToolProficienciesFilter () {
+		return new Filter({
+			header: "Tool Proficiencies",
+			displayFn: it => {
+				if (this._TOOL_TO_DISPLAY[it]) return this._TOOL_TO_DISPLAY[it];
+				return this._getNameSourceFilterDisplay(it);
+			},
 		});
 	}
 }

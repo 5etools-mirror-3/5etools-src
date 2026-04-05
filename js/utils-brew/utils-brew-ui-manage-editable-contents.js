@@ -210,7 +210,7 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 		const wrpRows = ee`<div class="list ve-flex-col ve-w-100 ve-max-h-unset"></div>`;
 		const iptSearch = ee`<input type="search" class="search manbrew__search ve-form-control ve-w-100 ve-lst__search ve-lst__search--no-border-h" placeholder="Search entries...">`;
 		const disp = ee`<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>`;
-		const wrpBtnsSort = ee`<div class="filtertools manbrew__filtertools input-group input-group--bottom ve-flex ve-no-shrink">
+		const wrpBtnsSort = ee`<div class="filtertools manbrew__filtertools ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
 			${this._isReadOnly ? "" : ee`<label class="ve-btn ve-btn-default ve-btn-xs ve-col-1 ve-pr-0 ve-flex-vh-center">${cbAll}</label>`}
 			<button class="${this._isReadOnly ? `ve-col-6` : `ve-col-5`} sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
 			<button class="ve-col-1 sort ve-btn ve-btn-default ve-btn-xs" data-sort="source">Source</button>
@@ -218,7 +218,7 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 		</div>`;
 
 		ee(tabMeta.wrpTab)`
-		<div class="ve-flex-v-stretch input-group input-group--top ve-no-shrink ve-mt-1">
+		<div class="ve-flex-v-stretch ve-input-group ve-input-group--top ve-no-shrink ve-mt-1">
 			${btnFilter}
 			${btnToggleSummaryHidden}
 			<div class="ve-w-100 ve-relative">
@@ -392,7 +392,7 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 		const cbAll = this._isReadOnly ? null : ee`<input type="checkbox">`;
 		const wrpRows = ee`<div class="list ve-flex-col ve-w-100 ve-max-h-unset"></div>`;
 		const iptSearch = ee`<input type="search" class="search manbrew__search ve-form-control ve-w-100 ve-mt-1" placeholder="Search source...">`;
-		const wrpBtnsSort = ee`<div class="filtertools manbrew__filtertools input-group input-group--bottom ve-flex ve-no-shrink">
+		const wrpBtnsSort = ee`<div class="filtertools manbrew__filtertools ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
 			${this._isReadOnly ? "" : ee`<label class="ve-btn ve-btn-default ve-btn-xs ve-col-1 ve-pr-0 ve-flex-vh-center">${cbAll}</label>`}
 			<button class="${this._isReadOnly ? `ve-col-6` : `ve-col-5`} sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
 			<button class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="abbreviation">Abbreviation</button>

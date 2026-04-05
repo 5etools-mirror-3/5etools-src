@@ -98,7 +98,7 @@ class OmnisearchUi {
 
 		const wrpSearchInput = e_({
 			tag: "div",
-			clazz: "input-group omni__wrp-input ve-flex",
+			clazz: "ve-input-group omni__wrp-input ve-flex",
 			children: [
 				iptSearch,
 				btnClearSearch,
