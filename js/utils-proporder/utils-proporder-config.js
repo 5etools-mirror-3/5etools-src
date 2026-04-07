@@ -2267,6 +2267,42 @@ const PROPORDER_RECIPE = [
 
 	"fluff",
 ];
+const PROPORDER_PATTERN = [
+	"name",
+	"alias",
+
+	"source",
+	"page",
+
+	"otherSources",
+	new ArrayKey("referenceSources", {fnSort: SortUtil.ascSortLower}),
+
+	"designer",
+	"level",
+	"type",
+	"size",
+	"sizeNote",
+	"yarn",
+	"hooks",
+	"notions",
+	"gauge",
+	"abbreviations",
+	"stitches",
+	"notes",
+	"finishing",
+
+	"instructions",
+
+	"seeAlsoCreature",
+	"seeAlsoItem",
+
+	"fluff",
+
+	"hasFluff",
+	"hasFluffImages",
+
+	"fluff",
+];
 const PROPORDER_CHAROPTION = [
 	"name",
 	"alias",
@@ -2583,6 +2619,8 @@ export const PROPORDER_PROP_TO_LIST = {
 	"facilityFluff": PROPORDER_GENERIC_FLUFF,
 	"converterSample": PROPORDER_CONVERTER_SAMPLE,
 	"encounterShape": PROPORDER_ENCOUNTER_SHAPE,
+	"pattern": PROPORDER_PATTERN,
+	"patternFluff": PROPORDER_GENERIC_FLUFF,
 };
 
 export const PROPORDER_ROOT = [
@@ -2727,6 +2765,8 @@ export const PROPORDER_ROOT = [
 	// region Other
 	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "recipe"),
 	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "recipeFluff"),
+	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "pattern"),
+	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "patternFluff"),
 	// endregion
 
 	// region Legacy content
