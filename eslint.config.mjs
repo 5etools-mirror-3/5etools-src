@@ -1,7 +1,7 @@
 import js from "@eslint/js";
 import globals from "globals";
 import {CONFIG_IGNORES} from "./test/eslint/eslint-config.js";
-import pluginVetJquery from "./test/eslint/eslint-plugin-jquery.js";
+import pluginVetJquery from "5etools-utils/eslint";
 
 export default [
 	js.configs.recommended,

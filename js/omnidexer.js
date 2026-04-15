@@ -1287,10 +1287,22 @@ class IndexableFileCharCreationOptions extends IndexableFile {
 class IndexableFileRecipes extends IndexableFile {
 	constructor () {
 		super({
-			category: Parser.CAT_ID_RECIPES,
+			category: Parser.CAT_ID_RECIPE,
 			file: "recipes.json",
 			listProp: "recipe",
 			baseUrl: "recipes.html",
+			isHover: true,
+		});
+	}
+}
+
+class IndexableFileCrochetPatterns extends IndexableFile {
+	constructor () {
+		super({
+			category: Parser.CAT_ID_CROCHET_PATTERN,
+			file: "homecrafts.json",
+			listProp: "crochetPattern",
+			baseUrl: UrlUtil.PG_HOMECRAFTS,
 			isHover: true,
 		});
 	}
@@ -1431,6 +1443,7 @@ Omnidexer.TO_INDEX = [
 	new IndexableFileLanguages(),
 	new IndexableFileCharCreationOptions(),
 	new IndexableFileRecipes(),
+	new IndexableFileCrochetPatterns(),
 	new IndexableFileSkills(),
 	new IndexableFileSenses(),
 ];

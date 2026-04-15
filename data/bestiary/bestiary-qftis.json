@@ -920,19 +920,27 @@
 				{
 					"name": "Grenade Launcher {@recharge 5}",
 					"entries": [
-						"The robot fires a grenade at a point it can see within 120 feet of itself. The grenade explodes in a 20-foot-radius sphere centered on that point, creating one of the following effects (robot's choice):"
-					]
-				},
-				{
-					"name": "Concussion Grenade",
-					"entries": [
-						"Each creature in the sphere must make a {@dc 15} Dexterity saving throw, taking 21 ({@damage 6d6}) force damage on a failed save or half as much damage on a successful one."
-					]
-				},
-				{
-					"name": "Sleep Grenade",
-					"entries": [
-						"Each creature in the sphere must succeed on a {@dc 15} Constitution saving throw or have the {@condition unconscious} condition for 1 hour. The condition ends on a creature early if the creature takes damage or if another creature uses an action to shake it awake."
+						"The robot fires a grenade at a point it can see within 120 feet of itself. The grenade explodes in a 20-foot-radius sphere centered on that point, creating one of the following effects (robot's choice):",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "Concussion Grenade",
+									"entries": [
+										"Each creature in the sphere must make a {@dc 15} Dexterity saving throw, taking 21 ({@damage 6d6}) force damage on a failed save or half as much damage on a successful one."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Sleep Grenade",
+									"entries": [
+										"Each creature in the sphere must succeed on a {@dc 15} Constitution saving throw or have the {@condition unconscious} condition for 1 hour. The condition ends on a creature early if the creature takes damage or if another creature uses an action to shake it awake."
+									]
+								}
+							]
+						}
 					]
 				}
 			],

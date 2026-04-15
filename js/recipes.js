@@ -1,4 +1,4 @@
-"use strict";
+import {RenderRecipes} from "./render-recipes.js";
 
 class RecipesSublistManager extends SublistManager {
 	_getCustomHashId ({entity}) {

@@ -131,6 +131,7 @@ export class TagTestUrlLookup {
 		for (const prop of [
 			"monsterFluff",
 			"raceFluff",
+			"crochetPatternFluff",
 		]) {
 			[
 				...(await DataLoader.pCacheAndGetAllBrew(prop)),
@@ -214,7 +215,7 @@ export class TagTestUrlLookup {
 	/* -------------------------------------------- */
 
 	getEncodedProxy (uid, tag, prop = null) {
-		prop ||= tag;
+		prop ||= Parser.getTagProps(tag)[0];
 		const unpacked = DataUtil.proxy.unpackUid(prop, uid, tag);
 		const hashBuilder = UrlUtil.URL_TO_HASH_BUILDER[prop];
 		if (!hashBuilder) throw new Error(`No hash builder found for prop "${prop}"!`);

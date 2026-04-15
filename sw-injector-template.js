@@ -42,6 +42,8 @@ const fetchError = {
 const wb = new Workbox("sw.js");
 
 wb.addEventListener("controlling", () => {
+	if (!VetoolsConfig.get("ui", "isNotifyUpdates")) return;
+
 	const lnk = ee`<a href="${Renderer.get().baseUrl}changelog.html" class="alert-link">changelog</a>`
 		.onn("click", evt => {
 			evt.stopPropagation();

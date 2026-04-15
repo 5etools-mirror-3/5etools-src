@@ -21,7 +21,7 @@ class _UtilListPage {
 					title: entity.name,
 					isPermanent: true,
 					pageUrl: `${page}#${hash}`,
-					isBookContent: page === UrlUtil.PG_RECIPES,
+					isBookContent: Renderer.hover.isBookContentStyledPage(page),
 					sourceData: entity,
 				},
 			);
@@ -2352,7 +2352,7 @@ class ListPage {
 			{
 				title: `Image Export - ${ent.name}`,
 				isPermanent: true,
-				isBookContent: page === UrlUtil.PG_RECIPES,
+				isBookContent: Renderer.hover.isBookContentStyledPage(page),
 				isResizeOnlyWidth: true,
 				isHideBottomBorder: true,
 				width,

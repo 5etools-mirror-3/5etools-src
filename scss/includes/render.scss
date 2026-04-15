@@ -796,14 +796,14 @@ Renderer
 	/* Entity-specific styling                                                                                            */
 	/* ****************************************************************************************************************** */
 
-	// region Recipes
-	.ve-rd-recipes {
+	// region "Plain Text", i.e., content which does not use D&D-specific styling
+	.ve-rd-plaintext {
 		&__ {
-			&wrp-recipe {
+			&wrp-root {
 				--w-text-indent-inline-p: 0;
 			}
 
-			&wrp-instructions {
+			&wrp-primary {
 				.ve-rd__h--3 {
 					font-style: initial;
 					font-variant: small-caps;
@@ -820,7 +820,7 @@ Renderer
 				}
 			}
 
-			&wrp-ingredients {
+			&wrp-sidebar {
 				.ve-rd__h--2 {
 					font-size: 1em;
 					font-family: Roboto, Helvetica, sans-serif;

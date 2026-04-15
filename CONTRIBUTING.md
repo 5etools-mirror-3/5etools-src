@@ -93,6 +93,13 @@ Any language feature which is available in both main-line Chrome and main-line F
     - In a similar vein, never tag anything within a `quote`-type block. Even if the quote directly refers to a specific creature, we can assume the quote is from a universe/perspective in which (for example) stat blocks don't exist, and therefore the tag should be omitted to maintain the flavor of the quote.
     - Within data from a source, avoid referencing content from a source printed after the publication of that source. For example, MTF content might reference SCAG deities, but SCAG deities should refrain from referencing MTF content.
 
+- When referring to an entity via "UID" (usually a sequence of strings joined with "|"s), the following casing convention is expected:
+  - As part of a `{@tag ...}` in a renderable entry: 
+    - Display names are cased according to the needs of the text (i.e., match the original document). For example: `{@spell Fireball|PHB|This is fireball display text, with Mixed Casing.}`.
+    - Names are title-cased if a display name is also used, or if a display name is not used, are cased according to the needs of the text. For example: `The golbin casts {@spell fireball|PHB}`.
+    - Source identifiers are cased to match their definition. For example: `{@spell Fireball|PHB}`; `{@spell Iceball|MyHomebrewSource}`.
+  - As a freestanding UID in data: all-lowercase. For example: `{"additionalSpells": [{"innate": {"3": [ "fireball|phb" ]}}]}`; `{"startingEquipment": [{"a": [ "dagger|phb" ]}]}`
+
 ### Inclusion of `_copy` Entities
 
 Only entities which are meaningfully different in crunch, or have unique art, should be included as `_copy`s.

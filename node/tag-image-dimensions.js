@@ -106,6 +106,7 @@ async function main (
 				files.push("./data/fluff-charcreationoptions.json");
 				files.push("./data/fluff-conditionsdiseases.json");
 				files.push("./data/fluff-feats.json");
+				files.push("./data/fluff-homecrafts.json");
 				files.push("./data/fluff-items.json");
 				files.push("./data/fluff-languages.json");
 				files.push("./data/fluff-objects.json");

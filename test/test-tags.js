@@ -34,6 +34,7 @@ import {EntityFileHandlerSkills} from "./test-tags/entity-file/test-tags-entity-
 import {EntityFileHandlerSpell} from "./test-tags/entity-file/test-tags-entity-file-spell.js";
 import {EntityFileHandlerVariantrule} from "./test-tags/entity-file/test-tags-entity-file-variantrule.js";
 import {EntityFileHandlerSpellList} from "./test-tags/entity-file/test-tags-entity-file-spelllist.js";
+import {EntityFileHandlerHomeCrafts} from "./test-tags/entity-file/test-tags-entity-file-homecraft.js";
 import {PATH_DEFAULT_HOMEBREW_DIR, PATH_DEFAULT_PRERELEASE_DIR} from "./util-test.js";
 
 const program = new Command()
@@ -120,7 +121,7 @@ class LinkCheck extends DataTesterBase {
 			const tagNonFluff = Parser.getPropTag(prop.replace(/Fluff$/, ""));
 			const tagFaux = `${tagNonFluff}Fluff`;
 
-			const sourceDefault = Renderer.tag.TAG_LOOKUP[tagNonFluff].defaultSource;
+			const sourceDefault = Renderer.tag.getTagInfo(tagNonFluff, {isRequired: true}).defaultSource;
 			const uid = DataUtil.proxy.getUid(prop, {...obj, source: obj.source || sourceDefault});
 
 			this._checkTagText({original: JSON.stringify(obj), tag: tagFaux, text: uid, filePath, isStatblock: true});
@@ -128,7 +129,7 @@ class LinkCheck extends DataTesterBase {
 			return obj;
 		}
 
-		const sourceDefault = Renderer.tag.TAG_LOOKUP[tag].defaultSource;
+		const sourceDefault = Renderer.tag.getTagInfo(tag, {isRequired: true}).defaultSource;
 		const uid = DataUtil.proxy.getUid(prop, {...obj, source: obj.source || sourceDefault});
 		this._checkTagText({original: JSON.stringify(obj), tag, text: uid, filePath, isStatblock: true});
 
@@ -253,7 +254,7 @@ class StandaloneTagTest extends DataTesterBase {
 
 			const [tag, text] = Renderer.splitFirstSpace(s.slice(1, -1));
 
-			const tagInfo = Renderer.tag.TAG_LOOKUP[tag];
+			const tagInfo = Renderer.tag.getTagInfo(tag);
 			if (!tagInfo) continue;
 
 			if (!tagInfo.isStandalone && !text) {
@@ -953,6 +954,7 @@ async function main () {
 		new EntityFileHandlerSpell(sharedParamsEntityTypeTester),
 		new EntityFileHandlerVariantrule(sharedParamsEntityTypeTester),
 		new EntityFileHandlerSpellList(sharedParamsEntityTypeTester),
+		new EntityFileHandlerHomeCrafts(sharedParamsEntityTypeTester),
 
 		new EntityFileHandlerFoundryClass(sharedParamsEntityTypeTester),
 		new EntityFileHandlerFoundrySpells(sharedParamsEntityTypeTester),

@@ -412,7 +412,7 @@ export class GetBrewUi {
 
 		if (!listItems.length) return JqueryUtil.doToast({type: "warning", content: `Please select some ${this._brewUtil.DISPLAY_NAME_PLURAL} first!`});
 
-		if (listItems.length > 25 && !await InputUiUtil.pGetUserBoolean({title: "Are you sure?", htmlDescription: `<div>You area about to load ${listItems.length} ${this._brewUtil.DISPLAY_NAME} files.<br>Loading large quantities of ${this._brewUtil.DISPLAY_NAME_PLURAL} can lead to performance and stability issues.</div>`, textYes: "Continue"})) return;
+		if (listItems.length > 25 && !await InputUiUtil.pGetUserBoolean({title: "Are you sure?", htmlDescription: `<div>You are about to load ${listItems.length} ${this._brewUtil.DISPLAY_NAME} files.<br>Loading large quantities of ${this._brewUtil.DISPLAY_NAME_PLURAL} can lead to performance and stability issues.</div>`, textYes: "Continue"})) return;
 
 		rdState.cbAll.checked = false;
 		rdState.list.items.forEach(item => {

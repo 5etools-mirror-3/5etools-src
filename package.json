@@ -1,7 +1,7 @@
 {
 	"name": "5etools",
 	"author": "TheGiddyLimit",
-	"version": "2.26.1",
+	"version": "2.27.0",
 	"license": "MIT",
 	"description": "A site dedicated to making playing games with your friends as easy as possible.",
 	"type": "module",
@@ -14,7 +14,7 @@
 		"clean-jsons": "node node/clean-jsons.js",
 		"test:js": "eslint .",
 		"lint:js": "npm run test:js -- --fix",
-		"lint:js:fast": "node node/lint-js-changed.js",
+		"lint:js:fast": "lint-js-changed --additional-root node_",
 		"lint:js:single": "eslint -- ",
 		"test:css:lint": "stylelint scss/*.scss scss/includes/*.scss",
 		"test:css:format": "echo '(Skipping CSS format check)'",
@@ -59,7 +59,7 @@
 	},
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
-		"5etools-utils": "^0.15.17",
+		"5etools-utils": "^0.16.2",
 		"ajv": "^8.18.0",
 		"ajv-formats": "^3.0.1",
 		"commander": "^14.0.3",

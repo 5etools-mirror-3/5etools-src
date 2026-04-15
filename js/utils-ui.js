@@ -1774,7 +1774,7 @@ class SearchUiUtil {
 		Object.values(alternateData).forEach(arr => arr.forEach(d => handleDataItem(d, true)));
 
 		const pAddPrereleaseBrewIndex = async ({brewUtil}) => {
-			const brewIndex = await brewUtil.pGetSearchIndex({id: availContent.ALL.documentStore.length});
+			const brewIndex = await brewUtil.pGetSearchIndex({id: ixMax + 1});
 
 			brewIndex.forEach(d => {
 				if (SearchUiUtil._isNoHoverCat(d.c) || fromDeepIndex(d)) return;
@@ -1783,6 +1783,7 @@ class SearchUiUtil {
 				initIndexForFullCat(d);
 				availContent.ALL.addDoc(d);
 				availContent[d.cf].addDoc(d);
+				ixMax = Math.max(ixMax, d.id);
 			});
 		};
 

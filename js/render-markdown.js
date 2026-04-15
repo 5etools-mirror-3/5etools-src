@@ -2188,6 +2188,84 @@ RendererMarkdown.recipe = class {
 	}
 };
 
+RendererMarkdown.crochetPattern = class {
+	static getCompactRenderedString (ent, opts = {}) {
+		const {entrySkillLevel, entryDesignedBy, entriesMeasurements, entriesHooks} = Renderer.crochetPattern.getCrochetPatternRenderableEntriesMeta(ent);
+
+		const ptHead = RendererMarkdown.utils.withMetaDepth(0, opts, () => {
+			const entries = [
+				`{@i Skill Level: ${entrySkillLevel}.${entryDesignedBy ? ` Designed by ${entryDesignedBy}.` : ""}}`,
+
+				entriesMeasurements?.length ? `#### Finished Measurements` : "",
+				...(entriesMeasurements || []),
+
+				ent.yarn?.length ? `#### Yarn` : "",
+				...(ent.yarn || []),
+
+				entriesHooks?.length ? `#### Hooks` : "",
+				...(entriesHooks || []),
+
+				ent.notions?.length ? `#### Notions` : "",
+				...(ent.notions || []),
+
+				ent.gauge?.length ? `#### Gauge` : "",
+				...(ent.gauge || []),
+
+				ent.stitches?.length ? `#### Special Stitches` : "",
+				...(ent.stitches || []),
+
+				ent.abbreviations?.length ? `#### Special Abbreviations` : "",
+				...(ent.abbreviations || []),
+
+				ent.notes?.length ? `#### Notes` : "",
+				...(ent.notes || []),
+
+				ent.finishing?.length ? `#### Finishing` : "",
+				...(ent.finishing || []),
+			]
+				.filter(Boolean);
+
+			const entFull = {
+				...ent,
+				entries,
+			};
+
+			return RendererMarkdown.generic.getCompactRenderedString(entFull, opts);
+		});
+
+		const ptInstructions = RendererMarkdown.utils.withMetaDepth(0, opts, () => {
+			return RendererMarkdown.generic.getRenderedSubEntry({entries: ent.instructions}, opts);
+		});
+
+		const out = [
+			ptHead,
+			ptInstructions,
+		]
+			.filter(Boolean)
+			.join("\n\n");
+
+		return RendererMarkdown.utils.getNormalizedNewlines(out);
+	}
+};
+
+RendererMarkdown.homecraft = class {
+	static getCompactRenderedString (ent) {
+		switch (ent.__prop) {
+			case "crochetPattern": return RendererMarkdown.crochetPattern.getCompactRenderedString(ent);
+			default: throw new Error(`Unhandled prop "${ent.__prop}"`);
+		}
+	}
+
+	/* -------------------------------------------- */
+
+	static pGetFluff (ent) {
+		switch (ent.__prop) {
+			case "crochetPattern": return RendererMarkdown.crochetPattern.pGetFluff(ent);
+			default: throw new Error(`Unhandled prop "${ent.__prop}"`);
+		}
+	}
+};
+
 RendererMarkdown.variantrule = class {
 	static getCompactRenderedString (ent, opts = {}) {
 		return RendererMarkdown.generic.getCompactRenderedString(ent, opts);

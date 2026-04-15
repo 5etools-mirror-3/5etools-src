@@ -67,7 +67,7 @@
 <div class="viewport-wrapper">
 	<div class="cancer__wrp-leaderboard cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__wrp-leaderboard-inner cancer__wrp-interactive"><!--5ETOOLS_AD_LEADERBOARD--></div></div>
 
-	<header class="hidden-xs hidden-sm page__header">
+	<header class="ve-mobile-sm__hidden page__header">
 		<div class="container ve-flex-v-baseline">
 			<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Recipes</h1>
 			<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Search by name on the left, click a name to display on the right.</p>
@@ -125,10 +125,14 @@
 
 				<div class="ve-split-v-center ve-mt-2 no-print">
 					<div class="ve-small ve-muted ve-italic ve-mr-2" title="We gratefully accept any and all corrections in our Discord, a link to which can be found on the homepage.">Please note that allergen and other dietary information may be incomplete and/or inaccurate.</div>
-					<div class="ve-flex-v-center ve-btn-group" id="btngroup-manager">
-						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">Manage Content</button>
-						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-prerelease" title="Manage Prerelease Content"><span class="glyphicon glyphicon-wrench"></span></button>
-						<button type="button" class="ve-btn ve-btn-xs ve-btn-info" name="manage-brew" title="Manage Homebrew"><span class="glyphicon glyphicon-glass"></span></button>
+
+					<div class="ve-flex-v-center">
+						<button type="button" class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" id="btn-book">Printer View</button>
+						<div class="ve-flex-v-center ve-btn-group" id="btngroup-manager">
+							<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">Manage Content</button>
+							<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-prerelease" title="Manage Prerelease Content"><span class="glyphicon glyphicon-wrench"></span></button>
+							<button type="button" class="ve-btn ve-btn-xs ve-btn-info" name="manage-brew" title="Manage Homebrew"><span class="glyphicon glyphicon-glass"></span></button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -154,13 +158,12 @@
 <script type="text/javascript" defer src="js/render.js"></script>
 <script type="text/javascript" defer src="js/render-dice.js"></script>
 <script type="text/javascript" defer src="js/render-markdown.js"></script>
-<script type="text/javascript" defer src="js/render-recipes.js"></script>
 <script type="module" src="js/shim-esmodules.js"></script>
 <script type="text/javascript" defer src="js/hist.js"></script>
 <script type="text/javascript" defer src="js/listpage.js"></script>
 <script type="text/javascript" defer src="js/filter-common.js"></script>
 <script type="text/javascript" defer src="js/filter-recipes.js"></script>
-<script type="text/javascript" defer src="js/recipes.js"></script>
+<script type="module" src="js/recipes.js"></script>
 <script type="text/javascript" defer src="js/list2.js"></script>
 <script type="text/javascript" defer src="lib/elasticlunr.js"></script>
 

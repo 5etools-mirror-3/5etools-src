@@ -63,8 +63,7 @@ const walkerStringHandler = ({stack}, str) => {
 				continue;
 			}
 
-			const tagInfo = Renderer.tag.TAG_LOOKUP[tag];
-			if (!tagInfo.defaultSource) {
+			if (!Renderer.tag.getTagInfo(tag, {isRequired: true}).defaultSource) {
 				out += `{${tag} ${recurse(text)}}`;
 				continue;
 			}

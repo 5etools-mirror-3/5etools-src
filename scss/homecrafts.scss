@@ -1,0 +1,30 @@
+@use "vars/vars";
+@use "vars/vars-night";
+
+@layer vetools {
+	.homecrafts {
+		&__ {
+			&wrp-fluff {
+				.ve-rd__wrp-image {
+					margin-top: 0;
+				}
+
+				.ve-rd__image {
+					max-height: 50vh;
+				}
+			}
+
+			&tbl-homecrafts {
+				border-left: 1px solid vars.$rgb-border-grey--trans;
+			}
+		}
+	}
+
+	.ve-night-mode .homecrafts {
+		&__ {
+			&tbl-homecrafts {
+				border-left: 1px solid vars-night.$rgb-border-grey--trans-night;
+			}
+		}
+	}
+}

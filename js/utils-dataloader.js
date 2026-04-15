@@ -992,6 +992,14 @@ class _DataTypeLoaderRecipeFluff extends _DataTypeLoaderSingleSource {
 	_filename = "fluff-recipes.json";
 }
 
+class _DataTypeLoaderCrochetPatternFluff extends _DataTypeLoaderSingleSource {
+	static PROPS = ["crochetPatternFluff"];
+	static PAGE = UrlUtil.PG_HOMECRAFTS;
+	static IS_FLUFF = true;
+
+	_filename = "fluff-homecrafts.json";
+}
+
 class _DataTypeLoaderConditionDiseaseFluff extends _DataTypeLoaderSingleSource {
 	static PROPS = ["conditionFluff", "diseaseFluff", "statusFluff"];
 	static PAGE = UrlUtil.PG_CONDITIONS_DISEASES;
@@ -1555,39 +1563,16 @@ class _DataTypeLoaderCustomDeck extends _DataTypeLoaderCustomRawable {
 	}
 }
 
-class _DataTypeLoaderRecipe extends _DataTypeLoaderCustomRawable {
-	static PROPS = ["raw_recipe", "recipe"];
-	static PAGE = UrlUtil.PG_RECIPES;
+/** @abstract */
+class _DataTypeLoaderMergedFluffBase extends _DataTypeLoaderCustomRawable {
+	_PROP_FLUFF;
 
-	static _PROPS_RAWABLE = ["recipe"];
+	_mutEntPreInlineFluff (ent) { /* Implement as required */ }
 
-	async _pGetRawSiteData () { return DataUtil.recipe.loadRawJSON(); }
-
-	async _pGetPostCacheData_obj ({obj, lockToken2}) {
-		if (!obj) return null;
-
-		const out = {};
-
-		if (obj.raw_recipe?.length) out.recipe = await obj.raw_recipe.pSerialAwaitMap(ent => this.constructor._pGetDereferencedRecipeData(ent, {lockToken2}));
-
-		return out;
-	}
-
-	static async _pGetDereferencedRecipeData (recipe, {lockToken2}) {
-		recipe = MiscUtil.copyFast(recipe);
-
-		Renderer.recipe.populateFullIngredients(recipe);
-
-		const fluff = await this._pGetDereferencedFluffData(recipe, {lockToken2});
-		if (fluff) recipe.fluff = fluff;
-
-		return recipe;
-	}
-
-	static async _pGetDereferencedFluffData (recipe, {lockToken2}) {
+	async _pGetDereferencedFluffData (ent, {lockToken2}) {
 		const fluff = await Renderer.utils.pGetFluff({
-			entity: recipe,
-			fluffProp: "recipeFluff",
+			entity: ent,
+			fluffProp: this._PROP_FLUFF,
 			lockToken2,
 		});
 		if (!fluff) return null;
@@ -1599,6 +1584,31 @@ class _DataTypeLoaderRecipe extends _DataTypeLoaderCustomRawable {
 		return cpyFluff;
 	}
 
+	async _pGetDereferencedRawData (ent, {lockToken2}) {
+		ent = MiscUtil.copyFast(ent);
+
+		this._mutEntPreInlineFluff(ent);
+
+		const fluff = await this._pGetDereferencedFluffData(ent, {lockToken2});
+		if (fluff) ent.fluff = fluff;
+
+		return ent;
+	}
+
+	async _pGetPostCacheData_obj ({obj, lockToken2}) {
+		if (!obj) return null;
+
+		const out = {};
+
+		for (const propRawable of this.constructor._PROPS_RAWABLE) {
+			const propRaw = `raw_${propRawable}`;
+
+			if (obj[propRaw]?.length) out[propRawable] = await obj[propRaw].pSerialAwaitMap(ent => this._pGetDereferencedRawData(ent, {lockToken2}));
+		}
+
+		return out;
+	}
+
 	async pGetPostCacheData ({siteData = null, prereleaseData = null, brewData = null, lockToken2}) {
 		return {
 			siteDataPostCache: await this._pGetPostCacheData_obj_withCache({obj: siteData, lockToken2, propCache: "site"}),
@@ -1606,6 +1616,32 @@ class _DataTypeLoaderRecipe extends _DataTypeLoaderCustomRawable {
 			brewDataPostCache: await this._pGetPostCacheData_obj({obj: brewData, lockToken2}),
 		};
 	}
+}
+
+class _DataTypeLoaderRecipe extends _DataTypeLoaderMergedFluffBase {
+	static PROPS = ["raw_recipe", "recipe"];
+	static PAGE = UrlUtil.PG_RECIPES;
+
+	static _PROPS_RAWABLE = ["recipe"];
+
+	_PROP_FLUFF = "recipeFluff";
+
+	async _pGetRawSiteData () { return DataUtil.recipe.loadRawJSON(); }
+
+	_mutEntPreInlineFluff (ent) {
+		Renderer.recipe.populateFullIngredients(ent);
+	}
+}
+
+class _DataTypeLoaderCrochetPattern extends _DataTypeLoaderMergedFluffBase {
+	static PROPS = ["raw_crochetPattern", "crochetPattern"];
+	static PAGE = UrlUtil.PG_HOMECRAFTS;
+
+	static _PROPS_RAWABLE = ["crochetPattern"];
+
+	_PROP_FLUFF = "crochetPatternFluff";
+
+	async _pGetRawSiteData () { return DataUtil.crochetPattern.loadRawJSON(); }
 }
 
 class _DataTypeLoaderCustomQuickref extends _DataTypeLoader {
@@ -1812,6 +1848,7 @@ class DataLoader {
 		"tableGroup": UrlUtil.PG_TABLES,
 		"language": UrlUtil.PG_LANGUAGES,
 		"recipe": UrlUtil.PG_RECIPES,
+		"crochetPattern": UrlUtil.PG_HOMECRAFTS,
 		"facility": UrlUtil.PG_BASTIONS,
 		"classFeature": UrlUtil.PG_CLASS_SUBCLASS_FEATURES,
 		"subclassFeature": UrlUtil.PG_CLASS_SUBCLASS_FEATURES,
@@ -1873,6 +1910,7 @@ class DataLoader {
 		_DataTypeLoaderTable.register({fnRegister});
 		_DataTypeLoaderLanguage.register({fnRegister});
 		_DataTypeLoaderRecipe.register({fnRegister});
+		_DataTypeLoaderCrochetPattern.register({fnRegister});
 		// endregion
 
 		// region Special
@@ -1926,6 +1964,7 @@ class DataLoader {
 		_DataTypeLoaderCharoptionFluff.register({fnRegister});
 		_DataTypeLoaderBastionFluff.register({fnRegister});
 		_DataTypeLoaderRecipeFluff.register({fnRegister});
+		_DataTypeLoaderCrochetPatternFluff.register({fnRegister});
 
 		_DataTypeLoaderConditionDiseaseFluff.register({fnRegister});
 		_DataTypeLoaderTrapHazardFluff.register({fnRegister});

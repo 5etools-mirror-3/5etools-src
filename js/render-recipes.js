@@ -1,6 +1,4 @@
-"use strict";
-
-class RenderRecipes {
+export class RenderRecipes {
 	/**
 	 * @param ent
 	 * @param [opts]
@@ -27,7 +25,7 @@ class RenderRecipes {
 		<tr class="ve-mobile-sm__hidden"><td colspan="6" class="ve-py-0"><div class="ve-tbl-divider"></div></td></tr>` : ""}
 
 		<tr><td colspan="6">
-		<div class="ve-flex ve-w-100 ve-rd-recipes__wrp-recipe">
+		<div class="ve-flex ve-w-100 ve-rd-plaintext__wrp-root">
 			<div class="ve-w-33 ve-pl-3 ve-pr-2 ve-flex-col">
 				${ptTime}
 
@@ -35,14 +33,14 @@ class RenderRecipes {
 				${(ptMakes && ptServes) ? ptServes : ""}
 				${!(ptMakes || ptServes) && opts.selScaleFactor ? ee`<div class="ve-mb-2">Scale: ${opts.selScaleFactor}</div>` : ""}
 
-				<div class="ve-rd-recipes__wrp-ingredients ${ptMakes || ptServes || opts.selScaleFactor ? "ve-mt-1" : ""}">${Renderer.get().render(entriesMeta.entryIngredients, 0)}</div>
+				<div class="ve-rd-plaintext__wrp-sidebar ${ptMakes || ptServes || opts.selScaleFactor ? "ve-mt-1" : ""}">${Renderer.get().render(entriesMeta.entryIngredients, 0)}</div>
 
-				${entriesMeta.entryEquipment ? `<div class="ve-rd-recipes__wrp-ingredients ve-mt-4"><div class="ve-flex-vh-center ve-bold ve-mb-1 ve-small-caps">Equipment</div><div>${Renderer.get().render(entriesMeta.entryEquipment)}</div></div>` : ""}
+				${entriesMeta.entryEquipment ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-flex-vh-center ve-bold ve-mb-1 ve-small-caps">Equipment</div><div>${Renderer.get().render(entriesMeta.entryEquipment)}</div></div>` : ""}
 
 				${entriesMeta.entryCooksNotes ? `<div class="ve-w-100 ve-flex-col ve-mt-4"><div class="ve-flex-vh-center ve-bold ve-mb-1 ve-small-caps">Cook's Notes</div><div class="ve-italic">${Renderer.get().render(entriesMeta.entryCooksNotes)}</div></div>` : ""}
 			</div>
 
-			<div class="ve-w-66 ve-pr-3 ve-pl-5 ve-rd-recipes__wrp-instructions">
+			<div class="ve-w-66 ve-pr-3 ve-pl-5 ve-rd-plaintext__wrp-primary">
 				${Renderer.get().setFirstSection(true).render(entriesMeta.entryInstructions, 2)}
 			</div>
 		</div>

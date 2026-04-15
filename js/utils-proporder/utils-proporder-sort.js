@@ -77,6 +77,8 @@ export const getFnRootPropListSort = (prop, {isRequired = false} = {}) => {
 		case "facility":
 		case "facilityFluff":
 		case "encounterShape":
+		case "crochetPattern":
+		case "crochetPatternFluff":
 			return SortUtil.ascSortGenericEntity.bind(SortUtil);
 		case "deity":
 			return SortUtil.ascSortDeity.bind(SortUtil);

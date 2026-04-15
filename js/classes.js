@@ -2267,7 +2267,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 					depthArr,
 					({renderer}) => {
 						return ee`<tr data-scroll-id="${ixLvl}-${ixFeature}" data-feature-type="class" class="cls-main__linked-titles"></tr>`
-							.html(`<td colspan="6">${renderer.render(Renderer.class.getDisplayNamedClassFeatureEntry(feature, styleHint))}</td>`)
+							.html(`<td colspan="6">${renderer.render(Renderer.class.getDisplayNamedClassFeatureEntry(feature, {styleHint}))}</td>`)
 							.appendTo(wrpContent);
 					},
 					{additionalProps: ["isReprinted"], additionalPropsInherited: ["_isStandardSource", "isClassFeatureVariant"]},
@@ -2726,7 +2726,7 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
 
 		renderStack.push(`<tr data-cls-book-cf="true"><td colspan="6" class="ve-py-3 ve-px-5">`);
 		cls.classFeatures.forEach(lvl => {
-			lvl.forEach(cf => Renderer.get().recursiveRender(Renderer.class.getDisplayNamedClassFeatureEntry(cf, styleHint), renderStack));
+			lvl.forEach(cf => Renderer.get().recursiveRender(Renderer.class.getDisplayNamedClassFeatureEntry(cf, {styleHint}), renderStack));
 		});
 		renderStack.push(`</td></tr>`);
 

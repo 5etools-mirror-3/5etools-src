@@ -3,10 +3,10 @@ import {loadConfig, spellCheckDocument} from "cspell-lib";
 import {pathToFileURL} from "url";
 import {basename, resolve} from "path";
 import {listJsonFiles, readJsonSync} from "5etools-utils/lib/UtilFs.js";
+import {pGetModifiedFiles} from "5etools-utils/lib/UtilGit.js";
 import fs from "fs";
 import "../js/parser.js";
 import "../js/utils.js";
-import {pGetModifiedFiles} from "./util-git.js";
 import {BLOCKLIST_SOURCES_CREDITS} from "./consts-credits.js";
 
 const _CHAR_RED = "\x1b[31m";

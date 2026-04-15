@@ -65,22 +65,10 @@ class _RenderItemsImplBase extends RenderPageImplBase {
 
 	/* ----- */
 
-	_getRenderedSeeAlso (
-		{
-			ent,
-			prop,
-			tag,
-		},
-	) {
-		if (!ent[prop]) return "";
-
-		return `<div>${Renderer.get().render(`{@note See also: ${ent[prop].map(it => `{@${tag} ${it}}`).join(", ")}.}`)}</div>`;
-	}
-
 	_getCommonHtmlParts_entries ({ent, renderer}) {
 		let renderedText = Renderer.item.getRenderedEntries(ent);
-		renderedText += this._getRenderedSeeAlso({ent, prop: "seeAlsoDeck", tag: "deck"});
-		renderedText += this._getRenderedSeeAlso({ent, prop: "seeAlsoVehicle", tag: "vehicle"});
+		renderedText += this._getRenderedSeeAlso({renderer, ent, prop: "seeAlsoDeck", tag: "deck"});
+		renderedText += this._getRenderedSeeAlso({renderer, ent, prop: "seeAlsoVehicle", tag: "vehicle"});
 
 		return renderedText ? `<tr><td colspan="6" class="ve-py-0"><div class="ve-tbl-divider"></div></td></tr>
 			<tr><td colspan="6">${renderedText}</td></tr>` : "";

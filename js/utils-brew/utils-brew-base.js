@@ -706,7 +706,21 @@ export class BrewUtil2Base {
 		this._PROPS_DEPS.forEach(prop => {
 			const obj = brewDoc.body._meta?.[prop];
 			if (!obj || !Object.keys(obj).length) return;
-			Object.values(obj)
+
+			// "All content from <x> source"
+			const cpyObj = MiscUtil.copyFast(obj);
+			if (cpyObj["*"]) {
+				cpyObj["*"]
+					.forEach(src => sources.add(src));
+				delete cpyObj["*"];
+				return;
+			}
+
+			// "Content from <dataProperty> from <x> source"
+			// Note that current implementation is functionally the same as that of
+			//   the `*` property, above, but this is not guaranteed to remain true.
+			// Specifying exact data properties is preferred, where possible.
+			Object.values(cpyObj)
 				.flat()
 				.forEach(src => sources.add(src));
 		});
@@ -1119,6 +1133,7 @@ export class BrewUtil2Base {
 		[UrlUtil.PG_CLASS_SUBCLASS_FEATURES]: ["classFeature", "subclassFeature"],
 		[UrlUtil.PG_DECKS]: ["card", "deck"],
 		[UrlUtil.PG_BASTIONS]: ["facility", "facilityFluff"],
+		[UrlUtil.PG_HOMECRAFTS]: ["crochetPattern", "crochetPatternFluff"],
 	};
 
 	getPageProps ({page, isStrict = false, fallback = null} = {}) {
@@ -1149,6 +1164,7 @@ export class BrewUtil2Base {
 			case "creature": return "monster";
 			case "makebrew": return "makebrewCreatureTrait";
 			case "encounterbuilder": return "encounterShape";
+			case "crochetpattern": return "crochetPattern";
 		}
 		return dir;
 	}
