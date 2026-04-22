@@ -274,7 +274,13 @@ class PageFilterBestiary extends PageFilterBase {
 		this._mutateForFilters_speed(mon);
 		this._mutateForFilters_environment(mon);
 
-		mon._fAc = (mon.ac || []).map(it => it.special ? null : (it.ac || it)).filter(it => it !== null);
+		mon._fAc = (mon.ac || []).map(it => {
+			if (it == null || it.special) return null;
+			if (typeof it === "number") return it;
+			if (typeof it === "object") return typeof it.ac === "number" ? it.ac : null;
+			const m = String(it).match(/\d+/);
+			return m ? Number(m[0]) : null;
+		}).filter(it => it !== null);
 		if (!mon._fAc.length) mon._fAc = null;
 		mon._fHp = mon.hp?.average ?? null;
 		if (mon.alignment) {
