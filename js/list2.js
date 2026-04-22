@@ -20,7 +20,7 @@ class ListHelpers {
 class ListItem {
 	static getCommonValues (ent) {
 		return {
-			group: ent.group ? ent.group.join(",") : "",
+			group: ent.group ? [ent.group].flat().join(",") : "",
 			alias: (ent.alias || []).map(it => `"${it}"`).join(","),
 			page: ent.page,
 		};
