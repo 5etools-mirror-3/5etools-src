@@ -54,7 +54,7 @@
 
 * [ ] Add a Print Statblocks option in the DM Screen or maybe a separate Print page, which styles statblocks a bit better (fonts closer to the WotC book standards), and allows for layout choices (vertical vs horizontal, # of columns inside the statblock itself).
 
-* [ ] Make an "encounter" an includable object inside an adventure, much like a statblock or a table. Develop its own default rendering and styling.
+* [x] Make an "encounter" an includable object inside an adventure, much like a statblock or a table. Develop its own default rendering and styling.
 
 ## Grand (maybe unrealistic) Enhancement Goals
 
