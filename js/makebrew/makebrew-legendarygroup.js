@@ -28,11 +28,12 @@ export class LegendaryGroupBuilder extends BuilderBase {
 	async pHandleLoadExistingData (legGroup, opts) {
 		opts = opts || {};
 
+		legGroup.name = `${legGroup.name} (Copy)`;
 		legGroup.source = this._ui.source;
 
 		delete legGroup.uniqueId;
 
-		const meta = {...(opts.meta || {}), ...this._getInitialMetaState({nameOriginal: legGroup.name})};
+		const meta = {...(opts.meta || {}), ...this._getInitialMetaState({nameOriginal: legGroup.name, isModified: true})};
 
 		this.setStateFromLoaded({s: legGroup, m: meta});
 
@@ -65,8 +66,8 @@ export class LegendaryGroupBuilder extends BuilderBase {
 	doHandleSourcesAdd () { /* No-op */ }
 
 	_renderInputImpl () {
-		this.doCreateProxies();
-		this.renderInputControls();
+		this._doCreateProxies();
+		this._doBindHeaderElements();
 		this._renderInputMain();
 	}
 
@@ -91,12 +92,13 @@ export class LegendaryGroupBuilder extends BuilderBase {
 		// initialise tabs
 		this._resetTabs({tabGroup: "input"});
 
+		const tabOptsShared = {hasBorder: true, hasBackground: true};
 		const tabs = this._renderTabs(
 			[
-				new TabUiUtil.TabMeta({name: "Info", hasBorder: true}),
-				new TabUiUtil.TabMeta({name: "Lair Actions", hasBorder: true}),
-				new TabUiUtil.TabMeta({name: "Regional Effects", hasBorder: true}),
-				new TabUiUtil.TabMeta({name: "Mythic Encounter", hasBorder: true}),
+				new TabUiUtil.TabMeta({...tabOptsShared, name: "Info"}),
+				new TabUiUtil.TabMeta({...tabOptsShared, name: "Lair Actions"}),
+				new TabUiUtil.TabMeta({...tabOptsShared, name: "Regional Effects"}),
+				new TabUiUtil.TabMeta({...tabOptsShared, name: "Mythic Encounter"}),
 			],
 			{
 				tabGroup: "input",
@@ -108,7 +110,7 @@ export class LegendaryGroupBuilder extends BuilderBase {
 		tabs.forEach(it => it.wrpTab.appendTo(wrp));
 
 		// INFO
-		BuilderUi.getStateIptString("Name", cb, this._state, {nullable: false, callback: () => this.pRenderEntityList()}, "name").appendTo(infoTab.wrpTab);
+		BuilderUi.getStateIptString("Name", cb, this._state, {nullable: false}, "name").appendTo(infoTab.wrpTab);
 		this._selSource = this.getSourceInput(cb).appendTo(infoTab.wrpTab);
 
 		// LAIR ACTIONS

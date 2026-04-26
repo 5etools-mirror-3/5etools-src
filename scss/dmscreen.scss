@@ -30,8 +30,6 @@
 	}
 
 	.dm-screen {
-		width: 100%;
-		height: 100%;
 		display: grid;
 		gap: 7px;
 		grid-auto-columns: 1fr;
@@ -179,11 +177,6 @@
 	}
 
 	.pnl-content-tab-bar-hidden .panel-content-wrapper.panel-content-wrapper-tabs {
-		height: 100%;
-		margin-bottom: 0;
-	}
-
-	.sidemenu__history-item .panel-content-wrapper.panel-content-wrapper-tabs {
 		height: 100%;
 		margin-bottom: 0;
 	}
@@ -528,46 +521,6 @@
 		margin-top: 4px;
 	}
 
-	.sidemenu__toggle {
-		top: -35px;
-	}
-
-	body.is-fullscreen .sidemenu__toggle {
-		top: 12px;
-		left: -29px;
-	}
-
-	body.is-fullscreen .sidemenu__hotzone {
-		width: 3px;
-	}
-
-	.sidemenu__history {
-		padding: 4px;
-	}
-
-	.sidemenu__history-item {
-		position: relative;
-		overflow: hidden;
-		height: 80px;
-		margin-bottom: -19px;
-		transform: scale(0.667);
-		width: 150%;
-		transform-origin: top left;
-		box-shadow: 0 0 5px 0 #000000a0;
-	}
-
-	.sidemenu__history-item .panel-content-wrapper {
-		overflow-y: hidden;
-		user-select: none;
-	}
-
-	.sidemenu__history-item-cover {
-		position: absolute;
-		z-index: 57;
-		inset: 0;
-		background: transparent;
-	}
-
 	.panel-history-control-remove-wrapper {
 		opacity: 0;
 		position: absolute;
@@ -576,11 +529,6 @@
 		transition: opacity 0.1s;
 		border-bottom-left-radius: 5px;
 		background: $rgb-bg-panel-control;
-	}
-
-	.sidemenu__history-item-cover:hover .panel-history-control-remove-wrapper {
-		opacity: 1;
-		transition: opacity 0.1s;
 	}
 
 	.panel-history-control-remove {
@@ -611,16 +559,110 @@
 		border: 1px solid vars.$rgb-border-grey;
 	}
 
-	.sidemenu__history-item-cover:hover .panel-history-control-middle {
-		opacity: 1;
-		transition: opacity 0.1s;
-	}
-
 	.dm-screen-locked .panel-control-bar,
 	.dm-screen-locked .content-tab-remove,
 	.dm-screen-locked .panel-history-control-remove-wrapper,
 	.dm-screen-locked .panel-history-control-middle {
 		display: none !important;
+	}
+
+	.dmsm__ {
+		&stg-container {
+			transition: margin vars.$time-3-frames;
+		}
+
+		&wrp-sidebar {
+			z-index: 1;
+			background: vars.$rgb-bg;
+			@include vars.mix-shadow-2;
+		}
+
+		&ipt-name-short {
+			background: transparent;
+			color: vars.$rgb-off-black;
+			font-size: 14px;
+			line-height: 20px;
+			outline-offset: -2px;
+			outline: 2px solid vars.$rgb-active-blue;
+
+			&:focus {
+				outline: 2px solid vars.$rgb-active-blue;
+			}
+		}
+	}
+
+	.is-fullscreen {
+		.dmsm__ {
+			&stg-container {
+				margin-left: -39px;
+
+				&:hover {
+					margin-left: 0;
+				}
+			}
+		}
+	}
+
+	.dmsmh__ {
+		&wrp-history {
+			$w-history: 250px;
+
+			height: calc(100% - 3px);
+			top: 3px;
+			left: -1 * $w-history;
+			bottom: 0;
+			z-index: 1;
+			width: $w-history;
+			transition: left vars.$time-4-frames;
+			background: vars.$rgb-bg;
+			@include vars.mix-shadow-1;
+
+			&--open {
+				left: 40px;
+			}
+		}
+	}
+
+	.is-fullscreen {
+		.dmsmh__ {
+			&wrp-history {
+				top: 0;
+				height: 100%;
+			}
+		}
+	}
+
+	.sidemenu__history-item {
+		position: relative;
+		overflow: hidden;
+		height: 80px;
+		margin-bottom: -19px;
+		transform: scale(0.667);
+		width: 150%;
+		transform-origin: top left;
+		box-shadow: 0 0 5px 0 #000000a0;
+	}
+
+	.sidemenu__history-item .panel-content-wrapper {
+		overflow-y: hidden;
+		user-select: none;
+	}
+
+	.sidemenu__history-item-cover {
+		position: absolute;
+		z-index: 57;
+		inset: 0;
+		background: transparent;
+	}
+
+	.sidemenu__history-item-cover:hover .panel-history-control-remove-wrapper {
+		opacity: 1;
+		transition: opacity 0.1s;
+	}
+
+	.sidemenu__history-item-cover:hover .panel-history-control-middle {
+		opacity: 1;
+		transition: opacity 0.1s;
 	}
 
 	.ve-night-mode {
@@ -678,6 +720,32 @@
 
 		.dm__panel-bg {
 			background: vars-night.$rgb-bg--night;
+		}
+
+		.dmsm__ {
+			&wrp-sidebar {
+				background: vars-night.$rgb-bg--night;
+			}
+
+			&ipt-name-short {
+				background: transparent;
+				color: vars-night.$rgb-bg--night;
+				outline-color: vars-night.$rgb-link-blue--night;
+
+				&:focus {
+					outline-color: vars-night.$rgb-link-blue--night;
+				}
+
+				&::placeholder {
+					color: vars-night.$rgb-bg--alt-night;
+				}
+			}
+		}
+
+		.dmsmh__ {
+			&wrp-history {
+				background: vars-night.$rgb-bg--night;
+			}
 		}
 	}
 }

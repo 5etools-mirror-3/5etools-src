@@ -57,8 +57,8 @@ export class ConverterUi extends BaseComponent {
 
 		this._converters = {};
 
-		this._saveInputDebounced = MiscUtil.debounce(() => StorageUtil.pSetForPage(this.constructor._STORAGE_INPUT, this._editorIn.getValue()), 50);
-		this.saveSettingsDebounced = MiscUtil.debounce(() => StorageUtil.pSetForPage(this.constructor._STORAGE_STATE, this.getBaseSaveableState()), 50);
+		this._saveInputDebounced = MiscUtil.debounce(() => StorageUtil.pSetForPage(this.constructor._STORAGE_INPUT, this._editorIn.getValue()), VeCt.DUR_DEBOUNCE_SAVE);
+		this.saveSettingsDebounced = MiscUtil.debounce(() => StorageUtil.pSetForPage(this.constructor._STORAGE_STATE, this.getBaseSaveableState()), VeCt.DUR_DEBOUNCE_SAVE);
 
 		this._addHookAll("state", () => this.saveSettingsDebounced());
 

@@ -16,7 +16,7 @@ class RacesSublistManager extends SublistManager {
 			new SublistCellTemplate({
 				name: "Size",
 				css: "ve-col-2 ve-text-center ve-pl-1 ve-pr-0",
-				colStyle: "ve-text-center",
+				colStyle: "text-center",
 			}),
 		];
 	}

@@ -100,7 +100,7 @@ async function initDemo (data, rendererType) {
 	const renderAndSaveDebounced = MiscUtil.debounce(() => {
 		demoRender();
 		StorageUtil.pSetForPage(STORAGE_LOCATION, editor.getValue());
-	}, 150);
+	}, VeCt.DUR_DEBOUNCE_SAVE);
 
 	selRenderer.onn("change", () => {
 		const val = selRenderer.val();

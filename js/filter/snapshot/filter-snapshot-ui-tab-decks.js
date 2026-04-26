@@ -17,19 +17,13 @@ export class FilterSnapshotUiTabSnapshotDecks {
 		this._tabMeta = tabMeta;
 	}
 
-	_getSelectedSnapshotDeckIds () {
-		return Object.entries(this._compManager._getRenderedCollection({prop: "boxSnapshotDecks"}))
-			.filter(([, rendered]) => rendered.cbSel.checked)
-			.map(([id]) => id);
-	}
-
 	async pRender () {
 		const selectClickHandler = new FilterSnapshotBaseSelectClickHandler({
 			comp: this._compManager,
 			prop: "boxSnapshotDecks",
 		});
 
-		const {stgControls} = this._pRender_stgControls();
+		const {stgControls} = this._pRender_stgControls({selectClickHandler});
 		const {stgNoRows} = this._pRender_stgNoRows();
 		const {stgRows, compRows} = this._pRender_stgRows({selectClickHandler});
 
@@ -55,10 +49,10 @@ export class FilterSnapshotUiTabSnapshotDecks {
 		hk();
 	}
 
-	_pRender_stgControls () {
+	_pRender_stgControls ({selectClickHandler}) {
 		const stgControls = FilterSnapshotUiTabUtils.getStgControls();
 
-		const {menuMass} = this._pRender_stgControls_menuMass();
+		const {menuMass} = this._pRender_stgControls_menuMass({selectClickHandler});
 
 		const btnMass = ee`<button class="ve-btn ve-btn-primary ve-btn-xs ve-mr-2">Mass...</button>`
 			.onn("click", async evt => {
@@ -78,12 +72,12 @@ export class FilterSnapshotUiTabSnapshotDecks {
 		return {stgControls};
 	}
 
-	_pRender_stgControls_menuMass () {
+	_pRender_stgControls_menuMass ({selectClickHandler}) {
 		const menuMass = ContextUtil.getMenu([
 			new ContextUtil.Action(
 				"Delete",
 				async () => {
-					const selectedSnapshotDeckIds = this._getSelectedSnapshotDeckIds();
+					const selectedSnapshotDeckIds = selectClickHandler.getSelectedIds();
 					if (!selectedSnapshotDeckIds.length) return JqueryUtil.doToast({content: `Please select some snapshot decks first!`, type: "warning"});
 
 					if (!await InputUiUtil.pGetUserBoolean({title: "Delete Snapshot Decks", htmlDescription: `This will delete ${selectedSnapshotDeckIds.length} snapshot deck${selectedSnapshotDeckIds.length === 1 ? "" : "s"}. Are you sure?`, textYes: "Yes", textNo: "Cancel"})) return;
@@ -146,7 +140,7 @@ export class FilterSnapshotUiTabSnapshotDecks {
 				${cbMulti}
 			</label>
 			${btnExpandCollapseAll}
-			<button class="ve-btn ve-btn-default ve-btn-xs ve-col-10" disabled>&nbsp;</button>
+			<button class="ve-btn ve-btn-default ve-btn-xs ve-col-9-5" disabled>&nbsp;</button>
 			<button class="ve-btn ve-btn-default ve-btn-xs ve-grow" disabled>&nbsp;</button>
 		</div>`;
 

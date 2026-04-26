@@ -6,25 +6,31 @@ import {TagCondition, TaggerUtils} from "./converter/converterutils-tags.js";
 import {SITE_STYLE__CLASSIC} from "./consts.js";
 import {SourceUiUtil} from "./utils-ui/utils-ui-sourcebuilder.js";
 
-class PageUi {
+class PageUi extends ProxyBase {
+	static _STORAGE_STATE = "brewbuilderState";
+	static _STORAGE_SETTINGS = "brewbuilderSettings";
+	static _DEFAULT_ACTIVE_BUILDER = "creatureBuilder";
+
 	constructor () {
+		super();
+
 		this._builders = {};
 
 		this._selBuilderMode = null;
 		this._wrpSource = null;
 		this._wrpMain = null;
 		this._wrpInput = null;
-		this._wrpInputControls = null;
 		this._wrpOutput = null;
 
 		this._allSources = [];
 		this._selSource = null;
 
 		this._isInitialLoad = true;
-		this.doSaveDebounced = MiscUtil.debounce(() => this._doSave(), 50);
+		this.doSaveDebounced = MiscUtil.debounce(() => this._doSave(), VeCt.DUR_DEBOUNCE_SAVE);
 
-		this._settings = {};
-		this._saveSettingsDebounced = MiscUtil.debounce(() => this._doSaveSettings(), 50);
+		this.__state = {};
+		this._state = this._getProxy("state", this.__state);
+		this._saveSettingsDebounced = MiscUtil.debounce(() => this._doSaveSettings(), VeCt.DUR_DEBOUNCE_SAVE);
 	}
 
 	set creatureBuilder (creatureBuilder) { this._builders.creatureBuilder = creatureBuilder; }
@@ -35,55 +41,58 @@ class PageUi {
 
 	get builders () { return this._builders; }
 
-	get activeBuilder () { return this._settings.activeBuilder || PageUi._DEFAULT_ACTIVE_BUILDER; }
+	get activeBuilder () { return this._state.activeBuilder || this.constructor._DEFAULT_ACTIVE_BUILDER; }
 
 	get wrpInput () { return this._wrpInput; }
 
-	get wrpInputControls () { return this._wrpInputControls; }
-
 	get wrpOutput () { return this._wrpOutput; }
 
-	get source () { return this._settings.activeSource || ""; }
+	get source () { return this._state.activeSource || ""; }
 
 	get allSources () { return this._allSources; }
+
+	_getActiveBuilderInstance () {
+		return this._builders[this._state.activeBuilder];
+	}
 
 	_doSave () {
 		if (this._isInitialLoad) return;
 		return StorageUtil.pSetForPage(
-			PageUi._STORAGE_STATE,
+			this.constructor._STORAGE_STATE,
 			{
 				builders: Object.entries(this._builders).mergeMap(([name, builder]) => ({[name]: builder.getSaveableState()})),
 			},
 		);
 	}
 
-	_doSaveSettings () { return StorageUtil.pSetForPage(PageUi._STORAGE_SETTINGS, this._settings); }
+	_doSaveSettings () { return StorageUtil.pSetForPage(this.constructor._STORAGE_SETTINGS, this.__state); }
 
 	async init () {
-		this._settings = await StorageUtil.pGetForPage(PageUi._STORAGE_SETTINGS) || {};
+		this._proxyAssignSimple("state", await StorageUtil.pGetForPage(this.constructor._STORAGE_SETTINGS) || {});
 
 		this._wrpLoad = es(`#page_loading`);
 		this._wrpSource = es(`#page_source`);
 		this._wrpMain = es(`#page_main`);
 
-		this._settings.activeBuilder = this._settings.activeBuilder || PageUi._DEFAULT_ACTIVE_BUILDER;
+		this._addHookAll("state", () => {
+			this._saveSettingsDebounced();
+		});
 
 		this._initHeader();
 		this._initLhs();
 		this._initRhs();
 
-		const storedState = await StorageUtil.pGetForPage(PageUi._STORAGE_STATE) || {};
+		const storedState = await StorageUtil.pGetForPage(this.constructor._STORAGE_STATE) || {};
 		if (storedState.builders) {
 			Object.entries(storedState.builders).forEach(([name, state]) => {
 				if (this._builders[name]) this._builders[name].setStateFromLoaded(state);
 			});
 		}
 
-		await this._pSetActiveBuilder({nxtActiveBuilder: this._settings.activeBuilder});
-		this._doInitNavHandler();
+		await this._pSetActiveBuilder({nxtActiveBuilder: this._state.activeBuilder || this.constructor._DEFAULT_ACTIVE_BUILDER});
 
 		const brewSources = BrewUtil2.getSources();
-		if (this._settings.activeSource && brewSources.some(it => it.json === this._settings.activeSource)) {
+		if (this._state.activeSource && brewSources.some(it => it.json === this._state.activeSource)) {
 			this.__setStageMain();
 		} else if (brewSources.length) {
 			this._doRebuildStageSource({mode: "select", isRequired: true});
@@ -116,15 +125,12 @@ class PageUi {
 				if (isNewSource) await BrewUtil2.pAddSource(source);
 				else await BrewUtil2.pEditSource(source);
 
-				this._settings.activeSource = source.json;
-
 				if (isNewSource) this._doAddSourceOption(source);
-				await this._pDoHandleUpdateSource();
+				this._state.activeSource = source.json;
 				this.__setStageMain();
 			},
 			cbConfirmExisting: async (source) => {
-				this._settings.activeSource = source.json;
-				await this._pDoHandleUpdateSource();
+				this._state.activeSource = source.json;
 				this.__setStageMain();
 			},
 			cbCancel: () => {
@@ -136,13 +142,20 @@ class PageUi {
 	_initHeader () {
 		const wrpSettings = es(`#wrp-settings`);
 
-		this._initHeader_mode({wrpSettings});
-		this._initHeader_source({wrpSettings});
-		this._initHeader_existing({wrpSettings});
-		this._initHeader_download({wrpSettings});
+		const wrpSettingsTop = ee`<div class="ve-w-100 ve-flex-v-center ve-mobile-md__flex-col ve-mobile-md__flex-ai-start ve-mb-2"></div>`.appendTo(wrpSettings);
+		const wrpSettingsBtm = ee`<div class="ve-w-100 ve-flex-v-center ve-mobile-md__flex-col ve-mobile-md__flex-ai-start"></div>`.appendTo(wrpSettings);
+
+		this._initHeader_mode({wrpSettingsTop});
+		this._initHeader_source({wrpSettingsTop});
+
+		this._initHeader_new({wrpSettingsBtm});
+		this._initHeader_existing({wrpSettingsBtm});
+		this._initHeader_save({wrpSettingsBtm});
+
+		this._initHeader_download({wrpSettingsTop});
 	}
 
-	_initHeader_mode ({wrpSettings}) {
+	_initHeader_mode ({wrpSettingsTop}) {
 		this._selBuilderMode = ee`<select class="ve-form-control ve-input-xs">
 			<option value="creatureBuilder">Creature</option>
 			<option value="legendaryGroupBuilder">Legendary Group</option>
@@ -157,7 +170,7 @@ class PageUi {
 						htmlDescription: `<p>The Homebrew Builder only supports a limited set of entity types. For everything else, you will need to <a href="https://github.com/TheGiddyLimit/homebrew/blob/master/README.md" rel="noopener noreferrer">manually</a> create or convert content.</p>`,
 						isAlert: true,
 					}).then(null);
-					this._selBuilderMode.val(this._settings.activeBuilder);
+					this._selBuilderMode.val(this._state.activeBuilder);
 					return;
 				}
 				await this._pSetActiveBuilder({nxtActiveBuilder: val});
@@ -167,10 +180,10 @@ class PageUi {
 			<div class="ve-mr-2 ve-bold">Mode</div>
 			${this._selBuilderMode}
 		</div>`
-			.appendTo(wrpSettings);
+			.appendTo(wrpSettingsTop);
 	}
 
-	_initHeader_source ({wrpSettings}) {
+	_initHeader_source ({wrpSettingsTop}) {
 		this._allSources = BrewUtil2.getSources().sort((a, b) => SortUtil.ascSortLower(a.full, b.full))
 			.map(it => it.json);
 
@@ -179,15 +192,20 @@ class PageUi {
 			${this._allSources.map(srcJson => `<option value="${srcJson.qq()}">${Parser.sourceJsonToFull(srcJson).qq()}</option>`)}
 		</select>`
 			.onn("change", async () => {
-				this._settings.activeSource = this._selSource.val();
-				await this._pDoHandleUpdateSource();
+				this._state.activeSource = this._selSource.val();
 			});
-		if (this._settings.activeSource) this._selSource.val(this._settings.activeSource);
-		else this._selSource.selectedIndex = 0;
+		this._addHook("state", "activeSource", () => {
+			if (this._state.activeSource) this._selSource.val(this._state.activeSource);
+			else this._selSource.selectedIndex = 0;
+		})();
+		// Deferred; only required on later change
+		this._addHook("state", "activeSource", () => {
+			this._getActiveBuilderInstance().pDoHandleSourceUpdate().then(null);
+		});
 
 		const btnSourceEdit = ee`<button class="ve-btn ve-btn-default ve-btn-xs" title="Edit Selected Source"><span class="glyphicon glyphicon-pencil"></span></button>`
 			.onn("click", () => {
-				const curSourceJson = this._settings.activeSource;
+				const curSourceJson = this._state.activeSource;
 				const curSource = BrewUtil2.sourceJsonToSource(curSourceJson);
 				if (!curSource) return;
 				this._doRebuildStageSource({mode: "edit", source: MiscUtil.copy(curSource)});
@@ -212,35 +230,68 @@ class PageUi {
 				${btnSourceAdd}
 			</div>
 		</div>`
-			.appendTo(wrpSettings);
+			.appendTo(wrpSettingsTop);
 	}
 
-	_initHeader_existing ({wrpSettings}) {
-		const btnEditExisting = ee`<button class="ve-btn ve-btn-xs ve-btn-default">Edit Existing</button>`
-			.onn("click", () => this._builders[this._settings.activeBuilder].pHandleClickEditExisting())
-			.appendTo(wrpSettings);
+	_initHeader_new ({wrpSettingsBtm}) {
+		const btnNew = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="SHIFT to reset additional state (such as whether or not certain attributes are auto-calculated)">New</button>`
+			.onn("click", async (evt) => {
+				if (!await InputUiUtil.pGetUserBoolean({title: "Reset Builder", htmlDescription: "Are you sure?", textYes: "Yes", textNo: "Cancel"})) return;
+				this._getActiveBuilderInstance().reset({isResetAllMeta: !!evt.shiftKey});
+			});
 
-		const btnLoadExisting = ee`<button class="ve-btn ve-btn-xs ve-btn-default">Copy Existing</button>`
-			.onn("click", () => this._builders[this._settings.activeBuilder].pHandleClickLoadExisting())
-			.appendTo(wrpSettings);
+		const bntNewFromCopy = ee`<button class="ve-btn ve-btn-xs ve-btn-default">New from Copy...</button>`
+			.onn("click", () => this._getActiveBuilderInstance().pHandleClickLoadExisting())
+			.appendTo(wrpSettingsBtm);
+
+		ee`<div class="ve-flex-v-center ve-mobile-md__mb-2">
+			<div class="ve-flex-v-center ve-btn-group">
+				${btnNew}
+				${bntNewFromCopy}
+			</div>
+		</div>`
+			.appendTo(wrpSettingsBtm);
+	}
+
+	_initHeader_existing ({wrpSettingsBtm}) {
+		const btnEditExisting = ee`<button class="ve-btn ve-btn-xs ve-btn-default">Edit Existing</button>`
+			.onn("click", () => this._getActiveBuilderInstance().pHandleClickEditExisting())
+			.appendTo(wrpSettingsBtm);
 
 		ee`<div class="ve-flex-v-center ve-mobile-md__mb-2">
 			<div class="ve-vr-2 ve-h-21p ve-mobile-md__hidden"></div>
 
 			<div class="ve-flex-v-center ve-btn-group">
 				${btnEditExisting}
-				${btnLoadExisting}
 			</div>
 		</div>`
-			.appendTo(wrpSettings);
+			.appendTo(wrpSettingsBtm);
 	}
 
-	_initHeader_download ({wrpSettings}) {
+	_initHeader_save ({wrpSettingsBtm}) {
+		const btnHeaderSave = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2 mkbru__cnt-save">Save</button>`
+			.onn("click", () => this._getActiveBuilderInstance().pDoHandleClickSaveBrew());
+
+		const dispHeaderName = ee`<div class="ve-muted ve-italic"></div>`;
+
+		Object.values(this._builders)
+			.forEach(builder => builder.setHeaderElements({btnHeaderSave, dispHeaderName}));
+
+		ee`<div class="ve-flex-v-center ve-mobile-md__mb-2">
+			<div class="ve-vr-2 ve-h-21p ve-mobile-md__hidden"></div>
+
+			${btnHeaderSave}
+			${dispHeaderName}
+		</div>`
+			.appendTo(wrpSettingsBtm);
+	}
+
+	_initHeader_download ({wrpSettingsTop}) {
 		const btnDownloadJson = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">JSON</button>`
-			.onn("click", () => this._builders[this._settings.activeBuilder].pDoHandleClickDownloadJson());
+			.onn("click", () => this._getActiveBuilderInstance().pDoHandleClickDownloadJson());
 
 		const btnMarkdownDownload = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Markdown</button>`
-			.onn("click", async () => this._builders[this._settings.activeBuilder].pDoHandleClickDownloadMarkdown());
+			.onn("click", async () => this._getActiveBuilderInstance().pDoHandleClickDownloadMarkdown());
 
 		const btnMarkdownSettings = ee`<button class="ve-btn ve-btn-default ve-btn-xs"><span class="glyphicon glyphicon-cog"></span></button>`
 			.onn("click", () => RendererMarkdown.pShowSettingsModal());
@@ -250,12 +301,11 @@ class PageUi {
 				${btnDownloadJson}
 				<div class="ve-flex-v-center ve-btn-group">${btnMarkdownDownload}${btnMarkdownSettings}</div>
 			</div>`
-			.appendTo(wrpSettings);
+			.appendTo(wrpSettingsTop);
 	}
 
 	_initLhs () {
 		this._wrpInput = es(`#content_input`);
-		this._wrpInputControls = es(`#content_input_controls`);
 	}
 
 	_initRhs () {
@@ -274,51 +324,29 @@ class PageUi {
 		await this._pSetActiveBuilder({nxtActiveBuilder: key});
 	}
 
-	async _pSetActiveBuilder ({nxtActiveBuilder, isInitialLoad = false}) {
+	async _pSetActiveBuilder ({nxtActiveBuilder}) {
 		if (!this._builders[nxtActiveBuilder]) throw new Error(`Builder "${nxtActiveBuilder}" does not exist!`);
 
 		this._selBuilderMode.val(nxtActiveBuilder);
-		this._settings.activeBuilder = nxtActiveBuilder;
-		if (!Hist.initialLoad) Hist.replaceHistoryHash(UrlUtil.encodeForHash(this._settings.activeBuilder));
-		const builder = this._builders[this._settings.activeBuilder];
+		this._state.activeBuilder = nxtActiveBuilder;
+		if (!Hist.initialLoad) Hist.replaceHistoryHash(UrlUtil.encodeForHash(this._state.activeBuilder));
+		const builder = this._getActiveBuilderInstance();
 		builder.renderInput();
 		builder.renderOutput();
-		await builder.pRenderEntityList();
-
-		if (!isInitialLoad) this._saveSettingsDebounced();
-	}
-
-	_doInitNavHandler () {
-		// More obnoxious than useful (the form is auto-saved automatically); disabled until further notice
-		/*
-		$(window).on("beforeunload", evt => {
-			const message = this._builders[this._settings.activeBuilder].getOnNavMessage();
-			if (message) {
-				(evt || window.event).message = message;
-				return message;
-			}
-		});
-		*/
 	}
 
 	_doAddSourceOption (source) {
 		this._allSources.push(source.json);
 		// TODO this should detach + re-order. Ensure correct is re-selected; ensure disabled option is first
 		this._selSource.appends(`<option value="${source.json.escapeQuotes()}">${source.full.escapeQuotes()}</option>`);
-		this._builders[this._settings.activeBuilder].doHandleSourcesAdd();
-	}
-
-	async _pDoHandleUpdateSource () {
-		if (this._selSource) this._selSource.val(this._settings.activeSource);
-		this._saveSettingsDebounced();
-		await this._builders[this._settings.activeBuilder].pDoHandleSourceUpdate();
+		this._getActiveBuilderInstance().doHandleSourcesAdd();
 	}
 
 	_getJsonOutputTemplate () {
 		const timestamp = Math.round(Date.now() / 1000);
 		return {
 			_meta: {
-				sources: [MiscUtil.copy(BrewUtil2.sourceJsonToSource(this._settings.activeSource))],
+				sources: [MiscUtil.copy(BrewUtil2.sourceJsonToSource(this._state.activeSource))],
 				dateAdded: timestamp,
 				dateLastModified: timestamp,
 				edition: SITE_STYLE__CLASSIC,
@@ -326,9 +354,6 @@ class PageUi {
 		};
 	}
 }
-PageUi._STORAGE_STATE = "brewbuilderState";
-PageUi._STORAGE_SETTINGS = "brewbuilderSettings";
-PageUi._DEFAULT_ACTIVE_BUILDER = "creatureBuilder";
 
 class Makebrew {
 	static async doPageInit () {
@@ -415,7 +440,7 @@ class Makebrew {
 			|| !toLoad.uniqueId
 		) return builder.pHandleLoadExistingData(toLoad, {isForce: true});
 
-		return builder.pHandleSidebarEditUniqueId(toLoad.uniqueId);
+		return builder.pHandleClick_editUniqueId(toLoad.uniqueId);
 	}
 }
 Makebrew._LOCK = null;

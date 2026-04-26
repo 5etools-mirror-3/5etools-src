@@ -365,8 +365,8 @@ export class OmnisearchBacking {
 		// Hoist adventure/books if their exact source abbreviation is given
 		if (searchTerm && result.doc.s && this._CATEGORIES_CORPORA.has(result.doc.c)) {
 			if (
-				result.doc.s.toLowerCase() === searchTerm
-				|| result.doc.sA.toLowerCase() === searchTerm
+				(result.doc.s && result.doc.s.toLowerCase() === searchTerm)
+				|| (result.doc.sA && result.doc.sA.toLowerCase() === searchTerm)
 			) {
 				result.score *= 1.1;
 			}

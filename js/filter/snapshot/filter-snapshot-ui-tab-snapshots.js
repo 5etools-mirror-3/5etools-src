@@ -17,12 +17,6 @@ export class FilterSnapshotUiTabSnapshots {
 		this._tabMeta = tabMeta;
 	}
 
-	_getSelectedSnapshotIds () {
-		return Object.entries(this._compManager._getRenderedCollection({prop: "boxSnapshots"}))
-			.filter(([, rendered]) => rendered.cbSel.checked)
-			.map(([id]) => id);
-	}
-
 	async pRender () {
 		const selectClickHandler = new FilterSnapshotBaseSelectClickHandler({
 			comp: this._compManager,
@@ -75,7 +69,7 @@ export class FilterSnapshotUiTabSnapshots {
 
 	_pRender_stgControls_menuMass ({selectClickHandler}) {
 		const getValidAddToDeckInitial = () => {
-			const selectedSnapshotIds = this._getSelectedSnapshotIds();
+			const selectedSnapshotIds = selectClickHandler.getSelectedIds();
 			if (!selectedSnapshotIds.length) {
 				JqueryUtil.doToast({content: `Please select some snapshots first!`, type: "warning"});
 				return {isValid: false, selectedSnapshotIds};
@@ -140,7 +134,7 @@ export class FilterSnapshotUiTabSnapshots {
 			new ContextUtil.Action(
 				"Delete",
 				async () => {
-					const selectedSnapshotIds = this._getSelectedSnapshotIds();
+					const selectedSnapshotIds = selectClickHandler.getSelectedIds();
 					if (!selectedSnapshotIds.length) return JqueryUtil.doToast({content: `Please select some snapshots first!`, type: "warning"});
 
 					if (!await InputUiUtil.pGetUserBoolean({title: "Delete Snapshots", htmlDescription: `This will delete ${selectedSnapshotIds.length} snapshot${selectedSnapshotIds.length === 1 ? "" : "s"}. Are you sure?`, textYes: "Yes", textNo: "Cancel"})) return;

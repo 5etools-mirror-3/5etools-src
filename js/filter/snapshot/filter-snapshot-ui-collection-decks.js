@@ -142,7 +142,7 @@ export class RenderableCollectionSnapshotDecks extends RenderableCollectionFilte
 				${btnApply}
 			</div>
 
-			<div class="ve-flex-v-center ve-col-10 ve-px-1">
+			<div class="ve-flex-v-center ve-col-9-5 ve-px-1">
 				${iptName}
 			</div>
 

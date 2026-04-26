@@ -6,7 +6,7 @@ class RewardsSublistManager extends SublistManager {
 			new SublistCellTemplate({
 				name: "Type",
 				css: "ve-col-2 ve-pl-0 ve-pr-1 ve-text-center",
-				colStyle: "ve-text-center",
+				colStyle: "text-center",
 			}),
 			new SublistCellTemplate({
 				name: "Name",

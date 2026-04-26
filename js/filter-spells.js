@@ -623,6 +623,7 @@ class ModalFilterSpells extends ModalFilterBase {
 			modalTitle: `Spell${opts.isRadio ? "" : "s"}`,
 			pageFilter: new PageFilterSpells(),
 			fnSort: PageFilterSpells.sortSpells,
+			previewButtonHandler: new ListUiPreviewButtonHandlerStatsFluff({page: UrlUtil.PG_SPELLS}),
 		});
 	}
 
@@ -706,7 +707,7 @@ class ModalFilterSpells extends ModalFilterBase {
 			},
 		);
 
-		ListUiUtil.bindPreviewButton(UrlUtil.PG_SPELLS, this._allData, listItem, btnShowHidePreview);
+		this._previewButtonHandler.bindPreviewButton({entity: spell, listItem, btnShowHidePreview});
 
 		return listItem;
 	}

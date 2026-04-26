@@ -19,7 +19,7 @@ class OptionalFeaturesSublistManager extends SublistManager {
 			new SublistCellTemplate({
 				name: "Type",
 				css: "ve-col-2 ve-px-1 ve-text-center",
-				colStyle: "ve-text-center",
+				colStyle: "text-center",
 			}),
 			new SublistCellTemplate({
 				name: "Prerequisite",
@@ -29,7 +29,7 @@ class OptionalFeaturesSublistManager extends SublistManager {
 			new SublistCellTemplate({
 				name: "Level",
 				css: "ve-col-1-5 ve-text-center ve-pl-1 ve-pr-0",
-				colStyle: "ve-text-center",
+				colStyle: "text-center",
 			}),
 		];
 	}
@@ -147,17 +147,17 @@ class OptionalFeaturesPage extends ListPage {
 	}
 
 	_renderStats_doBuildStatsTab ({ent}) {
-		this._wrpTabs.parente().find(`.opt-feature-type`)?.remove();
+		this._wrpTabs.parente().find(`[data-name="opt-feature-type"]`)?.remove();
 
 		Promise.any([
 			Renderer.utils.pHasFluffText(ent, "optionalfeatureFluff"),
 			Renderer.utils.pHasFluffImages(ent, "optionalfeatureFluff"),
 		])
 			.then(hasAnyFluff => {
-				const wrpOptFeatType = ee`<div class="opt-feature-type"></div>`;
+				const wrpOptFeatType = ee`<div data-name="opt-feature-type" class="ve-italic ve-inline-block"></div>`;
 
-				if (hasAnyFluff) wrpOptFeatType.addClass("ve-ml-0 ve-mb-1").insertBefore(this._wrpTabs);
-				else wrpOptFeatType.prependTo(this._wrpTabs);
+				if (hasAnyFluff) wrpOptFeatType.addClass("ve-mb-1").insertBeforee(this._wrpTabs);
+				else wrpOptFeatType.addClass("ve-pl-7p").prependTo(this._wrpTabs);
 
 				const commonPrefix = ent.featureType.length > 1 ? MiscUtil.findCommonPrefix(ent.featureType.map(fs => Parser.optFeatureTypeToFull(fs)), {isRespectWordBoundaries: true}) : "";
 				if (commonPrefix) wrpOptFeatType.appends(`<span>${commonPrefix.trim()} </span>`);

@@ -54,7 +54,7 @@ export class BrewDocContentMigrator {
 			// 2022-03-22
 			if (typeof mon.size === "string") mon.size = [mon.size];
 
-			// 2022=05-29
+			// 2022-05-29
 			if (mon.summonedBySpell && !mon.summonedBySpellLevel) mon.summonedBySpellLevel = 1;
 		});
 	}

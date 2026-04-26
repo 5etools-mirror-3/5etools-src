@@ -6,7 +6,7 @@ class BastionsSublistManager extends SublistManager {
 			new SublistCellTemplate({
 				name: "Type",
 				css: "ve-col-2 ve-pl-0 ve-pr-1 ve-text-center",
-				colStyle: "ve-text-center",
+				colStyle: "text-center",
 			}),
 			new SublistCellTemplate({
 				name: "Name",
@@ -15,7 +15,7 @@ class BastionsSublistManager extends SublistManager {
 			new SublistCellTemplate({
 				name: "Level",
 				css: "ve-col-2 ve-px-1 ve-text-center",
-				colStyle: "ve-text-center",
+				colStyle: "text-center",
 			}),
 			new SublistCellTemplate({
 				name: "Prerequisite",

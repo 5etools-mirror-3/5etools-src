@@ -145,6 +145,7 @@ class ModalFilterBackgrounds extends ModalFilterBase {
 			...opts,
 			modalTitle: `Background${opts.isRadio ? "" : "s"}`,
 			pageFilter: new PageFilterBackgrounds(),
+			previewButtonHandler: new ListUiPreviewButtonHandlerStatsFluff({page: UrlUtil.PG_BACKGROUNDS}),
 		});
 	}
 
@@ -206,7 +207,7 @@ class ModalFilterBackgrounds extends ModalFilterBase {
 			},
 		);
 
-		ListUiUtil.bindPreviewButton(UrlUtil.PG_BACKGROUNDS, this._allData, listItem, btnShowHidePreview);
+		this._previewButtonHandler.bindPreviewButton({entity: bg, listItem, btnShowHidePreview});
 
 		return listItem;
 	}

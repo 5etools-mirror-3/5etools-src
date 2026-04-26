@@ -11,12 +11,12 @@ class LanguagesSublistManager extends SublistManager {
 			new SublistCellTemplate({
 				name: "Type",
 				css: "ve-col-2 ve-px-1 ve-text-center",
-				colStyle: "ve-text-center",
+				colStyle: "text-center",
 			}),
 			new SublistCellTemplate({
 				name: "Script",
 				css: "ve-col-2 ve-text-center ve-pl-1 ve-pr-0",
-				colStyle: "ve-text-center",
+				colStyle: "text-center",
 			}),
 		];
 	}
@@ -159,7 +159,7 @@ class LanguagesPage extends ListPage {
 						lastStyleIndex = ix;
 					};
 
-					const saveTextDebounced = MiscUtil.debounce((text) => StorageUtil.pSetForPage("sampleText", text), 500);
+					const saveTextDebounced = MiscUtil.debounce((text) => StorageUtil.pSetForPage("sampleText", text), VeCt.DUR_DEBOUNCE_SAVE);
 					const updateText = (val) => {
 						if (val === undefined) val = iptSample.val();
 						else iptSample.val(val);

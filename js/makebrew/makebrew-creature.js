@@ -316,6 +316,7 @@ export class CreatureBuilder extends BuilderBase {
 			if (fluff) creature.fluff = MiscUtil.copy(fluff);
 		}
 
+		creature.name = `${creature.name} (Copy)`;
 		creature.source = this._ui.source;
 
 		if (creature.soundClip && creature.soundClip.type === "internal") {
@@ -340,7 +341,7 @@ export class CreatureBuilder extends BuilderBase {
 		// Semi-gracefully handle e.g. ERLW's Steel Defender
 		if (creature.passive != null && typeof creature.passive === "string") delete creature.passive;
 
-		const meta = {...(opts.meta || {}), ...this._getInitialMetaState({nameOriginal: creature.name})};
+		const meta = {...(opts.meta || {}), ...this._getInitialMetaState({nameOriginal: creature.name, isModified: true})};
 
 		if (ScaleCreature.isCrInScaleRange(creature) && !opts.isForce) {
 			const crDefault = creature.cr.cr || creature.cr;
@@ -646,8 +647,8 @@ export class CreatureBuilder extends BuilderBase {
 
 	_renderInputImpl () {
 		this._validateMeta();
-		this.doCreateProxies();
-		this.renderInputControls();
+		this._doCreateProxies();
+		this._doBindHeaderElements();
 		this._renderInputMain();
 	}
 
@@ -699,15 +700,16 @@ export class CreatureBuilder extends BuilderBase {
 		// initialise tabs
 		this._resetTabs({tabGroup: "input"});
 
+		const tabOptsShared = {hasBorder: true, hasBackground: true};
 		const tabs = this._renderTabs(
 			[
-				new TabUiUtil.TabMeta({name: "Info", hasBorder: true}),
-				new TabUiUtil.TabMeta({name: "Species", hasBorder: true}),
-				new TabUiUtil.TabMeta({name: "Core", hasBorder: true}),
-				new TabUiUtil.TabMeta({name: "Defenses", hasBorder: true}),
-				new TabUiUtil.TabMeta({name: "Abilities", hasBorder: true}),
-				new TabUiUtil.TabMeta({name: "Gear", hasBorder: true}),
-				new TabUiUtil.TabMeta({name: "Flavor/Misc", hasBorder: true}),
+				new TabUiUtil.TabMeta({...tabOptsShared, name: "Info"}),
+				new TabUiUtil.TabMeta({...tabOptsShared, name: "Species"}),
+				new TabUiUtil.TabMeta({...tabOptsShared, name: "Core"}),
+				new TabUiUtil.TabMeta({...tabOptsShared, name: "Defenses"}),
+				new TabUiUtil.TabMeta({...tabOptsShared, name: "Abilities"}),
+				new TabUiUtil.TabMeta({...tabOptsShared, name: "Gear"}),
+				new TabUiUtil.TabMeta({...tabOptsShared, name: "Flavor/Misc"}),
 			],
 			{
 				tabGroup: "input",
@@ -719,7 +721,7 @@ export class CreatureBuilder extends BuilderBase {
 		tabs.forEach(it => it.wrpTab.appendTo(wrp));
 
 		// INFO
-		BuilderUi.getStateIptString("Name", cb, this._state, {nullable: false, callback: () => this.pRenderEntityList()}, "name").appendTo(infoTab.wrpTab);
+		BuilderUi.getStateIptString("Name", cb, this._state, {nullable: false}, "name").appendTo(infoTab.wrpTab);
 		this.__getShortNameInput(cb).appendTo(infoTab.wrpTab);
 		this._selSource = this.getSourceInput(cb).appendTo(infoTab.wrpTab);
 		BuilderUi.getStateIptString("Page", cb, this._state, {}, "page").appendTo(infoTab.wrpTab);

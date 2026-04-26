@@ -515,6 +515,16 @@ class List {
 		return this.removeItemByIndex(ixItem, ixItem);
 	}
 
+	removeItemsByFilter (fnFilter) {
+		const [itemsToRemove, itemsNxt] = this._items.segregate((li, ix) => fnFilter(li, ix));
+		if (itemsNxt.length === this._items.length) return;
+
+		this._isDirty = true;
+		this._items = itemsNxt;
+
+		if (this._isFuzzy) itemsToRemove.forEach(li => this._fuzzySearch.removeDocByRef(li.ix));
+	}
+
 	removeAllItems () {
 		this._isDirty = true;
 		this._items = [];

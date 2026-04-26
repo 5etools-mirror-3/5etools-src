@@ -381,7 +381,7 @@ class SaveManager extends BaseComponent {
 
 		this._pDoSaveStateToStorageDebounced = MiscUtil.debounce(
 			this.pDoSaveStateToStorage.bind(this),
-			50,
+			VeCt.DUR_DEBOUNCE_SAVE,
 		);
 	}
 

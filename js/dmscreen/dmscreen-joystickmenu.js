@@ -124,18 +124,20 @@ export class DmScreenJoystickMenuBase {
 export class DmScreenExiledPanelJoystickMenu extends DmScreenJoystickMenuBase {
 	static bindCtrlMoveHandlers (
 		{
-			sideMenu,
+			board,
 			panel,
 			ctrlMove,
 			wrpHistItem,
 			btnRemove,
+			fnUpdateParentRender,
+			fnOnPanelDragStart,
 		},
 	) {
 		const eleContent = panel.getContentWrapper();
 		const eleBody = e_(document.body);
 
 		const bodyOnMouseup = () => {
-			sideMenu.board.setVisiblyHoveringPanel(false);
+			board.setVisiblyHoveringPanel(false);
 			this._unbindBodyMousemove();
 			this._unbindBodyMouseup();
 
@@ -145,13 +147,13 @@ export class DmScreenExiledPanelJoystickMenu extends DmScreenJoystickMenuBase {
 			wrpHistItem.css("box-shadow", "");
 			btnRemove.showVe();
 			ctrlMove.showVe();
-			sideMenu.board.getEleScreen().removeClass("board-content-hovering");
+			board.getEleScreen().removeClass("board-content-hovering");
 			panel.getEleContent().removeClass("panel-content-hovering");
 
-			if (!sideMenu.board.hoveringPanel || panel.id === sideMenu.board.hoveringPanel.id) wrpHistItem.appends(eleContent);
+			if (!board.hoveringPanel || panel.id === board.hoveringPanel.id) wrpHistItem.appends(eleContent);
 			else {
-				sideMenu.board.recallPanel(panel);
-				const her = sideMenu.board.hoveringPanel;
+				board.recallPanel(panel);
+				const her = board.hoveringPanel;
 				if (her.getEmpty()) {
 					her.setFromPeer({hisMeta: panel.getPanelMeta(), hisContent: panel.eleContent, isMoveModeActive: true});
 					panel.destroy();
@@ -162,14 +164,14 @@ export class DmScreenExiledPanelJoystickMenu extends DmScreenJoystickMenuBase {
 					panel.setFromPeer({hisMeta: herMeta, hisContent: eleHerContent, isMoveModeActive: true});
 					panel.exile();
 				}
-				sideMenu.doUpdateHistory();
+				fnUpdateParentRender();
 			}
 			MiscUtil.clearSelection();
-			sideMenu.board.doSaveStateDebounced();
+			board.doSaveStateDebounced();
 		};
 
 		const ctrlMoveOnMousedown = (evt) => {
-			sideMenu.board.setVisiblyHoveringPanel(true);
+			board.setVisiblyHoveringPanel(true);
 			MiscUtil.clearSelection();
 			eleBody.css("userSelect", "none");
 
@@ -186,11 +188,12 @@ export class DmScreenExiledPanelJoystickMenu extends DmScreenJoystickMenuBase {
 			wrpHistItem.css("box-shadow", "none");
 			btnRemove.hideVe();
 			ctrlMove.hideVe();
-			sideMenu.board.getEleScreen().addClass("board-content-hovering");
+			board.getEleScreen().addClass("board-content-hovering");
 			panel.getEleContent().addClass("panel-content-hovering");
+			fnOnPanelDragStart();
 
 			this._bindSharedMovingEvents({
-				board: sideMenu.board,
+				board,
 				eleContent,
 				offsetX,
 				offsetY,

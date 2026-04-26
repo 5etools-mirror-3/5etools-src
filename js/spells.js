@@ -11,27 +11,27 @@ class SpellsSublistManager extends SublistManager {
 			new SublistCellTemplate({
 				name: "Level",
 				css: "ve-capitalize ve-col-1-5 ve-px-1 ve-text-center",
-				colStyle: "ve-text-center",
+				colStyle: "text-center",
 			}),
 			new SublistCellTemplate({
 				name: "Time",
 				css: "ve-col-1-8 ve-px-1 ve-text-center",
-				colStyle: "ve-text-center",
+				colStyle: "text-center",
 			}),
 			new SublistCellTemplate({
 				name: "School",
 				css: "ve-capitalize ve-col-1-6 ve-px-1 ve-text-center",
-				colStyle: "ve-text-center",
+				colStyle: "text-center",
 			}),
 			new SublistCellTemplate({
 				name: "C.",
 				css: "concentration--sublist ve-col-0-7 ve-px-1 ve-text-center",
-				colStyle: "ve-text-center",
+				colStyle: "text-center",
 			}),
 			new SublistCellTemplate({
 				name: "Range",
 				css: "range ve-col-3-2 ve-pl-1 ve-pr-0 ve-text-right",
-				colStyle: "ve-text-right",
+				colStyle: "text-right",
 			}),
 		];
 	}

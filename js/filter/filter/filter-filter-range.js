@@ -653,6 +653,7 @@ export class RangeFilter extends FilterBase {
 	}
 
 	_toDisplay_isToDisplayEntry (filterState, ev) {
+		if (typeof ev !== "number") throw new Error(`Value "${ev}" was not a number!`);
 		const isGtMin = filterState.min <= ev;
 		const isLtMax = filterState.max >= ev;
 		if (this._isAllowGreater) return isGtMin && (isLtMax || filterState.max === this._state.max);

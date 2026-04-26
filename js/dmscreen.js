@@ -32,7 +32,9 @@ import {
 
 import {OmnisearchBacking} from "./omnisearch/omnisearch-backing.js";
 import {Panzoom} from "./utils-ui/utils-ui-panzoom.js";
-import {DmScreenExiledPanelJoystickMenu, DmScreenJoystickMenu} from "./dmscreen/dmscreen-joystickmenu.js";
+import {DmScreenJoystickMenu} from "./dmscreen/dmscreen-joystickmenu.js";
+import {DmScreenSideMenu} from "./dmscreen/sidemenu/dmscreen-sidemenu.js";
+import {DmScreenMigrator} from "./dmscreen/dmscreen-migrator.js";
 
 const TITLE_LOADING = "Loading...";
 
@@ -43,11 +45,14 @@ class Board {
 		this.eleScreen = es(`.dm-screen`);
 		this.width = this.getInitialWidth();
 		this.height = this.getInitialHeight();
-		this.sideMenu = new SideMenu(this);
+		this.sideMenu = new DmScreenSideMenu({board: this});
 		this.menu = new AddMenu();
 		this.isFullscreen = false;
 		this.isLocked = false;
 		this.isAlertOnNav = false;
+
+		this._idSaveSlotActive = "1";
+		this._saveSlotStates = {[this._idSaveSlotActive]: {}};
 
 		this.nextId = 1;
 		this.hoveringPanel = null;
@@ -57,10 +62,8 @@ class Board {
 		this.availBooks = {};
 
 		this.cbConfirmTabClose = null;
-		this.btnFullscreen = null;
-		this.btnLockPanels = null;
 
-		this._pDoSaveStateDebounced = MiscUtil.debounce(() => StorageUtil.pSet(VeCt.STORAGE_DMSCREEN, this.getSaveableState()), 25);
+		this._pDoSaveStateDebounced = MiscUtil.debounce(() => StorageUtil.pSet(VeCt.STORAGE_DMSCREEN, this.getSaveableState()), VeCt.DUR_DEBOUNCE_SAVE);
 	}
 
 	getInitialWidth () {
@@ -101,7 +104,6 @@ class Board {
 		if (!(oldWidth === width && oldHeight === height)) {
 			this.doAdjustEleScreenCss();
 			if (width < oldWidth || height < oldHeight) this.doCullPanels(oldWidth, oldHeight);
-			this.sideMenu.doUpdateDimensions();
 		}
 		this.doCheckFillSpaces();
 		this.eleScreen.trigger("panelResize");
@@ -130,9 +132,7 @@ class Board {
 
 	doAdjustEleScreenCss () {
 		// assumes 7px grid spacing
-		this.eleScreen.css({
-			marginTop: this.isFullscreen ? "0px" : "3px",
-		});
+		this.eleScreen.toggleClass("ve-mt-3p", !this.isFullscreen);
 	}
 
 	getPanelDimensions () {
@@ -153,19 +153,44 @@ class Board {
 		}).appendTo(this.eleScreen);
 	}
 
-	doToggleFullscreen () {
-		this.isFullscreen = !this.isFullscreen;
-		e_(document.body).toggleClass("is-fullscreen", this.isFullscreen);
-		this.doAdjustEleScreenCss();
-		this.doSaveStateDebounced();
-		this.eleScreen.trigger("panelResize");
-	}
-
 	doHideLoading () {
 		this.eleScreen.find(`.dm-screen-loading`).remove();
 	}
 
+	/**
+	 * @param {?boolean} val
+	 */
+	doToggleFullscreen ({val = null} = {}) {
+		this.isFullscreen = val ?? !this.isFullscreen;
+
+		e_(document.body).toggleClass("is-fullscreen", this.isFullscreen);
+		this.doAdjustEleScreenCss();
+		this.sideMenu.setIsFullscreen(this.isFullscreen);
+
+		this.doSaveStateDebounced();
+
+		this.eleScreen.trigger("panelResize");
+	}
+
+	/**
+	 * @param {?boolean} val
+	 */
+	doToggleLocked ({val = null} = {}) {
+		this.isLocked = val ?? !this.isLocked;
+
+		if (this.isLocked) {
+			this.setAllControlBarsVisible(false);
+		}
+
+		e_(document.body).toggleClass(`dm-screen-locked`, this.isLocked);
+		this.sideMenu.setIsLocked(!!this.isLocked);
+
+		this.doSaveStateDebounced();
+	}
+
 	async pInitialise () {
+		this.sideMenu.init();
+
 		this.doAdjustEleScreenCss();
 		this.doShowLoading();
 
@@ -306,10 +331,10 @@ class Board {
 		this.availContent = await SearchUiUtil.pGetContentIndices();
 
 		// add tabs
-		const omniTab = new AddMenuSearchTab({board: this, indexes: this.availContent});
-		const ruleTab = new AddMenuSearchTab({board: this, indexes: this.availRules, subType: "rule"});
-		const adventureTab = new AddMenuSearchTab({board: this, indexes: this.availAdventures, subType: "adventure", adventureOrBookIdToSource});
-		const bookTab = new AddMenuSearchTab({board: this, indexes: this.availBooks, subType: "book", adventureOrBookIdToSource});
+		const omniTab = new AddMenuSearchTab({board: this, indexes: this.availContent, tabId: "omni"});
+		const ruleTab = new AddMenuSearchTab({board: this, indexes: this.availRules, subType: "rule", tabId: "rule"});
+		const adventureTab = new AddMenuSearchTab({board: this, indexes: this.availAdventures, subType: "adventure", adventureOrBookIdToSource, tabId: "adventure"});
+		const bookTab = new AddMenuSearchTab({board: this, indexes: this.availBooks, subType: "book", adventureOrBookIdToSource, tabId: "book"});
 		const embedTab = new AddMenuVideoTab({board: this});
 		const imageTab = new AddMenuImageTab({board: this});
 		const specialTab = new AddMenuSpecialTab({board: this});
@@ -473,6 +498,64 @@ class Board {
 		if (!isSkipSave && isAnyFilled) this.doSaveStateDebounced();
 	}
 
+	/* -------------------------------------------- */
+
+	_doVerifySaveSlotId (state, id) {
+		if (!state.sls[id]) throw new Error(`Save slot with ID "${id}" does not exist!`);
+	}
+
+	async pHandleClick_setActiveSaveSlot (id) {
+		const nxt = this.getSaveableState();
+		this._doVerifySaveSlotId(nxt, id);
+		nxt.sla = id;
+		await this.pDoLoadStateFrom(nxt);
+	}
+
+	static _MAX_SAVE_SLOTS = 99;
+
+	_isNextSaveSlotStatesAvailable (state, {isNotify = false, cntAdditional = 1} = {}) {
+		const cntNxtSlotStates = Object.keys(state.sls || {}).length + cntAdditional;
+
+		if ((this.constructor._MAX_SAVE_SLOTS - cntNxtSlotStates) < 0) {
+			if (isNotify) JqueryUtil.doToast({type: "warning", content: `Too many save slots! Try deleting some first.`});
+			return false;
+		}
+
+		return true;
+	}
+
+	_getNextSaveSlotId (state) {
+		// Attempt to fill holes
+		for (let idSaveSlot = 1; idSaveSlot < this.constructor._MAX_SAVE_SLOTS; ++idSaveSlot) {
+			if (state.sls[idSaveSlot]) continue;
+			return `${idSaveSlot}`;
+		}
+		throw new Error(`No valid save slot ID available! This is a bug!`);
+	}
+
+	async pHandleClick_doNewSaveSlot () {
+		const nxt = this.getSaveableState();
+		if (!this._isNextSaveSlotStatesAvailable(nxt, {isNotify: true})) return;
+
+		const idSaveSlot = this._getNextSaveSlotId(nxt);
+		nxt.sla = idSaveSlot;
+		nxt.sls[idSaveSlot] = {};
+
+		await this.pDoLoadStateFrom(nxt);
+	}
+
+	async pHandleClick_doDuplicateSaveSlot (id) {
+		const nxt = this.getSaveableState();
+		this._doVerifySaveSlotId(nxt, id);
+		if (!this._isNextSaveSlotStatesAvailable(nxt, {isNotify: true})) return;
+
+		const idSaveSlot = this._getNextSaveSlotId(nxt);
+		nxt.sla = idSaveSlot;
+		nxt.sls[idSaveSlot] = MiscUtil.copyFast(nxt.sls[id]);
+
+		await this.pDoLoadStateFrom(nxt);
+	}
+
 	hasSavedStateUrl () {
 		return window.location.hash.length;
 	}
@@ -480,7 +563,6 @@ class Board {
 	async pDoLoadUrlState () {
 		if (window.location.hash.length) {
 			const toLoad = JSON.parse(decodeURIComponent(window.location.hash.slice(1)));
-			this.doReset();
 			await this.pDoLoadStateFrom(toLoad);
 		}
 		window.location.hash = "";
@@ -490,15 +572,43 @@ class Board {
 		return !!await StorageUtil.pGet(VeCt.STORAGE_DMSCREEN);
 	}
 
-	getSaveableState () {
+	_getSaveSlotState () {
 		return {
+			// n -- name
+			// ns -- short name
+			ps: Object.values(this.panels).map(p => p.getSaveableState()),
+			ex: this.exiledPanels.map(p => p.getSaveableState()),
+		};
+	}
+
+	/** One-way sync from sidebar */
+	setSaveSlotInfo ({idSaveSlotActive, saveSlotStates}) {
+		if (idSaveSlotActive == null) throw new Error(`No active save slot ID provided!`);
+		if (saveSlotStates == null || !Object.keys(saveSlotStates).length) throw new Error(`No save slot states provided!`);
+
+		this._idSaveSlotActive = idSaveSlotActive;
+		this._saveSlotStates = saveSlotStates;
+		this.doSaveStateDebounced();
+	}
+
+	getSaveableState () {
+		const sls = MiscUtil.copyFast(this._saveSlotStates);
+		sls[this._idSaveSlotActive] = {
+			...sls[this._idSaveSlotActive],
+			...this._getSaveSlotState(),
+		};
+
+		return {
+			mv: DmScreenMigrator.CURRENT_MIGRATION_VERSION,
+
 			w: this.width,
 			h: this.height,
 			ctc: this.getConfirmTabClose(),
 			fs: this.isFullscreen,
 			lk: this.isLocked,
-			ps: Object.values(this.panels).map(p => p.getSaveableState()),
-			ex: this.exiledPanels.map(p => p.getSaveableState()),
+
+			sla: this._idSaveSlotActive,
+			sls,
 		};
 	}
 
@@ -506,35 +616,155 @@ class Board {
 		this._pDoSaveStateDebounced();
 	}
 
-	async pDoLoadStateFrom (toLoad) {
-		if (this.cbConfirmTabClose) this.cbConfirmTabClose.prop("checked", !!toLoad.ctc);
-		if (this.btnFullscreen && (toLoad.fs !== !!this.isFullscreen)) this.btnFullscreen.trigger("click");
-		if (this.btnLockPanels && (toLoad.lk !== !!this.isLocked)) this.btnLockPanels.trigger("click");
+	/* -------------------------------------------- */
+
+	async _pDoLoadStateFrom_pGetLoadableState ({save, isOptionallyPromptCombine = false, isCombine = false}) {
+		const migrator = new DmScreenMigrator();
+
+		if (isCombine) {
+			migrator.mutMigrateSave(save);
+
+			const nxt = this.getSaveableState();
+
+			if (!this._isNextSaveSlotStatesAvailable(nxt, {cntAdditional: Object.keys(save.sls || {}).length, isNotify: true})) {
+				return {state: null, isCombined: false};
+			}
+
+			Object.values(save.sls)
+				.forEach(saveSlotState => {
+					nxt.sls[this._getNextSaveSlotId(nxt)] = saveSlotState;
+				});
+
+			return {state: nxt, isCombined: true};
+		}
+
+		if (!isOptionallyPromptCombine || !migrator.isCombinableSave(save)) {
+			migrator.mutMigrateSave(save);
+			return {state: save, isCombined: false};
+		}
+
+		const nxt = this.getSaveableState();
+		if (!this._isNextSaveSlotStatesAvailable(nxt)) {
+			migrator.mutMigrateSave(save);
+			return {state: save, isCombined: false};
+		}
+
+		const valUser = await InputUiUtil.pGetUserBoolean({
+			title: "Load Legacy State",
+			htmlDescription: `<div>You are attempting to load a legacy state file, containing a single save slot.<br>Would you like to add the save slot to your current screen, or overwrite all save slots with this single save?</div>`,
+			textYes: "Add As Save Slot",
+			textNo: "Overwrite Existing Save Slots",
+		});
+		if (valUser == null) return {state: null, isCombined: false};
+
+		if (valUser) {
+			const combinableSave = migrator.getCombinableSave(save);
+
+			const idSaveSlot = this._getNextSaveSlotId(nxt);
+			nxt.sla = idSaveSlot;
+			nxt.sls[idSaveSlot] = combinableSave;
+
+			save = nxt;
+		}
+
+		migrator.mutMigrateSave(save);
+
+		return {state: save, isCombined: true};
+	}
+
+	/**
+	 * Stretch width/height to meet the largest value required amongst panels
+	 */
+	_pDoLoadStateFrom_getStretchedWidthHeight ({state, isCombined}) {
+		if (!isCombined) {
+			return {
+				width: state.w,
+				height: state.h,
+			};
+		}
+
+		const getValsDimension = prop => {
+			return Object.values(state.sls)
+				.flatMap(slotState => {
+					return (slotState.ps || [])
+						.filter(p => p[prop] != null)
+						.map(p => p[prop] + 1)
+						.filter(v => v != null);
+				});
+		};
+
+		const valsWidth = [
+			state.w,
+			...getValsDimension("x"),
+		]
+			.filter(v => v != null);
+		const valsHeight = [
+			state.h,
+			...getValsDimension("y"),
+		]
+			.filter(v => v != null);
+
+		return {
+			width: valsWidth.length ? Math.max(...valsWidth) : null,
+			height: valsHeight.length ? Math.max(...valsHeight) : null,
+		};
+	}
+
+	async pDoLoadStateFrom (save, {isOptionallyPromptCombine = false, isCombine = false} = {}) {
+		const {state, isCombined} = await this._pDoLoadStateFrom_pGetLoadableState({save, isOptionallyPromptCombine, isCombine});
+		if (state == null) return;
+
+		const {width, height} = this._pDoLoadStateFrom_getStretchedWidthHeight({state, isCombined});
+
+		this.doReset({width, height});
+
+		if (this.cbConfirmTabClose) this.cbConfirmTabClose.prop("checked", !!state.ctc);
+		if ((state.fs !== !!this.isFullscreen)) this.doToggleFullscreen({val: !!state.fs});
+		if ((state.lk !== !!this.isLocked)) this.doToggleLocked({val: !!state.lk});
+
+		this._idSaveSlotActive = state.sla ?? "1";
+		this._saveSlotStates = state.sls ?? {[this._idSaveSlotActive]: {}};
+
+		const saveSlotStateActive = state.sls?.[state.sla] || {};
 
 		// re-exile
-		const toReExile = toLoad.ex.filter(Boolean).reverse();
+		const toReExile = (saveSlotStateActive.ex || [])
+			.filter(Boolean)
+			.reverse();
 		for (const saved of toReExile) {
-			const p = await Panel.fromSavedState(this, saved);
-			if (p) {
-				this.panels[p.id] = p;
-				this.fireBoardEvent({type: "panelIdSetActive", payload: {type: p.type}});
-				p.exile();
-			}
+			const panel = await Panel.fromSavedState(this, saved);
+			if (!panel) continue;
+
+			this.panels[panel.id] = panel;
+			this.fireBoardEvent({type: "panelIdSetActive", payload: {type: panel.type}});
+			panel.exile();
 		}
-		this.setDimensions(toLoad.w, toLoad.h); // FIXME is this necessary?
 
 		// reload
 		// fill content first; empties can fill any remaining space
-		const toReload = toLoad.ps.filter(Boolean).filter(saved => saved.t !== PANEL_TYP_EMPTY);
+		const toReload = (saveSlotStateActive.ps || [])
+			.filter(Boolean)
+			// Drop empty panels
+			.filter(saved => saved.t !== PANEL_TYP_EMPTY)
+			// Drop panels which would be outside the visible area
+			.filter(saved => (saved.x < this.width) && (saved.y < this.height));
 		for (const saved of toReload) {
-			const p = await Panel.fromSavedState(this, saved);
-			if (p) {
-				this.panels[p.id] = p;
-				this.fireBoardEvent({type: "panelIdSetActive", payload: {type: p.type}});
-			}
+			const panel = await Panel.fromSavedState(this, saved);
+			if (!panel) continue;
+
+			this.panels[panel.id] = panel;
+			this.fireBoardEvent({type: "panelIdSetActive", payload: {type: panel.type}});
 		}
-		this.setDimensions(toLoad.w, toLoad.h);
+
+		this.doCheckFillSpaces();
+
+		this.sideMenu.setSaveSlotInfo({
+			idSaveSlotActive: this._idSaveSlotActive,
+			saveSlotStates: this._saveSlotStates,
+		});
 	}
+
+	/* -------------------------------------------- */
 
 	async pDoLoadState () {
 		let toLoad;
@@ -612,16 +842,39 @@ class Board {
 		return pGetResolved();
 	}
 
-	doReset ({isRetainWidthHeight = false} = {}) {
+	/* -------------------------------------------- */
+
+	async pDoResetAll ({isRetainWidthHeight = false, width = null, height = null} = {}) {
+		const nxt = this.getSaveableState();
+		Object.keys(nxt.sls || {})
+			.forEach(id => {
+				// Skip resetting the active slot, as the reset below will handle this
+				if (id === nxt.sla) return;
+				nxt.sls[id] = {};
+			});
+		await this.pDoLoadStateFrom(nxt);
+
+		this.doReset({isRetainWidthHeight, width, height});
+	}
+
+	/**
+	 * @param {?boolean} isRetainWidthHeight
+	 * @param {?number} width
+	 * @param {?number} height
+	 */
+	doReset ({isRetainWidthHeight = false, width = null, height = null} = {}) {
 		this.exiledPanels.forEach(p => p.destroy());
 		this.exiledPanels = [];
 		this.sideMenu.doUpdateHistory();
 		Object.values(this.panels).forEach(p => p.destroy());
 		this.panels = {};
 
-		if (isRetainWidthHeight) this.setDimensions(this.getWidth(), this.getHeight());
-		else this.setDimensions(this.getInitialWidth(), this.getInitialHeight());
+		width ??= isRetainWidthHeight ? this.getWidth() : this.getInitialWidth();
+		height ??= isRetainWidthHeight ? this.getHeight() : this.getInitialHeight();
+		this.setDimensions(width, height);
 	}
+
+	/* -------------------------------------------- */
 
 	setHoveringButton (panel) {
 		this.resetHoveringButton(panel);
@@ -757,159 +1010,6 @@ class Board {
 
 	_fireBoardEvent_panel ({panel, ...opts}) {
 		panel.fireBoardEvent({...opts});
-	}
-}
-
-class SideMenu {
-	constructor (board) {
-		this.board = board;
-		this.eleMnu = es(`.sidemenu`);
-
-		this.eleMnu.onn("mouseover", () => {
-			this.board.setHoveringPanel(null);
-			this.board.setVisiblyHoveringPanel(false);
-			this.board.resetHoveringButton();
-		});
-
-		this.iptWidth = null;
-		this.iptHeight = null;
-		this.wrpHistory = null;
-	}
-
-	render () {
-		const renderDivider = () => this.eleMnu.appends(`<hr class="ve-w-100 ve-hr-2 sidemenu__row__divider">`);
-
-		const wrpResizeW = ee`<div class="ve-w-100 ve-mb-2 ve-split-v-center"><div class="sidemenu__row__label">Width</div></div>`.appendTo(this.eleMnu);
-		const iptWidth = ee`<input class="ve-form-control" type="number" value="${this.board.width}">`.appendTo(wrpResizeW);
-		this.iptWidth = iptWidth;
-		const wrpResizeH = ee`<div class="ve-w-100 ve-mb-2 ve-split-v-center"><div class="sidemenu__row__label">Height</div></div>`.appendTo(this.eleMnu);
-		const iptHeight = ee`<input class="ve-form-control" type="number" value="${this.board.height}">`.appendTo(wrpResizeH);
-		this.iptHeight = iptHeight;
-		const wrpSetDim = ee`<div class="ve-w-100 ve-split-v-center"></div>`.appendTo(this.eleMnu);
-		const btnSetDim = ee`<button class="ve-btn ve-btn-primary" style="width: 100%;">Set Dimensions</div>`.appendTo(wrpSetDim);
-		btnSetDim.onn("click", async () => {
-			const w = Number(iptWidth.val());
-			const h = Number(iptHeight.val());
-
-			if (w > 10 || h > 10) {
-				if (!await InputUiUtil.pGetUserBoolean({title: "Too Many Panels", htmlDescription: "That's a lot of panels. Are you sure?", textYes: "Yes", textNo: "Cancel"})) return;
-			}
-
-			this.board.setDimensions(w, h);
-		});
-		renderDivider();
-
-		const wrpFullscreen = ee`<div class="ve-w-100 ve-flex-vh-center-around"></div>`.appendTo(this.eleMnu);
-		const btnFullscreen = ee`<button class="ve-btn ve-btn-primary">Toggle Fullscreen</button>`.appendTo(wrpFullscreen);
-		this.board.btnFullscreen = btnFullscreen;
-		btnFullscreen.onn("click", () => this.board.doToggleFullscreen());
-		const btnLockPanels = ee`<button class="ve-btn ve-btn-danger" title="Lock Panels"><span class="glyphicon glyphicon-lock"></span></button>`.appendTo(wrpFullscreen);
-		this.board.btnLockPanels = btnLockPanels;
-		btnLockPanels.onn("click", () => {
-			this.board.isLocked = !this.board.isLocked;
-			if (this.board.isLocked) {
-				this.board.setAllControlBarsVisible(false);
-				e_(document.body).addClass(`dm-screen-locked`);
-				btnLockPanels.removeClass(`ve-btn-danger`).addClass(`ve-btn-success`);
-			} else {
-				e_(document.body).removeClass(`dm-screen-locked`);
-				btnLockPanels.addClass(`ve-btn-danger`).removeClass(`ve-btn-success`);
-			}
-			this.board.doSaveStateDebounced();
-		});
-		renderDivider();
-
-		const wrpSaveLoad = ee`<div class="ve-w-100"></div>`.appendTo(this.eleMnu);
-		const wrpSaveLoadFile = ee`<div class="ve-w-100 ve-mb-2 ve-flex-vh-center-around"></div>`.appendTo(wrpSaveLoad);
-		const btnSaveFile = ee`<button class="ve-btn ve-btn-primary">Save to File</button>`.appendTo(wrpSaveLoadFile);
-		btnSaveFile.onn("click", () => {
-			DataUtil.userDownload(`dm-screen`, this.board.getSaveableState(), {fileType: "dm-screen"});
-		});
-		const btnLoadFile = ee`<button class="ve-btn ve-btn-primary">Load from File</button>`.appendTo(wrpSaveLoadFile);
-		btnLoadFile.onn("click", async () => {
-			const {jsons, errors} = await InputUiUtil.pGetUserUploadJson({expectedFileTypes: ["dm-screen"]});
-
-			DataUtil.doHandleFileLoadErrorsGeneric(errors);
-
-			if (!jsons?.length) return;
-			this.board.doReset();
-			await this.board.pDoLoadStateFrom(jsons[0]);
-		});
-		const wrpSaveLoadUrl = ee`<div class="ve-w-100 ve-flex-vh-center-around"></div>`.appendTo(wrpSaveLoad);
-		const btnSaveLink = ee`<button class="ve-btn ve-btn-primary">Save to URL</button>`.appendTo(wrpSaveLoadUrl);
-		btnSaveLink.onn("click", async () => {
-			const encoded = `${window.location.href.split("#")[0]}#${encodeURIComponent(JSON.stringify(this.board.getSaveableState()))}`;
-			await MiscUtil.pCopyTextToClipboard(encoded);
-			JqueryUtil.showCopiedEffect(btnSaveLink);
-		});
-		renderDivider();
-
-		const wrpCbConfirm = ee`<div class="ve-w-100 ve-split-v-center"><label class="sidemenu__row__label sidemenu__row__label--cb-label"><span>Confirm on Panel Tab Close</span></label></div>`.appendTo(this.eleMnu);
-		this.board.cbConfirmTabClose = ee`<input type="checkbox" class="sidemenu__row__label__cb">`.appendTo(wrpCbConfirm.find(`label`));
-		renderDivider();
-
-		const wrpReset = ee`<div class="ve-w-100 ve-split-v-center"></div>`.appendTo(this.eleMnu);
-		const btnReset = ee`<button class="ve-btn ve-btn-danger" style="width: 100%;">Reset Screen</button>`.appendTo(wrpReset);
-		btnReset.onn("click", async () => {
-			const comp = BaseComponent.fromObject({isRetainWidthHeight: true});
-			const cbKeepWidthHeight = ComponentUiUtil.getCbBool(comp, "isRetainWidthHeight");
-
-			const eleDescription = ee`<div class="ve-w-320p">
-				<label class="ve-split-v-center ve-mb-2"><span>Keep Current Width/Height</span> ${cbKeepWidthHeight}</label>
-				<hr class="ve-hr-1">
-				<div>Are you sure?</div>
-			</div>`;
-
-			if (!await InputUiUtil.pGetUserBoolean({title: "Reset", eleDescription, textYes: "Yes", textNo: "Cancel"})) return;
-
-			this.board.doReset({isRetainWidthHeight: comp._state.isRetainWidthHeight});
-		});
-		renderDivider();
-
-		this.wrpHistory = ee`<div class="sidemenu__history ve-overflow-y-auto ve-overflow-x-hidden"></div>`.appendTo(this.eleMnu);
-	}
-
-	doUpdateDimensions () {
-		this.iptWidth.val(this.board.width);
-		this.iptHeight.val(this.board.height);
-	}
-
-	doUpdateHistory () {
-		this.board.exiledPanels.forEach(p => p.getContentWrapper().detach());
-		this.wrpHistory.childrene().forEach(ele => ele.remove());
-		if (this.board.exiledPanels.length) {
-			const wrpHistHeader = ee`<div class="ve-w-100 ve-mb-2 ve-split-v-center"><span style="font-variant: ve-small-caps;">Recently Removed</span></div>`.appendTo(this.wrpHistory);
-			const btnHistClear = ee`<button class="ve-btn ve-btn-danger">Clear</button>`.appendTo(wrpHistHeader);
-			btnHistClear.onn("click", () => {
-				this.board.exiledPanels.forEach(p => p.destroy());
-				this.board.exiledPanels = [];
-				this.doUpdateHistory();
-			});
-		}
-		this.board.exiledPanels.forEach((panel, i) => {
-			const wrpHistItem = ee`<div class="sidemenu__history-item"></div>`.appendTo(this.wrpHistory);
-			const cvrHistItem = ee`<div class="sidemenu__history-item-cover"></div>`.appendTo(wrpHistItem);
-			const btnRemove = ee`<div class="panel-history-control-remove-wrapper"><span class="panel-history-control-remove glyphicon glyphicon-remove" title="Remove"></span></div>`.appendTo(cvrHistItem);
-			const ctrlMove = ee`<div class="panel-history-control-middle" title="Move"></div>`.appendTo(cvrHistItem);
-
-			btnRemove.onn("click", () => {
-				this.board.exiledPanels[i].destroy();
-				this.board.exiledPanels.splice(i, 1);
-				this.doUpdateHistory();
-			});
-
-			const contents = panel.getContentWrapper();
-			wrpHistItem.appends(contents);
-
-			DmScreenExiledPanelJoystickMenu.bindCtrlMoveHandlers({
-				sideMenu: this,
-				panel,
-				ctrlMove,
-				wrpHistItem,
-				btnRemove,
-			});
-		});
-		this.board.doSaveStateDebounced();
 	}
 }
 
@@ -2619,10 +2719,6 @@ class AddMenuTab {
 		return this.eleTab;
 	}
 
-	genTabId (type) {
-		return `tab-${type}-${this.label.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "_")}`;
-	}
-
 	setMenu (menu) {
 		this.menu = menu;
 	}
@@ -2631,7 +2727,7 @@ class AddMenuTab {
 class AddMenuVideoTab extends AddMenuTab {
 	constructor ({...opts}) {
 		super({...opts, label: "Embed"});
-		this.tabId = this.genTabId("tube");
+		this.tabId = "embed";
 	}
 
 	async pRender () {
@@ -2749,7 +2845,7 @@ class AddMenuVideoTab extends AddMenuTab {
 class AddMenuImageTab extends AddMenuTab {
 	constructor ({...opts}) {
 		super({...opts, label: "Image"});
-		this.tabId = this.genTabId("image");
+		this.tabId = "image";
 	}
 
 	async pRender () {
@@ -2856,7 +2952,7 @@ class AddMenuImageTab extends AddMenuTab {
 class AddMenuSpecialTab extends AddMenuTab {
 	constructor ({...opts}) {
 		super({...opts, label: "Special"});
-		this.tabId = this.genTabId("special");
+		this.tabId = "special";
 	}
 
 	async pRender () {
@@ -3001,7 +3097,7 @@ class AddMenuSearchTab extends AddMenuTab {
 	static _getTitle (subType) {
 		switch (subType) {
 			case "content": return "Content";
-			case "rule": return "Rules";
+			case "rule": return `Rules <span class="ve-small ve-muted">(5e/2014)</span>`;
 			case "adventure": return "Adventures";
 			case "book": return "Books";
 			default: throw new Error(`Unhandled search tab subtype: "${subType}"`);
@@ -3011,12 +3107,13 @@ class AddMenuSearchTab extends AddMenuTab {
 	/**
 	 * @param {?object} indexes
 	 * @param {?string} subType
+	 * @param {string} tabId
 	 * @param {?object} adventureOrBookIdToSource
 	 * @param opts
 	 */
-	constructor ({indexes, subType = "content", adventureOrBookIdToSource = null, ...opts}) {
+	constructor ({indexes, subType = "content", tabId, adventureOrBookIdToSource = null, ...opts}) {
 		super({...opts, label: AddMenuSearchTab._getTitle(subType)});
-		this.tabId = this.genTabId(subType);
+		this.tabId = tabId;
 		this.indexes = indexes;
 		this.cat = "ALL";
 		this.subType = subType;
@@ -3459,7 +3556,7 @@ window.addEventListener("load", () => {
 	window.DM_SCREEN.pInitialise()
 		.catch(err => {
 			JqueryUtil.doToast({content: `Failed to load with error "${err.message}". ${VeCt.STR_SEE_CONSOLE}`, type: "danger"});
-			es(`.dm-screen-loading`).find(`.initial-message`).txt("Failed!");
+			es(`.dm-screen-loading .initial-message`)?.txt("Failed!");
 			setTimeout(() => { throw err; });
 		});
 });

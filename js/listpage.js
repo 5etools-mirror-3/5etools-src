@@ -137,7 +137,7 @@ class SublistManager {
 		this._wrpContainer = null;
 		this._wrpSummaryControls = null;
 
-		this._pSaveSublistDebounced = MiscUtil.debounce(this._pSaveSublist.bind(this), 50);
+		this._pSaveSublistDebounced = MiscUtil.debounce(this._pSaveSublist.bind(this), VeCt.DUR_DEBOUNCE_SAVE);
 
 		this._hkOnListUpdated = null;
 	}

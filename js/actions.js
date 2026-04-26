@@ -11,7 +11,7 @@ class ActionsSublistManager extends SublistManager {
 			new SublistCellTemplate({
 				name: "Time",
 				css: "ve-text-center ve-col-4 ve-pl-1 ve-pr-0",
-				colStyle: "ve-text-center",
+				colStyle: "text-center",
 			}),
 		];
 	}

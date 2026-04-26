@@ -6,6 +6,29 @@ export class BookUtil {
 		return header.header || header;
 	}
 
+	static async _scrollClick_pScrollElementIntoView (ele) {
+		if (!BrowserUtil.isFirefox()) {
+			await AnimationUtil.pRecomputeStyles();
+			ele.scrollIntoView();
+			return;
+		}
+
+		// Loop until rendering stabilizes
+		// 6 repeated matches (i.e., 12 animation frames(!)) seems to be the sweet spot
+		const posLookup = {[ele.getBoundingClientRect().toJSON().y]: 1};
+		for (let i = 0; i < 99; ++i) {
+			await AnimationUtil.pRecomputeStyles();
+
+			const bcr = ele.getBoundingClientRect().toJSON();
+			if (!posLookup[bcr.y]) posLookup[bcr.y] = 1;
+			else posLookup[bcr.y]++;
+
+			if (posLookup[bcr.y] >= 6) break;
+		}
+
+		ele.scrollIntoView();
+	}
+
 	static _scrollClick (ixChapter, headerText, headerNumber) {
 		headerText = headerText.toLowerCase().trim();
 
@@ -23,7 +46,7 @@ export class BookUtil {
 			const ixTitleUpper = Math.min(trackedTitleIndexes.length, maxHeaderIx) + 1; // +1 since it's 1-indexed
 			for (let ixTitle = minHeaderIx; ixTitle < ixTitleUpper; ++ixTitle) {
 				let titleName = trackedTitles[ixTitle];
-				if (!titleName) return; // Should never occur
+				if (!titleName) throw new Error(`No tracked title for index "${ixTitle}"! This is a bug!`);
 
 				titleName = titleName.toLowerCase().trim();
 				if (titleName === headerText) {
@@ -32,7 +55,7 @@ export class BookUtil {
 						continue;
 					}
 
-					es(`[data-title-index="${ixTitle}"]`).scrollIntoView();
+					this._scrollClick_pScrollElementIntoView(es(`[data-title-index="${ixTitle}"]`)).then(null);
 					break;
 				}
 			}
@@ -43,7 +66,7 @@ export class BookUtil {
 		const trackedTitlesInverse = BookUtil._renderer.getTrackedTitlesInverted({isStripTags: true});
 
 		const ixTitle = (trackedTitlesInverse[headerText] || [])[headerNumber || 0];
-		if (ixTitle != null) es(`[data-title-index="${ixTitle}"]`).scrollIntoView();
+		if (ixTitle != null) this._scrollClick_pScrollElementIntoView(es(`[data-title-index="${ixTitle}"]`)).then(null);
 	}
 
 	static _scrollPageTop (ixChapter) {
@@ -145,8 +168,7 @@ export class BookUtil {
 				let handled = false;
 				if (BookUtil.referenceId) handled = this._showBookContent_handleQuickReferenceShow({sectionHeader: scrollToHeaderText});
 				if (!handled) {
-					AnimationUtil.pRecomputeStyles()
-						.then(() => BookUtil._scrollClick(ixChapter, scrollToHeaderText, scrollToHeaderNumber));
+					BookUtil._scrollClick(ixChapter, scrollToHeaderText, scrollToHeaderNumber);
 				}
 			} else {
 				BookUtil._scrollPageTop();
@@ -172,11 +194,9 @@ export class BookUtil {
 					}
 				}
 			} else if (isForceScroll) {
-				AnimationUtil.pRecomputeStyles()
-					.then(() => BookUtil._scrollClick(ixChapter, scrollToHeaderText, scrollToHeaderNumber));
+				BookUtil._scrollClick(ixChapter, scrollToHeaderText, scrollToHeaderNumber);
 			} else if (scrollToHeaderText) {
-				AnimationUtil.pRecomputeStyles()
-					.then(() => BookUtil._scrollClick(ixChapter, scrollToHeaderText, scrollToHeaderNumber));
+				BookUtil._scrollClick(ixChapter, scrollToHeaderText, scrollToHeaderNumber);
 			}
 		}
 
@@ -587,11 +607,11 @@ export class BookUtil {
 			if (headerName && !headerIndex) {
 				const headerNameClean = decodeURIComponent(headerName).trim().toLowerCase();
 				const chapterNum = Number(hashParts[0]);
-				const headerMetas = Object.values(BookUtil.curRender.headerMap)
-					.filter(it => it.chapter === chapterNum && it.nameClean === headerNameClean);
-				// Offset by the lowest relative title index in the chapter
-				const offset = Math.min(...headerMetas.map(it => it.ixTitleRel));
-				if (isFinite(offset)) hashParts[2] = `${offset}`;
+				const minChapterHeaderIx = BookUtil.curRender.allViewFirstTitleIndexes[chapterNum];
+				const offsetHeaderIndex = Object.entries(BookUtil._renderer.getTrackedTitles())
+					.filter(([ix, header]) => Number(ix) <= minChapterHeaderIx && header.toLowerCase().trim() === headerNameClean)
+					.length;
+				hashParts[2] = `${offsetHeaderIndex}`;
 			}
 
 			Hist.replaceHistoryHash([bookIdRaw, -1, ...hashParts.slice(1)].join(HASH_PART_SEP));

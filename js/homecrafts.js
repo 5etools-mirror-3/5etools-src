@@ -4,21 +4,29 @@ class HomeCraftsSublistManager extends SublistManager {
 	static _getRowTemplate () {
 		return [
 			new SublistCellTemplate({
+				name: "Type",
+				css: "ve-col-2 ve-pl-0 ve-pr-1 ve-text-center",
+				colStyle: "text-center",
+			}),
+			new SublistCellTemplate({
 				name: "Name",
-				css: "ve-bold ve-col-8 ve-pl-0 ve-pr-1",
+				css: "ve-bold ve-col-7 ve-px-1",
 			}),
 			new SublistCellTemplate({
 				name: "Category",
-				css: "ve-col-4 ve-pl-1 ve-pr-0 ve-text-center",
-				colStyle: "ve-text-center",
+				css: "ve-col-3 ve-pl-1 ve-pr-0 ve-text-center",
+				colStyle: "text-center",
 			}),
 		];
 	}
 
 	pGetSublistItem (ent, hash) {
+		const type = Parser.getPropDisplayName(ent.__prop);
+		const typeShort = PageFilterHomeCrafts.getTypeAbbreviation(ent.__prop);
 		const category = (ent.patternType || "Unknown").toTitleCase();
 
 		const cellsText = [
+			new SublistCell({text: typeShort, title: type}),
 			ent.name,
 			category,
 		];
@@ -79,11 +87,14 @@ class HomeCraftsPage extends ListPage {
 
 		const hash = UrlUtil.autoEncodeHash(ent);
 		const source = Parser.sourceJsonToAbv(ent.source);
+		const type = Parser.getPropDisplayName(ent.__prop);
+		const typeShort = PageFilterHomeCrafts.getTypeAbbreviation(ent.__prop);
 		const category = (ent.patternType || "Unknown").toTitleCase();
 
 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
-			<span class="ve-col-6 ve-bold ve-pl-0 ve-pr-1">${ent.name}</span>
-			<span class="ve-col-4 ve-px-1 ve-text-center">${category}</span>
+			<span class="ve-col-1-5 ve-pl-0 ve-pr-1 ve-text-center" title="${type.qq()}">${typeShort}</span>
+			<span class="ve-col-5 ve-bold ve-px-1">${ent.name}</span>
+			<span class="ve-col-3-5 ve-px-1 ve-text-center">${category}</span>
 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(ent.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(ent.source)}">${source}</span>
 		</a>`;
 
@@ -95,6 +106,7 @@ class HomeCraftsPage extends ListPage {
 				hash,
 				source,
 				page: ent.page,
+				type,
 				category,
 			},
 			{
@@ -109,6 +121,26 @@ class HomeCraftsPage extends ListPage {
 	}
 
 	_renderStats_doBuildStatsTab ({ent}) {
+		this._wrpTabs.parente().find(`[data-name="homecraft-type"]`)?.remove();
+
+		Promise.any([
+			Renderer.utils.pHasFluffText(ent, `${ent.__prop}Fluff`),
+			Renderer.utils.pHasFluffImages(ent, `${ent.__prop}Fluff`),
+		])
+			.then(hasAnyFluff => {
+				const wrpType = ee`<div data-name="homecraft-type" class="ve-italic ve-inline-block"></div>`;
+
+				if (hasAnyFluff) wrpType.addClass("ve-mb-1").insertBeforee(this._wrpTabs);
+				else wrpType.addClass("ve-pl-7p").prependTo(this._wrpTabs);
+
+				ee`<span class="ve-roller">${Parser.getPropDisplayName(ent.__prop)}</span>`
+					.onn("click", () => {
+						this._filterBox.setFromValues({"Type": {[ent.__prop]: 1}});
+						this.handleFilterChange();
+					})
+					.appendTo(wrpType);
+			});
+
 		this._pgContent.empty().appends(RenderCrochetPatterns.getRenderedCrochetPattern(ent));
 	}
 }

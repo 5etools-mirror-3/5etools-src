@@ -374,10 +374,6 @@ class _PageGeneratorListOptionalFeatures extends PageGeneratorListBase {
 
 	_isModule = true;
 
-	_stylesheets = [
-		"optionalfeatures",
-	];
-
 	_styleListContainerAdditional = "ve-flex-6";
 	_styleContentWrapperAdditional = "ve-flex-4";
 
@@ -511,13 +507,15 @@ class _PageGeneratorListHomeCrafts extends PageGeneratorListBase {
 	_stylePageContentAdditional = "homecrafts__tbl-homecrafts";
 
 	_btnsList = [
-		HtmlGeneratorListButtons.getBtn({width: "6", sortIdent: "name", text: "Name"}),
-		HtmlGeneratorListButtons.getBtn({width: "4", sortIdent: "category", text: "Category"}),
+		HtmlGeneratorListButtons.getBtn({width: "1-5", sortIdent: "type", text: "Type"}),
+		HtmlGeneratorListButtons.getBtn({width: "5", sortIdent: "name", text: "Name"}),
+		HtmlGeneratorListButtons.getBtn({width: "3-5", sortIdent: "category", text: "Category"}),
 		HtmlGeneratorListButtons.getBtnSource(),
 	];
 
 	_btnsSublist = [
-		HtmlGeneratorListButtons.getBtn({width: "9", sortIdent: "name", text: "Name"}),
+		HtmlGeneratorListButtons.getBtn({width: "2", sortIdent: "type", text: "Type"}),
+		HtmlGeneratorListButtons.getBtn({width: "7", sortIdent: "name", text: "Name"}),
 		HtmlGeneratorListButtons.getBtn({width: "3", sortIdent: "category", text: "Category"}),
 	];
 }

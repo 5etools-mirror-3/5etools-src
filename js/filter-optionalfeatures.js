@@ -214,6 +214,7 @@ class ModalFilterOptionalFeatures extends ModalFilterBase {
 			...opts,
 			modalTitle: `Optional Feature${opts.isRadio ? "" : "s"}`,
 			pageFilter: new PageFilterOptionalFeatures(),
+			previewButtonHandler: new ListUiPreviewButtonHandlerStatsFluff({page: UrlUtil.PG_OPT_FEATURES}),
 		});
 	}
 
@@ -280,7 +281,7 @@ class ModalFilterOptionalFeatures extends ModalFilterBase {
 			},
 		);
 
-		ListUiUtil.bindPreviewButton(UrlUtil.PG_FEATS, this._allData, listItem, btnShowHidePreview);
+		this._previewButtonHandler.bindPreviewButton({entity: optfeat, listItem, btnShowHidePreview});
 
 		return listItem;
 	}

@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.27.0"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.28.0"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -42,6 +42,7 @@ globalThis.VeCt = {
 	STORAGE_GLOBAL_COMPONENT_STATE: "GLOBAL_COMPONENT_STATE",
 
 	DUR_INLINE_NOTIFY: 500,
+	DUR_DEBOUNCE_SAVE: 100,
 
 	PG_NONE: "NO_PAGE",
 	STR_GENERIC: "Generic",
@@ -1586,7 +1587,7 @@ class ElementUtil {
 	}
 
 	/** @this {HTMLElementExtended} */
-	static _toggleVe (isActive) {
+	static _toggleVe (isActive = null) {
 		this.toggleClass("ve-hidden", isActive == null ? isActive : !isActive);
 		return this;
 	}
@@ -3149,7 +3150,7 @@ globalThis.ContextUtil = class {
 			evt.stopPropagation();
 			evt.preventDefault();
 
-			this._initLazy();
+			this._initLazy({window: evt?.view?.window || window});
 
 			if (this.resolveResult_) this.resolveResult_(null);
 			this._pResult = new Promise(resolve => {
@@ -3195,9 +3196,10 @@ globalThis.ContextUtil = class {
 			return !this._ele.classList.contains("ve-hidden");
 		}
 
-		_initLazy () {
+		_initLazy ({window}) {
 			if (this._ele) {
 				this._metasActions.forEach(meta => meta.action.update());
+				this._ele.appendTo(window.document.body);
 				return;
 			}
 
@@ -3211,7 +3213,7 @@ globalThis.ContextUtil = class {
 
 			this._ele = ee`<div class="ve-flex-col ve-ui-ctx__wrp ve-py-2 ve-absolute">${elesAction}</div>`
 				.hideVe()
-				.appendTo(document.body);
+				.appendTo(window.document.body);
 		}
 
 		_getMenuPosition (evt, axis, {bounds = null, offset = null} = {}) {

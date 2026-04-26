@@ -18,7 +18,7 @@ class MapsPage extends BaseComponent {
 	constructor () {
 		super();
 
-		this.saveSettingsDebounced = MiscUtil.debounce(() => StorageUtil.pSetForPage(this.constructor._STORAGE_STATE, this.getBaseSaveableState()), 50);
+		this.saveSettingsDebounced = MiscUtil.debounce(() => StorageUtil.pSetForPage(this.constructor._STORAGE_STATE, this.getBaseSaveableState()), VeCt.DUR_DEBOUNCE_SAVE);
 	}
 
 	getBaseSaveableState () {

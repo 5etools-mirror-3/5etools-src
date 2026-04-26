@@ -11,12 +11,12 @@ class PsionicsSublistManager extends SublistManager {
 			new SublistCellTemplate({
 				name: "Type",
 				css: "ve-col-3 ve-px-1 ve-text-center",
-				colStyle: "ve-text-center",
+				colStyle: "text-center",
 			}),
 			new SublistCellTemplate({
 				name: "Order",
 				css: "ve-col-3 ve-text-center ve-pl-1 ve-pr-0",
-				colStyle: "ve-text-center",
+				colStyle: "text-center",
 			}),
 		];
 	}

@@ -253,6 +253,7 @@ class ModalFilterRaces extends ModalFilterBase {
 			...opts,
 			modalTitle: `Species`,
 			pageFilter: new PageFilterRaces(),
+			previewButtonHandler: new ListUiPreviewButtonHandlerStatsFluff({page: UrlUtil.PG_RACES}),
 		});
 	}
 
@@ -318,7 +319,7 @@ class ModalFilterRaces extends ModalFilterBase {
 			},
 		);
 
-		ListUiUtil.bindPreviewButton(UrlUtil.PG_RACES, this._allData, listItem, btnShowHidePreview);
+		this._previewButtonHandler.bindPreviewButton({entity: race, listItem, btnShowHidePreview});
 
 		return listItem;
 	}

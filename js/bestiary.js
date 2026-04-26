@@ -89,12 +89,12 @@ class BestiarySublistManager extends SublistManager {
 			new SublistCellTemplate({
 				name: "CR",
 				css: "ve-col-1-2 ve-px-1 ve-text-center",
-				colStyle: "ve-text-center",
+				colStyle: "text-center",
 			}),
 			new SublistCellTemplate({
 				name: "Number",
 				css: "ve-col-2 ve-pl-1 ve-pr-0 ve-text-center",
-				colStyle: "ve-text-center",
+				colStyle: "text-center",
 			}),
 		];
 	}

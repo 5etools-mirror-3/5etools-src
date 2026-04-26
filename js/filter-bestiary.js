@@ -271,11 +271,10 @@ class PageFilterBestiary extends PageFilterBase {
 
 		this._mutateForFilters_commonSources(mon);
 
+		this._mutateForFilters_ac(mon);
 		this._mutateForFilters_speed(mon);
 		this._mutateForFilters_environment(mon);
 
-		mon._fAc = (mon.ac || []).map(it => it.special ? null : (it.ac || it)).filter(it => it !== null);
-		if (!mon._fAc.length) mon._fAc = null;
 		mon._fHp = mon.hp?.average ?? null;
 		if (mon.alignment) {
 			const tempAlign = typeof mon.alignment[0] === "object"
@@ -352,6 +351,18 @@ class PageFilterBestiary extends PageFilterBase {
 		else mon._fLanguageTags = ["None"];
 
 		mon._fEquipment = this._getEquipmentList(mon);
+	}
+
+	static _mutateForFilters_ac (mon) {
+		const filterAc = (mon.ac || [])
+			.map(acItem => {
+				if (acItem.special) return null;
+				const acNumber = acItem.ac || acItem;
+				if (typeof acNumber !== "number") return null;
+				return acNumber;
+			})
+			.filter(val => val != null);
+		mon._fAc = filterAc.length ? filterAc : null;
 	}
 
 	static _F_SPEED_PROP_MAPPING = Object.fromEntries(Parser.SPEED_MODES.map(prop => [prop, `_fSpeed${prop.uppercaseFirst()}`]));
@@ -519,7 +530,7 @@ class PageFilterBestiary extends PageFilterBase {
 		this._speedFilterClimb.addItem(mon._fSpeedClimb);
 		this._speedFilterFly.addItem(mon._fSpeedFly);
 		this._speedFilterSwim.addItem(mon._fSpeedSwim);
-		(mon.ac || []).forEach(it => this._acFilter.addItem(it.ac || it));
+		this._acFilter.addItem(mon._fAc);
 		if (mon.hp?.average) this._averageHpFilter.addItem(mon.hp.average);
 		this._tagFilter.addItem(mon._pTypes.tags);
 		this._sidekickTypeFilter.addItem(mon._pTypes.typeSidekick);
@@ -686,6 +697,7 @@ class ModalFilterBestiary extends ModalFilterBase {
 			modalTitle: `Creature${opts.isRadio ? "" : "s"}`,
 			pageFilter: new PageFilterBestiary(),
 			fnSort: PageFilterBestiary.sortMonsters,
+			previewButtonHandler: new ListUiPreviewButtonHandlerStatsFluff({page: UrlUtil.PG_BESTIARY}),
 		});
 	}
 
@@ -752,7 +764,7 @@ class ModalFilterBestiary extends ModalFilterBase {
 			},
 		);
 
-		ListUiUtil.bindPreviewButton(UrlUtil.PG_BESTIARY, this._allData, listItem, btnShowHidePreview);
+		this._previewButtonHandler.bindPreviewButton({entity: mon, listItem, btnShowHidePreview});
 
 		return listItem;
 	}

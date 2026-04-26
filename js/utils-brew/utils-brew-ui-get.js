@@ -6,7 +6,9 @@ export class GetBrewUi {
 			this.pageFilter = null;
 			this.list = null;
 			this.listSelectClickHandler = null;
+			this.previewButtonHandler = null;
 			this.cbAll = null;
+			this.btnTogglePreviewAll = null;
 		}
 	};
 
@@ -116,6 +118,62 @@ export class GetBrewUi {
 		}
 	};
 
+	static _ListUiPreviewButtonHandlerBrew = class extends ListUiPreviewButtonHandlerBase {
+		static _BLOCKLIST_NAMES = {
+			"classFeature": new Set(["Ability Score Improvement"]),
+		};
+
+		_doAppendPrimaryView ({entity, elePreviewWrpInner}) {
+			this._pGetBrewSummary({entity})
+				.then(brewSummary => {
+					const htmlSummary = Object.entries(brewSummary)
+						.map(([prop, names]) => [Parser.getPropDisplayName(prop), {prop, names}])
+						.sort(([propNameA], [propNameB]) => SortUtil.ascSortLower(propNameA, propNameB))
+						.map(([propName, {prop, names}]) => {
+							const namesList = names
+								.filter(name => !this.constructor._BLOCKLIST_NAMES[prop]?.has(name))
+								.unique();
+
+							return `<div class="ve-mb-2 ve-w-100"><b>${propName.qq()}</b> <span class="ve-muted" title="Note that duplicate/unwanted names are not displayed in the list below.">(${names.length})</span></div>
+								<ul class="ve-mb-0">${namesList.map(name => `<li>${name.qq()}</li>`).join("")}</ul>`;
+						})
+						.join("");
+
+					ee`<div class="ve-flex-col ve-py-2 ve-w-100"></div>`
+						.html(htmlSummary)
+						.appendTo(elePreviewWrpInner);
+				});
+		}
+
+		async _pGetBrewSummary ({entity}) {
+			const jsonRaw = await DataUtil.loadRawJSON(entity.urlDownload);
+
+			return Object.fromEntries(
+				Object.entries(jsonRaw)
+					.filter(([k, arr]) => {
+						if (k.startsWith("_")) return false;
+
+						if (k.startsWith("foundry") || k.endsWith("Fluff")) return false;
+						if (["adventureData", "bookData"].includes(k)) return false;
+
+						if (arr == null || !(arr instanceof Array)) return false;
+
+						return true;
+					})
+					.map(([prop, arr]) => {
+						return [
+							prop,
+							arr
+								.map(ent => ent?.name)
+								.filter(Boolean)
+								.sort(SortUtil.ascSortLower),
+						];
+					})
+					.filter(([, names]) => names.length),
+			);
+		}
+	};
+
 	static async pDoGetBrew ({brewUtil, isModal: isParentModal = false} = {}) {
 		return new Promise((resolve, reject) => {
 			const ui = new this({brewUtil, isModal: true});
@@ -213,20 +271,23 @@ export class GetBrewUi {
 			type: "checkbox",
 		});
 
+		rdState.btnTogglePreviewAll = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-col-0-5">${ListUiPreviewButtonHandlerBase.HTML_GLYPHICON_EXPAND}</button>`;
+
 		const btnReset = ee`<button class="ve-btn ve-btn-default ve-btn-sm">Reset</button>`;
 
 		const wrpMiniPills = ee`<div class="ve-fltr__mini-view ve-btn-group"></div>`;
 
 		const btnSortAddedPublished = this._brewUtil.IS_PREFER_DATE_ADDED
-			? `<button class="ve-col-1-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="added">Added</button>`
-			: `<button class="ve-col-1-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="published">Published</button>`;
+			? `<button class="ve-col-1-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="added">Added</button>`
+			: `<button class="ve-col-1-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="published">Published</button>`;
 
 		const wrpSort = ee`<div class="filtertools manbrew__filtertools ve-btn-group ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
 			<label class="ve-col-0-5 ve-pr-0 ve-btn ve-btn-default ve-btn-xs ve-flex-vh-center">${rdState.cbAll}</label>
+			${rdState.btnTogglePreviewAll}
 			<button class="ve-col-3-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
-			<button class="ve-col-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="author">Author</button>
+			<button class="ve-col-3-1 sort ve-btn ve-btn-default ve-btn-xs" data-sort="author">Author</button>
 			<button class="ve-col-1-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="category">Category</button>
-			<button class="ve-col-1-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="modified">Modified</button>
+			<button class="ve-col-1-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="modified">Modified</button>
 			${btnSortAddedPublished}
 			<button class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" disabled>Source</button>
 		</div>`;
@@ -262,6 +323,8 @@ export class GetBrewUi {
 
 		rdState.listSelectClickHandler = new ListSelectClickHandler({list: rdState.list});
 		rdState.listSelectClickHandler.bindSelectAllCheckbox(rdState.cbAll);
+		rdState.previewButtonHandler = new this.constructor._ListUiPreviewButtonHandlerBrew();
+		rdState.previewButtonHandler.bindPreviewAllButton({btnAll: rdState.btnTogglePreviewAll, list: rdState.list});
 		SortUtil.initBtnSortHandlers(wrpSort, rdState.list);
 
 		this._dataList.forEach((brewInfo, ix) => {
@@ -326,9 +389,17 @@ export class GetBrewUi {
 			click: evt => this._pHandleClick_btnGetRemote({evt, btn: btnAdd, url: brewInfo.urlDownload}),
 		});
 
+		const btnShowHidePreview = ee`<span class="ve-col-0-5 ve-px-0 ve-flex-vh-center ve-lst__btn-toggle-expand ve-self-flex-stretch ve-no-select">[+]</span>`;
+
+		const dispExpandedInner = ee`<div class="ve-flex-col ve-py-3 ve-ml-col-1 ve-accordion__wrp-preview-inner ve-bb-0"></div>`;
+		const dispExpandedOuter = ee`<div class="ve-flex ve-hidden ve-relative ve-accordion__wrp-preview ve-w-100">
+			<div class="ve-vr-0 ve-absolute ve-accordion__vr-preview ve-accordion__vr-preview--col-1"></div>
+			${dispExpandedInner}
+		</div>`;
+
 		const eleLi = e_({
 			tag: "div",
-			clazz: `ve-lst__row ve-lst__row-inner ve-not-clickable ve-lst__row-border ve-lst__row--focusable ve-no-select`,
+			clazz: `ve-lst__row ve-lst__row-inner ve-not-clickable ve-lst__row-border ve-lst__row--focusable ve-no-select ve-flex-col ve-no-shrink`,
 			children: [
 				e_({
 					tag: "div",
@@ -339,14 +410,15 @@ export class GetBrewUi {
 							clazz: `ve-col-0-5 ve-flex-vh-center ve-self-flex-stretch`,
 							children: [cbSel],
 						}),
+						btnShowHidePreview,
 						btnAdd,
-						e_({tag: "span", clazz: "ve-col-3", text: brewInfo._brewAuthor}),
+						e_({tag: "span", clazz: "ve-col-3-1", text: brewInfo._brewAuthor}),
 						e_({tag: "span", clazz: "ve-col-1-2 ve-text-center ve-mobile-sm__text-clip-ellipsis", text: brewInfo._brewPropDisplayName, title: brewInfo._brewPropDisplayName}),
-						e_({tag: "span", clazz: "ve-col-1-4 ve-text-center ve-code", text: timestampModified}),
-						e_({tag: "span", clazz: "ve-col-1-4 ve-text-center ve-code", text: timestampAddedPublished}),
+						e_({tag: "span", clazz: "ve-col-1-2 ve-text-center ve-code", text: timestampModified}),
+						e_({tag: "span", clazz: "ve-col-1-2 ve-text-center ve-code", text: timestampAddedPublished}),
 						e_({
 							tag: "span",
-							clazz: "ve-col-1 manbrew__source ve-text-center ve-pr-0",
+							clazz: "manbrew__source ve-text-center ve-pr-0 ve-grow",
 							children: [
 								e_({
 									tag: "a",
@@ -359,6 +431,7 @@ export class GetBrewUi {
 						}),
 					],
 				}),
+				dispExpandedOuter,
 			],
 			keydown: evt => this._pHandleKeydown_row(evt, {rdState, btnAdd, url: brewInfo.urlDownload, listItem}),
 		})
@@ -376,11 +449,14 @@ export class GetBrewUi {
 			{
 				btnAdd,
 				cbSel,
+				btnShowHidePreview,
 				pFnDoDownload: ({isLazy = false} = {}) => this._pHandleClick_btnGetRemote({btn: btnAdd, url: brewInfo.urlDownload, isLazy}),
 			},
 		);
 
 		eleLi.addEventListener("click", evt => rdState.listSelectClickHandler.handleSelectClick(listItem, evt, {isPassThroughEvents: true}));
+
+		rdState.previewButtonHandler.bindPreviewButton({entity: brewInfo, listItem, btnShowHidePreview});
 
 		return {
 			listItem,

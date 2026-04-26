@@ -11,7 +11,7 @@ class ObjectsSublistManager extends SublistManager {
 			new SublistCellTemplate({
 				name: "Size",
 				css: "ve-col-3 ve-pl-1 ve-pr-0 ve-text-center",
-				colStyle: "ve-text-center",
+				colStyle: "text-center",
 			}),
 		];
 	}

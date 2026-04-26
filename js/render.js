@@ -2589,6 +2589,7 @@ Renderer.ENTRIES_WITH_ENUMERATED_TITLES = [
 	{type: "flowBlock", key: "entries", depth: 2},
 	{type: "optfeature", key: "entries", depthIncrement: 1},
 	{type: "patron", key: "entries"},
+	{type: "image", propTitle: "title"},
 ];
 
 Renderer.ENTRIES_WITH_ENUMERATED_TITLES_LOOKUP = Renderer.ENTRIES_WITH_ENUMERATED_TITLES.mergeMap(it => ({[it.type]: it}));
@@ -4999,7 +5000,7 @@ Renderer.utils = class {
 				.forEach(meta => {
 					if (obj.type !== meta.type) return;
 
-					const kName = "name"; // Note: allow this to be specified on the `meta` if needed in future
+					const kName = meta.propTitle || "name";
 					if (obj[kName] == null) return;
 
 					isPopDepth = true;
@@ -5024,12 +5025,14 @@ Renderer.utils = class {
 						name: cpyObj.name,
 					});
 
+					if (!meta.key) return;
+
 					cpyObj[meta.key] = cpyObj[meta.key].map(child => {
 						if (!child.type) return child;
 						const childMeta = Renderer.ENTRIES_WITH_ENUMERATED_TITLES_LOOKUP[child.type];
 						if (!childMeta) return child;
 
-						const kNameChild = "name"; // Note: allow this to be specified on the `meta` if needed in future
+						const kNameChild = meta.propTitle || "name";
 						if (child[kName] == null) return child;
 
 						// Predict what index the child will have in the output array
@@ -16444,7 +16447,7 @@ Renderer.hover = class {
 			.appends(wrpContent)
 			.appends(brdrBtm);
 
-		e_(position.window.document.body)
+		e_({ele: position.window.document.body})
 			.appends(eleHov);
 
 		Renderer.hover._getShowWindow_setPosition({eleHov, wrpContent, position, eventChannel}, position);

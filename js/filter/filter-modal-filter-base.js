@@ -13,6 +13,7 @@ export class ModalFilterBase {
 	 * @param opts.modalTitle
 	 * @param opts.fnSort
 	 * @param opts.pageFilter
+	 * @param opts.previewButtonHandler
 	 * @param [opts.namespace]
 	 * @param [opts.allData]
 	 * @param [opts.sortByInitial]
@@ -25,6 +26,7 @@ export class ModalFilterBase {
 		this._sortByInitial = opts.sortByInitial;
 		this._sortDirInitial = opts.sortDirInitial;
 		this._pageFilter = opts.pageFilter;
+		this._previewButtonHandler = opts.previewButtonHandler;
 		this._namespace = opts.namespace;
 		this._allData = opts.allData || null;
 		this._isRadio = !!opts.isRadio;
@@ -40,7 +42,7 @@ export class ModalFilterBase {
 	_getWrpList () { return ee`<div class="list ve-ui-list__wrp ve-overflow-x-hidden ve-overflow-y-auto ve-h-100 ve-min-h-0"></div>`; }
 
 	_getColumnHeaderPreviewAll (opts) {
-		return ee`<button class="ve-btn ve-btn-default ve-btn-xs ${opts.isBuildUi ? "ve-col-1" : "ve-col-0-5"}">${ListUiUtil.HTML_GLYPHICON_EXPAND}</button>`;
+		return ee`<button class="ve-btn ve-btn-default ve-btn-xs ${opts.isBuildUi ? "ve-col-1" : "ve-col-0-5"}">${ListUiPreviewButtonHandlerBase.HTML_GLYPHICON_EXPAND}</button>`;
 	}
 
 	/**
@@ -104,7 +106,7 @@ export class ModalFilterBase {
 		const listSelectClickHandler = new ListSelectClickHandler({list: this._list});
 
 		if (!opts.isBuildUi && !this._isRadio) listSelectClickHandler.bindSelectAllCheckbox(cbSelAll);
-		ListUiUtil.bindPreviewAllButton(btnTogglePreviewAll, this._list);
+		this._previewButtonHandler.bindPreviewAllButton({btnAll: btnTogglePreviewAll, list: this._list});
 		SortUtil.initBtnSortHandlers(wrpFormHeaders, this._list);
 		this._list.on("updated", () => dispNumVisible.html(`${this._list.visibleItems.length}/${this._list.items.length}`));
 

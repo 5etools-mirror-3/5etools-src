@@ -967,11 +967,13 @@ export class BrewUtil2Base {
 
 	async pGetCntBrewsPartnered () {
 		const combinedIndexes = await this.pGetCombinedIndexes();
+		if (!combinedIndexes) return 0;
 		return combinedIndexes.filter(it => this._isMatchingCombinedIndexInfo(it)).length;
 	}
 
 	async pAddBrewsPartnered ({isSilent = false} = {}) {
 		const combinedIndexes = await this.pGetCombinedIndexes();
+		if (!combinedIndexes) return [];
 
 		const brewInfos = combinedIndexes.filter(it => this._isMatchingCombinedIndexInfo(it));
 		if (!brewInfos.length) {

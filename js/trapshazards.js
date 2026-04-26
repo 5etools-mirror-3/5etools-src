@@ -6,7 +6,7 @@ class TrapsHazardsSublistManager extends SublistManager {
 			new SublistCellTemplate({
 				name: "Type",
 				css: "ve-col-4 ve-text-center ve-pl-0 ve-pr-1",
-				colStyle: "ve-text-center",
+				colStyle: "text-center",
 			}),
 			new SublistCellTemplate({
 				name: "Name",

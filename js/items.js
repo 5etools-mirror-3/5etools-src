@@ -36,17 +36,17 @@ class ItemsSublistManager extends SublistManager {
 			new SublistCellTemplate({
 				name: "Weight",
 				css: "ve-text-center ve-col-2 ve-px-1",
-				colStyle: "ve-text-center",
+				colStyle: "text-center",
 			}),
 			new SublistCellTemplate({
 				name: "Cost",
 				css: "ve-text-center ve-col-2 ve-px-1",
-				colStyle: "ve-text-center",
+				colStyle: "text-center",
 			}),
 			new SublistCellTemplate({
 				name: "Number",
 				css: "ve-text-center ve-col-2 ve-pl-1 ve-pr-0",
-				colStyle: "ve-text-center",
+				colStyle: "text-center",
 			}),
 		];
 	}

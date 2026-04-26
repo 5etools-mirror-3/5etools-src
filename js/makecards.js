@@ -28,7 +28,7 @@ class MakeCards extends BaseComponent {
 		this._modalFilterFeats = new ModalFilterFeats({namespace: "makecards.feat"});
 		this._modalFilterOptionalFeatures = new ModalFilterOptionalFeatures({namespace: "makecards.optionalfeatures"});
 
-		this._doSaveStateDebounced = MiscUtil.debounce(() => this._pDoSaveState(), 50);
+		this._doSaveStateDebounced = MiscUtil.debounce(() => this._pDoSaveState(), VeCt.DUR_DEBOUNCE_SAVE);
 	}
 
 	async pInit () {

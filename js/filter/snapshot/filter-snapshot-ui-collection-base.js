@@ -15,9 +15,8 @@ export class RenderableCollectionFilterSnapshotBase extends RenderableCollection
 			selectClickHandler,
 		},
 	) {
-		super(comp, prop, wrpRows);
+		super(comp, prop, wrpRows, {selectClickHandler});
 		this._filterBox = filterBox;
-		this._selectClickHandler = selectClickHandler;
 	}
 
 	/* -------------------------------------------- */
@@ -33,22 +32,6 @@ export class RenderableCollectionFilterSnapshotBase extends RenderableCollection
 	}
 
 	/* -------------------------------------------- */
-
-	getNewRender (entity, i) {
-		const rendered = super.getNewRender(entity, i);
-
-		rendered.wrpRow
-			.onn("click", evt => this._selectClickHandler.handleSelectClick(rendered, evt, {isPassThroughEvents: true}));
-
-		rendered.wrpCbSel
-			.onn("mousedown", evt => {
-				evt.preventDefault();
-				evt.stopPropagation();
-			})
-		;
-
-		return rendered;
-	}
 
 	_getWrpRow () {
 		return ee`<div class="ve-flex-col ve-w-100"></div>`;

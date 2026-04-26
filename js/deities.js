@@ -11,12 +11,12 @@ class DeitiesSublistManager extends SublistManager {
 			new SublistCellTemplate({
 				name: "Pantheon",
 				css: "ve-col-2 ve-text-center",
-				colStyle: "ve-text-center",
+				colStyle: "text-center",
 			}),
 			new SublistCellTemplate({
 				name: "Alignment",
 				css: "ve-col-2 ve-text-center",
-				colStyle: "ve-text-center",
+				colStyle: "text-center",
 			}),
 			new SublistCellTemplate({
 				name: "Domains",
