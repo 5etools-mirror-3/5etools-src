@@ -491,13 +491,21 @@ Renderer
 						align-items: center;
 						justify-content: space-between;
 						column-gap: 2em;
+						flex-wrap: wrap;
 					}
-					.encounter-variation-select {
+					.encounter-header-selects {
 						display: flex;
 						align-items: center;
 						column-gap: 1em;
 						margin-left: auto;
 					}
+					.encounter-party-level-select,
+					.encounter-variation-select {
+						display: flex;
+						align-items: center;
+						column-gap: 1em;
+					}
+					.encounter-party-level-select-input,
 					.encounter-variation-select-input {
 						width: auto;
 					}
@@ -506,6 +514,19 @@ Renderer
 						margin-top: var(--h-mb-p);
 						font-style: italic;
 						color: vars.$rgb-font--muted;
+					}
+					.encounter-notes {
+						margin-bottom: var(--h-mb-p);
+
+						.encounter-notes-heading {
+							margin-bottom: 0.35em;
+							color: inherit;
+						}
+
+						p {
+							font-style: normal;
+							color: inherit;
+						}
 					}
 				}
 

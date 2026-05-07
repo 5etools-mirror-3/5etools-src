@@ -1309,6 +1309,17 @@ globalThis.Renderer = function () {
 		this._lastDepthTrackerInheritedProps = cachedLastDepthTrackerProps;
 	};
 
+	/**
+	 * Merge root-level encounter `notes` with the active variation's `notes` (variations branch only).
+	 * Combatant-only encounters use notes from data already on {@code entry}.
+	 */
+	this._mergeEncounterBlockNotes = function (entry, variationOrSubset) {
+		const asArr = (n) => n == null ? [] : Array.isArray(n) ? n : [n];
+		const vn = asArr(variationOrSubset?.notes);
+		if (entry?.variations?.length) return [...asArr(entry?.notes), ...vn];
+		return vn.length ? vn : asArr(entry?.notes);
+	};
+
 	this._renderEncounterBlock = async function (entry, textStack, meta, options) {
 		// If we have no combatant data anywhere, exit
 		if (!entry?.combatants?.length && (!entry?.variations?.length || entry.variations.every((v) => v?.combatants?.length <= 0))) return;
@@ -1331,11 +1342,29 @@ globalThis.Renderer = function () {
 		const defaultVariant = entry.variations ? entry.variations.find((v) => v.default === true) || entry.variations[0] : {}; // Default to the first found
 		const DEFAULT_VARIANT_INDEX = entry.variations ? entry.variations.findIndex((v) => v.variantName === defaultVariant.variantName) || 0 : 0;
 
+		const rawDefaultPartyLevel = Number(entry.partyLevel);
+		const defaultPartyLevel = Math.min(20, Math.max(1, Number.isFinite(rawDefaultPartyLevel) && rawDefaultPartyLevel > 0 ? rawDefaultPartyLevel : 3));
+
+		const partyLevelOptionsHtml = [...Array(20)].map((_, i) => {
+			const lvl = i + 1;
+			return `<option value="${lvl}"${lvl === defaultPartyLevel ? " selected" : ""}>${lvl}</option>`;
+		}).join("");
+
+		const getPartyLevelSelectHtml = () => `
+				<div class="encounter-party-level-select">
+					<label for="${id}-party-level-select" class="encounter-party-level-select-label">Party Level</label>
+					<select id="${id}-party-level-select" class="form-control input-sm encounter-party-level-select-input">
+						${partyLevelOptionsHtml}
+					</select>
+				</div>`;
+
 		textStack[0] += `<${this.wrapperTag} class="encounter-title">`;
 		if (entry.name != null) {
 			if (Renderer.ENTRIES_WITH_ENUMERATED_TITLES_LOOKUP[entry.type]) this._handleTrackTitles(entry.name);
 			textStack[0] += `<span class="rd__h rd__h--2-inset" data-title-index="${this._headerIndex++}" ${this._getEnumeratedTitleRel(entry.name)}><h4 class="entry-title-inner">${entry.name}</h4>${this._getPagePart(entry, true)}</span>`;
 
+			textStack[0] += `<div class="encounter-header-selects">`;
+			textStack[0] += getPartyLevelSelectHtml();
 			// Add variation selector if variations exist
 			if (entry.variations?.length) {
 				textStack[0] += `
@@ -1346,8 +1375,12 @@ globalThis.Renderer = function () {
 					</select>
 				</div>`;
 			}
+			textStack[0] += `</div>`;
 		} else {
 			textStack[0] += `<span class="rd__h rd__h--2-inset rd__h--2-inset-no-name">${partPageExpandCollapse}</span>`;
+			textStack[0] += `<div class="encounter-header-selects">`;
+			textStack[0] += getPartyLevelSelectHtml();
+			textStack[0] += `</div>`;
 		}
 
 		textStack[0] += `<div id="${id}-adj-xp" class="encounter-adj-xp">`;
@@ -1356,7 +1389,9 @@ globalThis.Renderer = function () {
 
 		textStack[0] += `</${this.wrapperTag}>`;
 
-		const encounterData = entry.combatants ? {combatants: entry.combatants, notes: entry.notes} : entry.variations ? entry.variations.find((v) => v.default === true) || entry.variations[0] : {};
+		const rawEncounterSubset = entry.combatants ? {combatants: entry.combatants, notes: entry.notes} : entry.variations ? entry.variations.find((v) => v.default === true) || entry.variations[0] : {};
+		const mergedNotesArr = this._mergeEncounterBlockNotes(entry, rawEncounterSubset);
+		const encounterData = {...rawEncounterSubset, notes: mergedNotesArr};
 
 		textStack[0] += `<${this.wrapperTag} id="${id}-creatures">`;
 		textStack[0] += this._renderEncounterCreatures(encounterData, [""], meta, options);
@@ -1372,10 +1407,8 @@ globalThis.Renderer = function () {
 			pFn: async () => {
 				// Render the adjusted XP. Must be done after the textStack has been output to the DOM.
 				await this._renderEncounterAdjXp(id, encounterData, defaultVariant.variantName, entry, meta, options);
-				// Set up variation selector handlers. Must be done after the textStack has been output to the DOM.
-				if (entry.variations?.length) {
-					this._setupEncounterVariationHandlers(id, entry, meta, options);
-				}
+				// Set up party level + variation selector handlers. Must be done after the textStack has been output to the DOM.
+				this._setupEncounterHeaderControlHandlers(id, entry, defaultVariant, meta, options);
 			},
 		};
 
@@ -1410,17 +1443,20 @@ globalThis.Renderer = function () {
 	};
 
 	this._renderEncounterNotes = function (encounterData, textStack, meta, options) {
-		const notes = encounterData.notes;
-		const len = notes?.length || 0;
+		const notes = encounterData.notes == null ? [] : Array.isArray(encounterData.notes) ? encounterData.notes : [encounterData.notes];
+		const len = notes.length;
 		if (len > 0) {
-			textStack[0] += `<i class="ve-muted"><b>Notes: </b>${notes[0]}`;
-			for (let i = 1; i < len; ++i) {
+			textStack[0] += `<div class="encounter-notes">`;
+			textStack[0] += `<p class="encounter-notes-heading"><strong>Encounter Notes:</strong></p>`;
+			textStack[0] += `<ul class="rd__list rd__list-no-bullets">`;
+			for (let i = 0; i < len; ++i) {
 				const cacheDepth = meta.depth;
 				meta.depth = 2;
 				this._recursiveRender(notes[i], textStack, meta, {prefix: "<p>", suffix: "</p>"});
 				meta.depth = cacheDepth;
 			}
-			textStack[0] += `</i>`;
+			textStack[0] += `</ul>`;
+			textStack[0] += `</div>`;
 		}
 		textStack[0] += `<hr/>`;
 		textStack[0] += `<${this.wrapperTag}>Run: <a class="initiative-tracker-link" data-encounter="" href="javascript:void(0)">Initiative Tracker</a></${this.wrapperTag}>`;
@@ -1454,6 +1490,10 @@ globalThis.Renderer = function () {
 
 		const $ele = $(`#${id}`);
 		if (!$ele.length) return;
+
+		const $partyLevelSelect = $ele.find(`#${id}-party-level-select`);
+		const rawLevel = $partyLevelSelect.length ? Number($partyLevelSelect.val()) : 3;
+		const avgPartyLevel = Math.min(20, Math.max(1, Number.isFinite(rawLevel) && rawLevel > 0 ? rawLevel : 3));
 
 		try {
 			let totalXp = 0;
@@ -1503,9 +1543,8 @@ globalThis.Renderer = function () {
 				creatures: processedCreatures,
 			};
 
-			// Define the party size and average level
+			// Define the party size (from variation) and average level (from Party Level control)
 			const partySize = Number(variant) || 4;
-			const avgPartyLevel = 3; // Replace with actual average party level
 
 			// Calculate XP thresholds based on average player level
 			const xpThresholds = {
@@ -1586,19 +1625,39 @@ globalThis.Renderer = function () {
 		}
 	};
 
-	this._setupEncounterVariationHandlers = function (id, entry, meta, options) {
+	this._setupEncounterHeaderControlHandlers = function (id, entry, defaultVariant, meta, options) {
 		const _this = this;
 		const $ele = $(`#${id}`);
-		$ele.find(`#${id}-variation-select`).on("change", function () {
-			const variant = $(this).val();
-			const encounterData = entry.variations?.find((v) => v.variantName === variant);
-			if (encounterData) {
-				const newCreatureList = _this._renderEncounterCreatures(encounterData, [""], meta, options);
-				const newEncounterNotes = _this._renderEncounterNotes(encounterData, [""], meta, options);
-				$ele.find(`#${id}-creatures`).html(newCreatureList + newEncounterNotes);
-				_this._renderEncounterAdjXp(id, encounterData, variant, entry, meta, options);
+
+		const pRerenderAdjXp = async function () {
+			let encounterData; let variant;
+			if (entry.variations?.length) {
+				variant = $ele.find(`#${id}-variation-select`).val();
+				encounterData = entry.variations.find((v) => v.variantName === variant);
+			} else {
+				encounterData = entry.combatants ? {combatants: entry.combatants, notes: entry.notes} : {};
+				variant = defaultVariant != null && defaultVariant.variantName != null ? defaultVariant.variantName : null;
 			}
-		});
+			if (encounterData?.combatants?.length) {
+				await _this._renderEncounterAdjXp(id, encounterData, variant, entry, meta, options);
+			}
+		};
+
+		$ele.find(`#${id}-party-level-select`).on("change", pRerenderAdjXp);
+
+		if (entry.variations?.length) {
+			$ele.find(`#${id}-variation-select`).on("change", function () {
+				const selVariant = $(this).val();
+				const ed = entry.variations.find((v) => v.variantName === selVariant);
+				if (ed) {
+					const merged = {...ed, notes: _this._mergeEncounterBlockNotes(entry, ed)};
+					const newCreatureList = _this._renderEncounterCreatures(ed, [""], meta, options);
+					const newEncounterNotes = _this._renderEncounterNotes(merged, [""], meta, options);
+					$ele.find(`#${id}-creatures`).html(newCreatureList + newEncounterNotes);
+					_this._renderEncounterAdjXp(id, ed, selVariant, entry, meta, options);
+				}
+			});
+		}
 	};
 
 	this._renderVariant = function (entry, textStack, meta, options) {
