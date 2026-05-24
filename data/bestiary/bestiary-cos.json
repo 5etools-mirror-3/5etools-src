@@ -1656,6 +1656,40 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Hungry Ghast",
+			"source": "CoS",
+			"page": 192,
+			"_copy": {
+				"name": "Ghast",
+				"source": "MM",
+				"_mod": {
+					"trait": {
+						"mode": "appendArr",
+						"items": {
+							"name": "Spider Climb",
+							"entries": [
+								"The ghast can climb difficult surfaces, including upside down on ceilings, without having to make an ability check."
+							]
+						}
+					}
+				}
+			},
+			"size": [
+				"S"
+			],
+			"alignment": [
+				"L",
+				"G"
+			],
+			"hp": {
+				"average": 7,
+				"formula": "2d6"
+			},
+			"tokenCredit": "Will O'Brien",
+			"tokenCustom": true,
+			"hasToken": true
+		},
+		{
 			"name": "Ireena Kolyana",
 			"isNpc": true,
 			"isNamedCreature": true,
@@ -2180,6 +2214,12 @@
 			"_copy": {
 				"name": "Bandit Captain",
 				"source": "MM",
+				"_templates": [
+					{
+						"name": "Vistana",
+						"source": "CoS"
+					}
+				],
 				"_mod": {
 					"*": {
 						"mode": "replaceTxt",
@@ -2747,6 +2787,10 @@
 					}
 				}
 			},
+			"alignment": [
+				"L",
+				"E"
+			],
 			"hasToken": true,
 			"hasFluffImages": true
 		},
@@ -5221,6 +5265,10 @@
 					}
 				}
 			},
+			"alignment": [
+				"L",
+				"E"
+			],
 			"senses": [
 				"darkvision 60 ft."
 			],

@@ -1,18 +1,32 @@
 import {EncounterBuilderHelpers} from "../utils-list-bestiary.js";
 import {EncounterBuilderComponentBestiary} from "./bestiary-encounterbuilder-component.js";
+import {EncounterBuilderPartyCustom} from "../encounterbuilder/party/encounterbuilder-party-custom.js";
+import {EncounterBuilderPartyCustomAdvanced} from "../encounterbuilder/party/encounterbuilder-party-custom-advanced.js";
 
 /**
  * Serialize/deserialize state from the encounter builder.
  */
 export class EncounterBuilderSublistPlugin extends SublistPlugin {
-	constructor ({sublistManager, encounterBuilder, encounterBuilderComp}) {
+	constructor ({sublistManager, encounterBuilder, encounterBuilderComp, partyComps}) {
 		super();
 		this._sublistManager = sublistManager;
 		this._encounterBuilder = encounterBuilder;
 		this._encounterBuilderComp = encounterBuilderComp;
+		this._partyComps = partyComps;
+		this._partyCompsLookup = Object.fromEntries(this._partyComps.map(comp => [comp.partyId, comp]));
 	}
 
 	/* -------------------------------------------- */
+
+	_pLoadData_getStateFromOptionallyExternalized ({partyComp, toLoad, isMemoryOnly}) {
+		const out = MiscUtil.copyFast(toLoad?.state || {});
+
+		if (isMemoryOnly) return out;
+
+		partyComp.mutDeExternalize({out});
+
+		return out;
+	}
 
 	async pLoadData ({exportedSublist, isMemoryOnly}) {
 		const nxt = {};
@@ -32,55 +46,41 @@ export class EncounterBuilderSublistPlugin extends SublistPlugin {
 					return [k, v];
 				})
 				.filter(Boolean)
-				// Always process `colsExtraAdvanced` first (if available), as used in `playersAdvanced`
-				.sort(([kA], [kB]) => kA === "colsExtraAdvanced" ? -1 : kB === "colsExtraAdvanced" ? 1 : 0)
 				.forEach(([k, v]) => {
 					if (isMemoryOnly) return nxt[k] = MiscUtil.copyFast(v);
 
 					// When loading from non-memory sources, expand the data
 					switch (k) {
-						case "playersSimple": return nxt[k] = v.map(it => EncounterBuilderComponentBestiary.getDefaultPlayerRow_simple(it));
-						case "colsExtraAdvanced": return nxt[k] = v.map(it => EncounterBuilderComponentBestiary.getDefaultColExtraAdvanced(it));
-						case "playersAdvanced": return nxt[k] = v.map(it => EncounterBuilderComponentBestiary.getDefaultPlayerRow_advanced({
-							...it,
-							extras: it.extras.map(x => EncounterBuilderComponentBestiary.getDefaultPlayerAdvancedExtra(x)),
-							colsExtraAdvanced: nxt.colsExtraAdvanced || this._encounterBuilderComp.colsExtraAdvanced,
-						}));
 						case "customShapeGroups": return nxt[k] = v.map(it => EncounterBuilderComponentBestiary.getDefaultCustomShapeGroup(it));
 
 						default: return nxt[k] = v;
 					}
 				});
-
-			if (nxt.playersSimple) {
-				nxt.playersSimple
-					.forEach(wrapped => {
-						wrapped.entity.count = wrapped.entity.count || 1;
-						wrapped.entity.level = wrapped.entity.level || 1;
-					});
-			}
-
-			if (nxt.playersAdvanced) {
-				nxt.playersAdvanced
-					.forEach(wrapped => {
-						wrapped.entity.name = wrapped.entity.name || "";
-						wrapped.entity.level = wrapped.entity.level || 1;
-						wrapped.entity.extraCols = wrapped.entity.extraCols
-							|| (nxt.colsExtraAdvanced || this._encounterBuilderComp.colsExtraAdvanced.map(() => ""));
-					});
-			}
 		}
+
+		this._partyComps
+			.forEach(partyComp => {
+				const toLoad = exportedSublist?.statePartyComps?.[partyComp.partyId];
+
+				partyComp.setIsSuppressPartyChangeHook(true);
+				try {
+					partyComp.setStateFromLoaded(this._pLoadData_getStateFromOptionallyExternalized({partyComp, toLoad, isMemoryOnly}));
+				} finally {
+					partyComp.setIsSuppressPartyChangeHook(false);
+				}
+			});
+
+		this._encounterBuilder.setActivePartyId(exportedSublist?.activePartyId || this._partyComps[0].partyId);
 
 		// Note that we do not set `creatureMetas` here, as `onSublistUpdate` handles this
 		this._encounterBuilderComp.setStateFromLoaded(nxt);
 	}
 
-	static async pMutLegacyData ({exportedSublist, isMemoryOnly}) {
-		if (!exportedSublist) return;
+	/* -------------------------------------------- */
 
-		// region Legacy Bestiary Encounter Builder format
+	static _pMutLegacyData_bestiaryEncounterFormat ({exportedSublist, isMemoryOnly}) {
 		if (exportedSublist.p) {
-			exportedSublist.playersSimple = exportedSublist.p.map(it => EncounterBuilderComponentBestiary.getDefaultPlayerRow_simple(it));
+			exportedSublist.playersSimple = exportedSublist.p.map(it => EncounterBuilderPartyCustom.getDefaultPlayerRow_simple(it));
 			if (!isMemoryOnly) this._mutExternalize({obj: exportedSublist, k: "playersSimple"});
 			delete exportedSublist.p;
 		}
@@ -96,24 +96,24 @@ export class EncounterBuilderSublistPlugin extends SublistPlugin {
 		}
 
 		if (exportedSublist.c) {
-			exportedSublist.colsExtraAdvanced = exportedSublist.c.map(name => EncounterBuilderComponentBestiary.getDefaultColExtraAdvanced({name}));
+			exportedSublist.colsExtraAdvanced = exportedSublist.c.map(name => EncounterBuilderPartyCustomAdvanced.getDefaultColExtraAdvanced({name}));
 			if (!isMemoryOnly) this._mutExternalize({obj: exportedSublist, k: "colsExtraAdvanced"});
 			delete exportedSublist.c;
 		}
 
 		if (exportedSublist.d) {
-			exportedSublist.playersAdvanced = exportedSublist.d.map(({n, l, x}) => EncounterBuilderComponentBestiary.getDefaultPlayerRow_advanced({
+			exportedSublist.playersAdvanced = exportedSublist.d.map(({n, l, x}) => EncounterBuilderPartyCustomAdvanced.getDefaultPlayerRow_advanced({
 				name: n,
 				level: l,
-				extras: x.map(value => EncounterBuilderComponentBestiary.getDefaultPlayerAdvancedExtra({value})),
+				extras: (x || []).map(value => EncounterBuilderPartyCustomAdvanced.getDefaultPlayerAdvancedExtra({value})),
 				colsExtraAdvanced: exportedSublist.colsExtraAdvanced,
 			}));
 			if (!isMemoryOnly) this._mutExternalize({obj: exportedSublist, k: "playersAdvanced"});
 			delete exportedSublist.d;
 		}
-		// endregion
+	}
 
-		// region Legacy "reference" format
+	static _pMutLegacyData_referenceFormat ({exportedSublist, isMemoryOnly}) {
 		// These are general save manager properties, but we set them here, as encounter data was the only thing to make
 		//   use of this system.
 		if (exportedSublist.bestiaryId) {
@@ -126,7 +126,49 @@ export class EncounterBuilderSublistPlugin extends SublistPlugin {
 			exportedSublist.managerClient_isLoadAsCopy = false;
 		}
 		delete exportedSublist.isRef;
-		// endregion
+	}
+
+	static _pMutLegacyData_partyState ({exportedSublist, isMemoryOnly}) {
+		const hasPartyState = exportedSublist.playersSimple != null
+			|| exportedSublist.colsExtraAdvanced != null
+			|| exportedSublist.playersAdvanced != null;
+
+		if (hasPartyState) exportedSublist.statePartyComps = exportedSublist.statePartyComps || {};
+
+		if (exportedSublist.playersSimple != null) {
+			MiscUtil.getOrSet(exportedSublist.statePartyComps, EncounterBuilderPartyCustom.PARTY_ID, "state", {})
+				.playersSimple = exportedSublist.playersSimple;
+			delete exportedSublist.playersSimple;
+		}
+
+		if (exportedSublist.colsExtraAdvanced != null || exportedSublist.playersAdvanced != null) {
+			const state = MiscUtil.getOrSet(exportedSublist.statePartyComps, EncounterBuilderPartyCustomAdvanced.PARTY_ID, "state", {});
+			if (exportedSublist.colsExtraAdvanced != null) {
+				state.colsExtraAdvanced = exportedSublist.colsExtraAdvanced;
+				delete exportedSublist.colsExtraAdvanced;
+			}
+			if (exportedSublist.playersAdvanced != null) {
+				state.playersAdvanced = exportedSublist.playersAdvanced;
+				delete exportedSublist.playersAdvanced;
+			}
+		}
+
+		if (exportedSublist.activePartyId == null && exportedSublist.isAdvanced != null) {
+			exportedSublist.activePartyId = exportedSublist.isAdvanced
+				? EncounterBuilderPartyCustomAdvanced.PARTY_ID
+				: EncounterBuilderPartyCustom.PARTY_ID;
+		}
+		delete exportedSublist.isAdvanced;
+
+		if (!isMemoryOnly) this._mutExternalize({obj: exportedSublist, k: "statePartyComps"});
+	}
+
+	static async pMutLegacyData ({exportedSublist, isMemoryOnly}) {
+		if (!exportedSublist) return;
+
+		this._pMutLegacyData_bestiaryEncounterFormat({exportedSublist, isMemoryOnly});
+		this._pMutLegacyData_referenceFormat({exportedSublist, isMemoryOnly});
+		this._pMutLegacyData_partyState({exportedSublist, isMemoryOnly});
 	}
 
 	async pMutLegacyData ({exportedSublist, isMemoryOnly}) {
@@ -135,24 +177,6 @@ export class EncounterBuilderSublistPlugin extends SublistPlugin {
 
 	/* -------------------------------------------- */
 
-	async pMutSaveableData ({exportedSublist, isForce = false, isMemoryOnly = false}) {
-		if (!isForce && !this._encounterBuilder.isActive()) return;
-
-		[
-			"playersSimple",
-			"isAdvanced",
-			"colsExtraAdvanced",
-			"playersAdvanced",
-			"customShapeGroups",
-		].forEach(k => {
-			exportedSublist[k] = MiscUtil.copyFast(this._encounterBuilderComp[k]);
-
-			if (isMemoryOnly) return;
-
-			this.constructor._mutExternalize({obj: exportedSublist, k});
-		});
-	}
-
 	static _WALKER_EXTERNALIZE = null;
 	static _HANDLERS_EXTERNALIZE = {
 		array: (arr) => {
@@ -160,8 +184,14 @@ export class EncounterBuilderSublistPlugin extends SublistPlugin {
 			return arr.map(({entity}) => entity);
 		},
 	};
+
+	/**
+	 * Convert arrays from `[{id, entity}]` form to `[<entity>]` form.
+	 */
 	static _mutExternalize ({obj, k}) {
-		this._WALKER_EXTERNALIZE = this._WALKER_EXTERNALIZE || MiscUtil.getWalker();
+		if (obj[k] == null) return;
+
+		this._WALKER_EXTERNALIZE ||= MiscUtil.getWalker();
 
 		obj[k] = this._WALKER_EXTERNALIZE.walk(
 			obj[k],
@@ -169,17 +199,43 @@ export class EncounterBuilderSublistPlugin extends SublistPlugin {
 		);
 	}
 
+	async pMutSaveableData ({exportedSublist, isForce = false, isMemoryOnly = false}) {
+		if (!isForce && !this._encounterBuilder.isActive()) return;
+
+		const stateByKey = {
+			activePartyId: this._encounterBuilder.getActivePartyId(),
+			statePartyComps: Object.fromEntries(
+				this._partyComps
+					.map(partyComp => [partyComp.partyId, partyComp.getSaveableState()]),
+			),
+			customShapeGroups: this._encounterBuilderComp.customShapeGroups,
+		};
+
+		Object.entries(stateByKey).forEach(([k, v]) => {
+			exportedSublist[k] = MiscUtil.copyFast(v);
+
+			if (isMemoryOnly) return;
+
+			this.constructor._mutExternalize({obj: exportedSublist, k});
+		});
+	}
+
 	/* -------------------------------------------- */
 
 	async pDoInitNewState ({prevExportableSublist, evt}) {
 		// If SHIFT pressed, reset players and custom shape
-		const nxt = {
-			playersSimple: evt.shiftKey ? [] : MiscUtil.copyFast(prevExportableSublist.playersSimple),
-			playersAdvanced: evt.shiftKey ? [] : MiscUtil.copyFast(prevExportableSublist.playersAdvanced),
-			customShapeGroups: evt.shiftKey ? [] : MiscUtil.copyFast(prevExportableSublist.customShapeGroups),
-		};
+		const isResetDeep = !!evt.shiftKey;
 
-		this._encounterBuilderComp.setPartialStateFromLoaded(nxt);
+		this._partyComps
+			.forEach(partyComp => {
+				if (isResetDeep) return partyComp.setStateFromLoaded({});
+
+				partyComp.setStateFromLoaded(MiscUtil.copyFast(prevExportableSublist.statePartyComps?.[partyComp.partyId]?.state || {}));
+			});
+
+		this._encounterBuilderComp.setPartialStateFromLoaded({
+			customShapeGroups: isResetDeep ? [] : MiscUtil.copyFast(prevExportableSublist.customShapeGroups),
+		});
 	}
 
 	/* -------------------------------------------- */

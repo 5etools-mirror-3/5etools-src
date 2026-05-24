@@ -89,8 +89,10 @@ export class ConverterUiBase extends BaseComponent {
 	/* -------------------------------------------- */
 
 	renderSettings ({compParent, wrpSettings}) {
+		const fnsCleanup = [];
+
 		this._renderSettings_source({compParent, wrpSettings});
-		this._renderSettings_page({wrpSettings});
+		this._renderSettings_page({wrpSettings, fnsCleanup});
 
 		const wrpModesSamples = ee`<div class="ve-btn-group ve-flex-v-center ve-mobile-md__mb-2">
 			<div class="ve-vr-3 ve-mobile-md__hidden"></div>
@@ -98,6 +100,8 @@ export class ConverterUiBase extends BaseComponent {
 			.appendTo(wrpSettings);
 		this._renderSettings_modes({wrpModesSamples});
 		this._renderSettings_samples({wrpModesSamples});
+
+		return {fnsCleanup};
 	}
 
 	_renderSettings_source ({compParent, wrpSettings}) {
@@ -132,7 +136,7 @@ export class ConverterUiBase extends BaseComponent {
 			});
 		};
 
-		const selSource = ee`<select class="ve-form-control ve-input-xs ve-br-0 ve-w-120p"><option value="">(None)</option></select>`
+		const selSource = ee`<select class="ve-form-control ve-input-xs ve-br-0 ve-w-120p ve-text-clip-ellipsis"><option value="">(None)</option></select>`
 			.onn("change", () => this._state.source = selSource.val());
 
 		const optDivider = e_({tag: "option", val: "5e_divider", txt: `\u2014`, attrs: {disabled: true}}).appendTo(selSource);
@@ -209,7 +213,7 @@ export class ConverterUiBase extends BaseComponent {
 
 		ee`<div class="ve-flex-v-stretch ve-mobile-md__mb-2">
 			<div class="ve-vr-3 ve-mr-2 ve-mobile-md__hidden"></div>
-			
+
 			<div class="ve-flex-v-stretch">
 				<div class="ve-mr-2 ve-flex-v-center">Source</div>
 				<div class="ve-flex-v-stretch ve-input-group ve-btn-group ve-mr-2">
@@ -222,12 +226,14 @@ export class ConverterUiBase extends BaseComponent {
 			.appendTo(wrpSettings);
 
 		this._addHookBase("source", () => {
-			selSource.val(this._state.source);
+			selSource
+				.val(this._state.source)
+				.tooltip(BrewUtil2.hasSourceJson(this._state.source) ? BrewUtil2.sourceJsonToFull(this._state.source) : null);
 			btnSourceEdit.attr("disabled", !this._state.source || !BrewUtil2.sourceJsonToSource(this._state.source));
 		})();
 	}
 
-	_renderSettings_page ({wrpSettings}) {
+	_renderSettings_page ({wrpSettings, fnsCleanup}) {
 		if (!this._hasPageNumbers) return;
 
 		const getBtnIncrementDecrement = (dir) => {
@@ -239,15 +245,28 @@ export class ConverterUiBase extends BaseComponent {
 
 		const iptPage = ComponentUiUtil.getIptInt(this, "page", 0)
 			.addClass("ve-w-40p");
+		const cbAddPageNumber = ComponentUiUtil.getCbBool(this, "isAddPageNumber");
+
+		const dispPage = ee`<div class="ve-mr-2 ve-help">Page</div>`;
+		const hkInputSeparator = () => {
+			dispPage.tooltip(`Note that a line of the form "PAGE=&lt;page number&gt;" in the Input will set the page in the Output, ignoring any value set here. This is especially useful when parsing multiple inputs delimited by a separator (${this._ui.getInputSeparator()}).`);
+		};
+		this._ui.addHookInputSeparator(hkInputSeparator)();
+		fnsCleanup.push(() => this._ui.removeHookInputSeparator(hkInputSeparator));
+
 		ee`<div class="ve-flex-v-center ve-mobile-md__mb-2">
 			<div class="ve-vr-3 ve-mobile-md__hidden"></div>
 
-			<div class="ve-mr-2 ve-help" title="Note that a line of the form &quot;PAGE=&lt;page number&gt;&quot; in the Input will set the page in the Output, ignoring any value set here. This is especially useful when parsing multiple inputs delimited by a separator.">Page</div>
-			<div class="ve-btn-group ve-input-group ve-flex-v-stretch">
+			${dispPage}
+			<div class="ve-btn-group ve-input-group ve-flex-v-stretch ve-mr-2">
 				${getBtnIncrementDecrement(-1)}
 				${iptPage}
 				${getBtnIncrementDecrement(1)}
 			</div>
+
+			<label class="ve-flex-v-center" title="Add Page Number">
+				${cbAddPageNumber}
+			</label>
 		</div>`.appendTo(wrpSettings);
 	}
 
@@ -294,6 +313,7 @@ export class ConverterUiBase extends BaseComponent {
 			styleHint: this._state.styleHint,
 
 			isTitleCase: this._state.isTitleCase,
+			isAddPageNumber: this._state.isAddPageNumber,
 			source: this._state.source,
 			page: this._state.page,
 		};
@@ -313,16 +333,21 @@ export class ConverterUiBase extends BaseComponent {
 	}
 
 	_renderSettingsModal_converterOptions ({eleParent}) {
-		if (!this._titleCaseFields) return;
+		if (!this._titleCaseFields && !this._hasPageNumbers) return;
 
-		const cbTitleCase = ComponentUiUtil.getCbBool(this, "isTitleCase");
+		const cbTitleCase = this._titleCaseFields ? ComponentUiUtil.getCbBool(this, "isTitleCase") : null;
+		const cbAddPageNumber = this._hasPageNumbers ? ComponentUiUtil.getCbBool(this, "isAddPageNumber") : null;
 
 		ee`<div class="ve-flex-col">
-			<label class="ve-split-v-center ve-w-100" title="Should the entity's name be converted to title-case? Useful when pasting a name which is all-caps.">
+			${this._titleCaseFields ? ee`<label class="ve-split-v-center ve-w-100" title="Should the entity's name be converted to title-case? Useful when pasting a name which is all-caps.">
 				<span class="ve-w-66 ve-no-shrink ve-mr-2 ve-flex-v-center">Title-Case Name</span>
 				${cbTitleCase}
-			</label>
-			
+			</label>` : null}
+			${this._hasPageNumbers ? ee`<label class="ve-split-v-center ve-w-100" title="Should the output include the page field?">
+				<span class="ve-w-66 ve-no-shrink ve-mr-2 ve-flex-v-center">Add Page Number</span>
+				${cbAddPageNumber}
+			</label>` : null}
+
 			<hr class="ve-hr-3">
 		</div>`
 			.appendTo(eleParent);
@@ -346,7 +371,7 @@ export class ConverterUiBase extends BaseComponent {
 				<span class="ve-w-66 ve-no-shrink ve-mr-2 ve-flex-v-center">Version</span>
 				${selStyleHint}
 			</label>
-			
+
 			<hr class="ve-hr-3">
 		</div>`
 			.appendTo(eleParent);
@@ -360,7 +385,10 @@ export class ConverterUiBase extends BaseComponent {
 			styleHint: VetoolsConfig.get("styleSwitcher", "style"),
 		};
 
-		if (this._hasPageNumbers) out.page = 0;
+		if (this._hasPageNumbers) {
+			out.page = 0;
+			out.isAddPageNumber = true;
+		}
 		if (this._titleCaseFields) out.isTitleCase = false;
 		if (this._hasSource) out.source = "";
 

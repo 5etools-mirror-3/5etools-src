@@ -432,7 +432,7 @@ export class CreatureBuilder extends BuilderBase {
 			DataUtil.loadJSON("data/bestiary/fluff-index.json"),
 			DataUtil.loadJSON("data/makebrew-creature.json"),
 			Renderer.item.pBuildList(),
-			DataUtil.monster.pPreloadLegendaryGroups(),
+			DataUtil.monster.pPreloadLegendaryGroupsSite(),
 		]);
 
 		this._bestiaryFluffIndex = bestiaryFluffIndex;
@@ -1503,7 +1503,7 @@ export class CreatureBuilder extends BuilderBase {
 			);
 		}));
 
-		const btnCommon = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">Feature <span class="caret"></span></button>`
+		const btnCommon = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">Feature <span class="ve-caret"></span></button>`
 			.onn("click", evt => ContextUtil.pOpenMenu(evt, menu));
 
 		const btnSearchItem = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Item</button>`
@@ -3438,11 +3438,11 @@ export class CreatureBuilder extends BuilderBase {
 	}
 
 	async _pBuildLegendaryGroupCache () {
-		DataUtil.monster.populateMetaReference({legendaryGroup: (await BrewUtil2.pGetBrewProcessed()).legendaryGroup || []});
-		DataUtil.monster.populateMetaReference({legendaryGroup: (await BrewUtil2.pGetBrewProcessed()).legendaryGroup || []});
+		const legendaryGroupsSite = await DataUtil.monster.pPreloadLegendaryGroupsSite();
+		const legendaryGroupsPrerelase = await DataUtil.monster.pUpdatePreloadLegendaryGroupsPrerelease();
+		const legendaryGroupsBrew = await DataUtil.monster.pUpdatePreloadLegendaryGroupsBrew();
 
-		const baseLegendaryGroups = Object.values(DataUtil.monster.legendaryGroupLookup).map(obj => Object.values(obj)).flat();
-		this._legendaryGroups = [...baseLegendaryGroups];
+		this._legendaryGroups = [...legendaryGroupsSite, ...legendaryGroupsBrew];
 
 		this._legendaryGroupCache = this._legendaryGroups
 			.map(({name, source}) => ({name, source}))

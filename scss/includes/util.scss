@@ -165,6 +165,41 @@
 	}
 	// endregion
 
+	// region Caret
+	.ve-caret {
+		display: inline-block;
+		width: 0;
+		height: 0;
+		margin-left: 2px;
+		vertical-align: middle;
+		border-top: 4px dashed;
+		border-right: 4px solid transparent;
+		border-left: 4px solid transparent;
+
+		&--up {
+			transform: rotateZ(180deg);
+		}
+
+		&--right {
+			transform: rotate(270deg);
+		}
+	}
+
+	.ve-btn .ve-caret {
+		margin-left: 0;
+	}
+
+	.ve-btn-lg .ve-caret {
+		border-width: 5px 5px 0;
+	}
+
+	@media print {
+		.ve-btn > .ve-caret {
+			border-top-color: #000 !important;
+		}
+	}
+	// endregion
+
 	// region Transforms
 	.ve-trans-x-flip {
 		transform: scaleX(-1) !important;

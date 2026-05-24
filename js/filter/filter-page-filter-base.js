@@ -159,6 +159,9 @@ export class PageFilterBase {
 
 		if (ent.tokenCustom) ent._fMisc.push("Has Custom/Unofficial Token");
 		if (ent.tokenCredit) ent._fMisc.push("Has Token Credit");
+
+		if (DataUtil.proxy.hasVersions(ent.__prop, ent)) ent._fMisc.push("Has Variants");
+		if (ent._versionBase_isVersion) ent._fMisc.push("Is Variant");
 	}
 	// endregion
 }

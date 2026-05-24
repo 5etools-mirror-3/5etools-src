@@ -1289,6 +1289,7 @@ export class DamageTypeTag extends _PrimaryLegendarySpellsTaggerBase {
 	//   Note that these names should exclude parenthetical parts (as these are removed before lookup)
 	static _BLOCKLIST_NAMES = new Set([
 		"vampire weaknesses",
+		"sunlight hypersensitivity",
 	]);
 
 	static _init () {

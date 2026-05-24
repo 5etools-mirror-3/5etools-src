@@ -9,7 +9,12 @@ export class EntityFileHandlerBestiary extends EntityFileHandlerBase {
 
 		if (ent.legendaryGroup) {
 			const url = this._tagTestUrlLookup.getEncodedProxy(`${ent.legendaryGroup.name}|${ent.legendaryGroup.source}`, "legendaryGroup");
-			if (!this._tagTestUrlLookup.hasUrl(url)) this._addMessage(`Missing link: ${ent.legendaryGroup.name}|${ent.legendaryGroup.source} in file ${filePath} "legendaryGroup" (evaluates to "${url}")\n${this._tagTestUrlLookup.getLogPtSimilarUrls({url})}`);
+			if (
+				!this._tagTestUrlLookup.hasUrl(url)
+				&& !this._tagTestUrlLookup.hasVersionUrl(url)
+			) {
+				this._addMessage(`Missing link: ${ent.legendaryGroup.name}|${ent.legendaryGroup.source} in file ${filePath} "legendaryGroup" (evaluates to "${url}")\n${this._tagTestUrlLookup.getLogPtSimilarUrls({url})}`);
+			}
 		}
 
 		if (ent.summonedBySpell) {

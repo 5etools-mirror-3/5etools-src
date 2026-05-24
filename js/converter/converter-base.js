@@ -150,4 +150,11 @@ export class ConverterBase {
 	static _hasEntryContent (trait) {
 		return trait && (trait.name || (trait.entries.length === 1 && trait.entries[0]) || trait.entries.length > 1);
 	}
+
+	/* -------------------------------------------- */
+
+	static _doPostProcess_removePage (entity, options) {
+		if (options?.isAddPageNumber) return;
+		delete entity.page;
+	}
 }

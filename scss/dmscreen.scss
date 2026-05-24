@@ -14,6 +14,32 @@
 @layer vetools {
 	$rgb-bg-panel-control: #80808080;
 
+	// region Roller
+	.ve-rollbox-mode--left {
+		.rollbox-min {
+			right: unset !important;
+			left: 48px !important;
+		}
+
+		.rollbox {
+			right: unset !important;
+			left: 48px !important;
+		}
+
+		.is-fullscreen {
+			.rollbox-min {
+				right: unset !important;
+				left: 7px !important;
+			}
+
+			.rollbox {
+				right: unset !important;
+				left: 1em !important;
+			}
+		}
+	}
+	// endregion
+
 	label {
 		margin-bottom: 0;
 		font-weight: initial;

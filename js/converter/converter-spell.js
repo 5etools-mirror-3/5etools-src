@@ -181,6 +181,8 @@ export class ConverterSpell extends ConverterBase {
 	}
 
 	static _doSpellPostProcess (stats, options) {
+		this._doPostProcess_removePage(stats, options);
+
 		const doCleanup = () => {
 			// remove any empty arrays
 			Object.keys(stats).forEach(k => {

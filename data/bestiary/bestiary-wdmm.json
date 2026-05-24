@@ -177,7 +177,7 @@
 			],
 			"trait": [
 				{
-					"name": "Wielder Domination",
+					"name": "Charm",
 					"entries": [
 						"A creature can grab the staff out of the air with a successful grapple check against the staff, and grappling the staff does not reduce the creature's speed. Any creature that successfully grapples the staff must succeed on a {@dc 12} Charisma saving throw or be {@condition charmed} by the staff until the staff is no longer in its grasp. While the creature is {@condition charmed}, the staff can issue commands to it, which the creature does its best to obey. The creature can repeat the saving throw each time it takes damage, ending the effect on itself on a success. A creature that successfully resists the staff's control can't be {@condition charmed} by it for 24 hours.",
 						"A creature holding the staff that isn't {@condition charmed} by it can use an action to attempt to break the staff over a knee or against a solid surface, doing so with a successful {@dc 17} Strength ({@skill Athletics}) check. Breaking the staff in this manner destroys it."
@@ -192,7 +192,7 @@
 					]
 				},
 				{
-					"name": "Staff",
+					"name": "Melee Attack",
 					"entries": [
 						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}7 ({@damage 2d6}) bludgeoning damage plus 1 cold damage."
 					]
@@ -217,6 +217,47 @@
 			"savingThrowForced": [
 				"charisma"
 			],
+			"hasToken": true
+		},
+		{
+			"name": "Animated Statue",
+			"source": "WDMM",
+			"page": 125,
+			"_copy": {
+				"name": "Archmage",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "archmage",
+						"with": "statue",
+						"flags": "i"
+					},
+					"_": {
+						"mode": "replaceSpells",
+						"spells": {
+							"4": [
+								{
+									"replace": "{@spell banishment}",
+									"with": "{@spell ice storm}"
+								}
+							],
+							"7": [
+								{
+									"replace": "{@spell teleport}",
+									"with": "{@spell finger of death}"
+								}
+							]
+						}
+					}
+				}
+			},
+			"type": "construct",
+			"alignment": [
+				"U"
+			],
+			"tokenCredit": "Onefold, Ltd.",
+			"tokenCustom": true,
 			"hasToken": true
 		},
 		{
@@ -498,6 +539,55 @@
 			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
+		},
+		{
+			"name": "Armored Troglodyte",
+			"source": "WDMM",
+			"page": 150,
+			"_copy": {
+				"name": "Troglodyte",
+				"source": "MM",
+				"_mod": {
+					"action": [
+						{
+							"mode": "replaceArr",
+							"replace": "Multiattack",
+							"items": {
+								"name": "Multiattack",
+								"entries": [
+									"The troglodyte either makes two attacks with its longsword, or it makes three attacks: one with its bite and two with its claws."
+								]
+							}
+						},
+						{
+							"mode": "replaceArr",
+							"replace": "Claw",
+							"items": {
+								"name": "Longsword",
+								"entries": [
+									"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d8 + 2}) slashing damage, or 7 ({@damage 1d10 + 2}) slashing damage if used with two hands."
+								]
+							}
+						}
+					]
+				}
+			},
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"{@item breastplate|phb}"
+					]
+				}
+			],
+			"languages": [
+				"understands Undercommon but can't speak"
+			],
+			"languageTags": [
+				"CS",
+				"U"
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Ashtyrranthor",
@@ -1909,6 +1999,53 @@
 			"hasToken": true
 		},
 		{
+			"name": "Giant Gelatinous Cube",
+			"source": "WDMM",
+			"page": 241,
+			"_copy": {
+				"name": "Gelatinous Cube",
+				"source": "MM",
+				"_mod": {
+					"trait": [
+						{
+							"mode": "replaceArr",
+							"replace": "Ooze Cube",
+							"items": {
+								"name": "Ooze Cube",
+								"entries": [
+									"The cube takes up its entire space. Other creatures can enter the space, but a creature that does so is subjected to the cube's Engulf and has disadvantage on the saving throw.",
+									"Creatures inside the cube can be seen but have {@quickref Cover||3||total cover}.",
+									"A creature within 5 feet of the cube can take an action to pull a creature or object out of the cube. Doing so requires a successful {@dc 12} Strength check, and the creature making the attempt takes 10 ({@damage 3d6}) acid damage.",
+									"The cube can hold up to nine Large creatures or up to thirty-six Medium or smaller creatures inside it at a time."
+								]
+							}
+						},
+						{
+							"mode": "appendArr",
+							"items": [
+								{
+									"name": "Enlarged",
+									"entries": [
+										"The cube makes Strength checks and Strength saving throws with advantage. When the cube shrinks back to normal size, any creatures that it can no longer contain are expelled into unoccupied spaces around it."
+									]
+								}
+							]
+						}
+					],
+					"action": {
+						"mode": "prependArr",
+						"items": {
+							"name": "Multiattack",
+							"entries": [
+								"The cube makes four pseudopod attacks."
+							]
+						}
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
 			"name": "Glyster",
 			"isNpc": true,
 			"isNamedCreature": true,
@@ -1962,6 +2099,9 @@
 							}
 						]
 					}
+				},
+				"_preserve": {
+					"legendaryGroup": true
 				}
 			},
 			"languages": [
@@ -2037,55 +2177,6 @@
 				"constitution",
 				"dexterity",
 				"wisdom"
-			],
-			"hasToken": true
-		},
-		{
-			"name": "Gorzil's Gang Troglodyte",
-			"source": "WDMM",
-			"page": 150,
-			"_copy": {
-				"name": "Troglodyte",
-				"source": "MM",
-				"_mod": {
-					"action": [
-						{
-							"mode": "replaceArr",
-							"replace": "Multiattack",
-							"items": {
-								"name": "Multiattack",
-								"entries": [
-									"The troglodyte makes three attacks: one with its bite and two with its longsword."
-								]
-							}
-						},
-						{
-							"mode": "replaceArr",
-							"replace": "Claw",
-							"items": {
-								"name": "Longsword",
-								"entries": [
-									"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d8 + 2}) slashing damage, or 7 ({@damage 1d10 + 2}) slashing damage if used with two hands."
-								]
-							}
-						}
-					]
-				}
-			},
-			"ac": [
-				{
-					"ac": 14,
-					"from": [
-						"{@item breastplate|phb}"
-					]
-				}
-			],
-			"languages": [
-				"understands Undercommon but can't speak"
-			],
-			"languageTags": [
-				"CS",
-				"U"
 			],
 			"hasToken": true
 		},
@@ -2481,6 +2572,44 @@
 			"hasToken": true
 		},
 		{
+			"name": "Hammer-Handed Golem",
+			"source": "WDMM",
+			"page": 259,
+			"_copy": {
+				"name": "Stone Golem",
+				"source": "MM",
+				"_mod": {
+					"action": [
+						{
+							"mode": "replaceArr",
+							"replace": "Multiattack",
+							"items": [
+								{
+									"name": "Multiattack",
+									"entries": [
+										"The golem makes two mallet attacks."
+									]
+								}
+							]
+						},
+						{
+							"mode": "replaceArr",
+							"replace": "Slam",
+							"items": [
+								{
+									"name": "Mallet",
+									"entries": [
+										"{@atk mw} {@hit 10} to hit, reach 5 ft., one target. {@h}19 ({@damage 3d8 + 6}) bludgeoning damage, and the target must succeed on a {@dc 17} Constitution saving throw or be {@condition stunned} until the end of its next turn."
+									]
+								}
+							]
+						}
+					]
+				}
+			},
+			"hasToken": true
+		},
+		{
 			"name": "Haungharassk",
 			"isNpc": true,
 			"isNamedCreature": true,
@@ -2653,6 +2782,8 @@
 					]
 				}
 			],
+			"tokenCredit": "Slay the Spire 2",
+			"tokenCustom": true,
 			"actionTags": [
 				"Multiattack"
 			],
@@ -3039,7 +3170,7 @@
 		{
 			"name": "Large Mimic",
 			"source": "WDMM",
-			"page": 76,
+			"page": 26,
 			"_copy": {
 				"name": "Mimic",
 				"source": "MM"
@@ -3048,8 +3179,8 @@
 				"L"
 			],
 			"hp": {
-				"average": 67,
-				"formula": "9d10 + 18"
+				"average": 75,
+				"formula": "10d10 + 20"
 			},
 			"hasToken": true
 		},
@@ -4697,7 +4828,7 @@
 				{
 					"name": "Shadow Blade",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d6 + 4}) piercing damage plus 10 ({@damage 3d6}) necrotic damage. Unless the target is immune to necrotic damage, the target's Strength score is reduced by {@dice 1d4} each time it is hit by this attack. The target dies if its Strength is reduced to 0. The reduction lasts until the target finishes a short or long rest. If a non-evil humanoid dies from this attack, a shadow (see the Monster Manual) rises from the corpse {@dice 1d4} hours later."
+						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d6 + 4}) piercing damage plus 10 ({@damage 3d6}) necrotic damage. Unless the target is immune to necrotic damage, the target's Strength score is reduced by {@dice 1d4} each time it is hit by this attack. The target dies if its Strength is reduced to 0. The reduction lasts until the target finishes a short or long rest. If a non-evil humanoid dies from this attack, a {@creature shadow} (see the Monster Manual) rises from the corpse {@dice 1d4} hours later."
 					]
 				}
 			],
@@ -4957,6 +5088,10 @@
 						"flags": "i"
 					}
 				}
+			},
+			"cr": {
+				"cr": "0",
+				"xp": 0
 			},
 			"action": null,
 			"damageTags": [],
@@ -5506,6 +5641,10 @@
 				"N",
 				"E"
 			],
+			"legendaryGroup": {
+				"name": "Shadow Dragon (Bronze Dragon)",
+				"source": "MM"
+			},
 			"traitTags": [
 				"Amphibious",
 				"Legendary Resistances",

@@ -1969,6 +1969,58 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Nature's Veil",
+			"source": "TCE",
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 10,
+			"system": {
+				"uses.max": "@prof",
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "bonus",
+						"value": 1
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "naturesVeil"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "naturesVeil",
+					"statuses": [
+						"invisible"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Favored Enemy improvement",
 			"source": "PHB",
 			"className": "Ranger",
@@ -7079,6 +7131,51 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Steel Defender",
+			"source": "EFA",
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Battle Smith",
+			"subclassSource": "EFA",
+			"level": 3,
+			"activities": [
+				{
+					"type": "summon",
+					"activation": {
+						"type": "action",
+						"condition": "Whenever you finish a Long Rest"
+					},
+					"target": {
+						"affects": {
+							"type": "space",
+							"special": "Unoccupied"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "5"
+					},
+					"profiles": [
+						{
+							"name": "Steel Defender",
+							"uuid": "@creature[steel defender|efa]"
+						}
+					],
+					"bonuses": {
+						"ac": "@abilities.int.mod",
+						"hd": "@classes.artificer.levels",
+						"hp": "@classes.artificer.levels * (@summon.attributes.hd.denomination * 0.5 + 1)",
+						"attackDamage": "@abilities.int.mod"
+					},
+					"match": {
+						"attacks": true,
+						"proficiency": true
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Tools of the Trade",
 			"source": "EFA",
 			"className": "Artificer",
@@ -10059,6 +10156,74 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Writhing Tide",
+			"source": "TCE",
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Swarmkeeper",
+			"subclassSource": "TCE",
+			"level": 7,
+			"system": {
+				"uses.max": "@prof",
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "bonus",
+						"value": 1
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "writhingTide"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "writhingTide",
+					"duration": {
+						"seconds": 60
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.fly",
+							"mode": "OVERRIDE",
+							"value": 10,
+							"priority": 20
+						},
+						{
+							"key": "system.attributes.movement.hover",
+							"value": "yes",
+							"priority": 20,
+							"mode": "CUSTOM"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Umbral Sight",
 			"source": "XGE",
 			"className": "Ranger",
@@ -11625,17 +11790,6 @@
 					}
 				]
 			},
-			"migrationVersion": 3
-		},
-		{
-			"name": "Steel Defender",
-			"source": "TCE",
-			"className": "Artificer",
-			"classSource": "TCE",
-			"subclassShortName": "Battle Smith",
-			"subclassSource": "TCE",
-			"level": 3,
-			"system": {},
 			"migrationVersion": 3
 		},
 		{

@@ -208,7 +208,14 @@ export class ConverterFeatureBase extends ConverterBase {
 				return;
 			}
 
-			if (/^Can't Have Another Dragonmark Feat$/i.test(pt)) return pre.exclusiveFeatCategory = ["D"];
+			const mExclusiveCategory = /^Can't Have Another (?<exclusiveType>.*?) Feat$/i.exec(pt);
+			if (mExclusiveCategory) {
+				const {exclusiveType} = mExclusiveCategory.groups;
+				switch (exclusiveType.toLowerCase().trim()) {
+					case "dragonmark": return pre.exclusiveFeatCategory = ["D"];
+					default: return pre.exclusiveFeatCategory = [exclusiveType];
+				}
+			}
 
 			const mFeatCategory = new RegExp(`^Any ${this._RE_FEAT_TYPE.source}(?: Feat)?`, "i").exec(pt);
 			if (mFeatCategory) {

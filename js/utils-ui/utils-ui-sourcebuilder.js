@@ -24,10 +24,25 @@ export class SourceUiUtil {
 		const isEditMode = options.mode === "edit";
 
 		let jsonDirty = false;
+		const doValidateIptJson = () => {
+			iptJson
+				.removeClass("form-control--error")
+				.removeClass("form-control--warning")
+				.tooltip(null);
+			const val = iptJson.val().trim();
+			if (val.length && val.length < 6) {
+				iptJson
+					.addClass("form-control--warning")
+					.tooltip("JSON source identifiers are expected to be ≥ 6 characters.");
+			}
+		};
 		const iptName = ee`<input class="ve-form-control ve-ui-source__ipt-named">`
 			.onn("keydown", evt => { if (evt.key === "Escape") iptName.blure(); })
 			.onn("change", () => {
-				if (!jsonDirty && !isEditMode) iptJson.val(iptName.val().replace(/[^-0-9a-zA-Z]/g, ""));
+				if (!jsonDirty && !isEditMode) {
+					iptJson.val(iptName.val().replace(/[^-0-9a-zA-Z]/g, ""));
+					doValidateIptJson();
+				}
 				iptName.removeClass("form-control--error");
 			});
 		if (options.source) iptName.val(options.source.full);
@@ -41,7 +56,7 @@ export class SourceUiUtil {
 			.onn("keydown", evt => { if (evt.key === "Escape") iptJson.blure(); })
 			.onn("change", () => {
 				jsonDirty = true;
-				iptJson.removeClass("form-control--error");
+				doValidateIptJson();
 			});
 		if (options.source) iptJson.val(options.source.json);
 		const iptVersion = ee`<input class="ve-form-control ve-ui-source__ipt-named">`

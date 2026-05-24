@@ -102,13 +102,13 @@ export class EncounterBuilderCreatureMeta {
 	/* -------------------------------------------- */
 
 	isSameCreature (other) {
-		if (this.getCustomHashId() !== other.getCustomHashId()) return false;
+		if (!MiscUtil.isNearStrictlyEqual(this.getCustomHashId(), other.getCustomHashId())) return false;
 		return this.getHash() === other.getHash();
 	}
 
 	hasCreature (mon) {
 		const monCustomHashId = Renderer.monster.getCustomHashId(mon);
-		if (this.getCustomHashId() !== monCustomHashId) return false;
+		if (!MiscUtil.isNearStrictlyEqual(this.getCustomHashId(), monCustomHashId)) return false;
 		return this.getHash() === UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BESTIARY](mon);
 	}
 

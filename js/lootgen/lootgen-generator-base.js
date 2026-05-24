@@ -5,12 +5,25 @@ import {LootGenMagicItem} from "./lootgen-magicitem.js";
 export class LootGenGeneratorBase extends BaseComponent {
 	identifier;
 
-	constructor ({ClsLootGenOutput, stateManager, outputManager, dataManager, ...rest}) {
+	constructor (
+		{
+			ClsLootGenOutput,
+			stateManager,
+			outputManager,
+			dataManager,
+			rendererWrapped,
+			...rest
+		},
+	) {
+		if (!rendererWrapped) throw new Error(`Missing required "rendererWrapped" option!`);
+
 		super({...rest});
+
 		this._ClsLootGenOutput = ClsLootGenOutput;
 		this._stateManager = stateManager;
 		this._outputManager = outputManager;
 		this._dataManager = dataManager;
+		this._rendererWrapped = rendererWrapped;
 	}
 
 	getSaveableStateProp () { return `comp${this.identifier.uppercaseFirst()}`; }
@@ -135,6 +148,7 @@ export class LootGenGeneratorBase extends BaseComponent {
 					magicItemTable,
 					itemsAltChoose,
 					itemsAltChooseDisplayText,
+					rendererWrapped: this._rendererWrapped,
 					isItemsAltChooseRoll: fnGetIsPreferAltChoose ? fnGetIsPreferAltChoose() : false,
 					fnGetIsPreferAltChoose,
 				});
@@ -185,6 +199,7 @@ export class LootGenGeneratorBase extends BaseComponent {
 						magicItemTable,
 						itemsAltChoose,
 						itemsAltChooseDisplayText,
+						rendererWrapped: this._rendererWrapped,
 						isItemsAltChooseRoll: fnGetIsPreferAltChoose ? fnGetIsPreferAltChoose() : false,
 						fnGetIsPreferAltChoose,
 					});

@@ -585,7 +585,7 @@ class NavBar {
 
 			a.setAttribute("aria-haspopup", "true");
 		}
-		a.innerHTML = `${category} <span class="caret ${isSide ? "caret--right" : ""}"></span>`;
+		a.innerHTML = `${category} <span class="ve-caret ${isSide ? "ve-caret--right" : ""}"></span>`;
 
 		const ul = document.createElement("ul");
 		ul.setAttribute("role", "menu");

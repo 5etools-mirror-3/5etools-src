@@ -5321,12 +5321,15 @@ class ComponentUiUtil {
 	 * @param [opts.asMeta] If a meta-object should be returned containing the hook and the input.
 	 * @param [opts.isDisplayNullAsIndeterminate]
 	 * @param [opts.isTreatIndeterminateNullAsPositive]
+	 * @param [opts.isDisplayAsInverse]
 	 * @param [opts.stateName] State name.
 	 * @param [opts.stateProp] State prop.
 	 * @return {(HTMLElementExtended | Object)}
 	 */
 	static getCbBool (component, prop, opts) {
 		opts = opts || {};
+
+		if ((opts.isDisplayNullAsIndeterminate || opts.isTreatIndeterminateNullAsPositive) && opts.isDisplayAsInverse) throw new Error(`"isDisplayNullAsIndeterminate"/"isTreatIndeterminateNullAsPositive" and "isDisplayAsInverse" are mutually exclusive!`);
 
 		const stateName = opts.stateName || "state";
 		const stateProp = opts.stateProp || `_${stateName}`;
@@ -5343,12 +5346,13 @@ class ComponentUiUtil {
 					return;
 				}
 
-				component[stateProp][prop] = cb.checked;
+				component[stateProp][prop] = opts.isDisplayAsInverse ? !cb.checked : cb.checked;
 			},
 		});
 
 		const hook = () => {
-			cb.checked = !!component[stateProp][prop];
+			const val = !!component[stateProp][prop];
+			cb.checked = opts.isDisplayAsInverse ? !val : val;
 			if (opts.isDisplayNullAsIndeterminate) cb.indeterminate = component[stateProp][prop] == null;
 		};
 		component._addHook(stateName, prop, hook);

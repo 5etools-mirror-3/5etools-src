@@ -225,7 +225,7 @@ class PageFilterBestiary extends PageFilterBase {
 		});
 		this._miscFilter = new Filter({
 			header: "Miscellaneous",
-			items: ["Familiar", ...Object.keys(Parser.MON_MISC_TAG_TO_FULL), "Bonus Actions", "Lair Actions", "Legendary", "Mythic", "Adventure NPC", "Spellcaster", ...Object.values(Parser.ATB_ABV_TO_FULL).map(it => `${PageFilterBestiary.MISC_FILTER_SPELLCASTER}${it}`), "Regional Effects", "Reactions", "Reprinted", "Swarm", "Has Variants", "Modified Copy", "Has Alternate Token", "Has Info", "Has Images", "Has Token", "Has Recharge", "Legacy", "AC from Item(s)", "AC from Natural Armor", "AC from Unarmored Defense", "Summoned by Spell", "Summoned by Class", "Reduced Threat"],
+			items: ["Familiar", ...Object.keys(Parser.MON_MISC_TAG_TO_FULL), "Bonus Actions", "Lair Actions", "Legendary", "Mythic", "Adventure NPC", "Spellcaster", ...Object.values(Parser.ATB_ABV_TO_FULL).map(it => `${PageFilterBestiary.MISC_FILTER_SPELLCASTER}${it}`), "Regional Effects", "Reactions", "Reprinted", "Swarm", "Has Variants", "Modified Copy", "Has Alternate Token", "Has Info", "Has Images", "Has Token", "Has Recharge", "Legacy", "AC from Item(s)", "AC from Natural Armor", "AC from Unarmored Defense", "Summoned by Spell", "Summoned by Class", "Reduced Threat", "Has Gear", "Has Equipment"],
 			displayFn: (it) => Parser.monMiscTagToFull(it).uppercaseFirst(),
 			deselFn: (it) => ["Adventure NPC", "Reprinted"].includes(it),
 			itemSortFn: PageFilterBestiary.ascSortMiscFilter,
@@ -336,10 +336,10 @@ class PageFilterBestiary extends PageFilterBase {
 		if (this._hasFluff(mon)) mon._fMisc.push("Has Info");
 		if (this._hasFluffImages(mon)) mon._fMisc.push("Has Images");
 		if (this._hasRecharge(mon)) mon._fMisc.push("Has Recharge");
-		if (mon._versionBase_isVersion) mon._fMisc.push("Is Variant");
 		if (mon.summonedBySpell) mon._fMisc.push("Summoned by Spell");
 		if (mon.summonedByClass) mon._fMisc.push("Summoned by Class");
 		if (mon._copy_templates?.some(({name, source}) => name === "Reduced Threat" && source === Parser.SRC_TYP)) mon._fMisc.push("Reduced Threat");
+		if (mon.gear?.length) mon._fMisc.push("Has Gear");
 
 		const spellcasterMeta = this._getSpellcasterMeta(mon);
 		if (spellcasterMeta) {
@@ -351,6 +351,7 @@ class PageFilterBestiary extends PageFilterBase {
 		else mon._fLanguageTags = ["None"];
 
 		mon._fEquipment = this._getEquipmentList(mon);
+		if (mon._fEquipment?.length) mon._fMisc.push("Has Equipment");
 	}
 
 	static _mutateForFilters_ac (mon) {
@@ -392,9 +393,10 @@ class PageFilterBestiary extends PageFilterBase {
 			.filter(prop => {
 				const v = mon.speed[prop];
 				if (!v) return false;
-				if (typeof v !== "number") return false;
-				maxSpeed = Math.max(maxSpeed, v);
-				mon[this._F_SPEED_PROP_MAPPING[prop]] = v;
+				const num = v.number || v;
+				if (typeof num !== "number") return false;
+				maxSpeed = Math.max(maxSpeed, num);
+				mon[this._F_SPEED_PROP_MAPPING[prop]] = num;
 				return true;
 			});
 
@@ -546,7 +548,6 @@ class PageFilterBestiary extends PageFilterBase {
 		this._spellSlotLevelFilter.addItem(mon._fSpellSlotLevels);
 		this._spellKnownFilter.addItem(mon._fSpellsKnown);
 		this._equipmentFilter.addItem(mon._fEquipment);
-		if (mon._versionBase_isVersion) this._miscFilter.addItem("Is Variant");
 		this._miscFilter.addItem(mon._fMisc);
 		this._damageTypeFilterBase.addItem(mon.damageTags);
 		this._damageTypeFilterLegendary.addItem(mon.damageTagsLegendary);

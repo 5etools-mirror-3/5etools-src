@@ -126,21 +126,71 @@ export class GetBrewUi {
 		_doAppendPrimaryView ({entity, elePreviewWrpInner}) {
 			this._pGetBrewSummary({entity})
 				.then(brewSummary => {
-					const htmlSummary = Object.entries(brewSummary)
-						.map(([prop, names]) => [Parser.getPropDisplayName(prop), {prop, names}])
+					const propMetas = Object.entries(brewSummary)
+						.map(([prop, metas]) => [Parser.getPropDisplayName(prop), {prop, metas}])
 						.sort(([propNameA], [propNameB]) => SortUtil.ascSortLower(propNameA, propNameB))
-						.map(([propName, {prop, names}]) => {
-							const namesList = names
-								.filter(name => !this.constructor._BLOCKLIST_NAMES[prop]?.has(name))
-								.unique();
+						.map(([propName, {prop, metas}], ix, arr) => {
+							const metasFilt = metas
+								.filter(meta => !this.constructor._BLOCKLIST_NAMES[prop]?.has(meta.name))
+								.filter(
+									function (meta) { return this.has(meta.name) ? false : this.add(meta.name); },
+									new Set(),
+								);
 
-							return `<div class="ve-mb-2 ve-w-100"><b>${propName.qq()}</b> <span class="ve-muted" title="Note that duplicate/unwanted names are not displayed in the list below.">(${names.length})</span></div>
-								<ul class="ve-mb-0">${namesList.map(name => `<li>${name.qq()}</li>`).join("")}</ul>`;
-						})
-						.join("");
+							const dispToggleExpand = ee`<span class="ve-mr-2" title="SHIFT-Click to Toggle All">[+]</span>`;
 
-					ee`<div class="ve-flex-col ve-py-2 ve-w-100"></div>`
-						.html(htmlSummary)
+							const dispHeader = ee`<div class="ve-w-100 ve-py-1 ve-bb-1p-trans ve-flex-v-center">
+								${dispToggleExpand}
+								<b class="ve-mr-1">${propName.qq()}</b>
+								<span class="ve-muted" title="Note that duplicate/unwanted names are not displayed in the list below.">(${metas.length})</span>
+							</div>`
+								.onn("click", evt => {
+									evt.stopPropagation();
+									evt.preventDefault();
+
+									const isExpand = doToggle();
+
+									if (!evt.shiftKey) return;
+
+									propMetas
+										.filter(propMeta => propMeta !== out)
+										.forEach(propMeta => propMeta.doToggle({isExpand}));
+								});
+
+							const htmlLis = metasFilt
+								.map(meta => {
+									return `<div class="ve-w-100 ve-pr-1p ve-py-1p ve-flex ve-relative">
+										<span class="ve-no-shrink">${meta.name.qq()}</span>${meta.page ? `<span class="ve-w-100 ve-min-w-0 ve-relative ve-top-n3p ve-mx-1 ve-bb-1p manbrew-get-preview__sep-page"></span><span class="ve-no-shrink ve-muted ve-small-caps" title="Page ${meta.page}">p${meta.page}</span>` : ""}
+									</div>`;
+								})
+								.join("");
+
+							const dispBody = ee`<div class="ve-mb-0 ve-columns-3 ve-hidden ve-pl-4 ve-mt-1">
+								${htmlLis}
+							</div>`;
+
+							const doToggle = ({isExpand = null} = {}) => {
+								isExpand ??= dispToggleExpand.txt() === "[+]";
+								dispToggleExpand.txt(isExpand ? `[\u2212]` : "[+]");
+
+								dispBody.toggleVe(isExpand);
+
+								return isExpand;
+							};
+							if (arr.length === 1) doToggle();
+
+							const out = {
+								wrp: ee`<div class="ve-flex-col ve-w-100">
+									${dispHeader}
+									${dispBody}
+								</div>`,
+								doToggle,
+							};
+
+							return out;
+						});
+
+					ee`<div class="ve-flex-col ve-w-100">${propMetas.map(meta => meta.wrp)}</div>`
 						.appendTo(elePreviewWrpInner);
 				});
 		}
@@ -164,12 +214,18 @@ export class GetBrewUi {
 						return [
 							prop,
 							arr
-								.map(ent => ent?.name)
+								.map(ent => {
+									if (!ent?.name) return null;
+									return {
+										name: ent.name,
+										page: SourceUtil.getEntityPage(ent),
+									};
+								})
 								.filter(Boolean)
-								.sort(SortUtil.ascSortLower),
+								.sort((a, b) => SortUtil.ascSortLower(a.name, b.name) || SortUtil.ascSort(a.page, b.page)),
 						];
 					})
-					.filter(([, names]) => names.length),
+					.filter(([, metas]) => metas.length),
 			);
 		}
 	};
@@ -391,7 +447,7 @@ export class GetBrewUi {
 
 		const btnShowHidePreview = ee`<span class="ve-col-0-5 ve-px-0 ve-flex-vh-center ve-lst__btn-toggle-expand ve-self-flex-stretch ve-no-select">[+]</span>`;
 
-		const dispExpandedInner = ee`<div class="ve-flex-col ve-py-3 ve-ml-col-1 ve-accordion__wrp-preview-inner ve-bb-0"></div>`;
+		const dispExpandedInner = ee`<div class="ve-flex-col ve-py-3 ve-ml-col-1 ve-w-100 ve-bb-0 ve-accordion__wrp-preview-inner manbrew-get-preview__wrp-preview"></div>`;
 		const dispExpandedOuter = ee`<div class="ve-flex ve-hidden ve-relative ve-accordion__wrp-preview ve-w-100">
 			<div class="ve-vr-0 ve-absolute ve-accordion__vr-preview ve-accordion__vr-preview--col-1"></div>
 			${dispExpandedInner}
@@ -399,7 +455,7 @@ export class GetBrewUi {
 
 		const eleLi = e_({
 			tag: "div",
-			clazz: `ve-lst__row ve-lst__row-inner ve-not-clickable ve-lst__row-border ve-lst__row--focusable ve-no-select ve-flex-col ve-no-shrink`,
+			clazz: `ve-lst__row ve-lst__row-inner ve-not-clickable ve-lst__row-border ve-no-select ve-flex-col ve-no-shrink`,
 			children: [
 				e_({
 					tag: "div",

@@ -218,6 +218,8 @@ export class ConverterRace extends ConverterFeatureBase {
 	}
 
 	static _doRacePostProcess (race, options) {
+		this._doPostProcess_removePage(race, options);
+
 		if (!race.entries) return;
 
 		// region Tag

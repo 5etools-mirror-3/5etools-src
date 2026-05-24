@@ -157,6 +157,8 @@ export class ConverterFeat extends ConverterFeatureBase {
 	}
 
 	static _getFinalState (state, options) {
+		this._doPostProcess_removePage(state.entity, options);
+
 		this._doFeatPostProcess(state, options);
 		return PropOrder.getOrdered(state.entity, state.entity.__prop || "feat");
 	}

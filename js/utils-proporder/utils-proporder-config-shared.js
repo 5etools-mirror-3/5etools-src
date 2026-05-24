@@ -46,6 +46,7 @@ export const PROPORDER_FOUNDRY_ACTIVITIES = new ArrayKey("activities", {
 		"save",
 		"healing",
 		"roll",
+		"visibility",
 
 		// "check"-type
 		"check",

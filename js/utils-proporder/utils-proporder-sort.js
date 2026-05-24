@@ -14,6 +14,7 @@ export const getFnRootPropListSort = (prop, {isRequired = false} = {}) => {
 		case "foundryAction":
 		case "background":
 		case "legendaryGroup":
+		case "legendaryGroupTemplate":
 		case "language":
 		case "languageScript":
 		case "name":

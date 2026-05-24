@@ -112,11 +112,22 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 
 	_budgetMode;
 
-	constructor ({comp, cache, encounterShapesLookup}) {
+	constructor (
+		{
+			comp,
+			cache,
+			encounterShapesLookup,
+			rendererWrapped,
+		},
+	) {
+		if (!rendererWrapped) throw new Error(`Missing required "rendererWrapped" option!`);
+
 		super();
+
 		this._comp = comp;
 		this._cache = cache;
 		this._encounterShapesLookup = encounterShapesLookup;
+		this._rendererWrapped = rendererWrapped;
 	}
 
 	/* -------------------------------------------- */
@@ -282,7 +293,7 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 			this,
 			"tierRandom",
 			{
-				html: `<select class="ve-form-control ve-br-0"></select>`,
+				html: `<select class="ve-form-control ve-h-34p ve-br-0"></select>`,
 				values: tiers,
 				fnDisplay: val => val.toTitleCase(),
 			},
@@ -292,7 +303,7 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 			this,
 			"shapeHashRandom",
 			{
-				html: `<select class="ve-form-control ve-br-0 ve-w-100"></select>`,
+				html: `<select class="ve-form-control ve-h-34p ve-br-0 ve-w-100"></select>`,
 				values: this._encounterShapesLookup.getHashList(),
 				fnDisplay: val => this._encounterShapesLookup.getEncounterShape(val).name,
 			},
@@ -330,14 +341,6 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 			await this._pDoAdjustEncounter({tier: this._state.tierAdjust});
 		};
 
-		const getLi = (tier) => {
-			return ee`<li title="${getButtonTitle(tier)}"><a href="#">${getButtonText(tier)}</a></li>`
-				.onn("click", async (evt) => {
-					evt.preventDefault();
-					await pSetTier({tier});
-				});
-		};
-
 		const btn = ee`<button class="ve-btn ve-btn-primary ecgen__btn-adjust"></button>`
 			.onn("click", async evt => {
 				evt.preventDefault();
@@ -350,28 +353,42 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 				.tooltip(getButtonTitle(this._state.tierAdjust));
 		})();
 
-		const wrpMenu = ee`<ul class="ve-dropdown-menu ve-block">${tiers.map(tier => getLi(tier))}</ul>`
-			.hideVe();
+		const menu = ContextUtil.getMenu(
+			tiers
+				.map(tier => new ContextUtil.Action(
+					getButtonText(tier),
+					async () => pSetTier({tier}),
+					{
+						title: getButtonTitle(tier),
+					},
+				)),
+		);
 
-		const dispCaret = e_({outer: `<span class="caret"></span>`});
-		document.body.addEventListener("click", evt => {
-			if (btnMenu.contains(evt.target)) return;
-			wrpMenu.hideVe();
-			dispCaret.removeClass("caret--up");
-		});
+		const dispCaret = ee`<span class="ve-caret"></span>`;
+		menu.on("open", () => dispCaret.addClass("ve-caret--up"));
+		menu.on("close", () => dispCaret.removeClass("ve-caret--up"));
+
 		const btnMenu = ee`<button class="ve-btn ve-btn-primary ve-w-24p ve-px-0">${dispCaret}</button>`
-			.onn("click", () => {
-				wrpMenu.toggleVe(!dispCaret.hasClass("caret--up"));
-				dispCaret.toggleClass("caret--up");
+			.onn("click", evt => {
+				if (menu.isOpen()) {
+					evt.preventDefault();
+					evt.stopPropagation();
+					return menu.close();
+				}
+
+				const bcr = btnMenu.getBoundingClientRect();
+				return ContextUtil.pOpenMenu(evt, menu, {
+					xPos: (window.innerWidth - bcr.right) + window.scrollX,
+					isFromRight: true,
+					yPos: bcr.bottom + window.scrollY + 1,
+				});
 			});
 
 		return ee`<div class="ve-flex-v-center ve-relative ve-no-shrink">
-			<div class="ve-btn-group">
+			<div class="ve-btn-group ve-flex-v-center">
 				${btn}
 				${btnMenu}
 			</div>
-
-			${wrpMenu}
 		</div>`;
 	}
 

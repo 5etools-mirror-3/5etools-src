@@ -39,7 +39,7 @@ export class EncounterBuilderRulesOne extends EncounterBuilderRulesBase {
 
 	_render_settingsRules ({stgSettingsRules}) {
 		const wrpSettingsRules = ee`<div class="ve-flex-col">
-			<div class="ve-flex ve-mb-2">${Renderer.get().render(`{@note Based on the encounter building rules on page 114 of the {@book ${Parser.sourceJsonToFull(Parser.SRC_XDMG)}|XDMG|3|Combat Encounter Difficulty}}`)}</div>
+			<div class="ve-flex ve-mb-2">${this._rendererWrapped.er(`{@note Based on the encounter building rules on page 114 of the {@book ${Parser.sourceJsonToFull(Parser.SRC_XDMG)}|XDMG|3|Combat Encounter Difficulty}}`)}</div>
 		</div>`
 			.appendTo(stgSettingsRules);
 

@@ -1,6 +1,5 @@
 import {TOOLTIP_NOTHING} from "./lootgen-const.js";
 import {LootGenUtils} from "./lootgen-utils.js";
-import {LootGenRender} from "./lootgen-render.js";
 
 export class LootGenOutput {
 	static _TIERS = ["other", "minor", "major"];
@@ -14,8 +13,11 @@ export class LootGenOutput {
 			artObjects,
 			magicItemsByTable,
 			dragonMundaneItems,
+			rendererWrapped,
 		},
 	) {
+		if (!rendererWrapped) throw new Error(`Missing required "rendererWrapped" option!`);
+
 		this._type = type;
 		this._name = name;
 		this._coins = coins;
@@ -23,6 +25,7 @@ export class LootGenOutput {
 		this._artObjects = artObjects;
 		this._magicItemsByTable = magicItemsByTable;
 		this._dragonMundaneItems = dragonMundaneItems;
+		this._rendererWrapped = rendererWrapped;
 
 		this._datetimeGenerated = Date.now();
 	}
@@ -46,7 +49,7 @@ export class LootGenOutput {
 		const eleTitleSplit = this._getEleTitleSplit();
 
 		const dispTitle = ee`<h4 class="ve-mt-1 ve-mb-2 ve-split-v-center ve-draggable">
-			<div>${LootGenRender.er(this._name)}</div>
+			<div>${this._rendererWrapped.er(this._name)}</div>
 			${eleTitleSplit}
 		</h4>`;
 
@@ -248,7 +251,7 @@ export class LootGenOutput {
 			return ee`
 			<li>${(lt.type).toLocaleStringVe()} ${LootGenUtils.getCoinageLabel("gp")} ${name} (×${lt.count}; worth ${((lt.type * lt.count)).toLocaleStringVe()} ${LootGenUtils.getCoinageLabel("gp")} total):</li>
 			<ul>
-				${Object.entries(lt.breakdown).map(([result, count]) => `<li>${LootGenRender.er(result)}${count > 1 ? `, ×${count}` : ""}</li>`).join("")}
+				${Object.entries(lt.breakdown).map(([result, count]) => `<li>${this._rendererWrapped.er(result)}${count > 1 ? `, ×${count}` : ""}</li>`).join("")}
 			</ul>
 		`;
 		});
@@ -293,7 +296,7 @@ export class LootGenOutput {
 				}
 
 				return ee`
-					<li>Magic Items${magicItems.tag ? ` (${LootGenRender.er(magicItems.tag)})` : ""}${(magicItems.count || 0) > 1 ? ` (×${magicItems.count})` : ""}</li>
+					<li>Magic Items${magicItems.tag ? ` (${this._rendererWrapped.er(magicItems.tag)})` : ""}${(magicItems.count || 0) > 1 ? ` (×${magicItems.count})` : ""}</li>
 					<ul>${magicItems.breakdown.map(it => it.getRender())}</ul>
 				`;
 			});

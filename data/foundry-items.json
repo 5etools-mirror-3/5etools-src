@@ -2802,6 +2802,86 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Card Sharp's Deck",
+			"source": "BMT",
+			"activities": [
+				{
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses",
+								"value": "1"
+							}
+						]
+					},
+					"uses": {
+						"max": "1",
+						"recovery": [
+							{
+								"period": "dawn",
+								"type": "recoverAll"
+							}
+						]
+					},
+					"spell": {
+						"challenge": {
+							"override": true,
+							"save": 15
+						},
+						"level": 3,
+						"uuid": "@spell[spray of cards|bmt]",
+						"properties": [
+							"vocal",
+							"somatic",
+							"material"
+						],
+						"spellbook": true
+					}
+				},
+				{
+					"name": "Deadly Deal",
+					"type": "attack",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "any"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "120"
+					},
+					"attack": {
+						"type": {
+							"value": "ranged",
+							"classification": "spell"
+						},
+						"ability": "dex"
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 8,
+								"types": [
+									"force"
+								]
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Carrion Crawler Mucus",
 			"source": "XDMG",
 			"activities": [
@@ -3287,6 +3367,121 @@
 						}
 					],
 					"description": "You can breathe underwater, and you have a Swim Speed of 60 feet."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Crown of the Wrath Bringer",
+			"source": "BGG",
+			"activities": [
+				{
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses",
+								"value": "1"
+							}
+						]
+					},
+					"uses": {
+						"max": "1",
+						"recovery": [
+							{
+								"period": "day",
+								"type": "recoverAll"
+							}
+						]
+					},
+					"spell": {
+						"challenge": {
+							"override": true,
+							"save": 15
+						},
+						"level": 3,
+						"uuid": "@spell[fear|phb]",
+						"properties": [
+							"vocal",
+							"somatic",
+							"material",
+							"concentration"
+						],
+						"spellbook": true
+					}
+				},
+				{
+					"name": "Hit Die Damage (Smallest)",
+					"type": "damage",
+					"activation": {
+						"type": "special",
+						"condition": "When you make an attack roll against a crreature and hit it while wearing the crown"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "hitDice",
+								"value": "1",
+								"target": "smallest"
+							}
+						]
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@attributes.hd.smallest"
+								},
+								"types": [
+									"psychic"
+								]
+							}
+						]
+					},
+					"visibility": {
+						"requireMagic": true
+					}
+				},
+				{
+					"name": "Hit Die Damage (Largest)",
+					"type": "damage",
+					"activation": {
+						"type": "special",
+						"condition": "When you make an attack roll against a crreature and hit it while wearing the crown"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "hitDice",
+								"value": "1",
+								"target": "largest"
+							}
+						]
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@attributes.hd.largest"
+								},
+								"types": [
+									"psychic"
+								]
+							}
+						]
+					},
+					"visibility": {
+						"requireMagic": true
+					}
 				}
 			],
 			"migrationVersion": 3
@@ -11828,6 +12023,99 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Nimbus Coronet",
+			"source": "BGG",
+			"activities": [
+				{
+					"name": "Cloudlike Form",
+					"type": "utility",
+					"img": "icons/magic/air/fog-gas-smoke-dense-white.webp",
+					"activation": {
+						"type": "action"
+					},
+					"duration": {
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses",
+								"value": "1"
+							}
+						]
+					},
+					"uses": {
+						"recovery": [
+							{
+								"period": "dawn",
+								"type": "recoverAll"
+							}
+						],
+						"max": "1"
+					},
+					"effects": [
+						{
+							"foundryId": "nimbusCoronet"
+						}
+					]
+				},
+				{
+					"name": "Teleport",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "space"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "15"
+					},
+					"visibility": {
+						"requireMagic": true
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "nimbusCoronet",
+					"name": "Nimbus Coronet Cloud Form",
+					"duration": {
+						"value": 1,
+						"units": "minutes",
+						"expiry": "turnStart"
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"value": "slashing",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "piercing",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "bludgeoning",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.attributes.movement.fly",
+							"value": 60,
+							"mode": "OVERRIDE"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Nolzur's Marvelous Pigments",
 			"source": "XDMG",
 			"activities": [
@@ -16080,6 +16368,38 @@
 						"dc": {
 							"formula": "15"
 						}
+					}
+				},
+				{
+					"name": "Dancing Lights",
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"spell": {
+						"properties": [
+							"vocal",
+							"somatic",
+							"material"
+						],
+						"spellbook": true,
+						"uuid": "@spell[dancing lights|xphb]"
+					}
+				},
+				{
+					"name": "Light",
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"spell": {
+						"properties": [
+							"vocal",
+							"somatic",
+							"material"
+						],
+						"spellbook": true,
+						"uuid": "@spell[light|xphb]"
 					}
 				}
 			],

@@ -116,6 +116,7 @@ export class TagTestUrlLookup {
 		//   indexed.
 		for (const prop of [
 			"feat",
+			"legendaryGroup",
 		]) {
 			[
 				...(await DataLoader.pCacheAndGetAllSite(prop)),

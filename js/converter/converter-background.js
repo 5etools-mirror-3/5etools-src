@@ -202,6 +202,8 @@ export class ConverterBackground extends ConverterFeatureBase {
 	}
 
 	static _doBackgroundPostProcess (state, options) {
+		this._doPostProcess_removePage(state.entity, options);
+
 		if (!state.entity.entries) return;
 
 		// region Tag

@@ -3,7 +3,6 @@ import {EncounterPartyMetaClassic} from "../partymeta/encounter-partymeta-classi
 import {TIER_ABSURD, TIER_DEADLY, TIER_EASY, TIER_HARD, TIER_MEDIUM, TIERS, TIERS_EXTENDED} from "../consts/encounterbuilder-consts-classic.js";
 import {BUDGET_MODE_XP} from "../consts/encounterbuilder-consts.js";
 import {EncounterbuilderUiThermometer} from "../encounterbuilder-ui-thermometer.js";
-import {EncounterBuilderTtkClassic} from "../ttk/encounterbuilder-ttk-classic.js";
 
 class _TierHtmlProviderClassic extends TierHtmlProviderBase {
 	_budgetMode = BUDGET_MODE_XP;
@@ -123,7 +122,7 @@ export class EncounterBuilderRulesClassic extends EncounterBuilderRulesBase {
 
 	_render_settingsRules ({stgSettingsRules}) {
 		const wrpSettingsRules = ee`<div class="ve-flex-col">
-			<div class="ve-flex ve-mb-2">${Renderer.get().render(`{@note Based on the encounter building rules on page 81 of the {@book ${Parser.sourceJsonToFull(Parser.SRC_DMG)}|DMG|3|Creating a Combat Encounter}}`)}</div>
+			<div class="ve-flex ve-mb-2">${this._rendererWrapped.er(`{@note Based on the encounter building rules on page 81 of the {@book ${Parser.sourceJsonToFull(Parser.SRC_DMG)}|DMG|3|Creating a Combat Encounter}}`)}</div>
 		</div>`
 			.appendTo(stgSettingsRules);
 

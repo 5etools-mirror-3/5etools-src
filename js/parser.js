@@ -4450,6 +4450,10 @@ Parser.PROP_TO_DISPLAY_NAME = {
 	"mythic": "Mythic Action",
 	"lairActions": "Lair Action",
 	"regionalEffects": "Regional Effect",
+
+	// '24-specific
+	"race": "Species",
+	"subrace": "Subspecies",
 };
 Parser.getPropDisplayName = function (prop, {suffix = ""} = {}) {
 	if (Parser.PROP_TO_DISPLAY_NAME[prop]) return `${Parser.PROP_TO_DISPLAY_NAME[prop]}${suffix}`;

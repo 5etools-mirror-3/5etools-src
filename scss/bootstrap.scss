@@ -261,10 +261,6 @@
 		h3 {
 			break-after: avoid;
 		}
-		.ve-btn > .caret,
-		.dropup > .ve-btn > .caret {
-			border-top-color: #000 !important;
-		}
 		.label {
 			border: 1px solid #000;
 		}
@@ -2866,21 +2862,6 @@
 		opacity: 1;
 	}
 
-	.caret {
-		display: inline-block;
-		width: 0;
-		height: 0;
-		margin-left: 2px;
-		vertical-align: middle;
-		border-top: 4px dashed;
-		border-right: 4px solid transparent;
-		border-left: 4px solid transparent;
-
-		&--up {
-			transform: rotateZ(180deg);
-		}
-	}
-
 	.dropdown {
 		position: relative;
 	}
@@ -2989,18 +2970,6 @@
 		z-index: 990;
 	}
 
-	.dropup .caret {
-		content: "";
-		border-top: 0;
-		border-bottom: 4px dashed;
-	}
-
-	.dropup .ve-dropdown-menu {
-		top: auto;
-		bottom: 100%;
-		margin-bottom: 2px;
-	}
-
 	.ve-btn-group,
 	.ve-btn-group-vertical {
 		position: relative;
@@ -3080,19 +3049,6 @@
 
 	.ve-btn-group.open .ve-dropdown-toggle.ve-btn-link {
 		box-shadow: none;
-	}
-
-	.ve-btn .caret {
-		margin-left: 0;
-	}
-
-	.ve-btn-lg .caret {
-		border-width: 5px 5px 0;
-		border-bottom-width: 0;
-	}
-
-	.dropup .ve-btn-lg .caret {
-		border-width: 0 5px 5px;
 	}
 
 	.ve-btn-group-vertical > .ve-btn,

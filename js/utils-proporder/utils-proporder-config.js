@@ -279,6 +279,7 @@ const PROPORDER_MONSTER = [
 		fnGetOrder: () => [
 			"name",
 			"source",
+			"_templates",
 			new ObjectKey("_mod", {
 				fnGetOrder: () => PROPORDER_MONSTER__COPY_MOD,
 			}),
@@ -333,6 +334,11 @@ const PROPORDER_MONSTER_TEMPLATE = [
 		],
 	}),
 ];
+const PROPORDER_MONSTER_TEMPLATE__COPY_MOD = [
+	"*",
+	"_",
+	...PROPORDER_MONSTER_TEMPLATE,
+];
 const PROPORDER_MAKE_BREW_CREATURE_TRAIT = [
 	"name",
 	"source",
@@ -346,11 +352,6 @@ const PROPORDER_MAKE_BREW_CREATURE_ACTION = [
 	"reprintedAs",
 
 	"entries",
-];
-const PROPORDER_MONSTER_TEMPLATE__COPY_MOD = [
-	"*",
-	"_",
-	...PROPORDER_MONSTER_TEMPLATE,
 ];
 const PROPORDER_FOUNDRY_MONSTER = [
 	"name",
@@ -658,11 +659,53 @@ const PROPORDER_LEGENDARY_GROUP = [
 	"lairActions",
 	"regionalEffects",
 	"mythicEncounter",
+
+	new ArrayKey("_versions", {
+		fnGetOrder: () => [
+			"name",
+			"source",
+			"_templates",
+			new ObjectKey("_mod", {
+				fnGetOrder: () => PROPORDER_LEGENDARY_GROUP__COPY_MOD,
+			}),
+			"_preserve",
+			"_abstract",
+			"_implementations",
+			...PROPORDER_LEGENDARY_GROUP,
+		],
+		fnSort: getFnRootPropListSort("legendaryGroup", {isRequired: true}),
+	}),
 ];
 const PROPORDER_LEGENDARY_GROUP__COPY_MOD = [
 	"*",
 	"_",
 	...PROPORDER_LEGENDARY_GROUP,
+];
+const PROPORDER_LEGENDARY_GROUP_TEMPLATE = [
+	"name",
+
+	"source",
+	"page",
+
+	"ref",
+
+	ObjectKey.getCopyKey({fnGetModOrder: () => PROPORDER_LEGENDARY_GROUP_TEMPLATE__COPY_MOD}),
+
+	new ObjectKey("apply", {
+		order: [
+			new ObjectKey("_root", {
+				order: PROPORDER_LEGENDARY_GROUP,
+			}),
+			new ObjectKey("_mod", {
+				fnGetOrder: () => PROPORDER_LEGENDARY_GROUP__COPY_MOD,
+			}),
+		],
+	}),
+];
+const PROPORDER_LEGENDARY_GROUP_TEMPLATE__COPY_MOD = [
+	"*",
+	"_",
+	...PROPORDER_LEGENDARY_GROUP_TEMPLATE,
 ];
 const PROPORDER_CLASS = [
 	"name",
@@ -2550,6 +2593,7 @@ export const PROPORDER_PROP_TO_LIST = {
 	"background": PROPORDER_BACKGROUND,
 	"foundryBackgroundFeature": PROPORDER_FOUNDRY_BACKGROUND_FEATURE,
 	"legendaryGroup": PROPORDER_LEGENDARY_GROUP,
+	"legendaryGroupTemplate": PROPORDER_LEGENDARY_GROUP_TEMPLATE,
 	"class": PROPORDER_CLASS,
 	"classFluff": PROPORDER_GENERIC_FLUFF,
 	"foundryClass": PROPORDER_FOUNDRY_CLASS,
@@ -2713,8 +2757,9 @@ export const PROPORDER_ROOT = [
 	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "monster"),
 	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "monsterFluff"),
 	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "foundryMonster"),
-	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "legendaryGroup"),
 	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "monsterTemplate"),
+	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "legendaryGroup"),
+	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "legendaryGroupTemplate"),
 
 	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "object"),
 	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "objectFluff"),

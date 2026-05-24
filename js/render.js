@@ -1018,7 +1018,7 @@ globalThis.Renderer = function () {
 
 		const nextDepth = incDepth ? meta.depth + 1 : meta.depth;
 
-		const styleString = this._renderEntriesSubtypes_getStyleString({entry, meta});
+		const styleString = this._renderEntriesSubtypes_getStyleString({entry, meta, isNamed: !!displayName});
 
 		const dataString = this._renderEntriesSubtypes_getDataString(entry);
 		if (entry.name != null && Renderer.ENTRIES_WITH_ENUMERATED_TITLES_LOOKUP[entry.type]) this._handleTrackTitles(entry.name);
@@ -1056,7 +1056,7 @@ globalThis.Renderer = function () {
 	};
 
 	this._renderEntriesSubtypes_inline = function ({entry, textStack, meta, options, displayName}) {
-		const styleString = this._renderEntriesSubtypes_getStyleString({entry, meta, isInlineTitle: true});
+		const styleString = this._renderEntriesSubtypes_getStyleString({entry, meta, isInlineTitle: true, isNamed: !!displayName});
 
 		const dataString = this._renderEntriesSubtypes_getDataString(entry);
 		if (entry.name != null && Renderer.ENTRIES_WITH_ENUMERATED_TITLES_LOOKUP[entry.type]) this._handleTrackTitles(entry.name);
@@ -1089,10 +1089,11 @@ globalThis.Renderer = function () {
 		textStack[0] += `</${this.wrapperTag}>`;
 	};
 
-	this._renderEntriesSubtypes_getDataString = function (entry) {
+	this._renderEntriesSubtypes_getDataString = function (entry, {isCollapsibleChild = false} = {}) {
 		const displayName = entry._displayName || entry.name;
 		let dataString = "";
 		if (displayName) dataString += ` data-roll-name-ancestor="${Renderer.stripTags(displayName).qq()}"`;
+		if (isCollapsibleChild) dataString += `data-rd-is-collapsible-child="true"`;
 		if (entry.source) dataString += ` data-source="${entry.source.qq()}"`;
 		if (entry.data) {
 			for (const k in entry.data) {
@@ -1141,9 +1142,10 @@ globalThis.Renderer = function () {
 		textStack[0] += `<p><i>${Renderer.utils.prerequisite.getHtml(entry.prerequisite, {styleHint: meta.styleHint})}</i></p>`;
 	};
 
-	this._renderEntriesSubtypes_getStyleString = function ({entry, meta, isInlineTitle = false}) {
+	this._renderEntriesSubtypes_getStyleString = function ({entry, meta, isNamed = false, isInlineTitle = false}) {
 		const styleClasses = ["ve-rd__b"];
 		styleClasses.push(this._getStyleClass(entry.type || "entries", entry));
+		if (isNamed) styleClasses.push("ve-rd__b--named");
 		if (isInlineTitle) {
 			if (this._subVariant) styleClasses.push(Renderer.HEAD_2_SUB_VARIANT);
 			else styleClasses.push(Renderer.HEAD_2);
@@ -1230,7 +1232,9 @@ globalThis.Renderer = function () {
 	};
 
 	this._renderInset = function (entry, textStack, meta, options) {
-		const dataString = this._renderEntriesSubtypes_getDataString(entry);
+		const displayName = entry.name?.trim();
+
+		const dataString = this._renderEntriesSubtypes_getDataString(entry, {isCollapsibleChild: !displayName});
 		textStack[0] += `<${this.wrapperTag} class="${this._renderInset_getCssClasses(entry, textStack, meta, options)}" ${dataString}>`;
 
 		const cachedLastDepthTrackerProps = MiscUtil.copyFast(this._lastDepthTrackerInheritedProps);
@@ -1240,7 +1244,7 @@ globalThis.Renderer = function () {
 		const partExpandCollapse = !this._isPartPageExpandCollapseDisabled ? this._getPtExpandCollapseSpecial() : "";
 		const partPageExpandCollapse = `<span class="ve-flex-vh-center">${[pagePart, partExpandCollapse].filter(Boolean).join("")}</span>`;
 
-		if (entry.name != null) {
+		if (displayName != null) {
 			if (Renderer.ENTRIES_WITH_ENUMERATED_TITLES_LOOKUP[entry.type]) this._handleTrackTitles(entry.name);
 
 			const cacheDepth = meta.depth;
@@ -1250,7 +1254,7 @@ globalThis.Renderer = function () {
 				textStack,
 				meta,
 				options,
-				displayName: entry.name,
+				displayName,
 				headerTag: `h4`,
 				pagePart,
 				partPageExpandCollapse,
@@ -1278,7 +1282,9 @@ globalThis.Renderer = function () {
 	};
 
 	this._renderInsetReadaloud = function (entry, textStack, meta, options) {
-		const dataString = this._renderEntriesSubtypes_getDataString(entry);
+		const displayName = entry.name?.trim();
+
+		const dataString = this._renderEntriesSubtypes_getDataString(entry, {isCollapsibleChild: !displayName});
 		textStack[0] += `<${this.wrapperTag} class="${this._renderInset_getCssClasses(entry, textStack, meta, options)}" ${dataString}>`;
 
 		const cachedLastDepthTrackerProps = MiscUtil.copyFast(this._lastDepthTrackerInheritedProps);
@@ -1288,7 +1294,7 @@ globalThis.Renderer = function () {
 		const partExpandCollapse = !this._isPartPageExpandCollapseDisabled ? this._getPtExpandCollapseSpecial() : "";
 		const partPageExpandCollapse = `<span class="ve-flex-vh-center">${[pagePart, partExpandCollapse].filter(Boolean).join("")}</span>`;
 
-		if (entry.name != null) {
+		if (displayName != null) {
 			if (Renderer.ENTRIES_WITH_ENUMERATED_TITLES_LOOKUP[entry.type]) this._handleTrackTitles(entry.name);
 
 			const cacheDepth = meta.depth;
@@ -1298,7 +1304,7 @@ globalThis.Renderer = function () {
 				textStack,
 				meta,
 				options,
-				displayName: entry.name,
+				displayName,
 				headerTag: `h4`,
 				pagePart,
 				partPageExpandCollapse,
@@ -6301,6 +6307,13 @@ Renderer.events = class {
 			// For special sections, always collapse the whole thing.
 			if (selector !== `[data-rd-h-special-toggle-button]`) {
 				const eleToCheck = Renderer.events._handleClick_headerToggleButton_getEleToCheck(eleNxt);
+
+				if (eleToCheck.getAttribute("data-rd-is-collapsible-child") === "true") {
+					eleNxt.classList.toggle("ve-rd__ele-toggled-hidden", !isShow);
+					eleNxt = eleNxt.nextElementSibling;
+					continue;
+				}
+
 				if (
 					eleToCheck.classList.contains("ve-rd__b-special")
 					|| (eleToCheck.classList.contains("ve-rd__h") && !eleToCheck.classList.contains("ve-rd__h--3"))
@@ -6308,6 +6321,7 @@ Renderer.events = class {
 
 				if (
 					!eleToCheck.classList.contains("ve-rd__b")
+					|| !eleToCheck.classList.contains("ve-rd__b--named")
 					|| eleToCheck.classList.contains("ve-rd__b--3")
 				) {
 					eleNxt.classList.toggle("ve-rd__ele-toggled-hidden", !isShow);
@@ -9661,7 +9675,7 @@ class _RenderCompactBestiaryImplBase {
 		const ptCrSpellLevel = this._getCommonHtmlParts_crSpellLevel({mon, opts, isShowCrScaler, isShowSpellLevelScaler, isShowClassLevelScaler});
 
 		return `<tr>
-			<td colspan="${this._style === "classic" ? "2" : "1"}">${mon.ac == null ? "\u2014" : Parser.acToFull(mon.ac, {isHideFrom: this._style !== "classic"})}</td>
+			<td colspan="${this._style === "classic" ? "2" : "1"}">${mon.ac == null ? "\u2014" : Parser.acToFull(mon.ac)}</td>
 			${ptInitiative ? `<td colspan="1">${ptInitiative}</td>` : ""}
 			<td colspan="2">${mon.hp == null ? "\u2014" : Renderer.monster.getRenderedHp(mon.hp)}</td>
 			<td colspan="2">${Parser.getSpeedString(mon)}</td>
@@ -11360,8 +11374,12 @@ Renderer.monster = class {
 	/* -------------------------------------------- */
 
 	// region Custom hash ID packing/unpacking
+	static isScaled (mon) {
+		return !!mon._isScaledCr || !!mon._isScaledSpellSummon || !!mon._scaledClassSummonLevel;
+	}
+
 	static getCustomHashId (mon) {
-		if (!mon._isScaledCr && !mon._isScaledSpellSummon && !mon._scaledClassSummonLevel) return null;
+		if (!Renderer.monster.isScaled(mon)) return null;
 
 		const {
 			name,
@@ -14702,30 +14720,30 @@ Renderer.crochetPattern = class {
 
 		return `${Renderer.utils.getExcludedTr({entity: ent, dataProp: "crochetPattern", page: UrlUtil.PG_HOMECRAFTS})}
 		${Renderer.utils.getNameTr(ent, {page: UrlUtil.PG_HOMECRAFTS})}
-		
+
 		<tr><td colspan="6">
 			<i>Skill Level: ${renderer.render(entrySkillLevel)}.${entryDesignedBy ? ` Designed by ${renderer.render(entryDesignedBy)}.` : ""}</i></td>
 		</td></tr>
-		
+
 		<tr><td colspan="6">
 		<div class="ve-flex ve-w-100 ve-rd-plaintext__wrp-root">
 			<div class="ve-flex-1 ve-flex-col ve-br-1p ve-pr-2">
 				${entriesMeasurements?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">Finished Measurements</div><div>${entriesMeasurements.map(ent => `<div class="ve-mt-1">${renderer.render(ent)}</div>`).join("")}</div></div>` : ""}
-				
+
 				${ent.yarn?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">Yarn</div><div>${renderer.render({entries: ent.yarn})}</div></div>` : ""}
-				
+
 				${entriesHooks?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">Hooks</div><div>${renderer.render({entries: entriesHooks})}</div></div>` : ""}
-				
+
 				${ent.notions?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">Notions</div><div>${renderer.render({entries: ent.notions})}</div></div>` : ""}
-				
+
 				${ent.gauge?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">Gauge</div><div>${renderer.render({entries: ent.gauge})}</div></div>` : ""}
-				
+
 				${ent.stitches?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">Special Stitches</div><div>${renderer.render({entries: ent.stitches})}</div></div>` : ""}
-				
+
 				${ent.abbreviations?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">Special Abbreviations</div><div>${renderer.render({entries: ent.abbreviations})}</div></div>` : ""}
-				
+
 				${ent.notes?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">Notes</div><div>${renderer.render({entries: ent.notes})}</div></div>` : ""}
-				
+
 				${ent.finishing?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">Finishing</div><div>${renderer.render({entries: ent.finishing})}</div></div>` : ""}
 			</div>
 

@@ -1,7 +1,6 @@
 import {LootGenGeneratorBase} from "./lootgen-generator-base.js";
 import {LootGenMagicItem} from "./lootgen-magicitem.js";
 import {LootGenOutputMagicItems} from "./lootgen-output.js";
-import {LootGenRender} from "./lootgen-render.js";
 
 export class LootGenGeneratorPartyLoot extends LootGenGeneratorBase {
 	static _PARTY_LOOT_LEVEL_RANGES = {
@@ -153,7 +152,7 @@ export class LootGenGeneratorPartyLoot extends LootGenGeneratorBase {
 
 		ee`<div class="ve-flex-col ve-py-2 ve-px-3">
 			<p>
-				Generates a set of magical items for a party, based on the tables and rules in ${LootGenRender.er(`{@book Xanathar's Guide to Everything|XGE|2|awarding magic items}`)}, pages 135-136.
+				Generates a set of magical items for a party, based on the tables and rules in ${this._rendererWrapped.er(`{@book Xanathar's Guide to Everything|XGE|2|awarding magic items}`)}, pages 135-136.
 			</p>
 			<p><i>If &quot;Exact Level&quot; is selected, the output will include a proportional number of items for any partially-completed tier.</i></p>
 
@@ -194,6 +193,7 @@ export class LootGenGeneratorPartyLoot extends LootGenGeneratorBase {
 						lootGenMagicItems: breakdown,
 						spells: this._dataManager.getDataSpellsFiltered(),
 						magicItemTable: tableMeta,
+						rendererWrapped: this._rendererWrapped,
 					});
 					breakdown.push(lootItem);
 				}
@@ -215,6 +215,7 @@ export class LootGenGeneratorPartyLoot extends LootGenGeneratorBase {
 			type: `Party Loot: Level ${ptLevel}`,
 			name: `Magic items for a {@b Level ${ptLevel}} Party`,
 			magicItemsByTable,
+			rendererWrapped: this._rendererWrapped,
 		});
 		this._outputManager.doAddOutput({lootOutput});
 	}

@@ -371,6 +371,8 @@ class SublistManager {
 			isNoSave = false,
 		} = {},
 	) {
+		await this._listPage.pDoLoadExportedSublistSources(exportedSublist);
+
 		// This should never be necessary, but, ensure no unwanted state gets passed
 		if (exportedSublist) ListUtil.getWithoutManagerClientState(exportedSublist);
 
@@ -386,8 +388,6 @@ class SublistManager {
 		});
 
 		if (exportedSublist && !isAdditive) await this.pDoSublistRemoveAll({isNoSave: true});
-
-		await this._listPage.pDoLoadExportedSublistSources(exportedSublist);
 
 		for (const entityInfo of entityInfos) {
 			const {count, entity, ser} = entityInfo;

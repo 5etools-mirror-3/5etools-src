@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.28.0"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.28.1"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -684,6 +684,7 @@ globalThis.SourceUtil = class {
 	}
 
 	static getEntitySource (it) { return it.source || it.inherits?.source; }
+	static getEntityPage (it) { return it.page ?? it.inherits?.page; }
 };
 
 // CURRENCY ============================================================================================================
@@ -3103,9 +3104,21 @@ globalThis.ContextUtil = class {
 	 * @param evt
 	 * @param menu
 	 * @param {?object} userData
+	 * @param {?number} xPos
+	 * @param {?boolean} isFromRight
+	 * @param {?number} yPos
 	 * @return {Promise<*>}
 	 */
-	static pOpenMenu (evt, menu, {userData = null} = {}) {
+	static pOpenMenu (
+		evt,
+		menu,
+		{
+			userData = null,
+			xPos = null,
+			isFromRight = false,
+			yPos = null,
+		} = {},
+	) {
 		evt.preventDefault();
 		evt.stopPropagation();
 
@@ -3114,7 +3127,7 @@ globalThis.ContextUtil = class {
 		// Close any other open menus
 		ContextUtil._menus.filter(it => it !== menu).forEach(it => it.close());
 
-		return menu.pOpen(evt, {userData});
+		return menu.pOpen(evt, {userData, xPos, isFromRight, yPos});
 	}
 
 	static closeAllMenus () {
@@ -3135,6 +3148,18 @@ globalThis.ContextUtil = class {
 			this._metasActions = [];
 
 			this._menusSub = [];
+
+			this._eventChannel = new EventTarget();
+		}
+
+		on (eventName, handler) {
+			this._eventChannel.addEventListener(eventName, handler);
+			return handler;
+		}
+
+		off (eventName, handler) {
+			this._eventChannel.removeEventListener(eventName, handler);
+			return handler;
 		}
 
 		remove () {
@@ -3146,7 +3171,17 @@ globalThis.ContextUtil = class {
 		width () { return this._ele ? this._ele.outerWidthe() : undefined; }
 		height () { return this._ele ? this._ele.outerHeighte() : undefined; }
 
-		pOpen (evt, {userData = null, offsetY = null, boundsX = null} = {}) {
+		pOpen (
+			evt,
+			{
+				userData = null,
+				offsetY = null,
+				boundsX = null,
+				xPos = null,
+				isFromRight = false,
+				yPos = null,
+			} = {},
+		) {
 			evt.stopPropagation();
 			evt.preventDefault();
 
@@ -3166,16 +3201,24 @@ globalThis.ContextUtil = class {
 					opacity: `0px`,
 					pointerEvents: "none",
 				})
-				.showVe()
-				// Use the accurate width/height to set the final position, and remove our temp styling
-				.css({
-					left: `${this._getMenuPosition(evt, "x", {bounds: boundsX})}px`,
-					top: `${this._getMenuPosition(evt, "y", {offset: offsetY})}px`,
-					opacity: "",
-					pointerEvents: "",
-				});
+				.showVe();
+
+			// Use the accurate width/height to set the final position, and remove our temp styling
+			const cssNxt = {
+				left: "",
+				top: "",
+				opacity: "",
+				pointerEvents: "",
+			};
+
+			cssNxt[isFromRight ? "right" : "left"] = `${xPos ?? this._getMenuPosition(evt, "x", {bounds: boundsX})}px`;
+			cssNxt.top = `${yPos ?? this._getMenuPosition(evt, "y", {offset: offsetY})}px`;
+
+			this._ele.css(cssNxt);
 
 			this._metasActions[0].eleRow.focus();
+
+			this._eventChannel.dispatchEvent(new Event("open"));
 
 			return this._pResult;
 		}
@@ -3189,6 +3232,8 @@ globalThis.ContextUtil = class {
 
 			if (!_isSkipSubMenus) this.closeSubMenus();
 			if (!isSkipParentMenus) this._closeParentMenus();
+
+			this._eventChannel.dispatchEvent(new Event("close"));
 		}
 
 		isOpen () {
@@ -3465,7 +3510,7 @@ globalThis.ContextUtil = class {
 
 			const eleRow = ee`<div class="ve-ui-ctx__btn ve-py-1 ve-px-5 ve-split-v-center">
 				<div>${this._name}</div>
-				<div class="ve-pl-4"><span class="caret caret--right"></span></div>
+				<div class="ve-pl-4"><span class="ve-caret ve-caret--right"></span></div>
 			</div>`
 				.onn("click", async evt => {
 					evt.stopPropagation();
@@ -5432,10 +5477,8 @@ globalThis.DataUtil = class {
 
 			// TODO(Template) allow templates for other entity types
 			switch (entry.__prop) {
-				case "monster": {
-					const templateData = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/bestiary/template.json`);
-					return templateData.monsterTemplate;
-				}
+				case "monster": return (await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/bestiary/template.json`)).monsterTemplate;
+				case "legendaryGroup": return ((await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/bestiary/template.json`)).legendaryGroupTemplate);
 				default: throw new Error(`Unsupported!`);
 			}
 		}
@@ -6329,6 +6372,10 @@ globalThis.DataUtil = class {
 			static getCleanMathExpression (str) { return str.replace(/[^-+/*0-9.,]+/g, ""); }
 		};
 
+		static hasVersions (parent) {
+			return !!parent?._versions?.length;
+		}
+
 		static getVersions (parent, {impl = null, isExternalApplicationIdentityOnly = false} = {}) {
 			if (!parent?._versions?.length) return [];
 
@@ -6385,6 +6432,7 @@ globalThis.DataUtil = class {
 			// Tweak the data structure to match what `_applyCopy` expects
 			ent._copy = {
 				_mod: ent._mod,
+				_templates: ent._templates,
 				_preserve: ent._preserve || {"*": true},
 			};
 			delete ent._mod;
@@ -6419,7 +6467,7 @@ globalThis.DataUtil = class {
 				impl,
 				cpyParentEntity,
 				version,
-				null,
+				DataLoader.getAllFromCacheAll(`${parentEntity.__prop}Template`, {isSilent: true}),
 				{isExternalApplicationIdentityOnly},
 			);
 			Object.assign(version, additionalData);
@@ -6428,6 +6476,11 @@ globalThis.DataUtil = class {
 	};
 
 	static proxy = class {
+		static hasVersions (prop, ent) {
+			if (DataUtil[prop]?.hasVersions) return DataUtil[prop]?.hasVersions(ent);
+			return DataUtil.generic.hasVersions(ent);
+		}
+
 		static getVersions (prop, ent, {isExternalApplicationIdentityOnly = false} = {}) {
 			if (DataUtil[prop]?.getVersions) return DataUtil[prop]?.getVersions(ent, {isExternalApplicationIdentityOnly});
 			return DataUtil.generic.getVersions(ent, {isExternalApplicationIdentityOnly});
@@ -6484,10 +6537,14 @@ globalThis.DataUtil = class {
 		static _DIR = "bestiary";
 		static _PROP = "monster";
 
-		static async loadJSON () {
-			await DataUtil.monster.pPreloadLegendaryGroups();
-			return super.loadJSON();
+		/* -------------------------------------------- */
+
+		static hasVersions (mon) {
+			return DataUtil.generic.hasVersions(mon)
+				|| mon.variant?.some(it => it._version?.addAs || it._version?.addHeadersAs);
 		}
+
+		/* ----- */
 
 		static getVersions (mon, {isExternalApplicationIdentityOnly = false} = {}) {
 			const additionalVersionData = DataUtil.monster._getAdditionalVersionsData(mon);
@@ -6548,26 +6605,29 @@ globalThis.DataUtil = class {
 				.filter(Boolean);
 		}
 
+		/* -------------------------------------------- */
+
 		static _pLoadLegendaryGroups = null;
-		static async pPreloadLegendaryGroups () {
-			return (
-				DataUtil.monster._pLoadLegendaryGroups ||= ((async () => {
-					const legendaryGroups = await DataUtil.legendaryGroup.pLoadAll();
-					DataUtil.monster.populateMetaReference({legendaryGroup: legendaryGroups});
-				})())
-			);
+		static async pPreloadLegendaryGroupsSite () {
+			return (DataUtil.monster._pLoadLegendaryGroups ||= DataLoader.pCacheAndGetAllSite("legendaryGroup"));
 		}
 
-		static legendaryGroupLookup = {};
+		static async pUpdatePreloadLegendaryGroupsPrerelease () {
+			return DataLoader.pCacheAndGetAllPrerelease("legendaryGroup");
+		}
+
+		static async pUpdatePreloadLegendaryGroupsBrew () {
+			return DataLoader.pCacheAndGetAllBrew("legendaryGroup");
+		}
+
+		/* ----- */
+
 		static getLegendaryGroup (mon) {
-			if (!mon.legendaryGroup || !mon.legendaryGroup.source || !mon.legendaryGroup.name) return null;
-			return DataUtil.monster.legendaryGroupLookup[mon.legendaryGroup.source]?.[mon.legendaryGroup.name];
+			if (!mon.legendaryGroup?.source || !mon.legendaryGroup?.name) return null;
+			return DataLoader.getFromCache("legendaryGroup", mon.legendaryGroup.source, UrlUtil.URL_TO_HASH_BUILDER["legendaryGroup"](mon.legendaryGroup));
 		}
-		static populateMetaReference (data) {
-			(data.legendaryGroup || []).forEach(it => {
-				(DataUtil.monster.legendaryGroupLookup[it.source] ||= {})[it.name] = it;
-			});
-		}
+
+		/* -------------------------------------------- */
 	};
 
 	static monsterFluff = class extends _DataUtilPropConfigMultiSource {
@@ -9356,34 +9416,36 @@ globalThis.ExtensionUtil = class {
 if (typeof window !== "undefined") window.addEventListener("rivet.active", () => ExtensionUtil.ACTIVE = true);
 
 // LOCKS ===============================================================================================================
-/**
- * @param {string} name
- * @param {boolean} isDbg
- * @constructor
- */
-globalThis.VeLock = function ({name = null, isDbg = false} = {}) {
-	this._MSG_PAD_LEN = 8;
+globalThis.VeLock = class {
+	static _MSG_PAD_LEN = 8;
+	static _IS_DBG_ALL = false;
 
-	this._name = name;
-	this._isDbg = isDbg;
-	this._lockMeta = null;
+	/**
+	 * @param {?string} [name]
+	 * @param {boolean} [isDbg]
+	 */
+	constructor ({name = null, isDbg = false} = {}) {
+		this._name = name;
+		this._isDbg = isDbg;
+		this._lockMeta = null;
+	}
 
-	this._getCaller = () => {
+	_getCaller () {
 		return (new Error()).stack.split("\n")[3].trim();
-	};
+	}
 
-	this.pLock = async ({token = null} = {}) => {
+	async pLock ({token = null} = {}) {
 		if (token != null && this._lockMeta?.token === token) {
 			++this._lockMeta.depth;
 			// eslint-disable-next-line no-console
-			if (this._isDbg) console.warn(`Lock ${"add".padEnd(this._MSG_PAD_LEN, " ")} "${this._name || "(unnamed)"}" (now ${this._lockMeta.depth}) at ${this._getCaller()}`);
+			if (this._isDbg || this.constructor._IS_DBG_ALL) console.warn(`Lock ${"add".padEnd(this.constructor._MSG_PAD_LEN, " ")} "${this._name || "(unnamed)"}" (now ${this._lockMeta.depth}) at ${this._getCaller()}`);
 			return token;
 		}
 
 		while (this._lockMeta) await this._lockMeta.lock;
 
 		// eslint-disable-next-line no-console
-		if (this._isDbg) console.warn(`Lock ${"acquired".padEnd(this._MSG_PAD_LEN, " ")} "${this._name || "(unnamed)"}" at ${this._getCaller()}`);
+		if (this._isDbg || this.constructor._IS_DBG_ALL) console.warn(`Lock ${"acquired".padEnd(this.constructor._MSG_PAD_LEN, " ")} "${this._name || "(unnamed)"}" at ${this._getCaller()}`);
 
 		let unlock = null;
 		const lock = new Promise(resolve => unlock = resolve);
@@ -9395,24 +9457,24 @@ globalThis.VeLock = function ({name = null, isDbg = false} = {}) {
 		};
 
 		return this._lockMeta.token;
-	};
+	}
 
-	this.unlock = () => {
+	unlock () {
 		if (!this._lockMeta) return;
 
 		if (this._lockMeta.depth > 0) {
 			// eslint-disable-next-line no-console
-			if (this._isDbg) console.warn(`Lock ${"sub".padEnd(this._MSG_PAD_LEN, " ")} "${this._name || "(unnamed)"}" (now ${this._lockMeta.depth - 1}) at ${this._getCaller()}`);
+			if (this._isDbg || this.constructor._IS_DBG_ALL) console.warn(`Lock ${"sub".padEnd(this.constructor._MSG_PAD_LEN, " ")} "${this._name || "(unnamed)"}" (now ${this._lockMeta.depth - 1}) at ${this._getCaller()}`);
 			return --this._lockMeta.depth;
 		}
 
 		// eslint-disable-next-line no-console
-		if (this._isDbg) console.warn(`Lock ${"released".padEnd(this._MSG_PAD_LEN, " ")} "${this._name || "(unnamed)"}" at ${this._getCaller()}`);
+		if (this._isDbg || this.constructor._IS_DBG_ALL) console.warn(`Lock ${"released".padEnd(this.constructor._MSG_PAD_LEN, " ")} "${this._name || "(unnamed)"}" at ${this._getCaller()}`);
 
 		const lockMeta = this._lockMeta;
 		this._lockMeta = null;
 		lockMeta.unlock();
-	};
+	}
 };
 ExcludeUtil._lock = new VeLock({name: "blocklist"});
 

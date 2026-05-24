@@ -345,7 +345,7 @@ class _PageGeneratorRenderdemo extends PageGeneratorGeneric {
 		"ace.js",
 	];
 
-	_scripts = [
+	_scriptsModules = [
 		"renderdemo.js",
 	];
 }

@@ -54,9 +54,12 @@ export class ModalFilterBase {
 	 * @param opts.btnToggleSummaryHidden
 	 * @param opts.wrpMiniPills
 	 * @param opts.isBuildUi If an alternate UI should be used, which has "send to right" buttons.
+	 * @param opts.isNoSelect If selection UI should be disabled.
 	 */
 	async pPopulateWrapper (wrp, opts = null) {
 		opts = opts || {};
+
+		if (opts.isBuildUi && opts.isNoSelect) throw new Error(`"isBuildUi" and "isNoSelect" are mutually exclusive!`);
 
 		await this._pInit();
 
@@ -77,10 +80,10 @@ export class ModalFilterBase {
 		const wrpFormBottom = opts.wrpMiniPills || ee`<div class="ve-w-100"></div>`;
 
 		const wrpFormHeaders = ee`<div class="ve-input-group ve-input-group--bottom ve-flex ve-no-shrink"></div>`;
-		const cbSelAll = opts.isBuildUi || this._isRadio ? null : ee`<input type="checkbox">`;
+		const cbSelAll = opts.isBuildUi || opts.isNoSelect || this._isRadio ? null : ee`<input type="checkbox">`;
 		const btnSendAllToRight = opts.isBuildUi ? ee`<button class="ve-btn ve-btn-xxs ve-btn-default ve-col-1" title="Add All"><span class="glyphicon glyphicon-arrow-right"></span></button>` : null;
 
-		if (!opts.isBuildUi) {
+		if (!opts.isBuildUi && !opts.isNoSelect) {
 			if (this._isRadio) wrpFormHeaders.appends(`<label class="ve-btn ve-btn-default ve-btn-xs ve-col-0-5 ve-flex-vh-center" disabled></label>`);
 			else ee`<label class="ve-btn ve-btn-default ve-btn-xs ve-col-0-5 ve-flex-vh-center">${cbSelAll}</label>`.appendTo(wrpFormHeaders);
 		}
@@ -105,7 +108,7 @@ export class ModalFilterBase {
 		});
 		const listSelectClickHandler = new ListSelectClickHandler({list: this._list});
 
-		if (!opts.isBuildUi && !this._isRadio) listSelectClickHandler.bindSelectAllCheckbox(cbSelAll);
+		if (!opts.isBuildUi && !opts.isNoSelect && !this._isRadio) listSelectClickHandler.bindSelectAllCheckbox(cbSelAll);
 		this._previewButtonHandler.bindPreviewAllButton({btnAll: btnTogglePreviewAll, list: this._list});
 		SortUtil.initBtnSortHandlers(wrpFormHeaders, this._list);
 		this._list.on("updated", () => dispNumVisible.html(`${this._list.visibleItems.length}/${this._list.items.length}`));
@@ -125,7 +128,7 @@ export class ModalFilterBase {
 			this._pageFilter.mutateAndAddToFilters(it);
 			const filterListItem = this._getListItem(this._pageFilter, it, i);
 			this._list.addItem(filterListItem);
-			if (!opts.isBuildUi) {
+			if (!opts.isBuildUi && !opts.isNoSelect) {
 				if (this._isRadio) filterListItem.ele.addEventListener("click", evt => listSelectClickHandler.handleSelectClickRadio(filterListItem, evt));
 				else filterListItem.ele.addEventListener("click", evt => listSelectClickHandler.handleSelectClick(filterListItem, evt));
 			}
@@ -145,7 +148,7 @@ export class ModalFilterBase {
 		const wrpInner = ee`<div class="ve-flex-col ve-h-100">
 			${wrpForm}
 			${wrpList}
-			${opts.isBuildUi ? null : ee`<hr class="ve-hr-1"><div class="ve-flex-vh-center">${btnConfirm}</div>`}
+			${opts.isBuildUi || opts.isNoSelect ? null : ee`<hr class="ve-hr-1"><div class="ve-flex-vh-center">${btnConfirm}</div>`}
 		</div>`.appendTo(wrp.empty());
 
 		return {

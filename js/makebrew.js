@@ -187,7 +187,7 @@ class PageUi extends ProxyBase {
 		this._allSources = BrewUtil2.getSources().sort((a, b) => SortUtil.ascSortLower(a.full, b.full))
 			.map(it => it.json);
 
-		this._selSource = ee`<select class="ve-form-control ve-input-xs ve-br-0 ve-w-120p">
+		this._selSource = ee`<select class="ve-form-control ve-input-xs ve-br-0 ve-w-120p ve-text-clip-ellipsis">
 			<option disabled>Select</option>
 			${this._allSources.map(srcJson => `<option value="${srcJson.qq()}">${Parser.sourceJsonToFull(srcJson).qq()}</option>`)}
 		</select>`
@@ -195,8 +195,11 @@ class PageUi extends ProxyBase {
 				this._state.activeSource = this._selSource.val();
 			});
 		this._addHook("state", "activeSource", () => {
-			if (this._state.activeSource) this._selSource.val(this._state.activeSource);
-			else this._selSource.selectedIndex = 0;
+			if (this._state.activeSource) {
+				this._selSource
+					.val(this._state.activeSource)
+					.tooltip(BrewUtil2.hasSourceJson(this._state.activeSource) ? BrewUtil2.sourceJsonToFull(this._state.activeSource) : null);
+			} else this._selSource.selectedIndex = 0;
 		})();
 		// Deferred; only required on later change
 		this._addHook("state", "activeSource", () => {
@@ -254,9 +257,20 @@ class PageUi extends ProxyBase {
 	}
 
 	_initHeader_existing ({wrpSettingsBtm}) {
-		const btnEditExisting = ee`<button class="ve-btn ve-btn-xs ve-btn-default">Edit Existing</button>`
+		const btnEditExisting = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="Hotkey: o">Edit Existing</button>`
 			.onn("click", () => this._getActiveBuilderInstance().pHandleClickEditExisting())
 			.appendTo(wrpSettingsBtm);
+
+		e_(document.body)
+			.onn("keydown", evt => {
+				if (
+					!EventUtil.isInInput(evt)
+					&& EventUtil.noModifierKeys(evt)
+					&& evt.key === "o"
+				) {
+					this._getActiveBuilderInstance().pHandleClickEditExisting();
+				}
+			});
 
 		ee`<div class="ve-flex-v-center ve-mobile-md__mb-2">
 			<div class="ve-vr-2 ve-h-21p ve-mobile-md__hidden"></div>

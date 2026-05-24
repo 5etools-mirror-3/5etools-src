@@ -1807,6 +1807,8 @@ export class ConverterCreature extends ConverterBase {
 
 	// SHARED UTILITY FUNCTIONS ////////////////////////////////////////////////////////////////////////////////////////
 	static _doStatblockPostProcess (stats, isMarkdown, options) {
+		this._doPostProcess_removePage(stats, options);
+
 		Renderer.monster.CHILD_PROPS_EXTENDED
 			.filter(prop => stats[prop])
 			.forEach(prop => {

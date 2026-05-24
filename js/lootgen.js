@@ -1,4 +1,5 @@
 import {LootGenUi} from "./lootgen/lootgen-ui.js";
+import {WrappedRenderer} from "./render-wrapped.js";
 
 class LootGenPage {
 	static _STORAGE_KEY_STATE = "state";
@@ -24,6 +25,7 @@ class LootGenPage {
 		this._lootGenUi = new LootGenUi({
 			spells,
 			items,
+			rendererWrapped: new WrappedRenderer(),
 		});
 		await this._lootGenUi.pInit();
 		this._lootGenUi.render({stgLhs, stgRhs});
