@@ -333,11 +333,12 @@ export class EncounterBuilderUi extends BaseComponent {
 		if (!toLoad) return super.setStateFrom(toLoad, isOverwrite);
 
 		if (toLoad.state) {
-			if (!this._encounterShapesLookup[toLoad.state.activeRulesId]) toLoad.state.activeRulesId = this._rulesComps[0].rulesId;
+			if (!this._rulesCompsLookup[toLoad.state.activeRulesId]) toLoad.state.activeRulesId = this._rulesComps[0].rulesId;
 			if (!this._partyCompsLookup[toLoad.state.activePartyId]) toLoad.state.activePartyId = this._partyComps[0].partyId;
 		}
 
 		const out = super.setStateFrom(toLoad, isOverwrite);
+
 		Object.entries(toLoad?.stateRulesComps || {})
 			.forEach(([rulesId, toLoadSub]) => {
 				this._rulesCompsLookup[rulesId]?.setStateFrom(toLoadSub, isOverwrite);
@@ -356,6 +357,7 @@ export class EncounterBuilderUi extends BaseComponent {
 	 * @param {HTMLElementExtended} stgShapeCustom
 	 * @param {HTMLElementExtended} stgGroup
 	 * @param {HTMLElementExtended} stgDifficulty
+	 * @param {?HTMLElementExtended} stgFooter
 	 */
 	render (
 		{
@@ -365,6 +367,7 @@ export class EncounterBuilderUi extends BaseComponent {
 			stgShapeCustom,
 			stgGroup,
 			stgDifficulty,
+			stgFooter = null,
 		},
 	) {
 		const rdState = new this.constructor._RenderState();
@@ -382,6 +385,8 @@ export class EncounterBuilderUi extends BaseComponent {
 					eles.forEach(ele => ele.toggleVe(this._state.activeRulesId === rulesComp.rulesId));
 				})();
 			});
+
+		this._render_footer({rdState, stgFooter});
 
 		this._render_addHooks();
 
@@ -432,10 +437,13 @@ export class EncounterBuilderUi extends BaseComponent {
 
 		if (!stgViewer) return;
 
-		const wrpOutput = ee`<div class="ve-py-2 ve-mt-5 ecgen-viewer__wrp-output"></div>`
+		const wrpOutput = ee`<div class="ve-py-2 ecgen-viewer__wrp-output"></div>`
 			.hideVe();
 
-		ee(stgViewer)`${wrpOutput}`;
+		ee(stgViewer)`
+			<hr class="ve-hr-2">
+			${wrpOutput}
+		`;
 
 		rdState.renderableCollectionViewerCreatures = new _RenderableCollectionViewerCreatures({
 			comp: this._comp,
@@ -848,6 +856,10 @@ export class EncounterBuilderUi extends BaseComponent {
 
 	/* -------------------------------------------- */
 
+	_render_footer ({rdState, stgFooter}) { /* Implement as required */ }
+
+	/* -------------------------------------------- */
+
 	_render_addHooks () {
 		this._partyComps
 			.forEach(partyComp => partyComp.addHookOnPartyChange((valNotFirstRun) => {
@@ -873,6 +885,15 @@ export class EncounterBuilderUi extends BaseComponent {
 
 	_render_hk_doUpdateExternalStates () {
 		/* Implement as required */
+	}
+
+	/* -------------------------------------------- */
+
+	doCleanup () {
+		this._rulesComps
+			.forEach(comp => comp.doCleanup());
+		this._partyComps
+			.forEach(comp => comp.doCleanup());
 	}
 
 	/* -------------------------------------------- */

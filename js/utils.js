@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.28.1"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.28.2"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -892,7 +892,13 @@ class TemplateUtil {
 		 * or:    ee(ele)`<div>Press this button: ${btn}</div>`
 		 * @return {HTMLElementExtended}
 		 */
-		globalThis.ee = (parts, ...args) => {
+		globalThis.ee = (...allArgs) => {
+			if (!allArgs.length) throw new TypeError(`"ee" called with no arguments!`);
+
+			const [parts, ...args] = allArgs;
+
+			if (parts == null) throw new TypeError(`"ee" called with "${parts}" as first argument!`);
+
 			// eslint-disable-next-line vet-jquery/jquery
 			if (globalThis.jQuery && parts instanceof globalThis.jQuery) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
 

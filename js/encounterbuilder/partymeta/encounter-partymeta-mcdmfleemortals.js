@@ -56,7 +56,11 @@ export class EncounterPartyMetaMcdmFleeMortals extends EncounterPartyMetaBase {
 		return this._budgetTierProvider.getBudgetRangeApprox(tier);
 	}
 
-	getEncounterTier (encounterXpInfo) {
+	getTierDisplayBudget (tier, {multiplier = null} = {}) {
+		return Parser.numberToVulgar(this._getTierBudget({tier, multiplier}));
+	}
+
+	_getEncounterTier (encounterXpInfo) {
 		return this._budgetTierProvider.getEncounterTier(encounterXpInfo);
 	}
 

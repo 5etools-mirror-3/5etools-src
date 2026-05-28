@@ -6271,7 +6271,7 @@ Renderer.events = class {
 		ele.find(".ve-rd__data-embed-name").toggleVe(!isHidden);
 		ele.find(".ve-rd__data-embed-name-expanded").toggleVe(isHidden);
 		eleToggle.txt(isHidden ? "[\u2013]" : "[+]");
-		ele.closeste("table").find("tbody").toggleVe();
+		ele.closeste("table").find(":scope > tbody").toggleVe();
 	}
 
 	static _HEADER_TOGGLE_CLICK_SELECTORS = [

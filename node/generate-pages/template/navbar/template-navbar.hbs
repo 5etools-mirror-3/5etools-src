@@ -1,10 +1,12 @@
-<header class="ve-mobile-sm__hidden page__header">
-	<div class="container ve-flex-v-baseline">
-		<h1 class="page__title ve-no-wrap ve-my-0{{#if navbarPageTitleStyleAdditional}} {{navbarPageTitleStyleAdditional}}{{/if}}" id="page__title">{{#if navbarTitleHtml}}{{{navbarTitleHtml}}}{{else}}{{navbarTitle}}{{/if}}</h1>
-		<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">{{#if navbarDescriptionHtml}}{{{navbarDescriptionHtml}}}{{else}}{{navbarDescription}}{{/if}}</p>
-	</div>
-</header>
+<div class="ve-flex-col" data-cancer-id="cancer-header"> {{! Spurious wrapper element required for cancer purposes}}
+	<header class="ve-mobile-sm__hidden page__header">
+		<div class="container ve-flex-v-baseline">
+			<h1 class="page__title ve-no-wrap ve-my-0{{#if navbarPageTitleStyleAdditional}} {{navbarPageTitleStyleAdditional}}{{/if}}" id="page__title">{{#if navbarTitleHtml}}{{{navbarTitleHtml}}}{{else}}{{navbarTitle}}{{/if}}</h1>
+			<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">{{#if navbarDescriptionHtml}}{{{navbarDescriptionHtml}}}{{else}}{{navbarDescription}}{{/if}}</p>
+		</div>
+	</header>
 
-<nav class="container page__nav" id="navigation">
-	<ul class="nav nav-pills page__nav-inner" id="navbar"></ul>
-</nav>
+	<nav class="container page__nav" id="navigation">
+		<ul class="nav nav-pills page__nav-inner" id="navbar"></ul>
+	</nav>
+</div>

@@ -63,21 +63,23 @@
 
 <div class="cancer__wrp-leaderboard cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__wrp-leaderboard-inner cancer__wrp-interactive"><!--5ETOOLS_AD_LEADERBOARD--></div></div>
 
-<header class="ve-mobile-sm__hidden page__header">
-	<div class="container ve-flex-v-baseline">
-		<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Classes</h1>
-		<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Search by name on the left, click a name to display on the right.</p>
-	</div>
-</header>
+<div class="ve-flex-col" data-cancer-id="cancer-header">
+	<header class="ve-mobile-sm__hidden page__header">
+		<div class="container ve-flex-v-baseline">
+			<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Classes</h1>
+			<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Search by name on the left, click a name to display on the right.</p>
+		</div>
+	</header>
 
-<nav class="container page__nav" id="navigation">
-	<ul class="nav nav-pills page__nav-inner" id="navbar"></ul>
-</nav>
+	<nav class="container page__nav" id="navigation">
+		<ul class="nav nav-pills page__nav-inner" id="navbar"></ul>
+	</nav>
+</div>
 
 <div class="cancer__wrp-sidebar cancer__wrp-sidebar-lhs cancer__wrp-sidebar-lhs--scrolling-page cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__sidebar-inner cancer__sidebar-inner--top cancer__wrp-interactive"><!--5ETOOLS_AD_LEFT_1--></div><div class="cancer__sidebar-inner cancer__sidebar-inner--bottom cancer__wrp-interactive"><!--5ETOOLS_AD_LEFT_2--></div></div>
 <div class="cancer__wrp-sidebar cancer__wrp-sidebar-rhs cancer__wrp-sidebar-rhs--scrolling-page cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__sidebar-inner cancer__sidebar-inner--top cancer__wrp-interactive"><!--5ETOOLS_AD_RIGHT_1--></div><div class="cancer__sidebar-inner cancer__sidebar-inner--bottom cancer__wrp-interactive"><!--5ETOOLS_AD_RIGHT_2--></div></div>
 
-<main class="container classes">
+<main class="container classes" data-cancer-id="cancer-wrapper">
 	<div class="row ve-flex ve-mobile-md__flex-col">
 		<div class="ve-col-3 ve-mobile-md__col-12 ve-px-4" id="listcontainer">
 			<div class="night__shadow-big">
@@ -162,7 +164,7 @@
 <script type="text/javascript" defer src="js/filter-common.js"></script>
 <script type="text/javascript" defer src="js/filter-classes.js"></script>
 <script type="module" src="js/classes.js"></script>
-<script type="text/javascript" defer src="js/list2.js"></script>
+<script type="module" defer src="js/list2.js"></script>
 <script type="text/javascript" defer src="lib/elasticlunr.js"></script>
 
 </body>

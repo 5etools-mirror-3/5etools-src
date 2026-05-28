@@ -67,21 +67,23 @@
 <div class="viewport-wrapper">
 	<div class="cancer__wrp-leaderboard cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__wrp-leaderboard-inner cancer__wrp-interactive"><!--5ETOOLS_AD_LEADERBOARD--></div></div>
 
-	<header class="ve-mobile-sm__hidden page__header">
-		<div class="container ve-flex-v-baseline">
-			<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Loot Generator</h1>
-			<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Configure the generator, then Roll Loot!</p>
-		</div>
-	</header>
+	<div class="ve-flex-col" data-cancer-id="cancer-header">
+		<header class="ve-mobile-sm__hidden page__header">
+			<div class="container ve-flex-v-baseline">
+				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Loot Generator</h1>
+				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Configure the generator, then Roll Loot!</p>
+			</div>
+		</header>
 
-	<nav class="container page__nav" id="navigation">
-		<ul class="nav nav-pills page__nav-inner" id="navbar"></ul>
-	</nav>
+		<nav class="container page__nav" id="navigation">
+			<ul class="nav nav-pills page__nav-inner" id="navbar"></ul>
+		</nav>
+	</div>
 
-	<div class="view-col-group--cancer ve-h-100 mh-0">
+	<div class="container view-col-group--cancer ve-h-100 mh-0" data-cancer-id="cancer-wrapper">
 		<div class="ve-py-2 ve-flex-vh-center initial-message initial-message--large ve-h-100" id="wrp-loading">Loading...</div>
 
-		<div class="container view-col-wrapper view-col-wrapper--cancer ve-hidden" id="wrp-content">
+		<div class="view-col-wrapper view-col-wrapper--cancer ve-hidden" id="wrp-content">
 			<div class="view-col ve-flex-4 ve-mb-0" id="lootgen-lhs"></div>
 
 			<div class="cancer__wrp-mobile-1 cancer__anchor"><div class="cancer__disp-cancer"></div><!--5ETOOLS_AD_MOB_PLAYER_1--></div>
@@ -114,7 +116,7 @@
 <script type="module" src="js/shim-esmodules.js"></script>
 <script type="text/javascript" defer src="js/hist.js"></script>
 <script type="module" src="js/lootgen.js"></script>
-<script type="text/javascript" defer src="js/list2.js"></script>
+<script type="module" defer src="js/list2.js"></script>
 <script type="text/javascript" defer src="lib/elasticlunr.js"></script>
 
 </body>

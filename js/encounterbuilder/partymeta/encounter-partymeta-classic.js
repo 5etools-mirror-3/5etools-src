@@ -63,9 +63,7 @@ export class EncounterPartyMetaClassic extends EncounterPartyMetaBase {
 		return this.getBudgetRange(tier);
 	}
 
-	getEncounterTier (encounterXpInfo) {
-		if (!encounterXpInfo) return TIER_TRIVIAL;
-
+	_getEncounterTier (encounterXpInfo) {
 		const tierMaximum = TIERS_EXTENDED.at(-1);
 		if (encounterXpInfo.adjustedSpend >= this._thresholds[tierMaximum]) return TIER_ABSURD;
 

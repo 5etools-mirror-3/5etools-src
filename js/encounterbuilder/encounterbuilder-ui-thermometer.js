@@ -68,7 +68,11 @@ export class EncounterbuilderUiThermometer extends BaseComponent {
 					const ixTier = this._tiers.indexOf(tier);
 					const thresholdPrev = ixTier ? this._state.thresholds[this._tiers[ixTier - 1]] : 0;
 
-					if (elesNotchLookup[tier]) elesNotchLookup[tier].css({left: `${this._getWidthPct(threshold)}%`});
+					if (elesNotchLookup[tier]) {
+						elesNotchLookup[tier]
+							.css({left: `${this._getWidthPct(threshold)}%`})
+							.toggleVe(!!this._state.cntPlayers);
+					}
 
 					elesHotzoneLookup[tier].css({
 						left: `${this._getWidthPct(thresholdPrev)}%`,
@@ -76,8 +80,9 @@ export class EncounterbuilderUiThermometer extends BaseComponent {
 					});
 				});
 		};
-		this._addHookBase("thresholds", hkNotches)();
-		this._addHookBase("spendCap", hkNotches)();
+		this._addHookBase("thresholds", hkNotches);
+		this._addHookBase("spendCap", hkNotches);
+		this._addHookBase("cntPlayers", hkNotches);
 		hkNotches();
 
 		const dispBar = ee`<div class="ve-h-100 ecgen-therm__bar"></div>`;
@@ -86,10 +91,12 @@ export class EncounterbuilderUiThermometer extends BaseComponent {
 			dispBar
 				.css({width: `${this._getWidthPct(this._state.spendValue)}%`})
 				.toggleClass(`ecgen-therm__bar--max`, this._state.spendValue >= this._state.spendCap)
-				.toggleClass(`ve-b-0`, !this._state.spendValue);
+				.toggleClass(`ve-b-0`, !this._state.spendValue)
+				.toggleVe(!!this._state.cntPlayers);
 		};
 		this._addHookBase("spendValue", hkSpendInfo);
 		this._addHookBase("spendCap", hkSpendInfo);
+		this._addHookBase("cntPlayers", hkSpendInfo);
 		hkSpendInfo();
 
 		this._addHookBase("tier", () => {
@@ -128,9 +135,10 @@ export class EncounterbuilderUiThermometer extends BaseComponent {
 			spendCap,
 			thresholds,
 			tier,
+			cntPlayers,
 		},
 	) {
-		this._proxyAssignSimple("state", {spendValue, spendCap, thresholds, tier});
+		this._proxyAssignSimple("state", {spendValue, spendCap, thresholds, tier, cntPlayers});
 	}
 
 	_getDefaultState () {
@@ -139,6 +147,7 @@ export class EncounterbuilderUiThermometer extends BaseComponent {
 			spendCap: 0,
 			thresholds: {},
 			tier: null,
+			cntPlayers: 0,
 		};
 	}
 }

@@ -56,7 +56,7 @@ export class EncounterPartyMetaOne extends EncounterPartyMetaBase {
 		return this._budgetTierProvider.getBudgetRangeApprox(tier);
 	}
 
-	getEncounterTier (encounterXpInfo) {
+	_getEncounterTier (encounterXpInfo) {
 		return this._budgetTierProvider.getEncounterTier(encounterXpInfo);
 	}
 

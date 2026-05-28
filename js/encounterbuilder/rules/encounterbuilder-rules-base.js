@@ -18,7 +18,9 @@ export class TierHtmlProviderBase {
 	getTierHtml ({partyMeta, tier}) {
 		const title = this.getTierTitle({tier});
 		const ptTierName = this.getTierName({tier}) || "?";
-		const ptTierBudget = partyMeta?.getTierDisplayBudget(tier) || "?";
+		const ptTierBudget = partyMeta.cntPlayers
+			? (partyMeta?.getTierDisplayBudget(tier) || "?")
+			: "?";
 
 		return `<span class="ve-help-subtle" ${title ? `title="${title}"` : ""}>${ptTierName}:</span> ${ptTierBudget} ${this._getBudgetUnit()}`;
 	}
@@ -429,7 +431,7 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 	static _TITLE_XP_TO_NEXT_LEVEL = "The total XP required to allow each member of the party to level up to their next level.";
 
 	_getRenderedExpToLevel ({partyMeta}) {
-		return `<span class="ve-help-subtle" title="${this.constructor._TITLE_XP_TO_NEXT_LEVEL}">XP to Next Level:</span> ${partyMeta?.xpToNextLevel.toLocaleStringVe() || "?"} XP`;
+		return `<span class="ve-help-subtle" title="${this.constructor._TITLE_XP_TO_NEXT_LEVEL}">XP to Next Level:</span> ${partyMeta?.xpToNextLevel ? partyMeta?.xpToNextLevel.toLocaleStringVe() : "?"} XP`;
 	}
 
 	/* -------------------------------------------- */
@@ -445,7 +447,7 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 
 	/* -------------------------------------------- */
 
-	static _TITLE_TTK = "Time to Kill: The estimated number of turns the party will require to defeat the encounter. This assumes single-target damage only.";
+	static _TITLE_TTK = "Time to Kill: The estimated number of rounds the party will require to defeat the encounter. This assumes single-target damage only.";
 
 	_getTtkProvider ({partyMeta, styleHint}) {
 		const sharedOpts = {partyMeta, creatureMetas: this._comp.creatureMetas};
@@ -460,8 +462,16 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 	_getTtkHtml ({partyMeta, styleHint = null}) {
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
-		return `<span class="ve-help" title="${this.constructor._TITLE_TTK}">TTK:</span> ${this._getTtkProvider({partyMeta, styleHint}).getApproxTurnsToKill().toFixed(2)}`;
+		const ptTtk = partyMeta.cntPlayers
+			? `${this._getTtkProvider({partyMeta, styleHint}).getApproxTurnsToKill().toFixed(2)} <span title="Rounds" class="ve-small-caps">rnd.</span>`
+			: `<span class="ve-muted">?</span>`;
+
+		return `<span class="ve-help" title="${this.constructor._TITLE_TTK}">TTK:</span> ${ptTtk}`;
 	}
+
+	/* -------------------------------------------- */
+
+	doCleanup () { /* Implement as required */ }
 
 	/* -------------------------------------------- */
 

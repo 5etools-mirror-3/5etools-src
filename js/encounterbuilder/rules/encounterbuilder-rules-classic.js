@@ -192,13 +192,14 @@ export class EncounterBuilderRulesClassic extends EncounterBuilderRulesBase {
 						.map(tier => [tier, tier === TIER_ABSURD ? spendCap : partyMeta.getBudget(tier)]),
 				),
 				tier: tier,
+				cntPlayers: partyMeta.cntPlayers,
 			});
 
 			dispTtk
 				.html(this._getTtkHtml({partyMeta}));
 
 			dispBudgetDaily
-				.html(`<span class="ve-help-subtle" title="${this.constructor._TITLE_BUDGET_DAILY}">Daily Budget:</span> ${partyMeta?.getDailyBudget().toLocaleStringVe() || "?"} XP`);
+				.html(`<span class="ve-help-subtle" title="${this.constructor._TITLE_BUDGET_DAILY}">Daily Budget:</span> ${partyMeta?.getDailyBudget() ? partyMeta.getDailyBudget().toLocaleStringVe() : `?`} XP`);
 
 			dispExpToLevel.html(this._getRenderedExpToLevel({partyMeta}));
 		})();

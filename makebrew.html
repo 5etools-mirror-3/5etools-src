@@ -67,16 +67,18 @@
 <div class="viewport-wrapper">
 	<div class="cancer__wrp-leaderboard cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__wrp-leaderboard-inner cancer__wrp-interactive"><!--5ETOOLS_AD_LEADERBOARD--></div></div>
 
-	<header class="ve-mobile-sm__hidden page__header">
-		<div class="container ve-flex-v-baseline">
-			<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Homebrew Builder</h1>
-			<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Input values on left, view the results on the right.</p>
-		</div>
-	</header>
+	<div class="ve-flex-col" data-cancer-id="cancer-header">
+		<header class="ve-mobile-sm__hidden page__header">
+			<div class="container ve-flex-v-baseline">
+				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Homebrew Builder</h1>
+				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Input values on left, view the results on the right.</p>
+			</div>
+		</header>
 
-	<nav class="container page__nav" id="navigation">
-		<ul class="nav nav-pills page__nav-inner" id="navbar"></ul>
-	</nav>
+		<nav class="container page__nav" id="navigation">
+			<ul class="nav nav-pills page__nav-inner" id="navbar"></ul>
+		</nav>
+	</div>
 
 	<div id="page_loading" class="container view-col-wrapper">
 		<div class="ve-h-100 ve-w-100 ve-flex-vh-center"><span class="initial-message initial-message--large">Loading...</span></div>
@@ -84,7 +86,7 @@
 
 	<div id="page_source" class="container view-col-wrapper ve-hidden"></div>
 
-	<div id="page_main" class="ve-h-100 ve-flex-col ve-min-h-0 ve-hidden">
+	<div id="page_main" class="ve-h-100 ve-flex-col ve-min-h-0 ve-hidden" data-cancer-id="cancer-wrapper">
 		<div class="container ve-h-100 ve-flex-col">
 			<div class="ve-w-100 ve-pt-2 ve-mb-1 ve-pl-7p ve-pr-7p ve-flex-col" id="wrp-settings"></div>
 
@@ -122,7 +124,7 @@
 <script type="module" src="js/shim-esmodules.js"></script>
 <script type="text/javascript" defer src="js/hist.js"></script>
 <script type="module" src="js/makebrew.js"></script>
-<script type="text/javascript" defer src="js/list2.js"></script>
+<script type="module" defer src="js/list2.js"></script>
 <script type="text/javascript" defer src="lib/elasticlunr.js"></script>
 
 </body>

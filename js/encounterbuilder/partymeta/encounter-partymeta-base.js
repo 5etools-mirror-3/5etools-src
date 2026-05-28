@@ -1,4 +1,5 @@
 import {EncounterBuilderSpendInfo, EncounterPartyPlayerMeta} from "../encounterbuilder-models.js";
+import {TIER_UNKNOWN} from "../consts/encounterbuilder-consts.js";
 
 export class EncounterPartyMetaUtils {
 	static getThresholds (
@@ -173,15 +174,28 @@ export class EncounterPartyMetaBase {
 	 * @abstract
 	 * @return {string}
 	 */
-	getEncounterTier (encounterXpInfo) {
+	_getEncounterTier (encounterXpInfo) {
 		throw new Error(`Unimplemented!`);
+	}
+
+	/**
+	 * @abstract
+	 * @return {string}
+	 */
+	getEncounterTier (encounterXpInfo) {
+		if (!encounterXpInfo?.playerCount) return TIER_UNKNOWN;
+		return this._getEncounterTier(encounterXpInfo);
+	}
+
+	_getTierBudget ({tier, multiplier = null} = {}) {
+		return (this._thresholds[tier] || 0) * (multiplier ?? 1);
 	}
 
 	/**
 	 * @return {string}
 	 */
 	getTierDisplayBudget (tier, {multiplier = null} = {}) {
-		return ((this._thresholds[tier] || 0) * (multiplier ?? 1))?.toLocaleStringVe();
+		return this._getTierBudget({tier, multiplier})?.toLocaleStringVe();
 	}
 
 	/**

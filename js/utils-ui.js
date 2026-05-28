@@ -1046,22 +1046,24 @@ class ListUiUtil {
 
 		build () {
 			return {
+				reCommand: /^(?<command>name|stats|info|text)/,
+
 				name: {
-					help: `"name:<query>" ("/query/" for regex; "!query" and "!/query/" to invert) to search by name.`,
+					help: `\`name:"query"\` (/query/ for regex; \`name:! ...\` to invert) to search by name.`,
 					fn: (listItem, searchTerm) => {
 						if (listItem.data._textCacheName == null) listItem.data._textCacheName = listItem.name.toLowerCase().trim();
 						return this._listSyntax_isTextMatch(listItem.data._textCacheName, searchTerm);
 					},
 				},
 				stats: {
-					help: `"stats:<query>" ("/query/" for regex; "!query" and "!/query/" to invert) to search within stat blocks.`,
+					help: `\`stats:"query"\` (/query/ for regex; \`stats:! ...\` to invert) to search within stat blocks.`,
 					fn: (listItem, searchTerm) => {
 						if (listItem.data._textCacheStats == null) listItem.data._textCacheStats = this._getSearchCacheStats(this._dataList[listItem.ix]);
 						return this._listSyntax_isTextMatch(listItem.data._textCacheStats, searchTerm);
 					},
 				},
 				info: {
-					help: `"info:<query>" ("/query/" for regex; "!query" and "!/query/" to invert) to search within info.`,
+					help: `\`info:"query" (/query/ for regex; \`info:! ...\` to invert) to search within info.`,
 					fn: async (listItem, searchTerm) => {
 						if (listItem.data._textCacheFluff == null) listItem.data._textCacheFluff = await this._pGetSearchCacheFluff(this._dataList[listItem.ix]);
 						return this._listSyntax_isTextMatch(listItem.data._textCacheFluff, searchTerm);
@@ -1069,7 +1071,7 @@ class ListUiUtil {
 					isAsync: true,
 				},
 				text: {
-					help: `"text:<query>" ("/query/" for regex; "!query" and "!/query/" to invert) to search within stat blocks plus info.`,
+					help: `\`text:"query" (/query/ for regex; \`text:! ...\` to invert) to search within stat blocks plus info.`,
 					fn: async (listItem, searchTerm) => {
 						if (listItem.data._textCacheAll == null) {
 							const {textCacheStats, textCacheFluff, textCacheAll} = await this._pGetSearchCacheAll(this._dataList[listItem.ix], {textCacheStats: listItem.data._textCacheStats, textCacheFluff: listItem.data._textCacheFluff});

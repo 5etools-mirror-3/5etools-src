@@ -104,6 +104,7 @@ export class EncounterBuilderRulesOne extends EncounterBuilderRulesBase {
 						.map(tier => [tier, partyMeta.getBudget(tier)]),
 				),
 				tier: tier,
+				cntPlayers: partyMeta.cntPlayers,
 			});
 
 			dispTtk

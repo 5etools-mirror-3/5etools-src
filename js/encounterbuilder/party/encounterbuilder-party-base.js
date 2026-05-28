@@ -72,5 +72,9 @@ export class EncounterBuilderPartyBase extends BaseComponent {
 
 	/* -------------------------------------------- */
 
+	doCleanup () { /* Implement as required */ }
+
+	/* -------------------------------------------- */
+
 	mutDeExternalize ({out}) { /* Specific to Bestiary integration; implement as required. */ }
 }

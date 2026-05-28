@@ -115,6 +115,7 @@ export class EncounterBuilderRulesMcdmFleeMortals extends EncounterBuilderRulesB
 						.map(tier => [tier, partyMeta.getBudget(tier)]),
 				),
 				tier: tier,
+				cntPlayers: partyMeta.cntPlayers,
 			});
 
 			dispTtk
@@ -122,7 +123,7 @@ export class EncounterBuilderRulesMcdmFleeMortals extends EncounterBuilderRulesB
 
 			dispPointsEncounter.html(`Encounter Points: ${TIER_TO_ENCOUNTER_POINTS[tier] || "?"}`);
 
-			dispExpEncounter.html(`Encounter XP: ${this._getEncounterXp().toLocaleStringVe()} XP`);
+			dispExpEncounter.html(`Encounter XP: ${this._getEncounterXp() ? this._getEncounterXp().toLocaleStringVe() : "?"} XP`);
 			dispExpToLevel.html(this._getRenderedExpToLevel({partyMeta}));
 		})();
 
