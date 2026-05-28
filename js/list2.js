@@ -350,6 +350,8 @@ export class List {
 	}
 
 	_doSearch_getMatchingSyntaxInfo () {
+		if (!this._syntax) return null;
+
 		const {syntaxMetasRaw, searchTerm} = List2SyntaxParser.getParsedSyntaxInfo({searchTerm: this._searchTerm, reCommand: this._syntax.reCommand});
 
 		return {
