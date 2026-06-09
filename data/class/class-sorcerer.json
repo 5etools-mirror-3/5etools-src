@@ -1656,6 +1656,9 @@
 			"className": "Sorcerer",
 			"classSource": "PHB",
 			"page": 50,
+			"reprintedAs": [
+				"Shadow|Sorcerer|XPHB|RHW"
+			],
 			"edition": "classic",
 			"additionalSpells": [
 				{
@@ -1681,6 +1684,9 @@
 			"source": "XGE",
 			"className": "Sorcerer",
 			"classSource": "XPHB",
+			"reprintedAs": [
+				"Shadow|Sorcerer|XPHB|RHW"
+			],
 			"_copy": {
 				"name": "Shadow Magic",
 				"source": "XGE",
@@ -2190,6 +2196,55 @@
 				"Absorb Spells|Sorcerer|XPHB|Spellfire|FRHoF|6|FRHoF",
 				"Honed Spellfire|Sorcerer|XPHB|Spellfire|FRHoF|14|FRHoF",
 				"Crown of Spellfire|Sorcerer|XPHB|Spellfire|FRHoF|18|FRHoF"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Shadow Sorcery",
+			"shortName": "Shadow",
+			"source": "RHW",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"bane|xphb",
+							"darkness|xphb",
+							"inflict wounds|xphb",
+							"pass without trace|xphb"
+						],
+						"5": [
+							"hunger of hadar|xphb",
+							"nondetection|xphb"
+						],
+						"7": [
+							"greater invisibility|xphb",
+							"phantasmal killer|xphb"
+						],
+						"9": [
+							"contagion|xphb",
+							"creation|xphb"
+						]
+					},
+					"innate": {
+						"6": {
+							"resource": {
+								"3": [
+									"summon beast|xphb"
+								]
+							}
+						}
+					},
+					"resourceName": "Sorcery Point"
+				}
+			],
+			"subclassFeatures": [
+				"Shadow Sorcery|Sorcerer|XPHB|Shadow|RHW|3|RHW",
+				"Beasts of Ill Omen|Sorcerer|XPHB|Shadow|RHW|6|RHW",
+				"Shadow Walk|Sorcerer|XPHB|Shadow|RHW|14|RHW",
+				"Umbral Form|Sorcerer|XPHB|Shadow|RHW|18|RHW"
 			],
 			"hasFluffImages": true
 		}
@@ -4946,6 +5001,153 @@
 					"page": true
 				}
 			}
+		},
+		{
+			"name": "Power of Shadow",
+			"source": "RHW",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "RHW",
+			"level": 3,
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Eyes of the Dark",
+					"entries": [
+						"You have {@sense Darkvision|XPHB} with a range of 120 feet and {@sense Blindsight|XPHB} with a range of 10 feet. In addition, if a spell you cast creates an area of {@variantrule Darkness|XPHB}, you can see normally through that spell's Darkness."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Strength of the Grave",
+					"entries": [
+						"If you would drop to 0 Hit Points and not die outright, you can make a Charisma saving throw ({@dc 5} plus the damage taken). On a successful save, your Hit Points instead change to a number equal to your Charisma modifier plus your Sorcerer level. After you succeed on this save, you can't use this benefit again until you finish a Long Rest."
+					]
+				}
+			]
+		},
+		{
+			"name": "Shadow Sorcery",
+			"source": "RHW",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "RHW",
+			"level": 3,
+			"entries": [
+				"{@i Bend Doom and Darkness to Your Will}",
+				"Your innate magic comes from the most nebulous and inscrutable forces of the Shadowfell or from other regions of supernatural darkness. You might trace your lineage to an entity from such a place, or perhaps you were exposed to the sinister energy of a shadow dragon and were transformed by it. Your shadowy magic allows you to command darkness, undeath, and woe.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Shadow Spells|Sorcerer|XPHB|Shadow|RHW|3|RHW"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Power of Shadow|Sorcerer|XPHB|Shadow|RHW|3|RHW"
+				}
+			]
+		},
+		{
+			"name": "Shadow Spells",
+			"source": "RHW",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "RHW",
+			"level": 3,
+			"entries": [
+				"When you reach a Sorcerer level specified in the Shadow Spells table, you thereafter always have the listed spells prepared.",
+				{
+					"type": "table",
+					"caption": "Shadow Spells",
+					"colLabels": [
+						"Sorcerer Level",
+						"Spells"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Bane|XPHB}, {@spell Darkness|XPHB}, {@spell Inflict Wounds|XPHB}, {@spell Pass Without Trace|XPHB}"
+						],
+						[
+							"5",
+							"{@spell Hunger of Hadar|XPHB}, {@spell Nondetection|XPHB}"
+						],
+						[
+							"7",
+							"{@spell Greater Invisibility|XPHB}, {@spell Phantasmal Killer|XPHB}"
+						],
+						[
+							"9",
+							"{@spell Contagion|XPHB}, {@spell Creation|XPHB}"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Beasts of Ill Omen",
+			"source": "RHW",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "RHW",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"You can call forth a howling creature of shadow to hound your foes. You can spend 3 Sorcery Points to cast {@spell Summon Beast|XPHB} as a Bonus Action without expending a spell slot, without preparing the spell, and without Material components. The summoned creature appears as a beast made of shadow, and enemies within 5 feet of the summoned creature have {@variantrule Disadvantage|XPHB} on saving throws against spells you cast.",
+				"Whenever you cast the spell, you can modify it so that it doesn't require {@status Concentration|XPHB}. If you do so, the spell's duration becomes 1 minute for that casting, and the spell ends early if you cast the spell again."
+			]
+		},
+		{
+			"name": "Shadow Walk",
+			"source": "RHW",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "RHW",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"While you are in {@variantrule Dim Light|XPHB} or {@variantrule Darkness|XPHB}, you can take a Bonus Action to teleport up to 120 feet to an unoccupied space you can see that is also in Dim Light or Darkness."
+			]
+		},
+		{
+			"name": "Umbral Form",
+			"source": "RHW",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "RHW",
+			"level": 18,
+			"header": 2,
+			"consumes": {
+				"name": "Sorcery Point",
+				"amount": 6
+			},
+			"entries": [
+				"When you use Innate Sorcery, you can adopt a shadowy form, gaining the benefits below while your Innate Sorcery is active or until you end the form (no action required). Once you use this feature, you can't use it again until you finish a Long Rest unless you spend 6 Sorcery Points (no action required) to restore your use of it.",
+				{
+					"type": "entries",
+					"name": "Incorporeal Movement",
+					"entries": [
+						"You can move through creatures and objects as if they were {@variantrule Difficult Terrain|XPHB}, but you take {@damage 1d10} Force damage if you end your turn inside a creature or an object."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Shadow Resilience",
+					"entries": [
+						"You have Resistance to all damage except Force and Radiant damage."
+					]
+				}
+			]
 		},
 		{
 			"name": "Aberrant Mind",

@@ -2264,8 +2264,13 @@
 		},
 		{
 			"name": "Dhampir",
-			"source": "ABH",
-			"page": 7,
+			"source": "RHW",
+			"otherSources": [
+				{
+					"source": "ABH",
+					"page": 7
+				}
+			],
 			"size": [
 				"S",
 				"M"
@@ -2275,6 +2280,9 @@
 				"climb": true
 			},
 			"darkvision": 60,
+			"traitTags": [
+				"Natural Weapon"
+			],
 			"resist": [
 				"necrotic"
 			],
@@ -2311,7 +2319,7 @@
 					"type": "entries",
 					"name": "Vampiric Bite",
 					"entries": [
-						"When you use your {@variantrule Unarmed Strike|XPHB} and deal damage, you can choose to bite with your fangs. You deal Piercing damage equal to {@dice 1d4} plus your Constitution modifier instead of the normal damage of an {@variantrule Unarmed Strike|XPHB}.",
+						"When you use your {@variantrule Unarmed Strike|XPHB} and deal damage, you can choose to bite with your fangs. You deal Piercing damage equal to {@damage 1d4} plus your Constitution modifier instead of the normal damage of an {@variantrule Unarmed Strike|XPHB}.",
 						"In addition, when you deal this damage to a creature that isn't a Construct or an Undead, you can empower yourself in one of the following ways:",
 						{
 							"type": "list",
@@ -2345,7 +2353,7 @@
 			"source": "VRGR",
 			"page": 16,
 			"reprintedAs": [
-				"Dhampir|ABH"
+				"Dhampir|RHW"
 			],
 			"lineage": "VRGR",
 			"size": [
@@ -7663,8 +7671,99 @@
 		},
 		{
 			"name": "Hexblood",
+			"source": "RHW",
+			"edition": "one",
+			"creatureTypes": [
+				"fey"
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"speed": 30,
+			"darkvision": 60,
+			"additionalSpells": [
+				{
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"prepared": {
+						"_": {
+							"daily": {
+								"1e": [
+									"disguise self|xphb",
+									"hex|xphb"
+								]
+							}
+						}
+					}
+				}
+			],
+			"sizeEntry": {
+				"type": "item",
+				"name": "Size:",
+				"entries": [
+					"Medium (about 4-7 feet tall) or Small (about 2-4 feet tall), chosen when you select this species"
+				]
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Darkvision",
+					"entries": [
+						"You have {@sense Darkvision|XPHB} with a range of 60 feet."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Eerie Token",
+					"entries": [
+						"As a {@variantrule Bonus Action|XPHB}, you can create a magical token by harmlessly removing a lock of hair, detaching a nail, or using some other method. While the token exists, you gain the following benefits:",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "Distant Message",
+									"entries": [
+										"As a Magic action, you can send a telepathic message of 25 words or fewer to a creature holding or carrying the token, as long as you are within 10 miles of it."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Remote Viewing",
+									"entries": [
+										"If you are within 10 miles of the token, you can take a {@action Magic|XPHB} action to extend your senses through the token for 1 minute, until you have the Incapacitated condition, or until you end this state (no action required). During this state, you can see and hear from the token as if you were located where it is. When this state ends, the token is harmlessly destroyed.",
+										"Unless the token is destroyed early, it lasts until you finish a {@variantrule Long Rest|XPHB}. Once you create a token using this feature, you can't do so again until you finish a {@variantrule Long Rest|XPHB}."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Hex Magic",
+									"entries": [
+										"You always have the {@spell Disguise Self|XPHB} and {@spell Hex|XPHB} spells prepared. You can cast each spell once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select this species)."
+									]
+								}
+							]
+						}
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Hexblood",
 			"source": "VRGR",
 			"page": 18,
+			"reprintedAs": [
+				"Hexblood|RHW"
+			],
 			"lineage": "VRGR",
 			"creatureTypes": [
 				"fey"
@@ -10172,6 +10271,74 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Lupin",
+			"source": "RHW",
+			"edition": "one",
+			"creatureTypes": [
+				"humanoid"
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"speed": 30,
+			"darkvision": 60,
+			"traitTags": [
+				"Natural Weapon"
+			],
+			"skillProficiencies": [
+				{
+					"choose": {
+						"from": [
+							"perception",
+							"stealth",
+							"survival"
+						]
+					}
+				}
+			],
+			"sizeEntry": {
+				"type": "item",
+				"name": "Size:",
+				"entries": [
+					"Medium (about 4-7 feet tall) or Small (about 2-4 feet tall), chosen when you select this species"
+				]
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Darkvision",
+					"entries": [
+						"You have {@sense Darkvision|XPHB} with a range of 60 feet."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Feral Pounce",
+					"entries": [
+						"Your Unarmed Strikes deal Slashing damage instead of Bludgeoning damage. In addition, when you hit a creature with an {@variantrule Unarmed Strike|XPHB} as part of the {@action Attack|XPHB} action on your turn, you can use both the {@variantrule Damage|XPHB} and the Shove options. You can use this benefit only once per turn."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Howl",
+					"entries": [
+						"As a {@variantrule Bonus Action|XPHB}, you let out an unearthly howl. Each creature of your choice within 15 feet of you must succeed on a Wisdom saving throw (DC 8 plus your Constitution modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}) or have {@variantrule Disadvantage|XPHB} on attack rolls and saving throws until the start of your next turn.",
+						"You can use this trait a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Werewolf Instincts",
+					"entries": [
+						"You have proficiency in the {@skill Perception|XPHB}, {@skill Stealth|XPHB}, or {@skill Survival|XPHB} skill."
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Merfolk",
 			"source": "DMG",
 			"page": 282,
@@ -11406,8 +11573,80 @@
 		},
 		{
 			"name": "Reborn",
+			"source": "RHW",
+			"edition": "one",
+			"creatureTypes": [
+				"humanoid"
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"speed": 30,
+			"skillProficiencies": [
+				{
+					"any": 1
+				}
+			],
+			"resist": [
+				{
+					"choose": {
+						"from": [
+							"cold",
+							"necrotic",
+							"poison"
+						]
+					}
+				}
+			],
+			"sizeEntry": {
+				"type": "item",
+				"name": "Size:",
+				"entries": [
+					"Medium (about 4-7 feet tall) or Small (about 2-4 feet tall), chosen when you select this species"
+				]
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Escaped Death",
+					"entries": [
+						"You have {@variantrule Advantage|XPHB} on {@variantrule Death Saving Throw|XPHB|Death Saving Throws}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Everlasting",
+					"entries": [
+						"You don't gain Exhaustion levels from dehydration, malnutrition, or suffocation. You don't need to sleep, and magic can't put you to sleep. You can finish a {@variantrule Long Rest|XPHB} in 4 hours if you spend those hours in an inactive, motionless state, during which you retain consciousness."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Knowledge from a Past Life",
+					"entries": [
+						"You gain proficiency in one skill of your choice.",
+						"In addition, you can temporarily peer into the past to aid you in the present. When you fail an ability check, you can roll {@dice 1d6} and add the number rolled to the {@dice d20}, potentially turning the failure into a success. You can do this a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Strange Endurance",
+					"entries": [
+						"You have {@variantrule Resistance|XPHB} to one of the following damage types of your choice: Cold, Necrotic, or Poison."
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Reborn",
 			"source": "VRGR",
 			"page": 20,
+			"reprintedAs": [
+				"Reborn|RHW"
+			],
 			"lineage": "VRGR",
 			"size": [
 				"S",

@@ -178,7 +178,7 @@ export class EntityFileHandlerBase extends DataTesterBase {
 
 				if (this._tagTestUrlLookup.hasUrl(url)) return;
 
-				this._addMessage(`Missing link: ${url} in file ${file} (evaluates to "${url}") in "${_tag}"\n${this._tagTestUrlLookup.getLogPtSimilarUrls({url})}`);
+				this._addMessage(`Missing reprintedAs link: ${_uid} ${url} in file ${file} (evaluates to "${url}") in "${_tag}"\n${this._tagTestUrlLookup.getLogPtSimilarUrls({url})}`);
 			});
 	}
 

@@ -1548,6 +1548,42 @@
 				"Frozen Haunt|Ranger|XPHB|Winter Walker|FRHoF|15|FRHoF"
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Hollow Warden",
+			"shortName": "Hollow Warden",
+			"source": "RHW",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"wrathful smite|xphb"
+						],
+						"5": [
+							"alter self|xphb"
+						],
+						"9": [
+							"phantom steed|xphb"
+						],
+						"13": [
+							"dominate beast|xphb"
+						],
+						"17": [
+							"steel wind strike|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Hollow Warden|Ranger|XPHB|Hollow Warden|RHW|3|RHW",
+				"Fortifying Soul|Ranger|XPHB|Hollow Warden|RHW|7|RHW",
+				"Rot and Violence|Ranger|XPHB|Hollow Warden|RHW|11|RHW",
+				"Ancient Might|Ranger|XPHB|Hollow Warden|RHW|15|RHW"
+			],
+			"hasFluffImages": true
 		}
 	],
 	"classFeature": [
@@ -4103,6 +4139,198 @@
 					"page": 6,
 					"entries": [
 						"You have {@variantrule Immunity|XPHB} to the {@condition Grappled|XPHB}, {@condition Prone|XPHB}, and {@condition Restrained|XPHB} conditions. You can move through creatures and objects as if they were {@variantrule Difficult Terrain|XPHB}, but you take {@damage 1d10} Force damage if you end your turn inside a creature or an object. If the form ends while you are inside a creature or an object, you are shunted to the nearest unoccupied space."
+					]
+				}
+			]
+		},
+		{
+			"name": "Hollow Warden",
+			"source": "RHW",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Hollow Warden",
+			"subclassSource": "RHW",
+			"level": 3,
+			"entries": [
+				"{@i Draw on the Might of Ancient Wild Terrors}",
+				"Legends tell that the most ancient and bloodthirsty terrors lurk deep within the old places of the earth. Hollow Wardens venerate and draw power from such beings, transforming themselves into merciless and monstrous guardians that stalk jagged coastlines, steep mountain crags, and other dark and wild places.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Hollow Warden Spells|Ranger|XPHB|Hollow Warden|RHW|3|RHW"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Wrath of the Wild|Ranger|XPHB|Hollow Warden|RHW|3|RHW"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Hungering Might|Ranger|XPHB|Hollow Warden|RHW|3|RHW"
+				}
+			]
+		},
+		{
+			"name": "Hollow Warden Spells",
+			"source": "RHW",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Hollow Warden",
+			"subclassSource": "RHW",
+			"level": 3,
+			"entries": [
+				"When you reach a Ranger level specified in the Hollow Warden Spells table, you thereafter always have the listed spell prepared.",
+				{
+					"type": "table",
+					"caption": "Hollow Warden Spells",
+					"colLabels": [
+						"Ranger Level",
+						"Spell"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Wrathful Smite|XPHB}"
+						],
+						[
+							"5",
+							"{@spell Alter Self|XPHB}"
+						],
+						[
+							"9",
+							"{@spell Phantom Steed|XPHB}"
+						],
+						[
+							"13",
+							"{@spell Dominate Beast|XPHB}"
+						],
+						[
+							"17",
+							"{@spell Steel Wind Strike|XPHB}"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Hungering Might",
+			"source": "RHW",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Hollow Warden",
+			"subclassSource": "RHW",
+			"level": 3,
+			"entries": [
+				"You gain a bonus to Constitution saving throws equal to your Wisdom modifier (minimum of +1).",
+				"In addition, once per turn when you hit a creature with an attack roll while you are transformed using Wrath of the Wild, you regain a number of Hit Points equal to {@dice 1d10} plus your Wisdom modifier, provided you are {@status Bloodied|XPHB} when you hit."
+			]
+		},
+		{
+			"name": "Wrath of the Wild",
+			"source": "RHW",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Hollow Warden",
+			"subclassSource": "RHW",
+			"level": 3,
+			"entries": [
+				"You draw power from the strange and ancient horrors of the land, causing you to sprout unnatural growths, such as bloody antlers or putrid fangs, or causing your shadow to lengthen or twist around you. As a Bonus Action, you can expend a use of Favored Enemy to transform into a ghastly form, gaining the following benefits for 1 minute or until you have the {@condition Incapacitated|XPHB} condition, die, or end the transformation (no action required).",
+				{
+					"type": "entries",
+					"name": "Ancient Armor",
+					"entries": [
+						"You gain a +1 bonus to AC, as your body is wreathed in rotten bark and beastly bristles. This bonus increases to +2 when you reach Ranger level 11."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Prowling Retribution",
+					"entries": [
+						"Immediately after a creature you can see within 5 feet of yourself deals damage to you or one of your allies, you can make an {@action Opportunity Attack|XPHB} against that creature."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Unnerving Aura",
+					"entries": [
+						"When you transform and at the start of each of your subsequent turns, each creature of your choice in a 10-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from you makes a Wisdom saving throw against your spell save DC. On a failed save, a creature has the {@condition Frightened|XPHB} condition until the start of your next turn."
+					]
+				}
+			]
+		},
+		{
+			"name": "Fortifying Soul",
+			"source": "RHW",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Hollow Warden",
+			"subclassSource": "RHW",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"Your experience surviving harrowing environments allows you to bolster your allies in addition to yourself. As a {@action Magic|XPHB} action, choose a number of creatures you can see equal to your Wisdom modifier (minimum of one). Each chosen creature regains {@variantrule Hit Points|XPHB} equal to {@dice 1d10} plus your Ranger level and has {@variantrule Advantage|XPHB} on saving throws to avoid or end the {@condition Frightened|XPHB} condition for 1 hour.",
+				"Once you use this feature, you can't use it again until you finish a {@variantrule Long Rest|XPHB}."
+			]
+		},
+		{
+			"name": "Rot and Violence",
+			"source": "RHW",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Hollow Warden",
+			"subclassSource": "RHW",
+			"level": 11,
+			"header": 2,
+			"entries": [
+				"Your dedication to wild eldritch beings alters you further. When transformed using Wrath of the Wild, you gain the following additional benefits.",
+				{
+					"type": "entries",
+					"name": "Menacing Aura",
+					"entries": [
+						"When a creature fails its saving throw against your Unnerving Aura, it also can't regain Hit Points or take Reactions until the start of your next turn."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Strangling Roots",
+					"entries": [
+						"When you hit a creature with an attack roll using a weapon, you can activate the {@itemMastery Sap} or {@itemMastery Slow} mastery property in addition to a different mastery property you're using with that weapon."
+					]
+				}
+			]
+		},
+		{
+			"name": "Ancient Might",
+			"source": "RHW",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Hollow Warden",
+			"subclassSource": "RHW",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"You become wholly suffused with the wild's ancient and terrible power, granting you the following benefits.",
+				{
+					"type": "entries",
+					"name": "Ominous Strikes",
+					"entries": [
+						"When you hit a creature that has the {@condition Frightened|XPHB} condition with an attack roll, that attack deals extra damage equal to your Wisdom modifier."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Persistent Wrath",
+					"entries": [
+						"If you're reduced to 0 Hit Points but not killed outright while transformed using Wrath of the Wild, you can surge with wild power. Your Hit Points instead change to a number equal to twice your Ranger level. Once you use this feature, you can't do so again until you finish a Long Rest. You can also expend a level 4+ spell slot (no action required) to restore your use of this feature."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Timeless",
+					"entries": [
+						"You have Immunity to the {@condition Exhaustion|XPHB} condition."
 					]
 				}
 			]

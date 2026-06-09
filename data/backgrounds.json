@@ -10850,6 +10850,139 @@
 		},
 		{
 			"name": "Haunted One",
+			"source": "RHW",
+			"edition": "one",
+			"ability": [
+				{
+					"choose": {
+						"weighted": {
+							"from": [
+								"con",
+								"wis",
+								"cha"
+							],
+							"weights": [
+								2,
+								1
+							]
+						}
+					}
+				},
+				{
+					"choose": {
+						"weighted": {
+							"from": [
+								"con",
+								"wis",
+								"cha"
+							],
+							"weights": [
+								1,
+								1,
+								1
+							]
+						}
+					}
+				}
+			],
+			"feats": [
+				{
+					"survivor|rhw": true
+				},
+				{
+					"anyFromCategory": {
+						"category": [
+							"DG"
+						]
+					}
+				}
+			],
+			"skillProficiencies": [
+				{
+					"arcana": true,
+					"survival": true
+				}
+			],
+			"toolProficiencies": [
+				{
+					"anyGamingSet": 1
+				}
+			],
+			"startingEquipment": [
+				{
+					"a": [
+						{
+							"equipmentType": "setGaming",
+							"displayName": "Gaming Set (same as above)"
+						},
+						"crowbar|xphb",
+						{
+							"item": "holy water|xphb",
+							"displayName": "Holy Water (1 flask)"
+						},
+						"mirror|xphb",
+						{
+							"item": "oil|xphb",
+							"displayName": "Oil (2 flasks)"
+						},
+						"signal whistle|xphb",
+						"tinderbox|xphb",
+						"traveler's clothes|xphb",
+						{
+							"item": "torch|xphb",
+							"displayName": "Torches",
+							"quantity": 5
+						},
+						"waterskin|xphb",
+						{
+							"value": 1400
+						}
+					],
+					"b": [
+						{
+							"value": 5000
+						}
+					]
+				}
+			],
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Ability Scores:",
+							"entry": "Constitution, Wisdom, Charisma"
+						},
+						{
+							"type": "item",
+							"name": "Feat:",
+							"entry": "{@feat Survivor|RHW} or a {@filter Dark Gift feat of your choice|feats|category=DG}"
+						},
+						{
+							"type": "item",
+							"name": "Skill Proficiencies:",
+							"entry": "{@skill Arcana|XPHB} and {@skill Survival|XPHB}"
+						},
+						{
+							"type": "item",
+							"name": "Tool Proficiencies:",
+							"entry": "Choose one kind of {@item Gaming Set|XPHB}"
+						},
+						{
+							"type": "item",
+							"name": "Equipment:",
+							"entry": "Choose A or B: (A) {@item Gaming Set|XPHB} (same as above), {@item Crowbar|XPHB}, {@item Holy Water|XPHB} (1 {@item flask|XPHB}), {@item Mirror|XPHB}, {@item Oil|XPHB}(2 flasks), {@item Signal Whistle|XPHB}, {@item Tinderbox|XPHB}, {@item Traveler's Clothes|XPHB}, 5 Torches, {@item Waterskin|XPHB}, and 14 GP; or (B) 50 GP"
+						}
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Haunted One",
 			"source": "VRGR",
 			"page": 34,
 			"otherSources": [
@@ -10857,6 +10990,9 @@
 					"source": "CoS",
 					"page": 209
 				}
+			],
+			"reprintedAs": [
+				"Haunted One|RHW"
 			],
 			"skillProficiencies": [
 				{
@@ -10974,7 +11110,7 @@
 								],
 								[
 									"6",
-									"You were cursed with lycanthropy and later cured. You are now haunted by the innocents you slaughtered."
+									"You were cursed with {@variantrule Player Characters as Lycanthropes|MM|lycanthropy} and later cured. You are now haunted by the innocents you slaughtered."
 								],
 								[
 									"7",
@@ -14312,8 +14448,130 @@
 		},
 		{
 			"name": "Investigator",
+			"source": "RHW",
+			"edition": "one",
+			"ability": [
+				{
+					"choose": {
+						"weighted": {
+							"from": [
+								"int",
+								"wis",
+								"cha"
+							],
+							"weights": [
+								2,
+								1
+							]
+						}
+					}
+				},
+				{
+					"choose": {
+						"weighted": {
+							"from": [
+								"int",
+								"wis",
+								"cha"
+							],
+							"weights": [
+								1,
+								1,
+								1
+							]
+						}
+					}
+				}
+			],
+			"feats": [
+				{
+					"sharp eye|rhw": true
+				},
+				{
+					"anyFromCategory": {
+						"category": [
+							"DG"
+						]
+					}
+				}
+			],
+			"skillProficiencies": [
+				{
+					"insight": true,
+					"investigation": true
+				}
+			],
+			"toolProficiencies": [
+				{
+					"disguise kit": true
+				}
+			],
+			"startingEquipment": [
+				{
+					"a": [
+						"disguise kit|xphb",
+						"manacles|xphb",
+						"shovel|xphb",
+						"traveler's clothes|xphb",
+						{
+							"displayName": "Vials",
+							"item": "vial|xphb",
+							"quantity": 3
+						},
+						{
+							"value": 1600
+						}
+					],
+					"b": [
+						{
+							"value": 5000
+						}
+					]
+				}
+			],
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Ability Scores:",
+							"entry": "Intelligence, Wisdom, Charisma"
+						},
+						{
+							"type": "item",
+							"name": "Feat:",
+							"entry": "{@feat Sharp Eye|RHW} or a {@filter Dark Gift feat of your choice|feats|category=DG}"
+						},
+						{
+							"type": "item",
+							"name": "Skill Proficiencies:",
+							"entry": "{@skill Insight|XPHB} and {@skill Investigation|XPHB}"
+						},
+						{
+							"type": "item",
+							"name": "Tool Proficiencies:",
+							"entry": "{@item Disguise Kit|XPHB}"
+						},
+						{
+							"type": "item",
+							"name": "Equipment:",
+							"entry": "Choose A or B: (A) {@item Disguise Kit|XPHB}, {@item Manacles|XPHB}, {@item Shovel|XPHB}, {@item Traveler's Clothes|XPHB}, 3 Vials, and 16 GP; or (B) 50 GP"
+						}
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Investigator",
 			"source": "VRGR",
 			"page": 35,
+			"reprintedAs": [
+				"Investigator|RHW"
+			],
 			"skillProficiencies": [
 				{
 					"choose": {
@@ -16534,6 +16792,126 @@
 							"type": "item",
 							"name": "Equipment:",
 							"entry": "Choose A or B: (A) {@item Navigator's Tools|XPHB}, {@item Pouch|XPHB|2 Pouches}, {@item Traveler's Clothes|XPHB}, 22 GP; or (B) 50 GP"
+						}
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Mist Wanderer",
+			"source": "RHW",
+			"edition": "one",
+			"ability": [
+				{
+					"choose": {
+						"weighted": {
+							"from": [
+								"dex",
+								"con",
+								"wis"
+							],
+							"weights": [
+								2,
+								1
+							]
+						}
+					}
+				},
+				{
+					"choose": {
+						"weighted": {
+							"from": [
+								"dex",
+								"con",
+								"wis"
+							],
+							"weights": [
+								1,
+								1,
+								1
+							]
+						}
+					}
+				}
+			],
+			"feats": [
+				{
+					"anyFromCategory": {
+						"category": [
+							"DG"
+						]
+					}
+				}
+			],
+			"skillProficiencies": [
+				{
+					"survival": true,
+					"stealth": true
+				}
+			],
+			"toolProficiencies": [
+				{
+					"anyArtisansTool": 1
+				}
+			],
+			"startingEquipment": [
+				{
+					"a": [
+						{
+							"equipmentType": "toolArtisan",
+							"displayName": "Artisan's Tools (same as above)"
+						},
+						"lamp|xphb",
+						{
+							"item": "oil|xphb",
+							"displayName": "Oil (5 flasks)"
+						},
+						"pouch|xphb",
+						"rope|xphb",
+						"tinderbox|xphb",
+						"traveler's clothes|xphb",
+						{
+							"value": 3000
+						}
+					],
+					"b": [
+						{
+							"value": 5000
+						}
+					]
+				}
+			],
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Ability Scores:",
+							"entry": "Dexterity, Constitution, Wisdom"
+						},
+						{
+							"type": "item",
+							"name": "Feat:",
+							"entry": "A {@filter Dark Gift feat of your choice|feats|category=DG} ({@feat Mist Walker|RHW} is recommended)"
+						},
+						{
+							"type": "item",
+							"name": "Skill Proficiencies:",
+							"entry": "{@skill Survival|XPHB} and {@skill Stealth|XPHB}"
+						},
+						{
+							"type": "item",
+							"name": "Tool Proficiencies:",
+							"entry": "Choose one kind of {@item Artisan's Tools|XPHB}"
+						},
+						{
+							"type": "item",
+							"name": "Equipment:",
+							"entry": "Choose A or B: (A) {@item Artisan's Tools|XPHB} (same as above), {@item Lamp|XPHB}, {@item Oil|XPHB} (5 flasks), {@item Pouch|XPHB}, {@item Rope|XPHB}, {@item Tinderbox|XPHB}, {@item Traveler's Clothes|XPHB}, and 30 GP; or (B) 50 GP"
 						}
 					]
 				}
@@ -23924,6 +24302,136 @@
 							"type": "item",
 							"name": "Equipment:",
 							"entry": "Choose A or B: (A) {@item Gaming Set|XPHB} (same as above), {@item Arcane Focus|XPHB} ({@item Crystal|XPHB} or {@item Wand|XPHB}), 2 {@item Pouch|XPHB|Pouches}, {@item Traveler's Clothes|XPHB}, 36 GP; or (B) 50 GP"
+						}
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Spirit Medium",
+			"source": "RHW",
+			"edition": "one",
+			"ability": [
+				{
+					"choose": {
+						"weighted": {
+							"from": [
+								"con",
+								"int",
+								"wis"
+							],
+							"weights": [
+								2,
+								1
+							]
+						}
+					}
+				},
+				{
+					"choose": {
+						"weighted": {
+							"from": [
+								"con",
+								"int",
+								"wis"
+							],
+							"weights": [
+								1,
+								1,
+								1
+							]
+						}
+					}
+				}
+			],
+			"feats": [
+				{
+					"anyFromCategory": {
+						"category": [
+							"DG"
+						]
+					}
+				}
+			],
+			"skillProficiencies": [
+				{
+					"insight": true,
+					"religion": true
+				}
+			],
+			"toolProficiencies": [
+				{
+					"anyGamingSet": 1
+				}
+			],
+			"startingEquipment": [
+				{
+					"a": [
+						"dagger|xphb",
+						{
+							"equipmentType": "setGaming",
+							"displayName": "Gaming Set (same as above)"
+						},
+						"basket|xphb",
+						"bell|xphb",
+						{
+							"displayName": "Candles",
+							"item": "candle|xphb",
+							"quantity": 8
+						},
+						"ink|xphb",
+						{
+							"item": "ink|xphb",
+							"displayName": "Ink Pen"
+						},
+						{
+							"item": "paper|xphb",
+							"displayName": "Paper (5 sheets)"
+						},
+						"tinderbox|xphb",
+						"traveler's clothes|xphb",
+						{
+							"value": 3200
+						}
+					],
+					"b": [
+						{
+							"value": 5000
+						}
+					]
+				}
+			],
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Ability Scores:",
+							"entry": "Constitution, Intelligence, Wisdom"
+						},
+						{
+							"type": "item",
+							"name": "Feat:",
+							"entry": "A {@filter Dark Gift feat of your choice|feats|category=DG} ({@feat Gathered Whispers|RHW} is recommended)"
+						},
+						{
+							"type": "item",
+							"name": "Skill Proficiencies:",
+							"entry": "{@skill Insight|XPHB} and {@skill Religion|XPHB}"
+						},
+						{
+							"type": "item",
+							"name": "Tool Proficiencies:",
+							"entry": "Choose one kind of {@item Gaming Set|XPHB}"
+						},
+						{
+							"type": "item",
+							"name": "Equipment:",
+							"entry": "Choose A or B: (A) {@item Dagger|XPHB}, {@item Gaming Set|XPHB} (same as above), {@item Basket|XPHB}, {@item Bell|XPHB}, 8 Candles, {@item Ink|XPHB}, {@item Ink|XPHB} Pen, {@item Paper|XPHB} (5 sheets), {@item Tinderbox|XPHB}, {@item Traveler's Clothes|XPHB}, and 32 GP; or (B) 50 GP"
 						}
 					]
 				}

@@ -157,6 +157,27 @@
 			]
 		},
 		{
+			"name": "Blasphemous Charm",
+			"source": "RHW",
+			"type": "Charm",
+			"additionalSpells": [
+				{
+					"innate": {
+						"_": {
+							"limited": {
+								"1": [
+									"hunger of hadar|xphb"
+								]
+							}
+						}
+					}
+				}
+			],
+			"entries": [
+				"You can use this Charm as a {@action Magic|XPHB} action to cast {@spell Hunger of Hadar|XPHB} without requiring Material components. You can't gain this Charm again while you have it."
+			]
+		},
+		{
 			"name": "Blessing of Bloody Might",
 			"source": "BMT",
 			"page": 171,
@@ -1301,6 +1322,27 @@
 			]
 		},
 		{
+			"name": "Charm of Electromancy",
+			"source": "RHW",
+			"type": "Charm",
+			"additionalSpells": [
+				{
+					"innate": {
+						"_": {
+							"limited": {
+								"3": [
+									"telekinesis|xphb"
+								]
+							}
+						}
+					}
+				}
+			],
+			"entries": [
+				"This Charm has 3 charges. You can expend 1 charge from this Charm to cast the {@spell Telekinesis|XPHB} spell. Once all its charges are expended, the Charm vanishes from you."
+			]
+		},
+		{
 			"name": "Charm of Euryale",
 			"source": "BMT",
 			"page": 62,
@@ -1308,6 +1350,35 @@
 			"entries": [
 				"As an action, you can unleash a petrifying wave of magic from your eyes in a 30-foot cone. Each creature in that area must make a {@dc 15} Constitution saving throw. On a failed save, a creature has the {@condition petrified} condition for 1 hour. On a successful save, a creature is partially turned to stone and has the {@condition restrained} condition. A {@condition restrained} creature can repeat the save at the end of each of its turns, ending the effect on itself on a success.",
 				"Once you use this charm, it vanishes from you."
+			]
+		},
+		{
+			"name": "Charm of Exorcism",
+			"source": "RHW",
+			"type": "Charm",
+			"additionalSpells": [
+				{
+					"innate": {
+						"_": {
+							"limited": {
+								"1": [
+									"dispel evil and good|xphb",
+									"remove curse|xphb"
+								]
+							}
+						}
+					},
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You can use the Charm as a {@action Magic|XPHB} action to cast {@spell Dispel Evil and Good|XPHB} or {@spell Remove Curse|XPHB} without requiring Material components. The Charm lasts for 7 days or until you use it. Intelligence, Wisdom, or Charisma is your spellcasting ability for the Charm's spells (choose each time you gain this Charm)."
 			]
 		},
 		{
@@ -1453,6 +1524,35 @@
 			],
 			"entries": [
 				"This charm allows you to cast the {@spell lightning bolt} spell (save {@dc 15}) as an action, no components required. Once used, this charm vanishes from you."
+			]
+		},
+		{
+			"name": "Charm of Malediction",
+			"source": "RHW",
+			"type": "Charm",
+			"additionalSpells": [
+				{
+					"innate": {
+						"_": {
+							"limited": {
+								"1": [
+									"hex|xphb#3",
+									"bestow curse|xphb"
+								]
+							}
+						}
+					},
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You can use the Charm as a Magic action to cast {@spell Hex|XPHB} (level 3 version) or {@spell Bestow Curse|XPHB} without requiring Material components. The Charm lasts for 7 days or until you use it. Intelligence, Wisdom, or Charisma is your spellcasting ability for the Charm's spells (choose each time you gain this Charm)."
 			]
 		},
 		{
@@ -1612,6 +1712,35 @@
 			"type": "Charm",
 			"entries": [
 				"This charm has 9 charges. You can use an action to expend 1 charge from the charm to gain 30 temporary hit points. For the next hour, your eyes become voids of utter darkness, and you can't be {@condition charmed} or {@condition frightened}. Once all its charges have been expended, the charm vanishes from you."
+			]
+		},
+		{
+			"name": "Charm of the Black Rose",
+			"source": "RHW",
+			"type": "Charm",
+			"additionalSpells": [
+				{
+					"innate": {
+						"_": {
+							"limited": {
+								"1": [
+									"dissonant whispers|xphb#5"
+								]
+							}
+						}
+					}
+				}
+			],
+			"entries": [
+				"You can expend this charm to gain one of the following effects:",
+				{
+					"type": "list",
+					"items": [
+						"You have {@variantrule Advantage|XPHB} on ability checks made to influence {@creature Lord Soth of Sithicus|RHW|Lord Soth's} attitude for 24 hours.",
+						"You cast {@spell Dissonant Whispers|XPHB} (level 5 version, spell save {@dc 17})."
+					]
+				},
+				"The Charm vanishes once you use either effect."
 			]
 		},
 		{
@@ -3106,7 +3235,7 @@
 							"name": "Burden",
 							"page": 194,
 							"entries": [
-								"The character is cursed with {@creature loup garou|VRGR} lycanthropy (see {@book chapter 5|VRGR|5})."
+								"The character is cursed with {@creature loup garou|VRGR} {@variantrule Player Characters as Lycanthropes|MM|lycanthropy} (see {@book chapter 5|VRGR|5})."
 							]
 						},
 						{

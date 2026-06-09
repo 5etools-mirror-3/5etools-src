@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import "../js/parser.js";
 import "../js/utils.js";
+import "../js/utils-dataloader.js";
 import "../js/render.js";
 import * as ut from "../node/util.js";
 import {listFiles} from "../node/util.js";

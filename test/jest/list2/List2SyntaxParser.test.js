@@ -63,6 +63,21 @@ describe("List Syntax Parsing", () => {
 			});
 	});
 
+	it("Should handle space-prefixed single syntax without a delimiter", () => {
+		expect(
+			List2SyntaxParser.getParsedSyntaxInfo({
+				searchTerm: "name: hello world",
+				reCommand: _RE_COMMAND,
+			}),
+		)
+			.toEqual({
+				syntaxMetasRaw: [
+					{command: "name", term: `"hello world"`, isDelimited: true},
+				],
+				searchTerm: "",
+			});
+	});
+
 	it("Should handle multiple syntax", () => {
 		expect(
 			List2SyntaxParser.getParsedSyntaxInfo({

@@ -465,6 +465,7 @@ export class BookUtil {
 
 			BookUtil.curRender.lnksChapter[ixChapter].addClass("bk__head-chapter--active");
 			(BookUtil.curRender.lnksHeader[ixChapter] || []).forEach(lnk => lnk.addClass("bk__head-section--active"));
+			BookUtil.curRender.wrpLnksHeader[ixChapter].scrollIntoView({block: "nearest", inline: "nearest"});
 		}
 		// endregion
 
@@ -926,6 +927,7 @@ export class BookUtil {
 		BookUtil.curRender.btnsToggleExpand = [];
 		BookUtil.curRender.lnksChapter = [];
 		BookUtil.curRender.lnksHeader = {};
+		BookUtil.curRender.wrpLnksHeader = {};
 
 		BookUtil.curRender.btnToggleExpandAll = ee`<span title="Expand All" class="ve-px-2 ve-bold ve-py-1p ve-no-select ve-clickable ve-no-select">${BookUtil.isDefaultExpandedContents ? `[\u2212]` : `[+]`}</span>`
 			.onn("click", () => {
@@ -1017,9 +1019,13 @@ export class BookUtil {
 			(this.curRender.lnksHeader[ixChapter] ||= []).push(lnk);
 		});
 
-		return ee`<div class="ve-flex-col ve-pl-4 ve-ml-2">
+		const wrpLnksHeader = ee`<div class="ve-flex-col ve-pl-4 ve-ml-2">
 			${eles}
 		</div>`;
+
+		this.curRender.wrpLnksHeader[ixChapter] = wrpLnksHeader;
+
+		return wrpLnksHeader;
 	}
 
 	static _handleCheckReNav (lnk) {
@@ -1045,6 +1051,7 @@ BookUtil.curRender = {
 
 	lnksChapter: [],
 	lnksHeader: {},
+	wrpLnksHeader: {},
 };
 BookUtil._LAST_CLICKED_LINK = null;
 BookUtil._isNarrow = null;

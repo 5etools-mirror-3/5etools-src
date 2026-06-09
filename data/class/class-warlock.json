@@ -1517,6 +1517,9 @@
 			"className": "Warlock",
 			"classSource": "PHB",
 			"page": 30,
+			"reprintedAs": [
+				"Undead|Warlock|XPHB|RHW"
+			],
 			"edition": "classic",
 			"additionalSpells": [
 				{
@@ -1558,6 +1561,9 @@
 			"source": "VRGR",
 			"className": "Warlock",
 			"classSource": "XPHB",
+			"reprintedAs": [
+				"Undead|Warlock|XPHB|RHW"
+			],
 			"_copy": {
 				"name": "The Undead",
 				"source": "VRGR",
@@ -1770,6 +1776,45 @@
 				"Eldritch Hex|Warlock|XPHB|Great Old One|XPHB|10",
 				"Thought Shield|Warlock|XPHB|Great Old One|XPHB|10",
 				"Create Thrall|Warlock|XPHB|Great Old One|XPHB|14"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Undead Patron",
+			"shortName": "Undead",
+			"source": "RHW",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"bane|xphb",
+							"blindness/deafness|xphb",
+							"phantasmal force|xphb",
+							"ray of sickness|xphb"
+						],
+						"5": [
+							"speak with dead|xphb",
+							"summon undead|xphb"
+						],
+						"7": [
+							"greater invisibility|xphb",
+							"phantasmal killer|xphb"
+						],
+						"9": [
+							"antilife shell|xphb",
+							"cloudkill|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Undead Patron|Warlock|XPHB|Undead|RHW|3|RHW",
+				"Grave Touched|Warlock|XPHB|Undead|RHW|6|RHW",
+				"Necrotic Husk|Warlock|XPHB|Undead|RHW|10|RHW",
+				"Superior Dread|Warlock|XPHB|Undead|RHW|14|RHW"
 			],
 			"hasFluffImages": true
 		}
@@ -4020,6 +4065,200 @@
 					"page": true
 				}
 			}
+		},
+		{
+			"name": "Undead Patron",
+			"source": "RHW",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Undead",
+			"subclassSource": "RHW",
+			"level": 3,
+			"entries": [
+				"{@i Defy Death for Profane Power}",
+				"You've made a pact with a creature that defies the cycle of life and death: a powerful lich, a vampire, or another entity of undeath. Having once been mortal, these ancient patrons know firsthand the paths of ambition and the routes past the doors of death. They eagerly share this profane knowledge and other secrets with those who work their will among the living.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Form of Dread|Warlock|XPHB|Undead|RHW|3|RHW"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Undead Spells|Warlock|XPHB|Undead|RHW|3|RHW"
+				}
+			]
+		},
+		{
+			"name": "Form of Dread",
+			"source": "RHW",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Undead",
+			"subclassSource": "RHW",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"As a Bonus Action, you transform into an avatar of your patron's dreadful power, gaining the benefits below for 1 minute, until you have the {@condition Incapacitated|XPHB} condition, or until you end the form (no action required). You can transform a number of times equal to your Charisma modifier (minimum of once), and you regain all expended uses when you finish a Long Rest.",
+				{
+					"type": "entries",
+					"name": "Facsimile of Life",
+					"entries": [
+						"You gain {@variantrule Temporary Hit Points|XPHB} equal to {@dice 1d10} plus your Warlock level."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Fearless Form",
+					"entries": [
+						"You have Immunity to the {@condition Frightened|XPHB} condition. If you are Frightened when you transform, the condition immediately ends for you."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Frightful Avatar",
+					"entries": [
+						"Once per turn, when you hit a creature with an attack roll, you can force it to make a Wisdom saving throw against your spell save DC. On a failed save, the target has the {@condition Frightened|XPHB} condition until the end of your next turn."
+					]
+				}
+			]
+		},
+		{
+			"name": "Undead Spells",
+			"source": "RHW",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Undead",
+			"subclassSource": "RHW",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"The magic of your patron ensures you always have certain spells ready; when you reach a Warlock level specified in the Undead Spells table, you thereafter always have the listed spells prepared.",
+				{
+					"type": "table",
+					"caption": "Undead Spells",
+					"colLabels": [
+						"Warlock Level",
+						"Spells"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Bane|XPHB}, {@spell Blindness/Deafness|XPHB}, {@spell Phantasmal Force|XPHB}, {@spell Ray of Sickness|XPHB}"
+						],
+						[
+							"5",
+							"{@spell Speak with Dead|XPHB}, {@spell Summon Undead|XPHB}"
+						],
+						[
+							"7",
+							"{@spell Greater Invisibility|XPHB}, {@spell Phantasmal Killer|XPHB}"
+						],
+						[
+							"9",
+							"{@spell Antilife Shell|XPHB}, {@spell Cloudkill|XPHB}"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Grave Touched",
+			"source": "RHW",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Undead",
+			"subclassSource": "RHW",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"Your patron's powers have a profound effect on your body and magic, granting you the following benefits.",
+				{
+					"type": "entries",
+					"name": "Arcane Necrosis",
+					"entries": [
+						"Necrotic damage from your attacks, Warlock spells, and Warlock features ignores Resistance to Necrotic damage. Once per turn when you cast a spell that deals damage, you can change that spell's damage type to Necrotic."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Dreaded Necrosis",
+					"entries": [
+						"When you hit a creature with an attack roll and deal Necrotic damage while using your Form of Dread, you can roll one additional damage die when determining the Necrotic damage the target takes. You can use this benefit only once per turn."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Undead Endurance",
+					"entries": [
+						"You don't gain {@condition Exhaustion|XPHB} levels from {@hazard dehydration|XPHB}, {@hazard malnutrition|XPHB}, or {@hazard suffocation|XPHB}. In addition, you don't need to sleep, and magic can't put you to sleep."
+					]
+				}
+			]
+		},
+		{
+			"name": "Necrotic Husk",
+			"source": "RHW",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Undead",
+			"subclassSource": "RHW",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"Your connection to undeath saturates your body. You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Necrotic Resilience",
+					"entries": [
+						"You have Resistance to Necrotic damage. While using your Form of Dread, you have Immunity to Necrotic damage."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Unholy Resuscitation",
+					"entries": [
+						"If you drop to 0 Hit Points and don't die outright, you can cause your body to erupt with deathly energy. Each creature of your choice in a 30-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from you makes a Constitution saving throw against your spell save DC, taking Necrotic damage equal to {@dice 2d10} plus your Charisma modifier on a failed save or half as much damage on a successful one. Your Hit Points then change to twice your Warlock level, and you gain 1 {@condition Exhaustion|XPHB} level.",
+						"Once you use this benefit, you can't use it again until you finish a Short or Long Rest."
+					]
+				}
+			]
+		},
+		{
+			"name": "Superior Dread",
+			"source": "RHW",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Undead",
+			"subclassSource": "RHW",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"Your Form of Dread improves, granting you the following benefits while you are using it.",
+				{
+					"type": "entries",
+					"name": "Dread Resistance",
+					"entries": [
+						"You have Resistance to Bludgeoning, Piercing, and Slashing damage."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Ghostly Flight",
+					"entries": [
+						"You have a Fly Speed equal to your Speed and can hover. You can move through creatures and objects as if they were {@variantrule Difficult Terrain|XPHB}, but you take {@damage 1d10} Force damage if you end your turn inside a creature or an object."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Profane Casting",
+					"entries": [
+						"Whenever you cast a Warlock spell from the Conjuration or Necromancy school, you cast it without any Verbal, Somatic, or Material components, except Material components that are costly or consumed."
+					]
+				}
+			]
 		},
 		{
 			"name": "The Undying",

@@ -1279,7 +1279,7 @@ export class ConverterCreature extends ConverterBase {
 					cur,
 					ptrList,
 					isMultiple,
-					fnIsMatchCurEntry: cur => /\b(?:following( effects)?|their effects follow|subjected to the [^.!?]+ effect)[^.!?]*:/.test(cur.entries.last().trim()),
+					fnIsMatchCurEntry: cur => /\b(?:following( effects)?|their effects follow|subjected to the [^.!?]+ effect).*:/.test(cur.entries.last().trim()),
 					fnIsMatchNxtStr: ({entryNxt, entryNxtStr}) => {
 						if (/\b(?:the target|all targeted)\b/i.test(entryNxtStr) && !entryNxt.name?.includes("(")) return true;
 						if (entryNxt.name && / Only\)$/.test(entryNxt.name)) return true;

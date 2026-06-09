@@ -88,6 +88,11 @@ export class List2SyntaxParser {
 						break;
 					}
 
+					// Ignore e.g. leading whitespace after a command
+					if (!stack) {
+						break;
+					}
+
 					doPopStack();
 
 					break;

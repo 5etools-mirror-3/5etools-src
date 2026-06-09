@@ -2260,6 +2260,9 @@
 			"className": "Cleric",
 			"classSource": "PHB",
 			"page": 19,
+			"reprintedAs": [
+				"Grave|Cleric|XPHB|RHW"
+			],
 			"edition": "classic",
 			"additionalSpells": [
 				{
@@ -2309,6 +2312,9 @@
 			"source": "XGE",
 			"className": "Cleric",
 			"classSource": "XPHB",
+			"reprintedAs": [
+				"Grave|Cleric|XPHB|RHW"
+			],
 			"_copy": {
 				"name": "Grave Domain",
 				"source": "XGE",
@@ -2788,6 +2794,45 @@
 				"Knowledge Domain|Cleric|XPHB|Knowledge|FRHoF|3|FRHoF",
 				"Unfettered Mind|Cleric|XPHB|Knowledge|FRHoF|6|FRHoF",
 				"Divine Foreknowledge|Cleric|XPHB|Knowledge|FRHoF|17|FRHoF"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Grave Domain",
+			"shortName": "Grave",
+			"source": "RHW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"detect evil and good|xphb",
+							"false life|xphb",
+							"gentle repose|xphb",
+							"ray of enfeeblement|xphb",
+							"spare the dying|xphb"
+						],
+						"5": [
+							"revivify|xphb",
+							"vampiric touch|xphb"
+						],
+						"7": [
+							"blight|xphb",
+							"death ward|xphb"
+						],
+						"9": [
+							"dispel evil and good|xphb",
+							"raise dead|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Grave Domain|Cleric|XPHB|Grave|RHW|3|RHW",
+				"Sentinel at Death's Door|Cleric|XPHB|Grave|RHW|6|RHW",
+				"Divine Reaper|Cleric|XPHB|Grave|RHW|17|RHW"
 			],
 			"hasFluffImages": true
 		}
@@ -7428,6 +7473,159 @@
 					"page": true
 				}
 			}
+		},
+		{
+			"name": "Circle of Mortality",
+			"source": "RHW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Grave",
+			"subclassSource": "RHW",
+			"level": 3,
+			"entries": [
+				"You can manipulate the balance between life and death, granting you the following benefits.",
+				{
+					"type": "entries",
+					"name": "Pull of Death",
+					"entries": [
+						"Once per turn, when you deal damage to a creature that's missing any Hit Points by casting a spell or by hitting with an attack roll, that creature takes an extra {@damage 1d4} Necrotic damage. This extra damage increases to {@dice 1d6} when you reach Cleric level 11."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Return to Life",
+					"entries": [
+						"You can cast {@spell Spare the Dying|XPHB} as a Bonus Action.",
+						"Additionally, when you would normally roll one or more dice to restore Hit Points to a creature at 0 Hit Points with a spell or Channel Divinity, don't roll those dice for the healing; instead, use the highest number possible for each die. For example, instead of restoring {@dice 2d4} Hit Points to a creature at 0 Hit Points with a spell, you restore 8."
+					]
+				}
+			]
+		},
+		{
+			"name": "Grave Domain",
+			"source": "RHW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Grave",
+			"subclassSource": "RHW",
+			"level": 3,
+			"entries": [
+				"{@i Embody Deific Forces of Death}",
+				"The Grave Domain concerns itself with the boundary between life and death. To those who tap into this domain's power, death is a natural and inevitable part of the multiverse. Such Clerics seek to destroy undead and shepherd spirits.",
+				"The magic of this domain also allows these Clerics to stave off death for a time. But this is merely a delay of death, not a denial of it, for the grave will always claim its due.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Grave Domain Spells|Cleric|XPHB|Grave|RHW|3|RHW"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Circle of Mortality|Cleric|XPHB|Grave|RHW|3|RHW"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Path to the Grave|Cleric|XPHB|Grave|RHW|3|RHW"
+				}
+			]
+		},
+		{
+			"name": "Grave Domain Spells",
+			"source": "RHW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Grave",
+			"subclassSource": "RHW",
+			"level": 3,
+			"entries": [
+				"Your connection to this divine domain ensures you always have certain spells ready. When you reach a Cleric level specified in the Grave Domain Spells table, you thereafter always have the listed spells prepared.",
+				{
+					"type": "table",
+					"caption": "Grave Domain Spells",
+					"colLabels": [
+						"Cleric Level",
+						"Spells"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Detect Evil and Good|XPHB}, {@spell False Life|XPHB}, {@spell Gentle Repose|XPHB}, {@spell Ray of Enfeeblement|XPHB}, {@spell Spare the Dying|XPHB}"
+						],
+						[
+							"5",
+							"{@spell Revivify|XPHB}, {@spell Vampiric Touch|XPHB}"
+						],
+						[
+							"7",
+							"{@spell Blight|XPHB}, {@spell Death Ward|XPHB}"
+						],
+						[
+							"9",
+							"{@spell Dispel Evil and Good|XPHB}, {@spell Raise Dead|XPHB}"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Path to the Grave",
+			"source": "RHW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Grave",
+			"subclassSource": "RHW",
+			"level": 3,
+			"consumes": {
+				"name": "Channel Divinity",
+				"amount": 1
+			},
+			"entries": [
+				"As a Bonus Action, you present your Holy Symbol and expend a use of Channel Divinity to curse one creature you can see within 30 feet of yourself until the start of your next turn. While cursed, the creature has {@variantrule Disadvantage|XPHB} on attack rolls and saving throws.",
+				"When you or an ally you can see hits the cursed target with an attack roll, you can end the curse early (no action required) to make the attack deal extra Necrotic or Radiant damage (your choice) equal to your Cleric level."
+			]
+		},
+		{
+			"name": "Sentinel at Death's Door",
+			"source": "RHW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Grave",
+			"subclassSource": "RHW",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"When you or a {@status Bloodied|XPHB} creature you can see within 60 feet of yourself is hit with an attack roll, you can take a Reaction to halve that attack's damage (round down). If the triggering attack roll was a Critical Hit, any effects triggered by a Critical Hit are canceled.",
+				"You can use this feature a number of times equal to your Wisdom modifier (minimum of once). You regain all expended uses when you finish a Long Rest."
+			]
+		},
+		{
+			"name": "Divine Reaper",
+			"source": "RHW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Grave",
+			"subclassSource": "RHW",
+			"level": 17,
+			"header": 2,
+			"entries": [
+				"Your deep connection to this domain renders you a hallowed harbinger of death, granting you the following benefits.",
+				{
+					"type": "entries",
+					"name": "Enhanced Necromancy",
+					"entries": [
+						"When you cast a spell of level 5 or lower from the Necromancy school that targets one creature, or when you cast a spell from the {@book Grave Domain Spells table|RHW|1|Grave Domain Spells}, you can expend a use of Channel Divinity to target a second creature within the spell's range. If the spell requires costly or consumed Material components, you must provide Material components for each target."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Keeper of Souls",
+					"entries": [
+						"When an enemy dies within 60 feet of you, you or one creature you can see within 60 feet of yourself regains Hit Points equal to twice your Cleric level. You can't use this feature if you have the {@condition Incapacitated|XPHB} condition. Once you use this feature, you can't use it again until you finish a Short or Long Rest, unless you expend a level 6+ spell slot (no action required) to restore your use of it."
+					]
+				}
+			]
 		},
 		{
 			"name": "Arcana Domain",

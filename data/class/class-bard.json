@@ -1714,6 +1714,9 @@
 			"className": "Bard",
 			"classSource": "PHB",
 			"page": 28,
+			"reprintedAs": [
+				"Spirits|Bard|XPHB|RHW"
+			],
 			"edition": "classic",
 			"additionalSpells": [
 				{
@@ -1737,6 +1740,9 @@
 			"source": "VRGR",
 			"className": "Bard",
 			"classSource": "XPHB",
+			"reprintedAs": [
+				"Spirits|Bard|XPHB|RHW"
+			],
 			"_copy": {
 				"name": "College of Spirits",
 				"source": "VRGR",
@@ -1890,6 +1896,33 @@
 				"College of the Moon|Bard|XPHB|Moon|FRHoF|3|FRHoF",
 				"Blessing of Moonlight|Bard|XPHB|Moon|FRHoF|6|FRHoF",
 				"Eventide's Splendor|Bard|XPHB|Moon|FRHoF|14|FRHoF"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "College of Spirits",
+			"shortName": "Spirits",
+			"source": "RHW",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"6": {
+							"daily": {
+								"1e": [
+									"spirit guardians|xphb"
+								]
+							}
+						}
+					}
+				}
+			],
+			"subclassFeatures": [
+				"College of Spirits|Bard|XPHB|Spirits|RHW|3|RHW",
+				"Empowered Channeling|Bard|XPHB|Spirits|RHW|6|RHW",
+				"Mystical Connection|Bard|XPHB|Spirits|RHW|14|RHW"
 			],
 			"hasFluffImages": true
 		}
@@ -3641,6 +3674,182 @@
 						"When you use Lunar Vitality, you can roll {@dice 1d6} and use the number rolled in place of expending a Bardic Inspiration die."
 					]
 				}
+			]
+		},
+		{
+			"name": "Channeler",
+			"source": "RHW",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Spirits",
+			"subclassSource": "RHW",
+			"level": 3,
+			"entries": [
+				"You learn how to contact spirits beyond the grave, letting their power and knowledge flow through you. You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Guiding Whispers",
+					"entries": [
+						"You know the {@spell Guidance|XPHB} cantrip. It has a range of 60 feet when you cast it."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spiritual Focus",
+					"entries": [
+						"You employ tools that aid you in channeling spirits. You gain a Gaming Set ({@item playing cards|XPHB}). You have proficiency with this Gaming Set, and you can use it or one of the following items as a Spellcasting Focus for your Bard spells: Arcane Focus ({@item crystal|XPHB} or {@item orb|XPHB}), {@item Candle|XPHB}, or {@item Ink Pen|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "College of Spirits",
+			"source": "RHW",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Spirits",
+			"subclassSource": "RHW",
+			"level": 3,
+			"entries": [
+				"{@i Call Forth Spirits from Beyond the Grave}",
+				"Bards of the College of Spirits conjure legendary spirits to change the world. But such entities are capricious, and what a Bard summons isn't always entirely under their control.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Channeler|Bard|XPHB|Spirits|RHW|3|RHW"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Spirits from Beyond|Bard|XPHB|Spirits|RHW|3|RHW"
+				}
+			]
+		},
+		{
+			"name": "Spirits from Beyond",
+			"source": "RHW",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Spirits",
+			"subclassSource": "RHW",
+			"level": 3,
+			"entries": [
+				"You can call forth spirits of the dead to empower you and your allies. When you take a Bonus Action to give a creature a Bardic Inspiration die, you can call forth the powers of a random spirit. To determine the spirit you channel, roll the Bardic Inspiration die and refer to the Spirits from Beyond table. The spirit remains channeled until you unleash it or until you finish a Short or Long Rest.",
+				{
+					"type": "entries",
+					"name": "Controlled Channeling",
+					"entries": [
+						"As a Bonus Action, you can expend a use of your Bardic Inspiration and channel a specific spirit. When you do so, choose the spirit from the Spirits from Beyond table rather than rolling. The chosen spirit's corresponding number must be less than or equal to the highest number on your Bardic Inspiration die; for example, if your Bardic Inspiration die is a {@dice d8}, you can choose to channel any spirit up to (and including) the Shade."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Unleashing a Spirit",
+					"entries": [
+						"As a {@action Magic|XPHB} action, you can unleash one of your channeled spirits. Choose one creature you can see within 30 feet of yourself as the spirit's target. The spirit then takes effect; if a spirit's effect requires a saving throw, the DC equals your Bard spell save DC.",
+						{
+							"type": "table",
+							"caption": "Spirits from Beyond",
+							"colLabels": [
+								"Bardic Insp. Die",
+								"Spirit and Unleash Effect"
+							],
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"rows": [
+								[
+									"1",
+									"Beloved. The target regains Hit Points equal to a roll of your Bardic Inspiration die plus your Charisma modifier."
+								],
+								[
+									"2",
+									"Sharpshooter. The target takes Force damage equal to a roll of your Bardic Inspiration die plus your Charisma modifier."
+								],
+								[
+									"3",
+									"Avenger. Until the end of your next turn, any creature that hits the target with a melee attack roll takes Force damage equal to a roll of your Bardic Inspiration die."
+								],
+								[
+									"4",
+									"Renegade. The target can immediately take a Reaction to teleport up to 30 feet to an unoccupied space it can see."
+								],
+								[
+									"5",
+									"Fortune Teller. The target has {@variantrule Advantage|XPHB} on {@variantrule D20 Test|XPHB|D20 Tests} until the start of your next turn."
+								],
+								[
+									"6",
+									"Wayfarer. The target gains {@variantrule Temporary Hit Points|XPHB} equal to a roll of your Bardic Inspiration die plus your Bard level. While the target has these Temporary Hit Points, its Speed increases by 10 feet."
+								],
+								[
+									"7",
+									"Trickster. The target makes a Wisdom saving throw. On a failed save, the target takes Psychic damage equal to two rolls of your Bardic Inspiration die and has the {@condition Charmed|XPHB} condition until the start of your next turn. On a successful save, the target takes half as much damage only."
+								],
+								[
+									"8",
+									"Shade. The target has the {@condition Invisible|XPHB} condition until the end of its next turn or until the target makes an attack roll, deals damage, or casts a spell. When the invisibility ends, each creature in a 5-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the target must succeed on a Constitution saving throw or take Necrotic damage equal to two rolls of your Bardic Inspiration die."
+								],
+								[
+									"9",
+									"Arsonist. The target makes a Dexterity saving throw, taking Fire damage equal to four rolls of your Bardic Inspiration die on a failed save or half as much damage on a successful one."
+								],
+								[
+									"10",
+									"Coward. The target and each creature of your choice in a 30-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the target must succeed on a Wisdom saving throw or have the {@condition Frightened|XPHB} condition until the start of your next turn. While a creature is Frightened, its Speed is halved (round down), and it can take either an action or a Bonus Action, not both."
+								],
+								[
+									"11",
+									"Brute. Each creature of your choice in a 30-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the target makes a Strength saving throw. On a failed save, a creature takes Thunder damage equal to three rolls of your Bardic Inspiration die and has the {@condition Prone|XPHB} condition. On a successful save, a creature takes half as much damage only."
+								],
+								[
+									"12",
+									"Priest. The target regains Hit Points equal to two rolls of your Bardic Inspiration die, and one of the following conditions of your choice ends on the target: {@condition Blinded|XPHB}, {@condition Charmed|XPHB}, {@condition Deafened|XPHB}, {@condition Paralyzed|XPHB}, {@condition Poisoned|XPHB}, or {@condition Stunned|XPHB}."
+								]
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Empowered Channeling",
+			"source": "RHW",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Spirits",
+			"subclassSource": "RHW",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"Your ability to channel spirits improves. You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Power from Beyond",
+					"entries": [
+						"Once per turn, when you cast a Bard spell with a spell slot that deals damage or restores Hit Points, roll {@dice 1d6}. You gain a bonus equal to the number rolled to one of the spell's damage rolls or to the total Hit Points the spell restores."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spiritual Manifestation",
+					"entries": [
+						"You always have the {@spell Spirit Guardians|XPHB} spell prepared. You can cast the spell once without a spell slot, and you regain the ability to cast it in this way when you finish a Long Rest.",
+						"Whenever you cast the spell, you can modify it so the spirits also guard against worldly threats. When you cast the spell in this way, you and allies within the spell's {@variantrule Emanation [Area of Effect]|XPHB|Emanation} have {@table Cover|XPHB|Half Cover}. Once you modify the spell in this way, you can't do so again until you finish a Short or Long Rest."
+					]
+				}
+			]
+		},
+		{
+			"name": "Mystical Connection",
+			"source": "RHW",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Spirits",
+			"subclassSource": "RHW",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"You gain mastery over the spirits you call forth. Whenever you roll on the {@book Spirits from Beyond table|RHW|1|Spirits from Beyond}, you can roll the die twice and choose which of the two effects to bestow. If you roll the same number on both dice, you can instead choose any effect on the table."
 			]
 		},
 		{

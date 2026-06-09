@@ -3369,7 +3369,7 @@
 				{
 					"name": "Bite (Bear or Hybrid Form Only)",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one creature. {@h}16 ({@damage 2d10 + 5}) piercing damage. If the target is a humanoid, it must succeed on a {@dc 15} Constitution saving throw or be cursed with werebear lycanthropy, as described in the Monster Manual."
+						"{@atk mw} {@hit 8} to hit, reach 5 ft., one creature. {@h}16 ({@damage 2d10 + 5}) piercing damage. If the target is a humanoid, it must succeed on a {@dc 15} Constitution saving throw or be cursed with werebear {@variantrule Player Characters as Lycanthropes|MM|lycanthropy}, as described in the Monster Manual."
 					]
 				},
 				{
@@ -3794,7 +3794,13 @@
 				"N",
 				"G"
 			],
+			"languages": [
+				"Common"
+			],
 			"tokenCustom": true,
+			"languageTags": [
+				"C"
+			],
 			"hasToken": true,
 			"hasFluff": true
 		},
@@ -5660,18 +5666,30 @@
 							"replace": "gladiator",
 							"with": "chieftain"
 						}
-					],
-					"_": [
-						{
-							"mode": "addSkills",
-							"skills": {
-								"survival": 1
-							}
-						}
 					]
 				}
 			},
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"{@item hide armor|PHB}",
+						"{@item shield|PHB}"
+					]
+				}
+			],
+			"skill": {
+				"athletics": "+10",
+				"intimidation": "+5",
+				"survival": "+5"
+			},
+			"languages": [
+				"Common"
+			],
 			"tokenCustom": true,
+			"languageTags": [
+				"C"
+			],
 			"hasToken": true,
 			"hasFluff": true
 		},
@@ -5689,18 +5707,30 @@
 							"replace": "gladiator",
 							"with": "great warrior"
 						}
-					],
-					"_": [
-						{
-							"mode": "addSkills",
-							"skills": {
-								"survival": 1
-							}
-						}
 					]
 				}
 			},
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"{@item hide armor|PHB}",
+						"{@item shield|PHB}"
+					]
+				}
+			],
+			"skill": {
+				"athletics": "+10",
+				"intimidation": "+5",
+				"survival": "+5"
+			},
+			"languages": [
+				"Common"
+			],
 			"tokenCustom": true,
+			"languageTags": [
+				"C"
+			],
 			"hasToken": true,
 			"hasFluff": true
 		},

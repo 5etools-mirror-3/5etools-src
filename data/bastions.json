@@ -37,6 +37,40 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Ancient Altar",
+			"source": "RHW",
+			"facilityType": "special",
+			"level": 9,
+			"space": [
+				"cramped"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"empower"
+			],
+			"entries": [
+				"An Ancient Altar is a solemn chamber where you can make offerings to mysterious forces.",
+				{
+					"type": "entries",
+					"name": "Empower: Purge Haunted Facility",
+					"entries": [
+						"You commission your hireling to lead a ritual that takes 7 days, during which time you must remain in the Bastion. At the end of the ritual, you must offer a worthy sacrifice, which can be monetary (1,000 GP) or blood (the fresh corpse of at least one Large creature or four Medium creatures that aren't Constructs or Undead). If you make a blood sacrifice, roll on the {@book Bastion Hauntings table|RHW|3|Bastion Hauntings}. Once the ritual is complete, the sacrifice is destroyed. Choose a Haunted special facility in this Bastion or in a Bastion connected to this one; that facility is no longer Haunted."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Blasphemous Charm",
+					"entries": [
+						"After spending a Long Rest in your Ancient Altar, you gain a magical {@reward Blasphemous Charm|RHW|Charm} that lasts for 7 days or until you use it."
+					]
+				}
+			]
+		},
+		{
 			"name": "Arcane Study",
 			"source": "XDMG",
 			"page": 336,
@@ -304,6 +338,101 @@
 			]
 		},
 		{
+			"name": "Cabinet of Curiosities",
+			"source": "RHW",
+			"facilityType": "special",
+			"level": 9,
+			"space": [
+				"cramped"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"trade"
+			],
+			"entries": [
+				"A Cabinet of Curiosities is a small salon, closet space, or antechamber where you can keep and catalog peculiar objects and fascinating oddities.",
+				{
+					"type": "entries",
+					"name": "Trade: Acquire Curios",
+					"entries": [
+						"When you issue the Trade order to this facility, you supply this facility's hireling with a certain amount of gold and commission them to purchase strange items from unusual sources. It takes 28 days for the hireling to return to the Bastion with one or more magic items for you. Your investment determines the rarity of these items, and the quantity of magic items depends on the number of Haunted special facilities in your Bastion at the time of the hireling's return, as shown on the Curio Investment and Curios Collected tables.",
+						{
+							"type": "table",
+							"caption": "Curio Investment",
+							"colLabels": [
+								"Investment",
+								"Item Rarity"
+							],
+							"colStyles": [
+								"col-6",
+								"col-6"
+							],
+							"rows": [
+								[
+									"150 GP",
+									"{@filter Common|items|rarity=common}"
+								],
+								[
+									"600 GP",
+									"{@filter Uncommon|items|rarity=uncommon}"
+								],
+								[
+									"6,000 GP",
+									"{@filter Rare|items|rarity=rare}"
+								],
+								[
+									"60,000 GP",
+									"{@filter Very Rare|items|rarity=very rare}"
+								]
+							]
+						},
+						{
+							"type": "table",
+							"caption": "Curios Collected",
+							"colLabels": [
+								"Haunted Facilities",
+								"Magic Items Acquired",
+								"Cursed Item Chance (1d100)"
+							],
+							"colStyles": [
+								"col-4 text-center",
+								"col-4 text-center",
+								"col-4 text-center"
+							],
+							"rows": [
+								[
+									"0",
+									"1",
+									"\u2014"
+								],
+								[
+									"1\u20132",
+									"{@dice 1d2|1\u20132} (flip a coin)",
+									"{@chance 10|01\u201310|10% Curse Chance}"
+								],
+								[
+									"3\u20135",
+									"{@dice 1d3}",
+									"{@chance 20|01\u201320|20% Curse Chance}"
+								],
+								[
+									"6",
+									"{@dice 1d4}",
+									"{@chance 25|01\u201325|25% Curse Chance}"
+								]
+							]
+						},
+						"To determine how many magic items your hireling brings back, count the Haunted special facilities in your Bastion, then roll the die indicated in the Magic Items Acquired column on the Curios Collected table. The DM rolls on the Cursed Item Chance ({@dice 1d100}) column to determine whether one of the magic items carries a curse. The DM chooses which item is cursed and establishes the nature of the curse.",
+						"For each magic item acquired, roll on a table in the \"{@book Random Magic Items|XDMG|9}\" section in the {@book Dungeon Master's Guide|XDMG} of the corresponding rarity to determine what the item is. (Select the treasure theme randomly.)"
+					]
+				}
+			]
+		},
+		{
 			"name": "Construct Forge",
 			"source": "EFA",
 			"page": 48,
@@ -456,7 +585,7 @@
 					"type": "entries",
 					"name": "Enlarging the Facility",
 					"entries": [
-						"You can enlarge your Cult of the Dragon Archive to a Vast facility by spending 2,000 GP. If you do so, you gain two reference books chosen from those listed in the Archive entry in {@book chapter 8|XDMG|10} of the {@book Dungeon Master's Guide|XDMG}."
+						"You can enlarge your Cult of the Dragon Archive to a Vast facility by spending 2,000 GP. If you do so, you gain two reference books chosen from those listed in the Archive entry in {@book chapter 8|XDMG|7} of the {@book Dungeon Master's Guide|XDMG}."
 					]
 				}
 			],
@@ -979,6 +1108,74 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Infirmary",
+			"source": "RHW",
+			"facilityType": "special",
+			"level": 9,
+			"prerequisite": [
+				{
+					"proficiency": [
+						{
+							"skill": [
+								"medicine"
+							]
+						}
+					]
+				}
+			],
+			"space": [
+				"roomy"
+			],
+			"hirelings": [
+				{
+					"exact": 2
+				}
+			],
+			"orders": [
+				"craft"
+			],
+			"entries": [
+				"An Infirmary provides emergency healing and continual care to injured or sick Bastion occupants.",
+				{
+					"type": "entries",
+					"name": "Craft Options",
+					"entries": [
+						"When you issue the Craft order to this facility, choose one of the following options:",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "Craft:",
+									"entry": "Antitoxin. You commission the facility's hirelings to craft two vials of {@item Antitoxin|XPHB}. The work takes 7 days and costs no money. You can spend 50 GP during the creation process to enhance one of the vials of Antitoxin, or 100 GP to enhance both. An enhanced Antitoxin ends the {@condition Poisoned|XPHB} condition on the creature that drinks it. An enhanced Antitoxin loses this enhancement after 28 days."
+								},
+								{
+									"type": "item",
+									"name": "Craft:",
+									"entry": "Enhanced Potion of Healing. You commission this facility's hirelings to increase the potency of up to two {@item Potion of Healing|XDMG|Potions of Healing}. You must provide the potions to be enhanced, and the process takes 14 days to complete. A Potion of Healing becomes a {@item Potion of Greater Healing|XDMG|Potion of Healing (greater)}. When you reach level 13 you can provide up to two Potions of Healing (greater), each of which becomes a {@item Potion of Superior Healing|XDMG|Potion of Healing (superior)}."
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Triage",
+					"entries": [
+						"When your Bastion is attacked and you roll a number of dice to determine how many Bastion Defenders are lost, you can reroll a number of those dice equal to the number of hirelings this facility has. You must use the new roll."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Enlarging the Facility",
+					"entries": [
+						"You can enlarge your Infirmary to a Vast facility by spending 2,000 GP. If you do so, the Infirmary gains two hirelings, and the number of Antitoxins or Potions of Healing you can enhance at a time increases to four."
+					]
+				}
+			]
+		},
+		{
 			"name": "Inquisitive Agency",
 			"source": "EFA",
 			"page": 49,
@@ -1147,6 +1344,82 @@
 				}
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Lightning Generator",
+			"source": "RHW",
+			"facilityType": "special",
+			"level": 13,
+			"space": [
+				"roomy"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"empower"
+			],
+			"entries": [
+				"A Lightning Generator can transform atmospheric electricity to serve a variety of useful functions.",
+				{
+					"type": "entries",
+					"name": "Charm of Electromancy",
+					"entries": [
+						"After spending a Long Rest in your Lightning Generator, you take {@damage 8d6} Lightning damage and you gain a magical {@reward Charm of Electromancy|RHW|Charm} that lasts for 7 days (see the {@book Dungeon Master's Guide|XDMG} for rules on {@book Charms|XDMG|2|Charms})."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Revivification",
+					"entries": [
+						"When you cast the spell {@spell Raise Dead|XPHB} and {@spell Resurrection|XPHB} while in this facility, the cost of that spell's Material components are reduced by 1,000 GP (minimum of 0)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Empower: Lightning Life",
+					"entries": [
+						"The facility's hireling channels the Generator's energy to cast {@spell Animate Objects|XPHB}, targeting one Large or Huge object of your choice in the Bastion. The spell's duration is 7 days and doesn't require {@status Concentration|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Liminal Space",
+			"source": "RHW",
+			"facilityType": "special",
+			"level": 17,
+			"space": [
+				"vast"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"recruit"
+			],
+			"entries": [
+				"Your Bastion becomes connected to an unfathomable demiplane filled with vast, empty spaces and strange beings. This special facility doesn't take up space in your Bastion; instead, the entrance to this facility appears in the closets, crawlspaces, and shadows of your Bastion's other basic and special facilities. The hireling in charge of this facility protects the Bastion's inhabitants from stray entities that slip out from the demiplane. This facility always counts as Haunted.",
+				{
+					"type": "entries",
+					"name": "Dark Bargains",
+					"entries": [
+						"You can enter this facility and wander within for 7 days, consulting and bargaining with the strange entities there. If you leave the Bastion during this time, you gain no benefit. At the end of the seventh day, you gain a {@filter Dark Gift|feats|category=DG} feat of your choice. You can only have one feat from this benefit at a time; if you use this benefit when you already have a feat from it, the feat you gain at the end of the seven days replaces any feat previously gained from use of this facility."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Recruit: Stranger",
+					"entries": [
+						"When you issue the Recruit order to this facility, you instruct the facility's hireling to conduct a ritual and petition an entity from the demiplane for aid. This ritual takes 7 days and costs 1,000 GP. At the ritual's end, roll any die. On an odd number, the summoned entity refuses your request and kills the hireling, and this facility can't be used until your next Bastion turn, at which point the hireling is replaced at no cost to you; on an even number, the summoned entity agrees to your request and takes up residence in your Liminal Space.",
+						"While residing in your Liminal Space, an entity counts as a Bastion Defender, and if your Bastion is attacked, each entity in your Liminal Space reduces by 1 the number of dice you roll to determine how many Bastion Defenders are lost in the attack. You can choose not to count the entity as a Bastion Defender, in which case you can't call on it to defend the Bastion; instead, the entity acts according to its nature, using the {@creature Unspeakable Horror|RHW} stat block. You can have up to three entities in your Liminal Space at a time. Deduct any you lose from your Bastion Defenders roster."
+					]
+				}
+			]
 		},
 		{
 			"name": "Lords' Alliance Noble Residence",
@@ -1874,6 +2147,42 @@
 			]
 		},
 		{
+			"name": "Rookery",
+			"source": "RHW",
+			"facilityType": "special",
+			"level": 5,
+			"space": [
+				"cramped"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"craft"
+			],
+			"entries": [
+				"A number of ravens equal to your character level roost in a Rookery. Whenever a creature enters the facility, the birds uncannily track its movement, an unfathomable intelligence behind their beady eyes.",
+				{
+					"type": "entries",
+					"name": "Craft: Mist Talisman",
+					"entries": [
+						"When you issue the Craft order to this facility, you can commission the hireling to send ravens to various contacts in a Domain of Dread you have either visited previously or heard about from a creature that has been within said domain. This work takes 21 days, during which time no other activity can occur within this facility.",
+						"At the end of this period, the hireling produces a {@book Mist talisman|RHW|0|Mist Talismans} linked to the chosen Domain of Dread."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Messenger Ravens",
+					"entries": [
+						"Whenever you finish a Long Rest in your Bastion, you can send one raven bearing a written message of 25 words or fewer to a creature you have met or a creature described to you by someone who has met it. After receiving this message, the recipient can reply in a like manner, attaching their response to the raven. Regardless of whether or not the recipient responds, the raven returns to the rookery after 7 days have passed.",
+						"You can send a message via raven in this way across any distance, though the message recipient must be on the same plane of existence as your Bastion or in a demiplane linked to yours by the Mists of Ravenloft. A messenger raven delivers the message regardless of any magical wards or other interposing forces, including the Mists and closed borders of a Domain of Dread. If the raven is unable to deliver your message, it returns to your rookery after 7 days with your original message still attached."
+					]
+				}
+			]
+		},
+		{
 			"name": "Sacristy",
 			"source": "XDMG",
 			"page": 344,
@@ -2120,6 +2429,48 @@
 			]
 		},
 		{
+			"name": "Spirit Vault",
+			"source": "RHW",
+			"facilityType": "special",
+			"level": 13,
+			"space": [
+				"roomy"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"research"
+			],
+			"entries": [
+				"A Spirit Vault is magically warded to imprison and exorcise malevolent spirits and other supernatural forces. Haunted portraits, cursed relics, and other eerie curios line the shelves of this dark vault. This facility always counts as Haunted.",
+				{
+					"type": "entries",
+					"name": "Esoteric Knowledge",
+					"entries": [
+						"After spending a Long Rest in your Spirit Vault, you gain one of the following magical Charms:",
+						{
+							"type": "list",
+							"items": [
+								"{@reward Charm of Exorcism|RHW}",
+								"{@reward Charm of Malediction|RHW}"
+							]
+						},
+						"The Charm lasts for 7 days or until you use it. Intelligence, Wisdom, or Charisma is your spellcasting ability for the Charm's spells (choose each time you gain this Charm)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Research: Ask the Occult",
+					"entries": [
+						"When you issue the Research order to this facility, you or its hireling study the various relics and question the imprisoned entities within your Spirit Vault. This work takes 7 days. At the end of this time, roll {@dice 1d6}. On a 1, the work is psychically taxing; if you did the research, you take {@damage 6d6} Psychic damage, and if the hireling did the research, they immediately die, and this facility can't be used again until your next Bastion turn. Otherwise, you or the hireling gain information as if you had successfully cast the {@spell Contact Other Plane|XPHB} spell. The hireling shares any information they learned with you the next time you speak."
+					]
+				}
+			]
+		},
+		{
 			"name": "Stable",
 			"source": "XDMG",
 			"page": 347,
@@ -2199,6 +2550,41 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Séance Parlor",
+			"source": "RHW",
+			"facilityType": "special",
+			"level": 5,
+			"space": [
+				"cramped"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"research"
+			],
+			"entries": [
+				"The veil between the world of the living and the dead grows thin in a Séance Parlor.",
+				{
+					"type": "entries",
+					"name": "Research: Fortune Telling",
+					"entries": [
+						"When you issue the Research order to this facility, you commission its hireling to read your fortune by casting bones, interpreting tea leaves, performing a tarokka reading, or using some other means. After your fortune is read, you gain {@variantrule Heroic Inspiration|XPHB}. You can't gain this benefit again until you finish a Long Rest."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Speak with Dead",
+					"entries": [
+						"After spending a Long Rest in your Séance Parlor, you can cast {@spell Speak with Dead|XPHB} immediately without expending a spell slot or needing Material components. When you cast it in this way, you can target any deceased creature whose name you know, as long as you have a piece of its remains (such as ashes or a bone) or an object that was important to the creature in life (such as a brooch or signature weapon). The target speaks through an implement in the Séance Room such as a crystal ball or spirit board."
+					]
+				}
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Teleportation Circle",

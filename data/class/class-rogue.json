@@ -1498,6 +1498,9 @@
 			"className": "Rogue",
 			"classSource": "PHB",
 			"page": 62,
+			"reprintedAs": [
+				"Phantom|Rogue|XPHB|RHW"
+			],
 			"edition": "classic",
 			"subclassFeatures": [
 				"Phantom|Rogue||Phantom|TCE|3",
@@ -1513,6 +1516,9 @@
 			"source": "TCE",
 			"className": "Rogue",
 			"classSource": "XPHB",
+			"reprintedAs": [
+				"Phantom|Rogue|XPHB|RHW"
+			],
 			"_copy": {
 				"name": "Phantom",
 				"source": "TCE",
@@ -2075,6 +2081,36 @@
 				"Strike Fear|Rogue|XPHB|Scion of the Three|FRHoF|9|FRHoF",
 				"Aura of Malevolence|Rogue|XPHB|Scion of the Three|FRHoF|13|FRHoF",
 				"Dread Incarnate|Rogue|XPHB|Scion of the Three|FRHoF|17|FRHoF"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Phantom",
+			"shortName": "Phantom",
+			"source": "RHW",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"innate": {
+						"9": {
+							"rest": {
+								"1": [
+									"speak with dead|xphb"
+								]
+							}
+						}
+					},
+					"ability": "dex"
+				}
+			],
+			"subclassFeatures": [
+				"Phantom|Rogue|XPHB|Phantom|RHW|3|RHW",
+				"Tokens of the Departed|Rogue|XPHB|Phantom|RHW|9|RHW",
+				"Voice of Death|Rogue|XPHB|Phantom|RHW|9|RHW",
+				"Ghost Walk|Rogue|XPHB|Phantom|RHW|13|RHW",
+				"Death's Friend|Rogue|XPHB|Phantom|RHW|17|RHW"
 			],
 			"hasFluffImages": true
 		}
@@ -4062,6 +4098,178 @@
 					"page": 7,
 					"entries": [
 						"When you roll for your {@classFeature Sneak Attack|Rogue|XPHB|1|XPHB} damage, you can treat a roll of a 1 or 2 on the die as a 3."
+					]
+				}
+			]
+		},
+		{
+			"name": "Phantom",
+			"source": "RHW",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Phantom",
+			"subclassSource": "RHW",
+			"level": 3,
+			"entries": [
+				"{@i Embrace Death and Wield Ghostly Power}",
+				"Some Rogues traverse the veil between life and death, shepherding opponents to the grave and slipping through the world as undetectable as a spirit. In these pursuits, a Rogue might discover a mystical connection to death itself. Such an individual becomes immersed in negative energy, infusing their strikes with deathly energy and stealing knowledge from souls who have passed on. Thieves' guilds value Rogues of this persuasion as highly effective information gatherers and spies.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Wails from the Grave|Rogue|XPHB|Phantom|RHW|3|RHW"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Whispers of the Dead|Rogue|XPHB|Phantom|RHW|3|RHW"
+				}
+			]
+		},
+		{
+			"name": "Wails from the Grave",
+			"source": "RHW",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Phantom",
+			"subclassSource": "RHW",
+			"level": 3,
+			"entries": [
+				"Immediately after you deal Sneak Attack damage to a creature on your turn, you can target a second creature that you can see within 30 feet of the first creature. Roll half the number of Sneak Attack damage dice for your level (round up), and the second creature takes Necrotic damage equal to the roll's total as wails of the dead sound around it.",
+				"You can use this feature a number of times equal to your Dexterity modifier (minimum of once), and you regain all expended uses when you finish a Long Rest."
+			]
+		},
+		{
+			"name": "Whispers of the Dead",
+			"source": "RHW",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Phantom",
+			"subclassSource": "RHW",
+			"level": 3,
+			"entries": [
+				"Whenever you finish a Short or Long Rest, you can choose one skill or tool proficiency that you lack and gain it, as a ghostly presence shares its knowledge with you. You lose this proficiency when you use this benefit again to choose a different proficiency."
+			]
+		},
+		{
+			"name": "Tokens of the Departed",
+			"source": "RHW",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Phantom",
+			"subclassSource": "RHW",
+			"level": 9,
+			"header": 2,
+			"entries": [
+				"The spirits of the dead are drawn to you, and echoes of their past lives magically manifest as strange curios with resonant power.",
+				"You gain two soul trinkets. A soul trinket is a Tiny object (the DM determines the trinket's form or has you roll on the {@item Trinket|XPHB|Trinkets table} in the {@book Player's Handbook|XPHB} to generate it). If you move more than 30 feet from a trinket, the trinket immediately teleports to you, appearing somewhere on your person.",
+				{
+					"type": "entries",
+					"name": "Using Soul Trinkets",
+					"entries": [
+						"You can use soul trinkets in the following ways:",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "Death's Knell",
+									"entry": "When you deal Sneak Attack damage on your turn, you can destroy one soul trinket and immediately use Wails from the Grave without expending a use of that feature."
+								},
+								{
+									"type": "item",
+									"name": "Life Essence",
+									"entry": "While you have at least one soul trinket, you have {@variantrule Advantage|XPHB} on Death Saving Throws and Constitution saving throws."
+								},
+								{
+									"type": "item",
+									"name": "Spirit Query",
+									"entry": "You can take a {@action Magic|XPHB} action to destroy one soul trinket and immediately cast the {@spell Augury|XPHB} spell, requiring no spell components and using Constitution as the spellcasting modifier. If you know the creature with which the trinket is associated, you can ask the creature's spirit one question instead of casting the spell. In this case, the spirit appears to you and answers as concisely as possible in a language it knew in life."
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Gaining Additional Soul Trinkets",
+					"entries": [
+						"When a creature you can see within 30 feet of you dies, you can take a Reaction to gain another soul trinket, claiming a sliver of that creature's departing spirit. The new trinket appears somewhere on your person.",
+						"You can have a maximum of two soul trinkets at a time. If you try to gain a soul trinket while at your maximum, one of your existing trinkets is immediately destroyed and replaced by the new trinket. The maximum number of soul trinkets you can have increases when you reach Rogue levels 13 (three trinkets) and 17 (four trinkets).",
+						"Whenever you finish a Long Rest with fewer than two soul trinkets, you gain soul trinkets until you have two."
+					]
+				}
+			]
+		},
+		{
+			"name": "Voice of Death",
+			"source": "RHW",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Phantom",
+			"subclassSource": "RHW",
+			"level": 9,
+			"header": 2,
+			"entries": [
+				"You can cast {@spell Speak with Dead|XPHB} once without a spell slot, requiring no spell components and using Dexterity as the spellcasting modifier. You regain the ability to cast it this way when you finish a Short or Long Rest.",
+				"When you cast the spell, you can target one of your soul trinkets from Tokens of the Departed instead of a corpse, allowing the spirit of the creature associated with the trinket to answer."
+			]
+		},
+		{
+			"name": "Ghost Walk",
+			"source": "RHW",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Phantom",
+			"subclassSource": "RHW",
+			"level": 13,
+			"header": 2,
+			"entries": [
+				"As a Bonus Action, you assume a spectral form, gaining the benefits below for 10 minutes or until you end them (no action required). Once you use this feature, you can't use it again until you finish a Long Rest unless you destroy one of your soul trinkets from Tokens of the Departed (no action required) to restore your use of it.",
+				{
+					"type": "entries",
+					"name": "Flight",
+					"entries": [
+						"You gain a Fly Speed of 10 feet and can hover."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Hazy Form",
+					"entries": [
+						"Attack rolls have {@variantrule Disadvantage|XPHB} against you."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Incorporeal Movement",
+					"entries": [
+						"You can move through creatures and objects as if they were {@variantrule Difficult Terrain|XPHB}, but you take {@damage 1d10} Force damage if you end your turn inside a creature or an object."
+					]
+				}
+			]
+		},
+		{
+			"name": "Death's Friend",
+			"source": "RHW",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Phantom",
+			"subclassSource": "RHW",
+			"level": 17,
+			"header": 2,
+			"entries": [
+				"Your association with death has become so close that you gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Death's Lament",
+					"entries": [
+						"When you use Wails from the Grave, you can deal the feature's Necrotic damage to both the first and the second creature."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Draw of Death",
+					"entries": [
+						"When you roll Initiative, you gain one soul trinket for your Tokens of the Departed if you have none remaining."
 					]
 				}
 			]
