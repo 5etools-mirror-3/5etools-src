@@ -64,6 +64,7 @@ async function main () {
 				{
 					object: (obj) => {
 						if (obj.type !== "image" || !IMAGE_TYPES_MAP.has(obj.imageType)) return;
+						if (obj.data?.foundryImporterMap?.isIgnore) return;
 
 						if (obj.imageType === "mapPlayer" && !obj.mapParent?.id) {
 							warningsNoParentFile.push(getMapLogName({obj, stack}));

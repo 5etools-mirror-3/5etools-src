@@ -596,10 +596,15 @@ export class ConverterSpell extends ConverterBase {
 					: options.styleHint !== SITE_STYLE__CLASSIC
 						? Parser.SRC_XPHB
 						: Parser.SRC_PHB;
+				const srcArtificer = isLegacy
+					? Parser.SRC_TCE
+					: options.styleHint !== SITE_STYLE__CLASSIC
+						? Parser.SRC_EFA
+						: Parser.SRC_TCE;
 
 				switch (lowerPt) {
 					case "artificer":
-					case "artificers": tgt.push({"name": "Artificer", "source": "TCE"}); break;
+					case "artificers": tgt.push({"name": "Artificer", "source": srcArtificer}); break;
 					case "bard":
 					case "bards": tgt.push({"name": "Bard", "source": srcPhb}); break;
 					case "cleric":

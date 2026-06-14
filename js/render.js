@@ -11269,7 +11269,12 @@ Renderer.monster = class {
 		const handleGroupProp = (tgt, prop, name) => {
 			if (!thisGroup[prop]) return;
 
-			if (isAddName) {
+			if (
+				isAddName
+				// Fallback for fluff which has no header'd entry block; this usually
+				//   means we want to add one
+				|| !Renderer.findEntry(tgt)
+			) {
 				return tgt.push({
 					type: "entries",
 					entries: [
@@ -16881,7 +16886,7 @@ Renderer.hover = class {
 	// endregion
 
 	static getGenericCompactRenderedString (entry, {depth = null} = {}) {
-		if (entry.header != null) depth = Math.max(0, entry.header - 1);
+		if (entry.header != null) depth = Math.max(0, entry.header);
 		if (depth == null) depth = 0;
 
 		return `

@@ -88,11 +88,11 @@ export const getFnRootPropListSort = (prop, {isRequired = false} = {}) => {
 		case "class":
 		case "classFluff":
 		case "foundryClass":
-			return (a, b) => SortUtil.ascSortDateString(Parser.sourceJsonToDate(b.source), Parser.sourceJsonToDate(a.source)) || SortUtil.ascSortLower(a.name, b.name) || SortUtil.ascSortLower(a.source, b.source);
+			return SortUtil.ascSortClass.bind(SortUtil);
 		case "subclass":
 		case "subclassFluff":
 		case "foundrySubclass":
-			return (a, b) => SortUtil.ascSortDateString(Parser.sourceJsonToDate(b.source), Parser.sourceJsonToDate(a.source)) || SortUtil.ascSortLower(a.name, b.name);
+			return SortUtil.ascSortSubclass.bind(SortUtil);
 		case "classFeature":
 		case "foundryClassFeature":
 			return (a, b) => SortUtil.ascSortLower(a.classSource, b.classSource)

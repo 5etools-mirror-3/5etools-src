@@ -45,6 +45,26 @@ class PageFilterBestiary extends PageFilterBase {
 	static _getAbilitySaveDisplayText (abl) { return `${abl.uppercaseFirst()} Save`; }
 	// endregion
 
+	/* -------------------------------------------- */
+
+	// (Exposed for Plutonium use)
+	_getMiscFilterDeselFn () {
+		return (it) => ["Adventure NPC", "Reprinted"].includes(it);
+	}
+
+	_getMiscFilter () {
+		return new Filter({
+			header: "Miscellaneous",
+			items: ["Familiar", ...Object.keys(Parser.MON_MISC_TAG_TO_FULL), "Bonus Actions", "Lair Actions", "Legendary", "Mythic", "Adventure NPC", "Spellcaster", ...Object.values(Parser.ATB_ABV_TO_FULL).map(it => `${PageFilterBestiary.MISC_FILTER_SPELLCASTER}${it}`), "Regional Effects", "Reactions", "Reprinted", "Swarm", "Has Variants", "Modified Copy", "Has Alternate Token", "Has Info", "Has Images", "Has Token", "Has Recharge", "Legacy", "AC from Item(s)", "AC from Natural Armor", "AC from Unarmored Defense", "Summoned by Spell", "Summoned by Class", "Reduced Threat", "Has Gear", "Has Equipment"],
+			displayFn: (it) => Parser.monMiscTagToFull(it).uppercaseFirst(),
+			deselFn: this._getMiscFilterDeselFn(),
+			itemSortFn: PageFilterBestiary.ascSortMiscFilter,
+			isMiscFilter: true,
+		});
+	}
+
+	/* -------------------------------------------- */
+
 	constructor (opts) {
 		super(opts);
 
@@ -223,14 +243,7 @@ class PageFilterBestiary extends PageFilterBase {
 				"Frightful Presence", "Multiattack", "Parry", "Swallow", "Teleport", "Tentacles",
 			],
 		});
-		this._miscFilter = new Filter({
-			header: "Miscellaneous",
-			items: ["Familiar", ...Object.keys(Parser.MON_MISC_TAG_TO_FULL), "Bonus Actions", "Lair Actions", "Legendary", "Mythic", "Adventure NPC", "Spellcaster", ...Object.values(Parser.ATB_ABV_TO_FULL).map(it => `${PageFilterBestiary.MISC_FILTER_SPELLCASTER}${it}`), "Regional Effects", "Reactions", "Reprinted", "Swarm", "Has Variants", "Modified Copy", "Has Alternate Token", "Has Info", "Has Images", "Has Token", "Has Recharge", "Legacy", "AC from Item(s)", "AC from Natural Armor", "AC from Unarmored Defense", "Summoned by Spell", "Summoned by Class", "Reduced Threat", "Has Gear", "Has Equipment"],
-			displayFn: (it) => Parser.monMiscTagToFull(it).uppercaseFirst(),
-			deselFn: (it) => ["Adventure NPC", "Reprinted"].includes(it),
-			itemSortFn: PageFilterBestiary.ascSortMiscFilter,
-			isMiscFilter: true,
-		});
+		this._miscFilter = this._getMiscFilter();
 		this._spellcastingTypeFilter = new Filter({
 			header: "Spellcasting Type",
 			items: ["F", "I", "P", "S", "O", "CA", "CB", "CC", "CD", "CP", "CR", "CS", "CL", "CW"],

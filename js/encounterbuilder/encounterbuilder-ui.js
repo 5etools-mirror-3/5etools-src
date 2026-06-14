@@ -106,20 +106,27 @@ class _RenderableCollectionViewerCreatures extends RenderableCollectionGenericRo
 
 		const dispCreature = ee`<div class="ve-mr-2 ve-mr-auto ve-grow"></div>`;
 
-		const pDoScaleCr = async ({targetCr}) => {
+		const pDoScaleCr = async ({targetCr = null} = {}) => {
 			// Fetch original
 			const ent = await DataLoader.pCacheAndGetHash(
 				UrlUtil.PG_BESTIARY,
 				UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BESTIARY](comp._state.creature),
+				{isCopy: true},
 			);
 
 			const baseCr = ent.cr.cr || ent.cr;
 			if (baseCr == null) return;
+
 			const baseCrNum = Parser.crToNumber(baseCr);
-			const scaledToNum = comp._state.creature._isScaledCr ? comp._state._scaledCr : null;
+			const scaledToNum = comp._state.creature._isScaledCr ? comp._state.creature._scaledCr : null;
+
+			if (targetCr == null) {
+				comp._state.creature = ent;
+				iptCr.val(Parser.numberToCr(baseCrNum));
+				return;
+			}
 
 			if (!targetCr) {
-				comp._state.creature = ent;
 				iptCr.val(Parser.numberToCr(scaledToNum ?? baseCrNum));
 				return;
 			}
@@ -136,7 +143,16 @@ class _RenderableCollectionViewerCreatures extends RenderableCollectionGenericRo
 
 			const targetCrNum = Parser.crToNumber(targetCr);
 
-			if (targetCrNum === scaledToNum) return;
+			if (targetCrNum === scaledToNum) {
+				iptCr.val(Parser.numberToCr(scaledToNum ?? baseCrNum));
+				return;
+			}
+
+			if (targetCrNum === baseCrNum) {
+				comp._state.creature = ent;
+				iptCr.val(Parser.numberToCr(baseCrNum));
+				return;
+			}
 
 			const entScaled = await ScaleCreature.scale(ent, targetCrNum);
 
@@ -163,12 +179,36 @@ class _RenderableCollectionViewerCreatures extends RenderableCollectionGenericRo
 		const iptCr = ee`<input class="ve-text-center ve-form-control form-control--minimal ve-input-xs ve-w-50p">`
 			.onn("click", () => iptCr.selecte())
 			.onn("change", async () => {
-				await pScalingCr;
+				try {
+					await pScalingCr;
+				} catch (e) { setTimeout(() => { throw e; }); }
+
 				pScalingCr = pDoScaleCr({targetCr: iptCr.val().trim()});
 				await pScalingCr;
 				pScalingCr = null;
 			});
-		const stgCr = ee`<div class="ve-mr-2 ve-no-wrap ve-no-shrink ve-flex-v-center"><span class="ve-mr-2">CR</span>${iptCr}</div>`;
+
+		const btnResetCr = ee`<button title="Reset CR" class="ve-btn ve-btn-default ve-btn-xs"><span class="glyphicon glyphicon-refresh"></span></button>`
+			.onn("click", async () => {
+				try {
+					await pScalingCr;
+				} catch (e) { setTimeout(() => { throw e; }); }
+
+				pScalingCr = pDoScaleCr();
+				await pScalingCr;
+				pScalingCr = null;
+			});
+		comp._addHookBase("creature", () => {
+			btnResetCr.prop("disabled", !comp._state.creature._isScaledCr);
+		})();
+
+		const stgCr = ee`<div class="ve-mr-2 ve-no-wrap ve-no-shrink ve-flex-v-center">
+			<span class="ve-mr-2">CR</span>
+			<div class="ve-flex-v-center ve-input-group">
+				${iptCr}
+				${btnResetCr}
+			</div>
+		</div>`;
 
 		comp._addHookBase("creature", () => {
 			iptCr.val(comp._state.creature.cr?.cr || comp._state.creature.cr);
@@ -280,6 +320,8 @@ export class EncounterBuilderUi extends BaseComponent {
 			partyComps,
 			encounterShapesLookup,
 			rendererWrapped,
+
+			headerTextSettings = "Settings",
 		},
 	) {
 		if (!rendererWrapped) throw new Error(`Missing required "rendererWrapped" option!`);
@@ -294,6 +336,8 @@ export class EncounterBuilderUi extends BaseComponent {
 		this._partyCompsLookup = Object.fromEntries(this._partyComps.map(comp => [comp.partyId, comp]));
 		this._encounterShapesLookup = encounterShapesLookup;
 		this._rendererWrapped = rendererWrapped;
+
+		this._headerTextSettings = headerTextSettings;
 
 		this._state.activeRulesId = this._rulesComps[0].rulesId;
 		this._state.activePartyId = this._partyComps[0].partyId;
@@ -416,7 +460,7 @@ export class EncounterBuilderUi extends BaseComponent {
 		const stgSettingsRules = ee`<div class="ve-flex-col"></div>`;
 
 		ee(stgSettings)`
-			<h4 class="ve-my-2">Settings</h4>
+			<h4 class="ve-my-2">${this._headerTextSettings}</h4>
 			<label class="ve-flex-v-center ve-mb-2"><b class="ve-mr-2">Rules:</b> ${selRulesId}</label>
 			${stgSettingsRules}
 		`;

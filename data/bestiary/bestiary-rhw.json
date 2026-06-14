@@ -2200,7 +2200,7 @@
 				{
 					"name": "Mind-Scouring Spores {@recharge}",
 					"entries": [
-						"{@actSave int} {@dc 18}, each creature in a 20-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the elder thing. {@actSaveFail} 55 ({@damage 10d10}) Psychic damage. For 1 minute, whenever the target takes the Magic action, it takes 10 ({@damage 3d6}) Psychic damage. {@actSaveSuccess} Half damage only."
+						"{@actSave int} {@dc 18}, each creature in a 20-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the elder thing. {@actSaveFail} 55 ({@damage 10d10}) Psychic damage. For 1 minute, whenever the target takes the {@action Magic|XPHB} action, it takes 10 ({@damage 3d6}) Psychic damage. {@actSaveSuccess} Half damage only."
 					]
 				},
 				{
@@ -3467,7 +3467,7 @@
 									"type": "item",
 									"name": "3: Mind Flare",
 									"entries": [
-										"{@actSave int} {@dc 18}. {@actSaveFail} 13 ({@damage 2d12}) Psychic damage, and the target can't take the Magic action until the end of its next turn."
+										"{@actSave int} {@dc 18}. {@actSaveFail} 13 ({@damage 2d12}) Psychic damage, and the target can't take the {@action Magic|XPHB} action until the end of its next turn."
 									]
 								},
 								{
@@ -6843,6 +6843,7 @@
 		{
 			"name": "Reanimated Companion",
 			"source": "RHW",
+			"summonedByClass": "Artificer|EFA",
 			"size": [
 				"M"
 			],
@@ -6891,7 +6892,7 @@
 				{
 					"name": "Death Burst",
 					"entries": [
-						"The companion explodes when it dies. {@actSave dex} DC equals your spell save DC, each creature in a 10-foot Emanation originating from the companion. {@actSaveFail} {@damage 2d4} Necrotic damage. {@actSaveSuccess} Half damage."
+						"The companion explodes when it dies. {@actSave dex} DC equals {@dcYourSpellSave}, each creature in a 10-foot Emanation originating from the companion. {@actSaveFail} {@damage 2d4} Necrotic damage. {@actSaveSuccess} Half damage."
 					]
 				},
 				{

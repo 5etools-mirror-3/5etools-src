@@ -125,7 +125,12 @@ export class AdventuresBooksList {
 			const it = this._dataList[this._dataIx];
 			if (this._enhanceRowDataFn) this._enhanceRowDataFn(it);
 
-			const isExcluded = ExcludeUtil.isExcluded(UrlUtil.URL_TO_HASH_BUILDER[this._rootPage](it), this._dataProp, it.source);
+			const isExcluded = ExcludeUtil.isExcluded(UrlUtil.URL_TO_HASH_BUILDER[this._rootPage](it), this._dataProp, it.source)
+				|| (
+					it.parentSource
+						? ExcludeUtil.isExcluded(UrlUtil.URL_TO_HASH_BUILDER[this._rootPage](it), this._dataProp, it.parentSource)
+						: false
+				);
 
 			const elesContents = [];
 			it.contents.map((chapter, ixChapter) => {

@@ -1579,7 +1579,7 @@
 			],
 			"subclassFeatures": [
 				"Hollow Warden|Ranger|XPHB|Hollow Warden|RHW|3|RHW",
-				"Fortifying Soul|Ranger|XPHB|Hollow Warden|RHW|7|RHW",
+				"Hungering Might|Ranger|XPHB|Hollow Warden|RHW|7|RHW",
 				"Rot and Violence|Ranger|XPHB|Hollow Warden|RHW|11|RHW",
 				"Ancient Might|Ranger|XPHB|Hollow Warden|RHW|15|RHW"
 			],
@@ -4161,10 +4161,6 @@
 				{
 					"type": "refSubclassFeature",
 					"subclassFeature": "Wrath of the Wild|Ranger|XPHB|Hollow Warden|RHW|3|RHW"
-				},
-				{
-					"type": "refSubclassFeature",
-					"subclassFeature": "Hungering Might|Ranger|XPHB|Hollow Warden|RHW|3|RHW"
 				}
 			]
 		},
@@ -4215,19 +4211,6 @@
 			]
 		},
 		{
-			"name": "Hungering Might",
-			"source": "RHW",
-			"className": "Ranger",
-			"classSource": "XPHB",
-			"subclassShortName": "Hollow Warden",
-			"subclassSource": "RHW",
-			"level": 3,
-			"entries": [
-				"You gain a bonus to Constitution saving throws equal to your Wisdom modifier (minimum of +1).",
-				"In addition, once per turn when you hit a creature with an attack roll while you are transformed using Wrath of the Wild, you regain a number of Hit Points equal to {@dice 1d10} plus your Wisdom modifier, provided you are {@status Bloodied|XPHB} when you hit."
-			]
-		},
-		{
 			"name": "Wrath of the Wild",
 			"source": "RHW",
 			"className": "Ranger",
@@ -4236,7 +4219,7 @@
 			"subclassSource": "RHW",
 			"level": 3,
 			"entries": [
-				"You draw power from the strange and ancient horrors of the land, causing you to sprout unnatural growths, such as bloody antlers or putrid fangs, or causing your shadow to lengthen or twist around you. As a Bonus Action, you can expend a use of Favored Enemy to transform into a ghastly form, gaining the following benefits for 1 minute or until you have the {@condition Incapacitated|XPHB} condition, die, or end the transformation (no action required).",
+				"You draw power from the strange and ancient horrors of the land, causing you to sprout unnatural growths, such as bloody antlers or putrid fangs, or causing your shadow to lengthen or twist around you. As a {@variantrule Bonus Action|XPHB}, you can expend a use of Favored {@variantrule Enemy|XPHB} to transform into a ghastly form, gaining the following benefits for 1 minute or until you have the {@condition Incapacitated|XPHB} condition, die, or end the transformation (no action required).",
 				{
 					"type": "entries",
 					"name": "Ancient Armor",
@@ -4261,17 +4244,16 @@
 			]
 		},
 		{
-			"name": "Fortifying Soul",
+			"name": "Hungering Might",
 			"source": "RHW",
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"subclassShortName": "Hollow Warden",
 			"subclassSource": "RHW",
 			"level": 7,
-			"header": 2,
 			"entries": [
-				"Your experience surviving harrowing environments allows you to bolster your allies in addition to yourself. As a {@action Magic|XPHB} action, choose a number of creatures you can see equal to your Wisdom modifier (minimum of one). Each chosen creature regains {@variantrule Hit Points|XPHB} equal to {@dice 1d10} plus your Ranger level and has {@variantrule Advantage|XPHB} on saving throws to avoid or end the {@condition Frightened|XPHB} condition for 1 hour.",
-				"Once you use this feature, you can't use it again until you finish a {@variantrule Long Rest|XPHB}."
+				"You gain a bonus to Constitution saving throws equal to your Wisdom modifier (minimum of +1).",
+				"In addition, once per turn when you hit a creature with an attack roll while you are transformed using Wrath of the Wild, you regain a number of Hit Points equal to {@dice 1d10} plus your Wisdom modifier, provided you are {@status Bloodied|XPHB} when you hit."
 			]
 		},
 		{
@@ -4289,7 +4271,7 @@
 					"type": "entries",
 					"name": "Menacing Aura",
 					"entries": [
-						"When a creature fails its saving throw against your Unnerving Aura, it also can't regain Hit Points or take Reactions until the start of your next turn."
+						"When a creature fails its saving throw against your Unnerving Aura, it also can't regain {@variantrule Hit Points|XPHB} or take {@variantrule Reaction|XPHB|Reactions} until the start of your next turn."
 					]
 				},
 				{
@@ -4323,14 +4305,14 @@
 					"type": "entries",
 					"name": "Persistent Wrath",
 					"entries": [
-						"If you're reduced to 0 Hit Points but not killed outright while transformed using Wrath of the Wild, you can surge with wild power. Your Hit Points instead change to a number equal to twice your Ranger level. Once you use this feature, you can't do so again until you finish a Long Rest. You can also expend a level 4+ spell slot (no action required) to restore your use of this feature."
+						"If you're reduced to 0 {@variantrule Hit Points|XPHB} but not killed outright while transformed using Wrath of the Wild, you can surge with wild power. Your {@variantrule Hit Points|XPHB} instead change to a number equal to twice your Ranger level. Once you use this feature, you can't do so again until you finish a {@variantrule Long Rest|XPHB}. You can also expend a level 4+ spell slot (no action required) to restore your use of this feature."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Timeless",
 					"entries": [
-						"You have Immunity to the {@condition Exhaustion|XPHB} condition."
+						"You have {@variantrule Immunity|XPHB} to the {@condition Exhaustion|XPHB} condition."
 					]
 				}
 			]
