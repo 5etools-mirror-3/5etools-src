@@ -138,7 +138,7 @@ class _RenderBestiaryImplBase {
 		return {
 			htmlPtIsExcluded: this._getCommonHtmlParts_isExcluded({mon, isSkipExcludesRender}),
 			htmlPtName: this._getCommonHtmlParts_name({mon, isInlinedToken}),
-			htmlPtSizeTypeAlignment: this._getCommonHtmlParts_sizeTypeAlignment({mon, isInlinedToken}),
+			htmlPtSizeTypeAlignment: this._getCommonHtmlParts_sizeTypeAlignment({mon, renderer, isInlinedToken}),
 
 			htmlPtHitPoints: this._getCommonHtmlParts_hitPoints({mon, isInlinedToken}),
 			htmlPtsResources: this._getCommonHtmlParts_resources({mon, isInlinedToken}),
@@ -189,8 +189,8 @@ class _RenderBestiaryImplBase {
 		);
 	}
 
-	_getCommonHtmlParts_sizeTypeAlignment ({mon, isInlinedToken}) {
-		return `<tr><td colspan="6"><div ${isInlinedToken ? `class="ve-stats__wrp-avoid-token"` : ""}><i>${Renderer.monster.getTypeAlignmentPart(mon)}</i></div></td></tr>`;
+	_getCommonHtmlParts_sizeTypeAlignment ({mon, renderer, isInlinedToken}) {
+		return `<tr><td colspan="6"><div ${isInlinedToken ? `class="ve-stats__wrp-avoid-token"` : ""}><i>${Renderer.monster.getTypeAlignmentPart(mon, {renderer})}</i></div></td></tr>`;
 	}
 
 	/* ----- */

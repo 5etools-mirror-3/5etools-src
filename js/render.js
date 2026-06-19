@@ -7622,9 +7622,11 @@ Renderer.spell = class {
 		_cache = null;
 
 		populate ({brew, isForce = false}) {
-			if (this._cache && !isForce) return;
+			if (this._cache?._isAnyPopulated && !isForce) return;
 
 			this._cache = {
+				_isAnyPopulated: false,
+
 				classes: {},
 
 				groups: {},
@@ -7733,6 +7735,7 @@ Renderer.spell = class {
 
 			// region Duplicate the spell list of another class/subclass/sub-subclass
 			if (itm.className) {
+				this._cache._isAnyPopulated = true;
 				return this._populate_fromClass_doAdd({
 					tgt: MiscUtil.getOrSet(
 						this._cache.classes,
@@ -7755,6 +7758,7 @@ Renderer.spell = class {
 			let [name, source] = `${itm}`.toLowerCase().split("|");
 			source = source || Parser.SRC_PHB.toLowerCase();
 
+			this._cache._isAnyPopulated = true;
 			this._populate_fromClass_doAdd({
 				tgt: MiscUtil.getOrSet(
 					this._cache.classes,
@@ -7818,6 +7822,7 @@ Renderer.spell = class {
 		) {
 			if (!itm.groupName) return;
 
+			this._cache._isAnyPopulated = true;
 			return this._populate_fromClass_doAdd({
 				tgt: MiscUtil.getOrSet(
 					this._cache.classes,
@@ -7848,6 +7853,7 @@ Renderer.spell = class {
 				.forEach(spell => {
 					if (typeof spell === "string") {
 						const {name, source} = DataUtil.proxy.unpackUid("spell", spell, "spell", {isLower: true});
+						this._cache._isAnyPopulated = true;
 						return MiscUtil.set(this._cache.groups, "spell", source, name, spellListSourceLower, spellListNameLower, {name: spellList.name, source: spellList.source});
 					}
 
@@ -8000,6 +8006,8 @@ Renderer.spell = class {
 			// TODO(Future) implement "copy existing list"
 		}
 	};
+
+	/* -------------------------------------------- */
 
 	static populatePrereleaseLookup (brew, {isForce = false} = {}) {
 		if (!brew) return;
@@ -9567,7 +9575,7 @@ class _RenderCompactBestiaryImplBase {
 		return {
 			htmlPtIsExcluded: this._getCommonHtmlParts_isExcluded({mon, opts}),
 			htmlPtName: this._getCommonHtmlParts_name({mon, opts, isInlinedToken}),
-			htmlPtSizeTypeAlignment: this._getCommonHtmlParts_sizeTypeAlignment({mon}),
+			htmlPtSizeTypeAlignment: this._getCommonHtmlParts_sizeTypeAlignment({mon, renderer}),
 
 			htmlPtAttributeHeaders: this._getCommonHtmlParts_attributeHeaders({mon, isInlinedToken, isShowSpellLevelScaler, isShowClassLevelScaler, classLevelScalerClass}),
 			htmlPtAttributeValues: this._getCommonHtmlParts_attributeValues({mon, opts, isInlinedToken, isShowCrScaler, isShowSpellLevelScaler, isShowClassLevelScaler}),
@@ -9617,8 +9625,8 @@ class _RenderCompactBestiaryImplBase {
 		);
 	}
 
-	_getCommonHtmlParts_sizeTypeAlignment ({mon}) {
-		return `<tr><td colspan="6"><i>${Renderer.monster.getTypeAlignmentPart(mon)}</i></td></tr>`;
+	_getCommonHtmlParts_sizeTypeAlignment ({mon, renderer}) {
+		return `<tr><td colspan="6"><i>${Renderer.monster.getTypeAlignmentPart(mon, {renderer})}</i></td></tr>`;
 	}
 
 	/* ----- */
@@ -10659,10 +10667,25 @@ Renderer.monster = class {
 
 	/* -------------------------------------------- */
 
-	static getTypeAlignmentPart (mon) {
+	static getTypeAlignmentPart (mon, {renderer = null} = {}) {
+		renderer ||= Renderer.get();
+
 		const typeObj = Parser.monTypeToFullObj(mon.type);
 
-		return `${mon.level != null ? `${Parser.getOrdinalForm(mon.level)}-level ` : ""}${typeObj.asTextSidekick ? `${typeObj.asTextSidekick}; ` : ""}${Renderer.utils.getRenderedSize(mon.size)}${mon.sizeNote ? ` ${mon.sizeNote}` : ""} ${typeObj.asText}${mon.alignment ? `, ${mon.alignmentPrefix ? Renderer.get().render(mon.alignmentPrefix) : ""}${Parser.alignmentListToFull(mon.alignment).toTitleCase()}` : ""}`;
+		return [
+			mon.level != null ? `${Parser.getOrdinalForm(mon.level)}-level` : "",
+			typeObj.asTextSidekick ? `${typeObj.asTextSidekick};` : "",
+			Renderer.utils.getRenderedSize(mon.size),
+			mon.sizeNote ? renderer.render(mon.sizeNote) : "",
+			[
+				typeObj.asText,
+				mon.alignment ? `${mon.alignmentPrefix ? renderer.render(mon.alignmentPrefix) : ""}${Parser.alignmentListToFull(mon.alignment).toTitleCase()}` : "",
+			]
+				.filter(Boolean)
+				.join(", "),
+		]
+			.filter(Boolean)
+			.join(" ");
 	}
 
 	static _getInitiativePart_passive ({mon, initPassive}) {

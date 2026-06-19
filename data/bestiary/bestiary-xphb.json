@@ -51,7 +51,7 @@
 				{
 					"name": "Regeneration (Slaad Only)",
 					"entries": [
-						"The spirit regains 5 Hit Points at the start of its turn if it has at least 1 Hit Point."
+						"The spirit regains 5 {@variantrule Hit Points|XPHB} at the start of its turn if it has at least 1 {@variantrule Hit Points|XPHB|Hit Point}."
 					]
 				},
 				{
@@ -71,7 +71,7 @@
 				{
 					"name": "Claw (Slaad Only)",
 					"entries": [
-						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}{@damage 1d10 + 3 + summonSpellLevel} Slashing damage, and the target can't regain Hit Points until the start of the spirit's next turn."
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}{@damage 1d10 + 3 + summonSpellLevel} Slashing damage, and the target can't regain {@variantrule Hit Points|XPHB} until the start of the spirit's next turn."
 					]
 				},
 				{
@@ -87,6 +87,7 @@
 					]
 				}
 			],
+			"foundryTokenScale": 1.1,
 			"traitTags": [
 				"Regeneration"
 			],
@@ -143,13 +144,63 @@
 						"canHover": true
 					},
 					"trait": null,
+					"foundryTokenScale": 1.1,
 					"traitTags": null,
 					"damageTags": [
 						"Y"
 					],
 					"miscTags": [
 						"RA"
-					]
+					],
+					"hasToken": true
+				},
+				{
+					"name": "Aberrant Spirit (Mind Flayer)",
+					"source": "XPHB",
+					"_mod": {
+						"trait": [
+							{
+								"mode": "removeArr",
+								"names": [
+									"Regeneration (Slaad Only)"
+								]
+							},
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Whispering Aura (Mind Flayer Only)",
+									"with": "Whispering Aura"
+								}
+							}
+						],
+						"action": [
+							{
+								"mode": "removeArr",
+								"names": [
+									"Eye Ray (Beholderkin Only)",
+									"Claw (Slaad Only)"
+								]
+							},
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Psychic Slam (Mind Flayer Only)",
+									"with": "Psychic Slam"
+								}
+							}
+						]
+					},
+					"speed": {
+						"walk": 30
+					},
+					"traitTags": null,
+					"damageTags": [
+						"Y"
+					],
+					"miscTags": [
+						"RA"
+					],
+					"hasToken": true
 				},
 				{
 					"name": "Aberrant Spirit (Slaad)",
@@ -198,56 +249,8 @@
 					],
 					"miscTags": [
 						"MA"
-					]
-				},
-				{
-					"name": "Aberrant Spirit (Star Spawn)",
-					"source": "XPHB",
-					"_mod": {
-						"trait": [
-							{
-								"mode": "removeArr",
-								"names": [
-									"Regeneration (Slaad Only)"
-								]
-							},
-							{
-								"mode": "renameArr",
-								"renames": {
-									"rename": "Whispering Aura (Mind Flayer Only)",
-									"with": "Whispering Aura"
-								}
-							}
-						],
-						"action": [
-							{
-								"mode": "removeArr",
-								"names": [
-									"Eye Ray (Beholderkin Only)",
-									"Claw (Slaad Only)"
-								]
-							},
-							{
-								"mode": "renameArr",
-								"renames": {
-									"rename": "Psychic Slam (Mind Flayer Only)",
-									"with": "Psychic Slam"
-								}
-							}
-						]
-					},
-					"speed": {
-						"walk": 30
-					},
-					"traitTags": [
-						"Regeneration"
 					],
-					"damageTags": [
-						"Y"
-					],
-					"miscTags": [
-						"RA"
-					]
+					"hasToken": true
 				}
 			]
 		},
@@ -300,6 +303,7 @@
 					]
 				}
 			],
+			"foundryTokenScale": 1.3,
 			"senseTags": [
 				"B"
 			],
@@ -410,6 +414,7 @@
 					]
 				}
 			],
+			"foundryTokenScale": 1.3,
 			"miscTags": [
 				"MA"
 			],
@@ -479,6 +484,7 @@
 					]
 				}
 			],
+			"foundryTokenScale": 1.3,
 			"traitTags": [
 				"Amphibious"
 			],
@@ -551,6 +557,7 @@
 					]
 				}
 			],
+			"foundryTokenScale": 1.3,
 			"traitTags": [
 				"Flyby"
 			],
@@ -620,7 +627,7 @@
 				{
 					"name": "Pack Tactics (Land and Water Only)",
 					"entries": [
-						"The spirit has Advantage on an attack roll against a creature if at least one of the spirit's allies is within 5 feet of the creature and the ally doesn't have the {@condition Incapacitated|XPHB} condition."
+						"The spirit has {@variantrule Advantage|XPHB} on an attack roll against a creature if at least one of the spirit's allies is within 5 feet of the creature and the ally doesn't have the {@condition Incapacitated|XPHB} condition."
 					]
 				},
 				{
@@ -644,6 +651,7 @@
 					]
 				}
 			],
+			"foundryTokenScale": 1.3,
 			"traitTags": [
 				"Flyby",
 				"Pack Tactics",
@@ -691,7 +699,8 @@
 					},
 					"traitTags": [
 						"Flyby"
-					]
+					],
+					"hasToken": true
 				},
 				{
 					"name": "Bestial Spirit (Land)",
@@ -721,9 +730,11 @@
 						"walk": 30,
 						"climb": 30
 					},
+					"foundryTokenScale": 1.3,
 					"traitTags": [
 						"Pack Tactics"
-					]
+					],
+					"hasToken": true
 				},
 				{
 					"name": "Bestial Spirit (Water)",
@@ -755,7 +766,8 @@
 					"traitTags": [
 						"Pack Tactics",
 						"Water Breathing"
-					]
+					],
+					"hasToken": true
 				}
 			]
 		},
@@ -822,16 +834,17 @@
 				{
 					"name": "Radiant Mace (Defender Only)",
 					"entries": [
-						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}{@damage 1d10 + 3 + summonSpellLevel} Radiant damage, and the spirit can choose itself or another creature it can see within 10 feet of the target. The chosen creature gains {@dice 1d10} Temporary Hit Points."
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}{@damage 1d10 + 3 + summonSpellLevel} Radiant damage, and the spirit can choose itself or another creature it can see within 10 feet of the target. The chosen creature gains {@dice 1d10} {@variantrule Temporary Hit Points|XPHB}."
 					]
 				},
 				{
 					"name": "Healing Touch (1/Day)",
 					"entries": [
-						"The spirit touches another creature. The target regains Hit Points equal to {@dice 2d8 + summonSpellLevel}."
+						"The spirit touches another creature. The target regains {@variantrule Hit Points|XPHB} equal to {@dice 2d8 + summonSpellLevel}."
 					]
 				}
 			],
+			"foundryTokenScale": 1.1,
 			"actionTags": [
 				"Multiattack"
 			],
@@ -869,10 +882,12 @@
 							"special": "11 + the spell's level"
 						}
 					],
+					"foundryTokenScale": 1.1,
 					"miscTags": [
 						"RA",
 						"RW"
-					]
+					],
+					"hasToken": true
 				},
 				{
 					"name": "Celestial Spirit (Defender)",
@@ -897,10 +912,12 @@
 							"special": "13 + the spell's level"
 						}
 					],
+					"foundryTokenScale": 1.1,
 					"miscTags": [
 						"MA",
 						"MLW"
-					]
+					],
+					"hasToken": true
 				}
 			]
 		},
@@ -962,7 +979,7 @@
 				{
 					"name": "Stony Lethargy (Stone Only)",
 					"entries": [
-						"When a creature starts its turn within 10 feet of the spirit, the spirit can target it with magical energy if the spirit can see it. {@actSave wis} DC equals your spell save DC, the target. {@actSaveFail} Until the start of its next turn, the target can't make {@action Opportunity Attack|XPHB|Opportunity Attacks}, and its Speed is halved."
+						"When a creature starts its turn within 10 feet of the spirit, the spirit can target it with magical energy if the spirit can see it. {@actSave wis} DC equals your spell save DC, the target. {@actSaveFail} Until the start of its next turn, the target can't make {@action Opportunity Attack|XPHB|Opportunity Attacks}, and its {@variantrule Speed|XPHB} is halved."
 					]
 				}
 			],
@@ -984,10 +1001,11 @@
 				{
 					"name": "Berserk Lashing (Clay Only)",
 					"entries": [
-						"{@actTrigger} The spirit takes damage from a creature. {@actResponse} The spirit makes a Slam attack against that creature if possible, or the spirit moves up to half its Speed toward that creature without provoking {@action Opportunity Attack|XPHB|Opportunity Attacks}."
+						"{@actTrigger} The spirit takes damage from a creature. {@actResponse} The spirit makes a Slam attack against that creature if possible, or the spirit moves up to half its {@variantrule Speed|XPHB} toward that creature without provoking {@action Opportunity Attack|XPHB|Opportunity Attacks}."
 					]
 				}
 			],
+			"foundryTokenScale": 1.3,
 			"actionTags": [
 				"Multiattack"
 			],
@@ -1021,7 +1039,8 @@
 					"trait": null,
 					"damageTags": [
 						"B"
-					]
+					],
+					"hasToken": true
 				},
 				{
 					"name": "Construct Spirit (Metal)",
@@ -1041,7 +1060,8 @@
 							}
 						]
 					},
-					"reaction": null
+					"reaction": null,
+					"hasToken": true
 				},
 				{
 					"name": "Construct Spirit (Stone)",
@@ -1062,9 +1082,11 @@
 						]
 					},
 					"reaction": null,
+					"foundryTokenScale": 1.3,
 					"damageTags": [
 						"B"
-					]
+					],
+					"hasToken": true
 				}
 			]
 		},
@@ -1127,7 +1149,7 @@
 				{
 					"name": "Shared Resistances",
 					"entries": [
-						"When you summon the spirit, choose one of its Resistances. You have Resistance to the chosen damage type until the spell ends."
+						"When you summon the spirit, choose one of its Resistances. You have {@variantrule Resistance|XPHB} to the chosen damage type until the spell ends."
 					]
 				}
 			],
@@ -1147,10 +1169,11 @@
 				{
 					"name": "Breath Weapon",
 					"entries": [
-						"{@actSave dex} DC equals your spell save DC, each creature in a 30-foot Cone. {@actSaveFail} {@damage 2d6} damage of a type this spirit has Resistance to (your choice when you cast the spell). {@actSaveSuccess} Half damage."
+						"{@actSave dex} DC equals your spell save DC, each creature in a 30-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}. {@actSaveFail} {@damage 2d6} damage of a type this spirit has {@variantrule Resistance|XPHB} to (your choice when you cast the spell). {@actSaveSuccess} Half damage."
 					]
 				}
 			],
+			"foundryTokenScale": 2,
 			"actionTags": [
 				"Breath Weapon",
 				"Multiattack"
@@ -1179,7 +1202,7 @@
 									"items": {
 										"name": "Shared Resistances",
 										"entries": [
-											"You have Resistance to {{resist}} damage until the spell ends."
+											"You have {@variantrule Resistance|XPHB} to {{resist}} damage until the spell ends."
 										]
 									}
 								}
@@ -1191,7 +1214,7 @@
 									"items": {
 										"name": "Breath Weapon",
 										"entries": [
-											"{@actSave dex} DC equals your spell save DC, each creature in a 30-foot Cone. {@actSaveFail} {@damage 2d6} {{resist}} damage. {@actSaveSuccess} Half damage."
+											"{@actSave dex} DC equals your spell save DC, each creature in a 30-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}. {@actSaveFail} {@damage 2d6} {{resist}} damage. {@actSaveSuccess} Half damage."
 										]
 									}
 								}
@@ -1325,7 +1348,7 @@
 				{
 					"name": "Amorphous Form (Air, Fire, and Water Only)",
 					"entries": [
-						"The spirit can move through a space as narrow as 1 inch wide without it counting as Difficult Terrain."
+						"The spirit can move through a space as narrow as 1 inch wide without it counting as {@variantrule Difficult Terrain|XPHB}."
 					]
 				}
 			],
@@ -1343,6 +1366,7 @@
 					]
 				}
 			],
+			"foundryTokenScale": 1.1,
 			"traitTags": [
 				"Amorphous"
 			],
@@ -1394,9 +1418,11 @@
 					"immune": [
 						"poison"
 					],
+					"foundryTokenScale": 1.1,
 					"damageTags": [
 						"B"
-					]
+					],
+					"hasToken": true
 				},
 				{
 					"name": "Elemental Spirit (Earth)",
@@ -1425,9 +1451,11 @@
 						"poison"
 					],
 					"trait": null,
+					"foundryTokenScale": 1.1,
 					"damageTags": [
 						"B"
-					]
+					],
+					"hasToken": true
 				},
 				{
 					"name": "Elemental Spirit (Fire)",
@@ -1460,9 +1488,11 @@
 						"poison",
 						"fire"
 					],
+					"foundryTokenScale": 1.1,
 					"damageTags": [
 						"F"
-					]
+					],
+					"hasToken": true
 				},
 				{
 					"name": "Elemental Spirit (Water)",
@@ -1498,9 +1528,11 @@
 					"immune": [
 						"poison"
 					],
+					"foundryTokenScale": 1.1,
 					"damageTags": [
 						"B"
-					]
+					],
+					"hasToken": true
 				}
 			]
 		},
@@ -1574,7 +1606,7 @@
 									"name": "Fuming",
 									"type": "item",
 									"entries": [
-										"The spirit has Advantage on the next attack roll it makes before the end of this turn."
+										"The spirit has {@variantrule Advantage|XPHB} on the next attack roll it makes before the end of this turn."
 									]
 								},
 								{
@@ -1588,7 +1620,7 @@
 									"name": "Tricksy",
 									"type": "item",
 									"entries": [
-										"The spirit fills a 10-foot Cube within 5 feet of it with magical Darkness, which lasts until the end of its next turn."
+										"The spirit fills a 10-foot {@variantrule Cube [Area of Effect]|XPHB|Cube} within 5 feet of it with magical Darkness, which lasts until the end of its next turn."
 									]
 								}
 							]
@@ -1596,6 +1628,7 @@
 					]
 				}
 			],
+			"foundryTokenScale": 1.3,
 			"senseTags": [
 				"D"
 			],
@@ -1627,7 +1660,7 @@
 						{
 							"name": "Fey Step",
 							"entries": [
-								"The spirit magically teleports up to 30 feet to an unoccupied space it can see. The spirit has Advantage on the next attack roll it makes before the end of this turn."
+								"The spirit magically teleports up to 30 feet to an unoccupied space it can see. The spirit has {@variantrule Advantage|XPHB} on the next attack roll it makes before the end of this turn."
 							]
 						}
 					]
@@ -1651,7 +1684,7 @@
 						{
 							"name": "Fey Step",
 							"entries": [
-								"The spirit magically teleports up to 30 feet to an unoccupied space it can see. The spirit fills a 10-foot Cube within 5 feet of it with magical Darkness, which lasts until the end of its next turn."
+								"The spirit magically teleports up to 30 feet to an unoccupied space it can see. The spirit fills a 10-foot {@variantrule Cube [Area of Effect]|XPHB|Cube} within 5 feet of it with magical Darkness, which lasts until the end of its next turn."
 							]
 						}
 					]
@@ -1719,19 +1752,19 @@
 				{
 					"name": "Death Throes (Demon Only)",
 					"entries": [
-						"When the spirit drops to 0 Hit Points or the spell ends, the spirit explodes. {@actSave dex} DC equals your spell save DC, each creature in a 10-foot Emanation originating from the spirit. {@actSaveFail} {@damage 2d10} plus this spell's level Fire damage. {@actSaveSuccess} Half damage."
+						"When the spirit drops to 0 {@variantrule Hit Points|XPHB} or the spell ends, the spirit explodes. {@actSave dex} DC equals your spell save DC, each creature in a 10-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the spirit. {@actSaveFail} {@damage 2d10} plus this spell's level Fire damage. {@actSaveSuccess} Half damage."
 					]
 				},
 				{
 					"name": "Devil's Sight (Devil Only)",
 					"entries": [
-						"Magical Darkness doesn't impede the spirit's Darkvision."
+						"Magical {@variantrule Darkness|XPHB} doesn't impede the spirit's Darkvision."
 					]
 				},
 				{
 					"name": "Magic Resistance",
 					"entries": [
-						"The spirit has Advantage on saving throws against spells and other magical effects."
+						"The spirit has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
 					]
 				}
 			],
@@ -1761,6 +1794,7 @@
 					]
 				}
 			],
+			"foundryTokenScale": 1.1,
 			"traitTags": [
 				"Death Burst",
 				"Devil's Sight",
@@ -1831,7 +1865,8 @@
 					],
 					"damageTags": [
 						"F"
-					]
+					],
+					"hasToken": true
 				},
 				{
 					"name": "Fiendish Spirit (Devil)",
@@ -1874,13 +1909,15 @@
 						"walk": 40,
 						"fly": 60
 					},
+					"foundryTokenScale": 1.1,
 					"traitTags": [
 						"Devil's Sight",
 						"Magic Resistance"
 					],
 					"damageTags": [
 						"N"
-					]
+					],
+					"hasToken": true
 				},
 				{
 					"name": "Fiendish Spirit (Yugoloth)",
@@ -1923,7 +1960,8 @@
 					],
 					"damageTags": [
 						"F"
-					]
+					],
+					"hasToken": true
 				}
 			]
 		},
@@ -1995,7 +2033,7 @@
 				{
 					"name": "Web Bolt (Spider Only)",
 					"entries": [
-						"{@atkr r} {@hitYourSpellAttack Bonus equals your spell attack modifier}, range 60 ft. {@h}{@damage 1d10 + 3 + summonSpellLevel} Bludgeoning damage, and the target's Speed is reduced to 0 until the start of the insect's next turn."
+						"{@atkr r} {@hitYourSpellAttack Bonus equals your spell attack modifier}, range 60 ft. {@h}{@damage 1d10 + 3 + summonSpellLevel} Bludgeoning damage, and the target's {@variantrule Speed|XPHB} is reduced to 0 until the start of the insect's next turn."
 					]
 				}
 			],
@@ -2007,6 +2045,7 @@
 					]
 				}
 			],
+			"foundryTokenScale": 1.1,
 			"traitTags": [
 				"Spider Climb"
 			],
@@ -2047,7 +2086,9 @@
 					"speed": {
 						"walk": 40,
 						"climb": 40
-					}
+					},
+					"foundryTokenScale": 1.1,
+					"hasToken": true
 				},
 				{
 					"name": "Giant Insect (Spider)",
@@ -2067,7 +2108,8 @@
 						"walk": 40,
 						"climb": 40
 					},
-					"bonus": null
+					"bonus": null,
+					"hasToken": true
 				},
 				{
 					"name": "Giant Insect (Wasp)",
@@ -2087,7 +2129,8 @@
 						"climb": 40,
 						"fly": 40
 					},
-					"bonus": null
+					"bonus": null,
+					"hasToken": true
 				}
 			]
 		},
@@ -2143,7 +2186,7 @@
 				{
 					"name": "Life Bond",
 					"entries": [
-						"When you regain Hit Points from a level 1+ spell, the steed regains the same number of Hit Points if you're within 5 feet of it."
+						"When you regain {@variantrule Hit Points|XPHB} from a level 1+ spell, the steed regains the same number of {@variantrule Hit Points|XPHB} if you're within 5 feet of it."
 					]
 				}
 			],
@@ -2171,10 +2214,11 @@
 				{
 					"name": "Healing Touch (Celestial Only; Recharges after a Long Rest)",
 					"entries": [
-						"One creature within 5 feet of the steed regains a number of Hit Points equal to {@dice 2d8 + summonSpellLevel}."
+						"One creature within 5 feet of the steed regains a number of {@variantrule Hit Points|XPHB} equal to {@dice 2d8 + summonSpellLevel}."
 					]
 				}
 			],
+			"foundryTokenScale": 1.1,
 			"languageTags": [
 				"TP"
 			],
@@ -2355,13 +2399,13 @@
 				{
 					"name": "Festering Aura (Putrid Only)",
 					"entries": [
-						"{@actSave con} DC equals your spell save DC, any creature (other than you) that starts its turn within a 5-foot Emanation originating from the spirit. {@actSaveFail} The creature has the {@condition Poisoned|XPHB} condition until the start of its next turn."
+						"{@actSave con} DC equals your spell save DC, any creature (other than you) that starts its turn within a 5-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the spirit. {@actSaveFail} The creature has the {@condition Poisoned|XPHB} condition until the start of its next turn."
 					]
 				},
 				{
 					"name": "Incorporeal Passage (Ghostly Only)",
 					"entries": [
-						"The spirit can move through other creatures and objects as if they were Difficult Terrain. If it ends its turn inside an object, it is shunted to the nearest unoccupied space and takes {@damage 1d10} Force damage for every 5 feet traveled."
+						"The spirit can move through other creatures and objects as if they were {@variantrule Difficult Terrain|XPHB}. If it ends its turn inside an object, it is shunted to the nearest unoccupied space and takes {@damage 1d10} Force damage for every 5 feet traveled."
 					]
 				}
 			],
@@ -2391,6 +2435,7 @@
 					]
 				}
 			],
+			"foundryTokenScale": 1.3,
 			"traitTags": [
 				"Incorporeal Movement"
 			],
@@ -2465,12 +2510,14 @@
 						},
 						"canHover": true
 					},
+					"foundryTokenScale": 1.3,
 					"damageTags": [
 						"N"
 					],
 					"conditionInflict": [
 						"frightened"
-					]
+					],
+					"hasToken": true
 				},
 				{
 					"name": "Undead Spirit (Putrid)",
@@ -2520,7 +2567,8 @@
 					"conditionInflict": [
 						"paralyzed",
 						"poisoned"
-					]
+					],
+					"hasToken": true
 				},
 				{
 					"name": "Undead Spirit (Skeletal)",
@@ -2554,7 +2602,8 @@
 					"damageTags": [
 						"N"
 					],
-					"conditionInflict": null
+					"conditionInflict": null,
+					"hasToken": true
 				}
 			]
 		}

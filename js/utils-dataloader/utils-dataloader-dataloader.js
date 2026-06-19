@@ -58,7 +58,20 @@ class DataTypeLoader {
 
 	_isBrewAvailable () { return typeof BrewUtil2 !== "undefined"; }
 
-	async _pPrePopulate ({data, isPrerelease, isBrew}) { /* Implement as required */ }
+	async _pPrePopulate ({data, isPrerelease, isBrew}) {
+		await this._pPrePopulate_common({data, isPrerelease, isBrew});
+		await this._pPrePopulate_custom({data, isPrerelease, isBrew});
+	}
+
+	async _pPrePopulate_common ({data, isPrerelease, isBrew}) {
+		// region Spells
+		if (isPrerelease) Renderer.spell.prePopulateHoverPrerelease(data);
+		if (isBrew) Renderer.spell.prePopulateHoverBrew(data);
+		Renderer.spell.prePopulateHover(data);
+		// endregion
+	}
+
+	async _pPrePopulate_custom ({data, isPrerelease, isBrew}) { /* Implement as required */ }
 
 	async pGetSiteData ({pageClean, sourceClean}) {
 		if (DataLoaderConst.isSourceAllNonSite(sourceClean)) return {};
@@ -259,7 +272,7 @@ class DataTypeLoaderItemMastery extends DataTypeLoaderSingleSource {
 
 	_filename = "items-base.json";
 
-	async _pPrePopulate ({data, isPrerelease, isBrew}) {
+	async _pPrePopulate_custom ({data, isPrerelease, isBrew}) {
 		// Ensure properties are loaded
 		await Renderer.item.pGetSiteUnresolvedRefItems();
 		Renderer.item.addPrereleaseBrewPropertiesAndTypesFrom({data});
@@ -518,12 +531,6 @@ class DataTypeLoaderCustomSpell extends DataTypeLoaderMultiSource {
 	static PAGE = UrlUtil.PG_SPELLS;
 
 	_prop = "spell";
-
-	async _pPrePopulate ({data, isPrerelease, isBrew}) {
-		Renderer.spell.prePopulateHover(data);
-		if (isPrerelease) Renderer.spell.prePopulateHoverPrerelease(data);
-		if (isBrew) Renderer.spell.prePopulateHoverBrew(data);
-	}
 }
 
 class DataTypeLoaderCustomSpellFluff extends DataTypeLoaderMultiSource {
@@ -813,7 +820,7 @@ class DataTypeLoaderCustomItem extends DataTypeLoader {
 		};
 	}
 
-	async _pPrePopulate ({data, isPrerelease, isBrew}) {
+	async _pPrePopulate_custom ({data, isPrerelease, isBrew}) {
 		Renderer.item.addPrereleaseBrewPropertiesAndTypesFrom({data});
 	}
 

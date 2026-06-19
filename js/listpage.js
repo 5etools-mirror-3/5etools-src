@@ -2465,7 +2465,6 @@ class ListPageTokenDisplay {
 					height: ${ent.foundryTokenScale * 100}%;
 					left: -${(ent.foundryTokenScale - 1) / 2 * 100}%;
 					top: -${(ent.foundryTokenScale - 1) / 2 * this.constructor._CONTAINER_SIZE}px;
-					transition: width 34ms, height 34ms, left 34ms, top 34ms;
 				}
 
 				.ve-stats__wrp-token:hover {

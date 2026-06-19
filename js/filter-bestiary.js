@@ -533,6 +533,7 @@ class PageFilterBestiary extends PageFilterBase {
 
 		this._sourceFilter.addItem(mon._fSources);
 		this._crFilter.addItem(mon._fCr);
+		this._typeFilter.addItem(mon._pTypes.types);
 		this._strengthFilter.addItem(mon._fStr);
 		this._dexterityFilter.addItem(mon._fDex);
 		this._constitutionFilter.addItem(mon._fCon);
