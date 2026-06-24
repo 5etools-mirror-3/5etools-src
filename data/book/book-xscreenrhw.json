@@ -1,0 +1,1145 @@
+{
+	"data": [
+		{
+			"type": "section",
+			"name": "DM Screen",
+			"entries": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "book/XScreenRHW/XScreenRHW_Full.webp"
+					},
+					"title": "Dungeon Master's Screen: Ravenloft The Horrors Within",
+					"credit": "Grzegorz Rutkowski"
+				},
+				{
+					"type": "entries",
+					"name": "Conditions",
+					"entries": [
+						{
+							"type": "statblock",
+							"tag": "condition",
+							"source": "XPHB",
+							"name": "Blinded"
+						},
+						{
+							"type": "statblock",
+							"tag": "condition",
+							"source": "XPHB",
+							"name": "Charmed"
+						},
+						{
+							"type": "statblock",
+							"tag": "condition",
+							"source": "XPHB",
+							"name": "Deafened"
+						},
+						{
+							"type": "statblock",
+							"tag": "condition",
+							"source": "XPHB",
+							"name": "Exhaustion"
+						},
+						{
+							"type": "statblock",
+							"tag": "condition",
+							"source": "XPHB",
+							"name": "Frightened"
+						},
+						{
+							"type": "statblock",
+							"tag": "condition",
+							"source": "XPHB",
+							"name": "Grappled"
+						},
+						{
+							"type": "statblock",
+							"tag": "condition",
+							"source": "XPHB",
+							"name": "Incapacitated"
+						},
+						{
+							"type": "statblock",
+							"tag": "condition",
+							"source": "XPHB",
+							"name": "Invisible"
+						},
+						{
+							"type": "statblock",
+							"tag": "condition",
+							"source": "XPHB",
+							"name": "Paralyzed"
+						},
+						{
+							"type": "statblock",
+							"tag": "condition",
+							"source": "XPHB",
+							"name": "Petrified"
+						},
+						{
+							"type": "statblock",
+							"tag": "condition",
+							"source": "XPHB",
+							"name": "Poisoned"
+						},
+						{
+							"type": "statblock",
+							"tag": "condition",
+							"source": "XPHB",
+							"name": "Prone"
+						},
+						{
+							"type": "statblock",
+							"tag": "condition",
+							"source": "XPHB",
+							"name": "Restrained"
+						},
+						{
+							"type": "statblock",
+							"tag": "condition",
+							"source": "XPHB",
+							"name": "Stunned"
+						},
+						{
+							"type": "statblock",
+							"tag": "condition",
+							"source": "XPHB",
+							"name": "Unconscious"
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Tables",
+					"entries": [
+						{
+							"type": "table",
+							"caption": "Actions",
+							"colLabels": [
+								"Action",
+								"Summary"
+							],
+							"colStyles": [
+								"col-2",
+								"col-10"
+							],
+							"rows": [
+								[
+									"{@action Attack|XPHB}",
+									"Attack with a weapon or an {@variantrule Unarmed Strike|XPHB}."
+								],
+								[
+									"{@action Dash|XPHB}",
+									"For the rest of the turn, give yourself extra movement equal to your {@variantrule Speed|XPHB}."
+								],
+								[
+									"{@action Disengage|XPHB}",
+									"Your movement doesn't provoke {@action Opportunity Attack|XPHB|Opportunity Attacks} for the rest of the turn."
+								],
+								[
+									"{@action Dodge|XPHB}",
+									"Until the start of your next turn, attack rolls against you have {@variantrule Disadvantage|XPHB}, and you make Dexterity saving throws with {@variantrule Advantage|XPHB}. You lose this benefit if you have the {@condition Incapacitated|XPHB} condition or if your {@variantrule Speed|XPHB} is 0."
+								],
+								[
+									"{@action Help|XPHB}",
+									"Help another creature's ability check or attack roll, or administer first aid."
+								],
+								[
+									"{@action Hide|XPHB}",
+									"Make a Dexterity ({@skill Stealth|XPHB}) check."
+								],
+								[
+									"{@action Influence|XPHB}",
+									"Make a Charisma ({@skill Deception|XPHB}, {@skill Intimidation|XPHB}, {@skill Performance|XPHB}, or {@skill Persuasion|XPHB}) or Wisdom ({@skill Animal Handling|XPHB|}) check to alter a creature's attitude."
+								],
+								[
+									"{@action Magic|XPHB}",
+									"Cast a spell, use a magic item, or use a magical feature."
+								],
+								[
+									"{@action Ready|XPHB}",
+									"Prepare to take an action in response to a trigger you define."
+								],
+								[
+									"{@action Search|XPHB}",
+									"Make a Wisdom ({@skill Insight|XPHB}, {@skill Medicine|XPHB}, {@skill Perception|XPHB}, or {@skill Survival|XPHB}) check."
+								],
+								[
+									"{@action Study|XPHB}",
+									"Make an Intelligence ({@skill Arcana|XPHB}, {@skill History|XPHB}, {@skill Investigation|XPHB}, {@skill Nature|XPHB}, or {@skill Religion|XPHB}) check."
+								],
+								[
+									"{@action Utilize|XPHB}",
+									"Use a nonmagical object."
+								]
+							],
+							"footnotes": [
+								"{@i See the Player's Handbook rules glossary for full action definitions}"
+							],
+							"data": {
+								"genTables": {
+									"tableIgnore": true
+								}
+							}
+						},
+						{
+							"type": "table",
+							"caption": "Improvising Damage",
+							"colLabels": [
+								"Dice",
+								"Examples"
+							],
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"rows": [
+								[
+									"{@damage 1d10}",
+									"Burned by coals, hit by a falling bookcase, pricked by a poison needle"
+								],
+								[
+									"{@damage 2d10}",
+									"Struck by lightning, stumbling into a firepit"
+								],
+								[
+									"{@damage 4d10}",
+									"Hit by falling rubble in a collapsing tunnel, tumbling into a vat of acid"
+								],
+								[
+									"{@damage 10d10}",
+									"Crushed by compacting walls, hit by whirling steel blades, wading through lava"
+								],
+								[
+									"{@damage 18d10}",
+									"Submerged in lava, hit by a crashing flying fortress"
+								],
+								[
+									"{@damage 24d10}",
+									"Tumbling into a vortex of fire on the Elemental Plane of Fire, crushed in the jaws of a godlike creature or a moon-sized monster"
+								]
+							],
+							"data": {
+								"genTables": {
+									"tableIgnore": true
+								}
+							}
+						},
+						{
+							"type": "table",
+							"caption": "Damage Severity and Level",
+							"colLabels": [
+								"Character Levels",
+								"Nuisance",
+								"Deadly"
+							],
+							"colStyles": [
+								"col-4 text-center",
+								"col-4 text-center",
+								"col-4 text-center"
+							],
+							"rows": [
+								[
+									"1\u20134",
+									"5 ({@damage 1d10})",
+									"11 ({@damage 2d10})"
+								],
+								[
+									"5\u201310",
+									"11 ({@damage 2d10})",
+									"22 ({@damage 4d10})"
+								],
+								[
+									"11\u201316",
+									"22 ({@damage 4d10})",
+									"55 ({@damage 10d10})"
+								],
+								[
+									"17\u201320",
+									"55 ({@damage 10d10})",
+									"99 ({@damage 18d10})"
+								]
+							],
+							"data": {
+								"genTables": {
+									"tableIgnore": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"tag": "variantrule",
+							"source": "XPHB",
+							"name": "Long Jump",
+							"style": "inset"
+						},
+						{
+							"type": "statblock",
+							"tag": "variantrule",
+							"source": "XPHB",
+							"name": "High Jump",
+							"style": "inset"
+						},
+						{
+							"type": "statblock",
+							"tag": "status",
+							"source": "XPHB",
+							"name": "Concentration",
+							"style": "inset"
+						},
+						{
+							"type": "statblock",
+							"tag": "variantrule",
+							"source": "XScreen",
+							"name": "Death Saving Throws",
+							"style": "inset"
+						},
+						{
+							"type": "table",
+							"caption": "Skills",
+							"colLabels": [
+								"Skill",
+								"Ability"
+							],
+							"colStyles": [
+								"col-6",
+								"col-6"
+							],
+							"rows": [
+								[
+									"{@skill Acrobatics|XPHB}",
+									"Dexterity"
+								],
+								[
+									"{@skill Animal Handling|XPHB}",
+									"Wisdom"
+								],
+								[
+									"{@skill Arcana|XPHB}",
+									"Intelligence"
+								],
+								[
+									"{@skill Athletics|XPHB}",
+									"Strength"
+								],
+								[
+									"{@skill Deception|XPHB}",
+									"Charisma"
+								],
+								[
+									"{@skill History|XPHB}",
+									"Intelligence"
+								],
+								[
+									"{@skill Insight|XPHB}",
+									"Wisdom"
+								],
+								[
+									"{@skill Intimidation|XPHB}",
+									"Charisma"
+								],
+								[
+									"{@skill Investigation|XPHB}",
+									"Intelligence"
+								],
+								[
+									"{@skill Medicine|XPHB}",
+									"Wisdom"
+								],
+								[
+									"{@skill Nature|XPHB}",
+									"Intelligence"
+								],
+								[
+									"{@skill Perception|XPHB}",
+									"Wisdom"
+								],
+								[
+									"{@skill Performance|XPHB}",
+									"Charisma"
+								],
+								[
+									"{@skill Persuasion|XPHB}",
+									"Charisma"
+								],
+								[
+									"{@skill Religion|XPHB}",
+									"Intelligence"
+								],
+								[
+									"{@skill Sleight of Hand|XPHB}",
+									"Dexterity"
+								],
+								[
+									"{@skill Stealth|XPHB}",
+									"Dexterity"
+								],
+								[
+									"{@skill Survival|XPHB}",
+									"Wisdom"
+								]
+							],
+							"data": {
+								"genTables": {
+									"tableIgnore": true
+								}
+							}
+						},
+						{
+							"type": "table",
+							"caption": "Object Armor Class",
+							"colLabels": [
+								"AC",
+								"Substance"
+							],
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"rows": [
+								[
+									"11",
+									"Cloth, paper, rope"
+								],
+								[
+									"13",
+									"Crystal, glass, ice"
+								],
+								[
+									"15",
+									"Wood"
+								],
+								[
+									"17",
+									"Stone"
+								],
+								[
+									"19",
+									"Iron, steel"
+								],
+								[
+									"21",
+									"Mithral"
+								],
+								[
+									"23",
+									"Adamantine"
+								]
+							],
+							"data": {
+								"genTables": {
+									"tableIgnore": true
+								}
+							}
+						},
+						{
+							"type": "table",
+							"caption": "Object Hit Points",
+							"colLabels": [
+								"Size",
+								"Fragile",
+								"Resilient"
+							],
+							"colStyles": [
+								"col-6",
+								"col-3",
+								"col-3"
+							],
+							"rows": [
+								[
+									"Tiny (bottle, lock)",
+									"2 ({@dice 1d4})",
+									"5 ({@dice 2d4})"
+								],
+								[
+									"Small (chest, lute)",
+									"3 ({@dice 1d6})",
+									"10 ({@dice 3d6})"
+								],
+								[
+									"Medium (barrel, chandelier)",
+									"4 ({@dice 1d8})",
+									"18 ({@dice 4d8})"
+								],
+								[
+									"Large (cart, dining table)",
+									"5 ({@dice 1d10})",
+									"27 ({@dice 5d10})"
+								]
+							],
+							"data": {
+								"genTables": {
+									"tableIgnore": true
+								}
+							}
+						},
+						{
+							"type": "table",
+							"caption": "Food, Drink, and Lodging",
+							"colLabels": [
+								"Item",
+								"Cost"
+							],
+							"colStyles": [
+								"col-8",
+								"col-4 text-right"
+							],
+							"rows": [
+								[
+									"{@item Ale (mug)|XPHB}",
+									"4 CP"
+								],
+								[
+									"{@item Bread (loaf)|XPHB}",
+									"2 CP"
+								],
+								[
+									"{@item Cheese (wedge)|XPHB}",
+									"1 SP"
+								],
+								[
+									"{@i Inn Stay per Day}",
+									""
+								],
+								{
+									"type": "row",
+									"style": "row-indent-first",
+									"row": [
+										"Squalid",
+										"7 CP"
+									]
+								},
+								{
+									"type": "row",
+									"style": "row-indent-first",
+									"row": [
+										"Poor",
+										"1 SP"
+									]
+								},
+								{
+									"type": "row",
+									"style": "row-indent-first",
+									"row": [
+										"Modest",
+										"5 SP"
+									]
+								},
+								{
+									"type": "row",
+									"style": "row-indent-first",
+									"row": [
+										"Comfortable",
+										"8 SP"
+									]
+								},
+								{
+									"type": "row",
+									"style": "row-indent-first",
+									"row": [
+										"Wealthy",
+										"2 GP"
+									]
+								},
+								{
+									"type": "row",
+									"style": "row-indent-first",
+									"row": [
+										"Aristocratic",
+										"4 GP"
+									]
+								},
+								[
+									"{@i Meal}",
+									""
+								],
+								{
+									"type": "row",
+									"style": "row-indent-first",
+									"row": [
+										"Squalid",
+										"1 CP"
+									]
+								},
+								{
+									"type": "row",
+									"style": "row-indent-first",
+									"row": [
+										"Poor",
+										"2 CP"
+									]
+								},
+								{
+									"type": "row",
+									"style": "row-indent-first",
+									"row": [
+										"Modest",
+										"1 SP"
+									]
+								},
+								{
+									"type": "row",
+									"style": "row-indent-first",
+									"row": [
+										"Comfortable",
+										"2 SP"
+									]
+								},
+								{
+									"type": "row",
+									"style": "row-indent-first",
+									"row": [
+										"Wealthy",
+										"3 SP"
+									]
+								},
+								{
+									"type": "row",
+									"style": "row-indent-first",
+									"row": [
+										"Aristocratic",
+										"6 SP"
+									]
+								},
+								[
+									"{@i Wine (bottle)}",
+									""
+								],
+								{
+									"type": "row",
+									"style": "row-indent-first",
+									"row": [
+										"{@item Common Wine (bottle)|XPHB|Common}",
+										"2 SP"
+									]
+								},
+								{
+									"type": "row",
+									"style": "row-indent-first",
+									"row": [
+										"{@item Fine Wine (bottle)|XPHB|Fine}",
+										"10 GP"
+									]
+								}
+							],
+							"data": {
+								"genTables": {
+									"tableIgnore": true
+								}
+							}
+						},
+						{
+							"type": "table",
+							"caption": "Typical Difficulty Classes",
+							"colLabels": [
+								"Task Difficulty",
+								"DC"
+							],
+							"colStyles": [
+								"col-10",
+								"col-2 text-center"
+							],
+							"rows": [
+								[
+									"Very easy",
+									"5"
+								],
+								[
+									"Easy",
+									"10"
+								],
+								[
+									"Medium",
+									"15"
+								],
+								[
+									"Hard",
+									"20"
+								],
+								[
+									"Very hard",
+									"25"
+								],
+								[
+									"Nearly impossible",
+									"30"
+								]
+							],
+							"data": {
+								"genTables": {
+									"tableIgnore": true
+								}
+							}
+						},
+						{
+							"type": "table",
+							"caption": "Cover",
+							"colLabels": [
+								"Cover Degree",
+								"Benefit to Target"
+							],
+							"colStyles": [
+								"col-3",
+								"col-9"
+							],
+							"rows": [
+								[
+									"Half Cover",
+									"+2 bonus to AC and Dexterity saving throws"
+								],
+								[
+									"Three-Quarters Cover",
+									"+5 bonus to AC and Dexterity saving throws"
+								],
+								[
+									"Total Cover",
+									"Can't be targeted directly"
+								]
+							],
+							"data": {
+								"genTables": {
+									"tableIgnore": true
+								}
+							}
+						},
+						{
+							"type": "table",
+							"caption": "Light Sources",
+							"colLabels": [
+								"Source",
+								"Bright Light",
+								"Dim Light",
+								"Duration"
+							],
+							"colStyles": [
+								"col-3",
+								"col-3",
+								"col-3",
+								"col-3"
+							],
+							"rows": [
+								[
+									"{@item Candle|XPHB}",
+									"5 feet",
+									"+5 feet",
+									"1 hour"
+								],
+								[
+									"{@item Lamp|XPHB}",
+									"15 feet",
+									"+30 feet",
+									"6 hours"
+								],
+								[
+									"{@item Bullseye Lantern|XPHB|Lantern, Bullseye}",
+									"60-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}",
+									"+60 feet",
+									"6 hours"
+								],
+								[
+									"{@item Hooded Lantern|XPHB|Lantern, Hooded}",
+									"30 feet (none with hood lowered)",
+									"+30 feet (5 feet with hood lowered)",
+									"6 hours"
+								],
+								[
+									"{@item Torch|XPHB}",
+									"20 feet",
+									"+20 feet",
+									"1 hour"
+								]
+							],
+							"data": {
+								"genTables": {
+									"tableIgnore": true
+								}
+							}
+						},
+						{
+							"type": "table",
+							"caption": "Obscured Areas",
+							"colLabels": [
+								"Obscureness",
+								"Effect",
+								"Examples"
+							],
+							"colStyles": [
+								"col-3",
+								"col-5",
+								"col-4"
+							],
+							"rows": [
+								[
+									"{@variantrule Lightly Obscured|XPHB}",
+									"Creatures have {@variantrule Disadvantage|XPHB} on Wisdom ({@skill Perception|XPHB}) checks that rely on sight",
+									"{@variantrule Dim Light|XPHB}, patchy fog, moderate foliage"
+								],
+								[
+									"{@variantrule Heavily Obscured|XPHB}",
+									"Creatures have the {@condition Blinded|XPHB} condition",
+									"{@variantrule Darkness|XPHB}, heavy fog, dense foliage"
+								]
+							],
+							"data": {
+								"genTables": {
+									"tableIgnore": true
+								}
+							}
+						},
+						{
+							"type": "table",
+							"caption": "Horror Encounters",
+							"colLabels": [
+								"{@dice 1d100}",
+								"Tarokka Card",
+								"Encounter"
+							],
+							"colStyles": [
+								"col-1 text-center",
+								"col-3",
+								"col-8"
+							],
+							"footnotes": [
+								"Roll {@dice 1d100} or draw a card from the {@deck tarokka deck|RHW} to generate a random encounter in the Domains of Dread or inspire other horror adventures."
+							],
+							"rows": [
+								[
+									"1\u20132",
+									"{@font ♡|Tarokka Suits} {@card Artifact|Tarokka Deck|RHW}",
+									"{@dice 1d4} {@creature Poltergeist|XMM|Poltergeists} haunt a collection of ornate gear"
+								],
+								[
+									"3\u20134",
+									"{@font ♡|Tarokka Suits} {@card Beast|Tarokka Deck|RHW}",
+									"A {@creature Werewolf|XMM} and {@dice 2d4} {@creature Wolf|XMM|Wolves}"
+								],
+								[
+									"5\u20136",
+									"{@font ♡|Tarokka Suits} {@card Broken One|Tarokka Deck|RHW}",
+									"A {@creature Flesh Golem|XMM} pursued by {@dice 2d6} {@creature Commoner|XMM|Commoners}"
+								],
+								[
+									"7",
+									"{@font ♡|Tarokka Suits} {@card Darklord|Tarokka Deck|RHW}",
+									"The domain's Darklord or a {@creature Vampire Umbral Lord|XMM}"
+								],
+								[
+									"8\u20139",
+									"{@font ♡|Tarokka Suits} {@card Donjon|Tarokka Deck|RHW}",
+									"{@dice 1d6} {@creature Mimic|XMM|Mimics} disguised as coffins or torture devices"
+								],
+								[
+									"10",
+									"{@font ♡|Tarokka Suits} {@card Ghost|Tarokka Deck|RHW}",
+									"{@dice 1d4} {@creature Ghost|XMM|Ghosts} that resemble allies of the characters"
+								],
+								[
+									"11\u201312",
+									"{@font ♡|Tarokka Suits} {@card Executioner|Tarokka Deck|RHW}",
+									"A {@creature Specter|XMM} that appears daily until a character slays a creature"
+								],
+								[
+									"13",
+									"{@font ♡|Tarokka Suits} {@card Horseman|Tarokka Deck|RHW}",
+									"{@dice 1d4} {@creature Nightmare|XMM|Nightmares} bearing corpses on their backs like riders"
+								],
+								[
+									"14",
+									"{@font ♡|Tarokka Suits} {@card Innocent|Tarokka Deck|RHW}",
+									"A {@creature Commoner} searching for home; they vanish after 1 hour"
+								],
+								[
+									"15\u201316",
+									"{@font ♡|Tarokka Suits} {@card Marionette|Tarokka Deck|RHW}",
+									"{@dice 1d4} {@creature Homunculus|XMM|Homunculi} resembling the characters in miniature"
+								],
+								[
+									"17",
+									"{@font ♡|Tarokka Suits} {@card Mists|Tarokka Deck|RHW}",
+									"For 1 hour, exterior locations are {@variantrule Heavily Obscured|XPHB} by mist"
+								],
+								[
+									"18",
+									"{@font ♡|Tarokka Suits} {@card Raven|Tarokka Deck|RHW}",
+									"{@dice 1d4} {@creature Giant Owl|XMM|Giant Owls} that resemble {@creature raven|XMM|ravens} and are {@variantrule Friendly [Attitude]|XPHB|Friendly}"
+								],
+								[
+									"19",
+									"{@font ♡|Tarokka Suits} {@card Seer|Tarokka Deck|RHW}",
+									"A {@creature Mage|XMM} who offers to cast {@spell Augury|XPHB} or read {@deck Tarokka Deck|RHW|tarokka cards}"
+								],
+								[
+									"20",
+									"{@font ♡|Tarokka Suits} {@card Tempter|Tarokka Deck|RHW}",
+									"{@dice 1d4} {@creature Incubus|XMM|Incubi} or {@dice 1d4} {@creature Succubus|XMM|Succubi} that seek to lure away a character"
+								],
+								[
+									"21\u201322",
+									"{@font ♠|Tarokka Suits} {@card Warrior|Tarokka Deck|RHW}",
+									"A {@creature Death Knight|XMM} seeking aid in undoing the curse it bears"
+								],
+								[
+									"23\u201324",
+									"{@font ♠|Tarokka Suits}1 {@card Avenger|Tarokka Deck|RHW}",
+									"A {@creature Warrior Veteran|XMM} pursued by a {@creature Revenant|XMM} that seeks revenge"
+								],
+								[
+									"25\u201326",
+									"{@font ♠|Tarokka Suits}2 {@card Paladin|Tarokka Deck|RHW}",
+									"A {@creature Death Knight Aspirant|XMM} riding a {@creature Warhorse Skeleton|XMM|Skeletal Warhorse}"
+								],
+								[
+									"27\u201328",
+									"{@font ♠|Tarokka Suits}3 {@card Soldier|Tarokka Deck|RHW}",
+									"Three {@creature Warrior Infantry|XMM} fighting one another to the death"
+								],
+								[
+									"29\u201330",
+									"{@font ♠|Tarokka Suits}4 {@card Mercenary|Tarokka Deck|RHW}",
+									"{@dice 1d4} {@creature Helmed Horror|XMM|Helmed Horrors} that believe they're living heroes"
+								],
+								[
+									"31\u201332",
+									"{@font ♠|Tarokka Suits}5 {@card Myrmidon|Tarokka Deck|RHW}",
+									"An {@creature Invisible Stalker|XMM} sent by a character's secret rival"
+								],
+								[
+									"33\u201334",
+									"{@font ♠|Tarokka Suits}6 {@card Berserker|Tarokka Deck|RHW}",
+									"A {@creature Berserker Commander|XMM} and {@dice 2d4} {@creature Berserker|XMM|Berserkers}"
+								],
+								[
+									"35\u201336",
+									"{@font ♠|Tarokka Suits}7 {@card Hooded One|Tarokka Deck|RHW}",
+									"An {@creature Assassin|XMM} wearing a frightful mask"
+								],
+								[
+									"37\u201338",
+									"{@font ♠|Tarokka Suits}8 {@card Dictator|Tarokka Deck|RHW}",
+									"A {@creature Graveyard Revenant|XMM} composed of burned or impaled bodies"
+								],
+								[
+									"39\u201340",
+									"{@font ♠|Tarokka Suits}9 {@card Torturer|Tarokka Deck|RHW}",
+									"{@dice 1d4} {@creature Chain Devil|XMM|Chain Devils} that are fascinated by one of the characters"
+								],
+								[
+									"41\u201342",
+									"{@font ♥|Tarokka Suits} {@card Wizard|Tarokka Deck|RHW}",
+									"A {@creature Lich|XMM} that demands the characters find its lost treasure"
+								],
+								[
+									"43\u201344",
+									"{@font ♥|Tarokka Suits}1 {@card Transmuter|Tarokka Deck|RHW}",
+									"{@dice 1d6} {@creature Nothic|XMM|Nothics} that recognize and seek to learn from a character"
+								],
+								[
+									"45\u201346",
+									"{@font ♥|Tarokka Suits}2 {@card Diviner|Tarokka Deck|RHW}",
+									"{@dice 1d3} {@creature Lamia|XMM|Lamias} that know of or trade in forbidden magic"
+								],
+								[
+									"47\u201348",
+									"{@font ♥|Tarokka Suits}3 {@card Enchanter|Tarokka Deck|RHW}",
+									"{@dice 1d4} {@creature Bone Naga|XMM|Bone Nagas} composed of humanoid bones"
+								],
+								[
+									"49\u201350",
+									"{@font ♥|Tarokka Suits}4 {@card Abjurer|Tarokka Deck|RHW}",
+									"{@dice 1d6} {@creature Scarecrow|XMM|Scarecrows} that protect a site of ancient magic"
+								],
+								[
+									"51\u201352",
+									"{@font ♥|Tarokka Suits}5 {@card Elementalist|Tarokka Deck|RHW}",
+									"{@dice 1d3} {@creature Water Elemental|XMM|Water Elementals} composed of blood"
+								],
+								[
+									"53\u201354",
+									"{@font ♥|Tarokka Suits}6 {@card Evoker|Tarokka Deck|RHW}",
+									"{@dice 1d3} {@creature Oni|XMM} working to turn people against one another"
+								],
+								[
+									"55\u201356",
+									"{@font ♥|Tarokka Suits}7 {@card Illusionist|Tarokka Deck|RHW}",
+									"{@dice 2d4} {@creature Commoner|XMM|Commoners} pursuing {@dice 1d4} {@creature Will-o'-Wisp|XMM|Will-o'-Wisps}"
+								],
+								[
+									"57\u201358",
+									"{@font ♥|Tarokka Suits}8 {@card Necromancer|Tarokka Deck|RHW}",
+									"A {@creature Ghast Gravecaller|XMM} that commands {@dice 3d6} {@creature Zombie|XMM|Zombies}"
+								],
+								[
+									"59\u201360",
+									"{@font ♥|Tarokka Suits}9 {@card Conjurer|Tarokka Deck|RHW}",
+									"A {@creature Mage Apprentice|XMM} terrorized by {@dice 1d6} {@creature Quasit|XMM|Quasits}"
+								],
+								[
+									"61\u201362",
+									"{@font ♦|Tarokka Suits} {@card Rogue|Tarokka Deck|RHW}",
+									"A {@creature Vampire|XMM} that seeks aid in destroying a rival vampire"
+								],
+								[
+									"63\u201364",
+									"{@font ♦|Tarokka Suits}1 {@card Swashbuckler|Tarokka Deck|RHW}",
+									"A troop of performers infiltrated by {@dice 1d6} {@creature Intellect Devourer|XMM|Intellect Devourers}"
+								],
+								[
+									"65\u201366",
+									"{@font ♦|Tarokka Suits}2 {@card Philanthropist|Tarokka Deck|RHW}",
+									"{@dice 1d6} {@creature Vampire Familiar|XMM|Vampire Familiars} that seek help returning to their master"
+								],
+								[
+									"67\u201368",
+									"{@font ♦|Tarokka Suits}3 {@card Trader|Tarokka Deck|RHW}",
+									"A {@creature Night Hag|XMM} willing to trade for a spirit from its soul bag"
+								],
+								[
+									"69\u201370",
+									"{@font ♦|Tarokka Suits}4 {@card Merchant|Tarokka Deck|RHW}",
+									"{@dice 1d4} {@creature Swarm of Crawling Claws|XMM|Swarms of Crawling Claws} endlessly seeking gold"
+								],
+								[
+									"71\u201372",
+									"{@font ♦|Tarokka Suits}5 {@card Guild Member|Tarokka Deck|RHW}",
+									"{@dice 2d4} {@creature Wererat|XMM|Wererats} and {@dice 1d4} {@creature Swarm of Rats|XMM|Swarms of Rats}"
+								],
+								[
+									"73\u201374",
+									"{@font ♦|Tarokka Suits}6 {@card Beggar|Tarokka Deck|RHW}",
+									"{@dice 2d4} {@creature Ghoul|XMM|Ghouls} seeking corpses to consume"
+								],
+								[
+									"75\u201376",
+									"{@font ♦|Tarokka Suits}7 {@card Thief|Tarokka Deck|RHW}",
+									"{@dice 1d6} {@creature Kenku|XMM} that mimic dirges or the final words of the dying"
+								],
+								[
+									"77\u201378",
+									"{@font ♦|Tarokka Suits}8 {@card Tax Collector|Tarokka Deck|RHW}",
+									"{@dice 1d4} {@creature Wraith|XMM|Wraiths} that think the characters are their ancient rivals"
+								],
+								[
+									"79\u201380",
+									"{@font ♦|Tarokka Suits}9 {@card Miser|Tarokka Deck|RHW}",
+									"A {@creature Shadow Dragon|XMM} seeking treasures from its lost hoard"
+								],
+								[
+									"81\u201382",
+									"{@font ♣|Tarokka Suits} {@card Priest|Tarokka Deck|RHW}",
+									"A {@creature Mummy Lord|XMM} trying to restore a long-dead cult"
+								],
+								[
+									"83\u201384",
+									"{@font ♣|Tarokka Suits}1 {@card Monk|Tarokka Deck|RHW}",
+									"{@dice 1d6} {@creature Priest|XMM} who demand strangers prove their virtue"
+								],
+								[
+									"85\u201386",
+									"{@font ♣|Tarokka Suits}2 {@card Missionary|Tarokka Deck|RHW}",
+									"{@dice 1d6} {@creature Doppelganger|XMM|Doppelgangers} disguised as priests"
+								],
+								[
+									"87\u201388",
+									"{@font ♣|Tarokka Suits}3 {@card Healer|Tarokka Deck|RHW}",
+									"{@dice 1d4} {@creature Medusa|XMM|Medusas} that preserve loved ones by petrifying them"
+								],
+								[
+									"89\u201390",
+									"{@font ♣|Tarokka Suits}4 {@card Shepherd|Tarokka Deck|RHW}",
+									"A {@creature Rakshasa|XMM} disguised as a popular hero or an entertainer"
+								],
+								[
+									"91\u201392",
+									"{@font ♣|Tarokka Suits}5 {@card Druid|Tarokka Deck|RHW}",
+									"{@dice 1d4} {@creature Tree Blight|XMM|Tree Blights} with hollows that resemble distorted faces"
+								],
+								[
+									"93\u201394",
+									"{@font ♣|Tarokka Suits}6 {@card Anarchist|Tarokka Deck|RHW}",
+									"{@dice 2d4} {@creature Magmin|XMM|Magmins} fixated on a character's prized possession"
+								],
+								[
+									"95\u201396",
+									"{@font ♣|Tarokka Suits}7 {@card Charlatan|Tarokka Deck|RHW}",
+									"A {@creature Haunting Revenant|XMM} disguised as a rural shrine or shed"
+								],
+								[
+									"97\u201398",
+									"{@font ♣|Tarokka Suits}8 {@card Bishop|Tarokka Deck|RHW}",
+									"A {@creature Kuo-toa Archpriest|XMM} and {@dice 2d6} {@creature Kuo-toa|XMM} bearing an idol"
+								],
+								[
+									"99\u20130",
+									"{@font ♣|Tarokka Suits}9 {@card Traitor|Tarokka Deck|RHW}",
+									"A {@creature Yuan-ti Infiltrator|XMM} posing as a monster's victim"
+								]
+							],
+							"data": {
+								"genTables": {
+									"tableChapterIgnore": true
+								}
+							}
+						},
+						{
+							"type": "table",
+							"colStyles": [
+								"col-2 text-center",
+								"col-2 text-center",
+								"col-2 text-center",
+								"col-2 text-center",
+								"col-2 text-center",
+								"col-2 text-center"
+							],
+							"rows": [
+								[
+									"{@b Tarokka Symbols}",
+									{
+										"type": "entries",
+										"entries": [
+											"{@font ♡|Tarokka Suits}",
+											"High Deck"
+										]
+									},
+									{
+										"type": "entries",
+										"entries": [
+											"{@font ♠|Tarokka Suits}",
+											"Swords"
+										]
+									},
+									{
+										"type": "entries",
+										"entries": [
+											"{@font ♥|Tarokka Suits}",
+											"Stars"
+										]
+									},
+									{
+										"type": "entries",
+										"entries": [
+											"{@font ♦|Tarokka Suits}",
+											"Coins"
+										]
+									},
+									{
+										"type": "entries",
+										"entries": [
+											"{@font ♣|Tarokka Suits}",
+											"Glyphs"
+										]
+									}
+								]
+							],
+							"data": {
+								"genTables": {
+									"tableIgnore": true
+								}
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}
