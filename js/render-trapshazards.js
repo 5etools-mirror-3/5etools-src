@@ -8,7 +8,7 @@ class RenderTrapsHazards {
 		const ptBody = ent.__prop === "trap"
 			? Renderer.trap.getRenderedTrapBody(Renderer.get(), ent, {styleHint})
 			: Renderer.hazard.getRenderedHazardBody(Renderer.get(), ent, {styleHint});
-		return ee`
+		return veT`
 		${Renderer.utils.getBorderTr()}
 		${Renderer.utils.getExcludedTr({entity: ent, dataProp: ent.__prop})}
 		${Renderer.utils.getNameTr(ent, {page: UrlUtil.PG_TRAPS_HAZARDS})}

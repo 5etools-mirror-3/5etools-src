@@ -27,22 +27,22 @@ export class ManageBrewUi {
 
 	static bindBtngroupManager (btngroup) {
 		btngroup
-			.first(`[name="manage-content"]`)
-			.onn("click", evt => this._pOnClickBtnManageContent({evt}));
+			.vee.first(`[name="manage-content"]`)
+			.vee.onn("click", evt => this._pOnClickBtnManageContent({evt}));
 
 		btngroup
-			.first(`[name="manage-prerelease"]`)
-			.onn("click", evt => this._onClickBtnManagePrereleaseBrew({brewUtil: PrereleaseUtil, isGoToPage: evt.shiftKey}));
+			.vee.first(`[name="manage-prerelease"]`)
+			.vee.onn("click", evt => this._onClickBtnManagePrereleaseBrew({brewUtil: PrereleaseUtil, isGoToPage: evt.shiftKey}));
 
 		btngroup
-			.first(`[name="manage-brew"]`)
-			.onn("click", evt => this._onClickBtnManagePrereleaseBrew({brewUtil: BrewUtil2, isGoToPage: evt.shiftKey}));
+			.vee.first(`[name="manage-brew"]`)
+			.vee.onn("click", evt => this._onClickBtnManagePrereleaseBrew({brewUtil: BrewUtil2, isGoToPage: evt.shiftKey}));
 	}
 
 	static bindBtnOpen (btn, {brewUtil = null} = {}) {
 		brewUtil = brewUtil || BrewUtil2;
 
-		btn.onn("click", evt => this._onClickBtnManagePrereleaseBrew({brewUtil, isGoToPage: evt.shiftKey}));
+		btn.vee.onn("click", evt => this._onClickBtnManagePrereleaseBrew({brewUtil, isGoToPage: evt.shiftKey}));
 	}
 
 	static _pOnClickBtnManageContent ({evt}) {
@@ -177,7 +177,7 @@ export class ManageBrewUi {
 			isWidth100: true,
 			title: `Manage ${brewUtil.DISPLAY_NAME.toTitleCase()}`,
 			isUncappedHeight: true,
-			eleTitleSplit: ee`<div class="ve-flex-v-center ve-btn-group">
+			eleTitleSplit: veT`<div class="ve-flex-v-center ve-btn-group">
 				${ui._getBtnPullAll(rdState)}
 				${ui._getBtnDeleteAll(rdState)}
 			</div>`,
@@ -193,9 +193,9 @@ export class ManageBrewUi {
 	_getBtnDeleteAll (rdState) {
 		const brewUtilOther = this._brewUtil === PrereleaseUtil ? BrewUtil2 : PrereleaseUtil;
 
-		return ee`<button class="ve-btn ve-btn-danger" title="SHIFT to also delete all ${brewUtilOther.DISPLAY_NAME.toTitleCase()}">Delete All</button>`
-			.addClass(this._isModal ? "ve-btn-xs" : "ve-btn-sm")
-			.onn("click", async evt => {
+		return veT`<button class="ve-btn ve-btn-danger" title="SHIFT to also delete all ${brewUtilOther.DISPLAY_NAME.toTitleCase()}">Delete All</button>`
+			.vee.addClass(this._isModal ? "ve-btn-xs" : "ve-btn-sm")
+			.vee.onn("click", async evt => {
 				if (!evt.shiftKey) {
 					if (!await InputUiUtil.pGetUserBoolean({title: `Delete All ${this._brewUtil.DISPLAY_NAME.toTitleCase()}`, htmlDescription: "Are you sure?", textYes: "Yes", textNo: "Cancel"})) return;
 
@@ -219,22 +219,22 @@ export class ManageBrewUi {
 	}
 
 	_getBtnPullAll (rdState) {
-		const btn = ee`<button class="ve-btn ve-btn-default ve-w-80p">Update All</button>`
-			.addClass(this._isModal ? "ve-btn-xs" : "ve-btn-sm")
-			.onn("click", async () => {
-				const cachedHtml = btn.html();
+		const btn = veT`<button class="ve-btn ve-btn-default ve-w-80p">Update All</button>`
+			.vee.addClass(this._isModal ? "ve-btn-xs" : "ve-btn-sm")
+			.vee.onn("click", async () => {
+				const cachedHtml = btn.vee.html();
 
 				try {
-					btn.txt(`Updating...`).prop("disabled", true);
+					btn.vee.txt(`Updating...`).vee.prop("disabled", true);
 					await this._pDoPullAll({rdState, isReload: true});
 				} catch (e) {
-					btn.txt(`Failed!`);
-					setTimeout(() => btn.html(cachedHtml).prop("disabled", false), VeCt.DUR_INLINE_NOTIFY);
+					btn.vee.txt(`Failed!`);
+					setTimeout(() => btn.vee.html(cachedHtml).vee.prop("disabled", false), VeCt.DUR_INLINE_NOTIFY);
 					throw e;
 				}
 
-				btn.txt(`Done!`);
-				setTimeout(() => btn.html(cachedHtml).prop("disabled", false), VeCt.DUR_INLINE_NOTIFY);
+				btn.vee.txt(`Done!`);
+				setTimeout(() => btn.vee.html(cachedHtml).vee.prop("disabled", false), VeCt.DUR_INLINE_NOTIFY);
 			});
 		return btn;
 	}
@@ -302,47 +302,47 @@ export class ManageBrewUi {
 
 		JqueryUtil.doToast({
 			...messageInfo,
-			content: e_({outer: messageInfo.contentHtml}),
+			content: veE({outer: messageInfo.contentHtml}),
 		});
 	}
 
 	async pRender (wrp, {rdState = null} = {}) {
 		rdState = rdState || new this.constructor._RenderState();
 
-		rdState.stgBrewList = ee`<div class="manbrew__current_brew ve-flex-col ve-h-100 ve-mt-1 ve-min-h-0"></div>`;
+		rdState.stgBrewList = veT`<div class="manbrew__current_brew ve-flex-col ve-h-100 ve-mt-1 ve-min-h-0"></div>`;
 
 		await this._pRender_pBrewList(rdState);
 
-		const btnGet = ee`<button class="ve-btn ${this._brewUtil.STYLE_BTN} ve-btn-sm">Get ${this._brewUtil.DISPLAY_NAME.toTitleCase()}</button>`
-			.onn("click", () => this._pHandleClick_btnGetBrew(rdState));
+		const btnGet = veT`<button class="ve-btn ${this._brewUtil.STYLE_BTN} ve-btn-sm">Get ${this._brewUtil.DISPLAY_NAME.toTitleCase()}</button>`
+			.vee.onn("click", () => this._pHandleClick_btnGetBrew(rdState));
 
-		const btnCustomUrl = ee`<button class="ve-btn ${this._brewUtil.STYLE_BTN} ve-btn-sm ve-px-2" title="Set Custom Repository URL"><span class="glyphicon glyphicon-cog"></span></button>`
-			.onn("click", () => this._pHandleClick_btnSetCustomRepo());
+		const btnCustomUrl = veT`<button class="ve-btn ${this._brewUtil.STYLE_BTN} ve-btn-sm ve-px-2" title="Set Custom Repository URL"><span class="glyphicon glyphicon-cog"></span></button>`
+			.vee.onn("click", () => this._pHandleClick_btnSetCustomRepo());
 
-		const btnLoadPartnered = ee`<button class="ve-btn ve-btn-default ve-btn-sm">Load All Partnered</button>`
-			.onn("click", () => this._pHandleClick_btnLoadPartnered(rdState));
+		const btnLoadPartnered = veT`<button class="ve-btn ve-btn-default ve-btn-sm">Load All Partnered</button>`
+			.vee.onn("click", () => this._pHandleClick_btnLoadPartnered(rdState));
 
-		const btnLoadFromFile = ee`<button class="ve-btn ve-btn-default ve-btn-sm">Load from File</button>`
-			.onn("click", () => this._pHandleClick_btnLoadFromFile(rdState));
+		const btnLoadFromFile = veT`<button class="ve-btn ve-btn-default ve-btn-sm">Load from File</button>`
+			.vee.onn("click", () => this._pHandleClick_btnLoadFromFile(rdState));
 
-		const btnLoadFromUrl = ee`<button class="ve-btn ve-btn-default ve-btn-sm">Load from URL</button>`
-			.onn("click", () => this._pHandleClick_btnLoadFromUrl(rdState));
+		const btnLoadFromUrl = veT`<button class="ve-btn ve-btn-default ve-btn-sm">Load from URL</button>`
+			.vee.onn("click", () => this._pHandleClick_btnLoadFromUrl(rdState));
 
 		const btnPullAll = this._isModal ? null : this._getBtnPullAll(rdState);
 		const btnDeleteAll = this._isModal ? null : this._getBtnDeleteAll(rdState);
 
-		const btnSaveToUrl = ee`<button class="ve-btn ve-btn-default ve-btn-sm" title="Note that this does not include &quot;Editable&quot; or &quot;Local&quot; content.">Export List as URL</button>`
-			.onn("click", async evt => {
+		const btnSaveToUrl = veT`<button class="ve-btn ve-btn-default ve-btn-sm" title="Note that this does not include &quot;Editable&quot; or &quot;Local&quot; content.">Export List as URL</button>`
+			.vee.onn("click", async evt => {
 				await this.constructor.pOnClickBtnExportListAsUrl({ele: evt.currentTarget});
 			});
 
 		const wrpBtnLoadAll = this._brewUtil.IS_ADD_BTN_ALL_PARTNERED
-			? ee`<div class="ve-flex-v-center ve-btn-group ve-mr-2">
+			? veT`<div class="ve-flex-v-center ve-btn-group ve-mr-2">
 				${btnLoadPartnered}
 			</div>`
 			: null;
 
-		const wrpBtns = ee`<div class="ve-flex-v-center ve-no-shrink ve-mobile-sm__flex-col">
+		const wrpBtns = veT`<div class="ve-flex-v-center ve-no-shrink ve-mobile-sm__flex-col">
 			<div class="ve-flex-v-center ve-mobile-sm__mb-2">
 				<div class="ve-flex-v-center ve-btn-group ve-mr-2">
 					${btnGet}
@@ -369,12 +369,12 @@ export class ManageBrewUi {
 		</div>`;
 
 		if (this._isModal) {
-			ee(wrp)`
+			veT(wrp)`
 			${rdState.stgBrewList}
-			${wrpBtns.addClass("ve-mb-2")}`;
+			${wrpBtns.vee.addClass("ve-mb-2")}`;
 		} else {
-			ee(wrp)`
-			${wrpBtns.addClass("ve-mb-3")}
+			veT(wrp)`
+			${wrpBtns.vee.addClass("ve-mb-3")}
 			${rdState.stgBrewList}`;
 		}
 	}
@@ -445,7 +445,7 @@ export class ManageBrewUi {
 
 		const nxtUrl = await InputUiUtil.pGetUserString({
 			title: `${this._brewUtil.DISPLAY_NAME.toTitleCase()} Repository URL`,
-			elePre: ee`<div>
+			elePre: veT`<div>
 				<p>Leave blank to use the <a href="${this._brewUtil.URL_REPO_DEFAULT}" rel="noopener noreferrer" target="_blank">default ${this._brewUtil.DISPLAY_NAME} repo</a>.</p>
 				<div>Note that for GitHub URLs, the <code>raw.</code> URL must be used. For example, <code>${this._brewUtil.URL_REPO_ROOT_DEFAULT.replace(/TheGiddyLimit/g, "YourUsernameHere")}</code></div>
 				<hr class="ve-hr-3">
@@ -458,15 +458,15 @@ export class ManageBrewUi {
 	}
 
 	async _pRender_pBrewList (rdState) {
-		rdState.stgBrewList.empty();
+		rdState.stgBrewList.vee.empty();
 		rdState.rowMetas.splice(0, rdState.rowMetas.length)
 			.forEach(({menu}) => ContextUtil.deleteMenu(menu));
 
-		const btnMass = ee`<button class="ve-btn ve-btn-default ve-bbl-0 ve-self-flex-stretch">Mass...</button>`
-			.onn("click", evt => this._pHandleClick_btnListMass({evt, rdState}));
-		const iptSearch = ee`<input type="search" class="search manbrew__search ve-form-control ve-bbr-0" placeholder="Search ${this._brewUtil.DISPLAY_NAME}...">`;
-		const cbAll = ee`<input type="checkbox">`;
-		const wrpList = ee`<div class="list-display-only ve-max-h-unset ve-smooth-scroll ve-overflow-y-auto ve-h-100 ve-min-h-0 brew-list brew-list--target manbrew__list ve-relative ve-flex-col ve-w-100 ve-mb-3"></div>`;
+		const btnMass = veT`<button class="ve-btn ve-btn-default ve-bbl-0 ve-self-flex-stretch">Mass...</button>`
+			.vee.onn("click", evt => this._pHandleClick_btnListMass({evt, rdState}));
+		const iptSearch = veT`<input type="search" class="search manbrew__search ve-form-control ve-bbr-0" placeholder="Search ${this._brewUtil.DISPLAY_NAME}...">`;
+		const cbAll = veT`<input type="checkbox">`;
+		const wrpList = veT`<div class="list-display-only ve-max-h-unset ve-smooth-scroll ve-overflow-y-auto ve-h-100 ve-min-h-0 brew-list brew-list--target manbrew__list ve-relative ve-flex-col ve-w-100 ve-mb-3"></div>`;
 
 		rdState.list = new List({
 			iptSearch,
@@ -476,7 +476,7 @@ export class ManageBrewUi {
 			sortDirInitial: rdState.list ? rdState.list.sortDir : undefined,
 		});
 
-		const wrpBtnsSort = ee`<div class="filtertools manbrew__filtertools ve-btn-group ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
+		const wrpBtnsSort = veT`<div class="filtertools manbrew__filtertools ve-btn-group ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
 			<label class="ve-col-0-5 ve-pr-0 ve-btn ve-btn-default ve-btn-xs ve-flex-vh-center">${cbAll}</label>
 			<button class="ve-col-1 ve-btn ve-btn-default ve-btn-xs" disabled>Type</button>
 			<button class="ve-col-3 ve-btn ve-btn-default ve-btn-xs" data-sort="source">Source</button>
@@ -485,7 +485,7 @@ export class ManageBrewUi {
 			<button class="ve-col-1-5 ve-btn ve-btn-default ve-btn-xs ve-grow" disabled>&nbsp;</button>
 		</div>`;
 
-		ee(rdState.stgBrewList)`
+		veT(rdState.stgBrewList)`
 		<div class="ve-flex-col ve-h-100">
 			<div class="ve-input-group ve-flex-vh-center">
 				${btnMass}
@@ -508,7 +508,7 @@ export class ManageBrewUi {
 		});
 
 		rdState.list.init();
-		iptSearch.focuse();
+		iptSearch.vee.focus();
 	}
 
 	get _LBL_LIST_UPDATE () { return "Update"; }
@@ -595,13 +595,13 @@ export class ManageBrewUi {
 		const rowsSubMetas = sources
 			.map(brewSource => {
 				const hasConverters = !!brewSource.convertedBy?.length;
-				const btnConvertedBy = e_({
+				const btnConvertedBy = veE({
 					tag: "button",
 					clazz: `ve-btn ve-btn-xxs ve-btn-default ${!hasConverters ? "ve-disabled" : ""}`,
 					title: hasConverters ? `Converted by: ${brewSource.convertedBy.join(", ").qq()}` : "(No conversion credit given)",
 					children: [
-						e_({tag: "span", clazz: "ve-mobile-sm__hidden", text: "View Converters"}),
-						e_({tag: "span", clazz: "ve-mobile-sm__visible", text: "Convs.", title: "View Converters"}),
+						veE({tag: "span", clazz: "ve-mobile-sm__hidden", txt: "View Converters"}),
+						veE({tag: "span", clazz: "ve-mobile-sm__visible", txt: "Convs.", title: "View Converters"}),
 					],
 					click: () => {
 						if (!hasConverters) return;
@@ -611,14 +611,14 @@ export class ManageBrewUi {
 						});
 
 						if (brewSource.convertedBy.length === 1) return;
-						eleModalInner.appends(`<ul>${brewSource.convertedBy.map(it => `<li>${it.qq()}</li>`).join("")}</ul>`);
+						eleModalInner.vee.appends(`<ul>${brewSource.convertedBy.map(it => `<li>${it.qq()}</li>`).join("")}</ul>`);
 					},
 				});
 
 				const authorsFull = [(brewSource.authors || [])].flat(2).join(", ");
 
 				const lnkUrl = brewSource.url
-					? e_({
+					? veE({
 						tag: "a",
 						clazz: "ve-col-2 ve-text-center",
 						href: brewSource.url,
@@ -626,29 +626,29 @@ export class ManageBrewUi {
 							target: "_blank",
 							rel: "noopener noreferrer",
 						},
-						text: "View Source",
+						txt: "View Source",
 					})
-					: e_({
+					: veE({
 						tag: "span",
 						clazz: "ve-col-2 ve-text-center",
 					});
 
-				const eleRow = e_({
+				const eleRow = veE({
 					tag: "div",
 					clazz: `ve-w-100 ve-flex-v-center`,
 					children: [
-						e_({
+						veE({
 							tag: "span",
 							clazz: `ve-col-4 manbrew__source ve-px-1`,
-							text: brewSource.full,
+							txt: brewSource.full,
 						}),
-						e_({
+						veE({
 							tag: "span",
 							clazz: `ve-col-4 ve-px-1`,
-							text: authorsFull,
+							txt: authorsFull,
 						}),
 						lnkUrl,
-						e_({
+						veE({
 							tag: "div",
 							clazz: `ve-flex-vh-center ve-grow`,
 							children: [
@@ -675,12 +675,12 @@ export class ManageBrewUi {
 		const btnPullEditPlaceholder = (btnPull || btnEdit) ? null : this.constructor._pRender_getBtnPlaceholder();
 		// endregion
 
-		const btnViewContents = e_({
+		const btnViewContents = veE({
 			tag: "button",
 			clazz: `ve-btn ve-btn-default ve-btn-xs ve-mobile-lg__hidden ve-w-24p`,
 			title: `${this._LBL_LIST_VIEW_CONTENTS}: ${this.constructor._getBrewJsonTitle({brew, brewName})}`,
 			children: [
-				e_({
+				veE({
 					tag: "span",
 					clazz: "glyphicon glyphicon-list-alt manbrew-row__icn-btn",
 				}),
@@ -688,12 +688,12 @@ export class ManageBrewUi {
 			click: evt => this._pRender_pDoViewBrewContents({evt, brew}),
 		});
 
-		const btnDownload = e_({
+		const btnDownload = veE({
 			tag: "button",
 			clazz: `ve-btn ve-btn-default ve-btn-xs ve-mobile-sm__hidden ve-w-24p`,
 			title: this._LBL_LIST_EXPORT,
 			children: [
-				e_({
+				veE({
 					tag: "span",
 					clazz: "glyphicon glyphicon-download manbrew-row__icn-btn",
 				}),
@@ -701,26 +701,26 @@ export class ManageBrewUi {
 			click: () => this._pRender_pDoDownloadBrew({brew, brewName}),
 		});
 
-		const btnViewJson = e_({
+		const btnViewJson = veE({
 			tag: "button",
 			clazz: `ve-btn ve-btn-default ve-btn-xs ve-mobile-lg__hidden ve-w-24p`,
 			title: `${this._LBL_LIST_VIEW_JSON}: ${this.constructor._getBrewJsonTitle({brew, brewName})}`,
 			children: [
-				e_({
+				veE({
 					tag: "span",
 					clazz: "ve-bolder ve-code ve-relative manbrew-row__icn-btn--text",
-					text: "{}",
+					txt: "{}",
 				}),
 			],
 			click: evt => this._pRender_doViewBrew({evt, brew, brewName}),
 		});
 
-		const btnOpenMenu = e_({
+		const btnOpenMenu = veE({
 			tag: "button",
 			clazz: `ve-btn ve-btn-default ve-btn-xs ve-w-24p`,
 			title: "Menu",
 			children: [
-				e_({
+				veE({
 					tag: "span",
 					clazz: "glyphicon glyphicon-option-vertical manbrew-row__icn-btn",
 				}),
@@ -728,12 +728,12 @@ export class ManageBrewUi {
 			click: evt => this._pRender_pDoOpenBrewMenu({evt, rdState, brew, brewName, rowMeta}),
 		});
 
-		const btnDelete = this._isBrewOperationPermitted_delete(brew) ? e_({
+		const btnDelete = this._isBrewOperationPermitted_delete(brew) ? veE({
 			tag: "button",
 			clazz: `ve-btn ve-btn-danger ve-btn-xs ve-mobile-sm__hidden ve-w-24p`,
 			title: this._LBL_LIST_DELETE,
 			children: [
-				e_({
+				veE({
 					tag: "span",
 					clazz: "glyphicon glyphicon-trash manbrew-row__icn-btn",
 				}),
@@ -743,9 +743,9 @@ export class ManageBrewUi {
 
 		// Weave in HRs
 		const elesSub = rowsSubMetas.map(it => it.eleRow);
-		for (let i = rowsSubMetas.length - 1; i > 0; --i) elesSub.splice(i, 0, e_({tag: "hr", clazz: `ve-hr-1 ve-hr--dotted`}));
+		for (let i = rowsSubMetas.length - 1; i > 0; --i) elesSub.splice(i, 0, veE({tag: "hr", clazz: `ve-hr-1 ve-hr--dotted`}));
 
-		const cbSel = e_({
+		const cbSel = veE({
 			tag: "input",
 			clazz: "ve-no-events",
 			type: "checkbox",
@@ -757,27 +757,27 @@ export class ManageBrewUi {
 				? {short: `Editable`, title: `Editable Document`}
 				: {short: `Standard`, title: `Standard Document`};
 
-		const eleLi = e_({
+		const eleLi = veE({
 			tag: "div",
 			clazz: `manbrew__row ve-flex-v-center ve-lst__row ve-lst__row-border ve-lst__row-inner ve-no-shrink ve-py-1 ve-no-select`,
 			children: [
-				e_({
+				veE({
 					tag: "label",
 					clazz: `ve-col-0-5 ve-flex-vh-center ve-self-flex-stretch`,
 					children: [cbSel],
 				}),
-				e_({
+				veE({
 					tag: "div",
 					clazz: `ve-col-1 ve-text-center ve-italic ve-mobile-sm__text-clip-ellipsis`,
 					title: ptCategory.title,
-					text: ptCategory.short,
+					txt: ptCategory.short,
 				}),
-				e_({
+				veE({
 					tag: "div",
 					clazz: `ve-col-9 ve-flex-col`,
 					children: elesSub,
 				}),
-				e_({
+				veE({
 					tag: "div",
 					clazz: `ve-col-1-5 ve-btn-group ve-flex-vh-center`,
 					children: [
@@ -817,42 +817,42 @@ export class ManageBrewUi {
 	}
 
 	static _pRender_getBtnPlaceholder () {
-		return e_({
+		return veE({
 			tag: "button",
 			clazz: `ve-btn ve-btn-default ve-btn-xs ve-mobile-sm__hidden ve-w-24p`,
 			html: "&nbsp;",
 		})
-			.attr("disabled", true);
+			.vee.attr("disabled", true);
 	}
 
 	_pRender_getBtnPull ({rdState, brew}) {
 		if (!this._isBrewOperationPermitted_update(brew)) return null;
 
-		const btnPull = e_({
+		const btnPull = veE({
 			tag: "button",
 			clazz: `ve-btn ve-btn-default ve-btn-xs ve-mobile-sm__hidden ve-w-24p`,
 			title: this._LBL_LIST_UPDATE,
 			children: [
-				e_({
+				veE({
 					tag: "span",
 					clazz: "glyphicon glyphicon-refresh manbrew-row__icn-btn",
 				}),
 			],
 			click: () => this._pRender_pDoPullBrew({rdState, brew}),
 		});
-		if (!this._brewUtil.isPullable(brew)) btnPull.attr("disabled", true).attr("title", `(Update disabled\u2014no URL available)`);
+		if (!this._brewUtil.isPullable(brew)) btnPull.vee.attr("disabled", true).vee.attr("title", `(Update disabled\u2014no URL available)`);
 		return btnPull;
 	}
 
 	_pRender_getBtnEdit ({rdState, brew, brewName}) {
 		if (!brew.head.isEditable) return null;
 
-		return e_({
+		return veE({
 			tag: "button",
 			clazz: `ve-btn ve-btn-default ve-btn-xs ve-mobile-sm__hidden ve-w-24p`,
 			title: `${this._LBL_LIST_MANAGE_CONTENTS}: ${this.constructor._getBrewJsonTitle({brew, brewName})}`,
 			children: [
-				e_({
+				veE({
 					tag: "span",
 					clazz: "glyphicon glyphicon-pencil manbrew-row__icn-btn",
 				}),

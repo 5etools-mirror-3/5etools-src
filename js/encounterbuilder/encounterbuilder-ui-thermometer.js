@@ -27,7 +27,7 @@ export class EncounterbuilderUiThermometer extends BaseComponent {
 		const elesNotchLookup = Object.fromEntries(
 			this._tiers
 				.slice(0, -1)
-				.map(tier => [tier, ee`<div class="ecgen-therm__notch ve-absolute"></div>`]),
+				.map(tier => [tier, veT`<div class="ecgen-therm__notch ve-absolute"></div>`]),
 		);
 		const elesHotzoneLookup = Object.fromEntries(
 			this._tiers
@@ -42,11 +42,11 @@ export class EncounterbuilderUiThermometer extends BaseComponent {
 					]
 						.filter(Boolean)
 						.join(" ");
-					const eleHotzone = ee`<div class="ecgen-therm__hotzone ${isActionableTier ? `ve-clickable` : `ve-help-subtle`} ve-absolute" title="${ptTitle}"></div>`;
+					const eleHotzone = veT`<div class="ecgen-therm__hotzone ${isActionableTier ? `ve-clickable` : `ve-help-subtle`} ve-absolute" title="${ptTitle}"></div>`;
 
 					if (isActionableTier) {
 						eleHotzone
-							.onn("click", async evt => {
+							.vee.onn("click", async evt => {
 								if (EventUtil.isCtrlMetaKey(evt)) {
 									await this._pFnDoGenerateRandomEncounter({tier});
 									return;
@@ -55,8 +55,8 @@ export class EncounterbuilderUiThermometer extends BaseComponent {
 							});
 					}
 
-					if (!ix) eleHotzone.addClass("ecgen-therm__hotzone--first");
-					else if (ix === arr.length - 1) eleHotzone.addClass("ecgen-therm__hotzone--last");
+					if (!ix) eleHotzone.vee.addClass("ecgen-therm__hotzone--first");
+					else if (ix === arr.length - 1) eleHotzone.vee.addClass("ecgen-therm__hotzone--last");
 
 					return [tier, eleHotzone];
 				}),
@@ -70,11 +70,11 @@ export class EncounterbuilderUiThermometer extends BaseComponent {
 
 					if (elesNotchLookup[tier]) {
 						elesNotchLookup[tier]
-							.css({left: `${this._getWidthPct(threshold)}%`})
-							.toggleVe(!!this._state.cntPlayers);
+							.vee.css({left: `${this._getWidthPct(threshold)}%`})
+							.vee.toggle(!!this._state.cntPlayers);
 					}
 
-					elesHotzoneLookup[tier].css({
+					elesHotzoneLookup[tier].vee.css({
 						left: `${this._getWidthPct(thresholdPrev)}%`,
 						width: `${this._getWidthPct(threshold - thresholdPrev)}%`,
 					});
@@ -85,14 +85,14 @@ export class EncounterbuilderUiThermometer extends BaseComponent {
 		this._addHookBase("cntPlayers", hkNotches);
 		hkNotches();
 
-		const dispBar = ee`<div class="ve-h-100 ecgen-therm__bar"></div>`;
+		const dispBar = veT`<div class="ve-h-100 ecgen-therm__bar"></div>`;
 
 		const hkSpendInfo = () => {
 			dispBar
-				.css({width: `${this._getWidthPct(this._state.spendValue)}%`})
-				.toggleClass(`ecgen-therm__bar--max`, this._state.spendValue >= this._state.spendCap)
-				.toggleClass(`ve-b-0`, !this._state.spendValue)
-				.toggleVe(!!this._state.cntPlayers);
+				.vee.css({width: `${this._getWidthPct(this._state.spendValue)}%`})
+				.vee.toggleClass(`ecgen-therm__bar--max`, this._state.spendValue >= this._state.spendCap)
+				.vee.toggleClass(`ve-b-0`, !this._state.spendValue)
+				.vee.toggle(!!this._state.cntPlayers);
 		};
 		this._addHookBase("spendValue", hkSpendInfo);
 		this._addHookBase("spendCap", hkSpendInfo);
@@ -100,7 +100,7 @@ export class EncounterbuilderUiThermometer extends BaseComponent {
 		hkSpendInfo();
 
 		this._addHookBase("tier", () => {
-			dispBar.css({
+			dispBar.vee.css({
 				backgroundColor: this._thresholdColors[this._state.tier],
 			});
 
@@ -110,19 +110,19 @@ export class EncounterbuilderUiThermometer extends BaseComponent {
 					// Color hotzones up to and including the active
 					//   zone in the color of the active zone
 					if (ixTier_ <= ixTier) {
-						elesHotzoneLookup[tier].css({
+						elesHotzoneLookup[tier].vee.css({
 							outlineColor: this._thresholdColors[this._state.tier],
 						});
 						return;
 					}
 
-					elesHotzoneLookup[tier].css({
+					elesHotzoneLookup[tier].vee.css({
 						outlineColor: this._thresholdColors[tier],
 					});
 				});
 		})();
 
-		return ee`<div class="ve-flex ve-w-100 ve-h-20p ve-b-1p ve-relative ecgen-therm__wrp">
+		return veT`<div class="ve-flex ve-w-100 ve-h-20p ve-b-1p ve-relative ecgen-therm__wrp">
 			${dispBar}
 			${Object.values(elesNotchLookup)}
 			${Object.values(elesHotzoneLookup)}

@@ -1,19 +1,24 @@
 import {
 	PANEL_TYP_ADVENTURE_DYNAMIC_MAP,
 	PANEL_TYP_COUNTER,
+	PANEL_TYP_GENERIC_EMBED,
 	PANEL_TYP_INITIATIVE_TRACKER, PANEL_TYP_INITIATIVE_TRACKER_CREATURE_VIEWER,
 	PANEL_TYP_INITIATIVE_TRACKER_PLAYER_V0,
-	PANEL_TYP_INITIATIVE_TRACKER_PLAYER_V1, PANEL_TYP_MONEY_CONVERTER, PANEL_TYP_TEXTBOX, PANEL_TYP_TIME_TRACKER, PANEL_TYP_UNIT_CONVERTER,
-} from "./dmscreen-consts.js";
+	PANEL_TYP_INITIATIVE_TRACKER_PLAYER_V1, PANEL_TYP_MONEY_CONVERTER, PANEL_TYP_TEXTBOX, PANEL_TYP_TIME_TRACKER, PANEL_TYP_TUBE, PANEL_TYP_TWITCH, PANEL_TYP_TWITCH_CHAT, PANEL_TYP_UNIT_CONVERTER,
+} from "../dmscreen-consts.js";
 import {InitiativeTracker} from "./initiativetracker/dmscreen-initiativetracker.js";
-import {InitiativeTrackerPlayerV0, InitiativeTrackerPlayerV1} from "./dmscreen-playerinitiativetracker.js";
-import {InitiativeTrackerCreatureViewer} from "./dmscreen-initiativetrackercreatureviewer.js";
-import {Counter} from "./dmscreen-counter.js";
-import {NoteBox} from "./dmscreen-notebox.js";
-import {UnitConverter} from "./dmscreen-unitconverter.js";
-import {MoneyConverter} from "./dmscreen-moneyconverter.js";
-import {TimeTracker} from "./dmscreen-timetracker.js";
-import {DmMapper} from "./dmscreen-mapper.js";
+import {DmScreenPanelAppGenericEmbed} from "./dmscreen-panelapp-genericembed.js";
+import {InitiativeTrackerPlayerV0, InitiativeTrackerPlayerV1} from "./dmscreen-panelapp-playerinitiativetracker.js";
+import {InitiativeTrackerCreatureViewer} from "../dmscreen-initiativetrackercreatureviewer.js";
+import {Counter} from "./dmscreen-panelapp-counter.js";
+import {NoteBox} from "./dmscreen-panelapp-notebox.js";
+import {UnitConverter} from "./dmscreen-panelapp-unitconverter.js";
+import {MoneyConverter} from "./dmscreen-panelapp-moneyconverter.js";
+import {TimeTracker} from "./dmscreen-panelapp-timetracker.js";
+import {DmScreenPanelAppTwitch} from "./dmscreen-panelapp-twitch.js";
+import {DmScreenPanelAppTwitchChat} from "./dmscreen-panelapp-twitchchat.js";
+import {DmMapper} from "./dmscreen-panelapp-mapper.js";
+import {DmScreenPanelAppYouTube} from "./dmscreen-panelapp-youtube.js";
 
 export class PanelContentManagerFactory {
 	static _PANEL_TYPES = {};
@@ -110,7 +115,7 @@ class _PanelContentManager {
 			panelType: this.constructor._PANEL_TYPE,
 			contentMeta: state,
 			panelApp,
-			eleContent: ee`<div class="panel-content-wrapper-inner"></div>`.appends(panelApp.getPanelElement()),
+			eleContent: veT`<div class="panel-content-wrapper-inner"></div>`.vee.appends(panelApp.getPanelElement()),
 			title: title || this.constructor._TITLE,
 			tabCanRename: true,
 		});
@@ -122,7 +127,10 @@ class _PanelContentManager {
 		if (saved.r != null) this._panel.tabDatas[ixTab].tabRenamed = true;
 	}
 
+	_mutMigrateState ({saved}) { /* Implement as required */ }
+
 	async pLoadState ({ixTab, saved}) {
+		this._mutMigrateState({saved});
 		await this.pDoPopulate({state: saved.s, title: saved.r});
 		this._doHandleTabRenamed({ixTab, saved});
 	}
@@ -238,5 +246,66 @@ export class PanelContentManager_DynamicMap extends _PanelContentManager {
 
 	_getPanelApp ({state}) {
 		return DmMapper.getPanelApp({board: this._board, savedState: state});
+	}
+}
+
+/** @abstract */
+class _PanelContentManager_EmbedBase extends _PanelContentManager {
+	/**
+	 * Handle legacy pre-PCM state
+	 */
+	_mutMigrateState_v1 ({saved}) {
+		if (!saved.c) return;
+
+		saved.s = saved.c;
+		delete saved.c;
+	}
+
+	_mutMigrateState ({saved}) {
+		this._mutMigrateState_v1({saved});
+	}
+}
+
+export class PanelContentManager_YouTube extends _PanelContentManager_EmbedBase {
+	static _PANEL_TYPE = PANEL_TYP_TUBE;
+	static _TITLE = "YouTube";
+
+	static _ = this._register();
+
+	_getPanelApp ({state}) {
+		return DmScreenPanelAppYouTube.getPanelApp({board: this._board, savedState: state});
+	}
+}
+
+export class PanelContentManager_Twitch extends _PanelContentManager_EmbedBase {
+	static _PANEL_TYPE = PANEL_TYP_TWITCH;
+	static _TITLE = "Twitch";
+
+	static _ = this._register();
+
+	_getPanelApp ({state}) {
+		return DmScreenPanelAppTwitch.getPanelApp({board: this._board, savedState: state});
+	}
+}
+
+export class PanelContentManager_TwitchChat extends _PanelContentManager_EmbedBase {
+	static _PANEL_TYPE = PANEL_TYP_TWITCH_CHAT;
+	static _TITLE = "Twitch Chat";
+
+	static _ = this._register();
+
+	_getPanelApp ({state}) {
+		return DmScreenPanelAppTwitchChat.getPanelApp({board: this._board, savedState: state});
+	}
+}
+
+export class PanelContentManager_GenericEmbed extends _PanelContentManager_EmbedBase {
+	static _PANEL_TYPE = PANEL_TYP_GENERIC_EMBED;
+	static _TITLE = "Embed";
+
+	static _ = this._register();
+
+	_getPanelApp ({state}) {
+		return DmScreenPanelAppGenericEmbed.getPanelApp({board: this._board, savedState: state});
 	}
 }

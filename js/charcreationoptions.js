@@ -19,25 +19,25 @@ class CharCreationOptionsSublistManager extends SublistManager {
 	pGetSublistItem (it, hash) {
 		const cellsText = [it.name, it._fOptionType];
 
-		const ele = ee`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`
-			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
-			.onn("click", evt => this._listSub.doSelect(listItem, evt));
+			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
 		const listItem = new ListItem(
 			hash,
 			ele,
 			it.name,
 			{
-				hash,
 				source: Parser.sourceJsonToAbv(it.source),
-				page: it.page,
+				...ListItem.getCommonValues(it),
 				type: it._fOptionType,
 			},
 			{
+				hash,
 				entity: it,
 				mdRow: [...cellsText],
 			},
@@ -86,12 +86,12 @@ class CharCreationOptionsPage extends ListPage {
 			eleLi,
 			it.name,
 			{
-				hash,
 				source,
-				page: it.page,
+				...ListItem.getCommonValues(it),
 				type: it._fOptionType,
 			},
 			{
+				hash,
 				isExcluded,
 			},
 		);
@@ -103,7 +103,7 @@ class CharCreationOptionsPage extends ListPage {
 	}
 
 	_renderStats_doBuildStatsTab ({ent}) {
-		this._pgContent.empty().appends(RenderCharCreationOptions.getRenderedCharCreationOption(ent));
+		this._pgContent.vee.empty().vee.appends(RenderCharCreationOptions.getRenderedCharCreationOption(ent));
 	}
 }
 

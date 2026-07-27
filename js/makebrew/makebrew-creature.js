@@ -33,49 +33,49 @@ class _CreatureBuilder_SpellMetaInputRendererBase {
 
 class _CreatureBuilder_SpellMetaInputRendererBasic extends _CreatureBuilder_SpellMetaInputRendererBase {
 	_render ({out}) {
-		out.ele = ee`<i>${this._meta.rowLabel}</i>`;
+		out.ele = veT`<i>${this._meta.rowLabel}</i>`;
 		out.getKeyPath = () => [this._meta.type];
 	}
 }
 
 class _CreatureBuilder_SpellMetaInputRendererFrequency extends _CreatureBuilder_SpellMetaInputRendererBase {
 	_render ({out}) {
-		const iptFreq = ee`<input class="ve-form-control form-control--minimal ve-input-xs mkbru_mon__spell-header-ipt ve-text-right" min="1" max="${VeCt.SPELL_USES_MAX}">`
-			.onn("change", () => {
-				const val = iptFreq.val().trim();
-				if (isNaN(val)) iptFreq.val("1");
-				if (Number(val) > VeCt.SPELL_USES_MAX) iptFreq.val(VeCt.SPELL_USES_MAX);
-				if (Number(val) < 1) iptFreq.val(1);
+		const iptFreq = veT`<input class="ve-form-control form-control--minimal ve-input-xs mkbru_mon__spell-header-ipt ve-text-right" min="1" max="${VeCt.SPELL_USES_MAX}">`
+			.vee.onn("change", () => {
+				const val = iptFreq.vee.val().trim();
+				if (isNaN(val)) iptFreq.vee.val("1");
+				if (Number(val) > VeCt.SPELL_USES_MAX) iptFreq.vee.val(VeCt.SPELL_USES_MAX);
+				if (Number(val) < 1) iptFreq.vee.val(1);
 				this._doUpdateState();
 			});
-		if (this._data) iptFreq.val(this._meta.count || 1);
-		else iptFreq.val(1);
+		if (this._data) iptFreq.vee.val(this._meta.count || 1);
+		else iptFreq.vee.val(1);
 
-		const cbEach = ee`<input class="mkbru__ipt-cb mkbru__ipt-cb--small-offset" type="checkbox">`
-			.prop("checked", !!(this._data && this._meta.each))
-			.onn("change", () => this._doUpdateState());
+		const cbEach = veT`<input class="mkbru__ipt-cb mkbru__ipt-cb--small-offset" type="checkbox">`
+			.vee.prop("checked", !!(this._data && this._meta.each))
+			.vee.onn("change", () => this._doUpdateState());
 
-		out.ele = ee`<div class="ve-flex mkbru_mon__spell-header-wrp ve-mr-4">
+		out.ele = veT`<div class="ve-flex mkbru_mon__spell-header-wrp ve-mr-4">
 		${iptFreq}
 		${this._getPtChargesItem({out})}
 		<span class="ve-mr-2 ve-italic">${this._meta.rowFreqUnit}</span>
 		<label class="ve-flex-v-baseline ve-muted small ve-ml-auto"><span class="ve-mr-1">(Each? </span>${cbEach}<span>)</span></label>
 		</div>`;
 
-		out.getKeyPath = () => [this._meta.type, `${UiUtil.strToInt(iptFreq.val(), 1, {fallbackOnNaN: 1, min: 1, max: VeCt.SPELL_USES_MAX})}${cbEach.prop("checked") ? "e" : ""}`];
+		out.getKeyPath = () => [this._meta.type, `${UiUtil.strToInt(iptFreq.vee.val(), 1, {fallbackOnNaN: 1, min: 1, max: VeCt.SPELL_USES_MAX})}${cbEach.vee.prop("checked") ? "e" : ""}`];
 	}
 
 	_getPtChargesItem ({out}) {
 		if (this._meta.type !== "charges") return null;
 
-		const iptChargesItem = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-ml-2 ve-mr-2 ve-max-w-100p" placeholder="Item UID">`
-			.val(this._data ? this._meta.chargesItem : "")
-			.onn("change", () => {
+		const iptChargesItem = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-ml-2 ve-mr-2 ve-max-w-100p" placeholder="Item UID">`
+			.vee.val(this._data ? this._meta.chargesItem : "")
+			.vee.onn("change", () => {
 				this._doUpdateState();
 			});
 
 		out.getAdditionalData = () => {
-			const v = iptChargesItem.val().trim();
+			const v = iptChargesItem.vee.val().trim();
 			return [
 				{
 					keyPath: ["chargesItem"],
@@ -84,45 +84,45 @@ class _CreatureBuilder_SpellMetaInputRendererFrequency extends _CreatureBuilder_
 			];
 		};
 
-		return ee`<div>${iptChargesItem}</div>`;
+		return veT`<div>${iptChargesItem}</div>`;
 	}
 }
 
 class _CreatureBuilder_SpellMetaInputRendererRecharge extends _CreatureBuilder_SpellMetaInputRendererBase {
 	_render ({out}) {
-		const iptRecharge = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-w-24p ve-text-center" min="1" max="6">`
-			.onn("change", () => this._doUpdateState());
-		if (this._data) iptRecharge.val(this._meta.minRoll || 1);
-		else iptRecharge.val(1);
+		const iptRecharge = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-w-24p ve-text-center" min="1" max="6">`
+			.vee.onn("change", () => this._doUpdateState());
+		if (this._data) iptRecharge.vee.val(this._meta.minRoll || 1);
+		else iptRecharge.vee.val(1);
 
-		out.ele = ee`<div class="ve-flex mkbru_mon__spell-header-wrp ve-mr-4">
+		out.ele = veT`<div class="ve-flex mkbru_mon__spell-header-wrp ve-mr-4">
 		<span class="ve-mr-2 ve-italic">d6 Recharge:</span>
 		${iptRecharge}
 		<span class="ve-mr-2 ve-italic">+</span>
 		</div>`;
 
-		out.getKeyPath = () => [this._meta.type, `${UiUtil.strToInt(iptRecharge.val(), 1, {fallbackOnNaN: 1, min: 1, max: 6})}`];
+		out.getKeyPath = () => [this._meta.type, `${UiUtil.strToInt(iptRecharge.vee.val(), 1, {fallbackOnNaN: 1, min: 1, max: 6})}`];
 	}
 }
 
 class _CreatureBuilder_SpellMetaInputRendererCantrip extends _CreatureBuilder_SpellMetaInputRendererBase {
 	_render ({out}) {
-		out.ele = ee`<i>Cantrips</i>`;
+		out.ele = veT`<i>Cantrips</i>`;
 		out.getKeyPath = () => ["spells", "0", "spells"];
 	}
 }
 
 class _CreatureBuilder_SpellMetaInputRendererLevel extends _CreatureBuilder_SpellMetaInputRendererBase {
 	_render ({out}) {
-		const iptSlots = ee`<input class="ve-form-control form-control--minimal ve-input-xs mkbru_mon__spell-header-ipt ve-mr-2">`
-			.val(this._meta.slots || 0)
-			.onn("change", () => this._doUpdateState());
+		const iptSlots = veT`<input class="ve-form-control form-control--minimal ve-input-xs mkbru_mon__spell-header-ipt ve-mr-2">`
+			.vee.val(this._meta.slots || 0)
+			.vee.onn("change", () => this._doUpdateState());
 
-		const cbWarlock = ee`<input type="checkbox" class="mkbru__ipt-cb">`
-			.prop("checked", !!this._meta.lower)
-			.onn("change", () => this._doUpdateState());
+		const cbWarlock = veT`<input type="checkbox" class="mkbru__ipt-cb">`
+			.vee.prop("checked", !!this._meta.lower)
+			.vee.onn("change", () => this._doUpdateState());
 
-		out.ele = ee`<div class="ve-flex mkbru_mon__spell-header-wrp ve-mr-4">
+		out.ele = veT`<div class="ve-flex mkbru_mon__spell-header-wrp ve-mr-4">
 		<div class="ve-italic">${Parser.spLevelToFull(this._meta.level)}-level Spells</div>
 		<div class="ve-flex-v-center ve-muted small ve-ml-auto"><span>(</span>${iptSlots}<span class="ve-mr-2">Slots</span></div>
 		<div class="mkbru_mon__spell-header-divider ve-mr-2"></div>
@@ -133,15 +133,15 @@ class _CreatureBuilder_SpellMetaInputRendererLevel extends _CreatureBuilder_Spel
 			return [
 				{
 					keyPath: ["spells", `${this._meta.level}`, "slots"],
-					value: UiUtil.strToInt(iptSlots.val()),
+					value: UiUtil.strToInt(iptSlots.vee.val()),
 				},
 				{
 					keyPath: ["spells", `${this._meta.level}`, "lower"],
-					value: cbWarlock.prop("checked") ? 1 : null,
+					value: cbWarlock.vee.prop("checked") ? 1 : null,
 				},
 			];
 		};
-		out.filterIgnoreLevel = () => cbWarlock.prop("checked");
+		out.filterIgnoreLevel = () => cbWarlock.vee.prop("checked");
 	}
 }
 
@@ -640,15 +640,15 @@ export class CreatureBuilder extends BuilderBase {
 
 	doHandleSourcesAdd () {
 		(this._eles.selVariantSources || []).map(sel => {
-			const currSrcJson = sel.val();
-			sel.empty().appends(`<option value="">(Same as Creature)</option>`);
-			this._ui.allSources.forEach(srcJson => sel.appends(`<option value="${srcJson.escapeQuotes()}">${Parser.sourceJsonToFull(srcJson).escapeQuotes()}</option>`));
+			const currSrcJson = sel.vee.val();
+			sel.vee.empty().vee.appends(`<option value="">(Same as Creature)</option>`);
+			this._ui.allSources.forEach(srcJson => sel.vee.appends(`<option value="${srcJson.escapeQuotes()}">${Parser.sourceJsonToFull(srcJson).escapeQuotes()}</option>`));
 
-			if (this._ui.allSources.indexOf(currSrcJson)) sel.val(currSrcJson);
+			if (this._ui.allSources.indexOf(currSrcJson)) sel.vee.val(currSrcJson);
 			else sel[0].selectedIndex = 0;
 
 			return sel;
-		}).forEach(sel => sel.trigger("change"));
+		}).forEach(sel => sel.vee.trigger("change"));
 	}
 
 	_renderInputImpl () {
@@ -668,7 +668,7 @@ export class CreatureBuilder extends BuilderBase {
 
 	_renderInputMain () {
 		this._sourcesCache = MiscUtil.copy(this._ui.allSources);
-		const wrp = this._ui.wrpInput.empty();
+		const wrp = this._ui.wrpInput.vee.empty();
 
 		const _cb = () => {
 			// Prefer numerical pages if possible
@@ -723,51 +723,51 @@ export class CreatureBuilder extends BuilderBase {
 			},
 		);
 		const [infoTab, speciesTab, coreTab, defenseTab, abilTab, tabGear, miscTab] = tabs;
-		ee`<div class="ve-flex-v-center ve-w-100 ve-no-shrink ve-ui-tab__wrp-tab-heads--border">${tabs.map(it => it.btnTab)}</div>`.appendTo(wrp);
-		tabs.forEach(it => it.wrpTab.appendTo(wrp));
+		veT`<div class="ve-flex-v-center ve-w-100 ve-no-shrink ve-ui-tab__wrp-tab-heads--border">${tabs.map(it => it.btnTab)}</div>`.vee.appendTo(wrp);
+		tabs.forEach(it => it.wrpTab.vee.appendTo(wrp));
 
 		// INFO
-		BuilderUi.getStateIptString("Name", cb, this._state, {nullable: false}, "name").appendTo(infoTab.wrpTab);
-		this.__getShortNameInput(cb).appendTo(infoTab.wrpTab);
-		this._selSource = this.getSourceInput(cb).appendTo(infoTab.wrpTab);
-		BuilderUi.getStateIptString("Page", cb, this._state, {}, "page").appendTo(infoTab.wrpTab);
-		this.__getAlignmentPrefixInput(cb).appendTo(infoTab.wrpTab);
-		this.__getAlignmentInput(cb).appendTo(infoTab.wrpTab);
-		this.__getCrInput(cb).appendTo(infoTab.wrpTab);
-		this.__getProfNoteInput(cb).appendTo(infoTab.wrpTab);
-		this.__getProfBonusInput(cb).appendTo(infoTab.wrpTab);
-		BuilderUi.getStateIptNumber("Level", cb, this._state, {title: "Used for Sidekicks only"}, "level").appendTo(infoTab.wrpTab);
+		BuilderUi.getStateIptString("Name", cb, this._state, {nullable: false}, "name").vee.appendTo(infoTab.wrpTab);
+		this.__getShortNameInput(cb).vee.appendTo(infoTab.wrpTab);
+		this._selSource = this.getSourceInput(cb).vee.appendTo(infoTab.wrpTab);
+		BuilderUi.getStateIptString("Page", cb, this._state, {}, "page").vee.appendTo(infoTab.wrpTab);
+		this.__getAlignmentPrefixInput(cb).vee.appendTo(infoTab.wrpTab);
+		this.__getAlignmentInput(cb).vee.appendTo(infoTab.wrpTab);
+		this.__getCrInput(cb).vee.appendTo(infoTab.wrpTab);
+		this.__getProfNoteInput(cb).vee.appendTo(infoTab.wrpTab);
+		this.__getProfBonusInput(cb).vee.appendTo(infoTab.wrpTab);
+		BuilderUi.getStateIptNumber("Level", cb, this._state, {title: "Used for Sidekicks only"}, "level").vee.appendTo(infoTab.wrpTab);
 
 		// SPECIES
-		this.__getSizeInput(cb).appendTo(speciesTab.wrpTab);
-		this.__getTypeInput(cb).appendTo(speciesTab.wrpTab);
-		this.__getSpeedInput(cb).appendTo(speciesTab.wrpTab);
-		this.__getSenseInput(cb).appendTo(speciesTab.wrpTab);
-		this.__getLanguageInput(cb).appendTo(speciesTab.wrpTab);
+		this.__getSizeInput(cb).vee.appendTo(speciesTab.wrpTab);
+		this.__getTypeInput(cb).vee.appendTo(speciesTab.wrpTab);
+		this.__getSpeedInput(cb).vee.appendTo(speciesTab.wrpTab);
+		this.__getSenseInput(cb).vee.appendTo(speciesTab.wrpTab);
+		this.__getLanguageInput(cb).vee.appendTo(speciesTab.wrpTab);
 
 		// CORE
-		this.__getAbilityScoreInput(cb).appendTo(coreTab.wrpTab);
-		this.__getSaveInput(cb).appendTo(coreTab.wrpTab);
-		this.__getSkillInput(cb).appendTo(coreTab.wrpTab);
-		this.__getPassivePerceptionInput(cb).appendTo(coreTab.wrpTab);
+		this.__getAbilityScoreInput(cb).vee.appendTo(coreTab.wrpTab);
+		this.__getSaveInput(cb).vee.appendTo(coreTab.wrpTab);
+		this.__getSkillInput(cb).vee.appendTo(coreTab.wrpTab);
+		this.__getPassivePerceptionInput(cb).vee.appendTo(coreTab.wrpTab);
 
 		// DEFENSE
-		this.__getAcInput(cb).appendTo(defenseTab.wrpTab);
-		this.__getHpInput(cb).appendTo(defenseTab.wrpTab);
-		this.__getVulnerableInput(cb).appendTo(defenseTab.wrpTab);
-		this.__getResistInput(cb).appendTo(defenseTab.wrpTab);
-		this.__getImmuneInput(cb).appendTo(defenseTab.wrpTab);
-		this.__getCondImmuneInput(cb).appendTo(defenseTab.wrpTab);
+		this.__getAcInput(cb).vee.appendTo(defenseTab.wrpTab);
+		this.__getHpInput(cb).vee.appendTo(defenseTab.wrpTab);
+		this.__getVulnerableInput(cb).vee.appendTo(defenseTab.wrpTab);
+		this.__getResistInput(cb).vee.appendTo(defenseTab.wrpTab);
+		this.__getImmuneInput(cb).vee.appendTo(defenseTab.wrpTab);
+		this.__getCondImmuneInput(cb).vee.appendTo(defenseTab.wrpTab);
 
 		// ABILITIES
-		this.__getSpellcastingInput(cb).appendTo(abilTab.wrpTab);
-		this.__getTraitInput(cb).appendTo(abilTab.wrpTab);
-		BuilderUi.getStateIptEntries("Actions Intro", cb, this._state, {}, "actionHeader").appendTo(abilTab.wrpTab);
-		this.__getActionInput(cb).appendTo(abilTab.wrpTab);
-		BuilderUi.getStateIptEntries("Bonus Actions Intro", cb, this._state, {}, "bonusHeader").appendTo(abilTab.wrpTab);
-		this.__getBonusActionInput(cb).appendTo(abilTab.wrpTab);
-		BuilderUi.getStateIptEntries("Reactions Intro", cb, this._state, {}, "reactionHeader").appendTo(abilTab.wrpTab);
-		this.__getReactionInput(cb).appendTo(abilTab.wrpTab);
+		this.__getSpellcastingInput(cb).vee.appendTo(abilTab.wrpTab);
+		this.__getTraitInput(cb).vee.appendTo(abilTab.wrpTab);
+		BuilderUi.getStateIptEntries("Actions Intro", cb, this._state, {}, "actionHeader").vee.appendTo(abilTab.wrpTab);
+		this.__getActionInput(cb).vee.appendTo(abilTab.wrpTab);
+		BuilderUi.getStateIptEntries("Bonus Actions Intro", cb, this._state, {}, "bonusHeader").vee.appendTo(abilTab.wrpTab);
+		this.__getBonusActionInput(cb).vee.appendTo(abilTab.wrpTab);
+		BuilderUi.getStateIptEntries("Reactions Intro", cb, this._state, {}, "reactionHeader").vee.appendTo(abilTab.wrpTab);
+		this.__getReactionInput(cb).vee.appendTo(abilTab.wrpTab);
 		BuilderUi.getStateIptNumber(
 			"Legendary Action Count",
 			cb,
@@ -777,7 +777,7 @@ export class CreatureBuilder extends BuilderBase {
 				placeholder: "If left blank, defaults to 3.",
 			},
 			"legendaryActions",
-		).appendTo(abilTab.wrpTab);
+		).vee.appendTo(abilTab.wrpTab);
 		BuilderUi.getStateIptNumber(
 			"Legendary Action (Lair) Count",
 			cb,
@@ -786,7 +786,7 @@ export class CreatureBuilder extends BuilderBase {
 				title: "If specified, this will override the default number (3) of legendary actions available for the creature when in its lair.",
 			},
 			"legendaryActionsLair",
-		).appendTo(abilTab.wrpTab);
+		).vee.appendTo(abilTab.wrpTab);
 		BuilderUi.getStateIptBoolean(
 			"Name is Proper Noun",
 			cb,
@@ -795,7 +795,7 @@ export class CreatureBuilder extends BuilderBase {
 				title: "If selected, the legendary action intro text for this creature will be formatted as though the creature's name is a proper noun (e.g. 'Tiamat can take...' vs 'The dragon can take...').",
 			},
 			"isNamedCreature",
-		).appendTo(abilTab.wrpTab);
+		).vee.appendTo(abilTab.wrpTab);
 		BuilderUi.getStateIptEntries(
 			"Legendary Action Intro",
 			cb,
@@ -805,23 +805,23 @@ export class CreatureBuilder extends BuilderBase {
 				placeholder: "If left blank, defaults to a generic intro.",
 			},
 			"legendaryHeader",
-		).appendTo(abilTab.wrpTab);
-		this.__getLegendaryActionInput(cb).appendTo(abilTab.wrpTab);
-		this.__getLegendaryGroupInput(cb).appendTo(abilTab.wrpTab);
-		BuilderUi.getStateIptEntries("Mythic Action Intro", cb, this._state, {}, "mythicHeader").appendTo(abilTab.wrpTab);
-		this.__getMythicActionInput(cb).appendTo(abilTab.wrpTab);
-		this.__getVariantInput(cb).appendTo(abilTab.wrpTab);
+		).vee.appendTo(abilTab.wrpTab);
+		this.__getLegendaryActionInput(cb).vee.appendTo(abilTab.wrpTab);
+		this.__getLegendaryGroupInput(cb).vee.appendTo(abilTab.wrpTab);
+		BuilderUi.getStateIptEntries("Mythic Action Intro", cb, this._state, {}, "mythicHeader").vee.appendTo(abilTab.wrpTab);
+		this.__getMythicActionInput(cb).vee.appendTo(abilTab.wrpTab);
+		this.__getVariantInput(cb).vee.appendTo(abilTab.wrpTab);
 
 		// GEAR
-		this.__getGearInput(cb).appendTo(tabGear.wrpTab);
+		this.__getGearInput(cb).vee.appendTo(tabGear.wrpTab);
 		const {row: rowAttachedItemInput, doRefresh: doRefreshAttachedItems} = this.__getAttachedItemInput(cb);
-		rowAttachedItemInput.appendTo(tabGear.wrpTab);
-		this.__getAttachedItemInputGenerated(cb, [doRefreshAttachedItems]).appendTo(tabGear.wrpTab);
+		rowAttachedItemInput.vee.appendTo(tabGear.wrpTab);
+		this.__getAttachedItemInputGenerated(cb, [doRefreshAttachedItems]).vee.appendTo(tabGear.wrpTab);
 
 		// FLAVOR/MISC
-		this.__getTokenInput(cb).appendTo(miscTab.wrpTab);
-		this.getFluffInput(cb).appendTo(miscTab.wrpTab);
-		this.__getEnvironmentInput(cb).appendTo(miscTab.wrpTab);
+		this.__getTokenInput(cb).vee.appendTo(miscTab.wrpTab);
+		this.getFluffInput(cb).vee.appendTo(miscTab.wrpTab);
+		this.__getEnvironmentInput(cb).vee.appendTo(miscTab.wrpTab);
 		BuilderUi.getStateIptStringArray(
 			"Group",
 			cb,
@@ -831,8 +831,8 @@ export class CreatureBuilder extends BuilderBase {
 				title: "The family this creature belongs to, e.g. 'Modrons' in the case of a Duodrone.",
 			},
 			"group",
-		).appendTo(miscTab.wrpTab);
-		this.__getSoundClipInput(cb).appendTo(miscTab.wrpTab);
+		).vee.appendTo(miscTab.wrpTab);
+		this.__getSoundClipInput(cb).vee.appendTo(miscTab.wrpTab);
 		BuilderUi.getStateIptEnum(
 			"Dragon Casting Color",
 			cb,
@@ -844,9 +844,9 @@ export class CreatureBuilder extends BuilderBase {
 				type: "string",
 			},
 			"dragonCastingColor",
-		).appendTo(miscTab.wrpTab);
-		BuilderUi.getStateIptBoolean("NPC", cb, this._state, {title: "If selected, this creature will be filtered out from the Bestiary list by default."}, "isNpc").appendTo(miscTab.wrpTab);
-		BuilderUi.getStateIptBoolean("Familiar", cb, this._state, {title: "If selected, this creature will be included when filtering for 'Familiar' in the Bestiary."}, "familiar").appendTo(miscTab.wrpTab);
+		).vee.appendTo(miscTab.wrpTab);
+		BuilderUi.getStateIptBoolean("NPC", cb, this._state, {title: "If selected, this creature will be filtered out from the Bestiary list by default."}, "isNpc").vee.appendTo(miscTab.wrpTab);
+		BuilderUi.getStateIptBoolean("Familiar", cb, this._state, {title: "If selected, this creature will be included when filtering for 'Familiar' in the Bestiary."}, "familiar").vee.appendTo(miscTab.wrpTab);
 		BuilderUi.getStateIptStringArray(
 			"Search Aliases",
 			cb,
@@ -856,7 +856,7 @@ export class CreatureBuilder extends BuilderBase {
 				title: "Alternate names for this creature, e.g. 'Illithid' as an alternative for 'Mind Flayer,' which can be searched in the Bestiary.",
 			},
 			"alias",
-		).appendTo(miscTab.wrpTab);
+		).vee.appendTo(miscTab.wrpTab);
 
 		// excluded fields:
 		// - otherSources: requires meta support
@@ -868,44 +868,44 @@ export class CreatureBuilder extends BuilderBase {
 		const initial = this._state.size;
 
 		const setState = () => {
-			this._state.size = rows.map(it => it.selSize.val()).unique();
+			this._state.size = rows.map(it => it.selSize.vee.val()).unique();
 			cb();
 		};
 
 		const rows = [];
 
-		const btnAddSize = ee`<button class="ve-btn ve-btn-xs ve-btn-default">Add Size</button>`
-			.onn("click", () => {
+		const btnAddSize = veT`<button class="ve-btn ve-btn-xs ve-btn-default">Add Size</button>`
+			.vee.onn("click", () => {
 				const tagRow = this.__getSizeInput__getSizeRow(null, rows, setState);
-				wrpTagRows.appends(tagRow.wrp);
+				wrpTagRows.vee.appends(tagRow.wrp);
 				cb();
 			});
 
 		const initialSizeRows = (initial ? [initial].flat() : [Parser.SZ_MEDIUM]).map(tag => this.__getSizeInput__getSizeRow(tag, rows, setState));
 
-		const wrpTagRows = ee`<div>${initialSizeRows ? initialSizeRows.map(it => it.wrp) : ""}</div>`;
-		ee`<div>
+		const wrpTagRows = veT`<div>${initialSizeRows ? initialSizeRows.map(it => it.wrp) : ""}</div>`;
+		veT`<div>
 		${wrpTagRows}
 		<div>${btnAddSize}</div>
-		</div>`.appendTo(rowInner);
+		</div>`.vee.appendTo(rowInner);
 
 		return row;
 	}
 
 	__getSizeInput__getSizeRow (size, sizeRows, setState) {
-		const selSize = ee`<select class="ve-form-control ve-input-xs">
+		const selSize = veT`<select class="ve-form-control ve-input-xs">
 			${Parser.SIZE_ABVS.map(sz => `<option value="${sz}">${Parser.sizeAbvToFull(sz)}</option>`)}
 		</select>`
-			.val(size || Parser.SZ_MEDIUM)
-			.onn("change", () => {
+			.vee.val(size || Parser.SZ_MEDIUM)
+			.vee.onn("change", () => {
 				setState();
 			});
 
 		const out = {selSize};
 
-		const wrpBtnRemove = ee`<div class="ve-flex"></div>`;
-		const wrp = ee`<div class="ve-flex-v-center mkbru__wrp-rows--removable ve-mb-2">${selSize}${wrpBtnRemove}</div>`;
-		this.constructor.getBtnRemoveRow(setState, sizeRows, out, wrp, "Size", {isProtectLast: true}).appendTo(wrpBtnRemove).addClass("ve-ml-2");
+		const wrpBtnRemove = veT`<div class="ve-flex"></div>`;
+		const wrp = veT`<div class="ve-flex-v-center mkbru__wrp-rows--removable ve-mb-2">${selSize}${wrpBtnRemove}</div>`;
+		this.constructor.getBtnRemoveRow(setState, sizeRows, out, wrp, "Size", {isProtectLast: true}).vee.appendTo(wrpBtnRemove).vee.addClass("ve-ml-2");
 
 		out.wrp = wrp;
 		sizeRows.push(out);
@@ -922,19 +922,19 @@ export class CreatureBuilder extends BuilderBase {
 			const types = chooseTypeRows
 				.map(rowMeta => rowMeta.cbGetType());
 
-			const isSwarm = selMode.val() === "1";
+			const isSwarm = selMode.vee.val() === "1";
 
 			const validTags = tagRows
 				.map(tr => {
-					const prefix = tr.iptPrefix.val().trim();
-					const tag = tr.iptTag.val().trim();
+					const prefix = tr.iptPrefix.vee.val().trim();
+					const tag = tr.iptTag.vee.val().trim();
 					if (!tag) return null;
 					if (prefix) return {tag, prefix};
 					return tag;
 				})
 				.filter(Boolean);
 
-			const note = iptNote.val().trim();
+			const note = iptNote.vee.val().trim();
 
 			if (types.length === 1 && !isSwarm && !validTags.length && !note) {
 				this._state.type = types[0];
@@ -948,7 +948,7 @@ export class CreatureBuilder extends BuilderBase {
 					: {choose: types},
 			};
 
-			if (isSwarm) out.swarmSize = selSwarmSize.val();
+			if (isSwarm) out.swarmSize = selSwarmSize.vee.val();
 			if (validTags.length) out.tags = validTags;
 			if (note) out.note = note;
 
@@ -957,82 +957,82 @@ export class CreatureBuilder extends BuilderBase {
 			cb();
 		};
 
-		const selMode = ee`<select class="ve-form-control ve-input-xs ve-mb-2">
+		const selMode = veT`<select class="ve-form-control ve-input-xs ve-mb-2">
 			<option value="0">Creature</option>
 			<option value="1">Swarm</option>
-		</select>`.val(initialSwarm ? "1" : "0").onn("change", () => {
-				switch (selMode.val()) {
+		</select>`.vee.val(initialSwarm ? "1" : "0").vee.onn("change", () => {
+				switch (selMode.vee.val()) {
 					case "0": {
-						stageSwarm.hideVe();
+						stageSwarm.vee.hide();
 						setState();
 						break;
 					}
 					case "1": {
-						stageSwarm.showVe();
+						stageSwarm.vee.show();
 						setState();
 						break;
 					}
 				}
-			}).appendTo(rowInner);
+			}).vee.appendTo(rowInner);
 
 		// region CHOOSE-FROM TYPE CONTROLS
 		const chooseTypeRows = [];
 
-		const btnAddChooseType = ee`<button class="ve-btn ve-btn-xs ve-btn-default">Add Type</button>`
-			.onn("click", () => {
+		const btnAddChooseType = veT`<button class="ve-btn ve-btn-xs ve-btn-default">Add Type</button>`
+			.vee.onn("click", () => {
 				const metaTypeRow = this.__getTypeInput__getChooseTypeRow(null, chooseTypeRows, setState);
-				wrpChooseTypeRows.appends(metaTypeRow.wrp);
+				wrpChooseTypeRows.vee.appends(metaTypeRow.wrp);
 			});
 
 		const initialChooseTypeRowsMetas = initial.type?.choose
 			? initial.type.choose.map(type => this.__getTypeInput__getChooseTypeRow(type, chooseTypeRows, setState))
 			: [this.__getTypeInput__getChooseTypeRow(initial.type || initial, chooseTypeRows, setState)];
 
-		const wrpChooseTypeRows = ee`<div>${initialChooseTypeRowsMetas.map(it => it.wrp)}</div>`;
-		const stageType = ee`<div class="ve-mt-2">
+		const wrpChooseTypeRows = veT`<div>${initialChooseTypeRowsMetas.map(it => it.wrp)}</div>`;
+		const stageType = veT`<div class="ve-mt-2">
 		${wrpChooseTypeRows}
 		<div>${btnAddChooseType}</div>
-		</div>`.appendTo(rowInner);
+		</div>`.vee.appendTo(rowInner);
 		// endregion
 
 		// region TAG CONTROLS
 		const tagRows = [];
 
-		const btnAddTag = ee`<button class="ve-btn ve-btn-xs ve-btn-default">Add Tag</button>`
-			.onn("click", () => {
+		const btnAddTag = veT`<button class="ve-btn ve-btn-xs ve-btn-default">Add Tag</button>`
+			.vee.onn("click", () => {
 				const tagRow = this.__getTypeInput__getTagRow(null, tagRows, setState);
-				wrpTagRows.appends(tagRow.wrp);
+				wrpTagRows.vee.appends(tagRow.wrp);
 			});
 
 		const initialTagRows = initial.tags ? initial.tags.map(tag => this.__getTypeInput__getTagRow(tag, tagRows, setState)) : null;
 
-		const wrpTagRows = ee`<div>${initialTagRows ? initialTagRows.map(it => it.wrp) : ""}</div>`;
-		const stageTags = ee`<div class="ve-mt-2">
+		const wrpTagRows = veT`<div>${initialTagRows ? initialTagRows.map(it => it.wrp) : ""}</div>`;
+		const stageTags = veT`<div class="ve-mt-2">
 		${wrpTagRows}
 		<div>${btnAddTag}</div>
-		</div>`.appendTo(rowInner);
+		</div>`.vee.appendTo(rowInner);
 		// endregion
 
 		// region SWARM CONTROLS
-		const selSwarmSize = ee`<select class="ve-form-control ve-input-xs ve-mt-2">${Parser.SIZE_ABVS.map(sz => `<option value="${sz}">${Parser.sizeAbvToFull(sz)}</option>`).join("")}</select>`
-			.onn("change", () => {
-				this._state.type.swarmSize = selSwarmSize.val();
+		const selSwarmSize = veT`<select class="ve-form-control ve-input-xs ve-mt-2">${Parser.SIZE_ABVS.map(sz => `<option value="${sz}">${Parser.sizeAbvToFull(sz)}</option>`).join("")}</select>`
+			.vee.onn("change", () => {
+				this._state.type.swarmSize = selSwarmSize.vee.val();
 				cb();
 			});
-		const stageSwarm = ee`<div>
+		const stageSwarm = veT`<div>
 		${selSwarmSize}
-		</div>`.appendTo(rowInner).toggleVe(initialSwarm);
-		initialSwarm && selSwarmSize.val(initial.swarmSize);
+		</div>`.vee.appendTo(rowInner).vee.toggle(initialSwarm);
+		initialSwarm && selSwarmSize.vee.val(initial.swarmSize);
 		// endregion
 
 		// region NOTE CONTROLS
-		const iptNote = ee`<input class="ve-form-control ve-input-xs form-control--minimal" placeholder="Note">`
-			.val(initial.note || "")
-			.onn("change", () => {
+		const iptNote = veT`<input class="ve-form-control ve-input-xs form-control--minimal" placeholder="Note">`
+			.vee.val(initial.note || "")
+			.vee.onn("change", () => {
 				setState();
 			});
-		ee`<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33">Type Note</span>${iptNote}</div>`
-			.appendTo(rowInner);
+		veT`<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33">Type Note</span>${iptNote}</div>`
+			.vee.appendTo(rowInner);
 		// endregion
 
 		return row;
@@ -1041,46 +1041,46 @@ export class CreatureBuilder extends BuilderBase {
 	__getTypeInput__getChooseTypeRow (type, chooseTypeRows, setState) {
 		const isInitialCustom = type && !Parser.MON_TYPES.includes(type);
 
-		const selType = ee`<select class="ve-form-control ve-input-xs ve-mr-2">${Parser.MON_TYPES.map(tp => `<option value="${tp}">${tp.uppercaseFirst()}</option>`).join("")}</select>`
-			.onn("change", () => {
+		const selType = veT`<select class="ve-form-control ve-input-xs ve-mr-2">${Parser.MON_TYPES.map(tp => `<option value="${tp}">${tp.uppercaseFirst()}</option>`).join("")}</select>`
+			.vee.onn("change", () => {
 				setState();
 			});
-		if (!isInitialCustom) selType.val(type || Parser.TP_HUMANOID);
+		if (!isInitialCustom) selType.vee.val(type || Parser.TP_HUMANOID);
 
-		const iptTypeCustom = ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2" placeholder="Custom Type">`
-			.onn("change", () => {
+		const iptTypeCustom = veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2" placeholder="Custom Type">`
+			.vee.onn("change", () => {
 				setState();
 			});
-		if (isInitialCustom) selType.val(type || "");
+		if (isInitialCustom) selType.vee.val(type || "");
 
-		const cbIsCustomType = ee`<input type="checkbox">`
-			.onn("change", () => {
+		const cbIsCustomType = veT`<input type="checkbox">`
+			.vee.onn("change", () => {
 				renderIsCustom();
 				setState();
 			})
-			.prop("checked", !!isInitialCustom);
+			.vee.prop("checked", !!isInitialCustom);
 
 		const renderIsCustom = () => {
-			const isChecked = cbIsCustomType.prop("checked");
-			iptTypeCustom.toggleVe(isChecked);
-			selType.toggleVe(!isChecked);
+			const isChecked = cbIsCustomType.vee.prop("checked");
+			iptTypeCustom.vee.toggle(isChecked);
+			selType.vee.toggle(!isChecked);
 		};
 
 		renderIsCustom();
 
 		const cbGetType = () => {
-			if (cbIsCustomType.prop("checked")) return iptTypeCustom.val();
-			return selType.val();
+			if (cbIsCustomType.vee.prop("checked")) return iptTypeCustom.vee.val();
+			return selType.vee.val();
 		};
 
-		const btnRemove = ee`<button class="ve-btn ve-btn-xs ve-btn-danger" title="Remove Row"><span class="glyphicon glyphicon-trash"></span></button>`
-			.onn("click", () => {
+		const btnRemove = veT`<button class="ve-btn ve-btn-xs ve-btn-danger" title="Remove Row"><span class="glyphicon glyphicon-trash"></span></button>`
+			.vee.onn("click", () => {
 				chooseTypeRows.splice(chooseTypeRows.indexOf(out), 1);
-				wrp.empty().remove();
+				wrp.vee.empty().remove();
 				setState();
 			});
 
-		const wrp = ee`<div class="ve-flex ve-mb-2">
+		const wrp = veT`<div class="ve-flex ve-mb-2">
 			${selType}
 			${iptTypeCustom}
 			<label class="ve-flex-v-center ve-mr-2">
@@ -1095,38 +1095,38 @@ export class CreatureBuilder extends BuilderBase {
 	}
 
 	__getTypeInput__getTagRow (tag, tagRows, setState) {
-		const iptPrefix = ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2" placeholder="Prefix">`
-			.onn("change", () => {
-				iptTag.removeClass("form-control--error");
-				if (iptTag.val().trim().length || !iptPrefix.val().trim().length) setState();
-				else iptTag.addClass("form-control--error");
+		const iptPrefix = veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2" placeholder="Prefix">`
+			.vee.onn("change", () => {
+				iptTag.vee.removeClass("form-control--error");
+				if (iptTag.vee.val().trim().length || !iptPrefix.vee.val().trim().length) setState();
+				else iptTag.vee.addClass("form-control--error");
 			});
-		if (tag && tag.prefix) iptPrefix.val(tag.prefix);
-		const iptTag = ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2" placeholder="Tag (lowercase)">`
-			.onn("change", () => {
-				iptTag.removeClass("form-control--error");
+		if (tag && tag.prefix) iptPrefix.vee.val(tag.prefix);
+		const iptTag = veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2" placeholder="Tag (lowercase)">`
+			.vee.onn("change", () => {
+				iptTag.vee.removeClass("form-control--error");
 				setState();
 			});
-		if (tag) iptTag.val(tag.tag || tag);
-		const btnAddGeneric = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2">Add Tag...</button>`
-			.onn("click", async () => {
+		if (tag) iptTag.vee.val(tag.tag || tag);
+		const btnAddGeneric = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2">Add Tag...</button>`
+			.vee.onn("click", async () => {
 				const tag = await InputUiUtil.pGetUserString({
 					title: "Enter a Tag",
 					autocomplete: this._bestiaryTypeTags,
 				});
 
 				if (tag != null) {
-					iptTag.val(tag);
+					iptTag.vee.val(tag);
 					setState();
 				}
 			});
-		const btnRemove = ee`<button class="ve-btn ve-btn-xs ve-btn-danger" title="Remove Row"><span class="glyphicon glyphicon-trash"></span></button>`
-			.onn("click", () => {
+		const btnRemove = veT`<button class="ve-btn ve-btn-xs ve-btn-danger" title="Remove Row"><span class="glyphicon glyphicon-trash"></span></button>`
+			.vee.onn("click", () => {
 				tagRows.splice(tagRows.indexOf(out), 1);
-				wrp.empty().remove();
+				wrp.vee.empty().remove();
 				setState();
 			});
-		const wrp = ee`<div class="ve-flex ve-mb-2">${iptPrefix}${iptTag}${btnAddGeneric}${btnRemove}</div>`;
+		const wrp = veT`<div class="ve-flex ve-mb-2">${iptPrefix}${iptTag}${btnAddGeneric}${btnRemove}</div>`;
 		const out = {wrp, iptPrefix, iptTag};
 		tagRows.push(out);
 		return out;
@@ -1140,13 +1140,13 @@ export class CreatureBuilder extends BuilderBase {
 		const setState = mode => {
 			switch (mode) {
 				case 0: {
-					const val = iptCustom.val().trim();
+					const val = iptCustom.vee.val().trim();
 					if (val) this._state.shortName = val;
 					else delete this._state.shortName;
 					break;
 				}
 				case 1: {
-					if (cbFullName.prop("checked")) this._state.shortName = true;
+					if (cbFullName.vee.prop("checked")) this._state.shortName = true;
 					else delete this._state.shortName;
 					break;
 				}
@@ -1154,40 +1154,40 @@ export class CreatureBuilder extends BuilderBase {
 			cb();
 		};
 
-		const selMode = ee`<select class="ve-form-control ve-input-xs ve-mb-2">
+		const selMode = veT`<select class="ve-form-control ve-input-xs ve-mb-2">
 			<option value="0">Custom</option>
 			<option value="1">Use Full Name</option>
 		</select>`
-			.onn("change", () => {
-				switch (selMode.val()) {
+			.vee.onn("change", () => {
+				switch (selMode.vee.val()) {
 					case "0": {
-						stageCustom.showVe(); stageMatchesName.hideVe();
+						stageCustom.vee.show(); stageMatchesName.vee.hide();
 						setState(0);
 						break;
 					}
 					case "1": {
-						stageCustom.hideVe(); stageMatchesName.showVe();
+						stageCustom.vee.hide(); stageMatchesName.vee.show();
 						setState(1);
 						break;
 					}
 				}
 			})
-			.appendTo(rowInner)
-			.val(initialMode);
+			.vee.appendTo(rowInner)
+			.vee.val(initialMode);
 
-		const iptCustom = ee`<input class="ve-form-control form-control--minimal ve-input-xs">`
-			.onn("change", () => setState(0))
-			.val(this._state.shortName && this._state.shortName !== true ? this._state.shortName : null);
-		const stageCustom = ee`<div>${iptCustom}</div>`
-			.toggleVe(initialMode === "0")
-			.appendTo(rowInner);
+		const iptCustom = veT`<input class="ve-form-control form-control--minimal ve-input-xs">`
+			.vee.onn("change", () => setState(0))
+			.vee.val(this._state.shortName && this._state.shortName !== true ? this._state.shortName : null);
+		const stageCustom = veT`<div>${iptCustom}</div>`
+			.vee.toggle(initialMode === "0")
+			.vee.appendTo(rowInner);
 
-		const cbFullName = ee`<input type="checkbox">`
-			.onn("change", () => setState(1))
-			.prop("checked", this._state.shortName === true);
-		const stageMatchesName = ee`<label class="ve-flex-v-center"><div class="ve-mr-2">Enabled</div>${cbFullName}</label>`
-			.toggleVe(initialMode === "1")
-			.appendTo(rowInner);
+		const cbFullName = veT`<input type="checkbox">`
+			.vee.onn("change", () => setState(1))
+			.vee.prop("checked", this._state.shortName === true);
+		const stageMatchesName = veT`<label class="ve-flex-v-center"><div class="ve-mr-2">Enabled</div>${cbFullName}</label>`
+			.vee.toggle(initialMode === "1")
+			.vee.appendTo(rowInner);
 
 		return row;
 	}
@@ -1195,16 +1195,16 @@ export class CreatureBuilder extends BuilderBase {
 	__getAlignmentPrefixInput (cb) {
 		const [row, rowInner] = BuilderUi.getLabelledRowTuple("Alignment Prefix", {title: `An additional prefix to display before alignment, for example "Typically ".`});
 
-		const ipt = ee`<input class="ve-form-control form-control--minimal ve-input-xs">`
-			.val(this._state.alignmentPrefix || "")
-			.onn("change", () => {
-				const val = ipt.val();
+		const ipt = veT`<input class="ve-form-control form-control--minimal ve-input-xs">`
+			.vee.val(this._state.alignmentPrefix || "")
+			.vee.onn("change", () => {
+				const val = ipt.vee.val();
 				if (val) this._state.alignmentPrefix = val;
 				else delete this._state.alignmentPrefix;
 				cb();
 			});
 
-		ee`<div class="ve-flex-v-center">${ipt}</div>`.appendTo(rowInner);
+		veT`<div class="ve-flex-v-center">${ipt}</div>`.vee.appendTo(rowInner);
 
 		return row;
 	}
@@ -1225,19 +1225,19 @@ export class CreatureBuilder extends BuilderBase {
 
 		const alignmentRows = [];
 
-		const wrpRows = ee`<div></div>`.appendTo(rowInner);
+		const wrpRows = veT`<div></div>`.vee.appendTo(rowInner);
 
 		if ((this._state.alignment && this._state.alignment.some(it => it && (it.special != null || it.alignment !== undefined))) || !~CreatureBuilder.__getAlignmentInput__getAlignmentIx(this._state.alignment)) {
-			this._state.alignment.forEach(alignment => CreatureBuilder.__getAlignmentInput__getAlignmentRow(doUpdateState, alignmentRows, alignment).wrp.appendTo(wrpRows));
+			this._state.alignment.forEach(alignment => CreatureBuilder.__getAlignmentInput__getAlignmentRow(doUpdateState, alignmentRows, alignment).wrp.vee.appendTo(wrpRows));
 		} else {
-			CreatureBuilder.__getAlignmentInput__getAlignmentRow(doUpdateState, alignmentRows, this._state.alignment).wrp.appendTo(wrpRows);
+			CreatureBuilder.__getAlignmentInput__getAlignmentRow(doUpdateState, alignmentRows, this._state.alignment).wrp.vee.appendTo(wrpRows);
 		}
 
-		const wrpBtnAdd = ee`<div></div>`.appendTo(rowInner);
-		ee`<button class="ve-btn ve-btn-xs ve-btn-default">Add Alignment</button>`
-			.appendTo(wrpBtnAdd)
-			.onn("click", () => {
-				CreatureBuilder.__getAlignmentInput__getAlignmentRow(doUpdateState, alignmentRows).wrp.appendTo(wrpRows);
+		const wrpBtnAdd = veT`<div></div>`.vee.appendTo(rowInner);
+		veT`<button class="ve-btn ve-btn-xs ve-btn-default">Add Alignment</button>`
+			.vee.appendTo(wrpBtnAdd)
+			.vee.onn("click", () => {
+				CreatureBuilder.__getAlignmentInput__getAlignmentRow(doUpdateState, alignmentRows).wrp.vee.appendTo(wrpRows);
 				doUpdateState();
 			});
 
@@ -1248,18 +1248,18 @@ export class CreatureBuilder extends BuilderBase {
 		const initialMode = alignment && alignment.chance ? "1" : alignment && alignment.special ? "2" : (alignment === null || (alignment && alignment.alignment === null)) ? "3" : "0";
 
 		const getAlignment = () => {
-			switch (selMode.val()) {
+			switch (selMode.vee.val()) {
 				case "0": {
-					return [...CreatureBuilder._ALIGNMENTS[selAlign.val()]];
+					return [...CreatureBuilder._ALIGNMENTS[selAlign.vee.val()]];
 				}
 				case "1": {
-					const out = {alignment: [...CreatureBuilder._ALIGNMENTS[selAlign.val()]]};
-					if (iptChance.val().trim()) out.chance = UiUtil.strToInt(iptChance.val(), 0, {min: 0, max: 100});
-					if (iptNote.val().trim()) out.note = iptNote.val().trim();
+					const out = {alignment: [...CreatureBuilder._ALIGNMENTS[selAlign.vee.val()]]};
+					if (iptChance.vee.val().trim()) out.chance = UiUtil.strToInt(iptChance.vee.val(), 0, {min: 0, max: 100});
+					if (iptNote.vee.val().trim()) out.note = iptNote.vee.val().trim();
 					return out;
 				}
 				case "2": {
-					const specials = iptSpecial.val().trim().split(",").map(it => it.trim()).filter(Boolean);
+					const specials = iptSpecial.vee.val().trim().split(",").map(it => it.trim()).filter(Boolean);
 					return specials.length ? specials.map(it => ({special: it})) : {special: ""};
 				}
 				case "3": {
@@ -1268,30 +1268,30 @@ export class CreatureBuilder extends BuilderBase {
 			}
 		};
 
-		const selMode = ee`<select class="ve-form-control ve-input-xs ve-mb-2">
+		const selMode = veT`<select class="ve-form-control ve-input-xs ve-mb-2">
 				<option value="0">Basic Alignment</option>
 				<option value="1">Chance-Based Alignment/Alignment with Note</option>
 				<option value="2">Special Alignment</option>
 				<option value="3">No Alignment (Sidekick)</option>
-			</select>`.val(initialMode).onn("change", () => {
-				switch (selMode.val()) {
+			</select>`.vee.val(initialMode).vee.onn("change", () => {
+				switch (selMode.vee.val()) {
 					case "0": {
-						stageSingle.showVe(); stageMultiple.hideVe(); stageSpecial.hideVe();
+						stageSingle.vee.show(); stageMultiple.vee.hide(); stageSpecial.vee.hide();
 						doUpdateState();
 						break;
 					}
 					case "1": {
-						stageSingle.showVe(); stageMultiple.showVe(); stageSpecial.hideVe();
+						stageSingle.vee.show(); stageMultiple.vee.show(); stageSpecial.vee.hide();
 						doUpdateState();
 						break;
 					}
 					case "2": {
-						stageSingle.hideVe(); stageMultiple.hideVe(); stageSpecial.showVe();
+						stageSingle.vee.hide(); stageMultiple.vee.hide(); stageSpecial.vee.show();
 						doUpdateState();
 						break;
 					}
 					case "3": {
-						stageSingle.hideVe(); stageMultiple.hideVe(); stageSpecial.hideVe();
+						stageSingle.vee.hide(); stageMultiple.vee.hide(); stageSpecial.vee.hide();
 						doUpdateState();
 						break;
 					}
@@ -1299,40 +1299,40 @@ export class CreatureBuilder extends BuilderBase {
 			});
 
 		// SINGLE CONTROLS ("multiple" also uses these)
-		const selAlign = ee`<select class="ve-form-control ve-input-xs ve-mb-2">${CreatureBuilder._ALIGNMENTS.map((it, i) => it ? `<option value="${i}">${Parser.alignmentListToFull(it).toTitleCase()}</option>` : `<option disabled>\u2014</option>`).join("")}</select>`
-			.onn("change", () => doUpdateState());
-		const stageSingle = ee`<div>${selAlign}</div>`.toggleVe(initialMode === "0" || initialMode === "1");
-		initialMode === "0" && alignment && selAlign.val(`${CreatureBuilder.__getAlignmentInput__getAlignmentIx(alignment.alignment || alignment)}`);
-		initialMode === "1" && alignment && selAlign.val(`${CreatureBuilder.__getAlignmentInput__getAlignmentIx(alignment.alignment)}`);
+		const selAlign = veT`<select class="ve-form-control ve-input-xs ve-mb-2">${CreatureBuilder._ALIGNMENTS.map((it, i) => it ? `<option value="${i}">${Parser.alignmentListToFull(it).toTitleCase()}</option>` : `<option disabled>\u2014</option>`).join("")}</select>`
+			.vee.onn("change", () => doUpdateState());
+		const stageSingle = veT`<div>${selAlign}</div>`.vee.toggle(initialMode === "0" || initialMode === "1");
+		initialMode === "0" && alignment && selAlign.vee.val(`${CreatureBuilder.__getAlignmentInput__getAlignmentIx(alignment.alignment || alignment)}`);
+		initialMode === "1" && alignment && selAlign.vee.val(`${CreatureBuilder.__getAlignmentInput__getAlignmentIx(alignment.alignment)}`);
 
 		// MULTIPLE CONTROLS
-		const iptChance = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2" min="1" max="100" placeholder="Chance of alignment">`
-			.onn("change", () => doUpdateState());
-		const iptNote = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mx-1" placeholder="Alignment note">`
-			.onn("change", () => doUpdateState());
-		const stageMultiple = ee`<div class="ve-flex-col">
+		const iptChance = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2" min="1" max="100" placeholder="Chance of alignment">`
+			.vee.onn("change", () => doUpdateState());
+		const iptNote = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mx-1" placeholder="Alignment note">`
+			.vee.onn("change", () => doUpdateState());
+		const stageMultiple = veT`<div class="ve-flex-col">
 			<div class="ve-mb-2 ve-flex-v-center">${iptChance}<span>%</span></div>
 			<div class="ve-mb-2 ve-flex-v-center"><span>(</span>${iptNote}<span>)</span></div>
-		</div>`.toggleVe(initialMode === "1");
+		</div>`.vee.toggle(initialMode === "1");
 		if (initialMode === "1" && alignment) {
-			iptChance.val(alignment.chance);
-			iptNote.val(alignment.note);
+			iptChance.vee.val(alignment.chance);
+			iptNote.vee.val(alignment.note);
 		}
 
 		// SPECIAL CONTROLS
-		const iptSpecial = ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-mb-2">`
-			.onn("change", () => doUpdateState());
-		const stageSpecial = ee`<div>${iptSpecial}</div>`.toggleVe(initialMode === "2");
-		initialMode === "2" && alignment && iptSpecial.val(alignment.special);
+		const iptSpecial = veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-mb-2">`
+			.vee.onn("change", () => doUpdateState());
+		const stageSpecial = veT`<div>${iptSpecial}</div>`.vee.toggle(initialMode === "2");
+		initialMode === "2" && alignment && iptSpecial.vee.val(alignment.special);
 
-		const btnRemove = ee`<button class="ve-btn ve-btn-xs ve-btn-danger mkbru__btn-rm-row ve-mb-2" title="Remove Alignment"><span class="glyphicon glyphicon-trash"></span></button>`
-			.onn("click", () => {
+		const btnRemove = veT`<button class="ve-btn ve-btn-xs ve-btn-danger mkbru__btn-rm-row ve-mb-2" title="Remove Alignment"><span class="glyphicon glyphicon-trash"></span></button>`
+			.vee.onn("click", () => {
 				alignmentRows.splice(alignmentRows.indexOf(out), 1);
-				wrp.empty().remove();
+				wrp.vee.empty().remove();
 				doUpdateState();
 			});
 
-		const wrp = ee`<div class="ve-flex-col mkbru__wrp-rows mkbru__wrp-rows--removable">${selMode}${stageSingle}${stageMultiple}${stageSpecial}${ee`<div class="ve-text-right">${btnRemove}</div>`}</div>`;
+		const wrp = veT`<div class="ve-flex-col mkbru__wrp-rows mkbru__wrp-rows--removable">${selMode}${stageSingle}${stageMultiple}${stageSpecial}${veT`<div class="ve-text-right">${btnRemove}</div>`}</div>`;
 		const out = {wrp, getAlignment};
 		alignmentRows.push(out);
 		return out;
@@ -1352,14 +1352,14 @@ export class CreatureBuilder extends BuilderBase {
 
 		const acRows = [];
 
-		const wrpRows = ee`<div></div>`.appendTo(rowInner);
-		this._state.ac.forEach(ac => CreatureBuilder.__getAcInput__getAcRow(ac, acRows, doUpdateState).wrp.appendTo(wrpRows));
+		const wrpRows = veT`<div></div>`.vee.appendTo(rowInner);
+		this._state.ac.forEach(ac => CreatureBuilder.__getAcInput__getAcRow(ac, acRows, doUpdateState).wrp.vee.appendTo(wrpRows));
 
-		const wrpBtnAdd = ee`<div></div>`.appendTo(rowInner);
-		ee`<button class="ve-btn ve-btn-xs ve-btn-default">Add Armor Class Source</button>`
-			.appendTo(wrpBtnAdd)
-			.onn("click", () => {
-				CreatureBuilder.__getAcInput__getAcRow(null, acRows, doUpdateState).wrp.appendTo(wrpRows);
+		const wrpBtnAdd = veT`<div></div>`.vee.appendTo(rowInner);
+		veT`<button class="ve-btn ve-btn-xs ve-btn-default">Add Armor Class Source</button>`
+			.vee.appendTo(wrpBtnAdd)
+			.vee.onn("click", () => {
+				CreatureBuilder.__getAcInput__getAcRow(null, acRows, doUpdateState).wrp.vee.appendTo(wrpRows);
 				doUpdateState();
 			});
 
@@ -1370,10 +1370,10 @@ export class CreatureBuilder extends BuilderBase {
 		const initialMode = ac && ac.special ? "2" : ac && ac.from ? "1" : "0";
 
 		const getAc = () => {
-			const acValRaw = UiUtil.strToInt(iptAc.val(), 10, {fallbackOnNaN: 10});
+			const acValRaw = UiUtil.strToInt(iptAc.vee.val(), 10, {fallbackOnNaN: 10});
 			const acVal = isNaN(acValRaw) ? 10 : acValRaw;
-			const condition = iptCond.val().trim();
-			const braces = cbBraces.prop("checked");
+			const condition = iptCond.vee.val().trim();
+			const braces = cbBraces.vee.prop("checked");
 
 			const getBaseAC = () => {
 				if (condition) {
@@ -1386,7 +1386,7 @@ export class CreatureBuilder extends BuilderBase {
 				} else return acVal;
 			};
 
-			switch (selMode.val()) {
+			switch (selMode.vee.val()) {
 				case "0": {
 					return getBaseAC();
 				}
@@ -1403,84 +1403,84 @@ export class CreatureBuilder extends BuilderBase {
 					} else return getBaseAC();
 				}
 				case "2": {
-					return {special: iptSpecial.val()};
+					return {special: iptSpecial.vee.val()};
 				}
 			}
 		};
 
-		const selMode = ee`<select class="ve-form-control ve-input-xs mkbru_mon__ac-split">
+		const selMode = veT`<select class="ve-form-control ve-input-xs mkbru_mon__ac-split">
 				<option value="0">Unarmored</option>
 				<option value="1">Armor Class From...</option>
 				<option value="2">Special</option>
-			</select>`.val(initialMode).onn("change", () => {
-				switch (selMode.val()) {
+			</select>`.vee.val(initialMode).vee.onn("change", () => {
+				switch (selMode.vee.val()) {
 					case "0": {
-						stageFrom.hideVe();
-						iptAc.showVe();
-						iptSpecial.hideVe();
+						stageFrom.vee.hide();
+						iptAc.vee.show();
+						iptSpecial.vee.hide();
 						doUpdateState();
 						break;
 					}
 					case "1": {
-						stageFrom.showVe();
-						iptAc.showVe();
-						iptSpecial.hideVe();
-						if (!fromRows.length) CreatureBuilder.__getAcInput__getFromRow(null, fromRows, doUpdateState).wrpFrom.appendTo(wrpFromRows);
+						stageFrom.vee.show();
+						iptAc.vee.show();
+						iptSpecial.vee.hide();
+						if (!fromRows.length) CreatureBuilder.__getAcInput__getFromRow(null, fromRows, doUpdateState).wrpFrom.vee.appendTo(wrpFromRows);
 						doUpdateState();
 						break;
 					}
 					case "2": {
-						stageFrom.hideVe();
-						iptAc.hideVe();
-						iptSpecial.showVe();
+						stageFrom.vee.hide();
+						iptAc.vee.hide();
+						iptSpecial.vee.show();
 						doUpdateState();
 						break;
 					}
 				}
 			});
 
-		const iptAc = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2 mkbru_mon__ac-split">`
-			.val(ac && ac.special == null ? ac.ac || ac : 10)
-			.onn("change", () => doUpdateState())
-			.toggleVe(initialMode !== "2");
+		const iptAc = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2 mkbru_mon__ac-split">`
+			.vee.val(ac && ac.special == null ? ac.ac || ac : 10)
+			.vee.onn("change", () => doUpdateState())
+			.vee.toggle(initialMode !== "2");
 
-		const iptSpecial = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2 mkbru_mon__ac-split">`
-			.val(ac && ac.special ? ac.special : null)
-			.onn("change", () => doUpdateState())
-			.toggleVe(initialMode === "2");
+		const iptSpecial = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2 mkbru_mon__ac-split">`
+			.vee.val(ac && ac.special ? ac.special : null)
+			.vee.onn("change", () => doUpdateState())
+			.vee.toggle(initialMode === "2");
 
-		const iptCond = ee`<input class="ve-form-control form-control--minimal ve-input-xs" placeholder="when...">`
-			.onn("change", () => doUpdateState());
-		if (ac && ac.condition) iptCond.val(ac.condition);
-		const cbBraces = ee`<input type="checkbox" class="mkbru__ipt-cb--plain">`
-			.onn("change", () => doUpdateState());
-		if (ac && ac.braces) cbBraces.prop("checked", !!ac.braces);
+		const iptCond = veT`<input class="ve-form-control form-control--minimal ve-input-xs" placeholder="when...">`
+			.vee.onn("change", () => doUpdateState());
+		if (ac && ac.condition) iptCond.vee.val(ac.condition);
+		const cbBraces = veT`<input type="checkbox" class="mkbru__ipt-cb--plain">`
+			.vee.onn("change", () => doUpdateState());
+		if (ac && ac.braces) cbBraces.vee.prop("checked", !!ac.braces);
 
 		// "FROM" CONTROLS
 		const fromRows = [];
 
-		const wrpFromRows = ee`<div></div>`;
-		if (ac && ac.from) ac.from.forEach(f => CreatureBuilder.__getAcInput__getFromRow(f, fromRows, doUpdateState).wrpFrom.appendTo(wrpFromRows));
+		const wrpFromRows = veT`<div></div>`;
+		if (ac && ac.from) ac.from.forEach(f => CreatureBuilder.__getAcInput__getFromRow(f, fromRows, doUpdateState).wrpFrom.vee.appendTo(wrpFromRows));
 
-		const btnAddFrom = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mb-2">Add Another Feature/Item</button>`
-			.onn("click", () => {
-				CreatureBuilder.__getAcInput__getFromRow(null, fromRows, doUpdateState).wrpFrom.appendTo(wrpFromRows);
+		const btnAddFrom = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mb-2">Add Another Feature/Item</button>`
+			.vee.onn("click", () => {
+				CreatureBuilder.__getAcInput__getFromRow(null, fromRows, doUpdateState).wrpFrom.vee.appendTo(wrpFromRows);
 				doUpdateState();
 			});
-		const stageFrom = ee`<div class="ve-mb-2 ve-flex-col">
+		const stageFrom = veT`<div class="ve-mb-2 ve-flex-col">
 		${wrpFromRows}
-		${ee`<div>${btnAddFrom}</div>`}
-		</div>`.toggleVe(initialMode === "1");
+		${veT`<div>${btnAddFrom}</div>`}
+		</div>`.vee.toggle(initialMode === "1");
 
 		// REMOVE CONTROLS
-		const btnRemove = ee`<button class="ve-btn ve-btn-xs ve-btn-danger mkbru__btn-rm-row ve-mb-2" title="Remove AC Source"><span class="glyphicon glyphicon-trash"></span></button>`
-			.onn("click", () => {
+		const btnRemove = veT`<button class="ve-btn ve-btn-xs ve-btn-danger mkbru__btn-rm-row ve-mb-2" title="Remove AC Source"><span class="glyphicon glyphicon-trash"></span></button>`
+			.vee.onn("click", () => {
 				acRows.splice(acRows.indexOf(out), 1);
-				wrp.empty().remove();
+				wrp.vee.empty().remove();
 				doUpdateState();
 			});
 
-		const wrp = ee`<div class="ve-flex-col mkbru__wrp-rows mkbru__wrp-rows--removable">
+		const wrp = veT`<div class="ve-flex-col mkbru__wrp-rows mkbru__wrp-rows--removable">
 			<div class="ve-flex-v-center ve-mb-2">${iptAc}${iptSpecial}${selMode}</div>
 			<div>${stageFrom}</div>
 			<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--50">Condition</span>${iptCond}</div>
@@ -1493,31 +1493,31 @@ export class CreatureBuilder extends BuilderBase {
 	}
 
 	static __getAcInput__getFromRow (from, fromRows, doUpdateState) {
-		const getAcFrom = () => iptFrom.val().trim();
+		const getAcFrom = () => iptFrom.vee.val().trim();
 
-		const iptFrom = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2" placeholder="From...">`
-			.onn("change", () => doUpdateState());
-		if (from) iptFrom.val(from);
+		const iptFrom = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2" placeholder="From...">`
+			.vee.onn("change", () => doUpdateState());
+		if (from) iptFrom.vee.val(from);
 
 		const menu = ContextUtil.getMenu(Object.keys(CreatureBuilder._AC_COMMON).map(k => {
 			return new ContextUtil.Action(
 				k,
 				() => {
-					iptFrom.val(CreatureBuilder._AC_COMMON[k]);
+					iptFrom.vee.val(CreatureBuilder._AC_COMMON[k]);
 					doUpdateState();
 				},
 			);
 		}));
 
-		const btnCommon = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">Feature <span class="ve-caret"></span></button>`
-			.onn("click", evt => ContextUtil.pOpenMenu(evt, menu));
+		const btnCommon = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">Feature <span class="ve-caret"></span></button>`
+			.vee.onn("click", evt => ContextUtil.pOpenMenu(evt, menu));
 
-		const btnSearchItem = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Item</button>`
-			.onn("click", () => {
+		const btnSearchItem = veT`<button class="ve-btn ve-btn-default ve-btn-xs">Item</button>`
+			.vee.onn("click", () => {
 				const searchWidget = new SearchWidget(
 					{Item: SearchWidget.CONTENT_INDICES.Item},
 					(doc) => {
-						iptFrom.val(`{@item ${doc.n}${doc.s !== Parser.SRC_DMG ? `|${doc.s}` : ""}}`.toLowerCase());
+						iptFrom.vee.val(`{@item ${doc.n}${doc.s !== Parser.SRC_DMG ? `|${doc.s}` : ""}}`.toLowerCase());
 						doUpdateState();
 						doClose();
 					},
@@ -1525,21 +1525,21 @@ export class CreatureBuilder extends BuilderBase {
 				);
 				const {eleModalInner, doClose} = UiUtil.getShowModal({
 					title: "Select Item",
-					cbClose: () => searchWidget.getWrpSearch().detach(), // guarantee survival of rendered element
+					cbClose: () => searchWidget.getWrpSearch().vee.detach(), // guarantee survival of rendered element
 				});
-				eleModalInner.appends(searchWidget.getWrpSearch());
+				eleModalInner.vee.appends(searchWidget.getWrpSearch());
 				searchWidget.doFocus();
 			});
 
-		const btnRemove = ee`<button class="ve-btn ve-btn-xs ve-btn-danger mkbru__btn-rm-row--nested-1 ve-ml-2" title="Remove AC Feature/Item"><span class="glyphicon glyphicon-trash"></span></button>`
-			.onn("click", () => {
+		const btnRemove = veT`<button class="ve-btn ve-btn-xs ve-btn-danger mkbru__btn-rm-row--nested-1 ve-ml-2" title="Remove AC Feature/Item"><span class="glyphicon glyphicon-trash"></span></button>`
+			.vee.onn("click", () => {
 				fromRows.splice(fromRows.indexOf(outFrom), 1);
-				wrpFrom.empty().remove();
+				wrpFrom.vee.empty().remove();
 				ContextUtil.deleteMenu(menu);
 				doUpdateState();
 			});
 
-		const wrpFrom = ee`<div class="ve-flex ve-mb-2 mkbru__wrp-rows--removable-nested-1">${iptFrom}${btnCommon}${btnSearchItem}${btnRemove}</div>`;
+		const wrpFrom = veT`<div class="ve-flex ve-mb-2 mkbru__wrp-rows--removable-nested-1">${iptFrom}${btnCommon}${btnSearchItem}${btnRemove}</div>`;
 
 		const outFrom = {wrpFrom, getAcFrom};
 		fromRows.push(outFrom);
@@ -1558,28 +1558,28 @@ export class CreatureBuilder extends BuilderBase {
 		})();
 
 		const _getSimpleFormula = () => {
-			const mod = UiUtil.strToInt(iptSimpleMod.val());
-			return `${selSimpleNum.val()}d${selSimpleFace.val()}${mod === 0 ? "" : UiUtil.intToBonus(mod)}`;
+			const mod = UiUtil.strToInt(iptSimpleMod.vee.val());
+			return `${selSimpleNum.vee.val()}d${selSimpleFace.vee.val()}${mod === 0 ? "" : UiUtil.intToBonus(mod)}`;
 		};
 
 		const doUpdateState = () => {
-			switch (selMode.val()) {
+			switch (selMode.vee.val()) {
 				case "0": {
 					this._state.hp = {
 						formula: _getSimpleFormula(),
-						average: UiUtil.strToInt(iptSimpleAverage.val()),
+						average: UiUtil.strToInt(iptSimpleAverage.vee.val()),
 					};
 					break;
 				}
 				case "1": {
 					this._state.hp = {
-						formula: iptComplexFormula.val(),
-						average: UiUtil.strToInt(iptComplexAverage.val()),
+						formula: iptComplexFormula.vee.val(),
+						average: UiUtil.strToInt(iptComplexAverage.vee.val()),
 					};
 					break;
 				}
 				case "2": {
-					this._state.hp = {special: iptSpecial.val()};
+					this._state.hp = {special: iptSpecial.vee.val()};
 					break;
 				}
 			}
@@ -1587,21 +1587,21 @@ export class CreatureBuilder extends BuilderBase {
 		};
 
 		const doUpdateVisibleStage = () => {
-			switch (selMode.val()) {
-				case "0": wrpSimpleFormula.showVe(); wrpComplexFormula.hideVe(); wrpSpecial.hideVe(); break;
-				case "1": wrpSimpleFormula.hideVe(); wrpComplexFormula.showVe(); wrpSpecial.hideVe(); break;
-				case "2": wrpSimpleFormula.hideVe(); wrpComplexFormula.hideVe(); wrpSpecial.showVe(); break;
+			switch (selMode.vee.val()) {
+				case "0": wrpSimpleFormula.vee.show(); wrpComplexFormula.vee.hide(); wrpSpecial.vee.hide(); break;
+				case "1": wrpSimpleFormula.vee.hide(); wrpComplexFormula.vee.show(); wrpSpecial.vee.hide(); break;
+				case "2": wrpSimpleFormula.vee.hide(); wrpComplexFormula.vee.hide(); wrpSpecial.vee.show(); break;
 			}
 		};
 
-		const selMode = ee`<select class="ve-form-control ve-input-xs ve-mb-2">
+		const selMode = veT`<select class="ve-form-control ve-input-xs ve-mb-2">
 			<option value="0">Simple Formula</option>
 			<option value="1">Complex Formula</option>
 			<option value="2">Custom</option>
 		</select>`
-			.appendTo(rowInner)
-			.val(initialMode)
-			.onn("change", () => {
+			.vee.appendTo(rowInner)
+			.vee.val(initialMode)
+			.vee.onn("change", () => {
 				doUpdateVisibleStage();
 				doUpdateState();
 			});
@@ -1610,10 +1610,10 @@ export class CreatureBuilder extends BuilderBase {
 		const conHook = () => {
 			if (!this._meta.autoCalc.hpModifier) return;
 
-			const num = Number(selSimpleNum.val());
+			const num = Number(selSimpleNum.vee.val());
 			const mod = Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, "con", {defaultScore: 10}));
 			const total = num * mod;
-			iptSimpleMod.val(total ?? null);
+			iptSimpleMod.vee.val(total ?? null);
 			hpSimpleAverageHook();
 			doUpdateState();
 		};
@@ -1623,35 +1623,35 @@ export class CreatureBuilder extends BuilderBase {
 		const hpSimpleAverageHook = () => { // no proxy required, due to being inside a child object
 			if (this._meta.autoCalc.hpAverageSimple) {
 				const avg = Renderer.dice.parseAverage(_getSimpleFormula());
-				if (avg != null) iptSimpleAverage.val(Math.floor(avg));
+				if (avg != null) iptSimpleAverage.vee.val(Math.floor(avg));
 			}
 		};
 
-		const selSimpleNum = ee`<select class="ve-form-control ve-input-xs ve-mr-2">${[...new Array(50)].map((_, i) => `<option>${i + 1}</option>`)}</select>`
-			.onn("change", () => {
+		const selSimpleNum = veT`<select class="ve-form-control ve-input-xs ve-mr-2">${[...new Array(50)].map((_, i) => `<option>${i + 1}</option>`)}</select>`
+			.vee.onn("change", () => {
 				conHook();
 				hpSimpleAverageHook();
 				doUpdateState();
 			});
 
-		const selSimpleFace = ee`<select class="ve-form-control ve-input-xs ve-mr-2">${Renderer.dice.DICE.map(it => `<option>${it}</option>`)}</select>`
-			.onn("change", () => {
+		const selSimpleFace = veT`<select class="ve-form-control ve-input-xs ve-mr-2">${Renderer.dice.DICE.map(it => `<option>${it}</option>`)}</select>`
+			.vee.onn("change", () => {
 				hpSimpleAverageHook();
 				doUpdateState();
 			});
 
-		const iptSimpleMod = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-text-right ve-mr-2">`
-			.onn("change", () => {
+		const iptSimpleMod = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-text-right ve-mr-2">`
+			.vee.onn("change", () => {
 				if (this._meta.autoCalc.hpModifier) {
 					this._meta.autoCalc.hpModifier = false;
-					btnAutoSimpleFormula.removeClass("ve-active");
+					btnAutoSimpleFormula.vee.removeClass("ve-active");
 				}
 				hpSimpleAverageHook();
 				doUpdateState();
 			});
 
-		const btnAutoSimpleFormula = ee`<button class="ve-btn ve-btn-xs ve-btn-default ${this._meta.autoCalc.hpModifier ? "ve-active" : ""}" title="Auto-calculate modifier from Constitution"><span class="glyphicon glyphicon-refresh"></span></button>`
-			.onn("click", () => {
+		const btnAutoSimpleFormula = veT`<button class="ve-btn ve-btn-xs ve-btn-default ${this._meta.autoCalc.hpModifier ? "ve-active" : ""}" title="Auto-calculate modifier from Constitution"><span class="glyphicon glyphicon-refresh"></span></button>`
+			.vee.onn("click", () => {
 				if (this._meta.autoCalc.hpModifier) {
 					this._meta.autoCalc.hpModifier = false;
 					this.doUiSave();
@@ -1659,18 +1659,18 @@ export class CreatureBuilder extends BuilderBase {
 					this._meta.autoCalc.hpModifier = true;
 					conHook();
 				}
-				btnAutoSimpleFormula.toggleClass("ve-active", this._meta.autoCalc.hpModifier);
+				btnAutoSimpleFormula.vee.toggleClass("ve-active", this._meta.autoCalc.hpModifier);
 				doUpdateState();
 			});
 
-		const iptSimpleAverage = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`
-			.onn("change", () => {
+		const iptSimpleAverage = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`
+			.vee.onn("change", () => {
 				this._meta.autoCalc.hpAverageSimple = false;
 				doUpdateState();
 			});
 
-		const btnAutoSimpleAverage = ee`<button class="ve-btn ve-btn-xs ve-btn-default ${this._meta.autoCalc.hpAverageSimple ? "ve-active" : ""}" title="Auto-calculate"><span class="glyphicon glyphicon-refresh"></span></button>`
-			.onn("click", () => {
+		const btnAutoSimpleAverage = veT`<button class="ve-btn ve-btn-xs ve-btn-default ${this._meta.autoCalc.hpAverageSimple ? "ve-active" : ""}" title="Auto-calculate"><span class="glyphicon glyphicon-refresh"></span></button>`
+			.vee.onn("click", () => {
 				if (this._meta.autoCalc.hpAverageSimple) {
 					this._meta.autoCalc.hpAverageSimple = false;
 					this.doUiSave();
@@ -1678,11 +1678,11 @@ export class CreatureBuilder extends BuilderBase {
 					this._meta.autoCalc.hpAverageSimple = true;
 					hpSimpleAverageHook();
 				}
-				btnAutoSimpleAverage.toggleClass("ve-active", this._meta.autoCalc.hpAverageSimple);
+				btnAutoSimpleAverage.vee.toggleClass("ve-active", this._meta.autoCalc.hpAverageSimple);
 				doUpdateState();
 			});
 
-		const wrpSimpleFormula = ee`<div class="ve-flex-col">
+		const wrpSimpleFormula = veT`<div class="ve-flex-col">
 		<div class="ve-flex-v-center ve-mb-2">
 			<span class="ve-mr-2 mkbru__sub-name--50">Formula</span>
 			${selSimpleNum}
@@ -1693,37 +1693,37 @@ export class CreatureBuilder extends BuilderBase {
 			${btnAutoSimpleFormula}
 		</div>
 		<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--50">Average</span>${iptSimpleAverage}${btnAutoSimpleAverage}</div>
-		</div>`.toggleVe(initialMode === "1").appendTo(rowInner);
+		</div>`.vee.toggle(initialMode === "1").vee.appendTo(rowInner);
 		if (initialMode === "0") {
 			const formulaParts = CreatureBuilder.__getHpInput__getFormulaParts(this._state.hp.formula);
-			selSimpleNum.val(`${formulaParts.hdNum}`);
-			selSimpleFace.val(`${formulaParts.hdFaces}`);
-			if (formulaParts.mod != null) iptSimpleMod.val(formulaParts.mod);
-			iptSimpleAverage.val(this._state.hp.average);
+			selSimpleNum.vee.val(`${formulaParts.hdNum}`);
+			selSimpleFace.vee.val(`${formulaParts.hdFaces}`);
+			if (formulaParts.mod != null) iptSimpleMod.vee.val(formulaParts.mod);
+			iptSimpleAverage.vee.val(this._state.hp.average);
 		}
 
 		// COMPLEX FORMULA STAGE
 		const hpComplexAverageHook = () => { // no proxy required, due to being inside a child object
 			if (this._meta.autoCalc.hpAverageComplex) {
-				const avg = Renderer.dice.parseAverage(iptComplexFormula.val());
-				if (avg != null) iptComplexAverage.val(Math.floor(avg));
+				const avg = Renderer.dice.parseAverage(iptComplexFormula.vee.val());
+				if (avg != null) iptComplexAverage.vee.val(Math.floor(avg));
 			}
 		};
 
-		const iptComplexFormula = ee`<input class="ve-form-control form-control--minimal ve-input-xs">`
-			.onn("change", () => {
+		const iptComplexFormula = veT`<input class="ve-form-control form-control--minimal ve-input-xs">`
+			.vee.onn("change", () => {
 				hpComplexAverageHook();
 				doUpdateState();
 			});
 
-		const iptComplexAverage = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`
-			.onn("change", () => {
+		const iptComplexAverage = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`
+			.vee.onn("change", () => {
 				this._meta.autoCalc.hpAverageComplex = false;
 				doUpdateState();
 			});
 
-		const btnAutoComplexAverage = ee`<button class="ve-btn ve-btn-xs ve-btn-default ${this._meta.autoCalc.hpAverageComplex ? "ve-active" : ""}" title="Auto-calculate from Formula"><span class="glyphicon glyphicon-refresh"></span></button>`
-			.onn("click", () => {
+		const btnAutoComplexAverage = veT`<button class="ve-btn ve-btn-xs ve-btn-default ${this._meta.autoCalc.hpAverageComplex ? "ve-active" : ""}" title="Auto-calculate from Formula"><span class="glyphicon glyphicon-refresh"></span></button>`
+			.vee.onn("click", () => {
 				if (this._meta.autoCalc.hpAverageComplex) {
 					this._meta.autoCalc.hpAverageComplex = false;
 					this.doUiSave();
@@ -1731,24 +1731,24 @@ export class CreatureBuilder extends BuilderBase {
 					this._meta.autoCalc.hpAverageComplex = true;
 					hpComplexAverageHook();
 				}
-				btnAutoComplexAverage.toggleClass("ve-active", this._meta.autoCalc.hpAverageComplex);
+				btnAutoComplexAverage.vee.toggleClass("ve-active", this._meta.autoCalc.hpAverageComplex);
 				doUpdateState();
 			});
 
-		const wrpComplexFormula = ee`<div class="ve-flex-col">
+		const wrpComplexFormula = veT`<div class="ve-flex-col">
 		<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--50">Formula</span>${iptComplexFormula}</div>
 		<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--50">Average</span>${iptComplexAverage}${btnAutoComplexAverage}</div>
-		</div>`.toggleVe(initialMode === "0").appendTo(rowInner);
+		</div>`.vee.toggle(initialMode === "0").vee.appendTo(rowInner);
 		if (initialMode === "1") {
-			iptComplexFormula.val(this._state.hp.formula);
-			iptComplexAverage.val(this._state.hp.average);
+			iptComplexFormula.vee.val(this._state.hp.formula);
+			iptComplexAverage.vee.val(this._state.hp.average);
 		}
 
 		// SPECIAL STAGE
-		const iptSpecial = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mb-2">`
-			.onn("change", () => doUpdateState());
-		const wrpSpecial = ee`<div>${iptSpecial}</div>`.toggleVe(initialMode === "2").appendTo(rowInner);
-		if (initialMode === "2") iptSpecial.val(this._state.hp.special);
+		const iptSpecial = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mb-2">`
+			.vee.onn("change", () => doUpdateState());
+		const wrpSpecial = veT`<div>${iptSpecial}</div>`.vee.toggle(initialMode === "2").vee.appendTo(rowInner);
+		if (initialMode === "2") iptSpecial.vee.val(this._state.hp.special);
 
 		doUpdateVisibleStage();
 
@@ -1775,13 +1775,13 @@ export class CreatureBuilder extends BuilderBase {
 
 		const getRow = (name, prop) => {
 			const doUpdateProp = () => {
-				const speedRaw = iptSpeed.val().trim();
+				const speedRaw = iptSpeed.vee.val().trim();
 				if (!speedRaw) {
 					delete this._state.speed[prop];
 					if (prop === "fly") delete this._state.speed.canHover;
 				} else {
 					const speed = UiUtil.strToInt(speedRaw);
-					const condition = iptCond.val().trim();
+					const condition = iptCond.vee.val().trim();
 					this._state.speed[prop] = (condition ? {number: speed, condition: condition} : speed);
 					if (prop === "fly") {
 						this._state.speed.canHover = !!(condition && /(^|[^a-zA-Z])hover([^a-zA-Z]|$)/i.exec(condition));
@@ -1791,32 +1791,32 @@ export class CreatureBuilder extends BuilderBase {
 				cb();
 			};
 
-			const iptSpeed = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`
-				.onn("change", () => doUpdateProp());
-			const iptCond = ee`<input class="ve-form-control form-control--minimal ve-input-xs" placeholder="${prop === "fly" ? "(hover)/when..." : "when..."}">`
-				.onn("change", () => doUpdateProp());
+			const iptSpeed = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`
+				.vee.onn("change", () => doUpdateProp());
+			const iptCond = veT`<input class="ve-form-control form-control--minimal ve-input-xs" placeholder="${prop === "fly" ? "(hover)/when..." : "when..."}">`
+				.vee.onn("change", () => doUpdateProp());
 
 			const initial = this._state.speed[prop];
 			if (initial != null) {
 				if (initial.condition != null) {
-					iptSpeed.val(initial.number);
-					iptCond.val(initial.condition);
-				} else iptSpeed.val(initial);
+					iptSpeed.vee.val(initial.number);
+					iptCond.vee.val(initial.condition);
+				} else iptSpeed.vee.val(initial);
 			}
 
-			return ee`<div class="ve-flex-v-center ve-mb-2">
+			return veT`<div class="ve-flex-v-center ve-mb-2">
 			<span class="ve-mr-2 mkbru__sub-name--33">${name}</span>
 			<div class="ve-flex-v-center">${iptSpeed}<span class="ve-mr-2">ft.</span>${iptCond}</div>
 			</div>`;
 		};
 
-		ee`<div class="ve-flex-col">
+		veT`<div class="ve-flex-col">
 		${getRow("Walk", "walk")}
 		${getRow("Burrow", "burrow")}
 		${getRow("Climb", "climb")}
 		${getRow("Fly", "fly")}
 		${getRow("Swim", "swim")}
-		</div>`.appendTo(rowInner);
+		</div>`.vee.appendTo(rowInner);
 
 		return row;
 	}
@@ -1829,10 +1829,10 @@ export class CreatureBuilder extends BuilderBase {
 				? this._state[prop].special
 				: this._state[prop];
 
-			const iptAbil = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-text-center">`
-				.val(valInitial)
-				.onn("change", () => {
-					const val = iptAbil.val().trim();
+			const iptAbil = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-text-center">`
+				.vee.val(valInitial)
+				.vee.onn("change", () => {
+					const val = iptAbil.vee.val().trim();
 					if (!val) {
 						delete this._state[prop];
 						return cb();
@@ -1847,13 +1847,13 @@ export class CreatureBuilder extends BuilderBase {
 					cb();
 				});
 
-			return ee`<div class="ve-flex-v-center ve-mb-2 ve-flex-col ve-mr-1">
+			return veT`<div class="ve-flex-v-center ve-mb-2 ve-flex-col ve-mr-1">
 			<span class="ve-mb-2 ve-bold">${prop.toUpperCase()}</span>
 			${iptAbil}
 			</div>`;
 		};
 
-		Parser.ABIL_ABVS.forEach(abv => getRow(Parser.attAbvToFull(abv), abv).appendTo(rowInner));
+		Parser.ABIL_ABVS.forEach(abv => getRow(Parser.attAbvToFull(abv), abv).vee.appendTo(rowInner));
 
 		return row;
 	}
@@ -1862,9 +1862,9 @@ export class CreatureBuilder extends BuilderBase {
 		const [row, rowInner] = BuilderUi.getLabelledRowTuple("Saving Throws", {isMarked: true, isRow: true});
 
 		const getRow = (name, prop) => {
-			const iptVal = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mb-2 ve-text-center">`
-				.onn("change", () => {
-					btnProf.removeClass("ve-active");
+			const iptVal = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mb-2 ve-text-center">`
+				.vee.onn("change", () => {
+					btnProf.vee.removeClass("ve-active");
 					delete this._meta.profSave[prop];
 					this.__getSaveSkillInput__handleValChange(cb, "save", iptVal, prop);
 				});
@@ -1872,25 +1872,25 @@ export class CreatureBuilder extends BuilderBase {
 			const _setFromAbility = () => {
 				const total = Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, prop, {defaultScore: 10})) + this._getProfBonus();
 				(this._state.save = this._state.save || {})[prop] = total < 0 ? `${total}` : `+${total}`;
-				iptVal.val(total);
+				iptVal.vee.val(total);
 				cb();
 			};
 
-			const btnProf = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="Is Proficient">Prof.</button>`
-				.onn("click", () => {
+			const btnProf = veT`<button class="ve-btn ve-btn-xs ve-btn-default" title="Is Proficient">Prof.</button>`
+				.vee.onn("click", () => {
 					if (this._meta.profSave[prop]) {
 						delete this._meta.profSave[prop];
-						iptVal.val("");
+						iptVal.vee.val("");
 						this.__getSaveSkillInput__handleValChange(cb, "save", iptVal, prop);
 					} else {
 						this._meta.profSave[prop] = 1;
 						hook();
 					}
-					btnProf.toggleClass("ve-active", this._meta.profSave[prop] === 1);
+					btnProf.vee.toggleClass("ve-active", this._meta.profSave[prop] === 1);
 				});
-			if (this._meta.profSave[prop]) btnProf.addClass("ve-active");
+			if (this._meta.profSave[prop]) btnProf.vee.addClass("ve-active");
 
-			if ((this._state.save || {})[prop]) iptVal.val(`${this._state.save[prop]}`.replace(/^\+/, "")); // remove leading plus sign
+			if ((this._state.save || {})[prop]) iptVal.vee.val(`${this._state.save[prop]}`.replace(/^\+/, "")); // remove leading plus sign
 
 			const hook = () => {
 				if (this._meta.profSave[prop] === 1) _setFromAbility();
@@ -1898,13 +1898,13 @@ export class CreatureBuilder extends BuilderBase {
 			this._addHook("state", prop, hook);
 			this._addHook("meta", "profBonus", hook);
 
-			return ee`<div class="ve-flex-v-center ve-flex-col ve-mr-1 ve-mb-2">
+			return veT`<div class="ve-flex-v-center ve-flex-col ve-mr-1 ve-mb-2">
 			<span class="ve-mr-2 ve-bold">${prop.toUpperCase()}</span>
 			${iptVal}${btnProf}
 			</div>`;
 		};
 
-		Parser.ABIL_ABVS.forEach(abv => getRow(Parser.attAbvToFull(abv), abv).appendTo(rowInner));
+		Parser.ABIL_ABVS.forEach(abv => getRow(Parser.attAbvToFull(abv), abv).vee.appendTo(rowInner));
 
 		return row;
 	}
@@ -1915,11 +1915,11 @@ export class CreatureBuilder extends BuilderBase {
 		const getRow = (name, prop) => {
 			const abilProp = Parser.skillToAbilityAbv(prop);
 
-			const iptVal = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2 ve-text-center">`
-				.onn("change", () => {
+			const iptVal = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2 ve-text-center">`
+				.vee.onn("change", () => {
 					if (this._meta.profSkill[prop]) {
-						btnProf.removeClass("ve-active");
-						btnExpert.removeClass("ve-active");
+						btnProf.vee.removeClass("ve-active");
+						btnExpert.vee.removeClass("ve-active");
 					}
 					delete this._meta.profSkill[prop];
 					this.__getSaveSkillInput__handleValChange(cb, "skill", iptVal, prop);
@@ -1932,7 +1932,7 @@ export class CreatureBuilder extends BuilderBase {
 				const nextSkills = {...(this._state.skill || {})}; // regenerate the object to allow hooks to fire
 				nextSkills[prop] = total < 0 ? `${total}` : `+${total}`;
 				this._state.skill = nextSkills;
-				iptVal.val(total);
+				iptVal.vee.val(total);
 				cb();
 			};
 
@@ -1940,37 +1940,37 @@ export class CreatureBuilder extends BuilderBase {
 				if (isExpert) {
 					if (this._meta.profSkill[prop] === 2) {
 						delete this._meta.profSkill[prop];
-						iptVal.val("");
+						iptVal.vee.val("");
 						this.__getSaveSkillInput__handleValChange(cb, "skill", iptVal, prop);
 					} else {
 						this._meta.profSkill[prop] = 2;
 						hook();
 					}
-					btnProf.removeClass("ve-active");
-					btnExpert.toggleClass("ve-active", this._meta.profSkill[prop] === 2);
+					btnProf.vee.removeClass("ve-active");
+					btnExpert.vee.toggleClass("ve-active", this._meta.profSkill[prop] === 2);
 				} else {
 					if (this._meta.profSkill[prop] === 1) {
 						delete this._meta.profSkill[prop];
-						iptVal.val("");
+						iptVal.vee.val("");
 						this.__getSaveSkillInput__handleValChange(cb, "skill", iptVal, prop);
 					} else {
 						this._meta.profSkill[prop] = 1;
 						hook();
 					}
-					btnProf.toggleClass("ve-active", this._meta.profSkill[prop] === 1);
-					btnExpert.removeClass("ve-active");
+					btnProf.vee.toggleClass("ve-active", this._meta.profSkill[prop] === 1);
+					btnExpert.vee.removeClass("ve-active");
 				}
 			};
 
-			const btnProf = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="Is Proficient">Prof.</button>`
-				.onn("click", () => _handleButtonPress());
-			if (this._meta.profSkill[prop] === 1) btnProf.addClass("ve-active");
+			const btnProf = veT`<button class="ve-btn ve-btn-xs ve-btn-default" title="Is Proficient">Prof.</button>`
+				.vee.onn("click", () => _handleButtonPress());
+			if (this._meta.profSkill[prop] === 1) btnProf.vee.addClass("ve-active");
 
-			const btnExpert = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-ml-2" title="Has Expertise">Expert.</button>`
-				.onn("click", () => _handleButtonPress(true));
-			if (this._meta.profSkill[prop] === 2) btnExpert.addClass("ve-active");
+			const btnExpert = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-ml-2" title="Has Expertise">Expert.</button>`
+				.vee.onn("click", () => _handleButtonPress(true));
+			if (this._meta.profSkill[prop] === 2) btnExpert.vee.addClass("ve-active");
 
-			if ((this._state.skill || {})[prop]) iptVal.val(`${this._state.skill[prop]}`.replace(/^\+/, "")); // remove leading plus sign
+			if ((this._state.skill || {})[prop]) iptVal.vee.val(`${this._state.skill[prop]}`.replace(/^\+/, "")); // remove leading plus sign
 
 			const hook = () => {
 				if (this._meta.profSkill[prop] === 1) _setFromAbility();
@@ -1979,21 +1979,21 @@ export class CreatureBuilder extends BuilderBase {
 			this._addHook("state", abilProp, hook);
 			this._addHook("meta", "profBonus", hook);
 
-			return ee`<div class="ve-flex-v-center ve-mb-2">
+			return veT`<div class="ve-flex-v-center ve-mb-2">
 			<span class="ve-mr-2 mkbru__sub-name--33">${name}</span>
 			<div class="ve-muted mkbru_mon__skill-attrib-label ve-mr-2 ve-help-subtle" title="This skill is affected by the creature's ${Parser.attAbvToFull((Parser.skillToAbilityAbv(prop)))} score">(${Parser.skillToAbilityAbv(prop).toUpperCase()})</div>
 			${iptVal}${btnProf}${btnExpert}
 			</div>`;
 		};
 
-		Object.keys(Parser.SKILL_TO_ATB_ABV).sort(SortUtil.ascSort).forEach(skill => getRow(skill.toTitleCase(), skill).appendTo(rowInner));
+		Object.keys(Parser.SKILL_TO_ATB_ABV).sort(SortUtil.ascSort).forEach(skill => getRow(skill.toTitleCase(), skill).vee.appendTo(rowInner));
 
 		return row;
 	}
 
 	__getSaveSkillInput__handleValChange (cb, mode, iptVal, prop) {
 		// ensure to overwrite the entire object, so that any hooks trigger
-		const raw = iptVal.val();
+		const raw = iptVal.vee.val();
 		if (raw && raw.trim()) {
 			const num = UiUtil.strToInt(raw);
 			const nextState = {...(this._state[mode] || {})};
@@ -2032,27 +2032,27 @@ export class CreatureBuilder extends BuilderBase {
 			const pp = getAutoPassivePerception();
 			if (pp == null) return;
 
-			iptPerception.val(pp);
+			iptPerception.vee.val(pp);
 			this._state.passive = pp;
 			cb();
 		};
 		this._addHook("state", "wis", hook);
 		this._addHook("state", "skill", hook);
 
-		const iptPerception = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`
-			.onn("change", () => {
+		const iptPerception = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`
+			.vee.onn("change", () => {
 				if (this._meta.autoCalc.passivePerception) {
-					btnAuto.removeClass("ve-active");
+					btnAuto.vee.removeClass("ve-active");
 					this._meta.autoCalc.passivePerception = false;
 				}
-				const val = iptPerception.val();
-				this._state.passive = isNaN(val) ? val : UiUtil.strToInt(iptPerception.val());
+				const val = iptPerception.vee.val();
+				this._state.passive = isNaN(val) ? val : UiUtil.strToInt(iptPerception.vee.val());
 				cb();
 			})
-			.val(this._state.passive || 0);
+			.vee.val(this._state.passive || 0);
 
-		const btnAuto = ee`<button class="ve-btn ve-btn-default ve-btn-xs ${this._meta.autoCalc.passivePerception ? "ve-active" : ""}" title="Auto-Calculate Passive Perception"><span class="glyphicon glyphicon-refresh"></span></button>`
-			.onn("click", () => {
+		const btnAuto = veT`<button class="ve-btn ve-btn-default ve-btn-xs ${this._meta.autoCalc.passivePerception ? "ve-active" : ""}" title="Auto-Calculate Passive Perception"><span class="glyphicon glyphicon-refresh"></span></button>`
+			.vee.onn("click", () => {
 				if (this._meta.autoCalc.passivePerception) {
 					delete this._meta.autoCalc.passivePerception;
 					this.doUiSave(); // save meta-state
@@ -2060,11 +2060,11 @@ export class CreatureBuilder extends BuilderBase {
 					this._meta.autoCalc.passivePerception = true;
 					hook();
 				}
-				btnAuto.toggleClass("ve-active", this._meta.autoCalc.passivePerception);
+				btnAuto.vee.toggleClass("ve-active", this._meta.autoCalc.passivePerception);
 				cb();
 			});
 
-		ee`<div class="ve-flex-v-center">${iptPerception}${btnAuto}</div>`.appendTo(rowInner);
+		veT`<div class="ve-flex-v-center">${iptPerception}${btnAuto}</div>`.vee.appendTo(rowInner);
 
 		return row;
 	}
@@ -2089,8 +2089,8 @@ export class CreatureBuilder extends BuilderBase {
 		const [row, rowInner] = BuilderUi.getLabelledRowTuple(rowName, {isMarked: true});
 
 		const groups = [];
-		const wrpGroups = ee`<div></div>`.appendTo(rowInner);
-		const wrpControls = ee`<div></div>`.appendTo(rowInner);
+		const wrpGroups = veT`<div></div>`.vee.appendTo(rowInner);
+		const wrpControls = veT`<div></div>`.vee.appendTo(rowInner);
 
 		const doUpdateState = () => {
 			const out = groups.map(it => it.getState());
@@ -2105,12 +2105,12 @@ export class CreatureBuilder extends BuilderBase {
 		const doAddGroup = data => {
 			const group = CreatureBuilder.__getDefensesInput__getNodeGroup(shortName, prop, groups, doUpdateState, 0, data);
 			groups.push(group);
-			group.ele.appendTo(wrpGroups);
+			group.ele.vee.appendTo(wrpGroups);
 		};
 
-		const btnAddGroup = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2">Add Group</button>`
-			.appendTo(wrpControls)
-			.onn("click", () => doAddGroup());
+		const btnAddGroup = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2">Add Group</button>`
+			.vee.appendTo(wrpControls)
+			.vee.onn("click", () => doAddGroup());
 
 		if (this._state[prop]) {
 			// convert flat arrays into wrapped objects
@@ -2127,8 +2127,8 @@ export class CreatureBuilder extends BuilderBase {
 			const out = {
 				[prop]: children.map(it => it.getState()).filter(Boolean),
 			};
-			if (iptNotePre.val().trim()) out.preNote = iptNotePre.val().trim();
-			if (iptNotePost.val().trim()) out.note = iptNotePost.val().trim();
+			if (iptNotePre.vee.val().trim()) out.preNote = iptNotePre.vee.val().trim();
+			if (iptNotePost.vee.val().trim()) out.note = iptNotePost.vee.val().trim();
 			return out;
 		};
 
@@ -2146,8 +2146,8 @@ export class CreatureBuilder extends BuilderBase {
 				else if (b.type === "group" || b.type === "special") return -1;
 				else return SortUtil.ascSort(a.type, b.type) || b.order - a.order;
 			}).forEach(child => {
-				child.ele.detach();
-				wrpChildren.appends(child.ele);
+				child.ele.vee.detach();
+				wrpChildren.vee.appends(child.ele);
 			});
 
 			if (doUpdate) doUpdateState();
@@ -2177,33 +2177,33 @@ export class CreatureBuilder extends BuilderBase {
 			);
 		}));
 
-		const btnAddChild = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2">Add ${shortName}</button>`
-			.onn("click", (evt) => ContextUtil.pOpenMenu(evt, menu));
-		const btnAddChildGroup = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2">Add Child Group</button>`
-			.onn("click", () => addChild(CreatureBuilder.__getDefensesInput__getNodeGroup(shortName, prop, children, doUpdateState, depth + 1)));
-		const iptNotePre = ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2" placeholder="Pre- note">`
-			.onn("change", () => doUpdateState());
-		const iptNotePost = ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2" placeholder="Post- note">`
-			.onn("change", () => doUpdateState());
-		const btnRemove = ee`<button class="ve-btn ve-btn-xs ve-btn-danger mkbru__btn-rm-row" title="Remove ${shortName} Group"><span class="glyphicon glyphicon-trash"></span></button>`
-			.onn("click", () => {
+		const btnAddChild = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2">Add ${shortName}</button>`
+			.vee.onn("click", (evt) => ContextUtil.pOpenMenu(evt, menu));
+		const btnAddChildGroup = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2">Add Child Group</button>`
+			.vee.onn("click", () => addChild(CreatureBuilder.__getDefensesInput__getNodeGroup(shortName, prop, children, doUpdateState, depth + 1)));
+		const iptNotePre = veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2" placeholder="Pre- note">`
+			.vee.onn("change", () => doUpdateState());
+		const iptNotePost = veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2" placeholder="Post- note">`
+			.vee.onn("change", () => doUpdateState());
+		const btnRemove = veT`<button class="ve-btn ve-btn-xs ve-btn-danger mkbru__btn-rm-row" title="Remove ${shortName} Group"><span class="glyphicon glyphicon-trash"></span></button>`
+			.vee.onn("click", () => {
 				groups.splice(groups.indexOf(out), 1);
 				ele.remove();
 				doUpdateState();
 			});
 
-		const wrpChildren = ee`<div class="ve-flex-col"></div>`;
-		const wrpControls = ee`<div class="ve-mb-2 ve-flex-v-center">${btnAddChild}${btnAddChildGroup}${iptNotePre}${iptNotePost}${btnRemove}</div>`;
+		const wrpChildren = veT`<div class="ve-flex-col"></div>`;
+		const wrpControls = veT`<div class="ve-mb-2 ve-flex-v-center">${btnAddChild}${btnAddChildGroup}${iptNotePre}${iptNotePost}${btnRemove}</div>`;
 
 		const ele = (() => {
-			const base = ee`<div class="ve-flex-col ${depth ? "" : "mkbru__wrp-rows"}">${wrpControls}${wrpChildren}</div>`;
+			const base = veT`<div class="ve-flex-col ${depth ? "" : "mkbru__wrp-rows"}">${wrpControls}${wrpChildren}</div>`;
 			if (!depth) return base;
-			else return ee`<div class="ve-flex-v-center ve-w-100"><div class="mkbru_mon__row-indent"></div>${base}</div>`;
+			else return veT`<div class="ve-flex-v-center ve-w-100"><div class="mkbru_mon__row-indent"></div>${base}</div>`;
 		})();
 
 		if (initial) {
-			iptNotePre.val(initial.preNote || "");
-			iptNotePost.val(initial.note || "");
+			iptNotePre.vee.val(initial.preNote || "");
+			iptNotePost.vee.val(initial.note || "");
 			initial[prop].forEach(dmgType => {
 				if (typeof dmgType === "string") addChild(CreatureBuilder.__getDefensesInput__getNodeItem(shortName, children, doUpdateState, dmgType), false);
 				else if (dmgType.special != null) addChild(CreatureBuilder.__getDefensesInput__getNodeItem(shortName, children, doUpdateState, "special", dmgType.special), false);
@@ -2216,8 +2216,8 @@ export class CreatureBuilder extends BuilderBase {
 	}
 
 	static __getDefensesInput__getNodeItem (shortName, children, doUpdateState, type, value) {
-		const btnRemove = ee`<button class="ve-btn ve-btn-xxs ve-btn-danger" title="Remove ${shortName} Entry"><span class="glyphicon glyphicon-trash"></span></button>`
-			.onn("click", () => {
+		const btnRemove = veT`<button class="ve-btn ve-btn-xxs ve-btn-danger" title="Remove ${shortName} Entry"><span class="glyphicon glyphicon-trash"></span></button>`
+			.vee.onn("click", () => {
 				children.splice(children.indexOf(out), 1);
 				ele.remove();
 				doUpdateState();
@@ -2226,14 +2226,14 @@ export class CreatureBuilder extends BuilderBase {
 		const {ele, getState} = (() => {
 			switch (type) {
 				case "special": {
-					const iptSpecial = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`
-						.onn("change", () => doUpdateState());
-					if (value != null) iptSpecial.val(value);
+					const iptSpecial = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`
+						.vee.onn("change", () => doUpdateState());
+					if (value != null) iptSpecial.vee.val(value);
 
 					return {
-						ele: ee`<div class="ve-mb-2 ve-split ve-flex-v-center mkbru__wrp-btn-xxs">${iptSpecial}${btnRemove}</div>`,
+						ele: veT`<div class="ve-mb-2 ve-split ve-flex-v-center mkbru__wrp-btn-xxs">${iptSpecial}${btnRemove}</div>`,
 						getState: () => {
-							const raw = iptSpecial.val().trim();
+							const raw = iptSpecial.vee.val().trim();
 							if (raw) return {special: raw};
 							return null;
 						},
@@ -2241,7 +2241,7 @@ export class CreatureBuilder extends BuilderBase {
 				}
 				default: {
 					return {
-						ele: ee`<div class="ve-mb-2 ve-split ve-flex-v-center mkbru__wrp-btn-xxs"><span class="ve-mr-2">&bull; ${type.uppercaseFirst()}</span>${btnRemove}</div>`,
+						ele: veT`<div class="ve-mb-2 ve-split ve-flex-v-center mkbru__wrp-btn-xxs"><span class="ve-mr-2">&bull; ${type.uppercaseFirst()}</span>${btnRemove}</div>`,
 						getState: () => type,
 					};
 				}
@@ -2256,15 +2256,15 @@ export class CreatureBuilder extends BuilderBase {
 		const [row, rowInner] = BuilderUi.getLabelledRowTuple("Senses");
 
 		const doUpdateState = () => {
-			const raw = iptSenses.val().trim();
+			const raw = iptSenses.vee.val().trim();
 			if (!raw) delete this._state.senses;
 			else this._state.senses = raw.split(StrUtil.COMMA_SPACE_NOT_IN_PARENTHESES_REGEX);
 			cb();
 		};
 
-		const iptSenses = ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2">`
-			.onn("change", () => doUpdateState());
-		if (this._state.senses && this._state.senses.length) iptSenses.val(this._state.senses.join(", "));
+		const iptSenses = veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2">`
+			.vee.onn("change", () => doUpdateState());
+		if (this._state.senses && this._state.senses.length) iptSenses.vee.val(this._state.senses.join(", "));
 
 		const menu = ContextUtil.getMenu(
 			Parser.getSenses()
@@ -2275,9 +2275,9 @@ export class CreatureBuilder extends BuilderBase {
 							const feet = await InputUiUtil.pGetUserNumber({min: 0, int: true, title: "Enter the Number of Feet"});
 							if (feet == null) return;
 
-							const curr = iptSenses.val().trim();
+							const curr = iptSenses.vee.val().trim();
 							const toAdd = `${sense} ${feet} ft.`;
-							iptSenses.val(curr ? `${curr}, ${toAdd}` : toAdd);
+							iptSenses.vee.val(curr ? `${curr}, ${toAdd}` : toAdd);
 
 							doUpdateState();
 						},
@@ -2285,12 +2285,12 @@ export class CreatureBuilder extends BuilderBase {
 				}),
 		);
 
-		const btnAddGeneric = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2 mkbru_mon__btn-add-sense-language">Add Sense</button>`
-			.onn("click", (evt) => ContextUtil.pOpenMenu(evt, menu));
+		const btnAddGeneric = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2 mkbru_mon__btn-add-sense-language">Add Sense</button>`
+			.vee.onn("click", (evt) => ContextUtil.pOpenMenu(evt, menu));
 
 		const btnSort = BuilderUi.getSplitCommasSortButton(iptSenses, doUpdateState);
 
-		ee`<div class="ve-flex-v-center">${iptSenses}${btnAddGeneric}${btnSort}</div>`.appendTo(rowInner);
+		veT`<div class="ve-flex-v-center">${iptSenses}${btnAddGeneric}${btnSort}</div>`.vee.appendTo(rowInner);
 
 		return row;
 	}
@@ -2299,21 +2299,21 @@ export class CreatureBuilder extends BuilderBase {
 		const [row, rowInner] = BuilderUi.getLabelledRowTuple("Languages");
 
 		const doUpdateState = () => {
-			const raw = iptLanguages.val().trim();
+			const raw = iptLanguages.vee.val().trim();
 			if (!raw) delete this._state.languages;
 			else this._state.languages = raw.split(StrUtil.COMMA_SPACE_NOT_IN_PARENTHESES_REGEX);
 			cb();
 		};
 
-		const iptLanguages = ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2">`
-			.onn("change", () => doUpdateState());
-		if (this._state.languages && this._state.languages.length) iptLanguages.val(this._state.languages.join(", "));
+		const iptLanguages = veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2">`
+			.vee.onn("change", () => doUpdateState());
+		if (this._state.languages && this._state.languages.length) iptLanguages.vee.val(this._state.languages.join(", "));
 
 		const availLanguages = Object.entries(Parser.MON_LANGUAGE_TAG_TO_FULL).filter(([k]) => !CreatureBuilder._LANGUAGE_BLOCKLIST.has(k))
 			.map(([k, v]) => v === "Telepathy" ? "telepathy" : v); // lowercase telepathy
 
-		const btnAddGeneric = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2 mkbru_mon__btn-add-sense-language">Add Language</button>`
-			.onn("click", async () => {
+		const btnAddGeneric = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2 mkbru_mon__btn-add-sense-language">Add Language</button>`
+			.vee.onn("click", async () => {
 				const language = await InputUiUtil.pGetUserString({
 					title: "Enter a Language",
 					default: "Common",
@@ -2321,8 +2321,8 @@ export class CreatureBuilder extends BuilderBase {
 				});
 
 				if (language != null) {
-					const curr = iptLanguages.val().trim();
-					iptLanguages.val(curr ? `${curr}, ${language}` : language);
+					const curr = iptLanguages.vee.val().trim();
+					iptLanguages.vee.val(curr ? `${curr}, ${language}` : language);
 
 					doUpdateState();
 				}
@@ -2330,7 +2330,7 @@ export class CreatureBuilder extends BuilderBase {
 
 		const btnSort = BuilderUi.getSplitCommasSortButton(iptLanguages, doUpdateState, {bottom: [/telepathy/i]});
 
-		ee`<div class="ve-flex-v-center">${iptLanguages}${btnAddGeneric}${btnSort}</div>`.appendTo(rowInner);
+		veT`<div class="ve-flex-v-center">${iptLanguages}${btnAddGeneric}${btnSort}</div>`.vee.appendTo(rowInner);
 
 		return row;
 	}
@@ -2342,80 +2342,80 @@ export class CreatureBuilder extends BuilderBase {
 			? this._state.cr.lair ? "1" : this._state.cr.coven ? "2" : ScaleCreature.isCrInScaleRange(this._state) ? "0" : "3"
 			: "4";
 
-		const selMode = ee`<select class="ve-form-control ve-input-xs ve-mb-2">
+		const selMode = veT`<select class="ve-form-control ve-input-xs ve-mb-2">
 			<option value="0">Basic Challenge Rating</option>
 			<option value="1">Has Lair Challenge Rating</option>
 			<option value="2">Has Coven Challenge Rating</option>
 			<option value="3">Custom Challenge Rating</option>
 			<option value="4">No Challenge Rating</option>
-		</select>`.val(initialMode).onn("change", () => {
-				switch (selMode.val()) {
+		</select>`.vee.val(initialMode).vee.onn("change", () => {
+				switch (selMode.vee.val()) {
 					case "0": {
-						stageBasic.showVe(); stageLair.hideVe(); stageCoven.hideVe(); stageCustom.hideVe();
-						this._state.cr = selCr.val();
+						stageBasic.vee.show(); stageLair.vee.hide(); stageCoven.vee.hide(); stageCustom.vee.hide();
+						this._state.cr = selCr.vee.val();
 						break;
 					}
 					case "1": {
-						stageBasic.showVe(); stageLair.showVe(); stageCoven.hideVe(); stageCustom.hideVe();
+						stageBasic.vee.show(); stageLair.vee.show(); stageCoven.vee.hide(); stageCustom.vee.hide();
 						this._state.cr = {
-							cr: selCr.val(),
-							lair: selCrLair.val(),
+							cr: selCr.vee.val(),
+							lair: selCrLair.vee.val(),
 						};
 						break;
 					}
 					case "2": {
-						stageBasic.showVe(); stageLair.hideVe(); stageCoven.showVe(); stageCustom.hideVe();
+						stageBasic.vee.show(); stageLair.vee.hide(); stageCoven.vee.show(); stageCustom.vee.hide();
 						this._state.cr = {
-							cr: selCr.val(),
-							coven: selCrCoven.val(),
+							cr: selCr.vee.val(),
+							coven: selCrCoven.vee.val(),
 						};
 						break;
 					}
 					case "3": {
-						stageBasic.hideVe(); stageLair.hideVe(); stageCoven.hideVe(); stageCustom.showVe();
+						stageBasic.vee.hide(); stageLair.vee.hide(); stageCoven.vee.hide(); stageCustom.vee.show();
 						compCrCustom.setParentState(this);
 						break;
 					}
 					case "4": {
-						stageBasic.hideVe(); stageLair.hideVe(); stageCoven.hideVe(); stageCustom.hideVe();
+						stageBasic.vee.hide(); stageLair.vee.hide(); stageCoven.vee.hide(); stageCustom.vee.hide();
 						delete this._state.cr;
 						break;
 					}
 				}
 				cb();
-			}).appendTo(rowInner);
+			}).vee.appendTo(rowInner);
 
 		// region BASIC CONTROLS
-		const selCr = ee`<select class="ve-form-control ve-input-xs ve-mb-2">${Parser.CRS.map(it => `<option>${it}</option>`).join("")}</select>`
-			.val(this._state.cr ? (this._state.cr.cr || this._state.cr) : null).onn("change", () => {
-				if (selMode.val() === "0") this._state.cr = selCr.val();
-				else this._state.cr.cr = selCr.val();
+		const selCr = veT`<select class="ve-form-control ve-input-xs ve-mb-2">${Parser.CRS.map(it => `<option>${it}</option>`).join("")}</select>`
+			.vee.val(this._state.cr ? (this._state.cr.cr || this._state.cr) : null).vee.onn("change", () => {
+				if (selMode.vee.val() === "0") this._state.cr = selCr.vee.val();
+				else this._state.cr.cr = selCr.vee.val();
 				cb();
 			});
-		const stageBasic = ee`<div>${selCr}</div>`
-			.appendTo(rowInner).toggleVe(!["3", "4"].includes(initialMode));
+		const stageBasic = veT`<div>${selCr}</div>`
+			.vee.appendTo(rowInner).vee.toggle(!["3", "4"].includes(initialMode));
 		// endregion
 
 		// region LAIR CONTROLS
-		const selCrLair = ee`<select class="ve-form-control ve-input-xs">${Parser.CRS.map(it => `<option>${it}</option>`).join("")}</select>`
-			.onn("change", () => {
-				this._state.cr.lair = selCrLair.val();
+		const selCrLair = veT`<select class="ve-form-control ve-input-xs">${Parser.CRS.map(it => `<option>${it}</option>`).join("")}</select>`
+			.vee.onn("change", () => {
+				this._state.cr.lair = selCrLair.vee.val();
 				cb();
 			});
-		const stageLair = ee`<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33">While in lair</span>${selCrLair}</div>`
-			.appendTo(rowInner).toggleVe(initialMode === "1");
-		initialMode === "1" && selCrLair.val(this._state.cr.cr);
+		const stageLair = veT`<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33">While in lair</span>${selCrLair}</div>`
+			.vee.appendTo(rowInner).vee.toggle(initialMode === "1");
+		initialMode === "1" && selCrLair.vee.val(this._state.cr.cr);
 		// endregion
 
 		// region COVEN CONTROLS
-		const selCrCoven = ee`<select class="ve-form-control ve-input-xs">${Parser.CRS.map(it => `<option>${it}</option>`).join("")}</select>`
-			.onn("change", () => {
-				this._state.cr.coven = selCrCoven.val();
+		const selCrCoven = veT`<select class="ve-form-control ve-input-xs">${Parser.CRS.map(it => `<option>${it}</option>`).join("")}</select>`
+			.vee.onn("change", () => {
+				this._state.cr.coven = selCrCoven.vee.val();
 				cb();
 			});
-		const stageCoven = ee`<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33">While in coven</span>${selCrCoven}</div>`
-			.appendTo(rowInner).toggleVe(initialMode === "2");
-		initialMode === "2" && selCrCoven.val(this._state.cr.cr);
+		const stageCoven = veT`<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33">While in coven</span>${selCrCoven}</div>`
+			.vee.appendTo(rowInner).vee.toggle(initialMode === "2");
+		initialMode === "2" && selCrCoven.vee.val(this._state.cr.cr);
 		// endregion
 
 		// region CUSTOM CONTROLS
@@ -2431,11 +2431,11 @@ export class CreatureBuilder extends BuilderBase {
 				} else delete parent._state.cr;
 			}
 		}();
-		const stageCustom = ee`<div class="ve-flex-col ve-mb-2">
+		const stageCustom = veT`<div class="ve-flex-col ve-mb-2">
 			<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--25">CR</span>${compCrCustom.renderInputCr()}</div>
 			<div class="ve-flex-v-center"><span class="ve-mr-2 mkbru__sub-name--25">XP</span>${compCrCustom.renderInputXp()}</div>
 		</div>`
-			.appendTo(rowInner).toggleVe(initialMode === "3");
+			.vee.appendTo(rowInner).vee.toggle(initialMode === "3");
 		if (initialMode === "3") {
 			compCrCustom._state.cr = this._state.cr.cr ?? this._state.cr;
 			compCrCustom._state.xp = this._state.cr.xp;
@@ -2457,11 +2457,11 @@ export class CreatureBuilder extends BuilderBase {
 			// update proficiency bonus input as required
 			if (this._meta.autoCalc.proficiency) {
 				if (this._state.cr == null) {
-					iptProfBonus.val(0);
+					iptProfBonus.vee.val(0);
 					this._meta.profBonus = 0;
 				} else {
 					const pb = Parser.crToPb(this._state.cr.cr || this._state.cr);
-					iptProfBonus.val(pb);
+					iptProfBonus.vee.val(pb);
 					this._meta.profBonus = pb;
 				}
 				cb();
@@ -2469,17 +2469,17 @@ export class CreatureBuilder extends BuilderBase {
 		};
 		this._addHook("state", "cr", hook);
 
-		const iptProfBonus = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`
-			.val(this._getProfBonus())
-			.onn("change", () => {
-				this._meta.profBonus = UiUtil.strToInt(iptProfBonus.val(), 0, {min: 0});
+		const iptProfBonus = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`
+			.vee.val(this._getProfBonus())
+			.vee.onn("change", () => {
+				this._meta.profBonus = UiUtil.strToInt(iptProfBonus.vee.val(), 0, {min: 0});
 				this._meta.autoCalc.proficiency = false;
-				iptProfBonus.val(UiUtil.intToBonus(this._meta.profBonus));
+				iptProfBonus.vee.val(UiUtil.intToBonus(this._meta.profBonus));
 				cb();
 			});
 
-		const btnAuto = ee`<button class="ve-btn ve-btn-xs ve-btn-default ${this._meta.autoCalc.proficiency ? "ve-active" : ""}" title="Auto-calculate from Challenge Rating (DMG'14 p. 274)"><span class="glyphicon glyphicon-refresh"></span></button>`
-			.onn("click", () => {
+		const btnAuto = veT`<button class="ve-btn ve-btn-xs ve-btn-default ${this._meta.autoCalc.proficiency ? "ve-active" : ""}" title="Auto-calculate from Challenge Rating (DMG'14 p. 274)"><span class="glyphicon glyphicon-refresh"></span></button>`
+			.vee.onn("click", () => {
 				if (this._meta.autoCalc.proficiency) {
 					this._meta.autoCalc.proficiency = false;
 					this.doUiSave();
@@ -2487,11 +2487,11 @@ export class CreatureBuilder extends BuilderBase {
 					this._meta.autoCalc.proficiency = true;
 					hook();
 				}
-				btnAuto.toggleClass("ve-active", this._meta.autoCalc.proficiency);
+				btnAuto.vee.toggleClass("ve-active", this._meta.autoCalc.proficiency);
 				cb();
 			});
 
-		ee`<div class="ve-flex-v-center">${iptProfBonus}${btnAuto}</div>`.appendTo(rowInner);
+		veT`<div class="ve-flex-v-center">${iptProfBonus}${btnAuto}</div>`.vee.appendTo(rowInner);
 
 		return row;
 	}
@@ -2504,16 +2504,16 @@ export class CreatureBuilder extends BuilderBase {
 	__getProfNoteInput (cb) {
 		const [row, rowInner] = BuilderUi.getLabelledRowTuple("Proficiency Note", {title: `The value to display as the "Proficiency Bonus" on the statblock. If not specified, the display value is based on the creature's CR.`});
 
-		const iptPbNote = ee`<input class="ve-form-control form-control--minimal ve-input-xs">`
-			.val(this._state.pbNote || "")
-			.onn("change", () => {
-				const val = iptPbNote.val().trim();
+		const iptPbNote = veT`<input class="ve-form-control form-control--minimal ve-input-xs">`
+			.vee.val(this._state.pbNote || "")
+			.vee.onn("change", () => {
+				const val = iptPbNote.vee.val().trim();
 				if (val) this._state.pbNote = val;
 				else delete this._state.pbNote;
 				cb();
 			});
 
-		ee`<div class="ve-flex-v-center">${iptPbNote}</div>`.appendTo(rowInner);
+		veT`<div class="ve-flex-v-center">${iptPbNote}</div>`.vee.appendTo(rowInner);
 
 		return row;
 	}
@@ -2522,12 +2522,12 @@ export class CreatureBuilder extends BuilderBase {
 		const [row, rowInner] = BuilderUi.getLabelledRowTuple("Spellcasting", {isMarked: true});
 
 		const traitRows = [];
-		const wrpRows = ee`<div></div>`.appendTo(rowInner);
-		const wrpControls = ee`<div></div>`.appendTo(rowInner);
+		const wrpRows = veT`<div></div>`.vee.appendTo(rowInner);
+		const wrpControls = veT`<div></div>`.vee.appendTo(rowInner);
 
-		const btnAddRow = ee`<button class="ve-btn ve-btn-xs ve-btn-default">Add Spellcasting Trait</button>`
-			.appendTo(wrpControls)
-			.onn("click", () => {
+		const btnAddRow = veT`<button class="ve-btn ve-btn-xs ve-btn-default">Add Spellcasting Trait</button>`
+			.vee.appendTo(wrpControls)
+			.vee.onn("click", () => {
 				doAddTrait();
 				doUpdateState();
 			});
@@ -2545,7 +2545,7 @@ export class CreatureBuilder extends BuilderBase {
 		const doAddTrait = trait => {
 			const row = this.__getSpellcastingInput__getTraitRow(traitRows, doUpdateState, trait);
 			traitRows.push(row);
-			row.ele.appendTo(wrpRows);
+			row.ele.vee.appendTo(wrpRows);
 		};
 
 		if (this._state.spellcasting) this._state.spellcasting.forEach(sc => doAddTrait(sc));
@@ -2556,18 +2556,18 @@ export class CreatureBuilder extends BuilderBase {
 	__getSpellcastingInput__getTraitRow (traitRows, doUpdateState, trait) {
 		const getState = () => {
 			const out = {
-				name: iptName.val().trim(),
+				name: iptName.vee.val().trim(),
 			};
 
-			if (btnToggleHeader.hasClass("ve-active")) out.headerEntries = UiUtil.getTextAsEntries(iptHeader.val());
+			if (btnToggleHeader.vee.hasClass("ve-active")) out.headerEntries = UiUtil.getTextAsEntries(iptHeader.vee.val());
 			if (out.headerEntries && !out.headerEntries.length) delete out.headerEntries;
-			if (btnToggleFooter.hasClass("ve-active")) out.footerEntries = UiUtil.getTextAsEntries(iptFooter.val());
+			if (btnToggleFooter.vee.hasClass("ve-active")) out.footerEntries = UiUtil.getTextAsEntries(iptFooter.vee.val());
 			if (out.footerEntries && !out.footerEntries.length) delete out.footerEntries;
 
-			const displayAs = selDisplayAs.val();
+			const displayAs = selDisplayAs.vee.val();
 			if (displayAs !== "trait") out.displayAs = displayAs;
 
-			if (btnToggleHide.hasClass("ve-active")) {
+			if (btnToggleHide.vee.hasClass("ve-active")) {
 				if (compHidden._state.hidden?.length) out.hidden = [...compHidden._state.hidden];
 			}
 
@@ -2600,28 +2600,28 @@ export class CreatureBuilder extends BuilderBase {
 		const doAddSpellRow = (meta, data) => {
 			const row = this.__getSpellcastingInput__getSpellGenericRow(spellRows, doUpdateState, meta, data);
 			spellRows.push(row);
-			row.ele.appendTo(wrpSubRows);
+			row.ele.vee.appendTo(wrpSubRows);
 		};
 
-		const iptName = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2" placeholder="Trait name">`
-			.onn("change", () => doUpdateState());
-		iptName.val(trait ? trait.name : "Spellcasting");
+		const iptName = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2" placeholder="Trait name">`
+			.vee.onn("change", () => doUpdateState());
+		iptName.vee.val(trait ? trait.name : "Spellcasting");
 
-		const btnToggleHeader = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2">Header</button>`
-			.onn("click", () => {
-				btnToggleHeader.toggleClass("ve-active");
-				iptHeader.toggleVe(btnToggleHeader.hasClass("ve-active"));
+		const btnToggleHeader = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2">Header</button>`
+			.vee.onn("click", () => {
+				btnToggleHeader.vee.toggleClass("ve-active");
+				iptHeader.vee.toggle(btnToggleHeader.vee.hasClass("ve-active"));
 				doUpdateState();
 			})
-			.toggleClass("ve-active", !!(trait && trait.headerEntries));
+			.vee.toggleClass("ve-active", !!(trait && trait.headerEntries));
 
-		const btnToggleFooter = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2">Footer</button>`
-			.onn("click", () => {
-				btnToggleFooter.toggleClass("ve-active");
-				iptFooter.toggleVe(btnToggleFooter.hasClass("ve-active"));
+		const btnToggleFooter = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2">Footer</button>`
+			.vee.onn("click", () => {
+				btnToggleFooter.vee.toggleClass("ve-active");
+				iptFooter.vee.toggle(btnToggleFooter.vee.hasClass("ve-active"));
 				doUpdateState();
 			})
-			.toggleClass("ve-active", !!(trait && trait.footerEntries));
+			.vee.toggleClass("ve-active", !!(trait && trait.footerEntries));
 
 		const _CONTEXT_ENTRIES = [
 			_SPELLCASTING_META_SPELLS__CANTRIPS,
@@ -2680,22 +2680,22 @@ export class CreatureBuilder extends BuilderBase {
 			);
 		}));
 
-		const btnAddSpell = ee`<button class="ve-btn ve-btn-xs ve-btn-default">Add...</button>`
-			.onn("click", (evt) => ContextUtil.pOpenMenu(evt, menu));
+		const btnAddSpell = veT`<button class="ve-btn ve-btn-xs ve-btn-default">Add...</button>`
+			.vee.onn("click", (evt) => ContextUtil.pOpenMenu(evt, menu));
 
-		const iptHeader = ee`<textarea class="ve-form-control form-control--minimal ve-resize-vertical ve-mb-2" placeholder="Header text"></textarea>`
-			.toggleVe(!!(trait && trait.headerEntries))
-			.onn("change", () => doUpdateState());
-		if (trait && trait.headerEntries) iptHeader.val(UiUtil.getEntriesAsText(trait.headerEntries));
+		const iptHeader = veT`<textarea class="ve-form-control form-control--minimal ve-resize-vertical ve-mb-2" placeholder="Header text"></textarea>`
+			.vee.toggle(!!(trait && trait.headerEntries))
+			.vee.onn("change", () => doUpdateState());
+		if (trait && trait.headerEntries) iptHeader.vee.val(UiUtil.getEntriesAsText(trait.headerEntries));
 
-		const iptFooter = ee`<textarea class="ve-form-control form-control--minimal ve-resize-vertical ve-mb-2" placeholder="Footer text"></textarea>`
-			.toggleVe(!!(trait && trait.footerEntries))
-			.onn("change", () => doUpdateState());
-		if (trait && trait.footerEntries) iptFooter.val(UiUtil.getEntriesAsText(trait.footerEntries));
+		const iptFooter = veT`<textarea class="ve-form-control form-control--minimal ve-resize-vertical ve-mb-2" placeholder="Footer text"></textarea>`
+			.vee.toggle(!!(trait && trait.footerEntries))
+			.vee.onn("change", () => doUpdateState());
+		if (trait && trait.footerEntries) iptFooter.vee.val(UiUtil.getEntriesAsText(trait.footerEntries));
 
-		const selDisplayAs = ee`<select class="ve-form-control ve-input-xs ve-mr-2">${Renderer.monster.CHILD_PROPS__SPELLCASTING_DISPLAY_AS.map(prop => `<option value="${prop}">${prop.uppercaseFirst()}</option>`).join("")}</select>`
-			.onn("change", () => doUpdateState());
-		if (trait) selDisplayAs.val(trait.displayAs || "trait");
+		const selDisplayAs = veT`<select class="ve-form-control ve-input-xs ve-mr-2">${Renderer.monster.CHILD_PROPS__SPELLCASTING_DISPLAY_AS.map(prop => `<option value="${prop}">${prop.uppercaseFirst()}</option>`).join("")}</select>`
+			.vee.onn("change", () => doUpdateState());
+		if (trait) selDisplayAs.vee.val(trait.displayAs || "trait");
 
 		const compHidden = new class extends BaseComponent {
 			renderInputHidden () {
@@ -2712,29 +2712,29 @@ export class CreatureBuilder extends BuilderBase {
 
 			_getDefaultState () { return { hidden: [] }; }
 		}();
-		const stgHidden = ee`<div class="ve-flex-col ve-mb-2">
+		const stgHidden = veT`<div class="ve-flex-col ve-mb-2">
 			<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33">Hidden</span>${compHidden.renderInputHidden()}</div>
 		</div>`
-			.toggleVe(!!trait?.hidden?.length);
+			.vee.toggle(!!trait?.hidden?.length);
 		if (trait?.hidden?.length) {
 			compHidden._state.hidden = [...trait.hidden];
 		}
 		compHidden._addHookAll("state", () => doUpdateState());
 
-		const btnToggleHide = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="Hide spells of a given type. This is often used when spells are presented as part of the header text.">Hide...</button>`
-			.onn("click", () => {
-				btnToggleHide.toggleClass("ve-active");
-				stgHidden.toggleVe(btnToggleHide.hasClass("ve-active"));
+		const btnToggleHide = veT`<button class="ve-btn ve-btn-xs ve-btn-default" title="Hide spells of a given type. This is often used when spells are presented as part of the header text.">Hide...</button>`
+			.vee.onn("click", () => {
+				btnToggleHide.vee.toggleClass("ve-active");
+				stgHidden.vee.toggle(btnToggleHide.vee.hasClass("ve-active"));
 				doUpdateState();
 			})
-			.toggleClass("ve-active", !!(trait && trait.hidden?.length));
+			.vee.toggleClass("ve-active", !!(trait && trait.hidden?.length));
 
-		const wrpControls = ee`<div class="ve-flex-v-center ve-mb-2">${iptName}${btnToggleHeader}${btnToggleFooter}${btnAddSpell}</div>`;
-		const wrpSubRows = ee`<div class="ve-flex-col"></div>`;
-		const wrpSubRowsOuter = ee`<div class="ve-flex-col">${iptHeader}${wrpSubRows}${iptFooter}</div>`;
+		const wrpControls = veT`<div class="ve-flex-v-center ve-mb-2">${iptName}${btnToggleHeader}${btnToggleFooter}${btnAddSpell}</div>`;
+		const wrpSubRows = veT`<div class="ve-flex-col"></div>`;
+		const wrpSubRowsOuter = veT`<div class="ve-flex-col">${iptHeader}${wrpSubRows}${iptFooter}</div>`;
 
-		const btnRemove = ee`<button class="ve-btn ve-btn-xs ve-btn-danger" title="Remove Trait"><span class="glyphicon glyphicon-trash"></span></button>`
-			.onn("click", async () => {
+		const btnRemove = veT`<button class="ve-btn ve-btn-xs ve-btn-danger" title="Remove Trait"><span class="glyphicon glyphicon-trash"></span></button>`
+			.vee.onn("click", async () => {
 				const currState = getState();
 				if (currState) {
 					delete currState.name; // ignore name key
@@ -2744,11 +2744,11 @@ export class CreatureBuilder extends BuilderBase {
 				}
 
 				traitRows.splice(traitRows.indexOf(out), 1);
-				ele.empty().remove();
+				ele.vee.empty().remove();
 				doUpdateState();
 			});
 
-		const ele = ee`<div class="ve-flex-col mkbru__wrp-rows">
+		const ele = veT`<div class="ve-flex-col mkbru__wrp-rows">
 		${wrpControls}
 		<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33">Display As</span>${selDisplayAs}${btnToggleHide}</div>
 		${stgHidden}
@@ -2811,10 +2811,10 @@ export class CreatureBuilder extends BuilderBase {
 			} else return null;
 		};
 
-		const wrpItems = ee`<div class="ve-flex-col"></div>`;
+		const wrpItems = veT`<div class="ve-flex-col"></div>`;
 
-		const btnAdd = ee`<button class="ve-btn ve-btn-xxs ve-btn-default ve-mr-2" title="Add Spell"><span class="glyphicon glyphicon-plus"></span></button>`
-			.onn("click", async () => {
+		const btnAdd = veT`<button class="ve-btn ve-btn-xxs ve-btn-default ve-mr-2" title="Add Spell"><span class="glyphicon glyphicon-plus"></span></button>`
+			.vee.onn("click", async () => {
 				const options = {styleHint: this._meta.styleHint};
 
 				if (meta.level) options.level = meta.level;
@@ -2829,10 +2829,10 @@ export class CreatureBuilder extends BuilderBase {
 				}
 			});
 
-		const btnRemove = ee`<button class="ve-btn ve-btn-xxs ve-btn-danger" title="Remove Spell Group"><span class="glyphicon glyphicon-trash"></span></button>`
-			.onn("click", () => {
+		const btnRemove = veT`<button class="ve-btn ve-btn-xxs ve-btn-danger" title="Remove Spell Group"><span class="glyphicon glyphicon-trash"></span></button>`
+			.vee.onn("click", () => {
 				spellRows.splice(spellRows.indexOf(out), 1);
-				ele.empty().remove();
+				ele.vee.empty().remove();
 				doUpdateState();
 			});
 
@@ -2844,14 +2844,14 @@ export class CreatureBuilder extends BuilderBase {
 			rowItems.forEach(it => it._sortString = Renderer.stripTags(it.getState())); // should always return an entry string
 			rowItems.sort((a, b) => SortUtil.ascSortLower(a._sortString, b._sortString) || b.order - a.order)
 				.forEach(rowItem => {
-					rowItem.ele.detach();
-					wrpItems.appends(rowItem.ele);
+					rowItem.ele.vee.detach();
+					wrpItems.vee.appends(rowItem.ele);
 				});
 		};
 
 		const metaPart = new _CREATURE_BUILDER_SPELL_META_INPUT_RENDERER_CLAZZES[meta.mode]({meta, data, doUpdateState}).render();
 
-		const ele = ee`<div class="ve-flex-col">
+		const ele = veT`<div class="ve-flex-col">
 		<div class="ve-split ve-flex-v-center ve-mb-2">
 			${metaPart.ele}
 			<div class="ve-flex-v-center mkbru__wrp-btn-xxs">${btnAdd}${btnRemove}</div>
@@ -2869,32 +2869,32 @@ export class CreatureBuilder extends BuilderBase {
 	static __getSpellcastingInput__getSpellGenericRow__getRowItem (rowItems, doUpdateState, spellEntry) {
 		const getHtml = () => `&bull; ${Renderer.get().render(spellEntry)}`;
 
-		const iptSpell = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`
-			.val(spellEntry)
-			.onn("change", () => {
-				spellEntry = iptSpell.val();
-				wrpRender.html(getHtml());
+		const iptSpell = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`
+			.vee.val(spellEntry)
+			.vee.onn("change", () => {
+				spellEntry = iptSpell.vee.val();
+				wrpRender.vee.html(getHtml());
 				doUpdateState();
 			})
-			.hideVe();
+			.vee.hide();
 
-		const btnToggleEdit = ee`<button class="ve-btn ve-btn-xxs ve-btn-default ve-mr-2" title="Toggle Edit Mode"><span class="glyphicon glyphicon-pencil"></span></button>`
-			.onn("click", () => {
-				btnToggleEdit.toggleClass("ve-active");
-				iptSpell.toggleVe(btnToggleEdit.hasClass("ve-active"));
-				wrpRender.toggleVe(!btnToggleEdit.hasClass("ve-active"));
+		const btnToggleEdit = veT`<button class="ve-btn ve-btn-xxs ve-btn-default ve-mr-2" title="Toggle Edit Mode"><span class="glyphicon glyphicon-pencil"></span></button>`
+			.vee.onn("click", () => {
+				btnToggleEdit.vee.toggleClass("ve-active");
+				iptSpell.vee.toggle(btnToggleEdit.vee.hasClass("ve-active"));
+				wrpRender.vee.toggle(!btnToggleEdit.vee.hasClass("ve-active"));
 			});
 
-		const wrpRender = ee`<div class="ve-mr-2">${getHtml()}</div>`;
+		const wrpRender = veT`<div class="ve-mr-2">${getHtml()}</div>`;
 
-		const btnRemove = ee`<button class="ve-btn ve-btn-xxs ve-btn-danger" title="Remove Spell"><span class="glyphicon glyphicon-trash"></span></button>`
-			.onn("click", () => {
+		const btnRemove = veT`<button class="ve-btn ve-btn-xxs ve-btn-danger" title="Remove Spell"><span class="glyphicon glyphicon-trash"></span></button>`
+			.vee.onn("click", () => {
 				rowItems.splice(rowItems.indexOf(out), 1);
-				ele.empty().remove();
+				ele.vee.empty().remove();
 				doUpdateState();
 			});
 
-		const ele = ee`<div class="ve-split ve-flex-v-center ve-mb-2 mkbru_mon__spell-wrp-edit">
+		const ele = veT`<div class="ve-split ve-flex-v-center ve-mb-2 mkbru_mon__spell-wrp-edit">
 		${wrpRender}${iptSpell}
 		<div class="ve-flex-v-center mkbru__wrp-btn-xxs">${btnToggleEdit}${btnRemove}</div>
 		</div>`;
@@ -2937,7 +2937,7 @@ export class CreatureBuilder extends BuilderBase {
 							const {eleModalInner, doClose} = UiUtil.getShowModal({
 								title: "Select a Trait",
 								cbClose: (isDataEntered) => {
-									searchWidget.getWrpSearch().detach();
+									searchWidget.getWrpSearch().vee.detach();
 									if (!isDataEntered) return resolve(null);
 									const trait = MiscUtil.copyFast(this._jsonCreatureTraits[traitIndex]);
 									trait.entries = DataUtil.generic.variableResolver.resolve({obj: trait.entries, ent: this._state});
@@ -2945,7 +2945,7 @@ export class CreatureBuilder extends BuilderBase {
 									resolve(trait);
 								},
 							});
-							eleModalInner.appends(searchWidget.getWrpSearch());
+							eleModalInner.vee.appends(searchWidget.getWrpSearch());
 							searchWidget.doFocus();
 						});
 					},
@@ -2977,75 +2977,75 @@ export class CreatureBuilder extends BuilderBase {
 									isUncappedHeight: true,
 								});
 
-								const iptName = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2" placeholder="Weapon">`;
-								const cbMelee = ee`<input type="checkbox" class="mkbru__ipt-cb--plain">`
-									.onn("change", () => stageMelee.toggleVe(cbMelee.prop("checked")))
-									.prop("checked", true);
-								const cbRanged = ee`<input type="checkbox" class="mkbru__ipt-cb--plain">`
-									.onn("change", () => stageRanged.toggleVe(cbRanged.prop("checked")));
-								const cbFinesse = ee`<input type="checkbox" class="mkbru__ipt-cb--plain">`;
-								const cbVersatile = ee`<input type="checkbox" class="mkbru__ipt-cb--plain">`
-									.onn("change", () => stageVersatile.toggleVe(cbVersatile.prop("checked")));
-								const cbBonusDamage = ee`<input type="checkbox" class="mkbru__ipt-cb--plain">`
-									.onn("change", () => stageBonusDamage.toggleVe(cbBonusDamage.prop("checked")));
+								const iptName = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2" placeholder="Weapon">`;
+								const cbMelee = veT`<input type="checkbox" class="mkbru__ipt-cb--plain">`
+									.vee.onn("change", () => stageMelee.vee.toggle(cbMelee.vee.prop("checked")))
+									.vee.prop("checked", true);
+								const cbRanged = veT`<input type="checkbox" class="mkbru__ipt-cb--plain">`
+									.vee.onn("change", () => stageRanged.vee.toggle(cbRanged.vee.prop("checked")));
+								const cbFinesse = veT`<input type="checkbox" class="mkbru__ipt-cb--plain">`;
+								const cbVersatile = veT`<input type="checkbox" class="mkbru__ipt-cb--plain">`
+									.vee.onn("change", () => stageVersatile.vee.toggle(cbVersatile.vee.prop("checked")));
+								const cbBonusDamage = veT`<input type="checkbox" class="mkbru__ipt-cb--plain">`
+									.vee.onn("change", () => stageBonusDamage.vee.toggle(cbBonusDamage.vee.prop("checked")));
 
-								const iptMeleeRange = ee`<input class="ve-form-control form-control--minimal ve-input-xs" value="5">`;
-								const iptMeleeDamDiceCount = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2 mkbru_mon__ipt-attack-dice" placeholder="Number of Dice" min="1" value="1">`;
-								const iptMeleeDamDiceNum = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2 mkbru_mon__ipt-attack-dice" placeholder="Dice Type" value="6">`;
-								const iptMeleeDamBonus = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2" placeholder="+X (additional bonus damage)">`;
-								const iptMeleeDamType = ee`<input class="ve-form-control form-control--minimal ve-input-xs" placeholder="Melee Damage Type" autocomplete="off">`
-									.typeahead(Parser.DMG_TYPES);
-								const stageMelee = ee`<div class="ve-flex-col"><hr class="ve-hr-3">
+								const iptMeleeRange = veT`<input class="ve-form-control form-control--minimal ve-input-xs" value="5">`;
+								const iptMeleeDamDiceCount = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2 mkbru_mon__ipt-attack-dice" placeholder="Number of Dice" min="1" value="1">`;
+								const iptMeleeDamDiceNum = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2 mkbru_mon__ipt-attack-dice" placeholder="Dice Type" value="6">`;
+								const iptMeleeDamBonus = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2" placeholder="+X (additional bonus damage)">`;
+								const iptMeleeDamType = veT`<input class="ve-form-control form-control--minimal ve-input-xs" placeholder="Melee Damage Type" autocomplete="off">`
+									.vee.typeahead(Parser.DMG_TYPES);
+								const stageMelee = veT`<div class="ve-flex-col"><hr class="ve-hr-3">
 								<div class="ve-bold ve-mb-2">Melee</div>
 								<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 ve-no-shrink">Melee Range (ft.)</span>${iptMeleeRange}</div>
 								<div class="ve-flex-v-center ve-mb-2">${iptMeleeDamDiceCount}<span class="ve-mr-2">d</span>${iptMeleeDamDiceNum}${iptMeleeDamBonus}${iptMeleeDamType}</div>
 								</div>`;
 
-								const iptRangedShort = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`;
-								const iptRangedLong = ee`<input class="ve-form-control form-control--minimal ve-input-xs">`;
-								const iptRangedDamDiceCount = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2 mkbru_mon__ipt-attack-dice" placeholder="Number of Dice" min="1" value="1">`;
-								const iptRangedDamDiceNum = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2 mkbru_mon__ipt-attack-dice" placeholder="Dice Type" value="6">`;
-								const iptRangedDamBonus = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2" placeholder="+X (additional bonus damage)">`;
-								const iptRangedDamType = ee`<input class="ve-form-control form-control--minimal ve-input-xs" placeholder="Ranged Damage Type">`
-									.typeahead(Parser.DMG_TYPES);
-								const stageRanged = ee`<div class="ve-flex-col"><hr class="ve-hr-3">
+								const iptRangedShort = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`;
+								const iptRangedLong = veT`<input class="ve-form-control form-control--minimal ve-input-xs">`;
+								const iptRangedDamDiceCount = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2 mkbru_mon__ipt-attack-dice" placeholder="Number of Dice" min="1" value="1">`;
+								const iptRangedDamDiceNum = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2 mkbru_mon__ipt-attack-dice" placeholder="Dice Type" value="6">`;
+								const iptRangedDamBonus = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2" placeholder="+X (additional bonus damage)">`;
+								const iptRangedDamType = veT`<input class="ve-form-control form-control--minimal ve-input-xs" placeholder="Ranged Damage Type">`
+									.vee.typeahead(Parser.DMG_TYPES);
+								const stageRanged = veT`<div class="ve-flex-col"><hr class="ve-hr-3">
 								<div class="ve-bold ve-mb-2">Ranged</div>
 								<div class="ve-flex-v-center ve-mb-2">
 									<span class="ve-mr-2 ve-no-shrink">Short Range (ft.)</span>${iptRangedShort}
 									<span class="ve-mr-2 ve-no-shrink">Long Range (ft.)</span>${iptRangedLong}
 								</div>
 								<div class="ve-flex-v-center ve-mb-2">${iptRangedDamDiceCount}<span class="ve-mr-2">d</span>${iptRangedDamDiceNum}${iptRangedDamBonus}${iptRangedDamType}</div>
-								</div>`.hideVe();
+								</div>`.vee.hide();
 
-								const iptVersatileDamDiceCount = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2 mkbru_mon__ipt-attack-dice" placeholder="Number of Dice" min="1" value="1">`;
-								const iptVersatileDamDiceNum = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2 mkbru_mon__ipt-attack-dice" placeholder="Dice Type" value="8">`;
-								const iptVersatileDamBonus = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2" placeholder="+X (additional bonus damage)">`;
-								const iptVersatileDamType = ee`<input class="ve-form-control form-control--minimal ve-input-xs" placeholder="Two-Handed Damage Type">`
-									.typeahead(Parser.DMG_TYPES);
-								const stageVersatile = ee`<div class="ve-flex-col"><hr class="ve-hr-3">
+								const iptVersatileDamDiceCount = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2 mkbru_mon__ipt-attack-dice" placeholder="Number of Dice" min="1" value="1">`;
+								const iptVersatileDamDiceNum = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2 mkbru_mon__ipt-attack-dice" placeholder="Dice Type" value="8">`;
+								const iptVersatileDamBonus = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2" placeholder="+X (additional bonus damage)">`;
+								const iptVersatileDamType = veT`<input class="ve-form-control form-control--minimal ve-input-xs" placeholder="Two-Handed Damage Type">`
+									.vee.typeahead(Parser.DMG_TYPES);
+								const stageVersatile = veT`<div class="ve-flex-col"><hr class="ve-hr-3">
 								<div class="ve-bold ve-mb-2">Versatile Damage</div>
 								<div class="ve-flex-v-center ve-mb-2">${iptVersatileDamDiceCount}<span class="ve-mr-2">d</span>${iptVersatileDamDiceNum}${iptVersatileDamBonus}${iptVersatileDamType}</div>
-								</div>`.hideVe();
+								</div>`.vee.hide();
 
-								const iptBonusDamDiceCount = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2 mkbru_mon__ipt-attack-dice" placeholder="Number of Dice" min="1" value="1">`;
-								const iptBonusDamDiceNum = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2 mkbru_mon__ipt-attack-dice" placeholder="Dice Type" value="6">`;
-								const iptBonusDamBonus = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2" placeholder="+X (additional bonus damage)">`;
-								const iptBonusDamType = ee`<input class="ve-form-control form-control--minimal ve-input-xs" placeholder="Bonus Damage Type">`
-									.typeahead(Parser.DMG_TYPES);
-								const stageBonusDamage = ee`<div class="ve-flex-col"><hr class="ve-hr-3">
+								const iptBonusDamDiceCount = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2 mkbru_mon__ipt-attack-dice" placeholder="Number of Dice" min="1" value="1">`;
+								const iptBonusDamDiceNum = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2 mkbru_mon__ipt-attack-dice" placeholder="Dice Type" value="6">`;
+								const iptBonusDamBonus = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2" placeholder="+X (additional bonus damage)">`;
+								const iptBonusDamType = veT`<input class="ve-form-control form-control--minimal ve-input-xs" placeholder="Bonus Damage Type">`
+									.vee.typeahead(Parser.DMG_TYPES);
+								const stageBonusDamage = veT`<div class="ve-flex-col"><hr class="ve-hr-3">
 								<div class="ve-bold ve-mb-2">Bonus Damage</div>
 								<div class="ve-flex-v-center ve-mb-2">${iptBonusDamDiceCount}<span class="ve-mr-2">d</span>${iptBonusDamDiceNum}${iptBonusDamBonus}${iptBonusDamType}</div>
-								</div>`.hideVe();
+								</div>`.vee.hide();
 
-								const btnConfirm = ee`<button class="ve-btn ve-btn-sm ve-btn-default ve-mr-2">Add</button>`
-									.onn("click", () => {
-										if (!cbMelee.prop("checked") && !cbRanged.prop("checked")) {
+								const btnConfirm = veT`<button class="ve-btn ve-btn-sm ve-btn-default ve-mr-2">Add</button>`
+									.vee.onn("click", () => {
+										if (!cbMelee.vee.prop("checked") && !cbRanged.vee.prop("checked")) {
 											return JqueryUtil.doToast({type: "warning", content: "At least one of 'Melee' or 'Ranged' must be selected!"});
 										} else doClose(true);
 									});
 
-								const btnReset = ee`<button class="ve-btn ve-btn-sm ve-btn-danger">Reset</button>`
-									.onn("click", async () => {
+								const btnReset = veT`<button class="ve-btn ve-btn-sm ve-btn-danger">Reset</button>`
+									.vee.onn("click", async () => {
 										if (!await InputUiUtil.pGetUserBoolean({title: "Reset", htmlDescription: "Are you sure?", textYes: "Yes", textNo: "Cancel"})) return;
 
 										setState({
@@ -3079,17 +3079,17 @@ export class CreatureBuilder extends BuilderBase {
 
 								const getFormData = () => {
 									const pb = this._getProfBonus();
-									const isDex = cbFinesse.prop("checked") || (cbRanged.prop("checked") && !cbMelee.prop("checked"));
+									const isDex = cbFinesse.vee.prop("checked") || (cbRanged.vee.prop("checked") && !cbMelee.vee.prop("checked"));
 									const abilMod = Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, isDex ? "dex" : "str", {defaultScore: 10}));
-									const [melee, ranged] = [cbMelee.prop("checked") ? "mw" : false, cbRanged.prop("checked") ? "rw" : false];
+									const [melee, ranged] = [cbMelee.vee.prop("checked") ? "mw" : false, cbRanged.vee.prop("checked") ? "rw" : false];
 
 									const ptAtk = `{@atk ${[melee ? "mw" : null, ranged ? "rw" : null].filter(Boolean).join(",")}}`;
 									const ptHit = `{@hit ${pb + abilMod}} to hit`;
 									const ptRange = [
-										melee ? `reach ${UiUtil.strToInt(iptMeleeRange.val(), 5, {fallbackOnNaN: 5})} ft.` : null,
+										melee ? `reach ${UiUtil.strToInt(iptMeleeRange.vee.val(), 5, {fallbackOnNaN: 5})} ft.` : null,
 										ranged ? (() => {
-											const vShort = UiUtil.strToInt(iptRangedShort.val(), null, {fallbackOnNaN: null});
-											const vLong = UiUtil.strToInt(iptRangedLong.val(), null, {fallbackOnNaN: null});
+											const vShort = UiUtil.strToInt(iptRangedShort.vee.val(), null, {fallbackOnNaN: null});
+											const vLong = UiUtil.strToInt(iptRangedLong.vee.val(), null, {fallbackOnNaN: null});
 											if (!vShort && !vLong) return `unlimited range`;
 											if (!vShort) return `range ${vLong}/${vLong} ft.`;
 											if (!vLong) return `range ${vShort}/${vShort} ft.`;
@@ -3098,22 +3098,22 @@ export class CreatureBuilder extends BuilderBase {
 									].filter(Boolean).join(" or ");
 
 									const getDamageDicePt = (iptNum, iptFaces, iptBonus, isSkipAbilMod) => {
-										const num = UiUtil.strToInt(iptNum.val(), 1, {fallbackOnNaN: 1});
-										const faces = UiUtil.strToInt(iptFaces.val(), 6, {fallbackOnNaN: 6});
-										const bonusVal = UiUtil.strToInt(iptBonus.val());
+										const num = UiUtil.strToInt(iptNum.vee.val(), 1, {fallbackOnNaN: 1});
+										const faces = UiUtil.strToInt(iptFaces.vee.val(), 6, {fallbackOnNaN: 6});
+										const bonusVal = UiUtil.strToInt(iptBonus.vee.val());
 										const totalBonus = (isSkipAbilMod ? 0 : abilMod) + bonusVal;
 										return `${Math.floor(num * ((faces + 1) / 2)) + (totalBonus || 0)} ({@damage ${num}d${faces}${totalBonus ? ` ${UiUtil.intToBonus(totalBonus).replace(/([-+])/g, "$1 ")}` : ``}})`;
 									};
-									const getDamageTypePt = (ipDamType) => ipDamType.val().trim() ? ` ${ipDamType.val().trim()}` : "";
+									const getDamageTypePt = (ipDamType) => ipDamType.vee.val().trim() ? ` ${ipDamType.vee.val().trim()}` : "";
 									const ptDamage = [
-										cbMelee.prop("checked") ? `${getDamageDicePt(iptMeleeDamDiceCount, iptMeleeDamDiceNum, iptMeleeDamBonus)}${getDamageTypePt(iptMeleeDamType)} damage${cbRanged.prop("checked") ? ` in melee` : ""}` : null,
-										cbRanged.prop("checked") ? `${getDamageDicePt(iptRangedDamDiceCount, iptRangedDamDiceNum, iptRangedDamBonus)}${getDamageTypePt(iptRangedDamType)} damage${cbMelee.prop("checked") ? ` at range` : ""}` : null,
-										cbVersatile.prop("checked") ? `${getDamageDicePt(iptVersatileDamDiceCount, iptVersatileDamDiceNum, iptVersatileDamBonus)}${getDamageTypePt(iptVersatileDamType)} damage if used with both hands` : null,
+										cbMelee.vee.prop("checked") ? `${getDamageDicePt(iptMeleeDamDiceCount, iptMeleeDamDiceNum, iptMeleeDamBonus)}${getDamageTypePt(iptMeleeDamType)} damage${cbRanged.vee.prop("checked") ? ` in melee` : ""}` : null,
+										cbRanged.vee.prop("checked") ? `${getDamageDicePt(iptRangedDamDiceCount, iptRangedDamDiceNum, iptRangedDamBonus)}${getDamageTypePt(iptRangedDamType)} damage${cbMelee.vee.prop("checked") ? ` at range` : ""}` : null,
+										cbVersatile.vee.prop("checked") ? `${getDamageDicePt(iptVersatileDamDiceCount, iptVersatileDamDiceNum, iptVersatileDamBonus)}${getDamageTypePt(iptVersatileDamType)} damage if used with both hands` : null,
 									].filter(Boolean).join(", or ");
-									const ptDamageFull = cbBonusDamage.prop("checked") ? `${ptDamage}, plus ${getDamageDicePt(iptBonusDamDiceCount, iptBonusDamDiceNum, iptBonusDamBonus, true)}${getDamageTypePt(iptBonusDamType)} damage` : ptDamage;
+									const ptDamageFull = cbBonusDamage.vee.prop("checked") ? `${ptDamage}, plus ${getDamageDicePt(iptBonusDamDiceCount, iptBonusDamDiceNum, iptBonusDamBonus, true)}${getDamageTypePt(iptBonusDamType)} damage` : ptDamage;
 
 									return {
-										name: iptName.val().trim() || "Unarmed Strike",
+										name: iptName.vee.val().trim() || "Unarmed Strike",
 										entries: [
 											`${ptAtk} ${ptHit}, ${ptRange}, one target. {@h}${ptDamageFull}.`,
 										],
@@ -3121,64 +3121,64 @@ export class CreatureBuilder extends BuilderBase {
 								};
 
 								const getState = () => ({
-									iptName: iptName.val(),
-									cbMelee: cbMelee.prop("checked"),
-									cbRanged: cbRanged.prop("checked"),
-									cbFinesse: cbFinesse.prop("checked"),
-									cbVersatile: cbVersatile.prop("checked"),
-									cbBonusDamage: cbBonusDamage.prop("checked"),
-									iptMeleeRange: iptMeleeRange.val(),
-									iptMeleeDamDiceCount: iptMeleeDamDiceCount.val(),
-									iptMeleeDamDiceNum: iptMeleeDamDiceNum.val(),
-									iptMeleeDamBonus: iptMeleeDamBonus.val(),
-									iptMeleeDamType: iptMeleeDamType.val(),
-									iptRangedShort: iptRangedShort.val(),
-									iptRangedLong: iptRangedLong.val(),
-									iptRangedDamDiceCount: iptRangedDamDiceCount.val(),
-									iptRangedDamDiceNum: iptRangedDamDiceNum.val(),
-									iptRangedDamBonus: iptRangedDamBonus.val(),
-									iptRangedDamType: iptRangedDamType.val(),
-									iptVersatileDamDiceCount: iptVersatileDamDiceCount.val(),
-									iptVersatileDamDiceNum: iptVersatileDamDiceNum.val(),
-									iptVersatileDamBonus: iptVersatileDamBonus.val(),
-									iptVersatileDamType: iptVersatileDamType.val(),
-									iptBonusDamDiceCount: iptBonusDamDiceCount.val(),
-									iptBonusDamDiceNum: iptBonusDamDiceNum.val(),
-									iptBonusDamBonus: iptBonusDamBonus.val(),
-									iptBonusDamType: iptBonusDamType.val(),
+									iptName: iptName.vee.val(),
+									cbMelee: cbMelee.vee.prop("checked"),
+									cbRanged: cbRanged.vee.prop("checked"),
+									cbFinesse: cbFinesse.vee.prop("checked"),
+									cbVersatile: cbVersatile.vee.prop("checked"),
+									cbBonusDamage: cbBonusDamage.vee.prop("checked"),
+									iptMeleeRange: iptMeleeRange.vee.val(),
+									iptMeleeDamDiceCount: iptMeleeDamDiceCount.vee.val(),
+									iptMeleeDamDiceNum: iptMeleeDamDiceNum.vee.val(),
+									iptMeleeDamBonus: iptMeleeDamBonus.vee.val(),
+									iptMeleeDamType: iptMeleeDamType.vee.val(),
+									iptRangedShort: iptRangedShort.vee.val(),
+									iptRangedLong: iptRangedLong.vee.val(),
+									iptRangedDamDiceCount: iptRangedDamDiceCount.vee.val(),
+									iptRangedDamDiceNum: iptRangedDamDiceNum.vee.val(),
+									iptRangedDamBonus: iptRangedDamBonus.vee.val(),
+									iptRangedDamType: iptRangedDamType.vee.val(),
+									iptVersatileDamDiceCount: iptVersatileDamDiceCount.vee.val(),
+									iptVersatileDamDiceNum: iptVersatileDamDiceNum.vee.val(),
+									iptVersatileDamBonus: iptVersatileDamBonus.vee.val(),
+									iptVersatileDamType: iptVersatileDamType.vee.val(),
+									iptBonusDamDiceCount: iptBonusDamDiceCount.vee.val(),
+									iptBonusDamDiceNum: iptBonusDamDiceNum.vee.val(),
+									iptBonusDamBonus: iptBonusDamBonus.vee.val(),
+									iptBonusDamType: iptBonusDamType.vee.val(),
 								});
 
 								const setState = (state) => {
-									iptName.val(state.iptName);
-									cbMelee.prop("checked", !!state.cbMelee).trigger("change");
-									cbRanged.prop("checked", !!state.cbRanged).trigger("change");
-									cbFinesse.prop("checked", !!state.cbFinesse).trigger("change");
-									cbVersatile.prop("checked", !!state.cbVersatile).trigger("change");
-									cbBonusDamage.prop("checked", !!state.cbBonusDamage).trigger("change");
-									iptMeleeRange.val(state.iptMeleeRange);
-									iptMeleeDamDiceCount.val(state.iptMeleeDamDiceCount);
-									iptMeleeDamDiceNum.val(state.iptMeleeDamDiceNum);
-									iptMeleeDamBonus.val(state.iptMeleeDamBonus);
-									iptMeleeDamType.val(state.iptMeleeDamType);
-									iptRangedShort.val(state.iptRangedShort);
-									iptRangedLong.val(state.iptRangedLong);
-									iptRangedDamDiceCount.val(state.iptRangedDamDiceCount);
-									iptRangedDamDiceNum.val(state.iptRangedDamDiceNum);
-									iptRangedDamBonus.val(state.iptRangedDamBonus);
-									iptRangedDamType.val(state.iptRangedDamType);
-									iptVersatileDamDiceCount.val(state.iptVersatileDamDiceCount);
-									iptVersatileDamDiceNum.val(state.iptVersatileDamDiceNum);
-									iptVersatileDamBonus.val(state.iptVersatileDamBonus);
-									iptVersatileDamType.val(state.iptVersatileDamType);
-									iptBonusDamDiceCount.val(state.iptBonusDamDiceCount);
-									iptBonusDamDiceNum.val(state.iptBonusDamDiceNum);
-									iptBonusDamBonus.val(state.iptBonusDamBonus);
-									iptBonusDamType.val(state.iptBonusDamType);
+									iptName.vee.val(state.iptName);
+									cbMelee.vee.prop("checked", !!state.cbMelee).vee.trigger("change");
+									cbRanged.vee.prop("checked", !!state.cbRanged).vee.trigger("change");
+									cbFinesse.vee.prop("checked", !!state.cbFinesse).vee.trigger("change");
+									cbVersatile.vee.prop("checked", !!state.cbVersatile).vee.trigger("change");
+									cbBonusDamage.vee.prop("checked", !!state.cbBonusDamage).vee.trigger("change");
+									iptMeleeRange.vee.val(state.iptMeleeRange);
+									iptMeleeDamDiceCount.vee.val(state.iptMeleeDamDiceCount);
+									iptMeleeDamDiceNum.vee.val(state.iptMeleeDamDiceNum);
+									iptMeleeDamBonus.vee.val(state.iptMeleeDamBonus);
+									iptMeleeDamType.vee.val(state.iptMeleeDamType);
+									iptRangedShort.vee.val(state.iptRangedShort);
+									iptRangedLong.vee.val(state.iptRangedLong);
+									iptRangedDamDiceCount.vee.val(state.iptRangedDamDiceCount);
+									iptRangedDamDiceNum.vee.val(state.iptRangedDamDiceNum);
+									iptRangedDamBonus.vee.val(state.iptRangedDamBonus);
+									iptRangedDamType.vee.val(state.iptRangedDamType);
+									iptVersatileDamDiceCount.vee.val(state.iptVersatileDamDiceCount);
+									iptVersatileDamDiceNum.vee.val(state.iptVersatileDamDiceNum);
+									iptVersatileDamBonus.vee.val(state.iptVersatileDamBonus);
+									iptVersatileDamType.vee.val(state.iptVersatileDamType);
+									iptBonusDamDiceCount.vee.val(state.iptBonusDamDiceCount);
+									iptBonusDamDiceNum.vee.val(state.iptBonusDamDiceNum);
+									iptBonusDamBonus.vee.val(state.iptBonusDamBonus);
+									iptBonusDamType.vee.val(state.iptBonusDamType);
 								};
 
 								if (this._generateAttackCache) setState(this._generateAttackCache);
 
-								ee`<div class="ve-flex-col">
+								veT`<div class="ve-flex-col">
 								<div class="ve-flex-v-center ve-mb-2">
 									${iptName}
 									<label class="ve-flex-v-center ve-mr-2"><span class="ve-mr-2">Melee</span>${cbMelee}</label>
@@ -3194,7 +3194,7 @@ export class CreatureBuilder extends BuilderBase {
 								${stageVersatile}
 								${stageBonusDamage}
 								<div class="ve-flex-v-center ve-flex-h-right ve-mt-2 ve-pb-1 ve-px-1">${btnConfirm}${btnReset}</div>
-								</div>`.appendTo(eleModalInner);
+								</div>`.vee.appendTo(eleModalInner);
 							});
 						},
 					},
@@ -3223,7 +3223,7 @@ export class CreatureBuilder extends BuilderBase {
 								const {eleModalInner, doClose} = UiUtil.getShowModal({
 									title: "Select an Action",
 									cbClose: (isDataEntered) => {
-										searchWidget.getWrpSearch().detach();
+										searchWidget.getWrpSearch().vee.detach();
 										if (!isDataEntered) return resolve(null);
 										const action = MiscUtil.copyFast(this._jsonCreatureActions[actionIndex]);
 										const isFinesse = action.entriesFinesse && this._state.dex > this._state.str;
@@ -3235,7 +3235,7 @@ export class CreatureBuilder extends BuilderBase {
 										resolve(action);
 									},
 								});
-								eleModalInner.appends(searchWidget.getWrpSearch());
+								eleModalInner.vee.appends(searchWidget.getWrpSearch());
 								searchWidget.doFocus();
 							});
 						},
@@ -3273,40 +3273,40 @@ export class CreatureBuilder extends BuilderBase {
 		};
 
 		const doUpdateOrder = !options.canReorder ? null : () => {
-			entryRows.forEach(it => it.ele.detach().appendTo(wrpRows));
+			entryRows.forEach(it => it.ele.vee.detach().vee.appendTo(wrpRows));
 			doUpdateState();
 		};
 
 		const entryRows = [];
 
-		const wrpRowsOuter = ee`<div class="ve-relative"></div>`.appendTo(rowInner);
-		const wrpRows = ee`<div></div>`.appendTo(wrpRowsOuter);
+		const wrpRowsOuter = veT`<div class="ve-relative"></div>`.vee.appendTo(rowInner);
+		const wrpRows = veT`<div></div>`.vee.appendTo(wrpRowsOuter);
 		const rowOptions = {prop: options.prop, shortName: options.shortName, wrpRowsOuter};
 
-		const wrpBtnAdd = ee`<div></div>`.appendTo(rowInner);
-		ee`<button class="ve-btn ve-btn-xs ve-btn-default">Add ${options.shortName}</button>`
-			.appendTo(wrpBtnAdd)
-			.onn("click", () => {
-				this.__getGenericEntryInput__getEntryRow(doUpdateState, doUpdateOrder, rowOptions, entryRows).ele.appendTo(wrpRows);
+		const wrpBtnAdd = veT`<div></div>`.vee.appendTo(rowInner);
+		veT`<button class="ve-btn ve-btn-xs ve-btn-default">Add ${options.shortName}</button>`
+			.vee.appendTo(wrpBtnAdd)
+			.vee.onn("click", () => {
+				this.__getGenericEntryInput__getEntryRow(doUpdateState, doUpdateOrder, rowOptions, entryRows).ele.vee.appendTo(wrpRows);
 				doUpdateState();
 			});
 
 		if (options.generators) {
 			options.generators.forEach(gen => {
-				ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-ml-2">${gen.name}</button>`
-					.appendTo(wrpBtnAdd)
-					.onn("click", async () => {
+				veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-ml-2">${gen.name}</button>`
+					.vee.appendTo(wrpBtnAdd)
+					.vee.onn("click", async () => {
 						const entry = await gen.action();
 						if (entry != null) {
 							this.__getGenericEntryInput__getEntryRow(doUpdateState, doUpdateOrder, rowOptions, entryRows, entry)
-								.ele.appendTo(wrpRows);
+								.ele.vee.appendTo(wrpRows);
 							doUpdateState();
 						}
 					});
 			});
 		}
 
-		if (this._state[options.prop]) this._state[options.prop].forEach(entry => this.__getGenericEntryInput__getEntryRow(doUpdateState, doUpdateOrder, rowOptions, entryRows, entry).ele.appendTo(wrpRows));
+		if (this._state[options.prop]) this._state[options.prop].forEach(entry => this.__getGenericEntryInput__getEntryRow(doUpdateState, doUpdateOrder, rowOptions, entryRows, entry).ele.vee.appendTo(wrpRows));
 
 		return row;
 	}
@@ -3316,8 +3316,8 @@ export class CreatureBuilder extends BuilderBase {
 
 		const getState = () => {
 			const out = {
-				name: iptName.val().trim(),
-				entries: UiUtil.getTextAsEntries(iptEntries.val()),
+				name: iptName.vee.val().trim(),
+				entries: UiUtil.getTextAsEntries(iptEntries.vee.val()),
 			};
 
 			// additional state for variant inputs
@@ -3339,9 +3339,9 @@ export class CreatureBuilder extends BuilderBase {
 			return out;
 		};
 
-		const iptName = ee`<input class="ve-form-control form-control--minimal ve-input-xs" placeholder="${options.shortName} name">`
-			.onn("change", () => doUpdateState());
-		if (entry && entry.name) iptName.val(entry.name.trim());
+		const iptName = veT`<input class="ve-form-control form-control--minimal ve-input-xs" placeholder="${options.shortName} name">`
+			.vee.onn("change", () => doUpdateState());
+		if (entry && entry.name) iptName.vee.val(entry.name.trim());
 
 		const btnUp = doUpdateOrder ? BuilderUi.getUpButton(doUpdateOrder, entryRows, out) : null;
 
@@ -3350,34 +3350,34 @@ export class CreatureBuilder extends BuilderBase {
 		const dragOrder = doUpdateOrder ? BuilderUi.getDragPad(doUpdateOrder, entryRows, out, {
 			cbSwap: (swapee) => {
 				// swap textarea dimensions to prevent flickering
-				const cacheDim = {h: swapee.iptEntries.css("height")};
-				swapee.iptEntries.css({height: out.iptEntries.css("height")});
-				out.iptEntries.css({height: cacheDim.h});
+				const cacheDim = {h: swapee.iptEntries.vee.css("height")};
+				swapee.iptEntries.vee.css({height: out.iptEntries.vee.css("height")});
+				out.iptEntries.vee.css({height: cacheDim.h});
 			},
 			wrpRowsOuter: options.wrpRowsOuter,
 		}) : null;
 
-		const iptEntries = ee`<textarea class="ve-form-control form-control--minimal ve-resize-vertical ve-mb-2"></textarea>`
-			.onn("change", () => doUpdateState());
+		const iptEntries = veT`<textarea class="ve-form-control form-control--minimal ve-resize-vertical ve-mb-2"></textarea>`
+			.vee.onn("change", () => doUpdateState());
 
-		if (entry && entry.entries) iptEntries.val(UiUtil.getEntriesAsText(entry.entries));
+		if (entry && entry.entries) iptEntries.vee.val(UiUtil.getEntriesAsText(entry.entries));
 
-		const btnRemove = ee`<button class="ve-btn ve-btn-xs ve-btn-danger ve-mb-2" title="Remove ${options.shortName}"><span class="glyphicon glyphicon-trash"></span></button>`
-			.onn("click", async () => {
+		const btnRemove = veT`<button class="ve-btn ve-btn-xs ve-btn-danger ve-mb-2" title="Remove ${options.shortName}"><span class="glyphicon glyphicon-trash"></span></button>`
+			.vee.onn("click", async () => {
 				const currState = getState();
 				if (currState && currState.entries) {
 					if (!await InputUiUtil.pGetUserBoolean({title: `Remove ${options.shortName}`, htmlDescription: "Are you sure?", textYes: "Yes", textNo: "Cancel"})) return;
 				}
 				entryRows.splice(entryRows.indexOf(out), 1);
-				ele.empty().remove();
+				ele.vee.empty().remove();
 				doUpdateState();
 			});
 
 		const sourceControls = options.prop === "variant" ? (() => {
 			const getState = () => {
-				const pageRaw = iptPage.val();
+				const pageRaw = iptPage.vee.val();
 				const out = {
-					source: selVariantSource.val().unescapeQuotes(),
+					source: selVariantSource.vee.val().unescapeQuotes(),
 					page: !isNaN(pageRaw) ? UiUtil.strToInt(pageRaw) : pageRaw,
 				};
 				if (!out.source) return null;
@@ -3385,21 +3385,21 @@ export class CreatureBuilder extends BuilderBase {
 				return out;
 			};
 
-			const selVariantSource = ee`<select class="ve-form-control ve-input-xs"><option value="">(Same as creature)</option></select>`
-				.onn("change", () => doUpdateState());
-			this._ui.allSources.forEach(srcJson => selVariantSource.appends(`<option value="${srcJson.escapeQuotes()}">${Parser.sourceJsonToFull(srcJson).escapeQuotes()}</option>`));
+			const selVariantSource = veT`<select class="ve-form-control ve-input-xs"><option value="">(Same as creature)</option></select>`
+				.vee.onn("change", () => doUpdateState());
+			this._ui.allSources.forEach(srcJson => selVariantSource.vee.appends(`<option value="${srcJson.escapeQuotes()}">${Parser.sourceJsonToFull(srcJson).escapeQuotes()}</option>`));
 
-			const iptPage = ee`<input class="ve-form-control form-control--minimal ve-input-xs" min="0">`
-				.onn("change", () => doUpdateState());
+			const iptPage = veT`<input class="ve-form-control form-control--minimal ve-input-xs" min="0">`
+				.vee.onn("change", () => doUpdateState());
 
 			if (entry && entry.source && BrewUtil2.hasSourceJson(entry.source)) {
-				selVariantSource.val(entry.source);
-				if (entry.page) iptPage.val(entry.page);
+				selVariantSource.vee.val(entry.source);
+				if (entry.page) iptPage.vee.val(entry.page);
 			}
 
 			(this._eles.selVariantSources = this._eles.selVariantSources || []).push(selVariantSource);
 
-			const ele = ee`<div class="ve-flex-col">
+			const ele = veT`<div class="ve-flex-col">
 			<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--50">Source</span>${selVariantSource}</div>
 			<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--50">Page</span>${iptPage}</div>
 			</div>`;
@@ -3407,7 +3407,7 @@ export class CreatureBuilder extends BuilderBase {
 			return {ele, getState};
 		})() : null;
 
-		const ele = ee`<div class="ve-flex-col mkbru__wrp-rows mkbru__wrp-rows--removable">
+		const ele = veT`<div class="ve-flex-col mkbru__wrp-rows mkbru__wrp-rows--removable">
 		<div class="ve-split ve-flex-v-center ve-mb-2">
 			${iptName}
 			<div class="ve-flex-v-center">${btnUp}${btnDown}${dragOrder}</div>
@@ -3427,16 +3427,16 @@ export class CreatureBuilder extends BuilderBase {
 	__getLegendaryGroupInput (cb) {
 		const [row, rowInner] = BuilderUi.getLabelledRowTuple("Legendary Group");
 
-		this._selLegendaryGroup = ee`<select class="ve-form-control form-control--minimal ve-input-xs"><option value="-1">None</option></select>`
-			.onn("change", () => {
-				const ix = Number(this._selLegendaryGroup.val());
+		this._selLegendaryGroup = veT`<select class="ve-form-control form-control--minimal ve-input-xs"><option value="-1">None</option></select>`
+			.vee.onn("change", () => {
+				const ix = Number(this._selLegendaryGroup.vee.val());
 				if (~ix) this._state.legendaryGroup = this._legendaryGroupCache[ix];
 				else delete this._state.legendaryGroup;
 				cb();
 			})
-			.appendTo(rowInner);
+			.vee.appendTo(rowInner);
 
-		this._legendaryGroupCache.filter(it => it.source).forEach((g, i) => this._selLegendaryGroup.appends(`<option value="${i}">${g.name}${g.source === Parser.SRC_MM ? "" : ` [${Parser.sourceJsonToAbv(g.source)}]`}</option>`));
+		this._legendaryGroupCache.filter(it => it.source).forEach((g, i) => this._selLegendaryGroup.vee.appends(`<option value="${i}">${g.name}${g.source === Parser.SRC_MM ? "" : ` [${Parser.sourceJsonToAbv(g.source)}]`}</option>`));
 
 		this._handleLegendaryGroupChange();
 
@@ -3460,9 +3460,9 @@ export class CreatureBuilder extends BuilderBase {
 
 		if (this._state.legendaryGroup) {
 			const ix = this._legendaryGroupCache.findIndex(it => it.name === this._state.legendaryGroup.name && it.source === this._state.legendaryGroup.source);
-			this._selLegendaryGroup.val(`${ix}`);
+			this._selLegendaryGroup.vee.val(`${ix}`);
 		} else {
-			this._selLegendaryGroup.val(`-1`);
+			this._selLegendaryGroup.vee.val(`-1`);
 		}
 	}
 
@@ -3489,15 +3489,15 @@ export class CreatureBuilder extends BuilderBase {
 
 		const rowMetas = [];
 
-		const wrpRows = ee`<div></div>`.appendTo(rowInner);
+		const wrpRows = veT`<div></div>`.vee.appendTo(rowInner);
 
-		this._state.gear?.forEach(gear => CreatureBuilder.__getGearInput__getGearRow(doUpdateState, rowMetas, gear).wrp.appendTo(wrpRows));
+		this._state.gear?.forEach(gear => CreatureBuilder.__getGearInput__getGearRow(doUpdateState, rowMetas, gear).wrp.vee.appendTo(wrpRows));
 
-		const wrpBtnAdd = ee`<div></div>`.appendTo(rowInner);
-		ee`<button class="ve-btn ve-btn-xs ve-btn-default">Add Gear</button>`
-			.appendTo(wrpBtnAdd)
-			.onn("click", () => {
-				CreatureBuilder.__getGearInput__getGearRow(doUpdateState, rowMetas).wrp.appendTo(wrpRows);
+		const wrpBtnAdd = veT`<div></div>`.vee.appendTo(rowInner);
+		veT`<button class="ve-btn ve-btn-xs ve-btn-default">Add Gear</button>`
+			.vee.appendTo(wrpBtnAdd)
+			.vee.onn("click", () => {
+				CreatureBuilder.__getGearInput__getGearRow(doUpdateState, rowMetas).wrp.vee.appendTo(wrpRows);
 				doUpdateState();
 			});
 
@@ -3530,14 +3530,14 @@ export class CreatureBuilder extends BuilderBase {
 		});
 
 		// REMOVE CONTROLS
-		const btnRemove = ee`<button class="ve-btn ve-btn-xs ve-btn-danger mkbru__btn-rm-row ve-mb-2" title="Remove AC Source"><span class="glyphicon glyphicon-trash"></span></button>`
-			.onn("click", () => {
+		const btnRemove = veT`<button class="ve-btn ve-btn-xs ve-btn-danger mkbru__btn-rm-row ve-mb-2" title="Remove AC Source"><span class="glyphicon glyphicon-trash"></span></button>`
+			.vee.onn("click", () => {
 				rowMetas.splice(rowMetas.indexOf(out), 1);
-				wrp.empty().remove();
+				wrp.vee.empty().remove();
 				doUpdateState();
 			});
 
-		const wrp = ee`<div class="ve-flex-col mkbru__wrp-rows">
+		const wrp = veT`<div class="ve-flex-col mkbru__wrp-rows">
 			<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33">Item ID</span>${iptUid}</div>
 			<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33">Quantity</span>${iptQuantity}</div>
 			<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33">Display Name</span>${iptDisplayName}</div>
@@ -3567,22 +3567,22 @@ export class CreatureBuilder extends BuilderBase {
 
 		const rowMetas = [];
 
-		const wrpRows = ee`<div></div>`.appendTo(rowInner);
+		const wrpRows = veT`<div></div>`.vee.appendTo(rowInner);
 
 		const doRefresh = () => {
-			wrpRows.empty();
+			wrpRows.vee.empty();
 			rowMetas.splice(0, rowMetas.length);
-			this._state.attachedItems?.forEach(gear => CreatureBuilder.__getAttachedItemInput__getAttachedItemRow(doUpdateState, rowMetas, gear).wrp.appendTo(wrpRows));
+			this._state.attachedItems?.forEach(gear => CreatureBuilder.__getAttachedItemInput__getAttachedItemRow(doUpdateState, rowMetas, gear).wrp.vee.appendTo(wrpRows));
 		};
 		doRefresh();
 
-		const btnAdd = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2">Add Attached Item</button>`
-			.onn("click", () => {
-				CreatureBuilder.__getAttachedItemInput__getAttachedItemRow(doUpdateState, rowMetas).wrp.appendTo(wrpRows);
+		const btnAdd = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2">Add Attached Item</button>`
+			.vee.onn("click", () => {
+				CreatureBuilder.__getAttachedItemInput__getAttachedItemRow(doUpdateState, rowMetas).wrp.vee.appendTo(wrpRows);
 				doUpdateState();
 			});
 
-		ee`<div>${btnAdd}</div>`.appendTo(rowInner);
+		veT`<div>${btnAdd}</div>`.vee.appendTo(rowInner);
 
 		return {
 			row,
@@ -3593,16 +3593,16 @@ export class CreatureBuilder extends BuilderBase {
 	__getAttachedItemInputGenerated (cb, fnsDoRefresh) {
 		const [row, rowInner] = BuilderUi.getLabelledRowTuple("Generated", {isMarked: true});
 
-		const btnAdd = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="Generate additional attached items based on the creatures's current actions">Generate Additional Attached Items</button>`
-			.onn("click", async () => {
+		const btnAdd = veT`<button class="ve-btn ve-btn-xs ve-btn-default" title="Generate additional attached items based on the creatures's current actions">Generate Additional Attached Items</button>`
+			.vee.onn("click", async () => {
 				AttachedItemTag.tryRun(this._state, {styleHint: this._meta.styleHint, isAddOnly: true});
 				cb();
 				fnsDoRefresh.forEach(fn => fn());
 			});
 
-		ee`<div class="ve-flex-v-center">
+		veT`<div class="ve-flex-v-center">
 			${btnAdd}
-		</div>`.appendTo(rowInner);
+		</div>`.vee.appendTo(rowInner);
 
 		return row;
 	}
@@ -3622,14 +3622,14 @@ export class CreatureBuilder extends BuilderBase {
 		});
 
 		// REMOVE CONTROLS
-		const btnRemove = ee`<button class="ve-btn ve-btn-xs ve-btn-danger mkbru__btn-rm-row ve-mb-2" title="Remove AC Source"><span class="glyphicon glyphicon-trash"></span></button>`
-			.onn("click", () => {
+		const btnRemove = veT`<button class="ve-btn ve-btn-xs ve-btn-danger mkbru__btn-rm-row ve-mb-2" title="Remove AC Source"><span class="glyphicon glyphicon-trash"></span></button>`
+			.vee.onn("click", () => {
 				rowMetas.splice(rowMetas.indexOf(out), 1);
-				wrp.empty().remove();
+				wrp.vee.empty().remove();
 				doUpdateState();
 			});
 
-		const wrp = ee`<div class="ve-flex-col mkbru__wrp-rows">
+		const wrp = veT`<div class="ve-flex-col mkbru__wrp-rows">
 			<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--33">Item ID</span>${iptUid}</div>
 			<div class="ve-text-right">${btnRemove}</div>
 		</div>`;
@@ -3651,16 +3651,16 @@ export class CreatureBuilder extends BuilderBase {
 			delete this._state.tokenUrl;
 			delete this._state.tokenHref;
 
-			switch (selMode.val()) {
+			switch (selMode.vee.val()) {
 				case "0": {
-					this._state.token = {name: iptExistingName.val().trim(), source: iptExistingSource.val().trim()};
+					this._state.token = {name: iptExistingName.vee.val().trim(), source: iptExistingSource.vee.val().trim()};
 					break;
 				}
 
 				case "1": {
 					this._state.tokenHref = {
 						type: "external",
-						url: iptExternalUrl.val(),
+						url: iptExternalUrl.vee.val(),
 					};
 					break;
 				}
@@ -3668,7 +3668,7 @@ export class CreatureBuilder extends BuilderBase {
 				case "2": {
 					this._state.tokenHref = {
 						type: "internal",
-						path: iptInternalPath.val(),
+						path: iptInternalPath.vee.val(),
 					};
 					break;
 				}
@@ -3679,8 +3679,8 @@ export class CreatureBuilder extends BuilderBase {
 			cb();
 		};
 
-		const btnPreview = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="Preview Token"><span class="glyphicon glyphicon-fullscreen"></span></button>`
-			.onn("click", (evt) => {
+		const btnPreview = veT`<button class="ve-btn ve-btn-xs ve-btn-default" title="Preview Token"><span class="glyphicon glyphicon-fullscreen"></span></button>`
+			.vee.onn("click", (evt) => {
 				if (!Renderer.monster.hasToken(this._state)) return JqueryUtil.doToast({content: "Please set a token first!", type: "warning"});
 
 				Renderer.hover.getShowWindow(
@@ -3705,26 +3705,26 @@ export class CreatureBuilder extends BuilderBase {
 
 		const initialMode = this._state.token ? "0" : this._state.tokenHref?.type === "internal" ? "2" : "1";
 
-		const selMode = ee`<select class="ve-form-control ve-input-xs ve-mr-2">
+		const selMode = veT`<select class="ve-form-control ve-input-xs ve-mr-2">
 			<option value="0">Existing Creature</option>
 			<option value="1">External URL</option>
 			<option value="2">Internal URL</option>
 		</select>`
-			.val(initialMode)
-			.onn("change", () => {
-				switch (selMode.val()) {
+			.vee.val(initialMode)
+			.vee.onn("change", () => {
+				switch (selMode.vee.val()) {
 					case "0": {
-						stgExistingCreature.showVe(); stgExternalUrl.hideVe(); stgInternalUrl.hideVe();
+						stgExistingCreature.vee.show(); stgExternalUrl.vee.hide(); stgInternalUrl.vee.hide();
 						doUpdateState();
 						break;
 					}
 					case "1": {
-						stgExistingCreature.hideVe(); stgExternalUrl.showVe(); stgInternalUrl.hideVe();
+						stgExistingCreature.vee.hide(); stgExternalUrl.vee.show(); stgInternalUrl.vee.hide();
 						doUpdateState();
 						break;
 					}
 					case "2": {
-						stgExistingCreature.hideVe(); stgExternalUrl.hideVe(); stgInternalUrl.showVe();
+						stgExistingCreature.vee.hide(); stgExternalUrl.vee.hide(); stgInternalUrl.vee.show();
 						doUpdateState();
 						break;
 					}
@@ -3732,52 +3732,52 @@ export class CreatureBuilder extends BuilderBase {
 			});
 
 		// region Existing creature
-		const iptExistingName = ee`<input class="ve-form-control ve-input-xs form-control--minimal">`
-			.val(this._state.token?.name || "")
-			.onn("change", () => doUpdateState());
-		const iptExistingSource = ee`<input class="ve-form-control ve-input-xs form-control--minimal">`
-			.val(this._state.token?.source || "")
-			.onn("change", () => doUpdateState());
+		const iptExistingName = veT`<input class="ve-form-control ve-input-xs form-control--minimal">`
+			.vee.val(this._state.token?.name || "")
+			.vee.onn("change", () => doUpdateState());
+		const iptExistingSource = veT`<input class="ve-form-control ve-input-xs form-control--minimal">`
+			.vee.val(this._state.token?.source || "")
+			.vee.onn("change", () => doUpdateState());
 
-		const stgExistingCreature = ee`<div class="ve-flex-col ve-mb-2">
+		const stgExistingCreature = veT`<div class="ve-flex-col ve-mb-2">
 			<div class="ve-flex-v-center ve-mb-2"><span class="ve-mr-2 mkbru__sub-name--25">Name</span>${iptExistingName}</div>
 			<div class="ve-flex-v-center"><span class="ve-mr-2 mkbru__sub-name--25">Source</span>${iptExistingSource}</div>
 		</div>`
-			.toggleVe(initialMode === "0");
+			.vee.toggle(initialMode === "0");
 		// endregion
 
 		// region External URL
-		const iptExternalUrl = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-code">`
-			.onn("change", () => doUpdateState())
-			.val(
+		const iptExternalUrl = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-code">`
+			.vee.onn("change", () => doUpdateState())
+			.vee.val(
 				this._state.tokenHref?.url
 				|| this._state.tokenUrl // TODO(Future) legacy; remove
 				|| "",
 			);
 
-		const stgExternalUrl = ee`<div class="ve-flex-col ve-mb-2">
+		const stgExternalUrl = veT`<div class="ve-flex-col ve-mb-2">
 			<div class="ve-flex-v-center"><span class="ve-mr-2 mkbru__sub-name--25">URL</span>${iptExternalUrl}</div>
 		</div>`
-			.toggleVe(initialMode === "1");
+			.vee.toggle(initialMode === "1");
 		// endregion
 
 		// region Internal URL
-		const iptInternalPath = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-code">`
-			.onn("change", () => doUpdateState())
-			.val(this._state.tokenHref?.path || "");
+		const iptInternalPath = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-code">`
+			.vee.onn("change", () => doUpdateState())
+			.vee.val(this._state.tokenHref?.path || "");
 
-		const stgInternalUrl = ee`<div class="ve-flex-col ve-mb-2">
+		const stgInternalUrl = veT`<div class="ve-flex-col ve-mb-2">
 			<div class="ve-flex-v-center"><span class="ve-mr-2 mkbru__sub-name--25">Path</span>${iptInternalPath}</div>
 		</div>`
-			.toggleVe(initialMode === "2");
+			.vee.toggle(initialMode === "2");
 		// endregion
 
-		ee`<div class="ve-flex-col">
+		veT`<div class="ve-flex-col">
 			<div class="ve-flex ve-mb-2">${selMode}${btnPreview}</div>
 			${stgExistingCreature}
 			${stgExternalUrl}
 			${stgInternalUrl}
-		</div>`.appendTo(rowInner);
+		</div>`.vee.appendTo(rowInner);
 
 		return row;
 	}
@@ -3786,7 +3786,7 @@ export class CreatureBuilder extends BuilderBase {
 		const [row, rowInner] = BuilderUi.getLabelledRowTuple("Environment", {isMarked: true});
 
 		const doUpdateState = () => {
-			const raw = inputs.map(it => it.ipt.prop("checked") ? it.getVal() : false).filter(Boolean);
+			const raw = inputs.map(it => it.ipt.vee.prop("checked") ? it.getVal() : false).filter(Boolean);
 
 			if (raw.length) this._state.environment = raw;
 			else delete this._state.environment;
@@ -3794,47 +3794,47 @@ export class CreatureBuilder extends BuilderBase {
 			cb();
 		};
 
-		const wrpIpts = ee`<div class="ve-flex-col ve-w-100 ve-mr-2"></div>`;
+		const wrpIpts = veT`<div class="ve-flex-col ve-w-100 ve-mr-2"></div>`;
 		const inputs = [];
 		Parser.ENVIRONMENTS.forEach(val => {
-			const cb = ee`<input class="mkbru__ipt-cb mkbru_mon__cb-environment" type="checkbox">`
-				.prop("checked", !!this._state.environment?.includes(val))
-				.onn("change", () => doUpdateState());
+			const cb = veT`<input class="mkbru__ipt-cb mkbru_mon__cb-environment" type="checkbox">`
+				.vee.prop("checked", !!this._state.environment?.includes(val))
+				.vee.onn("change", () => doUpdateState());
 			inputs.push({ipt: cb, getVal: () => val});
-			ee`<label class="ve-flex-v-center ve-split stripe-odd--faint"><span>${StrUtil.toTitleCase(val)}</span>${cb}</label>`.appendTo(wrpIpts);
+			veT`<label class="ve-flex-v-center ve-split stripe-odd--faint"><span>${StrUtil.toTitleCase(val)}</span>${cb}</label>`.vee.appendTo(wrpIpts);
 		});
 
 		const additionalEnvs = (this._state.environment || []).filter(it => !Parser.ENVIRONMENTS.includes(it)).filter(it => it && it.trim());
 		if (additionalEnvs.length) {
 			additionalEnvs.forEach(it => {
-				CreatureBuilder.__getEnvironmentInput__getCustomRow(doUpdateState, inputs, it).ele.appendTo(wrpIpts);
+				CreatureBuilder.__getEnvironmentInput__getCustomRow(doUpdateState, inputs, it).ele.vee.appendTo(wrpIpts);
 			});
 		}
 
-		const btnAddCustom = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-mt-2">Add Custom Environment</button>`
-			.onn("click", () => {
-				CreatureBuilder.__getEnvironmentInput__getCustomRow(doUpdateState, inputs).ele.appendTo(wrpIpts);
+		const btnAddCustom = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-mt-2">Add Custom Environment</button>`
+			.vee.onn("click", () => {
+				CreatureBuilder.__getEnvironmentInput__getCustomRow(doUpdateState, inputs).ele.vee.appendTo(wrpIpts);
 			});
 
-		ee`<div class="ve-flex-col">
+		veT`<div class="ve-flex-col">
 		${wrpIpts}
 		<div class="ve-flex-v-center">${btnAddCustom}</div>
-		</div>`.appendTo(rowInner);
+		</div>`.vee.appendTo(rowInner);
 
 		return row;
 	}
 
 	static __getEnvironmentInput__getCustomRow (doUpdateState, envRows, env) {
-		const iptEnv = ee`<input class="ve-form-control form-control--minimal ve-input-xs">`
-			.val(env ? StrUtil.toTitleCase(env) : "")
-			.onn("change", () => doUpdateState());
+		const iptEnv = veT`<input class="ve-form-control form-control--minimal ve-input-xs">`
+			.vee.val(env ? StrUtil.toTitleCase(env) : "")
+			.vee.onn("change", () => doUpdateState());
 
 		// hidden checkbox, locked to true
-		const cb = ee`<input class="mkbru__ipt-cb hidden" type="checkbox">`
-			.prop("checked", true);
+		const cb = veT`<input class="mkbru__ipt-cb hidden" type="checkbox">`
+			.vee.prop("checked", true);
 
-		const btnRemove = ee`<button class="ve-btn ve-btn-danger ve-btn-xxs"><span class="glyphicon glyphicon-trash"></span></button>`
-			.onn("click", () => {
+		const btnRemove = veT`<button class="ve-btn ve-btn-danger ve-btn-xxs"><span class="glyphicon glyphicon-trash"></span></button>`
+			.vee.onn("click", () => {
 				out.ele.remove();
 				envRows.splice(envRows.indexOf(out), 1);
 				doUpdateState();
@@ -3843,10 +3843,10 @@ export class CreatureBuilder extends BuilderBase {
 		const out = {
 			ipt: cb,
 			getVal: () => {
-				const raw = iptEnv.val().toLowerCase().trim();
+				const raw = iptEnv.vee.val().toLowerCase().trim();
 				return raw || false;
 			},
-			ele: ee`<label class="ve-flex-v-center ve-split stripe-odd--faint ve-mt-2"><span>${iptEnv}</span>${cb}${btnRemove}</label>`,
+			ele: veT`<label class="ve-flex-v-center ve-split stripe-odd--faint ve-mt-2"><span>${iptEnv}</span>${cb}${btnRemove}</label>`,
 		};
 
 		envRows.push(out);
@@ -3858,7 +3858,7 @@ export class CreatureBuilder extends BuilderBase {
 		const [row, rowInner] = BuilderUi.getLabelledRowTuple("Sound Clip URL", {isMarked: true});
 
 		const doUpdateState = () => {
-			const url = iptUrl.val().trim();
+			const url = iptUrl.vee.val().trim();
 
 			if (!url) {
 				delete this._state.soundClip;
@@ -3872,12 +3872,12 @@ export class CreatureBuilder extends BuilderBase {
 			cb();
 		};
 
-		const iptUrl = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`
-			.onn("change", () => doUpdateState());
+		const iptUrl = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`
+			.vee.onn("change", () => doUpdateState());
 
-		if (this._state.soundClip) iptUrl.val(this._state.soundClip.url);
+		if (this._state.soundClip) iptUrl.vee.val(this._state.soundClip.url);
 
-		ee`<div class="ve-flex">${iptUrl}</div>`.appendTo(rowInner);
+		veT`<div class="ve-flex">${iptUrl}</div>`.vee.appendTo(rowInner);
 
 		return row;
 	}
@@ -3887,7 +3887,7 @@ export class CreatureBuilder extends BuilderBase {
 	}
 
 	_renderOutput () {
-		const wrp = this._ui.wrpOutput.empty();
+		const wrp = this._ui.wrpOutput.vee.empty();
 
 		// initialise tabs
 		this._resetTabs({tabGroup: "output"});
@@ -3906,15 +3906,15 @@ export class CreatureBuilder extends BuilderBase {
 			},
 		);
 		const [statTab, infoTab, imageTab, dataTab, markdownTab] = tabs;
-		ee`<div class="ve-flex-v-center ve-w-100 ve-no-shrink">${tabs.map(it => it.btnTab)}</div>`.appendTo(wrp);
-		tabs.forEach(it => it.wrpTab.appendTo(wrp));
+		veT`<div class="ve-flex-v-center ve-w-100 ve-no-shrink">${tabs.map(it => it.btnTab)}</div>`.vee.appendTo(wrp);
+		tabs.forEach(it => it.wrpTab.vee.appendTo(wrp));
 
 		// statblock
-		const tblMon = ee`<table class="ve-w-100 ve-stats monster"></table>`.appendTo(statTab.wrpTab);
-		tblMon.appends(RenderBestiary.getRenderedCreature(this._state, {isSkipExcludesRender: true, isSkipTokenRender: true}));
+		const tblMon = veT`<table class="ve-w-100 ve-stats monster"></table>`.vee.appendTo(statTab.wrpTab);
+		tblMon.vee.appends(RenderBestiary.getRenderedCreature(this._state, {isSkipExcludesRender: true, isSkipTokenRender: true}));
 
 		// info
-		const tblInfo = ee`<table class="ve-w-100 ve-stats"></table>`.appendTo(infoTab.wrpTab);
+		const tblInfo = veT`<table class="ve-w-100 ve-stats"></table>`.vee.appendTo(infoTab.wrpTab);
 		Renderer.utils.pBuildFluffTab({
 			isImageTab: false,
 			wrpContent: tblInfo,
@@ -3923,7 +3923,7 @@ export class CreatureBuilder extends BuilderBase {
 		});
 
 		// images
-		const tblImages = ee`<table class="ve-w-100 ve-stats"></table>`.appendTo(imageTab.wrpTab);
+		const tblImages = veT`<table class="ve-w-100 ve-stats"></table>`.vee.appendTo(imageTab.wrpTab);
 		Renderer.utils.pBuildFluffTab({
 			isImageTab: true,
 			wrpContent: tblImages,
@@ -3932,7 +3932,7 @@ export class CreatureBuilder extends BuilderBase {
 		});
 
 		// data
-		const tblData = ee`<table class="ve-w-100 ve-stats ve-stats--book mkbru__wrp-output-tab-data"></table>`.appendTo(dataTab.wrpTab);
+		const tblData = veT`<table class="ve-w-100 ve-stats ve-stats--book mkbru__wrp-output-tab-data"></table>`.vee.appendTo(dataTab.wrpTab);
 		const asJson = Renderer.get().render({
 			type: "entries",
 			entries: [
@@ -3943,15 +3943,15 @@ export class CreatureBuilder extends BuilderBase {
 				},
 			],
 		});
-		tblData.appends(Renderer.utils.getBorderTr());
-		tblData.appends(`<tr><td colspan="6">${asJson}</td></tr>`);
-		tblData.appends(Renderer.utils.getBorderTr());
+		tblData.vee.appends(Renderer.utils.getBorderTr());
+		tblData.vee.appends(`<tr><td colspan="6">${asJson}</td></tr>`);
+		tblData.vee.appends(Renderer.utils.getBorderTr());
 
 		// markdown
-		const tblMarkdown = ee`<table class="ve-w-100 ve-stats ve-stats--book mkbru__wrp-output-tab-data"></table>`.appendTo(markdownTab.wrpTab);
-		tblMarkdown.appends(Renderer.utils.getBorderTr());
-		tblMarkdown.appends(`<tr><td colspan="6">${this._getRenderedMarkdownCode()}</td></tr>`);
-		tblMarkdown.appends(Renderer.utils.getBorderTr());
+		const tblMarkdown = veT`<table class="ve-w-100 ve-stats ve-stats--book mkbru__wrp-output-tab-data"></table>`.vee.appendTo(markdownTab.wrpTab);
+		tblMarkdown.vee.appends(Renderer.utils.getBorderTr());
+		tblMarkdown.vee.appends(`<tr><td colspan="6">${this._getRenderedMarkdownCode()}</td></tr>`);
+		tblMarkdown.vee.appends(Renderer.utils.getBorderTr());
 	}
 }
 CreatureBuilder._ALIGNMENTS = [

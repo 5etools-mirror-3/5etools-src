@@ -20,66 +20,66 @@ function addMonsterFeatures (mfData) {
 	monsterFeatures = mfData.monsterfeatures;
 	for (let i = 0; i < msbcr.cr.length; i++) {
 		const curCr = msbcr.cr[i];
-		es("#msbcr").appends(`<tr><td>${curCr._cr}</td><td>${Parser.crToXp(curCr._cr)}</td><td>${curCr.pb}</td><td>${curCr.ac}</td><td>${curCr.hpMin}-${curCr.hpMax}</td><td>${curCr.attackBonus}</td><td>${curCr.dprMin}-${curCr.dprMax}</td><td>${curCr.saveDc}</td></tr>`);
+		veEs("#msbcr").vee.appends(`<tr><td>${curCr._cr}</td><td>${Parser.crToXp(curCr._cr)}</td><td>${curCr.pb}</td><td>${curCr.ac}</td><td>${curCr.hpMin}-${curCr.hpMax}</td><td>${curCr.attackBonus}</td><td>${curCr.dprMin}-${curCr.dprMax}</td><td>${curCr.saveDc}</td></tr>`);
 	}
 
-	em("#crcalc input").map(ele => ele.onn("change", calculateCr));
-	em("#saveprofs, #resistances").map(ele => ele.onn("change", calculateCr));
+	veEm("#crcalc input").map(ele => ele.vee.onn("change", calculateCr));
+	veEm("#saveprofs, #resistances").map(ele => ele.vee.onn("change", calculateCr));
 
-	es("#saveinstead").onChange((evt) => {
-		const curVal = parseInt(es("#attackbonus").val());
-		if (!e_({ele: evt.target}).prop(":checked")) es("#attackbonus").val(curVal - 10);
-		if (e_({ele: evt.target}).prop(":checked")) es("#attackbonus").val(curVal + 10);
+	veEs("#saveinstead").vee.onChange((evt) => {
+		const curVal = parseInt(veEs("#attackbonus").vee.val());
+		if (!veE({ele: evt.target}).vee.prop(":checked")) veEs("#attackbonus").vee.val(curVal - 10);
+		if (veE({ele: evt.target}).vee.prop(":checked")) veEs("#attackbonus").vee.val(curVal + 10);
 		calculateCr();
 	});
 
 	function changeSize (selSize) {
-		const newSize = selSize.val();
-		if (newSize === "Tiny") es("#hdval").txt("d4");
-		if (newSize === "Small") es("#hdval").txt("d6");
-		if (newSize === "Medium") es("#hdval").txt("d8");
-		if (newSize === "Large") es("#hdval").txt("d10");
-		if (newSize === "Huge") es("#hdval").txt("d12");
-		if (newSize === "Gargantuan") es("#hdval").txt("d20");
-		es("#hp").val(calculateHp());
+		const newSize = selSize.vee.val();
+		if (newSize === "Tiny") veEs("#hdval").vee.txt("d4");
+		if (newSize === "Small") veEs("#hdval").vee.txt("d6");
+		if (newSize === "Medium") veEs("#hdval").vee.txt("d8");
+		if (newSize === "Large") veEs("#hdval").vee.txt("d10");
+		if (newSize === "Huge") veEs("#hdval").vee.txt("d12");
+		if (newSize === "Gargantuan") veEs("#hdval").vee.txt("d20");
+		veEs("#hp").vee.val(calculateHp());
 	}
 
-	es("select#size").onChange((evt) => {
-		changeSize(e_({ele: evt.target}));
+	veEs("select#size").vee.onChange((evt) => {
+		changeSize(veE({ele: evt.target}));
 		calculateCr();
 	});
 
-	em("#hd, #con").map(ele => {
-		ele.onChange(function () {
-			es("#hp").val(calculateHp());
+	veEm("#hd, #con").map(ele => {
+		ele.vee.onChange(function () {
+			veEs("#hp").vee.val(calculateHp());
 			calculateCr();
 		});
 	});
 
 	// when clicking a row in the "Monster Statistics by Challenge Rating" table
-	em("#msbcr tr:not(:has(th))").map(ele =>
-		ele.onn("click", async function () {
+	veEm("#msbcr tr:not(:has(th))").map(ele =>
+		ele.vee.onn("click", async function () {
 			if (!await InputUiUtil.pGetUserBoolean({title: "Reset", htmlDescription: "This will reset the calculator. Are you sure?", textYes: "Yes", textNo: "Cancel"})) return;
 			const [tdCr, , , tdAc, tdHp, tdAtk, tdDpr, tdSave] = this.children;
 
-			es("#expectedcr").val(tdCr.innerHTML.trim());
+			veEs("#expectedcr").vee.val(tdCr.innerHTML.trim());
 			const [minHp, maxHp] = tdHp.innerHTML.trim().split("-").map(it => parseInt(it));
-			es("#hp").val(minHp + (maxHp - minHp) / 2);
-			es("#hd").val(calculateHd());
-			es("#ac").val(tdAc.innerHTML);
-			es("#dpr").val(tdDpr.innerHTML.split("-")[0]);
-			es("#attackbonus").val(tdAtk.innerHTML);
-			if (es("#saveinstead:checked")) es("#attackbonus").val(tdSave.innerHTML);
+			veEs("#hp").vee.val(minHp + (maxHp - minHp) / 2);
+			veEs("#hd").vee.val(calculateHd());
+			veEs("#ac").vee.val(tdAc.innerHTML);
+			veEs("#dpr").vee.val(tdDpr.innerHTML.split("-")[0]);
+			veEs("#attackbonus").vee.val(tdAtk.innerHTML);
+			if (veEs("#saveinstead:checked")) veEs("#attackbonus").vee.val(tdSave.innerHTML);
 			calculateCr();
 		}));
 
-	es("#hp").onChange(function () {
-		es("#hd").val(calculateHd());
+	veEs("#hp").vee.onChange(function () {
+		veEs("#hd").vee.val(calculateHd());
 		calculateCr();
 	});
 
 	// parse monsterfeatures
-	const wrpMonFeatures = es(`#monsterfeatures .crc__wrp_mon_features`);
+	const wrpMonFeatures = veEs(`#monsterfeatures .crc__wrp_mon_features`);
 	monsterFeatures.forEach(f => {
 		const effectOnCr = [];
 		if (f.hp) effectOnCr.push(`HP: ${f.hp}`);
@@ -89,7 +89,7 @@ function addMonsterFeatures (mfData) {
 
 		const numBox = f.hasNumberParam ? `<input type="number" value="0" min="0" class="ve-form-control form-control--minimal crc__mon_feature_num ve-input-xs ve-ml-2">` : "";
 
-		wrpMonFeatures.appends(`
+		wrpMonFeatures.vee.appends(`
 			<label class="row crc__mon_feature ve-ui-tip__parent">
 				<div class="ve-col-1 crc__mon_feature_wrp_cb">
 					<input type="checkbox" id="mf-${Parser.stringToSlug(f.name)}" title="${f.name}" data-hp="${f.hp || ""}" data-ac="${f.ac || ""}" data-dpr="${f.dpr || ""}" data-attackbonus="${f.attackBonus || ""}" class="crc__mon_feature_cb">${numBox}
@@ -104,28 +104,28 @@ function addMonsterFeatures (mfData) {
 	function parseUrl () {
 		if (window.location.hash) {
 			const [expectedCr, ac, dpr, attackBonus, isSaveInsteadRaw, size, hitDice, conScore, isVulnerabilitiesRaw, resImmune, isFlyingRaw, cntSaveProfs] = window.location.hash.split("#")[1].split(",");
-			es("#expectedcr").val(expectedCr);
-			es("#ac").val(ac);
-			es("#dpr").val(dpr);
-			es("#attackbonus").val(attackBonus);
-			if (isSaveInsteadRaw === "true") es("#saveinstead").prop("checked", true);
-			changeSize(es("#size").val(size));
-			es("#hd").val(hitDice);
-			es("#con").val(conScore);
-			es("#hp").val(calculateHp());
-			if (isVulnerabilitiesRaw === "true") es("#vulnerabilities").prop("checked", true);
-			es("#resistances").val(resImmune);
-			if (isFlyingRaw === "true") es("#flying").prop("checked", true);
-			es("#saveprofs").val(cntSaveProfs);
+			veEs("#expectedcr").vee.val(expectedCr);
+			veEs("#ac").vee.val(ac);
+			veEs("#dpr").vee.val(dpr);
+			veEs("#attackbonus").vee.val(attackBonus);
+			if (isSaveInsteadRaw === "true") veEs("#saveinstead").vee.prop("checked", true);
+			changeSize(veEs("#size").vee.val(size));
+			veEs("#hd").vee.val(hitDice);
+			veEs("#con").vee.val(conScore);
+			veEs("#hp").vee.val(calculateHp());
+			if (isVulnerabilitiesRaw === "true") veEs("#vulnerabilities").vee.prop("checked", true);
+			veEs("#resistances").vee.val(resImmune);
+			if (isFlyingRaw === "true") veEs("#flying").vee.prop("checked", true);
+			veEs("#saveprofs").vee.val(cntSaveProfs);
 
-			em(`.crc__mon_feature_cb`).map(ele => {
-				const cb = e_({ele});
-				const idCb = cb.attr("id");
+			veEm(`.crc__mon_feature_cb`).map(ele => {
+				const cb = veE({ele});
+				const idCb = cb.vee.attr("id");
 				const val = Hist.getSubHash(idCb);
 				if (val) {
-					cb.prop("checked", true);
+					cb.vee.prop("checked", true);
 					if (val !== "true") {
-						cb.siblings("input[type=number]").val(val);
+						cb.vee.siblings("input[type=number]").vee.val(val);
 					}
 				}
 			});
@@ -135,31 +135,31 @@ function addMonsterFeatures (mfData) {
 	}
 
 	function handleMonsterFeaturesChange (cbFeature, iptNum) {
-		const curFeature = cbFeature.attr("id");
+		const curFeature = cbFeature.vee.attr("id");
 
-		if (cbFeature.prop("checked")) {
-			Hist.setSubhash(curFeature, iptNum ? iptNum.val() : true);
+		if (cbFeature.vee.prop("checked")) {
+			Hist.setSubhash(curFeature, iptNum ? iptNum.vee.val() : true);
 		} else {
 			Hist.setSubhash(curFeature, null);
 		}
 	}
 
 	// Monster Features table
-	es(".crc__mon_feature_cb").onChange((evt) => {
-		const cbFeature = e_({ele: evt.target});
-		const iptNum = e_({ele: evt.target}).siblings("input[type=number]")[0];
+	veEs(".crc__mon_feature_cb").vee.onChange((evt) => {
+		const cbFeature = veE({ele: evt.target});
+		const iptNum = veE({ele: evt.target}).vee.siblings("input[type=number]")[0];
 		handleMonsterFeaturesChange(cbFeature, iptNum);
 	});
 
-	es(`.crc__mon_feature_num`).onChange((evt) => {
-		const iptNum = e_({ele: evt.target});
-		const cbFeature = e_({ele: evt.target}).siblings("input[type=checkbox]")[0];
+	veEs(`.crc__mon_feature_num`).vee.onChange((evt) => {
+		const iptNum = veE({ele: evt.target});
+		const cbFeature = veE({ele: evt.target}).vee.siblings("input[type=checkbox]")[0];
 		handleMonsterFeaturesChange(cbFeature, iptNum);
 	});
 
-	em("#monsterfeatures .crc__wrp_mon_features input").map(ele => ele.onn("change", calculateCr));
+	veEm("#monsterfeatures .crc__wrp_mon_features input").map(ele => ele.vee.onn("change", calculateCr));
 
-	es("#crcalc_reset").onClick(async () => {
+	veEs("#crcalc_reset").vee.onClick(async () => {
 		if (!await InputUiUtil.pGetUserBoolean({title: "Reset", htmlDescription: "Are you sure?", textYes: "Yes", textNo: "Cancel"})) return;
 		window.location = "";
 		parseUrl();
@@ -169,48 +169,48 @@ function addMonsterFeatures (mfData) {
 }
 
 function calculateCr () {
-	const expectedCr = parseInt(es("#expectedcr").val());
+	const expectedCr = parseInt(veEs("#expectedcr").vee.val());
 
 	// Effective HP
-	let hp = parseInt(es("#crcalc #hp").val());
+	let hp = parseInt(veEs("#crcalc #hp").vee.val());
 
 	// Used in e.g. "Damage Transfer"
 	const hpActual = hp;
 
-	if (es("#vulnerabilities").prop("checked")) hp *= 0.5;
-	if (es("#resistances").val() === "res") {
+	if (veEs("#vulnerabilities").vee.prop("checked")) hp *= 0.5;
+	if (veEs("#resistances").vee.val() === "res") {
 		if (expectedCr >= 0 && expectedCr <= 4) hp *= 2;
 		if (expectedCr >= 5 && expectedCr <= 10) hp *= 1.5;
 		if (expectedCr >= 11 && expectedCr <= 16) hp *= 1.25;
 	}
-	if (es("#resistances").val() === "imm") {
+	if (veEs("#resistances").vee.val() === "imm") {
 		if (expectedCr >= 0 && expectedCr <= 4) hp *= 2;
 		if (expectedCr >= 5 && expectedCr <= 10) hp *= 2;
 		if (expectedCr >= 11 && expectedCr <= 16) hp *= 1.5;
 		if (expectedCr >= 17) hp *= 1.25;
 	}
 
-	let ac = parseInt(es("#crcalc #ac").val()) + parseInt(es("#saveprofs").val()) + (Number(es("#flying").prop("checked"))) * 2;
-	let dpr = parseInt(es("#crcalc #dpr").val());
+	let ac = parseInt(veEs("#crcalc #ac").vee.val()) + parseInt(veEs("#saveprofs").vee.val()) + (Number(veEs("#flying").vee.prop("checked"))) * 2;
+	let dpr = parseInt(veEs("#crcalc #dpr").vee.val());
 
-	let attackBonus = parseInt(es("#crcalc #attackbonus").val());
-	const useSaveDc = es("#saveinstead").prop("checked");
+	let attackBonus = parseInt(veEs("#crcalc #attackbonus").vee.val());
+	const useSaveDc = veEs("#saveinstead").vee.prop("checked");
 
 	let offensiveCR = -1;
 	let defensiveCR = -1;
 
 	// go through monster features
-	em("#monsterfeatures input:checked").map(ele => {
+	veEm("#monsterfeatures input:checked").map(ele => {
 		// `trait` is used within the "eval"s below
 		let trait = 0;
-		if (e_({ele}).siblings("input[type=number]").length) trait = e_({ele}).siblings("input[type=number]")[0].val();
+		if (veE({ele}).vee.siblings("input[type=number]").length) trait = veE({ele}).vee.siblings("input[type=number]")[0].vee.val();
 
 		/* eslint-disable no-eval */
-		if (e_({ele}).attr("data-hp") !== "") hp += Number(eval(e_({ele}).attr("data-hp")));
-		if (e_({ele}).attr("data-ac") !== "") ac += Number(eval(e_({ele}).attr("data-ac")));
-		if (e_({ele}).attr("data-dpr") !== "") dpr += Number(eval(e_({ele}).attr("data-dpr")));
+		if (veE({ele}).vee.attr("data-hp") !== "") hp += Number(eval(veE({ele}).vee.attr("data-hp")));
+		if (veE({ele}).vee.attr("data-ac") !== "") ac += Number(eval(veE({ele}).vee.attr("data-ac")));
+		if (veE({ele}).vee.attr("data-dpr") !== "") dpr += Number(eval(veE({ele}).vee.attr("data-dpr")));
 		/* eslint-enable no-eval */
-		if (!useSaveDc && e_({ele}).attr("data-attackbonus") !== "") attackBonus += Number(e_({ele}).attr("data-attackbonus"));
+		if (!useSaveDc && veE({ele}).vee.attr("data-attackbonus") !== "") attackBonus += Number(veE({ele}).vee.attr("data-attackbonus"));
 	});
 
 	hp = Math.floor(hp);
@@ -270,35 +270,35 @@ function calculateCr () {
 	}
 
 	const hitDice = calculateHd();
-	const hitDiceSize = es("#hdval").txt();
-	const conMod = Parser.getAbilityModNumber(es("#con").val());
+	const hitDiceSize = veEs("#hdval").vee.txt();
+	const conMod = Parser.getAbilityModNumber(veEs("#con").vee.val());
 	const hashParts = [
-		es("#expectedcr").val(), // 0
-		es("#ac").val(), // 1
-		es("#dpr").val(), // 2
-		es("#attackbonus").val(), // 3
+		veEs("#expectedcr").vee.val(), // 0
+		veEs("#ac").vee.val(), // 1
+		veEs("#dpr").vee.val(), // 2
+		veEs("#attackbonus").vee.val(), // 3
 		useSaveDc, // 4
-		es("#size").val(), // 5
-		es("#hd").val(), // 6
-		es("#con").val(), // 7
-		es("#vulnerabilities").prop("checked"), // 8
-		es("#resistances").val(), // 9
-		es("#flying").prop("checked"), // 10
-		es("#saveprofs").val(), // 11
-		em(`.crc__mon_feature_cb`)
+		veEs("#size").vee.val(), // 5
+		veEs("#hd").vee.val(), // 6
+		veEs("#con").vee.val(), // 7
+		veEs("#vulnerabilities").vee.prop("checked"), // 8
+		veEs("#resistances").vee.val(), // 9
+		veEs("#flying").vee.prop("checked"), // 10
+		veEs("#saveprofs").vee.val(), // 11
+		veEm(`.crc__mon_feature_cb`)
 			.map(ele => {
-				const cb = e_({ele});
-				if (!cb.prop("checked")) return false;
+				const cb = veE({ele});
+				if (!cb.vee.prop("checked")) return false;
 
-				const iptNum = cb.siblings("input[type=number]")[0];
-				return `${cb.attr("id")}:${iptNum ? iptNum.val() : true}`;
+				const iptNum = cb.vee.siblings("input[type=number]")[0];
+				return `${cb.vee.attr("id")}:${iptNum ? iptNum.vee.val() : true}`;
 			})
 			.filter(Boolean)
 			.join(","),
 	];
 	window.location = `#${hashParts.join(",")}`;
 
-	es("#croutput").html(`
+	veEs("#croutput").vee.html(`
 		<h4>Challenge Rating: ${cr}</h4>
 		<p>Offensive CR: ${offensiveCR}</p>
 		<p>Defensive CR: ${defensiveCR}</p>
@@ -312,17 +312,17 @@ function calculateCr () {
 }
 
 function calculateHd () {
-	const avgHp = es("#hdval").txt().split("d")[1] / 2 + 0.5;
-	const conMod = Parser.getAbilityModNumber(es("#con").val());
-	let curHd = Math.round(parseInt(es("#hp").val()) / (avgHp + conMod));
+	const avgHp = veEs("#hdval").vee.txt().split("d")[1] / 2 + 0.5;
+	const conMod = Parser.getAbilityModNumber(veEs("#con").vee.val());
+	let curHd = Math.round(parseInt(veEs("#hp").vee.val()) / (avgHp + conMod));
 	if (!curHd) curHd = 1;
 	return curHd;
 }
 
 function calculateHp () {
-	const avgHp = es("#hdval").txt().split("d")[1] / 2 + 0.5;
-	const conMod = Parser.getAbilityModNumber(es("#con").val());
-	return Math.floor((avgHp + conMod) * es("#hd").val());
+	const avgHp = veEs("#hdval").vee.txt().split("d")[1] / 2 + 0.5;
+	const conMod = Parser.getAbilityModNumber(veEs("#con").vee.val());
+	return Math.floor((avgHp + conMod) * veEs("#hd").vee.val());
 }
 
 function fractionStrToDecimal (str) {

@@ -81,10 +81,10 @@ class ItemsSublistManager extends SublistManager {
 			});
 
 			const stg = this._pGetSublistItem_getWrpIptCount()
-				.addClass("ve-absolute")
+				.vee.addClass("ve-absolute")
 				// Match padding
-				.css({right: "2px"})
-				.appends(ipt);
+				.vee.css({right: "2px"})
+				.vee.appends(ipt);
 
 			return {stg, ipt, comp};
 		})();
@@ -93,10 +93,10 @@ class ItemsSublistManager extends SublistManager {
 			...this.constructor._getRowCellsHtml({values: cellsText, templates: this.constructor._ROW_TEMPLATE.slice(0, 3)}),
 			// Placeholder to vertically expand row
 			this._pGetSublistItem_getWrpIptCount()
-				.appends(`<input class="ve-w-100 ve-text-center ve-form-control form-control--minimal ve-input-xs" disabled>`),
+				.vee.appends(`<input class="ve-w-100 ve-text-center ve-form-control form-control--minimal ve-input-xs" disabled>`),
 		];
 
-		const ele = ee`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
 			<div class="ve-lst__wrp-cells ve-lst__row-border ve-lst__row-inner ve-relative">
 				<a href="#${hash}" class="ve-lst__row-lnk-inner">
 					${ptsCells}
@@ -104,21 +104,21 @@ class ItemsSublistManager extends SublistManager {
 				${stgCount}
 			</div>
 		</div>`
-			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
-			.onn("click", evt => this._listSub.doSelect(listItem, evt));
+			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
 		const listItem = new ListItem(
 			hash,
 			ele,
 			item.name,
 			{
-				hash,
 				source: Parser.sourceJsonToAbv(item.source),
-				page: item.page,
+				...ListItem.getCommonValues(item),
 				weight: Parser.weightValueToNumber(item.weight),
 				cost: item.value || 0,
 			},
 			{
+				hash,
 				count,
 				elesCount: [],
 				fnsUpdate: [({sublistItem}) => compCount._state.count = sublistItem.data.count],
@@ -130,13 +130,13 @@ class ItemsSublistManager extends SublistManager {
 	}
 
 	_pGetSublistItem_getWrpIptCount () {
-		return ee`<span class="ve-text-center ve-col-2 ve-pr-0"></span>`;
+		return veT`<span class="ve-text-center ve-col-2 ve-pr-0"></span>`;
 	}
 
 	_onSublistChange () {
-		this._totalWeight ||= es(`#totalweight`);
-		this._totalValue ||= es(`#totalvalue`);
-		this._totalItems ||= es(`#totalitems`);
+		this._totalWeight ||= veEs(`#totalweight`);
+		this._totalValue ||= veEs(`#totalvalue`);
+		this._totalItems ||= veEs(`#totalitems`);
 
 		let weight = 0;
 		let value = 0;
@@ -152,14 +152,14 @@ class ItemsSublistManager extends SublistManager {
 			if (item.value) value += item.value * count;
 		});
 
-		this._totalWeight.txt(Parser.itemWeightToFull({weight}, true));
-		this._totalItems.txt(cntItems);
+		this._totalWeight.vee.txt(Parser.itemWeightToFull({weight}, true));
+		this._totalItems.vee.txt(cntItems);
 
 		if (availConversions.size) {
 			this._totalValue
-				.txt(Parser.itemValueToFullMultiCurrency({value, currencyConversion: this._sublistCurrencyConversion}, {styleHint: this._styleHint}))
-				.off("click")
-				.onn("click", async () => {
+				.vee.txt(Parser.itemValueToFullMultiCurrency({value, currencyConversion: this._sublistCurrencyConversion}, {styleHint: this._styleHint}))
+				.vee.off("click")
+				.vee.onn("click", async () => {
 					const values = ["(Default)", ...[...availConversions].sort(SortUtil.ascSortLower)];
 					const userSel = await InputUiUtil.pGetUserEnum({
 						values,
@@ -177,9 +177,9 @@ class ItemsSublistManager extends SublistManager {
 		}
 
 		this._totalValue
-			.txt(this._getTotalValueText({value}) || "\u2014")
-			.off("click")
-			.onn("click", async () => {
+			.vee.txt(this._getTotalValueText({value}) || "\u2014")
+			.vee.off("click")
+			.vee.onn("click", async () => {
 				const userSel = await InputUiUtil.pGetUserEnum({
 					values: this.constructor._TOTAL_VALUE_MODES,
 					isResolveItem: true,
@@ -302,26 +302,26 @@ class ItemsPage extends ListPage {
 		const type = item._textTypes.join(", ").toTitleCase();
 
 		if (item._fIsMundane) {
-			const eleLi = e_({
+			const eleLi = veE({
 				tag: "div",
 				clazz: `ve-lst__row ve-flex-col ${isExcluded ? "ve-lst__row--blocklisted" : ""}`,
 				click: (evt) => this._mundaneList.doSelect(listItem, evt),
 				contextmenu: (evt) => this._openContextMenu(evt, this._mundaneList, listItem),
 				children: [
-					e_({
+					veE({
 						tag: "a",
 						href: `#${hash}`,
 						clazz: "ve-lst__row-border ve-lst__row-inner",
 						children: [
-							e_({tag: "span", clazz: `ve-col-3-5 ve-pl-0 ve-pr-1 ve-bold`, text: item.name}),
-							e_({tag: "span", clazz: `ve-col-4-5 ve-px-1`, text: type}),
-							e_({tag: "span", clazz: `ve-col-1-5 ve-px-1 ve-text-center`, text: item._l_value}),
-							e_({tag: "span", clazz: `ve-col-1-5 ve-px-1 ve-text-center`, text: item._l_weight}),
-							e_({
+							veE({tag: "span", clazz: `ve-col-3-5 ve-pl-0 ve-pr-1 ve-bold`, txt: item.name}),
+							veE({tag: "span", clazz: `ve-col-4-5 ve-px-1`, txt: type}),
+							veE({tag: "span", clazz: `ve-col-1-5 ve-px-1 ve-text-center`, txt: item._l_value}),
+							veE({tag: "span", clazz: `ve-col-1-5 ve-px-1 ve-text-center`, txt: item._l_weight}),
+							veE({
 								tag: "span",
 								clazz: `ve-col-1 ve-text-center ${Parser.sourceJsonToSourceClassname(item.source)} ve-pl-1 ve-pr-0`,
 								title: `${Parser.sourceJsonToFull(item.source)}${Renderer.utils.getSourceSubText(item)}`,
-								text: source,
+								txt: source,
 							}),
 						],
 					}),
@@ -333,7 +333,6 @@ class ItemsPage extends ListPage {
 				eleLi,
 				item.name,
 				{
-					hash,
 					source,
 					...ListItem.getCommonValues(item),
 					type,
@@ -341,38 +340,39 @@ class ItemsPage extends ListPage {
 					weight: Parser.weightValueToNumber(item.weight),
 				},
 				{
+					hash,
 					isExcluded,
 				},
 			);
 
 			return {mundane: listItem};
 		} else {
-			const eleLi = e_({
+			const eleLi = veE({
 				tag: "div",
 				clazz: `ve-lst__row ve-flex-col ${isExcluded ? "ve-lst__row--blocklisted" : ""}`,
 				click: (evt) => this._magicList.doSelect(listItem, evt),
 				contextmenu: (evt) => this._openContextMenu(evt, this._magicList, listItem),
 				children: [
-					e_({
+					veE({
 						tag: "a",
 						href: `#${hash}`,
 						clazz: "ve-lst__row-border ve-lst__row-inner",
 						children: [
-							e_({tag: "span", clazz: `ve-col-3-5 ve-pl-0 ve-bold`, text: item.name}),
-							e_({tag: "span", clazz: `ve-col-4`, text: type}),
-							e_({tag: "span", clazz: `ve-col-1-5 ve-text-center`, text: item._l_weight}),
-							e_({tag: "span", clazz: `ve-col-0-6 ve-text-center`, text: item._attunementCategory !== VeCt.STR_NO_ATTUNEMENT ? "×" : ""}),
-							e_({
+							veE({tag: "span", clazz: `ve-col-3-5 ve-pl-0 ve-bold`, txt: item.name}),
+							veE({tag: "span", clazz: `ve-col-4`, txt: type}),
+							veE({tag: "span", clazz: `ve-col-1-5 ve-text-center`, txt: item._l_weight}),
+							veE({tag: "span", clazz: `ve-col-0-6 ve-text-center`, txt: item._attunementCategory !== VeCt.STR_NO_ATTUNEMENT ? "×" : ""}),
+							veE({
 								tag: "span",
 								clazz: `ve-col-1-4 ve-text-center ${item.rarity ? `ve-itm__rarity-${item.rarity}` : ""}`,
 								title: (item.rarity || "").toTitleCase(),
-								text: Parser.itemRarityToShort(item.rarity) || "",
+								txt: Parser.itemRarityToShort(item.rarity) || "",
 							}),
-							e_({
+							veE({
 								tag: "span",
 								clazz: `ve-col-1 ve-text-center ${Parser.sourceJsonToSourceClassname(item.source)} ve-pr-0`,
 								title: `${Parser.sourceJsonToFull(item.source)}${Renderer.utils.getSourceSubText(item)}`,
-								text: source,
+								txt: source,
 							}),
 						],
 					}),
@@ -384,13 +384,15 @@ class ItemsPage extends ListPage {
 				eleLi,
 				item.name,
 				{
-					hash,
 					source,
 					...ListItem.getCommonValues(item),
 					type,
 					rarity: item.rarity,
 					attunement: item._attunementCategory !== VeCt.STR_NO_ATTUNEMENT,
 					weight: Parser.weightValueToNumber(item.weight),
+				},
+				{
+					hash,
 				},
 			);
 
@@ -409,19 +411,19 @@ class ItemsPage extends ListPage {
 	_tabTitleStats = "Item";
 
 	_renderStats_doBuildStatsTab ({ent}) {
-		this._pgContent.empty().appends(RenderItems.getRenderedItem(ent));
+		this._pgContent.vee.empty().vee.appends(RenderItems.getRenderedItem(ent));
 	}
 
 	async _pOnLoad_pInitPrimaryLists () {
-		const iptSearch = e_(document.getElementById("lst__search"));
-		const btnReset = e_(document.getElementById("reset"));
-		const btnClear = e_(document.getElementById("lst__search-glass"));
+		const iptSearch = veE(document.getElementById("lst__search"));
+		const btnReset = veE(document.getElementById("reset"));
+		const btnClear = veE(document.getElementById("lst__search-glass"));
 		this._mundaneList = this._initList({
 			iptSearch,
 			btnReset,
 			btnClear,
 			dispPageTagline: document.getElementById(`page__subtitle`),
-			wrpList: e_(document.getElementById("list-mundane")),
+			wrpList: veE(document.getElementById("list-mundane")),
 			syntax: this._listSyntax.build(),
 			isBindFindHotkey: true,
 			optsList: {
@@ -432,29 +434,29 @@ class ItemsPage extends ListPage {
 			iptSearch,
 			btnReset,
 			btnClear,
-			wrpList: e_(document.getElementById("list-magic")),
+			wrpList: veE(document.getElementById("list-magic")),
 			syntax: this._listSyntax.build(),
 			optsList: {
 				fnSort: PageFilterItems.sortItems,
 			},
 		});
 
-		SortUtil.initBtnSortHandlers(es("#filtertools-mundane"), this._mundaneList);
-		SortUtil.initBtnSortHandlers(es("#filtertools-magic"), this._magicList);
+		SortUtil.initBtnSortHandlers(veEs("#filtertools-mundane"), this._mundaneList);
+		SortUtil.initBtnSortHandlers(veEs("#filtertools-magic"), this._magicList);
 
 		this._mundaneList.nextList = this._magicList;
 		this._magicList.prevList = this._mundaneList;
 
 		this._filterBox = await this._pageFilter.pInitFilterBox({
 			iptSearch,
-			wrpFormTop: e_(document.getElementById("filter-search-group")),
+			wrpFormTop: veE(document.getElementById("filter-search-group")),
 			btnReset,
 		});
 	}
 
 	_pOnLoad_initVisibleItemsDisplay () {
-		const elesMundaneAndMagic = em(`.ele-mundane-and-magic`);
-		es(`.side-label--mundane`).onn("click", () => {
+		const elesMundaneAndMagic = veEm(`.ele-mundane-and-magic`);
+		veEs(`.side-label--mundane`).vee.onn("click", () => {
 			const filterValues = this._pageFilter.filterBox.getValues();
 			const curValue = MiscUtil.get(filterValues, "Miscellaneous", "Mundane");
 			this._pageFilter.filterBox.setFromValues({
@@ -464,7 +466,7 @@ class ItemsPage extends ListPage {
 				},
 			});
 		});
-		es(`.side-label--magic`).onn("click", () => {
+		veEs(`.side-label--magic`).vee.onn("click", () => {
 			const filterValues = this._pageFilter.filterBox.getValues();
 			const curValue = MiscUtil.get(filterValues, "Miscellaneous", "Magic");
 			this._pageFilter.filterBox.setFromValues({
@@ -474,37 +476,37 @@ class ItemsPage extends ListPage {
 				},
 			});
 		});
-		const outVisibleResults = es(`.ve-lst__wrp-search-visible`);
-		const wrpListMundane = es(`.ve-itm__wrp-list--mundane`);
-		const wrpListMagic = es(`.ve-itm__wrp-list--magic`);
-		const elesMundane = em(`.ele-mundane`);
-		const elesMagic = em(`.ele-magic`);
+		const outVisibleResults = veEs(`.ve-lst__wrp-search-visible`);
+		const wrpListMundane = veEs(`.ve-itm__wrp-list--mundane`);
+		const wrpListMagic = veEs(`.ve-itm__wrp-list--magic`);
+		const elesMundane = veEm(`.ele-mundane`);
+		const elesMagic = veEm(`.ele-magic`);
 		this._mundaneList.on("updated", () => {
 			// Force-show the mundane list if there are no items on display
-			if (this._magicList.visibleItems.length) elesMundane.forEach(ele => ele.toggleVe(!!this._mundaneList.visibleItems.length));
-			else elesMundane.forEach(ele => ele.showVe());
-			elesMundaneAndMagic.forEach(ele => ele.toggleVe(!!(this._mundaneList.visibleItems.length && this._magicList.visibleItems.length)));
+			if (this._magicList.visibleItems.length) elesMundane.forEach(ele => ele.vee.toggle(!!this._mundaneList.visibleItems.length));
+			else elesMundane.forEach(ele => ele.vee.show());
+			elesMundaneAndMagic.forEach(ele => ele.vee.toggle(!!(this._mundaneList.visibleItems.length && this._magicList.visibleItems.length)));
 
 			const current = this._mundaneList.visibleItems.length + this._magicList.visibleItems.length;
 			const total = this._mundaneList.items.length + this._magicList.items.length;
-			outVisibleResults.html(`${current}/${total}`);
+			outVisibleResults.vee.html(`${current}/${total}`);
 
 			// Collapse the mundane section if there are no magic items displayed
-			wrpListMundane.toggleClass(`ve-itm__wrp-list--empty`, this._mundaneList.visibleItems.length === 0);
+			wrpListMundane.vee.toggleClass(`ve-itm__wrp-list--empty`, this._mundaneList.visibleItems.length === 0);
 		});
 		this._magicList.on("updated", () => {
-			elesMagic.forEach(ele => ele.toggleVe(!!this._magicList.visibleItems.length));
+			elesMagic.forEach(ele => ele.vee.toggle(!!this._magicList.visibleItems.length));
 			// Force-show the mundane list if there are no items on display
-			if (!this._magicList.visibleItems.length) elesMundane.forEach(ele => ele.showVe());
-			else elesMundane.forEach(ele => ele.toggleVe(!!this._mundaneList.visibleItems.length));
-			elesMundaneAndMagic.forEach(ele => ele.toggleVe(!!(this._mundaneList.visibleItems.length && this._magicList.visibleItems.length)));
+			if (!this._magicList.visibleItems.length) elesMundane.forEach(ele => ele.vee.show());
+			else elesMundane.forEach(ele => ele.vee.toggle(!!this._mundaneList.visibleItems.length));
+			elesMundaneAndMagic.forEach(ele => ele.vee.toggle(!!(this._mundaneList.visibleItems.length && this._magicList.visibleItems.length)));
 
 			const current = this._mundaneList.visibleItems.length + this._magicList.visibleItems.length;
 			const total = this._mundaneList.items.length + this._magicList.items.length;
-			outVisibleResults.html(`${current}/${total}`);
+			outVisibleResults.vee.html(`${current}/${total}`);
 
 			// Collapse the magic section if there are no magic items displayed
-			wrpListMagic.toggleClass(`ve-itm__wrp-list--empty`, this._magicList.visibleItems.length === 0);
+			wrpListMagic.vee.toggleClass(`ve-itm__wrp-list--empty`, this._magicList.visibleItems.length === 0);
 		});
 	}
 
@@ -512,8 +514,8 @@ class ItemsPage extends ListPage {
 		super._addData(data);
 
 		// Populate table labels
-		es(`h3.ele-mundane span.side-label`).txt("Mundane");
-		es(`h3.ele-magic span.side-label`).txt("Magic");
+		veEs(`h3.ele-mundane span.side-label`).vee.txt("Mundane");
+		veEs(`h3.ele-magic span.side-label`).vee.txt("Magic");
 	}
 
 	_addListItem (listItem) {

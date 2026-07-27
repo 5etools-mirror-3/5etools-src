@@ -14,17 +14,17 @@ class _RenderableCollectionCustomShapeGroups extends RenderableCollectionGeneric
 
 	_getWrpRow () {
 		return super._getWrpRow()
-			.addClass("ve-py-1");
+			.vee.addClass("ve-py-1");
 	}
 
 	_populateRow ({comp, wrpRow, entity}) {
 		// region Count
 		const iptCountMinMaxMin = ComponentUiUtil.getIptInt(comp, "countMinMaxMin", 0, {min: 0})
-			.addClass("ve-text-center")
-			.tooltip("Minimum Number of Creatures");
+			.vee.addClass("ve-text-center")
+			.vee.tooltip("Minimum Number of Creatures");
 		const iptCountMinMaxMax = ComponentUiUtil.getIptInt(comp, "countMinMaxMax", 1, {min: 1})
-			.addClass("ve-text-center")
-			.tooltip("Maximum Number of Creatures");
+			.vee.addClass("ve-text-center")
+			.vee.tooltip("Maximum Number of Creatures");
 
 		const hkCountMinMax = () => {
 			if (comp._state.countMinMaxMin <= comp._state.countMinMaxMax) return;
@@ -40,20 +40,20 @@ class _RenderableCollectionCustomShapeGroups extends RenderableCollectionGeneric
 
 		// region Ratio
 		const sldRatio = ComponentUiUtil.getSliderNumber(comp, "ratioPercentage", {min: 0, max: 100, step: 1})
-			.addClass("ve-mr-2");
+			.vee.addClass("ve-mr-2");
 
-		const dispSpent = ee`<div class="ve-small ve-self-flex-end ve-no-shrink ve-w-140p ve-text-right ve-no-wrap ve-overflow-x-hidden ve-mr-2"></div>`;
+		const dispSpent = veT`<div class="ve-small ve-self-flex-end ve-no-shrink ve-w-140p ve-text-right ve-no-wrap ve-overflow-x-hidden ve-mr-2"></div>`;
 		const setHtmlDispSpent = (html) => {
-			dispSpent.html(html);
+			dispSpent.vee.html(html);
 		};
 		// endregion
 
-		const btnDelete = ee`<button class="ve-btn ve-btn-danger ve-btn-xxs" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>`
-			.onn("click", () => {
+		const btnDelete = veT`<button class="ve-btn ve-btn-danger ve-btn-xxs" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>`
+			.vee.onn("click", () => {
 				this._utils.doDelete({entity});
 			});
 
-		ee(wrpRow)`
+		veT(wrpRow)`
 			<div class="ve-col-3 ve-flex-vh-center ve-pr-1">
 				${iptCountMinMaxMin}
 				<div class="ve-mx-1">\u2013</div>
@@ -228,7 +228,7 @@ export class EncounterBuilderUi extends BaseComponent {
 			.forEach(rulesComp => {
 				const {eles} = rulesComp.render({rdState, stgSettingsRules, stgRandomAndAdjust, stgGroupSummary, stgDifficulty});
 				this._addHookBase("activeRulesId", () => {
-					eles.forEach(ele => ele.toggleVe(this._state.activeRulesId === rulesComp.rulesId));
+					eles.forEach(ele => ele.vee.toggle(this._state.activeRulesId === rulesComp.rulesId));
 				})();
 			});
 
@@ -260,9 +260,9 @@ export class EncounterBuilderUi extends BaseComponent {
 			},
 		);
 
-		const stgSettingsRules = ee`<div class="ve-flex-col"></div>`;
+		const stgSettingsRules = veT`<div class="ve-flex-col"></div>`;
 
-		ee(stgSettings)`
+		veT(stgSettings)`
 			<h4 class="ve-my-2">${this._headerTextSettings}</h4>
 			<label class="ve-flex-v-center ve-mb-2"><b class="ve-mr-2">Rules:</b> ${selRulesId}</label>
 			${stgSettingsRules}
@@ -284,10 +284,10 @@ export class EncounterBuilderUi extends BaseComponent {
 
 		if (!stgViewer) return;
 
-		const wrpRows = ee`<div class="ve-py-2 ve-overflow-y-auto ve-min-h-0 ve-flex-col ve-h-100"></div>`;
-		const dispEmpty = ee`<div class="ve-muted ve-italic ve-text-center ve-p-2">Add a creature to begin.</div>`;
+		const wrpRows = veT`<div class="ve-py-2 ve-overflow-y-auto ve-min-h-0 ve-flex-col ve-h-100"></div>`;
+		const dispEmpty = veT`<div class="ve-muted ve-italic ve-text-center ve-p-2">Add a creature to begin.</div>`;
 
-		const wrpOutput = ee`<div class="ecgen-viewer__wrp-output ve-relative">
+		const wrpOutput = veT`<div class="ecgen-viewer__wrp-output ve-relative">
 			${wrpRows}
 			${dispEmpty}
 		</div>`;
@@ -297,10 +297,10 @@ export class EncounterBuilderUi extends BaseComponent {
 			heightPxSaved: this._state.viewerHeightPx || 130,
 			fnSetHeightPxSaved: heightPx => this._state.viewerHeightPx = heightPx,
 		})
-			.addClass("ecgen-viewer__ele-resize")
-			.appendTo(wrpOutput);
+			.vee.addClass("ecgen-viewer__ele-resize")
+			.vee.appendTo(wrpOutput);
 
-		ee(stgViewer)`
+		veT(stgViewer)`
 			<hr class="ve-hr-2">
 			${wrpOutput}
 		`;
@@ -312,8 +312,8 @@ export class EncounterBuilderUi extends BaseComponent {
 		});
 
 		this._comp.addHookCreatureGroups(() => {
-			wrpRows.toggleVe(!!this._comp.creatureGroups.length);
-			dispEmpty.toggleVe(!this._comp.creatureGroups.length);
+			wrpRows.vee.toggle(!!this._comp.creatureGroups.length);
+			dispEmpty.vee.toggle(!this._comp.creatureGroups.length);
 
 			rdState.renderableCollectionViewerCreatures.render();
 		})();
@@ -328,13 +328,13 @@ export class EncounterBuilderUi extends BaseComponent {
 				fnDisplay: val => this._partyCompsLookup[val]?.displayName,
 			},
 		)
-			.addClass("ve-w-120p");
+			.vee.addClass("ve-w-120p");
 
-		const stgParty = ee`<div class="ve-flex-col"></div>`;
+		const stgParty = veT`<div class="ve-flex-col"></div>`;
 
-		const stgGroupSummary = ee`<div class="ve-flex-col ve-w-40"></div>`;
+		const stgGroupSummary = veT`<div class="ve-flex-col ve-w-40"></div>`;
 
-		ee(stgGroup)`
+		veT(stgGroup)`
 			<h4 class="ve-my-2">Group Info</h4>
 			<label class="ve-flex-v-center ve-mb-2"><b class="ve-mr-2">Mode:</b> ${selPartyId}</label>
 			<hr class="ve-hr-2 ve-mt-0">
@@ -351,7 +351,7 @@ export class EncounterBuilderUi extends BaseComponent {
 			.forEach(partyComp => {
 				const {eles} = partyComp.render({stgGroup: stgParty});
 				this._addHookBase("activePartyId", () => {
-					eles.forEach(ele => ele.toggleVe(this._state.activePartyId === partyComp.partyId));
+					eles.forEach(ele => ele.vee.toggle(this._state.activePartyId === partyComp.partyId));
 				})();
 			});
 
@@ -411,8 +411,8 @@ export class EncounterBuilderUi extends BaseComponent {
 	}
 
 	_render_shapeCustom ({rdState, stgShapeCustom}) {
-		const btnAddGroup = ee`<button class="ve-btn ve-btn-xs ve-btn-default"><span class="glyphicon glyphicon-plus"></span> Add Creature Group</button>`
-			.onn("click", () => {
+		const btnAddGroup = veT`<button class="ve-btn ve-btn-xs ve-btn-default"><span class="glyphicon glyphicon-plus"></span> Add Creature Group</button>`
+			.vee.onn("click", () => {
 				if (this._comp.customShapeGroups.length >= this.constructor._CUSTOM_GROUPS_CNT_MAX) {
 					JqueryUtil.doToast({type: "warning", content: "Maximum group limit reached! Please remove some existing groups first."});
 					return;
@@ -424,8 +424,8 @@ export class EncounterBuilderUi extends BaseComponent {
 				];
 			});
 
-		const btnClearGroups = ee`<button class="ve-btn ve-btn-xs ve-btn-danger" title="Delete All Groups"><span class="glyphicon glyphicon-trash"></span></button>`
-			.onn("click", async () => {
+		const btnClearGroups = veT`<button class="ve-btn ve-btn-xs ve-btn-danger" title="Delete All Groups"><span class="glyphicon glyphicon-trash"></span></button>`
+			.vee.onn("click", async () => {
 				if (
 					this._comp.customShapeGroups?.length
 					&& !await InputUiUtil.pGetUserBoolean({title: "Are you Sure?", htmlDescription: `Are you sure you want to creature delete ${this._comp.customShapeGroups.length} group${this._comp.customShapeGroups.length === 1 ? "" : "s"}?`})
@@ -434,13 +434,13 @@ export class EncounterBuilderUi extends BaseComponent {
 				this._comp.customShapeGroups = [];
 			});
 
-		const btnExportCustomShapeGroups = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="Export Creature Group Configuration"><span class="glyphicon glyphicon-download"></span></button>`
-			.onn("click", () => {
+		const btnExportCustomShapeGroups = veT`<button class="ve-btn ve-btn-xs ve-btn-default" title="Export Creature Group Configuration"><span class="glyphicon glyphicon-download"></span></button>`
+			.vee.onn("click", () => {
 				DataUtil.userDownload(`custom-encounter-config`, this._getCustomShapeTemplate(), {fileType: "encounterbuilder-custom-shape-template"});
 			});
 
-		const btnImportCustomShapeGroups = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="Import Creature Group Configuration"><span class="glyphicon glyphicon-upload"></span></button>`
-			.onn("click", async () => {
+		const btnImportCustomShapeGroups = veT`<button class="ve-btn ve-btn-xs ve-btn-default" title="Import Creature Group Configuration"><span class="glyphicon glyphicon-upload"></span></button>`
+			.vee.onn("click", async () => {
 				const {jsons, errors} = await InputUiUtil.pGetUserUploadJson({expectedFileTypes: ["encounterbuilder-custom-shape-template"]});
 
 				DataUtil.doHandleFileLoadErrorsGeneric(errors);
@@ -455,8 +455,8 @@ export class EncounterBuilderUi extends BaseComponent {
 				JqueryUtil.doToast({content: `Imported ${cntSet} creature group${cntSet === 1 ? "" : "s"}!`});
 			});
 
-		const btnAutoAllocate = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="Auto-Distribute Remaining Budget (SHIFT to Auto Distribute Entire Budget; CTRL to Auto Distribute Entire Budget by Number of Creature)"><span class="glyphicon glyphicon-equalizer"></span></button>`
-			.onn("click", evt => {
+		const btnAutoAllocate = veT`<button class="ve-btn ve-btn-xs ve-btn-default" title="Auto-Distribute Remaining Budget (SHIFT to Auto Distribute Entire Budget; CTRL to Auto Distribute Entire Budget by Number of Creature)"><span class="glyphicon glyphicon-equalizer"></span></button>`
+			.vee.onn("click", evt => {
 				if (!this._comp.customShapeGroups?.length) return;
 
 				if (evt.shiftKey || EventUtil.isCtrlMetaKey(evt)) {
@@ -493,7 +493,7 @@ export class EncounterBuilderUi extends BaseComponent {
 				this._comp.customShapeGroups = [...this._comp.customShapeGroups];
 			});
 
-		const dispSpent = ee`<div class="ve-ml-auto ve-small ve-self-flex-end"></div>`;
+		const dispSpent = veT`<div class="ve-ml-auto ve-small ve-self-flex-end"></div>`;
 		const getUnspentInfo = () => {
 			const ratioPercentageTotal = this._comp.customShapeGroups
 				.map(({entity}) => entity.ratioPercentage)
@@ -533,16 +533,16 @@ export class EncounterBuilderUi extends BaseComponent {
 				isComplete,
 			} = getUnspentInfo();
 			dispSpent
-				.html(`<span class="ve-split-v-center ve-w-140p ve-no-shrink" title="The percentage of the encounter budget, for the currently-selected difficulty, allocated to encounter groups.">${htmlUnspentHeader}</span>`)
-				.toggleClass("text-danger", !isComplete);
+				.vee.html(`<span class="ve-split-v-center ve-w-140p ve-no-shrink" title="The percentage of the encounter budget, for the currently-selected difficulty, allocated to encounter groups.">${htmlUnspentHeader}</span>`)
+				.vee.toggleClass("text-danger", !isComplete);
 
 			const renderedCustomShapeGroups = this._comp._getRenderedCollection({prop: "customShapeGroups"});
 			Object.entries(renderedCustomShapeGroups)
 				.forEach(([id, meta]) => meta.setHtmlDispSpent(htmlRowsLookup[id]));
 		};
 
-		const wrpGroupsCustom = ee`<div class="ve-pb-2 ve-flex-col"></div>`;
-		const wrpGroupsCustomEmpty = ee`<div class="ve-pb-2 ve-flex-vh-center">
+		const wrpGroupsCustom = veT`<div class="ve-pb-2 ve-flex-col"></div>`;
+		const wrpGroupsCustomEmpty = veT`<div class="ve-pb-2 ve-flex-vh-center">
 			<i class="ve-muted ve-pt-2">Add a Custom Creature Group to begin.</i>
 		</div>`;
 
@@ -554,12 +554,12 @@ export class EncounterBuilderUi extends BaseComponent {
 		const ratioState = new _RatioState();
 
 		this._comp.addHookCustomShapeGroups(() => {
-			btnAutoAllocate.toggleClass("ve-disabled", !this._comp.customShapeGroups?.length);
+			btnAutoAllocate.vee.toggleClass("ve-disabled", !this._comp.customShapeGroups?.length);
 
 			renderableCollectionCustomShapeGroups.render();
 
-			wrpGroupsCustom.toggleVe(!!this._comp.customShapeGroups?.length);
-			wrpGroupsCustomEmpty.toggleVe(!this._comp.customShapeGroups?.length);
+			wrpGroupsCustom.vee.toggle(!!this._comp.customShapeGroups?.length);
+			wrpGroupsCustomEmpty.vee.toggle(!this._comp.customShapeGroups?.length);
 
 			doUpdateDispSpent();
 
@@ -570,7 +570,7 @@ export class EncounterBuilderUi extends BaseComponent {
 
 		const hkOnNonGroupUpdate = () => {
 			const isCustom = this._getActiveRulesComp().isCustomEncounterShape();
-			stgShapeCustom.toggleVe(isCustom);
+			stgShapeCustom.vee.toggle(isCustom);
 
 			if (!isCustom) return;
 
@@ -598,7 +598,7 @@ export class EncounterBuilderUi extends BaseComponent {
 				})();
 			});
 
-		ee(stgShapeCustom)`
+		veT(stgShapeCustom)`
 			<div class="ve-split-v-center ve-my-2">
 				<h4 class="ve-my-0">Custom Encounter</h4>
 				<div class="ve-flex-v-center">

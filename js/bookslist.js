@@ -69,19 +69,19 @@ export class AdventuresBooksList {
 			await ExcludeUtil.pInitialise(),
 		]);
 
-		const iptSearch = es(`#search`);
+		const iptSearch = veEs(`#search`);
 
 		const fnSort = (a, b, o) => this._fnSort(this._dataList, a, b, o);
 		this._list = new List({
-			wrpList: es(".books"),
+			wrpList: veEs(".books"),
 			iptSearch,
 			fnSort,
 			sortByInitial: this._sortByInitial,
 			sortDirInitial: this._sortDirInitial,
 		});
-		SortUtil.initBtnSortHandlers(es(`#filtertools`), this._list);
+		SortUtil.initBtnSortHandlers(veEs(`#filtertools`), this._list);
 
-		const wrpBookshelf = es(".books--alt");
+		const wrpBookshelf = veEs(".books--alt");
 		this._listAlt = new List({
 			wrpList: wrpBookshelf,
 			iptSearch,
@@ -90,13 +90,13 @@ export class AdventuresBooksList {
 			sortDirInitial: this._sortDirInitial,
 		});
 
-		es("#reset").onn("click", () => {
+		veEs("#reset").vee.onn("click", () => {
 			this._list.reset();
 			this._listAlt.reset();
-			iptSearch.val("");
+			iptSearch.vee.val("");
 
 			this._list.items.forEach(li => {
-				if (li.data.btnToggleExpand.txt() === "[\u2212]") li.data.btnToggleExpand.trigger("click");
+				if (li.data.btnToggleExpand.vee.txt() === "[\u2212]") li.data.btnToggleExpand.vee.trigger("click");
 			});
 		});
 
@@ -106,12 +106,12 @@ export class AdventuresBooksList {
 		// TODO(MODULES) refactor
 		import("./utils-brew/utils-brew-ui-manage.js")
 			.then(({ManageBrewUi}) => {
-				ManageBrewUi.bindBtngroupManager(e_({id: "btngroup-manager"}));
+				ManageBrewUi.bindBtngroupManager(veE({id: "btngroup-manager"}));
 			});
 		this._list.init();
 		this._listAlt.init();
 
-		if (ExcludeUtil.isAllContentExcluded(this._dataList)) wrpBookshelf.appends(ExcludeUtil.getAllContentBlocklistedHtml());
+		if (ExcludeUtil.isAllContentExcluded(this._dataList)) wrpBookshelf.vee.appends(ExcludeUtil.getAllContentBlocklistedHtml());
 
 		window.dispatchEvent(new Event("toolsLoaded"));
 	}
@@ -134,7 +134,7 @@ export class AdventuresBooksList {
 
 			const elesContents = [];
 			it.contents.map((chapter, ixChapter) => {
-				const lnkChapter = ee`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)},${ixChapter}" class="ve-flex ve-w-100 bklist__row-chapter ve-lst__row-border ve-lst__row-inner ve-lst__row ve-lst__wrp-cells ve-bold">
+				const lnkChapter = veT`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)},${ixChapter}" class="ve-flex ve-w-100 bklist__row-chapter ve-lst__row-border ve-lst__row-inner ve-lst__row ve-lst__wrp-cells ve-bold">
 					${Parser.bookOrdinalToAbv(chapter.ordinal)}${chapter.name}
 				</a>`;
 				elesContents.push(lnkChapter);
@@ -149,27 +149,27 @@ export class AdventuresBooksList {
 					const headerTextClean = headerText.toLowerCase().trim();
 					const headerPos = headerCounts[headerTextClean] || 0;
 					headerCounts[headerTextClean] = (headerCounts[headerTextClean] || 0) + 1;
-					const lnk = ee`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)},${ixChapter},${UrlUtil.encodeForHash(headerText)}${header.index ? `,${header.index}` : ""}${headerPos > 0 ? `,${headerPos}` : ""}" class="ve-lst__row ve-lst__row-border ve-lst__row-inner ve-lst__wrp-cells bklist__row-section ve-flex ve-w-100">
+					const lnk = veT`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)},${ixChapter},${UrlUtil.encodeForHash(headerText)}${header.index ? `,${header.index}` : ""}${headerPos > 0 ? `,${headerPos}` : ""}" class="ve-lst__row ve-lst__row-border ve-lst__row-inner ve-lst__wrp-cells bklist__row-section ve-flex ve-w-100">
 						${BookUtil._getContentsSectionHeader(header)}
 					</a>`;
 					elesContents.push(lnk);
 				});
 			});
 
-			const wrpContents = ee`<div class="ve-flex ve-w-100 ve-relative">
+			const wrpContents = veT`<div class="ve-flex ve-w-100 ve-relative">
 				<div class="ve-vr-0 ve-absolute bklist__vr-contents"></div>
 				<div class="ve-flex-col ve-w-100 bklist__wrp-rows-inner">${elesContents}</div>
-			</div>`.hideVe();
+			</div>`.vee.hide();
 
-			const btnToggleExpand = ee`<span class="ve-px-2 ve-py-1p ve-bold ve-mobile-sm__hidden ve-no-select">[+]</span>`
-				.onn("click", evt => {
+			const btnToggleExpand = veT`<span class="ve-px-2 ve-py-1p ve-bold ve-mobile-sm__hidden ve-no-select">[+]</span>`
+				.vee.onn("click", evt => {
 					evt.stopPropagation();
 					evt.preventDefault();
-					btnToggleExpand.txt(btnToggleExpand.txt() === "[+]" ? "[\u2212]" : "[+]");
-					wrpContents.toggleVe();
+					btnToggleExpand.vee.txt(btnToggleExpand.vee.txt() === "[+]" ? "[\u2212]" : "[+]");
+					wrpContents.vee.toggle();
 				});
 
-			const eleLi = ee`<div class="ve-flex-col ve-w-100">
+			const eleLi = veT`<div class="ve-flex-col ve-w-100">
 				<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)}" class="ve-split-v-center ve-lst__row-border ve-lst__row-inner ve-lst__row ${isExcluded ? `ve-lst__row--blocklisted` : ""}">
 					<span class="ve-w-100 ve-flex">${this._rowBuilderFn(it)}</span>
 					${btnToggleExpand}
@@ -179,7 +179,7 @@ export class AdventuresBooksList {
 
 			const listItemValues = {
 				source: Parser.sourceJsonToAbv(it.source),
-				alias: (it.alias || []).map(it => `"${it}"`).join(","),
+				...ListItem.getCommonValues(it),
 				storyline: it.storyline || "",
 			};
 
@@ -198,7 +198,7 @@ export class AdventuresBooksList {
 			const isLegacySource = SourceUtil.isLegacySourceWotc(it.source);
 
 			// region Alt list (covers/thumbnails)
-			const eleLiAlt = ee`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)}" class="ve-flex-col ve-flex-v-center ve-m-3 bks__wrp-bookshelf-item ${isExcluded ? `bks__wrp-bookshelf-item--blocklisted` : ""} ${isLegacySource ? `bks__wrp-bookshelf-item--legacy` : ""} ve-py-3 ve-px-2 ${Parser.sourceJsonToSourceClassname(it.source)}" ${isLegacySource ? `title="(Legacy Source)"` : ""}>
+			const eleLiAlt = veT`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)}" class="ve-flex-col ve-flex-v-center ve-m-3 bks__wrp-bookshelf-item ${isExcluded ? `bks__wrp-bookshelf-item--blocklisted` : ""} ${isLegacySource ? `bks__wrp-bookshelf-item--legacy` : ""} ve-py-3 ve-px-2 ${Parser.sourceJsonToSourceClassname(it.source)}" ${isLegacySource ? `title="(Legacy Source)"` : ""}>
 				<img src="${Renderer.adventureBook.getCoverUrl(it)}" class="ve-mb-2 bks__bookshelf-image" loading="lazy" alt="Cover Image: ${(it.name || "").qq()}">
 				<div class="bks__bookshelf-item-name ve-flex-vh-center ve-text-center">${it.name}</div>
 			</a>`;

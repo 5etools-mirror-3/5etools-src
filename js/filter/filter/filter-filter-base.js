@@ -135,15 +135,15 @@ export class FilterBase extends BaseComponent {
 	}
 
 	_getBtnMobToggleControls (wrpControls) {
-		const btnMobToggleControls = e_({
+		const btnMobToggleControls = veE({
 			tag: "button",
 			clazz: `ve-btn ve-btn-xs ve-btn-default ve-mobile-sm__visible ve-ml-auto ve-px-3 ve-mr-2`,
 			html: `<span class="glyphicon glyphicon-option-vertical"></span>`,
 			click: () => this._uiMeta.isMobileHeaderHidden = !this._uiMeta.isMobileHeaderHidden,
 		});
 		const hkMobHeaderHidden = () => {
-			btnMobToggleControls.toggleClass("ve-active", !this._uiMeta.isMobileHeaderHidden);
-			wrpControls.toggleClass("ve-mobile-sm__hidden", !!this._uiMeta.isMobileHeaderHidden);
+			btnMobToggleControls.vee.toggleClass("ve-active", !this._uiMeta.isMobileHeaderHidden);
+			wrpControls.vee.toggleClass("ve-mobile-sm__hidden", !!this._uiMeta.isMobileHeaderHidden);
 		};
 		this._addHook("uiMeta", "isMobileHeaderHidden", hkMobHeaderHidden);
 		hkMobHeaderHidden();
@@ -182,7 +182,7 @@ export class FilterBase extends BaseComponent {
 	}
 
 	_getBtnShowHide ({isMulti = false} = {}) {
-		return e_({
+		return veE({
 			tag: "button",
 			clazz: `ve-btn ve-btn-default ${isMulti ? "ve-btn-xxs" : "ve-btn-xs"}`,
 			click: () => this._uiMeta.isHidden = !this._uiMeta.isHidden,
@@ -195,7 +195,7 @@ export class FilterBase extends BaseComponent {
 
 		let menu = null;
 
-		return e_({
+		return veE({
 			tag: "button",
 			clazz: `ve-btn ve-btn-default ve-btn-xs`,
 			click: evt => {

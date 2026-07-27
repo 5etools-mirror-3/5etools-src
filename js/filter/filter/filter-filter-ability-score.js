@@ -53,12 +53,12 @@ export class AbilityScoreFilter extends FilterBase {
 	 */
 	render (opts) {
 		this._filterBox = opts.filterBox;
-		this.__wrpMiniPills = e_({ele: opts.wrpMini});
+		this.__wrpMiniPills = veE({ele: opts.wrpMini});
 
 		const wrpControls = this._getHeaderControls(opts);
 
-		this.__wrpPills = e_({tag: "div", clazz: `ve-fltr__wrp-pills ve-overflow-x-auto ve-flex-col ve-w-100`});
-		const hook = () => this.__wrpPills.toggleVe(!this._uiMeta.isHidden);
+		this.__wrpPills = veE({tag: "div", clazz: `ve-fltr__wrp-pills ve-overflow-x-auto ve-flex-col ve-w-100`});
+		const hook = () => this.__wrpPills.vee.toggle(!this._uiMeta.isHidden);
 		this._addHook("uiMeta", "isHidden", hook);
 		hook();
 
@@ -67,7 +67,7 @@ export class AbilityScoreFilter extends FilterBase {
 		// FIXME refactor this so we're not stealing the private method
 		const btnMobToggleControls = Filter.prototype._getBtnMobToggleControls.bind(this)(wrpControls);
 
-		this.__wrpFilter = ee`<div>
+		this.__wrpFilter = veT`<div>
 			${opts.isFirst ? "" : `<div class="ve-fltr__dropdown-divider ${opts.isMulti ? "ve-fltr__dropdown-divider--indented" : ""} ve-mb-1"></div>`}
 			<div class="ve-split ve-fltr__h ve-mb-1">
 				<div class="ve-ml-2 ve-fltr__h-text ve-flex-h-center">${opts.isMulti ? `<span class="ve-mr-2">\u2212</span>` : ""}${this._getRenderedHeader()}${btnMobToggleControls}</div>
@@ -82,18 +82,18 @@ export class AbilityScoreFilter extends FilterBase {
 	}
 
 	_getHeaderControls (opts) {
-		const btnClear = e_({
+		const btnClear = veE({
 			tag: "button",
 			clazz: `ve-btn ve-btn-default ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"} ve-fltr__h-btn--clear ve-w-100`,
 			click: () => this._doSetPillsClear(),
 			html: "Clear",
 		});
 
-		const wrpStateBtnsOuter = e_({
+		const wrpStateBtnsOuter = veE({
 			tag: "div",
 			clazz: "ve-flex-v-center ve-fltr__h-wrp-state-btns-outer",
 			children: [
-				e_({
+				veE({
 					tag: "div",
 					clazz: "ve-btn-group ve-flex-v-center ve-w-100",
 					children: [
@@ -103,12 +103,12 @@ export class AbilityScoreFilter extends FilterBase {
 			],
 		});
 
-		const wrpSummary = e_({tag: "div", clazz: "ve-flex-vh-center ve-hidden"});
+		const wrpSummary = veE({tag: "div", clazz: "ve-flex-vh-center ve-hidden"});
 
 		const btnShowHide = this._getBtnShowHide({isMulti: opts.isMulti});
 		const hkIsHidden = () => {
-			e_({ele: btnShowHide}).toggleClass("ve-active", this._uiMeta.isHidden);
-			wrpStateBtnsOuter.toggleVe(!this._uiMeta.isHidden);
+			veE({ele: btnShowHide}).vee.toggleClass("ve-active", this._uiMeta.isHidden);
+			wrpStateBtnsOuter.vee.toggle(!this._uiMeta.isHidden);
 
 			// Skip updating renders if results would be invisible
 			if (!this._uiMeta.isHidden) return;
@@ -122,20 +122,20 @@ export class AbilityScoreFilter extends FilterBase {
 					? `<span class="ve-fltr__summary_item ve-fltr__summary_item--include" title="${cur._totals.yes} hidden &quot;required&quot; tags">${cur._totals.yes}</span>`
 					: null,
 			].filter(Boolean).join("");
-			e_({ele: wrpSummary, html: htmlSummary}).toggleVe(this._uiMeta.isHidden);
+			veE({ele: wrpSummary, html: htmlSummary}).vee.toggle(this._uiMeta.isHidden);
 			// endregion
 		};
 		this._addHook("uiMeta", "isHidden", hkIsHidden);
 		this._addHookAll("state", hkIsHidden);
 		hkIsHidden();
 
-		return e_({
+		return veE({
 			tag: "div",
 			clazz: `ve-flex-v-center ve-fltr__h-wrp-btns-outer`,
 			children: [
 				wrpSummary,
 				wrpStateBtnsOuter,
-				e_({
+				veE({
 					tag: "div",
 					clazz: "ve-btn-group ve-flex-v-center ve-ml-2",
 					children: [
@@ -153,26 +153,26 @@ export class AbilityScoreFilter extends FilterBase {
 		if (!this.__wrpPills) return;
 		this._items.forEach(it => {
 			if (!it.rendered) it.rendered = this._getPill(it);
-			if (!it.isAnyIncrease && !it.isAnyDecrease) it.rendered.toggleClass("ve-fltr__pill--muted", !this._seenUids[it.uid]);
+			if (!it.isAnyIncrease && !it.isAnyDecrease) it.rendered.vee.toggleClass("ve-fltr__pill--muted", !this._seenUids[it.uid]);
 
 			if (!this.__wrpPillsRows[it.ability]) {
 				this.__wrpPillsRows[it.ability] = {
-					row: e_({
+					row: veE({
 						tag: "div",
 						clazz: "ve-flex-v-center ve-w-100 ve-my-1",
 						children: [
-							e_({
+							veE({
 								tag: "div",
 								clazz: "ve-mr-3 ve-text-right ve-fltr__label-ability-score ve-no-shrink ve-no-grow",
-								text: Parser.attAbvToFull(it.ability),
+								txt: Parser.attAbvToFull(it.ability),
 							}),
 						],
-					}).appendTo(this.__wrpPills),
+					}).vee.appendTo(this.__wrpPills),
 					searchText: Parser.attAbvToFull(it.ability).toLowerCase(),
 				};
 			}
 
-			it.rendered.appendTo(this.__wrpPillsRows[it.ability].row);
+			it.rendered.vee.appendTo(this.__wrpPillsRows[it.ability].row);
 		});
 	}
 
@@ -191,7 +191,7 @@ export class AbilityScoreFilter extends FilterBase {
 			this._proxyAssignSimple("state", nxtState);
 		};
 
-		const btnPill = e_({
+		const btnPill = veE({
 			tag: "div",
 			clazz: `ve-fltr__pill ve-fltr__pill--ability-bonus ve-px-2`,
 			html: item.getPillDisplayHtml(),
@@ -215,7 +215,7 @@ export class AbilityScoreFilter extends FilterBase {
 
 		const hook = () => {
 			const val = PILL_STATES[this._state[item.uid] || PILL_STATE__IGNORE];
-			btnPill.attr("data-state", val);
+			btnPill.vee.attr("data-state", val);
 		};
 		this._addHook("state", item.uid, hook);
 		hook();
@@ -229,26 +229,26 @@ export class AbilityScoreFilter extends FilterBase {
 			.sort(this.constructor._ascSortMiniPills.bind(this.constructor))
 			.forEach(it => {
 				// re-append existing elements to sort them
-				(it.btnMini = it.btnMini || this._getBtnMini(it)).appendTo(this.__wrpMiniPills);
+				(it.btnMini = it.btnMini || this._getBtnMini(it)).vee.appendTo(this.__wrpMiniPills);
 			});
 	}
 
 	_getBtnMini (item) {
-		const btnMini = e_({
+		const btnMini = veE({
 			tag: "div",
 			clazz: `ve-fltr__mini-pill ${this._filterBox.isMinisHidden(this.header) ? "ve-hidden" : ""}`,
-			text: item.getMiniPillDisplayText(),
+			txt: item.getMiniPillDisplayText(),
 			title: `Filter: ${this._getHeaderDisplayName()}`,
 			click: () => {
 				this._state[item.uid] = PILL_STATE__IGNORE;
 				this._filterBox.fireChangeEvent();
 			},
-		}).attr("data-state", PILL_STATES[this._state[item.uid] || PILL_STATE__IGNORE]);
+		}).vee.attr("data-state", PILL_STATES[this._state[item.uid] || PILL_STATE__IGNORE]);
 
-		const hook = () => btnMini.attr("data-state", PILL_STATES[this._state[item.uid] || PILL_STATE__IGNORE]);
+		const hook = () => btnMini.vee.attr("data-state", PILL_STATES[this._state[item.uid] || PILL_STATE__IGNORE]);
 		this._addHook("state", item.uid, hook);
 
-		const hideHook = () => btnMini.toggleClass("ve-hidden", this._filterBox.isMinisHidden(this.header));
+		const hideHook = () => btnMini.vee.toggleClass("ve-hidden", this._filterBox.isMinisHidden(this.header));
 		this._filterBox.registerMinisHiddenHook(this.header, hideHook);
 
 		return btnMini;
@@ -281,7 +281,7 @@ export class AbilityScoreFilter extends FilterBase {
 	 */
 	renderMinis (opts) {
 		this._filterBox = opts.filterBox;
-		this.__wrpMiniPills = e_({ele: opts.wrpMini});
+		this.__wrpMiniPills = veE({ele: opts.wrpMini});
 
 		this._doRenderMiniPills();
 	}
@@ -582,9 +582,9 @@ export class AbilityScoreFilter extends FilterBase {
 		const isHeaderMatch = this._getHeaderDisplayName().toLowerCase().includes(searchTerm);
 
 		if (isHeaderMatch) {
-			Object.values(this.__wrpPillsRows).forEach(meta => meta.row.removeClass("ve-fltr__hidden--search"));
+			Object.values(this.__wrpPillsRows).forEach(meta => meta.row.vee.removeClass("ve-fltr__hidden--search"));
 
-			if (this.__wrpFilter) this.__wrpFilter.toggleClass("ve-fltr__hidden--search", false);
+			if (this.__wrpFilter) this.__wrpFilter.vee.toggleClass("ve-fltr__hidden--search", false);
 
 			return true;
 		}
@@ -595,22 +595,22 @@ export class AbilityScoreFilter extends FilterBase {
 		let visibleCount = 0;
 		Object.values(this.__wrpPillsRows).forEach(({row, searchText}) => {
 			const isVisible = isModNumber || searchText.includes(searchTerm);
-			row.toggleClass("ve-fltr__hidden--search", !isVisible);
+			row.vee.toggleClass("ve-fltr__hidden--search", !isVisible);
 			if (isVisible) visibleCount++;
 		});
 
-		if (this.__wrpFilter) this.__wrpFilter.toggleClass("ve-fltr__hidden--search", visibleCount === 0);
+		if (this.__wrpFilter) this.__wrpFilter.vee.toggleClass("ve-fltr__hidden--search", visibleCount === 0);
 
 		return visibleCount !== 0;
 	}
 
 	_doTeardown () {
 		this._items.forEach(it => {
-			if (it.rendered) it.rendered.detach();
-			if (it.btnMini) it.btnMini.detach();
+			if (it.rendered) it.rendered.vee.detach();
+			if (it.btnMini) it.btnMini.vee.detach();
 		});
 
-		Object.values(this.__wrpPillsRows).forEach(meta => meta.row.detach());
+		Object.values(this.__wrpPillsRows).forEach(meta => meta.row.vee.detach());
 	}
 
 	_getStateNotDefault ({nxtState, isIgnoreSnapshot = false} = {}) {

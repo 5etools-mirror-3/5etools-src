@@ -6,12 +6,12 @@ const JSON_URL = "data/generated/bookref-quick.json";
 let reference;
 
 window.addEventListener("load", async () => {
-	BookUtil.dispBook = es(`#pagecontent`);
+	BookUtil.dispBook = veEs(`#pagecontent`);
 
 	if (!window.location.hash.length) {
 		BookUtil.dispBook
-			.empty()
-			.html(`${Renderer.utils.getBorderTr()}
+			.vee.empty()
+			.vee.html(`${Renderer.utils.getBorderTr()}
 			<tr><td colspan="6" class="initial-message initial-message--med">Select a section to begin</td></tr>
 			${Renderer.utils.getBorderTr()}`);
 	}

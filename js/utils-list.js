@@ -477,7 +477,7 @@ class SaveManager extends BaseComponent {
 	) {
 		this._addHookBase("saves", this._pDoSaveStateToStorageDebounced);
 
-		const dispCaret = e_({
+		const dispCaret = veE({
 			tag: "span",
 			clazz: "ve-lst__caret ve-lst__caret--active",
 		});
@@ -488,7 +488,7 @@ class SaveManager extends BaseComponent {
 				isDescending ? a.entity.name || "" : b.entity.name || ""),
 			);
 			this._triggerCollectionUpdate("saves");
-			dispCaret.toggleClass("ve-lst__caret--reverse", !isDescending);
+			dispCaret.vee.toggleClass("ve-lst__caret--reverse", !isDescending);
 		};
 
 		// Sort (and save) on opening
@@ -496,13 +496,13 @@ class SaveManager extends BaseComponent {
 
 		const wrpIsReference = !this._isReferencable
 			? null
-			: ee`<label class="ve-flex-v-center ve-mr-2">
+			: veT`<label class="ve-flex-v-center ve-mr-2">
 				<div class="ve-mr-1 ve-help" title="Turning this on will make a copy of the list as it currently exists, allowing the original to be modified or deleted without affecting the copy. Leaving this off will instead keep a reference to the list, so any change to the list will be reflected in applications which make use of it.">Make Copy</div>
 				${ComponentUiUtil.getCbBool(this, "isLoadAsCopy")}
 			</label>`;
 
-		const btnExportAll = ee`<button class="ve-btn ve-btn-default ve-btn-xs" title="Save All Lists to File">Export All</button>`
-			.onn("click", () => {
+		const btnExportAll = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="Save All Lists to File">Export All</button>`
+			.vee.onn("click", () => {
 				DataUtil.userDownload(
 					ListUtil.getDownloadNameSaves({page: this._page}),
 					{saves: MiscUtil.copyFast(this._state.saves)},
@@ -514,8 +514,8 @@ class SaveManager extends BaseComponent {
 
 		const btnImportAll = this._isReadOnlyUi
 			? null
-			: ee`<button class="ve-btn ve-btn-default ve-btn-xs" title="Load Lists from File">Import All</button>`
-				.onn("click", async () => {
+			: veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="Load Lists from File">Import All</button>`
+				.vee.onn("click", async () => {
 					const {jsons, errors} = await InputUiUtil.pGetUserUploadJson({
 						expectedFileTypes: [ListUtil.getDownloadFiletypeSaves({page: this._page})],
 					});
@@ -536,7 +536,7 @@ class SaveManager extends BaseComponent {
 					this._proxyAssignSimple("state", nxt);
 				});
 
-		const eleTitleSplit = ee`<div class="ve-flex-vh-center">
+		const eleTitleSplit = veT`<div class="ve-flex-vh-center">
 			${wrpIsReference}
 			<div class="ve-flex-v-center ve-btn-group">
 				${btnExportAll}
@@ -556,12 +556,12 @@ class SaveManager extends BaseComponent {
 
 		const isEveryExpanded = saves => saves.every(it => it.entity.manager_loader_isExpanded);
 
-		const wrpRows = ee`<div class="ve-flex-col"></div>`;
+		const wrpRows = veT`<div class="ve-flex-col"></div>`;
 
-		const dispNoSaves = ee`<div class="ve-flex-col"><i class="ve-muted ve-text-center">No saves found.</i></div>`;
+		const dispNoSaves = veT`<div class="ve-flex-col"><i class="ve-muted ve-text-center">No saves found.</i></div>`;
 
-		const btnExpandCollapseAll = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-px-1 ve-flex-vh-center ve-h-100 ve-no-shrink"></button>`
-			.onn("click", () => {
+		const btnExpandCollapseAll = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-px-1 ve-flex-vh-center ve-h-100 ve-no-shrink"></button>`
+			.vee.onn("click", () => {
 				const usableSaves = this._getUsableSaves();
 				if (!usableSaves.length) return;
 
@@ -571,11 +571,11 @@ class SaveManager extends BaseComponent {
 			});
 
 		let isDescending = false;
-		const btnSortName = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-w-100">
+		const btnSortName = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-w-100">
 			<span>Name</span>
 			${dispCaret}
 		</button>`
-			.onn("click", evt => {
+			.vee.onn("click", evt => {
 				evt.stopPropagation();
 				isDescending = !isDescending;
 				doSortSaves(isDescending);
@@ -596,18 +596,18 @@ class SaveManager extends BaseComponent {
 
 			const usableSaves = this._getUsableSaves();
 
-			dispNoSaves.toggleVe(!usableSaves.length);
+			dispNoSaves.vee.toggle(!usableSaves.length);
 
-			btnExpandCollapseAll.txt(
+			btnExpandCollapseAll.vee.txt(
 				!usableSaves.length
 					? `[+]`
-					: isEveryExpanded(usableSaves) ? `[\u2013]` : `[+]`,
+					: isEveryExpanded(usableSaves) ? `[\u2212]` : `[+]`,
 			);
 		};
 		hkSaves();
 		this._addHookBase("saves", hkSaves);
 
-		ee(eleModalInner)`
+		veT(eleModalInner)`
 		<div class="ve-flex-v-center ve-my-1 ve-px-2p ve-btn-group">
 			<button class="ve-btn ve-btn-default ve-btn-xs ve-w-30p ve-no-shrink" disabled>&nbsp;</button>
 			${btnExpandCollapseAll}
@@ -712,7 +712,7 @@ class SaveManager extends BaseComponent {
 			cbOnUpload,
 		},
 	) {
-		const wrp = ee`<div class="ve-pt-2 ve-flex-col no-print"></div>`;
+		const wrp = veT`<div class="ve-pt-2 ve-flex-col no-print"></div>`;
 
 		const renderableCollectionSummary = new SaveManager._RenderableCollectionSaves_Summary(
 			{
@@ -741,8 +741,8 @@ class SaveManager extends BaseComponent {
 	}
 
 	getBtnDownloadSave_ ({save, title = "Download", cbOnSave = null}) {
-		return ee`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-default" title="${title.qq()}"><span class="glyphicon glyphicon-download"></span></button>`
-			.onn("click", async evt => {
+		return veT`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-default" title="${title.qq()}"><span class="glyphicon glyphicon-download"></span></button>`
+			.vee.onn("click", async evt => {
 				evt.stopPropagation();
 
 				if (cbOnSave) {
@@ -838,20 +838,20 @@ SaveManager._RenderableCollectionSaves_Load = class extends RenderableCollection
 	getNewRender (save, i) {
 		const comp = this._utils.getNewRenderComp(save, i);
 
-		const wrpPreviewInner = ee`<div class="ve-flex-col ve-py-3 ve-ml-4 ve-accordion__wrp-preview-inner ve-w-100"></div>`;
+		const wrpPreviewInner = veT`<div class="ve-flex-col ve-py-3 ve-ml-4 ve-accordion__wrp-preview-inner ve-w-100"></div>`;
 
-		const wrpPreview = ee`<div class="ve-flex ve-hidden ve-relative ve-accordion__wrp-preview">
+		const wrpPreview = veT`<div class="ve-flex ve-hidden ve-relative ve-accordion__wrp-preview">
 			<div class="ve-vr-0 ve-absolute ve-accordion__vr-preview"></div>
 			${wrpPreviewInner}
 		</div>`;
 
 		let pExpandLoadList = null;
-		const btnExpand = ee`<div class="ve-px-1 ve-flex-vh-center ve-h-100 ve-mr-2 ve-relative ve-top-n1p ve-clickable ve-no-select"></div>`;
+		const btnExpand = veT`<div class="ve-px-1 ve-flex-vh-center ve-h-100 ve-mr-2 ve-relative ve-top-n1p ve-clickable ve-no-select"></div>`;
 		const hkIsExpanded = () => {
-			wrpPreview.toggleVe(!!comp._state.manager_loader_isExpanded);
+			wrpPreview.vee.toggle(!!comp._state.manager_loader_isExpanded);
 			btnExpand
-				.txt(comp._state.manager_loader_isExpanded ? `[\u2013]` : `[+]`)
-				.tooltip(comp._state.manager_loader_isExpanded ? "Collapse Preview" : "Expand Preview");
+				.vee.txt(comp._state.manager_loader_isExpanded ? `[\u2212]` : `[+]`)
+				.vee.tooltip(comp._state.manager_loader_isExpanded ? "Collapse Preview" : "Expand Preview");
 
 			if (!comp._state.manager_loader_isExpanded) return;
 
@@ -869,34 +869,34 @@ SaveManager._RenderableCollectionSaves_Load = class extends RenderableCollection
 						.join("");
 
 					wrpPreviewInner
-						.empty()
-						.html(lis ? `<ul class="ve-my-0" onclick="event.stopPropagation()">${lis}</ul>` : Renderer.get().render(`{@note This list is empty.}`));
+						.vee.empty()
+						.vee.html(lis ? `<ul class="ve-my-0" onclick="event.stopPropagation()">${lis}</ul>` : Renderer.get().render(`{@note This list is empty.}`));
 				});
 		};
 		comp._addHookBase("manager_loader_isExpanded", hkIsExpanded);
 		hkIsExpanded();
 
-		const btnLoad = ee`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-primary" title="Load"><span class="glyphicon glyphicon-ok"></span></button>`
-			.onn("click", evt => {
+		const btnLoad = veT`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-primary" title="Load"><span class="glyphicon glyphicon-ok"></span></button>`
+			.vee.onn("click", evt => {
 				evt.stopPropagation();
 				this._comp._state.activeId = save.id;
 				this._doClose(true, ListUtil.getWithoutManagerState(comp.toObject("*")));
 			});
 
-		const dispName = ComponentUiUtil.getDisp(comp, "name", {ele: ee`<div class="ve-w-100"></div>`});
+		const dispName = ComponentUiUtil.getDisp(comp, "name", {ele: veT`<div class="ve-w-100"></div>`});
 
 		const btnDownload = this._comp.getBtnDownloadSave_({save});
 
 		const btnDelete = this._isReadOnlyUi
 			? null
-			: ee`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-danger" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>`
-				.onn("click", evt => {
+			: veT`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-danger" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>`
+				.vee.onn("click", evt => {
 					evt.stopPropagation();
 					this._comp._state.saves = this._comp._state.saves.filter(it => it.id !== save.id);
 					if (this._comp._state.activeId === save.id) this._comp._doNew();
 				});
 
-		const wrpRow = ee`<div class="ve-flex-col ve-w-100">
+		const wrpRow = veT`<div class="ve-flex-col ve-w-100">
 			<div class="ve-flex-v-center ve-w-100 ve-py-1 ve-clickable ve-lst__row ve-lst__row-border ve-lst__row-inner">
 				<div class="ve-flex-vh-center ve-w-30p ve-no-shrink">
 					${btnLoad}
@@ -910,10 +910,10 @@ SaveManager._RenderableCollectionSaves_Load = class extends RenderableCollection
 			</div>
 			${wrpPreview}
 		</div>`
-			.onn("click", () => comp._state.manager_loader_isExpanded = !comp._state.manager_loader_isExpanded)
-			.appendTo(this._wrpRows);
+			.vee.onn("click", () => comp._state.manager_loader_isExpanded = !comp._state.manager_loader_isExpanded)
+			.vee.appendTo(this._wrpRows);
 
-		const hkDisplay = () => wrpRow.toggleVe(comp._state.name && comp._state.manager_isSaved);
+		const hkDisplay = () => wrpRow.vee.toggle(comp._state.name && comp._state.manager_isSaved);
 		comp._addHookBase("name", hkDisplay);
 		comp._addHookBase("manager_isSaved", hkDisplay);
 		hkDisplay();
@@ -951,7 +951,7 @@ SaveManager._RenderableCollectionSaves_Summary = class extends RenderableCollect
 
 	cbOnListUpdated ({cntVisibleItems}) {
 		const renderedCollection = this._comp._getRenderedCollection({prop: "saves", namespace: "summary"});
-		Object.values(renderedCollection).forEach(renderedMeta => renderedMeta.dispCount.html(`<span class="glyphicon glyphicon-pushpin ve-mr-1"></span> ${cntVisibleItems}`));
+		Object.values(renderedCollection).forEach(renderedMeta => renderedMeta.dispCount.vee.html(`<span class="glyphicon glyphicon-pushpin ve-mr-1"></span> ${cntVisibleItems}`));
 	}
 
 	getNewRender (save, i) {
@@ -963,34 +963,34 @@ SaveManager._RenderableCollectionSaves_Summary = class extends RenderableCollect
 
 		const iptName = ComponentUiUtil.getIptStr(comp, "name", {placeholder: "(Unnamed List)"});
 
-		const dispCount = ee`<div class="ve-absolute ve-right-0 ve-z-index-1 ve-no-events ve-flex-vh-center ve-muted ve-pr-2 ve-small" title="Number of Pinned List Items"></div>`;
+		const dispCount = veT`<div class="ve-absolute ve-right-0 ve-z-index-1 ve-no-events ve-flex-vh-center ve-muted ve-pr-2 ve-small" title="Number of Pinned List Items"></div>`;
 
-		const btnNew = ee`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-default" title="New Pinned List"><span class="glyphicon glyphicon-file"></span></button>`
-			.onn("click", evt => this._cbOnNew(evt));
+		const btnNew = veT`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-default" title="New Pinned List"><span class="glyphicon glyphicon-file"></span></button>`
+			.vee.onn("click", evt => this._cbOnNew(evt));
 
-		const btnDuplicate = ee`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-default" title="Duplicate Pinned List"><span class="glyphicon glyphicon-duplicate"></span></button>`
-			.onn("click", evt => this._cbOnDuplicate(evt));
+		const btnDuplicate = veT`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-default" title="Duplicate Pinned List"><span class="glyphicon glyphicon-duplicate"></span></button>`
+			.vee.onn("click", evt => this._cbOnDuplicate(evt));
 
-		const btnSave = ee`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-default" title="Save Pinned List"><span class="glyphicon glyphicon-floppy-disk"></span></button>`
-			.onn("click", evt => this._cbOnSave(evt));
+		const btnSave = veT`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-default" title="Save Pinned List"><span class="glyphicon glyphicon-floppy-disk"></span></button>`
+			.vee.onn("click", evt => this._cbOnSave(evt));
 
-		const btnLoad = ee`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-default" title="Load Pinned List"><span class="glyphicon glyphicon-folder-open"></span></button>`
-			.onn("click", evt => this._cbOnLoad(evt));
+		const btnLoad = veT`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-default" title="Load Pinned List"><span class="glyphicon glyphicon-folder-open"></span></button>`
+			.vee.onn("click", evt => this._cbOnLoad(evt));
 
 		const btnDownload = this._comp.getBtnDownloadSave_({save, title: "Download Pinned List", cbOnSave: this._cbOnSave});
 
-		const btnUpload = ee`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-default" title="Upload Pinned List"><span class="glyphicon glyphicon-upload"></span></button>`
-			.onn("click", evt => this._cbOnUpload(evt));
+		const btnUpload = veT`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-default" title="Upload Pinned List"><span class="glyphicon glyphicon-upload"></span></button>`
+			.vee.onn("click", evt => this._cbOnUpload(evt));
 
-		const btnReset = ee`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-default" title="Reload Pinned List"><span class="glyphicon glyphicon-refresh"></span></button>`
-			.onn("click", evt => this._cbOnReset(evt, ListUtil.getWithoutManagerState(comp.toObject("*"))));
+		const btnReset = veT`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-default" title="Reload Pinned List"><span class="glyphicon glyphicon-refresh"></span></button>`
+			.vee.onn("click", evt => this._cbOnReset(evt, ListUtil.getWithoutManagerState(comp.toObject("*"))));
 
-		const hkBtnReset = () => btnReset.prop("disabled", !comp._state.manager_isSaved);
+		const hkBtnReset = () => btnReset.vee.prop("disabled", !comp._state.manager_isSaved);
 		comp._addHookBase("name", hkBtnReset);
 		comp._addHookBase("manager_isSaved", hkBtnReset);
 		hkBtnReset();
 
-		const wrpRow = ee`<div class="ve-flex-col ve-my-2 ve-w-100">
+		const wrpRow = veT`<div class="ve-flex-col ve-my-2 ve-w-100">
 			<div class="ve-flex-v-center">
 				<div class="ve-flex-v-center ve-mr-1 ve-w-100 ve-min-w-0 ve-relative">
 					<div class="ve-mr-2 ve-muted">List:</div>
@@ -1007,9 +1007,9 @@ SaveManager._RenderableCollectionSaves_Summary = class extends RenderableCollect
 					${btnReset}
 				</div>
 			</div>
-		</div>`.appendTo(this._wrp);
+		</div>`.vee.appendTo(this._wrp);
 
-		const hkDisplay = () => wrpRow.toggleVe(this._comp._state.activeId === save.id);
+		const hkDisplay = () => wrpRow.vee.toggle(this._comp._state.activeId === save.id);
 		hkDisplay();
 
 		return {
@@ -1024,7 +1024,7 @@ SaveManager._RenderableCollectionSaves_Summary = class extends RenderableCollect
 	doUpdateExistingRender (renderedMeta, save, i) {
 		renderedMeta.hkDisplay();
 		renderedMeta.comp._proxyAssignSimple("state", save.entity, true);
-		if (!renderedMeta.wrpRow.parente().is(this._wrp)) renderedMeta.wrpRow.appendTo(this._wrp);
+		if (!renderedMeta.wrpRow.vee.parent().vee.is(this._wrp)) renderedMeta.wrpRow.vee.appendTo(this._wrp);
 	}
 };
 

@@ -217,15 +217,15 @@ export class OptionsFilter extends FilterBase {
 
 		const btns = Object.keys(this._defaultState)
 			.map(k => this._render_getPill(k));
-		const wrpButtons = ee`<div>${btns}</div>`;
+		const wrpButtons = veT`<div>${btns}</div>`;
 
 		if (opts.isMulti) {
-			return this.__wrpFilter = ee`<div class="ve-flex">
+			return this.__wrpFilter = veT`<div class="ve-flex">
 				<div class="ve-fltr__range-inline-label ve-mr-2">${this._getRenderedHeader()}</div>
 				${wrpButtons}
 			</div>`;
 		} else {
-			return this.__wrpFilter = ee`<div class="ve-flex-col">
+			return this.__wrpFilter = veT`<div class="ve-flex-col">
 				${opts.isFirst ? "" : `<div class="ve-fltr__dropdown-divider ve-mb-1"></div>`}
 				<div class="ve-split ve-fltr__h ${this._minimalUi ? "ve-fltr__minimal-hide" : ""} ve-mb-1">
 					<div class="ve-fltr__h-text ve-flex-h-center">${this._getRenderedHeader()}</div>
@@ -239,17 +239,17 @@ export class OptionsFilter extends FilterBase {
 	_render_getPill (key) {
 		const displayText = this._displayFn(key);
 
-		const btnPill = ee`<div class="ve-fltr__pill">${displayText}</div>`
-			.onn("click", () => {
+		const btnPill = veT`<div class="ve-fltr__pill">${displayText}</div>`
+			.vee.onn("click", () => {
 				this._state[key] = !this._state[key];
 			})
-			.onn("contextmenu", (evt) => {
+			.vee.onn("contextmenu", (evt) => {
 				evt.preventDefault();
 				this._state[key] = !this._state[key];
 			});
 		const hook = () => {
 			const val = PILL_STATES[this._state[key] ? 1 : 2];
-			btnPill.attr("data-state", val);
+			btnPill.vee.attr("data-state", val);
 		};
 		this._addHook("state", key, hook);
 		hook();
@@ -270,7 +270,7 @@ export class OptionsFilter extends FilterBase {
 		Object.keys(this._defaultState)
 			.forEach(k => {
 				const btn = this._renderedMiniPills[k] ||= this._getMiniPill(k);
-				btn.appendTo(this.__wrpMini);
+				btn.vee.appendTo(this.__wrpMini);
 			});
 	}
 
@@ -278,33 +278,33 @@ export class OptionsFilter extends FilterBase {
 		const displayTextFull = this._displayFnMini ? this._displayFn(key) : null;
 		const displayText = this._displayFnMini ? this._displayFnMini(key) : this._displayFn(key);
 
-		const btnMini = ee`<div class="ve-fltr__mini-pill ${this._filterBox.isMinisHidden(this.header) ? "ve-hidden" : ""}" data-state="${PILL_STATES[this._defaultState[key] === this._state[key] ? 0 : this._state[key] ? 1 : 2]}">${displayText}</div>`
-			.tooltip(`${displayTextFull ? `${displayTextFull} (` : ""}Filter: ${this._getHeaderDisplayName()}${displayTextFull ? ")" : ""}`)
-			.onn("click", () => {
+		const btnMini = veT`<div class="ve-fltr__mini-pill ${this._filterBox.isMinisHidden(this.header) ? "ve-hidden" : ""}" data-state="${PILL_STATES[this._defaultState[key] === this._state[key] ? 0 : this._state[key] ? 1 : 2]}">${displayText}</div>`
+			.vee.tooltip(`${displayTextFull ? `${displayTextFull} (` : ""}Filter: ${this._getHeaderDisplayName()}${displayTextFull ? ")" : ""}`)
+			.vee.onn("click", () => {
 				this._state[key] = this._defaultState[key];
 				this._filterBox.fireChangeEvent();
 			});
 
-		const hook = () => btnMini.attr("data-state", PILL_STATES[this._defaultState[key] === this._state[key] ? 0 : this._state[key] ? 1 : 2]);
+		const hook = () => btnMini.vee.attr("data-state", PILL_STATES[this._defaultState[key] === this._state[key] ? 0 : this._state[key] ? 1 : 2]);
 		this._addHook("state", key, hook);
 
-		const hideHook = () => btnMini.toggleClass("ve-hidden", this._filterBox.isMinisHidden(this.header));
+		const hideHook = () => btnMini.vee.toggleClass("ve-hidden", this._filterBox.isMinisHidden(this.header));
 		this._filterBox.registerMinisHiddenHook(this.header, hideHook);
 
 		return btnMini;
 	}
 
 	_getHeaderControls () {
-		const btnReset = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Reset</button>`.onn("click", () => this.reset());
-		const wrpBtns = ee`<div class="ve-flex-v-center">${btnReset}</div>`;
+		const btnReset = veT`<button class="ve-btn ve-btn-default ve-btn-xs">Reset</button>`.vee.onn("click", () => this.reset());
+		const wrpBtns = veT`<div class="ve-flex-v-center">${btnReset}</div>`;
 
-		const wrpSummary = ee`<div class="ve-flex-v-center ve-fltr__summary_item ve-fltr__summary_item--include"></div>`.hideVe();
+		const wrpSummary = veT`<div class="ve-flex-v-center ve-fltr__summary_item ve-fltr__summary_item--include"></div>`.vee.hide();
 
 		const btnShowHide = this._getBtnShowHide();
 		const hkIsHidden = () => {
-			btnShowHide.toggleClass("ve-active", this._uiMeta.isHidden);
-			wrpBtns.toggleVe(!this._uiMeta.isHidden);
-			wrpSummary.toggleVe(this._uiMeta.isHidden);
+			btnShowHide.vee.toggleClass("ve-active", this._uiMeta.isHidden);
+			wrpBtns.vee.toggle(!this._uiMeta.isHidden);
+			wrpSummary.vee.toggle(this._uiMeta.isHidden);
 
 			// Skip updating renders if results would be invisible
 			if (!this._uiMeta.isHidden) return;
@@ -313,14 +313,14 @@ export class OptionsFilter extends FilterBase {
 			const cntNonDefault = Object.entries(this._defaultState).filter(([k, v]) => this._state[k] != null && this._state[k] !== v).length;
 
 			wrpSummary
-				.tooltip(`${cntNonDefault} non-default option${cntNonDefault === 1 ? "" : "s"} selected`)
-				.txt(cntNonDefault);
+				.vee.tooltip(`${cntNonDefault} non-default option${cntNonDefault === 1 ? "" : "s"} selected`)
+				.vee.txt(cntNonDefault);
 		};
 		this._addHook("uiMeta", "isHidden", hkIsHidden);
 		this._addHookAll("state", hkIsHidden);
 		hkIsHidden();
 
-		return ee`
+		return veT`
 		<div class="ve-flex-v-center">
 			${wrpBtns}
 			${wrpSummary}
@@ -373,7 +373,7 @@ export class OptionsFilter extends FilterBase {
 		const isVisible = this._getHeaderDisplayName().toLowerCase().includes(searchTerm)
 			|| Object.keys(this._defaultState).map(it => this._displayFn(it).toLowerCase()).some(it => it.includes(searchTerm));
 
-		this.__wrpFilter.toggleClass("ve-fltr__hidden--search", !isVisible);
+		this.__wrpFilter.vee.toggleClass("ve-fltr__hidden--search", !isVisible);
 
 		return isVisible;
 	}

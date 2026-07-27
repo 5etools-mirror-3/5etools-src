@@ -8,7 +8,7 @@ import {SITE_STYLE__ONE} from "../js/consts.js";
 
 function run (args) {
 	TagJsons._BLOCKLIST_FILE_PREFIXES = [
-		...ut.FILE_PREFIX_BLOCKLIST,
+		...ut.BLOCKLIST_FILE_PREFIXES,
 
 		"foundry-",
 		"foundry.json",

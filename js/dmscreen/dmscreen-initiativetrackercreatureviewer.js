@@ -49,7 +49,7 @@ export class InitiativeTrackerCreatureViewer extends BaseComponent {
 	}
 
 	render () {
-		const out = ee`<div class="ve-flex-col ve-w-100 ve-h-100 ve-min-h-0">
+		const out = veT`<div class="ve-flex-col ve-w-100 ve-h-100 ve-min-h-0">
 			${this._render_getStgNoTrackerAvailable()}
 			${this._render_getStgConnect()}
 			${this._render_getStgCreature()}
@@ -70,11 +70,11 @@ export class InitiativeTrackerCreatureViewer extends BaseComponent {
 	}
 
 	_render_getStgNoTrackerAvailable () {
-		const stg = ee`<div class="ve-flex-vh-center ve-w-100 ve-h-100 ve-min-h-0">
+		const stg = veT`<div class="ve-flex-vh-center ve-w-100 ve-h-100 ve-min-h-0">
 			<div class="ve-dnd-font ve-italic ve-small-caps ve-muted">No Initiative Tracker available.</div>
 		</div>`;
 
-		const hkIsVisible = () => stg.toggleVe(!this._state.isActive && !this._state.cntPanelsAvailable);
+		const hkIsVisible = () => stg.vee.toggle(!this._state.isActive && !this._state.cntPanelsAvailable);
 		this._addHookBase("isActive", hkIsVisible);
 		this._addHookBase("cntPanelsAvailable", hkIsVisible);
 		hkIsVisible();
@@ -83,8 +83,8 @@ export class InitiativeTrackerCreatureViewer extends BaseComponent {
 	}
 
 	_render_getStgConnect () {
-		const btnConnectConnect = ee`<button class="ve-btn ve-btn-primary ve-min-w-200p">Connect to Tracker</button>`
-			.onn("click", async () => {
+		const btnConnectConnect = veT`<button class="ve-btn ve-btn-primary ve-min-w-200p">Connect to Tracker</button>`
+			.vee.onn("click", async () => {
 				const panelApps = DmScreenUtil.getPanelApps({board: this._board, type: PANEL_TYP_INITIATIVE_TRACKER});
 
 				if (panelApps.length === 1) return this._setLinkedTrackerFromPanelApp({panelApp: panelApps[0]});
@@ -95,24 +95,24 @@ export class InitiativeTrackerCreatureViewer extends BaseComponent {
 					title: "Select Tracker",
 				});
 
-				const selTracker = ee`<select class="ve-form-control ve-input-xs ve-mb-2">
+				const selTracker = veT`<select class="ve-form-control ve-input-xs ve-mb-2">
 					<option value="-1" disabled>Select tracker</option>
 					${panelApps.map((panelApp, i) => `<option value="${i}">${panelApp.getSummary()}</option>`).join("")}
 				</select>`
-					.onn("change", () => selTracker.removeClass("error-background"));
+					.vee.onn("change", () => selTracker.vee.removeClass("error-background"));
 
-				const BtnConnectSubmit = ee`<button class="ve-btn ve-btn-primary ve-btn-xs">Connect</button>`
-					.onn("click", () => {
-						const ix = Number(selTracker.val());
+				const BtnConnectSubmit = veT`<button class="ve-btn ve-btn-primary ve-btn-xs">Connect</button>`
+					.vee.onn("click", () => {
+						const ix = Number(selTracker.vee.val());
 						if (!~ix) {
-							selTracker.addClass("error-background");
+							selTracker.vee.addClass("error-background");
 							return;
 						}
 
 						doClose(true, ix);
 					});
 
-				ee(eleModalInner)`
+				veT(eleModalInner)`
 					${selTracker}
 					${BtnConnectSubmit}
 				`;
@@ -123,11 +123,11 @@ export class InitiativeTrackerCreatureViewer extends BaseComponent {
 				this._setLinkedTrackerFromPanelApp({panelApp: panelApps[ixSel]});
 			});
 
-		const stg = ee`<div class="ve-flex-vh-center ve-w-100 ve-h-100 ve-min-h-0">
+		const stg = veT`<div class="ve-flex-vh-center ve-w-100 ve-h-100 ve-min-h-0">
 			${btnConnectConnect}
 		</div>`;
 
-		const hkIsVisible = () => stg.toggleVe(!this._state.isActive && this._state.cntPanelsAvailable);
+		const hkIsVisible = () => stg.vee.toggle(!this._state.isActive && this._state.cntPanelsAvailable);
 		this._addHookBase("isActive", hkIsVisible);
 		this._addHookBase("cntPanelsAvailable", hkIsVisible);
 		hkIsVisible();
@@ -136,7 +136,7 @@ export class InitiativeTrackerCreatureViewer extends BaseComponent {
 	}
 
 	_render_getStgCreature () {
-		const dispCreature = e_({
+		const dispCreature = veE({
 			tag: "div",
 			clazz: "ve-flex-col ve-w-100 ve-h-100 ve-min-h-0",
 		});
@@ -168,11 +168,11 @@ export class InitiativeTrackerCreatureViewer extends BaseComponent {
 			}
 		})().then(null);
 
-		const stg = ee`<div class="ve-flex-col ve-w-100 ve-h-100 ve-min-h-0 ve-overflow-y-auto">
+		const stg = veT`<div class="ve-flex-col ve-w-100 ve-h-100 ve-min-h-0 ve-overflow-y-auto">
 			${dispCreature}
 		</div>`;
 
-		this._addHookBase("isActive", () => stg.toggleVe(this._state.isActive))();
+		this._addHookBase("isActive", () => stg.vee.toggle(this._state.isActive))();
 
 		return stg;
 	}

@@ -44,9 +44,9 @@ class _RenderableCollectionRowDataDefaultParty extends RenderableCollectionRowDa
 	/* ----- */
 
 	_pPopulateRow_btns ({comp, entity, wrpRhs}) {
-		ee`<button class="ve-btn ve-btn-danger ve-btn-xs dm-init__row-btn dm-init-lockable" tabindex="-1"><span class="glyphicon glyphicon-trash"></span></button>`
-			.appendTo(wrpRhs)
-			.onn("click", () => {
+		veT`<button class="ve-btn ve-btn-danger ve-btn-xs dm-init__row-btn dm-init-lockable" tabindex="-1"><span class="glyphicon glyphicon-trash"></span></button>`
+			.vee.appendTo(wrpRhs)
+			.vee.onn("click", () => {
 				if (this._comp._state.isLocked) return;
 				this._utils.doDelete({entity});
 			});
@@ -58,7 +58,7 @@ export class InitiativeTrackerRowDataViewDefaultParty extends InitiativeTrackerR
 	_ClsRenderableCollectionRowData = _RenderableCollectionRowDataDefaultParty;
 
 	_render_getWrpHeaderRhs ({rdState}) {
-		return ee`<div class="dm-init__row-rhs">
+		return veT`<div class="dm-init__row-rhs">
 			<div class="dm-init__header dm-init__header--input dm-init__header--input-wide" title="Hit Points">HP</div>
 			<div class="dm-init__spc-header-buttons--single"></div>
 		</div>`;

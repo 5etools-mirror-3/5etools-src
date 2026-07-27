@@ -61,7 +61,7 @@ class NavBar {
 		btnShowHide.innerHTML = "Menu";
 		btnShowHide.onclick = () => {
 			btnShowHide.classList.toggle("ve-active");
-			em(`.page__nav-hidden-mobile`).forEach(ele => ele.toggleClass("ve-block", btnShowHide.classList.contains("ve-active")));
+			veEm(`.page__nav-hidden-mobile`).forEach(ele => ele.vee.toggleClass("ve-block", btnShowHide.classList.contains("ve-active")));
 		};
 		document.getElementById("navigation").prepend(btnShowHide);
 
@@ -792,15 +792,15 @@ class NavBar {
 	/* -------------------------------------------- */
 
 	static _handleItemMouseEnter (ele) {
-		ele = e_(ele);
-		const timerIds = ele.siblings("[data-timer-id]").map(eleSib => ({ele: e_(eleSib), timerId: e_(eleSib).attr("data-timer-id")}));
+		ele = veE(ele);
+		const timerIds = ele.vee.siblings("[data-timer-id]").map(eleSib => ({ele: veE(eleSib), timerId: veE(eleSib).vee.attr("data-timer-id")}));
 		timerIds.forEach(({ele, timerId}) => {
 			if (NavBar._timersOpen[timerId]) {
 				clearTimeout(NavBar._timersOpen[timerId]);
 				delete NavBar._timersOpen[timerId];
 			}
 
-			if (!NavBar._timersClose[timerId] && ele.hasClass("open")) {
+			if (!NavBar._timersClose[timerId] && ele.vee.hasClass("open")) {
 				const getTimeoutFn = () => {
 					if (NavBar._timerMousePos[timerId]) {
 						const [xStart] = NavBar._timerMousePos[timerId];
@@ -826,7 +826,7 @@ class NavBar {
 	}
 
 	static _handleSideItemMouseEnter (ele) {
-		const timerId = e_(ele).closest(`li.dropdown`).attr("data-timer-id");
+		const timerId = veE(ele).closest(`li.dropdown`).vee.attr("data-timer-id");
 		if (NavBar._timersClose[timerId]) {
 			clearTimeout(NavBar._timersClose[timerId]);
 			delete NavBar._timersClose[timerId];
@@ -835,9 +835,9 @@ class NavBar {
 	}
 
 	static _handleSideDropdownMouseEnter (ele) {
-		ele = e_(ele);
-		const timerId = ele.parente().attr("data-timer-id") || NavBar._timerId++;
-		ele.parente().attr("data-timer-id", timerId);
+		ele = veE(ele);
+		const timerId = ele.vee.parent().vee.attr("data-timer-id") || NavBar._timerId++;
+		ele.vee.parent().vee.attr("data-timer-id", timerId);
 
 		if (NavBar._timersClose[timerId]) {
 			clearTimeout(NavBar._timersClose[timerId]);
@@ -854,9 +854,9 @@ class NavBar {
 	}
 
 	static _handleSideDropdownMouseLeave (ele) {
-		ele = e_(ele);
-		if (!ele.parente().attr("data-timer-id")) return;
-		const timerId = ele.parente().attr("data-timer-id");
+		ele = veE(ele);
+		if (!ele.vee.parent().vee.attr("data-timer-id")) return;
+		const timerId = ele.vee.parent().vee.attr("data-timer-id");
 		clearTimeout(NavBar._timersOpen[timerId]);
 		delete NavBar._timersOpen[timerId];
 	}

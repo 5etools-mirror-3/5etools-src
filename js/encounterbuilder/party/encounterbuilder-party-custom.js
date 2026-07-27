@@ -47,12 +47,12 @@ export class EncounterBuilderPartyCustom extends EncounterBuilderPartyBase {
 	}
 
 	render ({stgGroup}) {
-		const btnAddPlayers = ee`<button class="ve-btn ve-btn-primary ve-btn-xs"><span class="glyphicon glyphicon-plus"></span> Add Players</button>`
-			.onn("click", () => this._doAddPlayer());
+		const btnAddPlayers = veT`<button class="ve-btn ve-btn-primary ve-btn-xs"><span class="glyphicon glyphicon-plus"></span> Add Players</button>`
+			.vee.onn("click", () => this._doAddPlayer());
 
-		const wrpRows = ee`<div class="ve-flex-col ve-w-100"></div>`;
+		const wrpRows = veT`<div class="ve-flex-col ve-w-100"></div>`;
 
-		const stg = ee`<div class="ve-flex-col">
+		const stg = veT`<div class="ve-flex-col">
 			<div class="ve-flex">
 				<div class="ve-w-80p">Players:</div>
 				<div class="ve-w-80p">Level:</div>
@@ -66,7 +66,7 @@ export class EncounterBuilderPartyCustom extends EncounterBuilderPartyBase {
 				</div>
 			</div>
 		</div>`
-			.appendTo(stgGroup);
+			.vee.appendTo(stgGroup);
 
 		const collectionPlayersSimple = new EncounterBuilderRenderableCollectionPlayersSimple({
 			comp: this,

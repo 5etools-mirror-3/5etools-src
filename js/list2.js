@@ -22,13 +22,12 @@ export class ListItem {
 		return {
 			group: ent.group ? ent.group.join(",") : "",
 			alias: (ent.alias || []).map(it => `"${it}"`).join(","),
-			page: ent.page,
 		};
 	}
 
 	/**
 	 * @param ix External ID information (e.g. the location of the entry this ListItem represents in a list of entries)
-	 * @param ele An element, or jQuery element if the list is in jQuery mode.
+	 * @param ele An element.
 	 * @param name A name for this item.
 	 * @param values A dictionary of indexed values for this item.
 	 * @param [data] An optional dictionary of additional data to store with the item (not indexed).
@@ -60,14 +59,8 @@ export class ListItem {
 		if (this._isSelected === val) return;
 		this._isSelected = val;
 
-		// eslint-disable-next-line vet-jquery/jquery
-		if (globalThis.jQuery && this.ele instanceof globalThis.jQuery) {
-			if (this._isSelected) this.ele.addClass("list-multi-selected");
-			else this.ele.removeClass("list-multi-selected");
-		} else {
-			if (this._isSelected) this.ele.classList.add("list-multi-selected");
-			else this.ele.classList.remove("list-multi-selected");
-		}
+		if (this._isSelected) this.ele.classList.add("list-multi-selected");
+		else this.ele.classList.remove("list-multi-selected");
 	}
 
 	get isSelected () { return this._isSelected; }
@@ -118,11 +111,8 @@ export class List {
 	 * @param [opts.fnSort] Sort function. Should accept `(a, b, o)` where `o` is an options object. Pass `null` to
 	 * disable sorting.
 	 * @param [opts.fnSearch] Search function. Should accept `(li, searchTerm)` where `li` is a list item.
-	 * @param [opts.$iptSearch] Search input.
 	 * @param [opts.iptSearch] Search input.
-	 * @param opts.$wrpList List wrapper.
 	 * @param opts.wrpList List wrapper.
-	 * @param [opts.isUseJquery] If the list items are using jQuery elements. Significantly slower for large lists.
 	 * @param [opts.sortByInitial] Initial sortBy.
 	 * @param [opts.sortDirInitial] Initial sortDir.
 	 * @param [opts.syntax] A dictionary of search syntax prefixes, each with an item "to display" checker function.
@@ -133,18 +123,8 @@ export class List {
 	constructor (opts) {
 		if (opts.fnSearch && opts.isFuzzy) throw new Error(`The options "fnSearch" and "isFuzzy" are mutually incompatible!`);
 
-		// eslint-disable-next-line vet-jquery/jquery
-		if (opts.$iptSearch && opts.iptSearch) throw new Error(`Only one of "$iptSearch" and "iptSearch" may be passed!`);
-		// eslint-disable-next-line vet-jquery/jquery
-		if (opts.$wrpList && opts.wrpList) throw new Error(`Only one of "$iptSearch" and "iptSearch" may be passed!`);
-
-		// eslint-disable-next-line vet-jquery/jquery
-		const iptSearch = opts.iptSearch || (opts.$iptSearch?.[0] ? e_({ele: opts.$iptSearch?.[0]}) : undefined);
-		// eslint-disable-next-line vet-jquery/jquery
-		const wrpList = opts.wrpList || (opts.$wrpList?.[0] ? e_({ele: opts.$wrpList?.[0]}) : undefined);
-
-		this._iptSearch = iptSearch ? e_(iptSearch) : iptSearch;
-		this._wrpList = wrpList ? e_(wrpList) : wrpList;
+		this._iptSearch = opts.iptSearch ? veE(opts.iptSearch) : opts.iptSearch;
+		this._wrpList = opts.wrpList ? veE(opts.wrpList) : opts.wrpList;
 		this._fnSort = opts.fnSort === undefined ? SortUtil.listSort : opts.fnSort;
 		this._fnSearch = opts.fnSearch;
 		this._syntax = opts.syntax;
@@ -161,8 +141,6 @@ export class List {
 		this._sortByInitial = this._sortBy;
 		this._sortDirInitial = this._sortDir;
 		this._fnFilter = null;
-		this._isUseJquery = opts.isUseJquery;
-
 		if (this._isFuzzy) this._initFuzzySearch();
 
 		this._searchedItems = [];
@@ -210,10 +188,10 @@ export class List {
 		if (this._iptSearch) {
 			UiUtil.bindTypingEnd({
 				ipt: this._iptSearch,
-				fnKeyup: () => this.search(this._iptSearch.val()),
+				fnKeyup: () => this.search(this._iptSearch.vee.val()),
 				timeout: isLazySearch ? UiUtil.TYPE_TIMEOUT_LAZY_MS : UiUtil.TYPE_TIMEOUT_MS,
 			});
-			this._searchTerm = List.getCleanSearchTerm(this._iptSearch.val());
+			this._searchTerm = List.getCleanSearchTerm(this._iptSearch.vee.val());
 			this._init_bindKeydowns();
 
 			// region Help text
@@ -224,7 +202,7 @@ export class List {
 					.map(({help}) => help),
 			];
 
-			if (helpText.length) this._iptSearch.tooltip(helpText.join(" "));
+			if (helpText.length) this._iptSearch.vee.tooltip(helpText.join(" "));
 			// endregion
 		}
 
@@ -234,7 +212,7 @@ export class List {
 
 	_init_bindKeydowns () {
 		this._iptSearch
-			.onn("keydown", evt => {
+			.vee.onn("keydown", evt => {
 				// Avoid handling the same event multiple times, if there are multiple lists bound to one input
 				if (evt._List__isHandled) return;
 
@@ -248,12 +226,12 @@ export class List {
 	_handleKeydown_escape (evt) {
 		evt._List__isHandled = true;
 
-		if (!this._iptSearch.val()) {
+		if (!this._iptSearch.vee.val()) {
 			document.activeElement?.blur();
 			return;
 		}
 
-		this._iptSearch.val("");
+		this._iptSearch.vee.val("");
 		this.search("");
 	}
 
@@ -268,8 +246,8 @@ export class List {
 
 		evt._List__isHandled = true;
 
-		e_(firstVisibleItem.ele).trigger("click");
-		if (firstVisibleItem.values.hash) window.location.hash = firstVisibleItem.values.hash;
+		veE(firstVisibleItem.ele).vee.trigger("click");
+		if (firstVisibleItem.data.hash) window.location.hash = firstVisibleItem.data.hash;
 	}
 
 	_initFuzzySearch () {
@@ -492,15 +470,10 @@ export class List {
 	_doRender () {
 		const len = this._sortedItems.length;
 
-		if (this._isUseJquery) {
-			[...this._wrpList.children].forEach(child => child.parentElement.removeChild(child));
-			for (let i = 0; i < len; ++i) this._wrpList.append(this._sortedItems[i].ele[0]);
-		} else {
-			this._wrpList.innerHTML = "";
-			const frag = document.createDocumentFragment();
-			for (let i = 0; i < len; ++i) frag.appendChild(this._sortedItems[i].ele);
-			this._wrpList.appendChild(frag);
-		}
+		this._wrpList.innerHTML = "";
+		const frag = document.createDocumentFragment();
+		for (let i = 0; i < len; ++i) frag.appendChild(this._sortedItems[i].ele);
+		this._wrpList.appendChild(frag);
 
 		this._isDirty = false;
 		this._trigger("updated");

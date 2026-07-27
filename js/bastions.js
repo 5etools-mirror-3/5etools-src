@@ -34,26 +34,26 @@ class BastionsSublistManager extends SublistManager {
 			ent._slPrereq,
 		];
 
-		const ele = ee`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`
-			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
-			.onn("click", evt => this._listSub.doSelect(listItem, evt));
+			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
 		const listItem = new ListItem(
 			hash,
 			ele,
 			ent.name,
 			{
-				hash,
-				page: ent.page,
+				...ListItem.getCommonValues(ent),
 				facilityType,
 				level: ent.level || 0,
 				prerequisite: ent._slPrereq,
 			},
 			{
+				hash,
 				entity: ent,
 				mdRow: [...cellsText],
 			},
@@ -132,14 +132,14 @@ class BastionsPage extends ListPage {
 			eleLi,
 			ent.name,
 			{
-				hash,
 				source,
-				page: ent.page,
+				...ListItem.getCommonValues(ent),
 				facilityType,
 				level: ent.level || 0,
 				prerequisite: ent._slPrereq,
 			},
 			{
+				hash,
 				isExcluded,
 			},
 		);
@@ -151,7 +151,7 @@ class BastionsPage extends ListPage {
 	}
 
 	_renderStats_doBuildStatsTab ({ent}) {
-		this._pgContent.empty().appends(RenderBastions.getRenderedFacility(ent));
+		this._pgContent.vee.empty().vee.appends(RenderBastions.getRenderedFacility(ent));
 	}
 }
 

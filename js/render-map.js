@@ -13,11 +13,13 @@ export class RenderMap {
 	/* -------------------------------------------- */
 
 	static async pShowViewer (evt, ele) {
-		const mapData = JSON.parse(ele.dataset.rdPackedMap);
+		ele = veE({ele});
 
-		if (!mapData.page) mapData.page = ele.dataset.rdAdventureBookMapPage;
-		if (!mapData.source) mapData.source = ele.dataset.rdAdventureBookMapSource;
-		if (!mapData.hash) mapData.hash = ele.dataset.rdAdventureBookMapHash;
+		const mapData = JSON.parse(ele.vee.attr("data-rd-packed-map"));
+
+		if (!mapData.page) mapData.page = ele.vee.attr("data-rd-adventure-book-map-page");
+		if (!mapData.source) mapData.source = ele.vee.attr("data-rd-adventure-book-map-source");
+		if (!mapData.hash) mapData.hash = ele.vee.attr("data-rd-adventure-book-map-hash");
 
 		await RenderMap._pMutMapData(mapData);
 
@@ -210,7 +212,7 @@ export class RenderMap {
 		const X = 0;
 		const Y = 1;
 
-		const cvs = ee`<canvas class="ve-p-0 ve-m-0"></canvas>`;
+		const cvs = veT`<canvas class="ve-p-0 ve-m-0"></canvas>`;
 		cvs.width = mapData.width;
 		cvs.height = mapData.height;
 		const ctx = cvs.getContext("2d");
@@ -350,7 +352,7 @@ export class RenderMap {
 		};
 
 		cvs
-			.onn("click", async evt => {
+			.vee.onn("click", async evt => {
 				const clickPt = getEventPoint(evt);
 
 				const intersectedRegions = RenderMap._getIntersectedRegions(mapData.regions, clickPt);
@@ -397,7 +399,7 @@ export class RenderMap {
 					},
 				);
 			})
-			.onn("mousedown", evt => {
+			.vee.onn("mousedown", evt => {
 				if (evt.button !== 2) return; // RMB
 
 				cvs.style.cursor = "grabbing";
@@ -405,7 +407,7 @@ export class RenderMap {
 				lastRmbMeta.fnsCleanup.forEach(fn => fn());
 
 				// Find the nearest body, in case we're in a popout window
-				lastRmbMeta.body ||= e_({ele: out.closeste("body")});
+				lastRmbMeta.body ||= veE({ele: out.vee.closest("body")});
 				lastRmbMeta.point = [EventUtil.getClientX(evt), EventUtil.getClientY(evt)];
 				lastRmbMeta.time = Date.now();
 				lastRmbMeta.scrollPos = [wrpCvs.scrollLeft, wrpCvs.scrollTop];
@@ -415,8 +417,8 @@ export class RenderMap {
 					if (evt.button !== 2) return; // RMB
 
 					lastRmbMeta.body
-						.off(`mouseup`, onMouseUpBody)
-						.off(`mousemove`, onMouseMoveBody);
+						.vee.off(`mouseup`, onMouseUpBody)
+						.vee.off(`mousemove`, onMouseMoveBody);
 
 					cvs.style.cursor = "";
 
@@ -445,47 +447,47 @@ export class RenderMap {
 					evt.stopPropagation();
 					evt.preventDefault();
 
-					lastRmbMeta.body.off(`contextmenu`, onContextMenuBody);
+					lastRmbMeta.body.vee.off(`contextmenu`, onContextMenuBody);
 				};
 
 				lastRmbMeta.fnsCleanup.push(
 					() => {
 						lastRmbMeta.body
-							.off("mouseup", onMouseUpBody)
-							.off("mousemove", onMouseMoveBody)
-							.off("contextmenu", onContextMenuBody)
+							.vee.off("mouseup", onMouseUpBody)
+							.vee.off("mousemove", onMouseMoveBody)
+							.vee.off("contextmenu", onContextMenuBody)
 						;
 					},
 				);
 
 				lastRmbMeta.body
-					.onn("mouseup", onMouseUpBody)
-					.onn("mousemove", onMouseMoveBody)
+					.vee.onn("mouseup", onMouseUpBody)
+					.vee.onn("mousemove", onMouseMoveBody)
 					// Bind a document-wide handler to block the context menu at the end of the pan
-					.onn(`contextmenu`, onContextMenuBody);
+					.vee.onn(`contextmenu`, onContextMenuBody);
 			});
 
-		const btnZoomMinus = ee`<button class="ve-btn ve-btn-xs ve-btn-default"><span class="glyphicon glyphicon-zoom-out"></span> Zoom Out</button>`
-			.onn("click", () => zoomChange("out"));
+		const btnZoomMinus = veT`<button class="ve-btn ve-btn-xs ve-btn-default"><span class="glyphicon glyphicon-zoom-out"></span> Zoom Out</button>`
+			.vee.onn("click", () => zoomChange("out"));
 
-		const btnZoomPlus = ee`<button class="ve-btn ve-btn-xs ve-btn-default"><span class="glyphicon glyphicon-zoom-in"></span> Zoom In</button>`
-			.onn("click", () => zoomChange("in"));
+		const btnZoomPlus = veT`<button class="ve-btn ve-btn-xs ve-btn-default"><span class="glyphicon glyphicon-zoom-in"></span> Zoom In</button>`
+			.vee.onn("click", () => zoomChange("in"));
 
-		const btnZoomReset = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2"><span class="glyphicon glyphicon-search"></span> Reset Zoom</button>`
-			.onn("click", () => zoomChange("fill"));
+		const btnZoomReset = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2"><span class="glyphicon glyphicon-search"></span> Reset Zoom</button>`
+			.vee.onn("click", () => zoomChange("fill"));
 
-		const btnZoomFit = ee`<button class="ve-btn ve-btn-xs ve-btn-default"><span class="glyphicon glyphicon-search"></span> Zoom to Fit</button>`
-			.onn("click", () => zoomChange("fit"));
+		const btnZoomFit = veT`<button class="ve-btn ve-btn-xs ve-btn-default"><span class="glyphicon glyphicon-search"></span> Zoom to Fit</button>`
+			.vee.onn("click", () => zoomChange("fit"));
 
-		const btnHelp = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-ml-auto ve-mr-4" title="Help"><span class="glyphicon glyphicon-info-sign"></span> Help</button>`
-			.onn("click", evt => {
+		const btnHelp = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-ml-auto ve-mr-4" title="Help"><span class="glyphicon glyphicon-info-sign"></span> Help</button>`
+			.vee.onn("click", evt => {
 				const {eleModalInner} = UiUtil.getShowModal({
 					title: "Help",
 					isMinHeight0: true,
 					window: evt.view?.window,
 				});
 
-				eleModalInner.appends(`
+				eleModalInner.vee.appends(`
 					<p><i>Use of the &quot;Open as Popup Window&quot; button in the window title bar is recommended.</i></p>
 					<ul>
 						<li>Left-click to open an area as a new window.</li>
@@ -508,13 +510,13 @@ export class RenderMap {
 			zoomChangeDebounced(direction);
 		};
 
-		const wrpCvs = ee`<div class="ve-w-100 ve-h-100 ve-overflow-x-scroll ve-overflow-y-scroll ve-rd__scroller-viewer ${mapData.expectsLightBackground ? "ve-rd__scroller-viewer--bg-light" : mapData.expectsDarkBackground ? "ve-rd__scroller-viewer--bg-dark" : ""}">
+		const wrpCvs = veT`<div class="ve-w-100 ve-h-100 ve-overflow-x-scroll ve-overflow-y-scroll ve-rd__scroller-viewer ${mapData.expectsLightBackground ? "ve-rd__scroller-viewer--bg-light" : mapData.expectsDarkBackground ? "ve-rd__scroller-viewer--bg-dark" : ""}">
 			${cvs}
 		</div>`
-			.onn("mousewheel", onMouseWheelCanvas)
-			.onn("DOMMouseScroll", onMouseWheelCanvas);
+			.vee.onn("mousewheel", onMouseWheelCanvas)
+			.vee.onn("DOMMouseScroll", onMouseWheelCanvas);
 
-		const out = ee`<div class="ve-flex-col ve-w-100 ve-h-100">
+		const out = veT`<div class="ve-flex-col ve-w-100 ve-h-100">
 			<div class="ve-flex ve-no-shrink ve-p-2">
 				<div class="ve-btn-group ve-flex ve-mr-2">
 					${btnZoomMinus}

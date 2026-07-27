@@ -20,24 +20,24 @@ class TrapsHazardsSublistManager extends SublistManager {
 		const trapType = Parser.trapHazTypeToFull(it.trapHazType);
 		const cellsText = [trapType, it.name];
 
-		const ele = ee`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`
-			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
-			.onn("click", evt => this._listSub.doSelect(listItem, evt));
+			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
 		const listItem = new ListItem(
 			hash,
 			ele,
 			it.name,
 			{
-				hash,
-				page: it.page,
+				...ListItem.getCommonValues(it),
 				trapType,
 			},
 			{
+				hash,
 				entity: it,
 				mdRow: [...cellsText],
 			},
@@ -90,12 +90,12 @@ class TrapsHazardsPage extends ListPage {
 			eleLi,
 			it.name,
 			{
-				hash,
 				source,
-				page: it.page,
+				...ListItem.getCommonValues(it),
 				trapType,
 			},
 			{
+				hash,
 				isExcluded,
 			},
 		);
@@ -107,7 +107,7 @@ class TrapsHazardsPage extends ListPage {
 	}
 
 	_renderStats_doBuildStatsTab ({ent}) {
-		this._pgContent.empty().appends(RenderTrapsHazards.getRenderedTrapHazard(ent));
+		this._pgContent.vee.empty().vee.appends(RenderTrapsHazards.getRenderedTrapHazard(ent));
 	}
 }
 

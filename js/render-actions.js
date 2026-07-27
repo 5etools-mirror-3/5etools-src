@@ -2,7 +2,7 @@
 
 class RenderActions {
 	static getRenderedAction (it) {
-		return ee`
+		return veT`
 		${Renderer.utils.getBorderTr()}
 		${Renderer.utils.getExcludedTr({entity: it, dataProp: "action"})}
 		${Renderer.utils.getNameTr(it, {page: UrlUtil.PG_ACTIONS})}

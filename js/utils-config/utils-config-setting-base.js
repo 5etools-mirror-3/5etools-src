@@ -36,11 +36,11 @@ class _ConfigSettingBase {
 	render (rdState, wrpRows) {
 		const tag = this._isRowLabel ? "label" : "div";
 
-		ee`<${tag} class="ve-py-1 ve-w-100 ve-split-v-center" title="${this._help.qq()}">
+		veT`<${tag} class="ve-py-1 ve-w-100 ve-split-v-center" title="${this._help.qq()}">
 			${this._renderLabel(rdState)}
 			${this._renderUi(rdState)}
 		</${tag}>`
-			.appendTo(wrpRows);
+			.vee.appendTo(wrpRows);
 	}
 
 	_renderLabel (rdState) {

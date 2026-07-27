@@ -20,17 +20,17 @@ class RenderDemoPage {
 		switch (rendererType) {
 			case "html": {
 				this._renderer = Renderer.get();
-				this._eleOut.removeClass("ve-whitespace-pre").removeClass("ve-code");
+				this._eleOut.vee.removeClass("ve-whitespace-pre").vee.removeClass("ve-code");
 				break;
 			}
 			case "md": {
 				this._renderer = RendererMarkdown.get();
-				this._eleOut.addClass("ve-whitespace-pre").addClass("ve-code");
+				this._eleOut.vee.addClass("ve-whitespace-pre").vee.addClass("ve-code");
 				break;
 			}
 			case "cards": {
 				this._renderer = RendererCard.get();
-				this._eleOut.addClass("ve-whitespace-pre").addClass("ve-code");
+				this._eleOut.vee.addClass("ve-whitespace-pre").vee.addClass("ve-code");
 				break;
 			}
 			default: throw new Error(`Unhandled renderer!`);
@@ -38,20 +38,20 @@ class RenderDemoPage {
 	}
 
 	_doRender () {
-		this._eleMsg.hideVe().html("");
+		this._eleMsg.vee.hide().vee.html("");
 		const renderStack = [];
 		let json;
 		try {
 			json = JSON.parse(this._editor.getValue());
 		} catch (e) {
-			this._eleMsg.showVe().html(`Invalid JSON! We recommend using <a href="https://jsonlint.com/" target="_blank" rel="noopener noreferrer">JSONLint</a>.`);
+			this._eleMsg.vee.show().vee.html(`Invalid JSON! We recommend using <a href="https://jsonlint.com/" target="_blank" rel="noopener noreferrer">JSONLint</a>.`);
 			setTimeout(() => { throw e; });
 		}
 
 		this._renderer.setFirstSection(true);
 		this._renderer.resetHeaderIndex();
 		this._renderer.recursiveRender(json, renderStack);
-		this._eleOut.html(`
+		this._eleOut.vee.html(`
 			<tr><th class="ve-tbl-border" colspan="6"></th></tr>
 			<tr><td colspan="6">${renderStack.join("")}</td></tr>
 			<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -63,7 +63,7 @@ class RenderDemoPage {
 		try {
 			json = JSON.parse(this._editor.getValue());
 		} catch (e) {
-			this._eleMsg.showVe().html(`Invalid JSON! We recommend using <a href="https://jsonlint.com/" target="_blank" rel="noopener noreferrer">JSONLint</a>.`);
+			this._eleMsg.vee.show().vee.html(`Invalid JSON! We recommend using <a href="https://jsonlint.com/" target="_blank" rel="noopener noreferrer">JSONLint</a>.`);
 			setTimeout(() => { throw e; });
 			return;
 		}
@@ -100,13 +100,13 @@ class RenderDemoPage {
 	}
 
 	_getInitElements () {
-		this._eleMsg = es(`#message`);
-		this._eleOut = es(`#pagecontent`);
+		this._eleMsg = veEs(`#message`);
+		this._eleOut = veEs(`#pagecontent`);
 
-		const btnFormat = es(`#btn-format`);
-		const selRenderer = es(`#sel-renderer`);
-		const btnRender = es(`#btn-render`);
-		const btnReset = es(`#btn-reset`);
+		const btnFormat = veEs(`#btn-format`);
+		const selRenderer = veEs(`#sel-renderer`);
+		const btnRender = veEs(`#btn-render`);
+		const btnReset = veEs(`#btn-reset`);
 
 		return {
 			btnFormat,
@@ -127,7 +127,7 @@ class RenderDemoPage {
 		const rendererType = await StorageUtil.pGetForPage(this.constructor._STORAGE_LOCATION_RENDERER) || "html";
 
 		this._setRenderer(rendererType);
-		selRenderer.val(rendererType);
+		selRenderer.vee.val(rendererType);
 
 		// init editor
 		this._editor = await EditorUtil.pInitEditor("jsoninput", {mode: "ace/mode/json"});
@@ -148,15 +148,15 @@ class RenderDemoPage {
 			StorageUtil.pSetForPage(this.constructor._STORAGE_LOCATION_INPUT, this._editor.getValue());
 		}, VeCt.DUR_DEBOUNCE_SAVE);
 
-		btnFormat.onn("click", () => this._doFormat());
-		selRenderer.onn("change", () => {
-			const val = selRenderer.val();
+		btnFormat.vee.onn("click", () => this._doFormat());
+		selRenderer.vee.onn("change", () => {
+			const val = selRenderer.vee.val();
 			this._setRenderer(val);
 			this._doRender();
 			StorageUtil.pSetForPage(this.constructor._STORAGE_LOCATION_RENDERER, val);
 		});
-		btnReset.onn("click", () => this._doReset());
-		btnRender.onn("click", () => this._doRender());
+		btnReset.vee.onn("click", () => this._doReset());
+		btnRender.vee.onn("click", () => this._doRender());
 		this._editor.on("change", () => renderAndSaveDebounced()); // N.B. specific "change" format required by Ace.js
 
 		window.dispatchEvent(new Event("toolsLoaded"));

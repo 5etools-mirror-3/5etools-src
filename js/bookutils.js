@@ -55,7 +55,7 @@ export class BookUtil {
 						continue;
 					}
 
-					this._scrollClick_pScrollElementIntoView(es(`[data-title-index="${ixTitle}"]`)).then(null);
+					this._scrollClick_pScrollElementIntoView(veEs(`[data-title-index="${ixTitle}"]`)).then(null);
 					break;
 				}
 			}
@@ -66,14 +66,14 @@ export class BookUtil {
 		const trackedTitlesInverse = BookUtil._renderer.getTrackedTitlesInverted({isStripTags: true});
 
 		const ixTitle = (trackedTitlesInverse[headerText] || [])[headerNumber || 0];
-		if (ixTitle != null) this._scrollClick_pScrollElementIntoView(es(`[data-title-index="${ixTitle}"]`)).then(null);
+		if (ixTitle != null) this._scrollClick_pScrollElementIntoView(veEs(`[data-title-index="${ixTitle}"]`)).then(null);
 	}
 
 	static _scrollPageTop (ixChapter) {
 		// In full-book view, find the Xth section
 		if (ixChapter != null && !~BookUtil.curRender.chapter) {
 			const ixTitle = BookUtil.curRender.allViewFirstTitleIndexes[ixChapter];
-			if (ixTitle != null) es(`[data-title-index="${ixTitle}"]`).scrollIntoView();
+			if (ixTitle != null) veEs(`[data-title-index="${ixTitle}"]`).scrollIntoView();
 			return;
 		}
 
@@ -86,8 +86,8 @@ export class BookUtil {
 			evt.preventDefault();
 		}
 
-		btnToggleExpand.txt(btnToggleExpand.txt() === `[+]` ? `[\u2212]` : `[+]`);
-		headersBlock.toggleVe();
+		btnToggleExpand.vee.txt(btnToggleExpand.vee.txt() === `[+]` ? `[\u2212]` : `[+]`);
+		headersBlock.vee.toggle();
 	}
 
 	static _showBookContent (data, fromIndex, bookId, hashParts) {
@@ -131,13 +131,13 @@ export class BookUtil {
 		if (isRenderingNewChapterOrNewBook) {
 			BookUtil.curRender.curBookId = bookId;
 			BookUtil.curRender.chapter = ixChapter;
-			BookUtil.dispBook.html("");
+			BookUtil.dispBook.vee.html("");
 
 			const chapterTitle = (fromIndex.contents[ixChapter] || {}).name;
 			document.title = `${chapterTitle ? `${chapterTitle} - ` : ""}${fromIndex.name} - 5etools`;
 
 			BookUtil.curRender.controls = {};
-			BookUtil.dispBook.appends(Renderer.utils.getBorderTr());
+			BookUtil.dispBook.vee.appends(Renderer.utils.getBorderTr());
 			this._showBookContent_renderNavButtons({isTop: true, ixChapter, bookId, data});
 			const textStack = [];
 			BookUtil._renderer
@@ -154,7 +154,7 @@ export class BookUtil {
 				});
 			} else BookUtil._renderer.recursiveRender(data[ixChapter], textStack);
 			// If there is no source, we're probably in the Quick Reference, so avoid adding the "Excluded" text, as this is a composite source.
-			BookUtil.dispBook.appends(`<tr><td colspan="6" class="ve-py-2 ve-px-5">${fromIndex.source ? Renderer.utils.getExcludedHtml({entity: fromIndex, dataProp: BookUtil.contentType, page: UrlUtil.getCurrentPage()}) : ""}${textStack.join("")}</td></tr>`);
+			BookUtil.dispBook.vee.appends(`<tr><td colspan="6" class="ve-py-2 ve-px-5">${fromIndex.source ? Renderer.utils.getExcludedHtml({entity: fromIndex, dataProp: BookUtil.contentType, page: UrlUtil.getCurrentPage()}) : ""}${textStack.join("")}</td></tr>`);
 			Renderer.initLazyImageLoaders();
 			BookUtil._renderer
 				.setLazyImages(false)
@@ -162,7 +162,7 @@ export class BookUtil {
 				.setHeaderIndexImageTitles(false);
 			this._showBookContent_renderNavButtons({ixChapter, bookId, data});
 
-			BookUtil.dispBook.appends(Renderer.utils.getBorderTr());
+			BookUtil.dispBook.vee.appends(Renderer.utils.getBorderTr());
 
 			if (scrollToHeaderText) {
 				let handled = false;
@@ -181,12 +181,12 @@ export class BookUtil {
 					else BookUtil._scrollPageTop();
 				} else {
 					if (hashParts.length === 1 && BookUtil._LAST_CLICKED_LINK) {
-						const lastLink = e_({ele: BookUtil._LAST_CLICKED_LINK});
-						const lastHref = lastLink.attr("href");
+						const lastLink = veE({ele: BookUtil._LAST_CLICKED_LINK});
+						const lastHref = lastLink.vee.attr("href");
 						const mLink = new RegExp(`^${UrlUtil.PG_ADVENTURE}#${BookUtil.curRender.curBookId},(\\d+)$`, "i").exec(lastHref.trim());
 						if (mLink) {
 							const linkChapterIx = Number(mLink[1]);
-							const ele = es(`#pagecontent tr.text td`).childrene(`.${Renderer.HEAD_NEG_1}`)[linkChapterIx];
+							const ele = veEs(`#pagecontent tr.text td`).vee.children(`.${Renderer.HEAD_NEG_1}`)[linkChapterIx];
 							if (ele) ele.scrollIntoView();
 							else setTimeout(() => { throw new Error(`Failed to find header scroll target with index "${linkChapterIx}"`); });
 							return;
@@ -214,14 +214,14 @@ export class BookUtil {
 	}
 
 	static _removeLoadingOverlay () {
-		es(`.bk__overlay-loading`)?.remove();
+		veEs(`.bk__overlay-loading`)?.remove();
 	}
 
 	static _showBookContent_handleQuickReferenceShowAll () {
-		em(`.${Renderer.HEAD_NEG_1}`)
-			.forEach(ele => ele.showVe());
-		em(`.ve-rd__hr--section`)
-			.forEach(ele => ele.showVe());
+		veEm(`.${Renderer.HEAD_NEG_1}`)
+			.forEach(ele => ele.vee.show());
+		veEm(`.ve-rd__hr--section`)
+			.forEach(ele => ele.vee.show());
 	}
 
 	/**
@@ -232,25 +232,25 @@ export class BookUtil {
 		this._showBookContent_handleQuickReferenceShowAll();
 
 		if (sectionHeader && ~BookUtil.curRender.chapter) {
-			const allSects = em(`.${Renderer.HEAD_NEG_1}`);
+			const allSects = veEm(`.${Renderer.HEAD_NEG_1}`);
 			const cleanSectionHead = sectionHeader.trim().toLowerCase();
 
 			const toShow = allSects
 				.filter(ele => {
 					const matches = ele
-						.findAll(`.ve-rd__h .entry-title-inner`)
-						.filter(eleSub => eleSub.txt().trim().toLowerCase() === cleanSectionHead);
+						.vee.findAll(`.ve-rd__h .entry-title-inner`)
+						.filter(eleSub => eleSub.vee.txt().trim().toLowerCase() === cleanSectionHead);
 					return !!matches.length;
 				});
 
 			if (toShow.length) {
 				BookUtil.curRender.lastRefHeader = sectionHeader.toLowerCase();
 				allSects
-					.forEach(ele => ele.hideVe());
-				em(`hr.ve-rd__hr--section`)
-					.forEach(ele => ele.hideVe());
+					.forEach(ele => ele.vee.hide());
+				veEm(`hr.ve-rd__hr--section`)
+					.forEach(ele => ele.vee.hide());
 				toShow
-					.forEach(ele => ele.showVe());
+					.forEach(ele => ele.vee.show());
 				MiscUtil.scrollPageTop();
 			} else BookUtil.curRender.lastRefHeader = null;
 
@@ -291,29 +291,29 @@ export class BookUtil {
 
 	static _showBookContent_renderNavButtons ({isTop, ixChapter, bookId, data}) {
 		const tdStyle = `padding-${isTop ? "top" : "bottom"}: 6px; padding-left: 9px; padding-right: 9px;`;
-		const wrpControls = ee`<div class="ve-split"></div>`;
+		const wrpControls = veT`<div class="ve-split"></div>`;
 
-		ee`<tr><td colspan="6" style="${tdStyle}">${wrpControls}</td></tr>`.appendTo(BookUtil.dispBook);
+		veT`<tr><td colspan="6" style="${tdStyle}">${wrpControls}</td></tr>`.vee.appendTo(BookUtil.dispBook);
 
 		const showPrev = ~ixChapter && ixChapter > 0;
 		BookUtil.curRender.controls.btnsPrv = BookUtil.curRender.controls.btnsPrv || [];
 		let btnPrev;
 		if (BookUtil.referenceId) {
-			btnPrev = ee`<button class="ve-btn ve-btn-xs ve-btn-default bk__nav-head-foot-item no-print"><span class="glyphicon glyphicon-chevron-left"></span>Previous</button>`
-				.onn("click", () => this._showBookContent_goToPage({mod: -1, bookId, ixChapter}));
+			btnPrev = veT`<button class="ve-btn ve-btn-xs ve-btn-default bk__nav-head-foot-item no-print"><span class="glyphicon glyphicon-chevron-left"></span>Previous</button>`
+				.vee.onn("click", () => this._showBookContent_goToPage({mod: -1, bookId, ixChapter}));
 		} else {
-			btnPrev = ee`<a href="#${this._showBookContent_goToPage({mod: -1, isGetHref: true, bookId, ixChapter})}" class="ve-btn ve-btn-xs ve-btn-default bk__nav-head-foot-item no-print"><span class="glyphicon glyphicon-chevron-left"></span>Previous</a>`
-				.onn("click", () => MiscUtil.scrollPageTop());
+			btnPrev = veT`<a href="#${this._showBookContent_goToPage({mod: -1, isGetHref: true, bookId, ixChapter})}" class="ve-btn ve-btn-xs ve-btn-default bk__nav-head-foot-item no-print"><span class="glyphicon glyphicon-chevron-left"></span>Previous</a>`
+				.vee.onn("click", () => MiscUtil.scrollPageTop());
 		}
 		btnPrev
-			.toggleVe(showPrev)
-			.appendTo(wrpControls);
+			.vee.toggle(showPrev)
+			.vee.appendTo(wrpControls);
 		BookUtil.curRender.controls.btnsPrv.push(btnPrev);
 
 		(BookUtil.curRender.controls.divsPrv = BookUtil.curRender.controls.divsPrv || [])
-			.push(ee`<div class="bk__nav-head-foot-item no-print"></div>`
-				.toggleVe(!showPrev)
-				.appendTo(wrpControls));
+			.push(veT`<div class="bk__nav-head-foot-item no-print"></div>`
+				.vee.toggle(!showPrev)
+				.vee.appendTo(wrpControls));
 
 		if (isTop) this._showBookContent_renderNavButtons_top({bookId, wrpControls});
 		else this._showBookContent_renderNavButtons_bottom({bookId, wrpControls});
@@ -322,55 +322,55 @@ export class BookUtil {
 		BookUtil.curRender.controls.btnsNxt = BookUtil.curRender.controls.btnsNxt || [];
 		let btnNext;
 		if (BookUtil.referenceId) {
-			btnNext = ee`<button class="ve-btn ve-btn-xs ve-btn-default bk__nav-head-foot-item no-print">Next<span class="glyphicon glyphicon-chevron-right"></span></button>`
-				.onn("click", () => this._showBookContent_goToPage({mod: 1, bookId, ixChapter}));
+			btnNext = veT`<button class="ve-btn ve-btn-xs ve-btn-default bk__nav-head-foot-item no-print">Next<span class="glyphicon glyphicon-chevron-right"></span></button>`
+				.vee.onn("click", () => this._showBookContent_goToPage({mod: 1, bookId, ixChapter}));
 		} else {
-			btnNext = ee`<a href="#${this._showBookContent_goToPage({mod: 1, isGetHref: true, bookId, ixChapter})}" class="ve-btn ve-btn-xs ve-btn-default bk__nav-head-foot-item no-print">Next<span class="glyphicon glyphicon-chevron-right"></span></a>`
-				.onn("click", () => MiscUtil.scrollPageTop());
+			btnNext = veT`<a href="#${this._showBookContent_goToPage({mod: 1, isGetHref: true, bookId, ixChapter})}" class="ve-btn ve-btn-xs ve-btn-default bk__nav-head-foot-item no-print">Next<span class="glyphicon glyphicon-chevron-right"></span></a>`
+				.vee.onn("click", () => MiscUtil.scrollPageTop());
 		}
 		btnNext
-			.toggleVe(showNxt)
-			.appendTo(wrpControls);
+			.vee.toggle(showNxt)
+			.vee.appendTo(wrpControls);
 		BookUtil.curRender.controls.btnsNxt.push(btnNext);
 
 		(BookUtil.curRender.controls.divsNxt = BookUtil.curRender.controls.divsNxt || [])
-			.push(ee`<div class="bk__nav-head-foot-item no-print"></div>`
-				.toggleVe(!showNxt)
-				.appendTo(wrpControls));
+			.push(veT`<div class="bk__nav-head-foot-item no-print"></div>`
+				.vee.toggle(!showNxt)
+				.vee.appendTo(wrpControls));
 
 		if (isTop) {
-			BookUtil.wrpFloatControls.empty();
+			BookUtil.wrpFloatControls.vee.empty();
 
 			let btnPrev;
 			if (BookUtil.referenceId) {
-				btnPrev = ee`<button class="ve-btn ve-btn-xxs ve-btn-default"><span class="glyphicon glyphicon-chevron-left"></span></button>`
-					.onn("click", () => this._showBookContent_goToPage({mod: -1, bookId, ixChapter}));
+				btnPrev = veT`<button class="ve-btn ve-btn-xxs ve-btn-default"><span class="glyphicon glyphicon-chevron-left"></span></button>`
+					.vee.onn("click", () => this._showBookContent_goToPage({mod: -1, bookId, ixChapter}));
 			} else {
-				btnPrev = ee`<a href="#${this._showBookContent_goToPage({mod: -1, isGetHref: true, bookId, ixChapter})}" class="ve-btn ve-btn-xxs ve-btn-default"><span class="glyphicon glyphicon-chevron-left"></span></a>`
-					.onn("click", () => MiscUtil.scrollPageTop());
+				btnPrev = veT`<a href="#${this._showBookContent_goToPage({mod: -1, isGetHref: true, bookId, ixChapter})}" class="ve-btn ve-btn-xxs ve-btn-default"><span class="glyphicon glyphicon-chevron-left"></span></a>`
+					.vee.onn("click", () => MiscUtil.scrollPageTop());
 			}
 			btnPrev
-				.toggleVe(showPrev)
-				.appendTo(BookUtil.wrpFloatControls)
-				.tooltip("Previous Chapter");
+				.vee.toggle(showPrev)
+				.vee.appendTo(BookUtil.wrpFloatControls)
+				.vee.tooltip("Previous Chapter");
 			BookUtil.curRender.controls.btnsPrv.push(btnPrev);
 
 			let btnNext;
 			if (BookUtil.referenceId) {
-				btnNext = ee`<button class="ve-btn ve-btn-xxs ve-btn-default"><span class="glyphicon glyphicon-chevron-right"></span></button>`
-					.onn("click", () => this._showBookContent_goToPage({mod: 1, bookId, ixChapter}));
+				btnNext = veT`<button class="ve-btn ve-btn-xxs ve-btn-default"><span class="glyphicon glyphicon-chevron-right"></span></button>`
+					.vee.onn("click", () => this._showBookContent_goToPage({mod: 1, bookId, ixChapter}));
 			} else {
-				btnNext = ee`<a href="#${this._showBookContent_goToPage({mod: 1, isGetHref: true, bookId, ixChapter})}" class="ve-btn ve-btn-xxs ve-btn-default"><span class="glyphicon glyphicon-chevron-right"></span></a>`
-					.onn("click", () => MiscUtil.scrollPageTop());
+				btnNext = veT`<a href="#${this._showBookContent_goToPage({mod: 1, isGetHref: true, bookId, ixChapter})}" class="ve-btn ve-btn-xxs ve-btn-default"><span class="glyphicon glyphicon-chevron-right"></span></a>`
+					.vee.onn("click", () => MiscUtil.scrollPageTop());
 			}
 			btnNext
-				.toggleVe(showNxt)
-				.appendTo(BookUtil.wrpFloatControls)
-				.tooltip("Next Chapter");
+				.vee.toggle(showNxt)
+				.vee.appendTo(BookUtil.wrpFloatControls)
+				.vee.tooltip("Next Chapter");
 			BookUtil.curRender.controls.btnsNxt.push(btnNext);
 
-			BookUtil.wrpFloatControls.toggleClass("ve-btn-group", showPrev && showNxt);
-			BookUtil.wrpFloatControls.toggleVe(!!~ixChapter);
+			BookUtil.wrpFloatControls.vee.toggleClass("ve-btn-group", showPrev && showNxt);
+			BookUtil.wrpFloatControls.vee.toggle(!!~ixChapter);
 		}
 	}
 
@@ -380,7 +380,7 @@ export class BookUtil {
 		const href = ~this.curRender.chapter
 			? this._getHrefShowAll(bookId)
 			: `#${UrlUtil.encodeForHash(bookId)}`;
-		const btnEntireBook = ee`<a href="${href}" class="ve-btn ve-btn-xs ve-btn-default no-print ${~this.curRender.chapter ? "" : "ve-active"}" title="Warning: Slow">View Entire ${this.contentType.uppercaseFirst()}</a>`;
+		const btnEntireBook = veT`<a href="${href}" class="ve-btn ve-btn-xs ve-btn-default no-print ${~this.curRender.chapter ? "" : "ve-active"}" title="Warning: Slow">View Entire ${this.contentType.uppercaseFirst()}</a>`;
 
 		if (this._isNarrow == null) {
 			const saved = StorageUtil.syncGetForPage("narrowMode");
@@ -389,11 +389,11 @@ export class BookUtil {
 		}
 
 		const hdlNarrowUpdate = () => {
-			btnToggleNarrow.toggleClass("ve-active", this._isNarrow);
-			es(`#pagecontent`).toggleClass(`bk__stats--narrow`, this._isNarrow);
+			btnToggleNarrow.vee.toggleClass("ve-active", this._isNarrow);
+			veEs(`#pagecontent`).vee.toggleClass(`bk__stats--narrow`, this._isNarrow);
 		};
-		const btnToggleNarrow = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="Toggle Narrow Reading Width"><span class="glyphicon glyphicon-resize-small"></span></button>`
-			.onn("click", () => {
+		const btnToggleNarrow = veT`<button class="ve-btn ve-btn-xs ve-btn-default" title="Toggle Narrow Reading Width"><span class="glyphicon glyphicon-resize-small"></span></button>`
+			.vee.onn("click", () => {
 				this._isNarrow = !this._isNarrow;
 				hdlNarrowUpdate();
 				StorageUtil.syncSetForPage("narrowMode", this._isNarrow);
@@ -432,16 +432,16 @@ export class BookUtil {
 			]);
 		}
 
-		const btnMenu = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="Other Options"><span class="glyphicon glyphicon-option-vertical"></span></button>`
-			.onn("click", evt => ContextUtil.pOpenMenu(evt, this._TOP_MENU));
+		const btnMenu = veT`<button class="ve-btn ve-btn-xs ve-btn-default" title="Other Options"><span class="glyphicon glyphicon-option-vertical"></span></button>`
+			.vee.onn("click", evt => ContextUtil.pOpenMenu(evt, this._TOP_MENU));
 
-		ee`<div class="no-print ve-flex-v-center ve-btn-group">${btnEntireBook}${btnToggleNarrow}${btnMenu}</div>`.appendTo(wrpControls);
+		veT`<div class="no-print ve-flex-v-center ve-btn-group">${btnEntireBook}${btnToggleNarrow}${btnMenu}</div>`.vee.appendTo(wrpControls);
 	}
 
 	static _showBookContent_renderNavButtons_bottom ({bookId, wrpControls}) {
-		ee`<button class="ve-btn ve-btn-xs ve-btn-default no-print">Back to Top</button>`
-			.onn("click", () => MiscUtil.scrollPageTop())
-			.appendTo(wrpControls);
+		veT`<button class="ve-btn ve-btn-xs ve-btn-default no-print">Back to Top</button>`
+			.vee.onn("click", () => MiscUtil.scrollPageTop())
+			.vee.appendTo(wrpControls);
 	}
 
 	static _showBookContent_updateSidebar ({ixChapter, ixChapterPrev, bookIdPrev, bookId}) {
@@ -450,21 +450,21 @@ export class BookUtil {
 		// region Add highlight to current section
 		if (!~ixChapter) {
 			// In full-book mode, remove all highlights
-			BookUtil.curRender.lnksChapter.forEach(lnk => lnk.removeClass("bk__head-chapter--active"));
+			BookUtil.curRender.lnksChapter.forEach(lnk => lnk.vee.removeClass("bk__head-chapter--active"));
 			Object.values(BookUtil.curRender.lnksHeader).forEach(lnks => {
-				lnks.forEach(lnk => lnk.removeClass("bk__head-section--active"));
+				lnks.forEach(lnk => lnk.vee.removeClass("bk__head-section--active"));
 			});
 		} else {
 			// In regular chapter mode, add highlights to the appropriate section
 			if (ixChapterPrev != null && ~ixChapterPrev) {
 				if (BookUtil.curRender.lnksChapter[ixChapterPrev]) {
-					BookUtil.curRender.lnksChapter[ixChapterPrev].removeClass("bk__head-chapter--active");
-					(BookUtil.curRender.lnksHeader[ixChapterPrev] || []).forEach(lnk => lnk.removeClass("bk__head-section--active"));
+					BookUtil.curRender.lnksChapter[ixChapterPrev].vee.removeClass("bk__head-chapter--active");
+					(BookUtil.curRender.lnksHeader[ixChapterPrev] || []).forEach(lnk => lnk.vee.removeClass("bk__head-section--active"));
 				}
 			}
 
-			BookUtil.curRender.lnksChapter[ixChapter].addClass("bk__head-chapter--active");
-			(BookUtil.curRender.lnksHeader[ixChapter] || []).forEach(lnk => lnk.addClass("bk__head-section--active"));
+			BookUtil.curRender.lnksChapter[ixChapter].vee.addClass("bk__head-chapter--active");
+			(BookUtil.curRender.lnksHeader[ixChapter] || []).forEach(lnk => lnk.vee.addClass("bk__head-section--active"));
 			BookUtil.curRender.wrpLnksHeader[ixChapter].scrollIntoView({block: "nearest", inline: "nearest"});
 		}
 		// endregion
@@ -473,12 +473,12 @@ export class BookUtil {
 		// In full-book mode, expand all the sections
 		if (!~ixChapter) {
 			// If we're in "show all mode," collapse all first, then show all. Otherwise, show all.
-			if (BookUtil.curRender.btnToggleExpandAll.txt() === "[\u2212]") BookUtil.curRender.btnToggleExpandAll.trigger("click");
-			BookUtil.curRender.btnToggleExpandAll.trigger("click");
+			if (BookUtil.curRender.btnToggleExpandAll.vee.txt() === "[\u2212]") BookUtil.curRender.btnToggleExpandAll.vee.trigger("click");
+			BookUtil.curRender.btnToggleExpandAll.vee.trigger("click");
 			return;
 		}
 
-		if (BookUtil.curRender.btnsToggleExpand[ixChapter] && BookUtil.curRender.btnsToggleExpand[ixChapter].txt() === "[+]") BookUtil.curRender.btnsToggleExpand[ixChapter].trigger("click");
+		if (BookUtil.curRender.btnsToggleExpand[ixChapter] && BookUtil.curRender.btnsToggleExpand[ixChapter].vee.txt() === "[+]") BookUtil.curRender.btnsToggleExpand[ixChapter].vee.trigger("click");
 		// endregion
 	}
 
@@ -494,15 +494,15 @@ export class BookUtil {
 				const headerIx = chap.headers.findIndex(it => BookUtil.getHeaderText(it).toLowerCase() === BookUtil.curRender.lastRefHeader);
 				const renderPrev = ixChapter > 0 || (~headerIx && headerIx > 0);
 				const renderNxt = ixChapter < data.length - 1 || (~headerIx && headerIx < chap.headers.length - 1);
-				cnt.btnsPrv.forEach(ele => ele.toggleVe(!!renderPrev));
-				cnt.btnsNxt.forEach(ele => ele.toggleVe(!!renderNxt));
-				cnt.divsPrv.forEach(ele => ele.toggleVe(!renderPrev));
-				cnt.divsNxt.forEach(ele => ele.toggleVe(!renderNxt));
+				cnt.btnsPrv.forEach(ele => ele.vee.toggle(!!renderPrev));
+				cnt.btnsNxt.forEach(ele => ele.vee.toggle(!!renderNxt));
+				cnt.divsPrv.forEach(ele => ele.vee.toggle(!renderPrev));
+				cnt.divsNxt.forEach(ele => ele.vee.toggle(!renderNxt));
 			} else {
-				cnt.btnsPrv.forEach(ele => ele.toggleVe(false));
-				cnt.btnsNxt.forEach(ele => ele.toggleVe(false));
-				cnt.divsPrv.forEach(ele => ele.toggleVe(true));
-				cnt.divsNxt.forEach(ele => ele.toggleVe(true));
+				cnt.btnsPrv.forEach(ele => ele.vee.toggle(false));
+				cnt.btnsNxt.forEach(ele => ele.vee.toggle(false));
+				cnt.divsPrv.forEach(ele => ele.vee.toggle(true));
+				cnt.divsNxt.forEach(ele => ele.vee.toggle(true));
 			}
 		}
 	}
@@ -517,39 +517,47 @@ export class BookUtil {
 	}
 
 	static _initLinkGrabbers () {
-		e_({ele: document.body})
-			.onn(`mousedown`, (evt) => {
+		veE({ele: document.body})
+			.vee.onn(`mousedown`, (evt) => {
 				if (!evt.target.classList.contains(`entry-title-inner`)) return;
 				evt.preventDefault();
 			})
-			.onn(`click`, async (evt) => {
+			.vee.onn(`click`, async (evt) => {
 				if (!evt.target.classList.contains(`entry-title-inner`)) return;
 
-				const ele = e_({ele: evt.target});
-				const text = ele.txt().trim().replace(/\.$/, "");
+				const ele = veE({ele: evt.target});
+				const text = ele.vee.txt().trim().replace(/\.$/, "");
+
+				const hashParts = [BookUtil.curRender.chapter, text, ele.vee.parent().vee.attr("data-title-relative-index")].map(it => UrlUtil.encodeForHash(it));
+				const url = [`${window.location.href.split("#")[0]}#${BookUtil.curRender.curBookId}`, ...hashParts].join(HASH_PART_SEP);
+
+				if (EventUtil.isCtrlMetaKey(evt)) {
+					window.location.href = url;
+					JqueryUtil.showCopiedEffect(ele, {text: "Moved to link!"});
+					return;
+				}
 
 				if (evt.shiftKey) {
 					await MiscUtil.pCopyTextToClipboard(text);
 					JqueryUtil.showCopiedEffect(ele);
-				} else {
-					const hashParts = [BookUtil.curRender.chapter, text, ele.parente().attr("data-title-relative-index")].map(it => UrlUtil.encodeForHash(it));
-					const toCopy = [`${window.location.href.split("#")[0]}#${BookUtil.curRender.curBookId}`, ...hashParts];
-					await MiscUtil.pCopyTextToClipboard(toCopy.join(HASH_PART_SEP));
-					JqueryUtil.showCopiedEffect(ele, {text: "Copied link!"});
+					return;
 				}
+
+				await MiscUtil.pCopyTextToClipboard(url);
+				JqueryUtil.showCopiedEffect(ele, {text: "Copied link!"});
 			});
 	}
 
 	static _initScrollTopFloat () {
 		const wrpScrollTop = OmnisearchUtilsUi.addScrollTopFloat();
-		BookUtil.wrpFloatControls = ee`<div class="ve-flex-vh-center ve-w-100 ve-mb-2 ve-btn-group"></div>`.prependTo(wrpScrollTop);
+		BookUtil.wrpFloatControls = veT`<div class="ve-flex-vh-center ve-w-100 ve-mb-2 ve-btn-group"></div>`.vee.prependTo(wrpScrollTop);
 	}
 
 	static _initLinkReNav () {
-		e_({ele: document.body})
-			.onn("click", evt => {
+		veE({ele: document.body})
+			.vee.onn("click", evt => {
 				if (evt.target.tagName !== "A") return;
-				BookUtil._handleCheckReNav(e_({ele: evt.target}));
+				BookUtil._handleCheckReNav(veE({ele: evt.target}));
 			});
 	}
 
@@ -562,7 +570,7 @@ export class BookUtil {
 
 	// custom loading to serve multiple sources
 	static async booksHashChange () {
-		const wrpContents = es("#lst-contents");
+		const wrpContents = veEs("#lst-contents");
 
 		const [bookIdRaw, ...hashParts] = Hist.util.getHashParts(window.location.hash, {isReturnEncoded: true});
 		const bookId = decodeURIComponent(bookIdRaw);
@@ -696,8 +704,8 @@ export class BookUtil {
 
 	static async _booksHashChange_pHandleFound ({fromIndex, homebrewData, bookId, hashParts, wrpContents, isNewBook}) {
 		document.title = `${fromIndex.name} - 5etools`;
-		es(`#page__title`).html(this._booksHashChange_getCleanName(fromIndex));
-		es(`#page__subtitle`).html("Browse content. Press F to find, and G to go to page.");
+		veEs(`#page__title`).vee.html(this._booksHashChange_getCleanName(fromIndex));
+		veEs(`#page__subtitle`).vee.html("Browse content. Press F to find, and G to go to page.");
 		await this._pLoadChapter(fromIndex, bookId, hashParts, homebrewData, wrpContents);
 		NavBar.highlightCurrentPage();
 		if (isNewBook) MiscUtil.scrollPageTop();
@@ -706,7 +714,7 @@ export class BookUtil {
 	static _booksHashChange_noContent ({wrpContents}) {
 		this._doPopulateContents({wrpContents});
 
-		BookUtil.dispBook.empty().html(`<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+		BookUtil.dispBook.vee.empty().vee.html(`<tr><th class="ve-tbl-border" colspan="6"></th></tr>
 			<tr><td colspan="6" class="initial-message initial-message--med book-loading-message">Please select ${Parser.getArticle(BookUtil.contentType)} ${BookUtil.contentType} to view!</td></tr><tr><th class="ve-tbl-border" colspan="6"></th></tr>`);
 
 		this._removeLoadingOverlay();
@@ -715,8 +723,8 @@ export class BookUtil {
 	static _booksHashChange_handleNotFound ({wrpContents, bookId}) {
 		if (!window.location.hash) return window.history.back();
 
-		wrpContents.empty();
-		BookUtil.dispBook.empty().html(`<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+		wrpContents.vee.empty();
+		BookUtil.dispBook.vee.empty().vee.html(`<tr><th class="ve-tbl-border" colspan="6"></th></tr>
 			<tr><td colspan="6" class="initial-message initial-message--med book-loading-message">Loading failed\u2014could not find ${Parser.getArticle(BookUtil.contentType)} ${BookUtil.contentType} with ID "${bookId}". You may need to add it as homebrew first.</td></tr><tr><th class="ve-tbl-border" colspan="6"></th></tr>`);
 
 		this._removeLoadingOverlay();
@@ -750,9 +758,9 @@ export class BookUtil {
 	}
 
 	static _doPopulateContents ({wrpContents, book}) {
-		wrpContents.html(BookUtil.allPageUrl ? `<div><a href="${BookUtil.allPageUrl}" class="ve-lst__row-border ve-lst__row-inner"><span class="ve-bold">\u21FD ${this._getAllTitle()}</span></a></div>` : "");
+		wrpContents.vee.html(BookUtil.allPageUrl ? `<div><a href="${BookUtil.allPageUrl}" class="ve-lst__row-border ve-lst__row-inner"><span class="ve-bold">\u21FD ${this._getAllTitle()}</span></a></div>` : "");
 
-		if (book) BookUtil._getRenderedContents({book}).appendTo(wrpContents);
+		if (book) BookUtil._getRenderedContents({book}).vee.appendTo(wrpContents);
 	}
 
 	static _getAllTitle () {
@@ -765,19 +773,19 @@ export class BookUtil {
 
 	static _handleReNav (lnk) {
 		const hash = window.location.hash.slice(1).toLowerCase();
-		const linkHash = (lnk.attr("href").split("#")[1] || "").toLowerCase();
+		const linkHash = (lnk.vee.attr("href").split("#")[1] || "").toLowerCase();
 		if (hash !== linkHash) return;
 		BookUtil.booksHashChange().then(null);
 	}
 
 	static _addSearch (indexData, bookId) {
-		e_({ele: document.body})
-			.onn("click", () => {
+		veE({ele: document.body})
+			.vee.onn("click", () => {
 				if (BookUtil._findAll) BookUtil._findAll.remove();
 			});
 
-		e_({ele: document.body})
-			.onn("keypress", (evt) => {
+		veE({ele: document.body})
+			.vee.onn("keypress", (evt) => {
 				const key = EventUtil.getKeyIgnoreCapsLock(evt);
 				if ((key !== "f" && key !== "g") || !EventUtil.noModifierKeys(evt)) return;
 				if (EventUtil.isInInput(evt)) return;
@@ -786,50 +794,50 @@ export class BookUtil {
 			});
 
 		// region Mobile only "open find bar" buttons
-		const btnToTop = ee`<button class="ve-btn ve-btn-default ve-btn-sm no-print ve-bbl-0" title="To Top"><span class="glyphicon glyphicon-arrow-up"></span></button>`
-			.onn("click", evt => {
+		const btnToTop = veT`<button class="ve-btn ve-btn-default ve-btn-sm no-print ve-bbl-0" title="To Top"><span class="glyphicon glyphicon-arrow-up"></span></button>`
+			.vee.onn("click", evt => {
 				evt.stopPropagation();
 				MiscUtil.scrollPageTop();
 			});
 
-		const btnOpenFind = ee`<button class="ve-btn ve-btn-default ve-btn-sm no-print" title="Find"><kbd>F</kbd></button>`
-			.onn("click", evt => {
+		const btnOpenFind = veT`<button class="ve-btn ve-btn-default ve-btn-sm no-print" title="Find"><kbd>F</kbd></button>`
+			.vee.onn("click", evt => {
 				evt.stopPropagation();
 				BookUtil._showSearchBox(indexData, bookId, false);
 			});
 
-		const btnOpenGoto = ee`<button class="ve-btn ve-btn-default ve-btn-sm no-print ve-bbr-0" title="Go to Page"><kbd>G</kbd></button>`
-			.onn("click", evt => {
+		const btnOpenGoto = veT`<button class="ve-btn ve-btn-default ve-btn-sm no-print ve-bbr-0" title="Go to Page"><kbd>G</kbd></button>`
+			.vee.onn("click", evt => {
 				evt.stopPropagation();
 				BookUtil._showSearchBox(indexData, bookId, true);
 			});
 
-		em(`.bk__wrp-btns-open-find`)
+		veEm(`.bk__wrp-btns-open-find`)
 			.forEach(ele => ele.remove());
-		ee`<div class="ve-mobile-sm__visible bk__wrp-btns-open-find ve-btn-group">
+		veT`<div class="ve-mobile-sm__visible bk__wrp-btns-open-find ve-btn-group">
 			${btnToTop}${btnOpenFind}${btnOpenGoto}
-		</div>`.appendTo(document.body);
+		</div>`.vee.appendTo(document.body);
 	}
 
 	static _showSearchBox (indexData, bookId, isPageMode) {
-		em(`span.temp`)
+		veEm(`span.temp`)
 			.forEach(ele => {
-				const eleParent = ele.parente();
+				const eleParent = ele.vee.parent();
 				while (ele.firstChild) eleParent.insertBefore(ele.firstChild, ele);
 				ele.remove();
 			});
 		BookUtil._lastHighlight = null;
 		if (BookUtil._findAll) BookUtil._findAll.remove();
-		BookUtil._findAll = ee`<div class="f-all-wrapper"></div>`
-			.onn("click", (evt) => {
+		BookUtil._findAll = veT`<div class="f-all-wrapper"></div>`
+			.vee.onn("click", (evt) => {
 				evt.stopPropagation();
 			});
 
-		const wrpResults = ee`<div class="f-all-out"></div>`
-			.hideVe();
+		const wrpResults = veT`<div class="f-all-out"></div>`
+			.vee.hide();
 
-		const iptSearch = ee`<input class="ve-form-control" placeholder="${isPageMode ? "Go to page number..." : "Find text..."}">`
-			.onn("keydown", (evt) => {
+		const iptSearch = veT`<input class="ve-form-control" placeholder="${isPageMode ? "Go to page number..." : "Find text..."}">`
+			.vee.onn("keydown", (evt) => {
 				evt.stopPropagation();
 
 				if (evt.key === "Escape" && EventUtil.noModifierKeys(evt)) {
@@ -839,7 +847,7 @@ export class BookUtil {
 
 				if (evt.key !== "Enter" || !EventUtil.noModifierKeys(evt)) return;
 
-				const term = iptSearch.val();
+				const term = iptSearch.vee.val();
 				if (isPageMode) {
 					if (!/^\d+$/.exec(term.trim())) {
 						return JqueryUtil.doToast({
@@ -849,43 +857,43 @@ export class BookUtil {
 					}
 				}
 
-				wrpResults.html("");
+				wrpResults.vee.html("");
 
 				const foundEntryInfos = BookUtil.Search.doSearch(term, isPageMode);
 
 				if (!foundEntryInfos.length) {
-					wrpResults.hideVe();
+					wrpResults.vee.hide();
 					return;
 				}
 
-				wrpResults.showVe();
+				wrpResults.vee.show();
 				foundEntryInfos
 					.forEach(foundEntryInfo => {
-						const row = ee`<p class="f-result"></p>`;
-						const ptLink = ee`<span></span>`;
+						const row = veT`<p class="f-result"></p>`;
+						const ptLink = veT`<span></span>`;
 						const isLitTitle = foundEntryInfo.headerMatches && !foundEntryInfo.page;
-						const link = ee`<a href="#${BookUtil.Search.getResultHash(bookId, foundEntryInfo)}">
+						const link = veT`<a href="#${BookUtil.Search.getResultHash(bookId, foundEntryInfo)}">
 								<i>${Parser.bookOrdinalToAbv(indexData.contents[foundEntryInfo.ch].ordinal)} ${indexData.contents[foundEntryInfo.ch].name}${foundEntryInfo.header ? ` \u2013 ${isLitTitle ? `<span class="ve-highlight">` : ""}${foundEntryInfo.header}${isLitTitle ? `</span>` : ""}` : ""}</i>
 							</a>`
-							.onn("click", () => BookUtil._handleCheckReNav(link));
-						ptLink.appends(link);
-						row.appends(ptLink);
+							.vee.onn("click", () => BookUtil._handleCheckReNav(link));
+						ptLink.vee.appends(link);
+						row.vee.appends(ptLink);
 
 						if (!isPageMode && foundEntryInfo.previews) {
-							const lnkPreview = ee`<a href="#${BookUtil.Search.getResultHash(bookId, foundEntryInfo)}"></a>`
-								.appendTo(row);
+							const lnkPreview = veT`<a href="#${BookUtil.Search.getResultHash(bookId, foundEntryInfo)}"></a>`
+								.vee.appendTo(row);
 
 							const re = new RegExp(foundEntryInfo.term.escapeRegexp(), "gi");
 
-							lnkPreview.onn("click", () => {
+							lnkPreview.vee.onn("click", () => {
 								BookUtil._handleCheckReNav(lnkPreview);
 
 								setTimeout(() => {
 									if (BookUtil._lastHighlight === null || BookUtil._lastHighlight !== foundEntryInfo.term.toLowerCase()) {
 										BookUtil._lastHighlight = foundEntryInfo.term;
 										const searchTerm = foundEntryInfo.term.toLowerCase().trim();
-										es(`#pagecontent`)
-											.findAll(`p, li, td, a`)
+										veEs(`#pagecontent`)
+											.vee.findAll(`p, li, td, a`)
 											.filter(ele => {
 												const matchingNodes = Array.from(ele.childNodes)
 													.filter(eleChild => eleChild.nodeType === Node.TEXT_NODE)
@@ -893,36 +901,36 @@ export class BookUtil {
 												return !!matchingNodes.length;
 											})
 											.forEach(ele => {
-												ele.html(
-													ele.html().replace(re, "<span class='temp ve-highlight'>$&</span>"),
+												ele.vee.html(
+													ele.vee.html().replace(re, "<span class='temp ve-highlight'>$&</span>"),
 												);
 											});
 									}
 								}, 15);
 							});
 
-							lnkPreview.html(
+							lnkPreview.vee.html(
 								foundEntryInfo.previews
 									.map(ptPreview => `<span>${ptPreview}</span>`)
 									.join(" ... "),
 							);
 
-							link.onn("click", () => lnkPreview.trigger("click"));
+							link.vee.onn("click", () => lnkPreview.vee.trigger("click"));
 						} else {
 							if (foundEntryInfo.page) {
-								const ptPage = ee`<span>Page ${foundEntryInfo.page}</span>`;
-								row.appends(ptPage);
+								const ptPage = veT`<span>Page ${foundEntryInfo.page}</span>`;
+								row.vee.appends(ptPage);
 							}
 						}
 
-						wrpResults.appends(row);
+						wrpResults.vee.appends(row);
 					});
 			});
-		BookUtil._findAll.appends(iptSearch).appends(wrpResults);
+		BookUtil._findAll.vee.appends(iptSearch).vee.appends(wrpResults);
 
-		e_({ele: document.body}).appends(BookUtil._findAll);
+		veE({ele: document.body}).vee.appends(BookUtil._findAll);
 
-		iptSearch.focuse();
+		iptSearch.vee.focus();
 	}
 
 	static _getRenderedContents (options) {
@@ -933,33 +941,33 @@ export class BookUtil {
 		BookUtil.curRender.lnksHeader = {};
 		BookUtil.curRender.wrpLnksHeader = {};
 
-		BookUtil.curRender.btnToggleExpandAll = ee`<span title="Expand All" class="ve-px-2 ve-bold ve-py-1p ve-no-select ve-clickable ve-no-select">${BookUtil.isDefaultExpandedContents ? `[\u2212]` : `[+]`}</span>`
-			.onn("click", () => {
-				const isExpanded = BookUtil.curRender.btnToggleExpandAll.txt() !== `[+]`;
-				BookUtil.curRender.btnToggleExpandAll.txt(isExpanded ? `[+]` : `[\u2212]`).tooltip(isExpanded ? `Collapse All` : `Expand All`);
+		BookUtil.curRender.btnToggleExpandAll = veT`<span title="Expand All" class="ve-px-2 ve-bold ve-py-1p ve-no-select ve-clickable ve-no-select">${BookUtil.isDefaultExpandedContents ? `[\u2212]` : `[+]`}</span>`
+			.vee.onn("click", () => {
+				const isExpanded = BookUtil.curRender.btnToggleExpandAll.vee.txt() !== `[+]`;
+				BookUtil.curRender.btnToggleExpandAll.vee.txt(isExpanded ? `[+]` : `[\u2212]`).vee.tooltip(isExpanded ? `Collapse All` : `Expand All`);
 
 				BookUtil.curRender.btnsToggleExpand.forEach(btn => {
 					if (!btn) return;
-					if (btn.txt() !== BookUtil.curRender.btnToggleExpandAll.txt()) btn.trigger("click");
+					if (btn.vee.txt() !== BookUtil.curRender.btnToggleExpandAll.vee.txt()) btn.vee.trigger("click");
 				});
 			});
 
 		const eles = [];
 		options.book.contents.map((chapter, ixChapter) => {
-			const btnToggleExpand = !chapter.headers ? null : ee`<span class="ve-px-2 ve-bold">[\u2212]</span>`
-				.onn("click", evt => {
+			const btnToggleExpand = !chapter.headers ? null : veT`<span class="ve-px-2 ve-bold">[\u2212]</span>`
+				.vee.onn("click", evt => {
 					BookUtil._sectToggle(evt, btnToggleExpand, chapterBlock);
 				});
 			BookUtil.curRender.btnsToggleExpand.push(btnToggleExpand);
 
-			const lnk = ee`<a href="${options.isAddPrefix || ""}#${UrlUtil.encodeForHash(options.book.id)},${ixChapter}" class="ve-lst__row-border ve-lst__row-inner ve-lst__row ve-lst__wrp-cells ve-bold">
+			const lnk = veT`<a href="${options.isAddPrefix || ""}#${UrlUtil.encodeForHash(options.book.id)},${ixChapter}" class="ve-lst__row-border ve-lst__row-inner ve-lst__row ve-lst__wrp-cells ve-bold">
 					<span class="ve-w-100">${Parser.bookOrdinalToAbv(chapter.ordinal)}${chapter.name}</span>
 					${btnToggleExpand}
 			</a>`
-				.onn("click", () => BookUtil._scrollPageTop(ixChapter));
+				.vee.onn("click", () => BookUtil._scrollPageTop(ixChapter));
 			BookUtil.curRender.lnksChapter.push(lnk);
 
-			const header = ee`<div class="ve-flex-col">${lnk}</div>`;
+			const header = veT`<div class="ve-flex-col">${lnk}</div>`;
 			eles.push(header);
 
 			const chapterBlock = BookUtil._getContentsChapterBlock({bookId: options.book.id, ixChapter, chapter, isAddPrefix: options.isAddPrefix});
@@ -968,7 +976,7 @@ export class BookUtil {
 			if (!BookUtil.isDefaultExpandedContents && btnToggleExpand) BookUtil._sectToggle(null, btnToggleExpand, chapterBlock);
 		});
 
-		return ee`<div class="contents-item" data-bookid="${UrlUtil.encodeForHash(book.id)}">
+		return veT`<div class="contents-item" data-bookid="${UrlUtil.encodeForHash(book.id)}">
 			<div class="bk__contents-header">
 				<a href="#${UrlUtil.encodeForHash(book.id)}" class="bk__contents_header_link ve-lst__wrp-cells ve-lst__row-inner ve-bold" title="${book.name}">
 					<span class="name">${book.name}</span>
@@ -1010,12 +1018,12 @@ export class BookUtil {
 
 			const displayText = this._getContentsSectionHeader(h);
 
-			const lnk = ee`<a href="${isAddPrefix || ""}#${UrlUtil.encodeForHash(bookId)},${ixChapter},${UrlUtil.encodeForHash(headerText)}${headerIndex > 0 ? `,${headerIndex}` : ""}" data-book="${bookId}" data-chapter="${ixChapter}" data-header="${headerText.escapeQuotes()}" class="ve-lst__row ve-lst__row-border ve-lst__row-inner ve-lst__wrp-cells">${displayText}</a>`
-				.onn("click", () => {
+			const lnk = veT`<a href="${isAddPrefix || ""}#${UrlUtil.encodeForHash(bookId)},${ixChapter},${UrlUtil.encodeForHash(headerText)}${headerIndex > 0 ? `,${headerIndex}` : ""}" data-book="${bookId}" data-chapter="${ixChapter}" data-header="${headerText.escapeQuotes()}" class="ve-lst__row ve-lst__row-border ve-lst__row-inner ve-lst__wrp-cells">${displayText}</a>`
+				.vee.onn("click", () => {
 					BookUtil._scrollClick(ixChapter, headerText, headerIndex);
 				});
 
-			const lnkEle = ee`<div class="ve-flex-col">
+			const lnkEle = veT`<div class="ve-flex-col">
 				${lnk}
 			</div>`;
 			eles.push(lnkEle);
@@ -1023,7 +1031,7 @@ export class BookUtil {
 			(this.curRender.lnksHeader[ixChapter] ||= []).push(lnk);
 		});
 
-		const wrpLnksHeader = ee`<div class="ve-flex-col ve-pl-4 ve-ml-2">
+		const wrpLnksHeader = veT`<div class="ve-flex-col ve-pl-4 ve-ml-2">
 			${eles}
 		</div>`;
 
@@ -1172,9 +1180,8 @@ BookUtil.Search = class {
 		} else if (typeof obj === "string" || typeof obj === "number") {
 			if (isPageMode) return;
 
-			const renderStack = [];
-			BookUtil._renderer.recursiveRender(obj, renderStack);
-			const rendered = ee`<div>${renderStack.join("")}</div>`.txt();
+			const html = Renderer.get().withSetRenderHeaderIndex(false, renderer => renderer.render(obj));
+			const rendered = veT`<div>${html}</div>`.vee.txt();
 
 			const toCheck = typeof obj === "number" ? String(rendered) : rendered.toLowerCase();
 			if (toCheck.includes(cleanTerm)) {

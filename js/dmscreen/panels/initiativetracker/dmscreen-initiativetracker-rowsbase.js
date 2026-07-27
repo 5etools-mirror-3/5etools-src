@@ -1,7 +1,7 @@
 import {
 	InitiativeTrackerStatColumnFactory,
 } from "./dmscreen-initiativetracker-statcolumns.js";
-import {InitiativeTrackerUtil} from "../../initiativetracker/initiativetracker-utils.js";
+import {InitiativeTrackerUtil} from "../../../initiativetracker/initiativetracker-utils.js";
 
 class _RenderableCollectionRowStatColData extends RenderableCollectionGenericRows {
 	constructor (
@@ -20,7 +20,7 @@ class _RenderableCollectionRowStatColData extends RenderableCollectionGenericRow
 	}
 
 	_getWrpRow () {
-		return ee`<div class="ve-flex-vh-center"></div>`;
+		return veT`<div class="ve-flex-vh-center"></div>`;
 	}
 
 	_populateRow ({comp, wrpRow, entity}) {
@@ -28,7 +28,7 @@ class _RenderableCollectionRowStatColData extends RenderableCollectionGenericRow
 		if (!statsColData) return {};
 
 		const meta = InitiativeTrackerStatColumnFactory.fromStateData({data: statsColData});
-		meta.getRendered({comp, mon: this._mon, networking: this._networking}).appendTo(wrpRow);
+		meta.getRendered({comp, mon: this._mon, networking: this._networking}).vee.appendTo(wrpRow);
 
 		return {
 			cbOnTurnStart: ({state, direction}) => {
@@ -62,7 +62,7 @@ export class RenderableCollectionRowDataBase extends RenderableCollectionAsyncGe
 	/* -------------------------------------------- */
 
 	_getWrpRow () {
-		return ee`<div class="dm-init__row ve-overflow-hidden ve-pr-1"></div>`;
+		return veT`<div class="dm-init__row ve-overflow-hidden ve-pr-1"></div>`;
 	}
 
 	async _pPopulateRow ({comp, wrpRow, entity}) {
@@ -70,11 +70,11 @@ export class RenderableCollectionRowDataBase extends RenderableCollectionAsyncGe
 
 		const {isMon, mon, fluff} = await this._pPopulateRow_pGetMonsterMeta({comp});
 
-		comp._addHookBase("isActive", () => wrpRow.toggleClass("dm-init__row-active", !!comp._state.isActive))();
+		comp._addHookBase("isActive", () => wrpRow.vee.toggleClass("dm-init__row-active", !!comp._state.isActive))();
 
 		this._pPopulateRow_bindParentRowStatColsIsEditableHook({comp, entity, mon, fluff, fnsCleanup});
 
-		const wrpLhs = ee`<div class="dm-init__row-lhs"></div>`.appendTo(wrpRow);
+		const wrpLhs = veT`<div class="dm-init__row-lhs"></div>`.vee.appendTo(wrpRow);
 
 		this._pPopulateRow_player({comp, wrpLhs, isMon});
 		this._pPopulateRow_monster({comp, wrpLhs, isMon, mon, fluff});
@@ -83,7 +83,7 @@ export class RenderableCollectionRowDataBase extends RenderableCollectionAsyncGe
 
 		this._pPopulateRow_statsCols({comp, wrpRow, mon, fnsCleanup});
 
-		const wrpRhs = ee`<div class="dm-init__row-rhs"></div>`.appendTo(wrpRow);
+		const wrpRhs = veT`<div class="dm-init__row-rhs"></div>`.vee.appendTo(wrpRow);
 
 		this._pPopulateRow_hp({comp, wrpRhs, fnsCleanup});
 		this._pPopulateRow_initiative({comp, wrpRhs});
@@ -165,7 +165,7 @@ export class RenderableCollectionRowDataBase extends RenderableCollectionAsyncGe
 			{
 				html: `<input class="ve-form-control ve-input-sm name dm-init__ipt-name dm-init-lockable dm-init__row-input" placeholder="Name">`,
 			},
-		).appendTo(wrpLhs);
+		).vee.appendTo(wrpLhs);
 	}
 
 	/* ----- */
@@ -191,10 +191,10 @@ export class RenderableCollectionRowDataBase extends RenderableCollectionAsyncGe
 	/* ----- */
 
 	_pPopulateRow_statsCols ({comp, wrpRow, mon, fnsCleanup}) {
-		const wrp = ee`<div class="dm-init__row-mid"></div>`
-			.appendTo(wrpRow);
+		const wrp = veT`<div class="dm-init__row-mid"></div>`
+			.vee.appendTo(wrpRow);
 
-		const hkParentStatsAddCols = () => wrp.toggleVe(!!this._comp._state.isStatsAddColumns);
+		const hkParentStatsAddCols = () => wrp.vee.toggle(!!this._comp._state.isStatsAddColumns);
 		this._comp._addHookBase("isStatsAddColumns", hkParentStatsAddCols)();
 		fnsCleanup.push(() => this._comp._removeHookBase("isStatsAddColumns", hkParentStatsAddCols));
 
@@ -221,7 +221,7 @@ export class RenderableCollectionRowDataBase extends RenderableCollectionAsyncGe
 				html: `<input class="ve-form-control ve-input-sm hp dm-init__row-input ve-text-right ve-w-40p ve-mr-0 ve-br-0">`,
 			},
 		)
-			.onn("click", () => iptHpCurrent.select());
+			.vee.onn("click", () => iptHpCurrent.select());
 
 		const iptHpMax = ComponentUiUtil.getIptNumber(
 			comp,
@@ -233,7 +233,7 @@ export class RenderableCollectionRowDataBase extends RenderableCollectionAsyncGe
 				html: `<input class="ve-form-control ve-input-sm hp-max dm-init__row-input ve-w-40p ve-mr-0 ve-bl-0">`,
 			},
 		)
-			.onn("click", () => iptHpMax.select());
+			.vee.onn("click", () => iptHpMax.select());
 
 		const hkHpColors = () => {
 			const pctWounded = this._comp._state.isInvertWoundDirection
@@ -242,11 +242,11 @@ export class RenderableCollectionRowDataBase extends RenderableCollectionAsyncGe
 			const woundLevel = InitiativeTrackerUtil.getWoundLevel(pctWounded);
 			if (~woundLevel) {
 				const woundMeta = InitiativeTrackerUtil.getWoundMeta(woundLevel);
-				iptHpCurrent.css({"color": woundMeta.color});
-				iptHpMax.css({"color": woundMeta.color});
+				iptHpCurrent.vee.css({"color": woundMeta.color});
+				iptHpMax.vee.css({"color": woundMeta.color});
 			} else {
-				iptHpCurrent.css({"color": ""});
-				iptHpMax.css({"color": ""});
+				iptHpCurrent.vee.css({"color": ""});
+				iptHpMax.vee.css({"color": ""});
 			}
 		};
 		comp._addHookBase("hpCurrent", hkHpColors);
@@ -256,12 +256,12 @@ export class RenderableCollectionRowDataBase extends RenderableCollectionAsyncGe
 		this._comp._addHookBase("isInvertWoundDirection", hkHpColors)();
 		fnsCleanup.push(() => this._comp._removeHookBase("isInvertWoundDirection", hkHpColors));
 
-		ee`<div class="ve-flex ve-relative ve-mr-3p">
+		veT`<div class="ve-flex ve-relative ve-mr-3p">
 			<div class="ve-text-right">${iptHpCurrent}</div>
 			<div class="dm-init__sep-fields-slash ve-flex-vh-center">/</div>
 			<div class="ve-text-left">${iptHpMax}</div>
 		</div>`
-			.appendTo(wrpRhs);
+			.vee.appendTo(wrpRhs);
 	}
 
 	/* ----- */
@@ -318,7 +318,7 @@ export class InitiativeTrackerRowDataViewBase {
 	getRenderedView () {
 		const rdState = new this.constructor._RenderState();
 
-		const ele = ee`<div class="dm-init__wrp-header-outer">
+		const ele = veT`<div class="dm-init__wrp-header-outer">
 				<div class="dm-init__wrp-header ve-pr-1">
 					<div class="dm-init__row-lhs dm-init__header">
 						<div class="ve-w-100">${this._TextHeaderLhs}</div>
@@ -339,15 +339,15 @@ export class InitiativeTrackerRowDataViewBase {
 	}
 
 	_render_getWrpHeaderStatsCols ({rdState}) {
-		const wrpHeaderStatsCols = ee`<div class="dm-init__row-mid"></div>`;
+		const wrpHeaderStatsCols = veT`<div class="dm-init__row-mid"></div>`;
 		const hkHeaderStatsCols = () => {
-			wrpHeaderStatsCols.empty();
+			wrpHeaderStatsCols.vee.empty();
 
 			if (!this._comp._state.isStatsAddColumns) return;
 
 			this._comp._state.statsCols.forEach(data => {
 				const meta = InitiativeTrackerStatColumnFactory.fromStateData({data});
-				wrpHeaderStatsCols.appends(meta.getEleRenderedHeader());
+				wrpHeaderStatsCols.vee.appends(meta.getEleRenderedHeader());
 			});
 		};
 		this._comp._addHookBase("isStatsAddColumns", hkHeaderStatsCols);
@@ -370,7 +370,7 @@ export class InitiativeTrackerRowDataViewBase {
 	}
 
 	_render_getWrpRows ({rdState}) {
-		const wrpRows = ee`<div class="dm-init__wrp-entries"></div>`;
+		const wrpRows = veT`<div class="dm-init__wrp-entries"></div>`;
 
 		this._compRows = new this._ClsRenderableCollectionRowData({
 			comp: this._comp,

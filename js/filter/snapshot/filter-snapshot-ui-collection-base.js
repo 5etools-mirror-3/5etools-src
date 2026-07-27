@@ -1,6 +1,6 @@
 export class FilterSnapshotBaseSelectClickHandler extends RenderableCollectionSelectClickHandler {
 	_setHighlighted (item, {toVal = false} = {}) {
-		item.stgHeader.toggleClass("list-multi-selected", toVal);
+		item.stgHeader.vee.toggleClass("list-multi-selected", toVal);
 	}
 }
 
@@ -34,25 +34,25 @@ export class RenderableCollectionFilterSnapshotBase extends RenderableCollection
 	/* -------------------------------------------- */
 
 	_getWrpRow () {
-		return ee`<div class="ve-flex-col ve-w-100"></div>`;
+		return veT`<div class="ve-flex-col ve-w-100"></div>`;
 	}
 
 	/* -------------------------------------------- */
 
 	static _getCbSel () {
-		return ee`<input type="checkbox" class="ve-no-events">`;
+		return veT`<input type="checkbox" class="ve-no-events">`;
 	}
 
 	static _getBtnToggleExpand (comp, {isSibling = false} = {}) {
-		const btnExpand = ee`<div class="ve-py-1 ve-flex-vh-center ve-h-100 ve-clickable ve-no-select ${isSibling ? `ve-mr-1 ve-px-2` : `ve-w-100`}"></div>`
-			.onn("click", evt => {
+		const btnExpand = veT`<div class="ve-py-1 ve-flex-vh-center ve-h-100 ve-clickable ve-no-select ${isSibling ? `ve-mr-1 ve-px-2` : `ve-w-100`}"></div>`
+			.vee.onn("click", evt => {
 				evt.stopPropagation();
 				comp._state.manager_loader_isExpanded = !comp._state.manager_loader_isExpanded;
 			});
 		comp._addHookBase("manager_loader_isExpanded", () => {
 			btnExpand
-				.txt(comp._state.manager_loader_isExpanded ? `[\u2013]` : `[+]`)
-				.tooltip(comp._state.manager_loader_isExpanded ? "Collapse" : "Expand");
+				.vee.txt(comp._state.manager_loader_isExpanded ? `[\u2212]` : `[+]`)
+				.vee.tooltip(comp._state.manager_loader_isExpanded ? "Collapse" : "Expand");
 		})();
 		return btnExpand;
 	}

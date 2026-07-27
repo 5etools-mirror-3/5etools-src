@@ -70,9 +70,9 @@ class PageUi extends ProxyBase {
 	async init () {
 		this._proxyAssignSimple("state", await StorageUtil.pGetForPage(this.constructor._STORAGE_SETTINGS) || {});
 
-		this._wrpLoad = es(`#page_loading`);
-		this._wrpSource = es(`#page_source`);
-		this._wrpMain = es(`#page_main`);
+		this._wrpLoad = veEs(`#page_loading`);
+		this._wrpSource = veEs(`#page_source`);
+		this._wrpMain = veEs(`#page_main`);
 
 		this._addHookAll("state", () => {
 			this._saveSettingsDebounced();
@@ -106,15 +106,15 @@ class PageUi extends ProxyBase {
 	}
 
 	__setStageSource () {
-		this._wrpLoad.hideVe();
-		this._wrpSource.showVe();
-		this._wrpMain.hideVe();
+		this._wrpLoad.vee.hide();
+		this._wrpSource.vee.show();
+		this._wrpMain.vee.hide();
 	}
 
 	__setStageMain () {
-		this._wrpLoad.hideVe();
-		this._wrpSource.hideVe();
-		this._wrpMain.showVe();
+		this._wrpLoad.vee.hide();
+		this._wrpSource.vee.hide();
+		this._wrpMain.vee.show();
 	}
 
 	_doRebuildStageSource (options) {
@@ -140,10 +140,10 @@ class PageUi extends ProxyBase {
 	}
 
 	_initHeader () {
-		const wrpSettings = es(`#wrp-settings`);
+		const wrpSettings = veEs(`#wrp-settings`);
 
-		const wrpSettingsTop = ee`<div class="ve-w-100 ve-flex-v-center ve-mobile-md__flex-col ve-mobile-md__flex-ai-start ve-mb-2"></div>`.appendTo(wrpSettings);
-		const wrpSettingsBtm = ee`<div class="ve-w-100 ve-flex-v-center ve-mobile-md__flex-col ve-mobile-md__flex-ai-start"></div>`.appendTo(wrpSettings);
+		const wrpSettingsTop = veT`<div class="ve-w-100 ve-flex-v-center ve-mobile-md__flex-col ve-mobile-md__flex-ai-start ve-mb-2"></div>`.vee.appendTo(wrpSettings);
+		const wrpSettingsBtm = veT`<div class="ve-w-100 ve-flex-v-center ve-mobile-md__flex-col ve-mobile-md__flex-ai-start"></div>`.vee.appendTo(wrpSettings);
 
 		this._initHeader_mode({wrpSettingsTop});
 		this._initHeader_source({wrpSettingsTop});
@@ -156,49 +156,49 @@ class PageUi extends ProxyBase {
 	}
 
 	_initHeader_mode ({wrpSettingsTop}) {
-		this._selBuilderMode = ee`<select class="ve-form-control ve-input-xs">
+		this._selBuilderMode = veT`<select class="ve-form-control ve-input-xs">
 			<option value="creatureBuilder">Creature</option>
 			<option value="legendaryGroupBuilder">Legendary Group</option>
 			<option value="spellBuilder">Spell</option>
 			<option value="none" class="ve-italic">Everything Else?</option>
 		</select>`
-			.onn("change", async () => {
-				const val = this._selBuilderMode.val();
+			.vee.onn("change", async () => {
+				const val = this._selBuilderMode.vee.val();
 				if (val === "none") {
 					InputUiUtil.pGetUserBoolean({
 						title: "Homebrew Builder Support",
 						htmlDescription: `<p>The Homebrew Builder only supports a limited set of entity types. For everything else, you will need to <a href="https://github.com/TheGiddyLimit/homebrew/blob/master/README.md" rel="noopener noreferrer">manually</a> create or convert content.</p>`,
 						isAlert: true,
 					}).then(null);
-					this._selBuilderMode.val(this._state.activeBuilder);
+					this._selBuilderMode.vee.val(this._state.activeBuilder);
 					return;
 				}
 				await this._pSetActiveBuilder({nxtActiveBuilder: val});
 			});
 
-		ee`<div class="ve-flex-v-center ve-mr-2 ve-mobile-md__mr-0 ve-mobile-md__mb-2">
+		veT`<div class="ve-flex-v-center ve-mr-2 ve-mobile-md__mr-0 ve-mobile-md__mb-2">
 			<div class="ve-mr-2 ve-bold">Mode</div>
 			${this._selBuilderMode}
 		</div>`
-			.appendTo(wrpSettingsTop);
+			.vee.appendTo(wrpSettingsTop);
 	}
 
 	_initHeader_source ({wrpSettingsTop}) {
 		this._allSources = BrewUtil2.getSources().sort((a, b) => SortUtil.ascSortLower(a.full, b.full))
 			.map(it => it.json);
 
-		this._selSource = ee`<select class="ve-form-control ve-input-xs ve-br-0 ve-w-120p ve-text-clip-ellipsis">
+		this._selSource = veT`<select class="ve-form-control ve-input-xs ve-br-0 ve-w-120p ve-text-clip-ellipsis">
 			<option disabled>Select</option>
 			${this._allSources.map(srcJson => `<option value="${srcJson.qq()}">${Parser.sourceJsonToFull(srcJson).qq()}</option>`)}
 		</select>`
-			.onn("change", async () => {
-				this._state.activeSource = this._selSource.val();
+			.vee.onn("change", async () => {
+				this._state.activeSource = this._selSource.vee.val();
 			});
 		this._addHook("state", "activeSource", () => {
 			if (this._state.activeSource) {
 				this._selSource
-					.val(this._state.activeSource)
-					.tooltip(BrewUtil2.hasSourceJson(this._state.activeSource) ? BrewUtil2.sourceJsonToFull(this._state.activeSource) : null);
+					.vee.val(this._state.activeSource)
+					.vee.tooltip(BrewUtil2.hasSourceJson(this._state.activeSource) ? BrewUtil2.sourceJsonToFull(this._state.activeSource) : null);
 			} else this._selSource.selectedIndex = 0;
 		})();
 		// Deferred; only required on later change
@@ -206,8 +206,8 @@ class PageUi extends ProxyBase {
 			this._getActiveBuilderInstance().pDoHandleSourceUpdate().then(null);
 		});
 
-		const btnSourceEdit = ee`<button class="ve-btn ve-btn-default ve-btn-xs" title="Edit Selected Source"><span class="glyphicon glyphicon-pencil"></span></button>`
-			.onn("click", () => {
+		const btnSourceEdit = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="Edit Selected Source"><span class="glyphicon glyphicon-pencil"></span></button>`
+			.vee.onn("click", () => {
 				const curSourceJson = this._state.activeSource;
 				const curSource = BrewUtil2.sourceJsonToSource(curSourceJson);
 				if (!curSource) return;
@@ -215,13 +215,13 @@ class PageUi extends ProxyBase {
 				this.__setStageSource();
 			});
 
-		const btnSourceAdd = ee`<button class="ve-btn ve-btn-default ve-btn-xs" title="Add New Source"><span class="glyphicon glyphicon-plus"></span></button>`
-			.onn("click", () => {
+		const btnSourceAdd = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="Add New Source"><span class="glyphicon glyphicon-plus"></span></button>`
+			.vee.onn("click", () => {
 				this._doRebuildStageSource({mode: "add"});
 				this.__setStageSource();
 			});
 
-		ee`<div class="ve-flex-v-center ve-mobile-md__mb-2">
+		veT`<div class="ve-flex-v-center ve-mobile-md__mb-2">
 			<div class="ve-vr-3 ve-h-21p ve-mr-2 ve-mobile-md__hidden"></div>
 				
 			<div class="ve-flex-v-center">
@@ -233,36 +233,36 @@ class PageUi extends ProxyBase {
 				${btnSourceAdd}
 			</div>
 		</div>`
-			.appendTo(wrpSettingsTop);
+			.vee.appendTo(wrpSettingsTop);
 	}
 
 	_initHeader_new ({wrpSettingsBtm}) {
-		const btnNew = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="SHIFT to reset additional state (such as whether or not certain attributes are auto-calculated)">New</button>`
-			.onn("click", async (evt) => {
+		const btnNew = veT`<button class="ve-btn ve-btn-xs ve-btn-default" title="SHIFT to reset additional state (such as whether or not certain attributes are auto-calculated)">New</button>`
+			.vee.onn("click", async (evt) => {
 				if (!await InputUiUtil.pGetUserBoolean({title: "Reset Builder", htmlDescription: "Are you sure?", textYes: "Yes", textNo: "Cancel"})) return;
 				this._getActiveBuilderInstance().reset({isResetAllMeta: !!evt.shiftKey});
 			});
 
-		const bntNewFromCopy = ee`<button class="ve-btn ve-btn-xs ve-btn-default">New from Copy...</button>`
-			.onn("click", () => this._getActiveBuilderInstance().pHandleClickLoadExisting())
-			.appendTo(wrpSettingsBtm);
+		const bntNewFromCopy = veT`<button class="ve-btn ve-btn-xs ve-btn-default">New from Copy...</button>`
+			.vee.onn("click", () => this._getActiveBuilderInstance().pHandleClickLoadExisting())
+			.vee.appendTo(wrpSettingsBtm);
 
-		ee`<div class="ve-flex-v-center ve-mobile-md__mb-2">
+		veT`<div class="ve-flex-v-center ve-mobile-md__mb-2">
 			<div class="ve-flex-v-center ve-btn-group">
 				${btnNew}
 				${bntNewFromCopy}
 			</div>
 		</div>`
-			.appendTo(wrpSettingsBtm);
+			.vee.appendTo(wrpSettingsBtm);
 	}
 
 	_initHeader_existing ({wrpSettingsBtm}) {
-		const btnEditExisting = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="Hotkey: o">Edit Existing</button>`
-			.onn("click", () => this._getActiveBuilderInstance().pHandleClickEditExisting())
-			.appendTo(wrpSettingsBtm);
+		const btnEditExisting = veT`<button class="ve-btn ve-btn-xs ve-btn-default" title="Hotkey: o">Edit Existing</button>`
+			.vee.onn("click", () => this._getActiveBuilderInstance().pHandleClickEditExisting())
+			.vee.appendTo(wrpSettingsBtm);
 
-		e_(document.body)
-			.onn("keydown", evt => {
+		veE(document.body)
+			.vee.onn("keydown", evt => {
 				if (
 					!EventUtil.isInInput(evt)
 					&& EventUtil.noModifierKeys(evt)
@@ -272,58 +272,58 @@ class PageUi extends ProxyBase {
 				}
 			});
 
-		ee`<div class="ve-flex-v-center ve-mobile-md__mb-2">
+		veT`<div class="ve-flex-v-center ve-mobile-md__mb-2">
 			<div class="ve-vr-2 ve-h-21p ve-mobile-md__hidden"></div>
 
 			<div class="ve-flex-v-center ve-btn-group">
 				${btnEditExisting}
 			</div>
 		</div>`
-			.appendTo(wrpSettingsBtm);
+			.vee.appendTo(wrpSettingsBtm);
 	}
 
 	_initHeader_save ({wrpSettingsBtm}) {
-		const btnHeaderSave = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2 mkbru__cnt-save">Save</button>`
-			.onn("click", () => this._getActiveBuilderInstance().pDoHandleClickSaveBrew());
+		const btnHeaderSave = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2 mkbru__cnt-save">Save</button>`
+			.vee.onn("click", () => this._getActiveBuilderInstance().pDoHandleClickSaveBrew());
 
-		const dispHeaderName = ee`<div class="ve-muted ve-italic"></div>`;
+		const dispHeaderName = veT`<div class="ve-muted ve-italic"></div>`;
 
 		Object.values(this._builders)
 			.forEach(builder => builder.setHeaderElements({btnHeaderSave, dispHeaderName}));
 
-		ee`<div class="ve-flex-v-center ve-mobile-md__mb-2">
+		veT`<div class="ve-flex-v-center ve-mobile-md__mb-2">
 			<div class="ve-vr-2 ve-h-21p ve-mobile-md__hidden"></div>
 
 			${btnHeaderSave}
 			${dispHeaderName}
 		</div>`
-			.appendTo(wrpSettingsBtm);
+			.vee.appendTo(wrpSettingsBtm);
 	}
 
 	_initHeader_download ({wrpSettingsTop}) {
-		const btnDownloadJson = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">JSON</button>`
-			.onn("click", () => this._getActiveBuilderInstance().pDoHandleClickDownloadJson());
+		const btnDownloadJson = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">JSON</button>`
+			.vee.onn("click", () => this._getActiveBuilderInstance().pDoHandleClickDownloadJson());
 
-		const btnMarkdownDownload = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Markdown</button>`
-			.onn("click", async () => this._getActiveBuilderInstance().pDoHandleClickDownloadMarkdown());
+		const btnMarkdownDownload = veT`<button class="ve-btn ve-btn-default ve-btn-xs">Markdown</button>`
+			.vee.onn("click", async () => this._getActiveBuilderInstance().pDoHandleClickDownloadMarkdown());
 
-		const btnMarkdownSettings = ee`<button class="ve-btn ve-btn-default ve-btn-xs"><span class="glyphicon glyphicon-cog"></span></button>`
-			.onn("click", () => RendererMarkdown.pShowSettingsModal());
+		const btnMarkdownSettings = veT`<button class="ve-btn ve-btn-default ve-btn-xs"><span class="glyphicon glyphicon-cog"></span></button>`
+			.vee.onn("click", () => RendererMarkdown.pShowSettingsModal());
 
-		ee`<div class="ve-flex-v-center ve-ml-auto ve-mobile-md__ml-0">
+		veT`<div class="ve-flex-v-center ve-ml-auto ve-mobile-md__ml-0">
 				<div class="ve-mr-2">Download</div>
 				${btnDownloadJson}
 				<div class="ve-flex-v-center ve-btn-group">${btnMarkdownDownload}${btnMarkdownSettings}</div>
 			</div>`
-			.appendTo(wrpSettingsTop);
+			.vee.appendTo(wrpSettingsTop);
 	}
 
 	_initLhs () {
-		this._wrpInput = es(`#content_input`);
+		this._wrpInput = veEs(`#content_input`);
 	}
 
 	_initRhs () {
-		this._wrpOutput = es(`#content_output`);
+		this._wrpOutput = veEs(`#content_output`);
 	}
 
 	getBuilderById (id) {
@@ -341,7 +341,7 @@ class PageUi extends ProxyBase {
 	async _pSetActiveBuilder ({nxtActiveBuilder}) {
 		if (!this._builders[nxtActiveBuilder]) throw new Error(`Builder "${nxtActiveBuilder}" does not exist!`);
 
-		this._selBuilderMode.val(nxtActiveBuilder);
+		this._selBuilderMode.vee.val(nxtActiveBuilder);
 		this._state.activeBuilder = nxtActiveBuilder;
 		if (!Hist.initialLoad) Hist.replaceHistoryHash(UrlUtil.encodeForHash(this._state.activeBuilder));
 		const builder = this._getActiveBuilderInstance();
@@ -352,7 +352,7 @@ class PageUi extends ProxyBase {
 	_doAddSourceOption (source) {
 		this._allSources.push(source.json);
 		// TODO this should detach + re-order. Ensure correct is re-selected; ensure disabled option is first
-		this._selSource.appends(`<option value="${source.json.escapeQuotes()}">${source.full.escapeQuotes()}</option>`);
+		this._selSource.vee.appends(`<option value="${source.json.escapeQuotes()}">${source.full.escapeQuotes()}</option>`);
 		this._getActiveBuilderInstance().doHandleSourcesAdd();
 	}
 

@@ -1,7 +1,7 @@
-import {PANEL_TYP_INITIATIVE_TRACKER} from "./dmscreen-consts.js";
-import {DmScreenUtil} from "./dmscreen-util.js";
-import {EncounterBuilderHelpers, ListUtilBestiary} from "../utils-list-bestiary.js";
-import {VetoolsConfig} from "../utils-config/utils-config-config.js";
+import {PANEL_TYP_INITIATIVE_TRACKER} from "../dmscreen-consts.js";
+import {DmScreenUtil} from "../dmscreen-util.js";
+import {EncounterBuilderHelpers, ListUtilBestiary} from "../../utils-list-bestiary.js";
+import {VetoolsConfig} from "../../utils-config/utils-config-config.js";
 import {DmScreenPanelAppBase} from "./dmscreen-panelapp-base.js";
 
 export class TimerTrackerMoonSpriteLoader {
@@ -35,7 +35,7 @@ export class TimeTracker extends DmScreenPanelAppBase {
 	}
 
 	_getPanelElement (board, state) {
-		const wrpPanel = ee`<div class="ve-w-100 ve-h-100 dm-time__root dm__panel-bg"></div>`;
+		const wrpPanel = veT`<div class="ve-w-100 ve-h-100 dm-time__root dm__panel-bg"></div>`;
 		this._comp = new TimeTrackerRoot(board, wrpPanel);
 		state = TimeTrackerUtil.getMigratedState(state);
 		this._comp.setStateFrom(state);
@@ -452,7 +452,7 @@ class TimeTrackerBase extends TimeTrackerComponent {
 	}
 
 	static getCvsMoon (moonInfo) {
-		const cvs = ee`<canvas title="${moonInfo.name.escapeQuotes()}\u2014${moonInfo.phaseName}" class="dm-time__cvs-moon" width="${TimeTrackerBase._MOON_RENDER_RES}" height="${TimeTrackerBase._MOON_RENDER_RES}"></canvas>`;
+		const cvs = veT`<canvas title="${moonInfo.name.escapeQuotes()}\u2014${moonInfo.phaseName}" class="dm-time__cvs-moon" width="${TimeTrackerBase._MOON_RENDER_RES}" height="${TimeTrackerBase._MOON_RENDER_RES}"></canvas>`;
 		const ctx = cvs.getContext("2d");
 
 		// draw image
@@ -490,7 +490,7 @@ class TimeTrackerBase extends TimeTrackerComponent {
 
 	static getClockInputs (timeInfo, vals, fnOnChange) {
 		const getIptNum = (ipt) => {
-			return Number(ipt.val().trim().replace(/^0+/g, ""));
+			return Number(ipt.vee.val().trim().replace(/^0+/g, ""));
 		};
 
 		let lastTimeSecs = vals.timeOfDaySecs;
@@ -508,17 +508,17 @@ class TimeTrackerBase extends TimeTrackerComponent {
 		const metas = [];
 
 		const getIpt = (title, propMax, valProp, propMult) => {
-			const ipt = ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-center dm-time__ipt-event-time ve-code ve-mx-1" title="${title}">`
-				.onn("change", () => {
+			const ipt = veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-center dm-time__ipt-event-time ve-code ve-mx-1" title="${title}">`
+				.vee.onn("change", () => {
 					const maxVal = timeInfo[propMax] - 1;
 					const nxtRaw = getIptNum(ipt);
 					const nxtVal = Math.max(0, Math.min(maxVal, nxtRaw));
-					ipt.val(TimeTrackerBase.getPaddedNum(nxtVal, timeInfo[propMax]));
+					ipt.vee.val(TimeTrackerBase.getPaddedNum(nxtVal, timeInfo[propMax]));
 
 					doUpdateTime();
 				})
-				.onn("click", () => ipt.selecte())
-				.val(TimeTrackerBase.getPaddedNum(vals[valProp], timeInfo[propMax]));
+				.vee.onn("click", () => ipt.vee.select())
+				.vee.val(TimeTrackerBase.getPaddedNum(vals[valProp], timeInfo[propMax]));
 			return {ipt, propMax, mult: propMult ? timeInfo[propMult] : 1};
 		};
 
@@ -674,11 +674,11 @@ class TimeTrackerRoot extends TimeTrackerBase {
 	}
 
 	render (eleParent) {
-		eleParent.empty();
+		eleParent.vee.empty();
 
-		const wrpClock = ee`<div class="ve-flex-col ve-w-100 ve-h-100 ve-overflow-y-auto">`;
-		const wrpCalendar = ee`<div class="ve-flex-col ve-w-100 ve-h-100 ve-overflow-y-auto ve-flex-h-center">`;
-		const wrpSettings = ee`<div class="ve-flex-col ve-w-100 ve-h-100 ve-overflow-y-auto">`;
+		const wrpClock = veT`<div class="ve-flex-col ve-w-100 ve-h-100 ve-overflow-y-auto">`;
+		const wrpCalendar = veT`<div class="ve-flex-col ve-w-100 ve-h-100 ve-overflow-y-auto ve-flex-h-center">`;
+		const wrpSettings = veT`<div class="ve-flex-col ve-w-100 ve-h-100 ve-overflow-y-auto">`;
 
 		const pod = this.getPod();
 
@@ -686,30 +686,30 @@ class TimeTrackerRoot extends TimeTrackerBase {
 		this._compCalendar.render(wrpCalendar, pod);
 		this._compSettings.render(wrpSettings, pod);
 
-		const btnShowClock = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2" title="Clock"><span class="glyphicon glyphicon-time"></span></button>`
-			.onn("click", () => this._state.tab = 0);
-		const btnShowCalendar = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-3" title="Calendar"><span class="glyphicon glyphicon-calendar"></span></button>`
-			.onn("click", () => this._state.tab = 1);
-		const btnShowSettings = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-3" title="Settings"><span class="glyphicon glyphicon-cog"></span></button>`
-			.onn("click", () => this._state.tab = 2);
+		const btnShowClock = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2" title="Clock"><span class="glyphicon glyphicon-time"></span></button>`
+			.vee.onn("click", () => this._state.tab = 0);
+		const btnShowCalendar = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-3" title="Calendar"><span class="glyphicon glyphicon-calendar"></span></button>`
+			.vee.onn("click", () => this._state.tab = 1);
+		const btnShowSettings = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-3" title="Settings"><span class="glyphicon glyphicon-cog"></span></button>`
+			.vee.onn("click", () => this._state.tab = 2);
 		const hookShowTab = () => {
-			btnShowClock.toggleClass("ve-active", this._state.tab === 0);
-			btnShowCalendar.toggleClass("ve-active", this._state.tab === 1);
-			btnShowSettings.toggleClass("ve-active", this._state.tab === 2);
-			wrpClock.toggleVe(this._state.tab === 0);
-			wrpCalendar.toggleVe(this._state.tab === 1);
-			wrpSettings.toggleVe(this._state.tab === 2);
+			btnShowClock.vee.toggleClass("ve-active", this._state.tab === 0);
+			btnShowCalendar.vee.toggleClass("ve-active", this._state.tab === 1);
+			btnShowSettings.vee.toggleClass("ve-active", this._state.tab === 2);
+			wrpClock.vee.toggle(this._state.tab === 0);
+			wrpCalendar.vee.toggle(this._state.tab === 1);
+			wrpSettings.vee.toggle(this._state.tab === 2);
 		};
 		this._addHookBase("tab", hookShowTab);
 		hookShowTab();
 
-		const btnReset = ee`<button class="ve-btn ve-btn-xs ve-btn-danger" title="Reset Clock/Calendar Time to First Day"><span class="glyphicon glyphicon-refresh"></span></button>`
-			.onn("click", async () => {
+		const btnReset = veT`<button class="ve-btn ve-btn-xs ve-btn-danger" title="Reset Clock/Calendar Time to First Day"><span class="glyphicon glyphicon-refresh"></span></button>`
+			.vee.onn("click", async () => {
 				if (!await InputUiUtil.pGetUserBoolean({title: "Reset", htmlDescription: "Are you sure?", textYes: "Yes", textNo: "Cancel"})) return;
 				Object.assign(this._state, {time: 0, isBrowseMode: false, browseTime: null});
 			});
 
-		ee`<div class="ve-flex-col ve-h-100">
+		veT`<div class="ve-flex-col ve-h-100">
 			<div class="ve-flex ve-p-1 ve-no-shrink">
 				${btnShowClock}${btnShowCalendar}${btnShowSettings}${btnReset}
 			</div>
@@ -717,7 +717,7 @@ class TimeTrackerRoot extends TimeTrackerBase {
 			${wrpClock}
 			${wrpCalendar}
 			${wrpSettings}
-		</div>`.appendTo(eleParent);
+		</div>`.vee.appendTo(eleParent);
 
 		// Prevent events and encounters from being lost on month changes (i.e. reduced number of days in the year)
 		const _hookSettingsMonths_handleProp = (daysPerYear, prop) => {
@@ -824,7 +824,7 @@ class TimeTrackerRoot_Clock extends TimeTrackerComponent {
 	/* -------------------------------------------- */
 
 	render (eleParent, parent) {
-		eleParent.empty();
+		eleParent.vee.empty();
 		this._parent = parent;
 		const {getTimeInfo, getMoonInfos, doModTime, getEvents, getEncounters} = parent;
 
@@ -840,11 +840,11 @@ class TimeTrackerRoot_Clock extends TimeTrackerComponent {
 			this._parent.set("time", this._parent.get("time") + timeDelta);
 		}, 1000);
 
-		const dispReadableDate = ee`<div class="ve-small-caps"></div>`;
-		const dispReadableYear = ee`<div class="ve-small-caps small ve-muted ve-mb-2"></div>`;
-		const wrpMoons = ee`<div class="ve-flex ve-flex-wrap ve-w-100 ve-no-shrink ve-flex-vh-center ve-mb-3"></div>`;
+		const dispReadableDate = veT`<div class="ve-small-caps"></div>`;
+		const dispReadableYear = veT`<div class="ve-small-caps small ve-muted ve-mb-2"></div>`;
+		const wrpMoons = veT`<div class="ve-flex ve-flex-wrap ve-w-100 ve-no-shrink ve-flex-vh-center ve-mb-3"></div>`;
 
-		const wrpDayNight = ee`<div class="ve-flex ve-w-100 ve-no-shrink ve-flex-h-center ve-flex-v-baseline ve-mt-2"></div>`;
+		const wrpDayNight = veT`<div class="ve-flex ve-w-100 ve-no-shrink ve-flex-h-center ve-flex-v-baseline ve-mt-2"></div>`;
 
 		const getSecsToNextDay = (timeInfo) => {
 			const {
@@ -863,8 +863,8 @@ class TimeTrackerRoot_Clock extends TimeTrackerComponent {
 			);
 		};
 
-		const btnNextSunrise = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="Skip time to the next sunrise. Skips to later today if it is currently night time, or to tomorrow otherwise.">Next Sunrise</button>`
-			.onn("click", () => {
+		const btnNextSunrise = veT`<button class="ve-btn ve-btn-xs ve-btn-default" title="Skip time to the next sunrise. Skips to later today if it is currently night time, or to tomorrow otherwise.">Next Sunrise</button>`
+			.vee.onn("click", () => {
 				const timeInfo = getTimeInfo({isBase: true});
 				const {
 					seasonInfos,
@@ -894,27 +894,27 @@ class TimeTrackerRoot_Clock extends TimeTrackerComponent {
 				}
 			});
 
-		const btnNextDay = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="Skip time to next midnight.">Next Day</button>`
-			.onn("click", () => doModTime(getSecsToNextDay(getTimeInfo({isBase: true})), {isBase: true}));
+		const btnNextDay = veT`<button class="ve-btn ve-btn-xs ve-btn-default" title="Skip time to next midnight.">Next Day</button>`
+			.vee.onn("click", () => doModTime(getSecsToNextDay(getTimeInfo({isBase: true})), {isBase: true}));
 
 		const getIpt = (propMax, timeProp, multProp) => {
-			const ipt = ee`<input class="ve-form-control form-control--minimal ve-text-center dm-time__ipt-time ve-code ve-mx-1">`
-				.onn("change", () => {
+			const ipt = veT`<input class="ve-form-control form-control--minimal ve-text-center dm-time__ipt-time ve-code ve-mx-1">`
+				.vee.onn("change", () => {
 					const timeInfo = getTimeInfo({isBase: true});
 					const multiplier = (multProp ? timeInfo[multProp] : 1);
 					const curSecs = timeInfo[timeProp] * multiplier;
 
-					const nxtRaw = Number(ipt.val().trim().replace(/^0+/g, ""));
+					const nxtRaw = Number(ipt.vee.val().trim().replace(/^0+/g, ""));
 					const nxtSecs = (isNaN(nxtRaw) ? 0 : nxtRaw) * multiplier;
 
 					doModTime(nxtSecs - curSecs, {isBase: true});
 				})
-				.onn("click", () => ipt.select())
-				.onn("focus", () => this._parent.set("isAutoPaused", true))
-				.onn("blur", () => this._parent.set("isAutoPaused", false));
+				.vee.onn("click", () => ipt.select())
+				.vee.onn("focus", () => this._parent.set("isAutoPaused", true))
+				.vee.onn("blur", () => this._parent.set("isAutoPaused", false));
 			const hookDisplay = () => {
 				const maxDigits = `${this._parent.get(propMax)}`.length;
-				ipt.css("width", `${20 * maxDigits}px`);
+				ipt.vee.css("width", `${20 * maxDigits}px`);
 			};
 			this._parent.addHook(propMax, hookDisplay);
 			hookDisplay();
@@ -922,21 +922,21 @@ class TimeTrackerRoot_Clock extends TimeTrackerComponent {
 		};
 
 		const doUpdateIpt = (ipt, propMax, num) => {
-			if (ipt.is(":focus")) return; // freeze selected inputs
-			ipt.val(TimeTrackerBase.getPaddedNum(num, this._parent.get(propMax)));
+			if (ipt.vee.is(":focus")) return; // freeze selected inputs
+			ipt.vee.val(TimeTrackerBase.getPaddedNum(num, this._parent.get(propMax)));
 		};
 
 		const iptHours = getIpt("hoursPerDay", "numHours", "secsPerHour");
 		const iptMinutes = getIpt("minutesPerHour", "numMinutes", "secsPerMinute");
 		const iptSeconds = getIpt("secondsPerMinute", "numSecs");
 
-		const wrpDays = ee`<div class="ve-small-caps ve-text-center ve-mb-1"></div>`;
-		const wrpHours = ee`<div class="ve-flex ve-flex-vh-center">${iptHours}</div>`;
-		const wrpMinutes = ee`<div class="ve-flex ve-flex-vh-center">${iptMinutes}</div>`;
-		const wrpSeconds = ee`<div class="ve-flex ve-flex-vh-center">${iptSeconds}</div>`;
+		const wrpDays = veT`<div class="ve-small-caps ve-text-center ve-mb-1"></div>`;
+		const wrpHours = veT`<div class="ve-flex ve-flex-vh-center">${iptHours}</div>`;
+		const wrpMinutes = veT`<div class="ve-flex ve-flex-vh-center">${iptMinutes}</div>`;
+		const wrpSeconds = veT`<div class="ve-flex ve-flex-vh-center">${iptSeconds}</div>`;
 
-		const wrpEventsEncounters = ee`<div class="ve-flex-vh-center ve-relative ve-flex-wrap dm-time__wrp-clock-events"></div>`;
-		const hrEventsEncounters = ee`<hr class="ve-hr-2">`;
+		const wrpEventsEncounters = veT`<div class="ve-flex-vh-center ve-relative ve-flex-wrap dm-time__wrp-clock-events"></div>`;
+		const hrEventsEncounters = veT`<hr class="ve-hr-2">`;
 
 		// cache rendering
 		let lastReadableDate = null;
@@ -969,19 +969,19 @@ class TimeTrackerRoot_Clock extends TimeTrackerComponent {
 			const todayMoonInfos = getMoonInfos(numDays);
 			if (!CollectionUtil.deepEquals(lastMoonInfo, todayMoonInfos)) {
 				lastMoonInfo = todayMoonInfos;
-				wrpMoons.empty();
+				wrpMoons.vee.empty();
 				if (!todayMoonInfos.length) {
-					wrpMoons.hideVe();
+					wrpMoons.vee.hide();
 				} else {
-					wrpMoons.showVe();
+					wrpMoons.vee.show();
 					todayMoonInfos.forEach(moon => {
-						ee`<div class="ve-flex-v-center ve-mr-2 ve-ui-tip__parent">
-							${TimeTrackerBase.getCvsMoon(moon).addClass("ve-mr-2").addClass("dm-time__clock-moon-phase").tooltip(null)}
+						veT`<div class="ve-flex-v-center ve-mr-2 ve-ui-tip__parent">
+							${TimeTrackerBase.getCvsMoon(moon).vee.addClass("ve-mr-2").vee.addClass("dm-time__clock-moon-phase").vee.tooltip(null)}
 							<div class="ve-flex-col ve-ui-tip__child">
 								<div class="ve-flex">${moon.name}</div>
 								<div class="ve-flex small"><i class="ve-mr-1 ve-no-wrap">${moon.phaseName}</i><span class="ve-muted ve-no-wrap">(Day ${moon.dayOfPeriod + 1}/${moon.period})</span></div>
 							</div>
-						</div>`.appendTo(wrpMoons);
+						</div>`.vee.appendTo(wrpMoons);
 					});
 				}
 			}
@@ -989,16 +989,16 @@ class TimeTrackerRoot_Clock extends TimeTrackerComponent {
 			const readableDate = TimeTrackerBase.formatDateInfo(dayInfo, date, monthInfo, seasonInfos);
 			if (readableDate !== lastReadableDate) {
 				lastReadableDate = readableDate;
-				dispReadableDate.txt(readableDate);
+				dispReadableDate.vee.txt(readableDate);
 			}
 			const readableYear = TimeTrackerBase.formatYearInfo(year, yearInfos, eraInfos, true);
 			if (readableYear !== lastReadableYearHtml) {
 				lastReadableYearHtml = readableYear;
-				dispReadableYear.html(readableYear);
+				dispReadableYear.vee.html(readableYear);
 			}
 			if (lastDay !== numDays) {
 				lastDay = numDays;
-				wrpDays.txt(`Day ${numDays + 1}`);
+				wrpDays.vee.txt(`Day ${numDays + 1}`);
 			}
 
 			doUpdateIpt(iptHours, "hoursPerDay", numHours);
@@ -1006,7 +1006,7 @@ class TimeTrackerRoot_Clock extends TimeTrackerComponent {
 			doUpdateIpt(iptSeconds, "secondsPerMinute", numSecs);
 
 			if (seasonInfos.length) {
-				wrpDayNight.showVe();
+				wrpDayNight.vee.show();
 				const dayNightHtml = seasonInfos.map(it => {
 					const isDay = numHours >= it.sunriseHour && numHours < it.sunsetHour;
 					const hoursToDayNight = isDay ? it.sunsetHour - numHours
@@ -1015,14 +1015,14 @@ class TimeTrackerRoot_Clock extends TimeTrackerComponent {
 				}).join("/");
 
 				if (dayNightHtml !== lastDayNightHtml) {
-					wrpDayNight.html(dayNightHtml);
+					wrpDayNight.vee.html(dayNightHtml);
 					lastDayNightHtml = dayNightHtml;
 				}
 
-				btnNextSunrise.showVe();
+				btnNextSunrise.vee.show();
 			} else {
-				wrpDayNight.hideVe();
-				btnNextSunrise.hideVe();
+				wrpDayNight.vee.hide();
+				btnNextSunrise.vee.hide();
 			}
 
 			const todayEvents = MiscUtil.copy(getEvents(year, dayOfYear));
@@ -1031,13 +1031,13 @@ class TimeTrackerRoot_Clock extends TimeTrackerComponent {
 				lastEvents = todayEvents;
 				lastEncounters = todayEncounters;
 
-				wrpEventsEncounters.empty();
+				wrpEventsEncounters.vee.empty();
 				if (!lastEvents.length && !lastEncounters.length) {
-					hrEventsEncounters.hideVe();
-					wrpEventsEncounters.hideVe();
+					hrEventsEncounters.vee.hide();
+					wrpEventsEncounters.vee.hide();
 				} else {
-					hrEventsEncounters.showVe();
-					wrpEventsEncounters.showVe();
+					hrEventsEncounters.vee.show();
+					wrpEventsEncounters.vee.show();
 
 					todayEvents.forEach(event => {
 						const hoverMeta = Renderer.hover.getMakePredefinedHover({type: "entries", entries: []}, {isBookContent: true});
@@ -1056,18 +1056,18 @@ class TimeTrackerRoot_Clock extends TimeTrackerComponent {
 							Renderer.hover.updatePredefinedHover(hoverMeta.id, toShow);
 						};
 
-						const dispEvent = ee`<div class="dm-time__disp-clock-entry dm-time__disp-clock-entry--event">*</div>`
-							.onn("mouseover", evt => {
+						const dispEvent = veT`<div class="dm-time__disp-clock-entry dm-time__disp-clock-entry--event">*</div>`
+							.vee.onn("mouseover", evt => {
 								doUpdateMeta();
 								hoverMeta.mouseOver(evt, dispEvent);
 							})
-							.onn("mousemove", evt => hoverMeta.mouseMove(evt, dispEvent))
-							.onn("mouseleave", evt => hoverMeta.mouseLeave(evt, dispEvent))
-							.onn("click", () => {
+							.vee.onn("mousemove", evt => hoverMeta.mouseMove(evt, dispEvent))
+							.vee.onn("mouseleave", evt => hoverMeta.mouseLeave(evt, dispEvent))
+							.vee.onn("click", () => {
 								const comp = TimeTrackerRoot_Settings_Event.getInstance(this._board, this._wrpPanel, this._parent, event);
 								comp.doOpenEditModal(null);
 							})
-							.appendTo(wrpEventsEncounters);
+							.vee.appendTo(wrpEventsEncounters);
 					});
 
 					todayEncounters.forEach(encounter => {
@@ -1101,14 +1101,14 @@ class TimeTrackerRoot_Clock extends TimeTrackerComponent {
 							Renderer.hover.updatePredefinedHover(hoverMeta.id, toShow);
 						};
 
-						const dispEncounter = ee`<div class="dm-time__disp-clock-entry dm-time__disp-clock-entry--encounter ${encounter.countUses ? "dm-time__disp-clock-entry--used-encounter" : ""}" title="${encounter.countUses ? "(Encounter has been used)" : "Run Encounter (Add to Initiative Tracker)"}">*</div>`
-							.onn("mouseover", async evt => {
+						const dispEncounter = veT`<div class="dm-time__disp-clock-entry dm-time__disp-clock-entry--encounter ${encounter.countUses ? "dm-time__disp-clock-entry--used-encounter" : ""}" title="${encounter.countUses ? "(Encounter has been used)" : "Run Encounter (Add to Initiative Tracker)"}">*</div>`
+							.vee.onn("mouseover", async evt => {
 								await pDoUpdateMeta();
 								hoverMeta.mouseOver(evt, dispEncounter);
 							})
-							.onn("mousemove", evt => hoverMeta.mouseMove(evt, dispEncounter))
-							.onn("mouseleave", evt => hoverMeta.mouseLeave(evt, dispEncounter))
-							.onn("click", async () => {
+							.vee.onn("mousemove", evt => hoverMeta.mouseMove(evt, dispEncounter))
+							.vee.onn("mouseleave", evt => hoverMeta.mouseLeave(evt, dispEncounter))
+							.vee.onn("click", async () => {
 								const liveEncounter = this._parent.get("encounters")[encounter.id];
 								if (encounter.countUses) {
 									liveEncounter.countUses = 0;
@@ -1117,7 +1117,7 @@ class TimeTrackerRoot_Clock extends TimeTrackerComponent {
 									await TimeTrackerRoot_Calendar.pDoRunEncounter(this._parent, liveEncounter);
 								}
 							})
-							.appendTo(wrpEventsEncounters);
+							.vee.appendTo(wrpEventsEncounters);
 					});
 				}
 			}
@@ -1139,44 +1139,44 @@ class TimeTrackerRoot_Clock extends TimeTrackerComponent {
 		this._parent.addHook("moons", hookClock);
 		hookClock();
 
-		const btnSubDay = ee`<button class="ve-btn ve-btn-xxs ve-btn-default dm-time__btn-day"  title="Subtract Day (SHIFT for 5)">-</button>`
-			.onn("click", evt => doModTime(-1 * this._parent.get("hoursPerDay") * this._parent.get("minutesPerHour") * this._parent.get("secondsPerMinute") * (evt.shiftKey ? 5 : 1), {isBase: true}));
-		const btnAddDay = ee`<button class="ve-btn ve-btn-xxs ve-btn-default dm-time__btn-day" title="Add Day (SHIFT for 5)">+</button>`
-			.onn("click", evt => doModTime(this._parent.get("hoursPerDay") * this._parent.get("minutesPerHour") * this._parent.get("secondsPerMinute") * (evt.shiftKey ? 5 : 1), {isBase: true}));
+		const btnSubDay = veT`<button class="ve-btn ve-btn-xxs ve-btn-default dm-time__btn-day"  title="Subtract Day (SHIFT for 5)">-</button>`
+			.vee.onn("click", evt => doModTime(-1 * this._parent.get("hoursPerDay") * this._parent.get("minutesPerHour") * this._parent.get("secondsPerMinute") * (evt.shiftKey ? 5 : 1), {isBase: true}));
+		const btnAddDay = veT`<button class="ve-btn ve-btn-xxs ve-btn-default dm-time__btn-day" title="Add Day (SHIFT for 5)">+</button>`
+			.vee.onn("click", evt => doModTime(this._parent.get("hoursPerDay") * this._parent.get("minutesPerHour") * this._parent.get("secondsPerMinute") * (evt.shiftKey ? 5 : 1), {isBase: true}));
 
-		const btnAddHour = ee`<button class="ve-btn ve-btn-xs ve-btn-default dm-time__btn-time dm-time__btn-time--top" title="Add Hour (SHIFT for 5, CTRL for 12)">+</button>`
-			.onn("click", evt => doModTime(this._parent.get("minutesPerHour") * this._parent.get("secondsPerMinute") * (evt.shiftKey ? 5 : (EventUtil.isCtrlMetaKey(evt) ? 12 : 1)), {isBase: true}));
-		const btnSubHour = ee`<button class="ve-btn ve-btn-xs ve-btn-default dm-time__btn-time dm-time__btn-time--bottom" title="Subtract Hour (SHIFT for 5, CTRL for 12)">-</button>`
-			.onn("click", evt => doModTime(-1 * this._parent.get("minutesPerHour") * this._parent.get("secondsPerMinute") * (evt.shiftKey ? 5 : (EventUtil.isCtrlMetaKey(evt) ? 12 : 1)), {isBase: true}));
+		const btnAddHour = veT`<button class="ve-btn ve-btn-xs ve-btn-default dm-time__btn-time dm-time__btn-time--top" title="Add Hour (SHIFT for 5, CTRL for 12)">+</button>`
+			.vee.onn("click", evt => doModTime(this._parent.get("minutesPerHour") * this._parent.get("secondsPerMinute") * (evt.shiftKey ? 5 : (EventUtil.isCtrlMetaKey(evt) ? 12 : 1)), {isBase: true}));
+		const btnSubHour = veT`<button class="ve-btn ve-btn-xs ve-btn-default dm-time__btn-time dm-time__btn-time--bottom" title="Subtract Hour (SHIFT for 5, CTRL for 12)">-</button>`
+			.vee.onn("click", evt => doModTime(-1 * this._parent.get("minutesPerHour") * this._parent.get("secondsPerMinute") * (evt.shiftKey ? 5 : (EventUtil.isCtrlMetaKey(evt) ? 12 : 1)), {isBase: true}));
 
-		const btnAddMinute = ee`<button class="ve-btn ve-btn-xs ve-btn-default dm-time__btn-time dm-time__btn-time--top" title="Add Minute (SHIFT for 5, CTRL for 15, Both for 30)">+</button>`
-			.onn("click", evt => doModTime(this._parent.get("secondsPerMinute") * (evt.shiftKey && (EventUtil.isCtrlMetaKey(evt)) ? 30 : (EventUtil.isCtrlMetaKey(evt) ? 15 : (evt.shiftKey ? 5 : 1))), {isBase: true}));
-		const btnSubMinute = ee`<button class="ve-btn ve-btn-xs ve-btn-default dm-time__btn-time dm-time__btn-time--bottom" title="Subtract Minute (SHIFT for 5, CTRL for 15, Both for 30)">-</button>`
-			.onn("click", evt => doModTime(-1 * this._parent.get("secondsPerMinute") * (evt.shiftKey && (EventUtil.isCtrlMetaKey(evt)) ? 30 : (EventUtil.isCtrlMetaKey(evt) ? 15 : (evt.shiftKey ? 5 : 1))), {isBase: true}));
+		const btnAddMinute = veT`<button class="ve-btn ve-btn-xs ve-btn-default dm-time__btn-time dm-time__btn-time--top" title="Add Minute (SHIFT for 5, CTRL for 15, Both for 30)">+</button>`
+			.vee.onn("click", evt => doModTime(this._parent.get("secondsPerMinute") * (evt.shiftKey && (EventUtil.isCtrlMetaKey(evt)) ? 30 : (EventUtil.isCtrlMetaKey(evt) ? 15 : (evt.shiftKey ? 5 : 1))), {isBase: true}));
+		const btnSubMinute = veT`<button class="ve-btn ve-btn-xs ve-btn-default dm-time__btn-time dm-time__btn-time--bottom" title="Subtract Minute (SHIFT for 5, CTRL for 15, Both for 30)">-</button>`
+			.vee.onn("click", evt => doModTime(-1 * this._parent.get("secondsPerMinute") * (evt.shiftKey && (EventUtil.isCtrlMetaKey(evt)) ? 30 : (EventUtil.isCtrlMetaKey(evt) ? 15 : (evt.shiftKey ? 5 : 1))), {isBase: true}));
 
-		const btnAddSecond = ee`<button class="ve-btn ve-btn-xs ve-btn-default dm-time__btn-time dm-time__btn-time--top" title="Add Second (SHIFT for 5, CTRL for 15, Both for 30)">+</button>`
-			.onn("click", evt => doModTime((evt.shiftKey && (EventUtil.isCtrlMetaKey(evt)) ? 30 : (EventUtil.isCtrlMetaKey(evt) ? 15 : (evt.shiftKey ? 5 : 1))), {isBase: true}));
-		const btnSubSecond = ee`<button class="ve-btn ve-btn-xs ve-btn-default dm-time__btn-time dm-time__btn-time--bottom" title="Subtract Second (SHIFT for 5, CTRL for 15, Both for 30)">-</button>`
-			.onn("click", evt => doModTime(-1 * (evt.shiftKey && (EventUtil.isCtrlMetaKey(evt)) ? 30 : (EventUtil.isCtrlMetaKey(evt) ? 15 : (evt.shiftKey ? 5 : 1))), {isBase: true}));
+		const btnAddSecond = veT`<button class="ve-btn ve-btn-xs ve-btn-default dm-time__btn-time dm-time__btn-time--top" title="Add Second (SHIFT for 5, CTRL for 15, Both for 30)">+</button>`
+			.vee.onn("click", evt => doModTime((evt.shiftKey && (EventUtil.isCtrlMetaKey(evt)) ? 30 : (EventUtil.isCtrlMetaKey(evt) ? 15 : (evt.shiftKey ? 5 : 1))), {isBase: true}));
+		const btnSubSecond = veT`<button class="ve-btn ve-btn-xs ve-btn-default dm-time__btn-time dm-time__btn-time--bottom" title="Subtract Second (SHIFT for 5, CTRL for 15, Both for 30)">-</button>`
+			.vee.onn("click", evt => doModTime(-1 * (evt.shiftKey && (EventUtil.isCtrlMetaKey(evt)) ? 30 : (EventUtil.isCtrlMetaKey(evt) ? 15 : (evt.shiftKey ? 5 : 1))), {isBase: true}));
 
-		const btnIsPaused = ee`<button class="ve-btn ve-btn-default"><span class="glyphicon glyphicon-pause"></span></button>`
-			.onn("click", () => this._parent.set("isPaused", !this._parent.get("isPaused")));
-		const hookPaused = () => btnIsPaused.toggleClass("ve-active", this._parent.get("isPaused") || this._parent.get("isAutoPaused"));
+		const btnIsPaused = veT`<button class="ve-btn ve-btn-default"><span class="glyphicon glyphicon-pause"></span></button>`
+			.vee.onn("click", () => this._parent.set("isPaused", !this._parent.get("isPaused")));
+		const hookPaused = () => btnIsPaused.vee.toggleClass("ve-active", this._parent.get("isPaused") || this._parent.get("isAutoPaused"));
 		this._parent.addHook("isPaused", hookPaused);
 		this._parent.addHook("isAutoPaused", hookPaused);
 		hookPaused();
 
-		const btnAddLongRest = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="Add Long Rest (SHIFT for Subtract)">Long Rest</button>`
-			.onn("click", evt => doModTime((evt.shiftKey ? -1 : 1) * this._parent.get("hoursPerLongRest") * this._parent.get("minutesPerHour") * this._parent.get("secondsPerMinute"), {isBase: true}));
-		const btnAddShortRest = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2" title="Add Short Rest (SHIFT for Subtract)">Short Rest</button>`
-			.onn("click", evt => doModTime((evt.shiftKey ? -1 : 1) * this._parent.get("minutesPerShortRest") * this._parent.get("secondsPerMinute"), {isBase: true}));
-		const btnAddTurn = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="Add Round (6 seconds) (SHIFT for Subtract)">Add Round</button>`
-			.onn("click", evt => doModTime((evt.shiftKey ? -1 : 1) * this._parent.get("secondsPerRound"), {isBase: true}));
+		const btnAddLongRest = veT`<button class="ve-btn ve-btn-xs ve-btn-default" title="Add Long Rest (SHIFT for Subtract)">Long Rest</button>`
+			.vee.onn("click", evt => doModTime((evt.shiftKey ? -1 : 1) * this._parent.get("hoursPerLongRest") * this._parent.get("minutesPerHour") * this._parent.get("secondsPerMinute"), {isBase: true}));
+		const btnAddShortRest = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2" title="Add Short Rest (SHIFT for Subtract)">Short Rest</button>`
+			.vee.onn("click", evt => doModTime((evt.shiftKey ? -1 : 1) * this._parent.get("minutesPerShortRest") * this._parent.get("secondsPerMinute"), {isBase: true}));
+		const btnAddTurn = veT`<button class="ve-btn ve-btn-xs ve-btn-default" title="Add Round (6 seconds) (SHIFT for Subtract)">Add Round</button>`
+			.vee.onn("click", evt => doModTime((evt.shiftKey ? -1 : 1) * this._parent.get("secondsPerRound"), {isBase: true}));
 
-		const wrpWeather = ee`<div class="ve-flex dm-time__wrp-weather">`;
+		const wrpWeather = veT`<div class="ve-flex dm-time__wrp-weather">`;
 		this._compWeather.render(wrpWeather, this._parent);
 
-		ee`<div class="ve-flex ve-h-100">
+		veT`<div class="ve-flex ve-h-100">
 			<div class="ve-flex-col ve-flex-vh-center ve-w-100">
 				${dispReadableDate}
 				${dispReadableYear}
@@ -1231,18 +1231,18 @@ class TimeTrackerRoot_Clock extends TimeTrackerComponent {
 
 				${wrpWeather}
 			</div>
-		</div>`.appendTo(eleParent);
+		</div>`.vee.appendTo(eleParent);
 	}
 }
 
 class TimeTrackerRoot_Clock_Weather extends TimeTrackerComponent {
 	render (eleParent, parent) {
-		eleParent.empty();
+		eleParent.vee.empty();
 		this._parent = parent;
 		const {getTimeInfo} = parent;
 
-		const btnRandomise = ee`<button class="ve-btn ve-btn-xxs ve-btn-default dm-time__btn-random-weather" title="Roll Weather (SHIFT to Reroll Using Previous Settings)"><span class="fal fa-dice"></span></button>`
-			.onn("click", async evt => {
+		const btnRandomise = veT`<button class="ve-btn ve-btn-xxs ve-btn-default dm-time__btn-random-weather" title="Roll Weather (SHIFT to Reroll Using Previous Settings)"><span class="fal fa-dice"></span></button>`
+			.vee.onn("click", async evt => {
 				const randomState = await TimeTrackerRoot_Clock_RandomWeather.pGetUserInput(
 					{
 						temperature: this._state.temperature,
@@ -1259,8 +1259,8 @@ class TimeTrackerRoot_Clock_Weather extends TimeTrackerComponent {
 				Object.assign(this._state, randomState);
 			});
 
-		const btnTemperature = ee`<button class="ve-btn ve-btn-default ve-btn-sm dm-time__btn-weather ve-mr-2"></button>`
-			.onn("click", async () => {
+		const btnTemperature = veT`<button class="ve-btn ve-btn-default ve-btn-sm dm-time__btn-weather ve-mr-2"></button>`
+			.vee.onn("click", async () => {
 				let ixCur = TimeTrackerRoot_Clock_Weather._TEMPERATURES.indexOf(this._state.temperature);
 				if (!~ixCur) ixCur = 2;
 
@@ -1280,18 +1280,18 @@ class TimeTrackerRoot_Clock_Weather extends TimeTrackerComponent {
 				if (ix != null) this._state.temperature = TimeTrackerRoot_Clock_Weather._TEMPERATURES[ix];
 			});
 		const hookTemperature = () => {
-			TimeTrackerRoot_Clock_Weather._TEMPERATURE_META.forEach(it => btnTemperature.removeClass(it.class));
+			TimeTrackerRoot_Clock_Weather._TEMPERATURE_META.forEach(it => btnTemperature.vee.removeClass(it.class));
 			let ix = TimeTrackerRoot_Clock_Weather._TEMPERATURES.indexOf(this._state.temperature);
 			if (!~ix) ix = 0;
 			const meta = TimeTrackerRoot_Clock_Weather._TEMPERATURE_META[ix];
-			btnTemperature.addClass(meta.class);
-			btnTemperature.tooltip(this._state.temperature.uppercaseFirst()).html(`<div class="fal ${meta.icon}"></div>`);
+			btnTemperature.vee.addClass(meta.class);
+			btnTemperature.vee.tooltip(this._state.temperature.uppercaseFirst()).vee.html(`<div class="fal ${meta.icon}"></div>`);
 		};
 		this._addHookBase("temperature", hookTemperature);
 		hookTemperature();
 
-		const btnPrecipitation = ee`<button class="ve-btn ve-btn-default ve-btn-sm dm-time__btn-weather ve-mr-2"></button>`
-			.onn("click", async () => {
+		const btnPrecipitation = veT`<button class="ve-btn ve-btn-default ve-btn-sm dm-time__btn-weather ve-mr-2"></button>`
+			.vee.onn("click", async () => {
 				const {
 					numHours,
 					seasonInfos,
@@ -1332,14 +1332,14 @@ class TimeTrackerRoot_Clock_Weather extends TimeTrackerComponent {
 			let ix = TimeTrackerRoot_Clock_Weather._PRECIPICATION.indexOf(this._state.precipitation);
 			if (!~ix) ix = 0;
 			const meta = TimeTrackerRoot_Clock_Weather._PRECIPICATION_META[ix];
-			btnPrecipitation.tooltip(TimeTrackerUtil.revSlugToText(this._state.precipitation)).html(`<div class="fal ${useNightIcon && meta.iconNight ? meta.iconNight : meta.icon}"></div>`);
+			btnPrecipitation.vee.tooltip(TimeTrackerUtil.revSlugToText(this._state.precipitation)).vee.html(`<div class="fal ${useNightIcon && meta.iconNight ? meta.iconNight : meta.icon}"></div>`);
 		};
 		this._addHookBase("precipitation", hookPrecipitation);
 		this._parent.addHook("time", hookPrecipitation);
 		hookPrecipitation();
 
-		const btnWindDirection = ee`<button class="ve-btn ve-btn-default ve-btn-sm dm-time__btn-weather"></button>`
-			.onn("click", async () => {
+		const btnWindDirection = veT`<button class="ve-btn ve-btn-default ve-btn-sm dm-time__btn-weather"></button>`
+			.vee.onn("click", async () => {
 				const bearing = await TimeTrackerUtil.pGetUserWindBearing(this._state.windDirection);
 				if (bearing != null) this._state.windDirection = bearing;
 			});
@@ -1349,15 +1349,15 @@ class TimeTrackerRoot_Clock_Weather extends TimeTrackerComponent {
 
 			if (ixCur) {
 				const speedClass = ixCur >= 5 ? "fas" : ixCur >= 3 ? "far" : "fal";
-				btnWindDirection.html(`<div class="${speedClass} fa-arrow-up" style="transform: rotate(${this._state.windDirection}deg);"></div>`);
-			} else btnWindDirection.html(`<div class="fal fa-ellipsis"></div>`);
+				btnWindDirection.vee.html(`<div class="${speedClass} fa-arrow-up" style="transform: rotate(${this._state.windDirection}deg);"></div>`);
+			} else btnWindDirection.vee.html(`<div class="fal fa-ellipsis"></div>`);
 		};
 		this._addHookBase("windDirection", hookWindDirection);
 		this._addHookBase("windSpeed", hookWindDirection);
 		hookWindDirection();
 
-		const btnWindSpeed = ee`<button class="ve-btn ve-btn-default ve-btn-xs"></button>`
-			.onn("click", async () => {
+		const btnWindSpeed = veT`<button class="ve-btn ve-btn-default ve-btn-xs"></button>`
+			.vee.onn("click", async () => {
 				let ixCur = TimeTrackerRoot_Clock_Weather._WIND_SPEEDS.indexOf(this._state.windSpeed);
 				if (!~ixCur) ixCur = 0;
 
@@ -1380,17 +1380,17 @@ class TimeTrackerRoot_Clock_Weather extends TimeTrackerComponent {
 			let ix = TimeTrackerRoot_Clock_Weather._WIND_SPEEDS.indexOf(this._state.windSpeed);
 			if (!~ix) ix = 0;
 			const meta = TimeTrackerRoot_Clock_Weather._WIND_SPEEDS_META[ix];
-			btnWindSpeed.txt(TimeTrackerUtil.revSlugToText(this._state.windSpeed)).tooltip(this._parent.get("unitsWindSpeed") === "mph" ? `${meta.mph} mph` : `${meta.kmph} km/h`);
+			btnWindSpeed.vee.txt(TimeTrackerUtil.revSlugToText(this._state.windSpeed)).vee.tooltip(this._parent.get("unitsWindSpeed") === "mph" ? `${meta.mph} mph` : `${meta.kmph} km/h`);
 		};
 		this._addHookBase("windSpeed", hookWindSpeed);
 		this._parent.addHook("unitsWindSpeed", hookWindSpeed);
 		hookWindSpeed();
 
-		const hovEnvEffects = ee`<div><span class="glyphicon glyphicon-info-sign"></span></div>`;
-		const wrpEnvEffects = ee`<div class="ve-mt-2">${hovEnvEffects}</div>`;
+		const hovEnvEffects = veT`<div><span class="glyphicon glyphicon-info-sign"></span></div>`;
+		const wrpEnvEffects = veT`<div class="ve-mt-2">${hovEnvEffects}</div>`;
 		let hoverMetaEnvEffects = null;
 		const hookEnvEffects = () => {
-			hovEnvEffects.off("mouseover").off("mousemove").off("mouseleave");
+			hovEnvEffects.vee.off("mouseover").vee.off("mousemove").vee.off("mouseleave");
 			const hashes = [];
 			const fnGetHash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_TRAPS_HAZARDS];
 
@@ -1413,17 +1413,17 @@ class TimeTrackerRoot_Clock_Weather extends TimeTrackerComponent {
 				hashes.push(fnGetHash(({name: "Strong Wind", source: srcHazards})));
 			}
 
-			hovEnvEffects.showVe();
+			hovEnvEffects.vee.show();
 			if (hashes.length === 1) {
 				const ele = hovEnvEffects;
-				hovEnvEffects.onn("mouseover", evt => Renderer.hover.pHandleLinkMouseOver(evt, ele, {isSpecifiedLinkData: true, page: UrlUtil.PG_TRAPS_HAZARDS, source: srcHazards, hash: hashes[0]}));
-				hovEnvEffects.onn("mouseleave", evt => Renderer.hover.handleLinkMouseLeave(evt, ele));
-				hovEnvEffects.onn("mousemove", evt => Renderer.hover.handleLinkMouseMove(evt, ele));
+				hovEnvEffects.vee.onn("mouseover", evt => Renderer.hover.pHandleLinkMouseOver(evt, ele, {isSpecifiedLinkData: true, page: UrlUtil.PG_TRAPS_HAZARDS, source: srcHazards, hash: hashes[0]}));
+				hovEnvEffects.vee.onn("mouseleave", evt => Renderer.hover.handleLinkMouseLeave(evt, ele));
+				hovEnvEffects.vee.onn("mousemove", evt => Renderer.hover.handleLinkMouseMove(evt, ele));
 			} else if (hashes.length) {
 				if (hoverMetaEnvEffects == null) hoverMetaEnvEffects = Renderer.hover.getMakePredefinedHover({type: "entries", entries: []});
 
 				hovEnvEffects
-					.onn("mouseover", async evt => {
+					.vee.onn("mouseover", async evt => {
 						// load the first on its own, to avoid racing to fill the cache
 						const first = await DataLoader.pCacheAndGet(UrlUtil.PG_TRAPS_HAZARDS, srcHazards, hashes[0]);
 						const others = await Promise.all(hashes.slice(1).map(hash => DataLoader.pCacheAndGet(UrlUtil.PG_TRAPS_HAZARDS, srcHazards, hash)));
@@ -1436,16 +1436,16 @@ class TimeTrackerRoot_Clock_Weather extends TimeTrackerComponent {
 						Renderer.hover.updatePredefinedHover(hoverMetaEnvEffects.id, toShow);
 						hoverMetaEnvEffects.mouseOver(evt, hovEnvEffects);
 					})
-					.onn("mousemove", evt => hoverMetaEnvEffects.mouseMove(evt, hovEnvEffects))
-					.onn("mouseleave", evt => hoverMetaEnvEffects.mouseLeave(evt, hovEnvEffects));
-			} else hovEnvEffects.hideVe();
+					.vee.onn("mousemove", evt => hoverMetaEnvEffects.mouseMove(evt, hovEnvEffects))
+					.vee.onn("mouseleave", evt => hoverMetaEnvEffects.mouseLeave(evt, hovEnvEffects));
+			} else hovEnvEffects.vee.hide();
 		};
 		this._addHookBase("temperature", hookEnvEffects);
 		this._addHookBase("precipitation", hookEnvEffects);
 		this._addHookBase("windSpeed", hookEnvEffects);
 		hookEnvEffects();
 
-		ee`<div class="ve-flex-col ve-w-100 ve-flex-vh-center">
+		veT`<div class="ve-flex-col ve-w-100 ve-flex-vh-center">
 			<div class="ve-flex-vh-center small ve-mb-1"><span class="ve-small-caps ve-mr-2">Weather</span>${btnRandomise}</div>
 			<div class="ve-mb-2">${btnTemperature}${btnPrecipitation}</div>
 
@@ -1456,7 +1456,7 @@ class TimeTrackerRoot_Clock_Weather extends TimeTrackerComponent {
 			</div>
 
 			${wrpEnvEffects}
-		</div>`.appendTo(eleParent);
+		</div>`.vee.appendTo(eleParent);
 	}
 
 	_getDefaultState () { return MiscUtil.copy(TimeTrackerRoot_Clock_Weather._DEFAULT_STATE); }
@@ -1532,7 +1532,7 @@ class TimeTrackerRoot_Clock_RandomWeather extends BaseComponent {
 	}
 
 	render (eleModalInner, doClose) {
-		eleModalInner.empty();
+		eleModalInner.vee.empty();
 
 		const btnsTemperature = TimeTrackerRoot_Clock_Weather._TEMPERATURES
 			.map((it, i) => {
@@ -1545,11 +1545,11 @@ class TimeTrackerRoot_Clock_RandomWeather extends BaseComponent {
 				};
 			})
 			.map(v => {
-				const btn = ee`<div class="ve-m-2 ve-btn ve-btn-default ve-ui__btn-xxl-square ve-flex-col ve-flex-h-center ve-flex-v-center">
+				const btn = veT`<div class="ve-m-2 ve-btn ve-btn-default ve-ui__btn-xxl-square ve-flex-col ve-flex-h-center ve-flex-v-center">
 						<div class="ve-ui-icn__wrp-icon ${v.iconClass} ve-mb-1"></div>
 						<div class="ve-whitespace-normal ve-w-100">${v.name}</div>
 					</div>`
-					.onn("click", () => {
+					.vee.onn("click", () => {
 						if (this._state.allowedTemperatures.includes(v.temperature)) this._state.allowedTemperatures = this._state.allowedTemperatures.filter(it => it !== v.temperature);
 						else this._state.allowedTemperatures = [...this._state.allowedTemperatures, v.temperature];
 					});
@@ -1557,10 +1557,10 @@ class TimeTrackerRoot_Clock_RandomWeather extends BaseComponent {
 				const hookTemperature = () => {
 					const isActive = this._state.allowedTemperatures.includes(v.temperature);
 					if (v.buttonClass) {
-						btn.toggleClass("ve-btn-default", !isActive);
-						btn.toggleClass(v.buttonClass, isActive);
+						btn.vee.toggleClass("ve-btn-default", !isActive);
+						btn.vee.toggleClass(v.buttonClass, isActive);
 					}
-					btn.toggleClass("ve-active", isActive);
+					btn.vee.toggleClass("ve-active", isActive);
 				};
 				this._addHookBase("allowedTemperatures", hookTemperature);
 				hookTemperature();
@@ -1578,29 +1578,29 @@ class TimeTrackerRoot_Clock_RandomWeather extends BaseComponent {
 				};
 			})
 			.map(v => {
-				const btn = ee`<div class="ve-m-2 ve-btn ve-btn-default ve-ui__btn-xxl-square ve-flex-col ve-flex-h-center ve-flex-v-center">
+				const btn = veT`<div class="ve-m-2 ve-btn ve-btn-default ve-ui__btn-xxl-square ve-flex-col ve-flex-h-center ve-flex-v-center">
 						<div class="ve-ui-icn__wrp-icon ${v.iconClass} ve-mb-1"></div>
 						<div class="ve-whitespace-normal ve-w-100">${v.name}</div>
 					</div>`
-					.onn("click", () => {
+					.vee.onn("click", () => {
 						if (this._state.allowedPrecipitations.includes(v.precipitation)) this._state.allowedPrecipitations = this._state.allowedPrecipitations.filter(it => it !== v.precipitation);
 						else this._state.allowedPrecipitations = [...this._state.allowedPrecipitations, v.precipitation];
 					});
 
-				const hookPrecipitation = () => btn.toggleClass("ve-active", this._state.allowedPrecipitations.includes(v.precipitation));
+				const hookPrecipitation = () => btn.vee.toggleClass("ve-active", this._state.allowedPrecipitations.includes(v.precipitation));
 				this._addHookBase("allowedPrecipitations", hookPrecipitation);
 				hookPrecipitation();
 
 				return btn;
 			});
 
-		const btnWindDirection = ee`<button class="ve-btn ve-btn-default ve-btn-sm dm-time__btn-weather"></button>`
-			.onn("click", async () => {
+		const btnWindDirection = veT`<button class="ve-btn ve-btn-default ve-btn-sm dm-time__btn-weather"></button>`
+			.vee.onn("click", async () => {
 				const bearing = await TimeTrackerUtil.pGetUserWindBearing(this._state.prevailingWindDirection);
 				if (bearing != null) this._state.prevailingWindDirection = bearing;
 			});
 		const hookWindDirection = () => {
-			btnWindDirection.html(`<div class="far fa-arrow-up" style="transform: rotate(${this._state.prevailingWindDirection}deg);"></div>`);
+			btnWindDirection.vee.html(`<div class="far fa-arrow-up" style="transform: rotate(${this._state.prevailingWindDirection}deg);"></div>`);
 		};
 		this._addHookBase("prevailingWindDirection", hookWindDirection);
 		hookWindDirection();
@@ -1615,30 +1615,30 @@ class TimeTrackerRoot_Clock_RandomWeather extends BaseComponent {
 				};
 			})
 			.map(v => {
-				const btn = ee`<div class="ve-m-2 ve-btn ve-btn-default ve-ui__btn-xxl-square ve-flex-col ve-flex-h-center">
+				const btn = veT`<div class="ve-m-2 ve-btn ve-btn-default ve-ui__btn-xxl-square ve-flex-col ve-flex-h-center">
 						${v.iconContent}
 						<div class="ve-whitespace-normal ve-w-100">${v.name}</div>
 					</div>`
-					.onn("click", () => {
+					.vee.onn("click", () => {
 						if (this._state.allowedWindSpeeds.includes(v.speed)) this._state.allowedWindSpeeds = this._state.allowedWindSpeeds.filter(it => it !== v.speed);
 						else this._state.allowedWindSpeeds = [...this._state.allowedWindSpeeds, v.speed];
 					});
 
-				const hookSpeed = () => btn.toggleClass("ve-active", this._state.allowedWindSpeeds.includes(v.speed));
+				const hookSpeed = () => btn.vee.toggleClass("ve-active", this._state.allowedWindSpeeds.includes(v.speed));
 				this._addHookBase("allowedWindSpeeds", hookSpeed);
 				hookSpeed();
 
 				return btn;
 			});
 
-		const btnOk = ee`<button class="ve-btn ve-btn-default">Confirm and Roll Weather</button>`
-			.onn("click", () => {
+		const btnOk = veT`<button class="ve-btn ve-btn-default">Confirm and Roll Weather</button>`
+			.vee.onn("click", () => {
 				if (!this._state.allowedTemperatures.length || !this._state.allowedPrecipitations.length || !this._state.allowedWindSpeeds.length) {
 					JqueryUtil.doToast({content: `Please select allowed values for all sections!`, type: "warning"});
 				} else doClose(true);
 			});
 
-		ee`<div class="ve-flex-col ve-w-100 ve-h-100">
+		veT`<div class="ve-flex-col ve-w-100 ve-h-100">
 			<div class="ve-flex-col">
 				<h5>Allowed Temperatures</h5>
 				<div class="ve-flex">${btnsTemperature}</div>
@@ -1655,7 +1655,7 @@ class TimeTrackerRoot_Clock_RandomWeather extends BaseComponent {
 				<div class="ve-flex">${btnsWindSpeed}</div>
 			</div>
 			<div class="ve-flex-vh-center">${btnOk}</div>
-		</div>`.appendTo(eleModalInner);
+		</div>`.vee.appendTo(eleModalInner);
 	}
 
 	_getDefaultState () { return MiscUtil.copy(TimeTrackerRoot_Clock_RandomWeather._DEFAULT_STATE); }
@@ -1772,22 +1772,22 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 	}
 
 	render (eleParent, parent) {
-		eleParent.empty();
+		eleParent.vee.empty();
 		this._parent = parent;
 		const {getTimeInfo, doModTime} = parent;
 
 		// cache info to avoid re-rendering the calendar every second
 		let lastRenderMeta = null;
 
-		const dispDayReadableDate = ee`<div class="ve-small-caps"></div>`;
-		const dispYear = ee`<div class="ve-small-caps ve-muted small"></div>`;
+		const dispDayReadableDate = veT`<div class="ve-small-caps"></div>`;
+		const dispYear = veT`<div class="ve-small-caps ve-muted small"></div>`;
 		const {wrpDateControls, iptYear, iptMonth, iptDay} = TimeTrackerRoot_Calendar.getDateControls(this._parent);
 
 		const btnBrowseMode = ComponentUiUtil.getBtnBool(
 			this._parent.component,
 			"isBrowseMode",
 			{
-				ele: ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="When enabled, the current calendar view will be saved. You can then freely browse. When you're done, disable Browse mode to return to your original view.">Browse</button>`,
+				ele: veT`<button class="ve-btn ve-btn-xs ve-btn-default" title="When enabled, the current calendar view will be saved. You can then freely browse. When you're done, disable Browse mode to return to your original view.">Browse</button>`,
 				fnHookPost: val => {
 					if (val) this._parent.set("browseTime", this._parent.get("time"));
 					else this._parent.set("browseTime", null);
@@ -1795,7 +1795,7 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 			},
 		);
 
-		const wrpCalendar = ee`<div class="ve-overflow-y-auto ve-smooth-scroll"></div>`;
+		const wrpCalendar = veT`<div class="ve-overflow-y-auto ve-smooth-scroll"></div>`;
 
 		const hookCalendar = (prop) => {
 			const timeInfo = getTimeInfo();
@@ -1834,12 +1834,12 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 			if (prop === "time" && CollectionUtil.deepEquals(lastRenderMeta, renderMeta)) return;
 			lastRenderMeta = renderMeta;
 
-			dispDayReadableDate.txt(TimeTrackerBase.formatDateInfo(dayInfo, date, monthInfo, seasonInfos));
-			dispYear.html(TimeTrackerBase.formatYearInfo(year, yearInfos, eraInfos));
+			dispDayReadableDate.vee.txt(TimeTrackerBase.formatDateInfo(dayInfo, date, monthInfo, seasonInfos));
+			dispYear.vee.html(TimeTrackerBase.formatYearInfo(year, yearInfos, eraInfos));
 
-			iptYear.val(year + 1);
-			iptMonth.val(month + 1);
-			iptDay.val(date + 1);
+			iptYear.vee.val(year + 1);
+			iptMonth.vee.val(month + 1);
+			iptDay.vee.val(date + 1);
 
 			TimeTrackerRoot_Calendar.renderCalendar(
 				this._parent,
@@ -1865,7 +1865,7 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 		this._parent.addHook("moons", hookCalendar);
 		hookCalendar();
 
-		ee`<div class="ve-flex-col ve-h-100 ve-flex-h-center">
+		veT`<div class="ve-flex-col ve-h-100 ve-flex-h-center">
 			${dispDayReadableDate}
 			<div class="ve-split ve-mb-2 ve-flex-v-top">
 				${dispYear}
@@ -1874,7 +1874,7 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 			${wrpDateControls}
 			<hr class="ve-hr-2 ve-no-shrink">
 			${wrpCalendar}
-		</div>`.appendTo(eleParent);
+		</div>`.vee.appendTo(eleParent);
 	}
 
 	/**
@@ -1889,15 +1889,15 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 		opts = opts || {};
 		const {doModTime, getTimeInfo} = parent;
 
-		const btnSubDay = opts.isHideDays ? null : ee`<button class="ve-btn ve-btn-xs ve-btn-default dm-time__btn-date-adjust"  title="Subtract Day (SHIFT for 5)">\u2212D</button>`
-			.onn("click", evt => doModTime(-1 * getTimeInfo().secsPerDay * (evt.shiftKey ? 5 : 1)));
-		const btnAddDay = opts.isHideDays ? null : ee`<button class="ve-btn ve-btn-xs ve-btn-default dm-time__btn-date-adjust" title="Add Day (SHIFT for 5)">D+</button>`
-			.onn("click", evt => doModTime(getTimeInfo().secsPerDay * (evt.shiftKey ? 5 : 1)));
+		const btnSubDay = opts.isHideDays ? null : veT`<button class="ve-btn ve-btn-xs ve-btn-default dm-time__btn-date-adjust"  title="Subtract Day (SHIFT for 5)">\u2212D</button>`
+			.vee.onn("click", evt => doModTime(-1 * getTimeInfo().secsPerDay * (evt.shiftKey ? 5 : 1)));
+		const btnAddDay = opts.isHideDays ? null : veT`<button class="ve-btn ve-btn-xs ve-btn-default dm-time__btn-date-adjust" title="Add Day (SHIFT for 5)">D+</button>`
+			.vee.onn("click", evt => doModTime(getTimeInfo().secsPerDay * (evt.shiftKey ? 5 : 1)));
 
-		const btnSubWeek = opts.isHideWeeks ? null : ee`<button class="ve-btn ve-btn-xs ve-btn-default dm-time__btn-date-adjust"  title="Subtract Week (SHIFT for 5)">\u2212W</button>`
-			.onn("click", evt => doModTime(-1 * getTimeInfo().secsPerWeek * (evt.shiftKey ? 5 : 1)));
-		const btnAddWeek = opts.isHideWeeks ? null : ee`<button class="ve-btn ve-btn-xs ve-btn-default dm-time__btn-date-adjust" title="Add Week (SHIFT for 5)">W+</button>`
-			.onn("click", evt => doModTime(getTimeInfo().secsPerWeek * (evt.shiftKey ? 5 : 1)));
+		const btnSubWeek = opts.isHideWeeks ? null : veT`<button class="ve-btn ve-btn-xs ve-btn-default dm-time__btn-date-adjust"  title="Subtract Week (SHIFT for 5)">\u2212W</button>`
+			.vee.onn("click", evt => doModTime(-1 * getTimeInfo().secsPerWeek * (evt.shiftKey ? 5 : 1)));
+		const btnAddWeek = opts.isHideWeeks ? null : veT`<button class="ve-btn ve-btn-xs ve-btn-default dm-time__btn-date-adjust" title="Add Week (SHIFT for 5)">W+</button>`
+			.vee.onn("click", evt => doModTime(getTimeInfo().secsPerWeek * (evt.shiftKey ? 5 : 1)));
 
 		const doModMonths = (numMonths) => {
 			const doAddMonth = () => {
@@ -1946,54 +1946,54 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 			}
 		};
 
-		const btnSubMonth = ee`<button class="ve-btn ve-btn-xs ve-btn-default dm-time__btn-date-adjust"  title="Subtract Month (SHIFT for 5)">\u2212M</button>`
-			.onn("click", evt => doModMonths(evt.shiftKey ? -5 : -1));
-		const btnAddMonth = ee`<button class="ve-btn ve-btn-xs ve-btn-default dm-time__btn-date-adjust" title="Add Month (SHIFT for 5)">M+</button>`
-			.onn("click", evt => doModMonths(evt.shiftKey ? 5 : 1));
+		const btnSubMonth = veT`<button class="ve-btn ve-btn-xs ve-btn-default dm-time__btn-date-adjust"  title="Subtract Month (SHIFT for 5)">\u2212M</button>`
+			.vee.onn("click", evt => doModMonths(evt.shiftKey ? -5 : -1));
+		const btnAddMonth = veT`<button class="ve-btn ve-btn-xs ve-btn-default dm-time__btn-date-adjust" title="Add Month (SHIFT for 5)">M+</button>`
+			.vee.onn("click", evt => doModMonths(evt.shiftKey ? 5 : 1));
 
-		const btnSubYear = ee`<button class="ve-btn ve-btn-xs ve-btn-default dm-time__btn-date-adjust"  title="Subtract Year (SHIFT for 5)">\u2212Y</button>`
-			.onn("click", evt => doModTime(-1 * getTimeInfo().secsPerYear * (evt.shiftKey ? 5 : 1)));
-		const btnAddYear = ee`<button class="ve-btn ve-btn-xs ve-btn-default dm-time__btn-date-adjust" title="Add Year (SHIFT for 5)">Y+</button>`
-			.onn("click", evt => doModTime(getTimeInfo().secsPerYear * (evt.shiftKey ? 5 : 1)));
+		const btnSubYear = veT`<button class="ve-btn ve-btn-xs ve-btn-default dm-time__btn-date-adjust"  title="Subtract Year (SHIFT for 5)">\u2212Y</button>`
+			.vee.onn("click", evt => doModTime(-1 * getTimeInfo().secsPerYear * (evt.shiftKey ? 5 : 1)));
+		const btnAddYear = veT`<button class="ve-btn ve-btn-xs ve-btn-default dm-time__btn-date-adjust" title="Add Year (SHIFT for 5)">Y+</button>`
+			.vee.onn("click", evt => doModTime(getTimeInfo().secsPerYear * (evt.shiftKey ? 5 : 1)));
 
-		const iptYear = ee`<input class="ve-form-control form-control--minimal ve-text-center ve-input-xs dm-time__calendar-ipt-date dm-time__calendar-ipt-date--slashed-right" title="Year">`
-			.onn("change", () => {
+		const iptYear = veT`<input class="ve-form-control form-control--minimal ve-text-center ve-input-xs dm-time__calendar-ipt-date dm-time__calendar-ipt-date--slashed-right" title="Year">`
+			.vee.onn("change", () => {
 				const {
 					secsPerYear,
 					year,
 				} = getTimeInfo();
-				const nxt = UiUtil.strToInt(iptYear.val(), 1) - 1;
-				iptYear.val(nxt + 1);
+				const nxt = UiUtil.strToInt(iptYear.vee.val(), 1) - 1;
+				iptYear.vee.val(nxt + 1);
 				const diffYears = nxt - year;
 				doModTime(diffYears * secsPerYear);
 			});
-		const iptMonth = ee`<input class="ve-form-control form-control--minimal ve-text-center ve-input-xs dm-time__calendar-ipt-date dm-time__calendar-ipt-date--slashed-left ${opts.isHideDays ? "" : "dm-time__calendar-ipt-date--slashed-right"}" title="Month">`
-			.onn("change", () => {
+		const iptMonth = veT`<input class="ve-form-control form-control--minimal ve-text-center ve-input-xs dm-time__calendar-ipt-date dm-time__calendar-ipt-date--slashed-left ${opts.isHideDays ? "" : "dm-time__calendar-ipt-date--slashed-right"}" title="Month">`
+			.vee.onn("change", () => {
 				const {
 					month,
 					monthsPerYear,
 				} = getTimeInfo();
-				const nxtRaw = UiUtil.strToInt(iptMonth.val(), 1) - 1;
+				const nxtRaw = UiUtil.strToInt(iptMonth.vee.val(), 1) - 1;
 				const nxt = Math.max(0, Math.min(monthsPerYear - 1, nxtRaw));
-				iptMonth.val(nxt + 1);
+				iptMonth.vee.val(nxt + 1);
 				const diffMonths = nxt - month;
 				doModMonths(diffMonths);
 			});
-		const iptDay = opts.isHideDays ? null : ee`<input class="ve-form-control form-control--minimal ve-text-center ve-input-xs dm-time__calendar-ipt-date dm-time__calendar-ipt-date--slashed-left" title="Day">`
-			.onn("change", () => {
+		const iptDay = opts.isHideDays ? null : veT`<input class="ve-form-control form-control--minimal ve-text-center ve-input-xs dm-time__calendar-ipt-date dm-time__calendar-ipt-date--slashed-left" title="Day">`
+			.vee.onn("change", () => {
 				const {
 					secsPerDay,
 					date,
 					monthInfo,
 				} = getTimeInfo();
-				const nxtRaw = UiUtil.strToInt(iptDay.val(), 1) - 1;
+				const nxtRaw = UiUtil.strToInt(iptDay.vee.val(), 1) - 1;
 				const nxt = Math.max(0, Math.min(monthInfo.days - 1, nxtRaw));
-				iptDay.val(nxt + 1);
+				iptDay.vee.val(nxt + 1);
 				const diffDays = nxt - date;
 				doModTime(diffDays * secsPerDay);
 			});
 
-		const wrpDateControls = ee`<div class="ve-flex ve-flex-vh-center">
+		const wrpDateControls = veT`<div class="ve-flex ve-flex-vh-center">
 			<div class="ve-flex ve-btn-group ve-mr-2">
 				${btnSubYear}
 				${btnSubMonth}
@@ -2042,7 +2042,7 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 			numDays,
 		} = timeInfo;
 
-		wrpCalendar.empty().css({display: "grid"});
+		wrpCalendar.vee.empty().vee.css({display: "grid"});
 
 		const gridOffsetX = opts.hasRowLabels ? 1 : 0;
 		const gridOffsetY = opts.hasColumnLabels ? 1 : 0;
@@ -2050,14 +2050,14 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 		if (opts.hasColumnLabels) {
 			const days = parent.getAllDayInfos();
 			days.forEach((it, i) => {
-				ee`<div class="small ve-muted ve-small-caps ve-text-center" title="${it.name.escapeQuotes()}">${it.name.slice(0, 2)}</div>`
-					.css({
+				veT`<div class="small ve-muted ve-small-caps ve-text-center" title="${it.name.escapeQuotes()}">${it.name.slice(0, 2)}</div>`
+					.vee.css({
 						"grid-column-start": `${i + gridOffsetX + 1}`,
 						"grid-column-end": `${i + gridOffsetX + 2}`,
 						"grid-row-start": `1`,
 						"grid-row-end": `2`,
 					})
-					.appendTo(wrpCalendar);
+					.vee.appendTo(wrpCalendar);
 			});
 		}
 
@@ -2069,19 +2069,19 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 
 			if (xPos === 0 && opts.hasRowLabels && i < daysInMonth) {
 				const weekNum = Math.floor(monthStartDayOfYear / daysPerWeek) + yPos;
-				ee`<div class="small ve-muted ve-small-caps ve-flex-vh-center" title="Week ${weekNum}">${weekNum}</div>`
-					.css({
+				veT`<div class="small ve-muted ve-small-caps ve-flex-vh-center" title="Week ${weekNum}">${weekNum}</div>`
+					.vee.css({
 						"grid-column-start": `${xPos + 1}`,
 						"grid-column-end": `${xPos + 2}`,
 						"grid-row-start": `${yPos + gridOffsetY + 1}`,
 						"grid-row-end": `${yPos + gridOffsetY + 2}`,
 					})
-					.appendTo(wrpCalendar);
+					.vee.appendTo(wrpCalendar);
 			}
 
 			let ele;
 			if (i < 0 || i >= daysInMonth) {
-				ele = ee`<div class="ve-m-1"></div>`;
+				ele = veT`<div class="ve-m-1"></div>`;
 			} else {
 				const eventDay = monthStartDayOfYear + i;
 				const moonDay = numDays - (date - i);
@@ -2095,30 +2095,30 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 				if (activeMoons.length) {
 					const elesRenderedMoons = activeMoons.map((m, i) => {
 						if (i === 0 || activeMoons.length < 3) {
-							return TimeTrackerBase.getCvsMoon(m).addClass("dm-time__calendar-moon-phase");
+							return TimeTrackerBase.getCvsMoon(m).vee.addClass("dm-time__calendar-moon-phase");
 						} else if (i === 1) {
 							const otherMoons = activeMoons.length - 1;
 							return `<div class="dm-time__calendar-moon-phase ve-muted" title="${otherMoons} additional moon${otherMoons === 1 ? "" : "s"} not shown"><span class="glyphicon glyphicon-plus"></span></div>`;
 						}
 					});
 
-					moonPart = ee`<div class="dm-time__disp-day-moon ve-flex-col">${elesRenderedMoons}</div>`;
+					moonPart = veT`<div class="dm-time__disp-day-moon ve-flex-col">${elesRenderedMoons}</div>`;
 				} else moonPart = "";
 
-				ele = ee`<div class="dm-time__disp-calendar-day ve-btn-xxs ve-m-1 ve-relative ${i === date && !opts.isHideDay ? "dm-time__disp-calendar-day--active" : ""}">
+				ele = veT`<div class="dm-time__disp-calendar-day ve-btn-xxs ve-m-1 ve-relative ${i === date && !opts.isHideDay ? "dm-time__disp-calendar-day--active" : ""}">
 					${i + 1}
 					${events.length ? `<div class="dm-time__disp-day-entry dm-time__disp-day-entry--event" title="Has Events">*</div>` : ""}
 					${encounters.length ? `<div class="dm-time__disp-day-entry dm-time__disp-day-entry--encounter" title="Has Encounters">*</div>` : ""}
 					${moonPart}
-				</div>`.onn("click", (evt) => fnClickDay(evt, year, eventDay, moonDay));
+				</div>`.vee.onn("click", (evt) => fnClickDay(evt, year, eventDay, moonDay));
 			}
-			ele.css({
+			ele.vee.css({
 				"grid-column-start": `${xPos + gridOffsetX + 1}`,
 				"grid-column-end": `${xPos + gridOffsetX + 2}`,
 				"grid-row-start": `${yPos + gridOffsetY + 1}`,
 				"grid-row-end": `${yPos + gridOffsetY + 2}`,
 			});
-			wrpCalendar.appends(ele);
+			wrpCalendar.vee.appends(ele);
 		}
 	}
 
@@ -2143,22 +2143,22 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 	_render_openDayModal (eventYear, eventDay, moonDay) {
 		const {getTimeInfo, getEvents, getEncounters, getMoonInfos} = this._parent;
 
-		const btnJumpToDay = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="Set the current date to this day. This will end Browse Mode, if it is currently active.">Go to Day</button>`
-			.onn("click", () => {
+		const btnJumpToDay = veT`<button class="ve-btn ve-btn-xs ve-btn-default" title="Set the current date to this day. This will end Browse Mode, if it is currently active.">Go to Day</button>`
+			.vee.onn("click", () => {
 				this._render_doJumpToDay(eventYear, eventDay);
 				doClose();
 			});
 
-		const btnAddEvent = ee`<button class="ve-btn ve-btn-xs ve-btn-primary"><span class="glyphicon glyphicon-plus"></span> Add Event</button>`
-			.onn("click", () => {
+		const btnAddEvent = veT`<button class="ve-btn ve-btn-xs ve-btn-primary"><span class="glyphicon glyphicon-plus"></span> Add Event</button>`
+			.vee.onn("click", () => {
 				const nxtPos = Object.keys(this._parent.get("events")).length;
 				const nuEvent = TimeTrackerBase.getGenericEvent(nxtPos, year, eventDay);
 				this._eventToEdit = nuEvent.id;
 				this._parent.set("events", {...this._parent.get("events"), [nuEvent.id]: nuEvent});
 			});
 
-		const btnAddEventAtTime = ee`<button class="ve-btn ve-btn-xs ve-btn-primary" title="SHIFT to Add at Current Time">At Time...</button>`
-			.onn("click", async evt => {
+		const btnAddEventAtTime = veT`<button class="ve-btn ve-btn-xs ve-btn-primary" title="SHIFT to Add at Current Time">At Time...</button>`
+			.vee.onn("click", async evt => {
 				const chosenTimeInfo = await this._render_pGetEventTimeOfDay(eventYear, eventDay, evt.shiftKey);
 				if (chosenTimeInfo == null) return;
 
@@ -2226,11 +2226,11 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 			}),
 		]);
 
-		const btnAddEncounter = ee`<button class="ve-btn ve-btn-xs ve-btn-success"><span class="glyphicon glyphicon-plus"></span> Add Encounter</button>`
-			.onn("click", evt => ContextUtil.pOpenMenu(evt, menuEncounter));
+		const btnAddEncounter = veT`<button class="ve-btn ve-btn-xs ve-btn-success"><span class="glyphicon glyphicon-plus"></span> Add Encounter</button>`
+			.vee.onn("click", evt => ContextUtil.pOpenMenu(evt, menuEncounter));
 
-		const btnAddEncounterAtTime = ee`<button class="ve-btn ve-btn-xs ve-btn-success">At Time...</button>`
-			.onn("click", evt => ContextUtil.pOpenMenu(evt, menuEncounterAtTime));
+		const btnAddEncounterAtTime = veT`<button class="ve-btn ve-btn-xs ve-btn-success">At Time...</button>`
+			.vee.onn("click", evt => ContextUtil.pOpenMenu(evt, menuEncounterAtTime));
 
 		const {eleModalInner, doClose} = UiUtil.getShowModal({
 			title: `${TimeTrackerBase.formatDateInfo(dayInfo, date, monthInfo, seasonInfos)}\u2014${TimeTrackerBase.formatYearInfo(year, yearInfos, eraInfos)}`,
@@ -2244,29 +2244,29 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 			eleTitleSplit: btnJumpToDay,
 		});
 
-		const hrMoons = ee`<hr class="ve-hr-2 ve-no-shrink">`;
-		const wrpMoons = ee`<div class="ve-flex ve-flex-wrap ve-w-100 ve-no-shrink ve-flex-v-center"></div>`;
+		const hrMoons = veT`<hr class="ve-hr-2 ve-no-shrink">`;
+		const wrpMoons = veT`<div class="ve-flex ve-flex-wrap ve-w-100 ve-no-shrink ve-flex-v-center"></div>`;
 		const hookMoons = () => {
 			const todayMoonInfos = getMoonInfos(moonDay);
-			wrpMoons.empty();
+			wrpMoons.vee.empty();
 			todayMoonInfos.forEach(moon => {
-				ee`<div class="ve-flex-v-center ve-mr-2">
-					${TimeTrackerBase.getCvsMoon(moon).addClass("ve-mr-2")}
+				veT`<div class="ve-flex-v-center ve-mr-2">
+					${TimeTrackerBase.getCvsMoon(moon).vee.addClass("ve-mr-2")}
 					<div class="ve-flex-col">
 						<div class="ve-flex">${moon.name}</div>
 						<div class="ve-flex small"><i class="ve-mr-1">${moon.phaseName}</i><span class="ve-muted">(Day ${moon.dayOfPeriod + 1}/${moon.period})</span></div>
 					</div>
-				</div>`.appendTo(wrpMoons);
+				</div>`.vee.appendTo(wrpMoons);
 			});
-			hrMoons.toggleVe(!!todayMoonInfos.length);
+			hrMoons.vee.toggle(!!todayMoonInfos.length);
 		};
 		this._parent.addHook("moons", hookMoons);
 		hookMoons();
 
-		const wrpEvents = ee`<div class="ve-flex-col ve-w-100 ve-overflow-y-auto dm-time__day-entry-wrapper"></div>`;
+		const wrpEvents = veT`<div class="ve-flex-col ve-w-100 ve-overflow-y-auto dm-time__day-entry-wrapper"></div>`;
 		const hookEvents = () => {
 			const todayEvents = getEvents(year, eventDay);
-			wrpEvents.empty();
+			wrpEvents.vee.empty();
 			this._tmpComps = [];
 			const fnOpenCalendarPicker = this._render_openDayModal_openCalendarPicker.bind(this);
 			todayEvents.forEach(event => {
@@ -2274,7 +2274,7 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 				this._tmpComps.push(comp);
 				comp.render(wrpEvents, this._parent, fnOpenCalendarPicker);
 			});
-			if (!todayEvents.length) wrpEvents.appends(`<div class="ve-flex-vh-center ve-italic">(No events)</div>`);
+			if (!todayEvents.length) wrpEvents.vee.appends(`<div class="ve-flex-vh-center ve-italic">(No events)</div>`);
 			if (this._eventToEdit) {
 				const toEdit = this._tmpComps.find(it => it._state.id === this._eventToEdit);
 				this._eventToEdit = null;
@@ -2284,12 +2284,12 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 		this._parent.addHook("events", hookEvents);
 		hookEvents();
 
-		const wrpEncounters = ee`<div class="ve-flex-col ve-w-100 ve-overflow-y-auto dm-time__day-entry-wrapper"></div>`;
+		const wrpEncounters = veT`<div class="ve-flex-col ve-w-100 ve-overflow-y-auto dm-time__day-entry-wrapper"></div>`;
 		const hookEncounters = async () => {
 			await this._pLock("encounters");
 
 			const todayEncounters = getEncounters(year, eventDay);
-			wrpEncounters.empty();
+			wrpEncounters.vee.empty();
 
 			// update reference names
 			await Promise.all(todayEncounters.map(async encounter => {
@@ -2298,26 +2298,26 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 			}));
 
 			todayEncounters.forEach(encounter => {
-				const iptName = ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2 ve-w-100 ${encounter.countUses > 0 ? "ve-muted" : ""}">`
-					.onn("change", () => {
-						encounter.displayName = iptName.val().trim();
+				const iptName = veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2 ve-w-100 ${encounter.countUses > 0 ? "ve-muted" : ""}">`
+					.vee.onn("change", () => {
+						encounter.displayName = iptName.vee.val().trim();
 						this._parent.triggerMapUpdate("encounters");
 					})
-					.val(encounter.displayName == null ? encounter.name : encounter.displayName);
+					.vee.val(encounter.displayName == null ? encounter.name : encounter.displayName);
 
-				const btnRunEncounter = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2 ${encounter.countUses > 0 ? "disabled" : ""}" title="${encounter.countUses > 0 ? "(Encounter has been used)" : "Run Encounter (Add to Initiative Tracker)"}"><span class="glyphicon glyphicon-play"></span></button>`
-					.onn("click", () => TimeTrackerRoot_Calendar.pDoRunEncounter(this._parent, encounter));
+				const btnRunEncounter = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2 ${encounter.countUses > 0 ? "disabled" : ""}" title="${encounter.countUses > 0 ? "(Encounter has been used)" : "Run Encounter (Add to Initiative Tracker)"}"><span class="glyphicon glyphicon-play"></span></button>`
+					.vee.onn("click", () => TimeTrackerRoot_Calendar.pDoRunEncounter(this._parent, encounter));
 
-				const btnResetUse = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2 ${encounter.countUses === 0 ? "disabled" : ""}" title="Reset Usage"><span class="glyphicon glyphicon-refresh"></span></button>`
-					.onn("click", () => {
+				const btnResetUse = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2 ${encounter.countUses === 0 ? "disabled" : ""}" title="Reset Usage"><span class="glyphicon glyphicon-refresh"></span></button>`
+					.vee.onn("click", () => {
 						if (encounter.countUses === 0) return;
 
 						encounter.countUses = 0;
 						this._parent.triggerMapUpdate("encounters");
 					});
 
-				const btnSendToFoundry = ee`<button title="Send to Foundry" class="no-print ve-btn ve-btn-default ve-btn-xs ve-mr-2"><span class="glyphicon glyphicon-send"></span></button>`
-					.onn("click", async () => {
+				const btnSendToFoundry = veT`<button title="Send to Foundry" class="no-print ve-btn ve-btn-default ve-btn-xs ve-mr-2"><span class="glyphicon glyphicon-send"></span></button>`
+					.vee.onn("click", async () => {
 						const encounterActorName = await InputUiUtil.pGetUserString({title: "Encounter Actor Name", isSkippable: true});
 
 						const toLoad = await TimeTrackerRoot_Calendar._pGetDereferencedEncounter(encounter);
@@ -2339,8 +2339,8 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 						});
 					});
 
-				const btnSaveToFile = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-3" title="Download Encounter File"><span class="glyphicon glyphicon-download"></span></button>`
-					.onn("click", async () => {
+				const btnSaveToFile = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-3" title="Download Encounter File"><span class="glyphicon glyphicon-download"></span></button>`
+					.vee.onn("click", async () => {
 						const toSave = await TimeTrackerRoot_Calendar._pGetDereferencedEncounter(encounter);
 
 						if (!toSave) return JqueryUtil.doToast({content: "Could not find encounter data! Has the encounter been deleted?", type: "warning"});
@@ -2348,10 +2348,10 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 						DataUtil.userDownload("encounter", toSave.data, {fileType: "encounter"});
 					});
 
-				const cbHasTime = ee`<input type="checkbox">`
-					.prop("checked", !!encounter.hasTime)
-					.onn("change", () => {
-						const nxtHasTime = cbHasTime.prop("checked");
+				const cbHasTime = veT`<input type="checkbox">`
+					.vee.prop("checked", !!encounter.hasTime)
+					.vee.onn("change", () => {
+						const nxtHasTime = cbHasTime.vee.prop("checked");
 						if (nxtHasTime) {
 							const {secsPerDay} = getTimeInfo({isBase: true});
 							if (encounter.timeOfDaySecs == null) encounter.timeOfDaySecs = Math.floor(secsPerDay / 2); // Default to noon
@@ -2379,8 +2379,8 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 					);
 				}
 
-				const btnMove = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2 ve-no-shrink"><span class="glyphicon glyphicon-move" title="Move Encounter"></span></button>`
-					.onn("click", () => {
+				const btnMove = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2 ve-no-shrink"><span class="glyphicon glyphicon-move" title="Move Encounter"></span></button>`
+					.vee.onn("click", () => {
 						this._render_openDayModal_openCalendarPicker({
 							title: "Choose Encounter Day",
 							fnClick: (evt, eventYear, eventDay) => {
@@ -2394,13 +2394,13 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 						});
 					});
 
-				const btnDelete = ee`<button class="ve-btn ve-btn-xs ve-btn-danger" title="Delete Encounter"><span class="glyphicon glyphicon-trash"></span></button>`
-					.onn("click", () => {
+				const btnDelete = veT`<button class="ve-btn ve-btn-xs ve-btn-danger" title="Delete Encounter"><span class="glyphicon glyphicon-trash"></span></button>`
+					.vee.onn("click", () => {
 						encounter.isDeleted = true;
 						this._parent.triggerMapUpdate("encounters");
 					});
 
-				ee`<div class="ve-flex-v-center ve-w-100 ve-py-1 ve-px-2 stripe-even">
+				veT`<div class="ve-flex-v-center ve-w-100 ve-py-1 ve-px-2 stripe-even">
 					${iptName}
 					${btnRunEncounter}
 					${btnResetUse}
@@ -2410,7 +2410,7 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 						<div class="ve-mr-1 ve-no-wrap">Has Time?</div>
 						${cbHasTime}
 					</label>
-					${timeInputs ? ee`<div class="ve-flex-v-center ve-mr-3">
+					${timeInputs ? veT`<div class="ve-flex-v-center ve-mr-3">
 						${timeInputs.iptHours}
 						<div>:</div>
 						${timeInputs.iptMinutes}
@@ -2419,16 +2419,16 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 					</div>` : ""}
 					${btnMove}
 					${btnDelete}
-				</div>`.appendTo(wrpEncounters);
+				</div>`.vee.appendTo(wrpEncounters);
 			});
-			if (!todayEncounters.length) wrpEncounters.appends(`<div class="ve-flex-vh-center ve-italic">(No encounters)</div>`);
+			if (!todayEncounters.length) wrpEncounters.vee.appends(`<div class="ve-flex-vh-center ve-italic">(No encounters)</div>`);
 
 			this._unlock("encounters");
 		};
 		this._parent.addHook("encounters", hookEncounters);
 		hookEncounters();
 
-		ee`<div class="ve-flex-col ve-w-100 ve-h-100 ve-px-2">
+		veT`<div class="ve-flex-col ve-w-100 ve-h-100 ve-px-2">
 			${wrpMoons}
 			${hrMoons}
 			<div class="ve-split ve-flex-v-center ve-mb-1 ve-no-shrink">
@@ -2442,7 +2442,7 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 				<div class="ve-btn-group ve-flex">${btnAddEncounter}${btnAddEncounterAtTime}</div>
 			</div>
 			${wrpEncounters}
-		</div>`.appendTo(eleModalInner);
+		</div>`.vee.appendTo(eleModalInner);
 	}
 
 	_render_getUserEventTime () {
@@ -2460,14 +2460,14 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 		return new Promise(resolve => {
 			class EventTimeModal extends BaseComponent {
 				render (eleParent) {
-					const selMode = ComponentUiUtil.getSelEnum(this, "mode", {values: ["Exact Time", "Time from Now"]}).addClass("ve-mb-2");
+					const selMode = ComponentUiUtil.getSelEnum(this, "mode", {values: ["Exact Time", "Time from Now"]}).vee.addClass("ve-mb-2");
 
 					const iptExHour = ComponentUiUtil.getIptInt(
 						this,
 						"exactHour",
 						0,
 						{
-							ele: ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-center ve-mr-1">`,
+							ele: veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-center ve-mr-1">`,
 							padLength: padLengthHours,
 							min: 0,
 							max: hoursPerDay - 1,
@@ -2478,7 +2478,7 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 						"exactMinute",
 						0,
 						{
-							ele: ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-center ve-mr-1">`,
+							ele: veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-center ve-mr-1">`,
 							padLength: padLengthMinutes,
 							min: 0,
 							max: minutesPerHour - 1,
@@ -2489,14 +2489,14 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 						"exactSec",
 						0,
 						{
-							ele: ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-center">`,
+							ele: veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-center">`,
 							padLength: padLengthSecs,
 							min: 0,
 							max: secsPerMinute - 1,
 						},
 					);
 
-					const wrpExact = ee`<div class="ve-flex-vh-center">
+					const wrpExact = veT`<div class="ve-flex-vh-center">
 						${iptExHour}
 						<div class="ve-mr-1">:</div>
 						${iptExMinutes}
@@ -2509,7 +2509,7 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 						"offsetHour",
 						0,
 						{
-							ele: ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-center ve-mr-1">`,
+							ele: veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-center ve-mr-1">`,
 							min: -TimeTrackerBase._MAX_TIME,
 							max: TimeTrackerBase._MAX_TIME,
 						},
@@ -2519,7 +2519,7 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 						"offsetMinute",
 						0,
 						{
-							ele: ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-center ve-mr-1">`,
+							ele: veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-center ve-mr-1">`,
 							min: -TimeTrackerBase._MAX_TIME,
 							max: TimeTrackerBase._MAX_TIME,
 						},
@@ -2529,13 +2529,13 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 						"offsetSec",
 						0,
 						{
-							ele: ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-center ve-mr-1">`,
+							ele: veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-center ve-mr-1">`,
 							min: -TimeTrackerBase._MAX_TIME,
 							max: TimeTrackerBase._MAX_TIME,
 						},
 					);
 
-					const wrpOffset = ee`<div class="ve-flex-vh-center">
+					const wrpOffset = veT`<div class="ve-flex-vh-center">
 						${iptOffsetHour}
 						<div class="ve-mr-2 ve-no-wrap">hours,</div>
 						${iptOffsetMinutes}
@@ -2545,23 +2545,23 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 					</div>`;
 
 					const hookMode = () => {
-						wrpExact.toggleVe(this._state.mode === "Exact Time");
-						wrpOffset.toggleVe(this._state.mode !== "Exact Time");
+						wrpExact.vee.toggle(this._state.mode === "Exact Time");
+						wrpOffset.vee.toggle(this._state.mode !== "Exact Time");
 					};
 					this._addHookBase("mode", hookMode);
 					hookMode();
 
-					const btnOk = ee`<button class="ve-btn ve-btn-default">Enter</button>`
-						.onn("click", () => doClose(true));
+					const btnOk = veT`<button class="ve-btn ve-btn-default">Enter</button>`
+						.vee.onn("click", () => doClose(true));
 
-					ee`<div class="ve-flex-col ve-h-100">
+					veT`<div class="ve-flex-col ve-h-100">
 						<div class="ve-flex-vh-center ve-flex-col ve-w-100 ve-h-100">
 							${selMode}
 							${wrpExact}
 							${wrpOffset}
 						</div>
 						${btnOk}
-					</div>`.appendTo(eleParent);
+					</div>`.vee.appendTo(eleParent);
 				}
 
 				_getDefaultState () {
@@ -2660,8 +2660,8 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 		const tempPod = temp.getPod();
 
 		const {wrpDateControls, iptYear, iptMonth} = TimeTrackerRoot_Calendar.getDateControls(tempPod, {isHideWeeks: true, isHideDays: true});
-		wrpDateControls.addClass("ve-mb-2").appendTo(eleModalInner);
-		const wrpCalendar = ee`<div></div>`.appendTo(eleModalInner);
+		wrpDateControls.vee.addClass("ve-mb-2").vee.appendTo(eleModalInner);
+		const wrpCalendar = veT`<div></div>`.vee.appendTo(eleModalInner);
 
 		const hookCalendar = () => {
 			const timeInfo = tempPod.getTimeInfo();
@@ -2681,8 +2681,8 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 				},
 			);
 
-			iptYear.val(timeInfo.year + 1);
-			iptMonth.val(timeInfo.month + 1);
+			iptYear.vee.val(timeInfo.year + 1);
+			iptMonth.vee.val(timeInfo.month + 1);
 		};
 		tempPod.addHook("time", hookCalendar);
 		tempPod.addHook(opts.prop, hookCalendar);
@@ -2783,14 +2783,14 @@ class TimeTrackerRoot_Settings extends TimeTrackerComponent {
 	}
 
 	render (eleParent, parent) {
-		eleParent.empty();
+		eleParent.vee.empty();
 		this._parent = parent;
 
 		const getIptTime = (prop, opts) => {
 			opts = opts || {};
-			const ipt = ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-w-30 ve-no-shrink ve-text-right">`
-				.onn("change", () => this._parent.set(prop, TimeTrackerRoot_Settings.getTimeNum(ipt.val(), opts.isAllowNegative)));
-			const hook = () => ipt.val(this._parent.get(prop));
+			const ipt = veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-w-30 ve-no-shrink ve-text-right">`
+				.vee.onn("change", () => this._parent.set(prop, TimeTrackerRoot_Settings.getTimeNum(ipt.vee.val(), opts.isAllowNegative)));
+			const hook = () => ipt.vee.val(this._parent.get(prop));
 			this._parent.addHook(prop, hook);
 			hook();
 			return ipt;
@@ -2798,13 +2798,13 @@ class TimeTrackerRoot_Settings extends TimeTrackerComponent {
 
 		const btnHideHooks = [];
 		const getBtnHide = (prop, ele, ...eles) => {
-			const btn = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="Hide Section"><span class="glyphicon glyphicon-eye-close"></span></button>`
-				.onn("click", () => this._parent.set(prop, !this._parent.get(prop)));
+			const btn = veT`<button class="ve-btn ve-btn-xs ve-btn-default" title="Hide Section"><span class="glyphicon glyphicon-eye-close"></span></button>`
+				.vee.onn("click", () => this._parent.set(prop, !this._parent.get(prop)));
 			const hook = () => {
 				const isHidden = this._parent.get(prop);
-				ele.toggleVe(!isHidden);
-				btn.toggleClass("ve-active", isHidden);
-				if (eles) eles.forEach(ele => ele.toggleVe(!isHidden));
+				ele.vee.toggle(!isHidden);
+				btn.vee.toggleClass("ve-active", isHidden);
+				if (eles) eles.forEach(ele => ele.vee.toggle(!isHidden));
 			};
 			this._parent.addHook(prop, hook);
 			btnHideHooks.push(hook);
@@ -2812,19 +2812,19 @@ class TimeTrackerRoot_Settings extends TimeTrackerComponent {
 		};
 
 		const getBtnReset = (...props) => {
-			return ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2">Reset Section</button>`
-				.onn("click", async () => {
+			return veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2">Reset Section</button>`
+				.vee.onn("click", async () => {
 					if (!await InputUiUtil.pGetUserBoolean({title: "Reset", htmlDescription: "Are you sure?", textYes: "Yes", textNo: "Cancel"})) return;
 					props.forEach(prop => this._parent.set(prop, TimeTrackerBase._DEFAULT_STATE[prop]));
 				});
 		};
 
-		const selWindUnits = ee`<select class="ve-form-control ve-input-xs">
+		const selWindUnits = veT`<select class="ve-form-control ve-input-xs">
 				<option value="mph">Miles per Hour</option>
 				<option value="kmph">Kilometres per Hour</option>
 			</select>`
-			.onn("change", () => this._parent.set("unitsWindSpeed", selWindUnits.val()));
-		const hookWindUnits = () => selWindUnits.val(this._parent.get("unitsWindSpeed"));
+			.vee.onn("change", () => this._parent.set("unitsWindSpeed", selWindUnits.vee.val()));
+		const hookWindUnits = () => selWindUnits.vee.val(this._parent.get("unitsWindSpeed"));
 		this._parent.addHook("unitsWindSpeed", hookWindUnits);
 		hookWindUnits();
 
@@ -2846,7 +2846,7 @@ class TimeTrackerRoot_Settings extends TimeTrackerComponent {
 			prop: "seasons",
 			Cls: TimeTrackerRoot_Settings_Season,
 			name: "Season",
-			dispEmpty: ee`<div class="ve-flex-vh-center ve-my-1 ve-italic ve-w-100">(No seasons)</div>`,
+			dispEmpty: veT`<div class="ve-flex-vh-center ve-my-1 ve-italic ve-w-100">(No seasons)</div>`,
 			fnGetGeneric: TimeTrackerRoot.getGenericSeason,
 		});
 
@@ -2854,7 +2854,7 @@ class TimeTrackerRoot_Settings extends TimeTrackerComponent {
 			prop: "years",
 			Cls: TimeTrackerRoot_Settings_Year,
 			name: "Year",
-			dispEmpty: ee`<div class="ve-flex-vh-center ve-my-1 ve-italic ve-w-100">(No named years)</div>`,
+			dispEmpty: veT`<div class="ve-flex-vh-center ve-my-1 ve-italic ve-w-100">(No named years)</div>`,
 			fnGetGeneric: TimeTrackerRoot.getGenericYear,
 		});
 
@@ -2862,7 +2862,7 @@ class TimeTrackerRoot_Settings extends TimeTrackerComponent {
 			prop: "eras",
 			Cls: TimeTrackerRoot_Settings_Era,
 			name: "Era",
-			dispEmpty: ee`<div class="ve-flex-vh-center ve-my-1 ve-italic ve-w-100">(No eras)</div>`,
+			dispEmpty: veT`<div class="ve-flex-vh-center ve-my-1 ve-italic ve-w-100">(No eras)</div>`,
 			fnGetGeneric: TimeTrackerRoot.getGenericEra,
 		});
 
@@ -2870,45 +2870,45 @@ class TimeTrackerRoot_Settings extends TimeTrackerComponent {
 			prop: "moons",
 			Cls: TimeTrackerRoot_Settings_Moon,
 			name: "Moon",
-			dispEmpty: ee`<div class="ve-flex-vh-center ve-my-1 ve-italic ve-w-100">(No moons)</div>`,
+			dispEmpty: veT`<div class="ve-flex-vh-center ve-my-1 ve-italic ve-w-100">(No moons)</div>`,
 			fnGetGeneric: TimeTrackerRoot.getGenericMoon,
 		});
 
-		const sectClock = ee`<div class="ve-no-shrink ve-w-100 ve-mb-2">
+		const sectClock = veT`<div class="ve-no-shrink ve-w-100 ve-mb-2">
 			<div class="ve-split-v-center ve-mb-2"><div class="ve-w-100">Hours per Day</div>${getIptTime("hoursPerDay")}</div>
 			<div class="ve-split-v-center ve-mb-2"><div class="ve-w-100">Minutes per Hour</div>${getIptTime("minutesPerHour")}</div>
 			<div class="ve-split-v-center"><div class="ve-w-100">Seconds per Minute</div>${getIptTime("secondsPerMinute")}</div>
 		</div>`;
 		const btnResetClock = getBtnReset("hoursPerDay", "minutesPerHour", "secondsPerMinute");
 		const btnHideSectClock = getBtnHide("isClockSectionHidden", sectClock, btnResetClock);
-		const headClock = ee`<div class="ve-split-v-center ve-mb-2"><div class="ve-bold">Clock</div><div>${btnResetClock}${btnHideSectClock}</div></div>`;
+		const headClock = veT`<div class="ve-split-v-center ve-mb-2"><div class="ve-bold">Clock</div><div>${btnResetClock}${btnHideSectClock}</div></div>`;
 
-		const sectCalendar = ee`<div class="ve-no-shrink ve-w-100 ve-mb-2">
+		const sectCalendar = veT`<div class="ve-no-shrink ve-w-100 ve-mb-2">
 			<label class="ve-split-v-center ve-mb-2"><div class="ve-w-100">Show Calendar Column Labels</div>${ComponentUiUtil.getCbBool(this._parent.component, "hasCalendarLabelsColumns")}</label>
 			<label class="ve-split-v-center ve-mb-2"><div class="ve-w-100">Show Calendar Row Labels</div>${ComponentUiUtil.getCbBool(this._parent.component, "hasCalendarLabelsRows")}</label>
 		</div>`;
 		const btnResetCalendar = getBtnReset("hoursPerDay", "minutesPerHour", "secondsPerMinute");
 		const btnHideSectCalendar = getBtnHide("isCalendarSectionHidden", sectCalendar, btnResetCalendar);
-		const headCalendar = ee`<div class="ve-split-v-center ve-mb-2"><div class="ve-bold">Calendar</div><div>${btnResetCalendar}${btnHideSectCalendar}</div></div>`;
+		const headCalendar = veT`<div class="ve-split-v-center ve-mb-2"><div class="ve-bold">Calendar</div><div>${btnResetCalendar}${btnHideSectCalendar}</div></div>`;
 
-		const sectMechanics = ee`<div class="ve-no-shrink ve-w-100 ve-mb-2">
+		const sectMechanics = veT`<div class="ve-no-shrink ve-w-100 ve-mb-2">
 			<div class="ve-split-v-center ve-mb-2"><div class="ve-w-100">Hours per Long rest</div>${getIptTime("hoursPerLongRest")}</div>
 			<div class="ve-split-v-center ve-mb-2"><div class="ve-w-100">Minutes per Short Rest</div>${getIptTime("minutesPerShortRest")}</div>
 			<div class="ve-split-v-center"><div class="ve-w-100">Seconds per Round</div>${getIptTime("secondsPerRound")}</div>
 		</div>`;
 		const btnResetMechanics = getBtnReset("hoursPerLongRest", "minutesPerShortRest", "secondsPerRound");
 		const btnHideSectMechanics = getBtnHide("isMechanicsSectionHidden", sectMechanics, btnResetMechanics);
-		const headMechanics = ee`<div class="ve-split-v-center ve-mb-2"><div class="ve-bold">Game Mechanics</div><div>${btnResetMechanics}${btnHideSectMechanics}</div></div>`;
+		const headMechanics = veT`<div class="ve-split-v-center ve-mb-2"><div class="ve-bold">Game Mechanics</div><div>${btnResetMechanics}${btnHideSectMechanics}</div></div>`;
 
-		const sectOffsets = ee`<div class="ve-no-shrink ve-w-100 ve-mb-2">
+		const sectOffsets = veT`<div class="ve-no-shrink ve-w-100 ve-mb-2">
 			<div class="ve-split-v-center ve-mb-2"><div class="ve-w-100 ve-help" title="For example, to have the starting year be &quot;Year 900,&quot; enter &quot;899&quot;.">Year Offset</div>${getIptTime("offsetYears", {isAllowNegative: true})}</div>
 			<div class="ve-split-v-center"><div class="ve-w-100 ve-help" title="For example, to have the first year start on the third day of the week, enter &quot;2&quot;.">Year Start Weekday Offset</div>${getIptTime("offsetMonthStartDay")}</div>
 		</div>`;
 		const btnResetOffsets = getBtnReset("offsetYears", "offsetMonthStartDay");
 		const btnHideSectOffsetsHide = getBtnHide("isOffsetsSectionHidden", sectOffsets, btnResetOffsets);
-		const headOffsets = ee`<div class="ve-split-v-center ve-mb-2"><div class="ve-bold">Offsets</div><div>${btnResetOffsets}${btnHideSectOffsetsHide}</div></div>`;
+		const headOffsets = veT`<div class="ve-split-v-center ve-mb-2"><div class="ve-bold">Offsets</div><div>${btnResetOffsets}${btnHideSectOffsetsHide}</div></div>`;
 
-		const sectDays = ee`<div class="ve-no-shrink ve-w-100">
+		const sectDays = veT`<div class="ve-no-shrink ve-w-100">
 			<div class="ve-split-v-center ve-w-100 ve-mb-1 ve-mt-1">
 				<div>Name</div>
 				${metaDays.btnAdd}
@@ -2916,73 +2916,73 @@ class TimeTrackerRoot_Settings extends TimeTrackerComponent {
 			${metaDays.wrpRows}
 		</div>`;
 		const btnHideSectDays = getBtnHide("isDaysSectionHidden", sectDays);
-		const headDays = ee`<div class="ve-split-v-center ve-mb-1"><div class="ve-bold">Days</div>${btnHideSectDays}</div>`;
+		const headDays = veT`<div class="ve-split-v-center ve-mb-1"><div class="ve-bold">Days</div>${btnHideSectDays}</div>`;
 
-		const sectMonths = ee`<div class="ve-no-shrink ve-w-100">
+		const sectMonths = veT`<div class="ve-no-shrink ve-w-100">
 			<div class="ve-flex ve-w-100 ve-mb-1 ve-mt-1">
 				<div class="ve-w-100 ve-flex-v-center">Name</div>
 				<div class="ve-w-25 ve-no-shrink ve-text-center ve-mr-2">Days</div>
 				<div class="dm-time__spc-drag-header ve-no-shrink ve-mr-2"></div>
-				${metaMonths.btnAdd.addClass("ve-no-shrink")}
+				${metaMonths.btnAdd.vee.addClass("ve-no-shrink")}
 			</div>
 			${metaMonths.wrpRows}
 		</div>`;
 		const btnHideSectMonths = getBtnHide("isMonthsSectionHidden", sectMonths);
-		const headMonths = ee`<div class="ve-split-v-center ve-mb-1"><div class="ve-bold">Months</div>${btnHideSectMonths}</div>`;
+		const headMonths = veT`<div class="ve-split-v-center ve-mb-1"><div class="ve-bold">Months</div>${btnHideSectMonths}</div>`;
 
-		const sectSeasons = ee`<div class="ve-no-shrink ve-w-100">
+		const sectSeasons = veT`<div class="ve-no-shrink ve-w-100">
 			<div class="ve-flex ve-w-100 ve-mb-1 ve-mt-1">
 				<div class="ve-w-100 ve-flex-v-center">Name</div>
 				<div class="ve-w-15 ve-no-shrink ve-text-center ve-mr-2 ve-help-subtle" title="In hours. For example, to have the sun rise at 05:00, enter &quot;5&quot;.">Sunrise</div>
 				<div class="ve-w-15 ve-no-shrink ve-text-center ve-mr-2 ve-help-subtle" title="In hours. For example, to have the sun set at 22:00, enter &quot;22&quot;.">Sunset</div>
 				<div class="ve-w-15 ve-no-shrink ve-text-center ve-mr-2 ve-help-subtle" title="For example, to have a season start on the 1st day of the year, enter &quot;1&quot;.">Start</div>
 				<div class="ve-w-15 ve-no-shrink ve-text-center ve-mr-2 ve-help-subtle" title="For example, to have a season end on the 90th day of the year, enter &quot;90&quot;.">End</div>
-				${metaSeasons.btnAdd.addClass("ve-no-shrink")}
+				${metaSeasons.btnAdd.vee.addClass("ve-no-shrink")}
 			</div>
 			${metaSeasons.wrpRows}
 		</div>`;
 		const btnHideSectSeasons = getBtnHide("isSeasonsSectionHidden", sectSeasons);
-		const headSeasons = ee`<div class="ve-split-v-center ve-mb-1"><div class="ve-bold">Seasons</div>${btnHideSectSeasons}</div>`;
+		const headSeasons = veT`<div class="ve-split-v-center ve-mb-1"><div class="ve-bold">Seasons</div>${btnHideSectSeasons}</div>`;
 
-		const sectYears = ee`<div class="ve-no-shrink ve-w-100">
+		const sectYears = veT`<div class="ve-no-shrink ve-w-100">
 			<div class="ve-flex ve-w-100 ve-mb-1 ve-mt-1">
 				<div class="ve-w-100 ve-flex-v-center">Name</div>
 				<div class="ve-w-25 ve-no-shrink ve-text-center ve-mr-2">Year</div>
-				${metaYears.btnAdd.addClass("ve-no-shrink")}
+				${metaYears.btnAdd.vee.addClass("ve-no-shrink")}
 			</div>
 			${metaYears.wrpRows}
 		</div>`;
 		const btnHideSectYears = getBtnHide("isYearsSectionHidden", sectYears);
-		const headYears = ee`<div class="ve-split-v-center ve-mb-1"><div class="ve-bold">Named Years</div>${btnHideSectYears}</div>`;
+		const headYears = veT`<div class="ve-split-v-center ve-mb-1"><div class="ve-bold">Named Years</div>${btnHideSectYears}</div>`;
 
-		const sectEras = ee`<div class="ve-no-shrink ve-w-100">
+		const sectEras = veT`<div class="ve-no-shrink ve-w-100">
 			<div class="ve-flex ve-w-100 ve-mb-1 ve-mt-1">
 				<div class="ve-w-100 ve-flex-v-center">Name</div>
 				<div class="ve-w-15 ve-no-shrink ve-text-center ve-mr-2">Abbv.</div>
 				<div class="ve-w-15 ve-no-shrink ve-text-center ve-mr-2">Start</div>
 				<div class="ve-w-15 ve-no-shrink ve-text-center ve-mr-2">End</div>
-				${metaEras.btnAdd.addClass("ve-no-shrink")}
+				${metaEras.btnAdd.vee.addClass("ve-no-shrink")}
 			</div>
 			${metaEras.wrpRows}
 		</div>`;
 		const btnHideSectEras = getBtnHide("isErasSectionHidden", sectEras);
-		const headEras = ee`<div class="ve-split-v-center ve-mb-1"><div class="ve-bold">Eras</div>${btnHideSectEras}</div>`;
+		const headEras = veT`<div class="ve-split-v-center ve-mb-1"><div class="ve-bold">Eras</div>${btnHideSectEras}</div>`;
 
-		const sectMoons = ee`<div class="ve-no-shrink ve-w-100">
+		const sectMoons = veT`<div class="ve-no-shrink ve-w-100">
 			<div class="ve-flex ve-w-100 ve-mb-1 ve-mt-1">
 				<div class="ve-w-100 ve-flex-v-center">Moon</div>
 				<div class="ve-w-25 ve-no-shrink ve-text-center ve-mr-2 ve-help-subtle" title="For example, to have a new moon appear on the third day of the first year, enter &quot;3&quot;.">Offset</div>
 				<div class="ve-w-25 ve-no-shrink ve-text-center ve-mr-2 ve-help-subtle" title="Measured in days. Multiples of eight are recommended, as there are eight distinct moon phases.">Period</div>
-				${metaMoons.btnAdd.addClass("ve-no-shrink")}
+				${metaMoons.btnAdd.vee.addClass("ve-no-shrink")}
 			</div>
 			${metaMoons.wrpRows}
 		</div>`;
 		const btnHideSectMoons = getBtnHide("isMoonsSectionHidden", sectMoons);
-		const headMoons = ee`<div class="ve-split-v-center ve-mb-1"><div class="ve-bold">Moons</div>${btnHideSectMoons}</div>`;
+		const headMoons = veT`<div class="ve-split-v-center ve-mb-1"><div class="ve-bold">Moons</div>${btnHideSectMoons}</div>`;
 
 		btnHideHooks.forEach(fn => fn());
 
-		ee`<div class="ve-flex-col ve-pl-2 ve-pr-3">
+		veT`<div class="ve-flex-col ve-pl-2 ve-pr-3">
 			${headClock}
 			${sectClock}
 			<hr class="ve-hr-0 ve-mb-2">
@@ -3014,12 +3014,12 @@ class TimeTrackerRoot_Settings extends TimeTrackerComponent {
 			<hr class="ve-hr-0 ve-mt-1 ve-mb-2">
 			${headMoons}
 			${sectMoons}
-		</div>`.appendTo(eleParent);
+		</div>`.vee.appendTo(eleParent);
 	}
 
 	_render_getChildMeta_2 ({prop, Cls, name, dispEmpty = null, fnGetGeneric}) {
 		const wrpRows = this._render_getWrpChildren();
-		if (dispEmpty) wrpRows.appends(dispEmpty);
+		if (dispEmpty) wrpRows.vee.appends(dispEmpty);
 
 		const btnAdd = this._render_getBtnAddChild({
 			prop: prop,
@@ -3036,7 +3036,7 @@ class TimeTrackerRoot_Settings extends TimeTrackerComponent {
 
 				this._parent.component._state[prop]
 					.map(it => this._parent.component._rendered[prop][it.id].wrpRow)
-					.forEach(ele => wrpRows.appends(ele));
+					.forEach(ele => wrpRows.vee.appends(ele));
 			},
 			getElesChildren: () => {
 				return this._parent.component._state[prop]
@@ -3053,7 +3053,7 @@ class TimeTrackerRoot_Settings extends TimeTrackerComponent {
 		);
 		const hk = () => {
 			renderableCollection.render();
-			if (dispEmpty) dispEmpty.toggleVe(!this._parent.get(prop)?.length);
+			if (dispEmpty) dispEmpty.vee.toggle(!this._parent.get(prop)?.length);
 		};
 		this._parent.component._addHookBase(prop, hk);
 		hk();
@@ -3062,12 +3062,12 @@ class TimeTrackerRoot_Settings extends TimeTrackerComponent {
 	}
 
 	_render_getWrpChildren () {
-		return ee`<div class="ve-flex-col ve-w-100 ve-relative"></div>`;
+		return veT`<div class="ve-flex-col ve-w-100 ve-relative"></div>`;
 	}
 
 	_render_getBtnAddChild ({prop, name, fnGetGeneric}) {
-		return ee`<button class="ve-btn ve-btn-xs ve-btn-primary" title="Add ${name}"><span class="glyphicon glyphicon-plus"></span></button>`
-			.onn("click", () => {
+		return veT`<button class="ve-btn ve-btn-xs ve-btn-primary" title="Add ${name}"><span class="glyphicon glyphicon-plus"></span></button>`
+			.vee.onn("click", () => {
 				const nxt = fnGetGeneric(this._parent.get(prop).length);
 				this._parent.set(prop, [...this._parent.get(prop), nxt]);
 			});
@@ -3090,19 +3090,19 @@ class TimeTrackerRoot_Settings_Day extends RenderableCollectionTimeTracker {
 			this._comp._triggerCollectionUpdate("days");
 		});
 
-		const iptName = ComponentUiUtil.getIptStr(comp, "name", {ele: ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2">`});
+		const iptName = ComponentUiUtil.getIptStr(comp, "name", {ele: veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2">`});
 
 		const padDrag = DragReorderUiUtil.getDragPadOpts(() => wrpRow, this._dragMeta);
 
-		const btnRemove = ee`<button class="ve-btn ve-btn-xs ve-btn-danger ve-no-shrink" title="Delete Day"><span class="glyphicon glyphicon-trash"></span></button>`
-			.onn("click", () => this._comp._state.days = this._comp._state.days.filter(it => it !== entity));
+		const btnRemove = veT`<button class="ve-btn ve-btn-xs ve-btn-danger ve-no-shrink" title="Delete Day"><span class="glyphicon glyphicon-trash"></span></button>`
+			.vee.onn("click", () => this._comp._state.days = this._comp._state.days.filter(it => it !== entity));
 
-		const wrpRow = ee`<div class="ve-flex ve-py-1 dm-time__row-delete">
+		const wrpRow = veT`<div class="ve-flex ve-py-1 dm-time__row-delete">
 			${iptName}
 			${padDrag}
 			${btnRemove}
 			<div class="dm-time__spc-button"></div>
-		</div>`.appendTo(this._wrpRows);
+		</div>`.vee.appendTo(this._wrpRows);
 
 		return {
 			comp,
@@ -3112,7 +3112,7 @@ class TimeTrackerRoot_Settings_Day extends RenderableCollectionTimeTracker {
 
 	doUpdateExistingRender (renderedMeta, entity, i) {
 		renderedMeta.comp._proxyAssignSimple("state", entity.data, true);
-		if (!renderedMeta.wrpRow.parente().is(this._wrpRows)) renderedMeta.wrpRow.appendTo(this._wrpRows);
+		if (!renderedMeta.wrpRow.vee.parent().vee.is(this._wrpRows)) renderedMeta.wrpRow.vee.appendTo(this._wrpRows);
 	}
 }
 
@@ -3124,21 +3124,21 @@ class TimeTrackerRoot_Settings_Month extends RenderableCollectionTimeTracker {
 			this._comp._triggerCollectionUpdate("months");
 		});
 
-		const iptName = ComponentUiUtil.getIptStr(comp, "name", {ele: ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2">`});
-		const iptDays = ComponentUiUtil.getIptInt(comp, "days", 1, {ele: ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-right ve-mr-2 ve-w-25 ve-no-shrink">`, min: TimeTrackerBase._MIN_TIME, max: TimeTrackerBase._MAX_TIME});
+		const iptName = ComponentUiUtil.getIptStr(comp, "name", {ele: veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2">`});
+		const iptDays = ComponentUiUtil.getIptInt(comp, "days", 1, {ele: veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-right ve-mr-2 ve-w-25 ve-no-shrink">`, min: TimeTrackerBase._MIN_TIME, max: TimeTrackerBase._MAX_TIME});
 
 		const padDrag = DragReorderUiUtil.getDragPadOpts(() => wrpRow, this._dragMeta);
 
-		const btnRemove = ee`<button class="ve-btn ve-btn-xs ve-btn-danger ve-no-shrink" title="Delete Month"><span class="glyphicon glyphicon-trash"></span></button>`
-			.onn("click", () => this._comp._state.months = this._comp._state.months.filter(it => it !== entity));
+		const btnRemove = veT`<button class="ve-btn ve-btn-xs ve-btn-danger ve-no-shrink" title="Delete Month"><span class="glyphicon glyphicon-trash"></span></button>`
+			.vee.onn("click", () => this._comp._state.months = this._comp._state.months.filter(it => it !== entity));
 
-		const wrpRow = ee`<div class="ve-flex ve-py-1 dm-time__row-delete">
+		const wrpRow = veT`<div class="ve-flex ve-py-1 dm-time__row-delete">
 			${iptName}
 			${iptDays}
 			${padDrag}
 			${btnRemove}
 			<div class="dm-time__spc-button"></div>
-		</div>`.appendTo(this._wrpRows);
+		</div>`.vee.appendTo(this._wrpRows);
 
 		return {
 			comp,
@@ -3148,7 +3148,7 @@ class TimeTrackerRoot_Settings_Month extends RenderableCollectionTimeTracker {
 
 	doUpdateExistingRender (renderedMeta, entity, i) {
 		renderedMeta.comp._proxyAssignSimple("state", entity.data, true);
-		if (!renderedMeta.wrpRow.parente().is(this._wrpRows)) renderedMeta.wrpRow.appendTo(this._wrpRows);
+		if (!renderedMeta.wrpRow.vee.parent().vee.is(this._wrpRows)) renderedMeta.wrpRow.vee.appendTo(this._wrpRows);
 	}
 }
 
@@ -3158,41 +3158,41 @@ class TimeTrackerRoot_Settings_Event extends TimeTrackerComponent {
 
 		const doShowHideEntries = () => {
 			const isShown = this._state.entries.length && !this._state.isHidden;
-			wrpEntries.toggleClass("hidden", !isShown);
+			wrpEntries.vee.toggleClass("hidden", !isShown);
 		};
 
-		const dispEntries = ee`<div class="ve-stats ve-stats--book dm-time__wrp-event-entries"></div>`;
+		const dispEntries = veT`<div class="ve-stats ve-stats--book dm-time__wrp-event-entries"></div>`;
 		const hookEntries = () => {
-			dispEntries.html(Renderer.get().render({entries: MiscUtil.copy(this._state.entries)}));
+			dispEntries.vee.html(Renderer.get().render({entries: MiscUtil.copy(this._state.entries)}));
 			doShowHideEntries();
 		};
 		this._addHookBase("entries", hookEntries);
 
-		const wrpEntries = ee`<div class="ve-flex">
+		const wrpEntries = veT`<div class="ve-flex">
 			<div class="ve-no-shrink dm-time__bar-entry"></div>
 			${dispEntries}
 		</div>`;
 
-		const iptName = ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2 ve-w-100">`
-			.onn("change", () => this._state.name = iptName.val().trim() || "(Unnamed event)");
-		const hookName = () => iptName.val(this._state.name || "(Unnamed event)");
+		const iptName = veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2 ve-w-100">`
+			.vee.onn("change", () => this._state.name = iptName.vee.val().trim() || "(Unnamed event)");
+		const hookName = () => iptName.vee.val(this._state.name || "(Unnamed event)");
 		this._addHookBase("name", hookName);
 
-		const btnShowHide = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2 ve-no-shrink"><span class="glyphicon glyphicon-eye-close"></span></button>`
-			.onn("click", () => this._state.isHidden = !this._state.isHidden);
+		const btnShowHide = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2 ve-no-shrink"><span class="glyphicon glyphicon-eye-close"></span></button>`
+			.vee.onn("click", () => this._state.isHidden = !this._state.isHidden);
 		const hookShowHide = () => {
-			btnShowHide.toggleClass("ve-active", !!this._state.isHidden);
+			btnShowHide.vee.toggleClass("ve-active", !!this._state.isHidden);
 			doShowHideEntries();
 		};
 		this._addHookBase("isHidden", hookShowHide);
 
-		const btnEdit = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2 ve-no-shrink"><span class="glyphicon glyphicon-pencil" title="Edit Event"></span></button>`
-			.onn("click", () => this.doOpenEditModal());
+		const btnEdit = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2 ve-no-shrink"><span class="glyphicon glyphicon-pencil" title="Edit Event"></span></button>`
+			.vee.onn("click", () => this.doOpenEditModal());
 
-		const cbHasTime = ee`<input type="checkbox">`
-			.prop("checked", !!this._state.hasTime)
-			.onn("change", () => {
-				const nxtHasTime = cbHasTime.prop("checked");
+		const cbHasTime = veT`<input type="checkbox">`
+			.vee.prop("checked", !!this._state.hasTime)
+			.vee.onn("change", () => {
+				const nxtHasTime = cbHasTime.vee.prop("checked");
 				if (nxtHasTime) {
 					const {secsPerDay} = getTimeInfo({isBase: true});
 					// Modify the base state to avoid double-updating the collection
@@ -3219,8 +3219,8 @@ class TimeTrackerRoot_Settings_Event extends TimeTrackerComponent {
 			);
 		}
 
-		const btnMove = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2 ve-no-shrink"><span class="glyphicon glyphicon-move" title="Move Event"></span></button>`
-			.onn("click", () => {
+		const btnMove = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2 ve-no-shrink"><span class="glyphicon glyphicon-move" title="Move Event"></span></button>`
+			.vee.onn("click", () => {
 				fnOpenCalendarPicker({
 					title: "Choose Event Day",
 					fnClick: (evt, eventYear, eventDay) => {
@@ -3233,14 +3233,14 @@ class TimeTrackerRoot_Settings_Event extends TimeTrackerComponent {
 				});
 			});
 
-		const btnRemove = ee`<button class="ve-btn ve-btn-xs ve-btn-danger ve-no-shrink" title="Delete Event"><span class="glyphicon glyphicon-trash"></span></button>`
-			.onn("click", () => this._state.isDeleted = true);
+		const btnRemove = veT`<button class="ve-btn ve-btn-xs ve-btn-danger ve-no-shrink" title="Delete Event"><span class="glyphicon glyphicon-trash"></span></button>`
+			.vee.onn("click", () => this._state.isDeleted = true);
 
 		hookEntries();
 		hookName();
 		hookShowHide();
 
-		ee`<div class="ve-flex-col ve-py-1 ve-px-2 stripe-even">
+		veT`<div class="ve-flex-col ve-py-1 ve-px-2 stripe-even">
 			<div class="ve-flex ve-w-100">
 				${iptName}
 				${btnShowHide}
@@ -3249,7 +3249,7 @@ class TimeTrackerRoot_Settings_Event extends TimeTrackerComponent {
 					<div class="ve-mr-1 ve-no-wrap">Has Time?</div>
 					${cbHasTime}
 				</label>
-				${timeInputs ? ee`<div class="ve-flex-v-center ve-mr-3">
+				${timeInputs ? veT`<div class="ve-flex-v-center ve-mr-3">
 					${timeInputs.iptHours}
 					<div>:</div>
 					${timeInputs.iptMinutes}
@@ -3260,7 +3260,7 @@ class TimeTrackerRoot_Settings_Event extends TimeTrackerComponent {
 				${btnRemove}
 			</div>
 			${wrpEntries}
-		</div>`.appendTo(eleParent);
+		</div>`.vee.appendTo(eleParent);
 	}
 
 	doOpenEditModal (overlayColor = "transparent") {
@@ -3279,17 +3279,17 @@ class TimeTrackerRoot_Settings_Event extends TimeTrackerComponent {
 			},
 		});
 
-		const iptName = ComponentUiUtil.getIptStr(fauxComponent, "name", {ele: ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-mb-2 ve-no-shrink">`});
-		const iptEntries = ComponentUiUtil.getIptEntries(fauxComponent, "entries", {ele: ee`<textarea class="ve-form-control ve-input-xs form-control--minimal ve-resize-none ve-mb-2 ve-h-100"></textarea>`});
+		const iptName = ComponentUiUtil.getIptStr(fauxComponent, "name", {ele: veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-mb-2 ve-no-shrink">`});
+		const iptEntries = ComponentUiUtil.getIptEntries(fauxComponent, "entries", {ele: veT`<textarea class="ve-form-control ve-input-xs form-control--minimal ve-resize-none ve-mb-2 ve-h-100"></textarea>`});
 
-		const btnOk = ee`<button class="ve-btn ve-btn-default">Save</button>`
-			.onn("click", () => doClose(true));
+		const btnOk = veT`<button class="ve-btn ve-btn-default">Save</button>`
+			.vee.onn("click", () => doClose(true));
 
-		ee`<div class="ve-flex-col ve-h-100">
+		veT`<div class="ve-flex-col ve-h-100">
 			${iptName}
 			${iptEntries}
 			<div class="ve-flex-h-right ve-no-shrink">${btnOk}</div>
-		</div>`.appendTo(eleModalInner);
+		</div>`.vee.appendTo(eleModalInner);
 	}
 
 	getState () { return MiscUtil.copy(this._state); }
@@ -3317,11 +3317,11 @@ class TimeTrackerRoot_Settings_Season extends RenderableCollectionTimeTracker {
 			this._comp._triggerCollectionUpdate("seasons");
 		});
 
-		const iptName = ComponentUiUtil.getIptStr(comp, "name", {ele: ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2">`});
+		const iptName = ComponentUiUtil.getIptStr(comp, "name", {ele: veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2">`});
 
-		const getIptHours = (prop) => ComponentUiUtil.getIptInt(comp, prop, 0, {ele: ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-right ve-mr-2 ve-w-15 ve-no-shrink">`, min: 0});
+		const getIptHours = (prop) => ComponentUiUtil.getIptInt(comp, prop, 0, {ele: veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-right ve-mr-2 ve-w-15 ve-no-shrink">`, min: 0});
 
-		const getIptDays = (prop) => ComponentUiUtil.getIptInt(comp, prop, 1, {ele: ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-right ve-mr-2 ve-w-15 ve-no-shrink">`, offset: 1, min: 1});
+		const getIptDays = (prop) => ComponentUiUtil.getIptInt(comp, prop, 1, {ele: veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-right ve-mr-2 ve-w-15 ve-no-shrink">`, offset: 1, min: 1});
 
 		const iptSunrise = getIptHours("sunriseHour");
 		const iptSunset = getIptHours("sunsetHour");
@@ -3329,17 +3329,17 @@ class TimeTrackerRoot_Settings_Season extends RenderableCollectionTimeTracker {
 		const iptDaysStart = getIptDays("startDay");
 		const iptDaysEnd = getIptDays("endDay");
 
-		const btnRemove = ee`<button class="ve-btn ve-btn-xs ve-btn-danger ve-no-shrink" title="Delete Season"><span class="glyphicon glyphicon-trash"></span></button>`
-			.onn("click", () => this._comp._state.seasons = this._comp._state.seasons.filter(it => it !== entity));
+		const btnRemove = veT`<button class="ve-btn ve-btn-xs ve-btn-danger ve-no-shrink" title="Delete Season"><span class="glyphicon glyphicon-trash"></span></button>`
+			.vee.onn("click", () => this._comp._state.seasons = this._comp._state.seasons.filter(it => it !== entity));
 
-		const wrpRow = ee`<div class="ve-flex ve-my-1">
+		const wrpRow = veT`<div class="ve-flex ve-my-1">
 			${iptName}
 			${iptSunrise}
 			${iptSunset}
 			${iptDaysStart}
 			${iptDaysEnd}
 			${btnRemove}
-		</div>`.appendTo(this._wrpRows);
+		</div>`.vee.appendTo(this._wrpRows);
 
 		return {
 			comp,
@@ -3349,7 +3349,7 @@ class TimeTrackerRoot_Settings_Season extends RenderableCollectionTimeTracker {
 
 	doUpdateExistingRender (renderedMeta, entity, i) {
 		renderedMeta.comp._proxyAssignSimple("state", entity.data, true);
-		if (!renderedMeta.wrpRow.parente().is(this._wrpRows)) renderedMeta.wrpRow.appendTo(this._wrpRows);
+		if (!renderedMeta.wrpRow.vee.parent().vee.is(this._wrpRows)) renderedMeta.wrpRow.vee.appendTo(this._wrpRows);
 	}
 }
 
@@ -3361,18 +3361,18 @@ class TimeTrackerRoot_Settings_Year extends RenderableCollectionTimeTracker {
 			this._comp._triggerCollectionUpdate("years");
 		});
 
-		const iptName = ComponentUiUtil.getIptStr(comp, "name", {ele: ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2">`});
+		const iptName = ComponentUiUtil.getIptStr(comp, "name", {ele: veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2">`});
 
-		const iptYear = ComponentUiUtil.getIptInt(comp, "year", 1, {ele: ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-right ve-mr-2 ve-w-25 ve-no-shrink">`, offset: 1, min: 1});
+		const iptYear = ComponentUiUtil.getIptInt(comp, "year", 1, {ele: veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-right ve-mr-2 ve-w-25 ve-no-shrink">`, offset: 1, min: 1});
 
-		const btnRemove = ee`<button class="ve-btn ve-btn-xs ve-btn-danger ve-no-shrink" title="Delete Year"><span class="glyphicon glyphicon-trash"></span></button>`
-			.onn("click", () => this._comp._state.years = this._comp._state.years.filter(it => it !== entity));
+		const btnRemove = veT`<button class="ve-btn ve-btn-xs ve-btn-danger ve-no-shrink" title="Delete Year"><span class="glyphicon glyphicon-trash"></span></button>`
+			.vee.onn("click", () => this._comp._state.years = this._comp._state.years.filter(it => it !== entity));
 
-		const wrpRow = ee`<div class="ve-flex ve-my-1">
+		const wrpRow = veT`<div class="ve-flex ve-my-1">
 			${iptName}
 			${iptYear}
 			${btnRemove}
-		</div>`.appendTo(this._wrpRows);
+		</div>`.vee.appendTo(this._wrpRows);
 
 		return {
 			comp,
@@ -3382,7 +3382,7 @@ class TimeTrackerRoot_Settings_Year extends RenderableCollectionTimeTracker {
 
 	doUpdateExistingRender (renderedMeta, entity, i) {
 		renderedMeta.comp._proxyAssignSimple("state", entity.data, true);
-		if (!renderedMeta.wrpRow.parente().is(this._wrpRows)) renderedMeta.wrpRow.appendTo(this._wrpRows);
+		if (!renderedMeta.wrpRow.vee.parent().vee.is(this._wrpRows)) renderedMeta.wrpRow.vee.appendTo(this._wrpRows);
 	}
 }
 
@@ -3394,23 +3394,23 @@ class TimeTrackerRoot_Settings_Era extends RenderableCollectionTimeTracker {
 			this._comp._triggerCollectionUpdate("eras");
 		});
 
-		const getIptYears = (prop) => ComponentUiUtil.getIptInt(comp, prop, 1, {ele: ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-right ve-mr-2 ve-w-15 ve-no-shrink">`, offset: 1, min: 1});
+		const getIptYears = (prop) => ComponentUiUtil.getIptInt(comp, prop, 1, {ele: veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-right ve-mr-2 ve-w-15 ve-no-shrink">`, offset: 1, min: 1});
 
-		const iptName = ComponentUiUtil.getIptStr(comp, "name", {ele: ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2">`});
-		const iptAbbreviation = ComponentUiUtil.getIptStr(comp, "abbreviation", {ele: ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2 ve-w-15 ve-no-shrink">`});
+		const iptName = ComponentUiUtil.getIptStr(comp, "name", {ele: veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2">`});
+		const iptAbbreviation = ComponentUiUtil.getIptStr(comp, "abbreviation", {ele: veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2 ve-w-15 ve-no-shrink">`});
 		const iptYearsStart = getIptYears("startYear");
 		const iptYearsEnd = getIptYears("endYear");
 
-		const btnRemove = ee`<button class="ve-btn ve-btn-xs ve-btn-danger ve-no-shrink" title="Delete Year"><span class="glyphicon glyphicon-trash"></span></button>`
-			.onn("click", () => this._comp._state.eras = this._comp._state.eras.filter(it => it !== entity));
+		const btnRemove = veT`<button class="ve-btn ve-btn-xs ve-btn-danger ve-no-shrink" title="Delete Year"><span class="glyphicon glyphicon-trash"></span></button>`
+			.vee.onn("click", () => this._comp._state.eras = this._comp._state.eras.filter(it => it !== entity));
 
-		const wrpRow = ee`<div class="ve-flex ve-my-1">
+		const wrpRow = veT`<div class="ve-flex ve-my-1">
 			${iptName}
 			${iptAbbreviation}
 			${iptYearsStart}
 			${iptYearsEnd}
 			${btnRemove}
-		</div>`.appendTo(this._wrpRows);
+		</div>`.vee.appendTo(this._wrpRows);
 
 		return {
 			comp,
@@ -3420,7 +3420,7 @@ class TimeTrackerRoot_Settings_Era extends RenderableCollectionTimeTracker {
 
 	doUpdateExistingRender (renderedMeta, entity, i) {
 		renderedMeta.comp._proxyAssignSimple("state", entity.data, true);
-		if (!renderedMeta.wrpRow.parente().is(this._wrpRows)) renderedMeta.wrpRow.appendTo(this._wrpRows);
+		if (!renderedMeta.wrpRow.vee.parent().vee.is(this._wrpRows)) renderedMeta.wrpRow.vee.appendTo(this._wrpRows);
 	}
 }
 
@@ -3432,21 +3432,21 @@ class TimeTrackerRoot_Settings_Moon extends RenderableCollectionTimeTracker {
 			this._comp._triggerCollectionUpdate("moons");
 		});
 
-		const iptName = ComponentUiUtil.getIptStr(comp, "name", {ele: ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2">`});
-		const iptColor = ComponentUiUtil.getIptColor(comp, "color", {ele: ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2 ve-no-shrink dm-time__ipt-color-moon" type="color" title="Moon Color">`});
-		const iptPhaseOffset = ComponentUiUtil.getIptInt(comp, "phaseOffset", 0, {ele: ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-right ve-mr-2 ve-w-25 ve-no-shrink">`});
-		const iptPeriod = ComponentUiUtil.getIptInt(comp, "period", 1, {ele: ee`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-right ve-mr-2 ve-w-25 ve-no-shrink">`, min: TimeTrackerBase._MIN_TIME, max: TimeTrackerBase._MAX_TIME});
+		const iptName = ComponentUiUtil.getIptStr(comp, "name", {ele: veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2">`});
+		const iptColor = ComponentUiUtil.getIptColor(comp, "color", {ele: veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-mr-2 ve-no-shrink dm-time__ipt-color-moon" type="color" title="Moon Color">`});
+		const iptPhaseOffset = ComponentUiUtil.getIptInt(comp, "phaseOffset", 0, {ele: veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-right ve-mr-2 ve-w-25 ve-no-shrink">`});
+		const iptPeriod = ComponentUiUtil.getIptInt(comp, "period", 1, {ele: veT`<input class="ve-form-control ve-input-xs form-control--minimal ve-text-right ve-mr-2 ve-w-25 ve-no-shrink">`, min: TimeTrackerBase._MIN_TIME, max: TimeTrackerBase._MAX_TIME});
 
-		const btnRemove = ee`<button class="ve-btn ve-btn-xs ve-btn-danger ve-no-shrink" title="Delete Moon"><span class="glyphicon glyphicon-trash"></span></button>`
-			.onn("click", () => this._comp._state.moons = this._comp._state.moons.filter(it => it !== entity));
+		const btnRemove = veT`<button class="ve-btn ve-btn-xs ve-btn-danger ve-no-shrink" title="Delete Moon"><span class="glyphicon glyphicon-trash"></span></button>`
+			.vee.onn("click", () => this._comp._state.moons = this._comp._state.moons.filter(it => it !== entity));
 
-		const wrpRow = ee`<div class="ve-flex ve-my-1">
+		const wrpRow = veT`<div class="ve-flex ve-my-1">
 			${iptName}
 			${iptColor}
 			${iptPhaseOffset}
 			${iptPeriod}
 			${btnRemove}
-		</div>`.appendTo(this._wrpRows);
+		</div>`.vee.appendTo(this._wrpRows);
 
 		return {
 			comp,
@@ -3456,6 +3456,6 @@ class TimeTrackerRoot_Settings_Moon extends RenderableCollectionTimeTracker {
 
 	doUpdateExistingRender (renderedMeta, entity, i) {
 		renderedMeta.comp._proxyAssignSimple("state", entity.data, true);
-		if (!renderedMeta.wrpRow.parente().is(this._wrpRows)) renderedMeta.wrpRow.appendTo(this._wrpRows);
+		if (!renderedMeta.wrpRow.vee.parent().vee.is(this._wrpRows)) renderedMeta.wrpRow.vee.appendTo(this._wrpRows);
 	}
 }

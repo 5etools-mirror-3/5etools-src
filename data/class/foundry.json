@@ -7850,17 +7850,37 @@
 			"subclassShortName": "Life",
 			"subclassSource": "PHB",
 			"level": 1,
-			"effects": [
+			"activities": [
 				{
-					"name": "Bonus Healing",
-					"transfer": true,
-					"changes": [
-						{
-							"key": "system.bonuses.heal.damage",
-							"mode": "ADD",
-							"value": "+ @item.level + 2"
+					"type": "heal",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true,
+							"max": "9"
 						}
-					]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature",
+							"special": "Creature you cast a healing spell on"
+						}
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "@scaling + 2"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
 				}
 			],
 			"migrationVersion": 3

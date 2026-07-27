@@ -44,37 +44,37 @@ export class MoneyConverter extends DmScreenPanelAppBase {
 		}).reverse();
 		const DEFAULT_CURRENCY = 3;
 
-		const wrpConverter = ee`<div class="dm_money dm__panel-bg ve-split-column"></div>`;
+		const wrpConverter = veT`<div class="dm_money dm__panel-bg ve-split-column"></div>`;
 
 		const doUpdate = () => {
-			if (!this._wrpRows.findAll(`.dm-money__row`)) {
+			if (!this._wrpRows.vee.findAll(`.dm-money__row`)) {
 				addRow();
 			}
 
 			Object.entries(this._disabledCurrency).forEach(([currency, disabled]) => {
-				this._selOut.find(`option[value="${currency}"]`).toggleVe(!disabled);
+				this._selOut.vee.find(`option[value="${currency}"]`).vee.toggle(!disabled);
 			});
 			// if the current choice is disabled, deselect it, and restart
-			if (this._disabledCurrency[this._selOut.val()]) {
-				this._selOut.val("-1");
+			if (this._disabledCurrency[this._selOut.vee.val()]) {
+				this._selOut.vee.val("-1");
 				doUpdate();
 				return;
 			}
 
-			const elesRows = this._wrpRows.findAll(`.dm-money__row`);
-			elesRows.forEach(ele => ele.removeClass("form-control--error"));
-			this._iptSplit.removeClass("form-control--error");
+			const elesRows = this._wrpRows.vee.findAll(`.dm-money__row`);
+			elesRows.forEach(ele => ele.vee.removeClass("form-control--error"));
+			this._iptSplit.vee.removeClass("form-control--error");
 
-			const outCurrency = Number(this._selOut.val()) || 0;
+			const outCurrency = Number(this._selOut.vee.val()) || 0;
 
 			const outParts = [];
 			let totalWeight = 0;
 
-			const splitBetweenStr = (this._iptSplit.val() || "").trim();
+			const splitBetweenStr = (this._iptSplit.vee.val() || "").trim();
 			let split = 1;
 			if (splitBetweenStr) {
 				const splitBetweenNum = Number(splitBetweenStr);
-				if (isNaN(splitBetweenNum)) this._iptSplit.addClass("form-control--error");
+				if (isNaN(splitBetweenNum)) this._iptSplit.vee.addClass("form-control--error");
 				else split = splitBetweenNum;
 			}
 
@@ -84,12 +84,12 @@ export class MoneyConverter extends DmScreenPanelAppBase {
 				const allowedCategories = new Set();
 
 				elesRows.forEach((ele) => {
-					const strVal = (ele.find(`input`).val() || "").trim();
+					const strVal = (ele.vee.find(`input`).vee.val() || "").trim();
 					if (strVal) {
 						const asNum = Number(strVal);
-						if (isNaN(asNum)) ele.addClass("form-control--error");
+						if (isNaN(asNum)) ele.vee.addClass("form-control--error");
 						else {
-							const ix = Number(ele.find(`select`).val());
+							const ix = Number(ele.vee.find(`select`).vee.val());
 							totals[ix] = (totals[ix] || 0) + asNum;
 							allowedCategories.add(CURRENCY[ix]._cat);
 						}
@@ -130,12 +130,12 @@ export class MoneyConverter extends DmScreenPanelAppBase {
 			} else {
 				let total = 0;
 				elesRows.forEach((ele) => {
-					const strVal = (ele.find(`input`).val() || "").trim();
+					const strVal = (ele.vee.find(`input`).vee.val() || "").trim();
 					if (strVal) {
 						const asNum = Number(strVal);
-						if (isNaN(asNum)) ele.addClass("form-control--error");
+						if (isNaN(asNum)) ele.vee.addClass("form-control--error");
 						else {
-							total += asNum * (CURRENCY[ele.find(`select`).val()] || CURRENCY).mult;
+							total += asNum * (CURRENCY[ele.vee.find(`select`).vee.val()] || CURRENCY).mult;
 						}
 					}
 				});
@@ -155,43 +155,43 @@ export class MoneyConverter extends DmScreenPanelAppBase {
 				});
 			}
 
-			iptOut.val(`${outParts.join("; ")}${totalWeight ? ` (${totalWeight.toLocaleStringVe()} lb.)` : ""}`);
+			iptOut.vee.val(`${outParts.join("; ")}${totalWeight ? ` (${totalWeight.toLocaleStringVe()} lb.)` : ""}`);
 
 			board.doSaveStateDebounced();
 		};
 
-		const buildCurrencySelect = (isOutput) => ee`<select class="ve-form-control ve-input-sm ve-p-2">${isOutput ? `<option value="-1">(No conversion)</option>` : ""}${CURRENCY.map((c, i) => `<option value="${i}">${c.n}</option>`).join("")}</select>`;
+		const buildCurrencySelect = (isOutput) => veT`<select class="ve-form-control ve-input-sm ve-p-2">${isOutput ? `<option value="-1">(No conversion)</option>` : ""}${CURRENCY.map((c, i) => `<option value="${i}">${c.n}</option>`).join("")}</select>`;
 
 		const addRow = (currency, count) => {
-			const eleRow = ee`<div class="dm-money__row"></div>`.appendTo(this._wrpRows);
-			const iptCount = ee`<input type="number" step="1" placeholder="Coins" class="ve-form-control ve-input-sm">`.appendTo(eleRow).onn("change", doUpdate);
-			if (count != null) iptCount.val(count);
+			const eleRow = veT`<div class="dm-money__row"></div>`.vee.appendTo(this._wrpRows);
+			const iptCount = veT`<input type="number" step="1" placeholder="Coins" class="ve-form-control ve-input-sm">`.vee.appendTo(eleRow).vee.onn("change", doUpdate);
+			if (count != null) iptCount.vee.val(count);
 			const selCurrency = buildCurrencySelect()
-				.val(currency == null ? `${DEFAULT_CURRENCY}` : currency)
-				.appendTo(eleRow)
-				.onn("change", doUpdate);
-			const btnRemove = ee`<button class="ve-btn ve-btn-sm ve-btn-danger" title="Remove Row"><span class="glyphicon glyphicon-trash"></span></button>`
-				.appendTo(eleRow)
-				.onn("click", () => {
+				.vee.val(currency == null ? `${DEFAULT_CURRENCY}` : currency)
+				.vee.appendTo(eleRow)
+				.vee.onn("change", doUpdate);
+			const btnRemove = veT`<button class="ve-btn ve-btn-sm ve-btn-danger" title="Remove Row"><span class="glyphicon glyphicon-trash"></span></button>`
+				.vee.appendTo(eleRow)
+				.vee.onn("click", () => {
 					eleRow.remove();
 					doUpdate();
 				});
 		};
 
-		this._wrpRows = ee`<div class="dm-money__rows"></div>`.appendTo(wrpConverter);
+		this._wrpRows = veT`<div class="dm-money__rows"></div>`.vee.appendTo(wrpConverter);
 
-		const wrpCtrl = ee`<div class="ve-split dm-money__ctrl"></div>`.appendTo(wrpConverter);
-		const wrpCtrlLhs = ee`<div class="dm-money__ctrl__lhs ve-split-child" style="width: 66%;"></div>`.appendTo(wrpCtrl);
-		const wrpBtnAddSettings = ee`<div class="ve-split"></div>`.appendTo(wrpCtrlLhs);
-		const btnAddRow = ee`<button class="ve-btn ve-btn-primary ve-btn-sm" title="Add Row"><span class="glyphicon glyphicon-plus"></span></button>`
-			.appendTo(wrpBtnAddSettings)
-			.onn("click", () => {
+		const wrpCtrl = veT`<div class="ve-split dm-money__ctrl"></div>`.vee.appendTo(wrpConverter);
+		const wrpCtrlLhs = veT`<div class="dm-money__ctrl__lhs ve-split-child" style="width: 66%;"></div>`.vee.appendTo(wrpCtrl);
+		const wrpBtnAddSettings = veT`<div class="ve-split"></div>`.vee.appendTo(wrpCtrlLhs);
+		const btnAddRow = veT`<button class="ve-btn ve-btn-primary ve-btn-sm" title="Add Row"><span class="glyphicon glyphicon-plus"></span></button>`
+			.vee.appendTo(wrpBtnAddSettings)
+			.vee.onn("click", () => {
 				addRow();
 				doUpdate();
 			});
-		const btnSettings = ee`<button class="ve-btn ve-btn-default ve-btn-sm" title="Settings"><span class="glyphicon glyphicon-cog"></span></button>`
-			.appendTo(wrpBtnAddSettings)
-			.onn("click", () => {
+		const btnSettings = veT`<button class="ve-btn ve-btn-default ve-btn-sm" title="Settings"><span class="glyphicon glyphicon-cog"></span></button>`
+			.vee.appendTo(wrpBtnAddSettings)
+			.vee.onn("click", () => {
 				const {eleModalInner} = UiUtil.getShowModal({
 					title: "Settings",
 					cbClose: () => doUpdate(),
@@ -200,23 +200,23 @@ export class MoneyConverter extends DmScreenPanelAppBase {
 					UiUtil.getAddModalRowCb(eleModalInner, `Disable ${cx.n} in Output`, this._disabledCurrency, cx.ix);
 				});
 			});
-		const iptOut = ee`<input class="ve-form-control ve-input-sm dm-money__out" disabled/>`
-			.appendTo(wrpCtrlLhs)
-			.onn("mousedown", async () => {
-				await MiscUtil.pCopyTextToClipboard(iptOut.val());
+		const iptOut = veT`<input class="ve-form-control ve-input-sm dm-money__out" disabled/>`
+			.vee.appendTo(wrpCtrlLhs)
+			.vee.onn("mousedown", async () => {
+				await MiscUtil.pCopyTextToClipboard(iptOut.vee.val());
 				JqueryUtil.showCopiedEffect(iptOut);
 			});
 
-		const wrpCtrlRhs = ee`<div class="dm-money__ctrl__rhs ve-split-child" style="width: 33%;"></div>`.appendTo(wrpCtrl);
-		this._iptSplit = ee`<input type="number" min="1" step="1" placeholder="Split Between..." class="ve-form-control ve-input-sm">`.appendTo(wrpCtrlRhs).onn("change", doUpdate);
+		const wrpCtrlRhs = veT`<div class="dm-money__ctrl__rhs ve-split-child" style="width: 33%;"></div>`.vee.appendTo(wrpCtrl);
+		this._iptSplit = veT`<input type="number" min="1" step="1" placeholder="Split Between..." class="ve-form-control ve-input-sm">`.vee.appendTo(wrpCtrlRhs).vee.onn("change", doUpdate);
 		this._selOut = buildCurrencySelect(true)
-			.val(`${DEFAULT_CURRENCY}`)
-			.appendTo(wrpCtrlRhs)
-			.onn("change", doUpdate);
+			.vee.val(`${DEFAULT_CURRENCY}`)
+			.vee.appendTo(wrpCtrlRhs)
+			.vee.onn("change", doUpdate);
 
 		if (state) {
-			this._selOut.val(state.c == null ? `${DEFAULT_CURRENCY}` : state.c);
-			this._iptSplit.val(state.s);
+			this._selOut.vee.val(state.c == null ? `${DEFAULT_CURRENCY}` : state.c);
+			this._iptSplit.vee.val(state.s);
 			(state.r || []).forEach(r => addRow(r.c, r.n));
 		}
 
@@ -227,13 +227,13 @@ export class MoneyConverter extends DmScreenPanelAppBase {
 
 	getState () {
 		return {
-			c: this._selOut.val(),
-			s: this._iptSplit.val(),
-			r: this._wrpRows.findAll(`.dm-money__row`)
+			c: this._selOut.vee.val(),
+			s: this._iptSplit.vee.val(),
+			r: this._wrpRows.vee.findAll(`.dm-money__row`)
 				.map((ele) => {
 					return {
-						c: ele.find(`select`).val(),
-						n: ele.find(`input`).val(),
+						c: ele.vee.find(`select`).vee.val(),
+						n: ele.vee.find(`input`).vee.val(),
 					};
 				}),
 			d: this._disabledCurrency,

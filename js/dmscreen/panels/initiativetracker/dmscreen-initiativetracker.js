@@ -18,14 +18,14 @@ import {
 	InitiativeTrackerStatColumnDataSerializer,
 } from "./dmscreen-initiativetracker-serial.js";
 import {InitiativeTrackerSort} from "./dmscreen-initiativetracker-sort.js";
-import {InitiativeTrackerUtil} from "../../initiativetracker/initiativetracker-utils.js";
-import {DmScreenUtil} from "../dmscreen-util.js";
+import {InitiativeTrackerUtil} from "../../../initiativetracker/initiativetracker-utils.js";
+import {DmScreenUtil} from "../../dmscreen-util.js";
 import {
 	InitiativeTrackerRowStateBuilderActive,
 	InitiativeTrackerRowStateBuilderDefaultParty,
 } from "./dmscreen-initiativetracker-rowstatebuilder.js";
 import {InitiativeTrackerDefaultParty} from "./dmscreen-initiativetracker-defaultparty.js";
-import {ListUtilBestiary} from "../../utils-list-bestiary.js";
+import {ListUtilBestiary} from "../../../utils-list-bestiary.js";
 
 // TODO(Future) refactor to subclass `DmScreenPanelAppBase`; move state to `_comp`
 export class InitiativeTracker extends BaseComponent {
@@ -90,8 +90,8 @@ export class InitiativeTracker extends BaseComponent {
 
 		this._render_bindSortDirHooks();
 
-		const wrpTracker = ee`<div class="dm-init dm__panel-bg"></div>`
-			.onn("drop", evt => this._pDoHandleImportDrop(evt));
+		const wrpTracker = veT`<div class="dm-init dm__panel-bg"></div>`
+			.vee.onn("drop", evt => this._pDoHandleImportDrop(evt));
 
 		this._sendStateToClientsDebounced = MiscUtil.debounce(
 			() => {
@@ -115,16 +115,16 @@ export class InitiativeTracker extends BaseComponent {
 			rowStateBuilder: this._rowStateBuilderActive,
 		});
 		this._viewRowsActiveMeta = this._viewRowsActive.getRenderedView();
-		this._viewRowsActiveMeta.ele.appendTo(wrpTracker);
+		this._viewRowsActiveMeta.ele.vee.appendTo(wrpTracker);
 
-		this._render_getWrpFooter({wrpTracker, doUpdateExternalStates: this._doUpdateExternalStates}).appendTo(wrpTracker);
+		this._render_getWrpFooter({wrpTracker, doUpdateExternalStates: this._doUpdateExternalStates}).vee.appendTo(wrpTracker);
 
 		return wrpTracker;
 	}
 
 	_render_getWrpButtonsSort () {
-		const btnSortAlpha = ee`<button title="Sort Alphabetically" class="ve-btn ve-btn-default ve-btn-xs"><span class="glyphicon glyphicon-sort-by-alphabet"></span></button>`
-			.onn("click", () => {
+		const btnSortAlpha = veT`<button title="Sort Alphabetically" class="ve-btn ve-btn-default ve-btn-xs"><span class="glyphicon glyphicon-sort-by-alphabet"></span></button>`
+			.vee.onn("click", () => {
 				if (this._state.sort === InitiativeTrackerConst.SORT_ORDER_ALPHA) return this._doReverseSortDir();
 				this._proxyAssignSimple(
 					"state",
@@ -135,8 +135,8 @@ export class InitiativeTracker extends BaseComponent {
 				);
 			});
 
-		const btnSortNumber = ee`<button title="Sort Numerically" class="ve-btn ve-btn-default ve-btn-xs"><span class="glyphicon glyphicon-sort-by-order"></span></button>`
-			.onn("click", () => {
+		const btnSortNumber = veT`<button title="Sort Numerically" class="ve-btn ve-btn-default ve-btn-xs"><span class="glyphicon glyphicon-sort-by-order"></span></button>`
+			.vee.onn("click", () => {
 				if (this._state.sort === InitiativeTrackerConst.SORT_ORDER_NUM) return this._doReverseSortDir();
 				this._proxyAssignSimple(
 					"state",
@@ -148,22 +148,22 @@ export class InitiativeTracker extends BaseComponent {
 			});
 
 		const hkSortDir = () => {
-			btnSortAlpha.toggleClass("ve-active", this._state.sort === InitiativeTrackerConst.SORT_ORDER_ALPHA);
-			btnSortNumber.toggleClass("ve-active", this._state.sort === InitiativeTrackerConst.SORT_ORDER_NUM);
+			btnSortAlpha.vee.toggleClass("ve-active", this._state.sort === InitiativeTrackerConst.SORT_ORDER_ALPHA);
+			btnSortNumber.vee.toggleClass("ve-active", this._state.sort === InitiativeTrackerConst.SORT_ORDER_NUM);
 		};
 		this._addHookBase("sort", hkSortDir);
 		this._addHookBase("dir", hkSortDir);
 		hkSortDir();
 
-		return ee`<div class="ve-btn-group ve-flex">
+		return veT`<div class="ve-btn-group ve-flex">
 			${btnSortAlpha}
 			${btnSortNumber}
 		</div>`;
 	}
 
 	_render_getWrpFooter ({wrpTracker, doUpdateExternalStates}) {
-		const btnAdd = ee`<button class="ve-btn ve-btn-primary ve-btn-xs dm-init-lockable" title="Add Player"><span class="glyphicon glyphicon-plus"></span></button>`
-			.onn("click", async () => {
+		const btnAdd = veT`<button class="ve-btn ve-btn-primary ve-btn-xs dm-init-lockable" title="Add Player"><span class="glyphicon glyphicon-plus"></span></button>`
+			.vee.onn("click", async () => {
 				if (this._state.isLocked) return;
 				this._state.rows = [
 					...this._state.rows,
@@ -174,8 +174,8 @@ export class InitiativeTracker extends BaseComponent {
 					.filter(Boolean);
 			});
 
-		const btnAddMonster = ee`<button class="ve-btn ve-btn-success ve-btn-xs dm-init-lockable ve-mr-2" title="Add Creature"><span class="glyphicon glyphicon-print"></span></button>`
-			.onn("click", async () => {
+		const btnAddMonster = veT`<button class="ve-btn ve-btn-success ve-btn-xs dm-init-lockable ve-mr-2" title="Add Creature"><span class="glyphicon glyphicon-print"></span></button>`
+			.vee.onn("click", async () => {
 				if (this._state.isLocked) return;
 
 				const [isDataEntered, monstersToLoad] = await new InitiativeTrackerMonsterAdd({board: this._board, isRollHp: this._state.isRollHp})
@@ -222,16 +222,16 @@ export class InitiativeTracker extends BaseComponent {
 				this._state.rows = rowsNxt;
 			});
 
-		const btnSetPrevActive = ee`<button class="ve-btn ve-btn-default ve-btn-xs" title="Previous Turn"><span class="glyphicon glyphicon-step-backward"></span></button>`
-			.onn("click", () => this._viewRowsActive.pDoShiftActiveRow({direction: InitiativeTrackerConst.DIR_BACKWARDS}));
-		const btnSetNextActive = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" title="Next Turn"><span class="glyphicon glyphicon-step-forward"></span></button>`
-			.onn("click", () => this._viewRowsActive.pDoShiftActiveRow({direction: InitiativeTrackerConst.DIR_FORWARDS}));
+		const btnSetPrevActive = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="Previous Turn"><span class="glyphicon glyphicon-step-backward"></span></button>`
+			.vee.onn("click", () => this._viewRowsActive.pDoShiftActiveRow({direction: InitiativeTrackerConst.DIR_BACKWARDS}));
+		const btnSetNextActive = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" title="Next Turn"><span class="glyphicon glyphicon-step-forward"></span></button>`
+			.vee.onn("click", () => this._viewRowsActive.pDoShiftActiveRow({direction: InitiativeTrackerConst.DIR_FORWARDS}));
 
 		const iptRound = ComponentUiUtil.getIptInt(this, "round", 1, {min: 1})
-			.addClass("dm-init__rounds")
-			.removeClass("ve-text-right")
-			.addClass("ve-text-center")
-			.tooltip("Round");
+			.vee.addClass("dm-init__rounds")
+			.vee.removeClass("ve-text-right")
+			.vee.addClass("ve-text-center")
+			.vee.tooltip("Round");
 
 		const menuPlayerWindow = ContextUtil.getMenu([
 			new ContextUtil.Action(
@@ -248,21 +248,21 @@ export class InitiativeTracker extends BaseComponent {
 			),
 		]);
 
-		const btnNetworking = ee`<button class="ve-btn ve-btn-primary ve-btn-xs ve-mr-2" title="Configure Player View (SHIFT to Open Configuration for &quot;Standard&quot; View)"><span class="glyphicon glyphicon-user"></span></button>`
-			.onn("click", evt => {
+		const btnNetworking = veT`<button class="ve-btn ve-btn-primary ve-btn-xs ve-mr-2" title="Configure Player View (SHIFT to Open Configuration for &quot;Standard&quot; View)"><span class="glyphicon glyphicon-user"></span></button>`
+			.vee.onn("click", evt => {
 				if (evt.shiftKey) return this._networking.handleClick_playerWindowV1({doUpdateExternalStates});
 				return ContextUtil.pOpenMenu(evt, menuPlayerWindow);
 			});
 
-		const btnLock = ee`<button class="ve-btn ve-btn-danger ve-btn-xs" title="Lock Tracker"><span class="glyphicon glyphicon-lock"></span></button>`
-			.onn("click", () => this._state.isLocked = !this._state.isLocked);
+		const btnLock = veT`<button class="ve-btn ve-btn-danger ve-btn-xs" title="Lock Tracker"><span class="glyphicon glyphicon-lock"></span></button>`
+			.vee.onn("click", () => this._state.isLocked = !this._state.isLocked);
 		this._addHookBase("isLocked", () => {
 			btnLock
-				.toggleClass("ve-btn-success", !!this._state.isLocked)
-				.toggleClass("ve-btn-danger", !this._state.isLocked)
-				.tooltip(this._state.isLocked ? "Unlock Tracker" : "Lock Tracker");
-			wrpTracker.findAll(".dm-init-lockable").forEach(ele => ele.toggleClass("ve-disabled", !!this._state.isLocked));
-			wrpTracker.findAll("input.dm-init-lockable").forEach(ele => ele.prop("disabled", !!this._state.isLocked));
+				.vee.toggleClass("ve-btn-success", !!this._state.isLocked)
+				.vee.toggleClass("ve-btn-danger", !this._state.isLocked)
+				.vee.tooltip(this._state.isLocked ? "Unlock Tracker" : "Lock Tracker");
+			wrpTracker.vee.findAll(".dm-init-lockable").forEach(ele => ele.vee.toggleClass("ve-disabled", !!this._state.isLocked));
+			wrpTracker.vee.findAll("input.dm-init-lockable").forEach(ele => ele.vee.prop("disabled", !!this._state.isLocked));
 		})();
 
 		this._compDefaultParty = new InitiativeTrackerDefaultParty({comp: this, roller: this._roller, rowStateBuilder: this._rowStateBuilderDefaultParty});
@@ -287,8 +287,8 @@ export class InitiativeTracker extends BaseComponent {
 			),
 		]);
 
-		const btnConfigure = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" title="Configure (SHIFT to Open &quot;Settings&quot;)"><span class="glyphicon glyphicon-cog"></span></button>`
-			.onn("click", async evt => {
+		const btnConfigure = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" title="Configure (SHIFT to Open &quot;Settings&quot;)"><span class="glyphicon glyphicon-cog"></span></button>`
+			.vee.onn("click", async evt => {
 				if (evt.shiftKey) return pHandleClickSettings();
 				return ContextUtil.pOpenMenu(evt, menuConfigure);
 			});
@@ -308,13 +308,13 @@ export class InitiativeTracker extends BaseComponent {
 			),
 		]);
 
-		const btnLoad = ee`<button title="Import an encounter from the Bestiary" class="ve-btn ve-btn-success ve-btn-xs dm-init-lockable"><span class="glyphicon glyphicon-upload"></span></button>`
-			.onn("click", (evt) => {
+		const btnLoad = veT`<button title="Import an encounter from the Bestiary" class="ve-btn ve-btn-success ve-btn-xs dm-init-lockable"><span class="glyphicon glyphicon-upload"></span></button>`
+			.vee.onn("click", (evt) => {
 				if (this._state.isLocked) return;
 				ContextUtil.pOpenMenu(evt, menuImport);
 			});
-		const btnReset = ee`<button title="Reset Tracker" class="ve-btn ve-btn-danger ve-btn-xs dm-init-lockable"><span class="glyphicon glyphicon-trash"></span></button>`
-			.onn("click", async () => {
+		const btnReset = veT`<button title="Reset Tracker" class="ve-btn ve-btn-danger ve-btn-xs dm-init-lockable"><span class="glyphicon glyphicon-trash"></span></button>`
+			.vee.onn("click", async () => {
 				if (this._state.isLocked) return;
 				if (!await InputUiUtil.pGetUserBoolean({title: "Reset", htmlDescription: "Are you sure?", textYes: "Yes", textNo: "Cancel"})) return;
 
@@ -328,8 +328,8 @@ export class InitiativeTracker extends BaseComponent {
 				this._proxyAssignSimple("state", stateNxt);
 			});
 
-		const btnSendToFoundry = ee`<button title="Send to Foundry" class="no-print ve-btn ve-btn-default ve-btn-xs dm-init-lockable"><span class="glyphicon glyphicon-send"></span></button>`
-			.onn("click", async () => {
+		const btnSendToFoundry = veT`<button title="Send to Foundry" class="no-print ve-btn ve-btn-default ve-btn-xs dm-init-lockable"><span class="glyphicon glyphicon-send"></span></button>`
+			.vee.onn("click", async () => {
 				if (this._state.isLocked) return;
 
 				const encounterActorName = await InputUiUtil.pGetUserString({title: "Encounter Actor Name", isSkippable: true});
@@ -384,7 +384,7 @@ export class InitiativeTracker extends BaseComponent {
 				});
 			});
 
-		return ee`<div class="dm-init__wrp-controls">
+		return veT`<div class="dm-init__wrp-controls">
 			<div class="ve-flex">
 				<div class="ve-btn-group ve-flex">
 					${btnAdd}
@@ -811,4 +811,9 @@ export class InitiativeTracker extends BaseComponent {
 	getPanelElement () {
 		return this.render();
 	}
+
+	getSaveSlotCacheableElementMeta () { return null; }
+	doRestoreSaveSlotCacheableElementMeta (meta) {}
+
+	getDetachableExileElements () { return []; }
 }

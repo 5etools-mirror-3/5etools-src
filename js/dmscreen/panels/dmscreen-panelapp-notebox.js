@@ -100,8 +100,8 @@ export class NoteBox extends DmScreenPanelAppBase {
 	}
 
 	_getPanelElement (board, state) {
-		this._iptText = ee`<textarea class="panel-content-textarea" placeholder="Supports inline rolls and content tags (CTRL-q with the caret in the text to activate the embed):\n • Inline rolls,  [[1d20+2]]\n • Content tags (as per the Demo page), {@creature goblin}, {@spell fireball}\n • Link tags, {@link https://5e.tools}">${state.x || ""}</textarea>`
-			.onn("keydown", async evt => {
+		this._iptText = veT`<textarea class="panel-content-textarea" placeholder="Supports inline rolls and content tags (CTRL-q with the caret in the text to activate the embed):\n • Inline rolls,  [[1d20+2]]\n • Content tags (as per the Demo page), {@creature goblin}, {@spell fireball}\n • Link tags, {@link https://5e.tools}">${state.x || ""}</textarea>`
+			.vee.onn("keydown", async evt => {
 				const key = EventUtil.getKeyIgnoreCapsLock(evt);
 
 				const isCtrlQ = (EventUtil.isCtrlMetaKey(evt)) && key === "q";
@@ -118,6 +118,6 @@ export class NoteBox extends DmScreenPanelAppBase {
 	}
 
 	getState () {
-		return {x: this._iptText?.val()};
+		return {x: this._iptText?.vee.val()};
 	}
 }

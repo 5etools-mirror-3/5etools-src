@@ -51,34 +51,34 @@ export class LootGenGeneratorLootTables extends LootGenGeneratorBase {
 		};
 		this._stateManager.addHookBase("pulseItemsFiltered", hkPulseItem);
 
-		const btnRoll = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">Roll Loot</button>`
-			.onn("click", () => this._lt_pDoHandleClickRollLoot());
+		const btnRoll = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">Roll Loot</button>`
+			.vee.onn("click", () => this._lt_pDoHandleClickRollLoot());
 
-		const btnClear = ee`<button class="ve-btn ve-btn-danger ve-btn-xs">Clear Output</button>`
-			.onn("click", () => this._outputManager.doClearOutput());
+		const btnClear = veT`<button class="ve-btn ve-btn-danger ve-btn-xs">Clear Output</button>`
+			.vee.onn("click", () => this._outputManager.doClearOutput());
 
-		const hrHelp = ee`<hr class="ve-hr-3">`;
-		const dispHelp = ee`<div class="ve-small ve-italic"></div>`;
-		const hrTable = ee`<hr class="ve-hr-3">`;
-		const dispTable = ee`<div class="ve-flex-col ve-w-100"></div>`;
+		const hrHelp = veT`<hr class="ve-hr-3">`;
+		const dispHelp = veT`<div class="ve-small ve-italic"></div>`;
+		const hrTable = veT`<hr class="ve-hr-3">`;
+		const dispTable = veT`<div class="ve-flex-col ve-w-100"></div>`;
 
 		const hkTable = () => {
 			const tableMeta = this._lt_tableMetas[this._state.lt_ixTable];
 
-			dispHelp.toggleVe(tableMeta != null);
-			dispTable.toggleVe(tableMeta != null);
-			hrHelp.toggleVe(tableMeta != null);
-			hrTable.toggleVe(tableMeta != null);
+			dispHelp.vee.toggle(tableMeta != null);
+			dispTable.vee.toggle(tableMeta != null);
+			hrHelp.vee.toggle(tableMeta != null);
+			hrTable.vee.toggle(tableMeta != null);
 
 			if (tableMeta == null) return;
 
-			dispHelp.html(this._lt_getRenderedHelp({tableMeta}));
-			dispTable.html(this._rendererWrapped.er(tableMeta.tableEntry));
+			dispHelp.vee.html(this._lt_getRenderedHelp({tableMeta}));
+			dispTable.vee.html(this._rendererWrapped.er(tableMeta.tableEntry));
 		};
 		this._addHookBase("lt_ixTable", hkTable);
 		hkTable();
 
-		ee`<div class="ve-flex-col ve-py-2 ve-px-3">
+		veT`<div class="ve-flex-col ve-py-2 ve-px-3">
 			<label class="ve-split-v-center ve-mb-3">
 				<div class="ve-mr-2 ve-w-66 ve-no-shrink">Table</div>
 				${selTable}
@@ -93,7 +93,7 @@ export class LootGenGeneratorLootTables extends LootGenGeneratorBase {
 			${dispHelp}
 			${hrTable}
 			${dispTable}
-		</div>`.appendTo(tabMeta.wrpTab);
+		</div>`.vee.appendTo(tabMeta.wrpTab);
 	}
 
 	_lt_getSelTableDisplay ({ix}) {

@@ -257,8 +257,14 @@
 		}
 	}
 
-	.panel-content-hovering > * {
-		box-shadow: 0 0 12px 0 #000000a0;
+	.panel-content-hovering {
+		> * {
+			box-shadow: 0 0 12px 0 #000000a0;
+		}
+
+		iframe {
+			pointer-events: none;
+		}
 	}
 
 	.panel-content-wrapper > * {
@@ -689,6 +695,15 @@
 	.sidemenu__history-item-cover:hover .panel-history-control-middle {
 		opacity: 1;
 		transition: opacity 0.1s;
+	}
+
+	.dmsec__ {
+		&wrp-scratch {
+			top: -10000px;
+			left: -10000px;
+			width: 1px;
+			height: 1px;
+		}
 	}
 
 	.ve-night-mode {

@@ -15,17 +15,17 @@ export class RenderableCollectionViewerCreatures extends RenderableCollectionGen
 
 	_getWrpRow () {
 		return super._getWrpRow()
-			.addClass("ve-py-1p")
-			.addClass("ve-px-1")
-			.addClass("ve-container-inline");
+			.vee.addClass("ve-py-1p")
+			.vee.addClass("ve-px-1")
+			.vee.addClass("ve-container-inline");
 	}
 
 	_populateRow ({comp, wrpRow, entity}) {
 		const {wrp: wrpIptCount} = ComponentUiUtil.getIptNumber(comp, "count", 1, {min: 0, decorationRight: "ticker", asMeta: true});
 		wrpIptCount
-			.addClass("ve-w-50p")
-			.addClass("ve-mr-2")
-			.addClass("ve-no-shrink");
+			.vee.addClass("ve-w-50p")
+			.vee.addClass("ve-mr-2")
+			.vee.addClass("ve-no-shrink");
 		comp._addHookBase("count", () => {
 			if (comp._state.count > 0) return;
 			if (comp._state.isLocked) return comp._state.count = 1;
@@ -53,18 +53,18 @@ export class RenderableCollectionViewerCreatures extends RenderableCollectionGen
 			},
 		);
 
-		const btnDelete = ee`<button class="ve-btn ve-btn-danger ve-btn-xs" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>`
-			.onn("click", () => {
+		const btnDelete = veT`<button class="ve-btn ve-btn-danger ve-btn-xs" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>`
+			.vee.onn("click", () => {
 				if (comp._state.isLocked) return;
 				this._utils.doDelete({entity});
 			});
 
 		comp._addHookBase("isLocked", () => {
-			btnShuffle.toggleClass("ve-disabled", comp._state.isLocked);
-			btnDelete.toggleClass("ve-disabled", comp._state.isLocked);
+			btnShuffle.vee.toggleClass("ve-disabled", comp._state.isLocked);
+			btnDelete.vee.toggleClass("ve-disabled", comp._state.isLocked);
 		})();
 
-		ee(wrpRow)`
+		veT(wrpRow)`
 			${wrpIptCount}
 			<div class="ve-flex-v-center ve-grow ecgen-viewer__wrp-creature-info">
 				<div class="ve-flex-v-center ve-mx-1 ecgen-viewer__wrp-row-hovers">

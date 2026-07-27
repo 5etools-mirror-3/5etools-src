@@ -20,24 +20,24 @@ class ObjectsSublistManager extends SublistManager {
 		const size = Renderer.utils.getRenderedSize(it.size);
 		const cellsText = [it.name, size];
 
-		const ele = ee`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`
-			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
-			.onn("click", evt => this._listSub.doSelect(listItem, evt));
+			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
 		const listItem = new ListItem(
 			hash,
 			ele,
 			it.name,
 			{
-				hash,
-				page: it.page,
+				...ListItem.getCommonValues(it),
 				size,
 			},
 			{
+				hash,
 				entity: it,
 				mdRow: [...cellsText],
 			},
@@ -96,12 +96,12 @@ class ObjectsPage extends ListPage {
 			eleLi,
 			obj.name,
 			{
-				hash,
 				source,
-				page: obj.page,
+				...ListItem.getCommonValues(obj),
 				size,
 			},
 			{
+				hash,
 				isExcluded,
 			},
 		);
@@ -120,7 +120,7 @@ class ObjectsPage extends ListPage {
 		if (ent.entries) this._renderer.recursiveRender({entries: ent.entries}, renderStack, {depth: 2});
 		if (ent.actionEntries) this._renderer.recursiveRender({entries: ent.actionEntries}, renderStack, {depth: 2});
 
-		this._pgContent.empty().appends(RenderObjects.getRenderedObject(ent));
+		this._pgContent.vee.empty().vee.appends(RenderObjects.getRenderedObject(ent));
 
 		this._tokenDisplay.render(ent);
 	}

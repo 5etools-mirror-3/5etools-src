@@ -14,9 +14,9 @@ export class RenderRecipes {
 		const ptTime = Renderer.recipe.getTimeHtml(ent, {entriesMeta});
 		const {ptMakes, ptServes} = Renderer.recipe.getMakesServesHtml(ent, {entriesMeta});
 
-		const wrpSelScaleFactor = ee`<div class="ve-flex-v-center ve-ml-2 ve-mb-2">(${opts.selScaleFactor})</div>`;
+		const wrpSelScaleFactor = veT`<div class="ve-flex-v-center ve-ml-2 ve-mb-2">(${opts.selScaleFactor})</div>`;
 
-		return ee`
+		return veT`
 		${Renderer.utils.getBorderTr()}
 		${Renderer.utils.getExcludedTr({entity: ent, dataProp: "recipe"})}
 		${Renderer.utils.getNameTr(ent, {page: UrlUtil.PG_RECIPES})}
@@ -29,9 +29,9 @@ export class RenderRecipes {
 			<div class="ve-w-33 ve-pl-3 ve-pr-2 ve-flex-col">
 				${ptTime}
 
-				${(ptMakes || ptServes) ? ee`<div class="ve-flex-v-center">${ptMakes || ptServes}${wrpSelScaleFactor}</div>` : ""}
+				${(ptMakes || ptServes) ? veT`<div class="ve-flex-v-center">${ptMakes || ptServes}${wrpSelScaleFactor}</div>` : ""}
 				${(ptMakes && ptServes) ? ptServes : ""}
-				${!(ptMakes || ptServes) && opts.selScaleFactor ? ee`<div class="ve-mb-2">Scale: ${opts.selScaleFactor}</div>` : ""}
+				${!(ptMakes || ptServes) && opts.selScaleFactor ? veT`<div class="ve-mb-2">Scale: ${opts.selScaleFactor}</div>` : ""}
 
 				<div class="ve-rd-plaintext__wrp-sidebar ${ptMakes || ptServes || opts.selScaleFactor ? "ve-mt-1" : ""}">${Renderer.get().render(entriesMeta.entryIngredients, 0)}</div>
 

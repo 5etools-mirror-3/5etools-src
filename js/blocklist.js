@@ -6,7 +6,7 @@ class Blocklist {
 			isIncludePrerelease: true,
 			isIncludeBrew: true,
 		});
-		const ui = new BlocklistUi({wrpContent: es(`#blocklist-content`), data});
+		const ui = new BlocklistUi({wrpContent: veEs(`#blocklist-content`), data});
 		await ui.pInit();
 		window.dispatchEvent(new Event("toolsLoaded"));
 	}

@@ -644,13 +644,13 @@ class ModalFilterItems extends ModalFilterBase {
 			eleRow,
 			item.name,
 			{
-				hash,
 				source,
 				sourceJson: item.source,
 				...ListItem.getCommonValues(item),
 				type,
 			},
 			{
+				hash,
 				cbSel: eleRow.firstElementChild.firstElementChild.firstElementChild,
 				btnShowHidePreview,
 			},

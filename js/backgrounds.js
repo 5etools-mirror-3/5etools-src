@@ -30,25 +30,25 @@ class BackgroundSublistManager extends SublistManager {
 			skills,
 		];
 
-		const ele = ee`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`
-			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
-			.onn("click", evt => this._listSub.doSelect(listItem, evt));
+			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
 		const listItem = new ListItem(
 			hash,
 			ele,
 			name,
 			{
-				hash,
 				source: Parser.sourceJsonToAbv(it.source),
-				page: it.page,
+				...ListItem.getCommonValues(it),
 				skills,
 			},
 			{
+				hash,
 				entity: it,
 				mdRow: [...cellsText],
 			},
@@ -99,13 +99,13 @@ class BackgroundPage extends ListPage {
 			eleLi,
 			name,
 			{
-				hash,
 				source,
-				page: bg.page,
+				...ListItem.getCommonValues(bg),
 				ability: bg._slAbility,
 				skills: bg._skillDisplay,
 			},
 			{
+				hash,
 				isExcluded,
 			},
 		);
@@ -117,7 +117,7 @@ class BackgroundPage extends ListPage {
 	}
 
 	_renderStats_doBuildStatsTab ({ent}) {
-		this._pgContent.empty().appends(RenderBackgrounds.getRenderedBackground(ent));
+		this._pgContent.vee.empty().vee.appends(RenderBackgrounds.getRenderedBackground(ent));
 	}
 }
 

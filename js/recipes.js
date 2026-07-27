@@ -25,24 +25,24 @@ class RecipesSublistManager extends SublistManager {
 		const name = it._displayName || it.name;
 		const cellsText = [name, it.type || "\u2014"];
 
-		const ele = ee`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`
-			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
-			.onn("click", evt => this._listSub.doSelect(listItem, evt));
+			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
 		const listItem = new ListItem(
 			hash,
 			ele,
 			name,
 			{
-				hash,
-				page: it.page,
+				...ListItem.getCommonValues(it),
 				type: it.type,
 			},
 			{
+				hash,
 				entity: it,
 				mdRow: [...cellsText],
 				customHashId,
@@ -98,13 +98,13 @@ class RecipesPage extends ListPage {
 			eleLi,
 			ent.name,
 			{
-				hash,
 				source,
-				page: ent.page,
+				...ListItem.getCommonValues(ent),
 				type: ent.type,
 				alias: PageFilterRecipes.getListAliases(ent),
 			},
 			{
+				hash,
 				isExcluded,
 			},
 		);
@@ -120,21 +120,21 @@ class RecipesPage extends ListPage {
 	_renderStats_doBuildStatsTab ({ent, scaleFactor = null}) {
 		if (scaleFactor != null) ent = Renderer.recipe.getScaledRecipe(ent, scaleFactor);
 
-		const selScaleFactor = ee`
+		const selScaleFactor = veT`
 			<select title="Scale Recipe" class="ve-form-control ve-input-xs form-control--minimal ve-popwindow__hidden">
 				${[0.5, 1, 2, 3, 4].map(it => `<option value="${it}" ${(scaleFactor || 1) === it ? "selected" : ""}>×${it}</option>`)}
 			</select>`
-			.onn("change", () => {
-				const scaleFactor = Number(selScaleFactor.val());
+			.vee.onn("change", () => {
+				const scaleFactor = Number(selScaleFactor.vee.val());
 
 				if (scaleFactor !== this._lastRender?._scaleFactor) {
 					if (scaleFactor === 1) Hist.setSubhash(VeCt.HASH_SCALED, null);
 					else Hist.setSubhash(VeCt.HASH_SCALED, scaleFactor);
 				}
 			});
-		selScaleFactor.val(`${scaleFactor || 1}`);
+		selScaleFactor.vee.val(`${scaleFactor || 1}`);
 
-		this._pgContent.empty().append(RenderRecipes.getRenderedRecipe(ent, {selScaleFactor}));
+		this._pgContent.vee.empty().append(RenderRecipes.getRenderedRecipe(ent, {selScaleFactor}));
 		Renderer.initLazyImageLoaders();
 		this._lastRender = {entity: ent};
 	}

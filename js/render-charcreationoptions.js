@@ -12,7 +12,7 @@ class RenderCharCreationOptions {
 		const entryList = {type: "entries", entries: ent.entries};
 		Renderer.get().setFirstSection(true).recursiveRender(entryList, renderStack);
 
-		return ee`
+		return veT`
 		${Renderer.utils.getBorderTr()}
 		${Renderer.utils.getExcludedTr({entity: ent, dataProp: "charoption"})}
 		${Renderer.utils.getNameTr(ent, {page: UrlUtil.PG_CHAR_CREATION_OPTIONS})}

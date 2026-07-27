@@ -158,17 +158,17 @@ class SublistManager {
 	}
 
 	async pCreateSublist () {
-		this._wrpContainer = e_(document.getElementById("sublistcontainer"));
+		this._wrpContainer = veE(document.getElementById("sublistcontainer"));
 
 		this._listSub = new List({
 			...this._sublistListOptions,
-			wrpList: e_(document.getElementById("sublist")),
+			wrpList: veE(document.getElementById("sublist")),
 		});
 
-		const wrpBtnsSortSublist = e_(document.getElementById("sublistsort"));
+		const wrpBtnsSortSublist = veE(document.getElementById("sublistsort"));
 		if (wrpBtnsSortSublist) SortUtil.initBtnSortHandlers(wrpBtnsSortSublist, this._listSub);
 
-		if (this._wrpContainer.hasClass(`sublist--resizable`)) this._pBindSublistResizeHandlers();
+		if (this._wrpContainer.vee.hasClass(`sublist--resizable`)) this._pBindSublistResizeHandlers();
 
 		const {wrp: wrpSummaryControls, cbOnListUpdated} = this._saveManager.getRenderedSummary({
 			cbOnNew: (evt) => this.pHandleClick_new(evt),
@@ -185,7 +185,7 @@ class SublistManager {
 		this._listSub.on("updated", this._hkOnListUpdated);
 		this._hkOnListUpdated();
 
-		this._wrpContainer.aftere(this._wrpSummaryControls);
+		this._wrpContainer.vee.after(this._wrpSummaryControls);
 
 		this._initContextMenu();
 
@@ -206,8 +206,8 @@ class SublistManager {
 				: await StorageUtil.pGetForPage(STORAGE_KEY),
 			fnSetHeightPxSaved: heightPx => StorageUtil.pSetForPage(STORAGE_KEY, heightPx),
 		})
-			.addClass("ve-mobile-sm__hidden")
-			.appendTo(this._wrpContainer);
+			.vee.addClass("ve-mobile-sm__hidden")
+			.vee.appendTo(this._wrpContainer);
 	}
 
 	_onSublistChange () { /* Implement as required */ }
@@ -243,7 +243,7 @@ class SublistManager {
 				"Popout",
 				(evt, {userData}) => {
 					const {ele, selection} = userData;
-					const entities = selection.map(listItem => ({entity: listItem.data.entity, hash: listItem.values.hash}));
+					const entities = selection.map(listItem => ({entity: listItem.data.entity, hash: listItem.data.hash}));
 					return _UtilListPage.pDoMassPopout(evt, ele, entities);
 				},
 			),
@@ -322,7 +322,7 @@ class SublistManager {
 				sources.add(it.data.entity.source);
 
 				return {
-					h: it.values.hash.split(HASH_PART_SEP)[0],
+					h: it.data.hash.split(HASH_PART_SEP)[0],
 					c: it.data.count || undefined,
 					customHashId: this._getCustomHashId({entity: it.data.entity}) || undefined,
 					...this._getSerializedPinnedItemData(it),
@@ -639,7 +639,7 @@ class SublistManager {
 	}
 
 	getSublistListItem ({hash}) {
-		return this._listSub.items.find(it => it.values.hash === hash);
+		return this._listSub.items.find(it => it.data.hash === hash);
 	}
 
 	async pDoSublistAdd ({entity, doFinalize = false, addCount = 1, initialData = null} = {}) {
@@ -738,8 +738,8 @@ class SublistManager {
 	_updateSublistItemDisplays (sublistItem) {
 		(sublistItem.data.elesCount || [])
 			.forEach(ele => {
-				if (ele.is("input")) ele.val(sublistItem.data.count);
-				else ele.txt(sublistItem.data.count);
+				if (ele.vee.is("input")) ele.vee.val(sublistItem.data.count);
+				else ele.vee.txt(sublistItem.data.count);
 			});
 
 		(sublistItem.data.fnsUpdate || [])
@@ -776,8 +776,8 @@ class SublistManager {
 	}
 
 	doUpdateSublistVisibility () {
-		this._wrpContainer.toggleClass("sublist--visible", this._isDisplaySublist());
-		this._wrpSummaryControls.toggleVe(this._isDisplaySublist());
+		this._wrpContainer.vee.toggleClass("sublist--visible", this._isDisplaySublist());
+		this._wrpSummaryControls.vee.toggle(this._isDisplaySublist());
 	}
 
 	async pDoSublistRemove ({entity, doFinalize = true} = {}) {
@@ -883,7 +883,7 @@ class SublistManager {
 			evt.preventDefault();
 			const listItem = RollerUtil.rollOnArray(this._listSub.items);
 			listItem.isSelected = true;
-			window.location.hash = listItem.ele.find("a").attr("href");
+			window.location.hash = listItem.ele.vee.find("a").vee.attr("href");
 			return;
 		}
 
@@ -907,7 +907,7 @@ class SublistManager {
 					.forEach(listItem => listItem.isSelected = false);
 				const listItem = sequence[i];
 				listItem.isSelected = true;
-				window.location.hash = listItem.ele.find("a").attr("href");
+				window.location.hash = listItem.ele.vee.find("a").vee.attr("href");
 				if (i === timers.length - 1) this._isRolling = false;
 			}, total);
 		});
@@ -1004,8 +1004,8 @@ class ListPageSettingsManager extends ListPageStateManager {
 			.addEventListener(
 				"click",
 				() => {
-					const btnReset = ee`<button class="ve-btn ve-btn-default ve-btn-xs" title="Reset"><span class="glyphicon glyphicon-refresh"></span></button>`
-						.onn("click", () => {
+					const btnReset = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="Reset"><span class="glyphicon glyphicon-refresh"></span></button>`
+						.vee.onn("click", () => {
 							this._proxyAssignSimple("state", this._getDefaultState(), true);
 							this._pPersistState()
 								.then(() => Hist.hashChange());
@@ -1026,14 +1026,14 @@ class ListPageSettingsManager extends ListPageStateManager {
 						.map(([prop, setting]) => {
 							switch (setting.type) {
 								case "boolean": {
-									return ee`<label class="ve-split-v-center stripe-even ve-py-1">
+									return veT`<label class="ve-split-v-center stripe-even ve-py-1">
 										<span>${setting.name}</span>
 										${ComponentUiUtil.getCbBool(this, prop)}
 									</label>`;
 								}
 
 								case "enum": {
-									return ee`<label class="ve-split-v-center stripe-even ve-py-1">
+									return veT`<label class="ve-split-v-center stripe-even ve-py-1">
 										<span>${setting.name}</span>
 										${ComponentUiUtil.getSelEnum(this, prop, {values: setting.enumVals})}
 									</label>`;
@@ -1043,7 +1043,7 @@ class ListPageSettingsManager extends ListPageStateManager {
 							}
 						});
 
-					ee(eleModalInner)`<div class="ve-flex-col">
+					veT(eleModalInner)`<div class="ve-flex-col">
 						${rows}
 					</div>`;
 				},
@@ -1219,8 +1219,8 @@ class ListPage {
 	}
 
 	_pOnLoad_findPageElements () {
-		this._pgContent = e_(document.getElementById("pagecontent"));
-		this._wrpTabs = e_(document.getElementById("stat-tabs"));
+		this._pgContent = veE(document.getElementById("pagecontent"));
+		this._wrpTabs = veE(document.getElementById("stat-tabs"));
 	}
 
 	async _pOnLoad_pInitSettingsManager () {
@@ -1231,33 +1231,33 @@ class ListPage {
 	}
 
 	async _pOnLoad_pInitPrimaryLists () {
-		const iptSearch = e_(document.getElementById("lst__search"));
-		const btnReset = e_(document.getElementById("reset"));
+		const iptSearch = veE(document.getElementById("lst__search"));
+		const btnReset = veE(document.getElementById("reset"));
 		this._list = this._initList({
 			iptSearch,
-			wrpList: e_(document.getElementById("list")),
+			wrpList: veE(document.getElementById("list")),
 			btnReset,
-			btnClear: e_(document.getElementById("lst__search-glass")),
-			dispPageTagline: e_(document.getElementById(`page__subtitle`)),
+			btnClear: veE(document.getElementById("lst__search-glass")),
+			dispPageTagline: veE(document.getElementById(`page__subtitle`)),
 			isPreviewable: this._isPreviewable,
 			syntax: this._listSyntax.build(),
 			isBindFindHotkey: true,
 			optsList: this._listOptions,
 		});
-		const wrpBtnsSort = es("#filtertools");
+		const wrpBtnsSort = veEs("#filtertools");
 		SortUtil.initBtnSortHandlers(wrpBtnsSort, this._list);
-		if (this._isPreviewable) this._doBindPreviewAllButton(wrpBtnsSort.find(`[name="list-toggle-all-previews"]`));
+		if (this._isPreviewable) this._doBindPreviewAllButton(wrpBtnsSort.vee.find(`[name="list-toggle-all-previews"]`));
 
 		this._filterBox = await this._pageFilter.pInitFilterBox({
 			iptSearch,
-			wrpFormTop: e_(document.getElementById("filter-search-group")),
+			wrpFormTop: veE(document.getElementById("filter-search-group")),
 			btnReset,
 		});
 	}
 
 	_pOnLoad_initVisibleItemsDisplay () {
-		const outVisibleResults = es(`.ve-lst__wrp-search-visible`);
-		this._list.on("updated", () => outVisibleResults.html(`${this._list.visibleItems.length}/${this._list.items.length}`));
+		const outVisibleResults = veEs(`.ve-lst__wrp-search-visible`);
+		this._list.on("updated", () => outVisibleResults.vee.html(`${this._list.visibleItems.length}/${this._list.items.length}`));
 	}
 
 	async _pOnLoad_pLoadListState () {
@@ -1272,16 +1272,16 @@ class ListPage {
 			...(this._bindOtherButtonsOptions || {}),
 		});
 
-		const btnReset = e_(document.getElementById("reset"));
+		const btnReset = veE(document.getElementById("reset"));
 		// TODO(MODULES) refactor
 		import("./utils-brew/utils-brew-ui-manage.js")
 			.then(({ManageBrewUi}) => {
-				ManageBrewUi.bindBtngroupManager(e_({id: "btngroup-manager"}));
+				ManageBrewUi.bindBtngroupManager(veE({id: "btngroup-manager"}));
 			});
 		this._renderListFeelingLucky({btnReset});
 		this._renderListShowHide({
-			wrpList: e_(document.getElementById("listcontainer")),
-			wrpContent: e_(document.getElementById("contentwrapper")),
+			wrpList: veE(document.getElementById("listcontainer")),
+			wrpContent: veE(document.getElementById("contentwrapper")),
 			btnReset,
 		});
 		if (this._hasAudio) Renderer.utils.bindPronounceButtons();
@@ -1307,7 +1307,7 @@ class ListPage {
 			...this._bookViewOptions,
 			sublistManager: this._sublistManager,
 			fnGetEntLastLoaded: () => this._dataList[Hist.lastLoadedId],
-			btnOpen: es(`#btn-book`),
+			btnOpen: veEs(`#btn-book`),
 		});
 		await this._bookView.pInit();
 	}
@@ -1317,8 +1317,8 @@ class ListPage {
 	_pOnLoad_tableView () {
 		if (!this._tableViewOptions) return;
 
-		es(`#btn-show-table`)
-			.onn("click", async () => {
+		veEs(`#btn-show-table`)
+			.vee.onn("click", async () => {
 				const sublisted = this._sublistManager.getSublistedEntities();
 				UtilsTableview.show({
 					entities: sublisted.length
@@ -1409,9 +1409,9 @@ class ListPage {
 
 	_doBindPreviewAllButton (btn) {
 		btn
-			.onn("click", () => {
-				const isExpand = btn.html() === `[+]`;
-				btn.html(isExpand ? `[\u2212]` : "[+]");
+			.vee.onn("click", () => {
+				const isExpand = btn.vee.html() === `[+]`;
+				btn.vee.html(isExpand ? `[\u2212]` : "[+]");
 
 				this.primaryLists.forEach(list => {
 					list.visibleItems.forEach(listItem => {
@@ -1463,7 +1463,7 @@ class ListPage {
 	_doPreviewExpand ({listItem, dispExpandedOuter, btnToggleExpand, dispExpandedInner}) {
 		dispExpandedOuter.classList.remove("ve-hidden");
 		btnToggleExpand.innerHTML = `[\u2212]`;
-		Renderer.hover.getHoverContent_stats(UrlUtil.getCurrentPage(), this._dataList[listItem.ix]).appendTo(dispExpandedInner);
+		Renderer.hover.getHoverContent_stats(UrlUtil.getCurrentPage(), this._dataList[listItem.ix]).vee.appendTo(dispExpandedInner);
 	}
 
 	_doPreviewCollapse ({dispExpandedOuter, btnToggleExpand, dispExpandedInner}) {
@@ -1477,41 +1477,41 @@ class ListPage {
 	static _checkShowAllExcluded (list, elePagecontent) {
 		if (!ExcludeUtil.isAllContentExcluded(list)) return;
 
-		elePagecontent.html(`<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+		elePagecontent.vee.html(`<tr><th class="ve-tbl-border" colspan="6"></th></tr>
 			<tr><td colspan="6">${ExcludeUtil.getAllContentBlocklistedHtml()}</td></tr>
 			<tr><th class="ve-tbl-border" colspan="6"></th></tr>`);
 	}
 
 	_renderListShowHide ({wrpContent, wrpList, btnReset}) {
-		const btnHideSearch = ee`<button class="ve-btn ve-btn-default" title="Hide Search Bar and Entry List">Hide</button>`;
-		btnReset.beforee(btnHideSearch);
+		const btnHideSearch = veT`<button class="ve-btn ve-btn-default" title="Hide Search Bar and Entry List">Hide</button>`;
+		btnReset.vee.before(btnHideSearch);
 
-		const btnShowSearch = ee`<button class="ve-btn ve-btn-block ve-btn-default ve-btn-xs" type="button">Show List</button>`;
-		const wrpBtnShowSearch = ee`<div class="ve-col-12 ve-mb-1 ve-hidden">${btnShowSearch}</div>`.prependTo(wrpContent);
+		const btnShowSearch = veT`<button class="ve-btn ve-btn-block ve-btn-default ve-btn-xs" type="button">Show List</button>`;
+		const wrpBtnShowSearch = veT`<div class="ve-col-12 ve-mb-1 ve-hidden">${btnShowSearch}</div>`.vee.prependTo(wrpContent);
 
-		btnHideSearch.onn("click", () => {
-			wrpList.hideVe();
-			wrpBtnShowSearch.showVe();
-			btnHideSearch.hideVe();
+		btnHideSearch.vee.onn("click", () => {
+			wrpList.vee.hide();
+			wrpBtnShowSearch.vee.show();
+			btnHideSearch.vee.hide();
 		});
-		btnShowSearch.onn("click", () => {
-			wrpList.showVe();
-			wrpBtnShowSearch.hideVe();
-			btnHideSearch.showVe();
+		btnShowSearch.vee.onn("click", () => {
+			wrpList.vee.show();
+			wrpBtnShowSearch.vee.hide();
+			btnHideSearch.vee.show();
 		});
 	}
 
 	_renderListFeelingLucky ({isCompact, btnReset, isScrollablePage = false}) {
-		const btnRoll = ee`<button class="ve-btn ve-btn-default ${isCompact ? "ve-px-2" : ""}" title="Feeling Lucky?"><span class="glyphicon glyphicon-random"></span></button>`;
+		const btnRoll = veT`<button class="ve-btn ve-btn-default ${isCompact ? "ve-px-2" : ""}" title="Feeling Lucky?"><span class="glyphicon glyphicon-random"></span></button>`;
 
 		btnRoll
-			.onn("click", () => {
+			.vee.onn("click", () => {
 				const allLists = this.primaryLists.filter(l => l.visibleItems.length);
 				if (allLists.length) {
 					const rollX = RollerUtil.roll(allLists.length);
 					const list = allLists[rollX];
 					const rollY = RollerUtil.roll(list.visibleItems.length);
-					window.location.hash = e_(list.visibleItems[rollY].ele).find(`a`).attr("href");
+					window.location.hash = veE(list.visibleItems[rollY].ele).vee.find(`a`).vee.attr("href");
 					if (!isScrollablePage) list.visibleItems[rollY].ele.scrollIntoView();
 				}
 			});
@@ -1521,15 +1521,15 @@ class ListPage {
 
 	_bindLinkExportButton ({btn} = {}) {
 		btn ||= this._getOrTabRightButton(`link-export`, `glyphicon-magnet`);
-		btn.addClass("ve-btn-copy-effect")
-			.onn("click", evt => this._pHandleClick_doCopyFilterLink(evt, {btn, isAllowNonExtension: true}))
-			.tooltip("Copy Link to Filters (SHIFT to add list; CTRL to copy @filter tag)");
+		btn.vee.addClass("ve-btn-copy-effect")
+			.vee.onn("click", evt => this._pHandleClick_doCopyFilterLink(evt, {btn, isAllowNonExtension: true}))
+			.vee.tooltip("Copy Link to Filters (SHIFT to add list; CTRL to copy @filter tag)");
 	}
 
 	_bindPopoutButton () {
 		this._getOrTabRightButton(`popout`, `glyphicon-new-window`)
-			.tooltip(`Popout Window (SHIFT for Source Data; CTRL for Markdown Render)`)
-			.onn(
+			.vee.tooltip(`Popout Window (SHIFT for Source Data; CTRL for Markdown Render)`)
+			.vee.onn(
 				"click",
 				(evt) => {
 					if (Hist.lastLoadedId === null) return;
@@ -1538,7 +1538,7 @@ class ListPage {
 					return this._bindPopoutButton_doShowStatblock(evt);
 				},
 			)
-			.onn("auxclick", evt => {
+			.vee.onn("auxclick", evt => {
 				if (Hist.lastLoadedId === null) return;
 
 				if (!EventUtil.isMiddleMouse(evt)) return;
@@ -1562,22 +1562,23 @@ class ListPage {
 		);
 	}
 
-	_bindPopoutButton_doShowMarkdown (evt) {
-		const propData = this._propEntryData || this._lastRender.entity.__prop;
-
-		const name = `${this._lastRender.entity._displayName || this._lastRender.entity.name} \u2014 Markdown`;
-		const mdText = RendererMarkdown.get().render({
+	_getLastRenderedMarkdown () {
+		return RendererMarkdown.get().render({
 			entries: [
 				{
 					type: "statblockInline",
-					dataType: propData,
+					dataType: this._propEntryData || this._lastRender.entity.__prop,
 					data: this._lastRender.entity,
 				},
 			],
 		});
+	}
+
+	_bindPopoutButton_doShowMarkdown (evt) {
+		const name = `${this._lastRender.entity._displayName || this._lastRender.entity.name} \u2014 Markdown`;
 
 		Renderer.hover.getShowWindow(
-			Renderer.hover.getHoverContent_miscCode(name, mdText),
+			Renderer.hover.getHoverContent_miscCode(name, this._getLastRenderedMarkdown()),
 			Renderer.hover.getWindowPositionFromEvent(evt),
 			{
 				title: name,
@@ -1585,6 +1586,10 @@ class ListPage {
 				isBookContent: true,
 			},
 		);
+	}
+
+	_pHandleClick_doDownloadMarkdown () {
+		DataUtil.userDownloadText(`${this._lastRender.entity._displayName || this._lastRender.entity.name}.md`, this._getLastRenderedMarkdown());
 	}
 
 	setListItemHash (hash) {
@@ -1612,39 +1617,39 @@ class ListPage {
 		const list = new List({iptSearch, wrpList, syntax, helpText, ...optsList});
 
 		if (isBindFindHotkey) {
-			e_({ele: document.body})
-				.onn("keypress", (evt) => {
+			veE({ele: document.body})
+				.vee.onn("keypress", (evt) => {
 					if (!EventUtil.noModifierKeys(evt) || EventUtil.isInInput(evt)) return;
 					if (EventUtil.getKeyIgnoreCapsLock(evt) === "f") {
 						evt.preventDefault();
-						iptSearch.selecte().focuse();
+						iptSearch.vee.select().vee.focus();
 					}
 				});
 		}
 
 		btnReset
-			.onn("click", () => {
-				iptSearch.val("");
+			.vee.onn("click", () => {
+				iptSearch.vee.val("");
 				list.reset();
 				_handleSearchChange();
 			});
 
 		// region Magnifying glass/clear button
 		btnClear
-			.onn("click", () => iptSearch.val("").trigger("change").trigger("keydown").trigger("keyup").focuse());
+			.vee.onn("click", () => iptSearch.vee.val("").vee.trigger("change").vee.trigger("keydown").vee.trigger("keyup").vee.focus());
 		const _handleSearchChange = () => {
 			setTimeout(() => {
-				const hasText = !!iptSearch.val().length;
+				const hasText = !!iptSearch.vee.val().length;
 
 				btnClear
-					.toggleClass("ve-no-events", !hasText)
-					.toggleClass("ve-clickable", hasText)
-					.tooltip(hasText ? "Clear" : null)
-					.html(`<span class="glyphicon ${hasText ? `glyphicon-remove` : `glyphicon-search`}"></span>`);
+					.vee.toggleClass("ve-no-events", !hasText)
+					.vee.toggleClass("ve-clickable", hasText)
+					.vee.tooltip(hasText ? "Clear" : null)
+					.vee.html(`<span class="glyphicon ${hasText ? `glyphicon-remove` : `glyphicon-search`}"></span>`);
 			});
 		};
 		const handleSearchChange = MiscUtil.throttle(_handleSearchChange, 50);
-		iptSearch.onn("keydown", handleSearchChange);
+		iptSearch.vee.onn("keydown", handleSearchChange);
 		// endregion
 
 		if (dispPageTagline) {
@@ -1719,7 +1724,7 @@ class ListPage {
 				case "m": {
 					if (EventUtil.isInInput(evt)) return;
 					const it = Hist.getSelectedListElementWithLocation();
-					e_(it.item.ele.firstElementChild.firstElementChild).trigger("click");
+					veE(it.item.ele.firstElementChild.firstElementChild).vee.trigger("click");
 				}
 			}
 		});
@@ -1739,14 +1744,14 @@ class ListPage {
 				? listsWithVisibleItems[0].visibleItems[0]
 				: listsWithVisibleItems.last().visibleItems.last();
 			if (tgtItem) {
-				this.setListItemHash(tgtItem.values.hash);
+				this.setListItemHash(tgtItem.data.hashCurr ?? tgtItem.data.hash);
 			}
 			return;
 		}
 
 		const tgtItemSameList = listItemMeta.list.visibleItems[ixVisible + dir];
 		if (tgtItemSameList) {
-			this.setListItemHash(tgtItemSameList.values.hash);
+			this.setListItemHash(tgtItemSameList.data.hashCurr ?? tgtItemSameList.data.hash);
 			return;
 		}
 
@@ -1766,7 +1771,7 @@ class ListPage {
 			const tgtItemOtherList = dir === 1 ? listsCandidate[ixListOther].visibleItems[0] : listsCandidate[ixListOther].visibleItems.last();
 			if (!tgtItemOtherList) continue;
 
-			this.setListItemHash(tgtItemOtherList.values.hash);
+			this.setListItemHash(tgtItemOtherList.data.hashCurr ?? tgtItemOtherList.data.hash);
 			return;
 		}
 	}
@@ -1775,7 +1780,7 @@ class ListPage {
 		const curSelectedItem = Hist.getSelectedListItem();
 		this.primaryLists.forEach(l => l.updateSelected(curSelectedItem));
 
-		if (this._sublistManager) this._sublistManager.doUpdateSelected({hash: curSelectedItem.values.hash});
+		if (this._sublistManager) this._sublistManager.doUpdateSelected({hash: curSelectedItem.data.hash});
 	}
 
 	_openContextMenu (evt, list, listItem) {
@@ -1857,11 +1862,11 @@ class ListPage {
 	_getOrTabRightButton (ident, iconClassName, {title} = {}) {
 		if (this._btnsTabs[ident]) return this._btnsTabs[ident];
 
-		this._btnsTabs[ident] = e_({
+		this._btnsTabs[ident] = veE({
 			tag: "button",
 			clazz: "ve-ui-tab__btn-tab-head ve-btn ve-btn-default ve-pt-2p ve-px-4p ve-pb-0",
 			children: [
-				e_({
+				veE({
 					tag: "span",
 					clazz: `glyphicon ${iconClassName}`,
 				}),
@@ -1877,20 +1882,20 @@ class ListPage {
 
 	_bindPinButton () {
 		this._getOrTabRightButton(`pin`, `glyphicon-pushpin`)
-			.onn("click", () => this._sublistManager.pHandleClick_btnPin({entity: this._lastRender.entity}))
-			.tooltip("Pin (Toggle) (Hotkey: p/P)");
+			.vee.onn("click", () => this._sublistManager.pHandleClick_btnPin({entity: this._lastRender.entity}))
+			.vee.tooltip("Pin (Toggle) (Hotkey: p/P)");
 	}
 
 	_bindAddButton () {
 		this._getOrTabRightButton(`sublist-add`, `glyphicon-plus`)
-			.tooltip(this._sublistManager.getTitleBtnAdd())
-			.onn("click", evt => this._sublistManager.pHandleClick_btnAdd({entity: this._lastRender.entity, isMultiple: !!evt.shiftKey}));
+			.vee.tooltip(this._sublistManager.getTitleBtnAdd())
+			.vee.onn("click", evt => this._sublistManager.pHandleClick_btnAdd({entity: this._lastRender.entity, isMultiple: !!evt.shiftKey}));
 	}
 
 	_bindSubtractButton () {
 		this._getOrTabRightButton(`sublist-subtract`, `glyphicon-minus`)
-			.tooltip(this._sublistManager.getTitleBtnSubtract())
-			.onn("click", evt => this._sublistManager.pHandleClick_btnSubtract({entity: this._lastRender.entity, isMultiple: !!evt.shiftKey}));
+			.vee.tooltip(this._sublistManager.getTitleBtnSubtract())
+			.vee.onn("click", evt => this._sublistManager.pHandleClick_btnSubtract({entity: this._lastRender.entity, isMultiple: !!evt.shiftKey}));
 	}
 
 	/**
@@ -1923,6 +1928,11 @@ class ListPage {
 			new ContextUtil.Action(
 				"Export as Image (SHIFT to Copy Image; SHIFT+ALT to Copy in Day Theme)",
 				evt => this._pHandleClick_exportAsImage({evt, isFast: evt.shiftKey, isForceDayTheme: evt.altKey, eleCopyEffect: btnOptions}),
+			),
+			null,
+			new ContextUtil.Action(
+				"Download as Markdown",
+				() => this._pHandleClick_doDownloadMarkdown(),
 			),
 			null,
 			new ContextUtil.Action(
@@ -1983,10 +1993,10 @@ class ListPage {
 
 		const menu = ContextUtil.getMenu(contextOptions);
 		btnOptions
-			.onn("mousedown", evt => {
+			.vee.onn("mousedown", evt => {
 				evt.preventDefault();
 			})
-			.onn("click", async evt => {
+			.vee.onn("click", async evt => {
 				evt.preventDefault();
 				await ContextUtil.pOpenMenu(evt, menu);
 			});
@@ -2016,7 +2026,7 @@ class ListPage {
 	}
 
 	async _handleGenericContextMenuClick_pDoMassPopout (evt, ele, selection) {
-		const entities = selection.map(listItem => ({entity: this._dataList[listItem.ix], hash: listItem.values.hash}));
+		const entities = selection.map(listItem => ({entity: this._dataList[listItem.ix], hash: listItem.data.hash}));
 		return _UtilListPage.pDoMassPopout(evt, ele, entities);
 	}
 
@@ -2117,7 +2127,7 @@ class ListPage {
 	_tabTitleStats = "Traits";
 
 	async _pDoLoadHash ({id, lockToken}) {
-		this._pgContent.empty();
+		this._pgContent.vee.empty();
 
 		this._renderer.setFirstSection(true);
 		const ent = this._dataList[id];
@@ -2203,7 +2213,7 @@ class ListPage {
 	}
 
 	_renderStats_doBuildFluffTab ({ent, isImageTab = false}) {
-		this._pgContent.empty();
+		this._pgContent.vee.empty();
 
 		return Renderer.utils.pBuildFluffTab({
 			isImageTab,
@@ -2238,10 +2248,10 @@ class ListPage {
 		];
 		const menu = ContextUtil.getMenu(actions);
 
-		const btnOptions = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-stats__btn-stats-name" title="Other Options"><span class="glyphicon glyphicon-option-vertical"></span></button>`
-			.onn("click", evt => ContextUtil.pOpenMenu(evt, menu));
+		const btnOptions = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-stats__btn-stats-name" title="Other Options"><span class="glyphicon glyphicon-option-vertical"></span></button>`
+			.vee.onn("click", evt => ContextUtil.pOpenMenu(evt, menu));
 
-		return ee`<div class="ve-flex-v-center ve-btn-group ve-ml-2">${btnOptions}</div>`;
+		return veT`<div class="ve-flex-v-center ve-btn-group ve-ml-2">${btnOptions}</div>`;
 	}
 
 	/** @abstract */
@@ -2275,12 +2285,12 @@ class ListPage {
 
 		let result;
 		try {
-			if (clazzAdditional) ele.addClass(clazzAdditional);
+			if (clazzAdditional) ele.vee.addClass(clazzAdditional);
 			if (isForceDayTheme) globalThis.styleSwitcher.setTemporaryTheme(StyleSwitcher.STYLE_THEME_DAY);
 			result = await domtoimage[fn](ele, optsDomToImage);
 		} finally {
 			if (isForceDayTheme) globalThis.styleSwitcher.setTemporaryTheme(null);
-			if (clazzAdditional) ele.removeClass(clazzAdditional);
+			if (clazzAdditional) ele.vee.removeClass(clazzAdditional);
 		}
 		return result;
 	}
@@ -2321,11 +2331,11 @@ class ListPage {
 		const html = this._pgContent.outerHTML;
 		const page = UrlUtil.getCurrentPage();
 
-		const cpy = e_({outer: html})
-			.addClass("ve-lst__is-exporting-image");
+		const cpy = veE({outer: html})
+			.vee.addClass("ve-lst__is-exporting-image");
 
-		const btnCpy = ee`<button class="ve-btn ve-btn-default ve-btn-xs" title="SHIFT to Copy and Close; ALT to Copy in Day Theme">Copy</button>`
-			.onn("click", async evt => {
+		const btnCpy = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="SHIFT to Copy and Close; ALT to Copy in Day Theme">Copy</button>`
+			.vee.onn("click", async evt => {
 				this._pHandleClick_exportAsImage_mutOptions({ele: cpy, optsDomToImage});
 
 				const blob = await this._pHandleClick_exportAsImage_pGetBlob({
@@ -2340,8 +2350,8 @@ class ListPage {
 				if (isCopy && evt.shiftKey) hoverWindow.doClose();
 			});
 
-		const btnSave = ee`<button class="ve-btn ve-btn-default ve-btn-xs" title="SHIFT to Save and Close; ALT to Save in Day Theme">Save</button>`
-			.onn("click", async evt => {
+		const btnSave = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="SHIFT to Save and Close; ALT to Save in Day Theme">Save</button>`
+			.vee.onn("click", async evt => {
 				this._pHandleClick_exportAsImage_mutOptions({ele: cpy, optsDomToImage});
 
 				const dataUrl = await this._pHandleClick_exportAsImage_pGetPngDataUrl({
@@ -2358,7 +2368,7 @@ class ListPage {
 		const width = this._pgContent.getBoundingClientRect().width;
 		const posBtn = eleCopyEffect.getBoundingClientRect().toJSON();
 		const hoverWindow = Renderer.hover.getShowWindow(
-			ee`<div class="ve-flex-col">
+			veT`<div class="ve-flex-col">
 				<div class="ve-split-v-center ve-mb-2 ve-px-2 ve-mt-2">
 					<i class="ve-mr-2">Optionally resize <kbd title="(The width of)">&harr;</kbd> the window, then Copy or Save.</i>
 					<div class="ve-btn-group">
@@ -2411,19 +2421,19 @@ class ListPageTokenDisplay {
 
 	doShow () {
 		if (!this._dispToken) return;
-		this._dispToken.showVe();
+		this._dispToken.vee.show();
 	}
 
 	doHide () {
 		if (!this._dispToken) return;
-		this._dispToken.hideVe();
+		this._dispToken.vee.hide();
 	}
 
 	render (ent) {
-		this._wrpContainer ||= e_(document.getElementById("wrp-pagecontent"));
-		this._dispToken ||= e_(document.getElementById("float-token"));
+		this._wrpContainer ||= veE(document.getElementById("wrp-pagecontent"));
+		this._dispToken ||= veE(document.getElementById("float-token"));
 
-		this._dispToken.empty();
+		this._dispToken.vee.empty();
 
 		if (!this._fnHasToken(ent)) return;
 
@@ -2431,12 +2441,12 @@ class ListPageTokenDisplay {
 		const wMax = Math.max(Math.floor(bcr.height) - 6, this.constructor._CONTAINER_SIZE);
 
 		const imgLink = this._fnGetTokenUrl(ent);
-		const img = ee`<img src="${imgLink}" class="ve-stats__token ve-stats__token--primary ve-relative" ${Renderer.utils.getTokenMetadataAttributes(ent)} loading="lazy">`
-			.css({"max-width": `${wMax}px`});
+		const img = veT`<img src="${imgLink}" class="ve-stats__token ve-stats__token--primary ve-relative" ${Renderer.utils.getTokenMetadataAttributes(ent)} loading="lazy">`
+			.vee.css({"max-width": `${wMax}px`});
 
 		let styleFoundryScale = null;
 		if (ent.foundryTokenScale && ent.foundryTokenScale >= 1.2) {
-			styleFoundryScale = ee`<style>
+			styleFoundryScale = veT`<style>
 				.ve-stats__token--primary {
 					width: ${ent.foundryTokenScale * 100}%;
 					height: ${ent.foundryTokenScale * 100}%;
@@ -2455,8 +2465,8 @@ class ListPageTokenDisplay {
 			</style>`;
 		}
 
-		const lnkToken = ee`<a href="${imgLink}" class="ve-stats__wrp-token ve-overflow-hidden" target="_blank" rel="noopener noreferrer">${styleFoundryScale}${img}</a>`
-			.appendTo(this._dispToken);
+		const lnkToken = veT`<a href="${imgLink}" class="ve-stats__wrp-token ve-overflow-hidden" target="_blank" rel="noopener noreferrer">${styleFoundryScale}${img}</a>`
+			.vee.appendTo(this._dispToken);
 
 		const altArtMeta = [];
 
@@ -2477,18 +2487,18 @@ class ListPageTokenDisplay {
 				const imgLink = this._fnGetTokenUrl(meta);
 				const srcInitial = altArtLoaded[imgLink] ? imgLink : Renderer.utils.lazy.getPlaceholderImgHtml({width: 1000, height: 1000, shapeType: "circle"});
 				const displayName = Renderer.utils.getAltArtDisplayName(meta);
-				const img = ee`<img src="${srcInitial}" class="ve-stats__token" ${Renderer.utils.getTokenMetadataAttributes(ent, {displayName})} loading="lazy">`
-					.css({"max-width": `${wMax}px`})
-					.onn("load", async () => {
+				const img = veT`<img src="${srcInitial}" class="ve-stats__token" ${Renderer.utils.getTokenMetadataAttributes(ent, {displayName})} loading="lazy">`
+					.vee.css({"max-width": `${wMax}px`})
+					.vee.onn("load", async () => {
 						img.src = imgLink;
 						altArtLoaded[imgLink] = true;
 					})
-					.onn("error", () => {
-						img.attr("src", this.constructor._SRC_ERROR);
+					.vee.onn("error", () => {
+						img.vee.attr("src", this.constructor._SRC_ERROR);
 					});
-				meta.ele = ee`<a href="${imgLink}" class="ve-stats__wrp-token" target="_blank" rel="noopener noreferrer">${img}</a>`
-					.hideVe()
-					.appendTo(this._dispToken);
+				meta.ele = veT`<a href="${imgLink}" class="ve-stats__wrp-token" target="_blank" rel="noopener noreferrer">${img}</a>`
+					.vee.hide()
+					.vee.appendTo(this._dispToken);
 			}
 		};
 		altArtMeta.forEach(buildEle);
@@ -2506,43 +2516,43 @@ class ListPageTokenDisplay {
 
 			if (!~direction) { // left
 				if (ix === 0) {
-					btnLeft.attr("disabled", true);
-					wrpFooter.hideVe();
+					btnLeft.vee.attr("disabled", true);
+					wrpFooter.vee.hide();
 				}
-				btnRight.attr("disabled", false);
+				btnRight.vee.attr("disabled", false);
 			} else {
-				btnLeft.attr("disabled", false);
-				wrpFooter.showVe();
+				btnLeft.vee.attr("disabled", false);
+				wrpFooter.vee.show();
 				if (ix === altArtMeta.length - 1) {
-					btnRight.attr("disabled", true);
+					btnRight.vee.attr("disabled", true);
 				}
 			}
-			altArtMeta.filter(it => it.ele).forEach(it => it.ele.hideVe());
+			altArtMeta.filter(it => it.ele).forEach(it => it.ele.vee.hide());
 
 			const meta = altArtMeta[ix];
 			meta.ele
-				.showVe()
-				.css({"max-width": "100%"}); // Force full-width to catch hover event as token loads
-			setTimeout(() => meta.ele.css({"max-width": ""}), 150); // Clear full-width after grace period
+				.vee.show()
+				.vee.css({"max-width": "100%"}); // Force full-width to catch hover event as token loads
+			setTimeout(() => meta.ele.vee.css({"max-width": ""}), 150); // Clear full-width after grace period
 
-			footer.html(Renderer.utils.getRenderedAltArtEntry(meta));
+			footer.vee.html(Renderer.utils.getRenderedAltArtEntry(meta));
 
-			wrpFooter.detach().appendTo(meta.ele);
-			wrpBtns.detach().appendTo(meta.ele);
+			wrpFooter.vee.detach().vee.appendTo(meta.ele);
+			wrpBtns.vee.detach().vee.appendTo(meta.ele);
 		};
 
 		// append footer first to be behind buttons
-		const footer = ee`<div class="ve-stats__token-footer"></div>`;
-		const wrpFooter = ee`<div class="ve-stats__wrp-token-footer">${footer}</div>`.hideVe().appendTo(lnkToken);
+		const footer = veT`<div class="ve-stats__token-footer"></div>`;
+		const wrpFooter = veT`<div class="ve-stats__wrp-token-footer">${footer}</div>`.vee.hide().vee.appendTo(lnkToken);
 
-		const btnLeft = ee`<button class="ve-stats__btn-token-cycle ve-btn ve-btn-default ve-btn-xs" disabled><span class="glyphicon glyphicon-chevron-left"></span></button>`
-			.onn("click", evt => handleClick(evt, -1));
+		const btnLeft = veT`<button class="ve-stats__btn-token-cycle ve-btn ve-btn-default ve-btn-xs" disabled><span class="glyphicon glyphicon-chevron-left"></span></button>`
+			.vee.onn("click", evt => handleClick(evt, -1));
 
-		const btnRight = ee`<button class="ve-stats__btn-token-cycle ve-btn ve-btn-default ve-btn-xs"><span class="glyphicon glyphicon-chevron-right"></span></button>`
-			.onn("click", evt => handleClick(evt, 1));
+		const btnRight = veT`<button class="ve-stats__btn-token-cycle ve-btn ve-btn-default ve-btn-xs"><span class="glyphicon glyphicon-chevron-right"></span></button>`
+			.vee.onn("click", evt => handleClick(evt, 1));
 
-		const wrpBtns = ee`<div class="ve-flex-v-center ve-btn-group ve-absolute ve-stats__wrp-btn-token-cycle">${btnLeft}${btnRight}</div>`
-			.appendTo(lnkToken);
+		const wrpBtns = veT`<div class="ve-flex-v-center ve-btn-group ve-absolute ve-stats__wrp-btn-token-cycle">${btnLeft}${btnRight}</div>`
+			.vee.appendTo(lnkToken);
 	}
 }
 
@@ -2589,7 +2599,7 @@ class ListPageBookView extends BookModeViewBase {
 	}
 
 	_getEleNoneVisible () {
-		return ee`<div class="ve-w-100 ve-flex-col ve-flex-h-center ve-no-shrink no-print ve-mb-3 ve-mt-auto">
+		return veT`<div class="ve-w-100 ve-flex-col ve-flex-h-center ve-no-shrink no-print ve-mb-3 ve-mt-auto">
 			<div class="ve-mb-2 ve-flex-vh-center ve-min-h-0">
 				<span class="initial-message initial-message--med">If you wish to view multiple ${this._namePlural}, please first make a list</span>
 			</div>
@@ -2615,13 +2625,13 @@ class ListPageBookView extends BookModeViewBase {
 	async _pGetWrpControls ({wrpContent}) {
 		const out = await super._pGetWrpControls({wrpContent});
 		const {wrpPrint} = out;
-		if (this._propMarkdown) this._getControlsMarkdown().appendTo(wrpPrint);
-		if (this._isSublistItemsCountable) this._getControlsCount().appendTo(wrpPrint);
+		if (this._propMarkdown) this._getControlsMarkdown().vee.appendTo(wrpPrint);
+		if (this._isSublistItemsCountable) this._getControlsCount().vee.appendTo(wrpPrint);
 		return out;
 	}
 
 	async _pGetRenderContentMeta ({wrpContent, wrpContentOuter}) {
-		wrpContent.addClass("ve-p-2");
+		wrpContent.vee.addClass("ve-p-2");
 
 		this._bookViewToShow = this._sublistManager.getSublistedEntityMetas()
 			.sort(this._getSorted.bind(this));
@@ -2645,7 +2655,7 @@ class ListPageBookView extends BookModeViewBase {
 			stack.push(this._getRenderedEnt(this._fnGetEntLastLoaded()));
 		}
 
-		wrpContent.appends(stack.join(""));
+		wrpContent.vee.appends(stack.join(""));
 
 		return {
 			cntSelectedEnts: this._bookViewToShow.length,
@@ -2662,11 +2672,13 @@ class ListPageBookView extends BookModeViewBase {
 	}
 
 	_getVisibleAsMarkdown () {
-		const toRender = this._bookViewToShow?.length ? this._bookViewToShow : [this._fnGetEntLastLoaded()];
+		const toRender = this._bookViewToShow?.length
+			? this._bookViewToShow.map(({entity}) => entity)
+			: [this._fnGetEntLastLoaded()];
 		const parts = [...toRender]
 			.sort(this._getSorted.bind(this))
 			// Ignore count, as we presume markdown is not being printed
-			.map(({entity}) => this._getEntityMarkdown(entity));
+			.map(entity => this._getEntityMarkdown(entity));
 
 		const out = [];
 		let charLimit = RendererMarkdown.CHARS_PER_PAGE;
@@ -2686,19 +2698,19 @@ class ListPageBookView extends BookModeViewBase {
 	}
 
 	_getControlsMarkdown () {
-		const btnDownloadMarkdown = ee`<button class="ve-btn ve-btn-default ve-btn-sm">Download as Markdown</button>`
-			.onn("click", () => DataUtil.userDownloadText(`${UrlUtil.getCurrentPage().replace(".html", "")}.md`, this._getVisibleAsMarkdown()));
+		const btnDownloadMarkdown = veT`<button class="ve-btn ve-btn-default ve-btn-sm">Download as Markdown</button>`
+			.vee.onn("click", () => DataUtil.userDownloadText(`${UrlUtil.getCurrentPage().replace(".html", "")}.md`, this._getVisibleAsMarkdown()));
 
-		const btnCopyMarkdown = ee`<button class="ve-btn ve-btn-default ve-btn-sm ve-px-2" title="Copy Markdown to Clipboard"><span class="glyphicon glyphicon-copy"></span></button>`
-			.onn("click", async () => {
+		const btnCopyMarkdown = veT`<button class="ve-btn ve-btn-default ve-btn-sm ve-px-2" title="Copy Markdown to Clipboard"><span class="glyphicon glyphicon-copy"></span></button>`
+			.vee.onn("click", async () => {
 				await MiscUtil.pCopyTextToClipboard(this._getVisibleAsMarkdown());
 				JqueryUtil.showCopiedEffect(btnCopyMarkdown);
 			});
 
-		const btnDownloadMarkdownSettings = ee`<button class="ve-btn ve-btn-default ve-btn-sm ve-px-2" title="Markdown Settings"><span class="glyphicon glyphicon-cog"></span></button>`
-			.onn("click", async () => RendererMarkdown.pShowSettingsModal());
+		const btnDownloadMarkdownSettings = veT`<button class="ve-btn ve-btn-default ve-btn-sm ve-px-2" title="Markdown Settings"><span class="glyphicon glyphicon-cog"></span></button>`
+			.vee.onn("click", async () => RendererMarkdown.pShowSettingsModal());
 
-		return ee`<div class="ve-flex-v-center ve-btn-group ve-ml-3">
+		return veT`<div class="ve-flex-v-center ve-btn-group ve-ml-3">
 			${btnDownloadMarkdown}
 			${btnCopyMarkdown}
 			${btnDownloadMarkdownSettings}
@@ -2713,7 +2725,7 @@ class ListPageBookView extends BookModeViewBase {
 		this._comp._addHookBase("isRenderCopies", hkIsRenderCopies);
 		this._fnsCleanupCompRender.push(() => this._comp._removeHookBase("isRenderCopies", hkIsRenderCopies));
 
-		return ee`<label class="ve-flex-vh-center ve-ml-3">
+		return veT`<label class="ve-flex-vh-center ve-ml-3">
 			<span class="ve-mr-2 ve-help" title="If enabled, each copy of a listed ${this._nameSingular} will be displayed separately. This may be preferable when printing handouts.">Show Duplicates</span>
 			${cbIsRenderCopies}
 		</label>`;

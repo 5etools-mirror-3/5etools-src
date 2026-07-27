@@ -305,21 +305,21 @@ export class RangeFilter extends FilterBase {
 			this,
 			"isUseDropdowns",
 			{
-				ele: ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">Show as Dropdowns</button>`,
+				ele: veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">Show as Dropdowns</button>`,
 				stateName: "uiMeta",
 				stateProp: "_uiMeta",
 			},
 		);
-		const btnReset = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Reset</button>`.onn("click", () => this.reset());
-		const wrpBtns = ee`<div>${btnForceMobile}${btnReset}</div>`;
+		const btnReset = veT`<button class="ve-btn ve-btn-default ve-btn-xs">Reset</button>`.vee.onn("click", () => this.reset());
+		const wrpBtns = veT`<div>${btnForceMobile}${btnReset}</div>`;
 
-		const wrpSummary = ee`<div class="ve-flex-v-center ve-fltr__summary_item ve-fltr__summary_item--include"></div>`.hideVe();
+		const wrpSummary = veT`<div class="ve-flex-v-center ve-fltr__summary_item ve-fltr__summary_item--include"></div>`.vee.hide();
 
 		const btnShowHide = this._getBtnShowHide();
 		const hkIsHidden = () => {
-			btnShowHide.toggleClass("ve-active", this._uiMeta.isHidden);
-			wrpBtns.toggleVe(!this._uiMeta.isHidden);
-			wrpSummary.toggleVe(this._uiMeta.isHidden);
+			btnShowHide.vee.toggleClass("ve-active", this._uiMeta.isHidden);
+			wrpBtns.vee.toggle(!this._uiMeta.isHidden);
+			wrpSummary.vee.toggle(this._uiMeta.isHidden);
 
 			// Skip updating renders if results would be invisible
 			if (!this._uiMeta.isHidden) return;
@@ -327,14 +327,14 @@ export class RangeFilter extends FilterBase {
 			// render summary
 			const {summaryTitle, summary} = this._getDisplaySummary();
 			wrpSummary
-				.tooltip(summaryTitle)
-				.txt(summary);
+				.vee.tooltip(summaryTitle)
+				.vee.txt(summary);
 		};
 		this._addHook("uiMeta", "isHidden", hkIsHidden);
 		this._addHookAll("state", hkIsHidden);
 		hkIsHidden();
 
-		return ee`
+		return veT`
 		<div class="ve-flex-v-center">
 			${wrpBtns}
 			${wrpSummary}
@@ -376,11 +376,11 @@ export class RangeFilter extends FilterBase {
 
 		const wrpControls = opts.isMulti ? null : this._getHeaderControls();
 
-		const wrpSlider = ee`<div class="ve-fltr__wrp-pills ve-fltr__wrp-pills--flex"></div>`;
-		const wrpDropdowns = ee`<div class="ve-fltr__wrp-pills ve-fltr__wrp-pills--flex"></div>`;
+		const wrpSlider = veT`<div class="ve-fltr__wrp-pills ve-fltr__wrp-pills--flex"></div>`;
+		const wrpDropdowns = veT`<div class="ve-fltr__wrp-pills ve-fltr__wrp-pills--flex"></div>`;
 		const hookHidden = () => {
-			wrpSlider.toggleVe(!this._uiMeta.isHidden && !this._uiMeta.isUseDropdowns);
-			wrpDropdowns.toggleVe(!this._uiMeta.isHidden && !!this._uiMeta.isUseDropdowns);
+			wrpSlider.vee.toggle(!this._uiMeta.isHidden && !this._uiMeta.isUseDropdowns);
+			wrpDropdowns.vee.toggle(!this._uiMeta.isHidden && !!this._uiMeta.isUseDropdowns);
 		};
 		this._addHook("uiMeta", "isHidden", hookHidden);
 		this._addHook("uiMeta", "isUseDropdowns", hookHidden);
@@ -428,37 +428,37 @@ export class RangeFilter extends FilterBase {
 		hkUpdateLabelSearchCache();
 
 		this._slider = new ComponentUiUtil.RangeSlider({comp: this, ...getSliderOpts()});
-		wrpSlider.appends(this._slider.get());
+		wrpSlider.vee.appends(this._slider.get());
 		// endregion
 
 		// region Dropdowns
-		const selMin = e_({
+		const selMin = veE({
 			tag: "select",
 			clazz: `ve-form-control ve-mr-2`,
 			change: () => {
-				const nxtMin = Number(selMin.val());
+				const nxtMin = Number(selMin.vee.val());
 				const [min, max] = [nxtMin, this._state.curMax].sort(SortUtil.ascSort);
 				this._state.curMin = min;
 				this._state.curMax = max;
 			},
 		});
-		const selMax = e_({
+		const selMax = veE({
 			tag: "select",
 			clazz: `ve-form-control`,
 			change: () => {
-				const nxMax = Number(selMax.val());
+				const nxMax = Number(selMax.vee.val());
 				const [min, max] = [this._state.curMin, nxMax].sort(SortUtil.ascSort);
 				this._state.curMin = min;
 				this._state.curMax = max;
 			},
 		});
-		ee`<div class="ve-flex-v-center ve-w-100 ve-px-3 ve-py-1">${selMin}${selMax}</div>`.appendTo(wrpDropdowns);
+		veT`<div class="ve-flex-v-center ve-w-100 ve-px-3 ve-py-1">${selMin}${selMax}</div>`.vee.appendTo(wrpDropdowns);
 		// endregion
 
 		const handleCurUpdate = () => {
 			// Dropdowns
-			selMin.val(`${this._state.curMin}`);
-			selMax.val(`${this._state.curMax}`);
+			selMin.vee.val(`${this._state.curMin}`);
+			selMax.vee.val(`${this._state.curMax}`);
 		};
 
 		const handleLimitUpdate = () => {
@@ -476,10 +476,10 @@ export class RangeFilter extends FilterBase {
 
 		if (opts.isMulti) {
 			this._slider.get().classList.add("ve-grow");
-			wrpSlider.addClass("ve-grow");
-			wrpDropdowns.addClass("ve-grow");
+			wrpSlider.vee.addClass("ve-grow");
+			wrpDropdowns.vee.addClass("ve-grow");
 
-			return this.__wrpFilter = ee`<div class="ve-flex">
+			return this.__wrpFilter = veT`<div class="ve-flex">
 				<div class="ve-fltr__range-inline-label ve-mr-2">${this._getRenderedHeader()}</div>
 				${wrpSlider}
 				${wrpDropdowns}
@@ -487,7 +487,7 @@ export class RangeFilter extends FilterBase {
 		} else {
 			const btnMobToggleControls = this._getBtnMobToggleControls(wrpControls);
 
-			return this.__wrpFilter = ee`<div class="ve-flex-col">
+			return this.__wrpFilter = veT`<div class="ve-flex-col">
 				${opts.isFirst ? "" : `<div class="ve-fltr__dropdown-divider ve-mb-1"></div>`}
 				<div class="ve-split ve-fltr__h ${this._minimalUi ? "ve-fltr__minimal-hide" : ""} ve-mb-1">
 					<div class="ve-fltr__h-text ve-flex-h-center">${this._getRenderedHeader()}${btnMobToggleControls}</div>
@@ -506,57 +506,57 @@ export class RangeFilter extends FilterBase {
 		this.__wrpMini = opts.wrpMini;
 
 		// region Mini pills
-		this._btnMiniGt = this._btnMiniGt || ee`<div class="ve-fltr__mini-pill" data-state="${PILL_STATES[PILL_STATE__IGNORE]}"></div>`
-			.onn("click", () => {
+		this._btnMiniGt = this._btnMiniGt || veT`<div class="ve-fltr__mini-pill" data-state="${PILL_STATES[PILL_STATE__IGNORE]}"></div>`
+			.vee.onn("click", () => {
 				this._state.curMin = this._state.min;
 				this._filterBox.fireChangeEvent();
 			});
-		this._btnMiniGt.appendTo(this.__wrpMini);
+		this._btnMiniGt.vee.appendTo(this.__wrpMini);
 
-		this._btnMiniLt = this._btnMiniLt || ee`<div class="ve-fltr__mini-pill" data-state="${PILL_STATES[PILL_STATE__IGNORE]}"></div>`
-			.onn("click", () => {
+		this._btnMiniLt = this._btnMiniLt || veT`<div class="ve-fltr__mini-pill" data-state="${PILL_STATES[PILL_STATE__IGNORE]}"></div>`
+			.vee.onn("click", () => {
 				this._state.curMax = this._state.max;
 				this._filterBox.fireChangeEvent();
 			});
-		this._btnMiniLt.appendTo(this.__wrpMini);
+		this._btnMiniLt.vee.appendTo(this.__wrpMini);
 
-		this._btnMiniEq = this._btnMiniEq || ee`<div class="ve-fltr__mini-pill" data-state="${PILL_STATES[PILL_STATE__IGNORE]}"></div>`
-			.onn("click", () => {
+		this._btnMiniEq = this._btnMiniEq || veT`<div class="ve-fltr__mini-pill" data-state="${PILL_STATES[PILL_STATE__IGNORE]}"></div>`
+			.vee.onn("click", () => {
 				this._state.curMin = this._state.min;
 				this._state.curMax = this._state.max;
 				this._filterBox.fireChangeEvent();
 			});
-		this._btnMiniEq.appendTo(this.__wrpMini);
+		this._btnMiniEq.vee.appendTo(this.__wrpMini);
 
 		const hideHook = () => {
 			const isHidden = this._filterBox.isMinisHidden(this.header);
-			this._btnMiniGt.toggleClass("ve-hidden", isHidden);
-			this._btnMiniLt.toggleClass("ve-hidden", isHidden);
-			this._btnMiniEq.toggleClass("ve-hidden", isHidden);
+			this._btnMiniGt.vee.toggleClass("ve-hidden", isHidden);
+			this._btnMiniLt.vee.toggleClass("ve-hidden", isHidden);
+			this._btnMiniEq.vee.toggleClass("ve-hidden", isHidden);
 		};
 		this._filterBox.registerMinisHiddenHook(this.header, hideHook);
 		hideHook();
 
 		const handleMiniUpdate = () => {
 			if (this._state.curMin === this._state.curMax) {
-				this._btnMiniGt.attr("data-state", PILL_STATES[PILL_STATE__IGNORE]);
-				this._btnMiniLt.attr("data-state", PILL_STATES[PILL_STATE__IGNORE]);
+				this._btnMiniGt.vee.attr("data-state", PILL_STATES[PILL_STATE__IGNORE]);
+				this._btnMiniLt.vee.attr("data-state", PILL_STATES[PILL_STATE__IGNORE]);
 
 				this._btnMiniEq
-					.attr("data-state", this._isAtDefaultPosition() ? PILL_STATES[PILL_STATE__IGNORE] : PILL_STATES[PILL_STATE__YES])
-					.txt(`${this._getHeaderDisplayName()} = ${this._getDisplayText(this._state.curMin, {isBeyondMax: this._isAllowGreater && this._state.curMin === this._state.max})}`);
+					.vee.attr("data-state", this._isAtDefaultPosition() ? PILL_STATES[PILL_STATE__IGNORE] : PILL_STATES[PILL_STATE__YES])
+					.vee.txt(`${this._getHeaderDisplayName()} = ${this._getDisplayText(this._state.curMin, {isBeyondMax: this._isAllowGreater && this._state.curMin === this._state.max})}`);
 			} else {
 				if (this._state.min !== this._state.curMin) {
-					this._btnMiniGt.attr("data-state", PILL_STATES[PILL_STATE__YES])
-						.txt(`${this._getHeaderDisplayName()} ≥ ${this._getDisplayText(this._state.curMin)}`);
-				} else this._btnMiniGt.attr("data-state", PILL_STATES[PILL_STATE__IGNORE]);
+					this._btnMiniGt.vee.attr("data-state", PILL_STATES[PILL_STATE__YES])
+						.vee.txt(`${this._getHeaderDisplayName()} ≥ ${this._getDisplayText(this._state.curMin)}`);
+				} else this._btnMiniGt.vee.attr("data-state", PILL_STATES[PILL_STATE__IGNORE]);
 
 				if (this._state.max !== this._state.curMax) {
-					this._btnMiniLt.attr("data-state", PILL_STATES[PILL_STATE__YES])
-						.txt(`${this._getHeaderDisplayName()} ≤ ${this._getDisplayText(this._state.curMax)}`);
-				} else this._btnMiniLt.attr("data-state", PILL_STATES[PILL_STATE__IGNORE]);
+					this._btnMiniLt.vee.attr("data-state", PILL_STATES[PILL_STATE__YES])
+						.vee.txt(`${this._getHeaderDisplayName()} ≤ ${this._getDisplayText(this._state.curMax)}`);
+				} else this._btnMiniLt.vee.attr("data-state", PILL_STATES[PILL_STATE__IGNORE]);
 
-				this._btnMiniEq.attr("data-state", PILL_STATES[PILL_STATE__IGNORE]);
+				this._btnMiniEq.vee.attr("data-state", PILL_STATES[PILL_STATE__IGNORE]);
 			}
 		};
 		// endregion
@@ -612,9 +612,9 @@ export class RangeFilter extends FilterBase {
 
 		// (labels will be automatically updated by the slider handlers)
 		// always render the mini-pills, to ensure the overall order in the grid stays correct (shared between multiple filters)
-		if (this._btnMiniGt) this.__wrpMini.appends(this._btnMiniGt);
-		if (this._btnMiniLt) this.__wrpMini.appends(this._btnMiniLt);
-		if (this._btnMiniEq) this.__wrpMini.appends(this._btnMiniEq);
+		if (this._btnMiniGt) this.__wrpMini.vee.appends(this._btnMiniGt);
+		if (this._btnMiniLt) this.__wrpMini.vee.appends(this._btnMiniLt);
+		if (this._btnMiniEq) this.__wrpMini.vee.appends(this._btnMiniEq);
 	}
 
 	toDisplay (boxState, entryVal) {
@@ -736,7 +736,7 @@ export class RangeFilter extends FilterBase {
 				? this._labelSearchCache.includes(searchTerm)
 				: [...new Array(this._state.max - this._state.min)].map((_, n) => n + this._state.min).join(" -- ").includes(searchTerm));
 
-		this.__wrpFilter.toggleClass("ve-fltr__hidden--search", !isVisible);
+		this.__wrpFilter.vee.toggleClass("ve-fltr__hidden--search", !isVisible);
 
 		return isVisible;
 	}

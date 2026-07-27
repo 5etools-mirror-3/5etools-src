@@ -5,7 +5,7 @@ import * as ut from "./util.js";
 import "../js/utils.js";
 
 const BLOCKLIST_FILE_PREFIXES = [
-	...ut.FILE_PREFIX_BLOCKLIST,
+	...ut.BLOCKLIST_FILE_PREFIXES,
 
 	"foundry-",
 	"foundry.json",

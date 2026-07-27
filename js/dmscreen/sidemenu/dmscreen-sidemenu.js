@@ -18,17 +18,17 @@ export class DmScreenSideMenu extends BaseComponent {
 	/* -------------------------------------------- */
 
 	init () {
-		this._wrpSideMenuControls = es(`#dm-screen-sidemenu-controls`);
+		this._wrpSideMenuControls = veEs(`#dm-screen-sidemenu-controls`);
 
-		this._wrpSideMenuControls.onn("mouseover", () => {
+		this._wrpSideMenuControls.vee.onn("mouseover", () => {
 			this._board.setHoveringPanel(null);
 			this._board.setVisiblyHoveringPanel(false);
 			this._board.resetHoveringButton();
 		});
 
 		this._addHookBase("isFullscreen", () => {
-			this._wrpSideMenuControls.toggleClass("ve-mt-3p", !this._state.isFullscreen);
-			this._wrpSideMenuControls.toggleClass("ve-bt-1p", !this._state.isFullscreen);
+			this._wrpSideMenuControls.vee.toggleClass("ve-mt-3p", !this._state.isFullscreen);
+			this._wrpSideMenuControls.vee.toggleClass("ve-bt-1p", !this._state.isFullscreen);
 
 			this._compHistory.setIsFullscreen(this._state.isFullscreen);
 		})();
@@ -101,7 +101,7 @@ export class DmScreenSideMenu extends BaseComponent {
 	/* -------------------------------------------- */
 
 	_render_getWrpSaveSlots () {
-		const wrp = ee`<div class="ve-flex-col ve-mb-2 ve-min-h-0 ve-overflow-y-auto"></div>`;
+		const wrp = veT`<div class="ve-flex-col ve-mb-2 ve-min-h-0 ve-overflow-y-auto"></div>`;
 
 		const renderableCollection = new RenderableCollectionSaveSlotStatesSidebar({
 			board: this._board,
@@ -119,8 +119,8 @@ export class DmScreenSideMenu extends BaseComponent {
 	/* ----- */
 
 	_render_getBtnNewSaveSlot () {
-		return ee`<button class="ve-btn ve-btn-default ve-bc-0 ve-bb-0 ve-br-0 ve-bl-0" title="New Save Slot"><span class="glyphicon glyphicon-plus"></span></button>`
-			.onn("click", async () => {
+		return veT`<button class="ve-btn ve-btn-default ve-bc-0 ve-bb-0 ve-br-0 ve-bl-0" title="New Save Slot"><span class="glyphicon glyphicon-plus"></span></button>`
+			.vee.onn("click", async () => {
 				await this._board.pHandleClick_doNewSaveSlot({isActive: true});
 			});
 	}
@@ -156,7 +156,7 @@ export class DmScreenSideMenu extends BaseComponent {
 			),
 		]);
 
-		const wrpRenderableCollection = ee`<div class="ve-flex-col ve-w-100 ve-h-100 ve-min-h-0 ve-relative"></div>`;
+		const wrpRenderableCollection = veT`<div class="ve-flex-col ve-w-100 ve-h-100 ve-min-h-0 ve-relative"></div>`;
 
 		const menuRowOptions = ContextUtil.getMenu([
 			new ContextUtil.Action(
@@ -180,8 +180,8 @@ export class DmScreenSideMenu extends BaseComponent {
 			renderableCollection.render();
 		})();
 
-		return ee`<button class="ve-btn ve-btn-default ve-bc-0 ve-br-0 ve-bl-0 ve-mb-4" title="View/Manage Save Slots"><span class="glyphicon glyphicon-folder-open"></span></button>`
-			.onn("click", async () => {
+		return veT`<button class="ve-btn ve-btn-default ve-bc-0 ve-br-0 ve-bl-0 ve-mb-4" title="View/Manage Save Slots"><span class="glyphicon glyphicon-folder-open"></span></button>`
+			.vee.onn("click", async () => {
 				isModalActive = true;
 				renderableCollection.render();
 
@@ -191,28 +191,28 @@ export class DmScreenSideMenu extends BaseComponent {
 					isUncappedHeight: true,
 					isHeaderBorder: true,
 					cbClose: () => {
-						wrpRenderableCollection.detach();
+						wrpRenderableCollection.vee.detach();
 						isModalActive = false;
 					},
 				});
 
 				renderableCollection.setFnCloseModal(doClose);
-				eleModalInner.addClass("ve-py-2");
+				eleModalInner.vee.addClass("ve-py-2");
 
-				const btnMass = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">Mass...</button>`
-					.onn("click", async evt => {
+				const btnMass = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">Mass...</button>`
+					.vee.onn("click", async evt => {
 						await ContextUtil.pOpenMenu(evt, menuMass);
 					});
 
-				const btnAddSlot = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2"><span class="glyphicon glyphicon-plus"></span> New Save Slot</button>`
-					.onn("click", async () => {
+				const btnAddSlot = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2"><span class="glyphicon glyphicon-plus"></span> New Save Slot</button>`
+					.vee.onn("click", async () => {
 						await this._board.pHandleClick_doNewSaveSlot();
 					});
 
-				const cbMulti = ee`<input type="checkbox">`;
+				const cbMulti = veT`<input type="checkbox">`;
 				selectClickHandler.bindSelectAllCheckbox(cbMulti);
 
-				ee(eleModalInner)`
+				veT(eleModalInner)`
 					<div class="ve-w-100 ve-flex-col ve-mb-1">
 						<div class="ve-flex-v-center">
 							${btnMass}
@@ -231,34 +231,34 @@ export class DmScreenSideMenu extends BaseComponent {
 						<button class="ve-btn ve-btn-default ve-btn-xs ve-col-7" title="A longer name, show in tooltips and lists." disabled>Name</button>
 						<button class="ve-btn ve-btn-default ve-btn-xs ve-grow" disabled>&nbsp;</button>
 					</div>
-					
+
 					${wrpRenderableCollection}
 				`;
 			});
 	}
 
 	_render_saveSlots () {
-		ee`<div class="ve-flex-col ve-min-h-0">
+		veT`<div class="ve-flex-col ve-min-h-0">
 			${this._render_getWrpSaveSlots()}
-			
+
 			${this._render_getBtnNewSaveSlot()}
 			${this._render_getBtnOpenSaveSlot()}
 		</div>`
-			.appendTo(this._wrpSideMenuControls);
+			.vee.appendTo(this._wrpSideMenuControls);
 	}
 
 	/* -------------------------------------------- */
 
 	_render_getBtnSaveToFile () {
-		return ee`<button class="ve-btn ve-btn-primary ve-bc-0 ve-bb-0 ve-br-0 ve-bl-0" title="Save State to File"><span class="glyphicon glyphicon-download"></span></button>`
-			.onn("click", () => {
+		return veT`<button class="ve-btn ve-btn-primary ve-bc-0 ve-bb-0 ve-br-0 ve-bl-0" title="Save State to File"><span class="glyphicon glyphicon-download"></span></button>`
+			.vee.onn("click", () => {
 				DataUtil.userDownload(`dm-screen`, this._board.getSaveableState(), {fileType: "dm-screen"});
 			});
 	}
 
 	_render_getBtnLoadFromFile () {
-		return ee`<button class="ve-btn ve-btn-primary ve-bc-0 ve-bb-0 ve-br-0 ve-bl-0" title="Load State from File (SHIFT to Add to Existing State)"><span class="glyphicon glyphicon-upload"></span></button>`
-			.onn("click", async evt => {
+		return veT`<button class="ve-btn ve-btn-primary ve-bc-0 ve-bb-0 ve-br-0 ve-bl-0" title="Load State from File (SHIFT to Add to Existing State)"><span class="glyphicon glyphicon-upload"></span></button>`
+			.vee.onn("click", async evt => {
 				const isCombine = !!evt.shiftKey;
 
 				const {jsons, errors} = await InputUiUtil.pGetUserUploadJson({expectedFileTypes: ["dm-screen"]});
@@ -271,8 +271,8 @@ export class DmScreenSideMenu extends BaseComponent {
 	}
 
 	_render_getBtnSaveToUrl () {
-		const btnSaveLink = ee`<button class="ve-btn ve-btn-primary ve-bc-0 ve-br-0 ve-bl-0 ve-mb-1" title="Save State to URL"><span class="glyphicon glyphicon-magnet"></span></button>`
-			.onn("click", async () => {
+		const btnSaveLink = veT`<button class="ve-btn ve-btn-primary ve-bc-0 ve-br-0 ve-bl-0 ve-mb-1" title="Save State to URL"><span class="glyphicon glyphicon-magnet"></span></button>`
+			.vee.onn("click", async () => {
 				const encoded = `${window.location.href.split("#")[0]}#${encodeURIComponent(JSON.stringify(this._board.getSaveableState()))}`;
 				await MiscUtil.pCopyTextToClipboard(encoded);
 				JqueryUtil.showCopiedEffect(btnSaveLink);
@@ -283,14 +283,14 @@ export class DmScreenSideMenu extends BaseComponent {
 	/* ----- */
 
 	_render_getBtnReset () {
-		return ee`<button class="ve-btn ve-btn-danger ve-bc-0 ve-br-0 ve-bl-0 ve-mb-4" title="Reset Save Slot (SHIFT to Reset All)"><span class="glyphicon glyphicon-refresh"></span></button>`
-			.onn("click", async evt => {
+		return veT`<button class="ve-btn ve-btn-danger ve-bc-0 ve-br-0 ve-bl-0 ve-mb-4" title="Reset Save Slot (SHIFT to Reset All)"><span class="glyphicon glyphicon-refresh"></span></button>`
+			.vee.onn("click", async evt => {
 				const isAll = !!evt.shiftKey;
 
 				const comp = BaseComponent.fromObject({isRetainWidthHeight: true});
 				const cbKeepWidthHeight = ComponentUiUtil.getCbBool(comp, "isRetainWidthHeight");
 
-				const eleDescription = ee`<div class="ve-w-320p">
+				const eleDescription = veT`<div class="ve-w-320p">
 					<label class="ve-split-v-center ve-mb-2"><span>Keep Current Width/Height</span> ${cbKeepWidthHeight}</label>
 					<hr class="ve-hr-1">
 					<div>Are you sure?</div>
@@ -310,17 +310,17 @@ export class DmScreenSideMenu extends BaseComponent {
 	/* ----- */
 
 	_render_getBtnToggleLock () {
-		const btnLockPanels = ee`<button class="ve-btn ve-btn-default ve-bc-0 ve-bb-0 ve-br-0 ve-bl-0" title="Toggle Panel Lock"><span class="glyphicon glyphicon-lock"></span></button>`
-			.onn("click", () => this._board.doToggleLocked());
-		this._addHookBase("isLocked", () => btnLockPanels.toggleClass("ve-active", this._state.isLocked))();
+		const btnLockPanels = veT`<button class="ve-btn ve-btn-default ve-bc-0 ve-bb-0 ve-br-0 ve-bl-0" title="Toggle Panel Lock"><span class="glyphicon glyphicon-lock"></span></button>`
+			.vee.onn("click", () => this._board.doToggleLocked());
+		this._addHookBase("isLocked", () => btnLockPanels.vee.toggleClass("ve-active", this._state.isLocked))();
 
 		return btnLockPanels;
 	}
 
 	_render_getBtnToggleFullscreen () {
-		const btnFullscreen = ee`<button class="ve-btn ve-btn-default ve-bc-0 ve-br-0 ve-bl-0 ve-mb-4" title="Toggle Fullscreen"><span class="glyphicon glyphicon-fullscreen"></span></button>`
-			.onn("click", () => this._board.doToggleFullscreen());
-		this._addHookBase("isFullscreen", () => btnFullscreen.toggleClass("ve-active", this._state.isFullscreen))();
+		const btnFullscreen = veT`<button class="ve-btn ve-btn-default ve-bc-0 ve-br-0 ve-bl-0 ve-mb-4" title="Toggle Fullscreen"><span class="glyphicon glyphicon-fullscreen"></span></button>`
+			.vee.onn("click", () => this._board.doToggleFullscreen());
+		this._addHookBase("isFullscreen", () => btnFullscreen.vee.toggleClass("ve-active", this._state.isFullscreen))();
 
 		return btnFullscreen;
 	}
@@ -328,8 +328,8 @@ export class DmScreenSideMenu extends BaseComponent {
 	/* ----- */
 
 	_render_getBtnSettings () {
-		return ee`<button class="ve-btn ve-btn-default ve-bc-0 ve-bb-0 ve-br-0 ve-bl-0" title="Settings"><span class="glyphicon glyphicon-cog"></span></button>`
-			.onn("click", () => {
+		return veT`<button class="ve-btn ve-btn-default ve-bc-0 ve-bb-0 ve-br-0 ve-bl-0" title="Settings"><span class="glyphicon glyphicon-cog"></span></button>`
+			.vee.onn("click", () => {
 				const {eleModalInner, eleModalFooter, doClose} = UiUtil.getShowModal({
 					title: "Settings",
 					isUncappedWidth: true,
@@ -339,23 +339,23 @@ export class DmScreenSideMenu extends BaseComponent {
 					overlayColor: "transparent",
 					hasFooter: true,
 				});
-				eleModalInner.addClass("ve-py-2");
+				eleModalInner.vee.addClass("ve-py-2");
 
-				const btnClose = ee`<button class="ve-btn ve-btn-default ve-btn-sm ve-ml-auto">Close</button>`
-					.onn("click", () => doClose());
+				const btnClose = veT`<button class="ve-btn ve-btn-default ve-btn-sm ve-ml-auto">Close</button>`
+					.vee.onn("click", () => doClose());
 
-				ee`<div class="ve-py-1 ve-w-100 ve-flex-v-center">
+				veT`<div class="ve-py-1 ve-w-100 ve-flex-v-center">
 					${btnClose}
 				</div>`
-					.appendTo(eleModalFooter);
+					.vee.appendTo(eleModalFooter);
 
-				const iptWidth = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-text-center ve-mr-1" type="number" value="${this._board.width}" title="Width">`;
-				const iptHeight = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-text-center ve-mr-1" type="number" value="${this._board.height}" title="Height">`;
+				const iptWidth = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-text-center ve-mr-1" type="number" value="${this._board.width}" title="Width">`;
+				const iptHeight = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-text-center ve-mr-1" type="number" value="${this._board.height}" title="Height">`;
 
-				const btnSetDim = ee`<button class="ve-btn ve-btn-default ve-ml-auto ve-btn-xs">Set Dimensions</div>`
-					.onn("click", async () => {
-						const w = Number(iptWidth.val());
-						const h = Number(iptHeight.val());
+				const btnSetDim = veT`<button class="ve-btn ve-btn-default ve-ml-auto ve-btn-xs">Set Dimensions</div>`
+					.vee.onn("click", async () => {
+						const w = Number(iptWidth.vee.val());
+						const h = Number(iptHeight.vee.val());
 
 						if (w > 10 || h > 10) {
 							if (!await InputUiUtil.pGetUserBoolean({title: "Too Many Panels", htmlDescription: "That's a lot of panels. Are you sure?", textYes: "Yes", textNo: "Cancel"})) return;
@@ -364,7 +364,7 @@ export class DmScreenSideMenu extends BaseComponent {
 						this._board.setDimensions(w, h);
 					});
 
-				ee`<div class="ve-py-1 ve-w-100 ve-split-v-center">
+				veT`<div class="ve-py-1 ve-w-100 ve-split-v-center">
 					<div class="ve-w-66 ve-no-shrink ve-flex-v-center">Dimensions</div>
 					<div class="ve-flex-v-center">
 						${iptWidth}
@@ -374,29 +374,61 @@ export class DmScreenSideMenu extends BaseComponent {
 						<div title="Height">h.</div>
 					</div>
 				</div>`
-					.appendTo(eleModalInner);
+					.vee.appendTo(eleModalInner);
 
-				ee`<div class="ve-py-1 ve-w-100 ve-split-v-center">
+				veT`<div class="ve-py-1 ve-w-100 ve-split-v-center">
 					<div class="ve-w-66 ve-no-shrink"></div>
 					${btnSetDim}
 				</div>`
-					.appendTo(eleModalInner);
+					.vee.appendTo(eleModalInner);
 
-				ee`<hr class="ve-hr-3">`.appendTo(eleModalInner);
+				veT`<hr class="ve-hr-3">`.vee.appendTo(eleModalInner);
 
-				this._board.cbConfirmTabClose = ee`<input type="checkbox">`;
-				ee`<label class="ve-py-1 ve-w-100 ve-split-v-center">
+				const compSettings = this._board.getCompSettings();
+
+				veT`<label class="ve-py-1 ve-w-100 ve-split-v-center">
 					<span class="ve-w-66 ve-no-shrink ve-flex-v-center">Confirm on Panel Tab Close</span>
-					${this._board.cbConfirmTabClose}
+					${ComponentUiUtil.getCbBool(compSettings, "isConfirmOnPanelTabClose")}
 				</label>`
-					.appendTo(eleModalInner);
+					.vee.appendTo(eleModalInner);
+
+				veT`<label class="ve-py-1 ve-w-100 ve-split-v-center">
+					<span class="ve-w-66 ve-no-shrink ve-flex-v-center">Enable History</span>
+					${ComponentUiUtil.getCbBool(compSettings, "isHistoryEnabled")}
+				</label>`
+					.vee.appendTo(eleModalInner);
+
+				const iptHistorySize = ComponentUiUtil.getIptInt(
+					compSettings,
+					"historySize",
+					10,
+					{
+						min: 1,
+						max: 99,
+					},
+				);
+				compSettings._addHookBase("isHistoryEnabled", () => iptHistorySize.vee.prop("disabled", !compSettings.getIsHistoryEnabled()))();
+
+				veT`<label class="ve-py-1 ve-w-100 ve-split-v-center">
+					<span class="ve-w-66 ve-no-shrink ve-flex-v-center">History Size</span>
+					${iptHistorySize}
+				</label>`
+					.vee.appendTo(eleModalInner);
+
+				veT`<hr class="ve-hr-3">`.vee.appendTo(eleModalInner);
+
+				veT`<label class="ve-py-1 ve-w-100 ve-split-v-center">
+					<span class="ve-w-66 ve-no-shrink ve-flex-v-center">Preserve Embeds on Save Slot Change</span>
+					${ComponentUiUtil.getCbBool(compSettings, "isPreserveEmbedsOnSaveSlotChange")}
+				</label>`
+					.vee.appendTo(eleModalInner);
 			});
 	}
 
 	/* ----- */
 
 	_render_footer () {
-		ee`<div class="ve-flex-col ve-mt-auto">
+		veT`<div class="ve-flex-col ve-mt-auto">
 			${this._compHistory.getBtnToggle()}
 
 			${this._render_getBtnSaveToFile()}
@@ -406,10 +438,10 @@ export class DmScreenSideMenu extends BaseComponent {
 
 			${this._render_getBtnToggleLock()}
 			${this._render_getBtnToggleFullscreen()}
-	
+
 			${this._render_getBtnSettings()}
 		</div>`
-			.appendTo(this._wrpSideMenuControls);
+			.vee.appendTo(this._wrpSideMenuControls);
 	}
 
 	doUpdateHistory () {

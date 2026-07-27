@@ -1,5 +1,6 @@
 import fs from "fs";
 import https from "https";
+import * as pathlib from "path";
 
 function readJson (path) {
 	try {
@@ -20,7 +21,7 @@ const FILE_EXTENSION_ALLOWLIST = [
 	".json",
 ];
 
-const FILE_PREFIX_BLOCKLIST = [
+export const BLOCKLIST_FILE_PREFIXES = [
 	"bookref-",
 	"gendata-",
 ];
@@ -29,11 +30,11 @@ const DIR_PREFIX_BLOCKLIST = [
 	"_",
 ];
 
-const DIR_BLOCKLIST = [
+export const BLOCKLIST_DIRS = new Set([
 	".git",
 	".idea",
 	"node_modules",
-];
+]);
 
 /**
  * Recursively list all files in a directory.
@@ -48,27 +49,27 @@ const DIR_BLOCKLIST = [
  */
 function listFiles (opts) {
 	opts = opts || {};
-	opts.dir = opts.dir ?? "./data";
-	opts.blocklistFilePrefixes = opts.blocklistFilePrefixes === undefined ? FILE_PREFIX_BLOCKLIST : opts.blocklistFilePrefixes;
+	opts.dir = opts.dir ?? "data";
+	opts.blocklistFilePrefixes = opts.blocklistFilePrefixes === undefined ? BLOCKLIST_FILE_PREFIXES : opts.blocklistFilePrefixes;
 	opts.blocklistDirPrefixes = opts.blocklistDirPrefixes === undefined ? DIR_PREFIX_BLOCKLIST : opts.blocklistDirPrefixes;
 	opts.allowlistFileExts = opts.allowlistFileExts === undefined ? FILE_EXTENSION_ALLOWLIST : opts.allowlistFileExts;
 	opts.allowlistDirs = opts.allowlistDirs || null;
-	opts.blocklistDirs = opts.blocklistDirs === undefined ? DIR_BLOCKLIST : opts.blocklistDirs;
+	opts.blocklistDirs = opts.blocklistDirs === undefined ? BLOCKLIST_DIRS : new Set(opts.blocklistDirs);
 
 	const dirContent = fs.readdirSync(opts.dir, "utf8")
 		.filter(file => {
-			const path = `${opts.dir}/${file}`;
+			const path = pathlib.posix.join(opts.dir, file);
 
 			if (isDirectory(path)) {
 				if (opts.blocklistDirPrefixes != null && opts.blocklistDirPrefixes.some(it => file.startsWith(it))) return false;
-				if (opts.blocklistDirs != null && opts.blocklistDirs.some(it => it === file)) return false;
+				if (opts.blocklistDirs != null && opts.blocklistDirs.has(path)) return false;
 				return opts.allowlistDirs ? opts.allowlistDirs.includes(path) : true;
 			}
 
 			return (opts.blocklistFilePrefixes == null || !opts.blocklistFilePrefixes.some(it => file.startsWith(it)))
 				&& (opts.allowlistFileExts == null || opts.allowlistFileExts.some(it => file.endsWith(it)));
 		})
-		.map(file => `${opts.dir}/${file}`);
+		.map(file => pathlib.posix.join(opts.dir, file));
 
 	return dirContent.reduce((acc, file) => {
 		if (isDirectory(file)) acc.push(...listFiles({...opts, dir: file}));
@@ -80,7 +81,7 @@ function listFiles (opts) {
 function rmDirRecursiveSync (dir) {
 	if (fs.existsSync(dir)) {
 		fs.readdirSync(dir).forEach(file => {
-			const curPath = `${dir}/${file}`;
+			const curPath = pathlib.posix.join(dir, file);
 			if (fs.lstatSync(curPath).isDirectory()) rmDirRecursiveSync(curPath);
 			else fs.unlinkSync(curPath);
 		});
@@ -181,7 +182,6 @@ export const isSiteFoundryFile = filename => /\/foundry(?:-[^/]+)?\.json$/.test(
 export {
 	readJson,
 	listFiles,
-	FILE_PREFIX_BLOCKLIST,
 	rmDirRecursiveSync,
 	Timer,
 };

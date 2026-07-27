@@ -14,24 +14,24 @@ class DecksSublistManager extends SublistManager {
 	pGetSublistItem (ent, hash) {
 		const cellsText = [ent.name];
 
-		const ele = ee`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`
-			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
-			.onn("click", evt => this._listSub.doSelect(listItem, evt));
+			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
 		const listItem = new ListItem(
 			hash,
 			ele,
 			ent.name,
 			{
-				hash,
-				page: ent.page,
+				...ListItem.getCommonValues(ent),
 				alias: PageFilterDecks.getListAliases(ent),
 			},
 			{
+				hash,
 				entity: ent,
 				mdRow: [...cellsText],
 			},
@@ -152,11 +152,11 @@ class DecksPage extends ListPage {
 			eleLi,
 			ent.name,
 			{
-				hash,
 				source,
-				page: ent.page,
+				...ListItem.getCommonValues(ent),
 			},
 			{
+				hash,
 				isExcluded,
 			},
 		);
@@ -173,13 +173,13 @@ class DecksPage extends ListPage {
 			.forEach(fn => fn());
 
 		this._wrpTabs
-			.find(`[data-name="deck-wrp-controls"]`)?.remove();
+			.vee.find(`[data-name="deck-wrp-controls"]`)?.remove();
 
-		const wrpControls = ee`<div class="ve-flex ve-mt-auto" data-name="deck-wrp-controls"></div>`
-			.prependTo(this._wrpTabs);
+		const wrpControls = veT`<div class="ve-flex ve-mt-auto" data-name="deck-wrp-controls"></div>`
+			.vee.prependTo(this._wrpTabs);
 
-		const btnDraw = ee`<button class="ve-btn ve-btn-xs ve-btn-primary ve-bb-0 ve-bbr-0 ve-bbl-0" title="Draw a Card (SHIFT to Skip Replacement; CTRL to Skip Animation)"><i class="fas fa-fw fa-cards"></i></button>`
-			.onn("click", async evt => {
+		const btnDraw = veT`<button class="ve-btn ve-btn-xs ve-btn-primary ve-bb-0 ve-bbr-0 ve-bbl-0" title="Draw a Card (SHIFT to Skip Replacement; CTRL to Skip Animation)"><i class="fas fa-fw fa-cards"></i></button>`
+			.vee.onn("click", async evt => {
 				const cards = this._compCardState.getUndrawnCards(ent);
 				if (!cards.length) return JqueryUtil.doToast({content: "All cards have already been drawn!", type: "warning"});
 
@@ -187,7 +187,7 @@ class DecksPage extends ListPage {
 				if (!card._isReplacement || evt.shiftKey) await this._compCardState.pDrawCard(ent, card);
 
 				if (EventUtil.isCtrlMetaKey(evt)) {
-					const eleChat = ee`<span>Drew card: ${Renderer.get().render(`{@card ${card.name}|${card.set}|${card.source}}`)}</span>`;
+					const eleChat = veT`<span>Drew card: ${Renderer.get().render(`{@card ${card.name}|${card.set}|${card.source}}`)}</span>`;
 
 					Renderer.dice.addRoll({
 						rolledBy: {
@@ -200,40 +200,40 @@ class DecksPage extends ListPage {
 				}
 
 				try {
-					btnDraw.prop("disabled", true);
+					btnDraw.vee.prop("disabled", true);
 					await RenderDecks.pRenderStgCard({deck: ent, card});
 				} finally {
-					btnDraw.prop("disabled", false);
+					btnDraw.vee.prop("disabled", false);
 				}
 			});
 
-		const btnReset = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-bb-0 ve-bbr-0 ve-bbl-0" title="Reset Deck"><i class="fas fa-fw fa-rotate-left"></i></button>`
-			.onn("click", async () => {
+		const btnReset = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-bb-0 ve-bbr-0 ve-bbl-0" title="Reset Deck"><i class="fas fa-fw fa-rotate-left"></i></button>`
+			.vee.onn("click", async () => {
 				await this._compCardState.pResetDeck(ent);
 				JqueryUtil.doToast("Reset deck!");
 			});
 
 		// region List vs Grid view
-		const btnViewList = this._compSettings ? ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-bb-0 ve-bbr-0 ve-bbl-0" title="Card List View"><i class="fas fa-fw fa-list"></i></button>`
-			.onn("click", () => {
+		const btnViewList = this._compSettings ? veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-bb-0 ve-bbr-0 ve-bbl-0" title="Card List View"><i class="fas fa-fw fa-list"></i></button>`
+			.vee.onn("click", () => {
 				this._compSettings.pSet("cardLayout", "list").then(null);
 			}) : null;
 
-		const btnViewGrid = this._compSettings ? ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-bb-0 ve-bbr-0 ve-bbl-0" title="Card Grid View"><i class="fas fa-fw fa-grid-2"></i></button>`
-			.onn("click", () => {
+		const btnViewGrid = this._compSettings ? veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-bb-0 ve-bbr-0 ve-bbl-0" title="Card Grid View"><i class="fas fa-fw fa-grid-2"></i></button>`
+			.vee.onn("click", () => {
 				this._compSettings.pSet("cardLayout", "grid").then(null);
 			}) : null;
 
 		const hkCardLayout = this._compSettings.addHookBase("cardLayout", () => {
 			const mode = this._compSettings.get("cardLayout");
-			btnViewList.toggleClass("ve-active", mode === "list");
-			btnViewGrid.toggleClass("ve-active", mode === "grid");
+			btnViewList.vee.toggleClass("ve-active", mode === "list");
+			btnViewGrid.vee.toggleClass("ve-active", mode === "grid");
 		});
 		this._renderFnsCleanup.push(() => this._compSettings.removeHookBase("cardLayout", hkCardLayout));
 		hkCardLayout();
 		// endregion
 
-		ee(wrpControls)`<div class="ve-flex">
+		veT(wrpControls)`<div class="ve-flex">
 			<div class="ve-flex-v-center ve-btn-group">
 				${btnDraw}
 				${btnReset}
@@ -255,8 +255,8 @@ class DecksPage extends ListPage {
 		this._renderFnsCleanup.push(...fnsCleanup);
 
 		this._pgContent
-			.empty()
-			.appends(ele);
+			.vee.empty()
+			.vee.appends(ele);
 	}
 }
 

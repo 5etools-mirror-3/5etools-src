@@ -239,7 +239,7 @@ export class StatGenUi extends BaseComponent {
 	async _roll_pGetRolledStats () {
 		const wrpTree = Renderer.dice.lang.getTree3(this._state.rolled_formula);
 		if (!wrpTree) {
-			this._rollIptFormula.addClass("form-control--error");
+			this._rollIptFormula.vee.addClass("form-control--error");
 			return;
 		}
 
@@ -255,7 +255,7 @@ export class StatGenUi extends BaseComponent {
 	}
 
 	render (parent) {
-		parent.empty().addClass("ve-statgen");
+		parent.vee.empty().vee.addClass("ve-statgen");
 
 		const iptTabMetas = this._isLevelUp
 			? [
@@ -284,24 +284,24 @@ export class StatGenUi extends BaseComponent {
 						propProxy: propProxyTabs,
 					},
 				)
-					.addClass("ve-max-w-200p");
-				ee`<div class="ve-flex-v-center ve-statgen-shared__wrp-header">
+					.vee.addClass("ve-max-w-200p");
+				veT`<div class="ve-flex-v-center ve-statgen-shared__wrp-header">
 					<div class="ve-mr-2"><b>Mode</b></div>
 					${selMode}
 				</div>`
-					.appendTo(parent);
-				ee`<hr class="ve-hr-2">`
-					.appendTo(parent);
+					.vee.appendTo(parent);
+				veT`<hr class="ve-hr-2">`
+					.vee.appendTo(parent);
 			}
 
-			tabMetas.forEach(it => it.wrpTab.appendTo(parent));
+			tabMetas.forEach(it => it.wrpTab.vee.appendTo(parent));
 		}
 
-		const wrpAll = ee`<div class="ve-flex-col ve-w-100 ve-h-100"></div>`;
+		const wrpAll = veT`<div class="ve-flex-col ve-w-100 ve-h-100"></div>`;
 		this._render_all(wrpAll);
 
 		const hkTab = () => {
-			tabMetas[this.ixActiveTab || 0].wrpTab.appends(wrpAll);
+			tabMetas[this.ixActiveTab || 0].wrpTab.vee.appends(wrpAll);
 		};
 		this._addHookActiveTab(hkTab);
 		hkTab();
@@ -312,22 +312,22 @@ export class StatGenUi extends BaseComponent {
 
 	_render_getStgRolledHeader () {
 		this._rollIptFormula = ComponentUiUtil.getIptStr(this, "rolled_formula")
-			.addClass("ve-text-center")
-			.addClass("ve-max-w-100p")
-			.onn("keydown", evt => {
-				if (evt.key === "Enter") setTimeout(() => btnRoll.trigger("click")); // Defer to allow `.change` to fire first
+			.vee.addClass("ve-text-center")
+			.vee.addClass("ve-max-w-100p")
+			.vee.onn("keydown", evt => {
+				if (evt.key === "Enter") setTimeout(() => btnRoll.vee.trigger("click")); // Defer to allow `.change` to fire first
 			})
-			.onn("change", () => this._rollIptFormula.removeClass("form-control--error"));
+			.vee.onn("change", () => this._rollIptFormula.vee.removeClass("form-control--error"));
 
 		const iptRollCount = this._isCharacterMode ? null : ComponentUiUtil.getIptInt(this, "rolled_rollCount", 1, {min: 1, fallbackOnNaN: 1, html: `<input type="text" class="ve-form-control ve-input-xs form-control--minimal ve-text-center ve-max-w-100p">`})
-			.onn("keydown", evt => {
-				if (evt.key === "Enter") setTimeout(() => btnRoll.trigger("click")); // Defer to allow `.change` to fire first
+			.vee.onn("keydown", evt => {
+				if (evt.key === "Enter") setTimeout(() => btnRoll.vee.trigger("click")); // Defer to allow `.change` to fire first
 			})
-			.onn("change", () => this._rollIptFormula.removeClass("form-control--error"));
+			.vee.onn("change", () => this._rollIptFormula.vee.removeClass("form-control--error"));
 
 		const lockRoll = new VeLock();
-		const btnRoll = ee`<button class="ve-btn ve-btn-primary ve-bold">Roll</button>`
-			.onn("click", async () => {
+		const btnRoll = veT`<button class="ve-btn ve-btn-primary ve-bold">Roll</button>`
+			.vee.onn("click", async () => {
 				try {
 					await lockRoll.pLock();
 					this._state.rolled_rolls = await this._roll_pGetRolledStats();
@@ -336,9 +336,9 @@ export class StatGenUi extends BaseComponent {
 				}
 			});
 
-		const btnRandom = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mt-2">Randomly Assign</button>`
-			.hideVe()
-			.onn("click", () => {
+		const btnRandom = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mt-2">Randomly Assign</button>`
+			.vee.hide()
+			.vee.onn("click", () => {
 				const abs = [...Parser.ABIL_ABVS].shuffle();
 				abs.forEach((ab, i) => {
 					const {propAbilSelectedRollIx} = this.constructor._rolled_getProps(ab);
@@ -346,32 +346,32 @@ export class StatGenUi extends BaseComponent {
 				});
 			});
 
-		const wrpRolled = ee`<div class="ve-flex-v-center ve-mr-auto ve-statgen-rolled__wrp-results ve-py-1"></div>`;
-		const wrpTotal = ee`<div class="ve-muted ve-small ve-italic ve-text-right ve-pr-1 ve-help-subtle" title="The sum total of the above rolls."></div>`;
-		const wrpRolledOuter = ee`<div class="ve-flex-col">
+		const wrpRolled = veT`<div class="ve-flex-v-center ve-mr-auto ve-statgen-rolled__wrp-results ve-py-1"></div>`;
+		const wrpTotal = veT`<div class="ve-muted ve-small ve-italic ve-text-right ve-pr-1 ve-help-subtle" title="The sum total of the above rolls."></div>`;
+		const wrpRolledOuter = veT`<div class="ve-flex-col">
 			<div class="ve-flex-v-center ve-mb-1"><div class="ve-mr-2">=</div>${wrpRolled}</div>
 			${wrpTotal}
 		</div>`;
 
 		const hkRolled = () => {
-			wrpRolledOuter.toggleVe(this._state.rolled_rolls.length);
-			btnRandom.toggleVe(this._state.rolled_rolls.length);
+			wrpRolledOuter.vee.toggle(this._state.rolled_rolls.length);
+			btnRandom.vee.toggle(this._state.rolled_rolls.length);
 
-			wrpRolled.html(this._state.rolled_rolls.map((it, i) => {
+			wrpRolled.vee.html(this._state.rolled_rolls.map((it, i) => {
 				const cntPrevRolls = this._state.rolled_rolls.slice(0, i).filter(r => r.total === it.total).length;
 				return `<div class="ve-px-3 ve-py-1 ve-help-subtle ve-flex-vh-center" title="${it.text}"><div class="ve-muted">[</div><div class="ve-flex-vh-center ve-statgen-rolled__disp-result">${it.total}${cntPrevRolls ? Parser.numberToSubscript(cntPrevRolls) : ""}</div><div class="ve-muted">]</div></div>`;
 			}));
-			wrpTotal.txt(`Total: ${this._state.rolled_rolls.map(roll => roll.total).sum()}`);
+			wrpTotal.vee.txt(`Total: ${this._state.rolled_rolls.map(roll => roll.total).sum()}`);
 		};
 		this._addHookBase("rolled_rolls", hkRolled);
 		hkRolled();
 
-		return ee`<div class="ve-flex-col ve-mb-3 ve-mr-auto">
+		return veT`<div class="ve-flex-col ve-mb-3 ve-mr-auto">
 			<div class="ve-flex ve-mb-2">
 				<div class="ve-flex-col ve-flex-h-center ve-mr-3">
 					<label class="ve-flex-v-center"><div class="ve-mr-2 ve-no-shrink ve-w-100p">Formula:</div>${this._rollIptFormula}</label>
 
-					${this._isCharacterMode ? null : ee`<label class="ve-flex-v-center ve-mt-2"><div class="ve-mr-2 ve-no-shrink ve-w-100p">Number of rolls:</div>${iptRollCount}</label>`}
+					${this._isCharacterMode ? null : veT`<label class="ve-flex-v-center ve-mt-2"><div class="ve-mr-2 ve-no-shrink ve-w-100p">Number of rolls:</div>${iptRollCount}</label>`}
 				</div>
 				${btnRoll}
 			</div>
@@ -383,8 +383,8 @@ export class StatGenUi extends BaseComponent {
 	}
 
 	_render_getStgArrayHeader () {
-		const btnRandom = ee`<button class="ve-btn ve-btn-xs ve-btn-default">Randomly Assign</button>`
-			.onn("click", () => {
+		const btnRandom = veT`<button class="ve-btn ve-btn-xs ve-btn-default">Randomly Assign</button>`
+			.vee.onn("click", () => {
 				const abs = [...Parser.ABIL_ABVS].shuffle();
 				abs.forEach((ab, i) => {
 					const {propAbilSelectedScoreIx} = this.constructor._array_getProps(ab);
@@ -392,7 +392,7 @@ export class StatGenUi extends BaseComponent {
 				});
 			});
 
-		return ee`<div class="ve-flex-col ve-mb-3 ve-mr-auto">
+		return veT`<div class="ve-flex-col ve-mb-3 ve-mr-auto">
 			<div class="ve-mb-2">Assign these numbers to your abilities as desired:</div>
 			<div class="ve-bold ve-mb-2">${StatGenUi._STANDARD_ARRAY.join(", ")}</div>
 			<div class="ve-flex">${btnRandom}</div>
@@ -400,7 +400,7 @@ export class StatGenUi extends BaseComponent {
 	}
 
 	_render_getStgManualHeader () {
-		return ee`<div class="ve-flex-col ve-mb-3 ve-mr-auto">
+		return veT`<div class="ve-flex-col ve-mb-3 ve-mr-auto">
 			<div>Enter your desired ability scores in the &quot;Base&quot; column below.</div>
 		</div>`;
 	}
@@ -437,7 +437,7 @@ export class StatGenUi extends BaseComponent {
 			},
 		);
 		const hkIsCustom = () => {
-			iptBudget.attr("readonly", !this._state.pb_isCustom);
+			iptBudget.vee.attr("readonly", !this._state.pb_isCustom);
 		};
 		this._addHookBase("pb_isCustom", hkIsCustom);
 		hkIsCustom();
@@ -451,20 +451,20 @@ export class StatGenUi extends BaseComponent {
 				min: 0,
 				fallbackOnNaN: 0,
 			},
-		).attr("readonly", true);
+		).vee.attr("readonly", true);
 
 		const hkPoints = () => {
 			this._state.pb_points = this._pb_getPointsRemaining(this._state);
-			iptRemaining.toggleClass(`ve-statgen-pb__ipt-budget--error`, this._state.pb_points < 0);
+			iptRemaining.vee.toggleClass(`ve-statgen-pb__ipt-budget--error`, this._state.pb_points < 0);
 		};
 		this._addHookAll("state", hkPoints);
 		hkPoints();
 
-		const btnReset = ee`<button class="ve-btn ve-btn-default">Reset</button>`
-			.onn("click", () => this._doReset());
+		const btnReset = veT`<button class="ve-btn ve-btn-default">Reset</button>`
+			.vee.onn("click", () => this._doReset());
 
-		const btnRandom = ee`<button class="ve-btn ve-btn-default">Random</button>`
-			.onn("click", () => {
+		const btnRandom = veT`<button class="ve-btn ve-btn-default">Random</button>`
+			.vee.onn("click", () => {
 				this._doReset();
 
 				let canIncrease = Parser.ABIL_ABVS.map(it => `pb_${it}`);
@@ -497,7 +497,7 @@ export class StatGenUi extends BaseComponent {
 				}
 			});
 
-		return ee`<div class="ve-flex ve-mobile-sm__flex-col ve-mb-2">
+		return veT`<div class="ve-flex ve-mobile-sm__flex-col ve-mb-2">
 			<div class="ve-flex-v-center">
 				<div class="ve-statgen-pb__cell ve-mr-4 ve-mobile-sm__hidden"></div>
 
@@ -527,8 +527,8 @@ export class StatGenUi extends BaseComponent {
 	}
 
 	_render_getStgPbCustom () {
-		const btnAddLower = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Add Lower Score</button>`
-			.onn("click", () => {
+		const btnAddLower = veT`<button class="ve-btn ve-btn-default ve-btn-xs">Add Lower Score</button>`
+			.vee.onn("click", () => {
 				const prevSecondLowest = this._state.pb_rules[1];
 				const prevLowest = this._state.pb_rules[0];
 				const score = prevLowest.entity.score - 1;
@@ -538,8 +538,8 @@ export class StatGenUi extends BaseComponent {
 				this._state.pb_rules = [this._getDefaultState_pb_rule(score, cost), ...this._state.pb_rules];
 			});
 
-		const btnAddHigher = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Add Higher Score</button>`
-			.onn("click", () => {
+		const btnAddHigher = veT`<button class="ve-btn ve-btn-default ve-btn-xs">Add Higher Score</button>`
+			.vee.onn("click", () => {
 				const prevSecondHighest = this._state.pb_rules.at(-2);
 				const prevHighest = this._state.pb_rules.at(-1);
 				const score = prevHighest.entity.score + 1;
@@ -549,8 +549,8 @@ export class StatGenUi extends BaseComponent {
 				this._state.pb_rules = [...this._state.pb_rules, this._getDefaultState_pb_rule(score, cost)];
 			});
 
-		const btnResetRules = ee`<button class="ve-btn ve-btn-danger ve-btn-xs ve-mr-2">Reset</button>`
-			.onn("click", () => {
+		const btnResetRules = veT`<button class="ve-btn ve-btn-danger ve-btn-xs ve-mr-2">Reset</button>`
+			.vee.onn("click", () => {
 				this._state.pb_rules = this._getDefaultStatePointBuyCosts().pb_rules;
 			});
 
@@ -584,10 +584,10 @@ export class StatGenUi extends BaseComponent {
 			),
 		]);
 
-		const btnContext = ee`<button class="ve-btn ve-btn-default ve-btn-xs" title="Menu"><span class="glyphicon glyphicon-option-vertical"></span></button>`
-			.onn("click", evt => ContextUtil.pOpenMenu(evt, menuCustom));
+		const btnContext = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="Menu"><span class="glyphicon glyphicon-option-vertical"></span></button>`
+			.vee.onn("click", evt => ContextUtil.pOpenMenu(evt, menuCustom));
 
-		const stgCustomCostControls = ee`<div class="ve-flex-col ve-mb-auto ve-ml-2 ve-mobile-sm__ml-0 ve-mobile-sm__mt-3">
+		const stgCustomCostControls = veT`<div class="ve-flex-col ve-mb-auto ve-ml-2 ve-mobile-sm__ml-0 ve-mobile-sm__mt-3">
 			<div class="ve-btn-group-vertical ve-flex-col ve-mb-2">${btnAddLower}${btnAddHigher}</div>
 			<div class="ve-flex-v-center">
 				${btnResetRules}
@@ -595,7 +595,7 @@ export class StatGenUi extends BaseComponent {
 			</div>
 		</div>`;
 
-		const stgCostRows = ee`<div class="ve-flex-col"></div>`;
+		const stgCostRows = veT`<div class="ve-flex-col"></div>`;
 
 		const renderableCollectionRules = new StatGenUiRenderableCollectionPbRules(
 			this,
@@ -617,7 +617,7 @@ export class StatGenUi extends BaseComponent {
 
 		let lastIsCustom = this._state.pb_isCustom;
 		const hkIsCustomReset = () => {
-			stgCustomCostControls.toggleVe(this._state.pb_isCustom);
+			stgCustomCostControls.vee.toggle(this._state.pb_isCustom);
 
 			if (lastIsCustom === this._state.pb_isCustom) return;
 			lastIsCustom = this._state.pb_isCustom;
@@ -628,7 +628,7 @@ export class StatGenUi extends BaseComponent {
 		this._addHookBase("pb_isCustom", hkIsCustomReset);
 		hkIsCustomReset();
 
-		return ee`<div class="ve-flex-col">
+		return veT`<div class="ve-flex-col">
 			<h4>Ability Score Point Cost</h4>
 
 			<div class="ve-flex-col">
@@ -708,7 +708,7 @@ export class StatGenUi extends BaseComponent {
 
 		// region Rolled header
 		const stgRolledHeader = this._render_getStgRolledHeader();
-		const hkStgRolled = () => stgRolledHeader.toggleVe(this.ixActiveTab === this._IX_TAB_ROLLED);
+		const hkStgRolled = () => stgRolledHeader.vee.toggle(this.ixActiveTab === this._IX_TAB_ROLLED);
 		this._addHookActiveTab(hkStgRolled);
 		hkStgRolled();
 		// endregion
@@ -716,13 +716,13 @@ export class StatGenUi extends BaseComponent {
 		// region Point Buy stages
 		const stgPbHeader = this._render_getStgPbHeader();
 		const stgPbCustom = this._render_getStgPbCustom();
-		const vrPbCustom = ee`<div class="ve-vr-5 ve-mobile-lg__hidden"></div>`;
-		const hrPbCustom = ee`<hr class="ve-hr-5 ve-mobile-lg__visible">`;
+		const vrPbCustom = veT`<div class="ve-vr-5 ve-mobile-lg__hidden"></div>`;
+		const hrPbCustom = veT`<hr class="ve-hr-5 ve-mobile-lg__visible">`;
 		const hkStgPb = () => {
-			stgPbHeader.toggleVe(this.ixActiveTab === this._IX_TAB_PB);
-			stgPbCustom.toggleVe(this.ixActiveTab === this._IX_TAB_PB);
-			vrPbCustom.toggleVe(this.ixActiveTab === this._IX_TAB_PB);
-			hrPbCustom.toggleVe(this.ixActiveTab === this._IX_TAB_PB);
+			stgPbHeader.vee.toggle(this.ixActiveTab === this._IX_TAB_PB);
+			stgPbCustom.vee.toggle(this.ixActiveTab === this._IX_TAB_PB);
+			vrPbCustom.vee.toggle(this.ixActiveTab === this._IX_TAB_PB);
+			hrPbCustom.vee.toggle(this.ixActiveTab === this._IX_TAB_PB);
 		};
 		this._addHookActiveTab(hkStgPb);
 		hkStgPb();
@@ -730,34 +730,34 @@ export class StatGenUi extends BaseComponent {
 
 		// region Array header
 		const stgArrayHeader = this._render_getStgArrayHeader();
-		const hkStgArray = () => stgArrayHeader.toggleVe(this.ixActiveTab === this._IX_TAB_ARRAY);
+		const hkStgArray = () => stgArrayHeader.vee.toggle(this.ixActiveTab === this._IX_TAB_ARRAY);
 		this._addHookActiveTab(hkStgArray);
 		hkStgArray();
 		// endregion
 
 		// region Manual header
 		const stgManualHeader = this._render_getStgManualHeader();
-		const hkStgManual = () => stgManualHeader.toggleVe(this.ixActiveTab === this._IX_TAB_MANUAL);
+		const hkStgManual = () => stgManualHeader.vee.toggle(this.ixActiveTab === this._IX_TAB_MANUAL);
 		this._addHookActiveTab(hkStgManual);
 		hkStgManual();
 		// endregion
 
 		// region Other elements
 		const hkElesMode = () => {
-			stgNone.toggleVe(this.ixActiveTab === this._IX_TAB_NONE);
-			stgMain.toggleVe(this.ixActiveTab !== this._IX_TAB_NONE);
+			stgNone.vee.toggle(this.ixActiveTab === this._IX_TAB_NONE);
+			stgMain.vee.toggle(this.ixActiveTab !== this._IX_TAB_NONE);
 
-			elesRolled.forEach(ele => ele.toggleVe(this.ixActiveTab === this._IX_TAB_ROLLED));
-			elesArray.forEach(ele => ele.toggleVe(this.ixActiveTab === this._IX_TAB_ARRAY));
-			elesPb.forEach(ele => ele.toggleVe(this.ixActiveTab === this._IX_TAB_PB));
-			elesManual.forEach(ele => ele.toggleVe(this.ixActiveTab === this._IX_TAB_MANUAL));
+			elesRolled.forEach(ele => ele.vee.toggle(this.ixActiveTab === this._IX_TAB_ROLLED));
+			elesArray.forEach(ele => ele.vee.toggle(this.ixActiveTab === this._IX_TAB_ARRAY));
+			elesPb.forEach(ele => ele.vee.toggle(this.ixActiveTab === this._IX_TAB_PB));
+			elesManual.forEach(ele => ele.vee.toggle(this.ixActiveTab === this._IX_TAB_MANUAL));
 		};
 		this._addHookActiveTab(hkElesMode);
 		// endregion
 
-		const btnResetRolledOrArrayOrManual = ee`<button class="ve-btn ve-btn-default ve-btn-xxs ve-relative ve-statgen-shared__btn-reset" title="Reset"><span class="glyphicon glyphicon-refresh"></span></button>`
-			.onn("click", () => this._doReset());
-		const hkRolledOrArray = () => btnResetRolledOrArrayOrManual.toggleVe(this.ixActiveTab === this._IX_TAB_ROLLED || this.ixActiveTab === this._IX_TAB_ARRAY || this.ixActiveTab === this._IX_TAB_MANUAL);
+		const btnResetRolledOrArrayOrManual = veT`<button class="ve-btn ve-btn-default ve-btn-xxs ve-relative ve-statgen-shared__btn-reset" title="Reset"><span class="glyphicon glyphicon-refresh"></span></button>`
+			.vee.onn("click", () => this._doReset());
+		const hkRolledOrArray = () => btnResetRolledOrArrayOrManual.vee.toggle(this.ixActiveTab === this._IX_TAB_ROLLED || this.ixActiveTab === this._IX_TAB_ARRAY || this.ixActiveTab === this._IX_TAB_MANUAL);
 		this._addHookActiveTab(hkRolledOrArray);
 		hkRolledOrArray();
 
@@ -765,9 +765,9 @@ export class StatGenUi extends BaseComponent {
 			// region Rolled
 			const {propAbilSelectedRollIx} = this.constructor._rolled_getProps(ab);
 
-			const selRolled = ee`<select class="ve-form-control ve-input-xs form-control--minimal ve-statgen-shared__ipt ve-statgen-shared__ipt--sel"></select>`
-				.onn("change", () => {
-					const ix = Number(selRolled.val());
+			const selRolled = veT`<select class="ve-form-control ve-input-xs form-control--minimal ve-statgen-shared__ipt ve-statgen-shared__ipt--sel"></select>`
+				.vee.onn("change", () => {
+					const ix = Number(selRolled.vee.val());
 
 					const nxtState = {
 						...Parser.ABIL_ABVS
@@ -778,7 +778,7 @@ export class StatGenUi extends BaseComponent {
 					};
 					this._proxyAssignSimple("state", nxtState);
 				});
-			e_({tag: "option", value: -1, txt: "\u2014"}).appendTo(selRolled);
+			veE({tag: "option", value: -1, txt: "\u2014"}).vee.appendTo(selRolled);
 
 			let optionsRolled = [];
 			const hkRolls = () => {
@@ -786,13 +786,13 @@ export class StatGenUi extends BaseComponent {
 
 				this._state.rolled_rolls.forEach((it, i) => {
 					const cntPrevRolls = this._state.rolled_rolls.slice(0, i).filter(r => r.total === it.total).length;
-					const opt = e_({tag: "option", value: i, txt: `${it.total}${cntPrevRolls ? Parser.numberToSubscript(cntPrevRolls) : ""}`}).appendTo(selRolled);
+					const opt = veE({tag: "option", value: i, txt: `${it.total}${cntPrevRolls ? Parser.numberToSubscript(cntPrevRolls) : ""}`}).vee.appendTo(selRolled);
 					optionsRolled.push(opt);
 				});
 
 				let nxtSelIx = this._state[propAbilSelectedRollIx];
 				if (nxtSelIx >= this._state.rolled_rolls.length) nxtSelIx = null;
-				selRolled.val(`${nxtSelIx == null ? -1 : nxtSelIx}`);
+				selRolled.vee.val(`${nxtSelIx == null ? -1 : nxtSelIx}`);
 				if ((nxtSelIx) !== this._state[propAbilSelectedRollIx]) this._state[propAbilSelectedRollIx] = nxtSelIx;
 			};
 			this._addHookBase("rolled_rolls", hkRolls);
@@ -800,7 +800,7 @@ export class StatGenUi extends BaseComponent {
 
 			const hookIxRolled = () => {
 				const ix = this._state[propAbilSelectedRollIx] == null ? -1 : this._state[propAbilSelectedRollIx];
-				selRolled.val(`${ix}`);
+				selRolled.vee.val(`${ix}`);
 			};
 			this._addHookBase(propAbilSelectedRollIx, hookIxRolled);
 			hookIxRolled();
@@ -811,9 +811,9 @@ export class StatGenUi extends BaseComponent {
 			// region Array
 			const {propAbilSelectedScoreIx} = this.constructor._array_getProps(ab);
 
-			const selArray = ee`<select class="ve-form-control ve-input-xs form-control--minimal ve-statgen-shared__ipt ve-statgen-shared__ipt--sel"></select>`
-				.onn("change", () => {
-					const ix = Number(selArray.val());
+			const selArray = veT`<select class="ve-form-control ve-input-xs form-control--minimal ve-statgen-shared__ipt ve-statgen-shared__ipt--sel"></select>`
+				.vee.onn("change", () => {
+					const ix = Number(selArray.vee.val());
 
 					const nxtState = {
 						...Parser.ABIL_ABVS
@@ -824,13 +824,13 @@ export class StatGenUi extends BaseComponent {
 					};
 					this._proxyAssignSimple("state", nxtState);
 				});
-			e_({tag: "option", value: -1, txt: "\u2014"}).appendTo(selArray);
+			veE({tag: "option", value: -1, txt: "\u2014"}).vee.appendTo(selArray);
 
-			StatGenUi._STANDARD_ARRAY.forEach((it, i) => e_({tag: "option", value: i, txt: it}).appendTo(selArray));
+			StatGenUi._STANDARD_ARRAY.forEach((it, i) => veE({tag: "option", value: i, txt: it}).vee.appendTo(selArray));
 
 			const hookIxArray = () => {
 				const ix = this._state[propAbilSelectedScoreIx] == null ? -1 : this._state[propAbilSelectedScoreIx];
-				selArray.val(`${ix}`);
+				selArray.vee.val(`${ix}`);
 			};
 			this._addHookBase(propAbilSelectedScoreIx, hookIxArray);
 			hookIxArray();
@@ -876,7 +876,7 @@ export class StatGenUi extends BaseComponent {
 			elesManual.push(iptManual);
 			// endregion
 
-			return ee`<label class="ve-my-1 ve-statgen-pb__cell">
+			return veT`<label class="ve-my-1 ve-statgen-pb__cell">
 				${selRolled}
 				${selArray}
 				${iptPb}
@@ -905,11 +905,11 @@ export class StatGenUi extends BaseComponent {
 
 		const wrpAsi = this._render_getWrpAsi();
 
-		stgNone = ee`<div class="ve-flex-col ve-w-100 ve-h-100">
+		stgNone = veT`<div class="ve-flex-col ve-w-100 ve-h-100">
 			<div class="ve-flex-v-center"><i>Please select a mode.</i></div>
 		</div>`;
 
-		stgMain = ee`<div class="ve-flex-col ve-w-100 ve-h-100">
+		stgMain = veT`<div class="ve-flex-col ve-w-100 ve-h-100">
 			${stgRolledHeader}
 			${stgArrayHeader}
 			${stgManualHeader}
@@ -980,8 +980,8 @@ export class StatGenUi extends BaseComponent {
 		hkElesMode();
 
 		wrpTab
-			.appends(stgMain)
-			.appends(stgNone);
+			.vee.appends(stgMain)
+			.vee.appends(stgNone);
 	}
 
 	_renderLevelOneRace = new StatGenUiRenderLevelOneRace({parent: this});
@@ -990,10 +990,10 @@ export class StatGenUi extends BaseComponent {
 
 	_render_isLevelUp (wrpTab) {
 		const wrpsExisting = Parser.ABIL_ABVS.map(ab => {
-			const iptExisting = ee`<input class="ve-form-control form-control--minimal ve-statgen-shared__ipt ve-text-right" type="number" readonly>`
-				.val(this._existingScores[ab]);
+			const iptExisting = veT`<input class="ve-form-control form-control--minimal ve-statgen-shared__ipt ve-text-right" type="number" readonly>`
+				.vee.val(this._existingScores[ab]);
 
-			return ee`<label class="ve-my-1 ve-statgen-pb__cell">
+			return veT`<label class="ve-my-1 ve-statgen-pb__cell">
 				${iptExisting}
 			</label>`;
 		});
@@ -1004,7 +1004,7 @@ export class StatGenUi extends BaseComponent {
 
 		const wrpAsi = this._render_getWrpAsi();
 
-		ee(wrpTab)`
+		veT(wrpTab)`
 			<div class="ve-flex ve-mobile-lg__flex-col ve-w-100 ve-px-3">
 				<div class="ve-flex-col">
 					<div class="ve-flex">
@@ -1055,17 +1055,17 @@ export class StatGenUi extends BaseComponent {
 					html: `<input class="ve-form-control form-control--minimal ve-statgen-shared__ipt ve-text-right" type="number">`,
 				},
 			);
-			return ee`<label class="ve-my-1 ve-statgen-pb__cell">${ipt}</label>`;
+			return veT`<label class="ve-my-1 ve-statgen-pb__cell">${ipt}</label>`;
 		});
 	}
 
 	_render_getMetasTotalAndMod () {
 		return Parser.ABIL_ABVS.map(ab => {
-			const iptTotal = ee`<input class="ve-form-control form-control--minimal ve-statgen-shared__ipt ve-text-center" type="text" readonly>`;
-			const iptMod = ee`<input class="ve-form-control form-control--minimal ve-statgen-shared__ipt ve-text-center" type="text" readonly>`;
+			const iptTotal = veT`<input class="ve-form-control form-control--minimal ve-statgen-shared__ipt ve-text-center" type="text" readonly>`;
+			const iptMod = veT`<input class="ve-form-control form-control--minimal ve-statgen-shared__ipt ve-text-center" type="text" readonly>`;
 
-			const wrpIptTotal = ee`<label class="ve-my-1 ve-statgen-pb__cell">${iptTotal}</label>`;
-			const wrpIptMod = ee`<label class="ve-my-1 ve-statgen-pb__cell">${iptMod}</label>`;
+			const wrpIptTotal = veT`<label class="ve-my-1 ve-statgen-pb__cell">${iptTotal}</label>`;
+			const wrpIptMod = veT`<label class="ve-my-1 ve-statgen-pb__cell">${iptMod}</label>`;
 
 			const exportedStateProp = `common_export_${ab}`;
 
@@ -1085,10 +1085,10 @@ export class StatGenUi extends BaseComponent {
 
 				const isOverLimit = totalScore > 20;
 				iptTotal
-					.val(totalScore)
-					.toggleClass("form-control--error", isOverLimit)
-					.tooltip(isOverLimit ? `In general, you can't increase an ability score above 20.` : "");
-				iptMod.val(Parser.getAbilityModifier(totalScore));
+					.vee.val(totalScore)
+					.vee.toggleClass("form-control--error", isOverLimit)
+					.vee.tooltip(isOverLimit ? `In general, you can't increase an ability score above 20.` : "");
+				iptMod.vee.val(Parser.getAbilityModifier(totalScore));
 
 				this._state[exportedStateProp] = totalScore;
 			};
@@ -1104,7 +1104,7 @@ export class StatGenUi extends BaseComponent {
 	}
 
 	_render_getWrpAsi () {
-		const wrpAsi = ee`<div class="ve-flex-col ve-w-100"></div>`;
+		const wrpAsi = veT`<div class="ve-flex-col ve-w-100"></div>`;
 		this._compAsi.render(wrpAsi);
 		return wrpAsi;
 	}

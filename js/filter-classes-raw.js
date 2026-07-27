@@ -95,7 +95,7 @@ export class ModalFilterClasses extends ModalFilterBase {
 
 			this.doApplyFilterExpression(filterExpression);
 
-			this._filterCache.btnConfirm.off("click").onn("click", async () => {
+			this._filterCache.btnConfirm.vee.off("click").vee.onn("click", async () => {
 				// Note: use invisible items, as this might be the parent class of a selected subclass
 				const checked = this._filterCache.list.items.filter(it => it.data.tglSel.classList.contains("ve-active"));
 				const out = {};
@@ -165,33 +165,33 @@ export class ModalFilterClasses extends ModalFilterBase {
 
 	async pPreloadHidden (eleModalInner) {
 		// If we're rendering in "hidden" mode, create a dummy element to attach the UI to.
-		eleModalInner = eleModalInner || ee`<div></div>`;
+		eleModalInner = eleModalInner || veT`<div></div>`;
 
 		if (this._filterCache) {
-			this._filterCache.wrpModalInner.appendTo(eleModalInner);
+			this._filterCache.wrpModalInner.vee.appendTo(eleModalInner);
 			return;
 		}
 
 		await this._pInit();
 
-		const ovlLoading = ee`<div class="ve-w-100 ve-h-100 ve-flex-vh-center"><i class="ve-dnd-font ve-muted">Loading...</i></div>`.appendTo(eleModalInner);
+		const ovlLoading = veT`<div class="ve-w-100 ve-h-100 ve-flex-vh-center"><i class="ve-dnd-font ve-muted">Loading...</i></div>`.vee.appendTo(eleModalInner);
 
-		const iptSearch = ee`<input class="ve-form-control ve-h-100" type="search" placeholder="Search...">`;
-		const btnReset = ee`<button class="ve-btn ve-btn-default">Reset</button>`;
-		const wrpFormTop = ee`<div class="ve-flex ve-input-group ve-input-group--top ve-btn-group ve-w-100 ve-lst__form-top">${iptSearch}${btnReset}</div>`;
+		const iptSearch = veT`<input class="ve-form-control ve-h-100" type="search" placeholder="Search...">`;
+		const btnReset = veT`<button class="ve-btn ve-btn-default">Reset</button>`;
+		const wrpFormTop = veT`<div class="ve-flex ve-input-group ve-input-group--top ve-btn-group ve-w-100 ve-lst__form-top">${iptSearch}${btnReset}</div>`;
 
-		const wrpFormBottom = ee`<div class="ve-w-100"></div>`;
+		const wrpFormBottom = veT`<div class="ve-w-100"></div>`;
 
-		const wrpFormHeaders = ee`<div class="ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
+		const wrpFormHeaders = veT`<div class="ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
 			<div class="ve-btn ve-btn-default ve-disabled ve-col-1 ve-pl-0"></div>
 			<button class="ve-col-9 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
 			<button class="ve-col-2 ve-pr-0 sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Source</button>
 		</div>`;
 
-		const wrpForm = ee`<div class="ve-flex-col ve-w-100 ve-mb-2">${wrpFormTop}${wrpFormBottom}${wrpFormHeaders}</div>`;
+		const wrpForm = veT`<div class="ve-flex-col ve-w-100 ve-mb-2">${wrpFormTop}${wrpFormBottom}${wrpFormHeaders}</div>`;
 		const wrpList = this._getWrpList();
 
-		const btnConfirm = ee`<button class="ve-btn ve-btn-default">Confirm</button>`;
+		const btnConfirm = veT`<button class="ve-btn ve-btn-default">Confirm</button>`;
 
 		this._list = new List({
 			iptSearch,
@@ -245,11 +245,11 @@ export class ModalFilterClasses extends ModalFilterBase {
 
 		ovlLoading.remove();
 
-		const wrpModalInner = ee`<div class="ve-flex-col ve-h-100">
+		const wrpModalInner = veT`<div class="ve-flex-col ve-h-100">
 			${wrpForm}
 			${wrpList}
 			<div class="ve-flex-vh-center">${btnConfirm}</div>
-		</div>`.appendTo(eleModalInner);
+		</div>`.vee.appendTo(eleModalInner);
 
 		this._filterCache = {wrpModalInner, btnConfirm, pageFilter: this._pageFilter, list: this._list, allData: this._allData, iptSearch};
 	}

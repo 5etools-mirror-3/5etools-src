@@ -171,7 +171,7 @@ export class BrewUtil2Base {
 		try {
 			JqueryUtil.doToast({
 				...messageInfo,
-				content: e_({outer: messageInfo.contentHtml}),
+				content: veE({outer: messageInfo.contentHtml}),
 			});
 		} catch (e) {
 			setTimeout(() => { throw e; });
@@ -941,14 +941,14 @@ export class BrewUtil2Base {
 	}
 
 	async pAddBrewFromLoaderTag (ele) {
-		ele = e_(ele);
-		if (!ele.hasClass("ve-rd__wrp-loadbrew--ready")) return; // an existing click is being handled
-		let jsonPath = ele.dataset.rdLoaderPath;
-		const name = ele.dataset.rdLoaderName;
-		const cached = ele.html();
-		const cachedTitle = ele.tooltip();
-		ele.tooltip("");
-		ele.removeClass("ve-rd__wrp-loadbrew--ready").html(`${name.qq()}<span class="glyphicon glyphicon-refresh ve-rd__loadbrew-icon ve-rd__loadbrew-icon--active"></span>`);
+		ele = veE(ele);
+		if (!ele.vee.hasClass("ve-rd__wrp-loadbrew--ready")) return; // an existing click is being handled
+		let jsonPath = ele.vee.attr("data-rd-loader-path");
+		const name = ele.vee.attr("data-rd-loader-name");
+		const cached = ele.vee.html();
+		const cachedTitle = ele.vee.tooltip();
+		ele.vee.tooltip("");
+		ele.vee.removeClass("ve-rd__wrp-loadbrew--ready").vee.html(`${name.qq()}<span class="glyphicon glyphicon-refresh ve-rd__loadbrew-icon ve-rd__loadbrew-icon--active"></span>`);
 
 		jsonPath = jsonPath.unescapeQuotes();
 		if (!UrlUtil.isFullUrl(jsonPath)) {
@@ -957,8 +957,8 @@ export class BrewUtil2Base {
 		}
 
 		await this.pAddBrewFromUrl(jsonPath);
-		ele.html(`${name.qq()}<span class="glyphicon glyphicon-saved ve-rd__loadbrew-icon"></span>`);
-		setTimeout(() => ele.html(cached).addClass("ve-rd__wrp-loadbrew--ready").tooltip(cachedTitle), 500);
+		ele.vee.html(`${name.qq()}<span class="glyphicon glyphicon-saved ve-rd__loadbrew-icon"></span>`);
+		setTimeout(() => ele.vee.html(cached).vee.addClass("ve-rd__wrp-loadbrew--ready").vee.tooltip(cachedTitle), 500);
 	}
 
 	_isMatchingCombinedIndexInfo (info) {

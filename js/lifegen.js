@@ -575,24 +575,24 @@ function onJsonLoad (lifeData, nameData) {
 	classList = lifeData.lifeClass.sort((a, b) => SortUtil.ascSort(a.name, b.name));
 	trinketList = lifeData.lifeTrinket;
 
-	selRace = es(`#race`).empty().attr("disabled", false);
-	selCha = es(`#cha`).empty().attr("disabled", false);
-	selBg = es(`#background`).empty().attr("disabled", false);
-	selClass = es(`#class`).empty().attr("disabled", false);
-	selAge = es(`#age`).empty().attr("disabled", false);
+	selRace = veEs(`#race`).vee.empty().vee.attr("disabled", false);
+	selCha = veEs(`#cha`).vee.empty().vee.attr("disabled", false);
+	selBg = veEs(`#background`).vee.empty().vee.attr("disabled", false);
+	selClass = veEs(`#class`).vee.empty().vee.attr("disabled", false);
+	selAge = veEs(`#age`).vee.empty().vee.attr("disabled", false);
 
-	selRace.appends(`<option value="Random" selected>Random</option>`);
-	selRace.appends(`<option value="Other">Other</option>`);
-	RACES_SELECTABLE.forEach(r => selRace.appends(`<option value="${r}">${r}</option>`));
-	RACES_UNSELECTABLE.forEach(r => selRace.appends(`<option class="ve-italic" value="${r}">${r}</option>`));
-	selCha.appends(`<option value="Random">Random</option>`);
+	selRace.vee.appends(`<option value="Random" selected>Random</option>`);
+	selRace.vee.appends(`<option value="Other">Other</option>`);
+	RACES_SELECTABLE.forEach(r => selRace.vee.appends(`<option value="${r}">${r}</option>`));
+	RACES_UNSELECTABLE.forEach(r => selRace.vee.appends(`<option class="ve-italic" value="${r}">${r}</option>`));
+	selCha.vee.appends(`<option value="Random">Random</option>`);
 	for (let i = -5; i <= 5; ++i) {
-		selCha.appends(`<option value="${i}" ${i === 0 ? "selected" : ""}>${i >= 0 ? "+" : ""}${i}</option>`);
+		selCha.vee.appends(`<option value="${i}" ${i === 0 ? "selected" : ""}>${i >= 0 ? "+" : ""}${i}</option>`);
 	}
-	selBg.appends(`<option value="-1" selected>Random</option>`);
-	bgList.forEach((b, i) => selBg.appends(`<option value="${i}">${b.name}</option>`));
-	selClass.appends(`<option value="-1" selected>Random</option>`);
-	classList.forEach((c, i) => selClass.appends(`<option value="${i}">${c.name}</option>`));
+	selBg.vee.appends(`<option value="-1" selected>Random</option>`);
+	bgList.forEach((b, i) => selBg.vee.appends(`<option value="${i}">${b.name}</option>`));
+	selClass.vee.appends(`<option value="-1" selected>Random</option>`);
+	classList.forEach((c, i) => selClass.vee.appends(`<option value="${i}">${c.name}</option>`));
 
 	[
 		{val: "", text: "Random", style: "font-style: normal;"},
@@ -602,7 +602,7 @@ function onJsonLoad (lifeData, nameData) {
 		{val: "70", text: "41&mdash;50 years", class: "ve-italic"},
 		{val: "90", text: "51&mdash;60 years", class: "ve-italic"},
 		{val: "100", text: "61 years or older", class: "ve-italic"},
-	].forEach(age => selAge.appends(`<option value="${age.val}" ${age.style ? `style="${age.style}"` : ""} ${age.class ? `class="${age.class}"` : ""}>${age.text}</option>`));
+	].forEach(age => selAge.vee.appends(`<option value="${age.val}" ${age.style ? `style="${age.style}"` : ""} ${age.class ? `class="${age.class}"` : ""}>${age.text}</option>`));
 
 	nameTables = {};
 	nameData.name.filter(it => it.source === Parser.SRC_XGE)
@@ -657,7 +657,7 @@ let ptrParentLastName = {}; // store the last name so we can use it for both par
 // PARENTS
 async function pSectParents () {
 	knowParents = RNG(100) > 5;
-	const valRace = selRace.val();
+	const valRace = selRace.vee.val();
 	race = (() => {
 		if (valRace === "Random") return GenUtil.getFromTable(SUPP_RACE, RNG(100)).result;
 		else if (valRace === "Other") {
@@ -669,7 +669,7 @@ async function pSectParents () {
 		} else return valRace;
 	})();
 
-	const parents = es(`#parents`);
+	const parents = veEs(`#parents`);
 	const knowParentsStr = knowParents ? "<b>Parents:</b> You know who your parents are or were." : "<b>Parents:</b> You do not know who your parents were.";
 
 	let parentage = null;
@@ -700,9 +700,9 @@ async function pSectParents () {
 	}
 
 	if (selRace === "Other") {
-		parents.html(concatSentences(`<b>Species:</b> Other ${fmtChoice(`${race}; generated using the {@table Supplemental Tables; Race|XGE|Supplemental Race} table`, true)}`, knowParentsStr, parentage));
+		parents.vee.html(concatSentences(`<b>Species:</b> Other ${fmtChoice(`${race}; generated using the {@table Supplemental Tables; Race|XGE|Supplemental Race} table`, true)}`, knowParentsStr, parentage));
 	} else {
-		parents.html(concatSentences(`<b>Species:</b> ${race}${selRace === "Random" ? ` ${fmtChoice("generated using the {@table Supplemental Tables; Race|XGE|Supplemental Race} table", true)}` : ""}`, knowParentsStr, parentage));
+		parents.vee.html(concatSentences(`<b>Species:</b> ${race}${selRace === "Random" ? ` ${fmtChoice("generated using the {@table Supplemental Tables; Race|XGE|Supplemental Race} table", true)}` : ""}`, knowParentsStr, parentage));
 	}
 
 	if (knowParents) {
@@ -718,26 +718,26 @@ async function pSectParents () {
 			race: parentRaces.length > 1 ? parentRaces[1] : parentRaces[0],
 			gender: "Male",
 		});
-		parents.appends(ee`<h5>Mother</h5>`);
-		parents.appends(`<div>${joinParaList(mum)}</div>`);
-		parents.appends(ee`<h5>Father</h5>`);
-		parents.appends(`<div>${joinParaList(dad)}</div>`);
+		parents.vee.appends(veT`<h5>Mother</h5>`);
+		parents.vee.appends(`<div>${joinParaList(mum)}</div>`);
+		parents.vee.appends(veT`<h5>Father</h5>`);
+		parents.vee.appends(`<div>${joinParaList(dad)}</div>`);
 	}
 }
 
 // BIRTHPLACE
 function sectBirthplace () {
-	const birthplace = es(`#birthplace`);
+	const birthplace = veEs(`#birthplace`);
 	const rollBirth = RNG(100);
 	const birth = `<b>Birthplace:</b> ${GenUtil.getFromTable(BIRTHPLACES, rollBirth).result}`;
 
 	const strangeBirth = RNG(100) === 100 ? "A strange event coincided with your birth: the moon briefly turning red, all the milk within a mile spoiling, the water in the area freezing solid in midsummer, all the iron in the home rusting or turning to silver, or some other unusual event of your choice" : "";
-	birthplace.html(concatSentences(birth, strangeBirth));
+	birthplace.vee.html(concatSentences(birth, strangeBirth));
 }
 
 // SIBLINGS
 async function pSectSiblings () {
-	const siblings = es(`#siblings`);
+	const siblings = veEs(`#siblings`);
 	function getBirthOrder () {
 		const rollBirthOrder = RNG(6) + RNG(6);
 		if (rollBirthOrder < 3) {
@@ -770,94 +770,94 @@ async function pSectSiblings () {
 	}
 
 	if (sibCount > 0) {
-		siblings.empty();
-		siblings.appends(`<p>You have ${sibCount} sibling${sibCount > 1 ? "s" : ""}.</p>`);
+		siblings.vee.empty();
+		siblings.vee.appends(`<p>You have ${sibCount} sibling${sibCount > 1 ? "s" : ""}.</p>`);
 		for (let i = 0; i < sibCount; ++i) {
 			const siblingType = rollOnArray(["brother", "sister"]);
-			siblings.appends(`<h5>${getBirthOrder()} sibling ${fmtChoice(siblingType, true)}</h5>`);
-			siblings.appends(ee`<div>${joinParaList(await getPersonDetails({
+			siblings.vee.appends(`<h5>${getBirthOrder()} sibling ${fmtChoice(siblingType, true)}</h5>`);
+			siblings.vee.appends(veT`<div>${joinParaList(await getPersonDetails({
 				gender: siblingType === "brother" ? "Male" : "Female",
 				parentRaces: parentRaces,
 				isSibling: true,
 			}))}</div>`);
 		}
 	} else {
-		siblings.html("You are an only child.");
+		siblings.vee.html("You are an only child.");
 	}
 }
 
 // FAMILY
 function sectFamily () {
 	function getChaVal () {
-		const raw = selCha.val();
+		const raw = selCha.vee.val();
 		if (raw === "Random") return RollerUtil.randomise(11) - 6;
 		else return Number(raw);
 	}
 
-	const family = es(`#family`);
-	family.empty();
-	family.appends(ee`<div>${`<b>Family:</b> ${GenUtil.getFromTable(FAMILY, RNG(100)).result}<br>`}</div>`);
+	const family = veEs(`#family`);
+	family.vee.empty();
+	family.vee.appends(veT`<div>${`<b>Family:</b> ${GenUtil.getFromTable(FAMILY, RNG(100)).result}<br>`}</div>`);
 	let famIndex = 1;
-	const btnSuppFam = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-btn-supp-fam no-print"></button>`.onn("click", async () => {
+	const btnSuppFam = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-btn-supp-fam no-print"></button>`.vee.onn("click", async () => {
 		const supDetails = await getPersonDetails();
-		const wrpRes = ee`<div class="life__output-wrp-border ve-p-3 ve-my-2"></div>`;
-		wrpRes.appends(`<h5 class="ve-mt-0">Family Member Roll ${famIndex++}</h5>`);
-		wrpRes.appends(ee`<div>${joinParaList(supDetails)}</div>`);
-		btnSuppFam.css({marginBottom: "5px"});
+		const wrpRes = veT`<div class="life__output-wrp-border ve-p-3 ve-my-2"></div>`;
+		wrpRes.vee.appends(`<h5 class="ve-mt-0">Family Member Roll ${famIndex++}</h5>`);
+		wrpRes.vee.appends(veT`<div>${joinParaList(supDetails)}</div>`);
+		btnSuppFam.vee.css({marginBottom: "5px"});
 		btnSuppFam.after(wrpRes);
 	});
-	family.appends(`<span class="note">You can roll on the Relationship table to determine how your family members or other important figures in your life feel about you. You can also use the Race, Occupation, and Alignment tables to learn more about the family members or guardians who raised you.</span>`);
-	family.appends(btnSuppFam);
+	family.vee.appends(`<span class="note">You can roll on the Relationship table to determine how your family members or other important figures in your life feel about you. You can also use the Race, Occupation, and Alignment tables to learn more about the family members or guardians who raised you.</span>`);
+	family.vee.appends(btnSuppFam);
 
 	const rollFamLifestyle = GenUtil.getFromTable(FAMILY_LIFESTYLE, RNG(6) + RNG(6) + RNG(6));
-	family.appends(ee`<div><b>Family lifestyle:</b> ${rollFamLifestyle.result}<br></div>`);
+	family.vee.appends(veT`<div><b>Family lifestyle:</b> ${rollFamLifestyle.result}<br></div>`);
 	const rollFamHome = Math.min(Math.max(RNG(100) + rollFamLifestyle.modifier, 0), 111);
 	const rollFamHomeRes = GenUtil.getFromTable(CHILDHOOD_HOME, rollFamHome).result;
-	family.appends(ee`<div><b>Childhood Home:</b> ${rollFamHomeRes}<br></div>`);
+	family.vee.appends(veT`<div><b>Childhood Home:</b> ${rollFamHomeRes}<br></div>`);
 
 	const rollChildMems = Math.min(Math.max(RNG(6) + RNG(6) + RNG(6) + getChaVal(), 3), 18);
-	family.appends(ee`<div><b>Childhood memories</b>: ${GenUtil.getFromTable(CHILDHOOD_MEMORIES, rollChildMems).result}</div>`);
+	family.vee.appends(veT`<div><b>Childhood memories</b>: ${GenUtil.getFromTable(CHILDHOOD_MEMORIES, rollChildMems).result}</div>`);
 }
 
 // PERSONAL DECISIONS
 function sectPersonalDecisions () {
-	const personal = es(`#personal`).empty();
-	const valBg = Number(selBg.val());
+	const personal = veEs(`#personal`).vee.empty();
+	const valBg = Number(selBg.vee.val());
 	const myBg = valBg === -1 ? rollOnArray(bgList) : bgList[valBg];
-	personal.appends(ee`<div>${`<b>Background:</b> ${myBg.name}<br>`}</div>`);
-	personal.appends(ee`<div>${`<b>I became a${addN(myBg.name)} ${myBg.name} because:</b> ${rollOnArray(myBg.reasons)}`}</div>`);
+	personal.vee.appends(veT`<div>${`<b>Background:</b> ${myBg.name}<br>`}</div>`);
+	personal.vee.appends(veT`<div>${`<b>I became a${addN(myBg.name)} ${myBg.name} because:</b> ${rollOnArray(myBg.reasons)}`}</div>`);
 }
 
 // CLASS TRAINING
 function sectClassTraining () {
-	const clss = es(`#clss`).empty();
-	const valClass = Number(selClass.val());
+	const clss = veEs(`#clss`).vee.empty();
+	const valClass = Number(selClass.vee.val());
 	const myClass = valClass === -1 ? rollOnArray(classList) : classList[valClass];
-	clss.appends(ee`<div>${`<b>Class:</b> ${myClass.name}<br>`}</div>`);
-	clss.appends(ee`<div>${`<b>I became a${addN(myClass.name)} ${myClass.name} because:</b> ${rollOnArray(myClass.reasons)}`}</div>`);
+	clss.vee.appends(veT`<div>${`<b>Class:</b> ${myClass.name}<br>`}</div>`);
+	clss.vee.appends(veT`<div>${`<b>I became a${addN(myClass.name)} ${myClass.name} because:</b> ${rollOnArray(myClass.reasons)}`}</div>`);
 }
 
 // LIFE EVENTS
 function sectLifeEvents () {
-	const events = es(`#events`).empty();
+	const events = veEs(`#events`).vee.empty();
 	marriageIndex = 0;
-	const age = GenUtil.getFromTable(LIFE_EVENTS_AGE, Number(selAge.val()) || RNG(100));
-	events.appends(ee`<div>${`<b>Current age:</b> ${age.result} ${fmtChoice(`${age.age} year${age.age > 1 ? "s" : ""} old`, true)}`}</div>`);
+	const age = GenUtil.getFromTable(LIFE_EVENTS_AGE, Number(selAge.vee.val()) || RNG(100));
+	events.vee.appends(veT`<div>${`<b>Current age:</b> ${age.result} ${fmtChoice(`${age.age} year${age.age > 1 ? "s" : ""} old`, true)}`}</div>`);
 
 	for (let i = 0; i < age.events; ++i) {
-		const dispResult = ee`<div></div>`;
-		const dispNextRoll = ee`<div></div>`;
+		const dispResult = veT`<div></div>`;
+		const dispNextRoll = veT`<div></div>`;
 
 		const recurseNextRolls = (evt) => {
 			if (!evt.nextRoll) return;
 
 			if (evt.nextRoll.title) {
-				ee`<div class="life__output-wrp-border ve-p-3 ve-my-2">
+				veT`<div class="life__output-wrp-border ve-p-3 ve-my-2">
 					<h5 class="ve-mt-0">${evt.nextRoll.title}</h5>
 					${joinParaList(evt.nextRoll.result)}
-				</div>`.appendTo(dispNextRoll);
+				</div>`.vee.appendTo(dispNextRoll);
 			} else {
-				dispNextRoll.appends(ee`<div>${`${joinParaList(evt.nextRoll.result)}<br>`}</div>`);
+				dispNextRoll.vee.appends(veT`<div>${`${joinParaList(evt.nextRoll.result)}<br>`}</div>`);
 			}
 
 			return recurseNextRolls(evt.nextRoll);
@@ -865,30 +865,30 @@ function sectLifeEvents () {
 
 		const doRollAndDisplay = ({isScrollIntoView = false} = {}) => {
 			const evt = GenUtil.getFromTable(LIFE_EVENTS, RNG(100));
-			dispResult.html(evt.result);
-			dispNextRoll.empty();
+			dispResult.vee.html(evt.result);
+			dispNextRoll.vee.empty();
 			recurseNextRolls(evt);
 			if (isScrollIntoView) wrpEvent.scrollIntoView({block: "nearest", inline: "nearest"});
 		};
 
 		doRollAndDisplay();
 
-		const btnReroll = ee`<button class="ve-btn ve-btn-default ve-btn-xxs">Reroll</button>`
-			.onn("click", () => doRollAndDisplay({isScrollIntoView: true}));
+		const btnReroll = veT`<button class="ve-btn ve-btn-default ve-btn-xxs">Reroll</button>`
+			.vee.onn("click", () => doRollAndDisplay({isScrollIntoView: true}));
 
-		const wrpEvent = ee`<div class="ve-flex-col">
+		const wrpEvent = veT`<div class="ve-flex-col">
 			<div class="ve-flex-v-center ve-mb-1 ve-mt-2">
 				<h5 class="ve-my-0 ve-mr-2">Life Event ${i + 1}</h5>
 				${btnReroll}
 			</div>
 			${dispResult}
 			${dispNextRoll}
-		</div>`.appendTo(events);
+		</div>`.vee.appendTo(events);
 	}
 }
 
 async function pRoll () {
-	em(`.life__output`).map(ele => ele.removeClass("ve-hidden"));
+	veEm(`.life__output`).map(ele => ele.vee.removeClass("ve-hidden"));
 
 	await pSectParents();
 	sectBirthplace();
@@ -911,9 +911,9 @@ window.addEventListener("load", async () => {
 	]);
 	onJsonLoad(lifeData, nameData);
 
-	const selAge = es(`#age`).onn("change", () => selAge.toggleClass("ve-italic", !!selAge.val()));
+	const selAge = veEs(`#age`).vee.onn("change", () => selAge.vee.toggleClass("ve-italic", !!selAge.vee.val()));
 
-	es(`#xge_link`).replaceWith(e_({outer: (Renderer.get().render(`{@book Xanathar's Guide to Everything|XGE|1|This Is Your Life}`))}));
+	veEs(`#xge_link`).replaceWith(veE({outer: (Renderer.get().render(`{@book Xanathar's Guide to Everything|XGE|1|This Is Your Life}`))}));
 
 	window.dispatchEvent(new Event("toolsLoaded"));
 });

@@ -23,24 +23,24 @@ class TablesSublistManager extends SublistManager {
 	pGetSublistItem (it, hash) {
 		const cellsText = [it.name];
 
-		const ele = ee`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner" title="${it.name}">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`
-			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
-			.onn("click", evt => this._listSub.doSelect(listItem, evt));
+			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
 		const listItem = new ListItem(
 			hash,
 			ele,
 			it.name,
 			{
-				hash,
-				page: it.page,
+				...ListItem.getCommonValues(it),
 				sortName: PageFilterTables.getSortName(it.name),
 			},
 			{
+				hash,
 				entity: it,
 				mdRow: [...cellsText],
 			},
@@ -142,12 +142,12 @@ class TablesPage extends ListPage {
 			eleLi,
 			it.name,
 			{
-				hash,
 				source,
-				page: it.page,
+				...ListItem.getCommonValues(it),
 				sortName: PageFilterTables.getSortName(it.name),
 			},
 			{
+				hash,
 				isExcluded,
 			},
 		);
@@ -159,7 +159,7 @@ class TablesPage extends ListPage {
 	}
 
 	_renderStats_doBuildStatsTab ({ent}) {
-		this._pgContent.empty().appends(RenderTables.getRenderedTable(ent));
+		this._pgContent.vee.empty().vee.appends(RenderTables.getRenderedTable(ent));
 	}
 }
 

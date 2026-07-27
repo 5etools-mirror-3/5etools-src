@@ -8,7 +8,7 @@ export class RenderPageImplBase {
 		opts ||= {};
 		const renderer = Renderer.get().setFirstSection(true);
 
-		return ee`${this._getRendered({ent, renderer, opts})}`;
+		return veT`${this._getRendered({ent, renderer, opts})}`;
 	}
 
 	/**

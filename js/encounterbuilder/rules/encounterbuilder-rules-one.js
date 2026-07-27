@@ -38,10 +38,10 @@ export class EncounterBuilderRulesOne extends EncounterBuilderRulesBase {
 	}
 
 	_render_settingsRules ({stgSettingsRules}) {
-		const wrpSettingsRules = ee`<div class="ve-flex-col">
+		const wrpSettingsRules = veT`<div class="ve-flex-col">
 			<div class="ve-flex ve-mb-2">${this._rendererWrapped.er(`{@note Based on the encounter building rules on page 114 of the {@book ${Parser.sourceJsonToFull(Parser.SRC_XDMG)}|XDMG|3|Combat Encounter Difficulty}}`)}</div>
 		</div>`
-			.appendTo(stgSettingsRules);
+			.vee.appendTo(stgSettingsRules);
 
 		return {
 			wrpSettingsRules,
@@ -53,7 +53,7 @@ export class EncounterBuilderRulesOne extends EncounterBuilderRulesBase {
 			tiers: TIERS,
 		});
 
-		wrpRandomAndAdjust.appendTo(stgRandomAndAdjust);
+		wrpRandomAndAdjust.vee.appendTo(stgRandomAndAdjust);
 
 		return {wrpRandomAndAdjust};
 	}
@@ -82,12 +82,12 @@ export class EncounterBuilderRulesOne extends EncounterBuilderRulesBase {
 			pFnDoAdjustEncounter: this._pDoAdjustEncounter.bind(this),
 		});
 
-		const dispTtk = ee`<div></div>`;
+		const dispTtk = veT`<div></div>`;
 
-		const dispExpToLevel = ee`<div class="ve-muted"></div>`;
+		const dispExpToLevel = veT`<div class="ve-muted"></div>`;
 
 		const dispThermometer = thermometer.render()
-			.addClass("ve-mt-2");
+			.vee.addClass("ve-mt-2");
 
 		this._comp.addHookPulseDeriverPartyMeta(() => {
 			const partyMeta = this.getEncounterPartyMeta();
@@ -108,12 +108,12 @@ export class EncounterBuilderRulesOne extends EncounterBuilderRulesBase {
 			});
 
 			dispTtk
-				.html(this._getTtkHtml({partyMeta}));
+				.vee.html(this._getTtkHtml({partyMeta}));
 
-			dispExpToLevel.html(this._getRenderedExpToLevel({partyMeta}));
+			dispExpToLevel.vee.html(this._getRenderedExpToLevel({partyMeta}));
 		})();
 
-		const wrpGroupSummary = ee`<div class="ve-text-right">
+		const wrpGroupSummary = veT`<div class="ve-text-right">
 			${dispsTierXp}
 			${dispThermometer}
 			<hr class="ve-hr-2">
@@ -121,8 +121,8 @@ export class EncounterBuilderRulesOne extends EncounterBuilderRulesBase {
 			<br>
 			${dispExpToLevel}
 		</div>`
-			.hideVe()
-			.appendTo(stgGroupSummary);
+			.vee.hide()
+			.vee.appendTo(stgGroupSummary);
 
 		return {
 			wrpGroupSummary,
@@ -132,24 +132,24 @@ export class EncounterBuilderRulesOne extends EncounterBuilderRulesBase {
 	/* -------------------------------------------- */
 
 	_render_difficulty ({stgDifficulty}) {
-		const hrHasCreatures = ee`<hr class="ve-hr-1">`;
-		const wrpDifficultyCols = ee`<div class="ve-flex">
+		const hrHasCreatures = veT`<hr class="ve-hr-1">`;
+		const wrpDifficultyCols = veT`<div class="ve-flex">
 			${this._renderGroupAndDifficulty_getDifficultyLhs()}
 			${this._renderGroupAndDifficulty_getDifficultyRhs()}
 		</div>`;
 
 		this._comp.addHookPulseDeriverPartyMeta(() => {
 			const encounterSpendInfo = this.getEncounterPartyMeta().getEncounterSpendInfo(this._comp.creatureGroups);
-			hrHasCreatures.toggleVe(encounterSpendInfo.relevantCount);
-			wrpDifficultyCols.toggleVe(encounterSpendInfo.relevantCount);
+			hrHasCreatures.vee.toggle(encounterSpendInfo.relevantCount);
+			wrpDifficultyCols.vee.toggle(encounterSpendInfo.relevantCount);
 		})();
 
-		const wrpDifficulty = ee`<div class="ve-flex-col ve-w-100">
+		const wrpDifficulty = veT`<div class="ve-flex-col ve-w-100">
 			${hrHasCreatures}
 			${wrpDifficultyCols}
 		</div>`
-			.hideVe()
-			.appendTo(stgDifficulty);
+			.vee.hide()
+			.vee.appendTo(stgDifficulty);
 
 		return {
 			wrpDifficulty,
@@ -157,7 +157,7 @@ export class EncounterBuilderRulesOne extends EncounterBuilderRulesBase {
 	}
 
 	_renderGroupAndDifficulty_getDifficultyLhs () {
-		const dispDifficulty = ee`<h4 class="ve-my-2"></h4>`;
+		const dispDifficulty = veT`<h4 class="ve-my-2"></h4>`;
 
 		this._comp.addHookPulseDeriverPartyMeta(() => {
 			const partyMeta = this.getEncounterPartyMeta();
@@ -167,33 +167,33 @@ export class EncounterBuilderRulesOne extends EncounterBuilderRulesBase {
 			const tier = partyMeta.getEncounterTier(encounterSpendInfo);
 
 			dispDifficulty
-				.html(`Difficulty: <span class="ve-help-subtle">${tier.toTitleCase()}</span>`)
-				.tooltip(new _TierHtmlProviderOne().getTierTitle({tier}));
+				.vee.html(`Difficulty: <span class="ve-help-subtle">${tier.toTitleCase()}</span>`)
+				.vee.tooltip(new _TierHtmlProviderOne().getTierTitle({tier}));
 		})();
 
-		return ee`<div class="ve-w-50">
+		return veT`<div class="ve-w-50">
 			${dispDifficulty}
 		</div>`;
 	}
 
 	_renderGroupAndDifficulty_getDifficultyRhs () {
-		const dispXpRawTotal = ee`<h4></h4>`;
-		const dispXpRawPerPlayer = ee`<i></i>`;
+		const dispXpRawTotal = veT`<h4></h4>`;
+		const dispXpRawPerPlayer = veT`<i></i>`;
 
 		this._comp.addHookPulseDeriverPartyMeta(() => {
 			const partyMeta = this.getEncounterPartyMeta();
 
 			const encounterSpendInfo = partyMeta.getEncounterSpendInfo(this._comp.creatureGroups);
 
-			dispXpRawTotal.txt(`Total XP: ${encounterSpendInfo.baseSpend?.toLocaleStringVe() || "?"}`);
-			dispXpRawPerPlayer.txt(
+			dispXpRawTotal.vee.txt(`Total XP: ${encounterSpendInfo.baseSpend?.toLocaleStringVe() || "?"}`);
+			dispXpRawPerPlayer.vee.txt(
 				partyMeta?.cntPlayers
 					? `(${Math.floor(encounterSpendInfo.baseSpend / partyMeta?.cntPlayers)?.toLocaleStringVe()} per player)`
 					: "",
 			);
 		})();
 
-		return ee`<div class="ve-w-50 ve-text-right">
+		return veT`<div class="ve-w-50 ve-text-right">
 			${dispXpRawTotal}
 			<div>${dispXpRawPerPlayer}</div>
 		</div>`;

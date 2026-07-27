@@ -40,4 +40,8 @@ describe("Stripping tags", () => {
 		expect(Renderer.stripTags("{@b {@i aaa} bb} {@b cc}", {blocklistTags: new Set(["@b"])})).toBe("{@i aaa} bb cc");
 		expect(Renderer.stripTags("{@b {@i aaa} bb} {@b cc}", {blocklistTags: new Set([])})).toBe("{@b {@i aaa} bb} {@b cc}");
 	});
+
+	it("Should return blank string on junk tag", () => {
+		expect(Renderer.stripTags("{@5etools}")).toBe("");
+	});
 });

@@ -30,26 +30,26 @@ class RacesSublistManager extends SublistManager {
 			new SublistCell({text: sizeShortText, title: sizeText}),
 		];
 
-		const ele = ee`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
 				<a href="#${UrlUtil.autoEncodeHash(race)}" class="ve-lst__row-border ve-lst__row-inner">
 					${this.constructor._getRowCellsHtml({values: cellsText})}
 				</a>
 			</div>
 		`
-			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
-			.onn("click", evt => this._listSub.doSelect(listItem, evt));
+			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
 		const listItem = new ListItem(
 			hash,
 			ele,
 			race.name,
 			{
-				hash,
-				page: race.page,
+				...ListItem.getCommonValues(race),
 				ability: race._slAbility,
 				size: sizeText,
 			},
 			{
+				hash,
 				entity: race,
 				mdRow: [...cellsText],
 			},
@@ -125,15 +125,15 @@ class RacesPage extends ListPage {
 			eleLi,
 			race.name,
 			{
-				hash,
 				source,
-				page: race.page,
+				...ListItem.getCommonValues(race),
 				ability: race._slAbility,
 				size: sizeText,
 				cleanName: PageFilterRaces.getInvertedName(race.name) || "",
 				alias: PageFilterRaces.getListAliases(race),
 			},
 			{
+				hash,
 				isExcluded,
 			},
 		);
@@ -145,7 +145,7 @@ class RacesPage extends ListPage {
 	}
 
 	_renderStats_doBuildStatsTab ({ent}) {
-		this._pgContent.empty().appends(RenderRaces.getRenderedRace(ent));
+		this._pgContent.vee.empty().vee.appends(RenderRaces.getRenderedRace(ent));
 	}
 }
 

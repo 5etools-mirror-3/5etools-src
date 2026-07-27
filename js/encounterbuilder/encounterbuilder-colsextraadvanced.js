@@ -17,25 +17,25 @@ export class EncounterBuilderRenderableCollectionColsExtraAdvanced extends Rende
 		});
 
 		const iptName = ComponentUiUtil.getIptStr(comp, "name")
-			.addClass("ve-w-40p")
-			.addClass("form-control--minimal")
-			.addClass("ve-no-shrink")
-			.addClass("ve-text-center")
-			.addClass("ve-mr-1")
-			.addClass("ve-bb-0");
+			.vee.addClass("ve-w-40p")
+			.vee.addClass("form-control--minimal")
+			.vee.addClass("ve-no-shrink")
+			.vee.addClass("ve-text-center")
+			.vee.addClass("ve-mr-1")
+			.vee.addClass("ve-bb-0");
 
-		const wrpHeader = ee`<div class="ve-flex">
+		const wrpHeader = veT`<div class="ve-flex">
 			${iptName}
 		</div>`
-			.appendTo(this._rdState.wrpHeadersAdvanced);
+			.vee.appendTo(this._rdState.wrpHeadersAdvanced);
 
-		const btnDelete = ee`<button class="ve-btn ve-btn-xxs ecgen-player__btn-inline ve-w-40p ve-btn-danger ve-no-shrink ve-mt-n2 ve-bt-0 ve-btl-0 ve-btr-0" title="Remove Column" tabindex="-1"><span class="glyphicon-trash glyphicon"></span></button>`
-			.onn("click", () => this._comp.doRemoveColExtraAdvanced(colExtra.id));
+		const btnDelete = veT`<button class="ve-btn ve-btn-xxs ecgen-player__btn-inline ve-w-40p ve-btn-danger ve-no-shrink ve-mt-n2 ve-bt-0 ve-btl-0 ve-btr-0" title="Remove Column" tabindex="-1"><span class="glyphicon-trash glyphicon"></span></button>`
+			.vee.onn("click", () => this._comp.doRemoveColExtraAdvanced(colExtra.id));
 
-		const wrpFooter = ee`<div class="ve-w-40p ve-flex-v-baseline ve-flex-h-center ve-no-shrink ve-no-grow ve-mr-1">
+		const wrpFooter = veT`<div class="ve-w-40p ve-flex-v-baseline ve-flex-h-center ve-no-shrink ve-no-grow ve-mr-1">
 			${btnDelete}
 		</div>`
-			.appendTo(this._rdState.wrpFootersAdvanced);
+			.vee.appendTo(this._rdState.wrpFootersAdvanced);
 
 		return {
 			comp,
@@ -50,7 +50,7 @@ export class EncounterBuilderRenderableCollectionColsExtraAdvanced extends Rende
 
 	doUpdateExistingRender (renderedMeta, colExtra, i) {
 		renderedMeta.comp._proxyAssignSimple("state", colExtra.entity, true);
-		if (!renderedMeta.wrpHeader.parente()?.is(this._rdState.wrpHeadersAdvanced)) renderedMeta.wrpHeader.appendTo(this._rdState.wrpHeadersAdvanced);
-		if (!renderedMeta.wrpFooter.parente()?.is(this._rdState.wrpFootersAdvanced)) renderedMeta.wrpFooter.appendTo(this._rdState.wrpFootersAdvanced);
+		if (!renderedMeta.wrpHeader.vee.parent()?.vee.is(this._rdState.wrpHeadersAdvanced)) renderedMeta.wrpHeader.vee.appendTo(this._rdState.wrpHeadersAdvanced);
+		if (!renderedMeta.wrpFooter.vee.parent()?.vee.is(this._rdState.wrpFootersAdvanced)) renderedMeta.wrpFooter.vee.appendTo(this._rdState.wrpFootersAdvanced);
 	}
 }

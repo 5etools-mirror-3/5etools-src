@@ -48,25 +48,25 @@ class _ManageExistingEntitiesUi extends BaseComponent {
 
 	render ({wrp}) {
 		let menuMass;
-		const btnMass = ee`<button class="ve-btn ve-btn-default ve-bbl-0 ve-self-flex-stretch">Mass...</button>`
-			.onn("click", async evt => {
+		const btnMass = veT`<button class="ve-btn ve-btn-default ve-bbl-0 ve-self-flex-stretch">Mass...</button>`
+			.vee.onn("click", async evt => {
 				menuMass ||= this._getMassContextMenu();
 				await ContextUtil.pOpenMenu(evt, menuMass);
 			});
 
-		const btnReset = ee`<button class="ve-btn ve-btn-default">Reset</button>`;
+		const btnReset = veT`<button class="ve-btn ve-btn-default">Reset</button>`;
 
-		const cbAll = ee`<input type="checkbox">`;
-		const wrpRows = ee`<div class="list ve-flex-col ve-w-100 ve-max-h-unset"></div>`;
-		const iptSearch = ee`<input type="search" class="search ve-form-control ve-w-100 ve-lst__search ve-lst__search--no-border-h" placeholder="Search entities...">`;
-		const disp = ee`<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>`;
-		const wrpBtnsSort = ee`<div class="filtertools ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
+		const cbAll = veT`<input type="checkbox">`;
+		const wrpRows = veT`<div class="list ve-flex-col ve-w-100 ve-max-h-unset"></div>`;
+		const iptSearch = veT`<input type="search" class="search ve-form-control ve-w-100 ve-lst__search ve-lst__search--no-border-h" placeholder="Search entities...">`;
+		const disp = veT`<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>`;
+		const wrpBtnsSort = veT`<div class="filtertools ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
 			<label class="ve-btn ve-btn-default ve-btn-xs ve-col-1 ve-pl-1 ve-pr-0 ve-flex-vh-center">${cbAll}</label>
 			<button class="ve-col-9-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
 			<button class="ve-col-1-5 ve-btn ve-btn-default ve-btn-xs ve-grow" disabled>&nbsp;</button>
 		</div>`;
 
-		ee(wrp)`
+		veT(wrp)`
 		<div class="ve-flex-v-stretch ve-input-group ve-input-group--top ve-no-shrink ve-mt-1">
 			${btnMass}
 			<div class="ve-w-100 ve-relative">
@@ -86,7 +86,7 @@ class _ManageExistingEntitiesUi extends BaseComponent {
 			fnSort: SortUtil.listSort,
 		});
 
-		this._list.on("updated", () => disp.html(`${this._list.visibleItems.length}/${this._list.items.length}`));
+		this._list.on("updated", () => disp.vee.html(`${this._list.visibleItems.length}/${this._list.items.length}`));
 
 		this._listSelectClickHandler = new ListSelectClickHandler({list: this._list});
 		this._listSelectClickHandler.bindSelectAllCheckbox(cbAll);
@@ -99,36 +99,36 @@ class _ManageExistingEntitiesUi extends BaseComponent {
 
 		this._list.init();
 
-		iptSearch.focuse();
+		iptSearch.vee.focus();
 	}
 
 	_addListItem ({ent}) {
-		const btnEdit = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="Edit"><span class="glyphicon glyphicon-pencil"></span></button>`
-			.onn("click", async evt => {
+		const btnEdit = veT`<button class="ve-btn ve-btn-xs ve-btn-default" title="Edit"><span class="glyphicon glyphicon-pencil"></span></button>`
+			.vee.onn("click", async evt => {
 				evt.stopPropagation();
 				await this._parent.pHandleClick_editUniqueId(ent.uniqueId, {isConfirmOnUnsaved: true});
 				this._doClose();
 			});
 
 		let menu;
-		const btnContextMenu = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="More Options"><span class="glyphicon glyphicon-option-vertical"></span></button>`
-			.onn("click", async evt => {
+		const btnContextMenu = veT`<button class="ve-btn ve-btn-xs ve-btn-default" title="More Options"><span class="glyphicon glyphicon-option-vertical"></span></button>`
+			.vee.onn("click", async evt => {
 				evt.stopPropagation();
 				menu ||= this._getListItemContextMenu({ent});
 				await ContextUtil.pOpenMenu(evt, menu);
 			});
 
-		const btnDelete = ee`<button class="ve-btn ve-btn-xs ve-btn-danger" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>`
-			.onn("click", async evt => {
+		const btnDelete = veT`<button class="ve-btn ve-btn-xs ve-btn-danger" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>`
+			.vee.onn("click", async evt => {
 				evt.stopPropagation();
 				await this._parent.pHandleClick_deleteUniqueId(ent.uniqueId, {isConfirm: true});
 				this._list.removeItem(listItem);
 				this._list.update();
 			});
 
-		const cbSel = ee`<input type="checkbox" class="ve-no-events">`;
+		const cbSel = veT`<input type="checkbox" class="ve-no-events">`;
 
-		const eleLi = ee`<div class="ve-lst__row ve-flex-col ve-px-0">
+		const eleLi = veT`<div class="ve-lst__row ve-flex-col ve-px-0">
 			<label class="ve-lst__row-border ve-lst__row-inner ve-no-select ve-mb-0 ve-flex-v-center">
 				<div class="ve-pl-0 ve-pr-1 ve-col-1 ve-flex-vh-center">${cbSel}</div>
 				<div class="ve-col-9-5 ve-px-1 ve-bold">${ent.name}</div>
@@ -251,8 +251,8 @@ export class BuilderBase extends ProxyBase {
 	}
 
 	_doBindHeaderElements () {
-		this._addHook("meta", "isModified", () => this._btnHeaderSave.txt(this._meta.isModified ? "Save *" : "Saved"))();
-		this._addHook("meta", "nameOriginal", () => this._dispHeaderName.txt(`Editing "${this._meta.nameOriginal || "?"}"`))();
+		this._addHook("meta", "isModified", () => this._btnHeaderSave.vee.txt(this._meta.isModified ? "Save *" : "Saved"))();
+		this._addHook("meta", "nameOriginal", () => this._dispHeaderName.vee.txt(`Editing "${this._meta.nameOriginal || "?"}"`))();
 	}
 
 	set ui (ui) { this._ui = ui; }
@@ -469,7 +469,7 @@ export class BuilderBase extends ProxyBase {
 
 		const entEditable = await BrewUtil2.pGetEditableBrewEntity(this._prop, uniqueId);
 		if (entEditable._copy) {
-			JqueryUtil.doToast({type: "warning", content: ee`<span>You are attempting to edit a <code>_copy</code>! Saving your changes will overwrite the <code>_copy</code> with a resolved version of the entity.</span>`});
+			JqueryUtil.doToast({type: "warning", content: veT`<span>You are attempting to edit a <code>_copy</code>! Saving your changes will overwrite the <code>_copy</code> with a resolved version of the entity.</span>`});
 			await DataUtil[this._prop]?.pMergeCopy([], entEditable, {isSkipMetaMergeCache: true});
 		}
 		this.setStateFromLoaded({
@@ -582,15 +582,15 @@ export class BuilderBase extends ProxyBase {
 	 * @param [opts] Options object.
 	 * @param [opts.isProtectLast]
 	 * @param [opts.isExtraSmall]
-	 * @return {jQuery}
+	 * @return {HTMLElementExtended}
 	 */
 	static getBtnRemoveRow (doUpdateState, rowArr, row, wrpRow, title, opts) {
 		opts = opts || {};
 
-		return ee`<button class="ve-btn ${opts.isExtraSmall ? "ve-btn-xxs" : "ve-btn-xs"} ve-btn-danger ${opts.isProtectLast ? "mkbru__btn-rm-row" : ""}" title="Remove ${title}"><span class="glyphicon glyphicon-trash"></span></button>`
-			.onn("click", () => {
+		return veT`<button class="ve-btn ${opts.isExtraSmall ? "ve-btn-xxs" : "ve-btn-xs"} ve-btn-danger ${opts.isProtectLast ? "mkbru__btn-rm-row" : ""}" title="Remove ${title}"><span class="glyphicon glyphicon-trash"></span></button>`
+			.vee.onn("click", () => {
 				rowArr.splice(rowArr.indexOf(row), 1);
-				wrpRow.empty().remove();
+				wrpRow.vee.empty().remove();
 				doUpdateState();
 			});
 	}
@@ -603,7 +603,7 @@ export class BuilderBase extends ProxyBase {
 		const doUpdateState = () => {
 			const out = {};
 
-			const entries = UiUtil.getTextAsEntries(iptEntries.val());
+			const entries = UiUtil.getTextAsEntries(iptEntries.vee.val());
 			if (entries && entries.length) out.entries = entries;
 
 			const images = imageRows.map(it => it.getState()).filter(Boolean);
@@ -617,35 +617,35 @@ export class BuilderBase extends ProxyBase {
 		};
 
 		const doUpdateOrder = () => {
-			imageRows.forEach(it => it.ele.detach().appendTo(wrpRows));
+			imageRows.forEach(it => it.ele.vee.detach().vee.appendTo(wrpRows));
 			doUpdateState();
 		};
 
-		const wrpRows = ee`<div class="ve-flex-col ve-mb-1 ve-mt-n1"></div>`;
-		const wrpRowsOuter = ee`<div class="ve-relative">${wrpRows}</div>`;
+		const wrpRows = veT`<div class="ve-flex-col ve-mb-1 ve-mt-n1"></div>`;
+		const wrpRowsOuter = veT`<div class="ve-relative">${wrpRows}</div>`;
 
 		const rowOptions = {wrpRowsOuter};
 
-		const iptEntries = ee`<textarea class="ve-form-control form-control--minimal ve-resize-vertical ve-mb-2"></textarea>`
-			.onn("change", () => doUpdateState());
+		const iptEntries = veT`<textarea class="ve-form-control form-control--minimal ve-resize-vertical ve-mb-2"></textarea>`
+			.vee.onn("change", () => doUpdateState());
 
-		const btnAddImage = ee`<button class="ve-btn ve-btn-xs ve-btn-default">Add Image</button>`
-			.onn("click", async () => {
+		const btnAddImage = veT`<button class="ve-btn ve-btn-xs ve-btn-default">Add Image</button>`
+			.vee.onn("click", async () => {
 				const url = await InputUiUtil.pGetUserString({title: "Enter a URL"});
 				if (!url) return;
-				this.constructor.__getFluffInput__getImageRow(doUpdateState, doUpdateOrder, rowOptions, imageRows, {href: {url: url}}).ele.appendTo(wrpRows);
+				this.constructor.__getFluffInput__getImageRow(doUpdateState, doUpdateOrder, rowOptions, imageRows, {href: {url: url}}).ele.vee.appendTo(wrpRows);
 				doUpdateState();
 			});
 
-		ee`<div class="ve-flex-col">
+		veT`<div class="ve-flex-col">
 		${iptEntries}
 		${wrpRowsOuter}
 		<div>${btnAddImage}</div>
-		</div>`.appendTo(rowInner);
+		</div>`.vee.appendTo(rowInner);
 
 		if (this._state.fluff) {
-			if (this._state.fluff.entries) iptEntries.val(UiUtil.getEntriesAsText(this._state.fluff.entries));
-			if (this._state.fluff.images) this._state.fluff.images.forEach(img => this.constructor.__getFluffInput__getImageRow(doUpdateState, doUpdateOrder, rowOptions, imageRows, img).ele.appendTo(wrpRows));
+			if (this._state.fluff.entries) iptEntries.vee.val(UiUtil.getEntriesAsText(this._state.fluff.entries));
+			if (this._state.fluff.images) this._state.fluff.images.forEach(img => this.constructor.__getFluffInput__getImageRow(doUpdateState, doUpdateOrder, rowOptions, imageRows, img).ele.vee.appendTo(wrpRows));
 		}
 
 		return row;
@@ -655,12 +655,12 @@ export class BuilderBase extends ProxyBase {
 		const out = {};
 
 		const getState = () => {
-			const rawUrl = iptUrl.val().trim();
+			const rawUrl = iptUrl.vee.val().trim();
 			if (!rawUrl) return null;
 
-			const rawTitle = iptTitle.val().trim();
-			const rawCredit = iptCredit.val().trim();
-			const rawAltText = iptAltText.val().trim();
+			const rawTitle = iptTitle.vee.val().trim();
+			const rawCredit = iptCredit.vee.val().trim();
+			const rawAltText = iptAltText.vee.val().trim();
 
 			return {
 				type: "image",
@@ -674,29 +674,29 @@ export class BuilderBase extends ProxyBase {
 			};
 		};
 
-		const iptUrl = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`
-			.onn("change", () => doUpdateState());
-		const iptTitle = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`
-			.onn("change", () => doUpdateState());
-		const iptCredit = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`
-			.onn("change", () => doUpdateState());
-		const iptAltText = ee`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`
-			.onn("change", () => doUpdateState());
+		const iptUrl = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`
+			.vee.onn("change", () => doUpdateState());
+		const iptTitle = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`
+			.vee.onn("change", () => doUpdateState());
+		const iptCredit = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`
+			.vee.onn("change", () => doUpdateState());
+		const iptAltText = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2">`
+			.vee.onn("change", () => doUpdateState());
 
 		if (image) {
 			const href = ((image || {}).href || {});
-			if (href.url) iptUrl.val(href.url);
+			if (href.url) iptUrl.vee.val(href.url);
 			else if (href.path) {
-				iptUrl.val(`${window.location.origin.replace(/\/+$/, "")}/img/${href.path}`);
+				iptUrl.vee.val(`${window.location.origin.replace(/\/+$/, "")}/img/${href.path}`);
 			}
 
-			if (image.title) iptTitle.val(image.title);
-			if (image.credit) iptCredit.val(image.credit);
-			if (image.altText) iptAltText.val(image.altText);
+			if (image.title) iptTitle.vee.val(image.title);
+			if (image.credit) iptCredit.vee.val(image.credit);
+			if (image.altText) iptAltText.vee.val(image.altText);
 		}
 
-		const btnPreview = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2" title="Preview Image"><span class="glyphicon glyphicon-fullscreen"></span></button>`
-			.onn("click", (evt) => {
+		const btnPreview = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2" title="Preview Image"><span class="glyphicon glyphicon-fullscreen"></span></button>`
+			.vee.onn("click", (evt) => {
 				const toRender = getState();
 				if (!toRender) return JqueryUtil.doToast({content: "Please enter an image URL", type: "warning"});
 
@@ -711,10 +711,10 @@ export class BuilderBase extends ProxyBase {
 				);
 			});
 
-		const btnRemove = ee`<button class="ve-btn ve-btn-xs ve-btn-danger" title="Remove Image"><span class="glyphicon glyphicon-trash"></span></button>`
-			.onn("click", () => {
+		const btnRemove = veT`<button class="ve-btn ve-btn-xs ve-btn-danger" title="Remove Image"><span class="glyphicon glyphicon-trash"></span></button>`
+			.vee.onn("click", () => {
 				imageRows.splice(imageRows.indexOf(out), 1);
-				out.ele.empty().remove();
+				out.ele.vee.empty().remove();
 				doUpdateState();
 			});
 
@@ -722,7 +722,7 @@ export class BuilderBase extends ProxyBase {
 			wrpRowsOuter: options.wrpRowsOuter,
 		});
 
-		out.ele = ee`<div class="ve-flex-v-center ve-py-1 mkbru__wrp-rows--removable">
+		out.ele = veT`<div class="ve-flex-v-center ve-py-1 mkbru__wrp-rows--removable">
 			<div class="ve-flex-col ve-mr-2 ve-w-100">
 				<label class="ve-flex-v-center ve-mb-2">
 					<span class="ve-w-60p ve-no-shrink ve-mr-2 ve-text-right ve-bold">URL</span>

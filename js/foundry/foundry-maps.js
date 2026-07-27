@@ -1,4 +1,4 @@
-class _MapNamer {
+export class MapNamer {
 	constructor () {
 		this._ixUnnamedMap = 1;
 		this._ixsHeaderMaps = {};
@@ -45,7 +45,7 @@ class _MapNamer {
 			// If there's no name, or it has a generic "version" name, try to use the name of the nearest named parent entry
 			nameParentEntry: entry._tmp_parentEntryName
 				? this._getHeaderMapName({parentEntryName: entry._tmp_parentEntryName})
-				: this._getUnnamedMapName(),
+				: this._getUnnamedMapName({entry}),
 			isVersionNameBase: cleanTitle && this._isVersionMapName(cleanTitle),
 		};
 	}
@@ -56,8 +56,8 @@ class _MapNamer {
 		return false;
 	}
 
-	_getUnnamedMapName () {
-		return `(Unnamed Map ${this._ixUnnamedMap++})`;
+	_getUnnamedMapName ({entry}) {
+		return `(Unnamed ${["map", "mapPlayer"].includes(entry.imageType) ? "Map" : "Image"} ${this._ixUnnamedMap++})`;
 	}
 
 	_getHeaderMapName ({parentEntryName}) {
@@ -130,7 +130,7 @@ export class CorpusMapImageExtractor {
 	 * A post-processing step once all entries have been indexed in the `entryToIdMap`.
 	 */
 	_mutMapNames ({availableMaps, entryIdToMap, entryIdToName}) {
-		const mapNamer = new _MapNamer();
+		const mapNamer = new MapNamer();
 		Object.values(availableMaps)
 			.forEach(urlToEntry => {
 				Object.values(urlToEntry)

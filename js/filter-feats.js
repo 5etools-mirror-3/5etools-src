@@ -223,7 +223,6 @@ class ModalFilterFeats extends ModalFilterBase {
 			eleRow,
 			feat.name,
 			{
-				hash,
 				source,
 				sourceJson: feat.source,
 				...ListItem.getCommonValues(feat),
@@ -232,6 +231,7 @@ class ModalFilterFeats extends ModalFilterBase {
 				prerequisite: feat._slPrereq,
 			},
 			{
+				hash,
 				cbSel: eleRow.firstElementChild.firstElementChild.firstElementChild,
 				btnShowHidePreview,
 			},

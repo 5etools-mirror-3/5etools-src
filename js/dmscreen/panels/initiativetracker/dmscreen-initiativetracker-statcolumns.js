@@ -3,7 +3,7 @@ import {
 	InitiativeTrackerRowStatsColDataSerializer,
 	InitiativeTrackerStatColumnDataSerializer,
 } from "./dmscreen-initiativetracker-serial.js";
-import {InitiativeTrackerUtil} from "../../initiativetracker/initiativetracker-utils.js";
+import {InitiativeTrackerUtil} from "../../../initiativetracker/initiativetracker-utils.js";
 
 export const GROUP_BASE_STATS = "baseStats";
 export const GROUP_SAVES = "saves";
@@ -141,24 +141,24 @@ class _InitiativeTrackerStatColumnBase {
 	}
 
 	getEleRenderedHeader () {
-		return ee`<div class="dm-init__stat_head" ${this.constructor.NAME ? `title="${this.constructor.NAME}"` : ""}>${this._abbreviation}</div>`;
+		return veT`<div class="dm-init__stat_head" ${this.constructor.NAME ? `title="${this.constructor.NAME}"` : ""}>${this._abbreviation}</div>`;
 	}
 
 	getRendered ({comp, mon, networking = null}) {
 		const ipt = ComponentUiUtil.getIptStr(comp, "value")
-			.removeClass("ve-input-xs")
-			.addClass("ve-input-sm")
-			.addClass("dm-init__stat_ipt")
-			.addClass("ve-text-center")
-			.onn("click", () => ipt.selecte());
+			.vee.removeClass("ve-input-xs")
+			.vee.addClass("ve-input-sm")
+			.vee.addClass("dm-init__stat_ipt")
+			.vee.addClass("ve-text-center")
+			.vee.onn("click", () => ipt.vee.select());
 
 		if (mon) {
 			comp._addHookBase("isEditable", () => {
-				ipt.prop("disabled", !comp._state.isEditable);
+				ipt.vee.prop("disabled", !comp._state.isEditable);
 			})();
 		}
 
-		return ee`<div class="ve-flex-vh-center">${ipt}</div>`;
+		return veT`<div class="ve-flex-vh-center">${ipt}</div>`;
 	}
 
 	/* -------------------------------------------- */
@@ -360,7 +360,7 @@ class InitiativeTrackerStatColumn_LegendaryActions extends _InitiativeTrackerSta
 
 	getEleRenderedHeader () {
 		return super.getEleRenderedHeader()
-			.addClass("ve-w-48p");
+			.vee.addClass("ve-w-48p");
 	}
 
 	getRendered ({comp, mon}) {
@@ -374,7 +374,7 @@ class InitiativeTrackerStatColumn_LegendaryActions extends _InitiativeTrackerSta
 				html: `<input class="ve-form-control ve-input-sm hp dm-init__row-input ve-text-right ve-w-24p ve-mr-0 ve-br-0">`,
 			},
 		)
-			.onn("click", () => iptCurrent.selecte());
+			.vee.onn("click", () => iptCurrent.vee.select());
 
 		const iptMax = ComponentUiUtil.getIptNumber(
 			comp,
@@ -386,16 +386,16 @@ class InitiativeTrackerStatColumn_LegendaryActions extends _InitiativeTrackerSta
 				html: `<input class="ve-form-control ve-input-sm hp-max dm-init__row-input ve-w-24p ve-mr-0 ve-bl-0">`,
 			},
 		)
-			.onn("click", () => iptMax.selecte());
+			.vee.onn("click", () => iptMax.vee.select());
 
 		if (mon) {
 			comp._addHookBase("isEditable", () => {
-				iptCurrent.prop("disabled", !comp._state.isEditable);
-				iptMax.prop("disabled", !comp._state.isEditable);
+				iptCurrent.vee.prop("disabled", !comp._state.isEditable);
+				iptMax.vee.prop("disabled", !comp._state.isEditable);
 			})();
 		}
 
-		return ee`<div class="ve-flex ve-relative ve-mr-3p">
+		return veT`<div class="ve-flex ve-relative ve-mr-3p">
 			<div class="ve-text-right">${iptCurrent}</div>
 			<div class="dm-init__sep-fields-slash ve-flex-vh-center">/</div>
 			<div class="ve-text-left">${iptMax}</div>
@@ -444,15 +444,15 @@ class InitiativeTrackerStatColumn_Image extends _InitiativeTrackerStatColumnBase
 	}
 
 	getRendered ({comp, mon, networking = null}) {
-		const ele = ee`<div class="ve-mr-3p ve-flex-vh-center ve-w-40p">
+		const ele = veT`<div class="ve-mr-3p ve-flex-vh-center ve-w-40p">
 			<img src="${comp._state.tokenUrl}" class="ve-w-30p ve-h-30p" alt="Token Image">
 		</div>`;
 
 		if (networking != null) {
-			ele.tooltip("Click to Show to Connected Players");
+			ele.vee.tooltip("Click to Show to Connected Players");
 
 			ele
-				.onn("click", () => {
+				.vee.onn("click", () => {
 					networking.sendShowImageMessageToClients({
 						imageHref: InitiativeTrackerUtil.getImageOrTokenHref({imageHref: comp._state.imageHref, tokenUrl: comp._state.tokenUrl}),
 					});
@@ -561,15 +561,15 @@ class _InitiativeTrackerStatColumnCheckboxBase extends _InitiativeTrackerStatCol
 
 	getRendered ({comp, mon}) {
 		const cb = ComponentUiUtil.getCbBool(comp, "value")
-			.addClass("dm-init__stat_ipt");
+			.vee.addClass("dm-init__stat_ipt");
 
 		if (mon) {
 			comp._addHookBase("isEditable", () => {
-				cb.prop("disabled", !comp._state.isEditable);
+				cb.vee.prop("disabled", !comp._state.isEditable);
 			})();
 		}
 
-		return ee`<label class="dm-init__wrp-stat-cb ve-h-100 ve-flex-vh-center">${cb}</label>`;
+		return veT`<label class="dm-init__wrp-stat-cb ve-h-100 ve-flex-vh-center">${cb}</label>`;
 	}
 }
 

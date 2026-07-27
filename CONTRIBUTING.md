@@ -94,7 +94,7 @@ Any language feature which is available in both main-line Chrome and main-line F
     - Within data from a source, avoid referencing content from a source printed after the publication of that source. For example, MTF content might reference SCAG deities, but SCAG deities should refrain from referencing MTF content.
 
 - When referring to an entity via "UID" (usually a sequence of strings joined with "|"s), the following casing convention is expected:
-  - As part of a `{@tag ...}` in a renderable entry: 
+  - As part of a `{@tag ...}` in a renderable entry:
     - Display names are cased according to the needs of the text (i.e., match the original document). For example: `{@spell Fireball|PHB|This is fireball display text, with Mixed Casing.}`.
     - Names are title-cased if a display name is also used, or if a display name is not used, are cased according to the needs of the text. For example: `The goblin casts {@spell fireball|PHB}`.
     - Source identifiers are cased to match their definition. For example: `{@spell Fireball|PHB}`; `{@spell Iceball|MyHomebrewSource}`.
@@ -166,7 +166,7 @@ Item names should be title-case, with the exception of units in parentheses, whi
 
 ### Mouse/Keyboard Events
 
-Avoid binding ALT-modified events, as these are not available under macOS or various Linux flavors. Binding SHIFT-/CTRL-modified events is preferred.
+Avoid binding ALT-modified events, as these are not available under macOS or various Linux flavors. Binding SHIFT-/CTRL-modified events is preferred. SHIFT is used for primary and/or "positive" modifiers, and CTRL is used for secondary and/or "negative" modifiers.
 
 ### Dev Server
 

@@ -121,10 +121,10 @@ export class EncounterBuilderRulesClassic extends EncounterBuilderRulesBase {
 	}
 
 	_render_settingsRules ({stgSettingsRules}) {
-		const wrpSettingsRules = ee`<div class="ve-flex-col">
+		const wrpSettingsRules = veT`<div class="ve-flex-col">
 			<div class="ve-flex ve-mb-2">${this._rendererWrapped.er(`{@note Based on the encounter building rules on page 81 of the {@book ${Parser.sourceJsonToFull(Parser.SRC_DMG)}|DMG|3|Creating a Combat Encounter}}`)}</div>
 		</div>`
-			.appendTo(stgSettingsRules);
+			.vee.appendTo(stgSettingsRules);
 
 		return {
 			wrpSettingsRules,
@@ -136,7 +136,7 @@ export class EncounterBuilderRulesClassic extends EncounterBuilderRulesBase {
 			tiers: TIERS,
 		});
 
-		wrpRandomAndAdjust.appendTo(stgRandomAndAdjust);
+		wrpRandomAndAdjust.vee.appendTo(stgRandomAndAdjust);
 
 		return {wrpRandomAndAdjust};
 	}
@@ -168,13 +168,13 @@ export class EncounterBuilderRulesClassic extends EncounterBuilderRulesBase {
 			pFnDoAdjustEncounter: this._pDoAdjustEncounter.bind(this),
 		});
 
-		const dispTtk = ee`<div></div>`;
+		const dispTtk = veT`<div></div>`;
 
-		const dispBudgetDaily = ee`<div></div>`;
-		const dispExpToLevel = ee`<div class="ve-muted"></div>`;
+		const dispBudgetDaily = veT`<div></div>`;
+		const dispExpToLevel = veT`<div class="ve-muted"></div>`;
 
 		const dispThermometer = thermometer.render()
-			.addClass("ve-mt-2");
+			.vee.addClass("ve-mt-2");
 
 		this._comp.addHookPulseDeriverPartyMeta(() => {
 			const partyMeta = this.getEncounterPartyMeta();
@@ -196,15 +196,15 @@ export class EncounterBuilderRulesClassic extends EncounterBuilderRulesBase {
 			});
 
 			dispTtk
-				.html(this._getTtkHtml({partyMeta}));
+				.vee.html(this._getTtkHtml({partyMeta}));
 
 			dispBudgetDaily
-				.html(`<span class="ve-help-subtle" title="${this.constructor._TITLE_BUDGET_DAILY}">Daily Budget:</span> ${partyMeta?.getDailyBudget() ? partyMeta.getDailyBudget().toLocaleStringVe() : `?`} XP`);
+				.vee.html(`<span class="ve-help-subtle" title="${this.constructor._TITLE_BUDGET_DAILY}">Daily Budget:</span> ${partyMeta?.getDailyBudget() ? partyMeta.getDailyBudget().toLocaleStringVe() : `?`} XP`);
 
-			dispExpToLevel.html(this._getRenderedExpToLevel({partyMeta}));
+			dispExpToLevel.vee.html(this._getRenderedExpToLevel({partyMeta}));
 		})();
 
-		const wrpGroupSummary = ee`<div class="ve-text-right">
+		const wrpGroupSummary = veT`<div class="ve-text-right">
 			${dispsTierXp}
 			${dispThermometer}
 			<hr class="ve-hr-2">
@@ -213,8 +213,8 @@ export class EncounterBuilderRulesClassic extends EncounterBuilderRulesBase {
 			${dispBudgetDaily}
 			${dispExpToLevel}
 		</div>`
-			.hideVe()
-			.appendTo(stgGroupSummary);
+			.vee.hide()
+			.vee.appendTo(stgGroupSummary);
 
 		return {
 			wrpGroupSummary,
@@ -224,24 +224,24 @@ export class EncounterBuilderRulesClassic extends EncounterBuilderRulesBase {
 	/* -------------------------------------------- */
 
 	_render_difficulty ({stgDifficulty}) {
-		const hrHasCreatures = ee`<hr class="ve-hr-1">`;
-		const wrpDifficultyCols = ee`<div class="ve-flex">
+		const hrHasCreatures = veT`<hr class="ve-hr-1">`;
+		const wrpDifficultyCols = veT`<div class="ve-flex">
 			${this._renderGroupAndDifficulty_getDifficultyLhs()}
 			${this._renderGroupAndDifficulty_getDifficultyRhs()}
 		</div>`;
 
 		this._comp.addHookPulseDeriverPartyMeta(() => {
 			const encounterSpendInfo = this.getEncounterPartyMeta().getEncounterSpendInfo(this._comp.creatureGroups);
-			hrHasCreatures.toggleVe(encounterSpendInfo.relevantCount);
-			wrpDifficultyCols.toggleVe(encounterSpendInfo.relevantCount);
+			hrHasCreatures.vee.toggle(encounterSpendInfo.relevantCount);
+			wrpDifficultyCols.vee.toggle(encounterSpendInfo.relevantCount);
 		})();
 
-		const wrpDifficulty = ee`<div class="ve-flex-col ve-w-100">
+		const wrpDifficulty = veT`<div class="ve-flex-col ve-w-100">
 			${hrHasCreatures}
 			${wrpDifficultyCols}
 		</div>`
-			.hideVe()
-			.appendTo(stgDifficulty);
+			.vee.hide()
+			.vee.appendTo(stgDifficulty);
 
 		return {
 			wrpDifficulty,
@@ -249,7 +249,7 @@ export class EncounterBuilderRulesClassic extends EncounterBuilderRulesBase {
 	}
 
 	_renderGroupAndDifficulty_getDifficultyLhs () {
-		const dispDifficulty = ee`<h4 class="ve-my-2"></h4>`;
+		const dispDifficulty = veT`<h4 class="ve-my-2"></h4>`;
 
 		this._comp.addHookPulseDeriverPartyMeta(() => {
 			const partyMeta = this.getEncounterPartyMeta();
@@ -259,23 +259,23 @@ export class EncounterBuilderRulesClassic extends EncounterBuilderRulesBase {
 			const tier = partyMeta.getEncounterTier(encounterSpendInfo);
 
 			dispDifficulty
-				.html(`Difficulty: <span class="ve-help-subtle">${tier.toTitleCase()}</span>`)
-				.tooltip(new _TierHtmlProviderClassic().getTierTitle({tier}));
+				.vee.html(`Difficulty: <span class="ve-help-subtle">${tier.toTitleCase()}</span>`)
+				.vee.tooltip(new _TierHtmlProviderClassic().getTierTitle({tier}));
 		})();
 
-		return ee`<div class="ve-w-50">
+		return veT`<div class="ve-w-50">
 			${dispDifficulty}
 		</div>`;
 	}
 
 	_renderGroupAndDifficulty_getDifficultyRhs () {
-		const dispXpRawTotal = ee`<h4></h4>`;
-		const dispXpRawPerPlayer = ee`<i></i>`;
+		const dispXpRawTotal = veT`<h4></h4>`;
+		const dispXpRawPerPlayer = veT`<i></i>`;
 
-		const hovXpAdjustedInfo = ee`<span class="glyphicon glyphicon-info-sign ve-mr-2"></span>`;
+		const hovXpAdjustedInfo = veT`<span class="glyphicon glyphicon-info-sign ve-mr-2"></span>`;
 
-		const dispXpAdjustedTotal = ee`<h4 class="ve-flex-v-center"></h4>`;
-		const dispXpAdjustedPerPlayer = ee`<i></i>`;
+		const dispXpAdjustedTotal = veT`<h4 class="ve-flex-v-center"></h4>`;
+		const dispXpAdjustedPerPlayer = veT`<i></i>`;
 
 		let infoHoverId = null;
 		this._comp.addHookPulseDeriverPartyMeta(() => {
@@ -283,8 +283,8 @@ export class EncounterBuilderRulesClassic extends EncounterBuilderRulesBase {
 
 			const encounterSpendInfo = partyMeta.getEncounterSpendInfo(this._comp.creatureGroups);
 
-			dispXpRawTotal.txt(`Total XP: ${encounterSpendInfo.baseSpend?.toLocaleStringVe() || "?"}`);
-			dispXpRawPerPlayer.txt(
+			dispXpRawTotal.vee.txt(`Total XP: ${encounterSpendInfo.baseSpend?.toLocaleStringVe() || "?"}`);
+			dispXpRawPerPlayer.vee.txt(
 				partyMeta?.cntPlayers
 					? `(${Math.floor(encounterSpendInfo.baseSpend / partyMeta?.cntPlayers)?.toLocaleStringVe()} per player)`
 					: "",
@@ -297,26 +297,26 @@ export class EncounterBuilderRulesClassic extends EncounterBuilderRulesBase {
 				infoHoverId = hoverMeta.id;
 
 				hovXpAdjustedInfo
-					.off("mouseover")
-					.off("mousemove")
-					.off("mouseleave")
-					.onn("mouseover", function (event) { hoverMeta.mouseOver(event, this); })
-					.onn("mousemove", function (event) { hoverMeta.mouseMove(event, this); })
-					.onn("mouseleave", function (event) { hoverMeta.mouseLeave(event, this); });
+					.vee.off("mouseover")
+					.vee.off("mousemove")
+					.vee.off("mouseleave")
+					.vee.onn("mouseover", function (event) { hoverMeta.mouseOver(event, this); })
+					.vee.onn("mousemove", function (event) { hoverMeta.mouseMove(event, this); })
+					.vee.onn("mouseleave", function (event) { hoverMeta.mouseLeave(event, this); });
 			} else {
 				Renderer.hover.updatePredefinedHover(infoHoverId, infoEntry);
 			}
 
-			dispXpAdjustedTotal.html(`Adjusted XP <span class="ve-small ve-muted ve-ml-2" title="XP Multiplier">(×${encounterSpendInfo.playerAdjustedSpendMult})</span>: <b class="ve-ml-2">${encounterSpendInfo.adjustedSpend.toLocaleStringVe()}</b>`);
+			dispXpAdjustedTotal.vee.html(`Adjusted XP <span class="ve-small ve-muted ve-ml-2" title="XP Multiplier">(×${encounterSpendInfo.playerAdjustedSpendMult})</span>: <b class="ve-ml-2">${encounterSpendInfo.adjustedSpend.toLocaleStringVe()}</b>`);
 
-			dispXpAdjustedPerPlayer.txt(
+			dispXpAdjustedPerPlayer.vee.txt(
 				partyMeta?.cntPlayers
 					? `(${Math.floor(encounterSpendInfo.adjustedSpend / partyMeta.cntPlayers).toLocaleStringVe()} per player)`
 					: "",
 			);
 		})();
 
-		return ee`<div class="ve-w-50 ve-text-right">
+		return veT`<div class="ve-w-50 ve-text-right">
 			${dispXpRawTotal}
 			<div>${dispXpRawPerPlayer}</div>
 			<div class="ve-flex-v-center ve-flex-h-right">${hovXpAdjustedInfo}${dispXpAdjustedTotal}</div>

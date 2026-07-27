@@ -22,7 +22,7 @@ class SearchPage {
 		ExcludeUtil.pInitialise().then(null); // don't await, as this is only used for search
 
 		SearchPage._isAllExpanded = (await StorageUtil.pGetForPage(SearchPage._STORAGE_KEY_IS_EXPANDED)) || false;
-		SearchPage._wrp = es(`#main_content`).empty();
+		SearchPage._wrp = veEs(`#main_content`).vee.empty();
 		this._render();
 		window.dispatchEvent(new Event("toolsLoaded"));
 	}
@@ -45,10 +45,10 @@ class SearchPage {
 	/* -------------------------------------------- */
 
 	static _render_getBtnToggleFilter ({btnMeta}) {
-		const btn = ee`<button class="ve-btn ve-btn-default" title="${btnMeta.title.qq()}">${btnMeta.text.qq()}</button>`
-			.onn("click", () => OmnisearchState[btnMeta.fnDoToggleOmnisearch]());
+		const btn = veT`<button class="ve-btn ve-btn-default" title="${btnMeta.title.qq()}">${btnMeta.text.qq()}</button>`
+			.vee.onn("click", () => OmnisearchState[btnMeta.fnDoToggleOmnisearch]());
 		const hkBrew = (val) => {
-			btn.toggleClass("ve-active", OmnisearchState[btnMeta.propOmnisearch]);
+			btn.vee.toggleClass("ve-active", OmnisearchState[btnMeta.propOmnisearch]);
 			if (val == null) return;
 			this._pDoSearch().then(null);
 		};
@@ -59,24 +59,24 @@ class SearchPage {
 	}
 
 	static _render () {
-		const iptSearch = ee`<input class="ve-form-control pg-search__ipt" placeholder="Search everywhere..." title="Disclaimer: unlikely to search everywhere. Use with caution.">`
-			.onn("keydown", evt => {
+		const iptSearch = veT`<input class="ve-form-control pg-search__ipt" placeholder="Search everywhere..." title="Disclaimer: unlikely to search everywhere. Use with caution.">`
+			.vee.onn("keydown", evt => {
 				if (evt.key !== "Enter") return;
-				btnSearch.trigger("click");
+				btnSearch.vee.trigger("click");
 			})
-			.val(this._getSearchParams()[this._PARAM_QUERY]);
+			.vee.val(this._getSearchParams()[this._PARAM_QUERY]);
 
-		const btnSearch = ee`<button class="ve-btn ve-btn-default"><span class="glyphicon glyphicon-search"></span></button>`
-			.onn("click", () => {
+		const btnSearch = veT`<button class="ve-btn ve-btn-default"><span class="glyphicon glyphicon-search"></span></button>`
+			.vee.onn("click", () => {
 				this._setSearchParams({
-					[this._PARAM_QUERY]: iptSearch.val().trim().toLowerCase(),
+					[this._PARAM_QUERY]: iptSearch.vee.val().trim().toLowerCase(),
 				});
 			});
 
-		const btnHelp = ee`<button class="ve-btn ve-btn-default ve-mr-2 ve-mobile-sm__hidden" title="Help"><span class="glyphicon glyphicon-info-sign"></span></button>`
-			.onn("click", () => OmnisearchUtilsUi.doShowHelp());
+		const btnHelp = veT`<button class="ve-btn ve-btn-default ve-mr-2 ve-mobile-sm__hidden" title="Help"><span class="glyphicon glyphicon-info-sign"></span></button>`
+			.vee.onn("click", () => OmnisearchUtilsUi.doShowHelp());
 
-		const btnCyclePartneredMode = ee`<button class="ve-btn ve-btn-default pg-search__btn-partnered-mode"></button>`;
+		const btnCyclePartneredMode = veT`<button class="ve-btn ve-btn-default pg-search__btn-partnered-mode"></button>`;
 		OmnisearchUtilsUi.bindBtnCyclePartneredMode({
 			btn: btnCyclePartneredMode,
 			omnisearchState: OmnisearchState,
@@ -102,15 +102,15 @@ class SearchPage {
 				.forEach(meta => meta.setIsExpanded(mode));
 		};
 
-		const btnCollapseAll = ee`<button class="ve-btn ve-btn-default" title="Collapse All Results"><span class="glyphicon glyphicon-minus"></span></button>`
-			.onn("click", () => handleMassExpandCollapse(false));
+		const btnCollapseAll = veT`<button class="ve-btn ve-btn-default" title="Collapse All Results"><span class="glyphicon glyphicon-minus"></span></button>`
+			.vee.onn("click", () => handleMassExpandCollapse(false));
 
-		const btnExpandAll = ee`<button class="ve-btn ve-btn-default" title="Expand All Results"><span class="glyphicon glyphicon-plus"></span></button>`
-			.onn("click", () => handleMassExpandCollapse(true));
+		const btnExpandAll = veT`<button class="ve-btn ve-btn-default" title="Expand All Results"><span class="glyphicon glyphicon-plus"></span></button>`
+			.vee.onn("click", () => handleMassExpandCollapse(true));
 
-		SearchPage._wrpResults = ee`<div class="ve-flex-col ve-w-100">${this._getWrpResult_message("Loading...")}</div>`;
+		SearchPage._wrpResults = veT`<div class="ve-flex-col ve-w-100">${this._getWrpResult_message("Loading...")}</div>`;
 
-		ee(SearchPage._wrp)`<div class="ve-flex-col ve-w-100 pg-search__wrp">
+		veT(SearchPage._wrp)`<div class="ve-flex-col ve-w-100 pg-search__wrp">
 			<div class="ve-flex-v-center ve-mb-2 ve-mobile-lg__flex-col">
 				<div class="ve-flex-v-center ve-input-group ve-btn-group ve-mr-2 ve-w-100 ve-mobile-lg__mb-2">${iptSearch}${btnSearch}</div>
 
@@ -163,16 +163,16 @@ class SearchPage {
 		const params = this._getSearchParams();
 
 		if (!params[this._PARAM_QUERY]) {
-			SearchPage._wrpResults.empty().appends(this._getWrpResult_message("Enter a search to view results"));
+			SearchPage._wrpResults.vee.empty().vee.appends(this._getWrpResult_message("Enter a search to view results"));
 			return;
 		}
 
 		const results = await OmnisearchBacking.pGetResults(params[this._PARAM_QUERY]);
 
-		SearchPage._wrpResults.empty();
+		SearchPage._wrpResults.vee.empty();
 
 		if (!results.length) {
-			SearchPage._wrpResults.appends(this._getWrpResult_message("No results found."));
+			SearchPage._wrpResults.vee.appends(this._getWrpResult_message("No results found."));
 			return;
 		}
 
@@ -221,13 +221,13 @@ class SearchPage {
 				? ptSourceInner
 				: `<a href="${adventureBookSourceHref}">${ptSourceInner}</a>`;
 
-			const dispImage = ee`<div class="ve-flex-col pg-search__disp-token ve-mr-3 ve-no-shrink"></div>`;
-			const dispPreview = ee`<div class="ve-flex-col ve-mobile-sm__w-100"></div>`;
-			const wrpPreviewControls = ee`<div class="ve-flex-col ve-mobile-sm__mb-2 ve-mobile-sm__w-100 ve-h-100"></div>`;
+			const dispImage = veT`<div class="ve-flex-col pg-search__disp-token ve-mr-3 ve-no-shrink"></div>`;
+			const dispPreview = veT`<div class="ve-flex-col ve-mobile-sm__w-100"></div>`;
+			const wrpPreviewControls = veT`<div class="ve-flex-col ve-mobile-sm__mb-2 ve-mobile-sm__w-100 ve-h-100"></div>`;
 
 			const out = {};
 
-			const row = ee`<div class="ve-my-2 ve-py-2 ve-pl-3 ve-pr-2 pg-search__wrp-result ve-flex ve-relative ve-mobile-sm__flex-col">
+			const row = veT`<div class="ve-my-2 ve-py-2 ve-pl-3 ve-pr-2 pg-search__wrp-result ve-flex ve-relative ve-mobile-sm__flex-col">
 				<div class="ve-flex-v-center ve-mobile-sm__mb-2 ve-w-100">
 					${dispImage}
 					<div class="ve-flex-col ve-flex-h-center ve-mr-auto">
@@ -239,16 +239,16 @@ class SearchPage {
 					${dispPreview}
 					${wrpPreviewControls}
 				</div>
-			</div>`.appendTo(SearchPage._wrpResults);
+			</div>`.vee.appendTo(SearchPage._wrpResults);
 
 			if (isHoverable) {
 				out.isExpanded = !!SearchPage._isAllExpanded;
 
 				const handleIsExpanded = () => {
-					dispPreview.toggleVe(out.isExpanded);
+					dispPreview.vee.toggle(out.isExpanded);
 					btnTogglePreview
-						.html(out.isExpanded ? `<span class="glyphicon glyphicon-minus"></span>` : `<span class="glyphicon glyphicon-plus"></span>`)
-						.toggleClass("pg-search__btn-toggle-preview--expanded", out.isExpanded);
+						.vee.html(out.isExpanded ? `<span class="glyphicon glyphicon-minus"></span>` : `<span class="glyphicon glyphicon-plus"></span>`)
+						.vee.toggleClass("pg-search__btn-toggle-preview--expanded", out.isExpanded);
 				};
 
 				out.setIsExpanded = val => {
@@ -256,12 +256,12 @@ class SearchPage {
 					handleIsExpanded();
 				};
 
-				const btnTogglePreview = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-h-100" title="Toggle Preview"></button>`
-					.onn("click", () => {
+				const btnTogglePreview = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-h-100" title="Toggle Preview"></button>`
+					.vee.onn("click", () => {
 						out.isExpanded = !out.isExpanded;
 						handleIsExpanded();
 					})
-					.appendTo(wrpPreviewControls);
+					.vee.appendTo(wrpPreviewControls);
 
 				handleIsExpanded();
 			}
@@ -272,7 +272,7 @@ class SearchPage {
 					onObserve: () => {
 						const page = UrlUtil.categoryToHoverPage(category);
 						if (!page) {
-							dispImage.addClass(`ve-mobile-sm__hidden`);
+							dispImage.vee.addClass(`ve-mobile-sm__hidden`);
 							return;
 						}
 
@@ -295,7 +295,7 @@ class SearchPage {
 
 								isImagePopulated = true;
 								const tokenUrl = fnGetTokenUrl(ent);
-								dispImage.html(`<img src="${tokenUrl}" class="ve-w-100 ve-h-100" ${Renderer.utils.getTokenMetadataAttributes(ent)} loading="lazy">`);
+								dispImage.vee.html(`<img src="${tokenUrl}" class="ve-w-100 ve-h-100" ${Renderer.utils.getTokenMetadataAttributes(ent)} loading="lazy">`);
 							};
 
 							switch (category) {
@@ -334,22 +334,22 @@ class SearchPage {
 								case Parser.CAT_ID_ADVENTURE: {
 									const prop = category === Parser.CAT_ID_BOOK ? "book" : "adventure";
 									isImagePopulated = true;
-									dispImage.html(`<img src="${Renderer.adventureBook.getCoverUrl(ent[prop])}" class="ve-w-100 ve-h-100" alt="Cover Image: ${(ent[prop].name || "").qq()}" loading="lazy">`);
+									dispImage.vee.html(`<img src="${Renderer.adventureBook.getCoverUrl(ent[prop])}" class="ve-w-100 ve-h-100" alt="Cover Image: ${(ent[prop].name || "").qq()}" loading="lazy">`);
 								}
 							}
 
-							if (!isImagePopulated) dispImage.addClass(`ve-mobile-sm__hidden`);
+							if (!isImagePopulated) dispImage.vee.addClass(`ve-mobile-sm__hidden`);
 							// endregion
 
 							if (isHoverable) {
 								// region Render preview
 
 								Renderer.hover.getHoverContent_stats(page, ent)
-									.removeClass("ve-w-100")
-									.addClass("pg-search__wrp-preview")
-									.addClass("ve-mobile-sm__w-100")
-									.addClass("ve-br-0")
-									.appendTo(dispPreview);
+									.vee.removeClass("ve-w-100")
+									.vee.addClass("pg-search__wrp-preview")
+									.vee.addClass("ve-mobile-sm__w-100")
+									.vee.addClass("ve-br-0")
+									.vee.appendTo(dispPreview);
 								// endregion
 							}
 						});

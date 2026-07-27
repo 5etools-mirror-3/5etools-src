@@ -42,6 +42,7 @@ globalThis.Renderer = function () {
 	this._enumerateTitlesRel = {enabled: false, titles: {}};
 	this._isHeaderIndexIncludeTableCaptions = false;
 	this._isHeaderIndexIncludeImageTitles = false;
+	this._isRenderHeaderIndex = true;
 	this._plugins = {};
 	this._fnPostProcess = null;
 	this._extraSourceClasses = null;
@@ -151,8 +152,23 @@ globalThis.Renderer = function () {
 
 	this.getHeaderIndex = function () { return this._headerIndex; };
 
+	this._getRenderedTitleIndexAttribute = function () {
+		return this._isRenderHeaderIndex ? `data-title-index="${this._headerIndex++}"` : "";
+	};
+
+	this.setRenderHeaderIndex = function (bool) { this._isRenderHeaderIndex = !!bool; return this; };
 	this.setHeaderIndexTableCaptions = function (bool) { this._isHeaderIndexIncludeTableCaptions = bool; return this; };
 	this.setHeaderIndexImageTitles = function (bool) { this._isHeaderIndexIncludeImageTitles = bool; return this; };
+
+	this.withSetRenderHeaderIndex = function (flagVal, fn) {
+		const valOriginal = this._isRenderHeaderIndex;
+		try {
+			this.setRenderHeaderIndex(flagVal);
+			return fn(this);
+		} finally {
+			this.setRenderHeaderIndex(valOriginal);
+		}
+	};
 	// endregion
 
 	/**
@@ -581,7 +597,7 @@ globalThis.Renderer = function () {
 
 		const ptLabels = this._renderImage_geLabels(entry);
 
-		textStack[0] += `<div class="${this._renderImage_getWrapperClasses(entry, meta)}" ${entry.title && this._isHeaderIndexIncludeImageTitles ? `data-title-index="${this._headerIndex++}"` : ""}>
+		textStack[0] += `<div class="${this._renderImage_getWrapperClasses(entry, meta)}" ${entry.title && this._isHeaderIndexIncludeImageTitles ? this._getRenderedTitleIndexAttribute() : ""}>
 			<div class="ve-w-100 ve-h-100 ve-relative">
 				${pluginDataIsNoLink ? "" : `<a class="ve-relative" href="${href}" target="_blank" rel="noopener noreferrer" ${ptTitle}>`}
 					${this._renderImage_getImg({entry, meta, href, pluginDataIsNoLink, ptTitle})}
@@ -817,7 +833,7 @@ globalThis.Renderer = function () {
 		// caption
 		if (entry.caption != null) {
 			this._handleTrackTitles(entry.caption, {isTable: true});
-			textStack[0] += `<caption ${this._isHeaderIndexIncludeTableCaptions ? `data-title-index="${this._headerIndex++}"` : ""}>${entry.caption}</caption>`;
+			textStack[0] += `<caption ${this._isHeaderIndexIncludeTableCaptions ? this._getRenderedTitleIndexAttribute() : ""}>${entry.caption}</caption>`;
 		}
 
 		// body -- temporarily build this to own string; append after headers
@@ -1125,7 +1141,7 @@ globalThis.Renderer = function () {
 
 		const ptText = `${pluginDataNamePrefix.join("")}${this.render({type: "inline", entries: [displayName]})}${isAddPeriod ? "." : ""}`;
 
-		return `<${headerTag} class="ve-rd__h ${headerClass}" data-title-index="${this._headerIndex++}" ${this._getEnumeratedTitleRel(entry.name)}> <span class="entry-title-inner ${!pagePart && entry.source ? `ve-help-subtle` : ""}"${!pagePart && entry.source ? ` title="Source: ${Parser.sourceJsonToFull(entry.source)}${entry.page ? `, p${entry.page}` : ""}"` : ""}>${ptText}</span>${partPageExpandCollapse}</${headerTag}> `;
+		return `<${headerTag} class="ve-rd__h ${headerClass}" ${this._getRenderedTitleIndexAttribute()} ${this._getEnumeratedTitleRel(entry.name)}> <span class="entry-title-inner ${!pagePart && entry.source ? `ve-help-subtle` : ""}"${!pagePart && entry.source ? ` title="Source: ${Parser.sourceJsonToFull(entry.source)}${entry.page ? `, p${entry.page}` : ""}"` : ""}>${ptText}</span>${partPageExpandCollapse}</${headerTag}> `;
 	};
 
 	this._renderEntriesSubtypes_renderPreReqText = function (entry, textStack, meta) {
@@ -1203,11 +1219,11 @@ globalThis.Renderer = function () {
 	};
 
 	this._getPtExpandCollapse = function () {
-		return `<span class="ve-rd__h-toggle ve-ml-2 ve-clickable ve-no-select no-print ve-lst-is-exporting-image__hidden" data-rd-h-toggle-button="true" title="Toggle Visibility (CTRL to Toggle All)">[\u2013]</span>`;
+		return `<span class="ve-rd__h-toggle ve-ml-2 ve-clickable ve-no-select no-print ve-lst-is-exporting-image__hidden" data-rd-h-toggle-button="true" title="Toggle Visibility (SHIFT to Toggle All)">[\u2212]</span>`;
 	};
 
 	this._getPtExpandCollapseSpecial = function () {
-		return `<span class="ve-rd__h-toggle ve-ml-2 ve-clickable ve-no-select no-print ve-lst-is-exporting-image__hidden" data-rd-h-special-toggle-button="true" title="Toggle Visibility (CTRL to Toggle All)">[\u2013]</span>`;
+		return `<span class="ve-rd__h-toggle ve-ml-2 ve-clickable ve-no-select no-print ve-lst-is-exporting-image__hidden" data-rd-h-special-toggle-button="true" title="Toggle Visibility (SHIFT to Toggle All)">[\u2212]</span>`;
 	};
 
 	/* -------------------------------------------- */
@@ -1380,7 +1396,7 @@ globalThis.Renderer = function () {
 		this._handleTrackDepth(entry, 1);
 
 		textStack[0] += `<${this.wrapperTag} class="ve-rd__b-inset-inner" ${dataString}>`;
-		textStack[0] += `<span class="ve-rd__h ve-rd__h--2-inset" data-title-index="${this._headerIndex++}" ${this._getEnumeratedTitleRel(entry.name)}><h4 class="entry-title-inner">${entry.name}</h4></span>`;
+		textStack[0] += `<span class="ve-rd__h ve-rd__h--2-inset" ${this._getRenderedTitleIndexAttribute()} ${this._getEnumeratedTitleRel(entry.name)}><h4 class="entry-title-inner">${entry.name}</h4></span>`;
 		const len = entry.entries.length;
 		for (let i = 0; i < len; ++i) {
 			const cacheDepth = meta.depth;
@@ -1639,7 +1655,7 @@ globalThis.Renderer = function () {
 		const cachedLastDepthTrackerProps = MiscUtil.copyFast(this._lastDepthTrackerInheritedProps);
 		this._handleTrackDepth(entry, 2);
 
-		const headerSpan = `<span class="ve-rd__h ve-rd__h--3" data-title-index="${this._headerIndex++}" ${this._getEnumeratedTitleRel(entry.name)}><span class="entry-title-inner">${entry.name}.</span></span> `;
+		const headerSpan = `<span class="ve-rd__h ve-rd__h--3" ${this._getRenderedTitleIndexAttribute()} ${this._getEnumeratedTitleRel(entry.name)}><span class="entry-title-inner">${entry.name}.</span></span> `;
 
 		textStack[0] += `<${this.wrapperTag} class="${Renderer.HEAD_2}" ${dataString}>`;
 		if (entry.entries) {
@@ -1708,6 +1724,41 @@ globalThis.Renderer = function () {
 
 		this._recursiveRender(entry.entry, textStack, meta, {prefix: `<p>${tempStack.join("")} `, suffix: "</p>"});
 		this._renderSuffix(entry, textStack, meta, options);
+	};
+
+	this._renderDataHeader = function (
+		textStack,
+		name,
+		style,
+		{
+			isStats = false,
+			isCollapsed = false,
+			isFixedHeightInitial = false,
+			isFixedHeightInitialCenterContent = false,
+			slotSize = null,
+			slotSizeSource = null,
+			htmlNameExpanded = null,
+			htmlNameCollapsed = null,
+		} = {},
+	) {
+		textStack[0] += Renderer.utils.embed.getHeader(
+			name,
+			style,
+			{
+				isStats,
+				isCollapsed,
+				isFixedHeightInitial,
+				isFixedHeightInitialCenterContent,
+				slotSize,
+				slotSizeSource,
+				htmlNameExpanded,
+				htmlNameCollapsed,
+			},
+		);
+	};
+
+	this._renderDataFooter = function (textStack) {
+		textStack[0] += Renderer.utils.embed.getFooter();
 	};
 
 	this._InlineStatblockStrategy = function (
@@ -1782,29 +1833,25 @@ globalThis.Renderer = function () {
 
 				const ent = entLoaded && strategy?.pFnPreProcess ? await strategy.pFnPreProcess(entLoaded) : entLoaded;
 
-				const tbl = ele.closest("table");
-				const nxt = e_({
-					outer: Renderer.utils.getEmbeddedDataHeader(headerName, headerStyle, {isCollapsed: entry.collapsed, isStats: !isFluff})
+				const wrpRenderedData = ele.closest(`[data-rd-rendered-data]`);
+				const nxt = veE({
+					outer: Renderer.utils.embed.getHeader(
+						headerName,
+						headerStyle,
+						{
+							isCollapsed: entry.collapsed,
+							isStats: !isFluff,
+						},
+					)
 						+ fnGetRenderCompact(ent, {isEmbeddedEntity: true})
-						+ Renderer.utils.getEmbeddedDataFooter(),
+						+ Renderer.utils.embed.getFooter(),
 				});
-				tbl.parentNode.replaceChild(
-					nxt,
-					tbl,
-				);
+				wrpRenderedData.replaceWith(nxt);
 			},
 		};
 
 		textStack[0] += `<tr><td colspan="6"><style data-rd-cache-id="${id}" data-rd-cache="inlineStatblock" onload="Renderer._cache.pRunFromEle(this)"></style></td></tr>`;
 		this._renderDataFooter(textStack);
-	};
-
-	this._renderDataHeader = function (textStack, name, style, {isStats = false, isCollapsed = false, htmlNameExpanded = null, htmlNameCollapsed = null} = {}) {
-		textStack[0] += Renderer.utils.getEmbeddedDataHeader(name, style, {isStats, isCollapsed, htmlNameExpanded, htmlNameCollapsed});
-	};
-
-	this._renderDataFooter = function (textStack) {
-		textStack[0] += Renderer.utils.getEmbeddedDataFooter();
 	};
 
 	this._renderStatblock = function (entry, textStack, meta, options) {
@@ -1819,7 +1866,9 @@ globalThis.Renderer = function () {
 
 		const isFluff = prop?.endsWith("Fluff");
 
-		const displayName = entry.displayName || entry.name || entry.abbreviation;
+		const displayName = entry.displayName
+			|| (isFluff ? `${entry.name} (Info)` : entry.name)
+			|| entry.abbreviation;
 
 		const fromPlugins = this._applyPlugins_useFirst(
 			"statblock_render",
@@ -1840,10 +1889,40 @@ globalThis.Renderer = function () {
 			return;
 		}
 
-		this._renderDataHeader(textStack, displayName, entry.style, {isStats: !isFluff, isCollapsed: entry.collapsed});
+		const isFixedHeightInitial = !entry.collapsed;
+		const slotSize = Renderer.utils.embed.getSlotSize({slotSize: entry.slotSize, prop, source});
+
+		this._renderDataHeader(
+			textStack,
+			displayName,
+			entry.style,
+			{
+				isStats: !isFluff,
+				isCollapsed: entry.collapsed,
+				isFixedHeightInitial,
+				isFixedHeightInitialCenterContent: isFixedHeightInitial,
+				slotSize,
+				slotSizeSource: source,
+			},
+		);
+		const ptRdAttribs = [
+			`data-rd-tag="${(tag || "").qq()}"`,
+			`data-rd-uid="${(uid || "").qq()}"`,
+			`data-rd-page="${(page || "").qq()}"`,
+			`data-rd-source="${(source || "").qq()}"`,
+			`data-rd-hash="${(hash || "").qq()}"`,
+			`data-rd-name="${(entry.name || "").qq()}"`,
+			`data-rd-display-name="${(displayName || "").qq()}"`,
+			`data-rd-style="${(entry.style || "").qq()}"`,
+			`data-rd-entry-data="${JSON.stringify(entry.data || {}).qq()}"`,
+			`data-rd-slot-size="${slotSize.qq()}"`,
+			`data-rd-is-fixed-height-initial="${isFixedHeightInitial}"`,
+		]
+			.filter(Boolean)
+			.join(" ");
 		textStack[0] += `<tr>
-			<td colspan="6" data-rd-tag="${(tag || "").qq()}" data-rd-uid="${(uid || "").qq()}" data-rd-page="${(page || "").qq()}" data-rd-source="${(source || "").qq()}" data-rd-hash="${(hash || "").qq()}" data-rd-name="${(entry.name || "").qq()}" data-rd-display-name="${(displayName || "").qq()}" data-rd-style="${(entry.style || "").qq()}" data-rd-entry-data="${JSON.stringify(entry.data || {}).qq()}">
-				<i>Loading ${asTag ? `${Renderer.get().render(asTag)}` : displayName}...</i>
+			<td colspan="6" ${ptRdAttribs}>
+				<i>Loading &quot;${asTag ? `${Renderer.get().render(asTag)}` : `${displayName}`}&quot;...</i>
 				<style onload="Renderer.events.handleLoad_inlineStatblock(this)"></style>
 			</td>
 		</tr>`;
@@ -1890,7 +1969,7 @@ globalThis.Renderer = function () {
 
 		if (entry.name != null) {
 			if (Renderer.ENTRIES_WITH_ENUMERATED_TITLES_LOOKUP[entry.type]) this._handleTrackTitles(entry.name);
-			textStack[0] += `<span class="ve-rd__h ve-rd__h--2-flow-block" data-title-index="${this._headerIndex++}" ${this._getEnumeratedTitleRel(entry.name)}><h4 class="entry-title-inner">${this.render({type: "inline", entries: [entry.name]})}</h4></span>`;
+			textStack[0] += `<span class="ve-rd__h ve-rd__h--2-flow-block" ${this._getRenderedTitleIndexAttribute()} ${this._getEnumeratedTitleRel(entry.name)}><h4 class="entry-title-inner">${this.render({type: "inline", entries: [entry.name]})}</h4></span>`;
 		}
 		if (entry.entries) {
 			const len = entry.entries.length;
@@ -3249,7 +3328,8 @@ Renderer._cache = class {
 	static inlineStatblock = {};
 
 	static async pRunFromEle (ele) {
-		const cached = Renderer._cache[ele.dataset.rdCache][ele.dataset.rdCacheId];
+		ele = veE({ele});
+		const cached = Renderer._cache[ele.vee.attr("data-rd-cache")][ele.vee.attr("data-rd-cache-id")];
 		await cached.pFn(ele);
 	}
 };
@@ -3429,7 +3509,7 @@ Renderer.utils = class {
 	}
 
 	static async _pHandleNameClick (ele) {
-		await MiscUtil.pCopyTextToClipboard(e_(ele).txt());
+		await MiscUtil.pCopyTextToClipboard(veE(ele).vee.txt());
 		JqueryUtil.showCopiedEffect(ele);
 	}
 
@@ -3446,37 +3526,161 @@ Renderer.utils = class {
 		return Renderer.get().render(Renderer.utils.getAbilityRollerEntry(statblock, ability, {isDisplayAsBonus}));
 	}
 
-	static getEmbeddedDataHeader (
-		name,
-		style,
-		{
-			isCollapsed = false,
-			isStatic = false,
-			isStats = false,
+	/* -------------------------------------------- */
 
-			htmlNameCollapsed = null,
-			htmlNameExpanded = null,
-		} = {},
-	) {
-		return `<table class="ve-rd__b-special ve-rd__b-data ${style ? `ve-rd__b-data--${style}` : ""} ${isStats ? `ve-rd__b-data--stats` : ""}">
-		<thead>
-			<tr>
-				<th class="ve-rd__data-embed-header ve-text-left" colspan="6" data-rd-data-embed-header="true">
+	static embed = class {
+		static _isDisableFixedHeightInitial = false;
+
+		static setIsDisableFixedHeightInitial (val) {
+			this._isDisableFixedHeightInitial = !!val;
+		}
+
+		static getSlotSize ({slotSize = null, prop = null, source} = {}) {
+			if (slotSize) {
+				return this._SLOT_SIZE_TO_CLASS_NAME[slotSize]
+					? slotSize
+					: "medium";
+			}
+
+			switch (prop) {
+				case "itemMastery":
+				case "sense":
+				case "skill":
+				case "status":
+					return "extraSmall";
+
+				case "action":
+				case "classFeature":
+				case "condition":
+				case "cult":
+				case "disease":
+				case "feat":
+				case "hazard":
+				case "item":
+				case "reward":
+				case "optionalfeature":
+				case "subclassFeature":
+				case "vehupgrade":
+					return "small";
+
+				case "facility":
+					return "large";
+
+				case "class":
+				case "subclass":
+				case "crochet":
+					return "extraLarge";
+
+				case "background":
+					if (source && SourceUtil.isClassicSource(source)) return "large";
+					return "extraSmall";
+
+				case "variantrule":
+					if (source && SourceUtil.isClassicSource(source)) return "medium";
+					return "small";
+
+				default:
+					if (prop?.endsWith("Fluff")) return "small";
+
+					return "medium";
+			}
+		}
+
+		static _SLOT_SIZE_CLASS_PREFIX = "ve-rd__wrp-embedded-data--slot-size--";
+
+		static _SLOT_SIZE_TO_CLASS_NAME = {
+			"extraSmall": "ve-rd__wrp-embedded-data--slot-size--extra-small",
+			"small": "ve-rd__wrp-embedded-data--slot-size--small",
+			"medium": "ve-rd__wrp-embedded-data--slot-size--medium",
+			"large": "ve-rd__wrp-embedded-data--slot-size--large",
+			"extraLarge": "ve-rd__wrp-embedded-data--slot-size--extra-large",
+		};
+
+		static getSlotSizeClass ({slotSize = null, prop = null, source} = {}) {
+			return this._SLOT_SIZE_TO_CLASS_NAME[this.getSlotSize({slotSize, prop, source})];
+		}
+
+		static removeSlotSizeClasses (ele) {
+			[...ele.classList]
+				.filter(cls => cls.startsWith(this._SLOT_SIZE_CLASS_PREFIX))
+				.forEach(cls => ele.classList.remove(cls));
+		}
+
+		static getHeaderExpandCollapseText ({isCollapsed, isStatic = false, isFixedHeightInitial = false}) {
+			if (isStatic) return "";
+			if (!isCollapsed && isFixedHeightInitial) return "Expand to Natural Height (SHIFT to Expand All)";
+			return isCollapsed
+				? "Expand (SHIFT to Expand All)"
+				: "Collapse (SHIFT to Collapse All)";
+		}
+
+		/**
+		 * @param name
+		 * @param style
+		 * @param {?boolean} [isCollapsed]
+		 * @param {?boolean} [isStatic]
+		 * @param {?boolean} [isStats]
+		 * @param {?boolean} [isFixedHeightInitial]
+		 * @param {?boolean} [isFixedHeightInitialCenterContent]
+		 * @param {?string} [slotSize]
+		 * @param {?string} [slotSizeSource]
+		 * @param {?string} [htmlNameCollapsed]
+		 * @param {?string} [htmlNameExpanded]
+		 */
+		static getHeader (
+			name,
+			style,
+			{
+				isCollapsed = false,
+				isStatic = false,
+				isStats = false,
+				isFixedHeightInitial = false,
+				isFixedHeightInitialCenterContent = false,
+				slotSize = null,
+				slotSizeSource = null,
+
+				htmlNameCollapsed = null,
+				htmlNameExpanded = null,
+			} = {},
+		) {
+			isFixedHeightInitial = isFixedHeightInitial && !this._isDisableFixedHeightInitial;
+
+			const ptTitle = this.getHeaderExpandCollapseText({isCollapsed, isStatic, isFixedHeightInitial});
+
+			return `<div
+				class="ve-rd__b-special ve-rd__wrp-embedded-data ${style ? `ve-rd__wrp-embedded-data--${style}` : ""} ${isStats ? `ve-rd__wrp-embedded-data--stats` : ""} ${isFixedHeightInitial ? `ve-rd__wrp-embedded-data--fixed-height-initial ${this.getSlotSizeClass({slotSize, source: slotSizeSource})}` : ""}"
+				data-rd-rendered-data="true"
+			>
+				<div
+					class="ve-rd__data-embed-header ve-bold ve-py-1p ve-px-4p ve-no-select ve-bb-1p-trans"
+					data-rd-data-embed-header="true"
+					${ptTitle ? `title="${ptTitle}"` : ""}
+				>
 					<div class="ve-w-100 ve-split-v-center">
-						<div class="ve-flex-v-center ve-w-100 ve-min-w-0">
-							<span class="ve-rd__data-embed-name ${!isStatic && isCollapsed ? "" : `ve-hidden`}">${htmlNameCollapsed || name}</span>
-							<span class="ve-rd__data-embed-name-expanded ve-text-right ve-pr-2 ve-w-100 ${!isStatic && isCollapsed ? `ve-hidden` : ""}">${htmlNameExpanded || ""}</span>
+						<div class="ve-flex-v-center ve-self-flex-stretch ve-w-100 ve-min-w-0">
+							<span class="ve-rd__data-embed-name ${!isStatic && isCollapsed ? "" : `ve-hidden`}" data-rd-data-embed-name="true">${htmlNameCollapsed || name}</span>
+							<span class="ve-rd__data-embed-name-expanded ve-text-right ve-pr-2 ve-w-100 ve-h-100 ${!isStatic && isCollapsed ? `ve-hidden` : ""}" data-rd-data-embed-name-expand="true">${htmlNameExpanded || ""}</span>
 						</div>
-						${isStatic ? `<span></span>` : `<span class="ve-rd__data-embed-toggle">[${isCollapsed ? "+" : "\u2013"}]</span>`}
-					</div>
-				</th>
-			</tr>
-		</thead><tbody class="${!isStatic && isCollapsed ? `ve-hidden` : ""}" data-rd-embedded-data-render-target="true">`;
-	}
 
-	static getEmbeddedDataFooter () {
-		return `</tbody></table>`;
-	}
+						${isStatic ? `<span></span>` : `<span class="ve-rd__data-embed-toggle" data-rd-data-embed-name-toggle="true">[${isCollapsed || isFixedHeightInitial ? "+" : "\u2212"}]</span>`}
+					</div>
+				</div>
+
+				<div class="ve-rd__wrp-embedded-data-table ${!isStatic && isCollapsed ? `ve-hidden` : ""} ${isFixedHeightInitial ? `ve-overflow-y-auto ${isFixedHeightInitialCenterContent ? "ve-flex-vh-center" : ""}` : ""}" data-rd-rendered-data-embed-content="true">
+					<table>
+						<tbody data-rd-rendered-data-embed-render-target="true">`;
+		}
+
+		static getFooter () {
+			return `</tbody>
+					</table>
+				</div>
+			</div>`;
+		}
+	};
+	// endregion
+
+	/* -------------------------------------------- */
 
 	static getTokenMetadataAttributes (ent, {displayName = null} = {}) {
 		const tokenName = displayName || ent.name;
@@ -3510,29 +3714,29 @@ Renderer.utils = class {
 		Renderer.utils._tabs = {};
 		Renderer.utils._curTab = null;
 
-		wrpTabs.findAll(`.stat-tab-gen`).forEach(ele => ele.remove());
+		wrpTabs.vee.findAll(`.stat-tab-gen`).forEach(ele => ele.remove());
 
 		tabButtons.forEach((tb, i) => {
 			tb.ix = i;
 
 			if (tb.btnTab) tb.btnTab.remove();
 
-			tb.btnTab = ee`<button class="ve-ui-tab__btn-tab-head ve-btn ve-btn-default stat-tab-gen ve-pt-2p ve-px-4p ve-pb-0">${tb.label}</button>`
-				.onn("click", () => tb.fnActivateTab({isUserInput: true}));
+			tb.btnTab = veT`<button class="ve-ui-tab__btn-tab-head ve-btn ve-btn-default stat-tab-gen ve-pt-2p ve-px-4p ve-pb-0">${tb.label}</button>`
+				.vee.onn("click", () => tb.fnActivateTab({isUserInput: true}));
 
 			tb.fnActivateTab = ({isUserInput = false} = {}) => {
 				const curTab = Renderer.utils._curTab;
 				const tabs = Renderer.utils._tabs;
 
 				if (!curTab || curTab.label !== tb.label) {
-					if (curTab) curTab.btnTab.removeClass(`ve-ui-tab__btn-tab-head--active`);
+					if (curTab) curTab.btnTab.vee.removeClass(`ve-ui-tab__btn-tab-head--active`);
 					Renderer.utils._curTab = tb;
-					tb.btnTab.addClass(`ve-ui-tab__btn-tab-head--active`);
-					if (curTab) tabs[curTab.label].elesContent = pgContent.childrene().map(ele => ele.detach());
+					tb.btnTab.vee.addClass(`ve-ui-tab__btn-tab-head--active`);
+					if (curTab) tabs[curTab.label].elesContent = pgContent.vee.children().map(ele => ele.vee.detach());
 
 					tabs[tb.label] = tb;
 					if (!tabs[tb.label].elesContent?.length && tb.fnPopulate) tb.fnPopulate();
-					else if (tabs[tb.label].elesContent?.length) tabs[tb.label].elesContent.forEach(ele => pgContent.appends(ele));
+					else if (tabs[tb.label].elesContent?.length) tabs[tb.label].elesContent.forEach(ele => pgContent.vee.appends(ele));
 					if (tb.fnChange) tb.fnChange();
 				}
 
@@ -3542,7 +3746,7 @@ Renderer.utils = class {
 		});
 
 		// Avoid displaying a tab button for single tabs
-		if (tabButtons.length !== 1) tabButtons.slice().reverse().forEach(tb => wrpTabs.prepends(tb.btnTab));
+		if (tabButtons.length !== 1) tabButtons.slice().reverse().forEach(tb => wrpTabs.vee.prepends(tb.btnTab));
 
 		// If there was no previous selection, select the first tab
 		if (!Renderer.utils._tabsPreferredLabel) return tabButtons[0].fnActivateTab();
@@ -3581,12 +3785,12 @@ Renderer.utils = class {
 	static bindPronounceButtons () {
 		if (Renderer.utils._pronounceButtonsBound) return;
 		Renderer.utils._pronounceButtonsBound = true;
-		e_({ele: document.body})
-			.onn("click", evt => {
+		veE({ele: document.body})
+			.vee.onn("click", evt => {
 				const eleMatch = evt.target.closest(`.ve-stats__btn-name-pronounce`);
 				if (!eleMatch) return;
 
-				const eleAudio = e_({ele: eleMatch}).find(`[data-name="aud-pronounce"]`);
+				const eleAudio = veE({ele: eleMatch}).vee.find(`[data-name="aud-pronounce"]`);
 				eleAudio.currentTime = 0;
 				eleAudio.play();
 			});
@@ -3735,29 +3939,29 @@ Renderer.utils = class {
 	 * @param page
 	 */
 	static async pBuildFluffTab ({isImageTab, wrpContent, entity, wrpHeaderControls, pFnGetFluff, page} = {}) {
-		wrpContent.appends(Renderer.utils.getBorderTr());
+		wrpContent.vee.appends(Renderer.utils.getBorderTr());
 
 		if (wrpHeaderControls) {
 			const attrReplace = `data-p-build-fluff-tab-replace="true"`;
-			const eleNameTr = e_({
+			const eleNameTr = veE({
 				outer: Renderer.utils.getNameTr(entity, {htmlControlRhs: `<div ${attrReplace}></div>`, page}),
 			});
-			eleNameTr.find(`[${attrReplace}]`).replaceWith(wrpHeaderControls);
-			wrpContent.appends(eleNameTr);
+			eleNameTr.vee.find(`[${attrReplace}]`).replaceWith(wrpHeaderControls);
+			wrpContent.vee.appends(eleNameTr);
 		} else {
-			wrpContent.appends(Renderer.utils.getNameTr(entity, {page}));
+			wrpContent.vee.appends(Renderer.utils.getNameTr(entity, {page}));
 		}
 
-		const eleTd = ee`<td colspan="6" class="ve-pb-3"></td>`;
-		ee`<tr>${eleTd}</tr>`.appendTo(wrpContent);
-		wrpContent.appends(Renderer.utils.getBorderTr());
+		const eleTd = veT`<td colspan="6" class="ve-pb-3"></td>`;
+		veT`<tr>${eleTd}</tr>`.vee.appendTo(wrpContent);
+		wrpContent.vee.appends(Renderer.utils.getBorderTr());
 
 		const fluff = MiscUtil.copyFast((await pFnGetFluff(entity)) || {});
 		fluff.entries = fluff.entries || [Renderer.utils.HTML_NO_INFO];
 		fluff.images = fluff.images || [Renderer.utils.HTML_NO_IMAGES];
 
 		Renderer.get().withMinimizeLayoutShift(() => {
-			eleTd.html(Renderer.utils.getFluffTabContent({entity, fluff, isImageTab}));
+			eleTd.vee.html(Renderer.utils.getFluffTabContent({entity, fluff, isImageTab}));
 		});
 	}
 
@@ -5102,26 +5306,37 @@ Renderer.utils = class {
 		},
 
 		_OBSERVERS: {},
-		getCreateObserver ({observerId, fnOnObserve}) {
+		getCreateObserver ({observerId, pFnOnObserve}) {
 			if (!Renderer.utils.lazy._OBSERVERS[observerId]) {
 				const observer = Renderer.utils.lazy._OBSERVERS[observerId] = new IntersectionObserver(
 					Renderer.utils.lazy.getFnOnIntersect({
 						observerId,
-						fnOnObserve,
+						pFnOnObserve,
 					}),
 					Renderer.utils.lazy._getIntersectionConfig(),
 				);
 
 				observer._TRACKED = new Set();
+				observer._INTERSECTING = new WeakMap();
 
-				observer.track = it => {
-					observer._TRACKED.add(it);
-					return observer.observe(it);
+				observer.track = ele => {
+					observer._TRACKED.add(ele);
+					return observer.observe(ele);
 				};
 
-				observer.untrack = it => {
-					observer._TRACKED.delete(it);
-					return observer.unobserve(it);
+				observer.untrack = ele => {
+					observer._TRACKED.delete(ele);
+					observer.setIsIntersecting(ele, false);
+					return observer.unobserve(ele);
+				};
+
+				observer.setIsIntersecting = (ele, isIntersecting) => {
+					if (!isIntersecting) return observer._INTERSECTING.delete(ele);
+					observer._INTERSECTING.set(ele, true);
+				};
+
+				observer.getIsIntersecting = (ele) => {
+					return !!observer._INTERSECTING.get(ele);
 				};
 
 				// If we try to print a page with e.g. un-loaded images, attempt to load them all first
@@ -5129,12 +5344,12 @@ Renderer.utils = class {
 					if (!observer._TRACKED.size) return [];
 
 					return [...observer._TRACKED]
-						.map(it => {
-							observer.untrack(it);
-							return fnOnObserve({
+						.map(ele => {
+							observer.untrack(ele);
+							return pFnOnObserve({
 								observer,
 								entry: {
-									target: it,
+									target: ele,
 								},
 							});
 						});
@@ -5154,19 +5369,31 @@ Renderer.utils = class {
 			delete Renderer.utils.lazy._OBSERVERS[observerId];
 		},
 
-		getFnOnIntersect ({observerId, fnOnObserve}) {
+		getFnOnIntersect ({observerId, pFnOnObserve}) {
 			return obsEntries => {
 				const observer = Renderer.utils.lazy._OBSERVERS[observerId];
 
 				obsEntries.forEach(entry => {
-					// filter observed entries for those that intersect
-					if (entry.intersectionRatio <= 0) return;
+					if (!entry.isIntersecting) {
+						observer.setIsIntersecting(entry.target, false);
+						return;
+					}
 
-					observer.untrack(entry.target);
-					fnOnObserve({
+					observer.setIsIntersecting(entry.target, true);
+
+					pFnOnObserve({
 						observer,
 						entry,
-					});
+					})
+						.then(isComplete => {
+							if (!isComplete) return;
+
+							observer.untrack(entry.target);
+						})
+						.catch(e => {
+							observer.untrack(entry.target);
+							throw e;
+						});
 				});
 			};
 		},
@@ -5261,7 +5488,7 @@ Renderer.tag = class {
 
 		getStripped (tag, text) {
 			text = DataUtil.generic.variableResolver.getHumanReadableString(text); // replace any variables
-			return this._getStripped(tag, text);
+			return this._getStripped(tag, text) || "";
 		}
 
 		/** @abstract */
@@ -5562,9 +5789,7 @@ Renderer.tag = class {
 				}
 				case "@recharge": {
 					const asNum = Number(rollText || 6);
-					if (isNaN(asNum)) {
-						throw new Error(`Could not parse "${rollText}" as a number!`);
-					}
+					if (isNaN(asNum)) return `(Recharge ?)`;
 					return `(Recharge ${asNum}${asNum < 6 ? `\u20136` : ""})`;
 				}
 				case "@chance": {
@@ -6236,39 +6461,91 @@ Renderer.tag = class {
 
 Renderer.events = class {
 	static handleClick_copyCode (evt, ele) {
-		const elePre = e_(ele).parente().next("pre");
-		MiscUtil.pCopyTextToClipboard(elePre.txt());
+		const elePre = veE(ele).vee.parent().vee.next("pre");
+		MiscUtil.pCopyTextToClipboard(elePre.vee.txt());
 		JqueryUtil.showCopiedEffect(elePre);
 	}
 
 	static handleClick_toggleCodeWrap (evt, ele) {
 		const nxt = !StorageUtil.syncGet("rendererCodeWrap");
 		StorageUtil.syncSet("rendererCodeWrap", nxt);
-		const btn = e_(ele).toggleClass("ve-active", nxt);
-		const elePre = btn.parente().next("pre");
-		elePre.toggleClass("ve-rd__pre-wrap", nxt);
+		const btn = veE(ele).vee.toggleClass("ve-active", nxt);
+		const elePre = btn.vee.parent().vee.next("pre");
+		elePre.vee.toggleClass("ve-rd__pre-wrap", nxt);
 	}
+
+	/* -------------------------------------------- */
 
 	static bindGeneric ({element = null} = {}) {
 		element ||= document.body;
 
-		const ele = e_({ele: element})
-			.onn("click", evt => {
-				const eleMatch = evt.target.closest(`[data-rd-data-embed-header]`);
+		const ele = veE({ele: element})
+			.vee.onn("click", evt => {
+				const eleMatch = veE({ele: evt.target}).vee.closest(`[data-rd-data-embed-header]`);
 				if (!eleMatch) return;
-				Renderer.events.handleClick_dataEmbedHeader(evt, e_({ele: eleMatch}));
+				Renderer.events.handleClick_dataEmbedHeader(evt, eleMatch);
 			});
 
 		Renderer.events._HEADER_TOGGLE_CLICK_SELECTORS
 			.forEach(selector => {
 				ele
-					.onn("click", evt => {
-						const eleMatch = evt.target.closest(selector);
+					.vee.onn("click", evt => {
+						const eleMatch = veE({ele: evt.target}).vee.closest(selector);
 						if (!eleMatch) return;
-						Renderer.events.handleClick_headerToggleButton(evt, e_({ele: eleMatch}), {selector});
+						Renderer.events.handleClick_headerToggleButton(evt, eleMatch, {selector});
 					});
 			})
 		;
+	}
+
+	static _doClearFixedHeightInitial (ele) {
+		const wrpRenderedData = ele.vee.closest(`[data-rd-rendered-data]`);
+		if (!wrpRenderedData.vee.hasClass("ve-rd__wrp-embedded-data--fixed-height-initial")) return false;
+
+		wrpRenderedData.vee.removeClass("ve-rd__wrp-embedded-data--fixed-height-initial");
+		Renderer.utils.embed.removeSlotSizeClasses(wrpRenderedData);
+
+		wrpRenderedData.vee.find(`[data-rd-rendered-data-embed-content]`)
+			.vee.removeClass("ve-overflow-y-auto")
+			.vee.removeClass("ve-flex-vh-center");
+
+		wrpRenderedData
+			.vee.findAll(`[data-rd-is-fixed-height-initial]`)
+			.forEach(ele => ele.vee.attr("data-rd-is-fixed-height-initial", null));
+
+		return true;
+	}
+
+	static _setDataEmbedHeaderState ({ele, isCollapsed}) {
+		ele
+			.vee.find(`[data-rd-data-embed-name]`)
+			.vee.toggle(!!isCollapsed);
+		ele
+			.vee.find(`[data-rd-data-embed-name-expand]`)
+			.vee.toggle(!isCollapsed);
+		ele
+			.vee.find(`[data-rd-data-embed-name-toggle]`)
+			.vee.txt(isCollapsed ? "[+]" : "[\u2212]");
+		ele
+			.vee.tooltip(Renderer.utils.embed.getHeaderExpandCollapseText({isCollapsed}))
+			.vee.toggleClass("ve-bb-1p-trans", !isCollapsed);
+		ele
+			.vee.closest(`[data-rd-rendered-data]`)
+			.vee.find(`[data-rd-rendered-data-embed-content]`)
+			.vee.toggle(!isCollapsed);
+	}
+
+	static _setDataEmbedHeaderState_all ({isCollapsed}) {
+		veEm(`[data-rd-data-embed-header]`)
+			.forEach(ele => {
+				if (!ele.vee.find(`[data-rd-data-embed-name-toggle]`)) return;
+
+				if (Renderer.events._doClearFixedHeightInitial(ele)) {
+					Renderer.utils.embed.setIsDisableFixedHeightInitial(true);
+				}
+
+				Renderer.events._setDataEmbedHeaderState({ele, isCollapsed});
+			});
 	}
 
 	static handleClick_dataEmbedHeader (evt, ele) {
@@ -6277,12 +6554,37 @@ Renderer.events = class {
 		evt.stopPropagation();
 		evt.preventDefault();
 
-		const eleToggle = ele.find(".ve-rd__data-embed-toggle");
-		const isHidden = eleToggle.txt().includes("+");
-		ele.find(".ve-rd__data-embed-name").toggleVe(!isHidden);
-		ele.find(".ve-rd__data-embed-name-expanded").toggleVe(isHidden);
-		eleToggle.txt(isHidden ? "[\u2013]" : "[+]");
-		ele.closeste("table").find(":scope > tbody").toggleVe();
+		const eleToggle = ele.vee.find(`[data-rd-data-embed-name-toggle]`);
+		if (!eleToggle) return;
+
+		if (evt.shiftKey && ele.vee.closest(`[data-rd-rendered-data]`).vee.hasClass("ve-rd__wrp-embedded-data--fixed-height-initial")) {
+			Renderer.utils.embed.setIsDisableFixedHeightInitial(true);
+
+			veEm(`.ve-rd__wrp-embedded-data--fixed-height-initial`)
+				.map(eleWrp => eleWrp.vee.find(`[data-rd-data-embed-header]`))
+				.filter(Boolean)
+				.forEach(eleHeader => {
+					if (!Renderer.events._doClearFixedHeightInitial(eleHeader)) return;
+
+					Renderer.events._setDataEmbedHeaderState({ele: eleHeader, isCollapsed: false});
+				});
+
+			return;
+		}
+
+		if (Renderer.events._doClearFixedHeightInitial(ele)) {
+			Renderer.events._setDataEmbedHeaderState({ele, isCollapsed: false});
+			return;
+		}
+
+		const isCollapsed = eleToggle.vee.txt().trim() === "[+]";
+
+		if (evt.shiftKey) {
+			Renderer.events._setDataEmbedHeaderState_all({isCollapsed: !isCollapsed});
+			return;
+		}
+
+		Renderer.events._setDataEmbedHeaderState({ele, isCollapsed: !isCollapsed});
 	}
 
 	static _HEADER_TOGGLE_CLICK_SELECTORS = [
@@ -6296,7 +6598,7 @@ Renderer.events = class {
 
 		const isShow = this._handleClick_headerToggleButton_doToggleEle(ele, {selector});
 
-		if (!EventUtil.isCtrlMetaKey(evt)) return;
+		if (!evt.shiftKey) return;
 
 		Renderer.events._HEADER_TOGGLE_CLICK_SELECTORS
 			.forEach(selector => {
@@ -6352,7 +6654,7 @@ Renderer.events = class {
 			eleNxt = eleNxt.nextElementSibling;
 		}
 
-		ele.innerHTML = isShow ? "[\u2013]" : "[+]";
+		ele.innerHTML = isShow ? "[\u2212]" : "[+]";
 
 		return isShow;
 	}
@@ -6371,7 +6673,7 @@ Renderer.events = class {
 	static handleLoad_inlineStatblock (ele) {
 		const observer = Renderer.utils.lazy.getCreateObserver({
 			observerId: "inlineStatblock",
-			fnOnObserve: Renderer.events._handleLoad_inlineStatblock_fnOnObserve.bind(Renderer.events),
+			pFnOnObserve: Renderer.events._handleLoad_inlineStatblock_pFnOnObserve.bind(Renderer.events),
 		});
 
 		observer.track(ele.parentNode);
@@ -6408,60 +6710,72 @@ Renderer.events = class {
 		};
 	}
 
-	static _handleLoad_inlineStatblock_fnOnObserve ({entry}) {
-		const ele = entry.target;
+	static async _handleLoad_inlineStatblock_pFnOnObserve ({entry, observer}) {
+		const ele = veE(entry.target);
 
-		const tag = ele.dataset.rdTag.uq();
-		const uid = (ele.getAttribute("data-rd-uid") || "").uq();
-		const page = ele.dataset.rdPage.uq();
-		const source = ele.dataset.rdSource.uq();
-		const name = ele.dataset.rdName.uq();
-		const displayName = ele.dataset.rdDisplayName.uq();
-		const hash = ele.dataset.rdHash.uq();
-		const style = ele.dataset.rdStyle.uq();
-		const entryData = JSON.parse((ele.getAttribute("data-rd-entry-data") || "").uq() || `{}`);
+		const tag = ele.vee.attr("data-rd-tag").uq();
+		const uid = (ele.vee.attr("data-rd-uid") || "").uq();
+		const page = ele.vee.attr("data-rd-page").uq();
+		const source = ele.vee.attr("data-rd-source").uq();
+		const name = ele.vee.attr("data-rd-name").uq();
+		const displayName = ele.vee.attr("data-rd-display-name").uq();
+		const hash = ele.vee.attr("data-rd-hash").uq();
+		const style = ele.vee.attr("data-rd-style").uq();
+		const entryData = JSON.parse((ele.vee.attr("data-rd-entry-data") || "").uq() || `{}`);
+		const slotSize = ele.vee.attr("data-rd-slot-size").uq();
+		const isFixedHeightInitial = ele.vee.attr("data-rd-is-fixed-height-initial") === "true";
 
-		return DataLoader.pCacheAndGet(page, Parser.getTagSource(tag, source), hash)
-			.then(toRender => {
-				const tr = ele.closest("tr");
+		const toRender = await DataLoader.pCacheAndGet(page, Parser.getTagSource(tag, source), hash);
 
-				if (!toRender) {
-					tr.innerHTML = `<td colspan="6"><i class="text-danger">Failed to load ${tag ? Renderer.get().render(`{@${tag} ${name}|${source}${displayName ? `|${displayName}` : ""}}`) : displayName || name}!</i></td>`;
-					throw new Error(`Could not find tag: "${tag}" (page/prop: "${page}") hash: "${hash}"`);
-				}
+		// If we have scrolled away, cancel the render
+		if (!observer.getIsIntersecting(ele)) return false;
 
-				const headerName = displayName
-					|| (name ?? toRender.name ?? (toRender.entries?.length ? toRender.entries?.[0]?.name : "(Unknown)"));
+		const tr = ele.vee.closest("tr");
 
-				const {htmlNameCollapsed, htmlNameExpanded} = Renderer.events._handleLoad_inlineStatblock_getHtmlNames({
-					tag, uid, displayName,
-				});
+		const tbl = tr.vee.closest("table");
+		const wrpRenderedData = tbl.vee.closest(`[data-rd-rendered-data]`);
 
-				const fnRender = Renderer.hover.getFnRenderCompact(page);
-				const tbl = tr.closest("table");
-				const nxt = e_({
-					outer: Renderer.utils.getEmbeddedDataHeader(
-						headerName,
-						style,
-						{
-							isStats: !toRender.__prop?.endsWith("Fluff"),
-							htmlNameCollapsed,
-							htmlNameExpanded,
-						},
-					)
-						+ fnRender(toRender, {...(entryData?.renderCompact || {}), isEmbeddedEntity: true})
-						+ Renderer.utils.getEmbeddedDataFooter(),
-				});
-				tbl.parentNode.replaceChild(
-					nxt,
-					tbl,
-				);
+		wrpRenderedData
+			.vee.find(`[data-rd-rendered-data-embed-content]`)
+			.vee.removeClass("ve-flex-vh-center");
 
-				const nxtTgt = nxt.querySelector(`[data-rd-embedded-data-render-target="true"]`);
+		if (!toRender) {
+			tr.vee.html(`<td colspan="6"><i class="text-danger">Failed to load ${tag ? Renderer.get().render(`{@${tag} ${name}|${source}${displayName ? `|${displayName}` : ""}}`) : displayName || name}!</i></td>`);
+			throw new Error(`Could not find tag: "${tag}" (page/prop: "${page}") hash: "${hash}"`);
+		}
 
-				const fnBind = Renderer.hover.getFnBindListenersCompact(page);
-				if (fnBind) fnBind(toRender, nxtTgt);
-			});
+		const headerName = displayName
+			|| (name ?? toRender.name ?? (toRender.entries?.length ? toRender.entries?.[0]?.name : "(Unknown)"));
+
+		const {htmlNameCollapsed, htmlNameExpanded} = Renderer.events._handleLoad_inlineStatblock_getHtmlNames({
+			tag, uid, displayName,
+		});
+
+		const fnRender = Renderer.hover.getFnRenderCompact(page);
+		const nxt = veE({
+			outer: Renderer.utils.embed.getHeader(
+				headerName,
+				style,
+				{
+					isStats: !toRender.__prop?.endsWith("Fluff"),
+					htmlNameCollapsed,
+					htmlNameExpanded,
+					isFixedHeightInitial,
+					slotSize,
+					slotSizeSource: source,
+				},
+			)
+				+ fnRender(toRender, {...(entryData?.renderCompact || {}), isEmbeddedEntity: true})
+				+ Renderer.utils.embed.getFooter(),
+		});
+		wrpRenderedData.replaceWith(nxt);
+
+		const nxtTgt = nxt.querySelector(`[data-rd-rendered-data-embed-render-target="true"]`);
+
+		const fnBind = Renderer.hover.getFnBindListenersCompact(page);
+		if (fnBind) fnBind(toRender, nxtTgt);
+
+		return true;
 	}
 };
 
@@ -8526,7 +8840,7 @@ Renderer.race = class {
 					<div class="race__disp-result-height"></div>
 					<div class="ve-mr-2">; </div>
 					<div class="race__disp-result-weight ve-mr-1"></div>
-					<div class="small">lb.</div>
+					<div class="ve-small">lb.</div>
 				</div>
 				<button class="ve-btn ve-btn-default ve-btn-xs ve-my-1 race__btn-roll-height-weight">Roll</button>
 			</div>`);
@@ -8862,11 +9176,11 @@ Renderer.race = class {
 		if (!race.heightAndWeight) return;
 		if (race._isBaseRace) return;
 
-		ele = e_({ele});
+		ele = veE({ele});
 
-		const dispResult = ele.find(`.race__disp-result-height-weight`);
-		const dispHeight = ele.find(`.race__disp-result-height`);
-		const dispWeight = ele.find(`.race__disp-result-weight`);
+		const dispResult = ele.vee.find(`.race__disp-result-height-weight`);
+		const dispHeight = ele.vee.find(`.race__disp-result-height`);
+		const dispWeight = ele.vee.find(`.race__disp-result-weight`);
 
 		const lock = new VeLock();
 		let hasRolled = false;
@@ -8874,11 +9188,11 @@ Renderer.race = class {
 		let resultWeightMod;
 
 		const btnRollHeight = ele
-			.find(`[data-race-heightmod="true"]`)
-			.html(race.heightAndWeight.heightMod)
-			.addClass("ve-roller")
-			.onn("mousedown", evt => evt.preventDefault())
-			.onn("click", async () => {
+			.vee.find(`[data-race-heightmod="true"]`)
+			.vee.html(race.heightAndWeight.heightMod)
+			.vee.addClass("ve-roller")
+			.vee.onn("mousedown", evt => evt.preventDefault())
+			.vee.onn("click", async () => {
 				try {
 					await lock.pLock();
 
@@ -8892,9 +9206,9 @@ Renderer.race = class {
 
 		const isWeightRoller = race.heightAndWeight.weightMod && isNaN(race.heightAndWeight.weightMod);
 		const btnRollWeight = ele
-			.find(`[data-race-weightmod="true"]`)
-			.html(isWeightRoller ? `(<span class="ve-roller">${race.heightAndWeight.weightMod}</span>)` : race.heightAndWeight.weightMod || "1")
-			.onn("click", async () => {
+			.vee.find(`[data-race-weightmod="true"]`)
+			.vee.html(isWeightRoller ? `(<span class="ve-roller">${race.heightAndWeight.weightMod}</span>)` : race.heightAndWeight.weightMod || "1")
+			.vee.onn("click", async () => {
 				try {
 					await lock.pLock();
 
@@ -8905,11 +9219,11 @@ Renderer.race = class {
 					lock.unlock();
 				}
 			});
-		if (isWeightRoller) btnRollWeight.onn("mousedown", evt => evt.preventDefault());
+		if (isWeightRoller) btnRollWeight.vee.onn("mousedown", evt => evt.preventDefault());
 
 		const btnRoll = ele
-			.find(`button.race__btn-roll-height-weight`)
-			.onn("click", async () => pDoFullRoll());
+			.vee.find(`button.race__btn-roll-height-weight`)
+			.vee.onn("click", async () => pDoFullRoll());
 
 		const pRollHeight = async () => {
 			const mResultHeight = await Renderer.dice.pRoll2(race.heightAndWeight.heightMod, {
@@ -8935,18 +9249,18 @@ Renderer.race = class {
 		const updateDisplay = () => {
 			const renderedHeight = Renderer.race.getRenderedHeight(race.heightAndWeight.baseHeight + resultHeight);
 			const totalWeight = race.heightAndWeight.baseWeight + (resultWeightMod * resultHeight);
-			dispHeight.txt(renderedHeight);
-			dispWeight.txt(Number(totalWeight.toFixed(3)));
+			dispHeight.vee.txt(renderedHeight);
+			dispWeight.vee.txt(Number(totalWeight.toFixed(3)));
 		};
 
 		const pDoFullRoll = async isPreLocked => {
 			try {
 				if (!isPreLocked) await lock.pLock();
 
-				btnRoll.parente().removeClass(`ve-flex-vh-center`).addClass(`ve-split-v-center`);
+				btnRoll.vee.parent().vee.removeClass(`ve-flex-vh-center`).vee.addClass(`ve-split-v-center`);
 				await pRollHeight();
 				await pRollWeight();
-				dispResult.removeClass(`ve-hidden`);
+				dispResult.vee.removeClass(`ve-hidden`);
 				updateDisplay();
 
 				hasRolled = true;
@@ -10513,27 +10827,27 @@ Renderer.monster = class {
 	) {
 		let slider;
 
-		const eleBody = e_(win.document.body);
+		const eleBody = veE(win.document.body);
 		const cleanSliders = () => {
-			eleBody.findAll(`.mon__cr-slider-wrp`).forEach(ele => ele.remove());
-			btnScale.off("click");
+			eleBody.vee.findAll(`.mon__cr-slider-wrp`).forEach(ele => ele.remove());
+			btnScale.vee.off("click");
 			if (slider) slider.destroy();
 		};
 		cleanSliders();
 
 		const bodyOnn = () => {
 			this._GET_CR_SCALE_TARGET__ELES_CLICK_CLEAN_SLIDERS.set(eleBody, cleanSliders);
-			eleBody.onn("click", cleanSliders);
+			eleBody.vee.onn("click", cleanSliders);
 			return eleBody;
 		};
 
 		const bodyOff = () => {
 			const fnBodyPrev = this._GET_CR_SCALE_TARGET__ELES_CLICK_CLEAN_SLIDERS.get(eleBody);
-			if (fnBodyPrev) eleBody.off("click", fnBodyPrev);
+			if (fnBodyPrev) eleBody.vee.off("click", fnBodyPrev);
 			return eleBody;
 		};
 
-		const wrp = ee`<div class="mon__cr-slider-wrp ${isCompact ? "mon__cr-slider-wrp--compact" : ""}"></div>`;
+		const wrp = veT`<div class="mon__cr-slider-wrp ${isCompact ? "mon__cr-slider-wrp--compact" : ""}"></div>`;
 
 		const cur = Parser.CRS.indexOf(initialCr);
 		if (cur === -1) throw new Error(`Initial CR ${initialCr} was not valid!`);
@@ -10550,10 +10864,10 @@ Renderer.monster = class {
 			propCurMin: "cur",
 			fnDisplay: ix => Parser.CRS[ix],
 		});
-		slider.get().appendTo(wrp);
+		slider.get().vee.appendTo(wrp);
 
-		btnScale.off("click").onn("click", (evt) => evt.stopPropagation());
-		wrp.onn("click", (evt) => evt.stopPropagation());
+		btnScale.vee.off("click").vee.onn("click", (evt) => evt.stopPropagation());
+		wrp.vee.onn("click", (evt) => evt.stopPropagation());
 		bodyOff();
 		bodyOnn();
 
@@ -10569,16 +10883,16 @@ Renderer.monster = class {
 	static getSelSummonSpellLevel (mon) {
 		if (mon.summonedBySpellLevel == null) return;
 
-		return e_({
+		return veE({
 			tag: "select",
 			clazz: "ve-input-xs ve-form-control form-control--minimal ve-w-initial ve-inline-block ve-popwindow__hidden no-print",
 			name: "mon__sel-summon-spell-level",
 			children: [
-				e_({tag: "option", val: "-1", text: "\u2014"}),
-				...[...new Array(VeCt.SPELL_LEVEL_MAX + 1 - mon.summonedBySpellLevel)].map((_, i) => e_({
+				veE({tag: "option", val: "-1", txt: "\u2014"}),
+				...[...new Array(VeCt.SPELL_LEVEL_MAX + 1 - mon.summonedBySpellLevel)].map((_, i) => veE({
 					tag: "option",
 					val: i + mon.summonedBySpellLevel,
-					text: i + mon.summonedBySpellLevel,
+					txt: i + mon.summonedBySpellLevel,
 				})),
 			],
 		});
@@ -10587,16 +10901,16 @@ Renderer.monster = class {
 	static getSelSummonClassLevel (mon) {
 		if (mon.summonedByClass == null && !mon.summonedScaleByPlayerLevel) return;
 
-		return e_({
+		return veE({
 			tag: "select",
 			clazz: "ve-input-xs ve-form-control form-control--minimal ve-w-initial ve-inline-block ve-popwindow__hidden no-print",
 			name: "mon__sel-summon-class-level",
 			children: [
-				e_({tag: "option", val: "-1", text: "\u2014"}),
-				...[...new Array(VeCt.LEVEL_MAX)].map((_, i) => e_({
+				veE({tag: "option", val: "-1", txt: "\u2014"}),
+				...[...new Array(VeCt.LEVEL_MAX)].map((_, i) => veE({
 					tag: "option",
 					val: i + 1,
-					text: i + 1,
+					txt: i + 1,
 				})),
 			],
 		});
@@ -11512,7 +11826,7 @@ Renderer.monster = class {
 	}
 
 	static _bindListenersScale (mon, ele) {
-		ele = e_({ele});
+		ele = veE({ele});
 
 		const page = UrlUtil.PG_BESTIARY;
 		const source = mon.source;
@@ -11521,8 +11835,8 @@ Renderer.monster = class {
 		const fnRender = Renderer.hover.getFnRenderCompact(page);
 
 		ele
-			.find(".mon__btn-scale-cr")
-			?.onn("click", evt => {
+			.vee.find(".mon__btn-scale-cr")
+			?.vee.onn("click", evt => {
 				evt.stopPropagation();
 				const win = (evt.view || {}).window;
 
@@ -11541,7 +11855,7 @@ Renderer.monster = class {
 							? original
 							: await ScaleCreature.scale(original, targetCr);
 
-						ele.empty().appends(fnRender(toRender));
+						ele.vee.empty().vee.appends(fnRender(toRender));
 
 						Renderer.monster._bindListenersScale(toRender, ele);
 					},
@@ -11549,45 +11863,45 @@ Renderer.monster = class {
 			});
 
 		ele
-			.find(".mon__btn-reset-cr")
-			?.onn("click", async () => {
+			.vee.find(".mon__btn-reset-cr")
+			?.vee.onn("click", async () => {
 				const toRender = await DataLoader.pCacheAndGet(page, source, hash);
-				ele.empty().appends(fnRender(toRender));
+				ele.vee.empty().vee.appends(fnRender(toRender));
 
 				Renderer.monster._bindListenersScale(toRender, ele);
 			});
 
 		const selSummonSpellLevel = ele
-			.find(`[name="mon__sel-summon-spell-level"]`)
-			?.onn("change", async () => {
+			.vee.find(`[name="mon__sel-summon-spell-level"]`)
+			?.vee.onn("change", async () => {
 				const original = await DataLoader.pCacheAndGet(page, source, hash);
-				const spellLevel = Number(selSummonSpellLevel.val());
+				const spellLevel = Number(selSummonSpellLevel.vee.val());
 
 				const toRender = ~spellLevel
 					? await ScaleSpellSummonedCreature.scale(original, spellLevel)
 					: original;
 
-				ele.empty().appends(fnRender(toRender));
+				ele.vee.empty().vee.appends(fnRender(toRender));
 
 				Renderer.monster._bindListenersScale(toRender, ele);
 			})
-			.val(mon._summonedBySpell_level != null ? `${mon._summonedBySpell_level}` : "-1");
+			.vee.val(mon._summonedBySpell_level != null ? `${mon._summonedBySpell_level}` : "-1");
 
 		const selSummonClassLevel = ele
-			.find(`[name="mon__sel-summon-class-level"]`)
-			?.onn("change", async () => {
+			.vee.find(`[name="mon__sel-summon-class-level"]`)
+			?.vee.onn("change", async () => {
 				const original = await DataLoader.pCacheAndGet(page, source, hash);
-				const classLevel = Number(selSummonClassLevel.val());
+				const classLevel = Number(selSummonClassLevel.vee.val());
 
 				const toRender = ~classLevel
 					? await ScaleClassSummonedCreature.scale(original, classLevel)
 					: original;
 
-				ele.empty().appends(fnRender(toRender));
+				ele.vee.empty().vee.appends(fnRender(toRender));
 
 				Renderer.monster._bindListenersScale(toRender, ele);
 			})
-			.val(mon._summonedByClass_level != null ? `${mon._summonedByClass_level}` : "-1");
+			.vee.val(mon._summonedByClass_level != null ? `${mon._summonedByClass_level}` : "-1");
 	}
 
 	static bindListenersCompact (mon, ele) {
@@ -11597,7 +11911,7 @@ Renderer.monster = class {
 	static hover = class {
 		static _TemporaryMouseoverBinderBase = class {
 			doBinding ({mon, ele}) {
-				ele = e_({ele});
+				ele = veE({ele});
 				const lock = new VeLock({name: "Temporary Mouseover"});
 
 				let hoverMeta = null;
@@ -11612,13 +11926,13 @@ Renderer.monster = class {
 
 						hoverMeta = await this._pGetBindTriggerHoverMetas({mon, ele});
 
-						ele.off("mouseover", pFnMouseoverInitial);
+						ele.vee.off("mouseover", pFnMouseoverInitial);
 					} finally {
 						lock.unlock();
 					}
 				};
 
-				ele.onn("mouseover", pFnMouseoverInitial);
+				ele.vee.onn("mouseover", pFnMouseoverInitial);
 
 				return {
 					pFnCleanup: async () => {
@@ -11648,10 +11962,10 @@ Renderer.monster = class {
 
 			_pGetBindTriggerHoverMeta ({ele, hoverMeta}) {
 				ele
-					.onn("mouseover", evt => hoverMeta.mouseOver(evt, ele))
-					.onn("mousemove", evt => hoverMeta.mouseMove(evt, ele))
-					.onn("mouseleave", evt => hoverMeta.mouseLeave(evt, ele))
-					.trigger("mouseover");
+					.vee.onn("mouseover", evt => hoverMeta.mouseOver(evt, ele))
+					.vee.onn("mousemove", evt => hoverMeta.mouseMove(evt, ele))
+					.vee.onn("mouseleave", evt => hoverMeta.mouseLeave(evt, ele))
+					.vee.trigger("mouseover");
 				return hoverMeta;
 			}
 
@@ -13533,7 +13847,7 @@ Renderer.table = class {
 		return {
 			name: nameCaption,
 			type: "table",
-			source: group?.source,
+			source: tableRaw.source ?? group?.source,
 			page: tableRaw.page ?? group?.page,
 			caption: nameCaption,
 			colLabels: [
@@ -13637,6 +13951,66 @@ Renderer.table = class {
 	}
 };
 
+Renderer.names = class {
+	static getDisplayName (ent) {
+		return Renderer.table.getConvertedNameTableName(ent, ent);
+	}
+
+	static getRenderedString (ent) {
+		const entName = {
+			...ent,
+			_displayName: this.getDisplayName(ent),
+		};
+
+		const entTable = Renderer.table.getConvertedEncounterOrNamesTable({
+			group: ent,
+			tableRaw: ent,
+			fnGetNameCaption: this.getDisplayName.bind(this),
+			colLabel1: "Name",
+		});
+
+		return `
+			${Renderer.utils.getExcludedTr({entity: entName, dataProp: "name"})}
+			${Renderer.utils.getNameTr(entName)}
+			<tr><td colspan="6">
+			${Renderer.get().setFirstSection(true).render(entTable)}
+			</td></tr>
+		`;
+	}
+
+	static getCompactRenderedString (ent) { return this.getRenderedString(ent); }
+};
+
+Renderer.encounters = class {
+	static getDisplayName (ent) {
+		return Renderer.table.getConvertedEncounterTableName(ent, ent);
+	}
+
+	static getRenderedString (ent) {
+		const entName = {
+			...ent,
+			_displayName: this.getDisplayName(ent),
+		};
+
+		const entTable = Renderer.table.getConvertedEncounterOrNamesTable({
+			group: ent,
+			tableRaw: ent,
+			fnGetNameCaption: this.getDisplayName.bind(this),
+			colLabel1: "Encounter",
+		});
+
+		return `
+			${Renderer.utils.getExcludedTr({entity: entName, dataProp: "encounter"})}
+			${Renderer.utils.getNameTr(entName)}
+			<tr><td colspan="6">
+			${Renderer.get().setFirstSection(true).render(entTable)}
+			</td></tr>
+		`;
+	}
+
+	static getCompactRenderedString (ent) { return this.getRenderedString(ent); }
+};
+
 Renderer.vehicle = class {
 	static CHILD_PROPS = ["movement", "weapon", "station", "other", "action", "trait", "reaction", "control", "actionStation"];
 
@@ -13692,8 +14066,15 @@ Renderer.vehicle = class {
 			const entriesOtherActions = (ent.other || []).filter(it => it.name === "Actions");
 			const entriesOtherOthers = (ent.other || []).filter(it => it.name !== "Actions");
 
+			const ptDimensionsTerrain = [
+				ent.terrain ? ent.terrain.joinConjunct(", ", " and ") : null,
+				ent.dimensions ? ent.dimensions.join(" by ") : null,
+			]
+				.filter(Boolean)
+				.join("; ");
+
 			return {
-				entrySizeDimensions: `{@i ${Parser.sizeAbvToFull(ent.size)} vehicle${ent.dimensions ? ` (${ent.dimensions.join(" by ")})` : ""}}`,
+				entrySizeDimensions: `{@i ${Parser.sizeAbvToFull(ent.size)} vehicle${ptDimensionsTerrain ? ` (${ptDimensionsTerrain})` : ""}}`,
 				entryCreatureCapacity: ent.capCrew != null || ent.capPassenger != null
 					? `{@b Creature Capacity} ${Renderer.vehicle.getShipCreatureCapacity(ent)}`
 					: null,
@@ -13711,6 +14092,7 @@ Renderer.vehicle = class {
 						? `Based on "Special Travel Pace," ${Parser.sourceJsonToAbv(Parser.SRC_DMG)} p242`
 						: `Based on "Travel Pace," ${Parser.sourceJsonToAbv(Parser.SRC_XDMG)} p39`
 					: null,
+				entryInitiative: ent.initiative ? `{@b Initiative} {@initiative ${ent.initiative}}` : null,
 
 				entriesOtherActions: entriesOtherActions.length ? entriesOtherActions : null,
 				entriesOtherOthers: entriesOtherOthers.length ? entriesOtherOthers : null,
@@ -13840,6 +14222,7 @@ Renderer.vehicle = class {
 			return `<tr><td colspan="6" class="ve-pb-2">
 				${entriesMetaShip.entryCreatureCapacity ? `<div>${Renderer.get().render(entriesMetaShip.entryCreatureCapacity)}</div>` : ""}
 				${entriesMetaShip.entryCargoCapacity ? `<div>${Renderer.get().render(entriesMetaShip.entryCargoCapacity)}</div>` : ""}
+				${entriesMetaShip.entryInitiative ? `<div>${Renderer.get().render(entriesMetaShip.entryInitiative)}</div>` : ""}
 				${entriesMetaShip.entryTravelPace ? `<div>${Renderer.get().render(entriesMetaShip.entryTravelPace)}</div>` : ""}
 				${entriesMetaShip.entryTravelPaceNote ? `<div class="ve-muted ve-small ve-help-subtle ve-ml-2" ${entriesMetaShip.entryTravelPaceNoteTitle ? `title="${Renderer.stripTags(entriesMetaShip.entryTravelPaceNote).qq()}"` : ""}>${Renderer.get().render(entriesMetaShip.entryTravelPaceNote)}</div>` : ""}
 			</td></tr>`;
@@ -15739,13 +16122,13 @@ Renderer.hover = class {
 			new ContextUtil.Action(
 				"Maximize All",
 				() => {
-					em(`.ve-hoverborder[data-perm="true"]`).forEach(ele => ele.attr("data-display-title", "false"));
+					veEm(`.ve-hoverborder[data-perm="true"]`).forEach(ele => ele.vee.attr("data-display-title", "false"));
 				},
 			),
 			new ContextUtil.Action(
 				"Minimize All",
 				() => {
-					em(`.ve-hoverborder[data-perm="true"]`).forEach(ele => ele.attr("data-display-title", "true"));
+					veEm(`.ve-hoverborder[data-perm="true"]`).forEach(ele => ele.vee.attr("data-display-title", "true"));
 				},
 			),
 			null,
@@ -16283,9 +16666,9 @@ Renderer.hover = class {
 	/* -------------------------------------------- */
 
 	static async pDoShowBrowserWindow (eleContent, opts) {
-		eleContent = e_({ele: eleContent});
+		eleContent = veE({ele: eleContent});
 
-		const dimensions = opts.fnGetPopoutSize ? opts.fnGetPopoutSize() : {width: 600, height: eleContent.outerHeighte()};
+		const dimensions = opts.fnGetPopoutSize ? opts.fnGetPopoutSize() : {width: 600, height: eleContent.vee.outerHeight()};
 		const win = window.open(
 			"",
 			opts.title || "",
@@ -16351,7 +16734,7 @@ Renderer.hover = class {
 
 			win.document.close();
 
-			win._wrpHoverContent = e_({ele: win.document}).find(`.hoverbox--popout`);
+			win._wrpHoverContent = veE({ele: win.document}).vee.find(`.hoverbox--popout`);
 
 			window.addEventListener("beforeunload", () => win.close());
 		}
@@ -16361,11 +16744,11 @@ Renderer.hover = class {
 			cpyEleContent = await opts.pFnGetPopoutContent();
 		} else {
 			// TODO(jquery) consider implementing .clonee; consider cloning registered event handlers
-			cpyEleContent = e_({ele: eleContent.cloneNode(true)});
+			cpyEleContent = veE({ele: eleContent.cloneNode(true)});
 		}
 
 		win._wrpHoverContent.innerHTML = "";
-		cpyEleContent.appendTo(win._wrpHoverContent);
+		cpyEleContent.vee.appendTo(win._wrpHoverContent);
 
 		return win;
 	}
@@ -16416,15 +16799,15 @@ Renderer.hover = class {
 		const initialWidth = opts.width == null ? Renderer.hover._DEFAULT_WIDTH_PX : opts.width;
 		const initialZIndex = Renderer.hover._getNextZIndex();
 
-		const eleHov = ee`<div class="ve-hwin"></div>`
-			.css({
+		const eleHov = veT`<div class="ve-hwin"></div>`
+			.vee.css({
 				"right": `${-initialWidth}px`,
 				"width": `${initialWidth}px`,
 				"zIndex": initialZIndex,
 			});
-		const wrpContent = ee`<div class="ve-hwin__wrp-table"></div>`;
-		if (opts.height != null) wrpContent.css("height", `${opts.height}px`);
-		const hovTitle = ee`<span class="ve-window-title ve-min-w-0 ve-overflow-ellipsis" title="${`${opts.title || ""}`.qq()}">${opts.title || ""}</span>`;
+		const wrpContent = veT`<div class="ve-hwin__wrp-table"></div>`;
+		if (opts.height != null) wrpContent.vee.css("height", `${opts.height}px`);
+		const hovTitle = veT`<span class="ve-window-title ve-min-w-0 ve-overflow-ellipsis" title="${`${opts.title || ""}`.qq()}">${opts.title || ""}</span>`;
 
 		const hoverWindow = {};
 		const hoverId = Renderer.hover._getNextId();
@@ -16433,51 +16816,51 @@ Renderer.hover = class {
 		const eventChannel = new EventTarget();
 		const fnsCleanup = [];
 
-		const brdrTopRightResize = ee`<div class="ve-hoverborder__resize-ne ve-touch-action-none"></div>`
-			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_NE, isResizeOnlyWidth}))
-			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_NE, isResizeOnlyWidth}));
-		if (isResizeOnlyWidth) brdrTopRightResize.hideVe();
+		const brdrTopRightResize = veT`<div class="ve-hoverborder__resize-ne ve-touch-action-none"></div>`
+			.vee.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_NE, isResizeOnlyWidth}))
+			.vee.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_NE, isResizeOnlyWidth}));
+		if (isResizeOnlyWidth) brdrTopRightResize.vee.hide();
 
-		const brdrRightResize = ee`<div class="ve-hoverborder__resize-e ve-touch-action-none"></div>`
-			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_E, isResizeOnlyWidth}))
-			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_E, isResizeOnlyWidth}));
+		const brdrRightResize = veT`<div class="ve-hoverborder__resize-e ve-touch-action-none"></div>`
+			.vee.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_E, isResizeOnlyWidth}))
+			.vee.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_E, isResizeOnlyWidth}));
 
-		const brdrBottomRightResize = ee`<div class="ve-hoverborder__resize-se ve-touch-action-none"></div>`
-			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_SE, isResizeOnlyWidth}))
-			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_SE, isResizeOnlyWidth}));
-		if (isResizeOnlyWidth) brdrBottomRightResize.hideVe();
+		const brdrBottomRightResize = veT`<div class="ve-hoverborder__resize-se ve-touch-action-none"></div>`
+			.vee.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_SE, isResizeOnlyWidth}))
+			.vee.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_SE, isResizeOnlyWidth}));
+		if (isResizeOnlyWidth) brdrBottomRightResize.vee.hide();
 
-		const brdrBtmResize = ee`<div class="ve-hoverborder__resize-s ve-touch-action-none"></div>`
-			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_S, isResizeOnlyWidth}))
-			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_S, isResizeOnlyWidth}));
-		if (isResizeOnlyWidth) brdrBtmResize.hideVe();
+		const brdrBtmResize = veT`<div class="ve-hoverborder__resize-s ve-touch-action-none"></div>`
+			.vee.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_S, isResizeOnlyWidth}))
+			.vee.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_S, isResizeOnlyWidth}));
+		if (isResizeOnlyWidth) brdrBtmResize.vee.hide();
 
-		const brdrBtm = ee`<div class="ve-hoverborder ve-hoverborder--btm ${opts.isBookContent ? "ve-hoverborder--book" : ""} ve-touch-action-none">${brdrBtmResize}</div>`;
-		if (isHideBottomBorder) brdrBtm.hideVe();
+		const brdrBtm = veT`<div class="ve-hoverborder ve-hoverborder--btm ${opts.isBookContent ? "ve-hoverborder--book" : ""} ve-touch-action-none">${brdrBtmResize}</div>`;
+		if (isHideBottomBorder) brdrBtm.vee.hide();
 
-		const brdrBtmLeftResize = ee`<div class="ve-hoverborder__resize-sw ve-touch-action-none"></div>`
-			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_SW, isResizeOnlyWidth}))
-			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_SW, isResizeOnlyWidth}));
-		if (isResizeOnlyWidth) brdrBtmLeftResize.hideVe();
+		const brdrBtmLeftResize = veT`<div class="ve-hoverborder__resize-sw ve-touch-action-none"></div>`
+			.vee.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_SW, isResizeOnlyWidth}))
+			.vee.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_SW, isResizeOnlyWidth}));
+		if (isResizeOnlyWidth) brdrBtmLeftResize.vee.hide();
 
-		const brdrLeftResize = ee`<div class="ve-hoverborder__resize-w ve-touch-action-none"></div>`
-			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_W, isResizeOnlyWidth}))
-			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_W, isResizeOnlyWidth}));
+		const brdrLeftResize = veT`<div class="ve-hoverborder__resize-w ve-touch-action-none"></div>`
+			.vee.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_W, isResizeOnlyWidth}))
+			.vee.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_W, isResizeOnlyWidth}));
 
-		const brdrTopLeftResize = ee`<div class="ve-hoverborder__resize-nw ve-touch-action-none"></div>`
-			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_NW, isResizeOnlyWidth}))
-			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_NW, isResizeOnlyWidth}));
-		if (isResizeOnlyWidth) brdrTopLeftResize.hideVe();
+		const brdrTopLeftResize = veT`<div class="ve-hoverborder__resize-nw ve-touch-action-none"></div>`
+			.vee.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_NW, isResizeOnlyWidth}))
+			.vee.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_NW, isResizeOnlyWidth}));
+		if (isResizeOnlyWidth) brdrTopLeftResize.vee.hide();
 
-		const brdrTopResize = ee`<div class="ve-hoverborder__resize-n ve-touch-action-none"></div>`
-			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_N, isResizeOnlyWidth}))
-			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_N, isResizeOnlyWidth}));
-		if (isResizeOnlyWidth) brdrTopResize.hideVe();
+		const brdrTopResize = veT`<div class="ve-hoverborder__resize-n ve-touch-action-none"></div>`
+			.vee.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_N, isResizeOnlyWidth}))
+			.vee.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_RESIZE_N, isResizeOnlyWidth}));
+		if (isResizeOnlyWidth) brdrTopResize.vee.hide();
 
-		const brdrTop = ee`<div class="ve-hoverborder ve-hoverborder--top ${opts.isBookContent ? "ve-hoverborder--book" : ""} ve-touch-action-none" ${opts.isPermanent ? `data-perm="true"` : ""}></div>`
-			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_MOVE, isResizeOnlyWidth}))
-			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_MOVE, isResizeOnlyWidth}))
-			.onn("contextmenu", (evt) => {
+		const brdrTop = veT`<div class="ve-hoverborder ve-hoverborder--top ${opts.isBookContent ? "ve-hoverborder--book" : ""} ve-touch-action-none" ${opts.isPermanent ? `data-perm="true"` : ""}></div>`
+			.vee.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_MOVE, isResizeOnlyWidth}))
+			.vee.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, eleHov, drag, wrpContent}, {evt, type: this._DRAG_TYP_MOVE, isResizeOnlyWidth}))
+			.vee.onn("contextmenu", (evt) => {
 				Renderer.hover._contextMenuLastClicked = {
 					hoverId,
 				};
@@ -16490,8 +16873,8 @@ Renderer.hover = class {
 			if (drag.type === this._DRAG_TYP_NONE) return;
 
 			if (drag.type !== this._DRAG_TYP_MOVE) {
-				wrpContent.css("max-height", "");
-				eleHov.css("max-width", "");
+				wrpContent.vee.css("max-height", "");
+				eleHov.vee.css("max-width", "");
 			}
 			Renderer.hover._getShowWindow_adjustPosition({eleHov, wrpContent, position, eventChannel});
 
@@ -16500,7 +16883,7 @@ Renderer.hover = class {
 				if (EventUtil.isUsingTouch() && evt.target.classList.contains("ve-hwin__top-border-icon")) {
 					evt.preventDefault();
 					drag.type = this._DRAG_TYP_NONE;
-					e_(evt.target).trigger("click");
+					veE(evt.target).vee.trigger("click");
 					return;
 				}
 
@@ -16537,14 +16920,14 @@ Renderer.hover = class {
 					const diffX = drag.startX - EventUtil.getClientX(evt);
 					const diffY = drag.startY - EventUtil.getClientY(evt);
 					eleHov
-						.css({
+						.vee.css({
 							"left": `${drag.baseLeft - diffX}px`,
 							"top": `${drag.baseTop - diffY}px`,
 						});
 					drag.startX = EventUtil.getClientX(evt);
 					drag.startY = EventUtil.getClientY(evt);
-					drag.baseTop = parseFloat(eleHov.css("top").slice(0, -2));
-					drag.baseLeft = parseFloat(eleHov.css("left").slice(0, -2));
+					drag.baseTop = parseFloat(eleHov.vee.css("top").slice(0, -2));
+					drag.baseLeft = parseFloat(eleHov.vee.css("left").slice(0, -2));
 
 					// handle DM screen integration
 					if (this._dmScreen) {
@@ -16585,31 +16968,31 @@ Renderer.hover = class {
 
 		/* ----- */
 
-		brdrTop.attr("data-display-title", false);
-		brdrTop.onn("dblclick", () => Renderer.hover._getShowWindow_doToggleMinimizedMaximized({brdrEleTop: brdrTop, eleHov}));
-		brdrTop.appends(hovTitle);
-		const brdEleTopRhs = ee`<div class="ve-flex ve-ml-auto ve-no-shrink"></div>`.appendTo(brdrTop);
+		brdrTop.vee.attr("data-display-title", false);
+		brdrTop.vee.onn("dblclick", () => Renderer.hover._getShowWindow_doToggleMinimizedMaximized({brdrEleTop: brdrTop, eleHov}));
+		brdrTop.vee.appends(hovTitle);
+		const brdEleTopRhs = veT`<div class="ve-flex ve-ml-auto ve-no-shrink"></div>`.vee.appendTo(brdrTop);
 
 		if (opts.pageUrl && !position.window._IS_POPOUT && !Renderer.get().isInternalLinksDisabled()) {
-			const btnGotoPage = ee`<a class="ve-hwin__top-border-icon glyphicon glyphicon-modal-window" title="Go to Page" href="${opts.pageUrl}"></a>`
-				.appendTo(brdEleTopRhs);
+			const btnGotoPage = veT`<a class="ve-hwin__top-border-icon glyphicon glyphicon-modal-window" title="Go to Page" href="${opts.pageUrl}"></a>`
+				.vee.appendTo(brdEleTopRhs);
 		}
 
 		if (!position.window._IS_POPOUT && !opts.isPopout) {
-			const btnPopout = ee`<span class="ve-hwin__top-border-icon glyphicon glyphicon-new-window hvr__popout" title="Open as Popup Window"></span>`
-				.onn("click", evt => {
+			const btnPopout = veT`<span class="ve-hwin__top-border-icon glyphicon glyphicon-new-window hvr__popout" title="Open as Popup Window"></span>`
+				.vee.onn("click", evt => {
 					evt.stopPropagation();
 					return Renderer.hover._getShowWindow_pDoPopout({eleHov, position, fnsCleanup, hoverId, opts, hoverWindow, eleContent}, {evt});
 				})
-				.appendTo(brdEleTopRhs);
+				.vee.appendTo(brdEleTopRhs);
 		}
 
 		if (opts.sourceData) {
-			const btnPopout = e_({
+			const btnPopout = veE({
 				tag: "span",
 				clazz: `ve-hwin__top-border-icon ve-hwin__top-border-icon--text`,
 				title: "Show Source Data",
-				text: "{}",
+				txt: "{}",
 				click: evt => {
 					evt.stopPropagation();
 					evt.preventDefault();
@@ -16625,11 +17008,11 @@ Renderer.hover = class {
 					);
 				},
 			});
-			brdEleTopRhs.appends(btnPopout);
+			brdEleTopRhs.vee.appends(btnPopout);
 		}
 
-		const btnClose = ee`<span class="ve-hwin__top-border-icon glyphicon glyphicon-remove" title="Close (CTRL to Close All)"></span>`
-			.onn("click", (evt) => {
+		const btnClose = veT`<span class="ve-hwin__top-border-icon glyphicon glyphicon-remove" title="Close (CTRL to Close All)"></span>`
+			.vee.onn("click", (evt) => {
 				evt.stopPropagation();
 
 				if (EventUtil.isCtrlMetaKey(evt)) {
@@ -16639,25 +17022,25 @@ Renderer.hover = class {
 
 				Renderer.hover._getShowWindow_doClose({eleHov, position, fnsCleanup, hoverId, opts, hoverWindow});
 			})
-			.appendTo(brdEleTopRhs);
+			.vee.appendTo(brdEleTopRhs);
 
-		wrpContent.appends(eleContent);
+		wrpContent.vee.appends(eleContent);
 
 		eleHov
-			.appends(brdrTopResize)
-			.appends(brdrTopRightResize)
-			.appends(brdrRightResize)
-			.appends(brdrBottomRightResize)
-			.appends(brdrBtmLeftResize)
-			.appends(brdrLeftResize)
-			.appends(brdrTopLeftResize)
+			.vee.appends(brdrTopResize)
+			.vee.appends(brdrTopRightResize)
+			.vee.appends(brdrRightResize)
+			.vee.appends(brdrBottomRightResize)
+			.vee.appends(brdrBtmLeftResize)
+			.vee.appends(brdrLeftResize)
+			.vee.appends(brdrTopLeftResize)
 
-			.appends(brdrTop)
-			.appends(wrpContent)
-			.appends(brdrBtm);
+			.vee.appends(brdrTop)
+			.vee.appends(wrpContent)
+			.vee.appends(brdrBtm);
 
-		e_({ele: position.window.document.body})
-			.appends(eleHov);
+		veE({ele: position.window.document.body})
+			.vee.appends(eleHov);
 
 		Renderer.hover._getShowWindow_setPosition({eleHov, wrpContent, position, eventChannel}, position);
 
@@ -16674,7 +17057,7 @@ Renderer.hover = class {
 		hoverWindow.getPosition = Renderer.hover._getShowWindow_getPosition.bind(this, {eleHov, hoverWindow, wrpContent, position});
 
 		hoverWindow.setContent = (eleContentNxt) => {
-			wrpContent.empty().appends(eleContentNxt);
+			wrpContent.vee.empty().vee.appends(eleContentNxt);
 			eleContent = eleContentNxt;
 		};
 
@@ -16701,24 +17084,24 @@ Renderer.hover = class {
 		if (evt.button === 0) evt.preventDefault();
 
 		hoverWindow.zIndex = Renderer.hover._getNextZIndex(hoverId);
-		eleHov.css({
+		eleHov.vee.css({
 			"z-index": hoverWindow.zIndex,
 			"animation": "initial",
 		});
 		drag.type = type;
 		drag.startX = EventUtil.getClientX(evt);
 		drag.startY = EventUtil.getClientY(evt);
-		drag.baseTop = parseFloat(eleHov.css("top").slice(0, -2));
-		drag.baseLeft = parseFloat(eleHov.css("left").slice(0, -2));
-		if (!isResizeOnlyWidth) drag.baseHeight = wrpContent.outerHeighte();
-		drag.baseWidth = parseFloat(eleHov.css("width").slice(0, -2));
+		drag.baseTop = parseFloat(eleHov.vee.css("top").slice(0, -2));
+		drag.baseLeft = parseFloat(eleHov.vee.css("left").slice(0, -2));
+		if (!isResizeOnlyWidth) drag.baseHeight = wrpContent.vee.outerHeight();
+		drag.baseWidth = parseFloat(eleHov.vee.css("width").slice(0, -2));
 
 		if (type !== this._DRAG_TYP_MOVE) {
-			wrpContent.css({
+			wrpContent.vee.css({
 				...(isResizeOnlyWidth ? {} : {"height": `${drag.baseHeight}px`}),
 				"max-height": "initial",
 			});
-			eleHov.css("max-width", "initial");
+			eleHov.vee.css("max-width", "initial");
 		}
 	}
 
@@ -16731,50 +17114,50 @@ Renderer.hover = class {
 
 	static _getShowWindow_handleNorthDrag ({wrpContent, eleHov, drag, evt}) {
 		const diffY = Math.max(drag.startY - EventUtil.getClientY(evt), 80 - drag.baseHeight); // prevent <80 height, as this will cause the box to move downwards
-		wrpContent.css("height", `${drag.baseHeight + diffY}px`);
-		eleHov.css("top", `${drag.baseTop - diffY}px`);
+		wrpContent.vee.css("height", `${drag.baseHeight + diffY}px`);
+		eleHov.vee.css("top", `${drag.baseTop - diffY}px`);
 		drag.startY = EventUtil.getClientY(evt);
-		drag.baseHeight = wrpContent.outerHeighte();
-		drag.baseTop = parseFloat(eleHov.css("top").slice(0, -2));
+		drag.baseHeight = wrpContent.vee.outerHeight();
+		drag.baseTop = parseFloat(eleHov.vee.css("top").slice(0, -2));
 	}
 
 	static _getShowWindow_handleEastDrag ({wrpContent, eleHov, drag, evt}) {
 		const diffX = drag.startX - EventUtil.getClientX(evt);
-		eleHov.css("width", `${drag.baseWidth - diffX}px`);
+		eleHov.vee.css("width", `${drag.baseWidth - diffX}px`);
 		drag.startX = EventUtil.getClientX(evt);
-		drag.baseWidth = parseFloat(eleHov.css("width").slice(0, -2));
+		drag.baseWidth = parseFloat(eleHov.vee.css("width").slice(0, -2));
 	}
 
 	static _getShowWindow_handleSouthDrag ({wrpContent, eleHov, drag, evt}) {
 		const diffY = drag.startY - EventUtil.getClientY(evt);
-		wrpContent.css("height", `${drag.baseHeight - diffY}px`);
+		wrpContent.vee.css("height", `${drag.baseHeight - diffY}px`);
 		drag.startY = EventUtil.getClientY(evt);
-		drag.baseHeight = wrpContent.outerHeighte();
+		drag.baseHeight = wrpContent.vee.outerHeight();
 	}
 
 	static _getShowWindow_handleWestDrag ({wrpContent, eleHov, drag, evt}) {
 		const diffX = Math.max(drag.startX - EventUtil.getClientX(evt), 150 - drag.baseWidth);
 		eleHov
-			.css({
+			.vee.css({
 				"width": `${drag.baseWidth + diffX}px`,
 				"left": `${drag.baseLeft - diffX}px`,
 			});
 		drag.startX = EventUtil.getClientX(evt);
-		drag.baseWidth = parseFloat(eleHov.css("width").slice(0, -2));
-		drag.baseLeft = parseFloat(eleHov.css("left").slice(0, -2));
+		drag.baseWidth = parseFloat(eleHov.vee.css("width").slice(0, -2));
+		drag.baseLeft = parseFloat(eleHov.vee.css("left").slice(0, -2));
 	}
 
 	static _getShowWindow_doToggleMinimizedMaximized ({brdrEleTop, eleHov}) {
-		const curState = brdrEleTop.attr("data-display-title");
+		const curState = brdrEleTop.vee.attr("data-display-title");
 		const isNextMinified = curState === "false";
-		brdrEleTop.attr("data-display-title", isNextMinified);
-		brdrEleTop.attr("data-perm", true);
-		eleHov.toggleClass("ve-hwin--minified", isNextMinified);
+		brdrEleTop.vee.attr("data-display-title", isNextMinified);
+		brdrEleTop.vee.attr("data-perm", true);
+		eleHov.vee.toggleClass("ve-hwin--minified", isNextMinified);
 	}
 
 	static _getShowWindow_doMaximize ({brdrEleTop, eleHov}) {
-		brdrEleTop.attr("data-display-title", false);
-		eleHov.toggleClass("ve-hwin--minified", false);
+		brdrEleTop.vee.attr("data-display-title", false);
+		eleHov.vee.toggleClass("ve-hwin--minified", false);
 	}
 
 	static async _getShowWindow_pDoPopout ({eleHov, position, fnsCleanup, hoverId, opts, hoverWindow, eleContent}, {evt} = {}) {
@@ -16788,11 +17171,11 @@ Renderer.hover = class {
 			case "autoFromElement": {
 				const bcr = eleHov.getBoundingClientRect();
 
-				if (positionNxt.isFromBottom) eleHov.css("top", `${positionNxt.bcr.top - (bcr.height + 10)}px`);
-				else eleHov.css("top", `${positionNxt.bcr.top + positionNxt.bcr.height + 10}px`);
+				if (positionNxt.isFromBottom) eleHov.vee.css("top", `${positionNxt.bcr.top - (bcr.height + 10)}px`);
+				else eleHov.vee.css("top", `${positionNxt.bcr.top + positionNxt.bcr.height + 10}px`);
 
-				if (positionNxt.isFromRight) eleHov.css("left", `${(positionNxt.clientX || positionNxt.bcr.left) - (bcr.width + 10)}px`);
-				else eleHov.css("left", `${(positionNxt.clientX || (positionNxt.bcr.left + positionNxt.bcr.width)) + 10}px`);
+				if (positionNxt.isFromRight) eleHov.vee.css("left", `${(positionNxt.clientX || positionNxt.bcr.left) - (bcr.width + 10)}px`);
+				else eleHov.vee.css("left", `${(positionNxt.clientX || (positionNxt.bcr.left + positionNxt.bcr.width)) + 10}px`);
 
 				// region Sync position info when updating
 				if (position !== positionNxt) {
@@ -16806,14 +17189,14 @@ Renderer.hover = class {
 				break;
 			}
 			case "exact": {
-				eleHov.css({
+				eleHov.vee.css({
 					"left": `${positionNxt.x}px`,
 					"top": `${positionNxt.y}px`,
 				});
 				break;
 			}
 			case "exactVisibleBottom": {
-				eleHov.css({
+				eleHov.vee.css({
 					"left": `${positionNxt.x}px`,
 					"top": `${positionNxt.y}px`,
 					"animation": "initial", // Briefly remove the animation so we can calculate the height
@@ -16825,7 +17208,7 @@ Renderer.hover = class {
 				const height = position.window.innerHeight;
 				if (posBottom > height) {
 					yPos = position.window.innerHeight - winHeight;
-					eleHov.css({
+					eleHov.vee.css({
 						"top": `${yPos}px`,
 						"animation": "",
 					});
@@ -16892,24 +17275,24 @@ Renderer.hover = class {
 	static _getShowWindow_getPosition ({eleHov, hoverWindow, wrpContent}) {
 		if (hoverWindow._winPopup && !hoverWindow._winPopup.closed) {
 			return {
-				wWrpContent: e_({ele: hoverWindow._winPopup.document.body}).outerWidthe(),
-				hWrapContent: e_({ele: hoverWindow._winPopup.document.body}).outerHeighte(),
+				wWrpContent: veE({ele: hoverWindow._winPopup.document.body}).vee.outerWidth(),
+				hWrapContent: veE({ele: hoverWindow._winPopup.document.body}).vee.outerHeight(),
 			};
 		}
 
 		return {
-			wWrpContent: wrpContent.outerWidthe(),
-			hWrapContent: wrpContent.outerHeighte(),
+			wWrpContent: wrpContent.vee.outerWidth(),
+			hWrapContent: wrpContent.vee.outerHeight(),
 		};
 	}
 
 	static _getShowWindow_setIsPermanent ({opts, brdrEleTop}, isPermanent) {
 		opts.isPermanent = isPermanent;
-		brdrEleTop.attr("data-perm", isPermanent);
+		brdrEleTop.vee.attr("data-perm", isPermanent);
 	}
 
 	static _getShowWindow_setZIndex ({eleHov, hoverWindow}, zIndex) {
-		eleHov.css("z-index", zIndex);
+		eleHov.vee.css("z-index", zIndex);
 		hoverWindow.zIndex = zIndex;
 	}
 
@@ -16987,19 +17370,19 @@ Renderer.hover = class {
 	static handleTouchStart (evt, ele) {
 		if (Renderer.hover.isSmallScreen(evt)) return;
 
-		ele = e_({ele});
+		ele = veE({ele});
 
 		// on large touchscreen devices only (e.g. iPads)
 		// cache the link location and redirect it to void
-		ele.attr("data-tmp-href", ele.attr("data-tmp-href") || ele.attr("href"));
-		ele.attr("href", "javascript:void(0)");
+		ele.vee.attr("data-tmp-href", ele.vee.attr("data-tmp-href") || ele.vee.attr("href"));
+		ele.vee.attr("href", "javascript:void(0)");
 		// restore the location after 100ms; if the user long-presses the link will be restored by the time they
 		//   e.g. attempt to open a new tab
 		setTimeout(() => {
-			const href = ele.attr("data-tmp-href");
+			const href = ele.vee.attr("data-tmp-href");
 			if (href) {
-				ele.attr("href", href);
-				ele.attr("data-tmp-href", null);
+				ele.vee.attr("href", href);
+				ele.vee.attr("data-tmp-href", null);
 			}
 		}, 100);
 	}
@@ -17082,7 +17465,7 @@ Renderer.hover = class {
 	// endregion
 
 	static getGenericCompactRenderedString (entry, {depth = null} = {}) {
-		if (entry.header != null) depth = Math.max(0, entry.header);
+		if (entry.header != null) depth = Math.max(0, entry.header - 1);
 		if (depth == null) depth = 0;
 
 		return `
@@ -17110,7 +17493,7 @@ Renderer.hover = class {
 		</td></tr>`;
 	}
 
-	static getFnRenderCompact (page, {isStatic = false} = {}) {
+	static _getFnRenderCompact ({page, isStatic = false} = {}) {
 		switch (page) {
 			case "generic":
 			case "hover": return Renderer.hover.getGenericCompactRenderedString.bind(Renderer.hover);
@@ -17132,6 +17515,8 @@ Renderer.hover = class {
 			case UrlUtil.PG_VARIANTRULES: return Renderer.variantrule.getCompactRenderedString.bind(Renderer.variantrule);
 			case UrlUtil.PG_CULTS_BOONS: return Renderer.cultboon.getCompactRenderedString.bind(Renderer.cultboon);
 			case UrlUtil.PG_TABLES: return Renderer.table.getCompactRenderedString.bind(Renderer.table);
+			case UrlUtil.PG_NAMES: return Renderer.names.getCompactRenderedString.bind(Renderer.names);
+			case UrlUtil.PG_ENCOUNTERGEN: return Renderer.encounters.getCompactRenderedString.bind(Renderer.encounters);
 			case UrlUtil.PG_VEHICLES: return Renderer.vehicle.getCompactRenderedString.bind(Renderer.vehicle);
 			case UrlUtil.PG_ACTIONS: return Renderer.action.getCompactRenderedString.bind(Renderer.action);
 			case UrlUtil.PG_LANGUAGES: return Renderer.language.getCompactRenderedString.bind(Renderer.language);
@@ -17156,6 +17541,11 @@ Renderer.hover = class {
 				if (page?.endsWith("Fluff")) return Renderer.hover.getCompactRenderedFluffString.bind(Renderer.hover);
 				return null;
 		}
+	}
+
+	static getFnRenderCompact (page, {isStatic = false} = {}) {
+		const fn = this._getFnRenderCompact({page, isStatic});
+		return (...args) => Renderer.get().withSetRenderHeaderIndex(false, () => fn(...args));
 	}
 
 	static getFnBindListenersCompact (page, {overrides = {}} = {}) {
@@ -17191,7 +17581,7 @@ Renderer.hover = class {
 
 		const name = toRender._displayName || toRender.name;
 		const fnRender = opts.fnRender || Renderer.hover.getFnRenderCompact(page, {isStatic: opts.isStatic});
-		const out = ee`<table class="ve-w-100 ve-stats ${opts.isBookContent ? `ve-stats--book` : ""}" ${name ? `data-roll-name-ancestor-roller="${Renderer.stripTags(name).qq()}"` : ""}>${fnRender(toRender, renderFnOpts)}</table>`;
+		const out = veT`<table class="ve-w-100 ve-stats ${opts.isBookContent ? `ve-stats--book` : ""}" ${name ? `data-roll-name-ancestor-roller="${Renderer.stripTags(name).qq()}"` : ""}>${fnRender(toRender, renderFnOpts)}</table>`;
 
 		if (!opts.isStatic) {
 			const fnBind = Renderer.hover.getFnBindListenersCompact(page);
@@ -17199,12 +17589,6 @@ Renderer.hover = class {
 		}
 
 		return out;
-	}
-
-	// eslint-disable-next-line vet-jquery/jquery
-	static $getHoverContent_stats (page, toRender, opts, renderFnOpts) {
-		// eslint-disable-next-line vet-jquery/jquery
-		return globalThis.jQuery(Renderer.hover.getHoverContent_stats(page, toRender, opts, renderFnOpts));
 	}
 
 	/**
@@ -17219,7 +17603,7 @@ Renderer.hover = class {
 		if (Renderer.hover.isBookContentStyledPage(page)) opts = {...MiscUtil.copyFast(opts), isBookContent: true};
 
 		if (!toRender) {
-			return ee`<table class="ve-w-100 ve-stats ${opts.isBookContent ? `ve-stats--book` : ""}"><tr><td colspan="6" class="ve-p-2 ve-text-center">${Renderer.utils.HTML_NO_INFO}</td></tr></table>`;
+			return veT`<table class="ve-w-100 ve-stats ${opts.isBookContent ? `ve-stats--book` : ""}"><tr><td colspan="6" class="ve-p-2 ve-text-center">${Renderer.utils.HTML_NO_INFO}</td></tr></table>`;
 		}
 
 		toRender = MiscUtil.copyFast(toRender);
@@ -17244,20 +17628,7 @@ Renderer.hover = class {
 		}
 
 		const name = toRender._displayName || toRender.name;
-		return ee`<table class="ve-w-100 ve-stats ${opts.isBookContent ? `ve-stats--book` : ""}" ${name ? `data-roll-name-ancestor-roller="${Renderer.stripTags(name).qq()}"` : ""}>${Renderer.generic.getCompactRenderedString(toRender, renderFnOpts)}</table>`;
-	}
-
-	/**
-	 * @param page
-	 * @param toRender
-	 * @param [opts]
-	 * @param [opts.isBookContent]
-	 * @param [renderFnOpts]
-	 */
-	// eslint-disable-next-line vet-jquery/jquery
-	static $getHoverContent_fluff (page, toRender, opts, renderFnOpts) {
-		// eslint-disable-next-line vet-jquery/jquery
-		return globalThis.jQuery(this.getHoverContent_fluff(page, toRender, opts, renderFnOpts));
+		return veT`<table class="ve-w-100 ve-stats ${opts.isBookContent ? `ve-stats--book` : ""}" ${name ? `data-roll-name-ancestor-roller="${Renderer.stripTags(name).qq()}"` : ""}>${Renderer.generic.getCompactRenderedString(toRender, renderFnOpts)}</table>`;
 	}
 
 	static getHoverContent_statsCode (toRender, {isSkipClean = false, title = null} = {}) {
@@ -17268,32 +17639,13 @@ Renderer.hover = class {
 		);
 	}
 
-	// eslint-disable-next-line vet-jquery/jquery
-	static $getHoverContent_statsCode (toRender, {isSkipClean = false, title = null} = {}) {
-		// eslint-disable-next-line vet-jquery/jquery
-		return globalThis.jQuery(Renderer.hover.getHoverContent_statsCode(toRender, {isSkipClean, title}));
-	}
-
 	static getHoverContent_miscCode (name, code) {
 		const toRenderCode = {
 			type: "code",
 			name,
 			preformatted: code,
 		};
-		return ee`<table class="ve-w-100 ve-stats ve-stats--book"><tr><td>${Renderer.get().render(toRenderCode)}</td></tr></table>`;
-	}
-
-	/**
-	 * @param toRender
-	 * @param [opts]
-	 * @param [opts.isBookContent]
-	 * @param [opts.isLargeBookContent]
-	 * @param [opts.depth]
-	 */
-	// eslint-disable-next-line vet-jquery/jquery
-	static $getHoverContent_generic (toRender, opts) {
-		// eslint-disable-next-line vet-jquery/jquery
-		return globalThis.jQuery(Renderer.hover.getHoverContent_generic(toRender, opts));
+		return veT`<table class="ve-w-100 ve-stats ve-stats--book"><tr><td>${Renderer.get().render(toRenderCode)}</td></tr></table>`;
 	}
 
 	/**
@@ -17307,7 +17659,7 @@ Renderer.hover = class {
 		opts = opts || {};
 
 		const name = toRender._displayName || toRender.name;
-		return ee`<table class="ve-w-100 ve-stats ${opts.isBookContent || opts.isLargeBookContent ? "ve-stats--book" : ""} ${opts.isLargeBookContent ? "ve-stats--book-large" : ""}" ${name ? `data-roll-name-ancestor-roller="${Renderer.stripTags(name).qq()}"` : ""}>${Renderer.hover.getGenericCompactRenderedString(toRender, {depth: opts.depth || 0})}</table>`;
+		return veT`<table class="ve-w-100 ve-stats ${opts.isBookContent || opts.isLargeBookContent ? "ve-stats--book" : ""} ${opts.isLargeBookContent ? "ve-stats--book-large" : ""}" ${name ? `data-roll-name-ancestor-roller="${Renderer.stripTags(name).qq()}"` : ""}>${Renderer.hover.getGenericCompactRenderedString(toRender, {depth: opts.depth || 0})}</table>`;
 	}
 
 	/**
@@ -17547,8 +17899,9 @@ Renderer.initLazyImageLoaders = function () {
 
 	const observer = Renderer.utils.lazy.getCreateObserver({
 		observerId: "images",
-		fnOnObserve: ({entry}) => {
+		pFnOnObserve: async ({entry}) => {
 			Renderer.utils.lazy.mutFinalizeEle(entry.target);
+			return true;
 		},
 	});
 

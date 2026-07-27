@@ -223,8 +223,6 @@ class StripTagTest extends DataTesterBase {
 	}
 
 	_checkString (str, {filePath}) {
-		if (filePath === "./data/bestiary/template.json") return;
-
 		try {
 			Renderer.stripTags(str);
 		} catch (e) {

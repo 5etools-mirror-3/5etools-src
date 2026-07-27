@@ -1,4 +1,4 @@
-import {OmnisearchBacking} from "../../omnisearch/omnisearch-backing.js";
+import {OmnisearchBacking} from "../../../omnisearch/omnisearch-backing.js";
 
 class _MonstersToLoad {
 	constructor (
@@ -51,7 +51,7 @@ class _InitiativeTrackerMonsterAddCustomizer extends BaseComponent {
 
 		const iptCustomName = ComponentUiUtil.getIptStr(this, "customName");
 
-		ee(eleModalInner)`
+		veT(eleModalInner)`
 			<div class="ve-flex-col ve-py-2 ve-w-100 ve-h-100 ve-overflow-y-auto">
 				<label class="ve-split-v-center ve-mb-2">
 					<span class="ve-w-200p ve-text-right ve-no-shrink ve-mr-2 ve-bold">Custom Name:</span>
@@ -61,7 +61,7 @@ class _InitiativeTrackerMonsterAddCustomizer extends BaseComponent {
 			</div>
 		`;
 
-		ee(eleModalFooter)`
+		veT(eleModalFooter)`
 			${this._render_getEleFooter({rdState})}
 		`;
 
@@ -77,14 +77,14 @@ class _InitiativeTrackerMonsterAddCustomizer extends BaseComponent {
 
 		if (isShowSpellLevelScaler) {
 			const sel = Renderer.monster.getSelSummonSpellLevel(this._mon)
-				.onn("change", async () => {
-					const val = Number(sel.val());
+				.vee.onn("change", async () => {
+					const val = Number(sel.vee.val());
 					this._state.scaledSummonSpellLevel = !~val ? null : val;
 					if (this._state.scaledSummonSpellLevel == null) return delete this._state.displayName;
 					this._state.displayName = (await ScaleSpellSummonedCreature.scale(this._mon, this._state.scaledSummonSpellLevel))._displayName;
 				});
 
-			return ee`<label class="ve-split-v-center ve-mb-2">
+			return veT`<label class="ve-split-v-center ve-mb-2">
 				<span class="ve-w-200p ve-text-right ve-no-shrink ve-mr-2 ve-bold">Spell Level:</span>
 				${sel}
 			</label>`;
@@ -93,23 +93,23 @@ class _InitiativeTrackerMonsterAddCustomizer extends BaseComponent {
 		if (isShowClassLevelScaler) {
 			const sel = Renderer.monster.getSelSummonClassLevel(this._mon)
 				.on("change", async () => {
-					const val = Number(sel.val());
+					const val = Number(sel.vee.val());
 					this._state.scaledSummonClassLevel = !~val ? null : val;
 					if (this._state.scaledSummonClassLevel == null) return delete this._state.displayName;
 					this._state.displayName = (await ScaleClassSummonedCreature.scale(this._mon, this._state.scaledSummonClassLevel))._displayName;
 				});
 
-			return ee`<label class="ve-split-v-center ve-mb-2">
+			return veT`<label class="ve-split-v-center ve-mb-2">
 				<span class="ve-w-200p ve-text-right ve-no-shrink ve-mr-2 ve-bold">${this._mon.summonedByClass != null ? "Class Level" : "Level"}:</span>
 				${sel}
 			</label>`;
 		}
 
-		const dispScaledCr = ee`<span class="ve-inline-block"></span>`;
-		this._addHookBase("scaledCr", () => dispScaledCr.txt(this._state.scaledCr ? Parser.numberToCr(this._state.scaledCr) : `${(this._mon.cr.cr || this._mon.cr)} (default)`))();
+		const dispScaledCr = veT`<span class="ve-inline-block"></span>`;
+		this._addHookBase("scaledCr", () => dispScaledCr.vee.txt(this._state.scaledCr ? Parser.numberToCr(this._state.scaledCr) : `${(this._mon.cr.cr || this._mon.cr)} (default)`))();
 
-		const btnScaleCr = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2"><span class="glyphicon glyphicon-signal"></span></button>`
-			.onn("click", async () => {
+		const btnScaleCr = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2"><span class="glyphicon glyphicon-signal"></span></button>`
+			.vee.onn("click", async () => {
 				const crBase = this._mon.cr.cr || this._mon.cr;
 
 				const cr = await InputUiUtil.pGetUserScaleCr({default: crBase});
@@ -124,7 +124,7 @@ class _InitiativeTrackerMonsterAddCustomizer extends BaseComponent {
 				this._state.displayName = (await ScaleCreature.scale(this._mon, this._state.scaledCr))._displayName;
 			});
 
-		return ee`<label class="ve-split-v-center ve-mb-2">
+		return veT`<label class="ve-split-v-center ve-mb-2">
 			<span class="ve-w-200p ve-text-right ve-no-shrink ve-mr-2 ve-bold">CR:</span>
 			<span class="ve-flex-v-center ve-mr-auto">
 				${btnScaleCr}
@@ -134,15 +134,15 @@ class _InitiativeTrackerMonsterAddCustomizer extends BaseComponent {
 	}
 
 	_render_getEleFooter ({rdState}) {
-		const btnSave = ee`<button class="ve-btn ve-btn-primary ve-btn-sm ve-w-100">Save</button>`
-			.onn("click", () => {
+		const btnSave = veT`<button class="ve-btn ve-btn-primary ve-btn-sm ve-w-100">Save</button>`
+			.vee.onn("click", () => {
 				rdState.cbDoClose(
 					true,
 					MiscUtil.copyFast(this.__state),
 				);
 			});
 
-		return ee`<div class="ve-w-100 ve-py-3 ve-no-shrink">
+		return veT`<div class="ve-w-100 ve-py-3 ve-no-shrink">
 			${btnSave}
 		</div>`;
 	}
@@ -191,11 +191,11 @@ export class InitiativeTrackerMonsterAdd extends BaseComponent {
 	/* -------------------------------------------- */
 
 	_getCbCntToAdd ({cnt}) {
-		const cb = ee`<input type="radio" class="ve-ui-search__ipt-search-sub-ipt">`;
-		cb.onn("change", () => {
+		const cb = veT`<input type="radio" class="ve-ui-search__ipt-search-sub-ipt">`;
+		cb.vee.onn("change", () => {
 			this._state.cntToAdd = cnt;
 		});
-		this._addHookBase("cntToAdd", () => cb.prop("checked", this._state.cntToAdd === cnt))();
+		this._addHookBase("cntToAdd", () => cb.vee.prop("checked", this._state.cntToAdd === cnt))();
 		return cb;
 	}
 
@@ -212,10 +212,10 @@ export class InitiativeTrackerMonsterAdd extends BaseComponent {
 
 		this._addHookBase("cntToAdd", () => {
 			if (this._state.cntToAdd !== -1) return;
-			iptCntToAddCustom.selecte();
+			iptCntToAddCustom.vee.select();
 		})();
 
-		iptCntToAddCustom.onn("click", () => {
+		iptCntToAddCustom.vee.onn("click", () => {
 			this._state.cntToAdd = -1;
 		});
 
@@ -236,9 +236,9 @@ export class InitiativeTrackerMonsterAdd extends BaseComponent {
 		const {eleModalInner, doClose, pGetResolved} = UiUtil.getShowModal();
 		rdState.cbDoClose = doClose;
 
-		const iptSearch = ee`<input class="ve-ui-search__ipt-search search ve-form-control" autocomplete="off" placeholder="Search...">`;
+		const iptSearch = veT`<input class="ve-ui-search__ipt-search search ve-form-control" autocomplete="off" placeholder="Search...">`;
 
-		ee`<div class="ve-split ve-no-shrink">
+		veT`<div class="ve-split ve-no-shrink">
 			${iptSearch}
 
 			<div class="ve-ui-search__ipt-search-sub-wrp ve-flex-v-center ve-pr-0">
@@ -251,27 +251,27 @@ export class InitiativeTrackerMonsterAdd extends BaseComponent {
 				<label class="ve-ui-search__ipt-search-sub-lbl">${this._getCbCntToAdd({cnt: -1})} ${this._getIptCntToAddCustom()}</label>
 			</div>
 
-			<label class="ve-ui-search__ipt-search-sub-wrp ve-flex-vh-center">${ComponentUiUtil.getCbBool(this, "isRollHp").addClass("ve-mr-1")} <span>Roll HP</span></label>
-		</div>`.appendTo(eleModalInner);
+			<label class="ve-ui-search__ipt-search-sub-wrp ve-flex-vh-center">${ComponentUiUtil.getCbBool(this, "isRollHp").vee.addClass("ve-mr-1")} <span>Roll HP</span></label>
+		</div>`.vee.appendTo(eleModalInner);
 
-		const wrpResults = ee`<div class="ve-ui-search__wrp-results"></div>`.appendTo(eleModalInner);
+		const wrpResults = veT`<div class="ve-ui-search__wrp-results"></div>`.vee.appendTo(eleModalInner);
 
 		const showMsgIpt = () => {
 			flags.isWait = true;
-			wrpResults.empty().appends(SearchWidget.getSearchEnter());
+			wrpResults.vee.empty().vee.appends(SearchWidget.getSearchEnter());
 		};
 
-		const showMsgDots = () => wrpResults.empty().appends(SearchWidget.getSearchLoading());
+		const showMsgDots = () => wrpResults.vee.empty().vee.appends(SearchWidget.getSearchLoading());
 
 		const showNoResults = () => {
 			flags.isWait = true;
-			wrpResults.empty().appends(SearchWidget.getSearchNoResults());
+			wrpResults.vee.empty().vee.appends(SearchWidget.getSearchNoResults());
 		};
 
 		const ptrRows = {_: []};
 
 		const pDoSearch = async () => {
-			const searchTerm = iptSearch.val().trim();
+			const searchTerm = iptSearch.vee.val().trim();
 
 			const index = this._board.availContent["Creature"];
 			const results = await OmnisearchBacking.pGetFilteredResults(
@@ -290,7 +290,7 @@ export class InitiativeTrackerMonsterAdd extends BaseComponent {
 			const resultCount = results.length ? results.length : index.documentStore.length;
 			const toProcess = results.length ? results : Object.values(index.documentStore.docs).slice(0, 75).map(it => ({doc: it}));
 
-			wrpResults.empty();
+			wrpResults.vee.empty();
 			ptrRows._ = [];
 			if (toProcess.length) {
 				if (flags.doClickFirst) {
@@ -302,14 +302,14 @@ export class InitiativeTrackerMonsterAdd extends BaseComponent {
 				const results = toProcess.slice(0, this.constructor._RESULTS_MAX_DISPLAY);
 
 				results.forEach(res => {
-					const row = this._render_getSearchRow({rdState, res}).appendTo(wrpResults);
-					SearchWidget.bindRowHandlers({result: res, row, ptrRows, fnHandleClick: this._render_pHandleClickRow.bind(this, {rdState}), iptSearch});
+					const row = this._render_getSearchRow({rdState, res}).vee.appendTo(wrpResults);
+					SearchWidget.bindRowHandlers({result: res, row, ptrRows, pFnHandleClick: this._render_pHandleClickRow.bind(this, {rdState}), iptSearch});
 					ptrRows._.push(row);
 				});
 
 				if (resultCount > this.constructor._RESULTS_MAX_DISPLAY) {
 					const diff = resultCount - this.constructor._RESULTS_MAX_DISPLAY;
-					wrpResults.appends(`<div class="ve-ui-search__row ve-ui-search__row--readonly">...${diff} more result${diff === 1 ? " was" : "s were"} hidden. Refine your search!</div>`);
+					wrpResults.vee.appends(`<div class="ve-ui-search__row ve-ui-search__row--readonly">...${diff} more result${diff === 1 ? " was" : "s were"} hidden. Refine your search!</div>`);
 				}
 			} else {
 				if (!searchTerm.trim()) showMsgIpt();
@@ -324,7 +324,7 @@ export class InitiativeTrackerMonsterAdd extends BaseComponent {
 			ptrRows,
 		});
 
-		iptSearch.focuse();
+		iptSearch.vee.focus();
 		await pDoSearch();
 
 		return pGetResolved();
@@ -343,13 +343,13 @@ export class InitiativeTrackerMonsterAdd extends BaseComponent {
 	}
 
 	_render_getSearchRow ({rdState, res}) {
-		const btnCustomize = ee`<button class="ve-btn ve-btn-default ve-btn-xxs" title="Customize"><span class="glyphicon glyphicon-stats"></span></button>`
-			.onn("click", async evt => {
+		const btnCustomize = veT`<button class="ve-btn ve-btn-default ve-btn-xxs" title="Customize"><span class="glyphicon glyphicon-stats"></span></button>`
+			.vee.onn("click", async evt => {
 				evt.stopPropagation();
 				await this._render_pHandleClickCustomize({rdState, res});
 			});
 
-		return ee`
+		return veT`
 			<div class="ve-ui-search__row ve-flex-v-center" tabindex="0">
 				<span>${res.doc.n}</span>
 				<div class="ve-flex-vh-center">

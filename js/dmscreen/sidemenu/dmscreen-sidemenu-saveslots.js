@@ -13,24 +13,24 @@ export class RenderableCollectionSaveSlotStatesSidebar extends RenderableCollect
 	}
 
 	_getWrpRow () {
-		return ee`<button class="ve-btn ve-btn-default ve-bc-0 ve-bt-0 ve-br-0 ve-bl-0 ve-text-clip-ellipsis ve-no-shrink ve-p-0 ve-text-center ve-h-34p"></button>`;
+		return veT`<button class="ve-btn ve-btn-default ve-bc-0 ve-bt-0 ve-br-0 ve-bl-0 ve-text-clip-ellipsis ve-no-shrink ve-p-0 ve-text-center ve-h-34p"></button>`;
 	}
 
 	static _HANDLER_CANCEL_EDIT;
 
 	static _doBindHandlerCancelEdit ({fnDoDisableEditable}) {
 		if (this._HANDLER_CANCEL_EDIT) {
-			e_(document.body).off("click", this._HANDLER_CANCEL_EDIT);
+			veE(document.body).vee.off("click", this._HANDLER_CANCEL_EDIT);
 			this._HANDLER_CANCEL_EDIT = null;
 		}
 
 		this._HANDLER_CANCEL_EDIT = fnDoDisableEditable;
-		e_(document.body).onn("click", fnDoDisableEditable);
+		veE(document.body).vee.onn("click", fnDoDisableEditable);
 	}
 
 	_populateRow ({comp, wrpRow, entity}) {
 		wrpRow
-			.onn("click", async () => {
+			.vee.onn("click", async () => {
 				await this._board.pHandleClick_setActiveSaveSlot(entity.id);
 			});
 
@@ -38,8 +38,8 @@ export class RenderableCollectionSaveSlotStatesSidebar extends RenderableCollect
 		const doToggleEditable = () => {
 			isEditable = !isEditable;
 
-			dispName.toggleVe(!isEditable);
-			iptNameShort.toggleVe(isEditable);
+			dispName.vee.toggle(!isEditable);
+			iptNameShort.vee.toggle(isEditable);
 
 			if (!isEditable) return;
 
@@ -50,12 +50,12 @@ export class RenderableCollectionSaveSlotStatesSidebar extends RenderableCollect
 			});
 
 			iptNameShort
-				.focuse()
-				.selecte();
+				.vee.focus()
+				.vee.select();
 		};
 
-		const dispName = ee`<span class="ve-h-100"></span>`;
-		comp._addHookBase("ns", () => dispName.txt(comp._state.ns ? `${comp._state.ns}` : `${entity.id}`))();
+		const dispName = veT`<span class="ve-h-100"></span>`;
+		comp._addHookBase("ns", () => dispName.vee.txt(comp._state.ns ? `${comp._state.ns}` : `${entity.id}`))();
 
 		const iptNameShort = ComponentUiUtil.getIptStr(
 			comp,
@@ -64,13 +64,13 @@ export class RenderableCollectionSaveSlotStatesSidebar extends RenderableCollect
 				html: `<input class="ve-text-center ve-hidden ve-form-control ve-input-xs form-control--minimal ve-text-center ve-b-0 ve-p-0 ve-h-100 ve-w-100 dmsm__ipt-name-short" placeholder="${entity.id}">`,
 			},
 		)
-			.onn("keydown", evt => {
+			.vee.onn("keydown", evt => {
 				if (evt.key !== "Enter") return;
 				if (isEditable) doToggleEditable();
 			});
 
 		wrpRow
-			.onn("contextmenu", evt => {
+			.vee.onn("contextmenu", evt => {
 				evt.preventDefault();
 				evt.stopPropagation();
 
@@ -79,17 +79,17 @@ export class RenderableCollectionSaveSlotStatesSidebar extends RenderableCollect
 				doToggleEditable();
 			});
 
-		const hkName = () => wrpRow.tooltip(`Load Save Slot ${comp._state.n ? `"${comp._state.n}"` : comp._state.ns ? `"${comp._state.ns}"` : `${entity.id}`}`);
+		const hkName = () => wrpRow.vee.tooltip(`Load Save Slot ${comp._state.n ? `"${comp._state.n}"` : comp._state.ns ? `"${comp._state.ns}"` : `${entity.id}`}`);
 		comp._addHookBase("n", hkName);
 		comp._addHookBase("ns", hkName);
 		hkName();
 
 		comp._addHookBase("isActive", () => {
-			wrpRow.toggleClass("ve-active", !!comp._state.isActive);
+			wrpRow.vee.toggleClass("ve-active", !!comp._state.isActive);
 			if (!comp._state.isActive && isEditable) doToggleEditable();
 		})();
 
-		ee(wrpRow)`
+		veT(wrpRow)`
 			${dispName}
 			${iptNameShort}
 		`;
@@ -118,46 +118,46 @@ export class RenderableCollectionSaveSlotStatesManager extends RenderableCollect
 
 	_getWrpRow () {
 		return super._getWrpRow()
-			.addClass("ve-py-1")
-			.addClass("ve-lst__row")
-			.addClass("ve-lst__row-border")
-			.addClass("ve-lst__row-inner")
+			.vee.addClass("ve-py-1")
+			.vee.addClass("ve-lst__row")
+			.vee.addClass("ve-lst__row-border")
+			.vee.addClass("ve-lst__row-inner")
 		;
 	}
 
 	_populateRow ({comp, wrpRow, entity}) {
-		const cbSel = ee`<input type="checkbox" class="ve-no-events">`;
+		const cbSel = veT`<input type="checkbox" class="ve-no-events">`;
 
-		const wrpCbSel = ee`<label class="ve-col-0-5 ve-h-100 ve-flex-vh-center">
+		const wrpCbSel = veT`<label class="ve-col-0-5 ve-h-100 ve-flex-vh-center">
 			${cbSel}
 		</label>`;
 
 		const getCntPanelsNonEmpty = () => (comp._state.ps || []).filter(p => p.t !== PANEL_TYP_EMPTY).length;
 
-		const dispCntPanels = ee`<div class="ve-flex-vh-center ve-col-1 ve-muted ve-pl-3 ve-pr-1"></div>`;
+		const dispCntPanels = veT`<div class="ve-flex-vh-center ve-col-1 ve-muted ve-pl-3 ve-pr-1"></div>`;
 		comp._addHookBase("ps", () => {
 			const cntPanels = getCntPanelsNonEmpty();
 			dispCntPanels
-				.html(`<i class="fas fa-fw fa-window ve-mr-1"></i><span class="ve-text-center ve-w-20p">${cntPanels}</span>`)
-				.tooltip(`${cntPanels} Active Panel${cntPanels === 1 ? "" : "s"}`);
+				.vee.html(`<i class="fas fa-fw fa-window ve-mr-1"></i><span class="ve-text-center ve-w-20p">${cntPanels}</span>`)
+				.vee.tooltip(`${cntPanels} Active Panel${cntPanels === 1 ? "" : "s"}`);
 		})();
 
 		const iptNameShort = ComponentUiUtil.getIptStr(comp, "ns")
-			.addClass("ve-w-24p")
-			.placeholdere(entity.id)
-			.tooltip("A short name, shown in the sidebar.");
+			.vee.addClass("ve-w-24p")
+			.vee.placeholder(entity.id)
+			.vee.tooltip("A short name, shown in the sidebar.");
 
 		const iptName = ComponentUiUtil.getIptStr(comp, "n")
-			.tooltip("A longer name, show in tooltips and lists.");
+			.vee.tooltip("A longer name, show in tooltips and lists.");
 
-		const btnSetActive = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Activate</button>`
-			.onn("click", async () => {
+		const btnSetActive = veT`<button class="ve-btn ve-btn-default ve-btn-xs">Activate</button>`
+			.vee.onn("click", async () => {
 				this._fnDoCloseModal();
 				await this._board.pHandleClick_setActiveSaveSlot(entity.id);
 			});
 
-		const btnMenu = ee`<button class="ve-btn ve-btn-default ve-btn-xs"><span class="glyphicon glyphicon-option-vertical"></span></button>`
-			.onn("click", async evt => {
+		const btnMenu = veT`<button class="ve-btn ve-btn-default ve-btn-xs"><span class="glyphicon glyphicon-option-vertical"></span></button>`
+			.vee.onn("click", async evt => {
 				await ContextUtil.pOpenMenu(evt, this._menu, {userData: {entityId: entity.id}});
 			});
 
@@ -165,17 +165,17 @@ export class RenderableCollectionSaveSlotStatesManager extends RenderableCollect
 			entity,
 			pFnGetIsConfirm: () => !!getCntPanelsNonEmpty(),
 		})
-			.removeClass("ve-btn-xxs")
-			.addClass("ve-btn-xs");
+			.vee.removeClass("ve-btn-xxs")
+			.vee.addClass("ve-btn-xs");
 
 		const padDrag = this._utils.getPadDrag({wrpRow});
 
 		comp._addHookBase("isActive", () => {
-			btnSetActive.toggleClass("ve-active", !!comp._state.isActive);
-			btnRemove.attr("disabled", !!comp._state.isActive);
+			btnSetActive.vee.toggleClass("ve-active", !!comp._state.isActive);
+			btnRemove.vee.attr("disabled", !!comp._state.isActive);
 		})();
 
-		ee(wrpRow)`
+		veT(wrpRow)`
 			${wrpCbSel}
 			
 			${dispCntPanels}

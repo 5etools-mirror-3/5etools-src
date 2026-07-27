@@ -6,7 +6,7 @@ import "../js/utils.js";
 import {BLOCKLIST_SOURCES_PAGES} from "./util-test.js";
 
 const BLOCKLIST_FILE_PREFIXES = [
-	...ut.FILE_PREFIX_BLOCKLIST,
+	...ut.BLOCKLIST_FILE_PREFIXES,
 	"fluff-",
 
 	"foundry-",

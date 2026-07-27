@@ -28,25 +28,25 @@ class LanguagesSublistManager extends SublistManager {
 			(it.script || "\u2014").toTitleCase(),
 		];
 
-		const ele = ee`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`
-			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
-			.onn("click", evt => this._listSub.doSelect(listItem, evt));
+			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
 		const listItem = new ListItem(
 			hash,
 			ele,
 			it.name,
 			{
-				hash,
-				page: it.page,
+				...ListItem.getCommonValues(it),
 				type: it.type || "",
 				script: it.script || "",
 			},
 			{
+				hash,
 				entity: it,
 				mdRow: [...cellsText],
 			},
@@ -96,14 +96,14 @@ class LanguagesPage extends ListPage {
 			eleLi,
 			it.name,
 			{
-				hash,
 				source,
-				page: it.page,
+				...ListItem.getCommonValues(it),
 				dialects: it.dialects || [],
 				type: it.type || "",
 				script: it.script || "",
 			},
 			{
+				hash,
 				isExcluded,
 			},
 		);
@@ -115,7 +115,7 @@ class LanguagesPage extends ListPage {
 	}
 
 	_renderStats_doBuildStatsTab ({ent}) {
-		this._pgContent.empty().appends(RenderLanguages.getRenderedLanguage(ent));
+		this._pgContent.vee.empty().vee.appends(RenderLanguages.getRenderedLanguage(ent));
 	}
 
 	_renderStats_getTabMetasAdditional ({ent}) {
@@ -123,20 +123,20 @@ class LanguagesPage extends ListPage {
 			new Renderer.utils.TabButton({
 				label: "Fonts",
 				fnPopulate: () => {
-					this._pgContent.empty().appends(Renderer.utils.getBorderTr());
-					this._pgContent.appends(Renderer.utils.getNameTr(ent));
-					const td = ee`<td colspan="6" class="ve-pb-3"></td>`;
-					ee`<tr>${td}</tr>`.appendTo(this._pgContent);
-					this._pgContent.appends(Renderer.utils.getBorderTr());
+					this._pgContent.vee.empty().vee.appends(Renderer.utils.getBorderTr());
+					this._pgContent.vee.appends(Renderer.utils.getNameTr(ent));
+					const td = veT`<td colspan="6" class="ve-pb-3"></td>`;
+					veT`<tr>${td}</tr>`.vee.appendTo(this._pgContent);
+					this._pgContent.vee.appends(Renderer.utils.getBorderTr());
 
 					const allFonts = [...ent.fonts || [], ...ent._fonts || []];
 
 					if (!allFonts || !allFonts.length) {
-						td.appends("<i>No fonts available.</i>");
+						td.vee.appends("<i>No fonts available.</i>");
 						return;
 					}
 
-					const styleFont = ee`<style></style>`;
+					const styleFont = veT`<style></style>`;
 
 					let lastStyleIndex = null;
 					let lastStyleClass = null;
@@ -148,40 +148,40 @@ class LanguagesPage extends ListPage {
 
 						const styleClass = `languages__sample--${slugName}`;
 
-						styleFont.html(`
+						styleFont.vee.html(`
 							@font-face { font-family: ${slugName}; src: url('${font}'); }
 							.${styleClass} { font-family: ${slugName}, sans-serif; }
 						`);
 
-						if (lastStyleClass) ptOutput.removeClass(lastStyleClass);
+						if (lastStyleClass) ptOutput.vee.removeClass(lastStyleClass);
 						lastStyleClass = styleClass;
-						ptOutput.addClass(styleClass);
+						ptOutput.vee.addClass(styleClass);
 						lastStyleIndex = ix;
 					};
 
 					const saveTextDebounced = MiscUtil.debounce((text) => StorageUtil.pSetForPage("sampleText", text), VeCt.DUR_DEBOUNCE_SAVE);
 					const updateText = (val) => {
-						if (val === undefined) val = iptSample.val();
-						else iptSample.val(val);
-						ptOutput.txt(val);
+						if (val === undefined) val = iptSample.vee.val();
+						else iptSample.vee.val(val);
+						ptOutput.vee.txt(val);
 						saveTextDebounced(val);
 					};
 
 					const DEFAULT_TEXT = "The big quick brown flumph jumped over the lazy dire xorn";
 
-					const iptSample = ee`<textarea class="ve-form-control ve-w-100 ve-mr-2 ve-resize-vertical font-ui ve-mb-2" style="height: 110px">${DEFAULT_TEXT}</textarea>`
-						.onn("keyup", () => updateText())
-						.onn("change", () => updateText());
+					const iptSample = veT`<textarea class="ve-form-control ve-w-100 ve-mr-2 ve-resize-vertical font-ui ve-mb-2" style="height: 110px">${DEFAULT_TEXT}</textarea>`
+						.vee.onn("keyup", () => updateText())
+						.vee.onn("change", () => updateText());
 
 					const selFont = allFonts.length === 1
 						? null
-						: ee`<select class="ve-form-control font-ui languages__sel-sample ve-input-xs">${allFonts.map((f, i) => `<option value="${i}">${f.split("/").last().split(".")[0]}</option>`).join("")}</select>`
-							.onn("change", () => {
-								const ix = Number(selFont.val());
+						: veT`<select class="ve-form-control font-ui languages__sel-sample ve-input-xs">${allFonts.map((f, i) => `<option value="${i}">${f.split("/").last().split(".")[0]}</option>`).join("")}</select>`
+							.vee.onn("change", () => {
+								const ix = Number(selFont.vee.val());
 								renderStyle(ix);
 							});
 
-					const ptOutput = ee`<pre class="languages__sample ve-p-2 ve-mb-0">${DEFAULT_TEXT}</pre>`;
+					const ptOutput = veT`<pre class="languages__sample ve-p-2 ve-mb-0">${DEFAULT_TEXT}</pre>`;
 
 					renderStyle(0);
 
@@ -190,9 +190,9 @@ class LanguagesPage extends ListPage {
 							if (val != null) updateText(val);
 						});
 
-					ee`<div class="ve-flex-col ve-w-100">
+					veT`<div class="ve-flex-col ve-w-100">
 						${styleFont}
-						${selFont ? ee`<label class="ve-flex-v-center ve-mb-2"><div class="ve-mr-2">Font:</div>${selFont}</div>` : ""}
+						${selFont ? veT`<label class="ve-flex-v-center ve-mb-2"><div class="ve-mr-2">Font:</div>${selFont}</div>` : ""}
 						${iptSample}
 						${ptOutput}
 						<hr class="ve-hr-4">
@@ -200,7 +200,7 @@ class LanguagesPage extends ListPage {
 						<ul class="ve-pl-5 ve-mb-0">
 							${allFonts.map(f => `<li><a href="${f}" target="_blank">${f.split("/").last()}</a></li>`).join("")}
 						</ul>
-					</div>`.appendTo(td);
+					</div>`.vee.appendTo(td);
 				},
 				isVisible: [...ent.fonts || [], ...ent._fonts || []].length > 0,
 			}),

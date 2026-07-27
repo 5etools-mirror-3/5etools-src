@@ -31,26 +31,26 @@ class HomeCraftsSublistManager extends SublistManager {
 			category,
 		];
 
-		const ele = ee`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`
-			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
-			.onn("click", evt => this._listSub.doSelect(listItem, evt));
+			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
 		const listItem = new ListItem(
 			hash,
 			ele,
 			ent.name,
 			{
-				hash,
-				page: ent.page,
+				...ListItem.getCommonValues(ent),
 				category,
 				level: ent.level || 0,
 				prerequisite: ent._slPrereq,
 			},
 			{
+				hash,
 				entity: ent,
 				mdRow: [...cellsText],
 			},
@@ -103,13 +103,13 @@ class HomeCraftsPage extends ListPage {
 			eleLi,
 			ent.name,
 			{
-				hash,
 				source,
-				page: ent.page,
+				...ListItem.getCommonValues(ent),
 				type,
 				category,
 			},
 			{
+				hash,
 				isExcluded,
 			},
 		);
@@ -121,27 +121,27 @@ class HomeCraftsPage extends ListPage {
 	}
 
 	_renderStats_doBuildStatsTab ({ent}) {
-		this._wrpTabs.parente().find(`[data-name="homecraft-type"]`)?.remove();
+		this._wrpTabs.vee.parent().vee.find(`[data-name="homecraft-type"]`)?.remove();
 
 		Promise.any([
 			Renderer.utils.pHasFluffText(ent, `${ent.__prop}Fluff`),
 			Renderer.utils.pHasFluffImages(ent, `${ent.__prop}Fluff`),
 		])
 			.then(hasAnyFluff => {
-				const wrpType = ee`<div data-name="homecraft-type" class="ve-italic ve-inline-block"></div>`;
+				const wrpType = veT`<div data-name="homecraft-type" class="ve-italic ve-inline-block"></div>`;
 
-				if (hasAnyFluff) wrpType.addClass("ve-mb-1").insertBeforee(this._wrpTabs);
-				else wrpType.addClass("ve-pl-7p").prependTo(this._wrpTabs);
+				if (hasAnyFluff) wrpType.vee.addClass("ve-mb-1").vee.insertBefore(this._wrpTabs);
+				else wrpType.vee.addClass("ve-pl-7p").vee.prependTo(this._wrpTabs);
 
-				ee`<span class="ve-roller">${Parser.getPropDisplayName(ent.__prop)}</span>`
-					.onn("click", () => {
+				veT`<span class="ve-roller">${Parser.getPropDisplayName(ent.__prop)}</span>`
+					.vee.onn("click", () => {
 						this._filterBox.setFromValues({"Type": {[ent.__prop]: 1}});
 						this.handleFilterChange();
 					})
-					.appendTo(wrpType);
+					.vee.appendTo(wrpType);
 			});
 
-		this._pgContent.empty().appends(RenderCrochetPatterns.getRenderedCrochetPattern(ent));
+		this._pgContent.vee.empty().vee.appends(RenderCrochetPatterns.getRenderedCrochetPattern(ent));
 	}
 }
 

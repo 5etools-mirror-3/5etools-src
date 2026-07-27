@@ -12,7 +12,7 @@ class _ConverterUiSettings extends BaseComponent {
 	}
 
 	render ({eleParent}) {
-		const iptInputSeparator = ComponentUiUtil.getIptStr(this._comp, "inputSeparator").addClass("ve-code");
+		const iptInputSeparator = ComponentUiUtil.getIptStr(this._comp, "inputSeparator").vee.addClass("ve-code");
 
 		const selAppendPrependMode = ComponentUiUtil.getSelEnum(
 			this._comp,
@@ -26,7 +26,7 @@ class _ConverterUiSettings extends BaseComponent {
 			},
 		);
 
-		ee`<div class="ve-flex-col ve-mt-3">
+		veT`<div class="ve-flex-col ve-mt-3">
 			<label class="ve-split-v-center ve-w-100 ve-mb-2" title="A separator used to mark the end of one to-be-converted entity (creature, spell, etc.) so that multiple entities can be converted in one run. If left blank, the entire input text will be parsed as one entity.">
 				<span class="ve-w-66 ve-no-shrink ve-mr-2 ve-flex-v-center">Input Separator</span>
 				${iptInputSeparator}
@@ -39,7 +39,7 @@ class _ConverterUiSettings extends BaseComponent {
 
 			<hr class="ve-hr-3">
 		</div>`
-			.appendTo(eleParent);
+			.vee.appendTo(eleParent);
 
 		this._converter.renderSettingsModal({compParent: this._comp, eleParent});
 	}
@@ -127,18 +127,18 @@ export class ConverterUi extends BaseComponent {
 
 		this._editorOut = await EditorUtil.pInitEditor("ipt-converter-output", {readOnly: true, mode: "ace/mode/json"});
 
-		const btnEnableEditing = es(`#btn-enable-edit`)
-			.onn("click", () => {
+		const btnEnableEditing = veEs(`#btn-enable-edit`)
+			.vee.onn("click", () => {
 				this._state.outputEnableEditing = !this._state.outputEnableEditing;
 			});
 		this._addHookBase("outputEnableEditing", () => {
-			btnEnableEditing.toggleClass("ve-active", !!this._state.outputEnableEditing);
+			btnEnableEditing.vee.toggleClass("ve-active", !!this._state.outputEnableEditing);
 			this._editorOut.setOptions({readOnly: !this._state.outputEnableEditing});
 		})();
 
 		let hovWindowPreview = null;
-		es(`#btn-preview`)
-			.onn("click", async evt => {
+		veEs(`#btn-preview`)
+			.vee.onn("click", async evt => {
 				const metaCurr = this._getCurrentEntities();
 
 				if (!metaCurr?.entities?.length) return JqueryUtil.doToast({content: "Nothing to preview!", type: "warning"});
@@ -188,7 +188,7 @@ export class ConverterUi extends BaseComponent {
 				);
 			});
 
-		const btnSaveLocal = es(`#btn-save-local`).onn("click", async () => {
+		const btnSaveLocal = veEs(`#btn-save-local`).vee.onn("click", async () => {
 			const metaCurr = this._getCurrentEntities();
 
 			if (!metaCurr?.entities?.length) return JqueryUtil.doToast({content: "Nothing to save!", type: "warning"});
@@ -289,10 +289,10 @@ export class ConverterUi extends BaseComponent {
 		});
 
 		this._addHookBase("converter", () => {
-			btnSaveLocal.toggleClass("hidden", !this.activeConverter.canSaveLocal);
+			btnSaveLocal.vee.toggleClass("hidden", !this.activeConverter.canSaveLocal);
 		})();
 
-		es(`#btn-output-download`).onn("click", () => {
+		veEs(`#btn-output-download`).vee.onn("click", () => {
 			const metaCurr = this._getCurrentEntities();
 
 			if (!metaCurr?.entities?.length) return JqueryUtil.doToast({content: "Nothing to download!", type: "warning"});
@@ -309,7 +309,7 @@ export class ConverterUi extends BaseComponent {
 			DataUtil.userDownload(`converter-output`, out);
 		});
 
-		es(`#btn-output-copy`).onn("click", async evt => {
+		veEs(`#btn-output-copy`).vee.onn("click", async evt => {
 			const btn = evt.target;
 
 			const output = this._outText;
@@ -369,11 +369,11 @@ export class ConverterUi extends BaseComponent {
 			});
 		};
 
-		es("#btn-parse").onn("click", () => doConversion(false));
-		es(`#btn-parse-and-add`).onn("click", () => doConversion(true));
+		veEs("#btn-parse").vee.onn("click", () => doConversion(false));
+		veEs(`#btn-parse-and-add`).vee.onn("click", () => doConversion(true));
 
-		e_(document.body)
-			.onn("keydown", evt => {
+		veE(document.body)
+			.vee.onn("keydown", evt => {
 				if (EventUtil.isInInput(evt) || !EventUtil.noModifierKeys(evt)) return;
 
 				const key = EventUtil.getKeyIgnoreCapsLock(evt);
@@ -395,12 +395,12 @@ export class ConverterUi extends BaseComponent {
 	}
 
 	_pInit_dispErrorsWarnings () {
-		const stgErrors = es(`#disp-errors`);
-		const stgWarnings = es(`#disp-warnings`);
+		const stgErrors = veEs(`#disp-errors`);
+		const stgWarnings = veEs(`#disp-warnings`);
 
 		const getRow = ({prefix, text, prop}) => {
-			const btnClose = ee`<button class="ve-btn ve-btn-danger ve-btn-xs ve-w-24p" title="Dismiss ${prefix} (SHIFT to Dismiss All)">×</button>`
-				.onn("click", evt => {
+			const btnClose = veT`<button class="ve-btn ve-btn-danger ve-btn-xs ve-w-24p" title="Dismiss ${prefix} (SHIFT to Dismiss All)">×</button>`
+				.vee.onn("click", evt => {
 					if (evt.shiftKey) {
 						this._meta[prop] = [];
 						return;
@@ -412,29 +412,29 @@ export class ConverterUi extends BaseComponent {
 					this._meta[prop] = [...this._meta[prop]];
 				});
 
-			return ee`<div class="ve-split-v-center ve-py-1">
+			return veT`<div class="ve-split-v-center ve-py-1">
 				<div>[${prefix}] ${text}</div>
 				${btnClose}
 			</div>`;
 		};
 
 		this._addHook("meta", "errors", () => {
-			stgErrors.toggleVe(!!this._meta.errors.length);
-			stgErrors.empty();
+			stgErrors.vee.toggle(!!this._meta.errors.length);
+			stgErrors.vee.empty();
 			this._meta.errors
 				.forEach(it => {
 					getRow({prefix: "Error", text: it, prop: "errors"})
-						.appendTo(stgErrors);
+						.vee.appendTo(stgErrors);
 				});
 		})();
 
 		this._addHook("meta", "warnings", () => {
-			stgWarnings.toggleVe(!!this._meta.warnings.length);
-			stgWarnings.empty();
+			stgWarnings.vee.toggle(!!this._meta.warnings.length);
+			stgWarnings.vee.empty();
 			this._meta.warnings
 				.forEach(it => {
 					getRow({prefix: "Warning", text: it, prop: "warnings"})
-						.appendTo(stgWarnings);
+						.vee.appendTo(stgWarnings);
 				});
 		})();
 
@@ -460,16 +460,16 @@ export class ConverterUi extends BaseComponent {
 			this,
 			"converter",
 			{
-				ele: es(`#sel-mode`)
-					.attr("disabled", false),
+				ele: veEs(`#sel-mode`)
+					.vee.attr("disabled", false),
 				values: Object.keys(this._converters),
 				fnDisplay: converterId => this._converters[converterId].name,
 			},
 		);
 
-		es(`#btn-settings`)
-			.attr("disabled", false)
-			.onn("click", () => {
+		veEs(`#btn-settings`)
+			.vee.attr("disabled", false)
+			.vee.onn("click", () => {
 				const {eleModalInner} = UiUtil.getShowModal({
 					title: "Settings",
 					isHeaderBorder: true,
@@ -483,11 +483,11 @@ export class ConverterUi extends BaseComponent {
 				compSettings.render({eleParent: eleModalInner});
 			});
 
-		const wrpSettings = es(`#wrp-settings`);
+		const wrpSettings = veEs(`#wrp-settings`);
 
 		let fnsCleanupLast = null;
 		this._addHookBase("converter", () => {
-			wrpSettings.empty();
+			wrpSettings.vee.empty();
 			if (fnsCleanupLast) fnsCleanupLast.forEach(fn => fn());
 			({fnsCleanupLast} = this.activeConverter.renderSettings({compParent: this, wrpSettings}));
 

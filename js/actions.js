@@ -20,24 +20,24 @@ class ActionsSublistManager extends SublistManager {
 		const time = it.time ? it.time.map(tm => PageFilterActions.getTimeText(tm)).join("/") : "\u2014";
 		const cellsText = [it.name, time];
 
-		const ele = ee`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`
-			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
-			.onn("click", evt => this._listSub.doSelect(listItem, evt));
+			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
 		const listItem = new ListItem(
 			hash,
 			ele,
 			it.name,
 			{
-				hash,
-				page: it.page,
+				...ListItem.getCommonValues(it),
 				time,
 			},
 			{
+				hash,
 				entity: it,
 				mdRow: [...cellsText],
 			},
@@ -92,12 +92,12 @@ class ActionsPage extends ListPage {
 			eleLi,
 			it.name,
 			{
-				hash,
 				source,
-				page: it.page,
+				...ListItem.getCommonValues(it),
 				time,
 			},
 			{
+				hash,
 				isExcluded,
 			},
 		);
@@ -109,7 +109,7 @@ class ActionsPage extends ListPage {
 	}
 
 	_renderStats_doBuildStatsTab ({ent}) {
-		this._pgContent.empty().appends(RenderActions.getRenderedAction(ent));
+		this._pgContent.vee.empty().vee.appends(RenderActions.getRenderedAction(ent));
 	}
 }
 

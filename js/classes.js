@@ -365,7 +365,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				.filter(Boolean);
 		});
 
-		this._pgContent = es(`#pagecontent`);
+		this._pgContent = veEs(`#pagecontent`);
 
 		await Promise.all([
 			PrereleaseUtil.pInit(),
@@ -375,21 +375,21 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		OmnisearchUtilsUi.addScrollTopFloat();
 		const data = await DataUtil.class.loadJSON();
 
-		const iptSearch = e_(document.getElementById("lst__search"));
-		const btnReset = e_(document.getElementById("reset"));
+		const iptSearch = veE(document.getElementById("lst__search"));
+		const btnReset = veE(document.getElementById("reset"));
 		this._list = this._initList({
 			iptSearch,
-			wrpList: e_(document.getElementById("list")),
+			wrpList: veE(document.getElementById("list")),
 			btnReset,
-			btnClear: e_(document.getElementById("lst__search-glass")),
+			btnClear: veE(document.getElementById("lst__search-glass")),
 			dispPageTagline: document.getElementById(`page__subtitle`),
 			isBindFindHotkey: true,
 		});
-		SortUtil.initBtnSortHandlers(es("#filtertools"), this._list);
+		SortUtil.initBtnSortHandlers(veEs("#filtertools"), this._list);
 
 		this._filterBox = await this._pageFilter.pInitFilterBox({
 			iptSearch,
-			wrpFormTop: e_(document.getElementById("filter-search-group")),
+			wrpFormTop: veE(document.getElementById("filter-search-group")),
 			btnReset,
 		});
 
@@ -402,7 +402,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		// TODO(MODULES) refactor
 		import("./utils-brew/utils-brew-ui-manage.js")
 			.then(({ManageBrewUi}) => {
-				ManageBrewUi.bindBtngroupManager(e_({id: "btngroup-manager"}));
+				ManageBrewUi.bindBtngroupManager(veE({id: "btngroup-manager"}));
 			});
 		this._renderListFeelingLucky({isCompact: true, btnReset, isScrollablePage: true});
 
@@ -410,7 +410,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 		this._list.init();
 
-		es(`.initial-message`).txt(`Select a class from the list to view it here`);
+		veEs(`.initial-message`).vee.txt(`Select a class from the list to view it here`);
 
 		// Silently prepare our initial state
 		await this._pSetClassFromHash(Hist.initialLoad);
@@ -422,7 +422,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		this._initLinkRedirectors();
 		this._initLinkGrabbers();
 		this._initScrollToSubclassSelection();
-		this._bindLinkExportButton({btn: e_(document.getElementById("btn-link-export"))});
+		this._bindLinkExportButton({btn: veE(document.getElementById("btn-link-export"))});
 		this._doBindBtnSettingsSidebar();
 
 		Hist.initialLoad = false;
@@ -625,7 +625,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			}
 		} else {
 			// This should never occur (failed loads should pick the first list item), but attempt to handle it semi-gracefully
-			this._pgContent.empty().appends(ClassesPage._render_getTrNoContent());
+			this._pgContent.vee.empty().vee.appends(ClassesPage._render_getTrNoContent());
 			JqueryUtil.doToast({content: "Could not find the class to load!", type: "error"});
 		}
 	}
@@ -756,7 +756,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		let primaryHash = cls ? UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES](cls) : null;
 		if (!primaryHash) {
 			const firstItem = this._list.items[0];
-			primaryHash = firstItem ? firstItem.values.hash : HASH_BLANK;
+			primaryHash = firstItem ? firstItem.data.hash : HASH_BLANK;
 		}
 		// endregion
 
@@ -845,23 +845,23 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 	}
 
 	_initLinkGrabbers () {
-		e_(document.body)
-			.onn("mousedown", evt => {
+		veE(document.body)
+			.vee.onn("mousedown", evt => {
 				if (!evt.target.closest(".entry-title-inner") || !evt.target.closest(".cls-main__linked-titles")) return;
 				evt.preventDefault();
 			})
-			.onn("click", async evt => {
-				const eleTarget = e_(evt.target).closeste(".entry-title-inner");
+			.vee.onn("click", async evt => {
+				const eleTarget = veE(evt.target).vee.closest(".entry-title-inner");
 
 				if (!eleTarget || !evt.target.closest(".cls-main__linked-titles")) return;
 
 				if (evt.shiftKey) {
-					await MiscUtil.pCopyTextToClipboard(eleTarget.txt().replace(/\.$/, ""));
+					await MiscUtil.pCopyTextToClipboard(eleTarget.vee.txt().replace(/\.$/, ""));
 					JqueryUtil.showCopiedEffect(eleTarget);
 					return;
 				}
 
-				const featureId = eleTarget.closeste(`tr`).attr("data-scroll-id");
+				const featureId = eleTarget.vee.closest(`tr`).vee.attr("data-scroll-id");
 
 				const curState = MiscUtil.copyFast(this.__state);
 				curState.feature = featureId;
@@ -873,16 +873,36 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 	}
 
 	_initScrollToSubclassSelection () {
-		const wrp = es(`#subclasstabs`);
-		e_(document.body)
-			.onn(`click`, evt => {
+		const wrp = veEs(`#subclasstabs`);
+		veE(document.body)
+			.vee.onn(`click`, evt => {
 				if (!evt.target.closest(`[data-jump-select-a-subclass]`)) return;
 				wrp.scrollIntoView({block: "center", inline: "center"});
 			});
 	}
 
+	_doDownloadMarkdown () {
+		const cls = this.activeClass;
+
+		const parts = [
+			RendererMarkdown.class.getCompactRenderedString(cls),
+			...(cls.subclasses || [])
+				.filter(sc => this._state[UrlUtil.getStateKeySubclass(sc)])
+				.map(sc => RendererMarkdown.subclass.getCompactRenderedString(sc, {
+					isEditionMismatch: cls.edition && sc.edition && cls.edition !== sc.edition,
+				})),
+		];
+
+		DataUtil.userDownloadText("classes.md", parts.join(VetoolsConfig.get("markdown", "isAddPageBreaks") ? "\n\n\\pagebreak\n\n" : "\n\n"));
+	}
+
 	_doBindBtnSettingsSidebar () {
 		const menu = ContextUtil.getMenu([
+			new ContextUtil.Action(
+				"Download as Markdown",
+				() => this._doDownloadMarkdown(),
+			),
+			null,
 			new ContextUtil.Action(
 				"Toggle &quot;Spell Points&quot; Mode (5e)",
 				() => {
@@ -891,32 +911,33 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			),
 		]);
 
-		es(`#btn-sidebar-settings`)
-			.onn("click", evt => ContextUtil.pOpenMenu(evt, menu));
+		veEs(`#btn-sidebar-settings`)
+			.vee.onn("click", evt => ContextUtil.pOpenMenu(evt, menu));
 	}
 
 	getListItem (cls, clsI, isExcluded) {
 		const hash = UrlUtil.autoEncodeHash(cls);
 		const source = Parser.sourceJsonToAbv(cls.source);
 
-		const lnk = ee`<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+		const lnk = veT`<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
 			<span class="ve-bold ve-col-8 ve-pl-0 ve-pr-1">${cls.name}</span>
 			<span class="ve-col-4 ve-pl-0 ve-pr-1 ve-text-center ${Parser.sourceJsonToSourceClassname(cls.source)} ve-pr-0" title="${Parser.sourceJsonToFull(cls.source)}">${source}</span>
 		</a>`;
 
-		const ele = ee`<li class="ve-lst__row ve-flex-col ${isExcluded ? "row--blocklisted" : ""}">${lnk}</li>`;
+		const ele = veT`<li class="ve-lst__row ve-flex-col ${isExcluded ? "row--blocklisted" : ""}">${lnk}</li>`;
 
 		return new ListItem(
 			clsI,
 			ele,
 			cls.name,
 			{
-				hash,
 				source,
-				page: cls.page,
+				...ListItem.getCommonValues(cls),
 			},
 			{
+				hash,
 				lnk,
+				hashCurr: hash,
 				entity: cls,
 				isExcluded,
 			},
@@ -984,7 +1005,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 	}
 
 	async _pInitAndRunRender () {
-		this._wrpOutline = es(`#sticky-nav`);
+		this._wrpOutline = veEs(`#sticky-nav`);
 
 		// Use hookAll to allow us to reset temp hooks on the property itself
 		this._addHookAll("classId", async () => {
@@ -1019,8 +1040,10 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				this._list.items
 					.filter(it => it.data.lnk)
 					.forEach(it => {
-						const href = `#${this._getHashState({class: it.data.entity})}`;
-						it.data.lnk.attr("href", href);
+						const hashCurr = this._getHashState({class: it.data.entity});
+						const href = `#${hashCurr}`;
+						it.data.lnk.vee.attr("href", href);
+						it.data.hashCurr = hashCurr;
 					});
 			}, 5);
 		};
@@ -1046,7 +1069,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				if (this._lastScrollFeature === this._state.feature) return;
 				this._lastScrollFeature = this._state.feature;
 
-				const eleScrollTo = es(`[data-scroll-id="${this._state.feature}"]`);
+				const eleScrollTo = veEs(`[data-scroll-id="${this._state.feature}"]`);
 				if (!eleScrollTo) {
 					// This should never occur, but just in case, clean up
 					this._state.feature = null;
@@ -1060,45 +1083,45 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		hkScrollToFeature();
 
 		const hkDisplayFluff = () => {
-			em(`.cls-main__cls-fluff`).forEach(ele => ele.toggleVe(!!this._state.isShowFluff));
+			veEm(`.cls-main__cls-fluff`).forEach(ele => ele.vee.toggle(!!this._state.isShowFluff));
 
 			if (!this._state.isShowFluff) {
-				em(`.cls-main__sc-fluff`).forEach(ele => ele.hideVe());
+				veEm(`.cls-main__sc-fluff`).forEach(ele => ele.vee.hide());
 			} else {
-				em(`.cls-main__sc-fluff`)
+				veEm(`.cls-main__sc-fluff`)
 					.forEach(ele => {
-						ele.toggleVe(!!this._state[ele.attr("data-subclass-id-fluff")]);
+						ele.vee.toggle(!!this._state[ele.vee.attr("data-subclass-id-fluff")]);
 					});
 			}
 		};
 		this._addHookBase("isShowFluff", hkDisplayFluff);
 		MiscUtil.pDefer(hkDisplayFluff);
 
-		const hkletDoToggleNoneSubclassMessages = (cntDisplayedSubclasses) => em(`[data-subclass-none-message]`).forEach(ele => ele.toggleVe(!cntDisplayedSubclasses && !this._state.isHideFeatures));
+		const hkletDoToggleNoneSubclassMessages = (cntDisplayedSubclasses) => veEm(`[data-subclass-none-message]`).forEach(ele => ele.vee.toggle(!cntDisplayedSubclasses && !this._state.isHideFeatures));
 
 		const hkDisplayFeatures = () => {
 			const cntDisplayedSubclasses = this.activeClass.subclasses.map(sc => Number(this._state[UrlUtil.getStateKeySubclass(sc)] || false)).sum();
 
-			const dispsClassFeatures = em(`[data-feature-type="class"]`);
-			const dispsFeaturesSubclassHeader = em(`[data-feature-type="gain-subclass"]`);
+			const dispsClassFeatures = veEm(`[data-feature-type="class"]`);
+			const dispsFeaturesSubclassHeader = veEm(`[data-feature-type="gain-subclass"]`);
 
 			if (this._state.isHideFeatures) {
 				if (this._isAnySubclassActive()) {
-					this._wrpOutline.toggleVe(true);
-					this._trNoContent.toggleVe(false);
-					dispsClassFeatures.forEach(ele => ele.toggleVe(false));
-					dispsFeaturesSubclassHeader.forEach(ele => ele.toggleVe(true));
+					this._wrpOutline.vee.toggle(true);
+					this._trNoContent.vee.toggle(false);
+					dispsClassFeatures.forEach(ele => ele.vee.toggle(false));
+					dispsFeaturesSubclassHeader.forEach(ele => ele.vee.toggle(true));
 				} else {
-					this._wrpOutline.toggleVe(false);
-					this._trNoContent.toggleVe(true);
-					dispsClassFeatures.forEach(ele => ele.toggleVe(false));
-					dispsFeaturesSubclassHeader.forEach(ele => ele.toggleVe(false));
+					this._wrpOutline.vee.toggle(false);
+					this._trNoContent.vee.toggle(true);
+					dispsClassFeatures.forEach(ele => ele.vee.toggle(false));
+					dispsFeaturesSubclassHeader.forEach(ele => ele.vee.toggle(false));
 				}
 			} else {
-				this._wrpOutline.toggleVe(true);
-				this._trNoContent.toggleVe(false);
-				dispsClassFeatures.forEach(ele => ele.toggleVe(true));
-				dispsFeaturesSubclassHeader.forEach(ele => ele.toggleVe(true));
+				this._wrpOutline.vee.toggle(true);
+				this._trNoContent.vee.toggle(false);
+				dispsClassFeatures.forEach(ele => ele.vee.toggle(true));
+				dispsFeaturesSubclassHeader.forEach(ele => ele.vee.toggle(true));
 			}
 
 			hkletDoToggleNoneSubclassMessages(cntDisplayedSubclasses);
@@ -1111,7 +1134,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		// If multiple subclasses are displayed, show name prefixes
 		const hkIsShowNamePrefixes = () => {
 			const cntDisplayedSubclasses = cls.subclasses.map(sc => Number(this._state[UrlUtil.getStateKeySubclass(sc)] || false)).sum();
-			em(`[data-subclass-name-prefix]`).forEach(ele => ele.toggleVe(cntDisplayedSubclasses > 1));
+			veEm(`[data-subclass-name-prefix]`).forEach(ele => ele.vee.toggle(cntDisplayedSubclasses > 1));
 
 			hkletDoToggleNoneSubclassMessages(cntDisplayedSubclasses);
 		};
@@ -1127,9 +1150,9 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 					isFirstRun = false;
 
 					const isVisible = this._state[stateKey];
-					em(`[data-subclass-id="${stateKey}"]`).forEach(ele => ele.toggleVe(!!isVisible));
+					veEm(`[data-subclass-id="${stateKey}"]`).forEach(ele => ele.vee.toggle(!!isVisible));
 
-					em(`[data-subclass-id-fluff="${stateKey}"]`).forEach(ele => ele.toggleVe(!!isVisible && this._state.isShowFluff));
+					veEm(`[data-subclass-id-fluff="${stateKey}"]`).forEach(ele => ele.vee.toggle(!!isVisible && this._state.isShowFluff));
 
 					if (!isFirstRun) hkIsShowNamePrefixes();
 				};
@@ -1154,7 +1177,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 	}
 
 	_render_renderClassTable () {
-		const wrpTblClass = es(`#classtable`).empty();
+		const wrpTblClass = veEs(`#classtable`).vee.empty();
 		const cls = this.activeClass;
 
 		Renderer.get().resetHeaderIndex();
@@ -1198,17 +1221,17 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 								},
 							));
 						metaFeatureLink.isHidden = isHidden;
-						metaFeatureLink.wrpLink.toggleVe(!isHidden);
+						metaFeatureLink.wrpLink.vee.toggle(!isHidden);
 					}
 				});
 
-				metaTblRow.metasFeatureLinks.forEach(metaFeatureLink => metaFeatureLink.dispComma.toggleVe(true));
+				metaTblRow.metasFeatureLinks.forEach(metaFeatureLink => metaFeatureLink.dispComma.vee.toggle(true));
 				const lastVisible = metaTblRow.metasFeatureLinks.filter(metaFeatureLink => !metaFeatureLink.isHidden).last();
-				if (lastVisible) lastVisible.dispComma.hideVe();
+				if (lastVisible) lastVisible.dispComma.vee.hide();
 			});
 		};
 
-		ee`<table class="ve-cls-tbl shadow-big ve-w-100 ve-mb-2">
+		veT`<table class="ve-cls-tbl shadow-big ve-w-100 ve-mb-2">
 			<tbody>
 			<tr><th class="ve-tbl-border" colspan="999"></th></tr>
 			<tr><th class="ve-text-left ve-cls-tbl__disp-name" colspan="999">${cls.name}</th></tr>
@@ -1225,8 +1248,8 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			${metasTblRows.map(meta => meta.eleRow)}
 			<tr><th class="ve-tbl-border" colspan="999"></th></tr>
 			</tbody>
-		</table>`.appendTo(wrpTblClass);
-		wrpTblClass.showVe();
+		</table>`.vee.appendTo(wrpTblClass);
+		wrpTblClass.vee.show();
 	}
 
 	_render_renderClassTable_renderTableGroupHeader (
@@ -1241,16 +1264,16 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 		// Render titles (top section)
 		const thEleGroupHeader = tableGroup.title
-			? ee`<th class="ve-cls-tbl__col-group" colspan="${colLabels.length}">${tableGroup.title}</th>`
+			? veT`<th class="ve-cls-tbl__col-group" colspan="${colLabels.length}">${tableGroup.title}</th>`
 			// if there's no title, add a spacer
-			: ee`<th colspan="${colLabels.length}"></th>`;
+			: veT`<th colspan="${colLabels.length}"></th>`;
 		elesTblGroupHeaders.push(thEleGroupHeader);
 
 		// Render column headers (bottom section)
 		const tblHeadersGroup = colLabels
 			.map(lbl => {
-				const tblHeader = ee`<th class="ve-cls-tbl__col-generic-center"><div class="cls__squash_header"></div></th>`
-					.html(Renderer.get().render(lbl));
+				const tblHeader = veT`<th class="ve-cls-tbl__col-generic-center"><div class="cls__squash_header"></div></th>`
+					.vee.html(Renderer.get().render(lbl));
 				elesTblHeaders.push(tblHeader);
 				return tblHeader;
 			});
@@ -1264,14 +1287,14 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		let elesSpellPoints = null;
 		if (tableGroup.rowsSpellProgression) {
 			// This is always a "spacer"
-			thGroupHeaderSpellPoints = ee`<th colspan="1" class="ve-cls-tbl__cell-spell-points"></th>`;
+			thGroupHeaderSpellPoints = veT`<th colspan="1" class="ve-cls-tbl__cell-spell-points"></th>`;
 			elesTblGroupHeaders.push(thGroupHeaderSpellPoints);
 
-			tblHeaderSpellPoints = ee`<th class="ve-cls-tbl__col-generic-center ve-cls-tbl__cell-spell-points"><div class="cls__squash_header"></div></th>`
-				.html(Renderer.get().render(`{@variantrule Spell Points}`));
+			tblHeaderSpellPoints = veT`<th class="ve-cls-tbl__col-generic-center ve-cls-tbl__cell-spell-points"><div class="cls__squash_header"></div></th>`
+				.vee.html(Renderer.get().render(`{@variantrule Spell Points}`));
 			elesTblHeaders.push(tblHeaderSpellPoints);
 
-			tblHeaderSpellPointsMaxSpellLevel = ee`<th class="ve-cls-tbl__col-generic-center ve-cls-tbl__cell-spell-points"><div class="cls__squash_header">Spell Level</div></th>`;
+			tblHeaderSpellPointsMaxSpellLevel = veT`<th class="ve-cls-tbl__col-generic-center ve-cls-tbl__cell-spell-points"><div class="cls__squash_header">Spell Level</div></th>`;
 			elesTblHeaders.push(tblHeaderSpellPointsMaxSpellLevel);
 
 			elesDefault = [thEleGroupHeader, ...tblHeadersGroup];
@@ -1279,8 +1302,8 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 			if (!stateKey) {
 				const hkSpellPoints = () => {
-					elesDefault.forEach(ele => ele.toggleClass(`ve-cls-tbl__cell-spell-progression--spell-points-enabled`, !!this._stateGlobal.isUseSpellPoints));
-					elesSpellPoints.forEach(ele => ele.toggleClass(`ve-cls-tbl__cell-spell-points--spell-points-enabled`, !!this._stateGlobal.isUseSpellPoints));
+					elesDefault.forEach(ele => ele.vee.toggleClass(`ve-cls-tbl__cell-spell-progression--spell-points-enabled`, !!this._stateGlobal.isUseSpellPoints));
+					elesSpellPoints.forEach(ele => ele.vee.toggleClass(`ve-cls-tbl__cell-spell-points--spell-points-enabled`, !!this._stateGlobal.isUseSpellPoints));
 				};
 				this._addHookGlobal("isUseSpellPoints", hkSpellPoints);
 				hkSpellPoints();
@@ -1299,10 +1322,10 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		].filter(Boolean);
 
 		const hkShowHideSubclass = () => {
-			elesSubclass.forEach(ele => ele.toggleVe(!!this._state[stateKey]));
+			elesSubclass.forEach(ele => ele.vee.toggle(!!this._state[stateKey]));
 
-			if (elesDefault) elesDefault.forEach(ele => ele.toggleClass(`ve-cls-tbl__cell-spell-progression--spell-points-enabled`, !!this._state[stateKey] && this._stateGlobal.isUseSpellPoints));
-			if (elesSpellPoints) elesSpellPoints.forEach(ele => ele.toggleClass(`ve-cls-tbl__cell-spell-points--spell-points-enabled`, !!this._state[stateKey] && this._stateGlobal.isUseSpellPoints));
+			if (elesDefault) elesDefault.forEach(ele => ele.vee.toggleClass(`ve-cls-tbl__cell-spell-progression--spell-points-enabled`, !!this._state[stateKey] && this._stateGlobal.isUseSpellPoints));
+			if (elesSpellPoints) elesSpellPoints.forEach(ele => ele.vee.toggleClass(`ve-cls-tbl__cell-spell-points--spell-points-enabled`, !!this._state[stateKey] && this._stateGlobal.isUseSpellPoints));
 		};
 		this._addHookBase(stateKey, hkShowHideSubclass);
 		this._addHookGlobal("isUseSpellPoints", hkShowHideSubclass);
@@ -1324,8 +1347,8 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				.map((it, ixFeature) => {
 					const featureId = `${ixLvl}-${ixFeature}`;
 
-					const lnk = ee`<a>${it._displayNameTable || it._displayName || it.name}</a>`
-						.onn("click", () => {
+					const lnk = veT`<a>${it._displayNameTable || it._displayName || it.name}</a>`
+						.vee.onn("click", () => {
 							this._lastScrollFeature = null;
 							this._state.feature = null;
 							this._state.feature = featureId;
@@ -1338,16 +1361,16 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 							const curState = MiscUtil.copyFast(this.__state);
 							curState.feature = featureId;
 							const href = `#${this._getHashState({state: curState})}`;
-							lnk.attr("href", href);
+							lnk.vee.attr("href", href);
 						}, 5);
 					};
 					this._addHookAll("state", hkSetHref);
 					hkSetHref();
 
 					// Make a dummy for the last item
-					const dispComma = ixFeature === lvlFeaturesFilt.length - 1 ? ee`<span></span>` : ee`<span class="ve-mr-1">,</span>`;
+					const dispComma = ixFeature === lvlFeaturesFilt.length - 1 ? veT`<span></span>` : veT`<span class="ve-mr-1">,</span>`;
 					return {
-						wrpLink: ee`<div class="ve-inline-block">${lnk}${dispComma}</div>`,
+						wrpLink: veT`<div class="ve-inline-block">${lnk}${dispComma}</div>`,
 						dispComma,
 						source: it.source,
 						otherSources: it.otherSources,
@@ -1374,7 +1397,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			});
 
 			return {
-				eleRow: ee`<tr class="ve-cls-tbl__stripe-odd">
+				eleRow: veT`<tr class="ve-cls-tbl__stripe-odd">
 					<td class="ve-cls-tbl__col-level">${Parser.getOrdinalForm(ixLvl + 1)}</td>
 					<td class="ve-cls-tbl__col-prof-bonus">+${pb}</td>
 					<td>${metasFeatureLinks.length ? metasFeatureLinks.map(it => it.wrpLink) : `\u2014`}</td>
@@ -1404,8 +1427,8 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 		if (!stateKey) {
 			const hkShowHideSpellPoints = () => {
-				if (cellsDefault) cellsDefault.forEach(ele => ele.toggleClass(`ve-cls-tbl__cell-spell-progression--spell-points-enabled`, this._stateGlobal.isUseSpellPoints));
-				if (cellsSpellPoints) cellsSpellPoints.forEach(ele => ele.toggleClass(`ve-cls-tbl__cell-spell-points--spell-points-enabled`, this._stateGlobal.isUseSpellPoints));
+				if (cellsDefault) cellsDefault.forEach(ele => ele.vee.toggleClass(`ve-cls-tbl__cell-spell-progression--spell-points-enabled`, this._stateGlobal.isUseSpellPoints));
+				if (cellsSpellPoints) cellsSpellPoints.forEach(ele => ele.vee.toggleClass(`ve-cls-tbl__cell-spell-points--spell-points-enabled`, this._stateGlobal.isUseSpellPoints));
 			};
 			this._addHookGlobal("isUseSpellPoints", hkShowHideSpellPoints);
 			MiscUtil.pDefer(hkShowHideSpellPoints); // saves ~10ms
@@ -1415,10 +1438,10 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 		// If there is a state key, this is a subclass table group, and may therefore need to be hidden
 		const hkShowHideSubclass = () => {
-			cells.forEach(eleCell => eleCell.toggleVe(!!this._state[stateKey]));
+			cells.forEach(eleCell => eleCell.vee.toggle(!!this._state[stateKey]));
 
-			if (cellsDefault) cellsDefault.forEach(ele => ele.toggleClass(`ve-cls-tbl__cell-spell-progression--spell-points-enabled`, !!this._state[stateKey] && this._stateGlobal.isUseSpellPoints));
-			if (cellsSpellPoints) cellsSpellPoints.forEach(ele => ele.toggleClass(`ve-cls-tbl__cell-spell-points--spell-points-enabled`, !!this._state[stateKey] && this._stateGlobal.isUseSpellPoints));
+			if (cellsDefault) cellsDefault.forEach(ele => ele.vee.toggleClass(`ve-cls-tbl__cell-spell-progression--spell-points-enabled`, !!this._state[stateKey] && this._stateGlobal.isUseSpellPoints));
+			if (cellsSpellPoints) cellsSpellPoints.forEach(ele => ele.vee.toggleClass(`ve-cls-tbl__cell-spell-points--spell-points-enabled`, !!this._state[stateKey] && this._stateGlobal.isUseSpellPoints));
 		};
 		this._addHookBase(stateKey, hkShowHideSubclass);
 		this._addHookGlobal("isUseSpellPoints", hkShowHideSubclass);
@@ -1437,7 +1460,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		const row = tableGroup[propRows][ixLvl] || [];
 		return {
 			cells: row.map(valCell => {
-				return e_({
+				return veE({
 					tag: "td",
 					clazz: "ve-cls-tbl__col-generic-center",
 					html: valCell === 0 ? "\u2014" : Renderer.get().render(valCell),
@@ -1468,7 +1491,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			})
 			.sum();
 
-		const cellSpellPoints = e_({
+		const cellSpellPoints = veE({
 			tag: "td",
 			clazz: "ve-cls-tbl__col-generic-center ve-cls-tbl__cell-spell-points",
 			html: spellPoints === 0 ? "\u2014" : spellPoints,
@@ -1477,7 +1500,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		const ixLastSpellNum = row.findIndex(num => num === 0);
 		const maxSpellLevel = !~ixLastSpellNum ? row.length : !ixLastSpellNum ? 0 : ixLastSpellNum;
 
-		const cellSpellPointsMaxSpellLevel = e_({
+		const cellSpellPointsMaxSpellLevel = veE({
 			tag: "td",
 			clazz: "ve-cls-tbl__col-generic-center ve-cls-tbl__cell-spell-points",
 			html: maxSpellLevel === 0 ? "\u2014" : Renderer.get().render(`{@filter ${maxSpellLevel}|spells|level=${maxSpellLevel}|${sc ? `subclass=${this.activeClass?.name}: ${sc.shortName}` : `class=${this.activeClass?.name}`}}`),
@@ -1500,14 +1523,14 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 	}
 
 	_render_renderSidebar () {
-		const wrpSidebar = es(`#statsprof`)
-			.empty()
-			.appends(RenderClassesSidebar.getRenderedClassSidebar(this, this.activeClass))
-			.showVe();
+		const wrpSidebar = veEs(`#statsprof`)
+			.vee.empty()
+			.vee.appends(RenderClassesSidebar.getRenderedClassSidebar(this, this.activeClass))
+			.vee.show();
 	}
 
 	async _render_pRenderSubclassTabs () {
-		const wrp = es(`#subclasstabs`).empty();
+		const wrp = veEs(`#subclasstabs`).vee.empty();
 
 		this._render_renderSubclassPrimaryControls(wrp);
 		await this._render_pInitSubclassControls(wrp);
@@ -1518,29 +1541,29 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 		// region features/fluff
 		const btnToggleFeatures = ComponentUiUtil.getBtnBool(this, "isHideFeatures", {text: "Features", activeClass: "cls__btn-cf--active", isInverted: true})
-			.tooltip("Toggle Class Features");
+			.vee.tooltip("Toggle Class Features");
 
-		const btnToggleFeatureVariants = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="Toggle Class Feature Options/Variants">Variants</button>`
-			.onn("click", () => {
+		const btnToggleFeatureVariants = veT`<button class="ve-btn ve-btn-xs ve-btn-default" title="Toggle Class Feature Options/Variants">Variants</button>`
+			.vee.onn("click", () => {
 				const f = this.filterBox.getValues();
 				this._pageFilter.optionsFilter.setValue("isClassFeatureVariant", !f[this._pageFilter.optionsFilter.header].isClassFeatureVariant);
 				this._pageFilter.filterBox.fireChangeEvent();
 			});
 		const hkUpdateBtnFeatureVariants = () => {
 			const f = this.filterBox.getValues();
-			btnToggleFeatureVariants.toggleClass("ve-active", !!f[this._pageFilter.optionsFilter.header].isClassFeatureVariant);
+			btnToggleFeatureVariants.vee.toggleClass("ve-active", !!f[this._pageFilter.optionsFilter.header].isClassFeatureVariant);
 		};
 		this.filterBox.on(FILTER_BOX_EVNT_VALCHANGE, () => hkUpdateBtnFeatureVariants());
 		hkUpdateBtnFeatureVariants();
 
 		const btnToggleFluff = ComponentUiUtil.getBtnBool(this, "isShowFluff", {text: "Info"})
-			.tooltip("Toggle Class Info");
+			.vee.tooltip("Toggle Class Info");
 
-		ee`<div class="ve-flex-v-center ve-m-1 ve-btn-group ve-mr-3 ve-no-shrink">${btnToggleFeatures}${btnToggleFeatureVariants}${btnToggleFluff}</div>`.appendTo(wrp);
+		veT`<div class="ve-flex-v-center ve-m-1 ve-btn-group ve-mr-3 ve-no-shrink">${btnToggleFeatures}${btnToggleFeatureVariants}${btnToggleFluff}</div>`.vee.appendTo(wrp);
 		// endregion
 
 		// region subclasses
-		const wrpScTabs = ee`<div class="ve-flex-v-center ve-flex-wrap ve-mr-2 ve-w-100"></div>`.appendTo(wrp);
+		const wrpScTabs = veT`<div class="ve-flex-v-center ve-flex-wrap ve-mr-2 ve-w-100"></div>`.vee.appendTo(wrp);
 		this._listSubclass = new List({wrpList: wrpScTabs, fnSort: ClassesPage._fnSortSubclassFilterItems});
 
 		cls.subclasses.forEach((sc, i) => {
@@ -1549,7 +1572,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			this._listSubclass.addItem(listItem);
 		});
 
-		const dispCount = ee`<div class="ve-muted ve-m-1 cls-tabs__sc-not-shown ve-flex-vh-center"></div>`;
+		const dispCount = veT`<div class="ve-muted ve-m-1 cls-tabs__sc-not-shown ve-flex-vh-center"></div>`;
 		this._listSubclass.addItem(new ListItem(
 			-1,
 			dispCount,
@@ -1558,24 +1581,24 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		));
 
 		this._listSubclass.on("updated", () => {
-			dispCount.off("click");
+			dispCount.vee.off("click");
 
 			if (this._listSubclass.visibleItems.length) {
 				const cntNotShown = this._listSubclass.items.length - this._listSubclass.visibleItems.length;
 				dispCount
-					.html(cntNotShown ? `<i class="ve-clickable" title="Adjust your filters to see more.">(${cntNotShown} more not shown)</i>` : "")
-					.onn("click", () => this._doSelectAllSubclasses());
+					.vee.html(cntNotShown ? `<i class="ve-clickable" title="Adjust your filters to see more.">(${cntNotShown} more not shown)</i>` : "")
+					.vee.onn("click", () => this._doSelectAllSubclasses());
 				return;
 			}
 
 			if (this._listSubclass.items.length > 1) {
 				dispCount
-					.html(`<i class="ve-clickable" title="Adjust your filters to see more.">(${this._listSubclass.items.length - 1} subclasses not shown)</i>`)
-					.onn("click", () => this._doSelectAllSubclasses());
+					.vee.html(`<i class="ve-clickable" title="Adjust your filters to see more.">(${this._listSubclass.items.length - 1} subclasses not shown)</i>`)
+					.vee.onn("click", () => this._doSelectAllSubclasses());
 				return;
 			}
 
-			dispCount.html("");
+			dispCount.vee.html("");
 		});
 
 		this._listSubclass.init();
@@ -1600,8 +1623,8 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 	async _render_pInitSubclassControls (wrp) {
 		const cls = this.activeClass;
 
-		const btnSelAll = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="Select All (SHIFT to filter for and include most recent; CTRL to select official plus homebrew)"><span class="glyphicon glyphicon-check"></span></button>`
-			.onn("click", evt => {
+		const btnSelAll = veT`<button class="ve-btn ve-btn-xs ve-btn-default" title="Select All (SHIFT to filter for and include most recent; CTRL to select official plus homebrew)"><span class="glyphicon glyphicon-check"></span></button>`
+			.vee.onn("click", evt => {
 				const allStateKeys = cls.subclasses.map(sc => UrlUtil.getStateKeySubclass(sc));
 				if (evt.shiftKey) {
 					this._doSelectAllSubclasses({allowlistDisplayTypes: new Set(["fresh", "brew", "spicy"])});
@@ -1677,31 +1700,31 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				...cpySubHashes,
 				`flopsource:extend`,
 			].filter(Boolean), {force: true});
-			selFilterPreset.val("-1");
+			selFilterPreset.vee.val("-1");
 		};
-		const selFilterPreset = ee`<select class="ve-input-xs ve-form-control cls-tabs__sel-preset"><option value="-1" disabled>Filter...</option></select>`
-			.onn("change", () => {
-				const val = Number(selFilterPreset.val());
+		const selFilterPreset = veT`<select class="ve-input-xs ve-form-control cls-tabs__sel-preset"><option value="-1" disabled>Filter...</option></select>`
+			.vee.onn("change", () => {
+				const val = Number(selFilterPreset.vee.val());
 				if (val == null) return;
 				setFilterSet(val);
 			});
-		filterSets.forEach((it, i) => selFilterPreset.appends(`<option value="${i}">${it.name}</option>`));
-		selFilterPreset.val("-1");
+		filterSets.forEach((it, i) => selFilterPreset.vee.appends(`<option value="${i}">${it.name}</option>`));
+		selFilterPreset.vee.val("-1");
 
-		const btnReset = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="Reset Selection"><span class="glyphicon glyphicon-refresh"></span></button>`
-			.onn("click", () => {
+		const btnReset = veT`<button class="ve-btn ve-btn-xs ve-btn-default" title="Reset Selection"><span class="glyphicon glyphicon-refresh"></span></button>`
+			.vee.onn("click", () => {
 				this._proxyAssign("state", "_state", "__state", cls.subclasses.mergeMap(sc => ({[UrlUtil.getStateKeySubclass(sc)]: false})));
 			});
 
 		this.filterBox.on(FILTER_BOX_EVNT_VALCHANGE, this._handleSubclassFilterChange.bind(this));
 		this._handleSubclassFilterChange();
 		// Remove the temporary "hidden" class used to prevent popping
-		this._listSubclass.items.forEach(it => it.ele.showVe());
+		this._listSubclass.items.forEach(it => it.ele.vee.show());
 
-		const btnToggleSources = ComponentUiUtil.getBtnBool(this, "isShowScSources", {ele: ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-flex-1" title="Show Subclass Sources"><span class="glyphicon glyphicon-book"></span></button>`});
+		const btnToggleSources = ComponentUiUtil.getBtnBool(this, "isShowScSources", {ele: veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-flex-1" title="Show Subclass Sources"><span class="glyphicon glyphicon-book"></span></button>`});
 
-		const btnShuffle = ee`<button title="Feeling Lucky?" class="ve-btn ve-btn-xs ve-btn-default ve-flex-1"><span class="glyphicon glyphicon-random"></span></button>`
-			.onn("click", () => {
+		const btnShuffle = veT`<button title="Feeling Lucky?" class="ve-btn ve-btn-xs ve-btn-default ve-flex-1"><span class="glyphicon glyphicon-random"></span></button>`
+			.vee.onn("click", () => {
 				if (!this._listSubclass.visibleItems.length) return JqueryUtil.doToast({content: "No subclasses to choose from!", type: "warning"});
 
 				const doDeselAll = () => this._listSubclass.items.filter(it => it.values.stateKey).forEach(it => this._state[it.values.stateKey] = false);
@@ -1722,10 +1745,10 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				}
 			});
 
-		ee`<div class="ve-flex-v-center ve-m-1 ve-no-shrink">${selFilterPreset}</div>`.appendTo(wrp);
-		ee`<div class="ve-flex-v-center ve-m-1 ve-btn-group ve-no-shrink">
+		veT`<div class="ve-flex-v-center ve-m-1 ve-no-shrink">${selFilterPreset}</div>`.vee.appendTo(wrp);
+		veT`<div class="ve-flex-v-center ve-m-1 ve-btn-group ve-no-shrink">
 			${btnSelAll}${btnShuffle}${btnReset}${btnToggleSources}
-		</div>`.appendTo(wrp);
+		</div>`.vee.appendTo(wrp);
 	}
 
 	_handleSubclassFilterChange () {
@@ -1745,21 +1768,21 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 		if (this._state[stateKey] == null) this._state[stateKey] = false;
 
-		const dispName = ee`<div title="${ClassesPage.getBtnTitleSubclass(sc)}"></div>`;
-		const dispSource = ee`<div class="ve-ml-1" title="${Parser.sourceJsonToFull(sc.source)}">(${Parser.sourceJsonToAbv(sc.source)})</div>`;
+		const dispName = veT`<div title="${ClassesPage.getBtnTitleSubclass(sc)}"></div>`;
+		const dispSource = veT`<div class="ve-ml-1" title="${Parser.sourceJsonToFull(sc.source)}">(${Parser.sourceJsonToAbv(sc.source)})</div>`;
 		const hkSourcesVisible = () => {
-			dispName.txt(this._state.isShowScSources ? ClassesPage.getBaseShortName(sc) : sc.shortName);
-			dispSource.toggleVe(!!this._state.isShowScSources);
+			dispName.vee.txt(this._state.isShowScSources ? ClassesPage.getBaseShortName(sc) : sc.shortName);
+			dispSource.vee.toggle(!!this._state.isShowScSources);
 		};
 		this._addHookBase("isShowScSources", hkSourcesVisible);
 		MiscUtil.pDefer(hkSourcesVisible);
 
 		// Initially have these "hidden," to prevent them popping out when we filter them
-		const btn = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-flex-v-center ve-m-1 ve-hidden ${sc.isReprinted ? "cls__btn-sc--reprinted" : ""}">
+		const btn = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-flex-v-center ve-m-1 ve-hidden ${sc.isReprinted ? "cls__btn-sc--reprinted" : ""}">
 				${dispName}
 				${dispSource}
 			</button>`
-			.onn("click", evt => {
+			.vee.onn("click", evt => {
 				if (evt.shiftKey) {
 					this._proxyAssignSimple(
 						"state",
@@ -1775,11 +1798,11 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				}
 				this._state[stateKey] = !this._state[stateKey];
 			})
-			.onn("contextmenu", evt => {
+			.vee.onn("contextmenu", evt => {
 				evt.preventDefault();
 				this._state[stateKey] = !this._state[stateKey];
 			});
-		const hkVisible = () => btn.toggleClass(clsActive, !!this._state[stateKey]);
+		const hkVisible = () => btn.vee.toggleClass(clsActive, !!this._state[stateKey]);
 		this._addHookBase(stateKey, hkVisible);
 		MiscUtil.pDefer(hkVisible);
 
@@ -1789,7 +1812,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			sc.name,
 			{
 				source: sc.source,
-				page: sc.page,
+				...ListItem.getCommonValues(sc),
 				shortName: sc.shortName,
 				stateKey,
 				displayType,
@@ -1816,36 +1839,36 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 	}
 
 	_render_renderOutline () {
-		this._wrpOutline.empty();
+		this._wrpOutline.vee.empty();
 
 		// Auto-hide the outline on small screens
 		if (Renderer.hover.isSmallScreen()) this._state.isHideOutline = true;
 
-		const dispShowHide = ee`<div class="cls-nav__disp-toggle"></div>`;
-		const wrpHeadInner = ee`<div class="cls-nav__head-inner ve-split">
+		const dispShowHide = veT`<div class="cls-nav__disp-toggle"></div>`;
+		const wrpHeadInner = veT`<div class="cls-nav__head-inner ve-split">
 			<div>Outline</div>
 			${dispShowHide}
 		</div>`
-			.onn("click", () => this._state.isHideOutline = !this._state.isHideOutline);
+			.vee.onn("click", () => this._state.isHideOutline = !this._state.isHideOutline);
 
-		const wrpHead = ee`<div class="cls-nav__head">
+		const wrpHead = veT`<div class="cls-nav__head">
 				${wrpHeadInner}
 				<hr class="cls-nav__hr">
 			</div>`
-			.appendTo(this._wrpOutline);
-		const wrpBody = ee`<div class="nav-body"></div>`.appendTo(this._wrpOutline);
+			.vee.appendTo(this._wrpOutline);
+		const wrpBody = veT`<div class="nav-body"></div>`.vee.appendTo(this._wrpOutline);
 
 		const hkShowHide = () => {
-			wrpHead.toggleClass("cls-nav__head--active", !this._state.isHideOutline);
-			wrpBody.toggleVe(!this._state.isHideOutline);
-			dispShowHide.toggleClass("cls-nav__disp-toggle--active", !this._state.isHideOutline);
+			wrpHead.vee.toggleClass("cls-nav__head--active", !this._state.isHideOutline);
+			wrpBody.vee.toggle(!this._state.isHideOutline);
+			dispShowHide.vee.toggleClass("cls-nav__disp-toggle--active", !this._state.isHideOutline);
 		};
 		this._addHookBase("isHideOutline", hkShowHide);
 		MiscUtil.pDefer(hkShowHide);
 
 		const _hkRender = async () => {
 			await this._pLock("render-outline");
-			wrpBody.empty();
+			wrpBody.vee.empty();
 			const filterValues = this.filterBox.getValues();
 			const isUseSubclassSources = !this._pageFilter.isClassNaturallyDisplayed(filterValues, this.activeClassRaw)
 				&& this._pageFilter.isAnySubclassDisplayed(filterValues, this.activeClassRaw);
@@ -1942,12 +1965,12 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		) return;
 
 		const displayDepth = Math.min(depthData.depth + 1, 2);
-		ee`<div class="cls-nav__item ${this.constructor._CLASS_NAV_ITEM_DEPTH_TO_CSS_CLASS[displayDepth] || ""} ${additionalCssClasses}">${depthData.name}</div>`
-			.onn("click", () => {
-				const ele = es(`[data-title-index="${depthData.ixHeader}"]`);
+		veT`<div class="cls-nav__item ${this.constructor._CLASS_NAV_ITEM_DEPTH_TO_CSS_CLASS[displayDepth] || ""} ${additionalCssClasses}">${depthData.name}</div>`
+			.vee.onn("click", () => {
+				const ele = veEs(`[data-title-index="${depthData.ixHeader}"]`);
 				if (ele) ele.scrollIntoView();
 			})
-			.appendTo(wrpBody);
+			.vee.appendTo(wrpBody);
 	}
 
 	_render_renderOutline_isOutlineRenderable (depthEntry) {
@@ -2151,13 +2174,13 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 	}
 
 	async _render_pRenderClassContent () {
-		const wrpContent = e_(document.getElementById("pagecontent")).empty();
+		const wrpContent = veE(document.getElementById("pagecontent")).vee.empty();
 		const cls = this.activeClass;
 		this._outlineData = {};
 
 		UtilClassesPage.setRenderFnGetStyleClasses(cls);
 
-		wrpContent.appends(Renderer.utils.getBorderTr());
+		wrpContent.vee.appends(Renderer.utils.getBorderTr());
 
 		const clsFluff = await Renderer.class.pGetFluff(cls);
 		if (clsFluff) {
@@ -2166,9 +2189,9 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			const {hasEntries, rendered} = UtilClassesPage.getRenderedClassFluffHeader({cls, clsFluff, depthArr, isAddTrailingHr: true});
 
 			if (rendered) {
-				const trFluff = ee`<tr class="cls-main__cls-fluff"></tr>`
-					.html(`<td colspan="6">${rendered}</td>`)
-					.appendTo(wrpContent);
+				const trFluff = veT`<tr class="cls-main__cls-fluff"></tr>`
+					.vee.html(`<td colspan="6">${rendered}</td>`)
+					.vee.appendTo(wrpContent);
 			}
 
 			if (hasEntries) this._trackOutlineFluffData(depthArr);
@@ -2214,23 +2237,23 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 		if (cls.otherSources) {
 			const htmlSource = Renderer.utils.getSourceAndPageHtml(cls);
-			const trClassFeature = ee`<tr data-feature-type="class"></tr>`
-				.html(`<td colspan="6"><hr class="ve-hr-1"><b>Class source:</b> ${htmlSource}</td>`)
-				.appendTo(wrpContent);
+			const trClassFeature = veT`<tr data-feature-type="class"></tr>`
+				.vee.html(`<td colspan="6"><hr class="ve-hr-1"><b>Class source:</b> ${htmlSource}</td>`)
+				.vee.appendTo(wrpContent);
 		}
 
 		if (clsFluff) {
 			const {rendered} = UtilClassesPage.getRenderedClassFluffFooter({cls, clsFluff, isAddLeadingHr: true});
 			if (rendered) {
-				ee`<tr class="cls-main__cls-fluff"></tr>`
-					.html(`<td colspan="6">${rendered}</td>`)
-					.appendTo(wrpContent);
+				veT`<tr class="cls-main__cls-fluff"></tr>`
+					.vee.html(`<td colspan="6">${rendered}</td>`)
+					.vee.appendTo(wrpContent);
 			}
 		}
 
-		this._trNoContent = ClassesPage._render_getTrNoContent().appendTo(wrpContent);
+		this._trNoContent = ClassesPage._render_getTrNoContent().vee.appendTo(wrpContent);
 
-		wrpContent.appends(Renderer.utils.getBorderTr());
+		wrpContent.vee.appends(Renderer.utils.getBorderTr());
 
 		UtilClassesPage.unsetRenderFnGetStyleClasses();
 		Renderer.get()
@@ -2266,9 +2289,9 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				return Renderer.get().withDepthTracker(
 					depthArr,
 					({renderer}) => {
-						return ee`<tr data-scroll-id="${ixLvl}-${ixFeature}" data-feature-type="class" class="cls-main__linked-titles"></tr>`
-							.html(`<td colspan="6">${renderer.render(Renderer.class.getDisplayNamedClassFeatureEntry(feature, {styleHint}))}</td>`)
-							.appendTo(wrpContent);
+						return veT`<tr data-scroll-id="${ixLvl}-${ixFeature}" data-feature-type="class" class="cls-main__linked-titles"></tr>`
+							.vee.html(`<td colspan="6">${renderer.render(Renderer.class.getDisplayNamedClassFeatureEntry(feature, {styleHint}))}</td>`)
+							.vee.appendTo(wrpContent);
 					},
 					{additionalProps: ["isReprinted"], additionalPropsInherited: ["_isStandardSource", "isClassFeatureVariant"]},
 				);
@@ -2280,12 +2303,12 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 		if (ptrHasHandledSubclassFeatures) ptrHasHandledSubclassFeatures._ = true;
 
-		trClassFeature.attr("data-feature-type", "gain-subclass");
+		trClassFeature.vee.attr("data-feature-type", "gain-subclass");
 
 		// Add a placeholder feature to display when no subclasses are active
-		const trSubclassFeature = ee`<tr class="cls-main__sc-feature" data-subclass-none-message="true"></tr>`
-			.html(`<td colspan="6">${Renderer.get().withDepthTracker([], ({renderer}) => renderer.render({type: "entries", entries: [{name: `{@note No Subclass Selected}`, type: "entries", entries: [`{@note <span class="ve-clickable ve-roller" data-jump-select-a-subclass="true">Select a subclass</span> to view its feature(s) here.}`]}]}))}</td>`)
-			.appendTo(wrpContent);
+		const trSubclassFeature = veT`<tr class="cls-main__sc-feature" data-subclass-none-message="true"></tr>`
+			.vee.html(`<td colspan="6">${Renderer.get().withDepthTracker([], ({renderer}) => renderer.render({type: "entries", entries: [{name: `{@note No Subclass Selected}`, type: "entries", entries: [`{@note <span class="ve-clickable ve-roller" data-jump-select-a-subclass="true">Select a subclass</span> to view its feature(s) here.}`]}]}))}</td>`)
+			.vee.appendTo(wrpContent);
 
 		await cls.subclasses.pSerialAwaitMap(async sc => {
 			const stateKey = UrlUtil.getStateKeySubclass(sc);
@@ -2344,9 +2367,9 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 						if (source === sc.source) return {isSkip: true};
 					},
 					fn: () => {
-						const trSubclassFeature = ee`<tr class="cls-main__sc-feature" data-subclass-id="${UrlUtil.getStateKeySubclass(sc)}"></tr>`
-							.html(`<td colspan="6">${Renderer.get().withDepthTracker(depthArr, ({renderer}) => renderer.render(Renderer.class.getDisplayNamedSubclassFeatureEntry(toRender, {styleHint, isEditionMismatch})), {additionalProps: ["isReprinted"], additionalPropsInherited: ["_isStandardSource", "isClassFeatureVariant"]})}</td>`)
-							.appendTo(wrpContent);
+						const trSubclassFeature = veT`<tr class="cls-main__sc-feature" data-subclass-id="${UrlUtil.getStateKeySubclass(sc)}"></tr>`
+							.vee.html(`<td colspan="6">${Renderer.get().withDepthTracker(depthArr, ({renderer}) => renderer.render(Renderer.class.getDisplayNamedSubclassFeatureEntry(toRender, {styleHint, isEditionMismatch})), {additionalProps: ["isReprinted"], additionalPropsInherited: ["_isStandardSource", "isClassFeatureVariant"]})}</td>`)
+							.vee.appendTo(wrpContent);
 					},
 				});
 
@@ -2363,9 +2386,9 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 				if (hasEntries) this._trackOutlineScFluffData(stateKey, ixLvl + 1, ixScFeature, depthArrSubclassFluff);
 
-				ee`<tr class="cls-main__sc-fluff" data-subclass-id-fluff="${UrlUtil.getStateKeySubclass(sc)}"></tr>`
-					.html(`<td colspan="6">${rdScFluff}</td>`)
-					.appendTo(wrpContent);
+				veT`<tr class="cls-main__sc-fluff" data-subclass-id-fluff="${UrlUtil.getStateKeySubclass(sc)}"></tr>`
+					.vee.html(`<td colspan="6">${rdScFluff}</td>`)
+					.vee.appendTo(wrpContent);
 			});
 		});
 
@@ -2377,7 +2400,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 	}
 
 	static _render_getTrNoContent () {
-		return ee`<tr class="cls-main__msg-no-content"><td colspan="6">Toggle a button to view class and subclass information</td></tr>`;
+		return veT`<tr class="cls-main__msg-no-content"><td colspan="6">Toggle a button to view class and subclass information</td></tr>`;
 	}
 
 	_getDefaultState () { return MiscUtil.copyFast(ClassesPage._DEFAULT_STATE); }
@@ -2404,7 +2427,7 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
 
 	constructor ({classPage, pageFilter, listSubclass}) {
 		super({
-			btnOpen: es(`#btn-comparemode`),
+			btnOpen: veEs(`#btn-comparemode`),
 			state: classPage._state,
 		});
 
@@ -2419,8 +2442,8 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
 	_getWindowHeaderLhs () {
 		const out = super._getWindowHeaderLhs();
 
-		const btnSelectSubclasses = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-bl-0 ve-bt-0 ve-btl-0 ve-btr-0 ve-bbr-0 ve-bbl-0 ve-h-20p" title="Select Subclasses"><span class="glyphicon glyphicon-th-list"></span></button>`
-			.onn("click", async () => {
+		const btnSelectSubclasses = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-bl-0 ve-bt-0 ve-btl-0 ve-btr-0 ve-bbr-0 ve-bbl-0 ve-h-20p" title="Select Subclasses"><span class="glyphicon glyphicon-th-list"></span></button>`
+			.vee.onn("click", async () => {
 				const {eleModal, doClose} = UiUtil.getShowModal({
 					isEmpty: true,
 					isMinHeight0: true,
@@ -2438,22 +2461,22 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
 					isCloseButton: false,
 				});
 				eleModal
-					.addClass("bkmv")
-					.appends(stg);
+					.vee.addClass("bkmv")
+					.vee.appends(stg);
 			})
-			.appendTo(out);
+			.vee.appendTo(out);
 
 		return out;
 	}
 
 	_getSelectSubclassesMeta ({cbOnSave = null, isCloseButton = true} = {}) {
-		const wrpRows = ee`<div class="ve-flex-col ve-min-h-0"></div>`;
+		const wrpRows = veT`<div class="ve-flex-col ve-min-h-0"></div>`;
 
-		const btnAdjustFilters = ee`<span class="ve-clickable ve-help ve-no-select" title="Click Here!">adjust your filters</span>`
-			.onn("click", () => this._classPage.filterBox.show());
-		const dispNoneAvailable = ee`<div class="ve-small ve-muted ve-italic">No subclasses are available. Please ${btnAdjustFilters} first.</div>`;
+		const btnAdjustFilters = veT`<span class="ve-clickable ve-help ve-no-select" title="Click Here!">adjust your filters</span>`
+			.vee.onn("click", () => this._classPage.filterBox.show());
+		const dispNoneAvailable = veT`<div class="ve-small ve-muted ve-italic">No subclasses are available. Please ${btnAdjustFilters} first.</div>`;
 
-		const stg = ee`<div class="ve-flex-col">
+		const stg = veT`<div class="ve-flex-col">
 			<div class="ve-mb-2 initial-message initial-message--med">Please select some subclasses:</div>
 			${wrpRows}
 			${dispNoneAvailable}
@@ -2463,40 +2486,40 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
 			const subclassStateItems = this._listSubclass.visibleItems.filter(it => it.values.stateKey);
 
 			if (!subclassStateItems.length) {
-				wrpRows.hideVe();
-				dispNoneAvailable.showVe();
+				wrpRows.vee.hide();
+				dispNoneAvailable.vee.show();
 				return;
 			}
 
-			wrpRows.showVe();
-			dispNoneAvailable.hideVe();
+			wrpRows.vee.show();
+			dispNoneAvailable.vee.hide();
 
-			wrpRows.empty();
+			wrpRows.vee.empty();
 			const rowMetas = subclassStateItems.map(li => {
-				const cb = ee`<input type="checkbox">`;
+				const cb = veT`<input type="checkbox">`;
 
-				cb.prop("checked", this._parent.get(li.values.stateKey));
+				cb.vee.prop("checked", this._parent.get(li.values.stateKey));
 
-				ee`<label class="ve-split-v-center ve-py-1">
+				veT`<label class="ve-split-v-center ve-py-1">
 					<div>${li.name}</div>
 					${cb}
-				</label>`.appendTo(wrpRows);
+				</label>`.vee.appendTo(wrpRows);
 
 				return {cb, stateKey: li.values.stateKey};
 			});
 
 			const subclassStateItemsVisiblePrev = subclassStateItems.filter(li => this._parent.get(li.values.stateKey));
-			const btnSave = ee`<button class="ve-btn ve-btn-default ve-mr-2">Save</button>`
-				.onn("click", async () => {
+			const btnSave = veT`<button class="ve-btn ve-btn-default ve-mr-2">Save</button>`
+				.vee.onn("click", async () => {
 					const nxtState = {isViewActiveScComp: false};
 
-					const rowMetasFilt = rowMetas.filter(it => it.cb.prop("checked"));
+					const rowMetasFilt = rowMetas.filter(it => it.cb.vee.prop("checked"));
 					if (!rowMetasFilt.length && !subclassStateItemsVisiblePrev.length) return JqueryUtil.doToast({type: "warning", content: `Please select some subclasses first!`});
 
 					rowMetas
 						.forEach(meta => {
-							nxtState[meta.stateKey] = meta.cb.prop("checked");
-							meta.cb.prop("checked", false);
+							nxtState[meta.stateKey] = meta.cb.vee.prop("checked");
+							meta.cb.vee.prop("checked", false);
 						});
 
 					this._classPage._proxyAssignSimple("state", nxtState);
@@ -2513,14 +2536,14 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
 				});
 
 			const btnClose = isCloseButton
-				? ee`<button class="ve-btn ve-btn-default">Close</button>`
-					.onn("click", () => {
+				? veT`<button class="ve-btn ve-btn-default">Close</button>`
+					.vee.onn("click", () => {
 						this.setStateClosed();
 					})
 				: null;
 
-			ee`<div class="ve-flex-h-right ve-mt-3">${btnSave}${btnClose}</div>`
-				.appendTo(wrpRows);
+			veT`<div class="ve-flex-h-right ve-mt-3">${btnSave}${btnClose}</div>`
+				.vee.appendTo(wrpRows);
 		};
 		this._listSubclass.on("updated", onListUpdate);
 		onListUpdate();
@@ -2532,7 +2555,7 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
 		const {stg, fnCleanup} = this._getSelectSubclassesMeta();
 		this._fnsCleanup.push(fnCleanup);
 
-		return ee`<div class="ve-h-100 ve-w-100 ve-flex-vh-center ve-no-shrink no-print">
+		return veT`<div class="ve-h-100 ve-w-100 ve-flex-vh-center ve-no-shrink no-print">
 			${stg}
 		</div>`;
 	}
@@ -2629,9 +2652,9 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
 		});
 
 		wrpContent
-			.addClass("ve-stats")
-			.addClass("ve-stats--book")
-			.appends(renderStack.join(""));
+			.vee.addClass("ve-stats")
+			.vee.addClass("ve-stats--book")
+			.vee.appends(renderStack.join(""));
 
 		let cntSelectedEnts = 0;
 		let isAnyEntityRendered = false;
@@ -2641,14 +2664,14 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
 				const key = UrlUtil.getStateKeySubclass(sc);
 
 				if (!this._state[key]) {
-					em(`[data-cls-comp-sc-ix="${i}"]`, wrpContent).forEach(ele => ele.hideVe());
+					veEm(`[data-cls-comp-sc-ix="${i}"]`, wrpContent).forEach(ele => ele.vee.hide());
 				} else {
 					cntSelectedEnts++;
 					isAnyEntityRendered = true;
 				}
 			});
 
-		if (!cntSelectedEnts) em(".cls-comp__hr-level", wrpContent).forEach(ele => ele.hideVe());
+		if (!cntSelectedEnts) veEm(".cls-comp__hr-level", wrpContent).forEach(ele => ele.vee.hide());
 
 		UtilClassesPage.unsetRenderFnGetStyleClasses();
 
@@ -2674,7 +2697,7 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
 	constructor ({classPage, pageFilter}) {
 		super({
 			state: classPage._state,
-			btnOpen: es(`#btn-readmode`),
+			btnOpen: veEs(`#btn-readmode`),
 		});
 
 		this._classPage = classPage;
@@ -2699,11 +2722,11 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
 		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
 
 		// Top bar
-		const pnlMenu = ee`<div class="cls-bkmv__wrp-tabs ve-flex-h-center no-print"></div>`.appendTo(wrpContent);
+		const pnlMenu = veT`<div class="cls-bkmv__wrp-tabs ve-flex-h-center no-print"></div>`.vee.appendTo(wrpContent);
 
 		// Main panel
-		const tblBook = ee`<table class="ve-w-100 ve-stats ve-stats--book ve-stats--book-large ve-stats--bkmv"></div>`;
-		ee`<div class="ve-flex-col ve-overflow-y-auto container">${tblBook}</div>`.appendTo(wrpContent);
+		const tblBook = veT`<table class="ve-w-100 ve-stats ve-stats--book ve-stats--book-large ve-stats--bkmv"></div>`;
+		veT`<div class="ve-flex-col ve-overflow-y-auto container">${tblBook}</div>`.vee.appendTo(wrpContent);
 
 		const renderStack = [];
 		Renderer.get().setFirstSection(true);
@@ -2764,15 +2787,15 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
 				});
 			});
 		renderStack.push(Renderer.utils.getBorderTr());
-		tblBook.appends(renderStack.join(""));
+		tblBook.vee.appends(renderStack.join(""));
 
 		// Menu panel
-		const btnToggleCf = ee`<span class="cls-bkmv__btn-tab">Features</span>`
-			.onn("click", () => {
+		const btnToggleCf = veT`<span class="cls-bkmv__btn-tab">Features</span>`
+			.vee.onn("click", () => {
 				this._parent.set("isHideFeatures", !this._parent.get("isHideFeatures"));
 			});
-		const btnToggleInfo = ee`<span class="cls-bkmv__btn-tab">Info</span>`
-			.onn("click", () => {
+		const btnToggleInfo = veT`<span class="cls-bkmv__btn-tab">Info</span>`
+			.vee.onn("click", () => {
 				this._parent.set("isShowFluff", !this._parent.get("isShowFluff"));
 			});
 
@@ -2788,8 +2811,8 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
 			this._parent.set("isShowFluff", true);
 		}
 
-		pnlMenu.appends(btnToggleCf);
-		pnlMenu.appends(btnToggleInfo);
+		pnlMenu.vee.appends(btnToggleCf);
+		pnlMenu.vee.appends(btnToggleInfo);
 
 		const filterValues = this._classPage.filterBox.getValues();
 		cls.subclasses
@@ -2799,16 +2822,16 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
 				const activeClassName = UtilClassesPage.getSubclassDisplayClassButton({displayType: UtilClassesPage.getSubclassDisplayType(cls, sc)});
 				const stateKey = UrlUtil.getStateKeySubclass(sc);
 
-				const btnToggleSc = ee`<span class="cls-bkmv__btn-tab ${sc.isReprinted ? "cls__btn-sc--reprinted" : ""}" title="${ClassesPage.getBtnTitleSubclass(sc)}">${name}</span>`
-					.onn("click", () => this._parent.set(stateKey, !this._parent.get(stateKey)));
+				const btnToggleSc = veT`<span class="cls-bkmv__btn-tab ${sc.isReprinted ? "cls__btn-sc--reprinted" : ""}" title="${ClassesPage.getBtnTitleSubclass(sc)}">${name}</span>`
+					.vee.onn("click", () => this._parent.set(stateKey, !this._parent.get(stateKey)));
 				const isVisible = this._pageFilter.isSubclassVisible(filterValues, cls, sc);
-				if (!isVisible) btnToggleSc.hideVe();
+				if (!isVisible) btnToggleSc.vee.hide();
 
 				const hkShowHide = () => {
-					const elesDispFeatures = em(`[data-cls-book-sc-ix="${i}"]`, wrpContent);
+					const elesDispFeatures = veEm(`[data-cls-book-sc-ix="${i}"]`, wrpContent);
 					const isActive = !!this._parent.get(stateKey);
-					btnToggleSc.toggleClass(activeClassName, isActive);
-					elesDispFeatures.forEach(ele => ele.toggleVe(!!isActive));
+					btnToggleSc.vee.toggleClass(activeClassName, isActive);
+					elesDispFeatures.forEach(ele => ele.vee.toggle(!!isActive));
 				};
 				(this._hooks[stateKey] = this._hooks[stateKey] || []).push(hkShowHide);
 				this._parent.addHook(stateKey, hkShowHide);
@@ -2816,7 +2839,7 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
 
 				const hkShowHideFluff = () => {
 					const isActive = !!this._parent.get(stateKey) && !!this._parent.get("isShowFluff");
-					em(`[data-cls-book-sc-fluff-ix="${i}"]`, wrpContent).forEach(ele => ele.toggleVe(!!isActive));
+					veEm(`[data-cls-book-sc-fluff-ix="${i}"]`, wrpContent).forEach(ele => ele.vee.toggle(!!isActive));
 				};
 				(this._hooks[stateKey] ||= []).push(hkShowHideFluff);
 				this._parent.addHook(stateKey, hkShowHideFluff);
@@ -2824,24 +2847,24 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
 				this._parent.addHook("isShowFluff", hkShowHideFluff);
 				hkShowHideFluff();
 
-				pnlMenu.appends(btnToggleSc);
+				pnlMenu.vee.appends(btnToggleSc);
 			});
 
 		const hkFeatures = () => {
-			const elesDispFeatures = em(`[data-cls-book-cf="true"]`, wrpContent);
+			const elesDispFeatures = veEm(`[data-cls-book-cf="true"]`, wrpContent);
 			const isActive = !this._parent.get("isHideFeatures");
-			btnToggleCf.toggleClass("cls__btn-cf--active", isActive);
-			elesDispFeatures.forEach(ele => ele.toggleVe(!!isActive));
+			btnToggleCf.vee.toggleClass("cls__btn-cf--active", isActive);
+			elesDispFeatures.forEach(ele => ele.vee.toggle(!!isActive));
 		};
 		(this._hooks["isHideFeatures"] ||= []).push(hkFeatures);
 		this._parent.addHook("isHideFeatures", hkFeatures);
 		hkFeatures();
 
 		const hkFluff = () => {
-			const elesDispFluff = em(`[data-cls-book-fluff="true"]`, wrpContent);
+			const elesDispFluff = veEm(`[data-cls-book-fluff="true"]`, wrpContent);
 			const isHidden = !this._parent.get("isShowFluff");
-			btnToggleInfo.toggleClass("ve-active", !isHidden);
-			elesDispFluff.forEach(ele => ele.toggleVe(!isHidden));
+			btnToggleInfo.vee.toggleClass("ve-active", !isHidden);
+			elesDispFluff.forEach(ele => ele.vee.toggle(!isHidden));
 		};
 		(this._hooks["isShowFluff"] ||= []).push(hkFluff);
 		this._parent.addHook("isShowFluff", hkFluff);

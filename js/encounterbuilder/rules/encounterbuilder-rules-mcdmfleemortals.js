@@ -46,10 +46,10 @@ export class EncounterBuilderRulesMcdmFleeMortals extends EncounterBuilderRulesB
 	}
 
 	_render_settingsRules ({stgSettingsRules}) {
-		const wrpSettingsRules = ee`<div class="ve-flex-col">
+		const wrpSettingsRules = veT`<div class="ve-flex-col">
 			<div class="ve-flex ve-mb-2">${this._rendererWrapped.er(`{@note Based on the encounter building rules on page 16 of {@link MCDM|https://www.mcdmproductions.com}'s {@book Flee, Mortals!|FleeMortals|0|Encounter Building}}`)}</div>
 		</div>`
-			.appendTo(stgSettingsRules);
+			.vee.appendTo(stgSettingsRules);
 
 		return {
 			wrpSettingsRules,
@@ -61,7 +61,7 @@ export class EncounterBuilderRulesMcdmFleeMortals extends EncounterBuilderRulesB
 			tiers: TIERS,
 		});
 
-		wrpRandomAndAdjust.appendTo(stgRandomAndAdjust);
+		wrpRandomAndAdjust.vee.appendTo(stgRandomAndAdjust);
 
 		return {wrpRandomAndAdjust};
 	}
@@ -90,15 +90,15 @@ export class EncounterBuilderRulesMcdmFleeMortals extends EncounterBuilderRulesB
 			pFnDoAdjustEncounter: this._pDoAdjustEncounter.bind(this),
 		});
 
-		const dispTtk = ee`<div></div>`;
+		const dispTtk = veT`<div></div>`;
 
-		const dispPointsEncounter = ee`<div></div>`;
+		const dispPointsEncounter = veT`<div></div>`;
 
-		const dispExpEncounter = ee`<div></div>`;
-		const dispExpToLevel = ee`<div class="ve-muted"></div>`;
+		const dispExpEncounter = veT`<div></div>`;
+		const dispExpToLevel = veT`<div class="ve-muted"></div>`;
 
 		const dispThermometer = thermometer.render()
-			.addClass("ve-mt-2");
+			.vee.addClass("ve-mt-2");
 
 		this._comp.addHookPulseDeriverPartyMeta(() => {
 			const partyMeta = this.getEncounterPartyMeta();
@@ -119,15 +119,15 @@ export class EncounterBuilderRulesMcdmFleeMortals extends EncounterBuilderRulesB
 			});
 
 			dispTtk
-				.html(this._getTtkHtml({partyMeta}));
+				.vee.html(this._getTtkHtml({partyMeta}));
 
-			dispPointsEncounter.html(`Encounter Points: ${TIER_TO_ENCOUNTER_POINTS[tier] || "?"}`);
+			dispPointsEncounter.vee.html(`Encounter Points: ${TIER_TO_ENCOUNTER_POINTS[tier] || "?"}`);
 
-			dispExpEncounter.html(`Encounter XP: ${this._getEncounterXp() ? this._getEncounterXp().toLocaleStringVe() : "?"} XP`);
-			dispExpToLevel.html(this._getRenderedExpToLevel({partyMeta}));
+			dispExpEncounter.vee.html(`Encounter XP: ${this._getEncounterXp() ? this._getEncounterXp().toLocaleStringVe() : "?"} XP`);
+			dispExpToLevel.vee.html(this._getRenderedExpToLevel({partyMeta}));
 		})();
 
-		const wrpGroupSummary = ee`<div class="ve-text-right ve-flex-col">
+		const wrpGroupSummary = veT`<div class="ve-text-right ve-flex-col">
 			${dispsTierXp}
 			${dispThermometer}
 			<hr class="ve-hr-2">
@@ -139,8 +139,8 @@ export class EncounterBuilderRulesMcdmFleeMortals extends EncounterBuilderRulesB
 			${dispExpEncounter}
 			${dispExpToLevel}
 		</div>`
-			.hideVe()
-			.appendTo(stgGroupSummary);
+			.vee.hide()
+			.vee.appendTo(stgGroupSummary);
 
 		return {
 			wrpGroupSummary,
@@ -150,24 +150,24 @@ export class EncounterBuilderRulesMcdmFleeMortals extends EncounterBuilderRulesB
 	/* -------------------------------------------- */
 
 	_render_difficulty ({stgDifficulty}) {
-		const hrHasCreatures = ee`<hr class="ve-hr-1">`;
-		const wrpDifficultyCols = ee`<div class="ve-flex">
+		const hrHasCreatures = veT`<hr class="ve-hr-1">`;
+		const wrpDifficultyCols = veT`<div class="ve-flex">
 			${this._renderGroupAndDifficulty_getDifficultyLhs()}
 			${this._renderGroupAndDifficulty_getDifficultyRhs()}
 		</div>`;
 
 		this._comp.addHookPulseDeriverPartyMeta(() => {
 			const encounterSpendInfo = this.getEncounterPartyMeta().getEncounterSpendInfo(this._comp.creatureGroups);
-			hrHasCreatures.toggleVe(encounterSpendInfo.relevantCount);
-			wrpDifficultyCols.toggleVe(encounterSpendInfo.relevantCount);
+			hrHasCreatures.vee.toggle(encounterSpendInfo.relevantCount);
+			wrpDifficultyCols.vee.toggle(encounterSpendInfo.relevantCount);
 		})();
 
-		const wrpDifficulty = ee`<div class="ve-flex-col ve-w-100">
+		const wrpDifficulty = veT`<div class="ve-flex-col ve-w-100">
 			${hrHasCreatures}
 			${wrpDifficultyCols}
 		</div>`
-			.hideVe()
-			.appendTo(stgDifficulty);
+			.vee.hide()
+			.vee.appendTo(stgDifficulty);
 
 		return {
 			wrpDifficulty,
@@ -175,7 +175,7 @@ export class EncounterBuilderRulesMcdmFleeMortals extends EncounterBuilderRulesB
 	}
 
 	_renderGroupAndDifficulty_getDifficultyLhs () {
-		const dispDifficulty = ee`<h4 class="ve-my-2"></h4>`;
+		const dispDifficulty = veT`<h4 class="ve-my-2"></h4>`;
 
 		this._comp.addHookPulseDeriverPartyMeta(() => {
 			const partyMeta = this.getEncounterPartyMeta();
@@ -185,33 +185,33 @@ export class EncounterBuilderRulesMcdmFleeMortals extends EncounterBuilderRulesB
 			const tier = partyMeta.getEncounterTier(encounterSpendInfo);
 
 			dispDifficulty
-				.html(`Difficulty: <span class="ve-help-subtle">${tier.toTitleCase()}</span>`)
-				.tooltip(new _TierHtmlProviderMcdmFleeMortals().getTierTitle({tier}));
+				.vee.html(`Difficulty: <span class="ve-help-subtle">${tier.toTitleCase()}</span>`)
+				.vee.tooltip(new _TierHtmlProviderMcdmFleeMortals().getTierTitle({tier}));
 		})();
 
-		return ee`<div class="ve-w-50">
+		return veT`<div class="ve-w-50">
 			${dispDifficulty}
 		</div>`;
 	}
 
 	_renderGroupAndDifficulty_getDifficultyRhs () {
-		const dispCrTotal = ee`<h4></h4>`;
-		const dispCrPerPlayer = ee`<i></i>`;
+		const dispCrTotal = veT`<h4></h4>`;
+		const dispCrPerPlayer = veT`<i></i>`;
 
 		this._comp.addHookPulseDeriverPartyMeta(() => {
 			const partyMeta = this.getEncounterPartyMeta();
 
 			const encounterSpendInfo = partyMeta.getEncounterSpendInfo(this._comp.creatureGroups);
 
-			dispCrTotal.txt(`Total CR: ${encounterSpendInfo.baseSpend == null ? "?" : Parser.numberToVulgar(encounterSpendInfo.baseSpend)}`);
-			dispCrPerPlayer.txt(
+			dispCrTotal.vee.txt(`Total CR: ${encounterSpendInfo.baseSpend == null ? "?" : Parser.numberToVulgar(encounterSpendInfo.baseSpend)}`);
+			dispCrPerPlayer.vee.txt(
 				partyMeta?.cntPlayers
 					? `(${Parser.numberToVulgar(encounterSpendInfo.baseSpend / partyMeta?.cntPlayers)} per player)`
 					: "",
 			);
 		})();
 
-		return ee`<div class="ve-w-50 ve-text-right">
+		return veT`<div class="ve-w-50 ve-text-right">
 			${dispCrTotal}
 			<div>${dispCrPerPlayer}</div>
 		</div>`;

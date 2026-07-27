@@ -385,7 +385,7 @@ class _RenderBestiaryImplBase {
 
 		if (Parser.crToNumber(mon.cr) >= VeCt.CR_UNKNOWN && this._style === "classic") return `<td colspan="3">${ptLabel} <span>\u2014</span></td>`;
 
-		return ee`<td colspan="${this._style !== "classic" ? "6" : "3"}">${ptLabel}
+		return veT`<td colspan="${this._style !== "classic" ? "6" : "3"}">${ptLabel}
 			<span>${Renderer.monster.getChallengeRatingPart(mon, {styleHint: this._style})}</span>
 			${opts.btnScaleCr || ""}
 			${opts.btnResetScaleCr || ""}
@@ -540,7 +540,7 @@ class _RenderBestiaryImplClassic extends _RenderBestiaryImplBase {
 			entsTrait,
 		});
 
-		return ee`
+		return veT`
 		${Renderer.utils.getBorderTr()}
 
 		${htmlPtIsExcluded}
@@ -576,8 +576,8 @@ class _RenderBestiaryImplClassic extends _RenderBestiaryImplBase {
 			${htmlPtPb}
 		</tr>
 
-		<tr>${opts.selSummonSpellLevel ? ee`<td colspan="6"><strong class="ve-mr-2">Spell Level</strong> ${opts.selSummonSpellLevel}</td>` : ""}</tr>
-		<tr>${opts.selSummonClassLevel ? ee`<td colspan="6"><strong class="ve-mr-2">${opts.classLevelScalerClass ? "Class Level" : "Level"}</strong> ${opts.selSummonClassLevel}</td>` : ""}</tr>
+		<tr>${opts.selSummonSpellLevel ? veT`<td colspan="6"><strong class="ve-mr-2">Spell Level</strong> ${opts.selSummonSpellLevel}</td>` : ""}</tr>
+		<tr>${opts.selSummonClassLevel ? veT`<td colspan="6"><strong class="ve-mr-2">${opts.classLevelScalerClass ? "Class Level" : "Level"}</strong> ${opts.selSummonClassLevel}</td>` : ""}</tr>
 
 		${htmlPtTraits}
 		${htmlPtActions}
@@ -738,7 +738,7 @@ class _RenderBestiaryImplOne extends _RenderBestiaryImplBase {
 			entsTrait,
 		});
 
-		return ee`
+		return veT`
 		${Renderer.utils.getBorderTr()}
 
 		${htmlPtIsExcluded}
@@ -769,8 +769,8 @@ class _RenderBestiaryImplOne extends _RenderBestiaryImplBase {
 			${this._getTdChallenge(mon, opts)}
 		</tr>
 
-		<tr>${opts.selSummonSpellLevel ? ee`<td colspan="6"><strong class="ve-mr-2">Spell Level</strong> ${opts.selSummonSpellLevel}</td>` : ""}</tr>
-		<tr>${opts.selSummonClassLevel ? ee`<td colspan="6"><strong class="ve-mr-2">${opts.classLevelScalerClass ? "Class Level" : "Level"}</strong> ${opts.selSummonClassLevel}</td>` : ""}</tr>
+		<tr>${opts.selSummonSpellLevel ? veT`<td colspan="6"><strong class="ve-mr-2">Spell Level</strong> ${opts.selSummonSpellLevel}</td>` : ""}</tr>
+		<tr>${opts.selSummonClassLevel ? veT`<td colspan="6"><strong class="ve-mr-2">${opts.classLevelScalerClass ? "Class Level" : "Level"}</strong> ${opts.selSummonClassLevel}</td>` : ""}</tr>
 
 		${htmlPtTraits}
 		${htmlPtActions}
@@ -812,7 +812,7 @@ export class RenderBestiary {
 	}
 
 	static getRenderedLegendaryGroup (legGroup) {
-		return ee`
+		return veT`
 		${Renderer.utils.getBorderTr()}
 		${Renderer.utils.getNameTr(legGroup)}
 		<tr><td colspan="6">

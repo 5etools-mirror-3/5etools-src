@@ -6,7 +6,7 @@ import {InitiativeTrackerConditionAdd} from "./dmscreen-initiativetracker-condit
 import {InitiativeTrackerUi} from "./dmscreen-initiativetracker-ui.js";
 import {InitiativeTrackerConst} from "./dmscreen-initiativetracker-consts.js";
 import {InitiativeTrackerSort} from "./dmscreen-initiativetracker-sort.js";
-import {RenderableCollectionConditions} from "../../initiativetracker/initiativetracker-utils.js";
+import {RenderableCollectionConditions} from "../../../initiativetracker/initiativetracker-utils.js";
 import {
 	InitiativeTrackerRowDataViewBase,
 	RenderableCollectionRowDataBase,
@@ -46,18 +46,18 @@ class _RenderableCollectionRowDataActive extends RenderableCollectionRowDataBase
 	_pPopulateRow_monster ({comp, wrpLhs, isMon, mon, fluff}) {
 		if (!isMon) return;
 
-		const dispOrdinal = ee`<span class="dm-init__number"></span>`;
-		comp._addHookBase("ordinal", () => dispOrdinal.txt(`(${comp._state.ordinal})`))();
-		comp._addHookBase("isShowOrdinal", () => dispOrdinal.toggleVe(comp._state.isShowOrdinal))();
+		const dispOrdinal = veT`<span class="dm-init__number"></span>`;
+		comp._addHookBase("ordinal", () => dispOrdinal.vee.txt(`(${comp._state.ordinal})`))();
+		comp._addHookBase("isShowOrdinal", () => dispOrdinal.vee.toggle(comp._state.isShowOrdinal))();
 
-		const lnk = e_({outer: this._pPopulateRow_monster_getRenderedLink({comp})})
-			.attr("tabindex", "-1");
+		const lnk = veE({outer: this._pPopulateRow_monster_getRenderedLink({comp})})
+			.vee.attr("tabindex", "-1");
 		comp._addHookBase("customName", () => {
-			lnk.txt(comp._state.customName ? comp._state.customName : comp._state.displayName || comp._state.name);
+			lnk.vee.txt(comp._state.customName ? comp._state.customName : comp._state.displayName || comp._state.name);
 		})();
 
-		const btnRename = ee`<button class="ve-btn ve-btn-default ve-btn-xs dm-init-lockable dm-init__btn-creature" title="Rename (SHIFT to Reset)" tabindex="-1"><span class="glyphicon glyphicon-pencil"></span></button>`
-			.onn("click", async evt => {
+		const btnRename = veT`<button class="ve-btn ve-btn-default ve-btn-xs dm-init-lockable dm-init__btn-creature" title="Rename (SHIFT to Reset)" tabindex="-1"><span class="glyphicon glyphicon-pencil"></span></button>`
+			.vee.onn("click", async evt => {
 				if (this._comp._state.isLocked) return;
 
 				if (evt.shiftKey) return comp._state.customName = null;
@@ -67,8 +67,8 @@ class _RenderableCollectionRowDataActive extends RenderableCollectionRowDataBase
 				comp._state.customName = customName;
 			});
 
-		const btnDuplicate = ee`<button class="ve-btn ve-btn-success ve-btn-xs dm-init-lockable dm-init__btn-creature" title="Add Another (SHIFT for Roll New)" tabindex="-1"><span class="glyphicon glyphicon-plus"></span></button>`
-			.onn("click", async (evt) => {
+		const btnDuplicate = veT`<button class="ve-btn ve-btn-success ve-btn-xs dm-init-lockable dm-init__btn-creature" title="Add Another (SHIFT for Roll New)" tabindex="-1"><span class="glyphicon glyphicon-plus"></span></button>`
+			.vee.onn("click", async (evt) => {
 				if (this._comp._state.isLocked) return;
 
 				const isRollNew = !!evt.shiftKey;
@@ -110,7 +110,7 @@ class _RenderableCollectionRowDataActive extends RenderableCollectionRowDataBase
 				});
 			});
 
-		ee`<div class="dm-init__wrp-creature ve-split">
+		veT`<div class="dm-init__wrp-creature ve-split">
 			<span class="dm-init__wrp-creature-link">
 				${lnk}
 				${dispOrdinal}
@@ -120,7 +120,7 @@ class _RenderableCollectionRowDataActive extends RenderableCollectionRowDataBase
 				${btnDuplicate}
 			</div>
 		</div>`
-			.appendTo(wrpLhs);
+			.vee.appendTo(wrpLhs);
 	}
 
 	_pPopulateRow_monster_getRenderedLink ({comp}) {
@@ -148,8 +148,8 @@ class _RenderableCollectionRowDataActive extends RenderableCollectionRowDataBase
 	/* ----- */
 
 	_pPopulateRow_conditions ({comp, wrpLhs}) {
-		const btnAddCond = ee`<button class="ve-btn ve-btn-warning ve-btn-xs dm-init__row-btn dm-init__row-btn-flag" title="Add Condition" tabindex="-1"><span class="glyphicon glyphicon-flag"></span></button>`
-			.onn("click", async () => {
+		const btnAddCond = veT`<button class="ve-btn ve-btn-warning ve-btn-xs dm-init__row-btn dm-init__row-btn-flag" title="Add Condition" tabindex="-1"><span class="glyphicon glyphicon-flag"></span></button>`
+			.vee.onn("click", async () => {
 				const compAdd = new InitiativeTrackerConditionAdd({conditionsCustom: MiscUtil.copyFast(this._comp._state.conditionsCustom)});
 				const [isDataEntered, conditionToAdd] = await compAdd.pGetShowModalResults();
 
@@ -164,13 +164,13 @@ class _RenderableCollectionRowDataActive extends RenderableCollectionRowDataBase
 				];
 			});
 
-		const wrpConds = ee`<div class="init__wrp_conds ve-h-100"></div>`;
+		const wrpConds = veT`<div class="init__wrp_conds ve-h-100"></div>`;
 
-		ee`<div class="ve-split">
+		veT`<div class="ve-split">
 			${wrpConds}
 			${btnAddCond}
 		</div>`
-			.appendTo(wrpLhs);
+			.vee.appendTo(wrpLhs);
 
 		const collectionConditions = new RenderableCollectionConditions({
 			comp: comp,
@@ -192,8 +192,8 @@ class _RenderableCollectionRowDataActive extends RenderableCollectionRowDataBase
 				html: `<input class="ve-form-control ve-input-sm score dm-init-lockable dm-init__row-input ve-text-center dm-init__ipt--rhs">`,
 			},
 		)
-			.onn("click", () => iptInitiative.selecte())
-			.appendTo(wrpRhs);
+			.vee.onn("click", () => iptInitiative.vee.select())
+			.vee.appendTo(wrpRhs);
 	}
 
 	/* ----- */
@@ -201,7 +201,7 @@ class _RenderableCollectionRowDataActive extends RenderableCollectionRowDataBase
 	_pPopulateRow_btns ({comp, entity, wrpRhs}) {
 		const btnVisible = InitiativeTrackerUi.getBtnPlayerVisible({
 			isVisible: comp._state.isPlayerVisible,
-			fnOnClick: () => comp._state.isPlayerVisible = btnVisible.hasClass("ve-btn-primary")
+			fnOnClick: () => comp._state.isPlayerVisible = btnVisible.vee.hasClass("ve-btn-primary")
 				? IS_PLAYER_VISIBLE_ALL
 				: IS_PLAYER_VISIBLE_NONE,
 			additionalClasses: [
@@ -209,12 +209,12 @@ class _RenderableCollectionRowDataActive extends RenderableCollectionRowDataBase
 				"dm-init__btn_eye",
 			],
 		})
-			.tooltip("Shown in player view")
-			.appendTo(wrpRhs);
+			.vee.tooltip("Shown in player view")
+			.vee.appendTo(wrpRhs);
 
-		ee`<button class="ve-btn ve-btn-danger ve-btn-xs dm-init__row-btn dm-init-lockable" title="Delete (SHIFT to Also Delete Similar)" tabindex="-1"><span class="glyphicon glyphicon-trash"></span></button>`
-			.appendTo(wrpRhs)
-			.onn("click", evt => {
+		veT`<button class="ve-btn ve-btn-danger ve-btn-xs dm-init__row-btn dm-init-lockable" title="Delete (SHIFT to Also Delete Similar)" tabindex="-1"><span class="glyphicon glyphicon-trash"></span></button>`
+			.vee.appendTo(wrpRhs)
+			.vee.onn("click", evt => {
 				if (this._comp._state.isLocked) return;
 
 				if (evt.shiftKey) {
@@ -416,7 +416,7 @@ export class InitiativeTrackerRowDataViewActive extends InitiativeTrackerRowData
 	_ClsRenderableCollectionRowData = _RenderableCollectionRowDataActive;
 
 	_render_getWrpHeaderRhs ({rdState}) {
-		return ee`<div class="dm-init__row-rhs">
+		return veT`<div class="dm-init__row-rhs">
 			<div class="dm-init__header dm-init__header--input dm-init__header--input-wide" title="Hit Points">HP</div>
 			<div class="dm-init__header dm-init__header--input" title="Initiative Score">#</div>
 			<div class="dm-init__spc-header-buttons"></div>

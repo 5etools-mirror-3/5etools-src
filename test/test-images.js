@@ -5,7 +5,7 @@ import "../js/utils.js";
 import "../js/utils-dataloader.js";
 import "../js/render.js";
 import * as ut from "../node/util.js";
-import {listFiles} from "../node/util.js";
+import {BLOCKLIST_DIRS, listFiles} from "../node/util.js";
 
 /**
  * @abstract
@@ -217,19 +217,78 @@ class _TestTokenImagesVehicles extends _TestTokenImagesBase {
 }
 
 class _TestAdventureBookImages {
+	static _IMG_PATHS_IMPLICIT = new Set([
+		"img/patreon.webp",
+
+		"img/blank-2024.webp",
+		"img/blank-friendly.webp",
+
+		"img/covers/blank-alt.webp",
+		"img/covers/blank.webp",
+
+		"img/bestiary/stat-block-top-texture.webp",
+
+		// TODO(Future) contributed assets; stub overarching corpora to utilize these?
+		"img/covers/ESK.webp",
+		"img/covers/PAitM.webp",
+		"img/covers/SAiS.webp",
+		"img/covers/ToD.webp",
+
+		// TODO(Future) covers to be utilized in future products
+		"img/covers/AU.webp",
+		"img/covers/AUD.webp",
+
+		// (Legacy option)
+		"img/decks/CoS/Tarokka Deck/999-dnd_tarokka_back.webp",
+	]);
+
 	static run () {
 		const pathsMissing = [];
+		const pathsUnused = new Set();
+
+		listFiles({
+			dir: "img",
+			blocklistDirs: [
+				...BLOCKLIST_DIRS,
+				...[...BLOCKLIST_DIRS]
+					.map(dir => path.posix.join("img", dir)),
+
+				"img/bestiary/tokens",
+				"img/objects/tokens",
+				"img/vehicles/tokens",
+
+				"img/dmscreen",
+
+				"img/plutonium",
+
+				"img/characters",
+
+				"img/decks/page",
+			],
+			allowlistFileExts: [".webp"],
+		})
+			.forEach(filepath => {
+				if (this._IMG_PATHS_IMPLICIT.has(filepath)) return;
+				pathsUnused.add(filepath);
+			});
 
 		const walker = MiscUtil.getWalker({isNoModification: true});
 
 		const getHandler = (filename, out) => {
 			const checkHref = (href) => {
 				if (href?.type !== "internal") return;
-				if (fs.existsSync(`./img/${href.path}`)) return;
+
+				const filepath = path.posix.join("img", href.path);
+				pathsUnused.delete(filepath);
+
+				if (fs.existsSync(filepath)) return;
+
 				out.push(`${filename} :: ${href.path}`);
 			};
 
 			return (obj) => {
+				if (obj.cover) checkHref(obj.cover);
+
 				if (obj.type !== "image") return;
 				checkHref(obj.href);
 				checkHref(obj.hrefThumbnail);
@@ -248,7 +307,12 @@ class _TestAdventureBookImages {
 			});
 
 		if (pathsMissing.length) {
-			console.log(`Missing Images:\n${pathsMissing.map(it => `\t${it}`).join("\n")}`);
+			console.log(`Missing Images (${pathsMissing.length}):\n${pathsMissing.map(it => `\t${it}`).join("\n")}`);
+			return true;
+		}
+
+		if (pathsUnused.size) {
+			console.log(`Unused Images (${pathsUnused.size}):\n${[...pathsUnused].sort(SortUtil.ascSortLower).map(it => `\t${it}`).join("\n")}`);
 			return true;
 		}
 

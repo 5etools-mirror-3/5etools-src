@@ -44,12 +44,12 @@ const wb = new Workbox("sw.js");
 wb.addEventListener("controlling", () => {
 	if (!VetoolsConfig.get("ui", "isNotifyUpdates")) return;
 
-	const lnk = ee`<a href="${Renderer.get().baseUrl}changelog.html" class="alert-link">changelog</a>`
+	const lnk = veT`<a href="${Renderer.get().baseUrl}changelog.html" class="alert-link">changelog</a>`
 		.onn("click", evt => {
 			evt.stopPropagation();
 		});
 	JqueryUtil.doToast({
-		content: ee`<div>${window.location.hostname} has been updated\u2014reload to see new content, and ensure the page is displayed correctly. See the ${lnk} for more info!</div>`,
+		content: veT`<div>${window.location.hostname} has been updated\u2014reload to see new content, and ensure the page is displayed correctly. See the ${lnk} for more info!</div>`,
 		type: "success",
 		isAutoHide: false, // never auto hide - this warning is important
 	});
@@ -114,16 +114,16 @@ const removeDownloadBar = () => {
 const initDownloadBar = () => {
 	if (downloadBar !== null) removeDownloadBar();
 
-	const displayProgress = ee`<div class="page__disp-download-progress-bar"></div>`;
-	const displayPercent = ee`<div class="page__disp-download-progress-text ve-flex-vh-center ve-bold">0%</div>`;
+	const displayProgress = veT`<div class="page__disp-download-progress-bar"></div>`;
+	const displayPercent = veT`<div class="page__disp-download-progress-text ve-flex-vh-center ve-bold">0%</div>`;
 
-	const btnCancel = ee`<button class="ve-btn ve-btn-default"><span class="glyphicon glyphicon-remove"></span></button>`
+	const btnCancel = veT`<button class="ve-btn ve-btn-default"><span class="glyphicon glyphicon-remove"></span></button>`
 		.onn("click", () => {
 			swCancelCacheRoutes();
 		});
 
-	const wrapBar = ee`<div class="page__wrp-download-bar ve-w-100 ve-relative ve-mr-2">${displayProgress}${displayPercent}</div>`;
-	const wrapOuter = ee`<div class="page__wrp-download">
+	const wrapBar = veT`<div class="page__wrp-download-bar ve-w-100 ve-relative ve-mr-2">${displayProgress}${displayPercent}</div>`;
+	const wrapOuter = veT`<div class="page__wrp-download">
 		${wrapBar}
 		${btnCancel}
 	</div>`.appendTo(document.body);

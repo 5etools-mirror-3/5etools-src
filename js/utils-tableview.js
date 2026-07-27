@@ -24,9 +24,9 @@ class UtilsTableview {
 			Object.keys(colTransforms).mergeMap(k => ({[k]: true})),
 		);
 
-		const cbAll = ee`<input type="checkbox" title="Select All" checked>`
-			.onn("click", () => {
-				const val = cbAll.prop("indeterminate") ? false : cbAll.prop("checked");
+		const cbAll = veT`<input type="checkbox" title="Select All" checked>`
+			.vee.onn("click", () => {
+				const val = cbAll.vee.prop("indeterminate") ? false : cbAll.vee.prop("checked");
 
 				rdState.comp._proxyAssignSimple(
 					"state",
@@ -38,7 +38,7 @@ class UtilsTableview {
 			.map(([prop, meta]) => {
 				const cb = ComponentUiUtil.getCbBool(rdState.comp, prop);
 
-				const wrp = ee`<label class="ve-px-2 ve-py-1 ve-no-wrap ve-flex-inline-v-center">
+				const wrp = veT`<label class="ve-px-2 ve-py-1 ve-no-wrap ve-flex-inline-v-center">
 					${cb}
 					<span>${meta.name}</span>
 				</label>`;
@@ -50,27 +50,27 @@ class UtilsTableview {
 			.forEach((prop, i) => {
 				rdState.comp._addHookBase(prop, () => {
 					const propsSelected = Object.keys(colTransforms).map(prop => rdState.comp._state[prop]);
-					if (propsSelected.every(Boolean)) cbAll.prop("checked", true);
-					else if (propsSelected.every(it => !it)) cbAll.prop("checked", false);
-					else cbAll.prop("indeterminate", true).prop("checked", true);
+					if (propsSelected.every(Boolean)) cbAll.vee.prop("checked", true);
+					else if (propsSelected.every(it => !it)) cbAll.vee.prop("checked", false);
+					else cbAll.vee.prop("indeterminate", true).vee.prop("checked", true);
 
-					const eles = eleModal.findAll(`[data-col="${i}"]`);
-					eles.forEach(ele => ele.toggleVe(rdState.comp._state[prop]));
+					const eles = eleModal.vee.findAll(`[data-col="${i}"]`);
+					eles.forEach(ele => ele.vee.toggle(rdState.comp._state[prop]));
 				});
 			});
 
-		const btnCsv = ee`<button class="ve-btn ve-btn-primary">Download CSV</button>`.onn("click", () => {
+		const btnCsv = veT`<button class="ve-btn ve-btn-primary">Download CSV</button>`.vee.onn("click", () => {
 			DataUtil.userDownloadText(`${title}.csv`, this._getAsCsv({colTransforms, rdState}));
 		});
 
-		const btnCopy = ee`<button class="ve-btn ve-btn-primary">Copy CSV to Clipboard</button>`.onn("click", async () => {
+		const btnCopy = veT`<button class="ve-btn ve-btn-primary">Copy CSV to Clipboard</button>`.vee.onn("click", async () => {
 			await MiscUtil.pCopyTextToClipboard(this._getAsCsv({colTransforms, rdState}));
 			JqueryUtil.showCopiedEffect(btnCopy);
 		});
 
-		const wrpRows = ee`<div class="ve-overflow-y-auto ve-w-100 ve-h-100 ve-flex-col ve-overflow-x-auto"></div>`;
+		const wrpRows = veT`<div class="ve-overflow-y-auto ve-w-100 ve-h-100 ve-flex-col ve-overflow-x-auto"></div>`;
 
-		ee(eleModal)`<div class="ve-flex-v-center ve-my-3">
+		veT(eleModal)`<div class="ve-flex-v-center ve-my-3">
 			<label class="ve-flex-vh-center ve-pl-2 ve-pr-3 ve-h-100">${cbAll}</label>
 			<div class="ve-vr-2 ve-ml-0 ve-h-100"></div>
 			<div class="ve-flex-v-center ve-flex-wrap ve-w-100 ve-min-w-0">${rdState.metasCbs.map(({wrp}) => wrp)}</div>
@@ -85,7 +85,7 @@ class UtilsTableview {
 		`;
 
 		const tableHtml = this._getTableHtml({rdState, entities, colTransforms, additionalData, sorter});
-		wrpRows.html(tableHtml);
+		wrpRows.vee.html(tableHtml);
 	}
 
 	static _getAsCsv ({colTransforms, rdState}) {

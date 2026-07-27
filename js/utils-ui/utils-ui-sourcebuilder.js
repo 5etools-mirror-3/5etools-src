@@ -18,7 +18,7 @@ export class SourceUiUtil {
 	 */
 	static render (options) {
 		options = SourceUiUtil._getValidOptions(options);
-		options.eleParent.empty();
+		options.eleParent.vee.empty();
 		options.mode = options.mode || "select";
 
 		const isEditMode = options.mode === "edit";
@@ -26,118 +26,118 @@ export class SourceUiUtil {
 		let jsonDirty = false;
 		const doValidateIptJson = () => {
 			iptJson
-				.removeClass("form-control--error")
-				.removeClass("form-control--warning")
-				.tooltip(null);
-			const val = iptJson.val().trim();
+				.vee.removeClass("form-control--error")
+				.vee.removeClass("form-control--warning")
+				.vee.tooltip(null);
+			const val = iptJson.vee.val().trim();
 			if (val.length && val.length < 6) {
 				iptJson
-					.addClass("form-control--warning")
-					.tooltip("JSON source identifiers are expected to be ≥ 6 characters.");
+					.vee.addClass("form-control--warning")
+					.vee.tooltip("JSON source identifiers are expected to be ≥ 6 characters.");
 			}
 		};
-		const iptName = ee`<input class="ve-form-control ve-ui-source__ipt-named">`
-			.onn("keydown", evt => { if (evt.key === "Escape") iptName.blure(); })
-			.onn("change", () => {
+		const iptName = veT`<input class="ve-form-control ve-ui-source__ipt-named">`
+			.vee.onn("keydown", evt => { if (evt.key === "Escape") iptName.vee.blur(); })
+			.vee.onn("change", () => {
 				if (!jsonDirty && !isEditMode) {
-					iptJson.val(iptName.val().replace(/[^-0-9a-zA-Z]/g, ""));
+					iptJson.vee.val(iptName.vee.val().replace(/[^-0-9a-zA-Z]/g, ""));
 					doValidateIptJson();
 				}
-				iptName.removeClass("form-control--error");
+				iptName.vee.removeClass("form-control--error");
 			});
-		if (options.source) iptName.val(options.source.full);
-		const iptAbv = ee`<input class="ve-form-control ve-ui-source__ipt-named">`
-			.onn("keydown", evt => { if (evt.key === "Escape") iptAbv.blure(); })
-			.onn("change", () => {
-				iptAbv.removeClass("form-control--error");
+		if (options.source) iptName.vee.val(options.source.full);
+		const iptAbv = veT`<input class="ve-form-control ve-ui-source__ipt-named">`
+			.vee.onn("keydown", evt => { if (evt.key === "Escape") iptAbv.vee.blur(); })
+			.vee.onn("change", () => {
+				iptAbv.vee.removeClass("form-control--error");
 			});
-		if (options.source) iptAbv.val(options.source.abbreviation);
-		const iptJson = ee`<input class="ve-form-control ve-ui-source__ipt-named" ${isEditMode ? "disabled" : ""}>`
-			.onn("keydown", evt => { if (evt.key === "Escape") iptJson.blure(); })
-			.onn("change", () => {
+		if (options.source) iptAbv.vee.val(options.source.abbreviation);
+		const iptJson = veT`<input class="ve-form-control ve-ui-source__ipt-named" ${isEditMode ? "disabled" : ""}>`
+			.vee.onn("keydown", evt => { if (evt.key === "Escape") iptJson.vee.blur(); })
+			.vee.onn("change", () => {
 				jsonDirty = true;
 				doValidateIptJson();
 			});
-		if (options.source) iptJson.val(options.source.json);
-		const iptVersion = ee`<input class="ve-form-control ve-ui-source__ipt-named">`
-			.onn("keydown", evt => { if (evt.key === "Escape") iptUrl.blure(); });
-		if (options.source) iptVersion.val(options.source.version);
+		if (options.source) iptJson.vee.val(options.source.json);
+		const iptVersion = veT`<input class="ve-form-control ve-ui-source__ipt-named">`
+			.vee.onn("keydown", evt => { if (evt.key === "Escape") iptUrl.vee.blur(); });
+		if (options.source) iptVersion.vee.val(options.source.version);
 
 		let hasColor = false;
-		const iptColor = ee`<input type="color" class="ve-w-100 ve-b-0">`
-			.onn("keydown", evt => { if (evt.key === "Escape") iptColor.blure(); })
-			.onn("change", () => hasColor = true);
-		if (options.source?.color != null) { hasColor = true; iptColor.val(`#${options.source.color}`); }
+		const iptColor = veT`<input type="color" class="ve-w-100 ve-b-0">`
+			.vee.onn("keydown", evt => { if (evt.key === "Escape") iptColor.vee.blur(); })
+			.vee.onn("change", () => hasColor = true);
+		if (options.source?.color != null) { hasColor = true; iptColor.vee.val(`#${options.source.color}`); }
 
 		let hasColorNight = false;
-		const iptColorNight = ee`<input type="color" class="ve-w-100 ve-b-0">`
-			.onn("keydown", evt => { if (evt.key === "Escape") iptColorNight.blure(); })
-			.onn("change", () => hasColorNight = true);
-		if (options.source?.colorNight != null) { hasColorNight = true; iptColorNight.val(`#${options.source.colorNight}`); }
+		const iptColorNight = veT`<input type="color" class="ve-w-100 ve-b-0">`
+			.vee.onn("keydown", evt => { if (evt.key === "Escape") iptColorNight.vee.blur(); })
+			.vee.onn("change", () => hasColorNight = true);
+		if (options.source?.colorNight != null) { hasColorNight = true; iptColorNight.vee.val(`#${options.source.colorNight}`); }
 
-		const iptUrl = ee`<input class="ve-form-control ve-ui-source__ipt-named">`
-			.onn("keydown", evt => { if (evt.key === "Escape") iptUrl.blure(); });
-		if (options.source) iptUrl.val(options.source.url);
-		const iptAuthors = ee`<input class="ve-form-control ve-ui-source__ipt-named">`
-			.onn("keydown", evt => { if (evt.key === "Escape") iptAuthors.blure(); });
-		if (options.source) iptAuthors.val((options.source.authors || []).join(", "));
-		const iptConverters = ee`<input class="ve-form-control ve-ui-source__ipt-named">`
-			.onn("keydown", evt => { if (evt.key === "Escape") iptConverters.blure(); });
-		if (options.source) iptConverters.val((options.source.convertedBy || []).join(", "));
+		const iptUrl = veT`<input class="ve-form-control ve-ui-source__ipt-named">`
+			.vee.onn("keydown", evt => { if (evt.key === "Escape") iptUrl.vee.blur(); });
+		if (options.source) iptUrl.vee.val(options.source.url);
+		const iptAuthors = veT`<input class="ve-form-control ve-ui-source__ipt-named">`
+			.vee.onn("keydown", evt => { if (evt.key === "Escape") iptAuthors.vee.blur(); });
+		if (options.source) iptAuthors.vee.val((options.source.authors || []).join(", "));
+		const iptConverters = veT`<input class="ve-form-control ve-ui-source__ipt-named">`
+			.vee.onn("keydown", evt => { if (evt.key === "Escape") iptConverters.vee.blur(); });
+		if (options.source) iptConverters.vee.val((options.source.convertedBy || []).join(", "));
 
-		const btnOk = ee`<button class="ve-btn ve-btn-primary">OK</button>`
-			.onn("click", async () => {
+		const btnOk = veT`<button class="ve-btn ve-btn-primary">OK</button>`
+			.vee.onn("click", async () => {
 				let incomplete = false;
 				[iptName, iptAbv, iptJson].forEach(ipt => {
-					const val = ipt.val();
-					if (!val || !val.trim()) { incomplete = true; ipt.addClass("form-control--error"); }
+					const val = ipt.vee.val();
+					if (!val || !val.trim()) { incomplete = true; ipt.vee.addClass("form-control--error"); }
 				});
 				if (incomplete) return;
 
-				const jsonVal = iptJson.val().trim();
+				const jsonVal = iptJson.vee.val().trim();
 				if (!isEditMode && BrewUtil2.hasSourceJson(jsonVal)) {
-					iptJson.addClass("form-control--error");
+					iptJson.vee.addClass("form-control--error");
 					JqueryUtil.doToast({content: `The JSON identifier "${jsonVal}" already exists!`, type: "danger"});
 					return;
 				}
 
 				const source = {
 					json: jsonVal,
-					abbreviation: iptAbv.val().trim(),
-					full: iptName.val().trim(),
-					version: iptVersion.val().trim() || "1.0.0",
+					abbreviation: iptAbv.vee.val().trim(),
+					full: iptName.vee.val().trim(),
+					version: iptVersion.vee.val().trim() || "1.0.0",
 				};
 
-				const url = iptUrl.val().trim();
+				const url = iptUrl.vee.val().trim();
 				if (url) source.url = url;
 
-				const authors = iptAuthors.val().trim().split(",").map(it => it.trim()).filter(Boolean);
+				const authors = iptAuthors.vee.val().trim().split(",").map(it => it.trim()).filter(Boolean);
 				if (authors.length) source.authors = authors;
 
-				const convertedBy = iptConverters.val().trim().split(",").map(it => it.trim()).filter(Boolean);
+				const convertedBy = iptConverters.vee.val().trim().split(",").map(it => it.trim()).filter(Boolean);
 				if (convertedBy.length) source.convertedBy = convertedBy;
 
-				if (hasColor) source.color = iptColor.val().trim().replace(/^#/, "");
-				if (hasColorNight) source.colorNight = iptColorNight.val().trim().replace(/^#/, "");
+				if (hasColor) source.color = iptColor.vee.val().trim().replace(/^#/, "");
+				if (hasColorNight) source.colorNight = iptColorNight.vee.val().trim().replace(/^#/, "");
 
 				await options.cbConfirm(source, options.mode !== "edit");
 			});
 
 		const btnCancel = options.isRequired && !isEditMode
 			? null
-			: ee`<button class="ve-btn ve-btn-default ve-ml-2">Cancel</button>`
-				.onn("click", () => options.cbCancel());
+			: veT`<button class="ve-btn ve-btn-default ve-ml-2">Cancel</button>`
+				.vee.onn("click", () => options.cbCancel());
 
-		const btnUseExisting = ee`<button class="ve-btn ve-btn-default">Use an Existing Source</button>`
-			.onn("click", () => {
-				stgInitial.hideVe();
-				stgExisting.showVe();
+		const btnUseExisting = veT`<button class="ve-btn ve-btn-default">Use an Existing Source</button>`
+			.vee.onn("click", () => {
+				stgInitial.vee.hide();
+				stgExisting.vee.show();
 
 				// cleanup
-				[iptName, iptAbv, iptJson].forEach(ipt => ipt.removeClass("form-control--error"));
+				[iptName, iptAbv, iptJson].forEach(ipt => ipt.vee.removeClass("form-control--error"));
 			});
 
-		const stgInitial = ee`<div class="ve-h-100 ve-w-100 ve-flex-vh-center"><div class="ve-flex-col">
+		const stgInitial = veT`<div class="ve-h-100 ve-w-100 ve-flex-vh-center"><div class="ve-flex-col">
 			<h3 class="ve-text-center">${isEditMode ? "Edit Homebrew Source" : "Add a Homebrew Source"}</h3>
 			<div class="ve-ui-source__row ve-mb-2"><div class="ve-col-12 ve-flex-v-center">
 				<span class="ve-mr-2 ve-ui-source__name ve-help" title="The name or title for the homebrew you wish to create. This could be the name of a book or PDF; for example, 'Monster Manual'">Title</span>
@@ -177,47 +177,47 @@ export class SourceUiUtil {
 			</div></div>
 			<div class="ve-text-center ve-mb-2">${btnOk}${btnCancel}</div>
 
-			${!isEditMode && BrewUtil2.getMetaLookup("sources")?.length ? ee`<div class="ve-flex-vh-center ve-mb-3 ve-mt-3"><span class="ve-ui-source__divider"></span>or<span class="ve-ui-source__divider"></span></div>
+			${!isEditMode && BrewUtil2.getMetaLookup("sources")?.length ? veT`<div class="ve-flex-vh-center ve-mb-3 ve-mt-3"><span class="ve-ui-source__divider"></span>or<span class="ve-ui-source__divider"></span></div>
 			<div class="ve-flex-vh-center">${btnUseExisting}</div>` : ""}
 		</div></div>`
-			.appendTo(options.eleParent);
+			.vee.appendTo(options.eleParent);
 
-		const selExisting = ee`<select class="ve-form-control ve-input-sm">
+		const selExisting = veT`<select class="ve-form-control ve-input-sm">
 			<option disabled>Select</option>
 			${(BrewUtil2.getMetaLookup("sources") || []).sort((a, b) => SortUtil.ascSortLower(a.full, b.full)).map(s => `<option value="${s.json.escapeQuotes()}">${s.full.escapeQuotes()}</option>`)}
 		</select>`
-			.onn("change", () => selExisting.removeClass("form-control--error"));
+			.vee.onn("change", () => selExisting.vee.removeClass("form-control--error"));
 		selExisting.selectedIndex = 0;
 
-		const btnConfirmExisting = ee`<button class="ve-btn ve-btn-default ve-btn-sm">Confirm</button>`
-			.onn("click", async () => {
+		const btnConfirmExisting = veT`<button class="ve-btn ve-btn-default ve-btn-sm">Confirm</button>`
+			.vee.onn("click", async () => {
 				if (selExisting.selectedIndex === 0) {
-					selExisting.addClass("form-control--error");
+					selExisting.vee.addClass("form-control--error");
 					return;
 				}
 
-				const sourceJson = selExisting.val();
+				const sourceJson = selExisting.vee.val();
 				const source = BrewUtil2.sourceJsonToSource(sourceJson);
 				await options.cbConfirmExisting(source);
 
 				// cleanup
 				selExisting.selectedIndex = 0;
-				stgExisting.hideVe();
-				stgInitial.showVe();
+				stgExisting.vee.hide();
+				stgInitial.vee.show();
 			});
 
-		const btnBackExisting = ee`<button class="ve-btn ve-btn-default ve-btn-sm ve-mr-2">Back</button>`
-			.onn("click", () => {
+		const btnBackExisting = veT`<button class="ve-btn ve-btn-default ve-btn-sm ve-mr-2">Back</button>`
+			.vee.onn("click", () => {
 				selExisting.selectedIndex = 0;
-				stgExisting.hideVe();
-				stgInitial.showVe();
+				stgExisting.vee.hide();
+				stgInitial.vee.show();
 			});
 
-		const stgExisting = ee`<div class="ve-h-100 ve-w-100 ve-flex-vh-center ve-hidden"><div>
+		const stgExisting = veT`<div class="ve-h-100 ve-w-100 ve-flex-vh-center ve-hidden"><div>
 			<h3 class="ve-text-center">Select a Homebrew Source</h3>
 			<div class="ve-mb-2"><div class="ve-col-12 ve-flex-vh-center">${selExisting}</div></div>
 			<div class="ve-col-12 ve-flex-vh-center">${btnBackExisting}${btnConfirmExisting}</div>
 		</div></div>`
-			.appendTo(options.eleParent);
+			.vee.appendTo(options.eleParent);
 	}
 }

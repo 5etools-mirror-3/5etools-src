@@ -5,7 +5,7 @@ import {FilterUtils} from "./filter-utils.js";
 /** @abstract */
 export class ModalFilterBase {
 	static _getFilterColumnHeaders (btnMeta) {
-		return btnMeta.map((it, i) => ee`<button class="ve-col-${it.width} ${i === 0 ? "ve-pl-0" : i === btnMeta.length ? "ve-pr-0" : ""} ${it.disabled ? "" : "sort"} ve-btn ve-btn-default ve-btn-xs" ${it.disabled ? "" : `data-sort="${it.sort}"`} ${it.title ? `title="${it.title}"` : ""} ${it.disabled ? "disabled" : ""}>${it.text}</button>`);
+		return btnMeta.map((it, i) => veT`<button class="ve-col-${it.width} ${i === 0 ? "ve-pl-0" : i === btnMeta.length ? "ve-pr-0" : ""} ${it.disabled ? "" : "sort"} ve-btn ve-btn-default ve-btn-xs" ${it.disabled ? "" : `data-sort="${it.sort}"`} ${it.title ? `title="${it.title}"` : ""} ${it.disabled ? "disabled" : ""}>${it.text}</button>`);
 	}
 
 	/**
@@ -39,10 +39,10 @@ export class ModalFilterBase {
 
 	get allData () { return this._allData; }
 
-	_getWrpList () { return ee`<div class="list ve-ui-list__wrp ve-overflow-x-hidden ve-overflow-y-scroll ve-h-100 ve-min-h-0"></div>`; }
+	_getWrpList () { return veT`<div class="list ve-ui-list__wrp ve-overflow-x-hidden ve-overflow-y-scroll ve-h-100 ve-min-h-0"></div>`; }
 
 	_getColumnHeaderPreviewAll (opts) {
-		return ee`<button class="ve-btn ve-btn-default ve-btn-xs ${opts.isBuildUi ? "ve-col-1" : "ve-col-0-5"}">${ListUiPreviewButtonHandlerBase.HTML_GLYPHICON_EXPAND}</button>`;
+		return veT`<button class="ve-btn ve-btn-default ve-btn-xs ${opts.isBuildUi ? "ve-col-1" : "ve-col-0-5"}">${ListUiPreviewButtonHandlerBase.HTML_GLYPHICON_EXPAND}</button>`;
 	}
 
 	/**
@@ -63,41 +63,41 @@ export class ModalFilterBase {
 
 		await this._pInit();
 
-		const ovlLoading = ee`<div class="ve-w-100 ve-h-100 ve-flex-vh-center"><i class="ve-dnd-font ve-muted">Loading...</i></div>`.appendTo(wrp);
+		const ovlLoading = veT`<div class="ve-w-100 ve-h-100 ve-flex-vh-center"><i class="ve-dnd-font ve-muted">Loading...</i></div>`.vee.appendTo(wrp);
 
-		const iptSearch = (opts.iptSearch || ee`<input class="ve-form-control ve-lst__search ve-lst__search--no-border-h ve-h-100" type="search" placeholder="Search...">`).disableSpellcheck();
-		const btnReset = opts.btnReset || ee`<button class="ve-btn ve-btn-default">Reset</button>`;
-		const dispNumVisible = ee`<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>`;
+		const iptSearch = (opts.iptSearch || veT`<input class="ve-form-control ve-lst__search ve-lst__search--no-border-h ve-h-100" type="search" placeholder="Search...">`).vee.disableSpellcheck();
+		const btnReset = opts.btnReset || veT`<button class="ve-btn ve-btn-default">Reset</button>`;
+		const dispNumVisible = veT`<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>`;
 
-		const wrpIptSearch = ee`<div class="ve-w-100 ve-relative">
+		const wrpIptSearch = veT`<div class="ve-w-100 ve-relative">
 			${iptSearch}
 			<div class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
 			${dispNumVisible}
 		</div>`;
 
-		const wrpFormTop = ee`<div class="ve-flex ve-input-group ve-input-group--top ve-btn-group ve-w-100 ve-lst__form-top">${wrpIptSearch}${btnReset}</div>`;
+		const wrpFormTop = veT`<div class="ve-flex ve-input-group ve-input-group--top ve-btn-group ve-w-100 ve-lst__form-top">${wrpIptSearch}${btnReset}</div>`;
 
-		const wrpFormBottom = opts.wrpMiniPills || ee`<div class="ve-w-100"></div>`;
+		const wrpFormBottom = opts.wrpMiniPills || veT`<div class="ve-w-100"></div>`;
 
-		const wrpFormHeaders = ee`<div class="ve-input-group ve-input-group--bottom ve-flex ve-no-shrink"></div>`;
-		const cbSelAll = opts.isBuildUi || opts.isNoSelect || this._isRadio ? null : ee`<input type="checkbox">`;
-		const btnSendAllToRight = opts.isBuildUi ? ee`<button class="ve-btn ve-btn-xxs ve-btn-default ve-col-1" title="Add All"><span class="glyphicon glyphicon-arrow-right"></span></button>` : null;
+		const wrpFormHeaders = veT`<div class="ve-input-group ve-input-group--bottom ve-flex ve-no-shrink"></div>`;
+		const cbSelAll = opts.isBuildUi || opts.isNoSelect || this._isRadio ? null : veT`<input type="checkbox">`;
+		const btnSendAllToRight = opts.isBuildUi ? veT`<button class="ve-btn ve-btn-xxs ve-btn-default ve-col-1" title="Add All"><span class="glyphicon glyphicon-arrow-right"></span></button>` : null;
 
 		if (!opts.isBuildUi && !opts.isNoSelect) {
-			if (this._isRadio) wrpFormHeaders.appends(`<label class="ve-btn ve-btn-default ve-btn-xs ve-col-0-5 ve-flex-vh-center" disabled></label>`);
-			else ee`<label class="ve-btn ve-btn-default ve-btn-xs ve-col-0-5 ve-flex-vh-center">${cbSelAll}</label>`.appendTo(wrpFormHeaders);
+			if (this._isRadio) wrpFormHeaders.vee.appends(`<label class="ve-btn ve-btn-default ve-btn-xs ve-col-0-5 ve-flex-vh-center" disabled></label>`);
+			else veT`<label class="ve-btn ve-btn-default ve-btn-xs ve-col-0-5 ve-flex-vh-center">${cbSelAll}</label>`.vee.appendTo(wrpFormHeaders);
 		}
 
 		const btnTogglePreviewAll = this._getColumnHeaderPreviewAll(opts)
-			.appendTo(wrpFormHeaders);
+			.vee.appendTo(wrpFormHeaders);
 
-		this._getColumnHeaders().forEach(ele => wrpFormHeaders.appends(ele));
-		if (opts.isBuildUi) btnSendAllToRight.appendTo(wrpFormHeaders);
+		this._getColumnHeaders().forEach(ele => wrpFormHeaders.vee.appends(ele));
+		if (opts.isBuildUi) btnSendAllToRight.vee.appendTo(wrpFormHeaders);
 
-		const wrpForm = ee`<div class="ve-flex-col ve-w-100 ve-mb-1">${wrpFormTop}${wrpFormBottom}${wrpFormHeaders}</div>`;
+		const wrpForm = veT`<div class="ve-flex-col ve-w-100 ve-mb-1">${wrpFormTop}${wrpFormBottom}${wrpFormHeaders}</div>`;
 		const wrpList = this._getWrpList();
 
-		const btnConfirm = opts.isBuildUi ? null : ee`<button class="ve-btn ve-btn-default">Confirm</button>`;
+		const btnConfirm = opts.isBuildUi ? null : veT`<button class="ve-btn ve-btn-default">Confirm</button>`;
 
 		this._list = new List({
 			iptSearch,
@@ -111,7 +111,7 @@ export class ModalFilterBase {
 		if (!opts.isBuildUi && !opts.isNoSelect && !this._isRadio) listSelectClickHandler.bindSelectAllCheckbox(cbSelAll);
 		this._previewButtonHandler.bindPreviewAllButton({btnAll: btnTogglePreviewAll, list: this._list});
 		SortUtil.initBtnSortHandlers(wrpFormHeaders, this._list);
-		this._list.on("updated", () => dispNumVisible.html(`${this._list.visibleItems.length}/${this._list.items.length}`));
+		this._list.on("updated", () => dispNumVisible.vee.html(`${this._list.visibleItems.length}/${this._list.items.length}`));
 
 		this._allData ||= await this._pGetBlocklistedAllData();
 
@@ -145,11 +145,11 @@ export class ModalFilterBase {
 
 		ovlLoading.remove();
 
-		const wrpInner = ee`<div class="ve-flex-col ve-h-100">
+		const wrpInner = veT`<div class="ve-flex-col ve-h-100">
 			${wrpForm}
 			${wrpList}
-			${opts.isBuildUi || opts.isNoSelect ? null : ee`<hr class="ve-hr-1"><div class="ve-flex-vh-center">${btnConfirm}</div>`}
-		</div>`.appendTo(wrp.empty());
+			${opts.isBuildUi || opts.isNoSelect ? null : veT`<hr class="ve-hr-1"><div class="ve-flex-vh-center">${btnConfirm}</div>`}
+		</div>`.vee.appendTo(wrp.vee.empty());
 
 		return {
 			wrpIptSearch,
@@ -269,14 +269,14 @@ export class ModalFilterBase {
 
 			this.doApplyFilterExpression(filterExpression);
 
-			this._filterCache.btnConfirm.off("click").onn("click", async () => {
+			this._filterCache.btnConfirm.vee.off("click").vee.onn("click", async () => {
 				const checked = this._filterCache.list.visibleItems.filter(it => it.data.cbSel.checked);
 				resolve(checked);
 
 				doClose(true);
 
 				// region reset selection state
-				if (this._filterCache.cbSelAll) this._filterCache.cbSelAll.prop("checked", false);
+				if (this._filterCache.cbSelAll) this._filterCache.cbSelAll.vee.prop("checked", false);
 				this._filterCache.list.items.forEach(it => {
 					if (it.data.cbSel) it.data.cbSel.checked = false;
 					it.ele.classList.remove("list-multi-selected");
@@ -294,7 +294,7 @@ export class ModalFilterBase {
 			isWidth100: true,
 			title: `Filter/Search for ${this._modalTitle}`,
 			cbClose: (isDataEntered) => {
-				if (this._filterCache) this._filterCache.wrpModalInner.detach();
+				if (this._filterCache) this._filterCache.wrpModalInner.vee.detach();
 				if (!isDataEntered) resolve([]);
 			},
 			isUncappedHeight: true,
@@ -320,10 +320,10 @@ export class ModalFilterBase {
 	 */
 	async pPreloadHidden (eleModalInner) {
 		// If we're rendering in "hidden" mode, create a dummy element to attach the UI to.
-		eleModalInner = eleModalInner || ee`<div></div>`;
+		eleModalInner = eleModalInner || veT`<div></div>`;
 
 		if (this._filterCache) {
-			this._filterCache.wrpModalInner.appendTo(eleModalInner);
+			this._filterCache.wrpModalInner.vee.appendTo(eleModalInner);
 		} else {
 			const meta = await this.pPopulateWrapper(eleModalInner);
 			const {iptSearch, btnConfirm, pageFilter, list, cbSelAll} = meta;

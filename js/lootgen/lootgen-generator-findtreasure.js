@@ -33,13 +33,13 @@ class LootGenGeneratorFindTreasureBase extends LootGenGeneratorBase {
 
 		const cbIsHoard = ComponentUiUtil.getCbBool(this, "ft_isHoard");
 
-		const btnRoll = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">Roll Loot</button>`
-			.onn("click", () => this._ft_pDoHandleClickRollLoot());
+		const btnRoll = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">Roll Loot</button>`
+			.vee.onn("click", () => this._ft_pDoHandleClickRollLoot());
 
-		const btnClear = ee`<button class="ve-btn ve-btn-danger ve-btn-xs">Clear Output</button>`
-			.onn("click", () => this._outputManager.doClearOutput());
+		const btnClear = veT`<button class="ve-btn ve-btn-danger ve-btn-xs">Clear Output</button>`
+			.vee.onn("click", () => this._outputManager.doClearOutput());
 
-		ee`<div class="ve-flex-col ve-py-2 ve-px-3">
+		veT`<div class="ve-flex-col ve-py-2 ve-px-3">
 			<label class="ve-split-v-center ve-mb-2">
 				<div class="ve-mr-2 ve-w-66 ve-no-shrink">Challenge Rating</div>
 				${selChallenge}
@@ -60,7 +60,7 @@ class LootGenGeneratorFindTreasureBase extends LootGenGeneratorBase {
 			<hr class="ve-hr-3">
 
 			<div class="ve-small ve-italic">${this._getHtmlBasedOn()}</div>
-		</div>`.appendTo(tabMeta.wrpTab);
+		</div>`.vee.appendTo(tabMeta.wrpTab);
 	}
 
 	_ft_pDoHandleClickRollLoot () {
@@ -191,14 +191,14 @@ export class LootGenGeneratorFindTreasure24 extends LootGenGeneratorFindTreasure
 			},
 		);
 
-		const stg = ee`<div class="ve-flex-col ve-w-100">
+		const stg = veT`<div class="ve-flex-col ve-w-100">
 			<label class="ve-split-v-center ve-mb-2">
 				<div class="ve-mr-2 ve-w-66 ve-no-shrink">Character Level</div>
 				${selCharacterLevel}
 			</label>
 		</div>`;
 
-		this._addHookBase("ft_isHoard", () => stg.toggleVe(!!this._state.ft_isHoard))();
+		this._addHookBase("ft_isHoard", () => stg.vee.toggle(!!this._state.ft_isHoard))();
 
 		return stg;
 	}

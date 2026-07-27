@@ -21,7 +21,7 @@ class _RenderableCollectionStatsCols extends RenderableCollectionGenericRows {
 	}
 
 	_populateRow ({comp, wrpRow, entity}) {
-		wrpRow.addClass("ve-py-1p");
+		wrpRow.vee.addClass("ve-py-1p");
 
 		const meta = InitiativeTrackerStatColumnFactory.fromPopulateWith({populateWith: comp._state.populateWith});
 
@@ -31,9 +31,9 @@ class _RenderableCollectionStatsCols extends RenderableCollectionGenericRows {
 
 		const btnVisible = InitiativeTrackerUi.getBtnPlayerVisible({
 			isVisible: comp._state.isPlayerVisible,
-			fnOnClick: () => comp._state.isPlayerVisible = btnVisible.hasClass("ve-btn-primary--half")
+			fnOnClick: () => comp._state.isPlayerVisible = btnVisible.vee.hasClass("ve-btn-primary--half")
 				? IS_PLAYER_VISIBLE_PLAYER_UNITS_ONLY
-				: btnVisible.hasClass("ve-btn-primary")
+				: btnVisible.vee.hasClass("ve-btn-primary")
 					? IS_PLAYER_VISIBLE_ALL
 					: IS_PLAYER_VISIBLE_NONE,
 			isTriState: true,
@@ -43,7 +43,7 @@ class _RenderableCollectionStatsCols extends RenderableCollectionGenericRows {
 
 		const padDrag = this._utils.getPadDrag({wrpRow});
 
-		ee(wrpRow)`
+		veT(wrpRow)`
 			<div class="ve-col-5 ve-pr-1">${meta.constructor.NAME}</div>
 			<div class="ve-col-3 ve-pr-1">${iptAbv}</div>
 			<div class="ve-col-1-5 ve-text-center">${cbIsEditable}</div>
@@ -182,24 +182,24 @@ export class InitiativeTrackerSettings extends BaseComponent {
 				}),
 		);
 
-		const btnAddRow = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-bb-0 ve-bbr-0 ve-bbl-0" title="Add"><span class="glyphicon glyphicon-plus"></span></button>`
-			.onn("click", evt => ContextUtil.pOpenMenu(evt, menuAddStatsCol));
+		const btnAddRow = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-bb-0 ve-bbr-0 ve-bbl-0" title="Add"><span class="glyphicon glyphicon-plus"></span></button>`
+			.vee.onn("click", evt => ContextUtil.pOpenMenu(evt, menuAddStatsCol));
 
-		const wrpTblStatsHead = ee`<div class="ve-flex-vh-center ve-w-100 ve-mb-2 ve-bb-1p-trans">
+		const wrpTblStatsHead = veT`<div class="ve-flex-vh-center ve-w-100 ve-mb-2 ve-bb-1p-trans">
 			<div class="ve-col-5">Contains</div>
 			<div class="ve-col-3">Abbreviation</div>
 			<div class="ve-col-1-5 ve-text-center ve-help" title="Only affects creatures. Players are always editable.">Editable</div>
 			<div class="ve-col-1-5">&nbsp;</div>
 			<div class="ve-col-1 ve-flex-v-center ve-flex-h-right">${btnAddRow}</div>
 		</div>`
-			.appendTo(eleModalInner);
+			.vee.appendTo(eleModalInner);
 
-		this._addHookBase("isStatsAddColumns", () => wrpTblStatsHead.toggleVe(this._state.isStatsAddColumns))();
+		this._addHookBase("isStatsAddColumns", () => wrpTblStatsHead.vee.toggle(this._state.isStatsAddColumns))();
 	}
 
 	_pGetShowModalResults_renderSection_additionalCols_body ({eleModalInner}) {
-		const wrpRows = ee`<div class="ve-pr-1 ve-h-120p ve-flex-col ve-overflow-y-auto ve-relative"></div>`.appendTo(eleModalInner);
-		this._addHookBase("isStatsAddColumns", () => wrpRows.toggleVe(this._state.isStatsAddColumns))();
+		const wrpRows = veT`<div class="ve-pr-1 ve-h-120p ve-flex-col ve-overflow-y-auto ve-relative"></div>`.vee.appendTo(eleModalInner);
+		this._addHookBase("isStatsAddColumns", () => wrpRows.vee.toggle(this._state.isStatsAddColumns))();
 
 		const renderableCollectionStatsCols = new _RenderableCollectionStatsCols(
 			{
@@ -216,10 +216,10 @@ export class InitiativeTrackerSettings extends BaseComponent {
 	/* -------------------------------------------- */
 
 	_pGetShowModalResults_renderFooter ({eleModalFooter, doClose}) {
-		const btnSave = ee`<button class="ve-btn ve-btn-primary ve-btn-sm ve-w-100">Save</button>`
-			.onn("click", () => doClose(true));
+		const btnSave = veT`<button class="ve-btn ve-btn-primary ve-btn-sm ve-w-100">Save</button>`
+			.vee.onn("click", () => doClose(true));
 
-		ee(eleModalFooter)`<div class="ve-w-100 ve-py-3 ve-no-shrink">
+		veT(eleModalFooter)`<div class="ve-w-100 ve-py-3 ve-no-shrink">
 			${btnSave}
 		</div>`;
 	}

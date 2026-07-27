@@ -1,23 +1,61 @@
-"use strict";
+class TablePageSublistManager extends SublistManager {
+	static _getRowTemplate () {
+		return [
+			new SublistCellTemplate({
+				name: "Name",
+				css: "ve-bold ve-col-12 ve-px-0",
+				colStyle: "",
+			}),
+		];
+	}
+
+	pGetSublistItem (ent, hash) {
+		const displayName = this._listPage._getDisplayName(ent);
+		const cellsText = [displayName];
+
+		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner" title="${displayName.qq()}">
+				${this.constructor._getRowCellsHtml({values: cellsText})}
+			</a>
+		</div>`
+			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
+
+		const listItem = new ListItem(
+			hash,
+			ele,
+			displayName,
+			{
+				sortName: displayName,
+			},
+			{
+				hash,
+				entity: ent,
+				mdRow: [...cellsText],
+			},
+		);
+		return listItem;
+	}
+}
 
 class _GroupHeaderManager {
 	constructor ({ent, wrpList, groupHeaderManagers}) {
 		this._wrpList = wrpList;
 		this._isVisible = true;
 
-		this._dispShowHide = ee`<div class="ve-lst__tgl-item-group ve-relative ve-top-n1p">[\u2013]</div>`;
+		this._dispShowHide = veT`<div class="ve-lst__tgl-item-group ve-relative ve-top-n1p">[\u2212]</div>`;
 
-		this._btnHeader = ee`<div class="ve-lst__item-group-header ve-mt-3 ve-split-v-center ve-py-1 ve-no-select ve-clickable" title="SHIFT to Toggle All">
+		this._btnHeader = veT`<div class="ve-lst__item-group-header ve-mt-3 ve-split-v-center ve-py-1 ve-no-select ve-clickable" title="SHIFT to Toggle All">
 			<div class="ve-split-v-center ve-w-100 ve-min-w-0 ve-mr-2">
 				<div class="ve-bold">${ent.name}</div>
 				<div class="${Parser.sourceJsonToSourceClassname(ent.source)}" title="${Parser.sourceJsonToFull(ent.source).qq()}">${Parser.sourceJsonToAbv(ent.source)}</div>
 			</div>
 			${this._dispShowHide}
 		</div>`
-			.onn("click", evt => {
-				this.toggleVe();
+			.vee.onn("click", evt => {
+				this.toggle();
 				if (!evt.shiftKey) return;
-				groupHeaderManagers.forEach(it => it.toggleVe(this._isVisible));
+				groupHeaderManagers.forEach(it => it.toggle(this._isVisible));
 			});
 
 		groupHeaderManagers.push(this);
@@ -25,21 +63,21 @@ class _GroupHeaderManager {
 
 	get btnHeader () { return this._btnHeader; }
 
-	toggleVe (isVisible) {
+	toggle (isVisible) {
 		if (isVisible === undefined) isVisible = !this._isVisible;
 
-		this._wrpList.toggleVe(isVisible);
-		this._dispShowHide.html(isVisible ? `[\u2013]` : `[+]`);
+		this._wrpList.vee.toggle(isVisible);
+		this._dispShowHide.vee.html(isVisible ? `[\u2212]` : `[+]`);
 
 		this._isVisible = isVisible;
 	}
 
 	onListUpdate ({list}) {
-		this._btnHeader.toggleVe(!!list.visibleItems.length);
+		this._btnHeader.vee.toggle(!!list.visibleItems.length);
 	}
 }
 
-class TableListPage extends ListPage {
+export class TableListPage extends ListPage {
 	constructor (opts = {}) {
 		super({
 			...opts,
@@ -51,10 +89,11 @@ class TableListPage extends ListPage {
 		});
 
 		this._listMetas = {};
+		this.sublistManager = new TablePageSublistManager();
 	}
 
-	_getHash (ent) { throw new Error(`Unimplemented!`); }
 	_getHeaderId (ent) { throw new Error(`Unimplemented!`); }
+	_getRenderedTable (ent) { throw new Error(`Unimplemented!`); }
 
 	get primaryLists () {
 		return Object.values(this._listMetas).map(it => it.list);
@@ -83,7 +122,7 @@ class TableListPage extends ListPage {
 			.flat()
 			.sort((a, b) => this.constructor._FN_SORT(a, b, {sortBy: "source"}));
 
-		const wrpLists = es(`[data-name="tablepage-wrp-list"]`);
+		const wrpLists = veEs(`#list`);
 		const groupHeaderManagers = [];
 
 		for (let i = 0; i < this._dataList.length; i++) {
@@ -91,14 +130,14 @@ class TableListPage extends ListPage {
 
 			const headerId = this._getHeaderId(ent);
 			if (!this._listMetas[headerId]) {
-				const wrpList = ee`<div class="ve-flex-col ve-w-100 list"></div>`;
+				const wrpList = veT`<div class="ve-flex-col ve-w-100 list"></div>`;
 
 				const isFirst = !Object.keys(this._listMetas).length;
 				const list = this._initList({
-					iptSearch: es("#lst__search"),
+					iptSearch: veEs("#lst__search"),
 					wrpList,
-					btnReset: es("#reset"),
-					btnClear: es(`#lst__search-glass`),
+					btnReset: veEs("#reset"),
+					btnClear: veEs(`#lst__search-glass`),
 					dispPageTagline: isFirst ? document.getElementById(`page__subtitle`) : null,
 					isBindFindHotkey: isFirst,
 					optsList: {
@@ -109,10 +148,10 @@ class TableListPage extends ListPage {
 				const groupHeader = new _GroupHeaderManager({ent, wrpList, groupHeaderManagers});
 				list.on("updated", () => groupHeader.onListUpdate({list}));
 
-				ee`<div class="ve-flex-col">
+				veT`<div class="ve-flex-col">
 					${groupHeader.btnHeader}
 					${wrpList}
-				</div>`.appendTo(wrpLists);
+				</div>`.vee.appendTo(wrpLists);
 
 				this._listMetas[headerId] = {
 					list,
@@ -120,20 +159,21 @@ class TableListPage extends ListPage {
 			}
 
 			const displayName = this._getDisplayName(ent);
-			const hash = this._getHash(ent);
+			const hash = UrlUtil.autoEncodeHash(ent);
 
-			const ele = ee`<div class="ve-lst__row ve-flex-col">
+			const ele = veT`<div class="ve-lst__row ve-flex-col">
 				<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">${displayName}</a>
-			</div>`;
+			</div>`
+				.vee.onn("contextmenu", evt => this._openContextMenu(evt, this._listMetas[headerId].list, listItem))
+				.vee.onn("click", evt => this._listMetas[headerId].list.doSelect(listItem, evt));
 
 			const listItem = new ListItem(
 				i,
 				ele,
 				displayName,
+				{},
 				{
 					hash,
-				},
-				{
 					...this._getListItemData(ent, i),
 				},
 			);
@@ -145,41 +185,32 @@ class TableListPage extends ListPage {
 	handleFilterChange () { /* No-op */ }
 	async _pOnLoad_pInitPrimaryLists () { /* No-op */ }
 	_pOnLoad_initVisibleItemsDisplay () { /* No-op */ }
-	async _pOnLoad_pLoadListState () { /* No-op */ }
 	_pOnLoad_bindMiscButtons () { /* No-op */ }
-	pDoLoadSubHash () { /* No-op */ }
 
 	_pDoLoadHash ({id, lockToken}) {
 		Renderer.get().setFirstSection(true);
 
 		const ent = this._dataList[id];
 
-		const entTable = Renderer.table.getConvertedEncounterOrNamesTable({
-			group: ent,
-			tableRaw: ent,
-			fnGetNameCaption: this._getDisplayName.bind(this),
-			colLabel1: this.constructor._COL_NAME_1,
-		});
+		const elePageContent = veEs("#pagecontent")
+			.vee.empty()
+			.vee.appends(this._getRenderedTable(ent));
 
-		const htmlTable = Renderer.get().render(entTable);
-
-		const elePageContent = es("#pagecontent")
-			.empty()
-			.appends(htmlTable);
-
-		const btnRoll = ee`<span class="ve-roller" data-name="btn-roll">${ent.diceExpression}</span>`
-			.onn("click", async () => {
+		const btnRoll = veT`<span class="ve-roller" data-name="btn-roll">${ent.diceExpression}</span>`
+			.vee.onn("click", async () => {
 				await this._pRoll(ent);
 			})
-			.onn("mousedown", evt => {
+			.vee.onn("mousedown", evt => {
 				evt.preventDefault();
 			});
 
 		elePageContent
-			.findAll(`[data-rd-isroller="true"]`)[0]
-			.attr(`data-rd-isroller`, null)
-			.empty()
-			.appends(btnRoll);
+			.vee.findAll(`[data-rd-isroller="true"]`)[0]
+			.vee.attr(`data-rd-isroller`, null)
+			.vee.empty()
+			.vee.appends(btnRoll);
+
+		this._updateSelected();
 	}
 
 	async _pRoll (ent) {
@@ -201,7 +232,7 @@ class TableListPage extends ListPage {
 		const ptResult = Renderer.get().render(row.result.replace(/{@dice /g, "{@autodice "));
 		const ptAttitude = this._roll_getPtAttitude(row);
 
-		const ele = ee`<span><strong>${roll}</strong> ${ptResult}${ptAttitude}</span>`;
+		const ele = veT`<span><strong>${roll}</strong> ${ptResult}${ptAttitude}</span>`;
 
 		Renderer.dice.addRoll({
 			rolledBy: {
@@ -231,20 +262,20 @@ class TableListPage extends ListPage {
 			});
 		const rendered = Renderer.get().render(entry);
 
-		const out = ee`<span> | Attitude ${rendered}</span>`;
+		const out = veT`<span> | Attitude ${rendered}</span>`;
 
 		out
-			.findAll(`[data-tablepage-roller]`)
+			.vee.findAll(`[data-tablepage-roller]`)
 			.forEach((ele, i) => {
 				const {rollText, displayText} = diceTagMetas[i];
 
-				const eleRoller = ee`<span class="ve-roller render-roller">${displayText || rollText}</span>`
-					.onn("click", () => {
+				const eleRoller = veT`<span class="ve-roller render-roller">${displayText || rollText}</span>`
+					.vee.onn("click", () => {
 						const res = doRoll(rollText);
-						eleRoller.next(`[data-tablepage-is-attitude-result="true"]`)
-							.txt(getAttitudeDisplay(res));
+						eleRoller.vee.next(`[data-tablepage-is-attitude-result="true"]`)
+							.vee.txt(getAttitudeDisplay(res));
 					})
-					.onn("mousedown", evt => {
+					.vee.onn("mousedown", evt => {
 						evt.preventDefault();
 					});
 

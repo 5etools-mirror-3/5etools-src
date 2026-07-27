@@ -88,18 +88,18 @@ export class EncounterBuilderPartyCustomAdvanced extends EncounterBuilderPartyBa
 	}
 
 	render ({stgGroup}) {
-		const btnAddPlayers = ee`<button class="ve-btn ve-btn-primary ve-btn-xs"><span class="glyphicon glyphicon-plus"></span> Add Player</button>`
-			.onn("click", () => this._doAddPlayer());
+		const btnAddPlayers = veT`<button class="ve-btn ve-btn-primary ve-btn-xs"><span class="glyphicon glyphicon-plus"></span> Add Player</button>`
+			.vee.onn("click", () => this._doAddPlayer());
 
-		const btnAddAdvancedCol = ee`<button class="ve-btn ve-btn-primary ve-btn-xxs ecgen-player__btn-inline ve-h-ipt-xs ve-bl-0 ve-bb-0 ve-bbl-0 ve-bbr-0 ve-btl-0 ve-ml-n1" title="Add Column" tabindex="-1"><span class="glyphicon glyphicon-list-alt"></span></button>`
-			.onn("click", () => this._doAddColExtraAdvanced());
+		const btnAddAdvancedCol = veT`<button class="ve-btn ve-btn-primary ve-btn-xxs ecgen-player__btn-inline ve-h-ipt-xs ve-bl-0 ve-bb-0 ve-bbl-0 ve-bbr-0 ve-btl-0 ve-ml-n1" title="Add Column" tabindex="-1"><span class="glyphicon glyphicon-list-alt"></span></button>`
+			.vee.onn("click", () => this._doAddColExtraAdvanced());
 
-		const wrpHeaders = ee`<div class="ve-flex"></div>`;
-		const wrpFooters = ee`<div class="ve-flex"></div>`;
+		const wrpHeaders = veT`<div class="ve-flex"></div>`;
+		const wrpFooters = veT`<div class="ve-flex"></div>`;
 
-		const wrpRows = ee`<div class="ve-flex-col"></div>`;
+		const wrpRows = veT`<div class="ve-flex-col"></div>`;
 
-		const stg = ee`<div class="ve-overflow-x-auto ve-flex-col">
+		const stg = veT`<div class="ve-overflow-x-auto ve-flex-col">
 			<div class="ve-flex-h-center ve-mb-2 ve-bb-1p ve-small-caps ve-self-flex-start">
 				<div class="ve-w-100p ve-mr-1 ve-h-ipt-xs ve-no-shrink">Name</div>
 				<div class="ve-w-40p ve-text-center ve-mr-1 ve-h-ipt-xs ve-no-shrink">Level</div>
@@ -122,7 +122,7 @@ export class EncounterBuilderPartyCustomAdvanced extends EncounterBuilderPartyBa
 				</div>
 			</div>
 		</div>`
-			.appendTo(stgGroup);
+			.vee.appendTo(stgGroup);
 
 		const rdState = {
 			wrpRowsAdvanced: wrpRows,

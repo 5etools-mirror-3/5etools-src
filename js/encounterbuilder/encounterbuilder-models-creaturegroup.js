@@ -103,8 +103,8 @@ export class EncounterBuilderCreatureGroupBase {
 	}
 
 	_getRenderedRowElements_getBtnShuffle ({encounterBuilderComp, creatureGroup}) {
-		return ee`<button title="Randomize Monster" class="ve-btn ve-btn-default ve-btn-xs"><span class="glyphicon glyphicon-random"></span></button>`
-			.onn("click", () => encounterBuilderComp.doShuffleCreatureGroup({creatureGroup}));
+		return veT`<button title="Randomize Monster" class="ve-btn ve-btn-default ve-btn-xs"><span class="glyphicon glyphicon-random"></span></button>`
+			.vee.onn("click", () => encounterBuilderComp.doShuffleCreatureGroup({creatureGroup}));
 	}
 
 	/**
@@ -119,7 +119,7 @@ export class EncounterBuilderCreatureGroupBase {
 	}
 
 	_getWrpHoverOuter () {
-		return ee`<div class="ve-flex-vh-center ve-mr-2 ve-w-16p"></div>`;
+		return veT`<div class="ve-flex-vh-center ve-mr-2 ve-w-16p"></div>`;
 	}
 
 	getCopy () {
@@ -211,7 +211,7 @@ export class EncounterBuilderCreatureGroupEntityCreature extends EncounterBuilde
 
 	_doBindCreatureHover ({comp, ele}) {
 		return ele
-			.onn("mouseover", evt => {
+			.vee.onn("mouseover", evt => {
 				return Renderer.hover.pHandleLinkMouseOver(
 					evt,
 					evt.currentTarget,
@@ -224,8 +224,8 @@ export class EncounterBuilderCreatureGroupEntityCreature extends EncounterBuilde
 					},
 				);
 			})
-			.onn("mousemove", evt => Renderer.hover.handleLinkMouseMove(evt, evt.currentTarget))
-			.onn("mouseleave", evt => Renderer.hover.handleLinkMouseLeave(evt, evt.currentTarget));
+			.vee.onn("mousemove", evt => Renderer.hover.handleLinkMouseMove(evt, evt.currentTarget))
+			.vee.onn("mouseleave", evt => Renderer.hover.handleLinkMouseLeave(evt, evt.currentTarget));
 	}
 
 	// (Exposed for Plutonium use)
@@ -248,8 +248,8 @@ export class EncounterBuilderCreatureGroupEntityCreature extends EncounterBuilde
 			if (!hoverMetaToken || hoverMetaToken?.hashCreature !== hashCreature) {
 				if (hoverMetaToken) hoverMetaToken.pFnCleanup().then(null);
 
-				const hovToken = ee`<span class="glyphicon glyphicon glyphicon-record ve-top-0" title="Hover to View Token"></span>`
-					.appendTo(wrpHovToken.empty());
+				const hovToken = veT`<span class="glyphicon glyphicon glyphicon-record ve-top-0" title="Hover to View Token"></span>`
+					.vee.appendTo(wrpHovToken.vee.empty());
 
 				hoverMetaToken = Renderer.monster.hover.bindTokenMouseover({mon: comp._state.creature, ele: hovToken});
 				hoverMetaToken.hashCreature = hashCreature;
@@ -258,8 +258,8 @@ export class EncounterBuilderCreatureGroupEntityCreature extends EncounterBuilde
 			if (!hoverMetaImage || hoverMetaImage?.hashCreature !== hashCreature) {
 				if (hoverMetaImage) hoverMetaImage.pFnCleanup().then(null);
 
-				const hovImage = ee`<span class="glyphicon glyphicon-picture ve-top-0" title="Hover to View Image"></span>`
-					.appendTo(wrpHovImage.empty());
+				const hovImage = veT`<span class="glyphicon glyphicon-picture ve-top-0" title="Hover to View Image"></span>`
+					.vee.appendTo(wrpHovImage.vee.empty());
 
 				hoverMetaImage = Renderer.monster.hover.bindFluffImageMouseover({mon: comp._state.creature, ele: hovImage});
 				hoverMetaImage.hashCreature = hashCreature;
@@ -287,7 +287,7 @@ export class EncounterBuilderCreatureGroupEntityCreature extends EncounterBuilde
 	) {
 		const fnsCleanup = [];
 
-		const dispCreature = ee`<div class="ve-mr-2 ve-mr-auto ve-grow"></div>`;
+		const dispCreature = veT`<div class="ve-mr-2 ve-mr-auto ve-grow"></div>`;
 
 		const pDoScaleCr = async ({targetCr = null} = {}) => {
 			// Fetch original
@@ -305,12 +305,12 @@ export class EncounterBuilderCreatureGroupEntityCreature extends EncounterBuilde
 
 			if (targetCr == null) {
 				comp._state.creature = ent;
-				iptCr.val(Parser.numberToCr(baseCrNum));
+				iptCr.vee.val(Parser.numberToCr(baseCrNum));
 				return;
 			}
 
 			if (!targetCr) {
-				iptCr.val(Parser.numberToCr(scaledToNum ?? baseCrNum));
+				iptCr.vee.val(Parser.numberToCr(scaledToNum ?? baseCrNum));
 				return;
 			}
 
@@ -322,20 +322,20 @@ export class EncounterBuilderCreatureGroupEntityCreature extends EncounterBuilde
 					type: "danger",
 				});
 
-				iptCr.val(Parser.numberToCr(scaledToNum ?? baseCrNum));
+				iptCr.vee.val(Parser.numberToCr(scaledToNum ?? baseCrNum));
 				return;
 			}
 
 			const targetCrNum = Parser.crToNumber(targetCrClean);
 
 			if (targetCrNum === scaledToNum) {
-				iptCr.val(Parser.numberToCr(scaledToNum ?? baseCrNum));
+				iptCr.vee.val(Parser.numberToCr(scaledToNum ?? baseCrNum));
 				return;
 			}
 
 			if (targetCrNum === baseCrNum) {
 				comp._state.creature = ent;
-				iptCr.val(Parser.numberToCr(baseCrNum));
+				iptCr.vee.val(Parser.numberToCr(baseCrNum));
 				return;
 			}
 
@@ -360,20 +360,20 @@ export class EncounterBuilderCreatureGroupEntityCreature extends EncounterBuilde
 		};
 
 		let pScalingCr = null;
-		const iptCr = ee`<input class="ve-text-center ve-form-control form-control--minimal ve-input-xs ve-w-50p">`
-			.onn("click", () => iptCr.selecte())
-			.onn("change", async () => {
+		const iptCr = veT`<input class="ve-text-center ve-form-control form-control--minimal ve-input-xs ve-w-50p">`
+			.vee.onn("click", () => iptCr.vee.select())
+			.vee.onn("change", async () => {
 				try {
 					await pScalingCr;
 				} catch (e) { setTimeout(() => { throw e; }); }
 
-				pScalingCr = pDoScaleCr({targetCr: iptCr.val().trim()});
+				pScalingCr = pDoScaleCr({targetCr: iptCr.vee.val().trim()});
 				await pScalingCr;
 				pScalingCr = null;
 			});
 
-		const btnResetCr = ee`<button title="Reset CR" class="ve-btn ve-btn-default ve-btn-xs ve-w-24p"><span class="glyphicon glyphicon-refresh"></span></button>`
-			.onn("click", async () => {
+		const btnResetCr = veT`<button title="Reset CR" class="ve-btn ve-btn-default ve-btn-xs ve-w-24p"><span class="glyphicon glyphicon-refresh"></span></button>`
+			.vee.onn("click", async () => {
 				try {
 					await pScalingCr;
 				} catch (e) { setTimeout(() => { throw e; }); }
@@ -383,10 +383,10 @@ export class EncounterBuilderCreatureGroupEntityCreature extends EncounterBuilde
 				pScalingCr = null;
 			});
 		comp._addHookBase("creature", () => {
-			btnResetCr.prop("disabled", !comp._state.creature._isScaledCr);
+			btnResetCr.vee.prop("disabled", !comp._state.creature._isScaledCr);
 		})();
 
-		const stgCr = ee`<div class="ve-mr-2 ve-no-wrap ve-no-shrink ve-flex-v-center">
+		const stgCr = veT`<div class="ve-mr-2 ve-no-wrap ve-no-shrink ve-flex-v-center">
 			<span class="ve-mr-2">CR</span>
 			<div class="ve-flex-v-center ve-input-group">
 				${iptCr}
@@ -395,21 +395,21 @@ export class EncounterBuilderCreatureGroupEntityCreature extends EncounterBuilde
 		</div>`;
 
 		comp._addHookBase("creature", () => {
-			iptCr.val(comp._state.creature.cr?.cr || comp._state.creature.cr);
+			iptCr.vee.val(comp._state.creature.cr?.cr || comp._state.creature.cr);
 
-			stgCr.toggleVe(ScaleCreature.isCrInScaleRange(comp._state.creature));
+			stgCr.vee.toggle(ScaleCreature.isCrInScaleRange(comp._state.creature));
 
 			if (!Renderer.monster.isScaled(comp._state.creature)) {
-				dispCreature.html(`${rendererWrapped.er(`{@creature ${comp._state.creature.name}|${comp._state.creature.source}|${comp._state.creature._displayName || comp._state.creature.name}}`)}`);
+				dispCreature.vee.html(`${rendererWrapped.er(`{@creature ${comp._state.creature.name}|${comp._state.creature.source}|${comp._state.creature._displayName || comp._state.creature.name}}`)}`);
 				return;
 			}
 
 			dispCreature
-				.empty()
+				.vee.empty()
 				.append(
 					this._doBindCreatureHover({
 						comp,
-						ele: ee`<span class="ve-help ve-help--hover">${comp._state.creature._displayName || comp._state.creature.name}</span>`,
+						ele: veT`<span class="ve-help ve-help--hover">${comp._state.creature._displayName || comp._state.creature.name}</span>`,
 					}),
 				);
 		})();

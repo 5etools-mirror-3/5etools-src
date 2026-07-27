@@ -18,7 +18,7 @@ export class StatGenUiRenderLevelOneRace extends StatGenUiRenderLevelOneEntityBa
 
 		const {stgTashasControls, dispTashas} = this._getPtsTashas();
 
-		out.stgSel.appends(stgTashasControls);
+		out.stgSel.vee.appends(stgTashasControls);
 
 		out.dispTashas = dispTashas;
 
@@ -52,7 +52,7 @@ export class StatGenUiRenderLevelOneRace extends StatGenUiRenderLevelOneEntityBa
 	}
 
 	_getHkPreview ({hrPreview}) {
-		return () => hrPreview.toggleVe(this._parent._state[this._propIsPreview] && this._parent._state.common_isShowTashasRules && this._parent._state.common_isAllowTashasRules);
+		return () => hrPreview.vee.toggle(this._parent._state[this._propIsPreview] && this._parent._state.common_isShowTashasRules && this._parent._state.common_isAllowTashasRules);
 	}
 
 	_getPtsTashas () {
@@ -64,7 +64,7 @@ export class StatGenUiRenderLevelOneRace extends StatGenUiRenderLevelOneEntityBa
 			},
 		);
 
-		const stgTashasControls = ee`<div class="ve-flex-col ve-w-100">
+		const stgTashasControls = veT`<div class="ve-flex-col ve-w-100">
 			<label class="ve-flex-v-center ve-mb-1">
 				<div class="ve-mr-2">Allow Origin Customization</div>
 				${ComponentUiUtil.getCbBool(this._parent, "common_isTashas")}
@@ -77,16 +77,16 @@ export class StatGenUiRenderLevelOneRace extends StatGenUiRenderLevelOneEntityBa
 			</div>
 		</div>`;
 		this._parent._addHookBase("common_isAllowTashasRules", () => {
-			stgTashasControls.toggleVe(this._parent._state.common_isAllowTashasRules);
+			stgTashasControls.vee.toggle(this._parent._state.common_isAllowTashasRules);
 		})();
 
-		const dispTashas = ee`<div class="ve-flex-col"><div class="ve-italic ve-muted">Loading...</div></div>`;
+		const dispTashas = veT`<div class="ve-flex-col"><div class="ve-italic ve-muted">Loading...</div></div>`;
 		DataLoader.pCacheAndGet(UrlUtil.PG_VARIANTRULES, Parser.SRC_TCE, UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_VARIANTRULES]({name: "Customizing Your Origin", source: Parser.SRC_TCE}))
 			.then(rule => {
-				ee(dispTashas.empty())`${Renderer.hover.getHoverContent_stats(UrlUtil.PG_VARIANTRULES, rule)}<hr class="ve-hr-3">`;
+				veT(dispTashas.vee.empty())`${Renderer.hover.getHoverContent_stats(UrlUtil.PG_VARIANTRULES, rule)}<hr class="ve-hr-3">`;
 			});
 		const hkIsShowTashas = () => {
-			dispTashas.toggleVe(this._parent._state.common_isShowTashasRules && this._parent._state.common_isAllowTashasRules);
+			dispTashas.vee.toggle(this._parent._state.common_isShowTashasRules && this._parent._state.common_isAllowTashasRules);
 		};
 		this._parent._addHookBase("common_isShowTashasRules", hkIsShowTashas);
 		this._parent._addHookBase("common_isAllowTashasRules", hkIsShowTashas);

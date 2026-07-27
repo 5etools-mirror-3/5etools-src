@@ -200,16 +200,16 @@ export class MultiFilter extends FilterBase {
 	}
 
 	_getHeaderControls (opts) {
-		const wrpSummary = e_({
+		const wrpSummary = veE({
 			tag: "div",
 			clazz: "ve-fltr__summary_item",
-		}).hideVe();
+		}).vee.hide();
 
 		const btnForceMobile = this._isAddDropdownToggle ? ComponentUiUtil.getBtnBool(
 			this,
 			"isUseDropdowns",
 			{
-				ele: ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-ml-2">Show as Dropdowns</button>`,
+				ele: veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-ml-2">Show as Dropdowns</button>`,
 				stateName: "uiMeta",
 				stateProp: "_uiMeta",
 			},
@@ -223,24 +223,24 @@ export class MultiFilter extends FilterBase {
 		this._addHook("uiMeta", "isUseDropdowns", hkChildrenDropdowns);
 		hkChildrenDropdowns();
 
-		const btnResetAll = e_({
+		const btnResetAll = veE({
 			tag: "button",
 			clazz: "ve-btn ve-btn-default ve-btn-xs ve-ml-2",
-			text: "Reset All",
+			txt: "Reset All",
 			click: () => this._filters.forEach(it => it.reset()),
 		});
 
-		const wrpBtns = e_({tag: "div", clazz: "ve-flex", children: [btnForceMobile, btnResetAll].filter(Boolean)});
+		const wrpBtns = veE({tag: "div", clazz: "ve-flex", children: [btnForceMobile, btnResetAll].filter(Boolean)});
 		this._getHeaderControls_addExtraStateBtns(opts, wrpBtns);
 
 		const btnShowHide = this._getBtnShowHide({isMulti: opts.isMulti});
-		const wrpControls = e_({
+		const wrpControls = veE({
 			tag: "div",
 			clazz: "ve-flex-v-center",
 			children: [
 				wrpSummary,
 				wrpBtns,
-				e_({
+				veE({
 					tag: "div",
 					clazz: "ve-btn-group ve-flex-v-center ve-ml-2",
 					children: [
@@ -252,17 +252,17 @@ export class MultiFilter extends FilterBase {
 		});
 
 		const hkIsHidden = () => {
-			wrpBtns.toggleVe(!this._uiMeta.isHidden);
-			btnShowHide.toggleClass("ve-active", this._uiMeta.isHidden);
-			this._wrpChildren.toggleVe(!this._uiMeta.isHidden);
-			wrpSummary.toggleVe(this._uiMeta.isHidden);
+			wrpBtns.vee.toggle(!this._uiMeta.isHidden);
+			btnShowHide.vee.toggleClass("ve-active", this._uiMeta.isHidden);
+			this._wrpChildren.vee.toggle(!this._uiMeta.isHidden);
+			wrpSummary.vee.toggle(this._uiMeta.isHidden);
 
 			// Skip updating renders if results would be invisible
 			if (!this._uiMeta.isHidden) return;
 
 			const numActive = this._filters.map(it => it.getValues()[it.header]._isActive).filter(Boolean).length;
 			if (numActive) {
-				e_({ele: wrpSummary, title: `${numActive} hidden active filter${numActive === 1 ? "" : "s"}`, text: `(${numActive})`});
+				veE({ele: wrpSummary, title: `${numActive} hidden active filter${numActive === 1 ? "" : "s"}`, txt: `(${numActive})`});
 			}
 		};
 		this._addHook("uiMeta", "isHidden", hkIsHidden);
@@ -275,7 +275,7 @@ export class MultiFilter extends FilterBase {
 	_getHeaderControls_addExtraStateBtns (opts, wrpStateBtnsOuter) {}
 
 	render (opts) {
-		const btnAndOr = e_({
+		const btnAndOr = veE({
 			tag: "button",
 			clazz: `ve-btn ve-btn-default ve-btn-xxs ve-italic ve-w-70p`,
 			click: () => this._state.mode = this._state.mode === "and" ? "or" : "and",
@@ -288,11 +288,11 @@ export class MultiFilter extends FilterBase {
 		hookAndOr();
 
 		const children = this._filters.map((it, i) => it.render({...opts, isMulti: true, isFirst: i === 0}));
-		this._wrpChildren = ee`<div>${children}</div>`;
+		this._wrpChildren = veT`<div>${children}</div>`;
 
 		const wrpControls = this._getHeaderControls(opts);
 
-		return this.__wrpFilter = ee`<div class="ve-flex-col">
+		return this.__wrpFilter = veT`<div class="ve-flex-col">
 			${opts.isFirst ? "" : `<div class="ve-fltr__dropdown-divider ve-mb-1"></div>`}
 			<div class="ve-split ve-fltr__h ve-fltr__h--multi ${this._minimalUi ? "ve-fltr__minimal-hide" : ""} ve-mb-1">
 				<div class="ve-flex-v-center">
@@ -377,7 +377,7 @@ export class MultiFilter extends FilterBase {
 		const isHeaderMatch = this._getHeaderDisplayName().toLowerCase().includes(searchTerm);
 
 		if (isHeaderMatch) {
-			if (this.__wrpFilter) this.__wrpFilter.toggleClass("ve-fltr__hidden--search", false);
+			if (this.__wrpFilter) this.__wrpFilter.vee.toggleClass("ve-fltr__hidden--search", false);
 			// Force-display the children if the parent is visible
 			this._filters.forEach(it => it.handleSearch(""));
 			return true;
@@ -385,7 +385,7 @@ export class MultiFilter extends FilterBase {
 
 		const numVisible = this._filters.map(it => it.handleSearch(searchTerm)).reduce((a, b) => a + b, 0);
 		if (!this.__wrpFilter) return;
-		this.__wrpFilter.toggleClass("ve-fltr__hidden--search", numVisible === 0);
+		this.__wrpFilter.vee.toggleClass("ve-fltr__hidden--search", numVisible === 0);
 	}
 
 	getDefaultMeta () {

@@ -95,7 +95,7 @@ class Hist {
 			for (let x = 0; x < primaryLists.length; ++x) {
 				const list = primaryLists[x];
 
-				const foundItemIx = list.items.findIndex(it => it.values.hash === link);
+				const foundItemIx = list.items.findIndex(it => it.data.hash === link);
 				if (~foundItemIx) {
 					if (getIndex) return {item: list.items[foundItemIx], x: x, y: foundItemIx, list};
 					return list.items[foundItemIx];
@@ -111,7 +111,7 @@ class Hist {
 			.then(() => {
 				// defer this, in case the list needs to filter first
 				setTimeout(() => {
-					const goTo = es("#listcontainer").findAll(".list a")[0]?.attr("href");
+					const goTo = veEs("#listcontainer").vee.findAll(".list a")[0]?.vee.attr("href");
 					if (!goTo) return;
 
 					const parts = location.hash.split(HASH_PART_SEP);

@@ -42,8 +42,8 @@ export class InitiativeTrackerDefaultParty extends BaseComponent {
 	}
 
 	_render_getBtnAdd ({rdState}) {
-		return ee`<button class="ve-btn ve-btn-default ve-btn-xs" title="Add Player"><span class="glyphicon glyphicon-plus"></span></button>`
-			.onn("click", async () => {
+		return veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="Add Player"><span class="glyphicon glyphicon-plus"></span></button>`
+			.vee.onn("click", async () => {
 				this._comp._state[this._prop] = [
 					...this._comp._state[this._prop],
 					await this._rowStateBuilder.pGetNewRowState(),
@@ -61,17 +61,17 @@ export class InitiativeTrackerDefaultParty extends BaseComponent {
 			rowStateBuilder: this._rowStateBuilder,
 		});
 		this._viewRowsDefaultPartyMeta = this._viewRowsDefaultParty.getRenderedView();
-		this._viewRowsDefaultPartyMeta.ele.appendTo(eleModalInner);
+		this._viewRowsDefaultPartyMeta.ele.vee.appendTo(eleModalInner);
 		rdState.fnsCleanup.push(this._viewRowsDefaultPartyMeta.cbDoCleanup);
 	}
 
 	/* -------------------------------------------- */
 
 	_render_renderFooter ({rdState, eleModalFooter}) {
-		const btnSave = ee`<button class="ve-btn ve-btn-primary ve-btn-sm ve-w-100">Save</button>`
-			.onn("click", () => rdState.cbDoClose(true));
+		const btnSave = veT`<button class="ve-btn ve-btn-primary ve-btn-sm ve-w-100">Save</button>`
+			.vee.onn("click", () => rdState.cbDoClose(true));
 
-		ee(eleModalFooter)`<div class="ve-w-100 ve-py-3 ve-no-shrink">
+		veT(eleModalFooter)`<div class="ve-w-100 ve-py-3 ve-no-shrink">
 			${btnSave}
 		</div>`;
 	}

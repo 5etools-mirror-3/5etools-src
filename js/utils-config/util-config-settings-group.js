@@ -17,14 +17,14 @@ export class ConfigSettingsGroup {
 	get groupId () { return this._groupId; }
 
 	render (rdState, {isLast = false} = {}) {
-		const wrpRows = ee`<div></div>`;
+		const wrpRows = veT`<div></div>`;
 
-		ee`<div class="ve-w-100">
+		veT`<div class="ve-w-100">
 			<h4>${this._name}</h4>
 			${wrpRows}
 			${isLast ? null : `<hr class="ve-hr-3 ve-mb-1">`}
 		</div>`
-			.appendTo(rdState.wrp);
+			.vee.appendTo(rdState.wrp);
 
 		this._configSettings
 			.forEach(configSetting => configSetting.render(rdState, wrpRows));

@@ -15,10 +15,10 @@ export class OmnisearchUtilsUi {
 	static getResultLink (resultDoc) {
 		const isFauxPage = this._isFauxPage(resultDoc);
 
-		if (isFauxPage) return ee`<span tabindex="0" ${resultDoc.h ? this._getResultLink_getHoverString(resultDoc.c, resultDoc.u, resultDoc.s, {isFauxPage}) : ""} class="omni__lnk-name ve-help">${resultDoc.cf}: ${resultDoc.n}</span>`;
+		if (isFauxPage) return veT`<span tabindex="0" ${resultDoc.h ? this._getResultLink_getHoverString(resultDoc.c, resultDoc.u, resultDoc.s, {isFauxPage}) : ""} class="omni__lnk-name ve-help">${resultDoc.cf}: ${resultDoc.n}</span>`;
 
 		const href = this.getResultHref(resultDoc);
-		return ee`<a href="${href}" ${resultDoc.h ? this._getResultLink_getHoverString(resultDoc.c, resultDoc.u, resultDoc.s, {isFauxPage}) : ""} class="omni__lnk-name">${resultDoc.cf}: ${resultDoc.n}</a>`;
+		return veT`<a href="${href}" ${resultDoc.h ? this._getResultLink_getHoverString(resultDoc.c, resultDoc.u, resultDoc.s, {isFauxPage}) : ""} class="omni__lnk-name">${resultDoc.cf}: ${resultDoc.n}</a>`;
 	}
 
 	static _getResultLink_getHoverString (category, url, src, {isFauxPage = false} = {}) {
@@ -34,19 +34,19 @@ export class OmnisearchUtilsUi {
 
 	static bindBtnCyclePartneredMode ({btn, omnisearchState, fnDoSearch}) {
 		btn
-			.onn("click", () => {
+			.vee.onn("click", () => {
 				omnisearchState.setPartneredMode(PARTNERED_CONTENT_MODES.getNext(omnisearchState.getPartneredMode()));
 			})
-			.onn("contextmenu", evt => {
+			.vee.onn("contextmenu", evt => {
 				evt.preventDefault();
 				omnisearchState.setPartneredMode(PARTNERED_CONTENT_MODES.getPrevious(omnisearchState.getPartneredMode()));
 			});
 
 		omnisearchState.addHookPartnered((val) => {
 			btn
-				.tooltip(PARTNERED_CONTENT_MODE_TOOLTIP[omnisearchState.getPartneredMode()] || "")
-				.txt(PARTNERED_CONTENT_MODE_TEXT[omnisearchState.getPartneredMode()])
-				.toggleClass("ve-active", omnisearchState.getPartneredMode() !== PARTNERED_CONTENT_MODE_NONE);
+				.vee.tooltip(PARTNERED_CONTENT_MODE_TOOLTIP[omnisearchState.getPartneredMode()] || "")
+				.vee.txt(PARTNERED_CONTENT_MODE_TEXT[omnisearchState.getPartneredMode()])
+				.vee.toggleClass("ve-active", omnisearchState.getPartneredMode() !== PARTNERED_CONTENT_MODE_NONE);
 			if (val != null) fnDoSearch().then(null);
 		})();
 	}
@@ -55,16 +55,16 @@ export class OmnisearchUtilsUi {
 
 	static addScrollTopFloat () {
 		// "To top" button
-		const btnToTop = ee`<button class="ve-btn ve-btn-sm ve-btn-default" title="To Top"><span class="glyphicon glyphicon-arrow-up"></span></button>`
-			.onn("click", () => MiscUtil.scrollPageTop());
+		const btnToTop = veT`<button class="ve-btn ve-btn-sm ve-btn-default" title="To Top"><span class="glyphicon glyphicon-arrow-up"></span></button>`
+			.vee.onn("click", () => MiscUtil.scrollPageTop());
 
-		const wrpTop = ee`<div class="bk__to-top no-print">
+		const wrpTop = veT`<div class="bk__to-top no-print">
 			${btnToTop}
-		</div>`.appendTo(document.body);
+		</div>`.vee.appendTo(document.body);
 
-		e_({ele: window})
-			.onn("scroll", () => {
-				wrpTop.toggleClass("bk__to-top--scrolled", window.scrollY > 50);
+		veE({ele: window})
+			.vee.onn("scroll", () => {
+				wrpTop.vee.toggleClass("bk__to-top--scrolled", window.scrollY > 50);
 			});
 
 		return wrpTop;
@@ -91,7 +91,7 @@ export class OmnisearchUtilsUi {
 			})
 			.join("");
 
-		eleModalInner.appends(`
+		eleModalInner.vee.appends(`
 			<p>The following search syntax is available:</p>
 			<ul>
 				<li><code>source:&lt;abbreviation&gt;</code> where <code>&lt;abbreviation&gt;</code> is an abbreviated source/book name (&quot;PHB&quot;, &quot;MM&quot;, etc.)</li>
