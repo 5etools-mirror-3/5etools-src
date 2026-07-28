@@ -18,9 +18,11 @@ class _ListHelpers {
 }
 
 export class ListItem {
-	static getCommonValues (ent) {
+	static getCommonValues (ent, {isCorpus = false} = {}) {
 		return {
-			group: ent.group ? ent.group.join(",") : "",
+			...isCorpus ? {} : {
+				group: ent.group ? ent.group.join(",") : "",
+			},
 			alias: (ent.alias || []).map(it => `"${it}"`).join(","),
 		};
 	}

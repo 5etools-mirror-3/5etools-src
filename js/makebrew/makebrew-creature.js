@@ -1051,7 +1051,7 @@ export class CreatureBuilder extends BuilderBase {
 			.vee.onn("change", () => {
 				setState();
 			});
-		if (isInitialCustom) selType.vee.val(type || "");
+		if (isInitialCustom) iptTypeCustom.vee.val(type || "");
 
 		const cbIsCustomType = veT`<input type="checkbox">`
 			.vee.onn("change", () => {
