@@ -1,23 +1,40 @@
 import {DmScreenUtil} from "./dmscreen-util.js";
 import {PANEL_TYP_INITIATIVE_TRACKER} from "./dmscreen-consts.js";
+import {DmScreenPanelAppBase} from "./panels/dmscreen-panelapp-base.js";
 
-// TODO(Future) refactor to subclass `DmScreenPanelAppBase`; move state to `_comp`
-export class InitiativeTrackerCreatureViewer extends BaseComponent {
-	static getPanelApp ({board, savedState}) {
-		return new this({board, savedState});
+export class InitiativeTrackerCreatureViewer extends DmScreenPanelAppBase {
+	constructor (...args) {
+		super(...args);
+
+		this._comp = null;
 	}
 
-	getPanelElement () {
-		return this.render();
+	_getPanelElement (board, state) {
+		this._comp = new InitiativeTrackerCreatureViewerComponent({board});
+		this._comp.setStateFrom(state);
+		return this._comp.render();
 	}
 
-	/* -------------------------------------------- */
+	getState () { return this._comp?.getSaveableState() || {}; }
 
-	constructor ({board, savedState}) {
+	onDestroy () {
+		this._comp?.onDestroy();
+	}
+
+	onBoardEvent ({type, payload = {}}) {
+		this._comp?.onBoardEvent({type, payload});
+	}
+
+	setCreatureState (state) {
+		this._comp?.setCreatureState(state);
+	}
+}
+
+class InitiativeTrackerCreatureViewerComponent extends BaseComponent {
+	constructor ({board}) {
 		super();
-		this._board = board;
-		this._savedState = savedState;
 
+		this._board = board;
 		this._trackerLinked = null;
 	}
 

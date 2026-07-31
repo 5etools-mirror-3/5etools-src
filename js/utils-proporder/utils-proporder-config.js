@@ -97,6 +97,7 @@ const PROPORDER_META = [
 	"spellDistanceUnits",
 	"featCategories",
 	"optionalFeatureTypes",
+	"vehicleUpgradeTypes",
 	"psionicTypes",
 	"currencyConversions",
 	"fonts",

@@ -4083,7 +4083,6 @@ Renderer.utils = class {
 		 * @param isListMode
 		 * @param {?Set} blocklistKeys
 		 * @param {?object} keyOptions
-		 * @param isTextOnly
 		 * @param isSkipPrefix
 		 * @param {"classic" | null} styleHint
 		 * @return {string}
@@ -4094,7 +4093,52 @@ Renderer.utils = class {
 				isListMode = false,
 				blocklistKeys = null,
 				keyOptions = null,
-				isTextOnly = false,
+				isSkipPrefix = false,
+				styleHint = null,
+			} = {},
+		) {
+			const entry = this.getEntry(prerequisites, {isListMode, blocklistKeys, keyOptions, isSkipPrefix, styleHint});
+			if (!entry) return "";
+			return Renderer.get().render(entry);
+		}
+
+		/**
+		 * @param prerequisites
+		 * @param isListMode
+		 * @param {?Set} blocklistKeys
+		 * @param {?object} keyOptions
+		 * @param isSkipPrefix
+		 * @param {"classic" | null} styleHint
+		 * @return {string}
+		 */
+		static getText (
+			prerequisites,
+			{
+				isListMode = false,
+				blocklistKeys = null,
+				keyOptions = null,
+				isSkipPrefix = false,
+				styleHint = null,
+			} = {},
+		) {
+			return Renderer.stripTags(this.getEntry(prerequisites, {isListMode, blocklistKeys, keyOptions, isSkipPrefix, styleHint}));
+		}
+
+		/**
+		 * @param prerequisites
+		 * @param isListMode
+		 * @param {?Set} blocklistKeys
+		 * @param {?object} keyOptions
+		 * @param isSkipPrefix
+		 * @param {"classic" | null} styleHint
+		 * @return {string}
+		 */
+		static getEntry (
+			prerequisites,
+			{
+				isListMode = false,
+				blocklistKeys = null,
+				keyOptions = null,
 				isSkipPrefix = false,
 				styleHint = null,
 			} = {},
@@ -4114,7 +4158,7 @@ Renderer.utils = class {
 					.mergeMap(([k, v]) => ({[k]: v}));
 
 			const shared = Object.keys(prereqsShared).length
-				? this.getHtml([prereqsShared], {isListMode, blocklistKeys, isTextOnly, isSkipPrefix: true})
+				? this.getEntry([prereqsShared], {isListMode, blocklistKeys, keyOptions, isSkipPrefix: true, styleHint})
 				: null;
 
 			let cntPrerequisites = 0;
@@ -4122,7 +4166,7 @@ Renderer.utils = class {
 			const listOfChoices = prerequisites
 				.map(pr => {
 					// Never include notes in list mode
-					const ptNote = !isListMode && pr.note ? Renderer.get().render(pr.note) : null;
+					const ptNote = !isListMode && pr.note ? pr.note : null;
 					if (ptNote) {
 						hasNote = true;
 					}
@@ -4136,36 +4180,36 @@ Renderer.utils = class {
 							cntPrerequisites += 1;
 
 							switch (k) {
-								case "level": return this._getHtml_level({v, isListMode, keyOptions, isTextOnly, styleHint});
-								case "pact": return this._getHtml_pact({v, isListMode, keyOptions, isTextOnly, styleHint});
-								case "patron": return this._getHtml_patron({v, isListMode, keyOptions, isTextOnly, styleHint});
-								case "spell": return this._getHtml_spell({v, isListMode, keyOptions, isTextOnly, styleHint});
-								case "feat": return this._getHtml_feat({v, isListMode, keyOptions, isTextOnly, styleHint});
-								case "featCategory": return this._getHtml_featCategory({v, isListMode, keyOptions, isTextOnly, styleHint});
-								case "exclusiveFeatCategory": return this._getHtml_exclusiveFeatCategory({v, isListMode, keyOptions, isTextOnly, styleHint});
-								case "optionalfeature": return this._getHtml_optionalfeature({v, isListMode, keyOptions, isTextOnly, styleHint});
-								case "feature": return this._getHtml_feature({v, isListMode, keyOptions, isTextOnly, styleHint});
-								case "item": return this._getHtml_item({v, isListMode, keyOptions, isTextOnly, styleHint});
-								case "itemType": return this._getHtml_itemType({v, isListMode, keyOptions, isTextOnly, styleHint});
-								case "itemProperty": return this._getHtml_itemProperty({v, isListMode, keyOptions, isTextOnly, styleHint});
-								case "otherSummary": return this._getHtml_otherSummary({v, isListMode, keyOptions, isTextOnly, styleHint});
-								case "other": return this._getHtml_other({v, isListMode, keyOptions, isTextOnly, styleHint});
-								case "race": return this._getHtml_race({v, isListMode, keyOptions, isTextOnly, styleHint});
-								case "background": return this._getHtml_background({v, isListMode, keyOptions, isTextOnly, styleHint});
-								case "ability": return this._getHtml_ability({v, isListMode, keyOptions, isTextOnly, styleHint});
-								case "proficiency": return this._getHtml_proficiency({v, isListMode, keyOptions, isTextOnly, styleHint});
-								case "expertise": return this._getHtml_expertise({v, isListMode, keyOptions, isTextOnly, styleHint});
-								case "spellcasting": return this._getHtml_spellcasting({v, isListMode, keyOptions, isTextOnly, styleHint});
-								case "spellcasting2020": return this._getHtml_spellcasting2020({v, isListMode, keyOptions, isTextOnly, styleHint});
-								case "spellcastingFeature": return this._getHtml_spellcastingFeature({v, isListMode, keyOptions, isTextOnly, styleHint});
-								case "spellcastingPrepared": return this._getHtml_spellcastingPrepared({v, isListMode, keyOptions, isTextOnly, styleHint});
-								case "spellcastingFocus": return this._getHtml_spellcastingFocus({v, isListMode, keyOptions, isTextOnly, styleHint});
-								case "psionics": return this._getHtml_psionics({v, isListMode, keyOptions, isTextOnly, styleHint});
-								case "alignment": return this._getHtml_alignment({v, isListMode, keyOptions, isTextOnly, styleHint});
-								case "campaign": return this._getHtml_campaign({v, isListMode, keyOptions, isTextOnly, styleHint});
-								case "culture": return this._getHtml_culture({v, isListMode, keyOptions, isTextOnly, styleHint});
-								case "membership": return this._getHtml_membership({v, isListMode, keyOptions, isTextOnly, styleHint});
-								case "group": return this._getHtml_group({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "level": return this._getEntry_level({v, isListMode, keyOptions, styleHint});
+								case "pact": return this._getEntry_pact({v, isListMode, keyOptions, styleHint});
+								case "patron": return this._getEntry_patron({v, isListMode, keyOptions, styleHint});
+								case "spell": return this._getEntry_spell({v, isListMode, keyOptions, styleHint});
+								case "feat": return this._getEntry_feat({v, isListMode, keyOptions, styleHint});
+								case "featCategory": return this._getEntry_featCategory({v, isListMode, keyOptions, styleHint});
+								case "exclusiveFeatCategory": return this._getEntry_exclusiveFeatCategory({v, isListMode, keyOptions, styleHint});
+								case "optionalfeature": return this._getEntry_optionalfeature({v, isListMode, keyOptions, styleHint});
+								case "feature": return this._getEntry_feature({v, isListMode, keyOptions, styleHint});
+								case "item": return this._getEntry_item({v, isListMode, keyOptions, styleHint});
+								case "itemType": return this._getEntry_itemType({v, isListMode, keyOptions, styleHint});
+								case "itemProperty": return this._getEntry_itemProperty({v, isListMode, keyOptions, styleHint});
+								case "otherSummary": return this._getEntry_otherSummary({v, isListMode, keyOptions, styleHint});
+								case "other": return this._getEntry_other({v, isListMode, keyOptions, styleHint});
+								case "race": return this._getEntry_race({v, isListMode, keyOptions, styleHint});
+								case "background": return this._getEntry_background({v, isListMode, keyOptions, styleHint});
+								case "ability": return this._getEntry_ability({v, isListMode, keyOptions, styleHint});
+								case "proficiency": return this._getEntry_proficiency({v, isListMode, keyOptions, styleHint});
+								case "expertise": return this._getEntry_expertise({v, isListMode, keyOptions, styleHint});
+								case "spellcasting": return this._getEntry_spellcasting({v, isListMode, keyOptions, styleHint});
+								case "spellcasting2020": return this._getEntry_spellcasting2020({v, isListMode, keyOptions, styleHint});
+								case "spellcastingFeature": return this._getEntry_spellcastingFeature({v, isListMode, keyOptions, styleHint});
+								case "spellcastingPrepared": return this._getEntry_spellcastingPrepared({v, isListMode, keyOptions, styleHint});
+								case "spellcastingFocus": return this._getEntry_spellcastingFocus({v, isListMode, keyOptions, styleHint});
+								case "psionics": return this._getEntry_psionics({v, isListMode, keyOptions, styleHint});
+								case "alignment": return this._getEntry_alignment({v, isListMode, keyOptions, styleHint});
+								case "campaign": return this._getEntry_campaign({v, isListMode, keyOptions, styleHint});
+								case "culture": return this._getEntry_culture({v, isListMode, keyOptions, styleHint});
+								case "membership": return this._getEntry_membership({v, isListMode, keyOptions, styleHint});
+								case "group": return this._getEntry_group({v, isListMode, keyOptions, styleHint});
 								default: throw new Error(`Unhandled key: ${k}`);
 							}
 						})
@@ -4204,7 +4248,7 @@ Renderer.utils = class {
 			return `${ptPrefix}${[shared, joinedChoices].filter(Boolean).join(ptsSharedOtherJoiner)}`;
 		}
 
-		static _getHtml_level ({v, isListMode, keyOptions, isTextOnly, styleHint}) {
+		static _getEntry_level ({v, isListMode, keyOptions, styleHint}) {
 			// a generic level requirement
 			if (typeof v === "number") {
 				if (keyOptions?.level?.isNameOnly) return "";
@@ -4255,15 +4299,15 @@ Renderer.utils = class {
 			return [ptLevel, classPart].filter(Boolean).join(" ");
 		}
 
-		static _getHtml_pact ({v, isListMode}) {
+		static _getEntry_pact ({v, isListMode}) {
 			return Parser.prereqPactToFull(v);
 		}
 
-		static _getHtml_patron ({v, isListMode}) {
+		static _getEntry_patron ({v, isListMode}) {
 			return isListMode ? `${Parser.prereqPatronToShort(v)} patron` : `${v} patron`;
 		}
 
-		static _getHtml_spell ({v, isListMode, keyOptions, isTextOnly}) {
+		static _getEntry_spell ({v, isListMode, keyOptions}) {
 			return isListMode
 				? v.map(sp => {
 					if (typeof sp === "string") return sp.split("#")[0].split("|")[0].toTitleCase();
@@ -4271,17 +4315,22 @@ Renderer.utils = class {
 				})
 					.join("/")
 				: v.map(sp => {
-					if (typeof sp === "string") return Parser.prereqSpellToFull(sp, {isTextOnly});
-					return isTextOnly ? Renderer.stripTags(sp.entry) : Renderer.get().render(`{@filter ${sp.entry}|spells|${sp.choose}}`);
+					if (typeof sp !== "string") return `{@filter ${sp.entry}|spells|${sp.choose}}`;
+
+					const [text, suffix] = sp.split("#");
+					if (!suffix) return `{@spell ${sp}}`;
+					if (suffix === "c") return `{@spell ${text}} cantrip`;
+					if (suffix === "x") return "{@spell hex} spell or a warlock feature that curses";
+					return sp;
 				})
 					.joinConjunct(", ", " or ");
 		}
 
-		static _getHtml_feat ({v, isListMode, keyOptions, isTextOnly, styleHint}) {
-			return this._getHtml_uidTag({v, isListMode, keyOptions, isTextOnly, styleHint, tag: "feat"});
+		static _getEntry_feat ({v, isListMode, keyOptions, styleHint}) {
+			return this._getEntry_uidTag({v, isListMode, keyOptions, styleHint, tag: "feat"});
 		}
 
-		static _getHtml_featCategory ({v, isListMode, keyOptions, isTextOnly, styleHint}) {
+		static _getEntry_featCategory ({v, isListMode, keyOptions, styleHint}) {
 			if (isListMode) {
 				const ptTypes = v
 					.map(featCategoryMeta => {
@@ -4301,7 +4350,7 @@ Renderer.utils = class {
 			return `Any ${ptTypes} Feat${typeof v.at(-1) !== "string" ? "s" : ""}`;
 		}
 
-		static _getHtml_exclusiveFeatCategory ({v, isListMode, keyOptions, isTextOnly, styleHint}) {
+		static _getEntry_exclusiveFeatCategory ({v, isListMode, keyOptions, styleHint}) {
 			if (isListMode) {
 				const ptTypes = v.map(featCategory => Parser.featCategoryToFull(featCategory))
 					.join("/");
@@ -4313,36 +4362,35 @@ Renderer.utils = class {
 			return `Can't Have Another ${ptTypes} Feat`;
 		}
 
-		static _getHtml_optionalfeature ({v, isListMode, keyOptions, isTextOnly, styleHint}) {
-			return this._getHtml_uidTag({v, isListMode, keyOptions, isTextOnly, styleHint, tag: "optfeature"});
+		static _getEntry_optionalfeature ({v, isListMode, keyOptions, styleHint}) {
+			return this._getEntry_uidTag({v, isListMode, keyOptions, styleHint, tag: "optfeature"});
 		}
 
-		static _getHtml_uidTag ({v, isListMode, keyOptions, isTextOnly, styleHint, tag}) {
+		static _getEntry_uidTag ({v, isListMode, keyOptions, styleHint, tag}) {
 			if (isListMode) return v.map(x => x.split("|")[0].toTitleCase()).join("/");
 
 			return v
 				.map(uid => {
 					uid = styleHint === "classic" ? uid : uid.split("|").map((pt, i) => i === 0 ? pt.toTitleCase() : pt).join("|");
-					const asTag = `{@${tag} ${uid}}`;
-					return isTextOnly ? Renderer.stripTags(asTag) : Renderer.get().render(asTag);
+					return `{@${tag} ${uid}}`;
 				})
 				.joinConjunct(", ", " or ");
 		}
 
-		static _getHtml_feature ({v, isListMode, keyOptions, isTextOnly, styleHint}) {
+		static _getEntry_feature ({v, isListMode, keyOptions, styleHint}) {
 			if (isListMode) return v.map(x => Renderer.stripTags(x).toTitleCase()).join("/");
 
-			const ptNames = v.map(it => isTextOnly ? Renderer.stripTags(it) : Renderer.get().render(it)).joinConjunct(", ", " or ");
+			const ptNames = v.joinConjunct(", ", " or ");
 
 			if (styleHint === "classic") return ptNames;
 			return `${ptNames} Feature${v.length === 1 ? "" : "s"}`;
 		}
 
-		static _getHtml_item ({v, isListMode}) {
+		static _getEntry_item ({v, isListMode}) {
 			return isListMode ? v.map(x => x.toTitleCase()).join("/") : v.joinConjunct(", ", " or ");
 		}
 
-		static _getHtml_itemType ({v, isListMode}) {
+		static _getEntry_itemType ({v, isListMode}) {
 			return isListMode
 				? v
 					.map(it => Renderer.item.getType(it, {isIgnoreMissing: true}))
@@ -4356,7 +4404,7 @@ Renderer.utils = class {
 					.joinConjunct(", ", " and ");
 		}
 
-		static _getHtml_itemProperty ({v, isListMode}) {
+		static _getEntry_itemProperty ({v, isListMode}) {
 			if (v == null) return isListMode ? "No Prop." : "No Other Properties";
 
 			return isListMode
@@ -4375,40 +4423,48 @@ Renderer.utils = class {
 				);
 		}
 
-		static _getHtml_otherSummary ({v, isListMode, keyOptions, isTextOnly}) {
+		static _getEntry_otherSummary ({v, isListMode, keyOptions}) {
 			return isListMode
 				? (v.entrySummary || Renderer.stripTags(v.entry))
-				: (isTextOnly ? Renderer.stripTags(v.entry) : Renderer.get().render(v.entry));
+				: v.entry;
 		}
 
-		static _getHtml_other ({v, isListMode, keyOptions, isTextOnly}) {
-			return isListMode ? "Special" : (isTextOnly ? Renderer.stripTags(v) : Renderer.get().render(v));
+		static _getEntry_other ({v, isListMode, keyOptions}) {
+			return isListMode ? "Special" : v;
 		}
 
-		static _getHtml_race ({v, isListMode, keyOptions, isTextOnly, styleHint}) {
+		static _getEntry_race ({v, isListMode, keyOptions, styleHint}) {
 			const parts = v.map((it, i) => {
 				if (isListMode) {
 					return `${it.name.toTitleCase()}${it.subrace != null ? ` (${it.subrace})` : ""}`;
 				} else {
-					const raceName = it.displayEntry ? (isTextOnly ? Renderer.stripTags(it.displayEntry) : Renderer.get().render(it.displayEntry)) : (i === 0 || styleHint !== "classic") ? it.name.toTitleCase() : it.name;
+					const raceName = it.displayEntry
+						? it.displayEntry
+						: (i === 0 || styleHint !== "classic")
+							? it.name.toTitleCase()
+							: it.name;
 					return `${raceName}${it.subrace != null ? ` (${it.subrace})` : ""}`;
 				}
 			});
 			return isListMode ? parts.join("/") : parts.joinConjunct(", ", " or ");
 		}
 
-		static _getHtml_background ({v, isListMode, keyOptions, isTextOnly}) {
+		static _getEntry_background ({v, isListMode, keyOptions}) {
 			const parts = v.map((it, i) => {
 				if (isListMode) {
 					return `${it.name.toTitleCase()}`;
 				} else {
-					return it.displayEntry ? (isTextOnly ? Renderer.stripTags(it.displayEntry) : Renderer.get().render(it.displayEntry)) : (i === 0 || styleHint !== "classic") ? it.name.toTitleCase() : it.name;
+					return it.displayEntry
+						? it.displayEntry
+						: (i === 0 || styleHint !== "classic")
+							? it.name.toTitleCase()
+							: it.name;
 				}
 			});
 			return isListMode ? parts.join("/") : parts.joinConjunct(", ", " or ");
 		}
 
-		static _getHtml_ability ({v, isListMode, keyOptions, isTextOnly, styleHint}) {
+		static _getEntry_ability ({v, isListMode, keyOptions, styleHint}) {
 			// `v` is an array or objects with str/dex/... properties; array is "OR"'d together, object is "AND"'d together
 
 			let hadMultipleInner = false;
@@ -4468,13 +4524,14 @@ Renderer.utils = class {
 			const isComplex = hadMultiMultipleInner || hadMultipleInner || allValuesEqual == null;
 			const joined = abilityOptions.joinConjunct(
 				hadMultiMultipleInner ? " - " : hadMultipleInner ? "; " : ", ",
-				isComplex ? (isTextOnly ? ` /or/ ` : ` <i>or</i> `) : " or ",
+				// FIXME(Future) text-only version previously did " /or/ " as joiner; stripped-italics now results in plain " or "
+				isComplex ? ` {@i or} ` : " or ",
 			);
 			const ptHigher = styleHint === "classic" ? " or higher" : "+";
 			return `${joined}${allValuesEqual != null ? ` ${allValuesEqual}${ptHigher}` : ""}`;
 		}
 
-		static _getHtml_proficiency ({v, isListMode, keyOptions, isTextOnly, styleHint}) {
+		static _getEntry_proficiency ({v, isListMode, keyOptions, styleHint}) {
 			const parts = v.map(obj => {
 				return Object.entries(obj).map(([profType, prof]) => {
 					switch (profType) {
@@ -4497,7 +4554,7 @@ Renderer.utils = class {
 							if (prof === true) return isListMode ? `Skill Proficiency` : `Proficiency in a skill`;
 							return isListMode
 								? prof.map(skill => skill.toTitleCase()).join("+")
-								: `Proficiency in the ${prof.map(skill => Renderer.get().render(`{@skill ${skill.toTitleCase()}}`)).joinConjunct(", ", " and ")} skill${prof.length === 1 ? "" : "s"}`;
+								: `Proficiency in the ${prof.map(skill => `{@skill ${skill.toTitleCase()}}`).joinConjunct(", ", " and ")} skill${prof.length === 1 ? "" : "s"}`;
 						}
 						default: throw new Error(`Unhandled proficiency type: "${profType}"`);
 					}
@@ -4506,7 +4563,7 @@ Renderer.utils = class {
 			return isListMode ? parts.join("/") : parts.joinConjunct(", ", " or ");
 		}
 
-		static _getHtml_expertise ({v, isListMode, keyOptions, isTextOnly, styleHint}) {
+		static _getEntry_expertise ({v, isListMode, keyOptions, styleHint}) {
 			const parts = v.map(obj => {
 				return Object.entries(obj).map(([profType, prof]) => {
 					switch (profType) {
@@ -4522,20 +4579,20 @@ Renderer.utils = class {
 			return isListMode ? parts.join("/") : parts.joinConjunct(", ", " or ");
 		}
 
-		static _getHtml_spellcasting ({v, isListMode}) {
+		static _getEntry_spellcasting ({v, isListMode}) {
 			return isListMode ? "Spellcasting" : "The ability to cast at least one spell";
 		}
 
-		static _getHtml_spellcasting2020 ({v, isListMode, keyOptions, isTextOnly, styleHint}) {
+		static _getEntry_spellcasting2020 ({v, isListMode, keyOptions, styleHint}) {
 			if (isListMode) return "Spellcasting";
 			return styleHint === "classic" ? "Spellcasting or Pact Magic feature" : "Spellcasting or Pact Magic Feature";
 		}
 
-		static _getHtml_spellcastingFeature ({v, isListMode}) {
+		static _getEntry_spellcastingFeature ({v, isListMode}) {
 			return isListMode ? "Spellcasting" : "Spellcasting Feature";
 		}
 
-		static _getHtml_spellcastingPrepared ({v, isListMode}) {
+		static _getEntry_spellcastingPrepared ({v, isListMode}) {
 			return isListMode ? "Spellcasting" : "Spellcasting feature from a class that prepares spells";
 		}
 
@@ -4545,7 +4602,7 @@ Renderer.utils = class {
 			"holy": "Holy Symbol",
 			"artisansTool": "Artisan’s Tools",
 		};
-		static _getHtml_spellcastingFocus ({v, isListMode, keyOptions, isTextOnly, styleHint}) {
+		static _getEntry_spellcastingFocus ({v, isListMode, keyOptions, styleHint}) {
 			if (isListMode) {
 				if (v === true) return `Spellcasting Focus`;
 				return v.map(n => this._SCF_TYPE_TO_NAME[n] || `Spellcasting ${n.toTitleCase()}`).join("/");
@@ -4553,8 +4610,7 @@ Renderer.utils = class {
 
 			const ptScfSuffix = styleHint === "classic" ? "spellcasting focus" : "{@variantrule Spellcasting Focus|XPHB}";
 			if (v === true) {
-				const ent = `Ability to use a ${ptScfSuffix}`;
-				return isTextOnly ? Renderer.stripTags(ent) : Renderer.get().render(ent);
+				return `Ability to use a ${ptScfSuffix}`;
 			}
 
 			const ptScf = v
@@ -4570,18 +4626,16 @@ Renderer.utils = class {
 				})
 				.joinConjunct(", ", " or ");
 
-			const ent = `Ability to use ${ptScf} as a ${ptScfSuffix}`;
-
-			return (isTextOnly ? Renderer.stripTags : Renderer.get().render.bind(Renderer.get()))(ent);
+			return `Ability to use ${ptScf} as a ${ptScfSuffix}`;
 		}
 
-		static _getHtml_psionics ({v, isListMode, keyOptions, isTextOnly}) {
+		static _getEntry_psionics ({v, isListMode, keyOptions}) {
 			return isListMode
 				? "Psionics"
-				: (isTextOnly ? Renderer.stripTags : Renderer.get().render.bind(Renderer.get()))("Psionic Talent feature or Wild Talent feat");
+				: "Psionic Talent feature or Wild Talent feat";
 		}
 
-		static _getHtml_alignment ({v, isListMode}) {
+		static _getEntry_alignment ({v, isListMode}) {
 			return isListMode
 				? Parser.alignmentListToFull(v)
 					.replace(/\bany\b/gi, "").trim()
@@ -4590,25 +4644,25 @@ Renderer.utils = class {
 				: Parser.alignmentListToFull(v);
 		}
 
-		static _getHtml_campaign ({v, isListMode}) {
+		static _getEntry_campaign ({v, isListMode}) {
 			return isListMode
 				? v.join("/")
 				: `${v.joinConjunct(", ", " or ")} Campaign`;
 		}
 
-		static _getHtml_culture ({v, isListMode}) {
+		static _getEntry_culture ({v, isListMode}) {
 			return isListMode
 				? v.join("/")
 				: `${v.joinConjunct(", ", " or ")} Culture`;
 		}
 
-		static _getHtml_membership ({v, isListMode}) {
+		static _getEntry_membership ({v, isListMode}) {
 			return isListMode
 				? v.join("/")
 				: `Membership in the ${v.joinConjunct(", ", " or ")}`;
 		}
 
-		static _getHtml_group ({v, isListMode}) {
+		static _getEntry_group ({v, isListMode}) {
 			return isListMode
 				? v.map(it => it.toTitleCase()).join("/")
 				: `${v.map(it => it.toTitleCase()).joinConjunct(", ", " or ")} Group`;
@@ -14647,25 +14701,38 @@ Renderer.vehicle = class {
 };
 
 Renderer.vehicleUpgrade = class {
-	static getUpgradeSummary (ent, {styleHint = null} = {}) {
+	static getVehicleUpgradeRenderableEntriesMeta (ent, {styleHint = null} = {}) {
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
-		return [
-			ent.upgradeType ? ent.upgradeType.map(t => Parser.vehicleTypeToFull(t)) : null,
-			ent.prerequisite ? Renderer.utils.prerequisite.getHtml(ent.prerequisite, {styleHint}) : null,
+		const summary = [
+			ent.upgradeType ? ent.upgradeType.map(t => Parser.vehicleUpgradeTypeToFull(t)) : null,
+			ent.prerequisite ? Renderer.utils.prerequisite.getEntry(ent.prerequisite, {styleHint}) : null,
 		]
 			.filter(Boolean)
 			.join(", ");
+
+		return {
+			entrySummary: summary
+				? `{@i ${summary}}`
+				: null,
+			entryCost: ent.cost != null
+				? `{@b Cost:} ${Parser.itemValueToFullMultiCurrency({value: ent.cost}, {styleHint})}`
+				: null,
+		};
 	}
 
 	static getCompactRenderedString (ent, opts) {
 		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
+		const renderer = Renderer.get();
+
+		const entriesMeta = Renderer.vehicleUpgrade.getVehicleUpgradeRenderableEntriesMeta(ent, {styleHint});
 
 		return `${Renderer.utils.getExcludedTr({entity: ent, dataProp: "vehicleUpgrade", page: UrlUtil.PG_VEHICLES})}
 		${Renderer.utils.getNameTr(ent, {page: UrlUtil.PG_VEHICLES})}
-		<tr><td colspan="6"><i>${Renderer.vehicleUpgrade.getUpgradeSummary(ent, {styleHint})}</i></td></tr>
+		${entriesMeta.entrySummary ? `<tr><td colspan="6">${renderer.render(entriesMeta.entrySummary)}</td></tr>` : ""}
+		${entriesMeta.entryCost ? `<tr><td colspan="6">${renderer.render(entriesMeta.entryCost)}</td></tr>` : ""}
 		<tr><td colspan="6" class="ve-py-0"><div class="ve-tbl-divider"></div></td></tr>
-		<tr><td colspan="6">${Renderer.get().render({entries: ent.entries}, 1)}</td></tr>`;
+		<tr><td colspan="6">${renderer.render({entries: ent.entries}, 1)}</td></tr>`;
 	}
 };
 
@@ -15448,12 +15515,11 @@ Renderer.facility = class {
 		const entsList = [];
 
 		if (ent.prerequisite) {
-			// FIXME(Future) split prerequisite rendering into to-entries and to-html steps; use the "to entries" step here
-			const entRendered = {
-				type: "wrappedHtml",
-				html: Renderer.utils.prerequisite.getHtml(ent.prerequisite, {styleHint: "one", isSkipPrefix: true}),
-			};
-			entsList.push({type: "item", name: `Prerequisite:`, entry: entRendered});
+			entsList.push({
+				type: "item",
+				name: `Prerequisite:`,
+				entry: Renderer.utils.prerequisite.getEntry(ent.prerequisite, {styleHint: "one", isSkipPrefix: true}),
+			});
 		} else if (ent.facilityType !== "basic") {
 			entsList.push({type: "item", name: `Prerequisite:`, entry: "None"});
 		}

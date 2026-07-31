@@ -2276,15 +2276,6 @@ Parser.psiOrderToFull = (order) => {
 	return order === undefined ? Parser.PSI_ORDER_NONE : order;
 };
 
-Parser.prereqSpellToFull = function (spell, {isTextOnly = false} = {}) {
-	if (spell) {
-		const [text, suffix] = spell.split("#");
-		if (!suffix) return isTextOnly ? spell : Renderer.get().render(`{@spell ${spell}}`);
-		else if (suffix === "c") return (isTextOnly ? Renderer.stripTags : Renderer.get().render.bind(Renderer.get()))(`{@spell ${text}} cantrip`);
-		else if (suffix === "x") return (isTextOnly ? Renderer.stripTags : Renderer.get().render.bind(Renderer.get()))("{@spell hex} spell or a warlock feature that curses");
-	} else return VeCt.STR_NONE;
-};
-
 Parser.prereqPactToFull = function (pact) {
 	if (pact === "Chain") return "Pact of the Chain";
 	if (pact === "Tome") return "Pact of the Tome";
@@ -3129,6 +3120,13 @@ Parser.VEHICLE_TYPE_TO_FULL = {
 	"INFWAR": "Infernal War Machine",
 	"CREATURE": "Creature",
 	"OBJECT": "Object",
+};
+
+Parser.vehicleTypeToFull = function (vehicleType) {
+	return Parser._parse_aToB(Parser.VEHICLE_TYPE_TO_FULL, vehicleType);
+};
+
+Parser.VEHICLE_UPGRADE_TYPE_TO_FULL = {
 	"SHP:H": "Ship Upgrade, Hull",
 	"SHP:M": "Ship Upgrade, Movement",
 	"SHP:W": "Ship Upgrade, Weapon",
@@ -3139,8 +3137,11 @@ Parser.VEHICLE_TYPE_TO_FULL = {
 	"IWM:G": "Infernal War Machine Upgrade, Gadget",
 };
 
-Parser.vehicleTypeToFull = function (vehicleType) {
-	return Parser._parse_aToB(Parser.VEHICLE_TYPE_TO_FULL, vehicleType);
+Parser.vehicleUpgradeTypeToFull = function (type) {
+	if (Parser.VEHICLE_UPGRADE_TYPE_TO_FULL[type]) return Parser.VEHICLE_UPGRADE_TYPE_TO_FULL[type];
+	if (PrereleaseUtil.getMetaLookup("vehicleUpgradeTypes")?.[type]) return PrereleaseUtil.getMetaLookup("vehicleUpgradeTypes")[type];
+	if (BrewUtil2.getMetaLookup("vehicleUpgradeTypes")?.[type]) return BrewUtil2.getMetaLookup("vehicleUpgradeTypes")[type];
+	return type;
 };
 
 Parser.CROCHET_PATTERN_SKILL_LEVEL_TO_FULL = {

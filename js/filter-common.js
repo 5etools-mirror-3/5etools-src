@@ -1,6 +1,27 @@
 "use strict";
 
 class FilterCommon {
+	static getCostFilter () {
+		return new RangeFilter({
+			header: "Cost",
+			isLabelled: true,
+			isAllowGreater: true,
+			labelSortFn: null,
+			labels: [
+				0,
+				...[...new Array(9)].map((_, i) => i + 1),
+				...[...new Array(9)].map((_, i) => 10 * (i + 1)),
+				...[...new Array(99)].map((_, i) => 100 * (i + 1)),
+				...[...new Array(9)].map((_, i) => 10_000 * (i + 1)),
+				...[...new Array(9)].map((_, i) => 100_000 * (i + 1)),
+				...[...new Array(10)].map((_, i) => 1_000_000 * (i + 1)),
+			],
+			labelDisplayFn: it => !it ? "None" : Parser.getDisplayCurrency(CurrencyUtil.doSimplifyCoins({cp: it})),
+		});
+	}
+
+	/* -------------------------------------------- */
+
 	static getDamageVulnerableFilter () {
 		return this._getDamageResistVulnImmuneFilter({
 			header: "Vulnerability",
@@ -67,6 +88,12 @@ class FilterCommon {
 			displayFnTitle: str => `Condition Immunity: ${str.toTitleCase()}`,
 			displayFn: StrUtil.uppercaseFirst,
 		});
+	}
+
+	/* -------------------------------------------- */
+
+	static mutateForFilters_cost (ent, {prop = "cost"} = {}) {
+		ent._fCost = Math.round(ent[prop] || 0);
 	}
 
 	/* -------------------------------------------- */

@@ -26,9 +26,35 @@ import {
 } from "./dmscreen-initiativetracker-rowstatebuilder.js";
 import {InitiativeTrackerDefaultParty} from "./dmscreen-initiativetracker-defaultparty.js";
 import {ListUtilBestiary} from "../../../utils-list-bestiary.js";
+import {DmScreenPanelAppBase} from "../dmscreen-panelapp-base.js";
 
-// TODO(Future) refactor to subclass `DmScreenPanelAppBase`; move state to `_comp`
-export class InitiativeTracker extends BaseComponent {
+export class InitiativeTracker extends DmScreenPanelAppBase {
+	constructor (...args) {
+		super(...args);
+
+		this._comp = null;
+	}
+
+	_getPanelElement (board, state) {
+		this._comp = new InitiativeTrackerComponent({board, savedState: state});
+		return this._comp.render();
+	}
+
+	getState () { return this._comp?.getState(); }
+
+	async pDoConnectLocalV1 () { return this._comp.pDoConnectLocalV1(); }
+	async pDoConnectLocalV0 (clientView) { return this._comp.pDoConnectLocalV0(clientView); }
+
+	getSummary () { return this._comp.getSummary(); }
+
+	async pDoLoadEncounter ({entityInfos, encounterInfo}) {
+		return this._comp.pDoLoadEncounter({entityInfos, encounterInfo});
+	}
+
+	getApi () { return this._comp; }
+}
+
+class InitiativeTrackerComponent extends BaseComponent {
 	constructor ({board, savedState}) {
 		super();
 
@@ -803,17 +829,4 @@ export class InitiativeTracker extends BaseComponent {
 	}
 
 	/* -------------------------------------------- */
-
-	static getPanelApp ({board, savedState}) {
-		return new this({board, savedState});
-	}
-
-	getPanelElement () {
-		return this.render();
-	}
-
-	getSaveSlotCacheableElementMeta () { return null; }
-	doRestoreSaveSlotCacheableElementMeta (meta) {}
-
-	getDetachableExileElements () { return []; }
 }

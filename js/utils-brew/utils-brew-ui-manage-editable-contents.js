@@ -538,6 +538,10 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 			displayName: "Optional Feature Types",
 			displayFn: (brew, propMeta, k) => brew.body._meta[propMeta][k] || k,
 		},
+		"vehicleUpgradeTypes": {
+			displayName: "Vehicle Upgrade Types",
+			displayFn: (brew, propMeta, k) => brew.body._meta[propMeta][k] || k,
+		},
 		"charOption": {
 			displayName: "Character Creation Option Types",
 			displayFn: (brew, propMeta, k) => brew.body._meta[propMeta][k] || k,
