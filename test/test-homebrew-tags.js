@@ -23,6 +23,7 @@ const getTargetFiles = () => {
 			files: params.file,
 			fnMutDefaultSelection: ({dirs}) => dirs.push(PATH_DEFAULT_HOMEBREW_DIR),
 			convertedBy: params.convertedBy,
+			author: params.author,
 			filter: params.filter,
 		},
 	);
@@ -121,7 +122,7 @@ const main = async () => {
 	const files = getTargetFiles();
 
 	if (!files.length) {
-		if (params.filter || params.convertedBy) throw new Error(`Did not find any JSON files matching the provided filters!`);
+		if (params.filter || params.convertedBy || params.author) throw new Error(`Did not find any JSON files matching the provided filters!`);
 		throw new Error(`Did not find any JSON files in target directories/files!`);
 	}
 

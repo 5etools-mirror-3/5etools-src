@@ -46,6 +46,7 @@ export const PROPORDER_FOUNDRY_ACTIVITIES = new ArrayKey("activities", {
 		"save",
 		"healing",
 		"roll",
+		"level",
 		"visibility",
 
 		// "check"-type
@@ -70,6 +71,10 @@ export const PROPORDER_FOUNDRY_ACTIVITIES = new ArrayKey("activities", {
 		"settings",
 
 		"effects",
+
+		// Other modules
+		"midiProperties",
+		"overTimeProperties",
 	],
 });
 

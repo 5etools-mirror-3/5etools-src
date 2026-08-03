@@ -28,6 +28,7 @@ async function main () {
 			dirs: params.dir,
 			files: params.file,
 			convertedBy: params.convertedBy,
+			author: params.author,
 			filter: params.filter,
 			fnMutDefaultSelection: ({files}) => {
 				files.push(

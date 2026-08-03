@@ -23,21 +23,6 @@
 				"dex"
 			],
 			"startingProficiencies": {
-				"weapons": [
-					"simple",
-					"{@item shortsword|phb|shortswords}"
-				],
-				"tools": [
-					"any one type of {@item artisan's tools|PHB} or any one {@item musical instrument|PHB} of your choice"
-				],
-				"toolProficiencies": [
-					{
-						"anyArtisansTool": 1
-					},
-					{
-						"anyMusicalInstrument": 1
-					}
-				],
 				"skills": [
 					{
 						"choose": {
@@ -51,6 +36,21 @@
 							],
 							"count": 2
 						}
+					}
+				],
+				"weapons": [
+					"simple",
+					"{@item shortsword|phb|shortswords}"
+				],
+				"tools": [
+					"any one type of {@item artisan's tools|PHB} or any one {@item musical instrument|PHB} of your choice"
+				],
+				"toolProficiencies": [
+					{
+						"anyArtisansTool": 1
+					},
+					{
+						"anyMusicalInstrument": 1
 					}
 				]
 			},
@@ -536,6 +536,21 @@
 				}
 			],
 			"startingProficiencies": {
+				"skills": [
+					{
+						"choose": {
+							"from": [
+								"acrobatics",
+								"athletics",
+								"history",
+								"insight",
+								"religion",
+								"stealth"
+							],
+							"count": 2
+						}
+					}
+				],
 				"weapons": [
 					"simple",
 					"Martial weapons that have the {@filter Light|items|type=martial weapon|property=light} property"
@@ -557,21 +572,6 @@
 					},
 					{
 						"anyMusicalInstrument": 1
-					}
-				],
-				"skills": [
-					{
-						"choose": {
-							"from": [
-								"acrobatics",
-								"athletics",
-								"history",
-								"insight",
-								"religion",
-								"stealth"
-							],
-							"count": 2
-						}
 					}
 				]
 			},

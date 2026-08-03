@@ -115,6 +115,9 @@ export const getFnRootPropListSort = (prop, {isRequired = false} = {}) => {
 		case "backgroundFeature": return (a, b) => SortUtil.ascSortLower(a.backgroundName, b.backgroundName)
 			|| SortUtil.ascSortLower(a.backgroundSource, b.backgroundSource)
 			|| SortUtil.ascSortGenericEntity(a, b);
+		case "foundryMonsterAction": return (a, b) => SortUtil.ascSortLower(a.monsterName, b.monsterName)
+			|| SortUtil.ascSortLower(a.monsterSource, b.monsterSource)
+			|| SortUtil.ascSortGenericEntity(a, b);
 		case "encounter":
 			return SortUtil.ascSortEncounter.bind(SortUtil);
 		case "adventure": return SortUtil.ascSortAdventure.bind(SortUtil);

@@ -367,7 +367,7 @@ const PROPORDER_FOUNDRY_MONSTER = [
 
 	"migrationVersion",
 ];
-const PROPORDER_FOUNDRY_MONSTER_SUB_ENTITY = getFoundryGeneric({propsMatchAdditional: ["monsterName", "monsterFeature"]});
+const PROPORDER_FOUNDRY_MONSTER_SUB_ENTITY = getFoundryGeneric({propsMatchAdditional: ["monsterName", "monsterSource"]});
 const PROPORDER_GENERIC_FLUFF = [
 	"name",
 
@@ -708,6 +708,16 @@ const PROPORDER_LEGENDARY_GROUP_TEMPLATE__COPY_MOD = [
 	"_",
 	...PROPORDER_LEGENDARY_GROUP_TEMPLATE,
 ];
+const _PROPORDER_CLASS_PROFICIENCIES = [
+	"skills",
+	"languageProficiencies",
+	"weapons",
+	"weaponProficiencies",
+	"tools",
+	"toolProficiencies",
+	"armor",
+	"armorProficiencies",
+];
 const PROPORDER_CLASS = [
 	"name",
 	"alias",
@@ -752,8 +762,8 @@ const PROPORDER_CLASS = [
 	"featProgression",
 	"optionalfeatureProgression",
 
-	"startingProficiencies",
-	"languageProficiencies",
+	new ObjectKey("startingProficiencies", {order: _PROPORDER_CLASS_PROFICIENCIES}),
+
 	new ObjectKey("startingEquipment", {
 		order: [
 			"additionalFromBackground",
@@ -764,7 +774,14 @@ const PROPORDER_CLASS = [
 		],
 	}),
 
-	"multiclassing",
+	new ObjectKey("multiclassing", {
+		order: [
+			"requirements",
+			"requirementsSpecial",
+			new ObjectKey("proficienciesGained", {order: _PROPORDER_CLASS_PROFICIENCIES}),
+			"entries",
+		],
+	}),
 
 	"classTableGroups",
 
@@ -1502,6 +1519,8 @@ const PROPORDER_VEHICLE_UPGRADE = [
 	new ArrayKey("referenceSources", {fnSort: SortUtil.ascSortLower}),
 
 	"upgradeType",
+
+	"cost",
 
 	"entries",
 ];
@@ -2764,6 +2783,7 @@ export const PROPORDER_ROOT = [
 	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "monsterTemplate"),
 	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "legendaryGroup"),
 	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "legendaryGroupTemplate"),
+	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "foundryMonsterAction"),
 
 	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "object"),
 	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "objectFluff"),

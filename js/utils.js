@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.33.2"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.33.3"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -4289,22 +4289,31 @@ globalThis.SortUtil = class {
 
 	static compareListNames (a, b) { return SortUtil._ascSort(a.name.toLowerCase(), b.name.toLowerCase()); }
 
-	static listSort (a, b, opts) {
-		opts = opts || {sortBy: "name"};
-		if (opts.sortBy === "name") return SortUtil.compareListNames(a, b);
-		if (opts.sortBy === "source") return SortUtil._listSort_compareBy(a, b, opts.sortBy) || SortUtil._listSort_compareBy(a, b, "page") || SortUtil.compareListNames(a, b);
-		return SortUtil._compareByOrDefault_compareByOrDefault(a, b, opts.sortBy);
-	}
-
-	static _listSort_compareBy (a, b, sortBy) {
-		const aValue = typeof a.values[sortBy] === "string" ? a.values[sortBy].toLowerCase() : a.values[sortBy];
-		const bValue = typeof b.values[sortBy] === "string" ? b.values[sortBy].toLowerCase() : b.values[sortBy];
+	static _listSort_compareBy (prop, a, b, sortBy) {
+		const aValue = typeof a[prop][sortBy] === "string" ? a[prop][sortBy].toLowerCase() : a[prop][sortBy];
+		const bValue = typeof b[prop][sortBy] === "string" ? b[prop][sortBy].toLowerCase() : b[prop][sortBy];
 
 		return SortUtil._ascSort(aValue, bValue);
 	}
 
-	static _compareByOrDefault_compareByOrDefault (a, b, sortBy) {
-		return SortUtil._listSort_compareBy(a, b, sortBy) || SortUtil.compareListNames(a, b);
+	static _listSort_compareByValue = this._listSort_compareBy.bind(this, "values");
+
+	static _compareByOrDefault_compareByValueOrDefault (a, b, sortBy) {
+		return SortUtil._listSort_compareByValue(a, b, sortBy) || SortUtil.compareListNames(a, b);
+	}
+
+	static _listSort_compareByData = this._listSort_compareBy.bind(this, "data");
+
+	static _compareByOrDefault_compareByDataOrDefault (a, b, sortBy) {
+		return SortUtil._listSort_compareByData(a, b, sortBy) || SortUtil.compareListNames(a, b);
+	}
+
+	static listSort (a, b, opts) {
+		opts = opts || {sortBy: "name"};
+		if (opts.sortBy === "name") return SortUtil.compareListNames(a, b);
+		if (opts.sortBy === "source") return SortUtil._listSort_compareByValue(a, b, opts.sortBy) || SortUtil._listSort_compareByData(a, b, "page") || SortUtil.compareListNames(a, b);
+		if (opts.sortBy === "page") SortUtil._compareByOrDefault_compareByDataOrDefault(a, b, opts.sortBy);
+		return SortUtil._compareByOrDefault_compareByValueOrDefault(a, b, opts.sortBy);
 	}
 
 	/**

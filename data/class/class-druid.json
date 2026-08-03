@@ -50,12 +50,21 @@
 				4
 			],
 			"startingProficiencies": {
-				"armor": [
-					"light",
-					"medium",
+				"skills": [
 					{
-						"proficiency": "shield",
-						"full": "shields (druids will not wear armor or use shields made of metal)"
+						"choose": {
+							"from": [
+								"arcana",
+								"animal handling",
+								"insight",
+								"medicine",
+								"nature",
+								"perception",
+								"religion",
+								"survival"
+							],
+							"count": 2
+						}
 					}
 				],
 				"weapons": [
@@ -78,21 +87,19 @@
 						"herbalism kit": true
 					}
 				],
-				"skills": [
+				"armor": [
+					"light",
+					"medium",
 					{
-						"choose": {
-							"from": [
-								"arcana",
-								"animal handling",
-								"insight",
-								"medicine",
-								"nature",
-								"perception",
-								"religion",
-								"survival"
-							],
-							"count": 2
-						}
+						"proficiency": "shield",
+						"full": "shields (druids will not wear armor or use shields made of metal)"
+					}
+				],
+				"armorProficiencies": [
+					{
+						"light": true,
+						"medium": true,
+						"shield": true
 					}
 				]
 			},
@@ -147,6 +154,13 @@
 						{
 							"proficiency": "shield",
 							"full": "shields (druids will not wear armor or use shields made of metal)"
+						}
+					],
+					"armorProficiencies": [
+						{
+							"light": true,
+							"medium": true,
+							"shield": true
 						}
 					]
 				}
@@ -584,21 +598,6 @@
 				}
 			],
 			"startingProficiencies": {
-				"armor": [
-					"light",
-					"shield"
-				],
-				"weapons": [
-					"simple"
-				],
-				"tools": [
-					"{@item Herbalism Kit|XPHB}"
-				],
-				"toolProficiencies": [
-					{
-						"herbalism kit": true
-					}
-				],
 				"skills": [
 					{
 						"choose": {
@@ -614,6 +613,27 @@
 							],
 							"count": 2
 						}
+					}
+				],
+				"weapons": [
+					"simple"
+				],
+				"tools": [
+					"{@item Herbalism Kit|XPHB}"
+				],
+				"toolProficiencies": [
+					{
+						"herbalism kit": true
+					}
+				],
+				"armor": [
+					"light",
+					"shield"
+				],
+				"armorProficiencies": [
+					{
+						"light": true,
+						"shield": true
 					}
 				]
 			},
@@ -660,6 +680,12 @@
 					"armor": [
 						"light",
 						"shield"
+					],
+					"armorProficiencies": [
+						{
+							"light": true,
+							"shield": true
+						}
 					]
 				}
 			},
