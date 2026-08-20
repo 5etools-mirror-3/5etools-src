@@ -377,6 +377,7 @@ class _PageGeneratorTarokka extends PageGeneratorGeneric {
 
 	_stylesheets = [
 		"decks",
+		"tarokka",
 	];
 
 	_scriptsRenderAdditional = [

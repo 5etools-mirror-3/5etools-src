@@ -228,7 +228,7 @@ class TarokkaPage {
 				}
 			});
 
-		const wrpFace = veT`<div class="ve-no-shrink ve-px-1 decks__wrp-card-face ve-relative" style="width: 180px;">
+		const wrpFace = veT`<div class="ve-no-shrink ve-px-1 decks__wrp-card-face tarokka__wrp-card-face ve-relative">
 			<div class="ve-absolute ve-pt-2 ve-pr-2 decks__wrp-btn-show-card">
 				<div class="ve-btn-group ve-flex-v-center">${btnViewer}</div>
 			</div>
