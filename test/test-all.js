@@ -21,6 +21,7 @@ async function main () {
 	if (!(await (await import("./test-adventure-book-contents.js")).default)) handleFail();
 	await (await import("./test-map-grids-parents.js")).default; // don't fail on missing map grids
 	if (!(await (await import("./test-foundry.js")).default)) handleFail();
+	if (!(await (await import("./test-tarokka.js")).default)) handleFail();
 	process.exit(0);
 }
 
