@@ -371,7 +371,7 @@ class _PageGeneratorTarokka extends PageGeneratorGeneric {
 	_page = "tarokka.html";
 
 	_pageTitle = "Tarokka Reader";
-	_navbarDescription = "Read the Cards to draw a new Fortunes of Ravenloft prophecy.";
+	_navbarDescription = "Read the Cards for a Fortunes of Ravenloft prophecy, or draw a single card.";
 
 	_isFontAwesome = true;
 

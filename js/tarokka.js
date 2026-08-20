@@ -155,6 +155,11 @@ class TarokkaReading {
 				card: (position.isHighDeck ? cardsHigh : cardsCommon).pop(),
 			}));
 	}
+
+	/** Draw a single card from the full deck, for readings outside the prophecy. */
+	static getRandomCard () {
+		return RollerUtil.rollOnArray(TarokkaData.getDeck().cards);
+	}
 }
 
 class TarokkaPage {
@@ -174,11 +179,14 @@ class TarokkaPage {
 		const btnDraw = veT`<button class="ve-btn ve-btn-primary ve-btn-lg" title="Draw a new five-card reading">Read the Cards</button>`
 			.vee.onn("click", () => this._doDraw());
 
+		const btnDrawCard = veT`<button class="ve-btn ve-btn-default ve-btn-lg" title="Draw a single card from the deck">Draw a Card</button>`
+			.vee.onn("click", () => this._doDrawCard());
+
 		this._wrpReading = veE({tag: "div", clazz: "ve-flex-col ve-w-100"});
 
 		veEs(`#tarokka-main`).vee.empty();
 		veT`<div class="ve-flex-col ve-w-100">
-			<div class="ve-flex-vh-center ve-mb-3">${btnDraw}</div>
+			<div class="ve-flex-vh-center ve-mb-3"><div class="ve-btn-group">${btnDraw}${btnDrawCard}</div></div>
 			${this._wrpReading}
 		</div>`
 			.vee.appendTo(veEs(`#tarokka-main`));
@@ -189,12 +197,21 @@ class TarokkaPage {
 	}
 
 	_doDraw () {
+		this._render(
+			TarokkaReading.getRandom()
+				.map(drawn => this._getRenderedDrawn(drawn)),
+		);
+	}
+
+	_doDrawCard () {
+		this._render([
+			this._getRenderedDrawn({position: null, card: TarokkaReading.getRandomCard()}),
+		]);
+	}
+
+	_render (eles) {
 		this._wrpReading.vee.empty();
-
-		TarokkaReading.getRandom()
-			.map(drawn => this._getRenderedDrawn(drawn))
-			.forEach(ele => ele.vee.appendTo(this._wrpReading));
-
+		eles.forEach(ele => ele.vee.appendTo(this._wrpReading));
 		Renderer.dice.bindOnclickListener(this._wrpReading);
 	}
 
@@ -211,7 +228,6 @@ class TarokkaPage {
 				}
 			});
 
-		// ponytail: inline width, as this is the only place which needs it; move to SCSS if the page grows more styling
 		const wrpFace = veT`<div class="ve-no-shrink ve-px-1 decks__wrp-card-face ve-relative" style="width: 180px;">
 			<div class="ve-absolute ve-pt-2 ve-pr-2 decks__wrp-btn-show-card">
 				<div class="ve-btn-group ve-flex-v-center">${btnViewer}</div>
@@ -219,6 +235,18 @@ class TarokkaPage {
 			${Renderer.get().setFirstSection(true).render({...card.face, title: card.name, altText: card.name})}
 		</div>`;
 
+		// A single card is drawn outside the reading, so it has no position--show the card's own meaning instead
+		const ptText = position
+			? this._getRenderedDrawn_getReadingText({position, card})
+			: RenderDecks.getCardTextHtml({card, deck});
+
+		return veT`<div class="ve-flex-v-center decks__wrp-row ve-stats ve-stats--book ve-p-2 ve-mb-2">
+			${wrpFace}
+			<div class="ve-ml-2 decks__wrp-card-text ve-w-100">${ptText}</div>
+		</div>`;
+	}
+
+	_getRenderedDrawn_getReadingText ({position, card}) {
 		const outcomes = TarokkaData.getOutcomes({position, card});
 
 		const entries = [
@@ -237,10 +265,7 @@ class TarokkaPage {
 			.render({name: `${position.ix}. ${position.name}`, entries}, 1);
 		Renderer.get().setPartPageExpandCollapseDisabled(false);
 
-		return veT`<div class="ve-flex-v-center decks__wrp-row ve-stats ve-stats--book ve-p-2 ve-mb-2">
-			${wrpFace}
-			<div class="ve-ml-2 decks__wrp-card-text ve-w-100">${ptText}</div>
-		</div>`;
+		return ptText;
 	}
 }
 
