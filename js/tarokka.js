@@ -211,7 +211,8 @@ class TarokkaPage {
 				}
 			});
 
-		const wrpFace = veT`<div class="ve-no-shrink ve-px-1 decks__wrp-card-face ve-relative">
+		// ponytail: inline width, as this is the only place which needs it; move to SCSS if the page grows more styling
+		const wrpFace = veT`<div class="ve-no-shrink ve-px-1 decks__wrp-card-face ve-relative" style="width: 180px;">
 			<div class="ve-absolute ve-pt-2 ve-pr-2 decks__wrp-btn-show-card">
 				<div class="ve-btn-group ve-flex-v-center">${btnViewer}</div>
 			</div>
