@@ -233,10 +233,20 @@ class DecksPage extends ListPage {
 		hkCardLayout();
 		// endregion
 
+		// region Spreads
+		// Only decks with a documented way of laying out cards get the button
+		const btnSpread = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-bb-0 ve-bbr-0 ve-bbl-0 ve-hidden" title="Read a Spread"><i class="fas fa-fw fa-layer-group"></i></button>`
+			.vee.onn("click", () => this._pDoOpenSpread(ent, btnSpread).then(null));
+
+		RenderDeckSpreads.pGetSpreadsForDeck(ent)
+			.then(spreads => btnSpread.vee.toggleClass("ve-hidden", !spreads.length));
+		// endregion
+
 		veT(wrpControls)`<div class="ve-flex">
 			<div class="ve-flex-v-center ve-btn-group">
 				${btnDraw}
 				${btnReset}
+				${btnSpread}
 			</div>
 
 			<div class="ve-flex-v-center ve-btn-group ve-ml-2">
@@ -257,6 +267,53 @@ class DecksPage extends ListPage {
 		this._pgContent
 			.vee.empty()
 			.vee.appends(ele);
+	}
+
+	async _pDoOpenSpread (ent, btnSpread) {
+		try {
+			btnSpread.vee.prop("disabled", true);
+
+			const spreads = await RenderDeckSpreads.pGetSpreadsForDeck(ent);
+			if (!spreads.length) return;
+
+			const {eleModalInner} = UiUtil.getShowModal({
+				title: `Spread \u2014 ${ent.name}`,
+				isMinHeight0: true,
+				isUncappedHeight: true,
+			});
+			const wrpModal = veE({ele: eleModalInner});
+
+			const wrpOut = veE({tag: "div", clazz: "ve-flex-col ve-w-100"});
+
+			const selSpread = veT`<select class="form-control input-sm ve-w-100">
+				${spreads.map((spread, ix) => veT`<option value="${ix}">${spread.name} (${Parser.sourceJsonToAbv(spread.source)})</option>`)}
+			</select>`;
+
+			const pDoRender = async () => {
+				const spread = spreads[Number(selSpread.vee.val())];
+				wrpOut.vee.empty();
+				veT`<div class="ve-mb-2">${Renderer.get().setFirstSection(true).render({entries: spread.entries || []})}</div>`
+					.vee.appendTo(wrpOut);
+				(await RenderDeckSpreads.pGetRenderedSpread({spread, deck: ent}))
+					.vee.appendTo(wrpOut);
+				Renderer.dice.bindOnclickListener(wrpOut);
+			};
+
+			const btnRedraw = veT`<button class="ve-btn ve-btn-primary ve-btn-sm ve-ml-2 ve-no-shrink">Draw</button>`
+				.vee.onn("click", () => pDoRender().then(null));
+
+			selSpread.vee.onn("change", () => pDoRender().then(null));
+
+			veT`<div class="ve-flex-col ve-w-100 ve-min-h-0">
+				<div class="ve-flex-v-center ve-mb-2">${selSpread}${btnRedraw}</div>
+				<div class="ve-flex-col ve-w-100 ve-overflow-y-auto">${wrpOut}</div>
+			</div>`
+				.vee.appendTo(wrpModal);
+
+			await pDoRender();
+		} finally {
+			btnSpread.vee.prop("disabled", false);
+		}
 	}
 }
 

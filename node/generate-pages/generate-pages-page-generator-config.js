@@ -366,29 +366,6 @@ class _PageGeneratorSearch extends PageGeneratorGeneric {
 	];
 }
 
-class _PageGeneratorTarokka extends PageGeneratorGeneric {
-	_filename = "page/template-page-tarokka.hbs";
-	_page = "tarokka.html";
-
-	_pageTitle = "Tarokka Reader";
-	_navbarDescription = "Read the Cards for a Fortunes of Ravenloft prophecy, or draw a single card.";
-
-	_isFontAwesome = true;
-
-	_stylesheets = [
-		"decks",
-		"tarokka",
-	];
-
-	_scriptsRenderAdditional = [
-		"render-decks.js",
-	];
-
-	_scriptsModules = [
-		"tarokka.js",
-	];
-}
-
 class _PageGeneratorStatgen extends PageGeneratorGeneric {
 	_filename = "page/template-page-statgen.hbs";
 	_page = "statgen.html";
@@ -439,5 +416,4 @@ export const PAGE_GENERATORS = 	[
 	new _PageGeneratorRenderdemo(),
 	new _PageGeneratorSearch(),
 	new _PageGeneratorStatgen(),
-	new _PageGeneratorTarokka(),
 ];

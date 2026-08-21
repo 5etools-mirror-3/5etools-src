@@ -1,0 +1,104 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "deck-spreads.json",
+
+	"$defs": {
+		"deckSpreadPosition": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string"
+				},
+				"entries": {
+					"type": "array",
+					"items": {
+						"$ref": "entry.json"
+					},
+					"minItems": 1
+				},
+				"suits": {
+					"$comment": "The suits this position may draw from; `null` matches cards which have no suit. Omit to draw from the whole deck.",
+					"type": "array",
+					"items": {
+						"type": ["string", "null"]
+					},
+					"minItems": 1,
+					"uniqueItems": true
+				},
+				"outcomeGroup": {
+					"$comment": "The named section of the `outcomeSource` which holds this position's pre-written per-card outcome text.",
+					"type": "string"
+				}
+			},
+			"required": ["name", "entries"],
+			"additionalProperties": false
+		},
+
+		"deckSpread": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string"
+				},
+				"source": {
+					"$ref": "util.json#/$defs/source"
+				},
+				"page": {
+					"$ref": "util.json#/$defs/page"
+				},
+				"deck": {
+					"$comment": "A `name|source` reference to the deck this spread is drawn from.",
+					"type": "string"
+				},
+				"entries": {
+					"type": "array",
+					"items": {
+						"$ref": "entry.json"
+					}
+				},
+				"positions": {
+					"type": "array",
+					"items": {
+						"$ref": "#/$defs/deckSpreadPosition"
+					},
+					"minItems": 1
+				},
+				"outcomeSource": {
+					"$comment": "Where to find pre-written per-card outcome text, for spreads which have it.",
+					"type": "object",
+					"properties": {
+						"type": {
+							"enum": ["adventure"]
+						},
+						"id": {
+							"type": "string"
+						},
+						"section": {
+							"type": "string"
+						}
+					},
+					"required": ["type", "id", "section"],
+					"additionalProperties": false
+				}
+			},
+			"required": ["name", "source", "deck", "positions"],
+			"additionalProperties": false
+		}
+	},
+
+	"type": "object",
+	"properties": {
+		"_meta": {
+			"$ref": "util.json#/$defs/metaBlock"
+		},
+		"deckSpread": {
+			"type": "array",
+			"items": {
+				"$ref": "#/$defs/deckSpread"
+			},
+			"minItems": 1
+		}
+	},
+	"required": ["deckSpread"],
+	"additionalProperties": false
+}

@@ -167,10 +167,15 @@ class _PageGeneratorListDecks extends PageGeneratorListBase {
 
 	_stylesheets = [
 		"decks",
+		"deck-spreads",
 	];
 	_isStyleBook = true;
 
 	_scriptIdentList = "decks";
+
+	_scriptsRenderAdditional = [
+		"render-deck-spreads.js",
+	];
 
 	_styleListContainerAdditional = "ve-flex-4";
 	_styleContentWrapperAdditional = "ve-flex-7";

@@ -101,7 +101,6 @@ class NavBar {
 		this._addElement_li({keyPath: [NavBar._CAT_DUNGEON_MASTER], page: "crcalculator.html", aText: "CR Calculator (5e/2014)"});
 		this._addElement_li({keyPath: [NavBar._CAT_DUNGEON_MASTER], page: "encountergen.html", aText: "Encounter Generator"});
 		this._addElement_li({keyPath: [NavBar._CAT_DUNGEON_MASTER], page: "lootgen.html", aText: "Loot Generator"});
-		this._addElement_li({keyPath: [NavBar._CAT_DUNGEON_MASTER], page: "tarokka.html", aText: "Tarokka Reader"});
 		this._addElement_divider({keyPath: [NavBar._CAT_DUNGEON_MASTER]});
 		this._addElement_li({keyPath: [NavBar._CAT_DUNGEON_MASTER], page: "maps.html", aText: "Maps"});
 
