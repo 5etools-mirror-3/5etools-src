@@ -232,7 +232,7 @@ class MapsPage extends BaseComponent {
 			</label>
 		</div>`;
 
-		const wrpContent = veT`<div class="ve-flex-col ve-w-100 maps-gallery__wrp-chapter ve-px-2 ve-py-3 ve-my-2 shadow-big">
+		const wrpContent = veT`<div class="ve-flex-col ve-w-100 maps-gallery__wrp-chapter ve-px-2 ve-py-3 ve-my-2 ve-shadow-big">
 			<h4 class="ve-mt-0 ve-mb-2">${Renderer.get().render(`{@${sourceMeta.prop} ${chapter.name}|${sourceMeta.id}|${chapter.ix}}`)}</h4>
 			<div class="ve-flex ve-flex-wrap">${chapter.images.map(it => Renderer.get().render(it))}</div>
 		</div>`;
@@ -332,7 +332,7 @@ class MapsPage extends BaseComponent {
 		hkAnyVisible();
 
 		veT(root.vee.empty())`
-			<div class="ve-flex-col ve-h-100 ve-no-shrink maps-menu ve-pr-4 ve-py-3 shadow-big ve-overflow-y-auto ve-smooth-scroll ve-scrollbar-stable ve-mobile-sm__w-100 ve-mobile-sm__my-4">
+			<div class="ve-flex-col ve-h-100 ve-no-shrink maps-menu ve-pr-4 ve-py-3 ve-shadow-big ve-overflow-y-auto ve-smooth-scroll ve-scrollbar-stable ve-mobile-sm__w-100 ve-mobile-sm__my-4">
 				<label class="ve-split-v-center ve-pl-2 ve-py-1">
 					<div class="ve-mr-3 ve-no-shrink">Image Scale</div>
 					${sldImageScale}

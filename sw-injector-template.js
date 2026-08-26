@@ -41,18 +41,39 @@ const fetchError = {
 
 const wb = new Workbox("sw.js");
 
-wb.addEventListener("controlling", () => {
+let isUpdateApproved = false;
+
+wb.addEventListener("waiting", () => {
 	if (!VetoolsConfig.get("ui", "isNotifyUpdates")) return;
 
+	const btnUpdate = veT`<button class="ve-btn ve-btn-primary ve-btn-xs ve-ml-2 ve-w-200p">Update and Reload</button>`
+		.vee.onn("click", evt => {
+			evt.stopPropagation();
+
+			isUpdateApproved = true;
+
+			btnUpdate
+				.vee.prop("disabled", true)
+				.vee.txt("Updating...")
+				.vee.addClass("ve-text-center");
+
+			wb.messageSkipWaiting();
+		});
+
 	const lnk = veT`<a href="${Renderer.get().baseUrl}changelog.html" class="alert-link">changelog</a>`
-		.onn("click", evt => {
+		.vee.onn("click", evt => {
 			evt.stopPropagation();
 		});
+
 	JqueryUtil.doToast({
-		content: veT`<div>${window.location.hostname} has been updated\u2014reload to see new content, and ensure the page is displayed correctly. See the ${lnk} for more info!</div>`,
-		type: "success",
-		isAutoHide: false, // never auto hide - this warning is important
+		content: veT`<div>An update to ${window.location.hostname} is ready. See the ${lnk} for more info. ${btnUpdate}</div>`,
+		type: "info",
+		isAutoHide: false,
 	});
+});
+
+wb.addEventListener("controlling", () => {
+	if (isUpdateApproved) window.location.reload();
 });
 
 // this is where we tell the service worker to start - after the page has loaded
@@ -118,7 +139,7 @@ const initDownloadBar = () => {
 	const displayPercent = veT`<div class="page__disp-download-progress-text ve-flex-vh-center ve-bold">0%</div>`;
 
 	const btnCancel = veT`<button class="ve-btn ve-btn-default"><span class="glyphicon glyphicon-remove"></span></button>`
-		.onn("click", () => {
+		.vee.onn("click", () => {
 			swCancelCacheRoutes();
 		});
 
@@ -141,7 +162,9 @@ const updateDownloadBar = (msg) => {
 	switch (msg.type) {
 		case "CACHE_ROUTES_PROGRESS":
 			// eslint-disable-next-line no-case-declarations
-			const percent = `${(100 * (msg.payload.fetched / msg.payload.fetchTotal)).toFixed(3)}%`;
+			const percent = msg.payload.fetchTotal
+				? `${(100 * (msg.payload.fetched / msg.payload.fetchTotal)).toFixed(3)}%`
+				: "100%";
 			downloadBar.displayProgress.css({width: percent});
 			downloadBar.displayPercent.txt(percent);
 			// do a toast and cleanup if every single file has been downloaded.
@@ -164,10 +187,9 @@ const updateDownloadBar = (msg) => {
 					{
 						type: "warning",
 						autoHideTime: 15_000,
-						content:
-					`An error occurred while preloading.
-					You may have gone offline, or the server may not be responding.
-					Please try again. ${VeCt.STR_SEE_CONSOLE}`,
+						content: msg.payload.isQuotaExceeded
+							? `Storage quota exceeded. You may have to reset preloaded data \u2014 or choose a smaller preload \u2014 then try again.`
+							: `An error occurred while preloading. You may have gone offline, or the server may not be responding. Please try again. ${VeCt.STR_SEE_CONSOLE}`,
 					},
 				);
 			}, 2_000);

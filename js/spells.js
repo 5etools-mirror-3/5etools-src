@@ -83,6 +83,7 @@ class SpellsSublistManager extends SublistManager {
 			},
 			{
 				hash,
+				page: spell.page,
 				entity: spell,
 				mdRow: [...cellsText],
 			},
@@ -116,8 +117,6 @@ class SpellPageBookView extends ListPageBookView {
 	}
 
 	_getSorted (a, b) {
-		a = a.entity;
-		b = b.entity;
 		return this._bookViewLastOrder === "0" ? SortUtil.ascSort(a.level, b.level) : SortUtil.ascSortLower(a.name, b.name);
 	}
 
@@ -386,6 +385,7 @@ class SpellsPage extends ListPageMultiSource {
 			},
 			{
 				hash,
+				page: spell.page,
 				isExcluded,
 			},
 		);

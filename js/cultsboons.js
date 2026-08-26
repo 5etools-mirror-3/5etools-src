@@ -43,6 +43,7 @@ class CultsBoonsSublistManager extends SublistManager {
 			},
 			{
 				hash,
+				page: it.page,
 				entity: it,
 				mdRow: [...cellsText],
 			},
@@ -100,6 +101,7 @@ class CultsBoonsPage extends ListPage {
 			},
 			{
 				hash,
+				page: it.page,
 				isExcluded,
 			},
 		);

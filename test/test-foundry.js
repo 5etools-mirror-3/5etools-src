@@ -197,6 +197,9 @@ class TestFoundry {
 				"@scale.eldritch-knight.cantrips",
 				"@scale.eldritch-knight.prepared",
 			]),
+			[Parser.SRC_RHW]: new Set([
+				"@scale.tokens-of-the-departed.max", // "Soul Trinkets"
+			]),
 		},
 	};
 

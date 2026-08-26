@@ -37,6 +37,7 @@ class VariantRulesSublistManager extends SublistManager {
 			},
 			{
 				hash,
+				page: it.page,
 				entity: it,
 				mdRow: [...cellsText],
 			},
@@ -95,6 +96,7 @@ class VariantRulesPage extends ListPage {
 			},
 			{
 				hash,
+				page: rule.page,
 				isExcluded,
 			},
 		);
@@ -109,14 +111,30 @@ class VariantRulesPage extends ListPage {
 		this._pgContent.vee.empty().vee.appends(RenderVariantRules.getRenderedVariantRule(ent));
 	}
 
-	async _pDoLoadSubHash ({sub, lockToken}) {
-		sub = await super._pDoLoadSubHash({sub, lockToken});
-
-		if (!sub.length) return;
+	async _pDoLoadSubHash_pTitleIndex_ ({sub}) {
+		if (!sub.length) return sub;
 
 		const ixHeader = UrlUtil.unpackSubHash(sub[0], true)?.header;
 		const eleTitle = veEs(`.ve-rd__h[data-title-index="${ixHeader}"]`);
 		if (eleTitle) eleTitle.scrollIntoView();
+
+		return sub;
+	}
+
+	async _pDoLoadSubHash_pTitleIndex ({sub}) {
+		try {
+			sub = await this._pDoLoadSubHash_pTitleIndex_({sub});
+		} catch (e) {
+			JqueryUtil.doToast({type: "danger", content: `Failed to set creature scaler state from URL! ${VeCt.STR_SEE_CONSOLE}`, isAutoHide: false});
+			setTimeout(() => { throw e; });
+		}
+		return sub;
+	}
+
+	async _pDoLoadSubHash ({sub, lockToken}) {
+		sub = await super._pDoLoadSubHash({sub, lockToken});
+		sub = await this._pDoLoadSubHash_pTitleIndex({sub});
+		return sub;
 	}
 }
 

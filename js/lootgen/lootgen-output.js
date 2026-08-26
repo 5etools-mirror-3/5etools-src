@@ -64,7 +64,7 @@ export class LootGenOutput {
 			.filter(Boolean)
 			.flat();
 
-		this._wrp = veT`<div class="ve-flex-col ve-lootg__wrp-output ve-py-3 ve-px-2 ve-my-2 ve-mr-1">
+		this._wrp = veT`<div class="ve-flex-col ve-bg-solid ve-shadow-big ve-b-1p ve-bc-5p ve-py-3 ve-px-2 ve-my-2 ve-mr-1">
 			${dispTitle}
 			${elesParts.length ? veT`<ul>${elesParts}</ul>` : null}
 			${!elesParts.length ? `<div class="ve-muted ve-help-subtle ve-italic" title="${TOOLTIP_NOTHING.qq()}">(No loot!)</div>` : null}

@@ -70,6 +70,9 @@ export const PROPORDER_FOUNDRY_ACTIVITIES = new ArrayKey("activities", {
 		"transform",
 		"settings",
 
+		// "forward"-type
+		"activity",
+
 		"effects",
 
 		// Other modules
@@ -101,6 +104,7 @@ export const PROPORDER_FOUNDRY_EFFECTS = new ArrayKey("effects", {
 		"description",
 		"descriptionEntries",
 		"img",
+		"showIcon",
 		"advice",
 	],
 });

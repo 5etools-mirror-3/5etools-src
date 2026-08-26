@@ -16,6 +16,7 @@ import {TagTestUrlLookup} from "./test-tags/test-tags-entity-registry.js";
 import {EntityFileHandlerLoot} from "./test-tags/entity-file/test-tags-entity-file-loot.js";
 import {EntityFileHandlerItems} from "./test-tags/entity-file/test-tags-entity-file-items.js";
 import {EntityFileHandlerAction} from "./test-tags/entity-file/test-tags-entity-file-action.js";
+import {EntityFileHandlerAdventureBook} from "./test-tags/entity-file/test-tags-entity-file-adventure-book.js";
 import {EntityFileHandlerBackground} from "./test-tags/entity-file/test-tags-entity-file-background.js";
 import {EntityFileHandlerBestiary} from "./test-tags/entity-file/test-tags-entity-file-bestiary.js";
 import {EntityFileHandlerClass} from "./test-tags/entity-file/test-tags-entity-file-class.js";
@@ -122,9 +123,14 @@ class LinkCheck extends DataTesterBase {
 			const tagFaux = `${tagNonFluff}Fluff`;
 
 			const sourceDefault = Renderer.tag.getTagInfo(tagNonFluff, {isRequired: true}).defaultSource;
-			const uid = DataUtil.proxy.getUid(prop, {...obj, source: obj.source || sourceDefault});
+			const source = obj.source || sourceDefault;
+			const uid = DataUtil.proxy.getUid(prop, {...obj, source});
 
 			this._checkTagText({original: JSON.stringify(obj), tag: tagFaux, text: uid, filePath, isStatblock: true});
+
+			const hash = UrlUtil.URL_TO_HASH_BUILDER[prop]({...obj, source});
+			const fluff = DataLoader.getFromCache(prop, source, hash);
+			if (fluff && !fluff.entries?.length) this._addMessage(`Image-only fluff used: "${prop}" statblock ${JSON.stringify(obj)} in file ${filePath} referenced fluff with no entries\n`);
 
 			return obj;
 		}
@@ -934,6 +940,7 @@ async function main () {
 		new HasFluffCheck(),
 
 		new EntityFileHandlerAction(sharedParamsEntityTypeTester),
+		new EntityFileHandlerAdventureBook(sharedParamsEntityTypeTester),
 		new EntityFileHandlerBackground(sharedParamsEntityTypeTester),
 		new EntityFileHandlerBestiary(sharedParamsEntityTypeTester),
 		new EntityFileHandlerClass(sharedParamsEntityTypeTester),

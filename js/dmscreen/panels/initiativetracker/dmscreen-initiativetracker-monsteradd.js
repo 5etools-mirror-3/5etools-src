@@ -236,7 +236,8 @@ export class InitiativeTrackerMonsterAdd extends BaseComponent {
 		const {eleModalInner, doClose, pGetResolved} = UiUtil.getShowModal();
 		rdState.cbDoClose = doClose;
 
-		const iptSearch = veT`<input class="ve-ui-search__ipt-search search ve-form-control" autocomplete="off" placeholder="Search...">`;
+		const iptSearch = veT`<input class="ve-ui-search__ipt-search search ve-form-control" placeholder="Search...">`
+			.vee.disableSpellcheck();
 
 		veT`<div class="ve-split ve-no-shrink">
 			${iptSearch}

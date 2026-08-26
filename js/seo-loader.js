@@ -17,7 +17,7 @@ const onLoadSeo = async () => {
 
 	const wrpContent = veEs(`#wrp-pagecontent`);
 
-	const eleContent = veEs(`#pagecontent`).vee.addClass("shadow-big").vee.empty();
+	const eleContent = veEs(`#pagecontent`).vee.addClass("ve-shadow-big").vee.empty();
 
 	veEm(`.nav__link`)
 		.forEach((ele) => {
@@ -47,7 +47,7 @@ const onLoadSeo = async () => {
 		const fluff = await DataLoader.pCacheAndGet(`${fullPage}fluff`, globalThis._SEO_SOURCE, globalThis._SEO_HASH);
 		if (fluff) {
 			const eleFluff = Renderer.hover.getHoverContent_fluff(globalThis._SEO_PAGE, fluff, null, {isSkipNameRow: true, isSkipPageRow: true})
-				.vee.addClass("shadow-big")
+				.vee.addClass("ve-shadow-big")
 				.vee.addClass("ve-stats--book")
 				.vee.addClass("ve-stats--book-large");
 			veT`<div class="ve-mt-5 ve-py-2">${eleFluff}</div>`.vee.insertAfter(wrpContent);

@@ -50,6 +50,8 @@ class RacesSublistManager extends SublistManager {
 			},
 			{
 				hash,
+				page: race.page,
+				ability: race._srtAbility,
 				entity: race,
 				mdRow: [...cellsText],
 			},
@@ -134,6 +136,8 @@ class RacesPage extends ListPage {
 			},
 			{
 				hash,
+				page: race.page,
+				ability: race._srtAbility,
 				isExcluded,
 			},
 		);

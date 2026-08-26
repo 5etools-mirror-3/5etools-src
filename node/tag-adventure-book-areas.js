@@ -42,11 +42,20 @@ class AreaTagger {
 
 				if (obj.id) return obj;
 
-				if (obj.type === "image" && (obj.mapRegions || obj.imageType === "map")) obj.id = this._getNewTag();
+				if (obj.type === "wrapper") {
+					obj.id = this._getNewTag();
+					return obj;
+				}
+
+				if (obj.type === "image" && (obj.mapRegions || obj.imageType === "map")) {
+					obj.id = this._getNewTag();
+					return obj;
+				}
 
 				if (obj.type === "list" && obj._isAddIds) {
 					obj.items.forEach(itm => itm.id ||= this._getNewTag());
 					delete obj._isAddIds;
+					return obj;
 				}
 
 				return obj;

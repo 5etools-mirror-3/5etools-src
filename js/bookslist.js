@@ -1,6 +1,28 @@
 import {BookUtil} from "./bookutils.js";
 
 export class AdventuresBooksList {
+	static _getHeaderText ({header}) {
+		return header.header || header;
+	}
+
+	static _getScrollHash ({bookSource, header, headerText, headerCounts}) {
+		if (header.statblock) {
+			const ptHash = UrlUtil.URL_TO_HASH_GENERIC({
+				name: headerText,
+				source: header.source || bookSource,
+			});
+
+			return `${VeCt.HASH_PREFIX_STATS_SCROLLER}${ptHash}`;
+		}
+
+		const headerTextClean = headerText.toLowerCase().trim();
+		const headerPos = headerCounts[headerTextClean] || 0;
+		headerCounts[headerTextClean] = headerPos + 1;
+		const headerIndex = header.index ?? headerPos;
+
+		return `${UrlUtil.encodeForHash(headerText)}${headerIndex > 0 ? `,${headerIndex}` : ""}`;
+	}
+
 	static _getDateStr (advBook) {
 		if (!advBook.published) return "\u2014";
 		const date = new Date(advBook.published);
@@ -144,12 +166,10 @@ export class AdventuresBooksList {
 				const headerCounts = {};
 
 				chapter.headers.forEach(header => {
-					const headerText = BookUtil.getHeaderText(header);
+					const headerText = this.constructor._getHeaderText({header});
+					const headerHash = this.constructor._getScrollHash({bookSource: it.source, header, headerText, headerCounts});
 
-					const headerTextClean = headerText.toLowerCase().trim();
-					const headerPos = headerCounts[headerTextClean] || 0;
-					headerCounts[headerTextClean] = (headerCounts[headerTextClean] || 0) + 1;
-					const lnk = veT`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)},${ixChapter},${UrlUtil.encodeForHash(headerText)}${header.index ? `,${header.index}` : ""}${headerPos > 0 ? `,${headerPos}` : ""}" class="ve-lst__row ve-lst__row-border ve-lst__row-inner ve-lst__wrp-cells bklist__row-section ve-flex ve-w-100">
+					const lnk = veT`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)},${ixChapter},${headerHash}" class="ve-lst__row ve-lst__row-border ve-lst__row-inner ve-lst__wrp-cells bklist__row-section ve-flex ve-w-100">
 						${BookUtil._getContentsSectionHeader(header)}
 					</a>`;
 					elesContents.push(lnk);
@@ -197,8 +217,15 @@ export class AdventuresBooksList {
 
 			const isLegacySource = SourceUtil.isLegacySourceWotc(it.source);
 
+			const ptTitle = [
+				it.coverCredit ? `Credit: ${it.coverCredit.qq()}` : null,
+				isLegacySource ? `Legacy Source` : null,
+			]
+				.filter(Boolean)
+				.join(". ");
+
 			// region Alt list (covers/thumbnails)
-			const eleLiAlt = veT`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)}" class="ve-flex-col ve-flex-v-center ve-m-3 bks__wrp-bookshelf-item ${isExcluded ? `bks__wrp-bookshelf-item--blocklisted` : ""} ${isLegacySource ? `bks__wrp-bookshelf-item--legacy` : ""} ve-py-3 ve-px-2 ${Parser.sourceJsonToSourceClassname(it.source)}" ${isLegacySource ? `title="(Legacy Source)"` : ""}>
+			const eleLiAlt = veT`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)}" class="ve-flex-col ve-flex-v-center ve-m-3 bks__wrp-bookshelf-item ${isExcluded ? `bks__wrp-bookshelf-item--blocklisted` : ""} ${isLegacySource ? `bks__wrp-bookshelf-item--legacy` : ""} ve-py-3 ve-px-2 ${Parser.sourceJsonToSourceClassname(it.source)}" ${ptTitle ? `title="${ptTitle}"` : ""}>
 				<img src="${Renderer.adventureBook.getCoverUrl(it)}" class="ve-mb-2 bks__bookshelf-image" loading="lazy" alt="Cover Image: ${(it.name || "").qq()}">
 				<div class="bks__bookshelf-item-name ve-flex-vh-center ve-text-center">${it.name}</div>
 			</a>`;

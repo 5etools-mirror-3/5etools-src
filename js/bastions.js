@@ -54,6 +54,7 @@ class BastionsSublistManager extends SublistManager {
 			},
 			{
 				hash,
+				page: ent.page,
 				entity: ent,
 				mdRow: [...cellsText],
 			},
@@ -140,6 +141,7 @@ class BastionsPage extends ListPage {
 			},
 			{
 				hash,
+				page: ent.page,
 				isExcluded,
 			},
 		);

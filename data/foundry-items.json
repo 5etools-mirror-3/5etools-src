@@ -5166,6 +5166,69 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Ebonbane",
+			"source": "RHW",
+			"activities": [
+				{
+					"type": "attack",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"number": 3,
+								"denomination": 6,
+								"types": [
+									"necrotic"
+								]
+							}
+						]
+					}
+				},
+				{
+					"type": "save",
+					"activation": {
+						"type": "special",
+						"condition": "At dawn"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"damage": {
+						"onSave": "none",
+						"parts": [
+							{
+								"number": 8,
+								"denomination": 8,
+								"types": [
+									"force"
+								]
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"cha"
+						],
+						"dc": {
+							"formula": "17"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Efreeti Bottle",
 			"source": "XDMG",
 			"activities": [
@@ -7139,6 +7202,70 @@
 						}
 					],
 					"description": "Any melee spell attack you make with the hand and any melee attack made with a weapon held by it deals an extra 2d8 Cold damage on a hit."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Harkon's Bite",
+			"source": "RHW",
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": ""
+					},
+					"effects": [
+						{
+							"foundryId": "harkonsBite"
+						}
+					]
+				},
+				{
+					"type": "transform",
+					"activation": {
+						"type": "special"
+					},
+					"profiles": [
+						{
+							"uuid": "@creature[werewolf|xmm]"
+						}
+					],
+					"transform": {
+						"customize": true
+					},
+					"settings": {
+						"effects": [
+							"origin",
+							"otherOrigin",
+							"background",
+							"class",
+							"feat",
+							"equipment",
+							"spell"
+						],
+						"transformTokens": true
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "harkonsBite",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.bonuses.abilities.check",
+							"value": 1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.bonuses.abilities.save",
+							"value": 1,
+							"mode": "ADD"
+						}
+					]
 				}
 			],
 			"migrationVersion": 3

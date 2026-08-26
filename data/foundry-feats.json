@@ -1,6 +1,79 @@
 {
 	"feat": [
 		{
+			"name": "Aberrant Anatomy",
+			"source": "RHW",
+			"activities": [
+				{
+					"name": "Warping Flesh",
+					"type": "save",
+					"activation": {
+						"type": "special",
+						"condition": "immediately after rolling a 1 on a D20 Test"
+					},
+					"duration": {
+						"units": "round",
+						"value": "1"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"formula": "13 + @prof"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "aberrantAnatomy"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"name": "Extrasensory Perception",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.senses.ranges.blindsight",
+							"value": 15,
+							"mode": "UPGRADE"
+						}
+					],
+					"description": "You have &Reference[Blindsight] with a range of 15 feet."
+				},
+				{
+					"foundryId": "aberrantAnatomy",
+					"name": "Warping Flesh (Stunned)",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"value": 1,
+						"units": "turns",
+						"expiry": "turnStart"
+					},
+					"statuses": [
+						"stunned"
+					],
+					"description": "You have the &Reference[stunned apply=false] condition until the end of your next turn.",
+					"showIcon": 2
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Actor",
 			"source": "XPHB",
 			"activities": [
@@ -931,6 +1004,91 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Echoing Soul",
+			"source": "RHW",
+			"activities": [
+				{
+					"name": "Intrusive Echos",
+					"type": "save",
+					"activation": {
+						"type": "special",
+						"condition": "immediately after rolling a 1 on a D20 Test"
+					},
+					"duration": {
+						"units": "round",
+						"value": "1"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"formula": "13 + @prof"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "echoingSoul"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "echoingSoul",
+					"name": "Intrusive Echoes (Incapacitated)",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"value": 1,
+						"units": "turns",
+						"expiry": "turnStart"
+					},
+					"statuses": [
+						"incapacitated"
+					],
+					"changes": [
+						{
+							"key": "system.attributes.movement.walk",
+							"value": 0.5,
+							"mode": "MULTIPLY"
+						},
+						{
+							"key": "system.attributes.movement.fly",
+							"value": 0.5,
+							"mode": "MULTIPLY"
+						},
+						{
+							"key": "system.attributes.movement.swim",
+							"value": 0.5,
+							"mode": "MULTIPLY"
+						},
+						{
+							"key": "system.attributes.movement.climb",
+							"value": 0.5,
+							"mode": "MULTIPLY"
+						},
+						{
+							"key": "system.attributes.movement.burrow",
+							"value": 0.5,
+							"mode": "MULTIPLY"
+						}
+					],
+					"description": "You have the &Reference[Incapacitated apply=false] condition until the end of your next turn. While you are Incapacitated in this way, your Speed is halved.",
+					"showIcon": 2
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Elven Accuracy",
 			"source": "XGE",
 			"effects": [
@@ -943,6 +1101,182 @@
 							"value": true
 						}
 					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Gathered Whispers",
+			"source": "RHW",
+			"activities": [
+				{
+					"name": "Message (Spirit Whispers)",
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"spell": {
+						"uuid": "@spell[message|xphb]",
+						"properties": [
+							"material"
+						],
+						"spellbook": true
+					}
+				},
+				{
+					"name": "Augury (Spirit Whispers)",
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses",
+								"value": "1"
+							}
+						]
+					},
+					"uses": {
+						"recovery": [
+							{
+								"period": "lr",
+								"type": "recoverAll"
+							}
+						],
+						"max": "1"
+					},
+					"spell": {
+						"uuid": "@spell[augury|xphb]",
+						"properties": [
+							"vocal",
+							"somatic",
+							"material",
+							"ritual"
+						],
+						"spellbook": true,
+						"level": 2
+					}
+				},
+				{
+					"name": "Unearthly Scream",
+					"type": "utility",
+					"activation": {
+						"type": "reaction",
+						"condition": "when you are hit by an attack roll"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses",
+								"value": "1"
+							}
+						]
+					},
+					"uses": {
+						"recovery": [
+							{
+								"period": "lr",
+								"type": "recoverAll"
+							}
+						],
+						"max": "@prof"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"roll": {
+						"name": "Modified AC",
+						"formula": "@attributes.ac.value + @prof"
+					}
+				},
+				{
+					"name": "Voices from Beyond",
+					"type": "save",
+					"activation": {
+						"type": "special",
+						"condition": "immediately after rolling a 1 on a D20 Test"
+					},
+					"duration": {
+						"units": "round",
+						"value": "1"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"wis"
+						],
+						"dc": {
+							"formula": "13 + @prof"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "gatheredWhispers"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "gatheredWhispers",
+					"name": "Voices from Beyond (Deafened)",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"value": 1,
+						"units": "turns",
+						"expiry": "turnStart"
+					},
+					"statuses": [
+						"deafened"
+					],
+					"changes": [
+						{
+							"key": "system.abilities.str.check.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.dex.check.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.con.check.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.int.check.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.wis.check.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.cha.check.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						}
+					],
+					"descriptionEntries": [
+						"While Deafened, you have Disadvantage on ability checks and attack rolls.",
+						"{@i Disadvantage on attack rolls is not automated.}"
+					],
+					"showIcon": 2
 				}
 			],
 			"migrationVersion": 3
@@ -1242,6 +1576,110 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Living Shadow",
+			"source": "RHW",
+			"activities": [
+				{
+					"name": "Mage Hand (Grasping Shadow)",
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"spell": {
+						"uuid": "@spell[mage hand|xphb]",
+						"properties": [
+							"vocal",
+							"somatic",
+							"material"
+						],
+						"spellbook": true
+					}
+				},
+				{
+					"name": "Lengthened Strike",
+					"type": "utility",
+					"activation": {
+						"type": "special",
+						"condition": "when you make a melee attack as part of the Attack or Magic action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses",
+								"value": "1"
+							}
+						]
+					},
+					"uses": {
+						"recovery": [
+							{
+								"period": "lr",
+								"type": "recoverAll"
+							}
+						],
+						"max": "@prof"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					}
+				},
+				{
+					"name": "Ominous Will",
+					"type": "save",
+					"activation": {
+						"type": "special",
+						"condition": "immediately after rolling a 1 on a D20 Test"
+					},
+					"duration": {
+						"units": "round",
+						"value": "1"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"wis"
+						],
+						"dc": {
+							"formula": "13 + @prof"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "livingShadow"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "livingShadow",
+					"name": "Ominous Will (Incapacitated)",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"value": 1,
+						"units": "turns",
+						"expiry": "turnStart"
+					},
+					"statuses": [
+						"incapacitated"
+					],
+					"description": "On a failed save, you have the Incapacitated condition until the start of your next turn, at which point you must roll on the Shadow's Will table to determine what you do during that turn.",
+					"showIcon": 2
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Lucky",
 			"source": "PHB",
 			"system": {
@@ -1364,6 +1802,96 @@
 							"value": 1
 						}
 					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Mist Walker",
+			"source": "RHW",
+			"activities": [
+				{
+					"name": "Domain Traveler",
+					"type": "utility",
+					"activation": {
+						"type": "special",
+						"condition": "when you enter the Mists intent on reaching a domain"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"special": "including self"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					},
+					"roll": {
+						"visible": true,
+						"name": "Hours of Travel",
+						"formula": "1d6"
+					}
+				},
+				{
+					"name": "Mist Walk",
+					"type": "utility",
+					"activation": {
+						"type": "reaction",
+						"condition": "take damage or fail a saving throw to avoid or end the Grappled or Restrained condition"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses",
+								"value": "1"
+							}
+						]
+					},
+					"uses": {
+						"recovery": [
+							{
+								"period": "lr",
+								"type": "recoverAll"
+							}
+						],
+						"max": "@prof"
+					},
+					"target": {
+						"affects": {
+							"type": "space",
+							"count": "1",
+							"special": "unoccupied"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "15"
+					}
+				},
+				{
+					"name": "Poisoned Roots",
+					"type": "save",
+					"activation": {
+						"type": "shortRest",
+						"condition": "within 10 miles of where you have Long Rested"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"formula": "13 + @prof"
+						}
+					}
 				}
 			],
 			"migrationVersion": 3
@@ -1716,6 +2244,99 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Second Skin",
+			"source": "RHW",
+			"activities": [
+				{
+					"name": "Alter Self (Second Skin)",
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses",
+								"value": "1"
+							}
+						]
+					},
+					"uses": {
+						"recovery": [
+							{
+								"period": "lr",
+								"type": "recoverAll"
+							}
+						],
+						"max": "1"
+					},
+					"spell": {
+						"uuid": "@spell[alter self|xphb]",
+						"properties": [
+							"vocal",
+							"somatic",
+							"material",
+							"concentration"
+						],
+						"spellbook": true,
+						"level": 2
+					}
+				},
+				{
+					"name": "Involuntary Change",
+					"type": "save",
+					"activation": {
+						"type": "special",
+						"condition": "at the start of your turn following experiencing the catalyst"
+					},
+					"duration": {
+						"units": "round",
+						"value": "1"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"cha"
+						],
+						"dc": {
+							"formula": "13 + @prof"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "secondSkin"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "secondSkin",
+					"name": "Involuntary Change (Stunned)",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"value": 1,
+						"units": "rounds",
+						"expiry": "turnStart"
+					},
+					"statuses": [
+						"stunned"
+					],
+					"description": "If you've already expended the use of that feature, you instead have the &Reference[Stunned apply=false] condition until the start of your next turn.",
+					"showIcon": 2
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Sentinel",
 			"source": "XPHB",
 			"effects": [
@@ -1731,6 +2352,37 @@
 							"value": 0
 						}
 					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Sharp Eye",
+			"source": "RHW",
+			"system": {
+				"uses.max": "@prof"
+			},
+			"activities": [
+				{
+					"name": "Expend Use on Success",
+					"type": "utility",
+					"activation": {
+						"type": "special",
+						"condition": "When you take Advantage on a specific action and succeed"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					}
 				}
 			],
 			"migrationVersion": 3
@@ -1859,6 +2511,170 @@
 							"value": "+ 5"
 						}
 					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Survivor",
+			"source": "RHW",
+			"activities": [
+				{
+					"name": "Steel Yourself",
+					"type": "utility",
+					"activation": {
+						"type": "reaction",
+						"condition": "You fail a saving throw to avoid or end the Charmed or Frightened condition"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses",
+								"value": "1"
+							}
+						]
+					},
+					"uses": {
+						"recovery": [
+							{
+								"period": "lr",
+								"type": "recoverAll"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"roll": {
+						"name": "Save Bonus",
+						"formula": "@prof"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Symbiotic Being",
+			"source": "RHW",
+			"system": {
+				"uses.max": "@prof"
+			},
+			"activities": [
+				{
+					"name": "Sustained Symbiosis (Smallest HD)",
+					"type": "utility",
+					"img": "systems/dnd5e/icons/svg/dice/d4.svg",
+					"activation": {
+						"type": "reaction",
+						"condition": "you fail a saving throw"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "hitDice",
+								"value": "1",
+								"target": "smallest"
+							},
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"roll": {
+						"name": "Save Bonus",
+						"formula": "@consumed.hd"
+					}
+				},
+				{
+					"name": "Sustained Symbiosis (Largest HD)",
+					"type": "utility",
+					"img": "systems/dnd5e/icons/svg/dice/d12.svg",
+					"activation": {
+						"type": "reaction",
+						"condition": "you fail a saving throw"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "hitDice",
+								"value": "1",
+								"target": "largest"
+							},
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"roll": {
+						"formula": "@consumed.hd",
+						"name": "Save Bonus"
+					}
+				},
+				{
+					"name": "Symbiotic Agenda",
+					"type": "save",
+					"activation": {
+						"type": "special",
+						"condition": "immediately after rolling a 1 on a D20 Test"
+					},
+					"duration": {
+						"units": "spec",
+						"value": "1",
+						"special": "1d12 hours"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"cha"
+						],
+						"dc": {
+							"formula": "13 + @prof"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "symbioticBeing"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "symbioticBeing",
+					"name": "Symbiotic Agenda (Charmed)",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"value": 43200,
+						"units": "seconds",
+						"expiry": "turnStart"
+					},
+					"statuses": [
+						"charmed"
+					],
+					"description": "You have the Charmed condition for 1d12 hours. While Charmed, you must try to follow the symbiote's commands and further its goals, as determined by the DM. Whenever you take damage, you can repeat this save, ending the effect on a success.",
+					"showIcon": 2
 				}
 			],
 			"migrationVersion": 3
@@ -2059,6 +2875,45 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Touch of Death",
+			"source": "RHW",
+			"activities": [
+				{
+					"name": "Chill Touch (Death Touch)",
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"spell": {
+						"uuid": "@spell[chill touch|xphb]",
+						"properties": [
+							"vocal",
+							"somatic",
+							"material"
+						],
+						"spellbook": true
+					}
+				}
+			],
+			"effects": [
+				{
+					"name": "Pull of the Grave",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.death.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Tough",
 			"source": "PHB",
 			"effects": [
@@ -2219,6 +3074,152 @@
 							"mode": "ADD",
 							"value": 1
 						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Watchers",
+			"source": "RHW",
+			"activities": [
+				{
+					"name": "Heightened Suspicion",
+					"type": "utility",
+					"img": "systems/dnd5e/icons/svg/dice/d4.svg",
+					"activation": {
+						"type": "special",
+						"condition": "whenever you take the Search action"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"roll": {
+						"name": "Search Bonus",
+						"formula": "1d4"
+					}
+				},
+				{
+					"name": "Incessant Watchers",
+					"type": "save",
+					"activation": {
+						"type": "special",
+						"condition": "immediately after rolling a 1 on a D20 Test"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "1"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"damage": {
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"wis"
+						],
+						"dc": {
+							"formula": "13 + @prof"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "watchers"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "watchers",
+					"name": "Paranoia",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"value": 60,
+						"units": "seconds",
+						"expiry": "turnStart"
+					},
+					"changes": [
+						{
+							"key": "system.abilities.str.check.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.str.save.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.dex.check.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.dex.save.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.con.check.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.con.save.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.int.check.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.int.save.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.wis.check.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.wis.save.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.cha.check.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.cha.save.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.attributes.death.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.attributes.concentration.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						}
+					],
+					"descriptionEntries": [
+						"{@i Disadvantage on attack rolls is not automated.}"
 					]
 				}
 			],

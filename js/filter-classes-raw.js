@@ -521,6 +521,7 @@ export class ModalFilterClasses extends ModalFilterBase {
 				...ListItem.getCommonValues(cls),
 			},
 			{
+				page: cls.page,
 				ixClass: clsI,
 				tglSel: eleLabel.firstElementChild.firstElementChild,
 			},
@@ -546,6 +547,7 @@ export class ModalFilterClasses extends ModalFilterBase {
 				...ListItem.getCommonValues(sc),
 			},
 			{
+				page: sc.page,
 				ixClass: clsI,
 				ixSubclass: scI,
 				tglSel: eleLabel.firstElementChild.firstElementChild,

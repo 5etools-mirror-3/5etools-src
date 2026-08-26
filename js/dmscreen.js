@@ -1764,7 +1764,9 @@ class AddMenuSearchTab extends AddMenuTab {
 				await this._pDoSearch();
 			});
 
-			const iptSearch = veT`<input class="ve-ui-search__ipt-search search ve-form-control" autocomplete="off" placeholder="Search...">`.vee.appendTo(wrpCtrls);
+			const iptSearch = veT`<input class="ve-ui-search__ipt-search search ve-form-control" placeholder="Search...">`
+				.vee.disableSpellcheck()
+				.vee.appendTo(wrpCtrls);
 			const wrpResults = veT`<div class="ve-ui-search__wrp-results"></div>`.vee.appendTo(eleTab);
 
 			SearchWidget.bindAutoSearch(iptSearch, {

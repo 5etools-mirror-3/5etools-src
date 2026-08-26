@@ -702,6 +702,7 @@ class ModalFilterSpells extends ModalFilterBase {
 			},
 			{
 				hash,
+				page: spell.page,
 				cbSel: eleRow.firstElementChild.firstElementChild.firstElementChild,
 				btnShowHidePreview,
 			},

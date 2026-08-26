@@ -43,6 +43,7 @@ class RecipesSublistManager extends SublistManager {
 			},
 			{
 				hash,
+				page: it.page,
 				entity: it,
 				mdRow: [...cellsText],
 				customHashId,
@@ -105,6 +106,7 @@ class RecipesPage extends ListPage {
 			},
 			{
 				hash,
+				page: ent.page,
 				isExcluded,
 			},
 		);
@@ -139,15 +141,31 @@ class RecipesPage extends ListPage {
 		this._lastRender = {entity: ent};
 	}
 
+	async _pDoLoadSubHash_pScaler_ ({sub}) {
+		const scaledHash = sub.find(it => it.startsWith(RecipesPage._HASH_START_SCALED));
+		if (!scaledHash) return sub;
+
+		const scaleFactor = Number(UrlUtil.unpackSubHash(scaledHash)[VeCt.HASH_SCALED][0]);
+		const r = this._dataList[Hist.lastLoadedId];
+		this._renderStats_doBuildStatsTab({ent: r, scaleFactor});
+
+		return sub;
+	}
+
+	async _pDoLoadSubHash_pScaler ({sub}) {
+		try {
+			sub = await this._pDoLoadSubHash_pScaler_({sub});
+		} catch (e) {
+			JqueryUtil.doToast({type: "danger", content: `Failed to set recipe scaler state from URL! ${VeCt.STR_SEE_CONSOLE}`, isAutoHide: false});
+			setTimeout(() => { throw e; });
+		}
+		return sub;
+	}
+
 	async _pDoLoadSubHash ({sub, lockToken}) {
 		sub = await super._pDoLoadSubHash({sub, lockToken});
-
-		const scaledHash = sub.find(it => it.startsWith(RecipesPage._HASH_START_SCALED));
-		if (scaledHash) {
-			const scaleFactor = Number(UrlUtil.unpackSubHash(scaledHash)[VeCt.HASH_SCALED][0]);
-			const r = this._dataList[Hist.lastLoadedId];
-			this._renderStats_doBuildStatsTab({ent: r, scaleFactor});
-		}
+		sub = await this._pDoLoadSubHash_pScaler({sub});
+		return sub;
 	}
 }
 RecipesPage._HASH_START_SCALED = `${VeCt.HASH_SCALED}${HASH_SUB_KV_SEP}`;

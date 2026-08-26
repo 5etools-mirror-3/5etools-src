@@ -183,6 +183,7 @@ class BestiarySublistManager extends SublistManager {
 			},
 			{
 				hash,
+				page: mon.page,
 				count,
 				customHashId,
 				collectionId,
@@ -307,8 +308,6 @@ class BestiaryPageBookView extends ListPageBookView {
 	}
 
 	_getSorted (a, b) {
-		a = a.entity;
-		b = b.entity;
 		return SortUtil.ascSort(a._displayName || a.name, b._displayName || b.name);
 	}
 }
@@ -524,6 +523,7 @@ class BestiaryPage extends ListPageMultiSource {
 			},
 			{
 				hash,
+				page: mon.page,
 				isExcluded,
 			},
 		);
@@ -545,9 +545,7 @@ class BestiaryPage extends ListPageMultiSource {
 		this._updateSelected();
 	}
 
-	async _pDoLoadSubHash ({sub, lockToken}) {
-		sub = await super._pDoLoadSubHash({sub, lockToken});
-
+	async _pDoLoadSubHash_pScaler_ ({sub}) {
 		const scaledHash = sub.find(it => it.startsWith(UrlUtil.HASH_START_CREATURE_SCALED));
 		const scaledSpellSummonHash = sub.find(it => it.startsWith(UrlUtil.HASH_START_CREATURE_SCALED_SPELL_SUMMON));
 		const scaledClassSummonHash = sub.find(it => it.startsWith(UrlUtil.HASH_START_CREATURE_SCALED_CLASS_SUMMON));
@@ -574,7 +572,34 @@ class BestiaryPage extends ListPageMultiSource {
 			}
 		}
 
-		this._encounterBuilder.handleSubhash(sub);
+		return sub;
+	}
+
+	async _pDoLoadSubHash_pScaler ({sub}) {
+		try {
+			sub = await this._pDoLoadSubHash_pScaler_({sub});
+		} catch (e) {
+			JqueryUtil.doToast({type: "danger", content: `Failed to set creature scaler state from URL! ${VeCt.STR_SEE_CONSOLE}`, isAutoHide: false});
+			setTimeout(() => { throw e; });
+		}
+		return sub;
+	}
+
+	async _pDoLoadSubHash_pEncounterBuilder ({sub}) {
+		try {
+			sub = this._encounterBuilder.handleSubhash(sub);
+		} catch (e) {
+			JqueryUtil.doToast({type: "danger", content: `Failed to set encounter builder state from URL! ${VeCt.STR_SEE_CONSOLE}`, isAutoHide: false});
+			setTimeout(() => { throw e; });
+		}
+		return sub;
+	}
+
+	async _pDoLoadSubHash ({sub, lockToken}) {
+		sub = await super._pDoLoadSubHash({sub, lockToken});
+		sub = await this._pDoLoadSubHash_pScaler({sub});
+		sub = await this._pDoLoadSubHash_pEncounterBuilder({sub});
+		return sub;
 	}
 
 	async _pOnLoad_pPreDataLoad () {

@@ -346,7 +346,7 @@ class _RenderClassesSidebarImplClassic extends _RenderClassesSidebarImplBase {
 			renderer,
 		});
 
-		return veT`<table class="ve-w-100 ve-stats shadow-big cls__stats">
+		return veT`<table class="ve-w-100 ve-stats ve-shadow-big cls__stats">
 			<tr><th class="ve-tbl-border" colspan="6"></th></tr>
 
 			${eleName}
@@ -436,7 +436,7 @@ class _RenderClassesSidebarImplOne extends _RenderClassesSidebarImplBase {
 			renderer,
 		});
 
-		return veT`<table class="ve-w-100 ve-stats shadow-big cls__stats">
+		return veT`<table class="ve-w-100 ve-stats ve-shadow-big cls__stats">
 			<tr><th class="ve-tbl-border" colspan="6"></th></tr>
 
 			${eleName}

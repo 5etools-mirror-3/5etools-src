@@ -2993,7 +2993,8 @@ export class CreatureBuilder extends BuilderBase {
 								const iptMeleeDamDiceCount = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2 mkbru_mon__ipt-attack-dice" placeholder="Number of Dice" min="1" value="1">`;
 								const iptMeleeDamDiceNum = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2 mkbru_mon__ipt-attack-dice" placeholder="Dice Type" value="6">`;
 								const iptMeleeDamBonus = veT`<input class="ve-form-control form-control--minimal ve-input-xs ve-mr-2" placeholder="+X (additional bonus damage)">`;
-								const iptMeleeDamType = veT`<input class="ve-form-control form-control--minimal ve-input-xs" placeholder="Melee Damage Type" autocomplete="off">`
+								const iptMeleeDamType = veT`<input class="ve-form-control form-control--minimal ve-input-xs" placeholder="Melee Damage Type">`
+									.vee.disableSpellcheck()
 									.vee.typeahead(Parser.DMG_TYPES);
 								const stageMelee = veT`<div class="ve-flex-col"><hr class="ve-hr-3">
 								<div class="ve-bold ve-mb-2">Melee</div>

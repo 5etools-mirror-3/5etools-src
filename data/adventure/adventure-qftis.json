@@ -14454,7 +14454,8 @@
 										"{@item Gem of Brightness}",
 										"{@item Pearl of Power}",
 										"{@item +1 Weapon} (any)"
-									]
+									],
+									"columns": 3
 								},
 								"Each item bears an intricate constellation motif that shimmers in the presence of starlight."
 							]
@@ -31015,8 +31016,7 @@
 											"type": "insetReadaloud",
 											"id": "429",
 											"entries": [
-												"The natural cavern gives way to a luxurious parlor. Crystal chandeliers bathe the chamber in soft light, and the scent of orange blossoms perfumes the air. Plump cushions surround a low table heaped with ripe fruits, refreshing beverages, and succulent meats. Low sofas and comfortable chairs dot the walls of the",
-												"lounge, and side tables between these sitting areas overflow with gemstones, jewelry, and other treasures.",
+												"The natural cavern gives way to a luxurious parlor. Crystal chandeliers bathe the chamber in soft light, and the scent of orange blossoms perfumes the air. Plump cushions surround a low table heaped with ripe fruits, refreshing beverages, and succulent meats. Low sofas and comfortable chairs dot the walls of the lounge, and side tables between these sitting areas overflow with gemstones, jewelry, and other treasures.",
 												"Four impeccably dressed human aristocrats laugh and feast in the parlor. An unseen string quartet accompanies their revelry with soothing music."
 											]
 										},
@@ -37985,7 +37985,33 @@
 										"{@item Laser pistol}",
 										"{@item Laser rifle}",
 										"{@item Smoke grenade}"
-									]
+									],
+									"columns": 3
+								},
+								{
+									"type": "statblock",
+									"name": "Antimatter rifle",
+									"tag": "item"
+								},
+								{
+									"type": "statblock",
+									"name": "Energy cell",
+									"tag": "item"
+								},
+								{
+									"type": "statblock",
+									"name": "Laser pistol",
+									"tag": "item"
+								},
+								{
+									"type": "statblock",
+									"name": "Laser rifle",
+									"tag": "item"
+								},
+								{
+									"type": "statblock",
+									"name": "Smoke grenade",
+									"tag": "item"
 								},
 								"Additional technological devices are provided in {@adventure appendix A|QftIS|8}. Many of these devices use {@item Energy Cell||energy cells} as ammunition or power sources. Energy cells found on the spaceship look like blue, coin-sized glass discs.",
 								"To simulate a character's ignorance about technology, determining how to use and reload these devices requires two successful Intelligence ({@skill Investigation}) checks (one to figure out how to use it, another to figure out how to load it). Each time a character makes a check, compare the result to the Figuring Out Alien Technology table. Consider having the item break if a character fails three or more times before taking a long rest.",
@@ -40653,7 +40679,8 @@
 														"{@dice 1d6 + 2} {@item Concussion Grenade|QftIS|concussion grenades}",
 														"{@dice 1d6 + 2} {@item Sleep Grenade|QftIS|sleep grenades}",
 														"{@dice 1d6 + 2} {@item Smoke Grenade||smoke grenades}"
-													]
+													],
+													"columns": 3
 												},
 												"The robots meet any unauthorized attempt to take the grenades with hostility. If the party is in good standing with Aphelion, the supercomputer allows each character to take one grenade of their choice."
 											]
@@ -46391,6 +46418,24 @@
 								"{@item Heretic|QftIS}",
 								"{@item Staff of Ruling|QftIS}"
 							]
+						},
+						{
+							"type": "statblock",
+							"name": "Daoud's Wondrous Lanthorn",
+							"tag": "item",
+							"source": "QftIS"
+						},
+						{
+							"type": "statblock",
+							"name": "Heretic",
+							"tag": "item",
+							"source": "QftIS"
+						},
+						{
+							"type": "statblock",
+							"name": "Staff of Ruling",
+							"tag": "item",
+							"source": "QftIS"
 						}
 					]
 				},
@@ -46426,6 +46471,48 @@
 								"{@item Powered Armor|QftIS}",
 								"{@item Robot Controller|QftIS}"
 							]
+						},
+						{
+							"type": "statblock",
+							"name": "Antigravity Belt",
+							"tag": "item",
+							"source": "QftIS"
+						},
+						{
+							"type": "statblock",
+							"name": "Concussion Grenade",
+							"tag": "item",
+							"source": "QftIS"
+						},
+						{
+							"type": "statblock",
+							"name": "Sleep Grenade",
+							"tag": "item",
+							"source": "QftIS"
+						},
+						{
+							"type": "statblock",
+							"name": "Needler Pistol",
+							"tag": "item",
+							"source": "QftIS"
+						},
+						{
+							"type": "statblock",
+							"name": "Paralysis Pistol",
+							"tag": "item",
+							"source": "QftIS"
+						},
+						{
+							"type": "statblock",
+							"name": "Powered Armor",
+							"tag": "item",
+							"source": "QftIS"
+						},
+						{
+							"type": "statblock",
+							"name": "Robot Controller",
+							"tag": "item",
+							"source": "QftIS"
 						}
 					]
 				}
@@ -46668,6 +46755,774 @@
 							"credit": "Luca Bancone",
 							"width": 1700,
 							"height": 1189
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Android",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Android",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Android",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Barkburr",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Barkburr",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Barkburr",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Derro Apprentice",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Derro Apprentice",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Derro Apprentice",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Derro Raider",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Derro Raider",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Derro Raider",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Drelnza",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Drelnza",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Drelnza",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Froghemoth Elder",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Froghemoth Elder",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Froghemoth Elder",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "The Gardener",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "The Gardener",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "The Gardener",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Gibberling",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Gibberling",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Gibberling",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Swarm of Gibberlings",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Swarm of Gibberlings",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Swarm of Gibberlings",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Champion of Gorm",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Champion of Gorm",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Champion of Gorm",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Guardian of Gorm",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Guardian of Gorm",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Guardian of Gorm",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Horrid Plant",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Horrid Plant",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Horrid Plant",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Leprechaun",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Leprechaun",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Leprechaun",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Champion of Usamigaras",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Champion of Usamigaras",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Champion of Usamigaras",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Mage of Usamigaras",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Mage of Usamigaras",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Mage of Usamigaras",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Maschin-i-Bozorg",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Maschin-i-Bozorg",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Maschin-i-Bozorg",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Memory Web",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Memory Web",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Memory Web",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Nafas",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Nafas",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Nafas",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Nafik",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Nafik",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Nafik",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Pech",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Pech",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Pech",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Combat Robot",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Combat Robot",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Combat Robot",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Worker Robot",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Worker Robot",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Worker Robot",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Sion",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Sion",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Sion",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Tower Hand",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Tower Hand",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Tower Hand",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Tower Sage",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Tower Sage",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Tower Sage",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Vegepygmy Moldmaker",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Vegepygmy Moldmaker",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Vegepygmy Moldmaker",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Vegepygmy Scavenger",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Vegepygmy Scavenger",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Vegepygmy Scavenger",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Vegepygmy Thorny Hunter",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Vegepygmy Thorny Hunter",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Vegepygmy Thorny Hunter",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Champion of Madarua",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Champion of Madarua",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Champion of Madarua",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Warrior of Madarua",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Warrior of Madarua",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Warrior of Madarua",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Wolf-in-Sheep's-Clothing",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Wolf-in-Sheep's-Clothing",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Wolf-in-Sheep's-Clothing",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Zargon the Returner",
+					"entries": [
+						{
+							"type": "statblock",
+							"name": "Zargon the Returner",
+							"prop": "monsterFluff",
+							"source": "QftIS",
+							"data": {
+								"renderCompact": {
+									"isSkipRootName": true
+								}
+							}
+						},
+						{
+							"type": "statblock",
+							"name": "Zargon the Returner",
+							"tag": "creature",
+							"source": "QftIS",
+							"style": "narrow"
 						}
 					]
 				}

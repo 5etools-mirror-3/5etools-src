@@ -38,6 +38,7 @@ class ActionsSublistManager extends SublistManager {
 			},
 			{
 				hash,
+				page: it.page,
 				entity: it,
 				mdRow: [...cellsText],
 			},
@@ -98,6 +99,7 @@ class ActionsPage extends ListPage {
 			},
 			{
 				hash,
+				page: it.page,
 				isExcluded,
 			},
 		);

@@ -126,8 +126,16 @@ export class PropOrder {
 
 				if (keyInfoArray) {
 					const logPathNxt = `${logPath}[n].${prop}${propMod !== prop ? ` (${propMod})` : ""}`;
-					if (keyInfoArray.fnGetOrder) out[propMod] = obj[propMod].map(it => this._getOrdered(it, keyInfoArray.fnGetOrder(obj[propMod]), optsNxt, logPathNxt));
-					else if (keyInfoArray.order) out[propMod] = obj[propMod].map(it => this._getOrdered(it, keyInfoArray.order, optsNxt, logPathNxt));
+
+					// Handle mixed arrays of e.g. strings + objects
+					const fnGetOrdered = (arrOrPrimitive, fnGetOrder) => {
+						return arrOrPrimitive != null && typeof arrOrPrimitive === "object"
+							? this._getOrdered(arrOrPrimitive, fnGetOrder(arrOrPrimitive), optsNxt, logPathNxt)
+							: arrOrPrimitive;
+					};
+
+					if (keyInfoArray.fnGetOrder) out[propMod] = obj[propMod].map(it => fnGetOrdered(it, keyInfoArray.fnGetOrder));
+					else if (keyInfoArray.order) out[propMod] = obj[propMod].map(it => fnGetOrdered(it, () => keyInfoArray.order));
 					else out[propMod] = obj[propMod];
 
 					if (!opts.isNoSortRootArrays && keyInfoArray.fnSort && out[propMod] instanceof Array) out[propMod].sort(keyInfoArray.fnSort);

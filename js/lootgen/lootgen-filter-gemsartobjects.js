@@ -91,6 +91,7 @@ export class ModalFilterGemsArtObjects extends ModalFilterBase {
 				...ListItem.getCommonValues(ent),
 			},
 			{
+				page: ent.page,
 				cbSel: eleRow.firstElementChild.firstElementChild.firstElementChild,
 			},
 		);

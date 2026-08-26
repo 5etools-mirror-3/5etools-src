@@ -258,7 +258,7 @@ class BlocklistUi {
 	}
 
 	_pInit_initUi () {
-		this._wrpControls = veT`<div ${this._isCompactUi ? "" : `class="bg-solid ve-py-5 ve-px-3 shadow-big ve-b-1p"`}></div>`;
+		this._wrpControls = veT`<div ${this._isCompactUi ? "" : `class="ve-bg-solid ve-py-5 ve-px-3 ve-shadow-big ve-b-1p"`}></div>`;
 
 		const iptSearch = veT`<input type="search" class="search ve-form-control ve-lst__search ve-lst__search--no-border-h ve-h-100">`.vee.disableSpellcheck();
 

@@ -1,17 +1,6 @@
 "use strict";
 
-class RendererCard {
-	constructor () {
-		// FIXME this is awful
-		const renderer = new Renderer();
-		for (const k in renderer) {
-			if (this[k] === undefined) {
-				if (typeof renderer[k] === "function") this[k] = renderer[k].bind(this);
-				else this[k] = MiscUtil.copy(renderer[k]);
-			}
-		}
-	}
-
+class RendererCard extends Renderer {
 	static get () {
 		return new RendererCard().setFnPostProcess(RendererCard._fnPostProcess);
 	}

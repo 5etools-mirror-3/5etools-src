@@ -108,6 +108,15 @@ export class MiscTagsTagger {
 		if (/you can see/ig.test(stripped)) this._addTag({tags, tag: "SGT", options});
 	}
 
+	static _mutTags_BO ({tags, stripped, options}) {
+		if (/\bobjects?\b[^.!?]*\bstarts? (?:burning|to burn)\b/i.test(stripped)) return this._addTag({tags, tag: "BO", options});
+
+		if (/\bignites?[^.!?]*\bflammable objects?\b/i.test(stripped)) return this._addTag({tags, tag: "BO", options});
+		if (/\bflammable objects?[^.!?]*\bignites?\b/i.test(stripped)) return this._addTag({tags, tag: "BO", options});
+
+		if (/\b(?:you|embers?)\b[^.!?]*\blight\b[^.!?]*\b(?:candles?|torches?|lamps?|campfires?)\b/i.test(stripped)) return this._addTag({tags, tag: "BO", options});
+	}
+
 	static tryRun (sp, options) {
 		const tags = new Set(sp.miscTags || []);
 
@@ -124,6 +133,7 @@ export class MiscTagsTagger {
 					if (/temporary hit points/ig.test(stripped)) this._addTag({tags, tag: "THP", options});
 					if (/you summon/ig.test(stripped) || /creature shares your initiative count/ig.test(stripped)) this._addTag({tags, tag: "SMN", options});
 					this._mutTags_SGT({tags, str, stripped, options});
+					this._mutTags_BO({tags, stripped, options});
 					if (/you (?:can then )?teleport/i.test(stripped) || /instantly (?:transports you|teleport)/i.test(stripped) || /enters(?:[^.]+)portal instantly/i.test(stripped) || /entering the portal exits from the other portal/i.test(stripped)) this._addTag({tags, tag: "TP", options});
 
 					if ((stripped.includes("bonus") || stripped.includes("penalty")) && stripped.includes("AC")) this._addTag({tags, tag: "MAC", options});
@@ -140,6 +150,7 @@ export class MiscTagsTagger {
 					}
 
 					if (/\bbonus action\b/i.test(stripped)) this._addTag({tags, tag: "UBA", options});
+					if (/\b(use your action|you (?:can )?take a [^.!?]+ action|as a [^.!?]+ action,? you|as an action,? you|you can dismiss this (spell|effect) as an action|as your action)\b/i.test(stripped)) this._addTag({tags, tag: "UA", options});
 
 					if (
 						/\b(?:lightly|heavily) obscured\b/i.test(stripped)

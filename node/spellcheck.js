@@ -68,6 +68,7 @@ const getFileTextOnlyArtists = ({file}) => {
 				return;
 			}
 
+			if (obj.coverCredit) out.push(obj.coverCredit);
 			if (obj.tokenCredit) out.push(obj.tokenCredit);
 		}});
 

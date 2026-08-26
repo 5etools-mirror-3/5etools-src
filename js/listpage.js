@@ -2159,10 +2159,49 @@ class ListPage {
 
 	async _pPreloadSublistSources (json) { /* Implement as required */ }
 
+	async _pDoLoadSubHash_pFilterBox ({sub}) {
+		if (!this._filterBox) return sub;
+
+		try {
+			sub = this._filterBox.setFromSubHashes(sub);
+		} catch (e) {
+			JqueryUtil.doToast({type: "danger", content: `Failed to set filter state from URL! ${VeCt.STR_SEE_CONSOLE}`, isAutoHide: false});
+			setTimeout(() => { throw e; });
+		}
+
+		return sub;
+	}
+
+	async _pDoLoadSubHash_pSublistManager ({sub}) {
+		if (!this._sublistManager) return sub;
+
+		try {
+			sub = await this._sublistManager.pSetFromSubHashes(sub, this._pPreloadSublistSources.bind(this));
+		} catch (e) {
+			JqueryUtil.doToast({type: "danger", content: `Failed to set sublist state from URL! ${VeCt.STR_SEE_CONSOLE}`, isAutoHide: false});
+			setTimeout(() => { throw e; });
+		}
+
+		return sub;
+	}
+
+	async _pDoLoadSubHash_pBookView ({sub}) {
+		if (!this._bookView) return sub;
+
+		try {
+			sub = await this._bookView.pHandleSub(sub);
+		} catch (e) {
+			JqueryUtil.doToast({type: "danger", content: `Failed to set book view state from URL! ${VeCt.STR_SEE_CONSOLE}`, isAutoHide: false});
+			setTimeout(() => { throw e; });
+		}
+
+		return sub;
+	}
+
 	async _pDoLoadSubHash ({sub, lockToken}) {
-		if (this._filterBox) sub = this._filterBox.setFromSubHashes(sub);
-		if (this._sublistManager) sub = await this._sublistManager.pSetFromSubHashes(sub, this._pPreloadSublistSources.bind(this));
-		if (this._bookView) sub = await this._bookView.pHandleSub(sub);
+		sub = await this._pDoLoadSubHash_pFilterBox({sub});
+		sub = await this._pDoLoadSubHash_pSublistManager({sub});
+		sub = await this._pDoLoadSubHash_pBookView({sub});
 		return sub;
 	}
 
@@ -2732,8 +2771,6 @@ class ListPageBookView extends BookModeViewBase {
 	}
 
 	_getSorted (a, b) {
-		a = a.entity;
-		b = b.entity;
 		return SortUtil.ascSortLower(a.name, b.name);
 	}
 

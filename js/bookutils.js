@@ -2,8 +2,15 @@ import {RenderMap} from "./render-map.js";
 import {OmnisearchUtilsUi} from "./omnisearch/omnisearch-utils-ui.js";
 
 export class BookUtil {
-	static getHeaderText (header) {
+	static _getHeaderText ({header}) {
 		return header.header || header;
+	}
+
+	static _getScrollHash ({header, bookSource}) {
+		return UrlUtil.URL_TO_HASH_GENERIC({
+			name: this._getHeaderText({header}),
+			source: header.source || bookSource,
+		});
 	}
 
 	static async _scrollClick_pScrollElementIntoView (ele) {
@@ -69,6 +76,11 @@ export class BookUtil {
 		if (ixTitle != null) this._scrollClick_pScrollElementIntoView(veEs(`[data-title-index="${ixTitle}"]`)).then(null);
 	}
 
+	static _scrollClick_statblock (statblockHash) {
+		const ele = veEs(`[data-statblock-hash="${statblockHash}"]`);
+		if (ele) this._scrollClick_pScrollElementIntoView(ele).then(null);
+	}
+
 	static _scrollPageTop (ixChapter) {
 		// In full-book view, find the Xth section
 		if (ixChapter != null && !~BookUtil.curRender.chapter) {
@@ -97,6 +109,7 @@ export class BookUtil {
 		let ixChapter = 0;
 		let scrollToHeaderText;
 		let scrollToHeaderNumber;
+		let scrollToStatblockHash;
 		let isForceScroll = false;
 
 		if (hashParts && hashParts.length > 0) ixChapter = Number(hashParts[0]);
@@ -105,14 +118,17 @@ export class BookUtil {
 			|| UrlUtil.encodeForHash(bookIdPrev.toLowerCase()) !== UrlUtil.encodeForHash(bookId);
 
 		if (hashParts && hashParts.length > 1) {
-			scrollToHeaderText = decodeURIComponent(hashParts[1]);
+			const hashPartHeader = decodeURIComponent(hashParts[1]);
+
+			if (hashPartHeader.startsWith(VeCt.HASH_PREFIX_STATS_SCROLLER)) scrollToStatblockHash = hashPartHeader.slice(VeCt.HASH_PREFIX_STATS_SCROLLER.length);
+			else scrollToHeaderText = hashPartHeader;
 
 			isForceScroll = true;
-			if (hashParts[2]) {
+			if (scrollToHeaderText && hashParts[2]) {
 				scrollToHeaderNumber = Number(hashParts[2]);
 			}
 
-			if (BookUtil.referenceId && !isRenderingNewChapterOrNewBook) {
+			if (scrollToHeaderText && BookUtil.referenceId && !isRenderingNewChapterOrNewBook) {
 				const isHandledScroll = this._showBookContent_handleQuickReferenceShow({sectionHeader: scrollToHeaderText});
 				if (isHandledScroll) {
 					isForceScroll = false;
@@ -164,7 +180,9 @@ export class BookUtil {
 
 			BookUtil.dispBook.vee.appends(Renderer.utils.getBorderTr());
 
-			if (scrollToHeaderText) {
+			if (scrollToStatblockHash) {
+				BookUtil._scrollClick_statblock(scrollToStatblockHash);
+			} else if (scrollToHeaderText) {
 				let handled = false;
 				if (BookUtil.referenceId) handled = this._showBookContent_handleQuickReferenceShow({sectionHeader: scrollToHeaderText});
 				if (!handled) {
@@ -193,6 +211,8 @@ export class BookUtil {
 						}
 					}
 				}
+			} else if (isForceScroll && scrollToStatblockHash) {
+				BookUtil._scrollClick_statblock(scrollToStatblockHash);
 			} else if (isForceScroll) {
 				BookUtil._scrollClick(ixChapter, scrollToHeaderText, scrollToHeaderNumber);
 			} else if (scrollToHeaderText) {
@@ -273,10 +293,10 @@ export class BookUtil {
 
 		if (BookUtil.referenceId && BookUtil.curRender.lastRefHeader) {
 			const chap = BookUtil.curRender.fromIndex.contents[ixChapter];
-			const ix = chap.headers.findIndex(it => BookUtil.getHeaderText(it).toLowerCase() === BookUtil.curRender.lastRefHeader);
+			const ix = chap.headers.findIndex(it => BookUtil._getHeaderText({header: it}).toLowerCase() === BookUtil.curRender.lastRefHeader);
 			if (~ix) {
 				if (chap.headers[ix + mod]) {
-					const newHashParts = [bookId, ixChapter, BookUtil.getHeaderText(chap.headers[ix + mod]).toLowerCase()];
+					const newHashParts = [bookId, ixChapter, BookUtil._getHeaderText({header: chap.headers[ix + mod]}).toLowerCase()];
 					window.location.hash = newHashParts.join(HASH_PART_SEP);
 				} else {
 					changeChapter();
@@ -491,7 +511,7 @@ export class BookUtil {
 
 			if (~ixChapter) {
 				const chap = BookUtil.curRender.fromIndex.contents[ixChapter];
-				const headerIx = chap.headers.findIndex(it => BookUtil.getHeaderText(it).toLowerCase() === BookUtil.curRender.lastRefHeader);
+				const headerIx = chap.headers.findIndex(it => BookUtil._getHeaderText({header: it}).toLowerCase() === BookUtil.curRender.lastRefHeader);
 				const renderPrev = ixChapter > 0 || (~headerIx && headerIx > 0);
 				const renderNxt = ixChapter < data.length - 1 || (~headerIx && headerIx < chap.headers.length - 1);
 				cnt.btnsPrv.forEach(ele => ele.vee.toggle(!!renderPrev));
@@ -970,7 +990,13 @@ export class BookUtil {
 			const header = veT`<div class="ve-flex-col">${lnk}</div>`;
 			eles.push(header);
 
-			const chapterBlock = BookUtil._getContentsChapterBlock({bookId: options.book.id, ixChapter, chapter, isAddPrefix: options.isAddPrefix});
+			const chapterBlock = BookUtil._getContentsChapterBlock({
+				bookId: options.book.id,
+				bookSource: options.book.source,
+				ixChapter,
+				chapter,
+				isAddPrefix: options.isAddPrefix,
+			});
 			eles.push(chapterBlock);
 
 			if (!BookUtil.isDefaultExpandedContents && btnToggleExpand) BookUtil._sectToggle(null, btnToggleExpand, chapterBlock);
@@ -995,32 +1021,54 @@ export class BookUtil {
 	}
 
 	static _getContentsSectionHeader (header) {
-		// handle entries with depth
-		if (header.depth) return `<span class="bk-contents__sub_spacer--1">\u2013</span>${header.header}`;
-		if (header.header) return header.header;
-		return header;
+		return [
+			header.depth ? `<span class="bk-contents__sub_spacer--1">\u2013</span>` : "",
+			header.statblock ? `<span class="glyphicon glyphicon-modal-window ve-mr-2"></span>` : "",
+			header.header || header,
+		]
+			.filter(Boolean)
+			.join("");
 	}
 
-	static _getContentsChapterBlock ({bookId, ixChapter, chapter, isAddPrefix = false}) {
-		const headerCounts = {};
+	static _getContentsChapterBlock_getScrollInfo ({header, bookSource, headerText, headerCounts}) {
+		if (header.statblock) {
+			return {
+				headerIndex: 0,
+				hashHeader: `${VeCt.HASH_PREFIX_STATS_SCROLLER}${this._getScrollHash({header, bookSource})}`,
+			};
+		}
 
+		const headerTextClean = headerText.toLowerCase().trim();
+		const headerPos = headerCounts[headerTextClean] || 0;
+		headerCounts[headerTextClean] = (headerCounts[headerTextClean] || 0) + 1;
+
+		return {
+			// (Prefer the user-specified `header.index` over the auto-calculated headerPos)
+			headerIndex: header.index ?? headerPos,
+			hashHeader: UrlUtil.encodeForHash(headerText),
+		};
+	}
+
+	static _getContentsChapterBlock ({bookId, bookSource, ixChapter, chapter, isAddPrefix = false}) {
+		const headerCounts = {};
 		const eles = [];
 
-		chapter.headers && chapter.headers.forEach(h => {
-			const headerText = BookUtil.getHeaderText(h);
+		chapter.headers && chapter.headers.forEach(header => {
+			const headerText = BookUtil._getHeaderText({header});
 
-			const headerTextClean = headerText.toLowerCase().trim();
-			const headerPos = headerCounts[headerTextClean] || 0;
-			headerCounts[headerTextClean] = (headerCounts[headerTextClean] || 0) + 1;
+			const {headerIndex, hashHeader} = this._getContentsChapterBlock_getScrollInfo({
+				header,
+				bookSource,
+				headerText,
+				headerCounts,
+			});
 
-			// (Prefer the user-specified `h.index` over the auto-calculated headerPos)
-			const headerIndex = h.index ?? headerPos;
+			const displayText = this._getContentsSectionHeader(header);
 
-			const displayText = this._getContentsSectionHeader(h);
-
-			const lnk = veT`<a href="${isAddPrefix || ""}#${UrlUtil.encodeForHash(bookId)},${ixChapter},${UrlUtil.encodeForHash(headerText)}${headerIndex > 0 ? `,${headerIndex}` : ""}" data-book="${bookId}" data-chapter="${ixChapter}" data-header="${headerText.escapeQuotes()}" class="ve-lst__row ve-lst__row-border ve-lst__row-inner ve-lst__wrp-cells">${displayText}</a>`
+			const lnk = veT`<a href="${isAddPrefix || ""}#${UrlUtil.encodeForHash(bookId)},${ixChapter},${hashHeader}${!header.statblock && headerIndex > 0 ? `,${headerIndex}` : ""}" data-book="${bookId}" data-chapter="${ixChapter}" data-header="${headerText.escapeQuotes()}" class="ve-lst__row ve-lst__row-border ve-lst__row-inner ve-lst__wrp-cells">${displayText}</a>`
 				.vee.onn("click", () => {
-					BookUtil._scrollClick(ixChapter, headerText, headerIndex);
+					if (header.statblock) BookUtil._scrollClick_statblock(hashHeader.slice(VeCt.HASH_PREFIX_STATS_SCROLLER.length));
+					else BookUtil._scrollClick(ixChapter, headerText, headerIndex);
 				});
 
 			const lnkEle = veT`<div class="ve-flex-col">

@@ -2199,7 +2199,8 @@ class SearchWidget {
 	_render () {
 		if (this._rendered) return;
 
-		this._iptSearch = veT`<input class="ve-ui-search__ipt-search search ve-form-control" autocomplete="off" placeholder="Search...">`;
+		this._iptSearch = veT`<input class="ve-ui-search__ipt-search search ve-form-control" placeholder="Search...">`
+			.vee.disableSpellcheck();
 		this._wrpResults = veT`<div class="ve-ui-search__wrp-results"></div>`;
 
 		this._selCat = veT`<select class="ve-form-control ve-ui-search__sel-category">

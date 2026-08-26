@@ -3556,6 +3556,47 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Gromin'gorn",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "IDRotF",
+			"page": 140,
+			"_copy": {
+				"name": "Frost Giant",
+				"source": "MM",
+				"_mod": {
+					"action": [
+						{
+							"mode": "replaceArr",
+							"replace": "Multiattack",
+							"items": {
+								"name": "Multiattack",
+								"entries": [
+									"Gromin'gorn makes two Anvil Chain attacks."
+								]
+							}
+						},
+						{
+							"mode": "replaceArr",
+							"replace": "Greataxe",
+							"items": {
+								"name": "Anvil Chain",
+								"entries": [
+									"{@atk mw} {@hit 9} to hit, reach 10 ft., one target. {@h}25 ({@damage 3d12 + 6}) bludgeoning damage."
+								]
+							}
+						}
+					]
+				}
+			},
+			"tokenCredit": "Adam Barker",
+			"tokenCustom": true,
+			"damageTags": [
+				"B"
+			],
+			"hasToken": true
+		},
+		{
 			"name": "Gunvald Halraggson",
 			"isNpc": true,
 			"isNamedCreature": true,
@@ -5993,7 +6034,7 @@
 				{
 					"name": "Ice Dagger",
 					"entries": [
-						"{@atk rw} {@hit 5} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}5 ({@damage 1d4 + 3}) piercing damage plus 5 ({@damage 2d4}) cold damage."
+						"{@atk mw,rw} {@hit 5} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}5 ({@damage 1d4 + 3}) piercing damage plus 5 ({@damage 2d4}) cold damage."
 					]
 				}
 			],

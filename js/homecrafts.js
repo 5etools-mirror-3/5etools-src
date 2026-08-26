@@ -51,6 +51,7 @@ class HomeCraftsSublistManager extends SublistManager {
 			},
 			{
 				hash,
+				page: ent.page,
 				entity: ent,
 				mdRow: [...cellsText],
 			},
@@ -110,6 +111,7 @@ class HomeCraftsPage extends ListPage {
 			},
 			{
 				hash,
+				page: ent.page,
 				isExcluded,
 			},
 		);

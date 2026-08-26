@@ -49,6 +49,7 @@ class BackgroundSublistManager extends SublistManager {
 			},
 			{
 				hash,
+				page: it.page,
 				entity: it,
 				mdRow: [...cellsText],
 			},
@@ -106,6 +107,7 @@ class BackgroundPage extends ListPage {
 			},
 			{
 				hash,
+				page: bg.page,
 				isExcluded,
 			},
 		);

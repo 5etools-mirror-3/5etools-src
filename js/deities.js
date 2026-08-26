@@ -51,6 +51,7 @@ class DeitiesSublistManager extends SublistManager {
 			},
 			{
 				hash,
+				page: it.page,
 				entity: it,
 				mdRow: [...cellsText],
 			},
@@ -112,6 +113,7 @@ class DeitiesPage extends ListPage {
 			},
 			{
 				hash,
+				page: ent.page,
 				isExcluded,
 			},
 		);

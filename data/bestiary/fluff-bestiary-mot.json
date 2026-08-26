@@ -8,14 +8,23 @@
 		{
 			"name": "Abhorrent Overlord",
 			"source": "MOT",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						"Abhorrent overlords are gaunt, bipedal creatures whose gray, leathery skin is in stark contrast to the gleaming jewelry made of Underworld gold that they adorn themselves with. Their appetite for pain and death is eclipsed only by their greed; these fiends delight in searching out treasure and slaughtering all who stand in their way."
-					]
+			"_copy": {
+				"name": "Demons of Theros",
+				"source": "MOT",
+				"_mod": {
+					"entries": {
+						"mode": "setProp",
+						"value": [
+							{
+								"type": "entries",
+								"entries": [
+									"Abhorrent overlords are gaunt, bipedal creatures whose gray, leathery skin is in stark contrast to the gleaming jewelry made of Underworld gold that they adorn themselves with. Their appetite for pain and death is eclipsed only by their greed; these fiends delight in searching out treasure and slaughtering all who stand in their way."
+								]
+							}
+						]
+					}
 				}
-			],
+			},
 			"images": [
 				{
 					"type": "image",
@@ -56,33 +65,28 @@
 		{
 			"name": "Alseid",
 			"source": "MOT",
-			"entries": [
-				{
-					"type": "section",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								"Touched with the golden light of the sun, alseids inhabit meadows, plains, and lands of cultivated natural beauty. Many live in closer proximity to human civilization than other nymphs. Farmers are grateful for the presence of alseids on their lands and often leave them offerings of mead, honey, flowers, and dates in return for protecting their flocks and making their crops more abundant.",
-								{
-									"type": "entries",
-									"name": "Nymphs",
-									"entries": [
-										"Divine servants that inhabit unspoiled corners of the world, nymphs protect places of natural power and infuse their surroundings with the magic of Nyx. Some are benevolent and aid those who live off the land, while others embody violent aspects of nature. In either case, nymphs generally avoid other sapient creatures, preferring to mind the cycles of nature, the daily interplay of wild animals, or other cosmic forces. Occasionally, though, groups of the same kind of nymphs congregate in a place of natural power or beauty. In times of special need, deities tied to facets of nature might employ nymphs as messengers, guardians, or scouts.",
-										{
-											"type": "entries",
-											"name": "Immortal Nature",
-											"entries": [
-												"A nymph doesn't require food, drink, or sleep."
-											]
-										}
-									]
-								}
-							]
-						}
-					]
+			"_copy": {
+				"name": "Nymphs",
+				"source": "MOT",
+				"_mod": {
+					"entries": {
+						"mode": "prependArr",
+						"items": [
+							{
+								"type": "section",
+								"entries": [
+									{
+										"type": "entries",
+										"entries": [
+											"Touched with the golden light of the sun, alseids inhabit meadows, plains, and lands of cultivated natural beauty. Many live in closer proximity to human civilization than other nymphs. Farmers are grateful for the presence of alseids on their lands and often leave them offerings of mead, honey, flowers, and dates in return for protecting their flocks and making their crops more abundant."
+										]
+									}
+								]
+							}
+						]
+					}
 				}
-			],
+			},
 			"images": [
 				{
 					"type": "image",
@@ -99,17 +103,26 @@
 		{
 			"name": "Anvilwrought Raptor",
 			"source": "MOT",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						"Prized among Meletis's thaumaturges, anvilwrought raptors are often crafted in the form of a hawk or an owl. Most serve as messengers and spies, flying over the busy streets or high over the land while carrying or seeking vital information for their masters.",
-						"The first anvilwroughts were created by the god of the forge, Purphoros. He gave the secret of breathing life into these metal creatures to his most devoted followers so they could mimic his works and invent new forms at their own forges.",
-						"Some anvilwroughts are vigilant guardians at holy shrines, others serve as familiars and messengers, and a few were created to emulate beauty found among the animals of the mortal world. Each exhibits abilities suited to its role, with some behaving like companionable creatures or stoic guardians.",
-						"A few extremely rare and valuable anvilwroughts were crafted by the hand of Purphoros himself. A number of these magnificent creations are now heirlooms of monarchs; others are lost to the sands of time or are guarded by ancient monsters."
-					]
+			"_copy": {
+				"name": "Anvilwroughts",
+				"source": "MOT",
+				"_mod": {
+					"entries": {
+						"mode": "setProp",
+						"value": [
+							{
+								"type": "entries",
+								"entries": [
+									"Prized among Meletis's thaumaturges, anvilwrought raptors are often crafted in the form of a hawk or an owl. Most serve as messengers and spies, flying over the busy streets or high over the land while carrying or seeking vital information for their masters.",
+									"The first anvilwroughts were created by the god of the forge, Purphoros. He gave the secret of breathing life into these metal creatures to his most devoted followers so they could mimic his works and invent new forms at their own forges.",
+									"Some anvilwroughts are vigilant guardians at holy shrines, others serve as familiars and messengers, and a few were created to emulate beauty found among the animals of the mortal world. Each exhibits abilities suited to its role, with some behaving like companionable creatures or stoic guardians.",
+									"A few extremely rare and valuable anvilwroughts were crafted by the hand of Purphoros himself. A number of these magnificent creations are now heirlooms of monarchs; others are lost to the sands of time or are guarded by ancient monsters."
+								]
+							}
+						]
+					}
 				}
-			],
+			},
 			"images": [
 				{
 					"type": "image",
@@ -124,17 +137,68 @@
 			]
 		},
 		{
-			"name": "Aphemia",
+			"name": "Anvilwroughts",
 			"source": "MOT",
 			"entries": [
 				{
 					"type": "entries",
 					"entries": [
-						"The notorious Nyxborn harpy Aphemia prowls the marshy wastes around the necropolis of Asphodel. Her shrill songs enthrall the necropolis's undead inhabitants, which she leads on raids to waylay unsuspecting travelers and settlements.",
-						"Cruel, corpse-eating creatures, harpies endlessly seek their next meal, careless of whether it comes from the living or the dead. With equal zeal, these vicious scavengers set upon travelers or claw open fresh graves, stripping bodies of riches and flesh. Then they carry back any treasures or appealing bones they find to reeking nests situated in cramped caves or rotten trees."
+						"Prized among Meletis's thaumaturges, anvilwrought raptors are often crafted in the form of a hawk or an owl. Most serve as messengers and spies, flying over the busy streets or high over the land while carrying or seeking vital information for their masters.",
+						"The first anvilwroughts were created by the god of the forge, Purphoros. He gave the secret of breathing life into these metal creatures to his most devoted followers so they could mimic his works and invent new forms at their own forges.",
+						"Some anvilwroughts are vigilant guardians at holy shrines, others serve as familiars and messengers, and a few were created to emulate beauty found among the animals of the mortal world. Each exhibits abilities suited to its role, with some behaving like companionable creatures or stoic guardians.",
+						"A few extremely rare and valuable anvilwroughts were crafted by the hand of Purphoros himself. A number of these magnificent creations are now heirlooms of monarchs; others are lost to the sands of time or are guarded by ancient monsters."
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						"The first bronze sables were presented to Karametra as a gift by Purphoros to serve primarily as guardians in Karametra's temples. But as others have been created, some have been used as nimble scouts, always on alert for danger.",
+						"The first anvilwroughts were created by the god of the forge, Purphoros. He gave the secret of breathing life into these metal creatures to his most devoted followers so they could mimic his works and invent new forms at their own forges.",
+						"Some anvilwroughts are vigilant guardians at holy shrines, others serve as familiars and messengers, and a few were created to emulate beauty found among the animals of the mortal world. Each exhibits abilities suited to its role, with some behaving like companionable creatures or stoic guardians.",
+						"A few extremely rare and valuable anvilwroughts were crafted by the hand of Purphoros himself. A number of these magnificent creations are now heirlooms of monarchs; others are lost to the sands of time or are guarded by ancient monsters."
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						"Among the first anvilwroughts to be forged by Purphoros, elegant burnished harts wander the mortal realm in search of new sights to bring back to the god of the forge. On every trip from Mount Velus, where Purphoros has his forge, they seek out the far reaches of the world so they can witness beauty in all its forms, then later reunite with their creator, their minds filled with tales of how life's splendor continues to develop.",
+						"The first anvilwroughts were created by the god of the forge, Purphoros. He gave the secret of breathing life into these metal creatures to his most devoted followers so they could mimic his works and invent new forms at their own forges.",
+						"Some anvilwroughts are vigilant guardians at holy shrines, others serve as familiars and messengers, and a few were created to emulate beauty found among the animals of the mortal world. Each exhibits abilities suited to its role, with some behaving like companionable creatures or stoic guardians.",
+						"A few extremely rare and valuable anvilwroughts were crafted by the hand of Purphoros himself. A number of these magnificent creations are now heirlooms of monarchs; others are lost to the sands of time or are guarded by ancient monsters."
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						"The original purpose of gold-forged sentinels is a mystery, and of all Purphoros's original anvilwroughts, this construct is the most difficult to control. A sentinel often operates without a master, stalking the high places of the mortal world or waiting, still as a statue, for what could be decades before reanimating to carry out their mysterious purpose.",
+						"The first anvilwroughts were created by the god of the forge, Purphoros. He gave the secret of breathing life into these metal creatures to his most devoted followers so they could mimic his works and invent new forms at their own forges.",
+						"Some anvilwroughts are vigilant guardians at holy shrines, others serve as familiars and messengers, and a few were created to emulate beauty found among the animals of the mortal world. Each exhibits abilities suited to its role, with some behaving like companionable creatures or stoic guardians.",
+						"A few extremely rare and valuable anvilwroughts were crafted by the hand of Purphoros himself. A number of these magnificent creations are now heirlooms of monarchs; others are lost to the sands of time or are guarded by ancient monsters."
 					]
 				}
-			],
+			]
+		},
+		{
+			"name": "Aphemia",
+			"source": "MOT",
+			"_copy": {
+				"name": "Harpies",
+				"source": "MOT",
+				"_mod": {
+					"entries": {
+						"mode": "setProp",
+						"value": [
+							{
+								"type": "entries",
+								"entries": [
+									"The notorious Nyxborn harpy Aphemia prowls the marshy wastes around the necropolis of Asphodel. Her shrill songs enthrall the necropolis's undead inhabitants, which she leads on raids to waylay unsuspecting travelers and settlements.",
+									"Cruel, corpse-eating creatures, harpies endlessly seek their next meal, careless of whether it comes from the living or the dead. With equal zeal, these vicious scavengers set upon travelers or claw open fresh graves, stripping bodies of riches and flesh. Then they carry back any treasures or appealing bones they find to reeking nests situated in cramped caves or rotten trees."
+								]
+							}
+						]
+					}
+				}
+			},
 			"images": [
 				{
 					"type": "image",
@@ -177,16 +241,25 @@
 		{
 			"name": "Archon of Falling Stars",
 			"source": "MOT",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						"The epic accounting of the world's earliest histories called {@i The Cosmogony} recounts the battle between a group of the gods' champions and a mighty archon, which took place at the mysterious eastern edge of the world. Defeated, the falling archon is said to have met the rising sun. But Heliod showed mercy to the penitent archon, who swore to uphold justice and righteousness in the world's wildest places. As a sign of his mercy, Heliod gave the archon a spear that rivaled his own in its brilliance. This was the first archon of falling stars.",
-						"The mysterious conquerors known as archons once ruled vast empires. These armored warlords saw themselves as champions of merciless justice, and they ruled with iron fists. But their dominance ultimately came to an end. As the archon overlords toppled, they scattered to the fringes of the world, and their holdings developed into the poleis of today.",
-						"Even though the age of archons is long past, many wonder if the few surviving archons might someday attempt to reestablish their empire or if they are truly resigned to their lesser role in the world."
-					]
+			"_copy": {
+				"name": "Archons",
+				"source": "MOT",
+				"_mod": {
+					"entries": {
+						"mode": "setProp",
+						"value": [
+							{
+								"type": "entries",
+								"entries": [
+									"The epic accounting of the world's earliest histories called {@i The Cosmogony} recounts the battle between a group of the gods' champions and a mighty archon, which took place at the mysterious eastern edge of the world. Defeated, the falling archon is said to have met the rising sun. But Heliod showed mercy to the penitent archon, who swore to uphold justice and righteousness in the world's wildest places. As a sign of his mercy, Heliod gave the archon a spear that rivaled his own in its brilliance. This was the first archon of falling stars.",
+									"The mysterious conquerors known as archons once ruled vast empires. These armored warlords saw themselves as champions of merciless justice, and they ruled with iron fists. But their dominance ultimately came to an end. As the archon overlords toppled, they scattered to the fringes of the world, and their holdings developed into the poleis of today.",
+									"Even though the age of archons is long past, many wonder if the few surviving archons might someday attempt to reestablish their empire or if they are truly resigned to their lesser role in the world."
+								]
+							}
+						]
+					}
 				}
-			],
+			},
 			"images": [
 				{
 					"type": "image",
@@ -197,6 +270,40 @@
 					"credit": "Victor Adame Minguez",
 					"width": 1000,
 					"height": 789
+				}
+			]
+		},
+		{
+			"name": "Archons",
+			"source": "MOT",
+			"entries": [
+				{
+					"type": "entries",
+					"entries": [
+						"The epic accounting of the world's earliest histories called {@i The Cosmogony} recounts the battle between a group of the gods' champions and a mighty archon, which took place at the mysterious eastern edge of the world. Defeated, the falling archon is said to have met the rising sun. But Heliod showed mercy to the penitent archon, who swore to uphold justice and righteousness in the world's wildest places. As a sign of his mercy, Heliod gave the archon a spear that rivaled his own in its brilliance. This was the first archon of falling stars.",
+						"The mysterious conquerors known as archons once ruled vast empires. These armored warlords saw themselves as champions of merciless justice, and they ruled with iron fists. But their dominance ultimately came to an end. As the archon overlords toppled, they scattered to the fringes of the world, and their holdings developed into the poleis of today.",
+						"Even though the age of archons is long past, many wonder if the few surviving archons might someday attempt to reestablish their empire or if they are truly resigned to their lesser role in the world."
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						"The fall of the ancient archon empires left some archons bitter and resentful. Seeking to avoid the spread of human civilization, these archons made their way to the Underworld. The horrors of the place broke their minds, bodies, and spirits and twisted them into the terrifying archons known as ashen riders. When they ride forth upon the mortal world, terrified mortals make offerings in a desperate attempt to appease them, but the ashen riders aren't merciful, and they delight in reducing the paragons of the mortal world to ash.",
+						"The mysterious conquerors known as archons once ruled vast empires. These armored warlords saw themselves as champions of merciless justice, and they ruled with iron fists. But their dominance ultimately came to an end. As the archon overlords toppled, they scattered to the fringes of the world, and their holdings developed into the poleis of today.",
+						"Even though the age of archons is long past, many wonder if the few surviving archons might someday attempt to reestablish their empire or if they are truly resigned to their lesser role in the world."
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						"Archons always ride into battle on fearsome winged mounts. Some legends suggest that the mount is actually a physical manifestation of the archon's will, allowing the pair to act with a single mind. The two most common archon mounts are winged bulls and winged lions."
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						"Archons always ride into battle on fearsome winged mounts. Some legends suggest that the mount is actually a physical manifestation of the archon's will, allowing the pair to act with a single mind. The two most common archon mounts are winged bulls and winged lions."
+					]
 				}
 			]
 		},
@@ -307,6 +414,26 @@
 			]
 		},
 		{
+			"name": "Cerberi",
+			"source": "MOT",
+			"entries": [
+				{
+					"type": "entries",
+					"entries": [
+						"Thought to be a lesser breed of cerberi that have interbred with mortal wolves, two-headed cerberi typically roam the mortal side of the Tartyx River. There they generally ignore\u2014or only modestly menace\u2014the souls of the dead. Such isn't the case for mortals, though, and they eagerly set upon those who tread too close to the Underworld's borders.",
+						"Feared by the living and the dead, cerberi patrol both banks of the Tartyx River. These multiheaded hounds of the Underworld breathe gouts of molten rock that sear and imprison those who trespass upon the borders of life and death. Most cerberi have a boundless hunger for fresh meat, especially the flesh of humanoids. Villains have been known to exploit that hunger by luring cerberi away from the river and setting them loose on mortal settlements."
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						"Three-headed cerberi dwell deep in the Underworld. Terrifying and cunning, they guard portals between the wards of the Underworld, Erebos's greatest treasures, and noteworthy souls who might attempt to escape the realm of the dead. Three-headed cerberi commonly serve demons, but if left to their own devices, they often herd wily souls into labyrinthine Underworld wildernesses, then hunt them for sport.",
+						"Feared by the living and the dead, cerberi patrol both banks of the Tartyx River. These multiheaded hounds of the Underworld breathe gouts of molten rock that sear and imprison those who trespass upon the borders of life and death. Most cerberi have a boundless hunger for fresh meat, especially the flesh of humanoids. Villains have been known to exploit that hunger by luring cerberi away from the river and setting them loose on mortal settlements."
+					]
+				}
+			]
+		},
+		{
 			"name": "Colossus of Akros",
 			"source": "MOT",
 			"entries": [
@@ -331,18 +458,51 @@
 			]
 		},
 		{
-			"name": "Doomwake Giant",
+			"name": "Demons of Theros",
 			"source": "MOT",
 			"entries": [
 				{
 					"type": "entries",
 					"entries": [
-						"Belief is a powerful force in Theros, capable of bringing about wonders and changing the world\u2014but not always for the better. Doomwake giants arise from pernicious fears that infect a whole city or region. If enough mortals dread destruction for long enough, their terror can manifest as one of these massive Nyxborn beings. Once unleashed, a doomwake giant goes on a rampage, fulfilling the prophecy mortals believed into being. After doing so, these terrors typically roam to the edges of the world, where they either fade away over time or become legends that take on their own terrible life.",
-						"A spectrum of giants claims territory across Theros, drawing strength from aspects of the world itself\u2014from ancient stone and roiling flames to the depths of the seas and skies. Unlike many creatures of legend, most giants owe their existence not to Nyx and the dreams of mortals, but to natural forces in the land. As a result, Theran giants are typically infused with the elements they embody, which might manifest as flaming beards, frozen skin, hair crackling with lightning, or other primal incarnations.",
-						"Beyond these primal giants, though, other giants fill the tales of Theros."
+						"Abhorrent overlords are gaunt, bipedal creatures whose gray, leathery skin is in stark contrast to the gleaming jewelry made of Underworld gold that they adorn themselves with. Their appetite for pain and death is eclipsed only by their greed; these fiends delight in searching out treasure and slaughtering all who stand in their way."
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						"An eater of hope is bitter to the core, resentful of all forms of life and joy. Although these demons can strike down most foes, they prefer to let terror and despair overtake their victims first, letting their victims marinate in fear before the fiend devours them."
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						"A nightmare shepherd is a gaunt, ashen fiend with leathery wings. It carries a shepherd's crook, which it uses to direct a flock of wandering dead that it torments and occasionally feeds upon."
 					]
 				}
-			],
+			]
+		},
+		{
+			"name": "Doomwake Giant",
+			"source": "MOT",
+			"_copy": {
+				"name": "Giants",
+				"source": "MOT",
+				"_mod": {
+					"entries": {
+						"mode": "setProp",
+						"value": [
+							{
+								"type": "entries",
+								"entries": [
+									"Belief is a powerful force in Theros, capable of bringing about wonders and changing the world\u2014but not always for the better. Doomwake giants arise from pernicious fears that infect a whole city or region. If enough mortals dread destruction for long enough, their terror can manifest as one of these massive Nyxborn beings. Once unleashed, a doomwake giant goes on a rampage, fulfilling the prophecy mortals believed into being. After doing so, these terrors typically roam to the edges of the world, where they either fade away over time or become legends that take on their own terrible life.",
+									"A spectrum of giants claims territory across Theros, drawing strength from aspects of the world itself\u2014from ancient stone and roiling flames to the depths of the seas and skies. Unlike many creatures of legend, most giants owe their existence not to Nyx and the dreams of mortals, but to natural forces in the land. As a result, Theran giants are typically infused with the elements they embody, which might manifest as flaming beards, frozen skin, hair crackling with lightning, or other primal incarnations.",
+									"Beyond these primal giants, though, other giants fill the tales of Theros."
+								]
+							}
+						]
+					}
+				}
+			},
 			"images": [
 				{
 					"type": "image",
@@ -381,6 +541,26 @@
 			]
 		},
 		{
+			"name": "Eidolons",
+			"source": "MOT",
+			"entries": [
+				{
+					"type": "entries",
+					"entries": [
+						"When a mortal soul traumatically sacrifices its identity in order to escape the Underworld as a Returned, its identity manifests as a spirit-like eidolon. While eidolons possess many of the skills and details related to their past lives, they're disconnected from those experiences, choosing to wander the world or brood in haunts they're drawn to in death. They care nothing for morbid reunions with their lost bodies or Returned remnants.",
+						"Of the various types of eidolons, flitterstep eidolons are the most common and wander without purpose."
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						"When a mortal soul traumatically sacrifices its identity in order to escape the Underworld as a Returned, its identity manifests as a spirit-like eidolon. While eidolons possess many of the skills and details related to their past lives, they're disconnected from those experiences, choosing to wander the world or brood in haunts they're drawn to in death. They care nothing for morbid reunions with their lost bodies or Returned remnants.",
+						"Of the various types of eidolons, ghostblade eidolons typically arise from fallen warriors and believe they're endlessly embroiled in great battles."
+					]
+				}
+			]
+		},
+		{
 			"name": "Fleecemane Lion",
 			"source": "MOT",
 			"entries": [
@@ -407,15 +587,24 @@
 		{
 			"name": "Flitterstep Eidolon",
 			"source": "MOT",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						"When a mortal soul traumatically sacrifices its identity in order to escape the Underworld as a Returned, its identity manifests as a spirit-like eidolon. While eidolons possess many of the skills and details related to their past lives, they're disconnected from those experiences, choosing to wander the world or brood in haunts they're drawn to in death. They care nothing for morbid reunions with their lost bodies or Returned remnants.",
-						"Of the various types of eidolons, flitterstep eidolons are the most common and wander without purpose."
-					]
+			"_copy": {
+				"name": "Eidolons",
+				"source": "MOT",
+				"_mod": {
+					"entries": {
+						"mode": "setProp",
+						"value": [
+							{
+								"type": "entries",
+								"entries": [
+									"When a mortal soul traumatically sacrifices its identity in order to escape the Underworld as a Returned, its identity manifests as a spirit-like eidolon. While eidolons possess many of the skills and details related to their past lives, they're disconnected from those experiences, choosing to wander the world or brood in haunts they're drawn to in death. They care nothing for morbid reunions with their lost bodies or Returned remnants.",
+									"Of the various types of eidolons, flitterstep eidolons are the most common and wander without purpose."
+								]
+							}
+						]
+					}
 				}
-			]
+			}
 		},
 		{
 			"name": "Ghostblade Eidolon",
@@ -443,6 +632,26 @@
 			]
 		},
 		{
+			"name": "Giants",
+			"source": "MOT",
+			"entries": [
+				{
+					"type": "entries",
+					"entries": [
+						"Belief is a powerful force in Theros, capable of bringing about wonders and changing the world\u2014but not always for the better. Doomwake giants arise from pernicious fears that infect a whole city or region. If enough mortals dread destruction for long enough, their terror can manifest as one of these massive Nyxborn beings. Once unleashed, a doomwake giant goes on a rampage, fulfilling the prophecy mortals believed into being. After doing so, these terrors typically roam to the edges of the world, where they either fade away over time or become legends that take on their own terrible life.",
+						"A spectrum of giants claims territory across Theros, drawing strength from aspects of the world itself\u2014from ancient stone and roiling flames to the depths of the seas and skies. Unlike many creatures of legend, most giants owe their existence not to Nyx and the dreams of mortals, but to natural forces in the land. As a result, Theran giants are typically infused with the elements they embody, which might manifest as flaming beards, frozen skin, hair crackling with lightning, or other primal incarnations.",
+						"Beyond these primal giants, though, other giants fill the tales of Theros."
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						"Extra pairs of arms magically orbit the bodies of the titanic, nearly forgotten artisans known as hundred-handed ones. These giants often dwell in remote mountains and seaside cliffs, where they carve their memories into the ancient stone, covering their territories with intricate reliefs and massive statues of bygone ages. Some linger near ancient temples and palaces, ruins they once raised to the gods or archons of old."
+					]
+				}
+			]
+		},
+		{
 			"name": "Gold-Forged Sentinel",
 			"source": "MOT",
 			"entries": [
@@ -466,6 +675,26 @@
 					"credit": "James Zapata",
 					"width": 1500,
 					"height": 990
+				}
+			]
+		},
+		{
+			"name": "Harpies",
+			"source": "MOT",
+			"entries": [
+				{
+					"type": "entries",
+					"entries": [
+						"The notorious Nyxborn harpy Aphemia prowls the marshy wastes around the necropolis of Asphodel. Her shrill songs enthrall the necropolis's undead inhabitants, which she leads on raids to waylay unsuspecting travelers and settlements.",
+						"Cruel, corpse-eating creatures, harpies endlessly seek their next meal, careless of whether it comes from the living or the dead. With equal zeal, these vicious scavengers set upon travelers or claw open fresh graves, stripping bodies of riches and flesh. Then they carry back any treasures or appealing bones they find to reeking nests situated in cramped caves or rotten trees."
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						"Murderous gangs of harpies collect in grim places across Theros, preying on any who pass by. Many merchants face regular losses at the harpies' claws, common casualties often referred to as a \"blood toll.\"",
+						"Cruel, corpse-eating creatures, harpies endlessly seek their next meal, careless of whether it comes from the living or the dead. With equal zeal, these vicious scavengers set upon travelers or claw open fresh graves, stripping bodies of riches and flesh. Then they carry back any treasures or appealing bones they find to reeking nests situated in cramped caves or rotten trees."
+					]
 				}
 			]
 		},
@@ -676,6 +905,26 @@
 			]
 		},
 		{
+			"name": "Hydras",
+			"source": "MOT",
+			"entries": [
+				{
+					"type": "entries",
+					"entries": [
+						"Five-headed ironscale hydras lurk in the wild places of the world, being common foes for heroes seeking to test their mettle against terrors worthy of the gods' notice. Most ironscale hydras inhabit lakes and boggy caverns, from which they hunt unwary creatures that come for a drink or swim.",
+						"What krakens are to the sea and dragons are to the sky, hydras are to the lands of Theros. Various hydras dwell at the fringes of civilization, from the bog-dwelling hydras known across the multiverse to massive ironscale hydras that lurk in deep wildernesses. Beyond even these exist serpentine horrors born of the whims of foul gods, like the legendary hydra Polukranos."
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						"Polukranos, called the World Eater, is the mortal manifestation of the eternal ideal of a hydra. In its first incarnation, it fell from Nyx to the mortal world, and so great were its size and strength that the gods Nylea and Heliod combined their power to bind the monster deep within the Nessian Wood. That incarnation was slain, but the eternal ideal remains. A new incarnation of the World Eater is a fearsome omen, as the monster only appears when the pillars of the world tremble and terrible things are afoot in the realm of the gods. Its rampages often presage an age of menace for all civilization.",
+						"What krakens are to the sea and dragons are to the sky, hydras are to the lands of Theros. Various hydras dwell at the fringes of civilization, from the bog-dwelling hydras known across the multiverse to massive ironscale hydras that lurk in deep wildernesses. Beyond even these exist serpentine horrors born of the whims of foul gods, like the legendary hydra Polukranos."
+					]
+				}
+			]
+		},
+		{
 			"name": "Hythonia",
 			"source": "MOT",
 			"entries": [
@@ -704,15 +953,24 @@
 		{
 			"name": "Ironscale Hydra",
 			"source": "MOT",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						"Five-headed ironscale hydras lurk in the wild places of the world, being common foes for heroes seeking to test their mettle against terrors worthy of the gods' notice. Most ironscale hydras inhabit lakes and boggy caverns, from which they hunt unwary creatures that come for a drink or swim.",
-						"What krakens are to the sea and dragons are to the sky, hydras are to the lands of Theros. Various hydras dwell at the fringes of civilization, from the bog-dwelling hydras known across the multiverse to massive ironscale hydras that lurk in deep wildernesses. Beyond even these exist serpentine horrors born of the whims of foul gods, like the legendary hydra Polukranos."
-					]
+			"_copy": {
+				"name": "Hydras",
+				"source": "MOT",
+				"_mod": {
+					"entries": {
+						"mode": "setProp",
+						"value": [
+							{
+								"type": "entries",
+								"entries": [
+									"Five-headed ironscale hydras lurk in the wild places of the world, being common foes for heroes seeking to test their mettle against terrors worthy of the gods' notice. Most ironscale hydras inhabit lakes and boggy caverns, from which they hunt unwary creatures that come for a drink or swim.",
+									"What krakens are to the sea and dragons are to the sky, hydras are to the lands of Theros. Various hydras dwell at the fringes of civilization, from the bog-dwelling hydras known across the multiverse to massive ironscale hydras that lurk in deep wildernesses. Beyond even these exist serpentine horrors born of the whims of foul gods, like the legendary hydra Polukranos."
+								]
+							}
+						]
+					}
 				}
-			],
+			},
 			"images": [
 				{
 					"type": "image",
@@ -729,33 +987,28 @@
 		{
 			"name": "Lampad",
 			"source": "MOT",
-			"entries": [
-				{
-					"type": "section",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								"Lampads guard the shadowed paths of the world, depths typically trod by souls destined for the Underworld. These rarely seen nymphs assist Athreos in guiding the dead, moving among the spirits that collect along the Tartyx River and reclaiming wayward souls that try to slip back to the mortal world. This means lampads are most often spotted in graveyards, crumbling crypts, and tunnels that bore deep into the earth, and near portals to the Underworld.",
-								{
-									"type": "entries",
-									"name": "Nymphs",
-									"entries": [
-										"Divine servants that inhabit unspoiled corners of the world, nymphs protect places of natural power and infuse their surroundings with the magic of Nyx. Some are benevolent and aid those who live off the land, while others embody violent aspects of nature. In either case, nymphs generally avoid other sapient creatures, preferring to mind the cycles of nature, the daily interplay of wild animals, or other cosmic forces. Occasionally, though, groups of the same kind of nymphs congregate in a place of natural power or beauty. In times of special need, deities tied to facets of nature might employ nymphs as messengers, guardians, or scouts.",
-										{
-											"type": "entries",
-											"name": "Immortal Nature",
-											"entries": [
-												"A nymph doesn't require food, drink, or sleep."
-											]
-										}
-									]
-								}
-							]
-						}
-					]
+			"_copy": {
+				"name": "Nymphs",
+				"source": "MOT",
+				"_mod": {
+					"entries": {
+						"mode": "prependArr",
+						"items": [
+							{
+								"type": "section",
+								"entries": [
+									{
+										"type": "entries",
+										"entries": [
+											"Lampads guard the shadowed paths of the world, depths typically trod by souls destined for the Underworld. These rarely seen nymphs assist Athreos in guiding the dead, moving among the spirits that collect along the Tartyx River and reclaiming wayward souls that try to slip back to the mortal world. This means lampads are most often spotted in graveyards, crumbling crypts, and tunnels that bore deep into the earth, and near portals to the Underworld."
+										]
+									}
+								]
+							}
+						]
+					}
 				}
-			],
+			},
 			"images": [
 				{
 					"type": "image",
@@ -834,52 +1087,47 @@
 		{
 			"name": "Naiad",
 			"source": "MOT",
-			"entries": [
-				{
-					"type": "section",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"entries": [
-										"Naiads live in and near water. They might be spotted among rivers and lakes, on isolated shores, or amid coral labyrinths and deep sea fumaroles. Wherever rivers and seas show their variety and force, naiads gather to revel in nature's might. Individual naiads often grow fixated with a single type or body of water, potentially preferring a deep sea trench, coastline, or river system above all others. Over time, such a resident nymph often becomes connected with their aquatic home through sightings and stories, becoming a guardian of the place and, in effect, a manifestation of its personality.",
-										{
-											"type": "entries",
-											"name": "Aquatic Collectors",
-											"entries": [
-												"Curious by nature, naiads often seek out what the seas and rivers claim. As a result, they might be found among sunken ruins and shipwrecks, sifting through the remains for whatever catches their eye. Living creatures aren't exempt from this curiosity, either. Naiads are known to befriend aquatic creatures, or even to keep modest menageries. The occasional star-crossed castaway has even been known to become part of such collections."
-											]
-										},
-										{
-											"type": "entries",
-											"name": "Secret Routes of the Sea",
-											"entries": [
-												"Sailors across the world claim that naiads know all the secret aquatic routes of Theros. Using this hidden system of currents and arteries, a ship might reach any destination in record time, be it across the sea or along a river a hundred miles inland. Naiads do nothing to dissuade sailors from this belief, and certainly numerous reports tell of charmed nymphs leading lost seafarers home. Yet, if tales of naiad-led galleys appearing amid the headwaters of mountain rivers are true, only the nymphs know for sure."
-											]
-										}
-									]
-								},
-								{
-									"type": "entries",
-									"name": "Nymphs",
-									"entries": [
-										"Divine servants that inhabit unspoiled corners of the world, nymphs protect places of natural power and infuse their surroundings with the magic of Nyx. Some are benevolent and aid those who live off the land, while others embody violent aspects of nature. In either case, nymphs generally avoid other sapient creatures, preferring to mind the cycles of nature, the daily interplay of wild animals, or other cosmic forces. Occasionally, though, groups of the same kind of nymphs congregate in a place of natural power or beauty. In times of special need, deities tied to facets of nature might employ nymphs as messengers, guardians, or scouts.",
-										{
-											"type": "entries",
-											"name": "Immortal Nature",
-											"entries": [
-												"A nymph doesn't require food, drink, or sleep."
-											]
-										}
-									]
-								}
-							]
-						}
-					]
+			"_copy": {
+				"name": "Nymphs",
+				"source": "MOT",
+				"_mod": {
+					"entries": {
+						"mode": "prependArr",
+						"items": [
+							{
+								"type": "section",
+								"entries": [
+									{
+										"type": "entries",
+										"entries": [
+											{
+												"type": "entries",
+												"entries": [
+													"Naiads live in and near water. They might be spotted among rivers and lakes, on isolated shores, or amid coral labyrinths and deep sea fumaroles. Wherever rivers and seas show their variety and force, naiads gather to revel in nature's might. Individual naiads often grow fixated with a single type or body of water, potentially preferring a deep sea trench, coastline, or river system above all others. Over time, such a resident nymph often becomes connected with their aquatic home through sightings and stories, becoming a guardian of the place and, in effect, a manifestation of its personality.",
+													{
+														"type": "entries",
+														"name": "Aquatic Collectors",
+														"entries": [
+															"Curious by nature, naiads often seek out what the seas and rivers claim. As a result, they might be found among sunken ruins and shipwrecks, sifting through the remains for whatever catches their eye. Living creatures aren't exempt from this curiosity, either. Naiads are known to befriend aquatic creatures, or even to keep modest menageries. The occasional star-crossed castaway has even been known to become part of such collections."
+														]
+													},
+													{
+														"type": "entries",
+														"name": "Secret Routes of the Sea",
+														"entries": [
+															"Sailors across the world claim that naiads know all the secret aquatic routes of Theros. Using this hidden system of currents and arteries, a ship might reach any destination in record time, be it across the sea or along a river a hundred miles inland. Naiads do nothing to dissuade sailors from this belief, and certainly numerous reports tell of charmed nymphs leading lost seafarers home. Yet, if tales of naiad-led galleys appearing amid the headwaters of mountain rivers are true, only the nymphs know for sure."
+														]
+													}
+												]
+											}
+										]
+									}
+								]
+							}
+						]
+					}
 				}
-			],
+			},
 			"images": [
 				{
 					"type": "image",
@@ -914,6 +1162,26 @@
 					"credit": "Tyler Jacobson",
 					"width": 1500,
 					"height": 1049
+				}
+			]
+		},
+		{
+			"name": "Nymphs",
+			"source": "MOT",
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Nymphs",
+					"entries": [
+						"Divine servants that inhabit unspoiled corners of the world, nymphs protect places of natural power and infuse their surroundings with the magic of Nyx. Some are benevolent and aid those who live off the land, while others embody violent aspects of nature. In either case, nymphs generally avoid other sapient creatures, preferring to mind the cycles of nature, the daily interplay of wild animals, or other cosmic forces. Occasionally, though, groups of the same kind of nymphs congregate in a place of natural power or beauty. In times of special need, deities tied to facets of nature might employ nymphs as messengers, guardians, or scouts.",
+						{
+							"type": "entries",
+							"name": "Immortal Nature",
+							"entries": [
+								"A nymph doesn't require food, drink, or sleep."
+							]
+						}
+					]
 				}
 			]
 		},
@@ -968,52 +1236,47 @@
 		{
 			"name": "Oread",
 			"source": "MOT",
-			"entries": [
-				{
-					"type": "section",
-					"entries": [
-						{
-							"type": "entries",
-							"entries": [
-								{
-									"type": "entries",
-									"entries": [
-										"Aggressive oreads number among the most dangerous nymphs, as they embody the wild might of flames, volcanism, and the hidden forces of the earth. These creatures typically dwell in remote mountain crags and near volcanoes, where they caper among the forces of dissolution and rebirth. During avalanches and volcanic eruptions, groups of oreads might race ahead of the destruction, dancing, singing, and doing what they can to maximize the impending devastation.",
-										{
-											"type": "entries",
-											"name": "Honor Among Fey",
-											"entries": [
-												"Hearkening back to some ages-old conflict, oreads refuse to knowingly destroy any land inhabited by another nymph. While they won't work to alter the natural course of destruction, neither will they make another nymph's home part of any calamity they encourage. As a result, part of what makes an alseid's field or a dryad's grove seem so blessed is that oreads go out of their way to leave such sites alone."
-											]
-										},
-										{
-											"type": "entries",
-											"name": "Tales of Fire",
-											"entries": [
-												"The followers of Purphoros regard oreads with special reverence, as myths tell of cagey smiths befriending these nymphs and convincing them to aid in creating phenomenal works. In some tales, a smith finds an oread and allows it to relish in the destruction of a novel or remarkable item. In recompense, the oread provides the smith with materials drawn from the burning heart of the world, allowing the smith to create an even greater wonder. In more tales, though, a smith pursues an oread, then later the mortal's associates find familiar tools and a heap of ashes."
-											]
-										}
-									]
-								},
-								{
-									"type": "entries",
-									"name": "Nymphs",
-									"entries": [
-										"Divine servants that inhabit unspoiled corners of the world, nymphs protect places of natural power and infuse their surroundings with the magic of Nyx. Some are benevolent and aid those who live off the land, while others embody violent aspects of nature. In either case, nymphs generally avoid other sapient creatures, preferring to mind the cycles of nature, the daily interplay of wild animals, or other cosmic forces. Occasionally, though, groups of the same kind of nymphs congregate in a place of natural power or beauty. In times of special need, deities tied to facets of nature might employ nymphs as messengers, guardians, or scouts.",
-										{
-											"type": "entries",
-											"name": "Immortal Nature",
-											"entries": [
-												"A nymph doesn't require food, drink, or sleep."
-											]
-										}
-									]
-								}
-							]
-						}
-					]
+			"_copy": {
+				"name": "Nymphs",
+				"source": "MOT",
+				"_mod": {
+					"entries": {
+						"mode": "prependArr",
+						"items": [
+							{
+								"type": "section",
+								"entries": [
+									{
+										"type": "entries",
+										"entries": [
+											{
+												"type": "entries",
+												"entries": [
+													"Aggressive oreads number among the most dangerous nymphs, as they embody the wild might of flames, volcanism, and the hidden forces of the earth. These creatures typically dwell in remote mountain crags and near volcanoes, where they caper among the forces of dissolution and rebirth. During avalanches and volcanic eruptions, groups of oreads might race ahead of the destruction, dancing, singing, and doing what they can to maximize the impending devastation.",
+													{
+														"type": "entries",
+														"name": "Honor Among Fey",
+														"entries": [
+															"Hearkening back to some ages-old conflict, oreads refuse to knowingly destroy any land inhabited by another nymph. While they won't work to alter the natural course of destruction, neither will they make another nymph's home part of any calamity they encourage. As a result, part of what makes an alseid's field or a dryad's grove seem so blessed is that oreads go out of their way to leave such sites alone."
+														]
+													},
+													{
+														"type": "entries",
+														"name": "Tales of Fire",
+														"entries": [
+															"The followers of Purphoros regard oreads with special reverence, as myths tell of cagey smiths befriending these nymphs and convincing them to aid in creating phenomenal works. In some tales, a smith finds an oread and allows it to relish in the destruction of a novel or remarkable item. In recompense, the oread provides the smith with materials drawn from the burning heart of the world, allowing the smith to create an even greater wonder. In more tales, though, a smith pursues an oread, then later the mortal's associates find familiar tools and a heap of ashes."
+														]
+													}
+												]
+											}
+										]
+									}
+								]
+							}
+						]
+					}
 				}
-			],
+			},
 			"images": [
 				{
 					"type": "image",
@@ -1181,7 +1444,7 @@
 			}
 		},
 		{
-			"name": "Satyr Reveler",
+			"name": "Satyr",
 			"source": "MOT",
 			"entries": [
 				{
@@ -1190,8 +1453,37 @@
 						"Pursuing lives of endless reverie, satyr revelers eagerly participate in celebrations wherever they find them. Their boisterous natures go far toward tempting others to eat, drink, and carouse with them. Faced with stodgier individuals or outright rivals, satyr revelers don't balk at using the magic of their music, dance, or other performances to charm opponents into joining their festivities. In the aftermath, these satyrs' foes are more likely to suffer embarrassment and groggy mornings than any lasting harm.",
 						"While most satyrs are known for their high spirits, love of revels, and gregarious personalities, these outgoing people are neither naive nor defenseless. Some satyrs delightedly torment stuffy individuals or pull pranks on the unwary, pastimes that can predictably lead to scuffles. If a satyr can't talk their way out of a conflict\u2014or diffuse it with a good-natured distraction\u2014they readily defend themselves, their friends, and their homes in the Skola Vale. With diversions aside, satyrs bend their cleverness toward tactics and methods of ending conflicts as swiftly as possible. This often means turning the same skills that make them famed celebrants toward battle, be it captivating performances or the aim developed through endless games of skill. Once a threat is overcome, though, satyrs are quick to engage in their favorite part of battle: the victory celebration."
 					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						"Not all satyrs live lives of pure whimsy. When forced to defend their friends and homes, satyr thornbearers are quick to take up their bows and strike against danger. Particularly amid the dense trees of the Skola Vale, these satyr skirmishers cooperate in loose teams, using guerrilla tactics to harass foes then melt back into the forest. The blessings of Nylea aid the satyrs in protecting their home, and a single arrow from a thornbearer's bow might rain down like a volley from a whole army.",
+						"While most satyrs are known for their high spirits, love of revels, and gregarious personalities, these outgoing people are neither naive nor defenseless. Some satyrs delightedly torment stuffy individuals or pull pranks on the unwary, pastimes that can predictably lead to scuffles. If a satyr can't talk their way out of a conflict\u2014or diffuse it with a good-natured distraction\u2014they readily defend themselves, their friends, and their homes in the Skola Vale. With diversions aside, satyrs bend their cleverness toward tactics and methods of ending conflicts as swiftly as possible. This often means turning the same skills that make them famed celebrants toward battle, be it captivating performances or the aim developed through endless games of skill. Once a threat is overcome, though, satyrs are quick to engage in their favorite part of battle: the victory celebration."
+					]
 				}
-			],
+			]
+		},
+		{
+			"name": "Satyr Reveler",
+			"source": "MOT",
+			"_copy": {
+				"name": "Satyr",
+				"source": "MOT",
+				"_mod": {
+					"entries": {
+						"mode": "setProp",
+						"value": [
+							{
+								"type": "entries",
+								"entries": [
+									"Pursuing lives of endless reverie, satyr revelers eagerly participate in celebrations wherever they find them. Their boisterous natures go far toward tempting others to eat, drink, and carouse with them. Faced with stodgier individuals or outright rivals, satyr revelers don't balk at using the magic of their music, dance, or other performances to charm opponents into joining their festivities. In the aftermath, these satyrs' foes are more likely to suffer embarrassment and groggy mornings than any lasting harm.",
+									"While most satyrs are known for their high spirits, love of revels, and gregarious personalities, these outgoing people are neither naive nor defenseless. Some satyrs delightedly torment stuffy individuals or pull pranks on the unwary, pastimes that can predictably lead to scuffles. If a satyr can't talk their way out of a conflict\u2014or diffuse it with a good-natured distraction\u2014they readily defend themselves, their friends, and their homes in the Skola Vale. With diversions aside, satyrs bend their cleverness toward tactics and methods of ending conflicts as swiftly as possible. This often means turning the same skills that make them famed celebrants toward battle, be it captivating performances or the aim developed through endless games of skill. Once a threat is overcome, though, satyrs are quick to engage in their favorite part of battle: the victory celebration."
+								]
+							}
+						]
+					}
+				}
+			},
 			"images": [
 				{
 					"type": "image",
@@ -1509,6 +1801,27 @@
 			]
 		},
 		{
+			"name": "Triton",
+			"source": "MOT",
+			"entries": [
+				{
+					"type": "entries",
+					"entries": [
+						"Some insults don't wash away with the tides. When surface dwellers threaten the safety of triton communities, impede upon Thassa's holiest depths, or steal the treasures of the deep, triton shorestalkers seek vengeance. Using speed and poison harvested from deadly sea beasts, these triton assassins slip into shallow waters and strike when least expected. Often, surface dwellers don't even realize they've been attacked by shorestalkers, chalking disappearances and deaths up to the innumerable dangers of the sea.",
+						"Clever, far-ranging people of the sea, tritons live rich lives unknown to most land-dwelling individuals. While the waves separate most tritons from land-dwellers, occasionally the inhabitants of the surface and the deep come into conflict. In such cases, tritons prove skilled at sabotaging ocean-going vessels, employing water-based magic, and otherwise whipping up the fury of the sea. Few dare insult tritons in their home environment, but those who do and survive often learn that the tritons' wrath doesn't end at the shore."
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						"Triton masters of waves sculpt storms and change the tides, bending the sea to their will. Drawing forth living currents and the icy cold of the deep, these mages make the ocean their ally, using it to defend their people or enact Thassa's wishes. While dire threats from the land might bring them to coastal shallows, most masters of waves keep to the ocean's depths.",
+						"Although many masters of waves resent land-dwellers and strike out at those who trespass upon their waters, most are devoted followers of the sea god. Those who share their faith or who bear earnest offerings to Thassa might defuse the tritons' ire\u2014that is, if they survive the deadly winds and waves that typically herald these sea guardians' appearance.",
+						"Clever, far-ranging people of the sea, tritons live rich lives unknown to most land-dwelling individuals. While the waves separate most tritons from land-dwellers, occasionally the inhabitants of the surface and the deep come into conflict. In such cases, tritons prove skilled at sabotaging ocean-going vessels, employing water-based magic, and otherwise whipping up the fury of the sea. Few dare insult tritons in their home environment, but those who do and survive often learn that the tritons' wrath doesn't end at the shore."
+					]
+				}
+			]
+		},
+		{
 			"name": "Triton Master of Waves",
 			"source": "MOT",
 			"entries": [
@@ -1537,15 +1850,24 @@
 		{
 			"name": "Triton Shorestalker",
 			"source": "MOT",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						"Some insults don't wash away with the tides. When surface dwellers threaten the safety of triton communities, impede upon Thassa's holiest depths, or steal the treasures of the deep, triton shorestalkers seek vengeance. Using speed and poison harvested from deadly sea beasts, these triton assassins slip into shallow waters and strike when least expected. Often, surface dwellers don't even realize they've been attacked by shorestalkers, chalking disappearances and deaths up to the innumerable dangers of the sea.",
-						"Clever, far-ranging people of the sea, tritons live rich lives unknown to most land-dwelling individuals. While the waves separate most tritons from land-dwellers, occasionally the inhabitants of the surface and the deep come into conflict. In such cases, tritons prove skilled at sabotaging ocean-going vessels, employing water-based magic, and otherwise whipping up the fury of the sea. Few dare insult tritons in their home environment, but those who do and survive often learn that the tritons' wrath doesn't end at the shore."
-					]
+			"_copy": {
+				"name": "Triton",
+				"source": "MOT",
+				"_mod": {
+					"entries": {
+						"mode": "setProp",
+						"value": [
+							{
+								"type": "entries",
+								"entries": [
+									"Some insults don't wash away with the tides. When surface dwellers threaten the safety of triton communities, impede upon Thassa's holiest depths, or steal the treasures of the deep, triton shorestalkers seek vengeance. Using speed and poison harvested from deadly sea beasts, these triton assassins slip into shallow waters and strike when least expected. Often, surface dwellers don't even realize they've been attacked by shorestalkers, chalking disappearances and deaths up to the innumerable dangers of the sea.",
+									"Clever, far-ranging people of the sea, tritons live rich lives unknown to most land-dwelling individuals. While the waves separate most tritons from land-dwellers, occasionally the inhabitants of the surface and the deep come into conflict. In such cases, tritons prove skilled at sabotaging ocean-going vessels, employing water-based magic, and otherwise whipping up the fury of the sea. Few dare insult tritons in their home environment, but those who do and survive often learn that the tritons' wrath doesn't end at the shore."
+								]
+							}
+						]
+					}
 				}
-			],
+			},
 			"images": [
 				{
 					"type": "image",
@@ -1586,15 +1908,24 @@
 		{
 			"name": "Two-Headed Cerberus",
 			"source": "MOT",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						"Thought to be a lesser breed of cerberi that have interbred with mortal wolves, two-headed cerberi typically roam the mortal side of the Tartyx River. There they generally ignore\u2014or only modestly menace\u2014the souls of the dead. Such isn't the case for mortals, though, and they eagerly set upon those who tread too close to the Underworld's borders.",
-						"Feared by the living and the dead, cerberi patrol both banks of the Tartyx River. These multiheaded hounds of the Underworld breathe gouts of molten rock that sear and imprison those who trespass upon the borders of life and death. Most cerberi have a boundless hunger for fresh meat, especially the flesh of humanoids. Villains have been known to exploit that hunger by luring cerberi away from the river and setting them loose on mortal settlements."
-					]
+			"_copy": {
+				"name": "Cerberi",
+				"source": "MOT",
+				"_mod": {
+					"entries": {
+						"mode": "setProp",
+						"value": [
+							{
+								"type": "entries",
+								"entries": [
+									"Thought to be a lesser breed of cerberi that have interbred with mortal wolves, two-headed cerberi typically roam the mortal side of the Tartyx River. There they generally ignore\u2014or only modestly menace\u2014the souls of the dead. Such isn't the case for mortals, though, and they eagerly set upon those who tread too close to the Underworld's borders.",
+									"Feared by the living and the dead, cerberi patrol both banks of the Tartyx River. These multiheaded hounds of the Underworld breathe gouts of molten rock that sear and imprison those who trespass upon the borders of life and death. Most cerberi have a boundless hunger for fresh meat, especially the flesh of humanoids. Villains have been known to exploit that hunger by luring cerberi away from the river and setting them loose on mortal settlements."
+								]
+							}
+						]
+					}
 				}
-			],
+			},
 			"images": [
 				{
 					"type": "image",

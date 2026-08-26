@@ -774,6 +774,7 @@ class ModalFilterBestiary extends ModalFilterBase {
 			},
 			{
 				hash,
+				page: mon.page,
 				cbSel: eleRow.firstElementChild.firstElementChild.firstElementChild,
 				btnShowHidePreview,
 			},

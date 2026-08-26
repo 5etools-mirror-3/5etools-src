@@ -1400,6 +1400,15 @@
 				}
 			],
 			"migrationVersion": 3
+		},
+		{
+			"name": "College of Spirits",
+			"shortName": "Spirits",
+			"source": "RHW",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"identifier": "college-spirits",
+			"migrationVersion": 3
 		}
 	],
 	"classFeature": [
@@ -4569,6 +4578,15 @@
 			"className": "Monk",
 			"classSource": "XPHB",
 			"level": 2,
+			"system": {
+				"uses.max": "@scale.monk.focus",
+				"uses.recovery": [
+					{
+						"period": "sr",
+						"type": "recoverAll"
+					}
+				]
+			},
 			"activities": [
 				{
 					"name": "Step of the Wind",
@@ -4599,6 +4617,17 @@
 							"foundryId": "stepOfTheWind"
 						}
 					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "stepOfTheWind",
+					"name": "Disengaged",
+					"duration": {
+						"value": 1,
+						"units": "turns",
+						"expiry": "turnStart"
+					}
 				}
 			],
 			"migrationVersion": 3
@@ -7235,6 +7264,197 @@
 					}
 				]
 			},
+			"migrationVersion": 3
+		},
+		{
+			"name": "Reanimated Companion",
+			"source": "RHW",
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Reanimator",
+			"subclassSource": "RHW",
+			"level": 3,
+			"activities": [
+				{
+					"foundryId": "reanimatedCompan",
+					"name": "Create Companion",
+					"type": "summon",
+					"activation": {
+						"type": "action",
+						"condition": "using a type of Artisan's Tools with which you have proficiency"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "space",
+							"count": "1",
+							"special": "unoccupied"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "5"
+					},
+					"visibility": {
+						"requireMagic": true,
+						"identifier": "artificer"
+					},
+					"profiles": [
+						{
+							"uuid": "@creature[reanimated companion|rhw]"
+						}
+					],
+					"bonuses": {
+						"ac": "@abilities.int.mod",
+						"hd": "@classes.artificer.levels",
+						"hp": "5 * @classes.artificer.levels",
+						"attackDamage": "@abilities.int.mod"
+					},
+					"match": {
+						"attacks": true,
+						"disposition": true,
+						"proficiency": true,
+						"saves": true,
+						"ability": "int"
+					},
+					"effects": [
+						{
+							"foundryId": "reanimatedCompan",
+							"level": {
+								"min": 9
+							}
+						}
+					]
+				},
+				{
+					"name": "Create with Spell Slot",
+					"type": "forward",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true
+						},
+						"targets": [
+							{
+								"type": "spellSlots",
+								"value": "1",
+								"target": "1",
+								"scaling": {
+									"mode": "level"
+								}
+							}
+						]
+					},
+					"visibility": {
+						"requireMagic": true,
+						"identifier": "artificer"
+					},
+					"activity": {
+						"foundryId": "reanimatedCompan"
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "reanimatedCompan",
+					"name": "Death Burst Improvement",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "flags.world.dbDice",
+							"value": 4,
+							"mode": "UPGRADE"
+						}
+					],
+					"descriptionEntries": [
+						"{@subclassFeature Improved Reanimation|Artificer|EFA|Reanimator|RHW|9}"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Refined Reanimation",
+			"source": "RHW",
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Reanimator",
+			"subclassSource": "RHW",
+			"level": 15,
+			"activities": [
+				{
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses"
+							}
+						]
+					},
+					"uses": {
+						"recovery": [
+							{
+								"period": "lr"
+							}
+						],
+						"max": "1"
+					},
+					"spell": {
+						"uuid": "@spell[raise dead|xphb]",
+						"properties": [
+							"material"
+						],
+						"spellbook": true,
+						"level": 5
+					}
+				},
+				{
+					"name": "Life Transfer",
+					"type": "heal",
+					"activation": {
+						"type": "reaction",
+						"condition": "you or your companion takes damage"
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true
+						}
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"bonus": "@scaling"
+					}
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -12906,6 +13126,180 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Channeler",
+			"source": "RHW",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Spirits",
+			"subclassSource": "RHW",
+			"level": 3,
+			"activities": [
+				{
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"range": {
+						"units": "ft",
+						"value": "60"
+					},
+					"spell": {
+						"uuid": "@spell[guidance|xphb]",
+						"spellbook": true
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Spirits from Beyond",
+			"source": "RHW",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Spirits",
+			"subclassSource": "RHW",
+			"level": 3,
+			"activities": [
+				{
+					"name": "Passive Channeling",
+					"type": "utility",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"roll": {
+						"name": "Bardic Inspiration",
+						"formula": "1@scale.bard.inspiration.die"
+					}
+				},
+				{
+					"name": "Controlled Channeling",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Bardic Inspiration"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"roll": {
+						"name": "Highest Number",
+						"formula": "@scale.bard.inspiration.faces"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Empowered Channeling",
+			"source": "RHW",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Spirits",
+			"subclassSource": "RHW",
+			"level": 6,
+			"activities": [
+				{
+					"name": "Power from Beyond",
+					"type": "utility",
+					"img": "systems/dnd5e/icons/svg/scale-value.svg",
+					"activation": {
+						"type": "special",
+						"condition": "once per turn"
+					},
+					"target": {
+						"affects": {
+							"type": "any"
+						}
+					},
+					"range": {
+						"units": "spec"
+					},
+					"roll": {
+						"name": "Roll Bonus",
+						"formula": "1d6"
+					}
+				},
+				{
+					"name": "Modify Spell",
+					"type": "utility",
+					"img": "systems/dnd5e/icons/svg/statuses/cover-half.svg",
+					"activation": {
+						"type": "special",
+						"condition": "when you cast Spirit Guardians"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "10"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "ally"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "15"
+					},
+					"visibility": {
+						"requireMagic": true
+					},
+					"effects": [
+						{
+							"foundryId": "empoweredChannel"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "empoweredChannel",
+					"name": "Half Cover (Spirit Guardians)",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"value": 600,
+						"units": "seconds",
+						"expiry": "turnStart"
+					},
+					"statuses": [
+						"coverHalf"
+					],
+					"descriptionEntries": [
+						"{@subclassFeature Empowered Channeling|Bard|XPHB|Spirits|RHW|6}"
+					],
+					"showIcon": 2
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Bardic Damage",
 			"source": "XPHB",
 			"className": "Bard",
@@ -13519,6 +13913,368 @@
 					}
 				]
 			},
+			"migrationVersion": 3
+		},
+		{
+			"name": "Circle of Mortality",
+			"source": "RHW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Grave",
+			"subclassSource": "RHW",
+			"level": 3,
+			"activities": [
+				{
+					"name": "Pull of Death",
+					"type": "damage",
+					"activation": {
+						"type": "special",
+						"condition": "damaging a target missing any Hit Points"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"critical": {
+							"allow": true
+						},
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@scale.circle-of-mortality.death-die"
+								},
+								"types": [
+									"necrotic"
+								]
+							}
+						]
+					}
+				},
+				{
+					"name": "Return to Life",
+					"type": "cast",
+					"activation": {
+						"type": "bonus"
+					},
+					"spell": {
+						"uuid": "@spell[spare the dying|xphb]",
+						"spellbook": true
+					}
+				}
+			],
+			"advancement": [
+				{
+					"type": "ScaleValue",
+					"title": "Pull of Death Die",
+					"configuration": {
+						"identifier": "death-die",
+						"type": "dice",
+						"scale": {
+							"3": {
+								"number": 1,
+								"faces": 4
+							},
+							"11": {
+								"number": 1,
+								"faces": 6
+							}
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Path to the Grave",
+			"source": "RHW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Grave",
+			"subclassSource": "RHW",
+			"level": 3,
+			"activities": [
+				{
+					"name": "Curse",
+					"type": "utility",
+					"img": "systems/dnd5e/icons/svg/statuses/cursed.svg",
+					"activation": {
+						"type": "bonus"
+					},
+					"duration": {
+						"units": "round",
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Channel Divinity"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1",
+							"special": "visible"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					},
+					"effects": [
+						{
+							"foundryId": "pathToTheGrave"
+						}
+					]
+				},
+				{
+					"name": "End Curse Early",
+					"type": "damage",
+					"activation": {
+						"type": "",
+						"condition": "you or an ally hits the cursed target"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1",
+							"special": "the cursed creature"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@classes.cleric.levels"
+								},
+								"types": [
+									"necrotic",
+									"radiant"
+								]
+							}
+						]
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "pathToTheGrave",
+					"name": "Cursed (Path to the Grave)",
+					"duration": {
+						"value": 1,
+						"units": "rounds",
+						"expiry": "turnStart"
+					},
+					"statuses": [
+						"cursed"
+					],
+					"changes": [
+						{
+							"key": "system.abilities.str.save.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.dex.save.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.con.save.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.int.save.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.wis.save.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.cha.save.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.attributes.death.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						}
+					],
+					"descriptionEntries": [
+						"{@subclassFeature Path to the Grave|Cleric|XPHB|Grave|RHW|3}",
+						"{@i Disadvantage on attack rolls is not automated.}"
+					],
+					"showIcon": 2
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Sentinel at Death's Door",
+			"source": "RHW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Grave",
+			"subclassSource": "RHW",
+			"level": 6,
+			"system": {
+				"uses.max": "max(@abilities.wis.mod, 1)"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "reaction",
+						"condition": "you or a Bloodied target within range is hit with an attack"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "60"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Divine Reaper",
+			"source": "RHW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Grave",
+			"subclassSource": "RHW",
+			"level": 17,
+			"activities": [
+				{
+					"name": "Enhanced Necromancy",
+					"type": "utility",
+					"activation": {
+						"type": "special"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Channel Divinity"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					}
+				},
+				{
+					"name": "Keeper of Souls",
+					"type": "heal",
+					"activation": {
+						"type": "special",
+						"condition": "an enemy dies within range"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1",
+							"special": "visible"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "60"
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "2*@classes.cleric.levels"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				},
+				{
+					"name": "Restore Keeper of Souls",
+					"type": "utility",
+					"img": "systems/dnd5e/icons/svg/facilities/change.svg",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true,
+							"max": "4"
+						},
+						"targets": [
+							{
+								"type": "spellSlots",
+								"value": "1",
+								"target": "6",
+								"scaling": {
+									"mode": "level"
+								}
+							},
+							{
+								"type": "itemUses",
+								"value": "-1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					}
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -15360,35 +16116,85 @@
 					},
 					"effects": [
 						{
-							"foundryId": "dragon"
+							"foundryId": "dragon",
+							"level": {
+								"max": 9
+							}
+						},
+						{
+							"foundryId": "dragon1",
+							"level": {
+								"min": 10
+							}
 						}
 					]
 				}
 			],
 			"effects": [
 				{
+					"foundryId": "dragon1",
+					"name": "Dragon Form (Twinkling)",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"value": 600,
+						"units": "seconds",
+						"expiry": "turnStart"
+					},
+					"changes": [
+						{
+							"key": "system.abilities.int.check.roll.min",
+							"value": 10,
+							"mode": "UPGRADE"
+						},
+						{
+							"key": "system.abilities.wis.check.roll.min",
+							"value": 10,
+							"mode": "UPGRADE"
+						},
+						{
+							"key": "system.attributes.concentration.roll.min",
+							"value": 10,
+							"mode": "UPGRADE"
+						},
+						{
+							"key": "system.attributes.movement.fly",
+							"value": 20,
+							"mode": "OVERRIDE"
+						},
+						{
+							"key": "system.attributes.movement.hover",
+							"value": true,
+							"mode": "OVERRIDE"
+						}
+					],
+					"description": "A constellation of a wise dragon appears on you. When you make an Intelligence or a Wisdom check or a Constitution saving throw to maintain Concentration, you can treat a roll of 9 or lower on the d20 as a 10. You have a Fly Speed of 20 feet and can hover."
+				},
+				{
 					"foundryId": "dragon",
 					"name": "Dragon Form",
 					"disabled": true,
 					"transfer": true,
 					"duration": {
-						"seconds": 600
+						"value": 600,
+						"units": "seconds",
+						"expiry": "turnStart"
 					},
 					"changes": [
 						{
 							"key": "system.abilities.int.check.roll.min",
-							"mode": "UPGRADE",
-							"value": 10
+							"value": 10,
+							"mode": "UPGRADE"
 						},
 						{
 							"key": "system.abilities.wis.check.roll.min",
-							"mode": "UPGRADE",
-							"value": 10
+							"value": 10,
+							"mode": "UPGRADE"
 						},
 						{
 							"key": "system.attributes.concentration.roll.min",
-							"mode": "UPGRADE",
-							"value": 10
+							"value": 10,
+							"mode": "UPGRADE"
 						}
 					],
 					"description": "A constellation of a wise dragon appears on you. When you make an Intelligence or a Wisdom check or a Constitution saving throw to maintain Concentration, you can treat a roll of 9 or lower on the d20 as a 10."
@@ -16154,6 +16960,10 @@
 					"activation": {
 						"type": "bonus"
 					},
+					"duration": {
+						"units": "turn",
+						"value": "1"
+					},
 					"consumption": {
 						"targets": [
 							{
@@ -16175,13 +16985,22 @@
 						"affects": {
 							"type": "self"
 						}
-					}
+					},
+					"effects": [
+						{
+							"foundryId": "psiPoweredLeap"
+						}
+					]
 				},
 				{
 					"name": "Psi-Powered Leap Using Psionic Energy",
 					"type": "utility",
 					"activation": {
 						"type": "bonus"
+					},
+					"duration": {
+						"units": "turn",
+						"value": "1"
 					},
 					"consumption": {
 						"targets": [
@@ -16199,7 +17018,31 @@
 						"affects": {
 							"type": "self"
 						}
-					}
+					},
+					"effects": [
+						{
+							"foundryId": "psiPoweredLeap"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "psiPoweredLeap",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"value": 1,
+						"units": "turns",
+						"expiry": "turnStart"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.fly",
+							"value": "2 * @attributes.movement.speed",
+							"mode": "OVERRIDE"
+						}
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -16230,9 +17073,7 @@
 						"onSave": "none"
 					},
 					"save": {
-						"ability": [
-							"str"
-						],
+						"ability": "str",
 						"dc": {
 							"calculation": "int"
 						}
@@ -16247,9 +17088,14 @@
 			"effects": [
 				{
 					"foundryId": "telekineticThrus",
+					"name": "Prone",
+					"duration": {
+						"units": "seconds"
+					},
 					"statuses": [
 						"prone"
-					]
+					],
+					"showIcon": 2
 				}
 			],
 			"migrationVersion": 3
@@ -17314,6 +18160,48 @@
 					"foundryId": "quiveringPalm",
 					"name": "Lethal Vibrations",
 					"description": "Imperceptible, lethal, vibrations have been set up in this creature's body."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Darkness",
+			"source": "XPHB",
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"activities": [
+				{
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Focus Point"
+									}
+								}
+							}
+						]
+					},
+					"spell": {
+						"uuid": "@spell[darkness|xphb]",
+						"properties": [
+							"vocal",
+							"somatic",
+							"material"
+						],
+						"spellbook": true,
+						"ability": "wis",
+						"level": 2
+					}
 				}
 			],
 			"migrationVersion": 3
@@ -18387,6 +19275,390 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Wrath of the Wild",
+			"source": "RHW",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Hollow Warden",
+			"subclassSource": "RHW",
+			"level": 3,
+			"activities": [
+				{
+					"foundryId": "wrathOfTheWild",
+					"name": "Unnerving Aura",
+					"type": "save",
+					"activation": {
+						"type": "turnStart",
+						"condition": "and when you first transform"
+					},
+					"duration": {
+						"units": "round",
+						"value": "1"
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "radius",
+							"size": "10"
+						},
+						"affects": {
+							"choice": true,
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"wis"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						}
+					},
+					"visibility": {
+						"identifier": "ranger"
+					},
+					"effects": [
+						{
+							"foundryId": "wrathOfTheWild",
+							"level": {
+								"max": 10
+							}
+						},
+						{
+							"foundryId": "wrathOfTheWild1",
+							"level": {
+								"min": 11
+							}
+						}
+					]
+				},
+				{
+					"name": "Transform Self",
+					"type": "enchant",
+					"activation": {
+						"type": "bonus"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Favored Enemy"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"enchant": {
+						"self": true
+					},
+					"effects": [
+						{
+							"foundryId": "wrathOfTheWild2",
+							"riders": {
+								"activity": [
+									{
+										"foundryId": "wrathOfTheWild"
+									},
+									{
+										"foundryId": "wrathOfTheWild1"
+									}
+								],
+								"effect": [
+									{
+										"foundryId": "wrathOfTheWild3"
+									}
+								]
+							}
+						}
+					]
+				},
+				{
+					"foundryId": "wrathOfTheWild1",
+					"name": "Hungering Might",
+					"type": "heal",
+					"activation": {
+						"type": "special",
+						"condition": "once per turn when you hit a creature with an attack roll while transformed"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "(1d10+@abilities.wis.mod)*@statuses.bloodied"
+						},
+						"scaling": {
+							"number": 1
+						}
+					},
+					"visibility": {
+						"level": {
+							"min": 7
+						},
+						"identifier": "ranger"
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "wrathOfTheWild3",
+					"name": "Ancient Armor",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.ac.bonus",
+							"value": "@scale.wrath-of-the-wild.ac",
+							"mode": "ADD"
+						}
+					]
+				},
+				{
+					"foundryId": "wrathOfTheWild",
+					"name": "Frightened",
+					"duration": {
+						"value": 1,
+						"units": "rounds",
+						"expiry": "turnStart"
+					},
+					"statuses": [
+						"frightened"
+					],
+					"showIcon": 2
+				},
+				{
+					"foundryId": "wrathOfTheWild2",
+					"name": "Ghastly Form",
+					"type": "enchantment",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"value": 60,
+						"units": "seconds",
+						"expiry": "turnStart"
+					},
+					"changes": [
+						{
+							"key": "activities[enchant].name",
+							"value": "End Transformation",
+							"mode": "OVERRIDE"
+						},
+						{
+							"key": "activities[enchant].consumption.targets",
+							"value": [],
+							"mode": "OVERRIDE"
+						},
+						{
+							"key": "activities[enchant].activation.type",
+							"value": "",
+							"mode": "OVERRIDE"
+						},
+						{
+							"key": "name",
+							"value": "{} (Active)",
+							"mode": "OVERRIDE"
+						}
+					]
+				},
+				{
+					"foundryId": "wrathOfTheWild1",
+					"name": "Frightened (Menacing Aura)",
+					"duration": {
+						"value": 1,
+						"units": "rounds",
+						"expiry": "turnStart"
+					},
+					"statuses": [
+						"frightened"
+					],
+					"descriptionEntries": [
+						"{@b Menacing Aura.} When a creature fails its saving throw against your Unnerving Aura, it also can't regain Hit Points or take Reactions until the start of your next turn."
+					],
+					"showIcon": 2
+				}
+			],
+			"advancement": [
+				{
+					"type": "ScaleValue",
+					"title": "Ancient Armor",
+					"configuration": {
+						"identifier": "ac",
+						"type": "number",
+						"scale": {
+							"3": {
+								"value": 1
+							},
+							"11": {
+								"value": 2
+							}
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Hungering Might",
+			"source": "RHW",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Hollow Warden",
+			"subclassSource": "RHW",
+			"level": 7,
+			"effects": [
+				{
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.abilities.con.bonuses.save",
+							"value": "max(1, @abilities.wis.mod)",
+							"mode": "ADD"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Ancient Might",
+			"source": "RHW",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Hollow Warden",
+			"subclassSource": "RHW",
+			"level": 15,
+			"activities": [
+				{
+					"name": "Persistent Wrath",
+					"type": "heal",
+					"activation": {
+						"type": "special",
+						"condition": "reduced to 0 HP but not killed outright while transformed"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "2 * @classes.ranger.levels - @attributes.hp.value"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				},
+				{
+					"name": "Restore Use",
+					"type": "utility",
+					"img": "systems/dnd5e/icons/svg/facilities/change.svg",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true,
+							"max": "6"
+						},
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "-1"
+							},
+							{
+								"type": "spellSlots",
+								"value": "1",
+								"target": "4",
+								"scaling": {
+									"mode": "level"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					}
+				}
+			],
+			"effects": [
+				{
+					"name": "Ominous Strikes",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.bonuses.mwak.damage",
+							"value": "@abilities.wis.mod",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.bonuses.rwak.damage",
+							"value": "@abilities.wis.mod",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.bonuses.msak.damage",
+							"value": "@abilities.wis.mod",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.bonuses.rsak.damage",
+							"value": "@abilities.wis.mod",
+							"mode": "ADD"
+						}
+					],
+					"descriptionEntries": [
+						"{@b Ominous Strikes.} When you hit a creature that has the &Reference[Frightened apply=false] condition with an attack roll, that attack deals extra damage equal to your Wisdom modifier."
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Primal Companion",
 			"source": "XPHB",
 			"className": "Ranger",
@@ -19338,6 +20610,273 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Wails from the Grave",
+			"source": "RHW",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Phantom",
+			"subclassSource": "RHW",
+			"level": 3,
+			"system": {
+				"uses.max": "max(1, @abilities.dex.mod)"
+			},
+			"activities": [
+				{
+					"type": "damage",
+					"activation": {
+						"type": "special",
+						"condition": "you deal Sneak Attack damage on your turn"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1",
+							"special": "visible"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "(ceil(@scale.rogue.sneak-attack.number / 2))d@scale.rogue.sneak-attack.faces"
+								},
+								"types": [
+									"necrotic"
+								]
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Tokens of the Departed",
+			"source": "RHW",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Phantom",
+			"subclassSource": "RHW",
+			"level": 9,
+			"identifier": "tokens-departed",
+			"activities": [
+				{
+					"name": "Claim Departed Spirit",
+					"type": "utility",
+					"activation": {
+						"type": "reaction",
+						"condition": "when a visible target in range dies"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "-1",
+								"target": {
+									"consumes": {
+										"name": "Soul Trinket"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1",
+							"special": "visible"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					}
+				}
+			],
+			"advancement": [
+				{
+					"type": "ScaleValue",
+					"title": "Maximum Trinkets",
+					"configuration": {
+						"identifier": "max",
+						"type": "number",
+						"scale": {
+							"9": {
+								"value": 2
+							},
+							"13": {
+								"value": 3
+							},
+							"17": {
+								"value": 4
+							}
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Voice of Death",
+			"source": "RHW",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Phantom",
+			"subclassSource": "RHW",
+			"level": 9,
+			"activities": [
+				{
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "object",
+							"count": "1",
+							"special": "a corpse or a soul trinket"
+						}
+					},
+					"spell": {
+						"uuid": "@spell[speak with dead|xphb]",
+						"properties": [
+							"vocal",
+							"somatic",
+							"material"
+						],
+						"spellbook": true,
+						"ability": "dex",
+						"level": 3
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Ghost Walk",
+			"source": "RHW",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Phantom",
+			"subclassSource": "RHW",
+			"level": 13,
+			"activities": [
+				{
+					"name": "Restore Use",
+					"type": "utility",
+					"img": "icons/commodities/treasure/stone-cracked-lightning-blue.webp",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Soul Trinket"
+									}
+								}
+							},
+							{
+								"type": "itemUses",
+								"value": "-1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					}
+				},
+				{
+					"name": "Assume Spectral Form",
+					"type": "utility",
+					"img": "icons/magic/death/skull-energy-light-white.webp",
+					"activation": {
+						"type": "bonus"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "10"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "ghostWalk"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "ghostWalk",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"value": 600,
+						"units": "seconds",
+						"expiry": "turnStart"
+					},
+					"statuses": [
+						"transformed"
+					],
+					"changes": [
+						{
+							"key": "system.attributes.movement.fly",
+							"value": 10,
+							"mode": "UPGRADE"
+						},
+						{
+							"key": "system.attributes.movement.hover",
+							"value": true,
+							"mode": "OVERRIDE"
+						}
+					],
+					"descriptionEntries": [
+						"{@subclassFeature Ghost Walk|Rogue|XPHB|Phantom|RHW|13}",
+						"{@i Hazy Form and Incorporeal Movement is not automated.}"
+					],
+					"showIcon": 2
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Mage Hand Legerdemain",
 			"source": "XPHB",
 			"className": "Rogue",
@@ -20146,6 +21685,363 @@
 						}
 					],
 					"description": "The Use Magic Device feature allows you to attune to up to four magic items at once."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Power of Shadow",
+			"source": "RHW",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "RHW",
+			"level": 3,
+			"activities": [
+				{
+					"name": "Strength of the Grave",
+					"type": "save",
+					"activation": {
+						"type": "special",
+						"condition": "if you would drop to 0 HP but not die outright"
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true
+						}
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"damage": {
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"cha"
+						],
+						"dc": {
+							"formula": "5 + @scaling"
+						}
+					}
+				},
+				{
+					"name": "Heal on Success",
+					"type": "heal",
+					"activation": {
+						"type": "special",
+						"condition": "after success on this save"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "@abilities.cha.mod + @classes.sorcerer.levels - @attributes.hp.value"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				}
+			],
+			"effects": [
+				{
+					"name": "Eyes of the Dark",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.senses.ranges.darkvision",
+							"value": 120,
+							"mode": "UPGRADE"
+						},
+						{
+							"key": "system.attributes.senses.ranges.blindsight",
+							"value": 10,
+							"mode": "UPGRADE"
+						}
+					],
+					"descriptionEntries": [
+						"{@subclassFeature Power of Shadow|Sorcerer|XPHB|Shadow|RHW|3}"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Beasts of Ill Omen",
+			"source": "RHW",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "RHW",
+			"level": 6,
+			"activities": [
+				{
+					"type": "cast",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "3",
+								"target": {
+									"consumes": {
+										"name": "Sorcery Point"
+									}
+								}
+							}
+						]
+					},
+					"spell": {
+						"uuid": "@spell[summon beast|xphb]",
+						"properties": [
+							"material"
+						],
+						"level": 2
+					}
+				},
+				{
+					"name": "Modified Summon",
+					"type": "cast",
+					"activation": {
+						"type": "bonus"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "3",
+								"target": {
+									"consumes": {
+										"name": "Sorcery Point"
+									}
+								}
+							}
+						]
+					},
+					"spell": {
+						"uuid": "@spell[summon beast|xphb]",
+						"properties": [
+							"material",
+							"concentration"
+						],
+						"level": 2
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Shadow Walk",
+			"source": "RHW",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "RHW",
+			"level": 14,
+			"activities": [
+				{
+					"name": "Teleport",
+					"type": "utility",
+					"activation": {
+						"type": "bonus",
+						"condition": "while in Dim Light or Darkness"
+					},
+					"target": {
+						"affects": {
+							"type": "space",
+							"count": "1",
+							"special": "unoccupied, visible, and also in Dim Light or Darkness"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "120"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Umbral Form",
+			"source": "RHW",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "RHW",
+			"level": 18,
+			"activities": [
+				{
+					"name": "Innate Sorcery with Umbral Form",
+					"type": "utility",
+					"img": "icons/magic/control/silhouette-hold-change-blue.webp",
+					"activation": {
+						"type": "bonus"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Innate Sorcery"
+									}
+								}
+							},
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					}
+				},
+				{
+					"name": "Restore Use",
+					"type": "utility",
+					"img": "systems/dnd5e/icons/svg/facilities/change.svg",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "6",
+								"target": {
+									"consumes": {
+										"name": "Sorcery Point"
+									}
+								}
+							},
+							{
+								"type": "itemUses",
+								"value": "-1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					}
+				}
+			],
+			"effects": [
+				{
+					"name": "Innate Sorcery (Umbral Form)",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"value": 60,
+						"units": "seconds",
+						"expiry": "turnStart"
+					},
+					"statuses": [
+						"transformed"
+					],
+					"changes": [
+						{
+							"key": "system.bonuses.spell.dc",
+							"value": 1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "bludgeoning",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "piercing",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "slashing",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "acid",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "cold",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "fire",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "lightning",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "necrotic",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "poison",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "psychic",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "thunder",
+							"mode": "ADD"
+						}
+					],
+					"descriptionEntries": [
+						"{@classFeature Innate Sorcery|Sorcerer|XPHB|1}",
+						"{@subclassFeature Umbral Form|Sorcerer|XPHB|Shadow|RHW|18}"
+					],
+					"showIcon": 2
 				}
 			],
 			"migrationVersion": 3
@@ -20983,6 +22879,295 @@
 					"roll": {
 						"name": "Bonus/Penalty",
 						"formula": "1d4"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Form of Dread",
+			"source": "RHW",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Undead",
+			"subclassSource": "RHW",
+			"level": 3,
+			"system": {
+				"uses.max": "max(@abilities.cha.mod, 1)"
+			},
+			"activities": [
+				{
+					"name": "Assume Avatar",
+					"type": "heal",
+					"activation": {
+						"type": "bonus"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"temphp"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"number": 1,
+						"denomination": 10,
+						"bonus": "@classes.warlock.levels"
+					},
+					"visibility": {
+						"identifier": "warlock"
+					},
+					"effects": [
+						{
+							"foundryId": "formOfDread",
+							"level": {
+								"max": 9
+							}
+						},
+						{
+							"foundryId": "formOfDread1",
+							"level": {
+								"min": 10
+							}
+						}
+					]
+				},
+				{
+					"name": "Frightful Avatar",
+					"type": "save",
+					"descriptionEntries": [
+						"Once per turn while transformed"
+					],
+					"activation": {
+						"type": "special",
+						"condition": "when you hit a creature with an attack roll while transformed"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"wis"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "formOfDread2"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "formOfDread2",
+					"name": "Frightened",
+					"duration": {
+						"value": 1,
+						"units": "turns",
+						"expiry": "turnStart"
+					},
+					"statuses": [
+						"frightened"
+					],
+					"description": "On a failed save, the target has the Frightened condition until the end of your next turn.",
+					"showIcon": 2
+				},
+				{
+					"foundryId": "formOfDread",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"value": 60,
+						"units": "seconds",
+						"expiry": "turnStart"
+					},
+					"changes": [
+						{
+							"key": "system.traits.ci.value",
+							"value": "frightened",
+							"mode": "ADD"
+						}
+					],
+					"descriptionEntries": [
+						"{@subclassFeature Form of Dread|Warlock|XPHB|Undead|RHW|3}"
+					]
+				},
+				{
+					"foundryId": "formOfDread1",
+					"name": "Form of Dread (Necrotic Husk)",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"value": 60,
+						"units": "seconds",
+						"expiry": "turnStart"
+					},
+					"changes": [
+						{
+							"key": "system.traits.ci.value",
+							"value": "frightened",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.di.value",
+							"value": "necrotic",
+							"mode": "ADD"
+						}
+					],
+					"descriptionEntries": [
+						"{@subclassFeature Form of Dread|Warlock|XPHB|Undead|RHW|3}",
+						"{@b Necrotic Resilience.} While using your Form of Dread, you have Immunity to Necrotic damage."
+					]
+				},
+				{
+					"name": "Form of Superior Dread",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"value": 60,
+						"units": "seconds",
+						"expiry": "turnStart"
+					},
+					"changes": [
+						{
+							"key": "system.traits.ci.value",
+							"value": "frightened",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.di.value",
+							"value": "necrotic",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "bludgeoning",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "piercing",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "slashing",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.attributes.movement.fly",
+							"value": "@attributes.movement.speed",
+							"mode": "UPGRADE"
+						},
+						{
+							"key": "system.attributes.movement.hover",
+							"value": true,
+							"mode": "OVERRIDE"
+						}
+					],
+					"descriptionEntries": [
+						"{@subclassFeature Form of Dread|Warlock|XPHB|Undead|RHW|3}",
+						"{@b Necrotic Resilience.} While using your Form of Dread, you have Immunity to Necrotic damage.",
+						"{@subclassFeature Superior Dread|Warlock|XPHB|Undead|RHW|14}"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Necrotic Husk",
+			"source": "RHW",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Undead",
+			"subclassSource": "RHW",
+			"level": 10,
+			"activities": [
+				{
+					"name": "Unholy Resuscitation",
+					"type": "save",
+					"activation": {
+						"type": "special",
+						"condition": "you drop to 0 HP and do not die outright"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "attribute",
+								"value": "-1",
+								"target": "attributes.exhaustion"
+							},
+							{
+								"type": "attribute",
+								"value": "@attributes.hp.value - 2 * @classes.warlock.levels",
+								"target": "attributes.hp.value"
+							},
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"template": {
+							"stationary": true,
+							"units": "ft",
+							"type": "radius",
+							"size": "30"
+						},
+						"affects": {
+							"choice": true,
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 10,
+								"bonus": "@abilities.cha.mod",
+								"types": [
+									"necrotic"
+								]
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						}
 					}
 				}
 			],

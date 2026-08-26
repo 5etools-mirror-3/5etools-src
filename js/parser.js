@@ -1797,6 +1797,7 @@ Parser.SP_MISC_TAG_TO_FULL = {
 	"RO": "Rollable Effects",
 	"LGTS": "Creates Sunlight",
 	"LGT": "Creates Light",
+	"UA": "Uses Action",
 	"UBA": "Uses Bonus Action",
 	"PS": "Plane Shifting",
 	"OBS": "Obscures Vision",
@@ -1805,6 +1806,7 @@ Parser.SP_MISC_TAG_TO_FULL = {
 	"OBJ": "Affects Objects",
 	"ADV": "Grants Advantage",
 	"PIR": "Permanent If Repeated",
+	"BO": "Burns Objects",
 };
 Parser.spMiscTagToFull = function (type) {
 	return Parser._parse_aToB(Parser.SP_MISC_TAG_TO_FULL, type);
@@ -4425,6 +4427,7 @@ Parser.PROP_TO_TAG = {
 };
 Parser._RE_PROP_RAW_PREFIX = /^raw_/;
 Parser.getPropTag = function (prop) {
+	if (!prop) return prop;
 	prop = prop.replace(Parser._RE_PROP_RAW_PREFIX, "");
 	if (Parser.PROP_TO_TAG[prop]) return Parser.PROP_TO_TAG[prop];
 	if (prop?.endsWith("Fluff")) return null;

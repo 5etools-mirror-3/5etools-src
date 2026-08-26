@@ -608,13 +608,13 @@ export class BrewUtil2Base {
 	/** @abstract */
 	getFileUrl (path, urlRoot) { throw new Error("Unimplemented!"); }
 	/** @abstract */
-	pLoadTimestamps (urlRoot) { throw new Error("Unimplemented!"); }
+	async pLoadTimestamps (urlRoot) { throw new Error("Unimplemented!"); }
 	/** @abstract */
-	pLoadPropIndex (urlRoot) { throw new Error("Unimplemented!"); }
+	async pLoadPropIndex (urlRoot) { throw new Error("Unimplemented!"); }
 	/** @abstract */
-	pLoadMetaIndex (urlRoot) { throw new Error("Unimplemented!"); }
+	async pLoadMetaIndex (urlRoot) { throw new Error("Unimplemented!"); }
 	/** @abstract */
-	pLoadAdventureBookIdsIndex (urlRoot) { throw new Error("Unimplemented!"); }
+	async pLoadAdventureBookIdsIndex (urlRoot) { throw new Error("Unimplemented!"); }
 
 	async pGetCombinedIndexes () {
 		const urlRoot = await this.pGetCustomUrl();

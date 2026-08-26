@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.33.3"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.34.0"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -24,6 +24,7 @@ globalThis.VeCt = class {
 	static HASH_SCALED = "scaled";
 	static HASH_SCALED_SPELL_SUMMON = "scaledspellsummon";
 	static HASH_SCALED_CLASS_SUMMON = "scaledclasssummon";
+	static HASH_PREFIX_STATS_SCROLLER = "stathash-";
 
 	static FILTER_BOX_SUB_HASH_SEARCH_PREFIX = "fbsr";
 	static FILTER_BOX_SUB_HASH_FLAG_IS_PRESERVE_EXISTING = "fbpe";
@@ -77,6 +78,7 @@ globalThis.VeCt = class {
 	static DRAG_TYPE_IMPORT = "ve-Import";
 	static DRAG_TYPE_LOOT = "ve-Loot";
 
+	static Z_INDEX_BENEATH_CARD_VIEWER = 104;
 	static Z_INDEX_BENEATH_HOVER = 199;
 };
 
@@ -811,9 +813,11 @@ globalThis.CurrencyUtil = class {
 	/**
 	 * Convert a collection of coins into an equivalent value in copper.
 	 * @param obj Object of the form {cp: 123, sp: 456, ...} (values optional)
+	 * @param [opts]
+	 * @param [opts.currencyConversionTable] Currency conversion table.
 	 */
-	static getAsCopper (obj) {
-		return Parser.FULL_CURRENCY_CONVERSION_TABLE
+	static getAsCopper (obj, {currencyConversionTable = null} = {}) {
+		return (currencyConversionTable || Parser.FULL_CURRENCY_CONVERSION_TABLE)
 			.map(currencyMeta => (obj[currencyMeta.coin] || 0) * (1 / currencyMeta.mult))
 			.reduce((a, b) => a + b, 0);
 	}
@@ -1591,7 +1595,10 @@ class ElementUtil {
 		return this
 			.vee.attr("autocomplete", "new-password")
 			.vee.attr("autocapitalize", "off")
-			.vee.attr("spellcheck", "false");
+			.vee.attr("spellcheck", "false")
+			.vee.attr("inputmode", "text")
+			.vee.attr("autocorrect", "off")
+		;
 	}
 
 	/** @this {HTMLElementExtended} */
@@ -4312,7 +4319,7 @@ globalThis.SortUtil = class {
 		opts = opts || {sortBy: "name"};
 		if (opts.sortBy === "name") return SortUtil.compareListNames(a, b);
 		if (opts.sortBy === "source") return SortUtil._listSort_compareByValue(a, b, opts.sortBy) || SortUtil._listSort_compareByData(a, b, "page") || SortUtil.compareListNames(a, b);
-		if (opts.sortBy === "page") SortUtil._compareByOrDefault_compareByDataOrDefault(a, b, opts.sortBy);
+		if (opts.sortBy === "page" || opts.sortBy === "ability") return SortUtil._compareByOrDefault_compareByDataOrDefault(a, b, opts.sortBy);
 		return SortUtil._compareByOrDefault_compareByValueOrDefault(a, b, opts.sortBy);
 	}
 
@@ -4629,29 +4636,40 @@ class _DataUtilBrewHelper {
 		return this._defaultUrlRoot;
 	}
 
+	async _pGetIndexOrEmptyObject (url) {
+		try {
+			// Gracefully handle e.g. offline use
+			// TODO(Future) better offline detection?
+			return (await DataUtil.loadJSON(url));
+		} catch (e) {
+			setTimeout(() => { throw e; });
+			return {};
+		}
+	}
+
 	async pLoadTimestamps (urlRoot) {
 		urlRoot = this._getCleanUrlRoot(urlRoot);
-		return DataUtil.loadJSON(`${urlRoot}_generated/index-timestamps.json`);
+		return this._pGetIndexOrEmptyObject(`${urlRoot}_generated/index-timestamps.json`);
 	}
 
 	async pLoadPropIndex (urlRoot) {
 		urlRoot = this._getCleanUrlRoot(urlRoot);
-		return DataUtil.loadJSON(`${urlRoot}_generated/index-props.json`);
+		return this._pGetIndexOrEmptyObject(`${urlRoot}_generated/index-props.json`);
 	}
 
 	async pLoadMetaIndex (urlRoot) {
 		urlRoot = this._getCleanUrlRoot(urlRoot);
-		return DataUtil.loadJSON(`${urlRoot}_generated/index-meta.json`);
+		return this._pGetIndexOrEmptyObject(`${urlRoot}_generated/index-meta.json`);
 	}
 
 	async pLoadSourceIndex (urlRoot) {
 		urlRoot = this._getCleanUrlRoot(urlRoot);
-		return DataUtil.loadJSON(`${urlRoot}_generated/index-sources.json`);
+		return this._pGetIndexOrEmptyObject(`${urlRoot}_generated/index-sources.json`);
 	}
 
 	async pLoadAdventureBookIdsIndex (urlRoot) {
 		urlRoot = this._getCleanUrlRoot(urlRoot);
-		return DataUtil.loadJSON(`${urlRoot}_generated/index-adventure-book-ids.json`);
+		return this._pGetIndexOrEmptyObject(`${urlRoot}_generated/index-adventure-book-ids.json`);
 	}
 
 	getFileUrl (path, urlRoot) {
@@ -4720,9 +4738,18 @@ globalThis.DataUtil = class {
 
 		static _RE_JSDELIVR = /https:\/\/raw\.githubusercontent\.com\/(?<user>[a-zA-Z0-9-]+)\/(?<repo>[A-Za-z0-9_.-]+)\/(?<branchAndPath>.*)$/;
 
-		isJsdelivrRetry () { return this.status === 429 && this.constructor._RE_JSDELIVR.test(this.url); }
+		_isTooManyRequests () { return this.status === 429; }
+		_isUnknownError () { return this.status === 0; }
 
-		isGitHackRetry () { return this.status === 429 && this.url.startsWith("https://raw.githubusercontent.com/"); }
+		_isRetryStatus () {
+			return this._isTooManyRequests()
+				// Retry on other/unknown errors, to best-effort route around e.g. CORS issues
+				|| this._isUnknownError();
+		}
+
+		isJsdelivrRetry () { return this._isRetryStatus() && this.constructor._RE_JSDELIVR.test(this.url); }
+
+		isGitHackRetry () { return this._isRetryStatus() && this.url.startsWith("https://raw.githubusercontent.com/"); }
 
 		getJsDelivrUrl () {
 			const m = this.constructor._RE_JSDELIVR.exec(this.url);
@@ -5216,7 +5243,8 @@ globalThis.DataUtil = class {
 				if (SourceUtil.isSiteSource(source)) return data;
 				return DataUtil._pLoadByMeta_pGetPrereleaseBrew(source);
 			}
-			case "race": {
+			case "race":
+			case "subrace": {
 				// FIXME(Future) this should really `loadRawJSON`, but this breaks existing brew.
 				//   Consider a large-scale migration in future.
 				const data = await DataUtil.race.loadJSON({isAddBaseRaces: true});
@@ -7664,6 +7692,16 @@ globalThis.DataUtil = class {
 			};
 		}
 
+		static getUidCard (ent, {isMaintainCase = false, displayName = null} = {}) {
+			const {name, set} = ent;
+			const source = SourceUtil.getEntitySource(ent);
+			if (!name || !set || !source) throw new Error(`Card did not have a name, set, and source!`);
+
+			const out = [name, set, source, displayName]
+				.join("|").replace(/\|+$/, ""); // Trim trailing pipes;
+			return isMaintainCase ? out : out.toLowerCase();
+		}
+
 		/**
 		 * @param uid
 		 * @param [opts]
@@ -8968,26 +9006,29 @@ class BookModeViewBase {
 		["ve-px-2", "ve-mt-2", "ve-bb-1p", "ve-pb-1"].forEach(clz => wrp.vee.addClass(clz));
 
 		const onChangeColumnCount = (cols) => {
-			wrpContent.vee.toggleClass(`bkmv__wrp--columns-1`, cols === 1);
-			wrpContent.vee.toggleClass(`bkmv__wrp--columns-2`, cols === 2);
+			Array.from({length: 6})
+				.forEach((_, i) => wrpContent.vee.toggleClass(`bkmv__wrp--columns-${i + 1}`, cols === i));
 		};
 
-		const lastColumns = StorageUtil.syncGetForPage(BookModeViewBase._BOOK_VIEW_COLUMNS_K);
+		const lastColumns = StorageUtil.syncGetForPage(BookModeViewBase._BOOK_VIEW_COLUMNS_K) || 2;
 
 		const onChangeSelColumns = () => {
 			const val = Number(selColumns.vee.val());
-			if (val === 0) onChangeColumnCount(2);
-			else onChangeColumnCount(1);
+			onChangeColumnCount(val);
 
 			StorageUtil.syncSetForPage(BookModeViewBase._BOOK_VIEW_COLUMNS_K, val);
 		};
 
 		const selColumns = veT`<select class="ve-form-control ve-input-sm">
-			<option value="0">Two (book style)</option>
+			<option value="2">Two (book style)</option>
 			<option value="1">One</option>
+			<option value="3">Three</option>
+			<option value="4">Four</option>
+			<option value="5">Five</option>
+			<option value="6">Six</option>
 		</select>`
 			.vee.onn("change", () => onChangeSelColumns());
-		selColumns.vee.val(`${lastColumns ?? 0}`);
+		selColumns.vee.val(`${lastColumns}`);
 		onChangeSelColumns();
 
 		const wrpPrint = veT`<div class="ve-w-100 ve-flex">
