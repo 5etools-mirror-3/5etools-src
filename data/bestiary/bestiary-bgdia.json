@@ -240,49 +240,58 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Archiduchesse Zariel d'Avernus",
-			"isNpc": true,
 			"isNamedCreature": true,
-			"source": "BGDIA",
-			"page": 243,
-			"_copy": {
-				"name": "Zariel",
-				"source": "MTF",
-				"_mod": {
-					"action": [
-						{
-							"mode": "replaceArr",
-							"replace": "Multiattack",
-							"items": {
-								"name": "Multiattack",
-								"entries": [
-									"Zariel attacks twice with her flail and once with Matalotok. She can substitute Horrid Touch for Matalotok."
-								]
-							}
-						},
-						{
-							"mode": "replaceArr",
-							"replace": "Longsword",
-							"items": {
-								"name": "Flail",
-								"entries": [
-									"{@atk mw} {@hit 16} to hit, reach 10 ft., one target. {@h}17 ({@damage 2d8 + 8}) piercing damage plus 36 ({@damage 8d8}) fire damage."
-								]
-							}
-						},
-						{
-							"mode": "replaceArr",
-							"replace": "Javelin",
-							"items": {
-								"name": "Matalotok (Warhammer)",
-								"entries": [
-									"{@atk mw} {@hit 16} to hit, reach 10 ft., one target. {@h}17 ({@damage 2d8 + 8}) bludgeoning, or 19 ({@damage 2d10 + 8}) bludgeoning damage if used with two hands, plus 36 ({@damage 8d8}) fire damage. In addition, the weapon emits a burst of cold that deals 10 ({@damage 3d6}) cold damage to each creature within 30 feet of it."
-								]
-							}
-						}
+			"reprintedAs": [
+				"Zariel|MPMM"
+			],
+			"size": [
+				"L"
+			],
+			"type": {
+				"type": "fiend",
+				"tags": [
+					"devil"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 21,
+					"from": [
+						"armure naturelle"
 					]
 				}
+			],
+			"hp": {
+				"average": 580,
+				"formula": "40d10 + 360"
 			},
+			"speed": {
+				"walk": 50,
+				"fly": 150
+			},
+			"str": 27,
+			"dex": 24,
+			"con": 28,
+			"int": 26,
+			"wis": 27,
+			"cha": 30,
+			"save": {
+				"int": "+16",
+				"wis": "+16",
+				"cha": "+18"
+			},
+			"skill": {
+				"intimidation": "+18",
+				"perception": "+16"
+			},
+			"senses": [
+				"darkvision 120 ft."
+			],
+			"passive": 26,
 			"resist": [
 				"fire",
 				"radiant",
@@ -301,6 +310,145 @@
 				"necrotic",
 				"poison"
 			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"poisoned"
+			],
+			"languages": [
+				"toutes les langues",
+				"télépathie 120 ft."
+			],
+			"cr": "26",
+			"spellcasting": [
+				{
+					"name": "Incantation innée",
+					"type": "spellcasting",
+					"headerEntries": [
+						"La capacité d'incantation innée de Zariel est le Charisme (jet de sauvegarde contre les sorts {@dc 26}). Elle peut lancer innément les sorts suivants, sans composante matérielle :"
+					],
+					"will": [
+						"{@spell alter self} (peut devenir de taille M lorsqu'elle change d'apparence)",
+						"{@spell detect evil and good}",
+						"{@spell fireball}",
+						"{@spell invisibility} (sur elle-même uniquement)",
+						"{@spell wall of fire}"
+					],
+					"daily": {
+						"3e": [
+							"{@spell blade barrier}",
+							"{@spell dispel evil and good}",
+							"{@spell finger of death}"
+						]
+					},
+					"ability": "cha"
+				}
+			],
+			"trait": [
+				{
+					"name": "Vision du diable",
+					"entries": [
+						"Les ténèbres magiques n'entravent pas la vision dans le noir de Zariel."
+					]
+				},
+				{
+					"name": "Armes magiques",
+					"entries": [
+						"Les attaques d'arme de Zariel sont magiques. Lorsqu'elle touche avec une arme, celle-ci inflige 36 ({@damage 8d8}) dégâts de feu supplémentaires (inclus dans les attaques d'arme ci-dessous)."
+					]
+				},
+				{
+					"name": "Résistance légendaire (3/jour)",
+					"entries": [
+						"Si Zariel échoue à un jet de sauvegarde, elle peut choisir de réussir à la place."
+					]
+				},
+				{
+					"name": "Résistance à la magie",
+					"entries": [
+						"Zariel est avantagée sur ses jets de sauvegarde contre les sorts et les autres effets magiques."
+					]
+				},
+				{
+					"name": "Régénération",
+					"entries": [
+						"Zariel récupère 20 points de vie au début de son tour. Si elle subit des dégâts radiants, ce trait ne fonctionne pas au début de son tour suivant. Zariel ne meurt que si elle commence son tour avec 0 point de vie et ne se régénère pas."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Attaques multiples",
+					"entries": [
+						"Zariel attaque deux fois avec son fléau d'armes et une fois avec Matalotok. Elle peut remplacer Matalotok par son Toucher horrifique."
+					]
+				},
+				{
+					"name": "Fléau d'armes",
+					"entries": [
+						"{@atk mw} {@hit 16} pour toucher, allonge 3 m, une cible. {@h}17 ({@damage 2d8 + 8}) dégâts perforants plus 36 ({@damage 8d8}) dégâts de feu."
+					]
+				},
+				{
+					"name": "Matalotok (marteau de guerre)",
+					"entries": [
+						"{@atk mw} {@hit 16} pour toucher, allonge 3 m, une cible. {@h}17 ({@damage 2d8 + 8}) dégâts contondants, ou 19 ({@damage 2d10 + 8}) dégâts contondants si elle est maniée à deux mains, plus 36 ({@damage 8d8}) dégâts de feu. De plus, l'arme émet une bouffée de froid qui inflige 10 ({@damage 3d6}) dégâts de froid à chaque créature située à 9 mètres ou moins d'elle."
+					]
+				},
+				{
+					"name": "Toucher horrifique {@recharge 5}",
+					"entries": [
+						"Zariel touche une créature située à 3 mètres ou moins d'elle. La cible doit réussir un jet de sauvegarde de Constitution {@dc 26}, sinon elle subit 44 ({@damage 8d10}) dégâts nécrotiques et est {@condition poisoned} pendant 1 minute. Tant qu'elle est ainsi {@condition poisoned}, la cible est également {@condition blinded} et {@condition deafened}. La cible peut relancer le jet de sauvegarde à la fin de chacun de ses tours, mettant fin à l'effet si elle réussit."
+					]
+				},
+				{
+					"name": "Téléportation",
+					"entries": [
+						"Zariel se téléporte magiquement, avec tout l'équipement qu'elle porte et transporte, jusqu'à 36 mètres vers un espace inoccupé qu'elle peut voir."
+					]
+				}
+			],
+			"legendary": [
+				{
+					"name": "Regard immolateur (coûte 2 actions)",
+					"entries": [
+						"Zariel tourne son regard magique vers une créature qu'elle peut voir à 36 mètres ou moins d'elle et lui ordonne de s'embraser. La cible doit réussir un jet de sauvegarde de Sagesse {@dc 26}, sinon elle subit 22 ({@damage 4d10}) dégâts de feu."
+					]
+				},
+				{
+					"name": "Téléportation",
+					"entries": [
+						"Zariel utilise son action Téléportation."
+					]
+				}
+			],
+			"legendaryGroup": {
+				"name": "Zariel",
+				"source": "MTF"
+			},
+			"attachedItems": [
+				"javelin|phb",
+				"longsword|phb"
+			],
+			"traitTags": [
+				"Vision du diable",
+				"Legendary Resistances",
+				"Résistance à la magie",
+				"Armes magiques",
+				"Régénération"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Attaques multiples",
+				"Téléportation"
+			],
+			"languageTags": [
+				"TP",
+				"XX"
+			],
 			"damageTags": [
 				"B",
 				"C",
@@ -309,13 +457,51 @@
 				"P"
 			],
 			"damageTagsLegendary": [],
+			"damageTagsSpell": [
+				"B",
+				"F",
+				"N",
+				"P",
+				"S"
+			],
+			"spellcastingTags": [
+				"I"
+			],
 			"miscTags": [
 				"MW",
 				"RCH"
 			],
+			"conditionInflict": [
+				"blinded",
+				"deafened",
+				"poisoned"
+			],
+			"conditionInflictLegendary": [
+				"frightened"
+			],
+			"conditionInflictSpell": [
+				"invisible"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"wisdom"
+			],
+			"savingThrowForcedLegendary": [
+				"dexterity",
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"constitution",
+				"dexterity"
+			],
 			"hasToken": true,
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"isNpc": true,
+			"source": "BGDIA",
+			"page": 243,
+			"name": "Archiduchesse Zariel d'Avernus"
 		},
 		{
 			"name": "Arkhan le Cruel",
@@ -340,7 +526,7 @@
 				{
 					"ac": 23,
 					"from": [
-						"{@item obsidian flint dragon plate|BGDIA}",
+						"{@item Plaque de silex obsidienne de dragon|BGDIA}",
 						"{@item shield|phb}"
 					]
 				}
@@ -429,7 +615,7 @@
 				{
 					"name": "Équipement spécial",
 					"entries": [
-						"Arkhan manie {@item Fane-Eater|BGDIA} et porte une armure {@item Obsidian Flint Dragon Plate|BGDIA}. Cette armure donne à Arkhan un avantage aux jets de caractéristique et de sauvegarde effectués pour éviter ou mettre fin à l'état {@condition grappled} qui l'affecte."
+						"Arkhan manie {@item Dévoreur de temples|BGDIA} et porte une armure {@item Plaque de silex obsidienne de dragon|BGDIA}. Cette armure donne à Arkhan un avantage aux jets de caractéristique et de sauvegarde effectués pour éviter ou mettre fin à l'état {@condition grappled} qui l'affecte."
 					]
 				}
 			],
@@ -731,28 +917,178 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Bitter Breath",
-			"isNpc": true,
-			"isNamedCreature": true,
-			"source": "BGDIA",
-			"page": 90,
-			"_copy": {
-				"name": "Horned Devil",
-				"source": "MM",
-				"_mod": {
-					"*": {
-						"mode": "replaceTxt",
-						"replace": "the devil",
-						"with": "Bitter Breath",
-						"flags": "i"
-					}
+			"srd": true,
+			"referenceSources": [
+				"BGDIA",
+				"CoA",
+				"RtG",
+				"SatO",
+				"ToA",
+				"VEoR"
+			],
+			"reprintedAs": [
+				"Horned Devil|XMM"
+			],
+			"size": [
+				"L"
+			],
+			"type": {
+				"type": "fiend",
+				"tags": [
+					"devil"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"armure naturelle"
+					]
 				}
+			],
+			"hp": {
+				"average": 178,
+				"formula": "17d10 + 85"
 			},
 			"speed": {
 				"walk": 20
 			},
+			"str": 22,
+			"dex": 17,
+			"con": 21,
+			"int": 12,
+			"wis": 16,
+			"cha": 17,
+			"save": {
+				"str": "+10",
+				"dex": "+7",
+				"wis": "+7",
+				"cha": "+7"
+			},
+			"senses": [
+				"darkvision 120 ft."
+			],
+			"passive": 13,
+			"resist": [
+				"cold",
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "des attaques non magiques qui ne sont pas argentées",
+					"cond": true
+				}
+			],
+			"immune": [
+				"fire",
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"languages": [
+				"infernal",
+				"télépathie 120 ft."
+			],
+			"cr": "11",
+			"trait": [
+				{
+					"name": "Vision du diable",
+					"entries": [
+						"Les ténèbres magiques n'entravent pas la vision dans le noir de Bitter Breath."
+					]
+				},
+				{
+					"name": "Résistance à la magie",
+					"entries": [
+						"Bitter Breath est avantagé sur ses jets de sauvegarde contre les sorts et les autres effets magiques."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Attaques multiples",
+					"entries": [
+						"Bitter Breath effectue trois attaques au corps à corps : deux avec sa fourche et une avec sa queue. Il peut utiliser Jet de flammes à la place de n'importe quelle attaque au corps à corps."
+					]
+				},
+				{
+					"name": "Fourche",
+					"entries": [
+						"{@atk mw} {@hit 10} pour toucher, allonge 3 m, une cible. {@h}15 ({@damage 2d8 + 6}) dégâts perforants."
+					]
+				},
+				{
+					"name": "Queue",
+					"entries": [
+						"{@atk mw} {@hit 10} pour toucher, allonge 3 m, une cible. {@h}10 ({@damage 1d8 + 6}) dégâts perforants. Si la cible est une créature autre qu'un mort-vivant ou une construction, elle doit réussir un jet de sauvegarde de Constitution {@dc 17}, sinon elle perd 10 ({@dice 3d6}) points de vie au début de chacun de ses tours en raison d'une blessure infernale. Chaque fois que Bitter Breath touche la cible blessée avec cette attaque, les dégâts infligés par la blessure augmentent de 10 ({@damage 3d6}). N'importe quelle créature peut utiliser une action pour arrêter la blessure en réussissant un jet de Sagesse ({@skill Medicine}) {@dc 12}. La blessure se referme également si la cible reçoit des soins magiques."
+					]
+				},
+				{
+					"name": "Jet de flammes",
+					"entries": [
+						"{@atk rs} {@hit 7} pour toucher, portée 45 m, une cible. {@h}14 ({@damage 4d6}) dégâts de feu. Si la cible est un objet inflammable qui n'est ni porté ni transporté, il s'embrase également."
+					]
+				}
+			],
+			"variant": [
+				{
+					"type": "variant",
+					"name": "Invoquer un diable (1/jour)",
+					"entries": [
+						"Bitter Breath choisit ce qu'il invoque et tente une invocation magique.",
+						"Un diable cornu a {@chance 30} chances d'invoquer un diable cornu.",
+						"Un diable invoqué apparaît dans un espace inoccupé à 18 mètres ou moins de son invocateur, agit comme un allié de ce dernier et ne peut pas invoquer d'autres diables. Il reste présent pendant 1 minute, jusqu'à sa mort ou à celle de son invocateur, ou jusqu'à ce que son invocateur le renvoie en utilisant une action."
+					],
+					"_version": {
+						"name": "Horned Devil (Summoner)",
+						"addAs": "action"
+					}
+				}
+			],
+			"soundClip": {
+				"type": "internal",
+				"path": "bestiary/horned-devil.opus"
+			},
+			"traitTags": [
+				"Vision du diable",
+				"Résistance à la magie"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Attaques multiples"
+			],
+			"languageTags": [
+				"I",
+				"TP"
+			],
+			"damageTags": [
+				"F",
+				"P"
+			],
+			"miscTags": [
+				"MW",
+				"RCH"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
 			"hasToken": true,
-			"hasFluffImages": true
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "BGDIA",
+			"page": 90,
+			"name": "Bitter Breath"
 		},
 		{
 			"name": "Gantelet noir de Bane",
@@ -1009,70 +1345,405 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Burney the Barber",
-			"isNpc": true,
-			"isNamedCreature": true,
-			"source": "BGDIA",
-			"page": 129,
-			"_copy": {
-				"name": "Ancient Copper Dragon",
-				"source": "MM",
-				"_mod": {
-					"*": {
-						"mode": "replaceTxt",
-						"replace": "the dragon",
-						"with": "Burney",
-						"flags": "i"
+			"group": [
+				"Metallic Dragon"
+			],
+			"srd": true,
+			"referenceSources": [
+				"BGDIA"
+			],
+			"reprintedAs": [
+				"Ancient Copper Dragon|XMM"
+			],
+			"size": [
+				"G"
+			],
+			"type": "dragon",
+			"alignment": [
+				"C",
+				"G"
+			],
+			"ac": [
+				{
+					"ac": 21,
+					"from": [
+						"armure naturelle"
+					]
+				}
+			],
+			"hp": {
+				"average": 350,
+				"formula": "20d20 + 140"
+			},
+			"speed": {
+				"walk": 40,
+				"climb": 40,
+				"fly": 80
+			},
+			"str": 27,
+			"dex": 12,
+			"con": 25,
+			"int": 20,
+			"wis": 17,
+			"cha": 19,
+			"save": {
+				"dex": "+8",
+				"con": "+14",
+				"wis": "+10",
+				"cha": "+11"
+			},
+			"skill": {
+				"deception": "+11",
+				"perception": "+17",
+				"stealth": "+8"
+			},
+			"senses": [
+				"blindsight 60 ft.",
+				"darkvision 120 ft."
+			],
+			"passive": 27,
+			"immune": [
+				"acid"
+			],
+			"languages": [
+				"commun",
+				"draconique"
+			],
+			"cr": "21",
+			"trait": [
+				{
+					"name": "Résistance légendaire (3/jour)",
+					"entries": [
+						"Si Burney échoue à un jet de sauvegarde, elle peut choisir de réussir à la place."
+					]
+				},
+				[
+					{
+						"name": "Guérisseur",
+						"entries": [
+							"Burney bénéficie des avantages du don {@feat healer} ainsi que de la maîtrise de la {@item healer's kit|phb} et de la {@item herbalism kit|phb}."
+						]
 					},
-					"trait": {
-						"mode": "appendArr",
-						"items": [
+					{
+						"name": "Bénédictions de Bahamut",
+						"entries": [
+							"Burney a reçu plusieurs bénédictions pour son service envers Bahamut :",
 							{
-								"name": "Healer",
-								"entries": [
-									"Burney has the benefits of the {@feat healer} feat as well as proficiency with both the {@item healer's kit|phb} and the {@item herbalism kit|phb}."
+								"type": "list",
+								"items": [
+									"Sauf décision contraire de Burney, dès qu'une créature moins puissante qu'une divinité a fait trois pas pour s'éloigner d'elle, elle ne peut plus se souvenir de Burney ni du fait d'avoir interagi avec elle.",
+									"Burney est sous l'effet d'un sort de {@spell mind blank} permanent et ne peut être détectée ni par des moyens magiques ni par des moyens ordinaires, à moins qu'elle ne le souhaite. En échange de cette bénédiction, Burney ne peut entreprendre aucune action directe contre les habitants des Neuf Enfers, mais elle peut tout à fait solliciter l'aide de ceux qui le peuvent.",
+									"Burney connaît toujours l'emplacement de l'Emporium errant et peut s'y transporter comme si elle lançait le sort {@spell word of recall}. C'est pourquoi Burney semble simplement apparaître au milieu du marché entièrement déployé chaque matin d'activité, pour rendre service et raconter des histoires.",
+									"Une fois par jour, quand Burney le désire, elle peut se transporter instantanément à la cour de Bahamut grâce à une puissante bénédiction semblable au sort {@spell plane shift}."
 								]
-							},
-							{
-								"name": "Bahamut's Blessings",
-								"entries": [
-									"Burney has received several blessings in her service to Bahamut:",
-									{
-										"type": "list",
-										"items": [
-											"Unless Burney decided otherwise, once any creature less powerful than a deity has taken three steps from her, they can no longer remember her or having interacted with her specifically.",
-											"Burney is under the effect of a permanent {@spell mind blank} spell, and cannot be detected by magical or mundane means unless she wishes it. In exchange for this blessing, Burney can take no direct action against the denizens of the Nine Hells, though she can certainly enlist the help of those who can.",
-											"Burney always knows the location of the Wandering Emporium and can transport herself there as though by a {@spell word of recall} spell. This explains why Burney simply seems to appear amid the fully deployed marketplace each morning it is active to provide service and tell stories.",
-											"Once each day, when Burney so desires, she can instantly transport herself to the court of Bahamut via a powerful blessing akin to the {@spell plane shift} spell."
-										]
+							}
+						]
+					}
+				]
+			],
+			"action": [
+				{
+					"name": "Attaques multiples",
+					"entries": [
+						"Burney peut utiliser sa Présence terrifiante. Elle effectue ensuite trois attaques : une avec sa morsure et deux avec ses griffes."
+					]
+				},
+				{
+					"name": "Morsure",
+					"entries": [
+						"{@atk mw} {@hit 15} pour toucher, allonge 4,50 m, une cible. {@h}19 ({@damage 2d10 + 8}) dégâts perforants."
+					]
+				},
+				{
+					"name": "Griffe",
+					"entries": [
+						"{@atk mw} {@hit 15} pour toucher, allonge 3 m, une cible. {@h}15 ({@damage 2d6 + 8}) dégâts tranchants."
+					]
+				},
+				{
+					"name": "Queue",
+					"entries": [
+						"{@atk mw} {@hit 15} pour toucher, allonge 6 m, une cible. {@h}17 ({@damage 2d8 + 8}) dégâts contondants."
+					]
+				},
+				{
+					"name": "Présence terrifiante",
+					"entries": [
+						"Chaque créature au choix de Burney se trouvant à 36 mètres ou moins d'elle et consciente de sa présence doit réussir un jet de sauvegarde de Sagesse {@dc 19}, sinon elle est {@condition frightened} pendant 1 minute. Une créature peut relancer le jet de sauvegarde à la fin de chacun de ses tours, mettant fin à l'effet si elle réussit. Si le jet de sauvegarde d'une créature est réussi ou si l'effet prend fin pour elle, la créature est immunisée contre la Présence terrifiante de Burney pendant les 24 heures suivantes."
+					]
+				},
+				{
+					"name": "Souffles {@recharge 5}",
+					"entries": [
+						"Burney utilise l'un des souffles suivants.",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "Souffle d'acide",
+									"entry": "Burney crache un jet d'acide de 27 mètres de long sur 3 mètres de large. Chaque créature dans cette ligne doit effectuer un jet de sauvegarde de Dextérité {@dc 22}, subissant 63 ({@damage 14d8}) dégâts d'acide en cas d'échec, ou la moitié de ces dégâts seulement en cas de réussite."
+								},
+								{
+									"type": "item",
+									"name": "Souffle ralentissant",
+									"entry": "Burney exhale un gaz dans un cône de 27 mètres. Chaque créature dans cette zone doit réussir un jet de sauvegarde de Constitution {@dc 22}. En cas d'échec, la créature ne peut pas utiliser de réactions, sa vitesse est divisée par deux et elle ne peut pas effectuer plus d'une attaque pendant son tour. De plus, la créature peut utiliser soit une action, soit une action bonus pendant son tour, mais pas les deux. Ces effets durent 1 minute. La créature peut relancer le jet de sauvegarde à la fin de chacun de ses tours, mettant fin à l'effet si elle réussit."
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Métamorphose",
+					"entries": [
+						"Burney se métamorphose magiquement en un humanoïde ou une bête dont le degré de difficulté est inférieur ou égal au sien, ou reprend sa véritable forme. Elle reprend sa véritable forme si elle meurt. Tout équipement qu'elle porte ou transporte est absorbé ou porté par la nouvelle forme (au choix de Burney).",
+						"Sous une nouvelle forme, Burney conserve son alignement, ses points de vie, ses dés de vie, sa capacité à parler, ses maîtrises, sa Résistance légendaire, ses actions de repaire, ainsi que ses valeurs d'Intelligence, de Sagesse et de Charisme, et cette action. Ses statistiques et ses capacités sont sinon remplacées par celles de la nouvelle forme, à l'exception des aptitudes de classe ou des actions légendaires de cette forme."
+					]
+				}
+			],
+			"legendary": [
+				{
+					"name": "Détection",
+					"entries": [
+						"Burney effectue un jet de Sagesse ({@skill Perception})."
+					]
+				},
+				{
+					"name": "Attaque de queue",
+					"entries": [
+						"Burney effectue une attaque de queue."
+					]
+				},
+				{
+					"name": "Attaque d'ailes (coûte 2 actions)",
+					"entries": [
+						"Burney bat des ailes. Chaque créature située à 4,50 mètres ou moins d'elle doit réussir un jet de sauvegarde de Dextérité {@dc 23}, sinon elle subit 15 ({@damage 2d6 + 8}) dégâts contondants et est jetée {@condition prone}. Burney peut ensuite voler sur une distance égale à la moitié de sa vitesse de vol."
+					]
+				}
+			],
+			"legendaryGroup": {
+				"name": "Copper Dragon",
+				"source": "MM"
+			},
+			"variant": [
+				{
+					"type": "inset",
+					"name": "Personnaliser les dragons",
+					"source": "FTD",
+					"page": 33,
+					"entries": [
+						"Vous pouvez personnaliser la fiche de statistiques de n'importe quel dragon pour refléter le caractère unique de Burney. Des changements mineurs comme ceux présentés ci-dessous sont faciles à effectuer et n'ont aucun impact sur le degré de difficulté d'un dragon.",
+						{
+							"type": "entries",
+							"name": "Langues",
+							"entries": [
+								"La plupart des dragons préfèrent parler le draconique, mais apprennent le commun pour traiter avec leurs alliés et leurs serviteurs. Compte tenu de leur Intelligence élevée et de leur longue espérance de vie, les dragons peuvent facilement apprendre des langues supplémentaires. Vous pouvez ajouter des langues à la fiche de statistiques d'un dragon."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Compétences",
+							"entries": [
+								"La plupart des dragons maîtrisent les compétences {@skill Perception} et {@skill Stealth}, et beaucoup de dragons possèdent des maîtrises supplémentaires. Comme pour les langues, vous pouvez personnaliser la liste de compétences d'un dragon (quitte à doubler son bonus de maîtrise pour certaines compétences) afin de refléter des centres d'intérêt et des activités particuliers. Vous pouvez également donner à un dragon des maîtrises d'outils, en particulier si Burney passe du temps sous forme humanoïde."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Sorts",
+							"entries": [
+								"{@note Voir le ou les encadrés « Variante : dragons incantateurs innés » ci-dessous.}"
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Autres traits et actions",
+							"entries": [
+								"Vous pouvez emprunter des traits et des actions d'autres monstres pour donner une saveur unique à un dragon. Considérez ces exemples :",
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"items": [
+										{
+											"type": "item",
+											"name": "Métamorphose",
+											"entries": [
+												"Vous pouvez décider qu'un dragon acquiert cette action à un âge plus précoce que d'habitude, en particulier si vous souhaitez mettre en scène un dragon sous forme humanoïde dans votre campagne :",
+												"Burney se métamorphose magiquement en un humanoïde ou une bête dont le degré de difficulté est inférieur ou égal au sien, ou reprend sa véritable forme. Elle reprend sa véritable forme si elle meurt. Tout équipement qu'elle porte ou transporte est absorbé ou porté par la nouvelle forme (au choix de Burney).",
+												"Sous une nouvelle forme, Burney conserve son alignement, ses points de vie, ses dés de vie, sa capacité à parler, ses maîtrises, sa Résistance légendaire, ses actions de repaire, ainsi que ses valeurs d'Intelligence, de Sagesse et de Charisme, et cette action. Ses statistiques et ses capacités sont sinon remplacées par celles de la nouvelle forme, à l'exception des aptitudes de classe ou des actions légendaires de cette forme."
+											]
+										},
+										{
+											"type": "item",
+											"name": "Survol",
+											"entries": [
+												"Burney vole avec agilité et se hâte de sortir de la portée de ses ennemis.",
+												"Burney ne provoque pas d'attaque d'opportunité quand elle vole hors de portée d'un ennemi."
+											]
+										},
+										{
+											"type": "item",
+											"name": "Imitation",
+											"entries": [
+												"Se faire passer pour des personnages ou leurs alliés peut être un tour amusant pour un dragon rusé.",
+												"Burney peut imiter tous les sons qu'elle a entendus, y compris des voix. Une créature qui entend ces sons peut déterminer qu'il s'agit d'imitations en réussissant un jet de Sagesse ({@skill Insight}) {@dc 19}."
+											]
+										},
+										{
+											"type": "item",
+											"name": "Régénérescence",
+											"entries": [
+												"Vous pouvez décider que les dragons de votre campagne, partie essentielle du Plan matériel, sont presque impossibles à détruire. L'essence vitale d'un dragon peut être préservée dans l'œuf dont il est issu, dans son trésor ou dans une salle caverneuse au centre du monde, tout comme l'essence d'un liche est dissimulée dans une phylactère.",
+												"S'il possède un objet préservant son essence, un dragon détruit gagne un nouveau corps en {@dice 1d10} jours, récupère tous ses points de vie et redevient actif. Le nouveau corps apparaît à 1,50 mètre ou moins de l'objet."
+											]
+										},
+										{
+											"type": "item",
+											"name": "Sens spéciaux",
+											"entries": [
+												"La plupart des dragons possèdent la {@sense blindsight} et la {@sense darkvision}. Vous pouvez améliorer la {@sense blindsight} en {@sense truesight}, ou donner le {@sense tremorsense|MM} à un dragon disposant d'une vitesse de creusement."
+											]
 										}
 									]
 								}
 							]
 						}
-					}
-				},
-				"damageTagsLegendary": [],
-			"hasToken": true
-		},
-		{
-			"name": "Chukka",
+					]
+				}
+			],
+			"environment": [
+				"hill"
+			],
+			"dragonCastingColor": "copper",
+			"dragonAge": "ancient",
+			"soundClip": {
+				"type": "internal",
+				"path": "bestiary/copper-dragon.opus"
+			},
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"B",
+				"SD"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Présence terrifiante",
+				"Attaques multiples",
+				"Métamorphe"
+			],
+			"languageTags": [
+				"C",
+				"DR"
+			],
+			"damageTags": [
+				"A",
+				"B",
+				"P",
+				"S"
+			],
+			"damageTagsLegendary": [],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"frightened",
+				"prone"
+			],
+			"conditionInflictLegendary": [
+				"incapacitated"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
+			"savingThrowForcedLegendary": [
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
 			"isNpc": true,
 			"isNamedCreature": true,
 			"source": "BGDIA",
-			"page": 83,
-			"_copy": {
-				"name": "Kenku",
-				"source": "MM",
-				"_mod": {
-					"*": {
-						"mode": "replaceTxt",
-						"replace": "the kenku",
-						"with": "Chukka",
-						"flags": "i"
-					}
-				}
+			"page": 129,
+			"name": "Burney the Barber"
+		},
+		{
+			"referenceSources": [
+				"BGDIA",
+				"CM",
+				"EFR",
+				"ERLW",
+				"JttRC",
+				"LLK",
+				"PotA",
+				"ToFW",
+				"WDH",
+				"WDMM"
+			],
+			"reprintedAs": [
+				"Kenku|XMM"
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"kenku"
+				]
 			},
+			"alignment": [
+				"C",
+				"N"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 13,
+				"formula": "3d8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 16,
+			"con": 10,
+			"int": 11,
+			"wis": 10,
+			"cha": 10,
+			"skill": {
+				"deception": "+4",
+				"perception": "+2",
+				"stealth": "+5"
+			},
+			"passive": 12,
+			"languages": [
+				"comprend l'auran et le commun mais ne parle qu'en utilisant son trait d'Imitation"
+			],
+			"cr": "1/4",
+			"trait": [
+				{
+					"name": "Embuscade",
+					"entries": [
+						"Lors du premier round d'un combat, Chukka est avantagé sur ses jets d'attaque contre toute créature qu'il {@status surprised}."
+					]
+				},
+				{
+					"name": "Imitation",
+					"entries": [
+						"Chukka peut imiter tous les sons qu'il a entendus, y compris des voix. Une créature qui entend ces sons peut déterminer qu'il s'agit d'imitations en réussissant un jet de Sagesse ({@skill Insight}) {@dc 14}."
+					]
+				}
+			],
 			"action": [
 				{
 					"name": "Pique argentée",
@@ -1081,34 +1752,110 @@
 					]
 				}
 			],
+			"environment": [
+				"forest",
+				"urban"
+			],
+			"soundClip": {
+				"type": "internal",
+				"path": "bestiary/kenku.opus"
+			},
 			"attachedItems": [
 				"silvered pike|phb"
+			],
+			"traitTags": [
+				"Embuscade",
+				"Imitation"
+			],
+			"languageTags": [
+				"AU",
+				"C"
+			],
+			"damageTags": [
+				"P"
 			],
 			"miscTags": [
 				"MLW",
 				"MW"
 			],
 			"hasToken": true,
-			"hasFluffImages": true
-		},
-		{
-			"name": "Clonk",
+			"hasFluff": true,
+			"hasFluffImages": true,
 			"isNpc": true,
 			"isNamedCreature": true,
 			"source": "BGDIA",
 			"page": 83,
-			"_copy": {
-				"name": "Kenku",
-				"source": "MM",
-				"_mod": {
-					"*": {
-						"mode": "replaceTxt",
-						"replace": "the kenku",
-						"with": "Clonk",
-						"flags": "i"
-					}
-				}
+			"name": "Chukka"
+		},
+		{
+			"referenceSources": [
+				"BGDIA",
+				"CM",
+				"EFR",
+				"ERLW",
+				"JttRC",
+				"LLK",
+				"PotA",
+				"ToFW",
+				"WDH",
+				"WDMM"
+			],
+			"reprintedAs": [
+				"Kenku|XMM"
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"kenku"
+				]
 			},
+			"alignment": [
+				"C",
+				"N"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 13,
+				"formula": "3d8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 16,
+			"con": 10,
+			"int": 11,
+			"wis": 10,
+			"cha": 10,
+			"skill": {
+				"deception": "+4",
+				"perception": "+2",
+				"stealth": "+5"
+			},
+			"passive": 12,
+			"languages": [
+				"comprend l'auran et le commun mais ne parle qu'en utilisant son trait d'Imitation"
+			],
+			"cr": "1/4",
+			"trait": [
+				{
+					"name": "Embuscade",
+					"entries": [
+						"Lors du premier round d'un combat, Clonk est avantagé sur ses jets d'attaque contre toute créature qu'il {@status surprised}."
+					]
+				},
+				{
+					"name": "Imitation",
+					"entries": [
+						"Clonk peut imiter tous les sons qu'il a entendus, y compris des voix. Une créature qui entend ces sons peut déterminer qu'il s'agit d'imitations en réussissant un jet de Sagesse ({@skill Insight}) {@dc 14}."
+					]
+				}
+			],
 			"action": [
 				{
 					"name": "Marteau de guerre en feu d'enfer",
@@ -1117,8 +1864,24 @@
 					]
 				}
 			],
+			"environment": [
+				"forest",
+				"urban"
+			],
+			"soundClip": {
+				"type": "internal",
+				"path": "bestiary/kenku.opus"
+			},
 			"attachedItems": [
 				"hellfire warhammer|bgdia"
+			],
+			"traitTags": [
+				"Embuscade",
+				"Imitation"
+			],
+			"languageTags": [
+				"AU",
+				"C"
 			],
 			"damageTags": [
 				"B"
@@ -1128,7 +1891,13 @@
 				"MW"
 			],
 			"hasToken": true,
-			"hasFluffImages": true
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "BGDIA",
+			"page": 83,
+			"name": "Clonk"
 		},
 		{
 			"name": "Crokek'toeck",
@@ -1397,21 +2166,169 @@
 			"hasFluff": true
 		},
 		{
-			"name": "Esprit de dryade",
+			"basicRules": true,
+			"referenceSources": [
+				"BGDIA",
+				"BMT",
+				"CoS",
+				"DIP",
+				"EGW",
+				"GoS",
+				"HoL",
+				"JttRC",
+				"PaBTSO",
+				"QftIS",
+				"RtG",
+				"TCE",
+				"WBtW",
+				"WDMM"
+			],
+			"reprintedAs": [
+				"dryad|XMM"
+			],
+			"size": [
+				"M"
+			],
+			"type": "undead",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				12
+			],
+			"hp": {
+				"average": 58,
+				"formula": "13d8"
+			},
+			"speed": {
+				"walk": 0,
+				"fly": {
+					"number": 40,
+					"condition": "(hover)"
+				},
+				"canHover": true
+			},
+			"str": 1,
+			"dex": 14,
+			"con": 10,
+			"int": 12,
+			"wis": 11,
+			"cha": 17,
+			"save": {
+				"wis": "+2",
+				"cha": "+5"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 10,
+			"resist": [
+				"acid",
+				"fire",
+				"lightning",
+				"thunder",
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "des attaques non magiques",
+					"cond": true
+				}
+			],
+			"immune": [
+				"cold",
+				"necrotic",
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"grappled",
+				"paralyzed",
+				"petrified",
+				"poisoned",
+				"prone",
+				"restrained"
+			],
+			"languages": [
+				"commun",
+				"elfe"
+			],
+			"cr": "4",
+			"trait": [
+				{
+					"name": "Détection du vivant",
+					"entries": [
+						"La dryade peut sentir magiquement la présence de créatures vivantes qui ne sont pas des morts-vivants ou des constructions, jusqu'à 8 kilomètres. Elle connaît la direction générale dans laquelle elles se trouvent, mais pas leur emplacement exact."
+					]
+				},
+				{
+					"name": "Déplacement incorporel",
+					"entries": [
+						"La dryade peut se déplacer à travers d'autres créatures et objets comme s'il s'agissait de {@quickref difficult terrain||3}. Elle subit 5 ({@damage 1d10}) dégâts de force si elle termine son tour à l'intérieur d'un objet."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Toucher corrupteur",
+					"entries": [
+						"{@atk ms} {@hit 4} pour toucher, allonge 1,50 m, une cible. {@h}12 ({@damage 3d6 + 2}) dégâts nécrotiques."
+					]
+				},
+				{
+					"name": "Visage horrifique",
+					"entries": [
+						"Chaque créature non morte-vivante située à 18 mètres ou moins de la dryade et pouvant la voir doit réussir un jet de sauvegarde de Sagesse {@dc 13}, sinon elle est {@condition frightened} pendant 1 minute. Une cible {@condition frightened} peut relancer le jet de sauvegarde à la fin de chacun de ses tours, avec un désavantage si la dryade est en vue, mettant fin à l'effet si elle réussit. Si le jet de sauvegarde d'une cible est réussi ou si l'effet prend fin pour elle, la cible est immunisée contre le Visage horrifique de la dryade pendant les 24 heures suivantes."
+					]
+				},
+				{
+					"name": "Lamentation (1/jour)",
+					"entries": [
+						"La dryade pousse une lamentation funèbre, à condition de ne pas se trouver à la lumière du soleil. Cette lamentation n'a aucun effet sur les constructions et les morts-vivants. Toutes les autres créatures situées à 9 mètres ou moins d'elle et pouvant l'entendre doivent effectuer un jet de sauvegarde de Constitution {@dc 13}. En cas d'échec, une créature tombe à 0 point de vie. En cas de réussite, une créature subit 10 ({@damage 3d6}) dégâts psychiques."
+					]
+				}
+			],
+			"environment": [
+				"forest",
+				"coastal"
+			],
+			"soundClip": {
+				"type": "internal",
+				"path": "bestiary/dryad.opus"
+			},
+			"traitTags": [
+				"Déplacement incorporel"
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"C",
+				"E"
+			],
+			"damageTags": [
+				"N",
+				"O",
+				"Y"
+			],
+			"conditionInflict": [
+				"frightened"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
 			"source": "BGDIA",
 			"page": 108,
-			"_copy": {
-				"name": "Banshee",
-				"source": "MM",
-				"_mod": {
-					"*": {
-						"mode": "replaceTxt",
-						"replace": "banshee",
-						"with": "dryad"
-					}
-				}
-			},
-			"hasToken": true
+			"name": "Esprit de dryade"
 		},
 		{
 			"name": "Duchesse Thalamra Vanthampur",
@@ -1534,23 +2451,57 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Elliach",
-			"isNpc": true,
-			"isNamedCreature": true,
-			"source": "BGDIA",
-			"page": 130,
-			"_copy": {
-				"name": "Mage",
-				"source": "MM",
-				"_mod": {
-					"*": {
-						"mode": "replaceTxt",
-						"replace": "the mage",
-						"with": "Elliach",
-						"flags": "i"
-					}
-				}
-			},
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"AATM",
+				"BGDIA",
+				"BMT",
+				"CM",
+				"CoA",
+				"CoS",
+				"CRCotN",
+				"DC",
+				"DIP",
+				"DSotDQ",
+				"EGW",
+				"ERLW",
+				"FS",
+				"GoS",
+				"HotDQ",
+				"IDRotF",
+				"JttRC",
+				"KftGV",
+				"LoX",
+				"MOT",
+				"OotA",
+				"OoW",
+				"PaBTSO",
+				"PotA",
+				"PSI",
+				"QftIS",
+				"RoT",
+				"RtG",
+				"SatO",
+				"SCC-CK",
+				"SDW",
+				"SKT",
+				"SLW",
+				"TCE",
+				"ToA",
+				"ToFW",
+				"ToR",
+				"VEoR",
+				"WBtW",
+				"WDH",
+				"WDMM"
+			],
+			"reprintedAs": [
+				"Mage|XMM"
+			],
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -1561,6 +2512,97 @@
 				"L",
 				"E"
 			],
+			"ac": [
+				12,
+				{
+					"ac": 15,
+					"condition": "avec {@spell mage armor}",
+					"braces": true
+				}
+			],
+			"hp": {
+				"average": 40,
+				"formula": "9d8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 9,
+			"dex": 14,
+			"con": 11,
+			"int": 17,
+			"wis": 12,
+			"cha": 11,
+			"save": {
+				"int": "+6",
+				"wis": "+4"
+			},
+			"skill": {
+				"arcana": "+6",
+				"history": "+6"
+			},
+			"passive": 11,
+			"languages": [
+				"quatre langues au choix"
+			],
+			"cr": "6",
+			"spellcasting": [
+				{
+					"name": "Incantation",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Elliach est un lanceur de sorts de niveau 9. Sa capacité d'incantation est l'Intelligence (jet de sauvegarde contre les sorts {@dc 14}, {@hit 6} pour toucher avec les attaques de sorts). Elliach a préparé les sorts de magicien suivants :"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell fire bolt}",
+								"{@spell light}",
+								"{@spell mage hand}",
+								"{@spell prestidigitation}"
+							]
+						},
+						"1": {
+							"slots": 4,
+							"spells": [
+								"{@spell detect magic}",
+								"{@spell mage armor}",
+								"{@spell magic missile}",
+								"{@spell shield}"
+							]
+						},
+						"2": {
+							"slots": 3,
+							"spells": [
+								"{@spell misty step}",
+								"{@spell suggestion}"
+							]
+						},
+						"3": {
+							"slots": 3,
+							"spells": [
+								"{@spell counterspell}",
+								"{@spell fireball}",
+								"{@spell fly}"
+							]
+						},
+						"4": {
+							"slots": 3,
+							"spells": [
+								"{@spell greater invisibility}",
+								"{@spell ice storm}"
+							]
+						},
+						"5": {
+							"slots": 1,
+							"spells": [
+								"{@spell cone of cold}"
+							]
+						}
+					},
+					"ability": "int"
+				}
+			],
 			"action": [
 				{
 					"name": "Dague",
@@ -1569,8 +2611,39 @@
 					]
 				}
 			],
+			"variant": [
+				{
+					"type": "variant",
+					"name": "Familiers",
+					"entries": [
+						"Tout lanceur de sorts capable de lancer le sort {@spell find familiar} (comme un archimage ou un mage) a probablement un familier. Le familier peut être l'une des créatures décrites dans le sort (voir le Guide du joueur) ou un autre monstre de taille TP, comme une {@creature crawling claw}, un {@creature imp}, un {@creature pseudodragon} ou un {@creature quasit}."
+					]
+				}
+			],
+			"environment": [
+				"urban"
+			],
+			"soundClip": {
+				"type": "internal",
+				"path": "bestiary/mage.opus"
+			},
 			"attachedItems": [
 				"dagger|phb"
+			],
+			"languageTags": [
+				"X"
+			],
+			"damageTags": [
+				"P"
+			],
+			"damageTagsSpell": [
+				"B",
+				"C",
+				"F",
+				"O"
+			],
+			"spellcastingTags": [
+				"CW"
 			],
 			"miscTags": [
 				"MLW",
@@ -1579,26 +2652,74 @@
 				"RW",
 				"THW"
 			],
-			"hasToken": true
-		},
-		{
-			"name": "Feonor",
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"_versions": [
+				{
+					"name": "Mage (Familiar)",
+					"source": "MM",
+					"_mod": {
+						"_": {
+							"mode": "addSpells",
+							"spells": {
+								"1": {
+									"spells": [
+										"{@spell find familiar} (l'une des créatures décrites dans le sort ou un autre monstre de taille TP, comme une {@creature crawling claw}, un {@creature imp}, un {@creature pseudodragon} ou un {@creature quasit})"
+									]
+								}
+							}
+						}
+					},
+					"variant": null
+				}
+			],
 			"isNpc": true,
 			"isNamedCreature": true,
 			"source": "BGDIA",
 			"page": 130,
-			"_copy": {
-				"name": "Archmage",
-				"source": "MM",
-				"_mod": {
-					"*": {
-						"mode": "replaceTxt",
-						"replace": "the archmage",
-						"with": "Feonor",
-						"flags": "i"
-					}
-				}
-			},
+			"name": "Elliach"
+		},
+		{
+			"srd": true,
+			"referenceSources": [
+				"BGDIA",
+				"BMT",
+				"CM",
+				"CoA",
+				"CoS",
+				"DSotDQ",
+				"EGW",
+				"ERLW",
+				"GoS",
+				"IDRotF",
+				"IMR",
+				"JttRC",
+				"KftGV",
+				"LoX",
+				"MOT",
+				"NRH-TLT",
+				"OotA",
+				"OoW",
+				"QftIS",
+				"SatO",
+				"SKT",
+				"ToA",
+				"ToFW",
+				"VEoR",
+				"WDH",
+				"WDMM"
+			],
+			"reprintedAs": [
+				"Archmage|XMM"
+			],
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -1609,8 +2730,243 @@
 				"N",
 				"E"
 			],
+			"ac": [
+				12,
+				{
+					"ac": 15,
+					"condition": "avec {@spell mage armor}",
+					"braces": true
+				}
+			],
+			"hp": {
+				"average": 99,
+				"formula": "18d8 + 18"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 14,
+			"con": 12,
+			"int": 20,
+			"wis": 15,
+			"cha": 16,
+			"save": {
+				"int": "+9",
+				"wis": "+6"
+			},
+			"skill": {
+				"arcana": "+13",
+				"history": "+13"
+			},
+			"passive": 12,
+			"resist": [
+				{
+					"special": "dégâts des sorts"
+				},
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "(grâce au sort peau de pierre)",
+					"cond": true,
+					"preNote": "non magiques"
+				}
+			],
+			"languages": [
+				"six langues au choix"
+			],
+			"cr": "12",
+			"spellcasting": [
+				{
+					"name": "Incantation",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Feonor est un lanceur de sorts de niveau 18. Sa capacité d'incantation est l'Intelligence (jet de sauvegarde contre les sorts {@dc 17}, {@hit 9} pour toucher avec les attaques de sorts). Feonor peut lancer {@spell disguise self} et {@spell invisibility} à volonté et a préparé les sorts de magicien suivants :"
+					],
+					"will": [
+						"{@spell disguise self}",
+						"{@spell invisibility}"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell fire bolt}",
+								"{@spell light}",
+								"{@spell mage hand}",
+								"{@spell prestidigitation}",
+								"{@spell shocking grasp}"
+							]
+						},
+						"1": {
+							"slots": 4,
+							"spells": [
+								"{@spell detect magic}",
+								"{@spell identify}",
+								"{@spell mage armor}*",
+								"{@spell magic missile}"
+							]
+						},
+						"2": {
+							"slots": 3,
+							"spells": [
+								"{@spell detect thoughts}",
+								"{@spell mirror image}",
+								"{@spell misty step}"
+							]
+						},
+						"3": {
+							"slots": 3,
+							"spells": [
+								"{@spell counterspell}",
+								"{@spell fly}",
+								"{@spell lightning bolt}"
+							]
+						},
+						"4": {
+							"slots": 3,
+							"spells": [
+								"{@spell banishment}",
+								"{@spell fire shield}",
+								"{@spell stoneskin}*"
+							]
+						},
+						"5": {
+							"slots": 3,
+							"spells": [
+								"{@spell cone of cold}",
+								"{@spell scrying}",
+								"{@spell wall of force}"
+							]
+						},
+						"6": {
+							"slots": 1,
+							"spells": [
+								"{@spell globe of invulnerability}"
+							]
+						},
+						"7": {
+							"slots": 1,
+							"spells": [
+								"{@spell teleport}"
+							]
+						},
+						"8": {
+							"slots": 1,
+							"spells": [
+								"{@spell mind blank}*"
+							]
+						},
+						"9": {
+							"slots": 1,
+							"spells": [
+								"{@spell time stop}"
+							]
+						}
+					},
+					"footerEntries": [
+						"*Feonor lance ces sorts sur lui-même avant le combat."
+					],
+					"ability": "int",
+					"hidden": [
+						"will"
+					]
+				}
+			],
+			"trait": [
+				{
+					"name": "Résistance à la magie",
+					"entries": [
+						"Feonor est avantagé sur ses jets de sauvegarde contre les sorts et les autres effets magiques."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Dague",
+					"entries": [
+						"{@atk mw,rw} {@hit 6} pour toucher, allonge 1,50 m ou portée 6/18 m, une cible. {@h}4 ({@damage 1d4 + 2}) dégâts perforants."
+					]
+				}
+			],
+			"variant": [
+				{
+					"type": "variant",
+					"name": "Familiers",
+					"entries": [
+						"Tout lanceur de sorts capable de lancer le sort {@spell find familiar} (comme un archimage ou un mage) a probablement un familier. Le familier peut être l'une des créatures décrites dans le sort ou un autre monstre de taille TP, comme une {@creature crawling claw}, un {@creature imp}, un {@creature pseudodragon} ou un {@creature quasit}."
+					]
+				}
+			],
+			"environment": [
+				"urban"
+			],
+			"soundClip": {
+				"type": "internal",
+				"path": "bestiary/archmage.opus"
+			},
+			"attachedItems": [
+				"dagger|phb"
+			],
+			"traitTags": [
+				"Résistance à la magie"
+			],
+			"languageTags": [
+				"X"
+			],
+			"damageTags": [
+				"P"
+			],
+			"damageTagsSpell": [
+				"C",
+				"F",
+				"L",
+				"O"
+			],
+			"spellcastingTags": [
+				"CW"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
 			"hasToken": true,
-			"hasFluffImages": true
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"_versions": [
+				{
+					"name": "Archmage (Familiar)",
+					"source": "MM",
+					"_mod": {
+						"_": {
+							"mode": "addSpells",
+							"spells": {
+								"1": {
+									"spells": [
+										"{@spell find familiar} (l'une des créatures décrites dans le sort ou un autre monstre de taille TP, comme une {@creature crawling claw}, un {@creature imp}, un {@creature pseudodragon} ou un {@creature quasit})"
+									]
+								}
+							}
+						}
+					},
+					"variant": null
+				}
+			],
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "BGDIA",
+			"page": 130,
+			"name": "Feonor"
 		},
 		{
 			"name": "Golem de chair infernal",
@@ -1842,42 +3198,145 @@
 			"hasFluff": true
 		},
 		{
-			"name": "Dague volante",
-			"source": "BGDIA",
-			"page": 30,
-			"_copy": {
-				"name": "Flying Sword",
-				"source": "MM",
-				"_mod": {
-					"*": {
-						"mode": "replaceTxt",
-						"replace": "sword",
-						"with": "dagger"
-					},
-					"action": {
-						"mode": "replaceArr",
-						"replace": "Longsword",
-						"items": {
-							"name": "Dagger",
-							"entries": [
-								"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d4 + 1}) piercing damage."
-							]
-						}
-					}
-				}
-			},
+			"group": [
+				"Animated Objects"
+			],
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"BGDIA",
+				"BMT",
+				"CM",
+				"CoS",
+				"EGW",
+				"FS",
+				"GoS",
+				"IDRotF",
+				"KftGV",
+				"PotA",
+				"RtG",
+				"SCC-CK",
+				"SKT",
+				"TCE",
+				"TftYP",
+				"TftYP-ToH",
+				"ToA",
+				"VEoR",
+				"WDH",
+				"WDMM"
+			],
+			"reprintedAs": [
+				"Animated Flying dagger|XMM"
+			],
 			"size": [
 				"T"
+			],
+			"type": "construct",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 17,
+					"from": [
+						"armure naturelle"
+					]
+				}
 			],
 			"hp": {
 				"average": 7,
 				"formula": "3d4"
 			},
+			"speed": {
+				"walk": 0,
+				"fly": {
+					"number": 50,
+					"condition": "(hover)"
+				},
+				"canHover": true
+			},
+			"str": 12,
+			"dex": 15,
+			"con": 11,
+			"int": 1,
+			"wis": 5,
+			"cha": 1,
+			"save": {
+				"dex": "+4"
+			},
+			"senses": [
+				"blindsight 60 ft. (blind beyond this radius)"
+			],
+			"passive": 7,
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"frightened",
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
 			"cr": "1/8",
+			"trait": [
+				{
+					"name": "Vulnérabilité à l'antimagie",
+					"entries": [
+						"La dague est {@condition incapacitated} tant qu'elle se trouve dans la zone d'un {@spell antimagic field}. Si elle est ciblée par {@spell dispel magic}, la dague doit réussir un jet de sauvegarde de Constitution contre le DD de sauvegarde de sorts du lanceur, sinon elle tombe {@condition unconscious} pendant 1 minute."
+					]
+				},
+				{
+					"name": "Apparence trompeuse",
+					"entries": [
+						"Tant que la dague reste immobile et ne vole pas, il est impossible de la distinguer d'une dague normale."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Longue dague",
+					"entries": [
+						"{@atk mw} {@hit 3} pour toucher, allonge 1,50 m, une cible. {@h}5 ({@damage 1d8 + 1}) dégâts tranchants."
+					]
+				},
+				{
+					"name": "Dague",
+					"entries": [
+						"{@atk mw} {@hit 3} pour toucher, allonge 1,50 m, une cible. {@h}3 ({@damage 1d4 + 1}) dégâts perforants."
+					]
+				}
+			],
+			"soundClip": {
+				"type": "internal",
+				"path": "bestiary/flying-dagger.opus"
+			},
+			"attachedItems": [
+				"longdagger|phb"
+			],
+			"traitTags": [
+				"Vulnérabilité à l'antimagie",
+				"Apparence trompeuse"
+			],
+			"senseTags": [
+				"B"
+			],
 			"damageTags": [
 				"P"
 			],
-			"hasToken": true
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"source": "BGDIA",
+			"page": 30,
+			"name": "Dague volante"
 		},
 		{
 			"name": "Gideon Lightward",
@@ -2004,32 +3463,139 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Harkina Hunt",
-			"isNpc": true,
-			"isNamedCreature": true,
-			"source": "BGDIA",
-			"page": 53,
-			"_copy": {
-				"name": "Commoner",
-				"source": "MM",
-				"_mod": {
-					"action": {
-						"mode": "appendArr",
-						"items": {
-							"name": "Longbow",
-							"entries": [
-								"{@atk rw} {@hit 2} to hit, range 150/600 ft., one target. {@h}4 ({@damage 1d8}) piercing damage."
-							]
-						}
-					}
-				}
-			},
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"AATM",
+				"BGDIA",
+				"BMT",
+				"CM",
+				"CoA",
+				"CoS",
+				"CRCotN",
+				"DC",
+				"DD",
+				"DIP",
+				"DSotDQ",
+				"EFR",
+				"EGW",
+				"ERLW",
+				"FS",
+				"GoS",
+				"GotSF",
+				"HFStCM",
+				"HotDQ",
+				"IDRotF",
+				"JttRC",
+				"KftGV",
+				"LLK",
+				"LMoP",
+				"LoX",
+				"MOT",
+				"NRH-CoI",
+				"OotA",
+				"OoW",
+				"PaBTSO",
+				"PotA",
+				"QftIS",
+				"RMBRE",
+				"RoT",
+				"SatO",
+				"SCC-CK",
+				"SCC-TMM",
+				"SKT",
+				"SLW",
+				"TCE",
+				"TftYP",
+				"TftYP-AtG",
+				"TftYP-DiT",
+				"TftYP-TFoF",
+				"TftYP-THSoT",
+				"TftYP-TSC",
+				"ToA",
+				"ToFW",
+				"ToR",
+				"VEoR",
+				"WBtW",
+				"WDH",
+				"WDMM"
+			],
+			"reprintedAs": [
+				"Commoner|XMM"
+			],
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
 					"human"
 				]
 			},
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				10
+			],
+			"hp": {
+				"average": 4,
+				"formula": "1d8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 10,
+			"con": 10,
+			"int": 10,
+			"wis": 10,
+			"cha": 10,
+			"passive": 10,
+			"languages": [
+				"une langue au choix (généralement le commun)"
+			],
+			"cr": "0",
+			"action": [
+				{
+					"name": "Gourdin",
+					"entries": [
+						"{@atk mw} {@hit 2} pour toucher, allonge 1,50 m, une cible. {@h}2 ({@damage 1d4}) dégâts contondants."
+					]
+				},
+				{
+					"name": "Arc long",
+					"entries": [
+						"{@atk rw} {@hit 2} pour toucher, portée 45/180 m, une cible. {@h}4 ({@damage 1d8}) dégâts perforants."
+					]
+				}
+			],
+			"environment": [
+				"arctic",
+				"desert",
+				"coastal",
+				"grassland",
+				"hill",
+				"urban",
+				"forest"
+			],
+			"soundClip": {
+				"type": "internal",
+				"path": "bestiary/commoner.opus"
+			},
+			"altArt": [
+				{
+					"name": "Commoner",
+					"source": "EGW"
+				}
+			],
+			"attachedItems": [
+				"club|phb"
+			],
+			"languageTags": [
+				"C",
+				"X"
+			],
 			"damageTags": [
 				"B",
 				"P"
@@ -2038,7 +3604,13 @@
 				"MW",
 				"RNG"
 			],
-			"hasToken": true
+			"hasToken": true,
+			"hasFluff": true,
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "BGDIA",
+			"page": 53,
+			"name": "Harkina Hunt"
 		},
 		{
 			"name": "Guêpe infernale",
@@ -2157,14 +3729,95 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Larve de guêpe infernale",
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"BGDIA",
+				"GoS",
+				"HotDQ",
+				"PSA",
+				"PSX",
+				"QftIS",
+				"TCE",
+				"TftYP",
+				"TftYP-DiT",
+				"WDMM",
+				"XMtS"
+			],
+			"reprintedAs": [
+				"Giant Centipede|XMM"
+			],
+			"size": [
+				"S"
+			],
+			"type": "beast",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"armure naturelle"
+					]
+				}
+			],
+			"hp": {
+				"average": 4,
+				"formula": "1d6 + 1"
+			},
+			"speed": {
+				"walk": 30,
+				"climb": 30
+			},
+			"str": 5,
+			"dex": 14,
+			"con": 12,
+			"int": 1,
+			"wis": 7,
+			"cha": 3,
+			"senses": [
+				"blindsight 30 ft."
+			],
+			"passive": 8,
+			"cr": "1/4",
+			"action": [
+				{
+					"name": "Morsure",
+					"entries": [
+						"{@atk mw} {@hit 4} pour toucher, allonge 1,50 m, une créature. {@h}4 ({@damage 1d4 + 2}) dégâts perforants, et la cible doit réussir un jet de sauvegarde de Constitution {@dc 11}, sinon elle subit 10 ({@damage 3d6}) dégâts de poison. Si les dégâts de poison réduisent la cible à 0 point de vie, celle-ci est stable mais reste {@condition poisoned} pendant 1 heure, même après avoir récupéré des points de vie, et elle est {@condition paralyzed} tant qu'elle est ainsi {@condition poisoned}."
+					]
+				}
+			],
+			"environment": [
+				"underdark",
+				"urban"
+			],
+			"soundClip": {
+				"type": "internal",
+				"path": "bestiary/giant-centipede.opus"
+			},
+			"senseTags": [
+				"B"
+			],
+			"damageTags": [
+				"I",
+				"P"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflict": [
+				"paralyzed",
+				"poisoned"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
 			"source": "BGDIA",
 			"page": 95,
-			"_copy": {
-				"name": "Giant Centipede",
-				"source": "MM"
-			},
-			"hasToken": true
+			"name": "Larve de guêpe infernale"
 		},
 		{
 			"name": "Hollyphant",
@@ -2860,46 +4513,534 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Lulu",
+			"size": [
+				"S"
+			],
+			"type": "celestial",
+			"alignment": [
+				"L",
+				"G"
+			],
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"armure naturelle"
+					]
+				}
+			],
+			"hp": {
+				"average": 36,
+				"formula": "8d6 + 8"
+			},
+			"speed": {
+				"walk": 20,
+				"fly": 120
+			},
+			"str": 10,
+			"dex": 11,
+			"con": 12,
+			"int": 16,
+			"wis": 19,
+			"cha": 16,
+			"save": {
+				"dex": "+3",
+				"con": "+4",
+				"cha": "+6"
+			},
+			"passive": 14,
+			"resist": [
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "des attaques non magiques",
+					"cond": true
+				}
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"languages": [
+				"céleste",
+				"télépathie 120 ft."
+			],
+			"cr": "5",
+			"spellcasting": [
+				{
+					"name": "Incantation innée",
+					"type": "spellcasting",
+					"headerEntries": [
+						"La capacité d'incantation innée du hollyphant est la Sagesse (jet de sauvegarde contre les sorts {@dc 15}). Il peut innément lancer les sorts suivants, sans composante matérielle :"
+					],
+					"will": [
+						"{@spell light}"
+					],
+					"daily": {
+						"2e": [
+							"{@spell bless}",
+							"{@spell cure wounds}",
+							"{@spell protection from evil and good}"
+						],
+						"1e": [
+							"{@spell banishment}",
+							"{@spell heal}",
+							"{@spell raise dead}",
+							"{@spell shapechange} (en un {@creature mammoth|mammouth} au pelage doré et aux ailes emplumées, avec une vitesse de vol de 36 m)",
+							"{@spell teleport} (sans risque d'erreur)"
+						]
+					},
+					"ability": "wis"
+				}
+			],
+			"trait": [
+				{
+					"name": "Aura d'invulnérabilité",
+					"entries": [
+						"Une aura {@condition invisible} forme une sphère de 3 mètres de rayon autour du hollyphant aussi longtemps qu'il vit. Tout sort de niveau 5 ou inférieur lancé depuis l'extérieur de la barrière ne peut pas affecter les créatures ou objets situés à l'intérieur, même si le sort est lancé en utilisant un emplacement de sort de niveau supérieur. Un tel sort peut cibler des créatures et des objets à l'intérieur de la barrière, mais il n'a aucun effet sur eux. De la même façon, la zone située à l'intérieur de la barrière est exclue des zones affectées par ces sorts. Le hollyphant peut utiliser une action pour supprimer cette capacité jusqu'à la fin de sa {@status concentration} (comme s'il se {@status concentration||concentrait} sur un sort)."
+					]
+				},
+				{
+					"name": "Armes magiques",
+					"entries": [
+						"Les attaques d'arme du hollyphant sont magiques."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Défenses",
+					"entries": [
+						"{@atk mw} {@hit 3} pour toucher, allonge 1,50 m, une cible. {@h}3 ({@damage 1d6}) dégâts perforants."
+					]
+				},
+				{
+					"name": "Trompette (3/jour)",
+					"entries": [
+						"Le hollyphant souffle de l'air par sa trompe, produisant un son de trompette qui peut être entendu jusqu'à 180 mètres. La trompette crée également un cône d'énergie de 9 mètres qui produit l'un des effets suivants, au choix du hollyphant :"
+					]
+				},
+				{
+					"name": "Trompette assourdissante",
+					"entries": [
+						"Chaque créature dans le cône doit effectuer un jet de sauvegarde de Constitution {@dc 14}. En cas d'échec, une créature subit 17 ({@damage 5d6}) dégâts de tonnerre et est {@condition deafened} pendant 1 minute. En cas de réussite, une créature subit la moitié de ces dégâts seulement et n'est pas {@condition deafened}. Les objets non magiques dans le cône qui ne sont ni tenus ni portés subissent 35 ({@damage 10d6}) dégâts de tonnerre."
+					]
+				},
+				{
+					"name": "Trompette scintillante",
+					"entries": [
+						"Les créatures dans le cône doivent effectuer un jet de sauvegarde de Constitution {@dc 14}, subissant 22 ({@damage 4d8 + 4}) dégâts radiants en cas d'échec, ou la moitié de ces dégâts seulement en cas de réussite. Les créatures mauvaises subissent un désavantage au jet de sauvegarde. Les créatures bonnes dans le cône ne subissent aucun dégât."
+					]
+				}
+			],
+			"traitTags": [
+				"Armes magiques"
+			],
+			"languageTags": [
+				"CE",
+				"TP"
+			],
+			"damageTags": [
+				"P",
+				"R",
+				"T"
+			],
+			"spellcastingTags": [
+				"I"
+			],
+			"miscTags": [
+				"AOE",
+				"MW"
+			],
+			"conditionInflict": [
+				"deafened"
+			],
+			"conditionInflictSpell": [
+				"incapacitated"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
 			"isNpc": true,
 			"isNamedCreature": true,
 			"source": "BGDIA",
 			"page": 5,
-			"_copy": {
-				"name": "Hollyphant",
-				"source": "BGDIA",
-				"_mod": {
-					"*": {
-						"mode": "replaceTxt",
-						"replace": "the hollyphant",
-						"with": "Lulu",
-						"flags": "i"
-					}
-				}
-			},
-			"hasToken": true,
-			"hasFluffImages": true
+			"name": "Lulu"
 		},
 		{
-			"name": "Mad Maggie",
+			"srd": true,
+			"referenceSources": [
+				"BGDIA",
+				"BMT",
+				"CM",
+				"CoA",
+				"CoS",
+				"EGW",
+				"GoS",
+				"IDRotF",
+				"JttRC",
+				"KftGV",
+				"MOT",
+				"SatO",
+				"TCE",
+				"ToA",
+				"ToFW",
+				"WDMM"
+			],
+			"reprintedAs": [
+				"Night Hag|XMM"
+			],
+			"size": [
+				"M"
+			],
+			"type": "fiend",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 17,
+					"from": [
+						"armure naturelle"
+					]
+				}
+			],
+			"hp": {
+				"average": 112,
+				"formula": "15d8 + 45"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 18,
+			"dex": 15,
+			"con": 16,
+			"int": 16,
+			"wis": 14,
+			"cha": 16,
+			"skill": {
+				"deception": "+6",
+				"insight": "+5",
+				"perception": "+5",
+				"stealth": "+5"
+			},
+			"senses": [
+				"darkvision 120 ft."
+			],
+			"passive": 16,
+			"resist": [
+				"cold",
+				"fire",
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "des attaques non magiques qui ne sont pas argentées",
+					"cond": true
+				}
+			],
+			"conditionImmune": [
+				"charmed"
+			],
+			"languages": [
+				"abyssal",
+				"commun",
+				"infernal",
+				"primordial"
+			],
+			"cr": {
+				"cr": "5",
+				"coven": "7"
+			},
+			"spellcasting": [
+				{
+					"name": "Incantation innée",
+					"type": "spellcasting",
+					"headerEntries": [
+						"La capacité d'incantation innée de Maggie est le Charisme (jet de sauvegarde contre les sorts {@dc 14}, {@hit 6} pour toucher avec les attaques de sorts). Elle peut lancer innément les sorts suivants, sans composante matérielle :"
+					],
+					"will": [
+						"{@spell detect magic}",
+						"{@spell magic missile}"
+					],
+					"daily": {
+						"2e": [
+							"{@spell plane shift} (sur elle-même uniquement)",
+							"{@spell ray of enfeeblement}",
+							"{@spell sleep}"
+						]
+					},
+					"ability": "cha"
+				}
+			],
+			"trait": [
+				{
+					"name": "Résistance à la magie",
+					"entries": [
+						"Maggie est avantagée sur ses jets de sauvegarde contre les sorts et les autres effets magiques."
+					]
+				},
+				{
+					"name": "Objets de sorcière nocturne",
+					"entries": [
+						"Une sorcière nocturne transporte deux objets magiques très rares qu'elle doit fabriquer elle-même. Si l'un de ces objets est perdu, la sorcière nocturne fera tout son possible pour le récupérer, car fabriquer un nouvel outil demande du temps et des efforts.",
+						{
+							"type": "entries",
+							"name": "Pierre de cœur",
+							"entries": [
+								"Cette gemme noire lustrée permet à une sorcière nocturne de devenir éthérée tant qu'elle la possède. Le toucher d'une {@item heartstone|MM} guérit également n'importe quelle maladie. Fabriquer une pierre de cœur prend 30 jours."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Sac d'âmes",
+							"entries": [
+								"Quand un humanoïde mauvais meurt des suites de la Hantise cauchemardesque d'une sorcière nocturne, Maggie attrape son âme dans ce sac noir fait de chair cousue. Un {@item soul bag|MM} ne peut contenir qu'une seule âme mauvaise à la fois, et seule la sorcière nocturne qui a fabriqué le sac peut attraper une âme avec. Fabriquer un sac d'âmes prend 7 jours et un sacrifice humanoïde (dont la chair sert à fabriquer le sac)."
+							]
+						}
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Griffes (forme de sorcière uniquement)",
+					"entries": [
+						"{@atk mw} {@hit 7} pour toucher, allonge 1,50 m, une cible. {@h}13 ({@damage 2d8 + 4}) dégâts tranchants."
+					]
+				},
+				{
+					"name": "Métamorphose",
+					"entries": [
+						"Maggie se métamorphose magiquement en un humanoïde femelle de taille P ou M, ou reprend sa véritable forme. Ses statistiques sont les mêmes sous chaque forme. Tout équipement qu'elle porte ou transporte n'est pas transformé. Elle reprend sa véritable forme si elle meurt."
+					]
+				},
+				{
+					"name": "Passage éthéré",
+					"entries": [
+						"Maggie entre magiquement dans le Plan éthéré depuis le Plan matériel, ou inversement. Pour ce faire, Maggie doit posséder une pierre de cœur."
+					]
+				},
+				{
+					"name": "Hantise cauchemardesque (1/jour)",
+					"entries": [
+						"Tandis qu'elle se trouve sur le Plan éthéré, Maggie touche magiquement un humanoïde endormi sur le Plan matériel. Un sort de {@spell protection from evil and good} lancé sur la cible empêche ce contact, tout comme un cercle magique. Tant que le contact persiste, la cible a des visions effroyables. Si ces visions durent au moins 1 heure, la cible ne tire aucun bénéfice de son repos, et son maximum de points de vie est réduit de 5 ({@dice 1d10}). Si cet effet réduit le maximum de points de vie de la cible à 0, la cible meurt, et si elle était mauvaise, son âme est piégée dans le sac d'âmes de Maggie. La réduction du maximum de points de vie de la cible persiste jusqu'à ce qu'elle soit supprimée par un sort de {@spell greater restoration} ou une magie similaire."
+					]
+				}
+			],
+			"legendaryGroup": {
+				"name": "Night Hag",
+				"source": "MM"
+			},
+			"variant": [
+				{
+					"type": "inset",
+					"name": "Cercles de sorcières",
+					"entries": [
+						"Quand des sorcières doivent coopérer, elles forment des cercles, en dépit de leur nature égoïste. Un cercle se compose de sorcières de n'importe quel type, toutes égales au sein du groupe. Cependant, chaque Maggie continue de désirer davantage de pouvoir personnel.",
+						"Un cercle se compose de trois sorcières afin que tout différend entre deux sorcières puisse être tranché par la troisième. Si plus de trois sorcières se réunissent un jour, comme cela peut arriver si deux cercles entrent en conflit, le résultat est généralement le chaos.",
+						{
+							"type": "spellcasting",
+							"name": "Incantation partagée (cercle uniquement)",
+							"headerEntries": [
+								"Tant que les trois membres d'un cercle de sorcières se trouvent à 9 mètres ou moins les unes des autres, chacune peut lancer les sorts suivants de la liste du magicien, mais elles doivent se partager les emplacements de sort :"
+							],
+							"spells": {
+								"1": {
+									"slots": 4,
+									"spells": [
+										"{@spell identify}",
+										"{@spell ray of sickness}"
+									]
+								},
+								"2": {
+									"slots": 3,
+									"spells": [
+										"{@spell hold person}",
+										"{@spell locate object}"
+									]
+								},
+								"3": {
+									"slots": 3,
+									"spells": [
+										"{@spell bestow curse}",
+										"{@spell counterspell}",
+										"{@spell lightning bolt}"
+									]
+								},
+								"4": {
+									"slots": 3,
+									"spells": [
+										"{@spell phantasmal killer}",
+										"{@spell polymorph}"
+									]
+								},
+								"5": {
+									"slots": 2,
+									"spells": [
+										"{@spell contact other plane}",
+										"{@spell scrying}"
+									]
+								},
+								"6": {
+									"slots": 1,
+									"spells": [
+										"{@spell eyebite}"
+									]
+								}
+							},
+							"footerEntries": [
+								"Pour lancer ces sorts, chaque sorcière est une lanceuse de sorts de niveau 12 qui utilise l'Intelligence comme capacité d'incantation. Le DD de sauvegarde contre les sorts est égal à 12 + le modificateur d'Intelligence de Maggie, et le bonus d'attaque des sorts est égal à 4 + le modificateur d'Intelligence de Maggie."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Œil de sorcière",
+							"entries": [
+								"Un cercle de sorcières peut fabriquer un objet magique appelé œil de sorcière, réalisé à partir d'un véritable œil recouvert de vernis et souvent fixé à un pendentif ou à un autre objet portable. L'œil de Maggie est généralement confié à un serviteur pour qu'il le garde et le transporte. Une sorcière du cercle peut utiliser une action pour voir ce que voit l'œil de Maggie si celui-ci se trouve sur le même plan d'existence. Un œil de sorcière possède une CA de 10, 1 point de vie et une vision dans le noir d'un rayon de 18 mètres. S'il est détruit, chaque membre du cercle subit {@damage 3d10} dégâts psychiques et est {@condition blinded} pendant 24 heures.",
+								"Un cercle de sorcières ne peut posséder qu'un seul œil de sorcière à la fois, et en créer un nouveau exige que les trois membres du cercle accomplissent un rituel. Le rituel prend 1 heure, et Maggie ne peut pas l'accomplir tant qu'elle est {@condition blinded}. Pendant le rituel, si les Maggie entreprennent une autre action que l'accomplissement du rituel, elles doivent recommencer."
+							]
+						}
+					]
+				}
+			],
+			"soundClip": {
+				"type": "internal",
+				"path": "bestiary/night-hag.opus"
+			},
+			"traitTags": [
+				"Résistance à la magie"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Métamorphe"
+			],
+			"languageTags": [
+				"AB",
+				"C",
+				"I",
+				"P"
+			],
+			"damageTags": [
+				"S"
+			],
+			"damageTagsSpell": [
+				"O"
+			],
+			"spellcastingTags": [
+				"CW",
+				"I",
+				"S"
+			],
+			"miscTags": [
+				"HPR",
+				"MW"
+			],
+			"conditionInflictSpell": [
+				"frightened",
+				"paralyzed",
+				"poisoned",
+				"unconscious"
+			],
+			"savingThrowForcedLegendary": [
+				"charisma",
+				"constitution"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"_versions": [
+				{
+					"name": "Night Hag (Coven)",
+					"source": "MM",
+					"_mod": {
+						"spellcasting": {
+							"mode": "appendArr",
+							"items": {
+								"name": "Incantation partagée (cercle uniquement)",
+								"headerEntries": [
+									"Tant que les trois membres d'un cercle de sorcières se trouvent à 9 mètres ou moins les unes des autres, chacune peut lancer les sorts suivants de la liste du magicien, mais elles doivent se partager les emplacements de sort :"
+								],
+								"spells": {
+									"1": {
+										"slots": 4,
+										"spells": [
+											"{@spell identify}",
+											"{@spell ray of sickness}"
+										]
+									},
+									"2": {
+										"slots": 3,
+										"spells": [
+											"{@spell hold person}",
+											"{@spell locate object}"
+										]
+									},
+									"3": {
+										"slots": 3,
+										"spells": [
+											"{@spell bestow curse}",
+											"{@spell counterspell}",
+											"{@spell lightning bolt}"
+										]
+									},
+									"4": {
+										"slots": 3,
+										"spells": [
+											"{@spell phantasmal killer}",
+											"{@spell polymorph}"
+										]
+									},
+									"5": {
+										"slots": 2,
+										"spells": [
+											"{@spell contact other plane}",
+											"{@spell scrying}"
+										]
+									},
+									"6": {
+										"slots": 1,
+										"spells": [
+											"{@spell eyebite}"
+										]
+									}
+								},
+								"ability": "int",
+								"footerEntries": [
+									"Pour lancer ces sorts, chaque sorcière est une lanceuse de sorts de niveau 12 qui utilise l'Intelligence comme capacité d'incantation. Le DD de sauvegarde contre les sorts est {@dc 15}, et le bonus d'attaque des sorts est {@hit 7}."
+								]
+							}
+						}
+					},
+					"cr": "7",
+					"variant": null
+				}
+			],
 			"isNpc": true,
 			"isNamedCreature": true,
 			"source": "BGDIA",
 			"page": 74,
-			"_copy": {
-				"name": "Night Hag",
-				"source": "MM",
-				"_mod": {
-					"*": {
-						"mode": "replaceTxt",
-						"replace": "the hag",
-						"with": "Maggie",
-						"flags": "i"
-					}
-				}
-			},
-			"hasToken": true,
-			"hasFluffImages": true
+			"name": "Mad Maggie"
 		},
 		{
 			"name": "Mahadi le rakshasa",
@@ -3430,34 +5571,64 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Scolopendre nécrotique",
-			"source": "BGDIA",
-			"page": 119,
-			"_copy": {
-				"name": "Remorhaz",
-				"source": "MM",
-				"_mod": {
-					"*": {
-						"mode": "replaceTxt",
-						"replace": "remorhaz",
-						"with": "centipede"
-					},
-					"action": {
-						"mode": "replaceArr",
-						"replace": "Bite",
-						"items": {
-							"name": "Bite",
-							"entries": [
-								"{@atk mw} {@hit 11} to hit, reach 10 ft., one target. {@h}40 ({@damage 6d10 + 7}) piercing damage plus 10 ({@damage 3d6}) necrotic damage. If the target is a creature, it is {@condition grappled} (escape {@dc 17}). Until this grapple ends, the target is {@condition restrained}, and the centipede can't bite another target."
-							]
-						}
-					}
+			"srd": true,
+			"referenceSources": [
+				"BGDIA",
+				"BMT",
+				"CM",
+				"CoA",
+				"EGW",
+				"IDRotF",
+				"IMR",
+				"LoX",
+				"PaBTSO",
+				"SKT",
+				"TftYP",
+				"TftYP-AtG",
+				"WDMM"
+			],
+			"reprintedAs": [
+				"centipede|XMM"
+			],
+			"size": [
+				"H"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 17,
+					"from": [
+						"armure naturelle"
+					]
 				}
+			],
+			"hp": {
+				"average": 195,
+				"formula": "17d12 + 85"
 			},
+			"speed": {
+				"walk": 30,
+				"burrow": 20
+			},
+			"str": 24,
+			"dex": 13,
+			"con": 21,
+			"int": 4,
+			"wis": 10,
+			"cha": 5,
+			"senses": [
+				"darkvision 60 ft.",
+				"tremorsense 60 ft."
+			],
+			"passive": 10,
 			"immune": [
 				"necrotic",
 				"fire"
 			],
+			"cr": "11",
 			"trait": [
 				{
 					"name": "Corps nécrotique",
@@ -3466,12 +5637,58 @@
 					]
 				}
 			],
+			"action": [
+				{
+					"name": "Morsure",
+					"entries": [
+						"{@atk mw} {@hit 11} pour toucher, allonge 3 m, une cible. {@h}40 ({@damage 6d10 + 7}) dégâts perforants plus 10 ({@damage 3d6}) dégâts nécrotiques. Si la cible est une créature, elle est {@condition grappled} (évasion {@dc 17}). Tant que cette prise perdure, la cible est {@condition restrained}, et le scolopendre ne peut pas mordre une autre cible."
+					]
+				},
+				{
+					"name": "Engloutir",
+					"entries": [
+						"Le scolopendre effectue une attaque de morsure contre une créature de taille M ou plus petite qu'il agrippe. Si l'attaque touche, la créature subit les dégâts de la morsure et est engloutie, et la prise prend fin. Tant qu'elle est engloutie, la créature est {@condition blinded} et {@condition restrained}, elle bénéficie d'un {@quickref Cover||3||total cover} contre les attaques et autres effets extérieurs au scolopendre, et elle subit 21 ({@damage 6d6}) dégâts d'acide au début de chacun des tours du scolopendre.",
+						"Si le scolopendre subit 30 dégâts ou plus en un seul tour de la part d'une créature se trouvant à l'intérieur de lui, il doit réussir un jet de sauvegarde de Constitution {@dc 15} à la fin de ce tour, sinon il régurgite toutes les créatures englouties, qui tombent {@condition prone} dans un espace situé à 3 mètres ou moins du scolopendre. Si le scolopendre meurt, une créature engloutie n'est plus {@condition restrained} par lui et peut s'échapper du cadavre en utilisant 4,50 mètres de déplacement, ressortant {@condition prone}."
+					]
+				}
+			],
+			"environment": [
+				"arctic"
+			],
+			"soundClip": {
+				"type": "internal",
+				"path": "bestiary/centipede.opus"
+			},
+			"senseTags": [
+				"D",
+				"T"
+			],
+			"actionTags": [
+				"Engloutir"
+			],
 			"damageTags": [
 				"A",
 				"N",
 				"P"
 			],
-			"hasToken": true
+			"miscTags": [
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"blinded",
+				"grappled",
+				"restrained"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"source": "BGDIA",
+			"page": 119,
+			"name": "Scolopendre nécrotique"
 		},
 		{
 			"name": "Lame nocturne",
@@ -3673,67 +5890,439 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Paon",
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"BGDIA",
+				"BMT",
+				"CM",
+				"RoT",
+				"ToA",
+				"WBtW"
+			],
+			"reprintedAs": [
+				"peacock|XMM"
+			],
+			"size": [
+				"M"
+			],
+			"type": "beast",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				10
+			],
+			"hp": {
+				"average": 5,
+				"formula": "1d8 + 1"
+			},
+			"speed": {
+				"walk": 10,
+				"fly": 50
+			},
+			"str": 7,
+			"dex": 10,
+			"con": 13,
+			"int": 2,
+			"wis": 12,
+			"cha": 4,
+			"skill": {
+				"perception": "+3"
+			},
+			"passive": 13,
+			"cr": "0",
+			"trait": [
+				{
+					"name": "Vue et odorat aiguisés",
+					"entries": [
+						"Le paon est avantagé sur les jets de Sagesse ({@skill Perception}) qui font appel à la vue ou à l'odorat."
+					]
+				},
+				{
+					"name": "Tactique de meute",
+					"entries": [
+						"Le paon est avantagé sur son jet d'attaque contre une créature si au moins un des alliés du paon se trouve à 1,50 mètre ou moins de la créature et que cet allié n'est pas {@condition incapacitated}."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Bec",
+					"entries": [
+						"{@atk mw} {@hit 2} pour toucher, allonge 1,50 m, une cible. {@h}2 ({@damage 1d4}) dégâts perforants."
+					]
+				}
+			],
+			"environment": [
+				"grassland",
+				"hill",
+				"desert"
+			],
+			"familiar": true,
+			"soundClip": {
+				"type": "internal",
+				"path": "bestiary/peacock.opus"
+			},
+			"traitTags": [
+				"Keen Senses",
+				"Tactique de meute"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
 			"source": "BGDIA",
 			"page": 195,
-			"_copy": {
-				"name": "Vulture",
-				"source": "MM",
-				"_mod": {
-					"*": {
-						"mode": "replaceTxt",
-						"replace": "vulture",
-						"with": "peacock"
-					}
-				}
-			},
-			"hasToken": true
+			"name": "Paon"
 		},
 		{
-			"name": "Princeps Kovik",
+			"srd": true,
+			"referenceSources": [
+				"BGDIA",
+				"BMT",
+				"CM",
+				"CoA",
+				"PaBTSO",
+				"WDH"
+			],
+			"reprintedAs": [
+				"Chain Devil|XMM"
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "fiend",
+				"tags": [
+					"devil"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"armure naturelle"
+					]
+				}
+			],
+			"hp": {
+				"average": 85,
+				"formula": "10d8 + 40"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 18,
+			"dex": 15,
+			"con": 18,
+			"int": 11,
+			"wis": 12,
+			"cha": 14,
+			"save": {
+				"con": "+7",
+				"wis": "+4",
+				"cha": "+5"
+			},
+			"senses": [
+				"darkvision 120 ft."
+			],
+			"passive": 11,
+			"resist": [
+				"cold",
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "des attaques non magiques qui ne sont pas argentées",
+					"cond": true
+				}
+			],
+			"immune": [
+				"fire",
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"languages": [
+				"infernal",
+				"télépathie 120 ft."
+			],
+			"cr": "8",
+			"trait": [
+				{
+					"name": "Vision du diable",
+					"entries": [
+						"Les ténèbres magiques n'entravent pas la vision dans le noir de Kovik."
+					]
+				},
+				{
+					"name": "Résistance à la magie",
+					"entries": [
+						"Kovik est avantagé sur ses jets de sauvegarde contre les sorts et les autres effets magiques."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Attaques multiples",
+					"entries": [
+						"Kovik effectue deux attaques avec ses chaînes."
+					]
+				},
+				{
+					"name": "Chaîne",
+					"entries": [
+						"{@atk mw} {@hit 8} pour toucher, allonge 3 m, une cible. {@h}11 ({@damage 2d6 + 4}) dégâts tranchants. La cible est {@condition grappled} (évasion {@dc 14}) si Kovik n'agrippe pas déjà une créature. Tant que cette prise perdure, la cible est {@condition restrained} et subit 7 ({@damage 2d6}) dégâts perforants au début de chacun de ses tours."
+					]
+				},
+				{
+					"name": "Chaînes animées (se recharge après un repos court ou long)",
+					"entries": [
+						"Jusqu'à quatre chaînes que Kovik peut voir à 18 mètres ou moins de lui se couvrent magiquement de barbes acérées et s'animent sous son contrôle, à condition que ces chaînes ne soient ni portées ni transportées.",
+						"Chaque chaîne animée est un objet avec une CA de 20, 20 points de vie, une résistance aux dégâts perforants et une immunité aux dégâts psychiques et de tonnerre. Quand Kovik utilise Attaques multiples pendant son tour, il peut utiliser chaque chaîne animée pour effectuer une attaque de chaîne supplémentaire. Une chaîne animée peut agripper une créature en propre, mais ne peut pas effectuer d'attaques tout en agrippant. Une chaîne animée redevient inerte si elle est réduite à 0 point de vie ou si Kovik est {@condition incapacitated} ou meurt."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Masque inquiétant",
+					"entries": [
+						"Quand une créature que Kovik peut voir commence son tour à 9 mètres ou moins de lui, Kovik peut créer l'illusion qu'il ressemble à l'un des proches disparus ou ennemis jurés de la créature. Si la créature peut voir Kovik, elle doit réussir un jet de sauvegarde de Sagesse {@dc 14}, sinon elle est {@condition frightened} jusqu'à la fin de son tour."
+					]
+				}
+			],
+			"soundClip": {
+				"type": "internal",
+				"path": "bestiary/chain-devil.opus"
+			},
+			"traitTags": [
+				"Vision du diable",
+				"Résistance à la magie"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Attaques multiples"
+			],
+			"languageTags": [
+				"I",
+				"TP"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"frightened",
+				"grappled",
+				"restrained"
+			],
+			"savingThrowForced": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
 			"isNpc": true,
 			"isNamedCreature": true,
 			"source": "BGDIA",
 			"page": 91,
-			"_copy": {
-				"name": "Chain Devil",
-				"source": "MM",
-				"_mod": {
-					"*": {
-						"mode": "replaceTxt",
-						"replace": "the devil",
-						"with": "Kovik",
-						"flags": "i"
-					}
-				}
-			},
-			"hasToken": true,
-			"hasFluffImages": true
+			"name": "Princeps Kovik"
 		},
 		{
-			"name": "Raggadragga",
-			"isNpc": true,
-			"isNamedCreature": true,
-			"source": "BGDIA",
-			"page": 87,
-			"_copy": {
-				"name": "Wereboar",
-				"source": "MM",
-				"_mod": {
-					"*": {
-						"mode": "replaceTxt",
-						"replace": "the wereboar",
-						"with": "Raggadragga",
-						"flags": "i"
-					}
-				}
+			"group": [
+				"Lycanthropes"
+			],
+			"srd": true,
+			"referenceSources": [
+				"BGDIA",
+				"BMT",
+				"CM",
+				"DC",
+				"DIP",
+				"EGW",
+				"IMR",
+				"PotA",
+				"TCE",
+				"ToA"
+			],
+			"reprintedAs": [
+				"Wereboar|XMM"
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human",
+					"shapechanger"
+				]
 			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 10,
+					"condition": "sous forme humanoïde"
+				},
+				{
+					"ac": 11,
+					"from": [
+						"armure naturelle"
+					],
+					"condition": "sous forme de sanglier ou hybride"
+				}
+			],
 			"hp": {
 				"average": 120,
 				"formula": "12d8 + 24"
 			},
+			"speed": {
+				"walk": {
+					"number": 30,
+					"condition": "(40 ft. in boar form)"
+				}
+			},
+			"str": 17,
+			"dex": 10,
+			"con": 15,
+			"int": 10,
+			"wis": 11,
+			"cha": 8,
+			"skill": {
+				"perception": "+2"
+			},
+			"passive": 12,
+			"immune": [
+				{
+					"immune": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "des attaques non magiques qui ne sont pas argentées",
+					"cond": true
+				}
+			],
+			"languages": [
+				"commun (incapable de parler sous forme de sanglier)"
+			],
+			"cr": "4",
+			"trait": [
+				{
+					"name": "Métamorphe",
+					"entries": [
+						"Raggadragga peut utiliser son action pour se métamorphoser en un hybride sanglier-humanoïde ou en sanglier, ou reprendre sa véritable forme, qui est humanoïde. Ses statistiques, hormis sa CA, sont les mêmes sous chaque forme. Tout équipement qu'il porte ou transporte n'est pas transformé. Il reprend sa véritable forme s'il meurt."
+					]
+				},
+				{
+					"name": "Charge (sous forme de sanglier ou hybride uniquement)",
+					"entries": [
+						"Si Raggadragga se déplace en ligne droite sur au moins 4,50 mètres vers une cible et la touche ensuite avec ses défenses pendant le même tour, la cible subit 7 ({@damage 2d6}) dégâts tranchants supplémentaires. Si la cible est une créature, elle doit réussir un jet de sauvegarde de Force {@dc 13}, sinon elle est jetée {@condition prone}."
+					]
+				},
+				{
+					"name": "Acharnement (se recharge après un repos court ou long)",
+					"entries": [
+						"Si Raggadragga subit 14 dégâts ou moins qui devraient le réduire à 0 point de vie, il est réduit à 1 point de vie à la place."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Attaques multiples (sous forme humanoïde ou hybride uniquement)",
+					"entries": [
+						"Raggadragga effectue deux attaques, dont une seule au maximum avec ses défenses."
+					]
+				},
+				{
+					"name": "Masse d'armes (sous forme humanoïde ou hybride uniquement)",
+					"entries": [
+						"{@atk mw} {@hit 5} pour toucher, allonge 1,50 m, une cible. {@h}10 ({@damage 2d6 + 3}) dégâts contondants."
+					]
+				},
+				{
+					"name": "Défenses (sous forme de sanglier ou hybride uniquement)",
+					"entries": [
+						"{@atk mw} {@hit 5} pour toucher, allonge 1,50 m, une cible. {@h}10 ({@damage 2d6 + 3}) dégâts tranchants. Si la cible est un humanoïde, elle doit réussir un jet de sauvegarde de Constitution {@dc 12}, sinon elle est maudite par la {@variantrule Player Characters as Lycanthropes|MM|lycanthropie} du sanglier-garou."
+					]
+				}
+			],
+			"variant": [
+				{
+					"type": "variant",
+					"name": "Lycanthropes non humains",
+					"entries": [
+						"Les statistiques présentées dans cette section supposent une créature de base humaine. Vous pouvez toutefois utiliser ces statistiques pour représenter des lycanthropes non humains, en ajoutant de la vraisemblance en permettant à un lycanthrope non humain de conserver un ou plusieurs traits raciaux humanoïdes. Par exemple, une elfe louve-garou pourrait posséder le trait d'Héritage féerique."
+					]
+				}
+			],
+			"environment": [
+				"grassland",
+				"forest",
+				"hill"
+			],
+			"soundClip": {
+				"type": "internal",
+				"path": "bestiary/wereboar.opus"
+			},
+			"attachedItems": [
+				"maul|phb"
+			],
+			"traitTags": [
+				"Charge",
+				"Métamorphe"
+			],
+			"actionTags": [
+				"Attaques multiples"
+			],
+			"languageTags": [
+				"C",
+				"CS"
+			],
+			"damageTags": [
+				"B",
+				"S"
+			],
+			"miscTags": [
+				"CUR",
+				"MLW",
+				"MW"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"strength"
+			],
 			"hasToken": true,
-			"hasFluffImages": true
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "BGDIA",
+			"page": 87,
+			"name": "Raggadragga"
 		},
 		{
 			"name": "Faucheur de Bhaal",
@@ -3986,18 +6575,118 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Rats squelettiques",
-			"source": "BGDIA",
-			"page": 23,
-			"_copy": {
-				"name": "Swarm of Rats",
-				"source": "MM"
-			},
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"BGDIA",
+				"CM",
+				"CoS",
+				"GoS",
+				"HotDQ",
+				"TCE",
+				"TftYP",
+				"TftYP-THSoT",
+				"TftYP-TSC",
+				"WDH",
+				"WDMM"
+			],
+			"reprintedAs": [
+				"Swarm of Rats|XMM"
+			],
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "undead",
 				"swarmSize": "T"
 			},
-			"hasToken": true
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				10
+			],
+			"hp": {
+				"average": 24,
+				"formula": "7d8 - 7"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 9,
+			"dex": 11,
+			"con": 9,
+			"int": 2,
+			"wis": 10,
+			"cha": 3,
+			"senses": [
+				"darkvision 30 ft."
+			],
+			"passive": 10,
+			"resist": [
+				"bludgeoning",
+				"piercing",
+				"slashing"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened",
+				"grappled",
+				"paralyzed",
+				"petrified",
+				"prone",
+				"restrained",
+				"stunned"
+			],
+			"cr": "1/4",
+			"trait": [
+				{
+					"name": "Odorat aiguisé",
+					"entries": [
+						"L'essaim est avantagé sur les jets de Sagesse ({@skill Perception}) qui font appel à l'odorat."
+					]
+				},
+				{
+					"name": "Essaim",
+					"entries": [
+						"L'essaim peut occuper l'espace d'une autre créature et vice versa, et il peut se déplacer à travers n'importe quelle ouverture suffisamment grande pour laisser passer un rat de taille TP. L'essaim ne peut pas récupérer de points de vie ni gagner de points de vie temporaires."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Morsures",
+					"entries": [
+						"{@atk mw} {@hit 2} pour toucher, allonge 0 m, une cible dans l'espace de l'essaim. {@h}7 ({@damage 2d6}) dégâts perforants, ou 3 ({@damage 1d6}) dégâts perforants si l'essaim a la moitié de ses points de vie ou moins."
+					]
+				}
+			],
+			"environment": [
+				"swamp",
+				"urban"
+			],
+			"soundClip": {
+				"type": "internal",
+				"path": "bestiary/swarm-of-rats.opus"
+			},
+			"traitTags": [
+				"Keen Senses"
+			],
+			"senseTags": [
+				"D"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"source": "BGDIA",
+			"page": 23,
+			"name": "Rats squelettiques"
 		},
 		{
 			"name": "Fouetteur de crânes de Myrkul",
@@ -4298,40 +6987,96 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Sylvira Savikas",
-			"isNpc": true,
-			"isNamedCreature": true,
-			"source": "BGDIA",
-			"page": 46,
-			"_copy": {
-				"name": "Archmage",
-				"source": "MM",
-				"_templates": [
-					{
-						"name": "Tiefling",
-						"source": "PHB"
-					}
-				],
-				"_mod": {
-					"*": {
-						"mode": "replaceTxt",
-						"replace": "the archmage",
-						"with": "Sylvira",
-						"flags": "i"
-					},
-					"_": [
-						{
-							"mode": "addSkills",
-							"skills": {
-								"investigation": 2
-							}
-						}
-					]
-				}
+			"srd": true,
+			"referenceSources": [
+				"BGDIA",
+				"BMT",
+				"CM",
+				"CoA",
+				"CoS",
+				"DSotDQ",
+				"EGW",
+				"ERLW",
+				"GoS",
+				"IDRotF",
+				"IMR",
+				"JttRC",
+				"KftGV",
+				"LoX",
+				"MOT",
+				"NRH-TLT",
+				"OotA",
+				"OoW",
+				"QftIS",
+				"SatO",
+				"SKT",
+				"ToA",
+				"ToFW",
+				"VEoR",
+				"WDH",
+				"WDMM"
+			],
+			"reprintedAs": [
+				"Archmage|XMM"
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"any race"
+				]
 			},
 			"alignment": [
 				"L",
 				"N"
+			],
+			"ac": [
+				12,
+				{
+					"ac": 15,
+					"condition": "avec {@spell mage armor}",
+					"braces": true
+				}
+			],
+			"hp": {
+				"average": 99,
+				"formula": "18d8 + 18"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 14,
+			"con": 12,
+			"int": 20,
+			"wis": 15,
+			"cha": 16,
+			"save": {
+				"int": "+9",
+				"wis": "+6"
+			},
+			"skill": {
+				"arcana": "+13",
+				"history": "+13",
+				"investigation": 2
+			},
+			"passive": 12,
+			"resist": [
+				{
+					"special": "dégâts des sorts"
+				},
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "(grâce au sort peau de pierre)",
+					"cond": true,
+					"preNote": "non magiques"
+				}
 			],
 			"languages": [
 				"abyssal",
@@ -4341,6 +7086,141 @@
 				"infernal",
 				"primordial"
 			],
+			"cr": "12",
+			"spellcasting": [
+				{
+					"name": "Incantation",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Sylvira est une lanceuse de sorts de niveau 18. Sa capacité d'incantation est l'Intelligence (jet de sauvegarde contre les sorts {@dc 17}, {@hit 9} pour toucher avec les attaques de sorts). Sylvira peut lancer {@spell disguise self} et {@spell invisibility} à volonté et a préparé les sorts de magicien suivants :"
+					],
+					"will": [
+						"{@spell disguise self}",
+						"{@spell invisibility}"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell fire bolt}",
+								"{@spell light}",
+								"{@spell mage hand}",
+								"{@spell prestidigitation}",
+								"{@spell shocking grasp}"
+							]
+						},
+						"1": {
+							"slots": 4,
+							"spells": [
+								"{@spell detect magic}",
+								"{@spell identify}",
+								"{@spell mage armor}*",
+								"{@spell magic missile}"
+							]
+						},
+						"2": {
+							"slots": 3,
+							"spells": [
+								"{@spell detect thoughts}",
+								"{@spell mirror image}",
+								"{@spell misty step}"
+							]
+						},
+						"3": {
+							"slots": 3,
+							"spells": [
+								"{@spell counterspell}",
+								"{@spell fly}",
+								"{@spell lightning bolt}"
+							]
+						},
+						"4": {
+							"slots": 3,
+							"spells": [
+								"{@spell banishment}",
+								"{@spell fire shield}",
+								"{@spell stoneskin}*"
+							]
+						},
+						"5": {
+							"slots": 3,
+							"spells": [
+								"{@spell cone of cold}",
+								"{@spell scrying}",
+								"{@spell wall of force}"
+							]
+						},
+						"6": {
+							"slots": 1,
+							"spells": [
+								"{@spell globe of invulnerability}"
+							]
+						},
+						"7": {
+							"slots": 1,
+							"spells": [
+								"{@spell teleport}"
+							]
+						},
+						"8": {
+							"slots": 1,
+							"spells": [
+								"{@spell mind blank}*"
+							]
+						},
+						"9": {
+							"slots": 1,
+							"spells": [
+								"{@spell time stop}"
+							]
+						}
+					},
+					"footerEntries": [
+						"*Sylvira lance ces sorts sur elle-même avant le combat."
+					],
+					"ability": "int",
+					"hidden": [
+						"will"
+					]
+				}
+			],
+			"trait": [
+				{
+					"name": "Résistance à la magie",
+					"entries": [
+						"Sylvira est avantagée sur ses jets de sauvegarde contre les sorts et les autres effets magiques."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Dague",
+					"entries": [
+						"{@atk mw,rw} {@hit 6} pour toucher, allonge 1,50 m ou portée 6/18 m, une cible. {@h}4 ({@damage 1d4 + 2}) dégâts perforants."
+					]
+				}
+			],
+			"variant": [
+				{
+					"type": "variant",
+					"name": "Familiers",
+					"entries": [
+						"Tout lanceur de sorts capable de lancer le sort {@spell find familiar} (comme un archimage ou un mage) a probablement un familier. Le familier peut être l'une des créatures décrites dans le sort ou un autre monstre de taille TP, comme une {@creature crawling claw}, un {@creature imp}, un {@creature pseudodragon} ou un {@creature quasit}."
+					]
+				}
+			],
+			"environment": [
+				"urban"
+			],
+			"soundClip": {
+				"type": "internal",
+				"path": "bestiary/archmage.opus"
+			},
+			"attachedItems": [
+				"dagger|phb"
+			],
+			"traitTags": [
+				"Résistance à la magie"
+			],
 			"languageTags": [
 				"AB",
 				"C",
@@ -4349,10 +7229,57 @@
 				"I",
 				"P"
 			],
+			"damageTags": [
+				"P"
+			],
+			"damageTagsSpell": [
+				"C",
+				"F",
+				"L",
+				"O"
+			],
 			"spellcastingTags": [
 				"CW"
 			],
-			"hasToken": true
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"_versions": [
+				{
+					"name": "Archmage (Familiar)",
+					"source": "MM",
+					"_mod": {
+						"_": {
+							"mode": "addSpells",
+							"spells": {
+								"1": {
+									"spells": [
+										"{@spell find familiar} (l'une des créatures décrites dans le sort ou un autre monstre de taille TP, comme une {@creature crawling claw}, un {@creature imp}, un {@creature pseudodragon} ou un {@creature quasit})"
+									]
+								}
+							}
+						}
+					},
+					"variant": null
+				}
+			],
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "BGDIA",
+			"page": 46,
+			"name": "Sylvira Savikas"
 		},
 		{
 			"name": "Thavius Kreeg",
@@ -4628,7 +7555,7 @@
 				{
 					"name": "Équipement spécial",
 					"entries": [
-						"Torogar porte des {@item gauntlets of flaming fury|BGDIA} et une {@item belt of fire giant strength}. Sans la ceinture, sa Force est de 21. Il transporte également une {@item soul coin|BGDIA}."
+						"Torogar porte des {@item Gantelets de fureur flamboyante|BGDIA} et une {@item belt of fire giant strength}. Sans la ceinture, sa Force est de 21. Il transporte également une {@item Pièce d'âme|BGDIA}."
 					]
 				}
 			],
@@ -4678,34 +7605,38 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Traxigor",
-			"isNpc": true,
-			"isNamedCreature": true,
-			"source": "BGDIA",
-			"page": 50,
-			"_copy": {
-				"name": "Archmage",
-				"source": "MM",
-				"_mod": {
-					"*": {
-						"mode": "replaceTxt",
-						"replace": "the archmage",
-						"with": "Traxigor",
-						"flags": "i"
-					},
-					"_": {
-						"mode": "replaceSpells",
-						"spells": {
-							"7": [
-								{
-									"replace": "{@spell teleport}",
-									"with": "{@spell plane shift}"
-								}
-							]
-						}
-					}
-				}
-			},
+			"srd": true,
+			"referenceSources": [
+				"BGDIA",
+				"BMT",
+				"CM",
+				"CoA",
+				"CoS",
+				"DSotDQ",
+				"EGW",
+				"ERLW",
+				"GoS",
+				"IDRotF",
+				"IMR",
+				"JttRC",
+				"KftGV",
+				"LoX",
+				"MOT",
+				"NRH-TLT",
+				"OotA",
+				"OoW",
+				"QftIS",
+				"SatO",
+				"SKT",
+				"ToA",
+				"ToFW",
+				"VEoR",
+				"WDH",
+				"WDMM"
+			],
+			"reprintedAs": [
+				"Archmage|XMM"
+			],
 			"size": [
 				"T"
 			],
@@ -4714,7 +7645,51 @@
 				"C",
 				"G"
 			],
+			"ac": [
+				12,
+				{
+					"ac": 15,
+					"condition": "avec {@spell mage armor}",
+					"braces": true
+				}
+			],
+			"hp": {
+				"average": 99,
+				"formula": "18d8 + 18"
+			},
+			"speed": {
+				"walk": 30
+			},
 			"str": 3,
+			"dex": 14,
+			"con": 12,
+			"int": 20,
+			"wis": 15,
+			"cha": 16,
+			"save": {
+				"int": "+9",
+				"wis": "+6"
+			},
+			"skill": {
+				"arcana": "+13",
+				"history": "+13"
+			},
+			"passive": 12,
+			"resist": [
+				{
+					"special": "dégâts des sorts"
+				},
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "(grâce au sort peau de pierre)",
+					"cond": true,
+					"preNote": "non magiques"
+				}
+			],
 			"languages": [
 				"commun",
 				"draconique",
@@ -4722,6 +7697,141 @@
 				"gnome",
 				"halfelin",
 				"troglodyte"
+			],
+			"cr": "12",
+			"spellcasting": [
+				{
+					"name": "Incantation",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Traxigor est un lanceur de sorts de niveau 18. Sa capacité d'incantation est l'Intelligence (jet de sauvegarde contre les sorts {@dc 17}, {@hit 9} pour toucher avec les attaques de sorts). Traxigor peut lancer {@spell disguise self} et {@spell invisibility} à volonté et a préparé les sorts de magicien suivants :"
+					],
+					"will": [
+						"{@spell disguise self}",
+						"{@spell invisibility}"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell fire bolt}",
+								"{@spell light}",
+								"{@spell mage hand}",
+								"{@spell prestidigitation}",
+								"{@spell shocking grasp}"
+							]
+						},
+						"1": {
+							"slots": 4,
+							"spells": [
+								"{@spell detect magic}",
+								"{@spell identify}",
+								"{@spell mage armor}*",
+								"{@spell magic missile}"
+							]
+						},
+						"2": {
+							"slots": 3,
+							"spells": [
+								"{@spell detect thoughts}",
+								"{@spell mirror image}",
+								"{@spell misty step}"
+							]
+						},
+						"3": {
+							"slots": 3,
+							"spells": [
+								"{@spell counterspell}",
+								"{@spell fly}",
+								"{@spell lightning bolt}"
+							]
+						},
+						"4": {
+							"slots": 3,
+							"spells": [
+								"{@spell banishment}",
+								"{@spell fire shield}",
+								"{@spell stoneskin}*"
+							]
+						},
+						"5": {
+							"slots": 3,
+							"spells": [
+								"{@spell cone of cold}",
+								"{@spell scrying}",
+								"{@spell wall of force}"
+							]
+						},
+						"6": {
+							"slots": 1,
+							"spells": [
+								"{@spell globe of invulnerability}"
+							]
+						},
+						"7": {
+							"slots": 1,
+							"spells": [
+								"{@spell plane shift}"
+							]
+						},
+						"8": {
+							"slots": 1,
+							"spells": [
+								"{@spell mind blank}*"
+							]
+						},
+						"9": {
+							"slots": 1,
+							"spells": [
+								"{@spell time stop}"
+							]
+						}
+					},
+					"footerEntries": [
+						"*Traxigor lance ces sorts sur lui-même avant le combat."
+					],
+					"ability": "int",
+					"hidden": [
+						"will"
+					]
+				}
+			],
+			"trait": [
+				{
+					"name": "Résistance à la magie",
+					"entries": [
+						"Traxigor est avantagé sur ses jets de sauvegarde contre les sorts et les autres effets magiques."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Dague",
+					"entries": [
+						"{@atk mw,rw} {@hit 6} pour toucher, allonge 1,50 m ou portée 6/18 m, une cible. {@h}4 ({@damage 1d4 + 2}) dégâts perforants."
+					]
+				}
+			],
+			"variant": [
+				{
+					"type": "variant",
+					"name": "Familiers",
+					"entries": [
+						"Tout lanceur de sorts capable de lancer le sort {@spell find familiar} (comme un archimage ou un mage) a probablement un familier. Le familier peut être l'une des créatures décrites dans le sort ou un autre monstre de taille TP, comme une {@creature crawling claw}, un {@creature imp}, un {@creature pseudodragon} ou un {@creature quasit}."
+					]
+				}
+			],
+			"environment": [
+				"urban"
+			],
+			"soundClip": {
+				"type": "internal",
+				"path": "bestiary/archmage.opus"
+			},
+			"attachedItems": [
+				"dagger|phb"
+			],
+			"traitTags": [
+				"Résistance à la magie"
 			],
 			"languageTags": [
 				"C",
@@ -4731,22 +7841,163 @@
 				"H",
 				"OTH"
 			],
-			"hasToken": true
+			"damageTags": [
+				"P"
+			],
+			"damageTagsSpell": [
+				"C",
+				"F",
+				"L",
+				"O"
+			],
+			"spellcastingTags": [
+				"CW"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"_versions": [
+				{
+					"name": "Archmage (Familiar)",
+					"source": "MM",
+					"_mod": {
+						"_": {
+							"mode": "addSpells",
+							"spells": {
+								"1": {
+									"spells": [
+										"{@spell find familiar} (l'une des créatures décrites dans le sort ou un autre monstre de taille TP, comme une {@creature crawling claw}, un {@creature imp}, un {@creature pseudodragon} ou un {@creature quasit})"
+									]
+								}
+							}
+						}
+					},
+					"variant": null
+				}
+			],
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "BGDIA",
+			"page": 50,
+			"name": "Traxigor"
 		},
 		{
-			"name": "Tressym",
-			"source": "BGDIA",
-			"page": 241,
 			"referenceSources": [
 				"IMR",
 				"SKT"
 			],
-			"_copy": {
-				"name": "Tressym",
-				"source": "SKT"
+			"size": [
+				"T"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				12
+			],
+			"hp": {
+				"average": 5,
+				"formula": "2d4"
 			},
+			"speed": {
+				"walk": 40,
+				"climb": 30,
+				"fly": 40
+			},
+			"str": 3,
+			"dex": 15,
+			"con": 10,
+			"int": 11,
+			"wis": 12,
+			"cha": 12,
+			"skill": {
+				"perception": "+5",
+				"stealth": "+4"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 15,
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"languages": [
+				"comprend le commun mais ne peut pas parler"
+			],
+			"cr": "0",
+			"trait": [
+				{
+					"name": "Détection de l'invisibilité",
+					"entries": [
+						"À 18 mètres ou moins du tressym, l'invisibilité magique ne permet de rien dissimuler à sa vue."
+					]
+				},
+				{
+					"name": "Odorat aiguisé",
+					"entries": [
+						"Le tressym est avantagé sur les jets de Sagesse ({@skill Perception}) qui font appel à l'odorat."
+					]
+				},
+				{
+					"name": "Perception du poison",
+					"entries": [
+						"Le tressym peut déterminer si une substance est toxique au goût, au toucher ou à l'odorat."
+					]
+				},
+				{
+					"name": "Familier",
+					"entries": [
+						"Avec la permission du MD, une personne qui lance le sort {@spell find familiar} peut choisir de convoquer un tressym à la place d'un chat normal."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Griffes",
+					"entries": [
+						"{@atk mw} {@hit 0} pour toucher, allonge 1,50 m, une cible. {@h}1 dégât tranchant."
+					]
+				}
+			],
+			"familiar": true,
+			"traitTags": [
+				"Keen Senses"
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"C",
+				"CS"
+			],
+			"damageTags": [
+				"S"
+			],
+			"miscTags": [
+				"MW"
+			],
 			"hasToken": true,
-			"hasFluffImages": true
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"source": "BGDIA",
+			"page": 241,
+			"name": "Tressym"
 		},
 		{
 			"name": "Ulder Ravengard",
@@ -4852,25 +8103,152 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Arbre mort-vivant",
-			"source": "BGDIA",
-			"page": 109,
-			"_copy": {
-				"name": "Treant",
-				"source": "MM",
-				"_mod": {
-					"*": {
-						"mode": "replaceTxt",
-						"replace": "treant",
-						"with": "tree"
-					}
-				}
-			},
+			"srd": true,
+			"referenceSources": [
+				"BGDIA",
+				"BMT",
+				"CM",
+				"DSotDQ",
+				"EGW",
+				"ERLW",
+				"GoS",
+				"IDRotF",
+				"IMR",
+				"JttRC",
+				"LLK",
+				"LoX",
+				"MOT",
+				"OoW",
+				"PSI",
+				"QftIS",
+				"RoT",
+				"SatO",
+				"SCC-ARiR",
+				"SKT",
+				"TCE",
+				"VEoR",
+				"WBtW",
+				"WDH"
+			],
+			"reprintedAs": [
+				"tree|XMM"
+			],
+			"size": [
+				"H"
+			],
 			"type": "undead",
+			"alignment": [
+				"C",
+				"G"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"armure naturelle"
+					]
+				}
+			],
+			"hp": {
+				"average": 138,
+				"formula": "12d12 + 60"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 23,
+			"dex": 8,
+			"con": 21,
+			"int": 12,
+			"wis": 16,
+			"cha": 12,
+			"passive": 13,
 			"resist": [
 				"necrotic"
 			],
-			"hasToken": true
+			"vulnerable": [
+				"fire"
+			],
+			"languages": [
+				"commun",
+				"druidique",
+				"elfe",
+				"sylvestre"
+			],
+			"cr": "9",
+			"trait": [
+				{
+					"name": "Apparence trompeuse",
+					"entries": [
+						"Tant que l'arbre reste immobile, il est impossible de le distinguer d'un arbre normal."
+					]
+				},
+				{
+					"name": "Monstre de siège",
+					"entries": [
+						"L'arbre inflige des dégâts doublés aux objets et aux structures."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Attaques multiples",
+					"entries": [
+						"L'arbre effectue deux attaques avec ses branches."
+					]
+				},
+				{
+					"name": "Coup",
+					"entries": [
+						"{@atk mw} {@hit 10} pour toucher, allonge 1,50 m, une cible. {@h}16 ({@damage 3d6 + 6}) dégâts contondants."
+					]
+				},
+				{
+					"name": "Rocher",
+					"entries": [
+						"{@atk rw} {@hit 10} pour toucher, portée 18/54 m, une cible. {@h}28 ({@damage 4d10 + 6}) dégâts contondants."
+					]
+				},
+				{
+					"name": "Animer les arbres (1/jour)",
+					"entries": [
+						"L'arbre anime magiquement un ou deux arbres qu'il peut voir à 18 mètres ou moins de lui. Ces arbres possèdent les mêmes statistiques qu'un {@creature tree}, à ceci près qu'ils ont des valeurs d'Intelligence et de Charisme de 1, qu'ils ne peuvent pas parler et qu'ils ne disposent que de l'option d'attaque Coup. Un arbre animé agit comme un allié de l'arbre. L'arbre reste animé pendant 1 jour ou jusqu'à sa mort ; jusqu'à ce que l'arbre meure ou que l'arbre animé se trouve à plus de 36 mètres de lui ; ou jusqu'à ce que l'arbre utilise une action bonus pour le retransformer en arbre inerte. L'arbre animé s'enracine ensuite si possible."
+					]
+				}
+			],
+			"environment": [
+				"forest"
+			],
+			"soundClip": {
+				"type": "internal",
+				"path": "bestiary/tree.opus"
+			},
+			"traitTags": [
+				"Apparence trompeuse",
+				"Monstre de siège"
+			],
+			"actionTags": [
+				"Attaques multiples"
+			],
+			"languageTags": [
+				"C",
+				"DU",
+				"E",
+				"S"
+			],
+			"damageTags": [
+				"B"
+			],
+			"miscTags": [
+				"MW",
+				"RW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"source": "BGDIA",
+			"page": 109,
+			"name": "Arbre mort-vivant"
 		}
 	]
 }
