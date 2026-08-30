@@ -13,6 +13,21 @@ const throttle = (func, delay) => {
 	};
 };
 
+const pDoWaitForServiceWorkerActivation = sw => {
+	if (sw.state === "activated") return Promise.resolve();
+
+	return new Promise(resolve => {
+		const onStateChange = () => {
+			if (sw.state !== "activated") return;
+
+			sw.removeEventListener("statechange", onStateChange);
+			resolve();
+		};
+
+		sw.addEventListener("statechange", onStateChange);
+	});
+};
+
 const fetchError = {
 	"generic": throttle(() => {
 		JqueryUtil.doToast({
@@ -41,23 +56,23 @@ const fetchError = {
 
 const wb = new Workbox("sw.js");
 
-let isUpdateApproved = false;
-
-wb.addEventListener("waiting", () => {
+wb.addEventListener("waiting", ({sw}) => {
 	if (!VetoolsConfig.get("ui", "isNotifyUpdates")) return;
 
-	const btnUpdate = veT`<button class="ve-btn ve-btn-primary ve-btn-xs ve-ml-2 ve-w-200p">Update and Reload</button>`
-		.vee.onn("click", evt => {
+	const btnUpdate = veT`<button class="ve-btn ve-btn-primary ve-btn-xs ve-ml-2 ve-w-140p">Update and Reload</button>`
+		.vee.onn("click", async evt => {
 			evt.stopPropagation();
-
-			isUpdateApproved = true;
 
 			btnUpdate
 				.vee.prop("disabled", true)
 				.vee.txt("Updating...")
 				.vee.addClass("ve-text-center");
 
+			const pActivated = pDoWaitForServiceWorkerActivation(sw);
 			wb.messageSkipWaiting();
+			await pActivated;
+
+			window.location.reload();
 		});
 
 	const lnk = veT`<a href="${Renderer.get().baseUrl}changelog.html" class="alert-link">changelog</a>`
@@ -71,11 +86,6 @@ wb.addEventListener("waiting", () => {
 		isAutoHide: false,
 	});
 });
-
-wb.addEventListener("controlling", () => {
-	if (isUpdateApproved) window.location.reload();
-});
-
 // this is where we tell the service worker to start - after the page has loaded
 // event listeners need to be added first
 wb.register();

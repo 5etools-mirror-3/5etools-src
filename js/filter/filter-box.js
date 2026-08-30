@@ -263,6 +263,7 @@ export class FilterBox extends ProxyBase {
 		this._modalMeta = await UiUtil.pGetShowModal({
 			isHeight100: true,
 			isWidth100: true,
+			isUncappedWidth: globalThis.styleSwitcher?.getIsWideMode(),
 			isUncappedHeight: true,
 			isIndestructible: true,
 			isClosed: true,

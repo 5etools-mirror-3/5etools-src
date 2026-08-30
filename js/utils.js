@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.34.0"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.34.1"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -1163,6 +1163,7 @@ class ElementUtil {
 	 * @property {function(Array<string>): HTMLElementExtended} typeahead
 	 *
 	 * @property {function((string|object), string=): (HTMLElementExtended|string)} css
+	 * @property {function((string|object), string=): (HTMLElementExtended|string)} cssVar
 	 *
 	 * @property {function(string, function, object=): HTMLElementExtended} onn
 	 * @property {function(string, function=, object=): HTMLElementExtended} off
@@ -1330,6 +1331,7 @@ class ElementUtil {
 				disableSpellcheck: ElementUtil._disableSpellcheck.bind(ele),
 				typeahead: ElementUtil._typeahead.bind(ele),
 				css: ElementUtil._css.bind(ele),
+				cssVar: ElementUtil._cssVar.bind(ele),
 				onn: ElementUtil._onX.bind(ele),
 				off: ElementUtil._offX.bind(ele),
 				onClick: ElementUtil._onX.bind(ele, "click"),
@@ -1624,6 +1626,19 @@ class ElementUtil {
 		}
 		Object.entries(keyOrObj)
 			.forEach(([k, v]) => this.style[k] = v);
+		return this;
+	}
+
+	/** @this {HTMLElementExtended} */
+	static _cssVar (...args) {
+		const [keyOrObj, val] = args;
+		if (typeof keyOrObj === "string") {
+			if (args.length <= 1) return this.style.getPropertyValue(keyOrObj);
+			this.style.setProperty(keyOrObj, val);
+			return this;
+		}
+		Object.entries(keyOrObj)
+			.forEach(([k, v]) => this.style.setProperty(k, v));
 		return this;
 	}
 
@@ -2452,8 +2467,27 @@ globalThis.MiscUtil = class {
 		return this.debounce(func, wait, {leading, maxWait: wait, trailing});
 	}
 
-	static pDelay (msecs, resolveAs) {
-		return new Promise(resolve => setTimeout(() => resolve(resolveAs), msecs));
+	static pDelay (msecs, resolveAs, {abortSignal = null} = {}) {
+		return new Promise(resolve => {
+			let timerId = null;
+
+			const doAbort = () => {
+				clearTimeout(timerId);
+				resolve(null);
+			};
+
+			if (abortSignal?.aborted) return doAbort();
+
+			timerId = setTimeout(
+				() => {
+					abortSignal?.removeEventListener("abort", doAbort);
+					resolve(resolveAs);
+				},
+				msecs,
+			);
+
+			abortSignal?.addEventListener("abort", doAbort, {once: true});
+		});
 	}
 
 	static GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST = new Set(["caption", "type", "colLabels", "colLabelRows", "name", "colStyles", "style", "shortName", "subclassShortName", "id", "path", "source"]);
@@ -3474,6 +3508,28 @@ globalThis.SearchUtil = class {
 	static removeStemmer (elasticSearch) {
 		const stemmer = elasticlunr.Pipeline.getRegisteredFunction("stemmer");
 		elasticSearch.pipeline.remove(stemmer);
+	}
+};
+
+globalThis.UidUtil = class {
+	static getUidAdventureBook ({displayText, id, chapter = null, section = null, number = null}) {
+		return [displayText, id, chapter, section, number]
+			.map(it => it || "")
+			.join("|")
+			.replace(/\|+$/, "");
+	}
+
+	static unpackUidAdventureBook (uid, {isLower = false} = {}) {
+		if (isLower) uid = uid.toLowerCase();
+
+		const [displayText, id, ixChapterRaw, sectionName, rawIxNamedSection] = Renderer.splitTagByPipe(uid).map(it => it.trim());
+		return {
+			displayText,
+			id,
+			ixChapter: (ixChapterRaw ? Number(ixChapterRaw) : null) ?? null,
+			sectionName: sectionName || null,
+			ixNamedSection: (rawIxNamedSection ? Number(rawIxNamedSection) : null) ?? null,
+		};
 	}
 };
 
@@ -5377,7 +5433,7 @@ globalThis.DataUtil = class {
 			};
 		}
 
-		static getUidPacked (ent, tag, opts = {}) {
+		static getUidPacked (ent, tag, {isMaintainCase = false, displayName = null} = {}) {
 			// <name>|<source>
 			const {name} = ent;
 			const source = SourceUtil.getEntitySource(ent);
@@ -5386,10 +5442,11 @@ globalThis.DataUtil = class {
 			const out = [
 				ent.name,
 				source.toLowerCase() === sourceDefault.toLowerCase() ? "" : source,
+				displayName || "",
 			]
 				.join("|")
 				.replace(/\|+$/, ""); // Trim trailing pipes
-			return opts.isMaintainCase ? out : out.toLowerCase();
+			return isMaintainCase ? out : out.toLowerCase();
 		}
 
 		static getUid (ent, {isMaintainCase = false, displayName = null} = {}) {
@@ -6474,7 +6531,7 @@ globalThis.DataUtil = class {
 		}
 
 		static getUidPacked (prop, ent, tag, opts) {
-			if (DataUtil[prop]?.getPackedUid) return DataUtil[prop].getUidPacked(ent, tag, opts);
+			if (DataUtil[prop]?.getUidPacked) return DataUtil[prop].getUidPacked(ent, tag, opts);
 			return DataUtil.generic.getUidPacked(ent, tag, opts);
 		}
 	};

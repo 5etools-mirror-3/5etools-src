@@ -4,9 +4,10 @@ import {DataTesterBase} from "5etools-utils";
  * @abstract
  */
 export class EntityFileHandlerBase extends DataTesterBase {
-	constructor ({tagTestUrlLookup}) {
+	constructor ({tagTestUrlLookup, tagTestCorpusHeaderUidMap}) {
 		super();
 		this._tagTestUrlLookup = tagTestUrlLookup;
+		this._tagTestCorpusHeaderUidMap = tagTestCorpusHeaderUidMap;
 	}
 
 	/* -------------------------------------------- */

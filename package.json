@@ -1,7 +1,7 @@
 {
 	"name": "5etools",
 	"author": "TheGiddyLimit",
-	"version": "2.34.0",
+	"version": "2.34.1",
 	"license": "MIT",
 	"description": "A site dedicated to making playing games with your friends as easy as possible.",
 	"type": "module",
@@ -38,7 +38,8 @@
 		"build:css": "sass --style=compressed scss/:css/ && node node/rm.js css/includes/ css/vars/",
 		"build:seo": "node node/generate-seo.js",
 		"build:sw": "node node/build-sw.mjs",
-		"build:sw:prod": "node node/build-sw.mjs prod",
+		"build:sw:dev": "node node/build-sw.mjs --skip-prerelease --skip-homebrew",
+		"build:sw:prod": "node node/build-sw.mjs --prod",
 		"build": "npm run clean-jsons && npm run gen && npm run build:css && npm run build:sw:prod",
 		"preversion": "npm test",
 		"version": "node node/version-bump.js",
@@ -59,7 +60,7 @@
 	},
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
-		"5etools-utils": "^0.16.36",
+		"5etools-utils": "^0.16.38",
 		"ajv": "^8.18.0",
 		"ajv-formats": "^3.0.1",
 		"commander": "^14.0.3",

@@ -149,7 +149,7 @@ class _PageGeneratorInittrackerplayerview extends PageGeneratorGeneric {
 	_page = "inittrackerplayerview.html";
 
 	_pageTitle = "Initiative Tracker Player View";
-	_navbarDescription = "Press F to toggle fullscreen. Good luck.";
+	_navbarDescriptionHtml = "Press <kbd>f</kbd> to toggle fullscreen. Good luck.";
 
 	_stylesheets = [
 		"inittrackerplayerview",

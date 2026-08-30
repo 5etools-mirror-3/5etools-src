@@ -40,7 +40,7 @@
 				{
 					"ac": 18,
 					"from": [
-						"{@item plate armor|phb}"
+						"{@item plate armor|PHB|plate}"
 					]
 				}
 			],
@@ -97,12 +97,6 @@
 					"entries": [
 						"As a bonus action, Ahmaergo can regain 20 hit points."
 					]
-				},
-				{
-					"name": "Extra Damage",
-					"entries": [
-						"If Ahmaergo has more than half his hit points remaining he deals an extra 7 ({@damage 2d6}) slashing damage on every hit."
-					]
 				}
 			],
 			"action": [
@@ -115,7 +109,7 @@
 				{
 					"name": "Greataxe",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}11 ({@damage 1d12 + 5}) slashing damage."
+						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}11 ({@damage 1d12 + 5}) slashing damage, plus 7 ({@damage 2d6}) slashing damage if Ahmaergo has more than half his hit points remaining."
 					]
 				},
 				{
@@ -2410,12 +2404,6 @@
 					"entries": [
 						"When Hrabbaz is reduced to 0 hit points but not killed outright, he drops to 1 hit point instead."
 					]
-				},
-				{
-					"name": "Extra Damage",
-					"entries": [
-						"As long as Hrabbaz has more than half his hit points left he deals an extra 3 ({@damage 1d6}) damage on all hits."
-					]
 				}
 			],
 			"action": [
@@ -2428,7 +2416,7 @@
 				{
 					"name": "Morningstar",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}9 ({@damage 1d8 + 5}) piercing damage."
+						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}9 ({@damage 1d8 + 5}) piercing damage, plus 3 ({@damage 1d6}) piercing damage if Hrabbaz has more than half his hit points remaining."
 					]
 				}
 			],
@@ -5183,6 +5171,7 @@
 				}
 			},
 			"hasToken": true,
+			"hasFluff": true,
 			"hasFluffImages": true
 		},
 		{
@@ -5349,7 +5338,7 @@
 				]
 			},
 			"alignment": [
-				"L",
+				"N",
 				"E"
 			],
 			"ac": [
@@ -8578,6 +8567,15 @@
 						"replace": "the beholder",
 						"with": "Xanathar",
 						"flags": "i"
+					},
+					"resist": {
+						"mode": "appendArr",
+						"items": {
+							"resist": [
+								"force"
+							],
+							"preNote": "While attuned to the ring of force resistance:"
+						}
 					},
 					"trait": {
 						"mode": "prependArr",

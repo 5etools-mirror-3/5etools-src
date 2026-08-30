@@ -725,7 +725,7 @@ export class BookUtil {
 	static async _booksHashChange_pHandleFound ({fromIndex, homebrewData, bookId, hashParts, wrpContents, isNewBook}) {
 		document.title = `${fromIndex.name} - 5etools`;
 		veEs(`#page__title`).vee.html(this._booksHashChange_getCleanName(fromIndex));
-		veEs(`#page__subtitle`).vee.html("Browse content. Press F to find, and G to go to page.");
+		veEs(`#page__subtitle`).vee.html("Browse content. Press <kbd>f</kbd> to find, and <kbd>g</kbd> to go to page.");
 		await this._pLoadChapter(fromIndex, bookId, hashParts, homebrewData, wrpContents);
 		NavBar.highlightCurrentPage();
 		if (isNewBook) MiscUtil.scrollPageTop();
@@ -820,13 +820,13 @@ export class BookUtil {
 				MiscUtil.scrollPageTop();
 			});
 
-		const btnOpenFind = veT`<button class="ve-btn ve-btn-default ve-btn-sm no-print" title="Find"><kbd>F</kbd></button>`
+		const btnOpenFind = veT`<button class="ve-btn ve-btn-default ve-btn-sm no-print" title="Find"><kbd>f</kbd></button>`
 			.vee.onn("click", evt => {
 				evt.stopPropagation();
 				BookUtil._showSearchBox(indexData, bookId, false);
 			});
 
-		const btnOpenGoto = veT`<button class="ve-btn ve-btn-default ve-btn-sm no-print ve-bbr-0" title="Go to Page"><kbd>G</kbd></button>`
+		const btnOpenGoto = veT`<button class="ve-btn ve-btn-default ve-btn-sm no-print ve-bbr-0" title="Go to Page"><kbd>g</kbd></button>`
 			.vee.onn("click", evt => {
 				evt.stopPropagation();
 				BookUtil._showSearchBox(indexData, bookId, true);
@@ -853,7 +853,9 @@ export class BookUtil {
 				evt.stopPropagation();
 			});
 
-		const wrpResults = veT`<div class="f-all-out"></div>`
+		const dispNoResults = veT`<div class="f-all-out ve-py-1 ve-btl-5p ve-btr-5p"><span class="ve-italic ve-dnd-font">No results found.</span></div>`
+			.vee.hide();
+		const wrpResults = veT`<div class="f-all-out ve-bbl-5p ve-bbr-5p"></div>`
 			.vee.hide();
 
 		const iptSearch = veT`<input class="ve-form-control" placeholder="${isPageMode ? "Go to page number..." : "Find text..."}">`
@@ -867,9 +869,17 @@ export class BookUtil {
 
 				if (evt.key !== "Enter" || !EventUtil.noModifierKeys(evt)) return;
 
-				const term = iptSearch.vee.val();
+				const term = iptSearch.vee.val().trim();
+				dispNoResults.vee.hide();
+				if (!term) {
+					wrpResults
+						.vee.empty()
+						.vee.hide();
+					return;
+				}
+
 				if (isPageMode) {
-					if (!/^\d+$/.exec(term.trim())) {
+					if (!/^\d+$/.exec(term)) {
 						return JqueryUtil.doToast({
 							content: `Please enter a valid page number.`,
 							type: "danger",
@@ -883,6 +893,7 @@ export class BookUtil {
 
 				if (!foundEntryInfos.length) {
 					wrpResults.vee.hide();
+					dispNoResults.vee.show();
 					return;
 				}
 
@@ -946,7 +957,10 @@ export class BookUtil {
 						wrpResults.vee.appends(row);
 					});
 			});
-		BookUtil._findAll.vee.appends(iptSearch).vee.appends(wrpResults);
+		BookUtil._findAll
+			.vee.appends(dispNoResults)
+			.vee.appends(iptSearch)
+			.vee.appends(wrpResults);
 
 		veE({ele: document.body}).vee.appends(BookUtil._findAll);
 

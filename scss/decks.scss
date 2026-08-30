@@ -246,6 +246,7 @@
 				background: vars.$rgb-name-red;
 				border-radius: vars.$spacer;
 				box-shadow: 0 0 30px 10px color.adjust(vars.$rgb-name-red, $alpha: - 0.7);
+				transform-style: preserve-3d;
 
 				scale: 0;
 
@@ -266,6 +267,7 @@
 				z-index: 0;
 				max-height: 50vh;
 				max-width: 60vw;
+				backface-visibility: hidden;
 			}
 
 			&img-card-back {
@@ -273,6 +275,7 @@
 
 				width: calc(100% - #{2 * vars.$spacer});
 				height: calc(100% - #{2 * vars.$spacer});
+				backface-visibility: hidden;
 
 				transform: rotateY(180deg);
 
@@ -287,6 +290,7 @@
 			}
 
 			&wrp-card-flip {
+				transform-style: preserve-3d;
 				transition: transform $time-flip;
 
 				&--flipped {
@@ -304,6 +308,7 @@
 				z-index: 2;
 
 				inset: 0;
+				backface-visibility: hidden;
 
 				border-radius: vars.$spacer;
 			}

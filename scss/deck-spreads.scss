@@ -1,8 +1,40 @@
+@use "vars/vars";
+
 @layer vetools {
 	.deck-spread {
 		&__ {
+			&wrp-position-flip {
+				transform-style: preserve-3d;
+				transition: transform var(--time-deck-spread-iteration) ease-in-out;
+
+				&--face-down {
+					transform: rotateX(-180deg);
+
+					.deck-spread__wrp-position-face--back {
+						z-index: 0;
+					}
+				}
+			}
+
+			&wrp-position-face {
+				backface-visibility: hidden;
+
+				&--back {
+					z-index: -1;
+					inset: 0;
+					transform: rotateX(-180deg);
+					pointer-events: none;
+					transition: z-index var(--time-deck-spread-iteration);
+				}
+			}
+
 			&wrp-card-face {
 				width: 180px;
+			}
+
+			&disp-card-back {
+				font-size: 120px;
+				line-height: 1;
 			}
 		}
 	}

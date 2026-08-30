@@ -1,4 +1,21 @@
 export class DeckSpreads {
+	static _REVEAL_INITIAL_DELAY_MS = 100;
+	static _REVEAL_CARD_DELAY_MS = 150;
+
+	static getEntries ({spread}) {
+		const seeAlso = [
+			...(spread.seeAlsoAdventureHeader || []).map(uid => `{@adventure ${uid}}`),
+			...(spread.seeAlsoBookHeader || []).map(uid => `{@book ${uid}}`),
+		];
+
+		return [
+			...(spread.entries || []),
+			seeAlso.length ? `{@note See also: ${seeAlso.join(", ")}.}` : null,
+		].filter(Boolean);
+	}
+
+	/* -------------------------------------------- */
+
 	static _CACHE_PS_ENTRY_ID_LOOKUPS = {};
 
 	static pGetEntryIdLookup ({type, id}) {
@@ -59,11 +76,13 @@ export class DeckSpreads {
 		return [outcomeMeta.entry].filter(Boolean);
 	}
 
-	static _getWrpRenderedDrawn ({position, card, deck, outcomeMeta}) {
+	static _getRenderedDrawnMeta ({position, card, deck, outcomeMeta}) {
 		if (!card) {
-			return veT`<div class="ve-flex-v-center ve-stats ve-stats--book ve-p-2 ve-mb-2 ve-bg-solid ve-shadow-big ve-b-1p ve-bc-5p">
-				${Renderer.get().render(`{@note No card was available for position "${position.name}".}`)}
-			</div>`;
+			return {
+				wrp: veT`<div class="ve-flex-v-center ve-stats ve-stats--book ve-p-2 ve-mb-2 ve-bg-solid ve-shadow-big ve-b-1p ve-bc-5p">
+					${Renderer.get().render(`{@note No card was available for position "${position.name}".}`)}
+				</div>`,
+			};
 		}
 
 		const btnViewer = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="Open Card Viewer"><span class="glyphicon glyphicon-eye-open"></span></button>`
@@ -92,13 +111,30 @@ export class DeckSpreads {
 		const ptText = Renderer.get()
 			.setFirstSection(true)
 			.setPartPageExpandCollapseDisabled(true)
-			.render({name: position.name, entries}, 1);
+			.render({entries}, 1);
 		Renderer.get().setPartPageExpandCollapseDisabled(false);
 
-		return veT`<div class="ve-flex-v-center ve-stats ve-stats--book ve-p-2 ve-mb-2 ve-bg-solid ve-shadow-big ve-b-1p ve-bc-5p">
-			${wrpFace}
-			<div class="ve-ml-2 decks__wrp-card-text ve-w-100">${ptText}</div>
-		</div>`;
+		const wrpFront = veT`<div class="deck-spread__wrp-position-face ve-flex-col ve-stats ve-stats--book ve-p-2 ve-bg-solid ve-shadow-big ve-b-1p ve-bc-5p">
+			<h4 class="ve-mt-0 ve-mb-2 ve-text-center ve-dnd-font"><span class="ve-muted ve-small">Position${position.name ? ":" : ""}</span>${position.name ? ` &quot;<u>${position.name}</u>&quot;` : ""}</h4>
+			<div class="ve-flex-v-center">
+				${wrpFace}
+				<div class="ve-ml-2 decks__wrp-card-text ve-w-100">${ptText}</div>
+			</div>
+		</div>`
+			.vee.prop("inert", true);
+
+		const wrpBack = veT`<div class="deck-spread__wrp-position-face deck-spread__wrp-position-face--back ve-flex-vh-center ve-stats ve-stats--book ve-absolute ve-p-2 ve-bg-solid ve-shadow-big ve-b-1p ve-bc-5p">
+			<div class="deck-spread__disp-card-back ve-dnd-font ve-muted">?</div>
+		</div>`
+			.vee.prop("inert", true);
+
+		return {
+			wrp: veT`<div class="deck-spread__wrp-position-flip deck-spread__wrp-position-flip--face-down ve-relative ve-mb-2">
+				${wrpBack}
+				${wrpFront}
+			</div>`,
+			wrpFront,
+		};
 	}
 
 	/* -------------------------------------------- */
@@ -110,9 +146,7 @@ export class DeckSpreads {
 			.map(position => {
 				const cardsPool = position.suits
 					? cardsAvailable.filter(card => {
-						// `null` suit is "cards with no suit"
-						if (!card.suit) return position.suits.includes(null);
-						return position.suits.includes(card.suit);
+						return position.suits.includes(card.suit ?? "None");
 					})
 					: cardsAvailable;
 
@@ -124,14 +158,51 @@ export class DeckSpreads {
 			});
 	}
 
-	static async pGetWrpRenderedSpread ({spread, deck}) {
-		const rows = await this._getDrawn({spread, deck})
-			.pSerialAwaitMap(async drawn => this._getWrpRenderedDrawn({
+	static async pGetSpreadDrawnMetas ({spread, deck}) {
+		return this._getDrawn({spread, deck})
+			.pSerialAwaitMap(async drawn => ({
 				...drawn,
 				deck,
 				outcomeMeta: drawn.card ? await this._pGetOutcomeMeta({...drawn, spread}) : null,
 			}));
+	}
 
-		return veT`<div class="ve-flex-col">${rows}</div>`;
+	static getWrpRenderedSpreadMeta ({spread, drawnMetas}) {
+		const entries = this.getEntries({spread});
+		const wrpEntries = entries.length
+			? veT`<div class="ve-mb-2">${Renderer.get().setFirstSection(true).render({entries})}</div>`
+			: null;
+
+		const rowMetas = drawnMetas.map(drawn => this._getRenderedDrawnMeta(drawn));
+
+		return {
+			wrp: veT`<div class="ve-flex-col">${wrpEntries}${rowMetas.map(({wrp}) => wrp)}</div>`
+				.vee.cssVar("--time-deck-spread-iteration", `${this._REVEAL_CARD_DELAY_MS}ms`),
+			rowMetas,
+		};
+	}
+
+	static async pRevealSpread ({rowMetas, isSkipAnimation, abortSignal}) {
+		const rowMetasToReveal = rowMetas.filter(({wrpFront}) => wrpFront);
+
+		const doRevealPosition = ({wrp, wrpFront}) => {
+			wrp.vee.removeClass("deck-spread__wrp-position-flip--face-down");
+			wrpFront.vee.prop("inert", false);
+		};
+
+		if (abortSignal.aborted) return;
+
+		if (isSkipAnimation) return rowMetasToReveal.forEach(rowMeta => doRevealPosition(rowMeta));
+
+		await AnimationUtil.pRecomputeStyles();
+		if (abortSignal.aborted) return;
+		await MiscUtil.pDelay(this._REVEAL_INITIAL_DELAY_MS, null, {abortSignal});
+
+		for (const rowMeta of rowMetasToReveal) {
+			if (!rowMeta.wrp.isConnected) return;
+
+			doRevealPosition(rowMeta);
+			await MiscUtil.pDelay(this._REVEAL_CARD_DELAY_MS, null, {abortSignal});
+		}
 	}
 }

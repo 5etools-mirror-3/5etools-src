@@ -37,6 +37,7 @@ import {EntityFileHandlerVariantrule} from "./test-tags/entity-file/test-tags-en
 import {EntityFileHandlerSpellList} from "./test-tags/entity-file/test-tags-entity-file-spelllist.js";
 import {EntityFileHandlerHomeCrafts} from "./test-tags/entity-file/test-tags-entity-file-homecraft.js";
 import {PATH_DEFAULT_HOMEBREW_DIR, PATH_DEFAULT_PRERELEASE_DIR} from "./util-test.js";
+import {getInvalidCorpusHeaderUidMessage, TagTestCorpusHeaderUidMap} from "./test-tags/test-tags-utils-corpus.js";
 
 const program = new Command()
 	.option("--log-similar", `If, when logging a missing link, a list of potentially-similar links should additionally be logged.`)
@@ -812,7 +813,11 @@ class HasFluffCheck extends DataTesterBase {
 }
 
 class AdventureBookTagCheck extends DataTesterBase {
-	static _TO_CHECK = {};
+	constructor ({tagTestUrlLookup, tagTestCorpusHeaderUidMap}) {
+		super();
+		this._tagTestUrlLookup = tagTestUrlLookup;
+		this._tagTestCorpusHeaderUidMap = tagTestCorpusHeaderUidMap;
+	}
 
 	registerParsedPrimitiveHandlers (parsedJsonChecker) {
 		parsedJsonChecker.addPrimitiveHandler("string", this._checkString.bind(this));
@@ -828,37 +833,29 @@ class AdventureBookTagCheck extends DataTesterBase {
 
 		const len = tagSplit.length;
 		for (let i = 0; i < len; ++i) {
-			const s = tagSplit[i];
+			const str = tagSplit[i];
 
-			if (!s) continue;
-			if (!s.startsWith("{@")) continue;
+			if (!str) continue;
+			if (!str.startsWith("{@")) continue;
 
-			const [tag, text] = Renderer.splitFirstSpace(s.slice(1, -1));
+			const [tag, text] = Renderer.splitFirstSpace(str.slice(1, -1));
 			if (!["@adventure", "@book"].includes(tag)) continue;
 
 			const prop = tag.slice(1);
 
-			const [displayText, id, chap] = text.toLowerCase().split("|");
-			if (!id) {
-				this._addMessage(`Missing link: ${s} had no corpus ID!\n`);
+			const message = getInvalidCorpusHeaderUidMessage({
+				tagTestUrlLookup: this._tagTestUrlLookup,
+				tagTestCorpusHeaderUidMap: this._tagTestCorpusHeaderUidMap,
+				prop,
+				uid: text,
+				filePath,
+			});
+			if (message) {
+				this._addMessage(message);
 				continue;
 			}
 
-			const url = `${DataLoader.getPropPage(prop)}#${UrlUtil.getHashBuilder(prop)({id})}`;
-
-			if (!tagTestUrlLookup.hasUrl(url)) {
-				this._addMessage(`Missing link: ${s} in file ${filePath} had unknown "${tag}" ID "${id}"\n`);
-				continue;
-			}
-
-			if (chap) {
-				if (isNaN(chap) || Number(chap) < 0) {
-					this._addMessage(`Missing link: ${s} in file ${filePath} had unknown "${tag}" chapter "${chap}"\n`);
-					continue;
-				}
-
-				(((this.constructor._TO_CHECK[prop] ||= {})[id] ||= {})[chap] ||= []).push({s, filePath});
-			}
+			const {displayText} = UidUtil.unpackUidAdventureBook(text, {isLower: true});
 
 			if (!displayText.includes("{@")) return;
 
@@ -872,34 +869,66 @@ class AdventureBookTagCheck extends DataTesterBase {
 				const [tagSub] = Renderer.splitFirstSpace(sSub.slice(1, -1));
 				if (this.constructor._ALLOWED_SUB_TAGS.has(tagSub)) continue;
 
-				this._addMessage(`Link contained sub-tag "${tagSub}": ${s}\n`);
+				this._addMessage(`Link contained sub-tag "${tagSub}": ${str}\n`);
 			}
 		}
 	}
 
 	async pPostRun () {
-		if (!Object.keys(this.constructor._TO_CHECK).length) return;
+		const tagInfos = this._tagTestCorpusHeaderUidMap.getTagInfos();
+		if (!Object.keys(tagInfos).length) return;
 
-		for (const [prop, propTo] of Object.entries(this.constructor._TO_CHECK)) {
+		for (const [prop, propTo] of Object.entries(tagInfos)) {
 			const page = DataLoader.getPropPage(prop);
 
 			for (const [id, idTo] of Object.entries(propTo)) {
 				const data = await DataLoader.pCacheAndGetHash(page, UrlUtil.getHashBuilder(page)({id}));
 				if (!data) {
 					const ptLinks = Object.entries(idTo)
-						.map(([id, arr]) => arr.map(({s, filePath}) => `\t"${s}" in file ${filePath}`));
+						.map(([id, arr]) => arr.map(({uid, filePath}) => `\t${prop} header UID "${uid}" in file ${filePath}`));
 					this._addMessage(`Missing link${ptLinks.length === 1 ? "" : "s"}:\n${ptLinks.join("\n")}\n`);
 					continue;
 				}
 
 				const propData = `${prop}Data`;
-				for (const [chapRaw, arr] of Object.entries(idTo)) {
-					const chap = Number(chapRaw);
+
+				const chapterIxToTrackedTitles = {};
+				const renderer = new Renderer()
+					.setEnumerateTitlesRel(true)
+					.setTrackTitles(true)
+					.setHeaderIndexTableCaptions(true)
+					.setHeaderIndexImageTitles(true);
+				data?.[propData]?.data
+					.forEach((chapter, ixChapter) => {
+						renderer
+							.setFirstSection(true)
+							.resetHeaderIndex()
+							.render(chapter);
+						chapterIxToTrackedTitles[ixChapter] = renderer.getTrackedTitlesInverted({isStripTags: true});
+					});
+
+				for (const [ixChapterRaw, arr] of Object.entries(idTo)) {
+					const ixChapter = Number(ixChapterRaw);
 					arr
-						.forEach(({s, filePath}) => {
-							if (!data?.[propData]?.data[chap]) {
+						.forEach(({uid, filePath}) => {
+							if (!data?.[propData]?.data[ixChapter]) {
 								const ptRange = data?.[propData]?.data ? ` (expected 0-${data[propData].data.length - 1})` : "";
-								this._addMessage(`Missing link: ${s} in file ${filePath} had out-of-bounds chapter "${chap}"${ptRange}\n`);
+								this._addMessage(`Missing link: ${prop} header UID "${uid}" in file ${filePath} had out-of-bounds chapter "${ixChapter}"${ptRange}\n`);
+								return;
+							}
+
+							const {sectionName, ixNamedSection} = UidUtil.unpackUidAdventureBook(uid, {isLower: true});
+							if (sectionName == null) return;
+
+							const trackedTitles = chapterIxToTrackedTitles[ixChapter];
+
+							if (!trackedTitles[sectionName]) {
+								this._addMessage(`Missing link: ${prop} header UID "${uid}" in file ${filePath} section name "${sectionName}" was not found in chapter "${ixChapter}"\n`);
+								return;
+							}
+
+							if (!trackedTitles[sectionName][ixNamedSection || 0]) {
+								this._addMessage(`Missing link: ${prop} header UID "${uid}" in file ${filePath} section index "${ixNamedSection}" was out of bounds (expected 0-${trackedTitles[sectionName].length - 1}) for chapter "${ixChapter}"\n`);
 							}
 						});
 				}
@@ -920,7 +949,8 @@ async function main () {
 
 	await tagTestUrlLookup.pInit();
 
-	const sharedParamsEntityTypeTester = {tagTestUrlLookup};
+	const tagTestCorpusHeaderUidMap = new TagTestCorpusHeaderUidMap();
+	const sharedParamsEntityTypeTester = {tagTestUrlLookup, tagTestCorpusHeaderUidMap};
 
 	const dataTesters = [
 		new LinkCheck(),
@@ -930,7 +960,7 @@ async function main () {
 		new StripTagTest(),
 		new StandaloneTagTest(),
 		new TableDiceTest(),
-		new AdventureBookTagCheck(),
+		new AdventureBookTagCheck({tagTestUrlLookup, tagTestCorpusHeaderUidMap}),
 		new AreaCheck(),
 		new EntriesCheck(),
 		new EscapeCharacterCheck(),

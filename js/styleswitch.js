@@ -216,6 +216,8 @@ export class StyleSwitcher {
 	// endregion
 
 	// region Wide Mode
+	getIsWideMode () { return document.documentElement.classList.contains(StyleSwitcher._WIDE_ID); }
+
 	_setActiveWide (isActive) {
 		const existing = document.getElementById(StyleSwitcher._WIDE_ID);
 		if (!isActive) {

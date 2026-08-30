@@ -758,17 +758,6 @@ Renderer.dice = class {
 			});
 
 			if (!opts.isHidden) {
-				const dispFullRolls = veT`<span class="ve-muted ve-hidden"> \u2014 ${fullHtml}</span>`;
-
-				const dispFormula = veT`<span class="ve-muted ve-clickable" title="Click to Toggle Roll Results">${formula.qq()}</span>`
-					.vee.onn("click", evt => {
-						evt.stopPropagation();
-						evt.preventDefault();
-
-						const isVisible = dispFullRolls.vee.hasClass("ve-hidden");
-						dispFullRolls.vee.toggleClass("ve-hidden", !isVisible);
-					});
-
 				const btnCopyToInput = veT`<button title="Copy to Input" class="ve-btn ve-btn-default ve-btn-xs ve-btn-copy-roll"><span class="glyphicon glyphicon-pencil"></span></button>`
 					.vee.onn("click", () => {
 						Renderer.dice._iptRoll
@@ -781,8 +770,9 @@ Renderer.dice = class {
 						${lbl ? `<span class="roll-label">${lbl}: </span>` : ""}
 						${totalPart}
 						${ptTarget}
-						${dispFormula}
-						${dispFullRolls}
+						<span class="ve-muted ve-italic ve-small">${formula.qq()}</span>
+						\u21d2
+						<span class="ve-muted">${fullHtml}</span>
 						${message ? `<span class="message">${message}</span>` : ""}
 					</div>
 					<div class="out-roll-item-button-wrp">${btnCopyToInput}</div>

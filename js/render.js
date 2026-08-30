@@ -2499,9 +2499,8 @@ globalThis.Renderer = class {
 			case "@adventure": {
 				// format: {@tag Display Text|DMG< |chapter< |section >< |number > >}
 				const page = tag === "@book" ? "book.html" : "adventure.html";
-				const [displayText, book, chapter, section, rawNumber] = Renderer.splitTagByPipe(text);
-				const number = rawNumber || 0;
-				const hash = `${book?.toLowerCase()}${chapter ? `${HASH_PART_SEP}${chapter}${section ? `${HASH_PART_SEP}${UrlUtil.encodeForHash(section)}${number != null ? `${HASH_PART_SEP}${UrlUtil.encodeForHash(number)}` : ""}` : ""}` : ""}`;
+				const {displayText, id, ixChapter, sectionName, ixNamedSection} = UidUtil.unpackUidAdventureBook(text);
+				const hash = `${id?.toLowerCase()}${ixChapter ? `${HASH_PART_SEP}${ixChapter}${sectionName ? `${HASH_PART_SEP}${UrlUtil.encodeForHash(sectionName)}${ixNamedSection != null ? `${HASH_PART_SEP}${UrlUtil.encodeForHash(ixNamedSection)}` : ""}` : ""}` : ""}`;
 				const fauxEntry = {
 					type: "link",
 					href: {

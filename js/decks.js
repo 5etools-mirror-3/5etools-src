@@ -169,17 +169,21 @@ class DecksPage extends ListPage {
 		return listItem;
 	}
 
-	async _handleClick_pDoOpenSpread (ent, btnSpread) {
+	async _handleClick_pDoOpenSpread (ent, btnSpread, {isSkipAnimation = false} = {}) {
 		try {
 			btnSpread.vee.prop("disabled", true);
 
+			let abortController = null;
+
 			const {eleModalInner} = UiUtil.getShowModal({
 				title: `Spread \u2014 ${ent.name}`,
+				isHeaderBorder: true,
 				isUncappedHeight: true,
 				isHeight100: true,
 				isMaxWidth640p: true,
 				isWidth100: true,
 				zIndex: VeCt.Z_INDEX_BENEATH_CARD_VIEWER,
+				cbClose: () => abortController?.abort(),
 			});
 
 			const wrpOut = veE({tag: "div", clazz: "ve-flex-col ve-w-100"});
@@ -196,35 +200,38 @@ class DecksPage extends ListPage {
 				},
 			);
 
-			const pDoRender = async () => {
-				await comp._pLock("render");
-				try {
-					const spread = ent.spreads[comp._state.ixSpread];
-					const wrpRenderedSpread = await DeckSpreads.pGetWrpRenderedSpread({spread, deck: ent});
+			const pDoRender = async ({isSkipAnimation = false} = {}) => {
+				abortController?.abort();
+				abortController = new AbortController();
 
-					wrpOut.vee.empty();
-					if (spread.entries?.length) {
-						veT`<div class="ve-mb-2">${Renderer.get().setFirstSection(true).render({entries: spread.entries})}</div>`
-							.vee.appendTo(wrpOut);
-					}
-					wrpRenderedSpread.vee.appendTo(wrpOut);
-				} finally {
-					comp._unlock("render");
-				}
+				wrpOut.vee.empty();
+
+				const spread = ent.spreads[comp._state.ixSpread];
+				const drawnMetas = await DeckSpreads.pGetSpreadDrawnMetas({spread, deck: ent});
+				if (abortController.signal.aborted) return;
+
+				const {rowMetas} = Renderer.get().withLazyImages(() => {
+					const renderedMeta = DeckSpreads.getWrpRenderedSpreadMeta({spread, drawnMetas});
+					wrpOut
+						.vee.appends(renderedMeta.wrp);
+					return renderedMeta;
+				});
+
+				await DeckSpreads.pRevealSpread({rowMetas, isSkipAnimation, abortSignal: abortController.signal});
 			};
 
-			const btnRedraw = veT`<button class="ve-btn ve-btn-primary ve-btn-sm ve-no-shrink">Draw</button>`
-				.vee.onn("click", () => pDoRender().then(null));
+			const btnRedraw = veT`<button class="ve-btn ve-btn-primary ve-btn-sm ve-no-shrink" title="Draw Spread (CTRL to Skip Animation)">Draw</button>`
+				.vee.onn("click", evt => pDoRender({isSkipAnimation: EventUtil.isCtrlMetaKey(evt)}));
 
-			comp._addHookBase("ixSpread", () => pDoRender().then(null));
+			comp._addHookBase("ixSpread", () => pDoRender());
 
-			veT`<div class="ve-flex-col ve-w-100 ve-min-h-0">
+			veT`<div class="ve-flex-col ve-w-100 ve-min-h-0 ve-pt-2">
 				<div class="ve-flex-v-center ve-mb-2 ve-input-group">${selSpread}${btnRedraw}</div>
-				<div class="ve-flex-col ve-w-100 ve-overflow-y-auto">${wrpOut}</div>
+				<div class="ve-flex-col ve-w-100 ve-overflow-x-hidden ve-overflow-y-auto ve-pr-1">${wrpOut}</div>
 			</div>`
 				.vee.appendTo(eleModalInner);
 
-			await pDoRender();
+			await pDoRender({isSkipAnimation});
 		} finally {
 			btnSpread.vee.prop("disabled", false);
 		}
@@ -298,8 +305,8 @@ class DecksPage extends ListPage {
 
 		// region Spreads
 		const btnSpread = ent.spreads?.length
-			? veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-bb-0 ve-bbr-0 ve-bbl-0" title="Read a Spread"><i class="fas fa-fw fa-layer-group"></i></button>`
-				.vee.onn("click", () => this._handleClick_pDoOpenSpread(ent, btnSpread).then(null))
+			? veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-bb-0 ve-bbr-0 ve-bbl-0" title="Read a Spread (CTRL to Skip Animation)"><i class="fas fa-fw fa-layer-group"></i></button>`
+				.vee.onn("click", evt => this._handleClick_pDoOpenSpread(ent, btnSpread, {isSkipAnimation: EventUtil.isCtrlMetaKey(evt)}))
 			: null;
 		// endregion
 

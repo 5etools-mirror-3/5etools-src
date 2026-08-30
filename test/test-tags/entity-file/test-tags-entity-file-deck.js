@@ -1,5 +1,6 @@
 import {DeckSpreads} from "../../../js/decks/decks-spreads.js";
 import {EntityFileHandlerBase} from "./test-tags-entity-file-base.js";
+import {getInvalidCorpusHeaderUidMessage} from "../test-tags-utils-corpus.js";
 
 export class EntityFileHandlerDeck extends EntityFileHandlerBase {
 	_props = ["deck"];
@@ -12,6 +13,25 @@ export class EntityFileHandlerDeck extends EntityFileHandlerBase {
 
 				return accum;
 			}, {});
+	}
+
+	/* -------------------------------------------- */
+
+	_doTestEntity_spread_seeAlsoHeaders ({filePath, spread}) {
+		[{prop: "adventure", propSeeAlso: "seeAlsoAdventureHeader"}, {prop: "book", propSeeAlso: "seeAlsoBookHeader"}]
+			.forEach(({prop, propSeeAlso}) => {
+				(spread[propSeeAlso] || [])
+					.forEach(uid => {
+						const message = getInvalidCorpusHeaderUidMessage({
+							tagTestUrlLookup: this._tagTestUrlLookup,
+							tagTestCorpusHeaderUidMap: this._tagTestCorpusHeaderUidMap,
+							prop,
+							uid,
+							filePath,
+						});
+						if (message) this._addMessage(message);
+					});
+			});
 	}
 
 	/* -------------------------------------------- */
@@ -48,7 +68,7 @@ export class EntityFileHandlerDeck extends EntityFileHandlerBase {
 			const positionOutcomeUids = await this._pDoTestEntity_spread_outcomes_scope({filePath, spreadUid, cardUids, outcomeMetas: positionOutcomeMetas});
 
 			cards
-				.filter(card => !position.suits || position.suits.includes(card.suit ?? null))
+				.filter(card => !position.suits || position.suits.includes(card.suit ?? "None"))
 				.forEach(card => {
 					const uid = DataUtil.deck.getUidCard(card);
 					if (!positionOutcomeUids.has(uid) && !spreadOutcomeUids.has(uid)) this._addMessage(`Spread "${spreadUid}" in file ${filePath} position "${position.name}" had no outcome for card "${uid}"!\n`);
@@ -61,9 +81,11 @@ export class EntityFileHandlerDeck extends EntityFileHandlerBase {
 		const deckUid = DataUtil.proxy.getUid("deck", ent, {isMaintainCase: true});
 		const cards = fileState.deckUidToCardList[deckUid] || [];
 
+		this._doTestEntity_spread_seeAlsoHeaders({filePath, spread});
+
 		if (!cards.length) return this._addMessage(`Spread "${spreadUid}" in file ${filePath} deck "${deckUid}" had no cards!\n`);
 
-		const suitsAvailable = new Set(cards.map(card => card.suit ?? null));
+		const suitsAvailable = new Set(cards.map(card => card.suit ?? "None"));
 
 		spread.positions
 			.forEach(position => {
@@ -83,7 +105,7 @@ export class EntityFileHandlerDeck extends EntityFileHandlerBase {
 		Object.entries(cntBySuits)
 			.forEach(([key, cnt]) => {
 				const suits = JSON.parse(key);
-				const cntAvailable = cards.filter(card => suits.includes(card.suit ?? null)).length;
+				const cntAvailable = cards.filter(card => suits.includes(card.suit ?? "None")).length;
 				if (cnt > cntAvailable) this._addMessage(`Spread "${spreadUid}" in file ${filePath} wanted ${cnt} cards of suits ${key}, but the deck has only ${cntAvailable}!\n`);
 			});
 
