@@ -34,6 +34,7 @@ import {
 import {CoreRuleTag, HazardTag, SpellTag} from "./converterutils-entries.js";
 import {PropOrder} from "../utils-proporder.js";
 import {ConverterStringBlocklist} from "./converterutils-utils-blocklist.js";
+import {AlignmentUtil} from "./converterutils-utils-alignment.js";
 import {VetoolsConfig} from "../utils-config/utils-config-config.js";
 import {SITE_STYLE__CLASSIC} from "../consts.js";
 
@@ -167,6 +168,7 @@ export class ConverterCreature extends ConverterBase {
 	 * @param options.isAppend Default output append mode.
 	 * @param options.source Entity source.
 	 * @param options.page Entity page.
+	 * @param [options.isAddPageNumber] Whether to include the page in the output. Defaults to true if a page is provided.
 	 * @param options.titleCaseFields Array of fields to be title-cased in this entity (if enabled).
 	 * @param options.isTitleCase Whether title-case fields should be title-cased in this entity.
 	 * @param options.styleHint
@@ -1388,6 +1390,7 @@ export class ConverterCreature extends ConverterBase {
 	 * @param options.isAppend Default output append mode.
 	 * @param options.source Entity source.
 	 * @param options.page Entity page.
+	 * @param [options.isAddPageNumber] Whether to include the page in the output. Defaults to true if a page is provided.
 	 * @param options.titleCaseFields Array of fields to be title-cased in this entity (if enabled).
 	 * @param options.isTitleCase Whether title-case fields should be title-cased in this entity.
 	 */
@@ -2071,8 +2074,21 @@ export class ConverterCreature extends ConverterBase {
 		// endregion
 
 		const tksNoSize = tks.slice(ixSizeLast + 1);
+		const strTypeAlignment = tksNoSize.join("");
 
-		const spl = tksNoSize.join("").split(StrUtil.COMMAS_NOT_IN_PARENTHESES_REGEX);
+		// E.g. "Battle Familiar" :: AU
+		const mSemicolon = /^(?<ptType>.+?);\s*(?<ptAlignment>[^;]+)$/.exec(strTypeAlignment);
+		if (mSemicolon) {
+			const {alignmentPrefix, alignment} = AlignmentUtil.tryGetConvertedAlignment(mSemicolon.groups.ptAlignment);
+			if (Array.isArray(alignment)) {
+				stats.type = mSemicolon.groups.ptType.trim();
+				stats.alignment = alignment;
+				if (alignmentPrefix) stats.alignmentPrefix = alignmentPrefix;
+				return;
+			}
+		}
+
+		const spl = strTypeAlignment.split(StrUtil.COMMAS_NOT_IN_PARENTHESES_REGEX);
 		if (!spl.length) {
 			options.cbWarning(`Type/Alignment "${tksNoSize.join("")}" requires manual conversion`);
 			return;

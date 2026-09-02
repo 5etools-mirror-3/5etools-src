@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.34.1"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.35.0"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -6021,7 +6021,7 @@ globalThis.DataUtil = class {
 				modInfos.forEach(modInfo => {
 					if (typeof modInfo === "string") {
 						switch (modInfo) {
-							case "remove": return delete copyTo[prop];
+							case "remove": return propPath ? MiscUtil.delete(copyTo, ...propPath) : delete copyTo[prop];
 							default: throw new Error(`${msgPtFailed} Unhandled mode: ${modInfo}`);
 						}
 					}
@@ -9064,7 +9064,7 @@ class BookModeViewBase {
 
 		const onChangeColumnCount = (cols) => {
 			Array.from({length: 6})
-				.forEach((_, i) => wrpContent.vee.toggleClass(`bkmv__wrp--columns-${i + 1}`, cols === i));
+				.forEach((_, i) => wrpContent.vee.toggleClass(`bkmv__wrp--columns-${i + 1}`, cols === (i + 1)));
 		};
 
 		const lastColumns = StorageUtil.syncGetForPage(BookModeViewBase._BOOK_VIEW_COLUMNS_K) || 2;

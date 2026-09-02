@@ -1,11 +1,12 @@
 import * as ut from "../node/util.js";
 import * as rl from "readline-sync";
 import fs from "fs";
+import {readJsonSync} from "5etools-utils/lib/UtilFs.js";
 import "../js/parser.js";
 import "../js/utils.js";
 import {BLOCKLIST_SOURCES_PAGES} from "./util-test.js";
 
-const BLOCKLIST_FILE_PREFIXES = [
+const _BLOCKLIST_FILE_PREFIXES = [
 	...ut.BLOCKLIST_FILE_PREFIXES,
 	"fluff-",
 
@@ -19,7 +20,7 @@ const BLOCKLIST_FILE_PREFIXES = [
 	"converter.json",
 ];
 
-const BLOCKLIST_KEYS = new Set([
+const _BLOCKLIST_KEYS = new Set([
 	"_meta",
 	"_test",
 	"data",
@@ -38,35 +39,27 @@ const BLOCKLIST_KEYS = new Set([
 	"dragonMundaneItems",
 ]);
 
-const BLOCKLIST_ENTITIES = {
-	"monster": {
-		[Parser.SRC_DoSI]: new Set([
-			"Merrow Extortionist",
-		]),
-	},
-};
+// But: Who Test The Tester?
+// Not me!
+const _BLOCKLIST_ENTITIES = readJsonSync("./test/test-pagenumbers/blocklist-entities.json");
 
 const isBlocklistedEntity = ({prop, ent}) => {
 	const source = SourceUtil.getEntitySource(ent);
 
+	if (source === VeCt.STR_GENERIC) return true;
 	if (BLOCKLIST_SOURCES_PAGES.has(source)) return true;
 
-	const set = MiscUtil.get(BLOCKLIST_ENTITIES, prop, source);
-	if (!set) return false;
-
-	if (set.has("*")) return true;
-	if (set.has(ent.name)) return true;
-
-	return false;
+	const lookup = MiscUtil.get(_BLOCKLIST_ENTITIES, prop, source);
+	return !!(lookup?.["*"] || lookup?.[ent.name]);
 };
 
-const isMissingPage = ({ent}) => {
+const _isMissingPage = ({ent}) => {
 	if (ent.inherits ? ent.inherits.page : ent.page) return false;
 	if (ent._copy?._preserve?.page) return false;
 	return true;
 };
 
-const doSaveMods = ({mods, json, file}) => {
+const _doSaveMods = ({mods, json, file}) => {
 	if (!mods) return;
 
 	let answer = "";
@@ -85,19 +78,19 @@ const main = ({isModificationMode = false} = {}) => {
 	console.log(`##### Checking for Missing Page Numbers #####`);
 
 	const FILE_MAP = {};
-	ut.listFiles({dir: `./data`, blocklistFilePrefixes: BLOCKLIST_FILE_PREFIXES})
+	ut.listFiles({dir: `./data`, blocklistFilePrefixes: _BLOCKLIST_FILE_PREFIXES})
 		.forEach(file => {
 			let mods = 0;
 
 			const json = ut.readJson(file);
 			Object.keys(json)
-				.filter(k => !BLOCKLIST_KEYS.has(k))
+				.filter(k => !_BLOCKLIST_KEYS.has(k))
 				.forEach(prop => {
 					const data = json[prop];
 					if (!(data instanceof Array)) return;
 
 					const entsNoPage = data
-						.filter(ent => !isBlocklistedEntity({prop, ent}) && isMissingPage({ent}));
+						.filter(ent => !isBlocklistedEntity({prop, ent}) && _isMissingPage({ent}));
 
 					if (entsNoPage.length && isModificationMode) {
 						console.log(`${file}:`);
@@ -123,7 +116,7 @@ const main = ({isModificationMode = false} = {}) => {
 						});
 				});
 
-			doSaveMods({mods, json, file});
+			_doSaveMods({mods, json, file});
 		});
 
 	const filesWithMissingPages = Object.keys(FILE_MAP);

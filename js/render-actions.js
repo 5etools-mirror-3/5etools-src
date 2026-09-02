@@ -1,19 +1,42 @@
-"use strict";
+import {RenderPageImplBase} from "./render-page-base.js";
 
-class RenderActions {
-	static getRenderedAction (it) {
-		return veT`
-		${Renderer.utils.getBorderTr()}
-		${Renderer.utils.getExcludedTr({entity: it, dataProp: "action"})}
-		${Renderer.utils.getNameTr(it, {page: UrlUtil.PG_ACTIONS})}
-		<tr><td colspan="6" class="ve-py-0"><div class="ve-tbl-divider"></div></td></tr>
-		<tr><td colspan="6">
-		${Renderer.get().setFirstSection(true).render({entries: it.entries})}
-		${it.fromVariant ? `<div>${Renderer.get().render(`{@note This action is an optional addition to the game, from the optional/variant rule {@variantrule ${it.fromVariant}}.}`)}</div>` : ""}
-		${it.seeAlsoAction ? `<div>${Renderer.get().render(`{@note See also: ${it.seeAlsoAction.map(it => `{@action ${it}}`).join(", ")}.}`)}</div>` : ""}
-		</td></tr>
-		${Renderer.utils.getPageTr(it)}
-		${Renderer.utils.getBorderTr()}
+class _RenderActionsImpl extends RenderPageImplBase {
+	_page = UrlUtil.PG_ACTIONS;
+	_dataProp = "action";
+
+	_getRendered ({ent, opts, renderer}) {
+		const {
+			htmlPtIsExcluded,
+			htmlPtName,
+			htmlPtPage,
+		} = this._getCommonHtmlParts({ent, opts, renderer});
+
+		const htmlPtEntries = renderer.render({entries: ent.entries});
+		const htmlPtFromVariant = ent.fromVariant
+			? `<div>${renderer.render(`{@note This action is an optional addition to the game, from the optional/variant rule {@variantrule ${ent.fromVariant}}.}`)}</div>`
+			: "";
+		const htmlPtSeeAlso = this._getRenderedSeeAlso({renderer, ent, prop: "seeAlsoAction", tag: "action"});
+
+		return `
+			${Renderer.utils.getBorderTr()}
+			${htmlPtIsExcluded}
+			${htmlPtName}
+			<tr><td colspan="6" class="ve-py-0"><div class="ve-tbl-divider"></div></td></tr>
+			<tr><td colspan="6">
+				${htmlPtEntries}
+				${htmlPtFromVariant}
+				${htmlPtSeeAlso}
+			</td></tr>
+			${htmlPtPage}
+			${Renderer.utils.getBorderTr()}
 		`;
+	}
+}
+
+export class RenderActions {
+	static _RENDER = new _RenderActionsImpl();
+
+	static getRenderedAction (ent) {
+		return this._RENDER.getRendered(ent);
 	}
 }

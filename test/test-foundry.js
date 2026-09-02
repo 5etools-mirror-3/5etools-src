@@ -2,6 +2,7 @@ import fs from "fs";
 import * as ut from "../node/util.js";
 import "../js/parser.js";
 import "../js/utils.js";
+import "../js/utils-dataloader.js";
 import "../js/render.js";
 import "../js/render-dice.js";
 import {pInitConsoleOut} from "../node/util-commander.js";

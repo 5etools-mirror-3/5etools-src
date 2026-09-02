@@ -9,6 +9,16 @@ export class ConverterUtils {
 		;
 	}
 
+	static isHasCharOutwithParens (str, char) {
+		let cntParens = 0;
+		for (const c of str) {
+			if (c === "(") cntParens++;
+			else if (c === ")") cntParens--;
+			else if (c === char && !cntParens) return true;
+		}
+		return false;
+	}
+
 	/* -------------------------------------------- */
 
 	static isJsonLine (curLine) { return curLine.startsWith(`__VE_JSON__`); }

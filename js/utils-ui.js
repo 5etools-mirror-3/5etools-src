@@ -4929,6 +4929,43 @@ class ComponentUiUtil {
 			ipt.vee.val(val);
 		};
 
+		const setNextVal = ({raw, cur}) => {
+			const optsFnConvert = {
+				min: opts.min,
+				max: opts.max,
+				fallbackOnNaN: opts.fallbackOnNaN ?? cur,
+			};
+
+			// if it starts with "=", force-set to the value provided
+			if (raw.startsWith("=")) {
+				const iptAsNum = fnConvert(raw.slice(1), fallbackEmpty, optsFnConvert);
+
+				if (isNaN(iptAsNum)) return;
+
+				component._state[prop] = iptAsNum - opts.offset;
+				return;
+			}
+
+			// otherwise, try to modify the previous value
+			const mUnary = prevValue != null && prevValue < 0
+				? /^[+/*^]/.exec(raw) // If the previous value was `-X`, then treat minuses as normal values
+				: /^[-+/*^]/.exec(raw);
+
+			if (!mUnary) {
+				const iptAsNum = fnConvert(raw, fallbackEmpty, optsFnConvert);
+				if (isNaN(iptAsNum)) return;
+
+				component._state[prop] = iptAsNum - opts.offset;
+				return;
+			}
+
+			const mod = fnConvert(raw.slice(1).trim(), fallbackEmpty, optsFnConvert);
+			if (isNaN(mod)) return;
+
+			const full = `${cur ?? 0}${mUnary[0]}${mod}`;
+			component._state[prop] = fnConvert(full, fallbackEmpty, optsFnConvert) - opts.offset;
+		};
+
 		const ipt = (opts.ele ? veE({ele: opts.ele}) : veE({outer: opts.html || `<input class="ve-form-control ve-input-xs form-control--minimal ve-text-right">`}))
 			.vee.disableSpellcheck()
 			.vee.onn("keydown", evt => { if (evt.key === "Escape") ipt.blur(); })
@@ -4938,24 +4975,7 @@ class ComponentUiUtil {
 
 				if (opts.isAllowNull && !raw) return component._state[prop] = null;
 
-				if (raw.startsWith("=")) {
-					// if it starts with "=", force-set to the value provided
-					component._state[prop] = fnConvert(raw.slice(1), fallbackEmpty, opts) - opts.offset;
-				} else {
-					// otherwise, try to modify the previous value
-					const mUnary = prevValue != null && prevValue < 0
-						? /^[+/*^]/.exec(raw) // If the previous value was `-X`, then treat minuses as normal values
-						: /^[-+/*^]/.exec(raw);
-					if (mUnary) {
-						let proc = raw;
-						proc = proc.slice(1).trim();
-						const mod = fnConvert(proc, fallbackEmpty, opts);
-						const full = `${cur ?? 0}${mUnary[0]}${mod}`;
-						component._state[prop] = fnConvert(full, fallbackEmpty, opts) - opts.offset;
-					} else {
-						component._state[prop] = fnConvert(raw, fallbackEmpty, opts) - opts.offset;
-					}
-				}
+				setNextVal({raw, cur});
 
 				// Ensure the input visually reflects the state
 				if (cur === component._state[prop]) setIptVal();

@@ -62,6 +62,7 @@ export class ConverterItem extends ConverterBase {
 	 * @param options.isAppend Default output append mode.
 	 * @param options.source Entity source.
 	 * @param options.page Entity page.
+	 * @param [options.isAddPageNumber] Whether to include the page in the output. Defaults to true if a page is provided.
 	 * @param options.titleCaseFields Array of fields to be title-cased in this entity (if enabled).
 	 * @param options.isTitleCase Whether title-case fields should be title-cased in this entity.
 	 * @param options.styleHint
@@ -145,7 +146,7 @@ export class ConverterItem extends ConverterBase {
 		const manName = stats.name ? `(${stats.name}) ` : "";
 		TagJsons.mutTagObject(stats, {keySet: new Set(["entries"]), isOptimistic: true, styleHint: options.styleHint});
 		ChargeTag.tryRun(stats);
-		RechargeTypeTag.tryRun(stats, {cbMan: () => options.cbWarning(`${manName}Recharge type requires manual conversion`)});
+		RechargeTypeTag.tryRun(stats, {cbMan: () => options.cbWarning(`${manName}Recharge type may require manual conversion`)});
 		RechargeAmountTag.tryRun(stats, {cbMan: () => options.cbWarning(`${manName}Recharge amount requires manual conversion`)});
 		ItemMiscTag.tryRun(stats);
 		BonusTag.tryRun(stats);
@@ -547,13 +548,20 @@ export class ConverterItem extends ConverterBase {
 		"martial weapon": [{"weaponCategory": "martial"}],
 
 		"simple melee weapon": ({styleHint}) => [{"weaponCategory": "simple", "type": styleHint === SITE_STYLE__ONE ? Parser.ITM_TYP__ODND_MELEE_WEAPON : Parser.ITM_TYP__MELEE_WEAPON}],
+		"martial melee weapon": ({styleHint}) => [{"weaponCategory": "martial", "type": styleHint === SITE_STYLE__ONE ? Parser.ITM_TYP__ODND_MELEE_WEAPON : Parser.ITM_TYP__MELEE_WEAPON}],
 
-		"bludgeoning": [{"dmgType": "B"}],
-		"weapon that deals bludgeoning damage": [{"dmgType": "B"}],
-		"piercing": [{"dmgType": "P"}],
-		"slashing": [{"dmgType": "S"}],
+		...Object.fromEntries(
+			Object.entries(Parser.DMGTYPE_JSON_TO_FULL)
+				.map(([json, full]) => ([full, [{dmgType: json}]])),
+		),
+		...Object.fromEntries(
+			Object.entries(Parser.DMGTYPE_JSON_TO_FULL)
+				.map(([json, full]) => ([`weapon that deals ${full} damage`, [{dmgType: json}]])),
+		),
 
 		"melee bludgeoning weapon": ({styleHint}) => [{"type": styleHint === SITE_STYLE__ONE ? Parser.ITM_TYP__ODND_MELEE_WEAPON : Parser.ITM_TYP__MELEE_WEAPON, "dmgType": "B"}],
+
+		"melee weapon with the finesse property": ({styleHint}) => [{"weaponCategory": "martial", "property": styleHint === SITE_STYLE__ONE ? Parser.ITM_PROP__ODND_FINESSE : Parser.ITM_PROP__FINESSE}],
 
 		"martial with the ammunition property": ({styleHint}) => [{"weaponCategory": "martial", "property": styleHint === SITE_STYLE__ONE ? Parser.ITM_PROP__ODND_AMMUNITION : Parser.ITM_PROP__AMMUNITION}],
 		"martial with the thrown property": ({styleHint}) => [{"weaponCategory": "martial", "property": styleHint === SITE_STYLE__ONE ? Parser.ITM_PROP__ODND_THROWN : Parser.ITM_PROP__THROWN}],
@@ -667,6 +675,8 @@ export class ConverterItem extends ConverterBase {
 		delete cpyStatsQuarterstaff.basicRules;
 		delete cpyStatsQuarterstaff.basicRules2024;
 		delete cpyStatsQuarterstaff.reprintedAs;
+		delete cpyStatsQuarterstaff.hasFluff;
+		delete cpyStatsQuarterstaff.hasFluffImages;
 
 		Object.entries(cpyStatsQuarterstaff)
 			.filter(([k]) => !k.startsWith("_"))

@@ -3,6 +3,7 @@
 		{
 			"name": "Aberrant Anatomy",
 			"source": "RHW",
+			"page": 32,
 			"category": "DG",
 			"prerequisite": [
 				{
@@ -286,6 +287,102 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Abjuration Adept",
+			"source": "AU",
+			"page": 28,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"spellcasting2020": true
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"prepared": {
+						"s1": [
+							"shield|xphb"
+						],
+						"s2": [
+							"lesser restoration|xphb"
+						],
+						"s3": [
+							"protection from energy|xphb"
+						],
+						"s4": [
+							"banishment|xphb"
+						],
+						"s5": [
+							"mass cure wounds|xphb"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Additional Spells",
+					"entries": [
+						"Your prowess allows you to always have certain spells at the ready. When you have spell slots of a level specified in the Abjuration Adept Spells table, you thereafter always have the spells listed for that level and lower prepared."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Protective Ward",
+					"entries": [
+						"When you cast a spell from the Abjuration school using a spell slot, you or one creature you can see within 30 feet of yourself gains {@variantrule Temporary Hit Points|XPHB} equal to twice the level of spell slot expended."
+					]
+				},
+				{
+					"type": "table",
+					"caption": "Abjuration Adept Spells",
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"colLabels": [
+						"Spell Slot Level",
+						"Spell"
+					],
+					"rows": [
+						[
+							"1",
+							"{@spell Shield|XPHB}"
+						],
+						[
+							"2",
+							"{@spell Lesser Restoration|XPHB}"
+						],
+						[
+							"3",
+							"{@spell Protection from Energy|XPHB}"
+						],
+						[
+							"4",
+							"{@spell Banishment|XPHB}"
+						],
+						[
+							"5",
+							"{@spell Mass Cure Wounds|XPHB}"
+						]
+					]
+				}
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Actor",
@@ -611,6 +708,325 @@
 						"Immediately after you roll {@variantrule Initiative|XPHB}, you can swap your {@variantrule Initiative|XPHB} with the {@variantrule Initiative|XPHB} of one willing ally in the same combat. You can't make this swap if you or the ally has the {@condition Incapacitated|XPHB} condition."
 					]
 				}
+			]
+		},
+		{
+			"name": "Arcane Artist",
+			"source": "AU",
+			"page": 26,
+			"category": "O",
+			"additionalSpells": [
+				{
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"_": [
+							"minor illusion|xphb#c"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Cantrip",
+					"entries": [
+						"You learn the {@spell Minor Illusion|XPHB} cantrip. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Inspiring Magic",
+					"entries": [
+						"When you cast a spell from the Illusion school, you can choose one ally within 30 feet of yourself who can see you. That ally gains {@variantrule Heroic Inspiration|XPHB}. Once you use this benefit, you can't use it again until you finish a {@variantrule Long Rest|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Arcane Eloquence",
+			"source": "AU",
+			"page": 26,
+			"category": "O",
+			"additionalSpells": [
+				{
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"_": [
+							"vicious mockery|xphb#c"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Cantrip",
+					"entries": [
+						"You learn the {@spell Vicious Mockery|XPHB} cantrip. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Smooth Talker",
+					"entries": [
+						"When you make a Charisma ({@skill Deception|XPHB}, {@skill Intimidation|XPHB}, or {@skill Persuasion|XPHB}) check, you can roll {@dice 1d4} and add the number rolled to the ability check."
+					]
+				}
+			]
+		},
+		{
+			"name": "Arcane Infiltrator",
+			"source": "AU",
+			"page": 26,
+			"category": "O",
+			"additionalSpells": [
+				{
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"_": [
+							"friends|xphb#c"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Cantrip",
+					"entries": [
+						"You learn the {@spell Friends|XPHB} cantrip. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Cunning Diversion",
+					"entries": [
+						"You can take the {@action Dodge|XPHB} action as a {@variantrule Bonus Action|XPHB}. You can use this benefit a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Arcane Omens",
+			"source": "AU",
+			"page": 27,
+			"category": "O",
+			"additionalSpells": [
+				{
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"_": [
+							"guidance|xphb#c"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Cantrip",
+					"entries": [
+						"You learn the {@spell Guidance|XPHB} cantrip. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Helpful Premonition",
+					"entries": [
+						"When you or a creature you can see within 30 feet of yourself fails a saving throw, you can take a {@variantrule Reaction|XPHB} to roll {@dice 1d4} and add the number rolled to the save's total, potentially turning the failure into a success. You can use this benefit a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Arcane Overload",
+			"source": "AU",
+			"page": 27,
+			"category": "O",
+			"additionalSpells": [
+				{
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"_": [
+							"fire bolt|xphb#c"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Cantrip",
+					"entries": [
+						"You learn the {@spell Fire Bolt|XPHB} cantrip. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Power Surge",
+					"entries": [
+						"When you cast an Evocation spell and deal damage with it, you can add your {@variantrule Proficiency|XPHB|Proficiency Bonus} to one damage roll of that spell. Once you use this benefit, you can't do so again until you finish a {@variantrule Long Rest|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Arcane Safeguard",
+			"source": "AU",
+			"page": 27,
+			"category": "O",
+			"additionalSpells": [
+				{
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"_": [
+							"resistance|xphb#c"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Cantrip",
+					"entries": [
+						"You learn the {@spell Resistance|XPHB} cantrip. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat). You can cast the {@spell Resistance|XPHB} cantrip as a {@variantrule Bonus Action|XPHB}. You can do so a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Sheltering Aid",
+					"entries": [
+						"When you take the {@action Help|XPHB} action to assist with an ally's ability check, that ally gains a number of {@variantrule Temporary Hit Points|XPHB} equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Arcane Undertaker",
+			"source": "AU",
+			"page": 27,
+			"category": "O",
+			"additionalSpells": [
+				{
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"_": [
+							{
+								"choose": "level=0|class=Cleric;Wizard|school=N",
+								"count": 1
+							}
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Cantrip",
+					"entries": [
+						"You learn one Cleric or Wizard cantrip of your choice. The cantrip must be from the Necromancy school. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Knowledge from the Dead",
+					"entries": [
+						"When you make an Intelligence ({@skill History|XPHB}) or Wisdom ({@skill Medicine|XPHB}) check, you can roll {@dice 1d4} and add the number rolled to the ability check."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Understanding of Death",
+					"entries": [
+						"When you take the {@action Help|XPHB} action to stabilize a creature with 0 {@variantrule Hit Points|XPHB}, you gain {@variantrule Heroic Inspiration|XPHB}. Once you use this benefit, you can't use it again until you finish a {@variantrule Long Rest|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Arcane Warrior",
+			"source": "AU",
+			"page": 33,
+			"category": "FS",
+			"prerequisite": [
+				{
+					"feature": [
+						"Fighting Style"
+					]
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"_": [
+							{
+								"choose": "level=0|class=Wizard",
+								"count": 2
+							}
+						]
+					}
+				}
+			],
+			"entries": [
+				"You learn two Wizard cantrips of your choice. {@spell Mage Hand|XPHB} and {@spell Ray of Frost|XPHB} are recommended. Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells (choose when you select this feat).",
+				"Whenever you gain a level, you can replace one of these cantrips with another Wizard cantrip."
 			]
 		},
 		{
@@ -1290,6 +1706,41 @@
 			]
 		},
 		{
+			"name": "Boon of Erupting Spellpower",
+			"source": "AU",
+			"page": 33,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19,
+					"spellcasting2020": true
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						],
+						"amount": 2
+					},
+					"max": 30
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Spell Overload",
+					"entries": [
+						"When you cast a spell that deals damage using a spell slot, you can cause its magical energy to surge. You can treat any 1 or 2 on a damage die rolled for the spell as a 3, and creatures that took damage from the spell also have the {@condition Prone|XPHB} condition. Once you use this benefit, you can't do so again until you roll {@variantrule Initiative|XPHB} or finish a {@variantrule Long Rest|XPHB} or {@variantrule Short Rest|XPHB}."
+					]
+				}
+			]
+		},
+		{
 			"name": "Boon of Exquisite Radiance",
 			"source": "FRHoF",
 			"page": 42,
@@ -1565,6 +2016,223 @@
 					"name": "Dancing Silhouette",
 					"entries": [
 						"You can take the {@action Dodge|XPHB} action as a {@variantrule Bonus Action|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Boon of Magic School Mastery",
+			"source": "AU",
+			"page": 33,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19,
+					"spellcasting2020": true
+				}
+			],
+			"repeatable": true,
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"additionalSpells": [
+				{
+					"name": "Abjuration",
+					"prepared": {
+						"_": {
+							"will": [
+								{
+									"choose": "level=1|school=A"
+								}
+							],
+							"daily": {
+								"1": [
+									{
+										"choose": "level=1;2;3;4;5;6;7|school=A"
+									}
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Conjuration",
+					"prepared": {
+						"_": {
+							"will": [
+								{
+									"choose": "level=1|school=C"
+								}
+							],
+							"daily": {
+								"1": [
+									{
+										"choose": "level=1;2;3;4;5;6;7|school=C"
+									}
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Divination",
+					"prepared": {
+						"_": {
+							"will": [
+								{
+									"choose": "level=1|school=D"
+								}
+							],
+							"daily": {
+								"1": [
+									{
+										"choose": "level=1;2;3;4;5;6;7|school=D"
+									}
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Enchantment",
+					"prepared": {
+						"_": {
+							"will": [
+								{
+									"choose": "level=1|school=E"
+								}
+							],
+							"daily": {
+								"1": [
+									{
+										"choose": "level=1;2;3;4;5;6;7|school=E"
+									}
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Evocation",
+					"prepared": {
+						"_": {
+							"will": [
+								{
+									"choose": "level=1|school=V"
+								}
+							],
+							"daily": {
+								"1": [
+									{
+										"choose": "level=1;2;3;4;5;6;7|school=V"
+									}
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Illusion",
+					"prepared": {
+						"_": {
+							"will": [
+								{
+									"choose": "level=1|school=I"
+								}
+							],
+							"daily": {
+								"1": [
+									{
+										"choose": "level=1;2;3;4;5;6;7|school=I"
+									}
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Necromancy",
+					"prepared": {
+						"_": {
+							"will": [
+								{
+									"choose": "level=1|school=N"
+								}
+							],
+							"daily": {
+								"1": [
+									{
+										"choose": "level=1;2;3;4;5;6;7|school=N"
+									}
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Transmutation",
+					"prepared": {
+						"_": {
+							"will": [
+								{
+									"choose": "level=1|school=T"
+								}
+							],
+							"daily": {
+								"1": [
+									{
+										"choose": "level=1;2;3;4;5;6;7|school=T"
+									}
+								]
+							}
+						}
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Mastered School",
+					"entries": [
+						"Choose one of the eight schools of magic: Abjuration, Conjuration, Divination, Enchantment, Evocation, Illusion, Necromancy, or Transmutation. Your choice grants you the following features:",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "Rote Casting",
+									"entries": [
+										"Choose a level 1 spell from the chosen school that appears on your class's spell list. You always have that spell prepared and can cast it without a spell slot or spell components."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Signature Arcanum",
+									"entries": [
+										"Choose a level 7 or lower spell from the chosen school. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in this way when you finish a {@variantrule Long Rest|XPHB}."
+									]
+								}
+							]
+						}
+					]
+				},
+				"You can also cast these prepared spells using any spell slots you have of the appropriate level.",
+				{
+					"type": "entries",
+					"name": "Repeatable",
+					"entries": [
+						"You can take this feat more than once, but you must choose a different school of magic each time."
 					]
 				}
 			]
@@ -2404,6 +3072,42 @@
 			]
 		},
 		{
+			"name": "Boon of the Iron Mind",
+			"source": "AU",
+			"page": 33,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Unshakable Focus",
+					"entries": [
+						"When you are maintaining {@status Concentration|XPHB} on an effect, you lose {@status Concentration|XPHB} only if you cast a spell or activate another effect that requires {@status Concentration|XPHB}, if you have the {@condition Petrified|XPHB} or {@condition Unconscious|XPHB} condition, or if you die."
+					]
+				}
+			]
+		},
+		{
 			"name": "Boon of the Night Spirit",
 			"source": "XPHB",
 			"page": 211,
@@ -2985,6 +3689,101 @@
 			]
 		},
 		{
+			"name": "Conjuration Adept",
+			"source": "AU",
+			"page": 28,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"spellcasting2020": true
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"prepared": {
+						"s1": [
+							"entangle|xphb"
+						],
+						"s2": [
+							"misty step|xphb"
+						],
+						"s3": [
+							"conjure animals|xphb"
+						],
+						"s4": [
+							"dimension door|xphb"
+						],
+						"s5": [
+							"conjure elemental|xphb"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Additional Spells",
+					"entries": [
+						"Your prowess allows you to always have certain spells at the ready. When you have spell slots of a level specified in the Conjuration Adept Spells table, you thereafter always have the spells listed for that level and lower prepared."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Persistent Conjuration",
+					"entries": [
+						"While maintaining {@status Concentration|XPHB} on a spell from the Conjuration school, you gain a bonus to Constitution saving throws to maintain this {@status Concentration|XPHB}. This bonus is equal to the ability modifier of the score increased by this feat."
+					]
+				},
+				{
+					"type": "table",
+					"caption": "Conjuration Adept Spells",
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"colLabels": [
+						"Spell Slot Level",
+						"Spell"
+					],
+					"rows": [
+						[
+							"1",
+							"{@spell Entangle|XPHB}"
+						],
+						[
+							"2",
+							"{@spell Misty Step|XPHB}"
+						],
+						[
+							"3",
+							"{@spell Conjure Animals|XPHB}"
+						],
+						[
+							"4",
+							"{@spell Dimension Door|XPHB}"
+						],
+						[
+							"5",
+							"{@spell Conjure Elemental|XPHB}"
+						]
+					]
+				}
+			]
+		},
+		{
 			"name": "Crafter",
 			"source": "XPHB",
 			"page": 200,
@@ -3346,6 +4145,102 @@
 					"name": "Toughened Flesh",
 					"entries": [
 						"Immediately after you take Bludgeoning, Piercing, or Slashing damage, you can take a {@variantrule Reaction|XPHB} to gain {@variantrule Resistance|XPHB} to Bludgeoning, Piercing, and Slashing damage until the start of your next turn. Once you use this benefit, you can't use it again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Divination Adept",
+			"source": "AU",
+			"page": 29,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"spellcasting2020": true
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"prepared": {
+						"s1": [
+							"detect evil and good|xphb"
+						],
+						"s2": [
+							"mind spike|xphb"
+						],
+						"s3": [
+							"clairvoyance|xphb"
+						],
+						"s4": [
+							"divination|xphb"
+						],
+						"s5": [
+							"scrying|xphb"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Additional Spells",
+					"entries": [
+						"Your prowess allows you to always have certain spells at the ready. When you have spell slots of a level specified in the Divination Adept Spells table, you thereafter always have the spells listed for that level and lower prepared."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Prescient Intervention",
+					"entries": [
+						"When a creature you can see within 60 feet of yourself makes a {@variantrule D20 Test|XPHB}, you can take a {@variantrule Reaction|XPHB} to give that creature {@variantrule Advantage|XPHB} or {@variantrule Disadvantage|XPHB} (your choice) on that roll.",
+						"Once you use this benefit, you can't do so again until you finish a {@variantrule Long Rest|XPHB}. You can also regain use of this feature when you cast a spell from the Divination school using a spell slot."
+					]
+				},
+				{
+					"type": "table",
+					"caption": "Divination Adept Spells",
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"colLabels": [
+						"Spell Slot Level",
+						"Spell"
+					],
+					"rows": [
+						[
+							"1",
+							"{@spell Detect Evil and Good|XPHB}"
+						],
+						[
+							"2",
+							"{@spell Mind Spike|XPHB}"
+						],
+						[
+							"3",
+							"{@spell Clairvoyance|XPHB}"
+						],
+						[
+							"4",
+							"{@spell Divination|XPHB}"
+						],
+						[
+							"5",
+							"{@spell Scrying|XPHB}"
+						]
 					]
 				}
 			]
@@ -3868,6 +4763,7 @@
 		{
 			"name": "Echoing Soul",
 			"source": "RHW",
+			"page": 33,
 			"category": "DG",
 			"prerequisite": [
 				{
@@ -4004,6 +4900,59 @@
 			]
 		},
 		{
+			"name": "Elemental Familiar",
+			"source": "AU",
+			"page": 29,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"familiar friend|au"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Elemental Energy",
+					"entries": [
+						"You learn how to imbue your familiar with elemental power. When you cast the {@spell Find Familiar|XPHB} spell, choose Acid, Cold, Fire, Lightning, or Thunder damage. Your familiar is imbued with this energy until you cast {@spell Find Familiar|XPHB} again, granting it the following benefits:"
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Elemental Resistance",
+					"entries": [
+						"Your familiar has {@variantrule Resistance|XPHB} to the chosen damage type."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Energy Pulse",
+					"entries": [
+						"As a {@variantrule Bonus Action|XPHB}, you command your familiar to unleash a burst of elemental energy. Your familiar must be within 120 feet of you and take a {@variantrule Reaction|XPHB} to unleash this burst. Each creature in a 5-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from your familiar makes a Dexterity saving throw (DC 8 plus your spellcasting ability modifier for the {@spell Find Familiar|XPHB} spell and your {@variantrule Proficiency|XPHB|Proficiency Bonus}). On a failed save, a creature takes {@damage 2d4} damage of the chosen type, and if the creature is Medium or smaller, it has the {@condition Prone|XPHB} condition."
+					]
+				}
+			],
+			"hasFluffImages": true
+		},
+		{
 			"name": "Elven Accuracy",
 			"source": "XGE",
 			"page": 74,
@@ -4133,6 +5082,101 @@
 			]
 		},
 		{
+			"name": "Enchantment Adept",
+			"source": "AU",
+			"page": 30,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"spellcasting2020": true
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"prepared": {
+						"s1": [
+							"dissonant whispers|xphb"
+						],
+						"s2": [
+							"enthrall|xphb"
+						],
+						"s3": [
+							"hold person|xphb"
+						],
+						"s4": [
+							"dominate beast|xphb"
+						],
+						"s5": [
+							"modify memory|xphb"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Additional Spells",
+					"entries": [
+						"Your prowess allows you to always have certain spells at the ready. When you have spell slots of a level specified in the Enchantment Adept Spells table, you thereafter always have the spells listed for that level and lower prepared."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Subtle Enchantments",
+					"entries": [
+						"When you cast a spell from the Enchantment school using a spell slot, you can cast it without any Verbal, Somatic, or Material components, except Material components that are consumed by the spell or that have a cost specified in the spell."
+					]
+				},
+				{
+					"type": "table",
+					"caption": "Enchantment Adept Spells",
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"colLabels": [
+						"Spell Slot Level",
+						"Spell"
+					],
+					"rows": [
+						[
+							"1",
+							"{@spell Dissonant Whispers|XPHB}"
+						],
+						[
+							"2",
+							"{@spell Enthrall|XPHB}"
+						],
+						[
+							"3",
+							"{@spell Hold Person|XPHB}"
+						],
+						[
+							"4",
+							"{@spell Dominate Beast|XPHB}"
+						],
+						[
+							"5",
+							"{@spell Modify Memory|XPHB}"
+						]
+					]
+				}
+			]
+		},
+		{
 			"name": "Enclave Magic",
 			"source": "FRHoF",
 			"page": 39,
@@ -4190,6 +5234,101 @@
 					"name": "Two Hearts, One Mind",
 					"entries": [
 						"You always have the {@spell Beast Sense|XPHB} spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}. When you cast it without a spell slot using this feature, it doesn't require {@status Concentration|XPHB}. You can also cast the spell using any spell slots you have of the appropriate level. The spell's spellcasting ability is the ability increased by this feat."
+					]
+				}
+			]
+		},
+		{
+			"name": "Evocation Adept",
+			"source": "AU",
+			"page": 30,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"spellcasting2020": true
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"prepared": {
+						"s1": [
+							"chromatic orb|xphb"
+						],
+						"s2": [
+							"shatter|xphb"
+						],
+						"s3": [
+							"fireball|xphb"
+						],
+						"s4": [
+							"vitriolic sphere|xphb"
+						],
+						"s5": [
+							"wall of force|xphb"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Additional Spells",
+					"entries": [
+						"Your prowess allows you to always have certain spells at the ready. When you have spell slots of a level specified in the Evocation Adept Spells table, you thereafter always have the spells listed for that level and lower prepared."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Fueled Evocation",
+					"entries": [
+						"Once per turn when you cast an Evocation spell and deal damage, you can roll up to two of your unexpended {@variantrule Hit Point Dice|XPHB} and add the total rolled to one of the spell's damage rolls. Those {@variantrule Hit Point Dice|XPHB} are then expended."
+					]
+				},
+				{
+					"type": "table",
+					"caption": "Evocation Adept Spells",
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"colLabels": [
+						"Spell Slot Level",
+						"Spell"
+					],
+					"rows": [
+						[
+							"1",
+							"{@spell Chromatic Orb|XPHB}"
+						],
+						[
+							"2",
+							"{@spell Shatter|XPHB}"
+						],
+						[
+							"3",
+							"{@spell Fireball|XPHB}"
+						],
+						[
+							"4",
+							"{@spell Vitriolic Sphere|XPHB}"
+						],
+						[
+							"5",
+							"{@spell Wall of Force|XPHB}"
+						]
 					]
 				}
 			]
@@ -4263,6 +5402,56 @@
 					"entries": [
 						"When you hit a creature with an attack roll, you can attempt to fluster the target. The target must succeed on a Wisdom saving throw (DC 8 plus the ability modifier of the score increased by this feat and your {@variantrule Proficiency|XPHB|Proficiency Bonus}) or have {@variantrule Disadvantage|XPHB} on saving throws until the end of your next turn.",
 						"You can use this benefit a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Familiar Friend",
+			"source": "AU",
+			"page": 27,
+			"category": "O",
+			"additionalSpells": [
+				{
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"prepared": {
+						"_": {
+							"daily": {
+								"1": [
+									"find familiar|xphb"
+								]
+							}
+						}
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Faithful Companion",
+					"entries": [
+						"You always have the {@spell Find Familiar|XPHB} spell prepared. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat). You can cast it once without a spell slot or Material components, and you regain the ability to cast it in this way when you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Fortified Familiar",
+					"entries": [
+						"When you cast the {@spell Find Familiar|XPHB} spell, your familiar's {@variantrule Hit Points|XPHB|Hit Point} maximum and current {@variantrule Hit Points|XPHB} are increased by an amount equal to twice your character level."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Helpful Friend",
+					"entries": [
+						"When you make an ability check using a skill in which you have proficiency while your familiar is within 5 feet of you, you gain {@variantrule Advantage|XPHB} on the check. You can use this benefit a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
 					]
 				}
 			]
@@ -4537,6 +5726,7 @@
 		{
 			"name": "Gathered Whispers",
 			"source": "RHW",
+			"page": 33,
 			"category": "DG",
 			"prerequisite": [
 				{
@@ -5826,6 +7016,101 @@
 			]
 		},
 		{
+			"name": "Illusion Adept",
+			"source": "AU",
+			"page": 30,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"spellcasting2020": true
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"prepared": {
+						"s1": [
+							"silent image|xphb"
+						],
+						"s2": [
+							"phantasmal force|xphb"
+						],
+						"s3": [
+							"major image|xphb"
+						],
+						"s4": [
+							"hallucinatory terrain|xphb"
+						],
+						"s5": [
+							"seeming|xphb"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Additional Spells",
+					"entries": [
+						"Your prowess allows you to always have certain spells at the ready. When you have spell slots of a level specified in the Illusion Adept Spells table, you thereafter always have the spells listed for that level and lower prepared."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Masterful Illusions",
+					"entries": [
+						"When you cast a spell from the Illusion school using a spell slot, you can cast it without any Verbal, Somatic, or Material components, except Material components that are consumed by the spell or that have a cost specified in the spell. Additionally, creatures have {@variantrule Disadvantage|XPHB} on Intelligence ({@skill Investigation|XPHB}) checks made to discern the true nature of illusions created by your spells."
+					]
+				},
+				{
+					"type": "table",
+					"caption": "Illusion Adept Spells",
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"colLabels": [
+						"Spell Slot Level",
+						"Spell"
+					],
+					"rows": [
+						[
+							"1",
+							"{@spell Silent Image|XPHB}"
+						],
+						[
+							"2",
+							"{@spell Phantasmal Force|XPHB}"
+						],
+						[
+							"3",
+							"{@spell Major Image|XPHB}"
+						],
+						[
+							"4",
+							"{@spell Hallucinatory Terrain|XPHB}"
+						],
+						[
+							"5",
+							"{@spell Seeming|XPHB}"
+						]
+					]
+				}
+			]
+		},
+		{
 			"name": "Infernal Constitution",
 			"source": "XGE",
 			"page": 75,
@@ -6561,6 +7846,7 @@
 		{
 			"name": "Living Shadow",
 			"source": "RHW",
+			"page": 33,
 			"category": "DG",
 			"prerequisite": [
 				{
@@ -6827,6 +8113,104 @@
 					"name": "Guarded Mind",
 					"entries": [
 						"If you fail an Intelligence, a Wisdom, or a Charisma saving throw, you can cause yourself to succeed instead. Once you use this benefit, you can't use it again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Magic Connoisseur",
+			"source": "AU",
+			"page": 31,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"magic initiate|xphb"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"name": "Cleric Spells",
+					"ability": "inherit",
+					"prepared": {
+						"_": {
+							"daily": {
+								"1e": [
+									{
+										"choose": "level=1|class=Cleric"
+									},
+									{
+										"choose": "level=2|class=Cleric"
+									}
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Druid Spells",
+					"ability": "inherit",
+					"prepared": {
+						"_": {
+							"daily": {
+								"1e": [
+									{
+										"choose": "level=1|class=Druid"
+									},
+									{
+										"choose": "level=2|class=Druid"
+									}
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Wizard Spells",
+					"ability": "inherit",
+					"prepared": {
+						"_": {
+							"daily": {
+								"1e": [
+									{
+										"choose": "level=1|class=Wizard"
+									},
+									{
+										"choose": "level=2|class=Wizard"
+									}
+								]
+							}
+						}
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Additional Spells",
+					"entries": [
+						"Choose a level 1 and a level 2 spell from the same list you selected for the Magic Initiate feat's cantrips. You always have those spells prepared. You can cast each spell once without a spell slot, and you regain the ability to cast it in this way when you finish a {@variantrule Long Rest|XPHB}. You can also cast those spells using any spell slots you have of the appropriate level. The spellcasting ability for these spells is the same as the spellcasting ability chosen for your Magic Initiate feat's spells."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spell Change",
+					"entries": [
+						"Whenever you gain a new level, you can replace one of the spells you chose for this feat with a different spell of the same level from the chosen spell list."
 					]
 				}
 			]
@@ -8947,6 +10331,7 @@
 		{
 			"name": "Mist Walker",
 			"source": "RHW",
+			"page": 34,
 			"category": "DG",
 			"prerequisite": [
 				{
@@ -9255,6 +10640,101 @@
 			]
 		},
 		{
+			"name": "Necromancy Adept",
+			"source": "AU",
+			"page": 31,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"spellcasting2020": true
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"prepared": {
+						"s1": [
+							"inflict wounds|xphb"
+						],
+						"s2": [
+							"ray of enfeeblement|xphb"
+						],
+						"s3": [
+							"vampiric touch|xphb"
+						],
+						"s4": [
+							"blight|xphb"
+						],
+						"s5": [
+							"raise dead|xphb"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Additional Spells",
+					"entries": [
+						"Your prowess allows you to always have certain spells at the ready. When you have spell slots of a level specified in the Necromancy Adept Spells table, you thereafter always have the spells listed for that level and lower prepared."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Life Manipulation",
+					"entries": [
+						"When you cast a spell from the Necromancy school using a spell slot, you can immediately roll up to two of your unexpended {@variantrule Hit Point Dice|XPHB}. You regain {@variantrule Hit Points|XPHB} equal to the total rolled plus the level of spell slot expended. Those {@variantrule Hit Point Dice|XPHB} are then expended."
+					]
+				},
+				{
+					"type": "table",
+					"caption": "Necromancy Adept Spells",
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"colLabels": [
+						"Spell Slot Level",
+						"Spell"
+					],
+					"rows": [
+						[
+							"1",
+							"{@spell Inflict Wounds|XPHB}"
+						],
+						[
+							"2",
+							"{@spell Ray of Enfeeblement|XPHB}"
+						],
+						[
+							"3",
+							"{@spell Vampiric Touch|XPHB}"
+						],
+						[
+							"4",
+							"{@spell Blight|XPHB}"
+						],
+						[
+							"5",
+							"{@spell Raise Dead|XPHB}"
+						]
+					]
+				}
+			]
+		},
+		{
 			"name": "Observant",
 			"source": "PHB",
 			"page": 168,
@@ -9418,6 +10898,58 @@
 					"name": "Stronger Together",
 					"entries": [
 						"If you are within 5 feet of an ally that doesn't have the {@condition Incapacitated|XPHB} condition, you and that ally have {@variantrule Advantage|XPHB} on Strength saving throws. You can't use this benefit while you have the {@condition Incapacitated|XPHB} condition."
+					]
+				}
+			]
+		},
+		{
+			"name": "Otherworldly Familiar",
+			"source": "AU",
+			"page": 31,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"familiar friend|au"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Otherworldly Power",
+					"entries": [
+						"When you cast the {@spell Find Familiar|XPHB} spell, you can imbue your familiar with otherworldly might, which lasts until you cast {@spell Find Familiar|XPHB} again. While imbued, your familiar gains the following benefits:"
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Energy Resistance",
+					"entries": [
+						"Choose Necrotic, Poison, Psychic, Radiant, or Thunder damage. Your familiar has {@variantrule Resistance|XPHB} to the chosen damage type."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Phase Walk",
+					"entries": [
+						"Your familiar can move through other creatures and objects as if they were {@variantrule Difficult Terrain|XPHB}. If your familiar ends its turn inside an object, it is shunted to the last unoccupied space it was in."
 					]
 				}
 			]
@@ -9727,6 +11259,40 @@
 					"name": "Reactive Strike",
 					"entries": [
 						"While you're holding a {@item Quarterstaff|XPHB}, a {@item Spear|XPHB}, or a {@filter weapon that has the Heavy and Reach properties|items|type=melee weapon;ranged weapon|property=heavy;reach=sand}, you can take a {@variantrule Reaction|XPHB} to make one melee attack against a creature that enters the reach you have with that weapon."
+					]
+				}
+			]
+		},
+		{
+			"name": "Portal Jumper",
+			"source": "AU",
+			"page": 27,
+			"category": "O",
+			"resist": [
+				{
+					"choose": {
+						"from": [
+							"necrotic",
+							"psychic",
+							"radiant"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Otherworldly Resilience",
+					"entries": [
+						"You have {@variantrule Resistance|XPHB} to one of the following damage types: Necrotic, Psychic, or Radiant (choose when you select this feat)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Portal Step",
+					"entries": [
+						"You can spend 15 feet of movement to teleport to an unoccupied space you can see within 15 feet of yourself. You can use this benefit a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus} but only once per turn, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
 					]
 				}
 			]
@@ -10819,6 +12385,7 @@
 		{
 			"name": "Second Skin",
 			"source": "RHW",
+			"page": 34,
 			"category": "DG",
 			"prerequisite": [
 				{
@@ -11146,6 +12713,7 @@
 		{
 			"name": "Sharp Eye",
 			"source": "RHW",
+			"page": 32,
 			"category": "O",
 			"entries": [
 				"When you take the {@action Search|XPHB} or {@action Study|XPHB} action, you can give yourself {@variantrule Advantage|XPHB} on any ability check made as part of that action. You can use this feature a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}. If the check fails, the use of this feature isn't expended."
@@ -11591,6 +13159,44 @@
 			]
 		},
 		{
+			"name": "Soothing Familiar",
+			"source": "AU",
+			"page": 31,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"familiar friend|au"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Healing Beacon",
+					"entries": [
+						"Positive energy fills a 5-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from your familiar as long as it is within 120 feet of you. Whenever an ally in that {@variantrule Emanation [Area of Effect]|XPHB|Emanation} rolls a die to determine the number of {@variantrule Hit Points|XPHB} restored to a creature, that ally can treat a roll of 1 or 2 on the die as a 3."
+					]
+				}
+			]
+		},
+		{
 			"name": "Soul of the Storm Giant",
 			"source": "BGG",
 			"page": 19,
@@ -11691,6 +13297,57 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Spell Resistant",
+			"source": "AU",
+			"page": 31,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"dex",
+							"con"
+						]
+					}
+				}
+			],
+			"resist": [
+				{
+					"choose": {
+						"from": [
+							"necrotic",
+							"psychic",
+							"radiant",
+							"thunder"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Magical Resilience",
+					"entries": [
+						"You have {@variantrule Resistance|XPHB} to one of the following damage types (choose when you gain this feat): Necrotic, Psychic, Radiant, or Thunder."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Magic Resistant",
+					"entries": [
+						"When you would fail a saving throw against a spell or magical effect, you can roll {@dice 1d6} and add the number rolled to the save's total, potentially turning the failure into a success. You can use this benefit a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+					]
+				}
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Spell Sniper",
@@ -11833,6 +13490,46 @@
 					"name": "Increased Range",
 					"entries": [
 						"When you cast a spell that has a range of at least 10 feet and requires you to make an attack roll, you can increase the spell's range by 60 feet."
+					]
+				}
+			]
+		},
+		{
+			"name": "Spell Subterfuge",
+			"source": "AU",
+			"page": 32,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"spellcasting2020": true
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Shrouding Spells",
+					"entries": [
+						"After you cast a spell that has a casting time of an action using a spell slot, you can take both the {@action Dash|XPHB} and {@action Hide|XPHB} actions as a {@variantrule Bonus Action|XPHB}. You can use this benefit a number of times equal to the ability modifier of the score increased by this feat, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Sneaky Casting",
+					"entries": [
+						"If you have the {@action Hide|XPHB} action's {@condition Invisible|XPHB} condition, casting a spell with a Verbal component or making a spell attack doesn't end that condition on you if you end the turn behind {@variantrule Cover|XPHB|Three-Quarters Cover} or {@variantrule Cover|XPHB|Total Cover}."
 					]
 				}
 			]
@@ -12824,6 +14521,7 @@
 		{
 			"name": "Survivor",
 			"source": "RHW",
+			"page": 32,
 			"category": "O",
 			"entries": [
 				"You gain the following benefits.",
@@ -12895,6 +14593,7 @@
 		{
 			"name": "Symbiotic Being",
 			"source": "RHW",
+			"page": 34,
 			"category": "DG",
 			"prerequisite": [
 				{
@@ -13247,6 +14946,7 @@
 		{
 			"name": "Touch of Death",
 			"source": "RHW",
+			"page": 35,
 			"category": "DG",
 			"prerequisite": [
 				{
@@ -13307,6 +15007,127 @@
 			"category": "O",
 			"entries": [
 				"Your {@variantrule Hit Points|XPHB|Hit Point} maximum increases by an amount equal to twice your character level when you gain this feat. Whenever you gain a character level thereafter, your {@variantrule Hit Points|XPHB|Hit Point} maximum increases by an additional 2 {@variantrule Hit Points|XPHB}."
+			]
+		},
+		{
+			"name": "Transmutation Adept",
+			"source": "AU",
+			"page": 32,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"spellcasting2020": true
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"prepared": {
+						"s1": [
+							"jump|xphb"
+						],
+						"s2": [
+							"spider climb|xphb"
+						],
+						"s3": [
+							"slow|xphb"
+						],
+						"s4": [
+							"polymorph|xphb"
+						],
+						"s5": [
+							"animate objects|xphb"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Additional Spells",
+					"entries": [
+						"Your prowess allows you to always have certain spells at the ready. When you have spell slots of a level specified in the Transmutation Adept Spells table, you thereafter always have the spells listed for that level and lower prepared."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Magical Augmentation",
+					"entries": [
+						"On your turn when you cast a spell from the Transmutation school using a spell slot, your {@variantrule Speed|XPHB} increases by a number of feet equal to five times the level of spell slot expended. This increase lasts until the end of the turn."
+					]
+				},
+				{
+					"type": "table",
+					"caption": "Transmutation Adept Spells",
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"colLabels": [
+						"Spell Slot Level",
+						"Spell"
+					],
+					"rows": [
+						[
+							"1",
+							"{@spell Jump|XPHB}"
+						],
+						[
+							"2",
+							"{@spell Spider Climb|XPHB}"
+						],
+						[
+							"3",
+							"{@spell Slow|XPHB}"
+						],
+						[
+							"4",
+							"{@spell Polymorph|XPHB}"
+						],
+						[
+							"5",
+							"{@spell Animate Objects|XPHB}"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Transmuted Anatomy",
+			"source": "AU",
+			"page": 28,
+			"category": "O",
+			"traitTags": [
+				"Speed"
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Lengthened Stride",
+					"entries": [
+						"Your {@variantrule Speed|XPHB} increases by 5 feet."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Resilient Anatomy",
+					"entries": [
+						"You have {@variantrule Advantage|XPHB} on saving throws against effects that would compel you to shape-shift against your will. Additionally, when you fail a Constitution saving throw, you can take a {@variantrule Reaction|XPHB} to roll {@dice 1d4} and add the number rolled to the save, potentially turning the failure into a success. You can use this benefit a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+					]
+				}
 			]
 		},
 		{
@@ -13650,8 +15471,68 @@
 			]
 		},
 		{
+			"name": "Warlike Familiar",
+			"source": "AU",
+			"page": 33,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"familiar friend|au"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": "inherit",
+					"prepared": {
+						"_": {
+							"daily": {
+								"1": [
+									"battle familiar|au"
+								]
+							}
+						}
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Battle Familiar",
+					"entries": [
+						"You always have the {@spell Battle Familiar|AU} spell (see chapter 2) prepared. You can cast it once without a spell slot, and you regain the ability to cast it in this way when you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have of the appropriate level. Your spellcasting ability for this spell is the one chosen for the Faithful Companion benefit of your Familiar Friend feat."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Intercept Attack",
+					"entries": [
+						"When a creature within 5 feet of your familiar is hit by an attack roll, your familiar can take a {@variantrule Reaction|XPHB} to add a bonus to the creature's {@variantrule Armor Class|XPHB} against that attack, potentially causing the attack to miss. The bonus is equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}."
+					]
+				}
+			]
+		},
+		{
 			"name": "Watchers",
 			"source": "RHW",
+			"page": 35,
 			"category": "DG",
 			"prerequisite": [
 				{

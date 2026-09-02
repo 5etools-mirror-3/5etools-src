@@ -39,6 +39,7 @@
 		{
 			"name": "Ancient Altar",
 			"source": "RHW",
+			"page": 208,
 			"facilityType": "special",
 			"level": 9,
 			"space": [
@@ -340,6 +341,7 @@
 		{
 			"name": "Cabinet of Curiosities",
 			"source": "RHW",
+			"page": 208,
 			"facilityType": "special",
 			"level": 9,
 			"space": [
@@ -428,6 +430,40 @@
 						},
 						"To determine how many magic items your hireling brings back, count the Haunted special facilities in your Bastion, then roll the die indicated in the Magic Items Acquired column on the Curios Collected table. The DM rolls on the Cursed Item Chance ({@dice 1d100}) column to determine whether one of the magic items carries a curse. The DM chooses which item is cursed and establishes the nature of the curse.",
 						"For each magic item acquired, roll on a table in the \"{@book Random Magic Items|XDMG|9}\" section in the {@book Dungeon Master's Guide|XDMG} of the corresponding rarity to determine what the item is. (Select the treasure theme randomly.)"
+					]
+				}
+			]
+		},
+		{
+			"name": "Circus Tent",
+			"source": "AU",
+			"facilityType": "special",
+			"level": 9,
+			"prerequisite": [
+				{
+					"membership": [
+						"Phantasmic Circus"
+					]
+				}
+			],
+			"space": [
+				"vast"
+			],
+			"hirelings": [
+				{
+					"exact": 4
+				}
+			],
+			"orders": [
+				"trade"
+			],
+			"entries": [
+				"The Circus Tent is a space for musical, acrobatic, comedic, or other performances intended to delight a crowd. The tent includes seating for audience members. Your hirelings are {@creature Performer|XMM|Performers} whose alignment matches your own. Assign names, personalities, and circus acts to them as you see fit.",
+				{
+					"type": "entries",
+					"name": "Trade: Circus Performance",
+					"entries": [
+						"When you issue the {@book Trade|XDMG|7|Trade} order to this facility, the facility's hirelings turn the Circus Tent into a performance venue for 7 days. At the end of the seventh day, your portion of the proceeds is equal to {@dice 2d6 × 10} GP."
 					]
 				}
 			]
@@ -793,6 +829,47 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Entertainment Salon",
+			"source": "AU",
+			"facilityType": "special",
+			"level": 5,
+			"prerequisite": [
+				{
+					"membership": [
+						"Bejeweled Conclave"
+					]
+				}
+			],
+			"space": [
+				"roomy"
+			],
+			"hirelings": [
+				{
+					"exact": 2
+				}
+			],
+			"orders": [
+				"research"
+			],
+			"entries": [
+				"This fancy salon boasts elegant wall hangings, comfortable reclining couches, and a well-stocked bar.",
+				{
+					"type": "entries",
+					"name": "Open Pockets",
+					"entries": [
+						"Your eloquent hirelings convince others to pay a little more or to accept a little less. When you roll a die to determine how many Gold Pieces you pay or gain for a {@book Bastion|XDMG|7|Gaining a Bastion} order or event, you can roll twice and take either result."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Research: Learn Secrets",
+					"entries": [
+						"When you issue the {@book Research|XDMG|7|Research} order to this facility, you direct the facility's hirelings to entertain well-informed contacts and learn about a specific creature you name within 50 miles of your Bastion. After 7 days of work, the hirelings gain {@dice 1d4} facts about the named creature that aren't widely known and might be amusing, embarrassing, or useful. The hirelings also discover the creature's power relative to yours (such as whether the creature's CR is higher than, lower than, or the same as your level). At the DM's discretion, you might receive limited or incorrect information about an exceptionally private or supernaturally disguised creature."
+					]
+				}
+			]
+		},
+		{
 			"name": "Gaming Hall",
 			"source": "XDMG",
 			"page": 340,
@@ -923,6 +1000,58 @@
 					"name": "Enlarging the Facility",
 					"entries": [
 						"You can enlarge your Garden to a Vast facility by spending 2,000 GP. A Vast Garden is equivalent to two Roomy Gardens and can include two of the same type of Garden or two different types. When you issue the Harvest order to a Vast Garden, each component garden produces its own harvest. A Vast Garden gains one additional hireling."
+					]
+				}
+			]
+		},
+		{
+			"name": "Geothermal Vent",
+			"source": "AU",
+			"facilityType": "special",
+			"level": 5,
+			"prerequisite": [
+				{
+					"membership": [
+						"Crucible Keepers"
+					]
+				}
+			],
+			"space": [
+				"roomy"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"empower"
+			],
+			"entries": [
+				"A geothermal vent draws heat from deep below the surface to provide energy and power simple machines.",
+				{
+					"type": "entries",
+					"name": "Empower: Withstand Heat",
+					"entries": [
+						"When you issue the {@book Empower|XDMG|7|Empower} order to this facility, for the next 7 days, the facility's hireling teaches a series of meditative techniques that allow a character to mitigate the injuries they suffer from flames. Any character who trains here for at least 8 hours on each of those days gains the following benefit at the end of the training period:",
+						{
+							"type": "list",
+							"items": [
+								{
+									"type": "item",
+									"name": "Heat Tolerant",
+									"entry": "When you take Fire damage, you can take a {@variantrule Reaction|XPHB} to reduce this damage by {@dice 1d4} plus your level. This benefit lasts for 7 days."
+								}
+							],
+							"style": "list-hang-notitle"
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Hot Water",
+					"entries": [
+						"Your basic facilities benefit from a constant source of adjustable heat. For example, a dining room has a warming table to keep food hot, a kitchen has multiple ovens with varying heat, and a bedroom has a basin that warms water for washing."
 					]
 				}
 			]
@@ -1108,8 +1237,95 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Heist Planning Chamber",
+			"source": "AU",
+			"facilityType": "special",
+			"level": 9,
+			"prerequisite": [
+				{
+					"membership": [
+						"Ninth Quill"
+					]
+				}
+			],
+			"space": [
+				"roomy",
+				"vast"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"research"
+			],
+			"entries": [
+				"This room has a planning table, pieces of miniature terrain to represent walls or furniture, and tomes on magical security, architecture, and spy craft useful when planning a heist.",
+				{
+					"type": "entries",
+					"name": "Research: Reconnaissance",
+					"entries": [
+						"When you issue the {@book Research|XDMG|7|Research} order to this facility, your hireling sends spies to evaluate a building within 50 miles of your Bastion. This work takes 7 days. At the end of the seventh day, the hireling provides a model of the building on the planning table. Public areas of the building are depicted accurately, and private areas are depicted only generally. Any area concealed by magic or protected by powerful guardians, at the DM's discretion, might not be depicted accurately or at all. The spies avoid all creatures, so information about the building's inhabitants is sparse.",
+						"The model remains until you use the {@book Research|XDMG|7|Research} order on this facility again, but it might become inaccurate over time if the building changes."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Heist Preparations",
+					"entries": [
+						"A character who prepares for a theft or infiltration using the model for at least 8 hours chooses one of the following roles. The role's benefit applies while the character is within 1 mile of the building depicted by the model and lasts for 7 days or until you prepare again:",
+						{
+							"type": "list",
+							"items": [
+								{
+									"type": "item",
+									"name": "Enforcer:",
+									"entry": "{@variantrule Advantage|XPHB} on Charisma ({@skill Intimidation|XPHB}) checks"
+								},
+								{
+									"type": "item",
+									"name": "Face:",
+									"entry": "{@variantrule Advantage|XPHB} on Charisma ({@skill Deception|XPHB}) checks"
+								},
+								{
+									"type": "item",
+									"name": "Lookout:",
+									"entry": "{@variantrule Advantage|XPHB} on Wisdom ({@skill Perception|XPHB}) checks"
+								},
+								{
+									"type": "item",
+									"name": "Medic:",
+									"entry": "{@variantrule Advantage|XPHB} on Wisdom ({@skill Medicine|XPHB}) checks"
+								},
+								{
+									"type": "item",
+									"name": "Sneak:",
+									"entry": "{@variantrule Advantage|XPHB} on Dexterity ({@skill Stealth|XPHB}) checks"
+								},
+								{
+									"type": "item",
+									"name": "Thief:",
+									"entry": "{@variantrule Advantage|XPHB} on Dexterity ({@skill Sleight of Hand|XPHB}) checks"
+								}
+							],
+							"style": "list-hang-notitle"
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Enlarging the Facility",
+					"entries": [
+						"You can enlarge your Heist Planning Chamber to a Vast facility by spending 2,000 GP. If you do so, the range of Reconnaissance increases to 500 miles, and a character preparing for a heist can choose two roles, gaining the benefits of both."
+					]
+				}
+			]
+		},
+		{
 			"name": "Infirmary",
 			"source": "RHW",
+			"page": 209,
 			"facilityType": "special",
 			"level": 9,
 			"prerequisite": [
@@ -1346,8 +1562,50 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Lighthouse",
+			"source": "AU",
+			"facilityType": "special",
+			"level": 9,
+			"prerequisite": [
+				{
+					"membership": [
+						"Seers of Sea and Sky"
+					]
+				}
+			],
+			"space": [
+				"roomy"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"harvest"
+			],
+			"entries": [
+				"This tall lighthouse has rotating lenses that make its light visible from a significant distance, even in poor weather. Your hireling operates and maintains the machinery and ignites or douses the light as you direct.",
+				{
+					"type": "entries",
+					"name": "Vision Charm",
+					"entries": [
+						"Time in your lighthouse inspires you to pierce the darkness. After spending a {@variantrule Long Rest|XPHB} in your Lighthouse, you gain the {@reward Charm of Darkvision|XDMG} (see the {@book Dungeon Master's Guide|XDMG})."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Harvest: Illuminate Treasure",
+					"entries": [
+						"When you issue the {@book Harvest|XDMG|7|Harvest} order to this facility, you instruct the facility's hireling to watch the surrounding area for lost or discarded valuables. The hireling watches for 7 days. At the end of that time, you can hire salvagers to retrieve treasures your hireling spotted. You must spend 100 GP to hire the salvagers, who return with treasure worth {@dice 1d4 × 100} GP."
+					]
+				}
+			]
+		},
+		{
 			"name": "Lightning Generator",
 			"source": "RHW",
+			"page": 210,
 			"facilityType": "special",
 			"level": 13,
 			"space": [
@@ -1389,6 +1647,7 @@
 		{
 			"name": "Liminal Space",
 			"source": "RHW",
+			"page": 210,
 			"facilityType": "special",
 			"level": 17,
 			"space": [
@@ -1769,6 +2028,56 @@
 			]
 		},
 		{
+			"name": "Morgue",
+			"source": "AU",
+			"facilityType": "special",
+			"level": 5,
+			"prerequisite": [
+				{
+					"membership": [
+						"Covenant of the Grave"
+					]
+				}
+			],
+			"space": [
+				"cramped",
+				"roomy"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"research"
+			],
+			"entries": [
+				"A morgue is a location where corpses are stored and studied. You can store up to four Small or Medium corpses in the Morgue.",
+				{
+					"type": "entries",
+					"name": "Corpse Storage",
+					"entries": [
+						"As long as this facility's hireling is present, each corpse stored in the Morgue is affected by the {@spell Gentle Repose|XPHB} spell. If the facility lacks a hireling or a corpse is removed, the facility's corpses or the removed corpse loses this protection until returned to a Morgue with a hireling."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Research: Cadaver Insights",
+					"entries": [
+						"When you issue the {@book Research|XDMG|7|Research} order to this facility, you instruct the facility's hireling to carefully inspect the corpses. This work takes 7 days. The next time you speak with the hireling, the hireling can share the cause of death of each corpse present and answer one question you have for each corpse as though the hireling had cast the {@spell Speak with Dead|XPHB} spell on it."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Enlarging the Facility",
+					"entries": [
+						"You can enlarge your Morgue to a Roomy facility by spending 2,000 GP. If you do so, the Morgue can store up to twelve Small or Medium corpses and up to one Large corpse."
+					]
+				}
+			],
+			"hasFluff": true
+		},
+		{
 			"name": "Museum",
 			"source": "EFA",
 			"page": 51,
@@ -1987,6 +2296,160 @@
 			]
 		},
 		{
+			"name": "Planar Gateway",
+			"source": "AU",
+			"facilityType": "special",
+			"level": 17,
+			"prerequisite": [
+				{
+					"membership": [
+						"Horizon Weavers"
+					],
+					"spellcastingFocus": [
+						"arcane",
+						"holy",
+						"tool"
+					]
+				}
+			],
+			"space": [
+				"roomy"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"empower"
+			],
+			"entries": [
+				"The focus of this chamber is an inscribed stone archway filled with mist and strange lights. This archway can connect to other planes of existence.",
+				{
+					"type": "entries",
+					"name": "Empower: Open Gate",
+					"entries": [
+						"When you issue the {@book Empower|XDMG|7|Empower} order to this facility, you instruct the facility's hireling to tune the archway to a place on another plane of existence. Tuning the archway takes 7 days, at the end of which time the gateway opens. If you provide a diamond worth 5,000+ GP as part of the tuning, the gate connects to a place you specify on another plane, as with the {@spell Gate|XPHB} spell (for transport only, not to draw a specific creature through) and destroys the diamond. If you don't provide a diamond or if a deity or another planar ruler blocks the intended gate from opening, determine the gate's destination randomly on the Random Planar Destination table. In either case, the gateway remains open for 1 minute.",
+						{
+							"type": "table",
+							"caption": "Random Planar Destination",
+							"colLabels": [
+								"1d100",
+								"Destination"
+							],
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"rows": [
+								[
+									"01\u201304",
+									"{@book Abyss|XDMG|5|Abyss}"
+								],
+								[
+									"05\u201308",
+									"{@book Acheron|XDMG|5|Acheron}"
+								],
+								[
+									"09\u201312",
+									"{@book Arborea|XDMG|5|Arborea}"
+								],
+								[
+									"13\u201316",
+									"{@book Arcadia|XDMG|5|Arcadia}"
+								],
+								[
+									"17\u201320",
+									"{@book Astral Plane|XDMG|5|Astral Plane}"
+								],
+								[
+									"21\u201324",
+									"{@book Beastlands|XDMG|5|Beastlands}"
+								],
+								[
+									"25\u201328",
+									"{@book Bytopia|XDMG|5|Bytopia}"
+								],
+								[
+									"29\u201332",
+									"{@book Carceri|XDMG|5|Carceri}"
+								],
+								[
+									"33\u201336",
+									"{@book Elemental Plane of Air|XDMG|5|Elemental Plane of Air}"
+								],
+								[
+									"37\u201340",
+									"{@book Elemental Plane of Earth|XDMG|5|Elemental Plane of Earth}"
+								],
+								[
+									"41\u201344",
+									"{@book Elemental Plane of Fire|XDMG|5|Elemental Plane of Fire}"
+								],
+								[
+									"45\u201348",
+									"{@book Elemental Plane of Water|XDMG|5|Elemental Plane of Water}"
+								],
+								[
+									"49\u201352",
+									"{@book Elysium|XDMG|5|Elysium}"
+								],
+								[
+									"53\u201356",
+									"{@book Ethereal Plane|XDMG|5|Ethereal Plane}"
+								],
+								[
+									"57\u201360",
+									"{@book Feywild|XDMG|5|Feywild}"
+								],
+								[
+									"61\u201364",
+									"{@book Gehenna|XDMG|5|Gehenna}"
+								],
+								[
+									"65\u201368",
+									"{@book Hades|XDMG|5|Hades}"
+								],
+								[
+									"69\u201372",
+									"{@book Limbo|XDMG|5|Limbo}"
+								],
+								[
+									"73\u201376",
+									"{@book Mechanus|XDMG|5|Mechanus}"
+								],
+								[
+									"77\u201380",
+									"{@book Mount Celestia|XDMG|5|Mount Celestia}"
+								],
+								[
+									"81\u201384",
+									"{@book Nine Hells|XDMG|5|Nine Hells}"
+								],
+								[
+									"85\u201388",
+									"{@book Outlands|XDMG|5|Outlands}"
+								],
+								[
+									"89\u201392",
+									"{@book Pandemonium|XDMG|5|Pandemonium}"
+								],
+								[
+									"93\u201396",
+									"{@book Shadowfell|XDMG|5|Shadowfell}"
+								],
+								[
+									"97\u201300",
+									"{@book Ysgard|XDMG|5|Ysgard}"
+								]
+							]
+						}
+					]
+				}
+			],
+			"hasFluffImages": true
+		},
+		{
 			"name": "Pub",
 			"source": "XDMG",
 			"page": 344,
@@ -2150,6 +2613,7 @@
 		{
 			"name": "Rookery",
 			"source": "RHW",
+			"page": 210,
 			"facilityType": "special",
 			"level": 5,
 			"space": [
@@ -2430,8 +2894,50 @@
 			]
 		},
 		{
+			"name": "Soup Kitchen",
+			"source": "AU",
+			"facilityType": "special",
+			"level": 5,
+			"prerequisite": [
+				{
+					"membership": [
+						"Sheltering Hands"
+					]
+				}
+			],
+			"space": [
+				"roomy"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"recruit"
+			],
+			"entries": [
+				"This kitchen prepares large quantities of food and serves it to hungry people.",
+				{
+					"type": "entries",
+					"name": "Recruit: Kitchen Operation",
+					"entries": [
+						"When you issue the {@book Recruit|XDMG|7|Recruit} order to this facility, you instruct your hireling to operate the soup kitchen for 7 days. Ingredients cost you 50 GP. If you would lose a Bastion Defender or a hireling on the next roll on the {@book Bastion Events|XDMG|7|Bastion Events} table, someone who believes in your work steps into their place and takes over immediately. You don't count as losing that Bastion Defender or hireling."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Traveling Snacks",
+					"entries": [
+						"After spending a {@variantrule Long Rest|XPHB} in your Bastion, you gain a magical {@reward Traveling Snacks|AU|Charm} that lasts for 7 days or until you use it. The Charm allows you to cast {@spell Goodberry|XPHB} once without expending a spell slot."
+					]
+				}
+			]
+		},
+		{
 			"name": "Spirit Vault",
 			"source": "RHW",
+			"page": 211,
 			"facilityType": "special",
 			"level": 13,
 			"space": [
@@ -2556,6 +3062,7 @@
 		{
 			"name": "Séance Parlor",
 			"source": "RHW",
+			"page": 210,
 			"facilityType": "special",
 			"level": 5,
 			"space": [
@@ -2728,6 +3235,48 @@
 					"name": "Empower: Training",
 					"entries": [
 						"When you issue the {@book Empower|XDMG|7|Empower} order to this facility, the facility's hirelings conduct training exercises for the next 7 days. Any character who trains here for at least 8 hours on each of those days gains a benefit at the end of the training period. The benefit depends on which trainer is present in the facility, as noted in the Expert Trainers table. The benefit lasts for 7 days."
+					]
+				}
+			]
+		},
+		{
+			"name": "Transmutation Vat",
+			"source": "AU",
+			"facilityType": "special",
+			"level": 5,
+			"prerequisite": [
+				{
+					"membership": [
+						"Bringers of Cosmic Dawn"
+					]
+				}
+			],
+			"space": [
+				"cramped",
+				"roomy"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"harvest"
+			],
+			"entries": [
+				"This laboratory features a vat or cauldron simmering with transformation potential.",
+				{
+					"type": "entries",
+					"name": "Harvest: Fluid Transmutation",
+					"entries": [
+						"When you issue the {@book Harvest|XDMG|7|Harvest} order to this facility, you instruct your hireling to pour a substance into the vat and transform it into something else. You must expend a Common or Uncommon potion, which is destroyed in the vat. At the end of 7 days, the hireling produces your choice of a flask of {@item Alchemist's Fire|XPHB}, a vial of {@item Antitoxin|XPHB}, a vial of {@item Basic Poison|XPHB}, or a Common or Uncommon potion of your choice."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Enlarging the Facility",
+					"entries": [
+						"You can enlarge your Transmutation Vat into a Roomy facility by spending 2,000 GP. When you issue the {@book Harvest|XDMG|7|Harvest} order to a Roomy Transmutation Vat, you can expend two Common or Uncommon potions. If you do, your hireling produces two substances of your choice instead of one; the options can be different."
 					]
 				}
 			]

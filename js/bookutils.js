@@ -1,16 +1,10 @@
 import {RenderMap} from "./render-map.js";
 import {OmnisearchUtilsUi} from "./omnisearch/omnisearch-utils-ui.js";
+import {UtilBookUtil} from "./bookutils/bookutils-utils.js";
 
 export class BookUtil {
 	static _getHeaderText ({header}) {
 		return header.header || header;
-	}
-
-	static _getScrollHash ({header, bookSource}) {
-		return UrlUtil.URL_TO_HASH_GENERIC({
-			name: this._getHeaderText({header}),
-			source: header.source || bookSource,
-		});
 	}
 
 	static async _scrollClick_pScrollElementIntoView (ele) {
@@ -1048,7 +1042,7 @@ export class BookUtil {
 		if (header.statblock) {
 			return {
 				headerIndex: 0,
-				hashHeader: `${VeCt.HASH_PREFIX_STATS_SCROLLER}${this._getScrollHash({header, bookSource})}`,
+				hashHeader: `${VeCt.HASH_PREFIX_STATS_SCROLLER}${UtilBookUtil.getStatblockHash({header, bookSource})}`,
 			};
 		}
 

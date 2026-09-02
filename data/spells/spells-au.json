@@ -1,0 +1,1794 @@
+{
+	"spell": [
+		{
+			"name": "Aura of Evasion",
+			"source": "AU",
+			"page": 35,
+			"level": 7,
+			"school": "A",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "emanation",
+				"distance": {
+					"type": "feet",
+					"amount": 30
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"An aura of alacrity radiates from you in a 30-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} for the duration. While in the aura, you and your allies have {@variantrule Advantage|XPHB} on Dexterity saving throws. When an affected creature is subjected to an effect that allows it to make a Dexterity saving throw to take only half damage, it takes no damage if it succeeds on the save and only half damage if it fails. A creature with the {@condition Incapacitated|XPHB} condition doesn't gain any benefit from being in the aura."
+			],
+			"savingThrow": [
+				"dexterity"
+			],
+			"miscTags": [
+				"ADV"
+			],
+			"areaTags": [
+				"E"
+			]
+		},
+		{
+			"name": "Battle Familiar",
+			"source": "AU",
+			"page": 35,
+			"level": 2,
+			"school": "C",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 10
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": {
+					"text": "a diamond worth 25+ GP",
+					"cost": 2500
+				}
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "hour",
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"You conjure a familiar imbued with magical might. The familiar appears in an unoccupied space within range; resembles an animal of your choice but is a Celestial, Fey, or Fiend (your choice); and uses the {@creature Battle Familiar|AU} stat block. When you cast this spell, choose the Brute, Flyer, or Stalker form. The choice determines certain details in the stat block.",
+				{
+					"type": "entries",
+					"name": "Combat",
+					"entries": [
+						"The familiar is an ally to you and your allies. It rolls its own {@variantrule Initiative|XPHB} and acts on its own turn."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Disappearance of the Familiar",
+					"entries": [
+						"The battle familiar disappears when the spell ends, if it drops to 0 {@variantrule Hit Points|XPHB}, or if you die. When it disappears, it leaves behind in its space anything it was wearing or carrying. If you cast this spell again, you decide whether you summon the familiar that disappeared or a different one."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "One Familiar at a Time",
+					"entries": [
+						"You can't have more than one familiar at a time. If you cast this spell while you already have a familiar from this spell, that familiar is replaced by the new one.",
+						"If you have a familiar from the {@spell Find Familiar|XPHB} spell when you cast this spell, you empower your existing familiar rather than conjuring a new one. For the duration, your familiar can attack in addition to taking other actions as normal, and your familiar's game statistics are replaced by the Battle Familiar stat block, but it retains its creature type, alignment, {@variantrule Hit Points|XPHB}, {@variantrule Hit Point Dice|XPHB}, and any features granted by the {@spell Find Familiar|XPHB} spell. Your familiar gains a number of {@variantrule Temporary Hit Points|XPHB} equal to the {@variantrule Hit Points|XPHB} of the battle familiar. Battle Familiar ends early if the familiar has no more {@variantrule Temporary Hit Points|XPHB} left, and these {@variantrule Temporary Hit Points|XPHB} vanish if any remain when Battle Familiar ends. Your familiar reverts to its previous form when Battle Familiar ends."
+					]
+				}
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "Using a Higher-Level Spell Slot",
+					"entries": [
+						"Use the spell slot's level for the spell's level in the stat block."
+					]
+				}
+			],
+			"miscTags": [
+				"SMN",
+				"THP"
+			]
+		},
+		{
+			"name": "Catnap",
+			"source": "AU",
+			"page": 37,
+			"level": 3,
+			"school": "E",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 30
+				}
+			},
+			"components": {
+				"s": true,
+				"m": "a pinch of sand"
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 10
+					}
+				}
+			],
+			"entries": [
+				"You make a calming gesture, and up to three willing creatures of your choice that you can see within range have the {@condition Unconscious|XPHB} condition for the spell's duration. The spell ends on a target if it takes damage or another creature takes an action to shake it awake. If a target has the {@condition Unconscious|XPHB} condition from this spell for the full duration, that target gains the benefits of finishing a {@variantrule Short Rest|XPHB}, and it can't be affected by this spell again until it finishes a {@variantrule Long Rest|XPHB}."
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "Using a Higher-Level Spell Slot",
+					"entries": [
+						"You can target one additional willing creature for each spell slot level above 3."
+					]
+				}
+			],
+			"conditionInflict": [
+				"unconscious"
+			],
+			"miscTags": [
+				"SCT",
+				"SGT"
+			],
+			"areaTags": [
+				"MT"
+			]
+		},
+		{
+			"name": "Detonate",
+			"source": "AU",
+			"page": 38,
+			"level": 9,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 500
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": "a piece of tinder"
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"You create a magical, explosive seed inside a creature you can see within range. The target makes a Constitution saving throw, taking {@damage 10d10} Fire damage on a failed save or half as much damage on a successful one.",
+				"An explosion then originates from the target. Each creature in a 60-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the target (not including the target) makes a Dexterity saving throw, with {@variantrule Disadvantage|XPHB} if this spell reduced the target to 0 {@variantrule Hit Points|XPHB}. A creature takes {@damage 10d10} Fire damage on a failed save or half as much damage on a successful one.",
+				"A nonmagical object that isn't being worn or carried also takes the damage if it's in the {@variantrule Emanation [Area of Effect]|XPHB|Emanation}, and the object starts {@hazard burning|XPHB} if it's flammable."
+			],
+			"damageInflict": [
+				"fire"
+			],
+			"savingThrow": [
+				"constitution",
+				"dexterity"
+			],
+			"miscTags": [
+				"BO",
+				"OBJ",
+				"SGT"
+			],
+			"areaTags": [
+				"E",
+				"ST"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Disruptive Tune",
+			"source": "AU",
+			"page": 38,
+			"level": 2,
+			"school": "A",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 120
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"A distracting melody momentarily fills a 20-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point you choose within range. Each creature in the {@variantrule Sphere [Area of Effect]|XPHB|Sphere} makes a Constitution saving throw. On a failed save, a target loses {@status Concentration|XPHB}, and it has {@variantrule Disadvantage|XPHB} on Constitution saving throws to maintain {@status Concentration|XPHB} for the spell's duration."
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"areaTags": [
+				"S"
+			]
+		},
+		{
+			"name": "Distorted Distance",
+			"source": "AU",
+			"page": 38,
+			"level": 4,
+			"school": "I",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 120
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 10
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"You create an illusory spatial dilation that fills a 60-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point within range. For each creature you can see in the {@variantrule Sphere [Area of Effect]|XPHB|Sphere}, you can choose one of the following effects for it:",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Dizzying Elongation",
+							"entries": [
+								"The creature makes an Intelligence saving throw. On a failed save, the creature takes {@damage 2d10} Psychic damage, and the {@variantrule Sphere [Area of Effect]|XPHB|Sphere} is {@variantrule Difficult Terrain|XPHB} for it until the end of its turn."
+							]
+						},
+						{
+							"type": "item",
+							"name": "Shortened Space",
+							"entries": [
+								"The creature's {@variantrule Speed|XPHB} increases by 20 feet until the end of its next turn.",
+								"Until the spell ends, whenever a creature enters the {@variantrule Sphere [Area of Effect]|XPHB|Sphere} or ends its turn there, you can choose for it to receive one of these effects. A creature can be affected by this spell only once per turn."
+							]
+						}
+					]
+				}
+			],
+			"damageInflict": [
+				"psychic"
+			],
+			"savingThrow": [
+				"intelligence"
+			],
+			"miscTags": [
+				"DFT",
+				"SGT"
+			],
+			"areaTags": [
+				"S"
+			]
+		},
+		{
+			"name": "Dueling Ground",
+			"source": "AU",
+			"page": 38,
+			"level": 2,
+			"school": "A",
+			"time": [
+				{
+					"number": 10,
+					"unit": "minute"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "touch"
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": {
+					"text": "a silk flag worth 100+ GP",
+					"cost": 10000
+				}
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "hour",
+						"amount": 1
+					}
+				}
+			],
+			"meta": {
+				"ritual": true
+			},
+			"entries": [
+				"You create a magical dueling ground bounded by a glowing, rune-scribed circle in a 15-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point on the ground you touch.",
+				"As part of creating the dueling ground, you designate two willing creatures within the {@variantrule Sphere [Area of Effect]|XPHB|Sphere} as the targets. The spell ends early if a creature other than one of the targets enters the {@variantrule Sphere [Area of Effect]|XPHB|Sphere}.",
+				"If a target drops to 0 {@variantrule Hit Points|XPHB} while in the dueling ground, the target is {@variantrule Stable|XPHB} and teleports to the nearest unoccupied space outside the dueling ground. If a target is subjected to an effect that would kill it instantly without dealing damage while in the dueling ground, the target doesn't die and instead has 0 {@variantrule Hit Points|XPHB} and the {@condition Unconscious|XPHB} condition, is {@variantrule Stable|XPHB}, and teleports to the nearest unoccupied space outside the dueling ground.",
+				"When only one target remains in the dueling ground, runes matching those on the ground around the {@variantrule Sphere [Area of Effect]|XPHB|Sphere} briefly flash around the remaining target's head like a crown."
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "Using a Higher-Level Spell Slot",
+					"entries": [
+						"You can target one additional willing creature for each spell slot level above 2."
+					]
+				}
+			],
+			"conditionInflict": [
+				"unconscious"
+			],
+			"miscTags": [
+				"SCT",
+				"TP"
+			],
+			"areaTags": [
+				"S"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Enervation",
+			"source": "AU",
+			"page": 38,
+			"level": 5,
+			"school": "N",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"A tendril of inky darkness reaches out from you to drain life from a creature you can see within range.",
+				"The target makes a Dexterity saving throw. On a failed save, the target takes {@damage 6d8} Necrotic damage. On each of your subsequent turns, you can take a {@variantrule Bonus Action|XPHB} to deal {@damage 2d8} Necrotic damage to the target automatically. The spell ends if the target is ever outside the spell's range or it has {@variantrule Cover|XPHB|Total Cover} from you.",
+				"On a successful save, the target takes half the initial damage only, and the spell ends.",
+				"Whenever this spell deals damage to a target, you regain {@variantrule Hit Points|XPHB} equal to half the amount of Necrotic damage dealt."
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "Using a Higher-Level Spell Slot",
+					"entries": [
+						"The initial damage increases by {@dice 1d8} for each spell slot level above 5."
+					]
+				}
+			],
+			"damageInflict": [
+				"necrotic"
+			],
+			"savingThrow": [
+				"dexterity"
+			],
+			"miscTags": [
+				"HL",
+				"SGT",
+				"UBA"
+			],
+			"areaTags": [
+				"ST"
+			]
+		},
+		{
+			"name": "Entrancing Mirrors",
+			"source": "AU",
+			"page": 39,
+			"level": 8,
+			"school": "I",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 90
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": "a mirror shard"
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"You create dozens of illusory mirrors to confuse up to three creatures of your choice that you can see within range.",
+				"Each target makes an Intelligence saving throw. On a failed save, a target takes {@damage 7d6} Psychic damage and has the {@condition Stunned|XPHB} condition. While the target is {@condition Stunned|XPHB}, its {@variantrule Speed|XPHB} is halved. On a successful save, a target takes half as much damage only.",
+				"A {@condition Stunned|XPHB} target repeats the Intelligence saving throw at the end of each of its turns, ending the spell on itself on a success."
+			],
+			"damageInflict": [
+				"psychic"
+			],
+			"conditionInflict": [
+				"stunned"
+			],
+			"savingThrow": [
+				"intelligence"
+			],
+			"miscTags": [
+				"SGT"
+			],
+			"areaTags": [
+				"MT"
+			]
+		},
+		{
+			"name": "Festering Blast",
+			"source": "AU",
+			"page": 39,
+			"level": 4,
+			"school": "N",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "line",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"A 60-foot-long, 10-foot-wide {@variantrule Line [Area of Effect]|XPHB|Line} of miasma blasts from you in a direction you choose. Each creature in the {@variantrule Line [Area of Effect]|XPHB|Line} must make a Constitution saving throw. On a failed save, a target takes {@damage 4d10} Necrotic damage and has the {@condition Poisoned|XPHB} condition for the duration.",
+				"A creature {@condition Poisoned|XPHB} by this spell takes {@damage 2d10} Poison damage at the start of each of its turns. At the end of each of its turns, a {@condition Poisoned|XPHB} target repeats the save, ending the spell on itself on a success."
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "Using a Higher-Level Spell Slot",
+					"entries": [
+						"The initial damage increases by {@dice 1d10} for each spell slot level above 4."
+					]
+				}
+			],
+			"damageInflict": [
+				"necrotic",
+				"poison"
+			],
+			"conditionInflict": [
+				"poisoned"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"areaTags": [
+				"L"
+			]
+		},
+		{
+			"name": "Fractured Awareness",
+			"source": "AU",
+			"page": 40,
+			"level": 7,
+			"school": "D",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 120
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"You cause a creature to receive conflicting visions of multiple possible futures. Choose a creature you can see within range. The target makes an Intelligence saving throw. On a failed save, the target takes {@damage 12d10} Psychic damage and has {@variantrule Disadvantage|XPHB} on {@variantrule D20 Test|XPHB|D20 Tests} for the duration. On a successful save, the target takes half as much damage only, and the spell ends.",
+				"At the end of each of its turns, an affected target repeats the save, ending the spell on a success."
+			],
+			"damageInflict": [
+				"psychic"
+			],
+			"savingThrow": [
+				"intelligence"
+			],
+			"miscTags": [
+				"SGT"
+			],
+			"areaTags": [
+				"ST"
+			]
+		},
+		{
+			"name": "Grave Ground",
+			"source": "AU",
+			"page": 40,
+			"level": 5,
+			"school": "N",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 120
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": "a handful of grave dirt"
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"Skeletal hands burst from an area on the ground within range. The area consists of up to four 10-foot squares, which you arrange as you like. Each square must be contiguous with at least one other square. That area is {@variantrule Difficult Terrain|XPHB} for your enemies.",
+				"Any enemy in that area when the skeletal hands appear makes a Strength saving throw. On a failed save, a creature takes {@damage 6d6} Necrotic damage, and until the end of its next turn, the creature subtracts {@dice 1d6} from all its damage rolls. An enemy also makes this save if it enters the area or ends its turn there. A creature makes this save only once per turn."
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "Using a Higher-Level Spell Slot",
+					"entries": [
+						"The damage increases by {@dice 1d6} for each spell slot level above 5."
+					]
+				}
+			],
+			"damageInflict": [
+				"necrotic"
+			],
+			"savingThrow": [
+				"strength"
+			],
+			"miscTags": [
+				"DFT"
+			],
+			"areaTags": [
+				"Q"
+			]
+		},
+		{
+			"name": "Hindsight",
+			"source": "AU",
+			"page": 40,
+			"level": 9,
+			"school": "D",
+			"time": [
+				{
+					"number": 10,
+					"unit": "minute"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 500
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": {
+					"text": "a tiny hourglass worth 500+ GP, which the spell consumes",
+					"cost": 50000,
+					"consume": true
+				}
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "hour",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"You peer backward through the fabric of time. You see visions of events that occurred within range throughout the past 10 years, racing by at approximately 1 day per second. Throughout the spell's duration, you can freely slow down, pause, rewind, or fast-forward through these visions."
+			]
+		},
+		{
+			"name": "Illusory Dragon",
+			"source": "AU",
+			"page": 40,
+			"level": 8,
+			"school": "I",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 120
+				}
+			},
+			"components": {
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"By gathering threads of shadow material from the Shadowfell, you create a Huge shadowy dragon in an unoccupied space that you can see within range. The illusion lasts for the spell's duration and occupies its space as if it were a creature. The illusion is tangible because of the shadow material used to create it but has {@variantrule Immunity|XPHB} to all damage and conditions.",
+				"When the illusion appears, any enemy that can see it makes a Wisdom saving throw. On a failed save, the creature drops whatever it's holding and has the {@condition Frightened|XPHB} condition for the duration. If a creature {@condition Frightened|XPHB} in this way ends its turn in a space where it doesn't have line of sight to the illusion, the creature repeats the saving throw, ending the condition on itself on a success.",
+				"As a {@variantrule Bonus Action|XPHB}, you can move the illusion up to 60 feet. At any point during its movement, you can cause the shadowy dragon to exhale a blast of energy in a 60-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}. Each creature in the {@variantrule Cone [Area of Effect]|XPHB|Cone} makes an Intelligence saving throw, taking {@damage 6d6} Acid, Cold, Fire, Lightning, Necrotic, or Poison damage (your choice when you create the dragon) on a failed save or half as much damage on a successful one.",
+				"A creature that takes a {@action Study|XPHB} action to examine the dragon can determine that it is an illusion with a successful Intelligence ({@skill Investigation|XPHB}) check against your spell save DC. If a creature discerns the illusion for what it is, the creature can see through the image and has {@variantrule Advantage|XPHB} on saving throws to end the {@condition Frightened|XPHB} condition it caused and to resist its exhalation."
+			],
+			"damageImmune": [
+				"acid",
+				"bludgeoning",
+				"cold",
+				"fire",
+				"force",
+				"lightning",
+				"necrotic",
+				"piercing",
+				"poison",
+				"psychic",
+				"radiant",
+				"slashing",
+				"thunder"
+			],
+			"damageInflict": [
+				"acid",
+				"cold",
+				"fire",
+				"lightning",
+				"necrotic",
+				"poison"
+			],
+			"conditionInflict": [
+				"frightened"
+			],
+			"savingThrow": [
+				"intelligence",
+				"wisdom"
+			],
+			"abilityCheck": [
+				"intelligence"
+			],
+			"miscTags": [
+				"ADV",
+				"SGT",
+				"UBA"
+			],
+			"areaTags": [
+				"N"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Inflict Doubt",
+			"source": "AU",
+			"page": 40,
+			"level": 3,
+			"school": "E",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 120
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"You inflict self-doubt on a creature you can see within range. The target must succeed on a Wisdom saving throw or have {@variantrule Disadvantage|XPHB} on {@variantrule D20 Test|XPHB|D20 Tests} for the duration. At the end of each of its turns, the target repeats the save, ending the spell on itself on a success."
+			],
+			"savingThrow": [
+				"wisdom"
+			],
+			"miscTags": [
+				"SGT"
+			],
+			"areaTags": [
+				"ST"
+			]
+		},
+		{
+			"name": "Invulnerability",
+			"source": "AU",
+			"page": 41,
+			"level": 9,
+			"school": "A",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "self"
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": {
+					"text": "a piece of adamantine worth 500+ GP, which the spell consumes",
+					"cost": 50000,
+					"consume": true
+				}
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"You have {@variantrule Immunity|XPHB} to all damage until the spell ends."
+			],
+			"damageImmune": [
+				"acid",
+				"bludgeoning",
+				"cold",
+				"fire",
+				"force",
+				"lightning",
+				"necrotic",
+				"piercing",
+				"poison",
+				"psychic",
+				"radiant",
+				"slashing",
+				"thunder"
+			]
+		},
+		{
+			"name": "Iron Body",
+			"source": "AU",
+			"page": 41,
+			"level": 8,
+			"school": "T",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "touch"
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": {
+					"text": "diamond dust worth 250+ GP, which the spell consumes",
+					"cost": 25000,
+					"consume": true
+				}
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "hour",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"One willing creature you touch transforms into living metal. Until the spell ends, the target's {@condition Exhaustion|XPHB} level can't increase; the target has {@variantrule Resistance|XPHB} to Bludgeoning, Fire, Piercing, and Slashing damage; and it has {@variantrule Immunity|XPHB} to Poison damage and the {@condition Paralyzed|XPHB}, {@condition Petrified|XPHB}, and {@condition Poisoned|XPHB} conditions. If the target is {@condition Paralyzed|XPHB}, {@condition Petrified|XPHB}, or {@condition Poisoned|XPHB} when you cast the spell, those conditions immediately end for the target."
+			],
+			"damageResist": [
+				"bludgeoning",
+				"fire",
+				"piercing",
+				"slashing"
+			],
+			"damageImmune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"areaTags": [
+				"ST"
+			]
+		},
+		{
+			"name": "Lightning Ring",
+			"source": "AU",
+			"page": 41,
+			"level": 8,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "bonus"
+				}
+			],
+			"range": {
+				"type": "emanation",
+				"distance": {
+					"type": "feet",
+					"amount": 10
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": "a bit of fur and a glass ring"
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 10
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"A ring of crackling electricity fills a 10-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from you. Whenever the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} enters a creature's space and whenever a creature enters the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} or ends its turn there, you can force that creature to make a Constitution saving throw. On a failed save, the creature takes {@damage 3d6} Lightning damage plus {@damage 3d6} Thunder damage, and it has the {@condition Deafened|XPHB} condition for 1 minute. On a successful save, the creature takes half as much damage only.",
+				"As a {@action Magic|XPHB} action while the spell is active, you can emit a 60-foot-long, 5-foot-wide {@variantrule Line [Area of Effect]|XPHB|Line} out from you in a direction you choose. Each creature in the {@variantrule Line [Area of Effect]|XPHB|Line} makes a Dexterity saving throw, taking {@damage 6d6} Lightning damage on a failed save or half as much damage on a successful one."
+			],
+			"damageInflict": [
+				"lightning",
+				"thunder"
+			],
+			"conditionInflict": [
+				"deafened"
+			],
+			"savingThrow": [
+				"constitution",
+				"dexterity"
+			],
+			"miscTags": [
+				"UA"
+			],
+			"areaTags": [
+				"E",
+				"L"
+			]
+		},
+		{
+			"name": "Moment of Prescience",
+			"source": "AU",
+			"page": 42,
+			"level": 8,
+			"school": "D",
+			"time": [
+				{
+					"number": 1,
+					"unit": "reaction",
+					"condition": "which you take when you fail a D20 Test or when a creature hits you with an attack roll"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "self"
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"You have a powerful sixth sense that guides you at just the right time. Turn the roll of your failed {@variantrule D20 Test|XPHB} into a 20, or turn the roll of the triggering attack roll into a 1."
+			]
+		},
+		{
+			"name": "Mordenkainen's Lucubration",
+			"source": "AU",
+			"page": 42,
+			"level": 5,
+			"school": "D",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "self"
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"You recover up to two expended spell slots of level 2 or lower."
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "Using a Higher-Level Spell Slot",
+					"entries": [
+						"The maximum level of spell slots you can recover increases to level 3 (if cast with a level 6-7 spell slot) or level 4 (if cast with a level 8+ spell slot)."
+					]
+				}
+			]
+		},
+		{
+			"name": "Negative Energy Flood",
+			"source": "AU",
+			"page": 42,
+			"level": 5,
+			"school": "N",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true,
+				"m": "a broken bone and a square of black silk"
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"You send ribbons of negative energy at one creature you can see within range. If the target isn't Undead, it makes a Constitution saving throw, taking {@damage 3d10 + 25} Necrotic damage on a failed save or half as much damage on a successful one. A Humanoid killed by this spell rises at the start of your next turn as a {@creature Zombie|XMM} that follows your verbal orders for 24 hours, after which it acts according to its nature.",
+				"If the target is Undead, it gains {@dice 3d10} {@variantrule Temporary Hit Points|XPHB}."
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "Using a Higher-Level Spell Slot",
+					"entries": [
+						"The damage increases by {@dice 1d10} for each spell slot level above 5."
+					]
+				}
+			],
+			"damageInflict": [
+				"necrotic"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"miscTags": [
+				"SGT",
+				"SMN",
+				"THP"
+			],
+			"areaTags": [
+				"ST"
+			]
+		},
+		{
+			"name": "Power Word Pain",
+			"source": "AU",
+			"page": 42,
+			"level": 7,
+			"school": "E",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"You speak a word of power that causes waves of intense pain to assail one creature you can see within range. If the target has 100 {@variantrule Hit Points|XPHB} or fewer, it takes {@damage 6d8} Force damage and has the {@condition Charmed|XPHB} condition for the duration. Otherwise, it takes {@damage 6d8} Force damage only.",
+				"While the target is {@condition Charmed|XPHB}, its {@variantrule Speed|XPHB} can be no more than 10 feet, and it has {@variantrule Disadvantage|XPHB} on {@variantrule D20 Test|XPHB|D20 Tests} except Constitution saving throws. In addition, when the target tries to cast a spell, it must first succeed on a Constitution saving throw, or the spell dissipates with no effect, and the action, {@variantrule Bonus Action|XPHB}, or {@variantrule Reaction|XPHB} used to cast it is wasted. If that spell was cast with a spell slot, the slot isn't expended.",
+				"At the end of each of its turns, the {@condition Charmed|XPHB} target makes a Constitution saving throw, ending the spell on itself on a successful save."
+			],
+			"damageInflict": [
+				"force"
+			],
+			"conditionInflict": [
+				"charmed"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"miscTags": [
+				"SGT"
+			],
+			"areaTags": [
+				"ST"
+			]
+		},
+		{
+			"name": "Reweave Fate",
+			"source": "AU",
+			"page": 42,
+			"level": 7,
+			"school": "D",
+			"time": [
+				{
+					"number": 1,
+					"unit": "reaction",
+					"condition": "which you take when a creature you can see within 60 feet of you fails a D20 Test"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"You untangle a single thread of fate to encourage a different result. The creature that failed the {@variantrule D20 Test|XPHB} can reroll it with {@variantrule Advantage|XPHB}, and the creature must use the new roll. If the {@variantrule D20 Test|XPHB} is successful, the creature gains {@dice 6d10} {@variantrule Temporary Hit Points|XPHB} from its strengthened fate."
+			],
+			"miscTags": [
+				"ADV",
+				"SGT",
+				"THP"
+			],
+			"areaTags": [
+				"ST"
+			]
+		},
+		{
+			"name": "Spirit Lantern",
+			"source": "AU",
+			"page": 43,
+			"level": 5,
+			"school": "N",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "self"
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": "a black lantern"
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 10
+					}
+				}
+			],
+			"entries": [
+				"You conjure a floating, ghostly black lantern that hovers above you and sheds {@variantrule Dim Light|XPHB} in a 60-foot radius. When an enemy dies within this {@variantrule Dim Light|XPHB}, a fragment of the creature's soul flies into the lantern. The lantern can hold a number of soul fragments equal to your spellcasting ability modifier, and those fragments dissipate when the spell ends.",
+				"As a {@variantrule Bonus Action|XPHB}, you can expend a soul fragment to create one of the following effects.",
+				{
+					"type": "entries",
+					"name": "Drain Life",
+					"entries": [
+						"The soul fragment darts at a creature of your choice that you can see within 60 feet of yourself. The target makes a Constitution saving throw, taking Necrotic damage equal to {@damage 4d8} plus your spellcasting ability modifier on a failed save or half as much damage on a successful one."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Repair Undead",
+					"entries": [
+						"The soul fragment flies into an Undead creature of your choice that you can see within 60 feet of yourself. That creature regains {@variantrule Hit Points|XPHB} equal to {@dice 4d8} plus your spellcasting ability modifier."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Ward Ally",
+					"entries": [
+						"The soul fragment darts around a creature of your choice that you can see within 60 feet of yourself. Other creatures have {@variantrule Disadvantage|XPHB} on attack rolls against the chosen creature until the start of your next turn."
+					]
+				}
+			],
+			"damageInflict": [
+				"necrotic"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"miscTags": [
+				"HL",
+				"LGT",
+				"SGT",
+				"UBA"
+			],
+			"areaTags": [
+				"ST"
+			]
+		},
+		{
+			"name": "Summon Dinosaur",
+			"source": "AU",
+			"page": 43,
+			"level": 6,
+			"school": "C",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 90
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": {
+					"text": "polished scale worth 600+ GP",
+					"cost": 60000
+				}
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "hour",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"You call forth the spirit of a primeval dinosaur. It manifests in an unoccupied space that you can see within range and uses the {@creature Dinosaur Spirit|AU} stat block. When you cast the spell, choose Ankylosaur, {@creature Triceratops|XMM}, or Tyrannosaur. The creature resembles a dinosaur of the chosen type, which determines certain details in its stat block. The creature disappears when it drops to 0 {@variantrule Hit Points|XPHB} or when the spell ends.",
+				"The creature is an ally to you and your allies. In combat, the creature shares your {@variantrule Initiative|XPHB} count, but it takes its turn immediately after yours. It obeys your verbal commands (no action required by you). If you don't issue any, the creature takes the {@action Dodge|XPHB} action and uses its movement to avoid danger."
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "Using a Higher-Level Spell Slot",
+					"entries": [
+						"Use the spell slot's level for the spell's level in the stat block."
+					]
+				}
+			],
+			"miscTags": [
+				"SGT",
+				"SMN"
+			]
+		},
+		{
+			"name": "Summon Plant",
+			"source": "AU",
+			"page": 44,
+			"level": 5,
+			"school": "C",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 90
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": {
+					"text": "herbs worth 500+ GP",
+					"cost": 50000
+				}
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "hour",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"You call forth the spirit of an animated plant. It manifests in an unoccupied space that you can see within range and uses the {@creature Plant Spirit|AU} stat block. When you cast the spell, choose Fungus, Tree, or Vine. The creature resembles a plant of the chosen type, which determines certain details in its stat block. The creature disappears when it drops to 0 {@variantrule Hit Points|XPHB} or when the spell ends.",
+				"The creature is an ally to you and your allies. In combat, the creature shares your {@variantrule Initiative|XPHB} count, but it takes its turn immediately after yours. It obeys your verbal commands (no action required by you). If you don't issue any, it takes the {@action Dodge|XPHB} action and uses its movement to avoid danger."
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "Using a Higher-Level Spell Slot",
+					"entries": [
+						"Use the spell slot's level for the spell's level in the stat block."
+					]
+				}
+			],
+			"miscTags": [
+				"SGT",
+				"SMN"
+			]
+		},
+		{
+			"name": "Transfix",
+			"source": "AU",
+			"page": 44,
+			"level": 7,
+			"school": "E",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "self"
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"For the duration, your appearance becomes otherworldly and alluring. One creature of your choice that you can see within 60 feet of you must succeed on a Charisma saving throw or have the {@condition Charmed|XPHB} condition for the duration.",
+				"While {@condition Charmed|XPHB}, the target has the {@condition Incapacitated|XPHB} condition, and if the target is more than 5 feet away from you, it moves on its turn toward you by the most direct route, trying to get within 5 feet of you. If the {@condition Charmed|XPHB} creature ends its turn within 5 feet of you, it takes {@damage 4d8} Psychic damage.",
+				"The target doesn't avoid {@action Opportunity Attack|XPHB|Opportunity Attacks} when moving toward you, but before moving into damaging terrain (such as lava or a pit), the target repeats the save, ending the spell on itself on a success.",
+				"Until the spell ends, you can take a {@action Magic|XPHB} action on subsequent turns to target another creature, but you can't target a creature again if it has succeeded on a save against this casting of the spell."
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "Using a Higher-Level Spell Slot",
+					"entries": [
+						"The damage increases by {@dice 1d8} for each spell slot level above 7."
+					]
+				}
+			],
+			"damageInflict": [
+				"psychic"
+			],
+			"conditionInflict": [
+				"charmed",
+				"incapacitated"
+			],
+			"savingThrow": [
+				"charisma"
+			],
+			"miscTags": [
+				"SGT",
+				"UA"
+			],
+			"areaTags": [
+				"ST"
+			]
+		},
+		{
+			"name": "Uncertain Footing",
+			"source": "AU",
+			"page": 44,
+			"level": 2,
+			"school": "I",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 120
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": "a distorted lens"
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"You create illusory obstacles such as rocks or spikes in an attempt to confuse up to three creatures you can see within range, affecting their ability to move. Each target makes an Intelligence saving throw. On a failed save, a target's {@variantrule Speed|XPHB} is halved, and it can't take the {@action Dash|XPHB} action. A hampered target repeats the save at the end of each of its turns, ending the spell on itself on a success."
+			],
+			"savingThrow": [
+				"intelligence"
+			],
+			"miscTags": [
+				"SGT"
+			],
+			"areaTags": [
+				"MT"
+			]
+		},
+		{
+			"name": "Vision of Elapsing Eons",
+			"source": "AU",
+			"page": 45,
+			"level": 9,
+			"school": "I",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 120
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"You trick a creature you can see within range into believing it is watching itself and its surroundings crumble away, as if eons were passing in moments. The target must succeed on an Intelligence saving throw or take {@damage 10d12} Psychic damage and have the {@condition Paralyzed|XPHB} condition for the duration.",
+				"While {@condition Paralyzed|XPHB}, the target repeats the save at the end of each of its turns. On a failed save, it gains 1 {@condition Exhaustion|XPHB} level. On a successful save, the spell ends. The spell ends early if someone within 5 feet of the target takes an action to shake it free from the illusion."
+			],
+			"damageInflict": [
+				"psychic"
+			],
+			"conditionInflict": [
+				"exhaustion",
+				"paralyzed"
+			],
+			"savingThrow": [
+				"intelligence"
+			],
+			"miscTags": [
+				"SGT"
+			],
+			"areaTags": [
+				"ST"
+			]
+		},
+		{
+			"name": "Wail of the Banshee",
+			"source": "AU",
+			"page": 45,
+			"level": 9,
+			"school": "N",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"You emit a terrible scream that can kill those who hear it. Choose up to ten creatures within range. Each target with 50 {@variantrule Hit Points|XPHB} or fewer dies. Targets with more than 50 {@variantrule Hit Points|XPHB} make a Constitution saving throw. On a failed save, a target takes {@damage 12d10} Psychic damage and has the {@condition Deafened|XPHB} condition for 1 hour. On a successful save, a target takes half as much damage only. A target is unaffected by the spell if it can't hear you."
+			],
+			"damageInflict": [
+				"psychic"
+			],
+			"conditionInflict": [
+				"deafened"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"areaTags": [
+				"MT"
+			]
+		},
+		{
+			"name": "Waves of Exhaustion",
+			"source": "AU",
+			"page": 45,
+			"level": 5,
+			"school": "N",
+			"time": [
+				{
+					"number": 1,
+					"unit": "bonus"
+				}
+			],
+			"range": {
+				"type": "cone",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": "a piece of dried meat"
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"You evoke a nimbus of flickering gray light around your body. For the duration, you can take a {@action Magic|XPHB} action to emit a wave of gray light in a 60-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}. Creatures in that area must succeed on a Constitution saving throw or gain 1 {@condition Exhaustion|XPHB} level. This spell can't increase a creature's {@condition Exhaustion|XPHB} level above 4.",
+				"{@condition Exhaustion|XPHB} levels gained from this spell are removed when the spell ends."
+			],
+			"conditionInflict": [
+				"exhaustion"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"miscTags": [
+				"UA"
+			],
+			"areaTags": [
+				"N"
+			]
+		},
+		{
+			"name": "Wither and Bloom",
+			"source": "AU",
+			"page": 45,
+			"level": 2,
+			"school": "N",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": "a withered vine twisted into a loop"
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"You invoke both death and life in a 10-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point within range. Each creature of your choice in that area makes a Constitution saving throw, taking {@damage 3d6} Necrotic damage on a failed save or half as much damage on a successful one. Nonmagical plants in that area that aren't creatures, such as trees and shrubs, wither.",
+				"In addition, one creature of your choice in that area can roll one of its unexpended {@variantrule Hit Point Dice|XPHB} and regain a number of {@variantrule Hit Points|XPHB} equal to the roll plus your spellcasting ability modifier. That die is then expended."
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "At Higher Levels",
+					"entries": [
+						"The damage increases by {@dice 1d6} for each spell slot level above 2. The number of {@variantrule Hit Point Dice|XPHB} that can be rolled and expended increases by one for each spell slot level above 2. You add your spellcasting modifier to the number of {@variantrule Hit Points|XPHB} regained by this spell only once, regardless of the number of {@variantrule Hit Point Dice|XPHB} rolled and expended."
+					]
+				}
+			],
+			"damageInflict": [
+				"necrotic"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"miscTags": [
+				"HL"
+			],
+			"areaTags": [
+				"S"
+			]
+		},
+		{
+			"name": "Zone of Amicability",
+			"source": "AU",
+			"page": 45,
+			"level": 4,
+			"school": "E",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "emanation",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 10
+					}
+				}
+			],
+			"entries": [
+				"A magical zone of amicability radiates from you in a 60-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} for the duration. When you make an ability check to influence a creature in that area, you can treat a {@dice d20} roll of 9 or lower as a 10."
+			],
+			"areaTags": [
+				"E"
+			]
+		}
+	]
+}

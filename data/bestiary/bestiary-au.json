@@ -1,0 +1,3797 @@
+{
+	"_meta": {
+		"referenceSources": {
+			"monster": {
+				"XMM": "AU"
+			}
+		}
+	},
+	"monster": [
+		{
+			"name": "Abjurer Archmage",
+			"source": "AU",
+			"page": 135,
+			"referenceSources": [
+				"AUD"
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"wizard"
+				]
+			},
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 198,
+				"formula": "36d8 + 36"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 10,
+			"dex": 16,
+			"con": 12,
+			"int": 20,
+			"wis": 15,
+			"cha": 16,
+			"skill": {
+				"arcana": "+15",
+				"history": "+10",
+				"perception": "+7"
+			},
+			"passive": 17,
+			"immune": [
+				"psychic"
+			],
+			"conditionImmune": [
+				"charmed"
+			],
+			"languages": [
+				"Common plus five other languages"
+			],
+			"cr": "15",
+			"gear": [
+				"staff|xphb"
+			],
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The archmage casts one of the following spells, using Intelligence as the spellcasting ability (spell save {@dc 18}):"
+					],
+					"will": [
+						"{@spell Arcane Lock|XPHB}",
+						"{@spell Detect Magic|XPHB}",
+						"{@spell Mage Armor|XPHB} (included in AC)",
+						"{@spell Mage Hand|XPHB}",
+						"{@spell Prestidigitation|XPHB}"
+					],
+					"daily": {
+						"2e": [
+							"{@spell Fireball|XPHB} (level 7 version)",
+							"{@spell Nondetection|XPHB}",
+							"{@spell Otiluke's Resilient Sphere|XPHB}"
+						],
+						"1e": [
+							"{@spell Mind Blank|XPHB} (cast before combat)",
+							"{@spell Teleport|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				},
+				{
+					"name": "Magic Disruption (2/Day)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The archmage casts {@spell Dispel Magic|XPHB} or {@spell Globe of Invulnerability|XPHB}, using the same spellcasting ability as Spellcasting."
+					],
+					"daily": {
+						"2": [
+							"{@spell Dispel Magic|XPHB}",
+							"{@spell Globe of Invulnerability|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "bonus",
+					"hidden": [
+						"daily"
+					]
+				},
+				{
+					"name": "Counterspell (3/Day)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The archmage casts {@spell Counterspell|XPHB} in response to the spell's trigger, using the same spellcasting ability as Spellcasting."
+					],
+					"daily": {
+						"3": [
+							"{@spell Counterspell|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "reaction",
+					"hidden": [
+						"daily"
+					]
+				}
+			],
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The archmage has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The archmage makes three Arcane Burst attacks."
+					]
+				},
+				{
+					"name": "Arcane Burst",
+					"entries": [
+						"{@atkr m,r} {@hit 10}, reach 5 ft. or range 150 ft. {@h}27 ({@damage 4d10 + 5}) Force damage."
+					]
+				},
+				{
+					"name": "Banishing Blast {@recharge}",
+					"entries": [
+						"{@actSave cha} {@dc 18}, each creature in a 60-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}. {@actSaveFail} 45 ({@damage 10d8}) Force damage, and the target has the {@condition Incapacitated|XPHB} condition and is transported to a harmless demiplane until the start of the archmage's next turn, at which point it reappears in the space it left or in the nearest unoccupied space if that space is occupied. {@actSaveSuccess} Half damage only."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Fortify {@recharge 4}",
+					"entries": [
+						"The archmage magically bolsters itself. The archmage gains 40 {@variantrule Temporary Hit Points|XPHB}."
+					]
+				}
+			],
+			"environment": [
+				"any"
+			],
+			"treasure": [
+				"arcana",
+				"individual"
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"O"
+			],
+			"damageTagsSpell": [
+				"F",
+				"O"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"conditionInflict": [
+				"incapacitated"
+			],
+			"savingThrowForced": [
+				"charisma"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Baelnorn",
+			"source": "AU",
+			"page": 141,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "undead",
+				"tags": [
+					"wizard"
+				]
+			},
+			"alignment": [
+				"N",
+				"G"
+			],
+			"ac": [
+				18
+			],
+			"hp": {
+				"average": 255,
+				"formula": "34d8 + 102"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"initiative": {
+				"proficiency": 2
+			},
+			"str": 11,
+			"dex": 16,
+			"con": 16,
+			"int": 21,
+			"wis": 14,
+			"cha": 16,
+			"skill": {
+				"arcana": "+17",
+				"history": "+11",
+				"insight": "+8",
+				"perception": "+8"
+			},
+			"passive": 18,
+			"resist": [
+				"lightning",
+				"radiant"
+			],
+			"immune": [
+				"necrotic",
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened",
+				"paralyzed",
+				"poisoned"
+			],
+			"languages": [
+				"all"
+			],
+			"cr": {
+				"cr": "18",
+				"xpLair": 22000
+			},
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The baelnorn casts one of the following spells, using Intelligence as the spellcasting ability (spell save {@dc 19}):"
+					],
+					"will": [
+						"{@spell Detect Magic|XPHB}",
+						"{@spell Detect Thoughts|XPHB}",
+						"{@spell Dispel Magic|XPHB}",
+						"{@spell Invisibility|XPHB}",
+						"{@spell Lightning Bolt|XPHB} (level 4 version)",
+						"{@spell Mage Hand|XPHB}",
+						"{@spell Prestidigitation|XPHB}"
+					],
+					"ability": "int",
+					"displayAs": "action"
+				},
+				{
+					"name": "Counterspell",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The baelnorn casts {@spell Counterspell|XPHB} in response to the spell's trigger, using the same spellcasting ability as Spellcasting."
+					],
+					"will": [
+						"{@spell Counterspell|XPHB}"
+					],
+					"ability": "int",
+					"displayAs": "reaction",
+					"hidden": [
+						"will"
+					]
+				},
+				{
+					"name": "Frightening Glance",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The baelnorn casts {@spell Fear|XPHB}, using the same spellcasting ability as Spellcasting. The baelnorn can't take this action again until the start of its next turn."
+					],
+					"legendary": {
+						"1": [
+							"{@spell Fear|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "legendary",
+					"hidden": [
+						"legendary"
+					]
+				}
+			],
+			"trait": [
+				{
+					"name": "Legendary Resistance (3/Day, or 4/Day in Lair)",
+					"entries": [
+						"If the baelnorn fails a saving throw, it can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The baelnorn has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The baelnorn makes three attacks, using Arcane Burst or Paralyzing Touch in any combination. It can replace two attacks with a use of Spellcasting to cast {@spell Lightning Bolt|XPHB} (level 4 version)."
+					]
+				},
+				{
+					"name": "Arcane Burst",
+					"entries": [
+						"{@atkr m,r} {@hit 11}, reach 5 ft. or range 120 ft. {@h}31 ({@damage 4d12 + 5}) Force damage."
+					]
+				},
+				{
+					"name": "Paralyzing Touch",
+					"entries": [
+						"{@atkr m} {@hit 11}, reach 5 ft. {@h}10 ({@damage 2d4 + 5}) Cold damage, and the target has the {@condition Paralyzed|XPHB} condition until the start of the baelnorn's next turn."
+					]
+				}
+			],
+			"legendaryActionsLair": 4,
+			"legendary": [
+				{
+					"name": "Overwhelming Radiance",
+					"entries": [
+						"{@actSave con} {@dc 19}, each creature in a 20-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the baelnorn; Undead have {@variantrule Disadvantage|XPHB} on this save. {@actSaveFail} 11 ({@damage 2d10}) Radiant damage. {@actSaveSuccess} Half damage."
+					]
+				},
+				{
+					"name": "Recuperative Teleport",
+					"entries": [
+						"The baelnorn teleports up to 60 feet to an unoccupied space it can see and regains 11 ({@dice 2d10}) {@variantrule Hit Points|XPHB}. The baelnorn can't take this action again until the start of its next turn."
+					]
+				}
+			],
+			"environment": [
+				"forest",
+				"urban"
+			],
+			"treasure": [
+				"arcana"
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Magic Resistance"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"XX"
+			],
+			"damageTags": [
+				"C",
+				"O",
+				"R"
+			],
+			"damageTagsSpell": [
+				"L"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"conditionInflict": [
+				"paralyzed"
+			],
+			"conditionInflictSpell": [
+				"frightened",
+				"invisible"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Battle Familiar",
+			"source": "AU",
+			"page": 36,
+			"summonedBySpell": "Battle Familiar|AU",
+			"summonedBySpellLevel": 2,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": {
+					"choose": [
+						"celestial",
+						"fey",
+						"fiend"
+					]
+				}
+			},
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				{
+					"special": "11 + the spell's level + 2 (Brute only)"
+				}
+			],
+			"hp": {
+				"special": "30 (Brute only) or 20 (Flyer or Stalker only) + 5 for each spell level above 2"
+			},
+			"speed": {
+				"walk": 40,
+				"fly": {
+					"number": 30,
+					"condition": "(hover; Flyer only)"
+				},
+				"swim": 30,
+				"canHover": true
+			},
+			"str": 16,
+			"dex": 16,
+			"con": 12,
+			"int": 8,
+			"wis": 13,
+			"cha": 10,
+			"passive": 11,
+			"conditionImmune": [
+				"charmed",
+				"frightened"
+			],
+			"languages": [
+				"understands the languages you know"
+			],
+			"pbNote": "equals your Proficiency Bonus",
+			"trait": [
+				{
+					"name": "Flyby (Flyer Only)",
+					"entries": [
+						"The familiar doesn't provoke {@action Opportunity Attack|XPHB|Opportunity Attacks} when it flies out of an enemy's reach."
+					]
+				},
+				{
+					"name": "Talented",
+					"entries": [
+						"Add half the spell's level (round down) to any ability check or saving throw the familiar makes."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The familiar makes a number of Rend attacks equal to half this spell's level (round down). The familiar can replace one of these attacks with Prowl if available."
+					]
+				},
+				{
+					"name": "Rend",
+					"entries": [
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}{@damage 1d8 + 3 + summonSpellLevel} Force damage."
+					]
+				},
+				{
+					"name": "Prowl (Stalker Only)",
+					"entries": [
+						"The familiar moves up to half its {@variantrule Speed|XPHB} without provoking {@action Opportunity Attack|XPHB|Opportunity Attacks}. At the end of this movement, the familiar can take the {@action Hide|XPHB} action."
+					]
+				}
+			],
+			"traitTags": [
+				"Flyby"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"_versions": [
+				{
+					"name": "Battle Familiar (Brute)",
+					"source": "AU",
+					"_mod": {
+						"trait": [
+							{
+								"mode": "removeArr",
+								"names": [
+									"Flyby (Flyer Only)"
+								]
+							}
+						],
+						"action": [
+							{
+								"mode": "removeArr",
+								"names": [
+									"Prowl (Stalker Only)"
+								]
+							}
+						]
+					},
+					"ac": [
+						{
+							"special": "13 + the spell's level"
+						}
+					],
+					"hp": {
+						"special": "30 + 5 for each spell level above 2"
+					},
+					"speed": {
+						"walk": 40,
+						"swim": 30
+					},
+					"traitTags": null
+				},
+				{
+					"name": "Battle Familiar (Flyer)",
+					"source": "AU",
+					"_mod": {
+						"trait": [
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Flyby (Flyer Only)",
+									"with": "Flyby"
+								}
+							}
+						],
+						"action": [
+							{
+								"mode": "removeArr",
+								"names": [
+									"Prowl (Stalker Only)"
+								]
+							}
+						]
+					},
+					"ac": [
+						{
+							"special": "11 + the spell's level"
+						}
+					],
+					"hp": {
+						"special": "20 + 5 for each spell level above 2"
+					},
+					"speed": {
+						"walk": 40,
+						"fly": {
+							"number": 30,
+							"condition": "(hover)"
+						},
+						"swim": 30,
+						"canHover": true
+					},
+					"traitTags": [
+						"Flyby"
+					]
+				},
+				{
+					"name": "Battle Familiar (Stalker)",
+					"source": "AU",
+					"_mod": {
+						"trait": [
+							{
+								"mode": "removeArr",
+								"names": [
+									"Flyby (Flyer Only)"
+								]
+							}
+						],
+						"action": [
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Prowl (Stalker Only)",
+									"with": "Prowl"
+								}
+							}
+						]
+					},
+					"ac": [
+						{
+							"special": "11 + the spell's level"
+						}
+					],
+					"hp": {
+						"special": "20 + 5 for each spell level above 2"
+					},
+					"speed": {
+						"walk": 40,
+						"swim": 30
+					},
+					"traitTags": null
+				}
+			]
+		},
+		{
+			"name": "Conjurer Archmage",
+			"source": "AU",
+			"page": 136,
+			"referenceSources": [
+				"AUD"
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"wizard"
+				]
+			},
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 225,
+				"formula": "41d8 + 41"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 10,
+			"dex": 16,
+			"con": 12,
+			"int": 20,
+			"wis": 15,
+			"cha": 16,
+			"skill": {
+				"arcana": "+15",
+				"history": "+10",
+				"perception": "+7"
+			},
+			"passive": 17,
+			"languages": [
+				"Common plus five other languages"
+			],
+			"cr": "15",
+			"gear": [
+				"crystal|xphb"
+			],
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The archmage casts one of the following spells, using Intelligence as the spellcasting ability (spell save {@dc 18}):"
+					],
+					"will": [
+						"{@spell Detect Magic|XPHB}",
+						"{@spell Find Familiar|XPHB}",
+						"{@spell Mage Armor|XPHB} (included in AC)",
+						"{@spell Mage Hand|XPHB}",
+						"{@spell Prestidigitation|XPHB}",
+						"{@spell Unseen Servant|XPHB}"
+					],
+					"daily": {
+						"2": [
+							"{@spell Dimension Door|XPHB}"
+						],
+						"1e": [
+							"{@spell Incendiary Cloud|XPHB}",
+							"{@spell Lightning Bolt|XPHB} (level 8 version)",
+							"{@spell Plane Shift|XPHB}",
+							"{@spell Teleport|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				},
+				{
+					"name": "Protective Magic (3/Day)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The archmage casts {@spell Counterspell|XPHB} or {@spell Shield|XPHB} in response to the spell's trigger, using the same spellcasting ability as Spellcasting."
+					],
+					"daily": {
+						"3": [
+							"{@spell Counterspell|XPHB}",
+							"{@spell Shield|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "reaction",
+					"hidden": [
+						"daily"
+					]
+				}
+			],
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The archmage has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The archmage makes four Arcane Burst attacks."
+					]
+				},
+				{
+					"name": "Arcane Burst",
+					"entries": [
+						"{@atkr m,r} {@hit 10}, reach 5 ft. or range 150 ft. {@h}27 ({@damage 4d10 + 5}) Force damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Benign Transposition (3/Day)",
+					"entries": [
+						"The archmage teleports up to 30 feet to an unoccupied space that it can see. If it instead chooses a space within range that is occupied by a willing creature, they both teleport, swapping places."
+					]
+				}
+			],
+			"environment": [
+				"any"
+			],
+			"treasure": [
+				"arcana",
+				"individual"
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"O"
+			],
+			"damageTagsSpell": [
+				"F",
+				"L",
+				"O"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Darkenbeast",
+			"source": "AU",
+			"page": 142,
+			"size": [
+				"M"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				15
+			],
+			"hp": {
+				"average": 60,
+				"formula": "8d8 + 24"
+			},
+			"speed": {
+				"walk": 20,
+				"fly": 40
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 17,
+			"dex": 14,
+			"con": 16,
+			"int": 5,
+			"wis": 10,
+			"cha": 13,
+			"skill": {
+				"perception": "+2",
+				"stealth": "+4"
+			},
+			"passive": 12,
+			"conditionImmune": [
+				"frightened"
+			],
+			"cr": "4",
+			"trait": [
+				{
+					"name": "Spell Imprint",
+					"entries": [
+						"As part of the darkenbeast's creation, its creator can cast one spell of level 5 or lower with a casting time of an action. The spell has no effect but is stored within the darkenbeast. While within 30 feet of the darkenbeast, the darkenbeast's creator can cast the stored spell, requiring no spell components and using the caster's spellcasting ability. When the spell is cast this way, its effects originate from the darkenbeast (as if the darkenbeast were the spellcaster), and immediately after the spell is cast, the darkenbeast dies in a flash of purple flame."
+					]
+				},
+				{
+					"name": "Sunlight Sensitivity",
+					"entries": [
+						"While in sunlight, the darkenbeast has {@variantrule Disadvantage|XPHB} on ability checks and attack rolls."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The darkenbeast makes three Rend attacks."
+					]
+				},
+				{
+					"name": "Rend",
+					"entries": [
+						"{@atkr m} {@hit 5}, reach 5 ft. {@h}12 ({@damage 2d8 + 3}) Slashing damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Shadow Stalker",
+					"entries": [
+						"While in {@variantrule Dim Light|XPHB} or {@variantrule Darkness|XPHB}, the darkenbeast takes the {@action Disengage|XPHB} or {@action Hide|XPHB} action."
+					]
+				}
+			],
+			"environment": [
+				"grassland",
+				"hill",
+				"urban"
+			],
+			"traitTags": [
+				"Sunlight Sensitivity"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"S"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Dinosaur Spirit",
+			"source": "AU",
+			"page": 43,
+			"summonedBySpell": "Summon Dinosaur|AU",
+			"summonedBySpellLevel": 6,
+			"size": [
+				"H"
+			],
+			"type": {
+				"type": "beast",
+				"tags": [
+					"dinosaur"
+				]
+			},
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				{
+					"special": "11 + the spell's level + 2 (Ankylosaur only)"
+				}
+			],
+			"hp": {
+				"special": "60 + 10 for each spell level above 6"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 21,
+			"dex": 11,
+			"con": 15,
+			"int": 4,
+			"wis": 12,
+			"cha": 9,
+			"passive": 11,
+			"languages": [
+				"understands the languages you know"
+			],
+			"pbNote": "equals your Proficiency Bonus",
+			"trait": [
+				{
+					"name": "Siege Monster (Ankylosaur Only)",
+					"entries": [
+						"The spirit deals double damage to objects and structures."
+					]
+				},
+				{
+					"name": "Tough",
+					"entries": [
+						"Add half the spell's level (round down) to any Strength or Constitution saving throw the spirit makes."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The spirit makes a number of attacks equal to half this spell's level (round down)."
+					]
+				},
+				{
+					"name": "Bite (Tyrannosaur Only)",
+					"entries": [
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 10 ft. {@h}{@damage 2d10 + 5 + summonSpellLevel} Piercing damage. If the target is a Large or smaller creature, it has the {@condition Grappled|XPHB} condition (escape DC equals your spell save DC), and it has the {@condition Restrained|XPHB} condition until the grapple ends."
+					]
+				},
+				{
+					"name": "Gore (Triceratops Only)",
+					"entries": [
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}{@damage 1d10 + 5 + summonSpellLevel} Piercing damage. If the target is a Huge or smaller creature and the spirit moved 20+ feet straight toward it immediately before the hit, the target takes an extra {@damage 1d10} Piercing damage and has the {@condition Prone|XPHB} condition."
+					]
+				},
+				{
+					"name": "Slam",
+					"entries": [
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 10 ft. {@h}{@damage 1d10 + 5 + summonSpellLevel} Bludgeoning damage."
+					]
+				}
+			],
+			"traitTags": [
+				"Siege Monster"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"B",
+				"P"
+			],
+			"miscTags": [
+				"MA",
+				"RCH"
+			],
+			"conditionInflict": [
+				"grappled",
+				"prone",
+				"restrained"
+			],
+			"_versions": [
+				{
+					"name": "Dinosaur Spirit (Ankylosaur)",
+					"source": "AU",
+					"_mod": {
+						"trait": [
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Siege Monster (Ankylosaur Only)",
+									"with": "Siege Monster"
+								}
+							}
+						],
+						"action": [
+							{
+								"mode": "removeArr",
+								"names": [
+									"Bite (Tyrannosaur Only)",
+									"Gore (Triceratops Only)"
+								]
+							}
+						]
+					},
+					"ac": [
+						{
+							"special": "13 + the spell's level"
+						}
+					],
+					"damageTags": [
+						"B"
+					],
+					"conditionInflict": null
+				},
+				{
+					"name": "Dinosaur Spirit (Triceratops)",
+					"source": "AU",
+					"_mod": {
+						"trait": [
+							{
+								"mode": "removeArr",
+								"names": [
+									"Siege Monster (Ankylosaur Only)"
+								]
+							}
+						],
+						"action": [
+							{
+								"mode": "removeArr",
+								"names": [
+									"Bite (Tyrannosaur Only)"
+								]
+							},
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Gore (Triceratops Only)",
+									"with": "Gore"
+								}
+							}
+						]
+					},
+					"ac": [
+						{
+							"special": "11 + the spell's level"
+						}
+					],
+					"traitTags": null,
+					"conditionInflict": [
+						"prone"
+					]
+				},
+				{
+					"name": "Dinosaur Spirit (Tyrannosaur)",
+					"source": "AU",
+					"_mod": {
+						"trait": [
+							{
+								"mode": "removeArr",
+								"names": [
+									"Siege Monster (Ankylosaur Only)"
+								]
+							}
+						],
+						"action": [
+							{
+								"mode": "removeArr",
+								"names": [
+									"Gore (Triceratops Only)"
+								]
+							},
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Bite (Tyrannosaur Only)",
+									"with": "Bite"
+								}
+							}
+						]
+					},
+					"ac": [
+						{
+							"special": "11 + the spell's level"
+						}
+					],
+					"traitTags": null,
+					"conditionInflict": [
+						"grappled",
+						"restrained"
+					]
+				}
+			]
+		},
+		{
+			"name": "Diviner Archmage",
+			"source": "AU",
+			"page": 137,
+			"referenceSources": [
+				"AUD"
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"wizard"
+				]
+			},
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 176,
+				"formula": "32d8 + 32"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 10,
+			"dex": 16,
+			"con": 12,
+			"int": 20,
+			"wis": 15,
+			"cha": 16,
+			"skill": {
+				"arcana": "+15",
+				"history": "+10",
+				"insight": "+7",
+				"investigation": "+10",
+				"perception": "+7"
+			},
+			"passive": 17,
+			"languages": [
+				"all"
+			],
+			"cr": "15",
+			"gear": [
+				"staff|xphb"
+			],
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The archmage casts one of the following spells, using Intelligence as the spellcasting ability (spell save {@dc 18}):"
+					],
+					"will": [
+						"{@spell Detect Magic|XPHB}",
+						"{@spell Detect Thoughts|XPHB}",
+						"{@spell Mage Armor|XPHB} (included in AC)",
+						"{@spell Mage Hand|XPHB}",
+						"{@spell Mind Spike|XPHB} (level 4 version)",
+						"{@spell Prestidigitation|XPHB}"
+					],
+					"daily": {
+						"2e": [
+							"{@spell Scrying|XPHB}",
+							"{@spell Sending|XPHB}"
+						],
+						"1e": [
+							"{@spell Foresight|XPHB} (cast before combat)",
+							"{@spell Telepathy|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				},
+				{
+					"name": "Protective Magic (3/Day)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The archmage casts {@spell Counterspell|XPHB} or {@spell Shield|XPHB} in response to the spell's trigger, using the same spellcasting ability as Spellcasting."
+					],
+					"daily": {
+						"3": [
+							"{@spell Counterspell|XPHB}",
+							"{@spell Shield|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "reaction",
+					"hidden": [
+						"daily"
+					]
+				}
+			],
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The archmage has {@variantrule Advantage|XPHB} on saving throws against spells and similar effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The archmage makes four Arcane Burst attacks. It can replace one attack with a use of Spellcasting to cast {@spell Mind Spike|XPHB} (level 4 version)."
+					]
+				},
+				{
+					"name": "Arcane Burst",
+					"entries": [
+						"{@atkr m,r} {@hit 10}, reach 5 ft. or range 150 ft. {@h}24 ({@damage 3d12 + 5}) Force damage."
+					]
+				}
+			],
+			"environment": [
+				"any"
+			],
+			"treasure": [
+				"arcana",
+				"individual"
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"XX"
+			],
+			"damageTags": [
+				"O"
+			],
+			"damageTagsSpell": [
+				"Y"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Enchanter Archmage",
+			"source": "AU",
+			"page": 137,
+			"referenceSources": [
+				"AUD"
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"wizard"
+				]
+			},
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 214,
+				"formula": "39d8 + 39"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 10,
+			"dex": 16,
+			"con": 12,
+			"int": 20,
+			"wis": 15,
+			"cha": 16,
+			"skill": {
+				"arcana": "+15",
+				"history": "+10",
+				"perception": "+7",
+				"persuasion": "+13"
+			},
+			"passive": 17,
+			"languages": [
+				"Common plus five other languages"
+			],
+			"cr": "15",
+			"gear": [
+				"staff|xphb"
+			],
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The archmage casts one of the following spells, using Intelligence as the spellcasting ability (spell save {@dc 18}):"
+					],
+					"will": [
+						"{@spell Detect Magic|XPHB}",
+						"{@spell Mage Armor|XPHB} (included in AC)",
+						"{@spell Mage Hand|XPHB}",
+						"{@spell Prestidigitation|XPHB}"
+					],
+					"daily": {
+						"2e": [
+							"{@spell Fireball|XPHB} (level 7 version)",
+							"{@spell Geas|XPHB}",
+							"{@spell Modify Memory|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				},
+				{
+					"name": "Dominate Person (1/Day)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The archmage casts {@spell Dominate Person|XPHB}, using the same spellcasting ability as Spellcasting."
+					],
+					"daily": {
+						"1": [
+							"{@spell Dominate Person|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "bonus",
+					"hidden": [
+						"daily"
+					]
+				},
+				{
+					"name": "Duplicitous Magic (2/Day)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The archmage casts {@spell Charm Person|XPHB}, {@spell Hold Person|XPHB}, or {@spell Sleep|XPHB}, using the same spellcasting ability as Spellcasting."
+					],
+					"daily": {
+						"2": [
+							"{@spell Charm Person|XPHB}",
+							"{@spell Hold Person|XPHB}",
+							"{@spell Sleep|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "bonus",
+					"hidden": [
+						"daily"
+					]
+				},
+				{
+					"name": "Protective Magic (3/Day)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The archmage casts {@spell Counterspell|XPHB} or {@spell Shield|XPHB} in response to the spell's trigger, using the same spellcasting ability as Spellcasting."
+					],
+					"daily": {
+						"3": [
+							"{@spell Counterspell|XPHB}",
+							"{@spell Shield|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "reaction",
+					"hidden": [
+						"daily"
+					]
+				}
+			],
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The archmage has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The archmage makes four Arcane Burst Attacks."
+					]
+				},
+				{
+					"name": "Arcane Burst",
+					"entries": [
+						"{@atkr m,r} {@hit 10}, reach 5 ft. or range 150 ft. {@h}21 ({@damage 3d10 + 5}) Force damage."
+					]
+				}
+			],
+			"environment": [
+				"any"
+			],
+			"treasure": [
+				"arcana",
+				"individual"
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"O"
+			],
+			"damageTagsSpell": [
+				"F",
+				"Y"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"conditionInflictSpell": [
+				"charmed",
+				"incapacitated",
+				"paralyzed",
+				"unconscious"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Evoker Archmage",
+			"source": "AU",
+			"page": 138,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"wizard"
+				]
+			},
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 214,
+				"formula": "39d8 + 39"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": 30
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 10,
+			"dex": 16,
+			"con": 12,
+			"int": 20,
+			"wis": 15,
+			"cha": 16,
+			"skill": {
+				"arcana": "+15",
+				"history": "+10",
+				"intimidation": "+8",
+				"perception": "+7"
+			},
+			"passive": 17,
+			"languages": [
+				"Common plus five other languages"
+			],
+			"cr": "15",
+			"gear": [
+				"orb|xphb"
+			],
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The archmage casts one of the following spells, using Intelligence as the spellcasting ability (spell save {@dc 18}):"
+					],
+					"will": [
+						"{@spell Detect Magic|XPHB}",
+						"{@spell Mage Armor|XPHB} (included in AC)",
+						"{@spell Mage Hand|XPHB}",
+						"{@spell Prestidigitation|XPHB}",
+						"{@spell Shatter|XPHB} (level 3 version)"
+					],
+					"ability": "int",
+					"displayAs": "action"
+				},
+				{
+					"name": "Evocation Barrage {@recharge 5}",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The archmage casts {@spell Fireball|XPHB}, {@spell Ice Storm|XPHB}, or {@spell Lightning Bolt|XPHB} twice in any combination, using the same spellcasting ability as Spellcasting."
+					],
+					"recharge": {
+						"5": [
+							"{@spell Fireball|XPHB}",
+							"{@spell Ice Storm|XPHB}",
+							"{@spell Lightning Bolt|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action",
+					"hidden": [
+						"recharge"
+					]
+				},
+				{
+					"name": "Protective Magic (3/Day)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The archmage casts {@spell Counterspell|XPHB} or {@spell Shield|XPHB} in response to the spell's trigger, using the same spellcasting ability as Spellcasting."
+					],
+					"daily": {
+						"3": [
+							"{@spell Counterspell|XPHB}",
+							"{@spell Shield|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "reaction",
+					"hidden": [
+						"daily"
+					]
+				}
+			],
+			"trait": [
+				{
+					"name": "Evocation Sculptor",
+					"entries": [
+						"When the archmage casts a spell that creates an area of effect, it can choose itself and up to five other creatures it can see, sculpting the spell's energy around them. A chosen creature automatically succeeds on its saving throw against the spell, and it takes no damage if it would normally take half damage on a successful save."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The archmage has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The archmage makes four Arcane Burst attacks. It can replace one attack with a use of Spellcasting to cast {@spell Shatter|XPHB}."
+					]
+				},
+				{
+					"name": "Arcane Burst",
+					"entries": [
+						"{@atkr m,r} {@hit 10}, reach 5 ft. or range 150 ft. {@h}27 ({@damage 4d10 + 5}) Force damage."
+					]
+				}
+			],
+			"environment": [
+				"any"
+			],
+			"treasure": [
+				"arcana",
+				"individual"
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"O"
+			],
+			"damageTagsSpell": [
+				"B",
+				"C",
+				"F",
+				"L",
+				"T"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Groundling Grunt",
+			"source": "AU",
+			"page": 143,
+			"size": [
+				"M"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				14
+			],
+			"hp": {
+				"average": 45,
+				"formula": "7d8 + 14"
+			},
+			"speed": {
+				"walk": 30,
+				"burrow": 10
+			},
+			"str": 16,
+			"dex": 15,
+			"con": 14,
+			"int": 7,
+			"wis": 10,
+			"cha": 8,
+			"skill": {
+				"perception": "+2",
+				"stealth": "+4",
+				"survival": "+2"
+			},
+			"passive": 12,
+			"resist": [
+				"poison"
+			],
+			"languages": [
+				"Common"
+			],
+			"cr": "1",
+			"gear": [
+				"sling|xphb"
+			],
+			"action": [
+				{
+					"name": "Claw",
+					"entries": [
+						"{@atkr m} {@hit 5}, reach 5 ft. {@h}7 ({@damage 1d8 + 3}) Slashing damage. If the target is a Medium or smaller creature, it has the {@condition Grappled|XPHB} condition (escape {@dc 13}) from one of two paws."
+					]
+				},
+				{
+					"name": "Sling",
+					"entries": [
+						"{@atkr r} {@hit 4}, range 30/120 ft. {@h}7 ({@damage 2d4 + 2}) Bludgeoning damage."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Go to Ground",
+					"entries": [
+						"{@actTrigger} The groundling is hit by an attack roll while it is on the ground. {@actResponse} The groundling halves the damage (round down) it takes from that attack."
+					]
+				}
+			],
+			"environment": [
+				"hill",
+				"urban"
+			],
+			"treasure": [
+				"armaments"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"B",
+				"S"
+			],
+			"miscTags": [
+				"MA",
+				"RA",
+				"RNG"
+			],
+			"conditionInflict": [
+				"grappled"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Groundling Slayer",
+			"source": "AU",
+			"page": 144,
+			"size": [
+				"M"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				15
+			],
+			"hp": {
+				"average": 58,
+				"formula": "9d8 + 18"
+			},
+			"speed": {
+				"walk": 30,
+				"burrow": 20
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 17,
+			"dex": 16,
+			"con": 15,
+			"int": 10,
+			"wis": 13,
+			"cha": 8,
+			"skill": {
+				"perception": "+3",
+				"stealth": "+7",
+				"survival": "+3"
+			},
+			"passive": 13,
+			"resist": [
+				"poison"
+			],
+			"languages": [
+				"Common"
+			],
+			"cr": "3",
+			"gear": [
+				{
+					"item": "dagger|xphb",
+					"quantity": 6
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The groundling makes two attacks, using Claw or Dagger in any combination."
+					]
+				},
+				{
+					"name": "Claw",
+					"entries": [
+						"{@atkr m} {@hit 5}, reach 5 ft. {@h}12 ({@damage 2d8 + 3}) Slashing damage. If the target is a Medium or smaller creature, it has the {@condition Grappled|XPHB} condition (escape {@dc 13}) from one of two paws."
+					]
+				},
+				{
+					"name": "Dagger",
+					"entries": [
+						"{@atkr m,r} {@hit 5}, reach 5 ft. or range 20/60 ft. {@h}5 ({@damage 1d4 + 3}) Piercing damage plus 7 ({@damage 2d6}) Poison damage."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Go to Ground",
+					"entries": [
+						"{@actTrigger} The groundling is hit by an attack roll while it is on the ground. {@actResponse} The groundling halves the damage (round down) it takes from that attack."
+					]
+				}
+			],
+			"environment": [
+				"hill",
+				"urban"
+			],
+			"treasure": [
+				"armaments"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"I",
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MA",
+				"MLW",
+				"RA",
+				"THW"
+			],
+			"conditionInflict": [
+				"grappled"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Groundling Stalker",
+			"source": "AU",
+			"page": 144,
+			"size": [
+				"M"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				15
+			],
+			"hp": {
+				"average": 52,
+				"formula": "8d8 + 16"
+			},
+			"speed": {
+				"walk": 30,
+				"burrow": 10
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 16,
+			"dex": 16,
+			"con": 14,
+			"int": 8,
+			"wis": 12,
+			"cha": 8,
+			"skill": {
+				"perception": "+3",
+				"stealth": "+5",
+				"survival": "+3"
+			},
+			"passive": 13,
+			"resist": [
+				"poison"
+			],
+			"languages": [
+				"Common"
+			],
+			"cr": "2",
+			"gear": [
+				"heavy crossbow|xphb"
+			],
+			"action": [
+				{
+					"name": "Claw",
+					"entries": [
+						"{@atkr m} {@hit 5}, reach 5 ft. {@h}12 ({@damage 2d8 + 3}) Slashing damage. If the target is a Medium or smaller creature, it has the {@condition Grappled|XPHB} condition (escape {@dc 13}) from one of two paws."
+					]
+				},
+				{
+					"name": "Heavy Crossbow",
+					"entries": [
+						"{@atkr r} {@hit 5}, range 100/400 ft. {@h}14 ({@damage 2d10 + 3}) Piercing damage."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Go to Ground",
+					"entries": [
+						"{@actTrigger} The groundling is hit by an attack roll while it is on the ground. {@actResponse} The groundling halves the damage (round down) it takes from that attack."
+					]
+				}
+			],
+			"environment": [
+				"hill",
+				"urban"
+			],
+			"treasure": [
+				"armaments"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MA",
+				"RA",
+				"RNG"
+			],
+			"conditionInflict": [
+				"grappled"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Illusionist Archmage",
+			"source": "AU",
+			"page": 138,
+			"referenceSources": [
+				"AUD"
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"wizard"
+				]
+			},
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 220,
+				"formula": "40d8 + 40"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 10,
+			"dex": 16,
+			"con": 12,
+			"int": 20,
+			"wis": 15,
+			"cha": 16,
+			"skill": {
+				"arcana": "+15",
+				"deception": "+8",
+				"perception": "+7",
+				"stealth": "+8"
+			},
+			"passive": 17,
+			"languages": [
+				"Common plus five other languages"
+			],
+			"cr": "15",
+			"gear": [
+				"rod|xphb"
+			],
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The archmage casts one of the following spells, using Intelligence as the spellcasting ability (spell save {@dc 18}):"
+					],
+					"will": [
+						"{@spell Detect Magic|XPHB}",
+						"{@spell Disguise Self|XPHB}",
+						"{@spell Invisibility|XPHB}",
+						"{@spell Mage Armor|XPHB} (included in AC)",
+						"{@spell Mage Hand|XPHB}",
+						"{@spell Minor Illusion|XPHB}",
+						"{@spell Prestidigitation|XPHB}"
+					],
+					"daily": {
+						"2e": [
+							"{@spell Creation|XPHB}",
+							"{@spell Major Image|XPHB}",
+							"{@spell Nystul's Magic Aura|XPHB}",
+							"{@spell Seeming|XPHB}"
+						],
+						"1e": [
+							"{@spell Mirage Arcane|XPHB}",
+							"{@spell Weird|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				},
+				{
+					"name": "Beguiling Spells (2/Day)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The archmage casts {@spell Hypnotic Pattern|XPHB} or {@spell Mirror Image|XPHB}, using the same spellcasting ability as Spellcasting."
+					],
+					"daily": {
+						"2": [
+							"{@spell Hypnotic Pattern|XPHB}",
+							"{@spell Mirror Image|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "bonus",
+					"hidden": [
+						"daily"
+					]
+				},
+				{
+					"name": "Protective Magic (3/Day)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The archmage casts {@spell Counterspell|XPHB} or {@spell Shield|XPHB} in response to the spell's trigger, using the same spellcasting ability as Spellcasting."
+					],
+					"daily": {
+						"3": [
+							"{@spell Counterspell|XPHB}",
+							"{@spell Shield|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "reaction",
+					"hidden": [
+						"daily"
+					]
+				}
+			],
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The archmage has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The archmage makes four Arcane Burst attacks."
+					]
+				},
+				{
+					"name": "Arcane Burst",
+					"entries": [
+						"{@atkr m,r} {@hit 10}, reach 5 ft. or range 150 ft. {@h}21 ({@damage 3d10 + 5}) Force damage."
+					]
+				}
+			],
+			"environment": [
+				"any"
+			],
+			"treasure": [
+				"arcana",
+				"individual"
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"O"
+			],
+			"damageTagsSpell": [
+				"Y"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"conditionInflictSpell": [
+				"charmed",
+				"frightened",
+				"incapacitated",
+				"invisible"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"constitution",
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Living Cone of Cold",
+			"source": "AU",
+			"page": 146,
+			"size": [
+				"L"
+			],
+			"type": "construct",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				15
+			],
+			"hp": {
+				"average": 105,
+				"formula": "10d10 + 50"
+			},
+			"speed": {
+				"walk": 25,
+				"fly": 25
+			},
+			"str": 10,
+			"dex": 15,
+			"con": 20,
+			"int": 3,
+			"wis": 11,
+			"cha": 6,
+			"passive": 10,
+			"immune": [
+				"cold"
+			],
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"frightened",
+				"grappled",
+				"poisoned",
+				"prone",
+				"restrained"
+			],
+			"cr": "7",
+			"trait": [
+				{
+					"name": "Amorphous",
+					"entries": [
+						"The living spell can move through a space as narrow as 1 inch without expending extra movement to do so."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The living spell has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The living spell makes two Magical Strike attacks."
+					]
+				},
+				{
+					"name": "Magical Strike",
+					"entries": [
+						"{@atkr m} {@hit 8}, reach 10 ft. {@h}27 ({@damage 5d8 + 5}) Cold damage."
+					]
+				},
+				{
+					"name": "Spell Mimicry {@recharge 5}",
+					"entries": [
+						"{@actSave con} {@dc 16}, each creature in a 60-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}. {@actSaveFail} 36 ({@damage 8d8}) Cold damage. {@actSaveSuccess} Half damage."
+					]
+				}
+			],
+			"environment": [
+				"any"
+			],
+			"traitTags": [
+				"Amorphous",
+				"Magic Resistance"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"C"
+			],
+			"miscTags": [
+				"MA",
+				"RCH"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasFluff": true
+		},
+		{
+			"name": "Living Thunderwave",
+			"source": "AU",
+			"page": 146,
+			"size": [
+				"M"
+			],
+			"type": "construct",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				15
+			],
+			"hp": {
+				"average": 30,
+				"formula": "4d8 + 12"
+			},
+			"speed": {
+				"walk": 25,
+				"fly": 25
+			},
+			"str": 10,
+			"dex": 13,
+			"con": 16,
+			"int": 3,
+			"wis": 6,
+			"cha": 6,
+			"passive": 8,
+			"immune": [
+				"thunder"
+			],
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"frightened",
+				"grappled",
+				"poisoned",
+				"prone",
+				"restrained"
+			],
+			"cr": "1",
+			"trait": [
+				{
+					"name": "Amorphous",
+					"entries": [
+						"The living spell can move through a space as narrow as 1 inch without expending extra movement to do so."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The living spell has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Magical Strike",
+					"entries": [
+						"{@atkr m} {@hit 5}, reach 5 ft. {@h}6 ({@damage 1d6 + 3}) Thunder damage."
+					]
+				},
+				{
+					"name": "Spell Mimicry {@recharge 5}",
+					"entries": [
+						"{@actSave con} {@dc 13}, each creature in a 15-foot {@variantrule Cube [Area of Effect]|XPHB|Cube} originating from the living spell. {@actSaveFail} 9 ({@damage 2d8}) Thunder damage, and the target is pushed 10 feet away from the living spell. {@actSaveSuccess} Half damage only. {@actSaveSuccessOrFail} A thunderous boom is audible within 300 feet."
+					]
+				}
+			],
+			"environment": [
+				"any"
+			],
+			"traitTags": [
+				"Amorphous",
+				"Magic Resistance"
+			],
+			"damageTags": [
+				"T"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Living Vitriolic Sphere",
+			"source": "AU",
+			"page": 146,
+			"size": [
+				"L"
+			],
+			"type": "construct",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				15
+			],
+			"hp": {
+				"average": 76,
+				"formula": "8d10 + 32"
+			},
+			"speed": {
+				"walk": 25,
+				"fly": 25
+			},
+			"str": 10,
+			"dex": 15,
+			"con": 18,
+			"int": 3,
+			"wis": 10,
+			"cha": 6,
+			"passive": 10,
+			"immune": [
+				"acid"
+			],
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"frightened",
+				"grappled",
+				"poisoned",
+				"prone",
+				"restrained"
+			],
+			"cr": "5",
+			"trait": [
+				{
+					"name": "Amorphous",
+					"entries": [
+						"The living spell can move through a space as narrow as 1 inch without expending extra movement to do so."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The living spell has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The living spell makes two Magical Strike attacks."
+					]
+				},
+				{
+					"name": "Magical Strike",
+					"entries": [
+						"{@atkr m} {@hit 7}, reach 10 ft. {@h}21 ({@damage 5d6 + 4}) Acid damage."
+					]
+				},
+				{
+					"name": "Spell Mimicry {@recharge 5}",
+					"entries": [
+						"{@actSave dex} {@dc 15}, each creature in a 20-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point within 150 feet. {@actSaveFail} 25 ({@damage 10d4}) Acid damage, and 12 ({@damage 5d4}) Acid damage at the end of the target's next turn. {@actSaveSuccess} Half initial damage only."
+					]
+				}
+			],
+			"environment": [
+				"any"
+			],
+			"traitTags": [
+				"Amorphous",
+				"Magic Resistance"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"A"
+			],
+			"miscTags": [
+				"AOE",
+				"MA",
+				"RCH"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasFluff": true
+		},
+		{
+			"name": "Necromancer Archmage",
+			"source": "AU",
+			"page": 139,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"wizard"
+				]
+			},
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 225,
+				"formula": "41d8 + 41"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 10,
+			"dex": 16,
+			"con": 12,
+			"int": 20,
+			"wis": 15,
+			"cha": 16,
+			"skill": {
+				"arcana": "+15",
+				"history": "+10",
+				"intimidation": "+8",
+				"perception": "+7"
+			},
+			"passive": 17,
+			"resist": [
+				"necrotic"
+			],
+			"languages": [
+				"Common plus five other languages"
+			],
+			"cr": "15",
+			"gear": [
+				"crystal|xphb"
+			],
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The archmage casts one of the following spells, using Intelligence as the spellcasting ability (spell save {@dc 18}):"
+					],
+					"will": [
+						"{@spell Blight|XPHB}",
+						"{@spell Detect Magic|XPHB}",
+						"{@spell Mage Armor|XPHB} (included in AC)",
+						"{@spell Mage Hand|XPHB}",
+						"{@spell Prestidigitation|XPHB}",
+						"{@spell Speak with Dead|XPHB}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell Circle of Death|XPHB} (level 7 version)",
+							"{@spell Create Undead|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				},
+				{
+					"name": "Protective Magic (3/Day)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The archmage casts {@spell Counterspell|XPHB} or {@spell Shield|XPHB} in response to the spell's trigger, using the same spellcasting ability as Spellcasting."
+					],
+					"daily": {
+						"3": [
+							"{@spell Counterspell|XPHB}",
+							"{@spell Shield|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "reaction",
+					"hidden": [
+						"daily"
+					]
+				}
+			],
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The archmage has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				},
+				{
+					"name": "Marshal Undead",
+					"entries": [
+						"Undead creatures of the archmage's choice in a 60-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the archmage have {@variantrule Advantage|XPHB} on attack rolls and saving throws unless the archmage has the {@condition Incapacitated|XPHB} condition."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The archmage makes four Arcane Burst attacks. It can replace one attack with a use of Spellcasting to cast {@spell Blight|XPHB}."
+					]
+				},
+				{
+					"name": "Arcane Burst",
+					"entries": [
+						"{@atkr m,r} {@hit 10}, reach 5 ft. or range 150 ft. {@h}21 ({@damage 3d10 + 5}) Force damage."
+					]
+				}
+			],
+			"environment": [
+				"any"
+			],
+			"treasure": [
+				"arcana",
+				"individual"
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"O"
+			],
+			"damageTagsSpell": [
+				"N"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"savingThrowForcedSpell": [
+				"constitution"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Plant Spirit",
+			"source": "AU",
+			"page": 44,
+			"summonedBySpell": "Summon Plant|AU",
+			"summonedBySpellLevel": 5,
+			"size": [
+				"L"
+			],
+			"type": "plant",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				{
+					"special": "11 + the spell's level + 2 (Tree only)"
+				}
+			],
+			"hp": {
+				"special": "50 + 10 for each spell level above 5"
+			},
+			"speed": {
+				"walk": 40,
+				"climb": {
+					"number": 40,
+					"condition": "(Vine only)"
+				}
+			},
+			"str": 17,
+			"dex": 13,
+			"con": 14,
+			"int": 10,
+			"wis": 13,
+			"cha": 10,
+			"passive": 11,
+			"vulnerable": [
+				{
+					"vulnerable": [
+						"fire"
+					],
+					"note": "(Tree only)",
+					"cond": true
+				},
+				{
+					"vulnerable": [
+						"slashing"
+					],
+					"note": "(Fungus or Vine only)",
+					"cond": true
+				}
+			],
+			"languages": [
+				"understands the languages you know"
+			],
+			"pbNote": "equals your Proficiency Bonus",
+			"trait": [
+				{
+					"name": "Siege Monster (Tree Only)",
+					"entries": [
+						"The spirit deals double damage to objects and structures."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The spirit makes a number of attacks equal to half this spell's level (round down)."
+					]
+				},
+				{
+					"name": "Slam (Tree or Vine Only)",
+					"entries": [
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}{@damage 1d10 + 3 + summonSpellLevel} Bludgeoning damage."
+					]
+				},
+				{
+					"name": "Spore Spray (Fungus Only)",
+					"entries": [
+						"{@atkr m,r} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. or range 30 ft. {@h}{@damage 1d4 + summonSpellLevel} Poison damage, and the target has the {@condition Poisoned|XPHB} condition until the end of its next turn. If the target already has the {@condition Poisoned|XPHB} condition, it instead takes an extra {@damage 3d4} Poison damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Twist Away (Vine Only)",
+					"entries": [
+						"The spirit takes the {@action Dash|XPHB} or {@action Disengage|XPHB} action."
+					]
+				}
+			],
+			"traitTags": [
+				"Siege Monster"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"B",
+				"I"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"conditionInflict": [
+				"poisoned"
+			],
+			"_versions": [
+				{
+					"name": "Plant Spirit (Fungus)",
+					"source": "AU",
+					"_mod": {
+						"action": [
+							{
+								"mode": "removeArr",
+								"names": [
+									"Slam (Tree or Vine Only)"
+								]
+							},
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Spore Spray (Fungus Only)",
+									"with": "Spore Spray"
+								}
+							}
+						]
+					},
+					"ac": [
+						{
+							"special": "11 + the spell's level"
+						}
+					],
+					"speed": {
+						"walk": 40
+					},
+					"vulnerable": [
+						"slashing"
+					],
+					"trait": null,
+					"bonus": null,
+					"traitTags": null,
+					"damageTags": [
+						"I"
+					]
+				},
+				{
+					"name": "Plant Spirit (Tree)",
+					"source": "AU",
+					"_mod": {
+						"trait": [
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Siege Monster (Tree Only)",
+									"with": "Siege Monster"
+								}
+							}
+						],
+						"action": [
+							{
+								"mode": "removeArr",
+								"names": [
+									"Spore Spray (Fungus Only)"
+								]
+							},
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Slam (Tree or Vine Only)",
+									"with": "Slam"
+								}
+							}
+						]
+					},
+					"ac": [
+						{
+							"special": "13 + the spell's level"
+						}
+					],
+					"speed": {
+						"walk": 40
+					},
+					"vulnerable": [
+						"fire"
+					],
+					"bonus": null,
+					"damageTags": [
+						"B"
+					],
+					"miscTags": [
+						"MA"
+					],
+					"conditionInflict": null
+				},
+				{
+					"name": "Plant Spirit (Vine)",
+					"source": "AU",
+					"_mod": {
+						"action": [
+							{
+								"mode": "removeArr",
+								"names": [
+									"Spore Spray (Fungus Only)"
+								]
+							},
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Slam (Tree or Vine Only)",
+									"with": "Slam"
+								}
+							}
+						],
+						"bonus": [
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Twist Away (Vine Only)",
+									"with": "Twist Away"
+								}
+							}
+						]
+					},
+					"ac": [
+						{
+							"special": "11 + the spell's level"
+						}
+					],
+					"speed": {
+						"walk": 40,
+						"climb": 40
+					},
+					"vulnerable": [
+						"slashing"
+					],
+					"trait": null,
+					"traitTags": null,
+					"damageTags": [
+						"B"
+					],
+					"miscTags": [
+						"MA"
+					],
+					"conditionInflict": null
+				}
+			]
+		},
+		{
+			"name": "Spellguard",
+			"source": "AU",
+			"page": 147,
+			"size": [
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"L",
+				"N"
+			],
+			"ac": [
+				20
+			],
+			"hp": {
+				"average": 105,
+				"formula": "14d8 + 42"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 18,
+			"dex": 11,
+			"con": 16,
+			"int": 12,
+			"wis": 13,
+			"cha": 10,
+			"skill": {
+				"arcana": "+4",
+				"athletics": "+7",
+				"perception": "+4"
+			},
+			"passive": 14,
+			"languages": [
+				"Common"
+			],
+			"cr": "5",
+			"gear": [
+				"flail|xphb",
+				{
+					"item": "javelin|xphb",
+					"quantity": 6
+				},
+				"plate armor|xphb",
+				"shield|xphb"
+			],
+			"trait": [
+				{
+					"name": "Superior Magic Resistance",
+					"entries": [
+						"The spellguard has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects. Spell attack rolls have {@variantrule Disadvantage|XPHB} against the spellguard."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The spellguard makes two attacks, using Force Flail or Javelin in any combination."
+					]
+				},
+				{
+					"name": "Force Flail",
+					"entries": [
+						"{@atkr m} {@hit 7}, reach 5 ft. {@h}8 ({@damage 1d8 + 4}) Bludgeoning damage plus 7 ({@damage 2d6}) Force damage."
+					]
+				},
+				{
+					"name": "Javelin",
+					"entries": [
+						"{@atkr m,r} {@hit 7}, reach 5 ft. or range 30/120 ft. {@h}14 ({@damage 3d6 + 4}) Piercing damage."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Defensive Divination",
+					"entries": [
+						"{@actTrigger} A creature the spellguard can see hits an ally within 5 feet of the spellguard with an attack roll, or an ally within 5 feet of the spellguard fails a saving throw against a spell or other magical effect. {@actResponse} The spellguard rolls {@dice 1d20} and chooses whether to use that roll in place of the {@dice d20} rolled for the attack roll or saving throw."
+					]
+				}
+			],
+			"environment": [
+				"urban"
+			],
+			"treasure": [
+				"armaments"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"B",
+				"O",
+				"P"
+			],
+			"miscTags": [
+				"MA",
+				"MLW",
+				"RA",
+				"THW"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Taisus",
+			"source": "AU",
+			"page": 148,
+			"size": [
+				"H"
+			],
+			"type": "aberration",
+			"alignment": [
+				"C",
+				"N"
+			],
+			"ac": [
+				18
+			],
+			"hp": {
+				"average": 310,
+				"formula": "27d12 + 135"
+			},
+			"speed": {
+				"walk": 40,
+				"fly": 60
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 17,
+			"dex": 18,
+			"con": 20,
+			"int": 25,
+			"wis": 22,
+			"cha": 19,
+			"skill": {
+				"arcana": "+19",
+				"insight": "+12",
+				"perception": "+12"
+			},
+			"passive": 22,
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened",
+				"grappled",
+				"paralyzed",
+				"petrified",
+				"poisoned",
+				"restrained"
+			],
+			"languages": [
+				"all; telepathy 120 ft."
+			],
+			"cr": "19",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The taisus casts one of the following spells, requiring no Material components and using Intelligence as the spellcasting ability (spell save {@dc 21}):"
+					],
+					"will": [
+						"{@spell Detect Magic|XPHB}",
+						"{@spell Fireball|XPHB} (level 5 version)",
+						"{@spell Invisibility|XPHB}",
+						"{@spell Mage Hand|XPHB}"
+					],
+					"daily": {
+						"2e": [
+							"{@spell Jallarzi's Storm of Radiance|XPHB}",
+							"{@spell Plane Shift|XPHB}",
+							"{@spell Scrying|XPHB}"
+						],
+						"1e": [
+							"{@spell Befuddlement|XPHB}",
+							"{@spell Disintegrate|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				},
+				{
+					"name": "Protective Magic",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The taisus casts {@spell Counterspell|XPHB} or {@spell Shield|XPHB} in response to the spell's trigger, using the same spellcasting ability as Spellcasting."
+					],
+					"will": [
+						"{@spell Counterspell|XPHB}",
+						"{@spell Shield|XPHB}"
+					],
+					"ability": "int",
+					"displayAs": "reaction",
+					"hidden": [
+						"will"
+					]
+				}
+			],
+			"trait": [
+				{
+					"name": "Arcane Immortality",
+					"entries": [
+						"If the taisus dies, its body crumbles into glittering dust. It gains a new body after {@dice 1d10} days, reviving with all its {@variantrule Hit Points|XPHB}, unless a {@spell Wish|XPHB} spell is cast on its remains to prevent the effects of this trait. The new body appears in an unoccupied space within 5 feet of a location designated by the taisus on its creation."
+					]
+				},
+				{
+					"name": "Legendary Resistance (4/Day)",
+					"entries": [
+						"If the taisus fails a saving throw, it can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The taisus has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The taisus makes two Brain Drain attacks."
+					]
+				},
+				{
+					"name": "Brain Drain",
+					"entries": [
+						"{@atkr m} {@hit 13}, reach 20 ft. {@h}20 ({@damage 3d8 + 7}) Force damage plus 16 ({@damage 3d10}) Psychic damage, and if the target is a creature with spell slots, it's subjected to the following effect. {@actSave con} {@dc 21}. {@actSaveFail} The target's highest-level unexpended spell slot is expended."
+					]
+				}
+			],
+			"legendary": [
+				{
+					"name": "Deadly Drain",
+					"entries": [
+						"The taisus makes a Brain Drain attack. The taisus can't take this action again until the start of its next turn."
+					]
+				},
+				{
+					"name": "Teleport",
+					"entries": [
+						"The taisus teleports itself or a willing creature it can see within 10 feet of itself up to 120 feet to an unoccupied space the taisus can see."
+					]
+				}
+			],
+			"environment": [
+				"any"
+			],
+			"treasure": [
+				"arcana"
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Magic Resistance"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"TP",
+				"XX"
+			],
+			"damageTags": [
+				"O",
+				"Y"
+			],
+			"damageTagsSpell": [
+				"F",
+				"O",
+				"R",
+				"T",
+				"Y"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RCH"
+			],
+			"conditionInflictSpell": [
+				"blinded",
+				"deafened",
+				"invisible"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity",
+				"intelligence",
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Transmuter Archmage",
+			"source": "AU",
+			"page": 139,
+			"referenceSources": [
+				"AUD"
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"wizard"
+				]
+			},
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 220,
+				"formula": "40d8 + 40"
+			},
+			"speed": {
+				"walk": 40,
+				"fly": 30
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 10,
+			"dex": 16,
+			"con": 12,
+			"int": 20,
+			"wis": 15,
+			"cha": 16,
+			"skill": {
+				"arcana": "+15",
+				"history": "+10",
+				"perception": "+7"
+			},
+			"passive": 17,
+			"languages": [
+				"Common plus five other languages"
+			],
+			"cr": "15",
+			"gear": [
+				"staff|xphb"
+			],
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The archmage casts one of the following spells, using Intelligence as the spellcasting ability (spell save {@dc 18}):"
+					],
+					"will": [
+						"{@spell Alter Self|XPHB}",
+						"{@spell Detect Magic|XPHB}",
+						"{@spell Knock|XPHB}",
+						"{@spell Mage Armor|XPHB} (included in AC)",
+						"{@spell Mage Hand|XPHB}",
+						"{@spell Polymorph|XPHB}",
+						"{@spell Prestidigitation|XPHB}"
+					],
+					"daily": {
+						"1": [
+							"{@spell Reverse Gravity|XPHB}"
+						],
+						"2": [
+							"{@spell Gaseous Form|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				},
+				{
+					"name": "Slow (2/Day)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The archmage casts {@spell Slow|XPHB}, using the same spellcasting ability as Spellcasting."
+					],
+					"daily": {
+						"2": [
+							"{@spell Slow|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "bonus",
+					"hidden": [
+						"daily"
+					]
+				},
+				{
+					"name": "Protective Magic (3/Day)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The archmage casts {@spell Counterspell|XPHB} or {@spell Shield|XPHB} in response to the spell's trigger, using the same spellcasting ability as Spellcasting."
+					],
+					"daily": {
+						"3": [
+							"{@spell Counterspell|XPHB}",
+							"{@spell Shield|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "reaction",
+					"hidden": [
+						"daily"
+					]
+				}
+			],
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The archmage has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The archmage makes four Arcane Burst attacks."
+					]
+				},
+				{
+					"name": "Arcane Burst",
+					"entries": [
+						"{@atkr m,r} {@hit 10}, reach 5 ft. or range 150 ft. {@h}27 ({@damage 4d10 + 5}) Force damage."
+					]
+				}
+			],
+			"environment": [
+				"any"
+			],
+			"treasure": [
+				"arcana",
+				"individual"
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"O"
+			],
+			"damageTagsSpell": [
+				"B",
+				"P",
+				"S"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Venger",
+			"isNamedCreature": true,
+			"source": "AU",
+			"page": 150,
+			"size": [
+				"M"
+			],
+			"type": "fiend",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				19
+			],
+			"hp": {
+				"average": 202,
+				"formula": "27d8 + 81"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": 30
+			},
+			"initiative": {
+				"proficiency": 2
+			},
+			"str": 18,
+			"dex": 20,
+			"con": 16,
+			"int": 17,
+			"wis": 14,
+			"cha": 21,
+			"skill": {
+				"arcana": "+9",
+				"deception": "+11",
+				"intimidation": "+11",
+				"perception": "+8"
+			},
+			"passive": 18,
+			"resist": [
+				"cold",
+				"fire",
+				"lightning",
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"languages": [
+				"Abyssal",
+				"Common",
+				"Infernal"
+			],
+			"cr": {
+				"cr": "17",
+				"xpLair": 20000
+			},
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Venger casts one of the following spells, using Charisma as the spellcasting ability (spell save {@dc 19}):"
+					],
+					"will": [
+						"{@spell Detect Magic|XPHB}",
+						"{@spell Invisibility|XPHB}",
+						"{@spell Mage Hand|XPHB}",
+						"{@spell Silent Image|XPHB}"
+					],
+					"daily": {
+						"2e": [
+							"{@spell Alter Self|XPHB}",
+							"{@spell Contact Other Plane|XPHB}",
+							"{@spell Create Undead|XPHB}",
+							"{@spell Dimension Door|XPHB}"
+						],
+						"1e": [
+							"{@spell Control Weather|XPHB}",
+							"{@spell Imprisonment|XPHB}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action"
+				},
+				{
+					"name": "Telekinesis (2/Day)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Venger casts {@spell Telekinesis|XPHB}, using the same spellcasting ability as Spellcasting."
+					],
+					"daily": {
+						"2": [
+							"{@spell Telekinesis|XPHB}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "bonus",
+					"hidden": [
+						"daily"
+					]
+				},
+				{
+					"name": "Protective Magic",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Venger casts {@spell Counterspell|XPHB} or {@spell Shield|XPHB} in response to the spell's trigger, using the same spellcasting ability as Spellcasting."
+					],
+					"will": [
+						"{@spell Counterspell|XPHB}",
+						"{@spell Shield|XPHB}"
+					],
+					"ability": "cha",
+					"displayAs": "reaction",
+					"hidden": [
+						"will"
+					]
+				}
+			],
+			"trait": [
+				{
+					"name": "Fiendish Restoration",
+					"entries": [
+						"If Venger dies, his body dissipates into crimson dust, and he gains a new body in {@dice 1d10} days, reviving with all his {@variantrule Hit Points|XPHB} somewhere in one of his lairs."
+					]
+				},
+				{
+					"name": "Legendary Resistance (3/Day, or 4/Day in Lair)",
+					"entries": [
+						"If Venger fails a saving throw, he can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"Venger has {@variantrule Advantage|XPHB} on saving throws against spells and magical effects."
+					]
+				},
+				{
+					"name": "Mounted Adept",
+					"entries": [
+						"While Venger is mounted, he and his mount have {@variantrule Advantage|XPHB} on Dexterity saving throws, and Venger can force an attack targeting his mount to target him instead. Venger can't use this trait if he has the {@condition Incapacitated|XPHB} condition."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Venger makes three attacks, using Crimson Claw or Crimson Blast in any combination."
+					]
+				},
+				{
+					"name": "Crimson Claw",
+					"entries": [
+						"{@atkr m} {@hit 11}, reach 5 ft. {@h}14 ({@damage 2d8 + 5}) Slashing damage plus 10 ({@damage 3d6}) Fire damage."
+					]
+				},
+				{
+					"name": "Crimson Blast",
+					"entries": [
+						"{@atkr r} {@hit 11}, range 120 ft. {@h}24 ({@damage 3d12 + 5}) Force damage."
+					]
+				}
+			],
+			"legendaryActionsLair": 4,
+			"legendary": [
+				{
+					"name": "Booming Censure",
+					"entries": [
+						"{@actSave wis} {@dc 19}, one creature Venger can see within 60 feet. {@actSaveFail} 14 ({@damage 4d6}) Psychic damage, and the target has the {@condition Frightened|XPHB} condition until the end of its next turn. {@actSaveSuccess} Half damage only."
+					]
+				},
+				{
+					"name": "Crimson Strike",
+					"entries": [
+						"Venger makes one Crimson Claw or Crimson Blast attack."
+					]
+				},
+				{
+					"name": "Magic-Binding Chains",
+					"entries": [
+						"{@actSave dex} {@dc 19}, one creature Venger can see within 30 feet. {@actSaveFail} The target has the {@condition Restrained|XPHB} condition until the end of its next turn. While {@condition Restrained|XPHB}, the target can't take the {@action Magic|XPHB} action. {@actSaveSuccessOrFail} Venger can't take this action again until the start of his next turn."
+					]
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Magic Resistance"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AB",
+				"C",
+				"I"
+			],
+			"damageTags": [
+				"F",
+				"O",
+				"S",
+				"Y"
+			],
+			"damageTagsSpell": [
+				"B",
+				"O",
+				"P",
+				"S",
+				"Y"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"conditionInflict": [
+				"frightened",
+				"restrained"
+			],
+			"conditionInflictSpell": [
+				"invisible",
+				"restrained",
+				"unconscious"
+			],
+			"savingThrowForced": [
+				"dexterity",
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"intelligence",
+				"strength",
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Vestige Companion",
+			"source": "AU",
+			"summonedByClass": "Warlock|XPHB",
+			"size": [
+				"S"
+			],
+			"type": {
+				"type": {
+					"choose": [
+						"celestial",
+						"fiend",
+						"undead"
+					]
+				}
+			},
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				{
+					"special": "13 + your Charisma modifier"
+				}
+			],
+			"hp": {
+				"special": "4 + four times your Warlock level (the vestige has a number of Hit Dice [d6s] equal to your Warlock level)"
+			},
+			"speed": {
+				"walk": 5,
+				"fly": {
+					"number": 30,
+					"condition": "(hover)"
+				},
+				"canHover": true
+			},
+			"str": 1,
+			"dex": 14,
+			"con": 10,
+			"int": 15,
+			"wis": 15,
+			"cha": 16,
+			"passive": 12,
+			"resist": [
+				{
+					"resist": [
+						"fire"
+					],
+					"note": "(Fiend only)",
+					"cond": true
+				},
+				{
+					"resist": [
+						"necrotic"
+					],
+					"note": "(Undead only)",
+					"cond": true
+				},
+				{
+					"resist": [
+						"radiant"
+					],
+					"note": "(Celestial only)",
+					"cond": true
+				}
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened",
+				"prone"
+			],
+			"languages": [
+				"speaks the languages you know"
+			],
+			"pbNote": "equals your Proficiency Bonus",
+			"trait": [
+				{
+					"name": "Pact Bond",
+					"entries": [
+						"Add your {@variantrule Proficiency|XPHB|Proficiency Bonus} to any ability check or saving throw the vestige makes."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Vestige's Strike",
+					"entries": [
+						"{@atkr m,r} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. or range 60 ft. {@h}{@damage 1d6 + 3} plus your Charisma modifier Fire (Fiend), Necrotic (Undead), or Radiant (Celestial) damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Divine Power (1/Day)",
+					"entries": [
+						"Your vestige manifests a remnant of its divine power in one of the following ways, based on its form:",
+						{
+							"type": "entries",
+							"name": "Cursed Invocation (Undead Only)",
+							"entries": [
+								"The vestige places a curse on a creature you can see within 30 feet of the vestige for 1 minute. While cursed, the target has {@variantrule Disadvantage|XPHB} on attack rolls against you and the vestige."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Fiendish Swap (Fiend Only)",
+							"entries": [
+								"If you and the vestige are within 60 feet of each other, you both teleport, swapping places."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Healing Touch (Celestial Only)",
+							"entries": [
+								"The vestige touches another creature. The target regains {@variantrule Hit Points|XPHB} equal to {@dice 2d8} plus your Charisma modifier and ends one condition on it: {@condition Blinded|XPHB}, {@condition Deafened|XPHB}, or {@condition Poisoned|XPHB}."
+							]
+						}
+					]
+				}
+			],
+			"damageTags": [
+				"F",
+				"N",
+				"R"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"_versions": [
+				{
+					"name": "Vestige Companion (Celestial)",
+					"source": "AU",
+					"_mod": {
+						"action": {
+							"mode": "replaceArr",
+							"replace": "Vestige's Strike",
+							"items": {
+								"name": "Vestige's Strike",
+								"entries": [
+									"{@atkr m,r} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. or range 60 ft. {@h}{@damage 1d6 + 3} plus your Charisma modifier Radiant damage."
+								]
+							}
+						},
+						"bonus": {
+							"mode": "replaceArr",
+							"replace": "Divine Power (1/Day)",
+							"items": {
+								"name": "Divine Power (1/Day)",
+								"entries": [
+									{
+										"type": "entries",
+										"name": "Healing Touch",
+										"entries": [
+											"The vestige touches another creature. The target regains {@variantrule Hit Points|XPHB} equal to {@dice 2d8} plus your Charisma modifier and ends one condition on it: {@condition Blinded|XPHB}, {@condition Deafened|XPHB}, or {@condition Poisoned|XPHB}."
+										]
+									}
+								]
+							}
+						}
+					},
+					"type": "celestial",
+					"resist": [
+						"radiant"
+					],
+					"damageTags": [
+						"R"
+					]
+				},
+				{
+					"name": "Vestige Companion (Fiend)",
+					"source": "AU",
+					"_mod": {
+						"action": {
+							"mode": "replaceArr",
+							"replace": "Vestige's Strike",
+							"items": {
+								"name": "Vestige's Strike",
+								"entries": [
+									"{@atkr m,r} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. or range 60 ft. {@h}{@damage 1d6 + 3} plus your Charisma modifier Fire damage."
+								]
+							}
+						},
+						"bonus": {
+							"mode": "replaceArr",
+							"replace": "Divine Power (1/Day)",
+							"items": {
+								"name": "Divine Power (1/Day)",
+								"entries": [
+									{
+										"type": "entries",
+										"name": "Fiendish Swap",
+										"entries": [
+											"If you and the vestige are within 60 feet of each other, you both teleport, swapping places."
+										]
+									}
+								]
+							}
+						}
+					},
+					"type": "fiend",
+					"resist": [
+						"fire"
+					],
+					"damageTags": [
+						"F"
+					]
+				},
+				{
+					"name": "Vestige Companion (Undead)",
+					"source": "AU",
+					"_mod": {
+						"action": {
+							"mode": "replaceArr",
+							"replace": "Vestige's Strike",
+							"items": {
+								"name": "Vestige's Strike",
+								"entries": [
+									"{@atkr m,r} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. or range 60 ft. {@h}{@damage 1d6 + 3} plus your Charisma modifier Necrotic damage."
+								]
+							}
+						},
+						"bonus": {
+							"mode": "replaceArr",
+							"replace": "Divine Power (1/Day)",
+							"items": {
+								"name": "Divine Power (1/Day)",
+								"entries": [
+									{
+										"type": "entries",
+										"name": "Cursed Invocation",
+										"entries": [
+											"The vestige places a curse on a creature you can see within 30 feet of the vestige for 1 minute. While cursed, the target has {@variantrule Disadvantage|XPHB} on attack rolls against you and the vestige."
+										]
+									}
+								]
+							}
+						}
+					},
+					"type": "undead",
+					"resist": [
+						"necrotic"
+					],
+					"damageTags": [
+						"N"
+					]
+				}
+			]
+		}
+	]
+}

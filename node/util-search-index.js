@@ -111,7 +111,7 @@ export class UtilSearchIndex {
 			.filter(it => it.additionalIndexes && it.category === forCatId)
 			.pMap(async ti => {
 				const filename = `./data/${ti.file}`;
-				const data = ut.readJson(filename);
+				const data = await DataUtil.loadJSON(filename);
 
 				if (ti.postLoad) ti.postLoad(data);
 

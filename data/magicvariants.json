@@ -1,4 +1,9 @@
 {
+	"_meta": {
+		"internalCopies": [
+			"magicvariant"
+		]
+	},
 	"magicvariant": [
 		{
 			"name": "+1 Ammunition",
@@ -1033,6 +1038,34 @@
 			}
 		},
 		{
+			"name": "All-Seeing Blade of the Guardian",
+			"source": "AU",
+			"_copy": {
+				"name": "Resistant Blade of the Guardian",
+				"source": "AU",
+				"_mod": {
+					"inherits.entries": {
+						"mode": "appendArr",
+						"items": {
+							"type": "entries",
+							"name": "All-Seeing",
+							"entries": [
+								"The DM decides the weapon evolves one final time, becoming Legendary and gaining the All-Seeing property. The DM decides this represents the Paladin becoming a paragon of watchful protection."
+							]
+						}
+					},
+					"inherits.namePrefix": {
+						"mode": "setProp",
+						"value": "All-Seeing "
+					},
+					"inherits.rarity": {
+						"mode": "setProp",
+						"value": "legendary"
+					}
+				}
+			}
+		},
+		{
 			"name": "Ammunition of Slaying",
 			"type": "GV|XDMG",
 			"requires": [
@@ -1171,6 +1204,74 @@
 					}
 				}
 			}
+		},
+		{
+			"name": "Aquatic Wave-Swept Weapon",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"name": "Greatsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Longsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Rapier",
+					"source": "XPHB"
+				},
+				{
+					"name": "Scimitar",
+					"source": "XPHB"
+				},
+				{
+					"name": "Shortsword",
+					"source": "XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Aquatic Wave-Swept ",
+				"source": "AU",
+				"page": 129,
+				"rarity": "rare",
+				"reqAttune": true,
+				"property": [
+					"Evo|AU"
+				],
+				"bonusWeapon": "+2",
+				"modifySpeed": {
+					"static": {
+						"swim": 30
+					}
+				},
+				"entries": [
+					"This weapon is covered in oceanic motifs, from wavelike etchings on its blade to stylized sea monsters embroidered onto its leather hilt.",
+					{
+						"type": "entries",
+						"name": "Barnacled",
+						"entries": [
+							"Barnacles dot this blade's guard and the flat sides of its etched blade.",
+							"You have a +1 bonus to attack rolls and damage rolls made with this magic weapon. While holding this weapon, you can take a {@action Magic|XPHB} action to touch up to a gallon of liquid and infuse it with brine, turning fresh water into saltwater, for instance."
+						]
+					},
+					{
+						"type": "entries",
+						"name": "Aquatic",
+						"entries": [
+							"The wavelike etchings on this weapon's blade glow with light, shedding {@variantrule Bright Light|XPHB} in a 5-foot radius and {@variantrule Dim Light|XPHB} for an additional 5 feet.",
+							"Your bonus to attack rolls and damage rolls made with this magic weapon increases to +2. While you hold the weapon, you can breathe underwater, and you have a {@variantrule Swim Speed|XPHB} of 30 feet."
+						]
+					}
+				],
+				"light": [
+					{
+						"bright": 5,
+						"dim": 10
+					}
+				]
+			},
+			"hasFluffImages": true
 		},
 		{
 			"name": "Armblade",
@@ -2195,6 +2296,83 @@
 			}
 		},
 		{
+			"name": "Ascendant Wave-Swept Weapon",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"name": "Greatsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Longsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Rapier",
+					"source": "XPHB"
+				},
+				{
+					"name": "Scimitar",
+					"source": "XPHB"
+				},
+				{
+					"name": "Shortsword",
+					"source": "XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Ascendant Wave-Swept ",
+				"source": "AU",
+				"page": 129,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"property": [
+					"Evo|AU"
+				],
+				"bonusWeapon": "+3",
+				"modifySpeed": {
+					"static": {
+						"fly": 30,
+						"swim": 30
+					}
+				},
+				"entries": [
+					"This weapon is covered in oceanic motifs, from wavelike etchings on its blade to stylized sea monsters embroidered onto its leather hilt.",
+					{
+						"type": "entries",
+						"name": "Barnacled",
+						"entries": [
+							"Barnacles dot this blade's guard and the flat sides of its etched blade.",
+							"You have a +1 bonus to attack rolls and damage rolls made with this magic weapon. While holding this weapon, you can take a {@action Magic|XPHB} action to touch up to a gallon of liquid and infuse it with brine, turning fresh water into saltwater, for instance."
+						]
+					},
+					{
+						"type": "entries",
+						"name": "Aquatic",
+						"entries": [
+							"The wavelike etchings on this weapon's blade glow with light, shedding {@variantrule Bright Light|XPHB} in a 5-foot radius and {@variantrule Dim Light|XPHB} for an additional 5 feet.",
+							"Your bonus to attack rolls and damage rolls made with this magic weapon increases to +2. While you hold the weapon, you can breathe underwater, and you have a {@variantrule Swim Speed|XPHB} of 30 feet."
+						]
+					},
+					{
+						"type": "entries",
+						"name": "Ascendant",
+						"entries": [
+							"The sea monsters embroidered on this weapon's hilt are studded with chips of colorful gemstones.",
+							"Your bonus to attack rolls and damage rolls made with this magic weapon increases to +3. While you hold this weapon, you have a {@variantrule Fly Speed|XPHB} of 30 feet; when you use this {@variantrule Fly Speed|XPHB}, a salty sea breeze carries you through the air."
+						]
+					}
+				],
+				"light": [
+					{
+						"bright": 5,
+						"dim": 10
+					}
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
 			"name": "Barding",
 			"type": "GV|DMG",
 			"requires": [
@@ -2220,6 +2398,55 @@
 					"Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table in this chapter can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much."
 				]
 			}
+		},
+		{
+			"name": "Barnacled Wave-Swept Weapon",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"name": "Greatsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Longsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Rapier",
+					"source": "XPHB"
+				},
+				{
+					"name": "Scimitar",
+					"source": "XPHB"
+				},
+				{
+					"name": "Shortsword",
+					"source": "XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Barnacled Wave-Swept ",
+				"source": "AU",
+				"page": 129,
+				"rarity": "uncommon",
+				"reqAttune": true,
+				"property": [
+					"Evo|AU"
+				],
+				"bonusWeapon": "+1",
+				"entries": [
+					"This weapon is covered in oceanic motifs, from wavelike etchings on its blade to stylized sea monsters embroidered onto its leather hilt.",
+					{
+						"type": "entries",
+						"name": "Barnacled",
+						"entries": [
+							"Barnacles dot this blade's guard and the flat sides of its etched blade.",
+							"You have a +1 bonus to attack rolls and damage rolls made with this magic weapon. While holding this weapon, you can take a {@action Magic|XPHB} action to touch up to a gallon of liquid and infuse it with brine, turning fresh water into saltwater, for instance."
+						]
+					}
+				]
+			},
+			"hasFluffImages": true
 		},
 		{
 			"name": "Berserker Axe",
@@ -2849,6 +3076,28 @@
 							"This item corrupts. See the \"{@adventure Infernal Item Corruption|CoA|16|Infernal Item Corruption}\" section."
 						]
 					}
+				]
+			}
+		},
+		{
+			"name": "Dispelling Ammunition",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "A|XPHB"
+				},
+				{
+					"type": "AF|XDMG"
+				}
+			],
+			"ammo": true,
+			"inherits": {
+				"namePrefix": "Dispelling ",
+				"source": "AU",
+				"page": 118,
+				"rarity": "uncommon",
+				"entries": [
+					"When a target takes damage from this magical piece of ammunition, any ongoing spell of level 3 or lower on the target ends. Once it deals damage to a target, the ammunition is no longer magical."
 				]
 			}
 		},
@@ -4284,6 +4533,28 @@
 			}
 		},
 		{
+			"name": "Goading Ammunition",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "A|XPHB"
+				},
+				{
+					"type": "AF|XDMG"
+				}
+			],
+			"ammo": true,
+			"inherits": {
+				"namePrefix": "Goading ",
+				"source": "AU",
+				"page": 119,
+				"rarity": "uncommon",
+				"entries": [
+					"If this piece of magic ammunition hits a creature and deals damage, the target makes a {@dc 13} Charisma saving throw. On a failed save, the target can't take {@variantrule Reaction|XPHB|Reactions} until the start of its next turn, as it sputters and rages impotently. Once it hits a target, the ammunition is no longer magical."
+				]
+			}
+		},
+		{
 			"name": "Hammer of Thunderbolts",
 			"type": "GV|XDMG",
 			"requires": [
@@ -4730,6 +5001,27 @@
 				"entries": [
 					"You have a {=bonusAc} bonus to AC while wearing this armor, which shimmers softly.",
 					"If you die while wearing the armor, it is destroyed, and each celestial, fey, and fiend within 30 feet of you must succeed on a {@dc 15} Charisma saving throw or be banished to its home plane of existence, unless it is already there."
+				]
+			}
+		},
+		{
+			"name": "Life-Sapping Blade",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"weaponCategory": "martial",
+					"property": "F|XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Life-Sapping ",
+				"source": "AUD",
+				"rarity": "rare",
+				"reqAttune": true,
+				"bonusWeapon": "+1",
+				"entries": [
+					"This thin, black, iron blade is popular among Thayan assassins and spies.",
+					"You gain a +1 bonus to attack rolls and damage rolls made with this magic weapon. When you hit with an attack roll using this weapon, the target takes an extra {@damage 2d4} Necrotic damage, and it can't regain {@variantrule Hit Points|XPHB} until the end of its next turn. If a creature is reduced to 0 {@variantrule Hit Points|XPHB} by an attack using this weapon, the creature immediately dies and can be restored to life only by a {@spell Resurrection|XPHB} or {@spell True Resurrection|XPHB} spell."
 				]
 			}
 		},
@@ -5898,6 +6190,58 @@
 			}
 		},
 		{
+			"name": "Regal Breastplate of the Tyrant",
+			"source": "AU",
+			"_copy": {
+				"name": "Armor of Psychic Resistance",
+				"source": "XDMG",
+				"_mod": {
+					"inherits.basicRules2024": "remove",
+					"inherits.entries": {
+						"mode": "appendArr",
+						"items": {
+							"type": "entries",
+							"name": "Regal",
+							"entries": [
+								"When the characters travel to an ancient battlefield, the DM decides the armor evolves, becoming Very Rare and gaining the Regal property. As the characters explore, they uncover iconography matching that on the armor."
+							]
+						}
+					},
+					"inherits.namePrefix": {
+						"mode": "setProp",
+						"value": "Regal "
+					},
+					"inherits.nameSuffix": {
+						"mode": "setProp",
+						"value": " of the Tyrant "
+					},
+					"inherits.page": {
+						"mode": "setProp",
+						"value": 132
+					},
+					"inherits.property": {
+						"mode": "appendIfNotExistsArr",
+						"items": "Evo|AU"
+					},
+					"inherits.rarity": {
+						"mode": "setProp",
+						"value": "very rare"
+					},
+					"inherits.source": {
+						"mode": "setProp",
+						"value": "AU"
+					},
+					"inherits.srd52": "remove"
+				}
+			},
+			"requires": [
+				{
+					"name": "Breastplate",
+					"source": "XPHB"
+				}
+			]
+		},
+		{
 			"name": "Repeating Shot",
 			"type": "GV|XDMG",
 			"requires": [
@@ -5924,6 +6268,38 @@
 				"classFeatures": [
 					"replicate magic item|artificer|efa|2|efa"
 				]
+			}
+		},
+		{
+			"name": "Resistant Blade of the Guardian",
+			"source": "AU",
+			"_copy": {
+				"name": "Studious Blade of the Guardian",
+				"source": "AU",
+				"_mod": {
+					"inherits.entries": {
+						"mode": "appendArr",
+						"items": {
+							"type": "entries",
+							"name": "Resistant",
+							"entries": [
+								"When the Paladin defends her companions against infernal forces, the DM decides the weapon evolves again, becoming Very Rare and gaining the Resistant property. The DM chooses Fire as the damage type it grants {@variantrule Resistance|XPHB} to, since that's thematically appropriate."
+							]
+						}
+					},
+					"inherits.namePrefix": {
+						"mode": "setProp",
+						"value": "Resistant "
+					},
+					"inherits.rarity": {
+						"mode": "setProp",
+						"value": "very rare"
+					},
+					"inherits.resist": {
+						"mode": "appendIfNotExistsArr",
+						"items": "fire"
+					}
+				}
 			}
 		},
 		{
@@ -6229,6 +6605,89 @@
 			}
 		},
 		{
+			"name": "Sniper's Bracelet",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"name": "Heavy Crossbow",
+					"source": "XPHB"
+				},
+				{
+					"name": "Light Crossbow",
+					"source": "XPHB"
+				},
+				{
+					"name": "Longbow",
+					"source": "XPHB"
+				},
+				{
+					"name": "Musket",
+					"source": "XPHB"
+				},
+				{
+					"name": "Pistol",
+					"source": "XPHB"
+				},
+				{
+					"name": "Shortbow",
+					"source": "XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Sniper's Bracelet ",
+				"source": "AUD",
+				"rarity": "common",
+				"reqAttune": true,
+				"entries": [
+					"As a {@action Magic|XPHB} action while touching this weapon, you can transform it into a bracelet or back into its weapon form. While in bracelet form, it can't be used to make attacks.",
+					"If the weapon lacks ammunition while in its weapon form, it produces its own, automatically creating one piece of magic ammunition when you make a ranged attack roll with it. The ammunition vanishes the instant after it hits or misses a target."
+				]
+			}
+		},
+		{
+			"name": "Spell-Fueling Armor",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Spell-Fueling ",
+				"source": "AUD",
+				"rarity": "very rare",
+				"reqAttune": "by a Spellcaster",
+				"reqAttuneTags": [
+					{
+						"spellcasting": true
+					}
+				],
+				"entries": [
+					"Channels bearing arcane runes intersect across this armor, which is favored by spellcasting Thayan knights.",
+					{
+						"type": "entries",
+						"name": "Potent Spellcasting",
+						"entries": [
+							"When you roll damage for a spell while wearing this armor, you can treat any 1 on a damage die as a 2."
+						]
+					},
+					{
+						"type": "entries",
+						"name": "Resurgent Power",
+						"entries": [
+							"When you finish a {@variantrule Short Rest|XPHB} while wearing this armor, you can choose a number of expended spell slots to recover. The spell slots' levels must have a combined total equal to 3 or less. For example, you can recover one level 3 spell slot or three level 1 spell slots. Once used, this property can't be used again until the next dawn."
+						]
+					}
+				]
+			}
+		},
+		{
 			"name": "Starshot Crossbow",
 			"type": "GV|DMG",
 			"requires": [
@@ -6307,6 +6766,60 @@
 			}
 		},
 		{
+			"name": "Studious Blade of the Guardian",
+			"source": "AU",
+			"_copy": {
+				"name": "Weapon of Warning",
+				"source": "XDMG",
+				"_mod": {
+					"inherits.classFeatures": "remove",
+					"inherits.entries": {
+						"mode": "appendArr",
+						"items": {
+							"type": "entries",
+							"name": "Studious",
+							"entries": [
+								"The DM decides the weapon evolves to a Rare item and gives it the Studious property, since the Paladin has improved her investigative skills to better understand potential threats."
+							]
+						}
+					},
+					"inherits.lootTables": "remove",
+					"inherits.namePrefix": {
+						"mode": "setProp",
+						"value": "Studious "
+					},
+					"inherits.nameSuffix": {
+						"mode": "setProp",
+						"value": " of the Guardian"
+					},
+					"inherits.page": {
+						"mode": "setProp",
+						"value": 132
+					},
+					"inherits.property": {
+						"mode": "appendIfNotExistsArr",
+						"items": "Evo|AU"
+					},
+					"inherits.rarity": {
+						"mode": "setProp",
+						"value": "rare"
+					},
+					"inherits.source": {
+						"mode": "setProp",
+						"value": "AU"
+					},
+					"inherits.srd52": "remove"
+				}
+			},
+			"requires": [
+				{
+					"name": "Greatsword",
+					"source": "XPHB"
+				}
+			],
+			"hasFluffImages": false
+		},
+		{
 			"name": "Stygian Spear",
 			"type": "GV|DMG",
 			"requires": [
@@ -6341,6 +6854,34 @@
 						]
 					}
 				]
+			}
+		},
+		{
+			"name": "Subjugating Breastplate of the Tyrant",
+			"source": "AU",
+			"_copy": {
+				"name": "Regal Breastplate of the Tyrant",
+				"source": "AU",
+				"_mod": {
+					"inherits.entries": {
+						"mode": "appendArr",
+						"items": {
+							"type": "entries",
+							"name": "Subjugating",
+							"entries": [
+								"The characters' investigation leads them to an old castle, where they face an ancient, brutal tyrant wearing a tabard with iconography matching this armor. The characters defeat the tyrant thanks to the Fighter's heroics. The DM decides the armor evolves, becoming Legendary and gaining the Subjugating property."
+							]
+						}
+					},
+					"inherits.namePrefix": {
+						"mode": "setProp",
+						"value": "Subjugating "
+					},
+					"inherits.rarity": {
+						"mode": "setProp",
+						"value": "legendary"
+					}
+				}
 			}
 		},
 		{
@@ -6794,6 +7335,185 @@
 				]
 			},
 			"hasFluffImages": true
+		},
+		{
+			"name": "Thayan Sword",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"name": "Greatsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Longsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Scimitar",
+					"source": "XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Thayan ",
+				"source": "AUD",
+				"rarity": "rare",
+				"reqAttune": true,
+				"bonusWeapon": "+1",
+				"recharge": "dawn",
+				"rechargeAmount": "{@dice 1d4}",
+				"charges": 4,
+				"entries": [
+					"Thayan Swords are often awarded to premier Thayan knights when they complete their training.",
+					"You gain a +1 bonus to attack rolls and damage rolls made with this magic weapon.",
+					{
+						"type": "entries",
+						"name": "Knight of the Arcane",
+						"entries": [
+							"The sword has 4 charges and regains {@dice 1d4} charges daily at dawn. While holding the sword, you can expend 1 charge to cast one of the following spells (save {@dc 15}):",
+							{
+								"type": "list",
+								"items": [
+									"{@spell Searing Smite|XPHB}",
+									"{@spell Thunderous Smite|XPHB}",
+									"{@spell Wrathful Smite|XPHB}"
+								]
+							}
+						]
+					},
+					{
+						"type": "entries",
+						"name": "Resurgent Warrior",
+						"entries": [
+							"If you're reduced to 0 {@variantrule Hit Points|XPHB} but not killed outright while holding this sword, you can drop to 1 {@variantrule Hit Points|XPHB|Hit Point} instead. Once used, this property can't be used again until the next dawn."
+						]
+					}
+				],
+				"attachedSpells": {
+					"charges": {
+						"1": [
+							"searing smite|xphb",
+							"thunderous smite|xphb",
+							"wrathful smite|xphb"
+						]
+					}
+				}
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Tramontane Armor",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Tramontane ",
+				"source": "AU",
+				"page": 124,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"bonusAc": "+1",
+				"entries": [
+					"You gain a {=bonusAc} bonus to {@variantrule Armor Class|XPHB} while wearing this armor. The armor is enchanted to look like a scholarly or priestly robe.",
+					{
+						"type": "entries",
+						"name": "Mountain Walker",
+						"entries": [
+							"While you're wearing this armor, {@variantrule Difficult Terrain|XPHB} composed of heavy snow, ice, rubble, or undergrowth doesn't cost you extra movement."
+						]
+					},
+					{
+						"type": "entries",
+						"name": "Grasping Tendrils",
+						"entries": [
+							"As a {@action Magic|XPHB} action, you can activate the armor, causing the hems of its sleeves and body to extend into ribbonlike tendrils.",
+							"As a {@variantrule Bonus Action|XPHB} while the armor is active, you can force each creature of your choice in a 20-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from you to make a {@dc 15} Strength saving throw. On a failed save, a creature has the {@condition Grappled|XPHB} condition (escape {@dc 15}) and is pulled up to 20 feet straight toward you.",
+							"The armor remains active for 1 minute or until you take another {@action Magic|XPHB} action to deactivate it. Once you activate the armor, it can't be activated again until the next dawn."
+						]
+					}
+				]
+			}
+		},
+		{
+			"name": "Trick Weapon",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"weaponCategory": "simple",
+					"type": "M|XPHB"
+				},
+				{
+					"weaponCategory": "martial",
+					"type": "M|XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Trick ",
+				"source": "AUD",
+				"rarity": "common",
+				"entries": [
+					"As a {@action Magic|XPHB} action while touching this weapon, you can transform it into a mundane item or back into its weapon form. It can't be used to make attacks while transformed into a mundane item.",
+					"Different Trick Weapons transform into different items. The DM chooses the mundane item or determines it randomly by rolling on the following table.",
+					{
+						"type": "table",
+						"colStyles": [
+							"col-2 text-center",
+							"col-10"
+						],
+						"colLabels": [
+							"{@dice 1d10}",
+							"The Weapon Transforms into a..."
+						],
+						"rows": [
+							[
+								"1",
+								"Bracelet"
+							],
+							[
+								"2",
+								"Comb"
+							],
+							[
+								"3",
+								"Crutch"
+							],
+							[
+								"4",
+								"Fake coin"
+							],
+							[
+								"5",
+								"Hairpin"
+							],
+							[
+								"6",
+								"Jingle bell"
+							],
+							[
+								"7",
+								"Pendant necklace"
+							],
+							[
+								"8",
+								"Playing card"
+							],
+							[
+								"9",
+								"Quill pen"
+							],
+							[
+								"10",
+								"Spoon"
+							]
+						]
+					}
+				]
+			}
 		},
 		{
 			"name": "Vicious +1 Weapon",

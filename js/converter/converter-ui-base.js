@@ -319,7 +319,7 @@ export class ConverterUiBase extends BaseComponent {
 		};
 
 		if (this._titleCaseFields) opts.isTitleCase = this._state.isTitleCase;
-		if (this._hasSource) opts.page = this._state.source;
+		if (this._hasSource) opts.source = this._state.source;
 		if (this._hasPageNumbers) opts.page = this._state.page;
 
 		return opts;

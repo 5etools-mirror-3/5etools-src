@@ -1,5 +1,6 @@
 import {EntityFileHandlerBase} from "./test-tags-entity-file-base.js";
 import {WALKER} from "../test-tags-utils.js";
+import {UtilBookUtil} from "../../../js/bookutils/bookutils-utils.js";
 
 export class EntityFileHandlerAdventureBook extends EntityFileHandlerBase {
 	_props = ["adventure", "book"];
@@ -12,10 +13,10 @@ export class EntityFileHandlerAdventureBook extends EntityFileHandlerBase {
 			const prop = obj.prop || Parser.getTagProps(obj.tag)[0];
 			if (prop?.endsWith("Fluff")) return obj;
 
-			const page = obj.prop || Renderer.tag.getPage(obj.tag);
+			const page = obj.prop || Renderer.tag.getPage(obj.tag, {isHover: true});
 			const source = Parser.getTagSource(obj.tag, obj.source);
 
-			out.push(obj.hash || UrlUtil.URL_TO_HASH_BUILDER[page]({...obj, source}));
+			out.push(obj.hash || UrlUtil.getHashBuilder(page)({...obj, source}));
 
 			return obj;
 		}});
@@ -40,10 +41,7 @@ export class EntityFileHandlerAdventureBook extends EntityFileHandlerBase {
 				(chapter.headers || [])
 					.filter(header => header.statblock)
 					.forEach(header => {
-						const hash = UrlUtil.URL_TO_HASH_GENERIC({
-							name: header.header,
-							source: header.source || ent.source,
-						});
+						const hash = UtilBookUtil.getStatblockHash({header, bookSource: ent.source});
 
 						const count = hashes.filter(hash_ => hash_ === hash).length;
 						if (count === 1) return;

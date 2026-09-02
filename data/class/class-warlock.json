@@ -1805,6 +1805,7 @@
 			"source": "RHW",
 			"className": "Warlock",
 			"classSource": "XPHB",
+			"page": 24,
 			"edition": "one",
 			"additionalSpells": [
 				{
@@ -1836,6 +1837,116 @@
 				"Necrotic Husk|Warlock|XPHB|Undead|RHW|10|RHW",
 				"Superior Dread|Warlock|XPHB|Undead|RHW|14|RHW"
 			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Vestige Patron",
+			"shortName": "Vestige",
+			"source": "AU",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"name": "Life Domain",
+					"prepared": {
+						"3": [
+							"aid|xphb",
+							"bless|xphb",
+							"cure wounds|xphb",
+							"lesser restoration|xphb"
+						],
+						"5": [
+							"mass healing word|xphb",
+							"revivify|xphb"
+						],
+						"7": [
+							"aura of life|xphb",
+							"death ward|xphb"
+						],
+						"9": [
+							"greater restoration|xphb",
+							"mass cure wounds|xphb"
+						]
+					}
+				},
+				{
+					"name": "Light Domain",
+					"prepared": {
+						"3": [
+							"burning hands|xphb",
+							"faerie fire|xphb",
+							"scorching ray|xphb",
+							"see invisibility|xphb"
+						],
+						"5": [
+							"daylight|xphb",
+							"fireball|xphb"
+						],
+						"7": [
+							"arcane eye|xphb",
+							"wall of fire|xphb"
+						],
+						"9": [
+							"flame strike|xphb",
+							"scrying|xphb"
+						]
+					}
+				},
+				{
+					"name": "Trickery Domain",
+					"prepared": {
+						"3": [
+							"charm person|xphb",
+							"disguise self|xphb",
+							"invisibility|xphb",
+							"pass without trace|xphb"
+						],
+						"5": [
+							"hypnotic pattern|xphb",
+							"nondetection|xphb"
+						],
+						"7": [
+							"confusion|xphb",
+							"dimension door|xphb"
+						],
+						"9": [
+							"dominate person|xphb",
+							"modify memory|xphb"
+						]
+					}
+				},
+				{
+					"name": "War Domain",
+					"prepared": {
+						"3": [
+							"guiding bolt|xphb",
+							"magic weapon|xphb",
+							"shield of faith|xphb",
+							"spiritual weapon|xphb"
+						],
+						"5": [
+							"crusader's mantle|xphb",
+							"spirit guardians|xphb"
+						],
+						"7": [
+							"fire shield|xphb",
+							"freedom of movement|xphb"
+						],
+						"9": [
+							"hold monster|xphb",
+							"steel wind strike|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Vestige Patron|Warlock|XPHB|Vestige|AU|3|AU",
+				"Vestige Power|Warlock|XPHB|Vestige|AU|6|AU",
+				"Vestige Recovery|Warlock|XPHB|Vestige|AU|10|AU",
+				"Semblance of Life|Warlock|XPHB|Vestige|AU|14|AU"
+			],
+			"hasFluff": true,
 			"hasFluffImages": true
 		}
 	],
@@ -4023,6 +4134,117 @@
 			]
 		},
 		{
+			"name": "Vestige Patron",
+			"source": "AU",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Vestige",
+			"subclassSource": "AU",
+			"level": 3,
+			"entries": [
+				"{@i Wield the Remnants of a Dying God's Power}",
+				"Your pact draws on the power of a dying god, a being once worshipped by countless followers but now abandoned and forgotten. This dying god, known as a vestige, might have been benevolent, evil, or strange and unknowable, but now it is driven to regain its former power. The vestige needs your help, and it is willing to share its remaining strength with you.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Vestige Companion|Warlock|XPHB|Vestige|AU|3|AU"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Vestige Spells|Warlock|XPHB|Vestige|AU|3|AU"
+				}
+			]
+		},
+		{
+			"name": "Vestige Companion",
+			"source": "AU",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Vestige",
+			"subclassSource": "AU",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"The vestige manifests, drawing strength from your pact. It uses the {@creature Vestige Companion|AU} stat block and is a Celestial, Fiend, or Undead (choose when you gain this feature). You determine what the vestige looks like, but regardless of its form, the vestige bears features indicating its supernatural origin. For example, you might decide your vestige is an oversize floating skull etched with sigils, a circle of glowing runes, or a constantly shifting abstract shape. The vestige is {@variantrule Friendly [Attitude]|XPHB|Friendly} to you and your allies and obeys your commands. It vanishes if you die.",
+				{
+					"type": "entries",
+					"name": "The Vestige in Combat",
+					"entries": [
+						"In combat, the vestige acts during your turn. It can move and use its {@variantrule Reaction|XPHB} on its own, but the only action it takes is the {@action Dodge|XPHB} action unless you take a {@variantrule Bonus Action|XPHB} to command it to take an action in its stat block or some other action. You can also sacrifice one of your attacks when you take the {@action Attack|XPHB} action to command the vestige to take the Vestige's Strike action. If you have the {@condition Incapacitated|XPHB} condition, the vestige acts on its own and isn't limited to the {@action Dodge|XPHB} action."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Disappearance of the Vestige",
+					"entries": [
+						"When the vestige drops to 0 {@variantrule Hit Points|XPHB}, it disappears. You can spend 1 minute performing a magical ceremony to manifest the vestige again; it reappears with its maximum {@variantrule Hit Points|XPHB} in an unoccupied space within 5 feet of you. As a {@action Magic|XPHB} action, you can temporarily dismiss the vestige to a pocket dimension. As a {@action Magic|XPHB} action while it is temporarily dismissed, you can cause the vestige to reappear in an unoccupied space within 30 feet of you. Whenever the vestige drops to 0 {@variantrule Hit Points|XPHB} or disappears into the pocket dimension, it leaves behind in its space anything it was wearing or carrying.",
+						{
+							"type": "statblock",
+							"name": "Vestige Companion",
+							"tag": "creature",
+							"source": "AU",
+							"style": "narrow"
+						},
+						"Whenever you finish a {@variantrule Long Rest|XPHB}, you can summon the vestige in a new form, which appears in an unoccupied space within 5 feet of you. You choose its appearance and whether it is a Celestial, Fiend, or Undead. If the vestige is already manifested from this feature, its form changes to the new one."
+					]
+				}
+			]
+		},
+		{
+			"name": "Vestige Spells",
+			"source": "AU",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Vestige",
+			"subclassSource": "AU",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"The magic of your {@creature Vestige Companion|AU} ensures you always have certain spells ready. Select one of the following Cleric domains: {@class Cleric|XPHB|Life|Life}, {@class Cleric|XPHB|Light|Light}, {@class Cleric|XPHB|Trickery|Trickery}, or {@class Cleric|XPHB|War|War}. The Domain Spells of your chosen domain are Warlock spells for you. When you reach a Warlock level equal to a Cleric level listed on the Domain Spells table for the domain you have chosen, you thereafter always have the listed spells prepared.",
+				"For example, if you chose the {@class Cleric|XPHB|War Domain|War|XPHB} for this feature, when you reach Warlock level 3, you would have the {@spell Guiding Bolt|XPHB}, {@spell Magic Weapon|XPHB}, {@spell Shield of Faith|XPHB}, and {@spell Spiritual Weapon|XPHB} spells prepared."
+			]
+		},
+		{
+			"name": "Vestige Power",
+			"source": "AU",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Vestige",
+			"subclassSource": "AU",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"Your {@creature Vestige Companion|AU} now regains its use of Divine Power whenever you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB} or when you use your Magical Cunning feature. In addition, while within 30 feet of your {@creature Vestige Companion|AU}, you have {@variantrule Resistance|XPHB} to the same damage types as the vestige."
+			]
+		},
+		{
+			"name": "Vestige Recovery",
+			"source": "AU",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Vestige",
+			"subclassSource": "AU",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"When your {@creature Vestige Companion|AU} would drop to 0 {@variantrule Hit Points|XPHB}, you can take a {@variantrule Reaction|XPHB} and expend a Pact Magic spell slot to instead change its {@variantrule Hit Points|XPHB} to its {@variantrule Hit Points|XPHB|Hit Point} maximum. The vestige then teleports to an unoccupied space you can see within 30 feet of it. Once you use this feature, you can't do so again until you finish a {@variantrule Long Rest|XPHB}."
+			]
+		},
+		{
+			"name": "Semblance of Life",
+			"source": "AU",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Vestige",
+			"subclassSource": "AU",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"Your {@creature Vestige Companion|AU} continues to grow in strength, and with your assistance, it can briefly adopt a more powerful form. Depending on the vestige's type, you can take a {@action Magic|XPHB} action while the vestige is within 90 feet of you to shape-shift it for 1 hour into one of the following forms: {@b Celestial Spirit} (Celestial vestige; see the {@spell Summon Celestial|XPHB} spell in the {@book Player's Handbook|XPHB|9}), {@b Fiendish Spirit} (Fiend vestige; see the {@spell Summon Fiend|XPHB} spell in the {@book Player's Handbook|XPHB|9}), or {@b Undead Spirit} (Undead vestige; see the {@spell Summon Undead|XPHB} spell in the {@book Player's Handbook|XPHB|9}). The vestige's game statistics are replaced by the spirit's stat block, and the spell's level is equal to half your Warlock level (round down; maximum level 9), but the vestige retains its personality, Divine Power {@variantrule Bonus Action|XPHB}, {@variantrule Hit Points|XPHB}, and {@variantrule Hit Point Dice|XPHB}.",
+				"The vestige gains a number of {@variantrule Temporary Hit Points|XPHB} equal to the {@variantrule Hit Points|XPHB} of the spirit form. These {@variantrule Temporary Hit Points|XPHB} vanish if any remain after 1 hour, and the transformation ends early if it has no {@variantrule Temporary Hit Points|XPHB} left.",
+				"Once you use this feature, you can't do so again until you finish a {@variantrule Long Rest|XPHB}."
+			]
+		},
+		{
 			"name": "The Archfey",
 			"source": "PHB",
 			"className": "Warlock",
@@ -4089,6 +4311,7 @@
 		{
 			"name": "Undead Patron",
 			"source": "RHW",
+			"page": 24,
 			"className": "Warlock",
 			"classSource": "XPHB",
 			"subclassShortName": "Undead",
@@ -4110,6 +4333,7 @@
 		{
 			"name": "Form of Dread",
 			"source": "RHW",
+			"page": 24,
 			"className": "Warlock",
 			"classSource": "XPHB",
 			"subclassShortName": "Undead",
@@ -4144,6 +4368,7 @@
 		{
 			"name": "Undead Spells",
 			"source": "RHW",
+			"page": 24,
 			"className": "Warlock",
 			"classSource": "XPHB",
 			"subclassShortName": "Undead",
@@ -4187,6 +4412,7 @@
 		{
 			"name": "Grave Touched",
 			"source": "RHW",
+			"page": 24,
 			"className": "Warlock",
 			"classSource": "XPHB",
 			"subclassShortName": "Undead",
@@ -4221,6 +4447,7 @@
 		{
 			"name": "Necrotic Husk",
 			"source": "RHW",
+			"page": 25,
 			"className": "Warlock",
 			"classSource": "XPHB",
 			"subclassShortName": "Undead",
@@ -4249,6 +4476,7 @@
 		{
 			"name": "Superior Dread",
 			"source": "RHW",
+			"page": 25,
 			"className": "Warlock",
 			"classSource": "XPHB",
 			"subclassShortName": "Undead",

@@ -4,24 +4,6 @@
 @use "../vars/vars-night";
 
 @layer vetools {
-	#legal-notice {
-		@include vars.mix-shadow-1;
-
-		position: fixed;
-		z-index: 10000;
-		bottom: 0;
-		width: 100vw;
-		height: 10em;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: space-evenly;
-		font-weight: bold;
-		padding: 3rem;
-		border: 1px solid rgb(0 0 0 / 15%);
-		background: #f8f8f8;
-	}
-
 	.viewport-wrapper {
 		position: absolute;
 		inset: 0;
@@ -161,15 +143,15 @@
 		clear: both;
 		font-size: 0.8em;
 
-		&--stats {
-			@media screen and (width > #{vars.$width-screen-md}) {
-				overflow-y: scroll;
-				margin-right: -9px;
-			}
-		}
-
 		@media screen and (width <= #{vars.$width-screen-md}) {
 			max-height: 40vh;
+		}
+	}
+
+	.list--stats {
+		@media screen and (width > #{vars.$width-screen-md}) {
+			overflow-y: scroll;
+			margin-right: -9px;
 		}
 	}
 
@@ -187,10 +169,6 @@
 		.ve-lst__row-border {
 			border-color: vars.$rgb-border-grey;
 		}
-	}
-
-	.row--blocklisted {
-		display: none !important;
 	}
 
 	td,
@@ -235,10 +213,6 @@
 			padding-left: 23px;
 		}
 
-		&list {
-			margin-bottom: 10px;
-		}
-
 		&btn-toggle-expand {
 			margin-bottom: -1px;
 			line-height: 15px;
@@ -272,10 +246,6 @@
 		&.bk__contents_show_all {
 			height: 16px;
 		}
-	}
-
-	.ve-lst__row--focusable:focus {
-		@include vars.mix-row-glow-active;
 	}
 
 	.sublist {
@@ -805,11 +775,6 @@
 			border-color: vars-night.$rgb-border-grey--night;
 		}
 
-		#legal-notice {
-			background: vars-night.$rgb-bg--night;
-			color: #999;
-		}
-
 		a,
 		.ve-roller {
 			color: vars-night.$rgb-link-blue--night;
@@ -902,11 +867,6 @@
 			box-shadow: inset 0 3px 7px #111e;
 		}
 
-		.ve-btn-nowrap {
-			overflow-wrap: break-word;
-		}
-
-		dialog.dialog-modal,
 		.ve-dropdown-menu {
 			background: vars-night.$rgb-bg--night;
 			color: vars-night.$rgb-font--night;
@@ -1024,7 +984,6 @@
 			}
 		}
 
-		.input-group-addon,
 		.ve-form-control {
 			background: vars-night.$rgb-form-control-bg--night;
 			color: vars-night.$rgb-font--night;
@@ -1114,14 +1073,6 @@
 			border-bottom: 1px solid vars-night.$rgb-border-grey--statblock-night;
 		}
 
-		tr.text td {
-			color: vars-night.$rgb-font--night !important;
-		}
-
-		tr.text td {
-			color: vars-night.$rgb-font--night !important;
-		}
-
 		.f-all-wrapper > input,
 		.f-all-out {
 			background: #303030;
@@ -1152,10 +1103,6 @@
 			.ve-lst__row-border {
 				border-color: vars-night.$rgb-border-grey--night;
 			}
-		}
-
-		tr.trait td {
-			color: vars-night.$rgb-font--night !important;
 		}
 
 		::-webkit-scrollbar-thumb {
@@ -1208,8 +1155,7 @@
 		}
 
 		.rollbox-min,
-		.rollbox,
-		.spacer-name {
+		.rollbox {
 			display: none !important;
 		}
 
@@ -1269,16 +1215,6 @@
 		.wrp-stats-table {
 			border-top: 0 !important;
 			border-bottom: 0 !important;
-		}
-		// endregion
-
-		// region classes.html
-		#sticky-nav {
-			display: none !important;
-		}
-
-		#classtable table tr:nth-child(odd) td {
-			background: #d3d3d3 !important;
 		}
 		// endregion
 

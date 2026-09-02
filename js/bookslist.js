@@ -1,4 +1,4 @@
-import {BookUtil} from "./bookutils.js";
+import {UtilBookUtil} from "./bookutils/bookutils-utils.js";
 
 export class AdventuresBooksList {
 	static _getHeaderText ({header}) {
@@ -7,12 +7,7 @@ export class AdventuresBooksList {
 
 	static _getScrollHash ({bookSource, header, headerText, headerCounts}) {
 		if (header.statblock) {
-			const ptHash = UrlUtil.URL_TO_HASH_GENERIC({
-				name: headerText,
-				source: header.source || bookSource,
-			});
-
-			return `${VeCt.HASH_PREFIX_STATS_SCROLLER}${ptHash}`;
+			return `${VeCt.HASH_PREFIX_STATS_SCROLLER}${UtilBookUtil.getStatblockHash({header, bookSource})}`;
 		}
 
 		const headerTextClean = headerText.toLowerCase().trim();

@@ -1,4 +1,4 @@
-"use strict";
+import {RenderRewards} from "./render-rewards.js";
 
 class RewardsSublistManager extends SublistManager {
 	static _getRowTemplate () {

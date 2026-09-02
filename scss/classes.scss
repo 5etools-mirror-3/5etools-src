@@ -941,4 +941,14 @@
 		}
 	}
 	// endregion
+
+	@include vars.mix-is-print {
+		.cls-nav {
+			display: none !important;
+		}
+
+		.ve-cls-tbl > tbody > tr:nth-child(odd) > td {
+			background: #d3d3d3 !important;
+		}
+	}
 }

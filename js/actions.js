@@ -1,4 +1,4 @@
-"use strict";
+import {RenderActions} from "./render-actions.js";
 
 class ActionsSublistManager extends SublistManager {
 	static _getRowTemplate () {

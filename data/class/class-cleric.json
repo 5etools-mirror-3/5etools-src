@@ -1686,6 +1686,9 @@
 			"className": "Cleric",
 			"classSource": "PHB",
 			"page": 125,
+			"reprintedAs": [
+				"Arcana|Cleric|XPHB|AU"
+			],
 			"edition": "classic",
 			"additionalSpells": [
 				{
@@ -1753,6 +1756,9 @@
 			"source": "SCAG",
 			"className": "Cleric",
 			"classSource": "XPHB",
+			"reprintedAs": [
+				"Arcana|Cleric|XPHB|AU"
+			],
 			"_copy": {
 				"name": "Arcana Domain",
 				"source": "SCAG",
@@ -2831,6 +2837,7 @@
 			"source": "RHW",
 			"className": "Cleric",
 			"classSource": "XPHB",
+			"page": 19,
 			"edition": "one",
 			"additionalSpells": [
 				{
@@ -2862,6 +2869,68 @@
 				"Sentinel at Death's Door|Cleric|XPHB|Grave|RHW|6|RHW",
 				"Divine Reaper|Cleric|XPHB|Grave|RHW|17|RHW"
 			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Arcana Domain",
+			"shortName": "Arcana",
+			"source": "AU",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"known": {
+						"3": [
+							{
+								"choose": "level=0|class=Wizard",
+								"count": 2
+							}
+						]
+					},
+					"prepared": {
+						"3": [
+							"detect magic|xphb",
+							"magic missile|xphb",
+							"magic weapon|xphb",
+							"nystul's magic aura|xphb"
+						],
+						"5": [
+							"counterspell|xphb",
+							"dispel magic|xphb"
+						],
+						"7": [
+							"arcane eye|xphb",
+							"leomund's secret chest|xphb"
+						],
+						"9": [
+							"bigby's hand|xphb",
+							"teleportation circle|xphb"
+						],
+						"17": [
+							{
+								"choose": "level=6|class=Wizard"
+							},
+							{
+								"choose": "level=7|class=Wizard"
+							},
+							{
+								"choose": "level=8|class=Wizard"
+							},
+							{
+								"choose": "level=9|class=Wizard"
+							}
+						]
+					},
+					"ability": "wis"
+				}
+			],
+			"subclassFeatures": [
+				"Arcana Domain|Cleric|XPHB|Arcana|AU|3|AU",
+				"Dispelling Recovery|Cleric|XPHB|Arcana|AU|6|AU",
+				"Magical Mastery|Cleric|XPHB|Arcana|AU|17|AU"
+			],
+			"hasFluff": true,
 			"hasFluffImages": true
 		}
 	],
@@ -6843,6 +6912,184 @@
 			]
 		},
 		{
+			"name": "Arcana Domain",
+			"source": "AU",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcana",
+			"subclassSource": "AU",
+			"level": 3,
+			"entries": [
+				"{@i Amplify Your Magical Power}",
+				"Magic suffuses the multiverse and fuels both destruction and creation. Clerics with the Arcana Domain view magical knowledge not as power to be used in pursuit of personal ends, but as a gift they have the responsibility to share.",
+				"Gods associated with the Arcana Domain know the secrets and potential of magic intimately. These gods are often connected to knowledge, secrecy, or power.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Arcana Domain Spells|Cleric|XPHB|Arcana|AU|3|AU"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Modify Magic|Cleric|XPHB|Arcana|AU|3|AU"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Student of Arcana|Cleric|XPHB|Arcana|AU|3|AU"
+				}
+			]
+		},
+		{
+			"name": "Arcana Domain Spells",
+			"source": "AU",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcana",
+			"subclassSource": "AU",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"Your connection to this divine domain means you always have certain spells ready. When you reach a Cleric level specified in the Arcana Domain Spells table, you thereafter always have the listed spells prepared.",
+				{
+					"type": "table",
+					"caption": "Arcana Domain Spells",
+					"colLabels": [
+						"Cleric Level",
+						"Prepared Spells"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Detect Magic|XPHB}, {@spell Magic Missile|XPHB}, {@spell Magic Weapon|XPHB}, {@spell Nystul's Magic Aura|XPHB}"
+						],
+						[
+							"5",
+							"{@spell Counterspell|XPHB}, {@spell Dispel Magic|XPHB}"
+						],
+						[
+							"7",
+							"{@spell Arcane Eye|XPHB}, {@spell Leomund's Secret Chest|XPHB}"
+						],
+						[
+							"9",
+							"{@spell Bigby's Hand|XPHB}, {@spell Teleportation Circle|XPHB}"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Modify Magic",
+			"source": "AU",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcana",
+			"subclassSource": "AU",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"You can use your Channel Divinity to alter your spells as you cast them. When you cast a spell, you can expend one use of your Channel Divinity and change the spell in one of the following ways (no action required).",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Fortifying Spell|Cleric|XPHB|Arcana|AU|3|AU"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Tenacious Spell|Cleric|XPHB|Arcana|AU|3|AU"
+				}
+			]
+		},
+		{
+			"name": "Student of Arcana",
+			"source": "AU",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcana",
+			"subclassSource": "AU",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Magical Knowledge",
+					"entries": [
+						"You gain proficiency in the {@skill Arcana|XPHB} skill or one skill of your choice from the skills available to Clerics at level 1."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Cantrips",
+					"entries": [
+						"You learn two {@filter Wizard cantrips|spells|level=0|class=Wizard} of your choice. Whenever you gain a Cleric level, you can replace one of these cantrips with another {@filter Wizard cantrip|spells|level=0|class=Wizard}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Fortifying Spell",
+			"source": "AU",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcana",
+			"subclassSource": "AU",
+			"level": 3,
+			"header": 2,
+			"consumes": {
+				"name": "Channel Divinity",
+				"amount": 1
+			},
+			"entries": [
+				"One target of the spell gains a number of {@variantrule Temporary Hit Points|XPHB} equal to {@dice 2d8} plus your Cleric level."
+			]
+		},
+		{
+			"name": "Tenacious Spell",
+			"source": "AU",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcana",
+			"subclassSource": "AU",
+			"level": 3,
+			"header": 2,
+			"consumes": {
+				"name": "Channel Divinity",
+				"amount": 1
+			},
+			"entries": [
+				"When you cast a spell that forces a creature to make a saving throw, and a creature you can see succeeds on that saving throw, roll {@dice 1d6} and subtract the number rolled from the target's first saving throw against the spell's effect."
+			]
+		},
+		{
+			"name": "Dispelling Recovery",
+			"source": "AU",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcana",
+			"subclassSource": "AU",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"Immediately after you cast a spell with a spell slot that restores {@variantrule Hit Points|XPHB} to a creature or ends a condition on a creature, you can cast {@spell Dispel Magic|XPHB} as part of that action, {@variantrule Bonus Action|XPHB}, or {@variantrule Reaction|XPHB}, and without expending a spell slot.",
+				"Once you use this feature, you can't use it again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}. You also restore your use of it by expending one use of Channel Divinity (no action required)."
+			]
+		},
+		{
+			"name": "Magical Mastery",
+			"source": "AU",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcana",
+			"subclassSource": "AU",
+			"level": 17,
+			"header": 2,
+			"entries": [
+				"You learn four {@filter Wizard spells|spells|level=6;7;8;9|class=Wizard}, one from each of levels 6, 7, 8, and 9. You thereafter always have those spells prepared. Whenever you gain a Cleric level, you can replace one of these spells with another {@filter Wizard spell|spells|level=6;7;8;9|class=Wizard} of the same level."
+			]
+		},
+		{
 			"name": "Channel Divinity: Touch of Death",
 			"source": "DMG",
 			"className": "Cleric",
@@ -7505,6 +7752,7 @@
 		{
 			"name": "Circle of Mortality",
 			"source": "RHW",
+			"page": 19,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"subclassShortName": "Grave",
@@ -7532,6 +7780,7 @@
 		{
 			"name": "Grave Domain",
 			"source": "RHW",
+			"page": 19,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"subclassShortName": "Grave",
@@ -7558,6 +7807,7 @@
 		{
 			"name": "Grave Domain Spells",
 			"source": "RHW",
+			"page": 19,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"subclassShortName": "Grave",
@@ -7600,6 +7850,7 @@
 		{
 			"name": "Path to the Grave",
 			"source": "RHW",
+			"page": 19,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"subclassShortName": "Grave",
@@ -7617,6 +7868,7 @@
 		{
 			"name": "Sentinel at Death's Door",
 			"source": "RHW",
+			"page": 20,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"subclassShortName": "Grave",
@@ -7631,6 +7883,7 @@
 		{
 			"name": "Divine Reaper",
 			"source": "RHW",
+			"page": 20,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"subclassShortName": "Grave",

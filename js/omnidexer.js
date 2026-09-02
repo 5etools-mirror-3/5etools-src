@@ -93,6 +93,7 @@ class Omnidexer {
 	}
 
 	static getProperty (obj, withDots) {
+		if (typeof withDots === "function") return withDots(obj);
 		return MiscUtil.get(obj, ...withDots.split("."));
 	}
 
@@ -599,13 +600,13 @@ class IndexableFileMagicVariants extends IndexableFile {
 		super({
 			category: Parser.CAT_ID_ITEM,
 			file: "magicvariants.json",
-			source: "inherits.source",
-			page: "inherits.page",
+			source: it => SourceUtil.getEntitySource(it),
+			page: it => SourceUtil.getEntityPage(it),
 			listProp: "magicvariant",
 			fluffBaseListProp: "item",
 			baseUrl: "items.html",
 			hashBuilder: (it) => {
-				return UrlUtil.encodeForHash([it.name, it.inherits.source]);
+				return UrlUtil.encodeForHash([it.name, SourceUtil.getEntitySource(it)]);
 			},
 			additionalIndexes: {
 				item: async (indexer, rawVariants) => {
