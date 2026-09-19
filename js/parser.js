@@ -3330,6 +3330,7 @@ Parser.SRC_HFFotM = "HFFotM";
 Parser.SRC_HFStCM = "HFStCM";
 Parser.SRC_PaF = "PaF";
 Parser.SRC_HFDoMM = "HFDoMM";
+Parser.SRC_HFLotT = "HFLotT";
 Parser.SRC_CM = "CM";
 Parser.SRC_NRH = "NRH";
 Parser.SRC_NRH_TCMC = "NRH-TCMC";
@@ -3537,6 +3538,7 @@ Parser.SOURCE_JSON_TO_FULL[Parser.SRC_HFFotM] = "Heroes' Feast: Flavors of the M
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_HFStCM] = "Heroes' Feast: Saving the Children's Menu";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_PaF] = "Puncheons and Flagons";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_HFDoMM] = "Heroes' Feast: The Deck of Many Morsels";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_HFLotT] = "Heroes' Feast: Legends of the Table";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_CM] = "Candlekeep Mysteries";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_NRH] = Parser.NRH_NAME;
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_NRH_TCMC] = `${Parser.NRH_NAME}: The Candy Mountain Caper`;
@@ -3722,6 +3724,7 @@ Parser.SOURCE_JSON_TO_ABV[Parser.SRC_HFFotM] = "HFFotM";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_HFStCM] = "HFStCM";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_PaF] = "PaF";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_HFDoMM] = "HFDoMM";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_HFLotT] = "HFLotT";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_CM] = "CM";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_NRH] = "NRH";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_NRH_TCMC] = "NRH-TCMC";
@@ -3906,6 +3909,7 @@ Parser.SOURCE_JSON_TO_DATE[Parser.SRC_HFFotM] = "2023-11-07";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_HFStCM] = "2023-11-21";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_PaF] = "2024-08-27";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_HFDoMM] = "2024-10-01";
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_HFDoMM] = "2026-09-15";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_CM] = "2021-03-16";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_NRH] = "2021-09-01";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_NRH_TCMC] = "2021-09-01";
@@ -4281,6 +4285,7 @@ Parser.SOURCES_AVAILABLE_DOCS_BOOK = {};
 	Parser.SRC_HF,
 	Parser.SRC_HFFotM,
 	Parser.SRC_PaF,
+	Parser.SRC_HFLotT,
 	Parser.SRC_BMT,
 	Parser.SRC_DMTCRG,
 	Parser.SRC_XPHB,
