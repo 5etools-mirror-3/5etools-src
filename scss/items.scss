@@ -11,19 +11,13 @@
 		min-height: initial;
 	}
 
-	span.side-label {
+	.ve-itm__side-label {
 		position: absolute;
 		bottom: 0;
 		left: -22px;
 		transform: rotate(-90deg);
 		transform-origin: 0 0;
 		font-size: 18px;
-	}
-
-	h3.ele-mundane,
-	h3.ele-magic {
-		position: relative;
-		margin: 0;
 	}
 
 	@media screen and (width <= #{vars.$width-screen-md}) {
@@ -67,6 +61,14 @@
 		flex-shrink: 0;
 	}
 
+	.ve-itm__listcontainer--initializing {
+		.list--stats,
+		.ve-itm__side-label--mundane,
+		.ve-itm__wrp-list--magic {
+			display: none !important;
+		}
+	}
+
 	.style-switch__wide .ve-itm__wrp-list {
 		min-width: calc(50% - 10px);
 		max-width: calc(50% - 10px);
@@ -88,7 +90,7 @@
 		flex-shrink: 0 !important;
 	}
 
-	.style-switch__wide .side-label {
+	.style-switch__wide .ve-itm__side-label {
 		display: none !important;
 	}
 

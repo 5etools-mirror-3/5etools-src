@@ -604,13 +604,13 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				ixToLoad = -1;
 				if (link && await this.pHandleUnknownHash(link, sub)) return;
 			} else {
-				const toLoad = listItem.ix;
+				const toLoad = listItem.getId();
 				if (toLoad == null) ixToLoad = -1;
-				else ixToLoad = listItem.ix;
+				else ixToLoad = listItem.getId();
 			}
 		}
 
-		if (!~ixToLoad && this._list.visibleItems.length) ixToLoad = this._list.visibleItems[0].ix;
+		if (!~ixToLoad && this._list.visibleItems.length) ixToLoad = this._list.visibleItems[0].getId();
 
 		if (~ixToLoad) {
 			const target = isInitialLoad ? this.__classId : this._classId;
@@ -926,15 +926,15 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 		const ele = veT`<li class="ve-lst__row ve-flex-col ${isExcluded ? "ve-lst__row--blocklisted" : ""}">${lnk}</li>`;
 
-		return new ListItem(
-			clsI,
+		return new ListItem({
+			id: clsI,
 			ele,
-			cls.name,
-			{
+			name: cls.name,
+			values: {
 				source,
 				...ListItem.getCommonValues(cls),
 			},
-			{
+			data: {
 				hash,
 				page: cls.page,
 				lnk,
@@ -942,7 +942,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				entity: cls,
 				isExcluded,
 			},
-		);
+		});
 	}
 
 	_doGenerateFilteredActiveClassData () {
@@ -971,7 +971,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			});
 		});
 
-		// Ensure the correct filter values are used, and reset badly-copied `FilterItem`s
+		// Re-populate filter values after copying and filtering class data
 		this._pageFilter.constructor.mutateForFilters(cpyCls);
 
 		this._activeClassDataFiltered = cpyCls;
@@ -1574,12 +1574,12 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		});
 
 		const dispCount = veT`<div class="ve-muted ve-m-1 cls-tabs__sc-not-shown ve-flex-vh-center"></div>`;
-		this._listSubclass.addItem(new ListItem(
-			-1,
-			dispCount,
-			null,
-			{isAlwaysVisible: true},
-		));
+		this._listSubclass.addItem(new ListItem({
+			id: -1,
+			ele: dispCount,
+			name: "",
+			values: {isAlwaysVisible: true},
+		}));
 
 		this._listSubclass.on("updated", () => {
 			dispCount.vee.off("click");
@@ -1623,7 +1623,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		const doSetSourceFilter = () => {
 			filterValuesNxt[this._pageFilter.sourceFilter.header] = this.activeClass.subclasses
 				.reduce((accum, sc) => {
-					[sc._fSources || []].flat().forEach(src => accum[src] = 1);
+					[sc._fSources || []].flat().forEach(src => accum[src.item || src] = 1);
 					return accum;
 				}, {});
 		};
@@ -1868,23 +1868,23 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		this._addHookBase(stateKey, hkVisible);
 		MiscUtil.pDefer(hkVisible);
 
-		return new ListItem(
-			ix,
-			btn,
-			sc.name,
-			{
+		return new ListItem({
+			id: ix,
+			ele: btn,
+			name: sc.name,
+			values: {
 				source: sc.source,
 				...ListItem.getCommonValues(sc),
 				shortName: sc.shortName,
 				stateKey,
 				displayType,
 			},
-			{
+			data: {
 				page: sc.page,
 				isExcluded,
 				entity: sc,
 			},
-		);
+		});
 	}
 
 	_trackOutlineFluffData (depthData) { this._outlineData.fluff = depthData; }

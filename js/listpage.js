@@ -180,6 +180,7 @@ class SublistManager {
 		});
 
 		this._wrpSummaryControls = wrpSummaryControls;
+		this._wrpSummaryControls.vee.hide();
 
 		this._hkOnListUpdated = () => cbOnListUpdated({cntVisibleItems: this._listSub.visibleItems.length});
 		this._listSub.on("updated", this._hkOnListUpdated);
@@ -1091,6 +1092,7 @@ class ListPage {
 	 * @param [opts.hasAudio] True if the entities have pronunciation audio.
 	 * @param [opts.isPreviewable] True if the entities can be previewed in-line as part of the list.
 	 * @param [opts.isLoadDataAfterFilterInit] If the order of data loading and filter-state loading should be flipped.
+	 * @param [opts.isLazyLoadingItems] If list items should be lazily loaded.
 	 * @param [opts.propEntryData]
 	 * @param [opts.listSyntax]
 	 * @param [opts.compSettings]
@@ -1110,6 +1112,7 @@ class ListPage {
 		this._hasAudio = opts.hasAudio;
 		this._isPreviewable = opts.isPreviewable;
 		this._isLoadDataAfterFilterInit = !!opts.isLoadDataAfterFilterInit;
+		this._isLazyLoadingItems = !!opts.isLazyLoadingItems;
 		this._propEntryData = opts.propEntryData;
 		this._listSyntax = opts.listSyntax || new ListUiUtil.ListSyntax({fnGetDataList: () => this._dataList, pFnGetFluff: opts.pFnGetFluff});
 		this._compSettings = opts.compSettings ? opts.compSettings : null;
@@ -1124,6 +1127,7 @@ class ListPage {
 		this._sublistManager = null;
 		this._btnsTabs = {};
 		this._lastRender = {};
+		this._lastListFilterValues = null;
 
 		this._pgContent = null;
 		this._wrpTabs = null;
@@ -1172,12 +1176,6 @@ class ListPage {
 		this._pOnLoad_initVisibleItemsDisplay();
 
 		if (this._sublistManager) {
-			if (this._sublistManager.isSublistItemsCountable) {
-				this._bindAddButton();
-				this._bindSubtractButton();
-			} else {
-				this._bindPinButton();
-			}
 			this._initContextMenu();
 
 			await this._sublistManager.pCreateSublist();
@@ -1191,6 +1189,14 @@ class ListPage {
 
 		await this._pOnLoad_pLoadListState();
 
+		if (this._sublistManager) {
+			if (this._sublistManager.isSublistItemsCountable) {
+				this._bindAddButton();
+				this._bindSubtractButton();
+			} else {
+				this._bindPinButton();
+			}
+		}
 		this._pOnLoad_bindMiscButtons();
 
 		this._pOnLoad_pBookView().then(null);
@@ -1199,6 +1205,8 @@ class ListPage {
 		Hist.setFnLoadHash(this.pDoLoadHash.bind(this));
 		Hist.setFnLoadSubhash(this.pDoLoadSubHash.bind(this));
 		Hist.setFnHandleUnknownHash(this.pHandleUnknownHash.bind(this));
+
+		if (this._isLazyLoadingItems) this.handleFilterChange({isLazyLoad: true});
 
 		this.primaryLists.forEach(list => list.init({
 			// Throttle input changes if the user has an arbitrarily large number of items loaded
@@ -1356,10 +1364,12 @@ class ListPage {
 		}
 
 		const len = this._dataList.length;
+		const fnGetHash = UrlUtil.getHashBuilderCurrentPage();
 		for (; this._ixData < len; this._ixData++) {
 			const it = this._dataList[this._ixData];
-			const isExcluded = ExcludeUtil.isExcluded(UrlUtil.autoEncodeHash(it), it.__prop, it.source);
-			const listItem = this.getListItem(it, this._ixData, isExcluded);
+			const hash = fnGetHash(it);
+			const isExcluded = ExcludeUtil.isExcluded(hash, it.__prop, it.source);
+			const listItem = this.getListItem(it, this._ixData, isExcluded, hash);
 			if (!listItem) continue;
 			if (this._isPreviewable) this._doBindPreview(listItem);
 			this._addListItem(listItem);
@@ -1463,7 +1473,7 @@ class ListPage {
 	_doPreviewExpand ({listItem, dispExpandedOuter, btnToggleExpand, dispExpandedInner}) {
 		dispExpandedOuter.classList.remove("ve-hidden");
 		btnToggleExpand.innerHTML = `[\u2212]`;
-		Renderer.hover.getHoverContent_stats(UrlUtil.getCurrentPage(), this._dataList[listItem.ix]).vee.appendTo(dispExpandedInner);
+		Renderer.hover.getHoverContent_stats(UrlUtil.getCurrentPage(), this._dataList[listItem.getId()]).vee.appendTo(dispExpandedInner);
 	}
 
 	_doPreviewCollapse ({dispExpandedOuter, btnToggleExpand, dispExpandedInner}) {
@@ -1827,7 +1837,7 @@ class ListPage {
 			.map(list => list.getSelected()
 				.map(li => {
 					li.isSelected = false;
-					return this._dataList[li.ix];
+					return this._dataList[li.getId()];
 				}),
 			)
 			.flat();
@@ -1864,7 +1874,7 @@ class ListPage {
 
 		this._btnsTabs[ident] = veE({
 			tag: "button",
-			clazz: "ve-ui-tab__btn-tab-head ve-btn ve-btn-default ve-pt-2p ve-px-4p ve-pb-0",
+			clazz: "ve-ui-tab__btn-tab-head ve-btn ve-btn-default ve-pt-2p ve-px-4p ve-pb-0 ve-w-24p",
 			children: [
 				veE({
 					tag: "span",
@@ -2026,12 +2036,12 @@ class ListPage {
 	}
 
 	async _handleGenericContextMenuClick_pDoMassPopout (evt, ele, selection) {
-		const entities = selection.map(listItem => ({entity: this._dataList[listItem.ix], hash: listItem.data.hash}));
+		const entities = selection.map(listItem => ({entity: this._dataList[listItem.getId()], hash: listItem.data.hash}));
 		return _UtilListPage.pDoMassPopout(evt, ele, entities);
 	}
 
 	async _handleGenericContextMenuClick_pDoMassBlocklist (evt, ele, selection) {
-		await this._pDoMassBlocklist(selection.map(listItem => this._dataList[listItem.ix]));
+		await this._pDoMassBlocklist(selection.map(listItem => this._dataList[listItem.getId()]));
 	}
 
 	async _pDoMassBlocklist (ents) {
@@ -2116,10 +2126,17 @@ class ListPage {
 
 	/* -------------------------------------------- */
 
-	handleFilterChange () {
+	handleFilterChange ({isLazyLoad = false} = {}) {
 		const f = this._filterBox.getValues();
-		this._list.filter(item => this._pageFilter.toDisplay(f, this._dataList[item.ix]));
-		FilterBox.selectFirstVisible(this._dataList);
+		const isFilterValuesUnchanged = this._lastListFilterValues != null && CollectionUtil.deepEquals(this._lastListFilterValues, f);
+		this._lastListFilterValues = f;
+
+		if (!isFilterValuesUnchanged) {
+			const listFilter = listItem => this._pageFilter.toDisplay(f, this._dataList[listItem.getId()]);
+			for (const primaryList of this.primaryLists) primaryList.filter(listFilter);
+		}
+
+		if (!isLazyLoad) FilterBox.selectFirstVisible(this._dataList);
 	}
 
 	/* -------------------------------------------- */

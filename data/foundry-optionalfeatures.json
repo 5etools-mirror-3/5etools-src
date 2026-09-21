@@ -59,6 +59,8 @@
 					"description": "Choose one of your known Warlock cantrips that deals damage. You can add your Charisma modifier to that spell's damage rolls."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -323,6 +325,8 @@
 					"description": "The target's base AC becomes 13 + its Dexterity modifier."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -376,6 +380,8 @@
 					"description": "The target can move only by pushing or pulling against a fixed object or surface within reach (such as a wall or a ceiling), which allows it to move as if it were climbing."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -641,6 +647,85 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Banishing Shot",
+			"source": "AU",
+			"activities": [
+				{
+					"type": "save",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "subclassFeature",
+									"uid": "arcane shot|fighter|xphb|arcane archer|au|3"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"damage": {
+						"onSave": "full",
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@scale.arcane-archer.arcane-shot.die"
+								},
+								"types": [
+									"psychic"
+								]
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"cha"
+						],
+						"dc": {
+							"calculation": "int"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "banishingShot"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "banishingShot",
+					"duration": {
+						"units": "seconds",
+						"expiry": "targetEnd"
+					},
+					"statuses": [
+						"incapacitated"
+					],
+					"changes": [
+						{
+							"key": "system.attributes.movement.speed",
+							"value": 0,
+							"mode": "OVERRIDE"
+						}
+					],
+					"description": "While banished, the creature has the &Reference[Incapacitated apply=false] condition and a Speed of 0. At the end of its next turn, the target reappears in the space it left or, if that space is occupied, in the nearest unoccupied space."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Beast Speech",
 			"source": "PHB",
 			"activities": [
@@ -649,6 +734,78 @@
 					"activation": {
 						"value": null
 					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Beguiling Shot",
+			"source": "AU",
+			"activities": [
+				{
+					"type": "save",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "subclassFeature",
+									"uid": "arcane shot|fighter|xphb|arcane archer|au|3"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"damage": {
+						"onSave": "full",
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "2@scale.arcane-archer.arcane-shot.die"
+								},
+								"types": [
+									"psychic"
+								]
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"wis"
+						],
+						"dc": {
+							"calculation": "int"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "beguilingShot"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "beguilingShot",
+					"duration": {
+						"units": "seconds",
+						"expiry": "sourceStart"
+					},
+					"statuses": [
+						"charmed"
+					],
+					"description": "The target has the &Reference[Charmed apply=false] condition until the start of your next turn, treating either you or one of your allies within 30 feet of the target (your choice) as the charmer. The Charmed condition ends early if the charmer attacks the target, deals damage to it, or forces it to make a saving throw."
 				}
 			],
 			"migrationVersion": 3
@@ -749,6 +906,54 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Bursting Shot",
+			"source": "AU",
+			"activities": [
+				{
+					"type": "damage",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "subclassFeature",
+									"uid": "arcane shot|fighter|xphb|arcane archer|au|3"
+								}
+							}
+						]
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "radius",
+							"size": "10"
+						},
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "2@scale.arcane-archer.arcane-shot.die"
+								},
+								"types": [
+									"force"
+								]
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Careful Spell",
 			"source": "XPHB",
 			"activities": [
@@ -780,6 +985,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -941,6 +1148,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -1036,6 +1245,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -1235,6 +1446,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -1261,6 +1474,225 @@
 							}
 						]
 					}
+				}
+			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Enfeebling Shot",
+			"source": "AU",
+			"activities": [
+				{
+					"type": "save",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "subclassFeature",
+									"uid": "arcane shot|fighter|xphb|arcane archer|au|3"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"damage": {
+						"onSave": "full",
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "2@scale.arcane-archer.arcane-shot.die"
+								},
+								"types": [
+									"necrotic"
+								]
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "int"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "enfeeblingShot",
+							"level": {
+								"min": 3,
+								"max": 9
+							}
+						},
+						{
+							"foundryId": "enfeeblingShot1",
+							"level": {
+								"min": 10,
+								"max": 14
+							}
+						},
+						{
+							"foundryId": "enfeeblingShot2",
+							"level": {
+								"min": 15,
+								"max": 17
+							}
+						},
+						{
+							"foundryId": "enfeeblingShot3",
+							"level": {
+								"min": 18
+							}
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "enfeeblingShot",
+					"duration": {
+						"units": "seconds",
+						"expiry": "targetEnd"
+					},
+					"statuses": [
+						"poisoned"
+					],
+					"changes": [
+						{
+							"key": "system.rolls.damage.mwak.bonus",
+							"value": "-1d6",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.rolls.damage.rwak.bonus",
+							"value": "-1d6",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.rolls.damage.msak.bonus",
+							"value": "-1d6",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.rolls.damage.rsak.bonus",
+							"value": "-1d6",
+							"mode": "ADD"
+						}
+					],
+					"description": "The target has the &Reference[Poisoned apply=false] condition until the end of its next turn. Whenever a target Poisoned in this way hits with an attack roll, it subtracts an amount equal to one roll of your Arcane Shot Die from the total damage of that attack."
+				},
+				{
+					"foundryId": "enfeeblingShot1",
+					"duration": {
+						"units": "seconds",
+						"expiry": "targetEnd"
+					},
+					"statuses": [
+						"poisoned"
+					],
+					"changes": [
+						{
+							"key": "system.rolls.damage.mwak.bonus",
+							"value": "-1d8",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.rolls.damage.rwak.bonus",
+							"value": "-1d8",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.rolls.damage.msak.bonus",
+							"value": "-1d8",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.rolls.damage.rsak.bonus",
+							"value": "-1d8",
+							"mode": "ADD"
+						}
+					],
+					"description": "The target has the &Reference[Poisoned apply=false] condition until the end of its next turn. Whenever a target Poisoned in this way hits with an attack roll, it subtracts an amount equal to one roll of your Arcane Shot Die from the total damage of that attack."
+				},
+				{
+					"foundryId": "enfeeblingShot2",
+					"duration": {
+						"units": "seconds",
+						"expiry": "targetEnd"
+					},
+					"statuses": [
+						"poisoned"
+					],
+					"changes": [
+						{
+							"key": "system.rolls.damage.mwak.bonus",
+							"value": "-1d10",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.rolls.damage.rwak.bonus",
+							"value": "-1d10",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.rolls.damage.msak.bonus",
+							"value": "-1d10",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.rolls.damage.rsak.bonus",
+							"value": "-1d10",
+							"mode": "ADD"
+						}
+					],
+					"description": "The target has the &Reference[Poisoned apply=false] condition until the end of its next turn. Whenever a target Poisoned in this way hits with an attack roll, it subtracts an amount equal to one roll of your Arcane Shot Die from the total damage of that attack."
+				},
+				{
+					"foundryId": "enfeeblingShot3",
+					"duration": {
+						"units": "seconds",
+						"expiry": "targetEnd"
+					},
+					"statuses": [
+						"poisoned"
+					],
+					"changes": [
+						{
+							"key": "system.rolls.damage.mwak.bonus",
+							"value": "-1d12",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.rolls.damage.rwak.bonus",
+							"value": "-1d12",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.rolls.damage.msak.bonus",
+							"value": "-1d12",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.rolls.damage.rsak.bonus",
+							"value": "-1d12",
+							"mode": "ADD"
+						}
+					],
+					"description": "The target has the &Reference[Poisoned apply=false] condition until the end of its next turn. Whenever a target Poisoned in this way hits with an attack roll, it subtracts an amount equal to one roll of your Arcane Shot Die from the total damage of that attack."
 				}
 			],
 			"migrationVersion": 3
@@ -1647,6 +2079,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -1766,6 +2200,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -1868,6 +2304,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -2081,6 +2519,100 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Grasping Shot",
+			"source": "AU",
+			"activities": [
+				{
+					"type": "save",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "subclassFeature",
+									"uid": "arcane shot|fighter|xphb|arcane archer|au|3"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"damage": {
+						"onSave": "full",
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@scale.arcane-archer.arcane-shot.die"
+								},
+								"types": [
+									"slashing"
+								]
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"str"
+						],
+						"dc": {
+							"calculation": "int"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "graspingShot"
+						}
+					]
+				},
+				{
+					"name": "Escape Check",
+					"type": "check",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"check": {
+						"associated": [
+							"ath"
+						],
+						"dc": {
+							"calculation": "int"
+						},
+						"visible": true
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "graspingShot",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"statuses": [
+						"restrained"
+					],
+					"description": "The target has the &Reference[Restrained apply=false] condition for 1 minute or until you use this option again. The target or a creature within reach of it can take an action to make a Strength (Athletics) check against your Arcane Shot saving throw DC, removing the brambles and ending the Restrained condition on the target on a successful check."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Heightened Spell",
 			"source": "XPHB",
 			"activities": [
@@ -2106,6 +2638,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -2710,6 +3244,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -2850,6 +3386,8 @@
 					"description": "To discern that you are disguised, a creature must take the Study action to inspect your appearance and succeed on an [[/check ability=int skill=inv]] check against your spell save DC."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -3064,6 +3602,8 @@
 					"description": "When you use your Unarmed Strike to deal damage with that new growth, it deals 1d6 damage of the type in parentheses instead of dealing the normal damage for your Unarmed Strike, and you use your spellcasting ability modifier for the attack and damage rolls rather than using Strength."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -3310,6 +3850,8 @@
 					"description": "The spell ends early immediately after the target makes an attack roll, deals damage, or casts a spell."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -3364,6 +3906,8 @@
 					"description": "Once on each of its turns until the spell ends, that creature can jump up to 30 feet by spending 10 feet of movement."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -3487,6 +4031,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -3578,6 +4124,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -3619,6 +4167,65 @@
 						"scaling": {
 							"number": 1
 						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Piercing Shot",
+			"source": "AU",
+			"activities": [
+				{
+					"type": "save",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "subclassFeature",
+									"uid": "arcane shot|fighter|xphb|arcane archer|au|3"
+								}
+							}
+						]
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "line",
+							"size": "30",
+							"width": "1"
+						},
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "2@scale.arcane-archer.arcane-shot.die"
+								},
+								"types": [
+									"piercing"
+								]
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "int"
+						},
+						"visible": true
 					}
 				}
 			],
@@ -3748,6 +4355,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -3984,6 +4593,8 @@
 					"description": "Choose one of your known Warlock cantrips that requires an attack roll. When you hit a Large or smaller creature with that cantrip, you can push the creature up to 10 feet straight away from you."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -4746,6 +5357,61 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Seeking Shot",
+			"source": "AU",
+			"activities": [
+				{
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "subclassFeature",
+									"uid": "arcane shot|fighter|xphb|arcane archer|au|3"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1",
+							"special": "seen within the past minute"
+						}
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "2@scale.arcane-archer.arcane-shot.die"
+								},
+								"types": [
+									"force"
+								]
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "int"
+						},
+						"visible": true
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Seeking Spell",
 			"source": "XPHB",
 			"activities": [
@@ -4769,6 +5435,78 @@
 							}
 						]
 					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Shadow Shot",
+			"source": "AU",
+			"activities": [
+				{
+					"type": "save",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "subclassFeature",
+									"uid": "arcane shot|fighter|xphb|arcane archer|au|3"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"damage": {
+						"onSave": "full",
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@scale.arcane-archer.arcane-shot.die"
+								},
+								"types": [
+									"psychic"
+								]
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"wis"
+						],
+						"dc": {
+							"calculation": "int"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "shadowShot"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "shadowShot",
+					"duration": {
+						"units": "seconds",
+						"expiry": "targetEnd"
+					},
+					"statuses": [
+						"blinded"
+					],
+					"description": "The target has the &Reference[Blinded apply=false] condition until the end of its next turn."
 				}
 			],
 			"migrationVersion": 3
@@ -4943,6 +5681,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -5169,6 +5909,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -5220,6 +5962,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -5237,6 +5981,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		}
 	]

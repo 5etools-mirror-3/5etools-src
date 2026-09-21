@@ -38,6 +38,7 @@ import {EntityFileHandlerSpellList} from "./test-tags/entity-file/test-tags-enti
 import {EntityFileHandlerHomeCrafts} from "./test-tags/entity-file/test-tags-entity-file-homecraft.js";
 import {PATH_DEFAULT_HOMEBREW_DIR, PATH_DEFAULT_PRERELEASE_DIR} from "./util-test.js";
 import {getInvalidCorpusHeaderUidMessage, TagTestCorpusHeaderUidMap} from "./test-tags/test-tags-utils-corpus.js";
+import {FoundryUuidCheck} from "./test-tags/test-tags-foundry-uuid.js";
 
 const program = new Command()
 	.option("--log-similar", `If, when logging a missing link, a list of potentially-similar links should additionally be logged.`)
@@ -969,6 +970,8 @@ async function main () {
 		new RefTagCheck(),
 		new TestCopyCheck(),
 		new HasFluffCheck(),
+
+		new FoundryUuidCheck({tagTestUrlLookup}),
 
 		new EntityFileHandlerAction(sharedParamsEntityTypeTester),
 		new EntityFileHandlerAdventureBook(sharedParamsEntityTypeTester),

@@ -34,6 +34,8 @@ export const PROPORDER_FOUNDRY_ACTIVITIES = new ArrayKey("activities", {
 		"advice",
 		"description",
 		"descriptionEntries",
+		"descriptionChat",
+		"descriptionEntriesChat",
 
 		"activation",
 		"duration",
@@ -48,6 +50,7 @@ export const PROPORDER_FOUNDRY_ACTIVITIES = new ArrayKey("activities", {
 		"roll",
 		"level",
 		"visibility",
+		"behaviors",
 
 		// "check"-type
 		"check",
@@ -69,6 +72,9 @@ export const PROPORDER_FOUNDRY_ACTIVITIES = new ArrayKey("activities", {
 		// "transform"-type
 		"transform",
 		"settings",
+
+		// "teleport"-type
+		"teleport",
 
 		// "forward"-type
 		"activity",

@@ -529,6 +529,7 @@ export class TagCondition extends ConverterTaggerInitializable {
 // Each should have one group which matches the condition name.
 //   A comma/and part is appended to the end to handle chains of conditions.
 TagCondition.__TGT = `(?:target|wielder)`;
+TagCondition.__CONDITION_INFLICTED_MODERN_TAIL = `(?= condition\\b|(?:, {@condition [^}]+})*,? (?:and|or) {@condition [^}]+} conditions?\\b)`;
 TagCondition._CONDITION_INFLICTED_MATCHERS = [
 	`(?:creature|enemy|target) is \\w+ {@condition ([^}]+)}`, // "is knocked prone"
 	`(?:creature|enemy|target) becomes (?:\\w+ )?{@condition ([^}]+)}`,
@@ -551,6 +552,7 @@ TagCondition._CONDITION_INFLICTED_MATCHERS = [
 	`a[^.!?]+?(?:creature|enemy)[^.!?]+?to the[^.!?]+?is (?:also )?{@condition ([^}]+)}`, // MM :: Mimic :: Adhesive
 	`(?:creature|enemy) gains? \\w+ levels? of {@condition (exhaustion)}`, // MM :: Myconid Adult :: Euphoria Spores
 	`(?:saving throw|failed save)[^.!?]+? gains? \\w+ levels? of {@condition (exhaustion)}`, // ERLW :: Belashyrra :: Rend Reality
+	`(?:creature|enemy|target) gains? \\w+ {@condition (exhaustion(?:\\|[^}]+)?)} levels?`, // XMM :: Fomorian :: Warping Hex
 	`(?:on a successful save|if the saving throw is successful), (?:the ${TagCondition.__TGT} |(?:a|the )creature |(?:an |the )enemy )[^.!?]*?isn't {@condition ([^}]+)}`,
 	`or take[^.!?]+?damage and (?:becomes?|is|be) {@condition ([^}]+)}`, // MM :: Quasit || Claw
 	`the (?:${TagCondition.__TGT}|creature|enemy) [^.!?]+? and is {@condition ([^}]+)}`, // MM :: Satyr :: Gentle Lullaby
@@ -570,8 +572,8 @@ TagCondition._CONDITION_INFLICTED_MATCHERS = [
 	`magically (?:become|turn)s? {@condition (invisible)}`, // MM :: Will-o'-Wisp :: Invisibility
 	{re: `The (?!(?:[^.]+) can sense)(?:[^.]+) is {@condition (invisible)}`, flags: "g"}, // MM :: Invisible Stalker :: Invisibility
 	`succeed\\b[^.!?]+\\bsaving throw\\b[^.!?]+\\. (?:It|The (?:creature|target)) is {@condition ([^}]+)}`, // MM :: Beholder :: 6. Telekinetic Ray
-	{re: `\\bhave the {@condition ([^}]+)}\\b`, flags: "g"}, // XPHB :: Animal Friendship
-	{re: `(?<!while [^.!?]+? |can't use this trait if [^.!?]+? |unless [^.!?]+? |suppressed while [^.!?]+? )has the {@condition ([^}]+)} condition\\b`, flags: "g"}, // XPHB :: Constrictor Snake
+	`(?:can )?gives? (?:it|itself|herself|himself|the target) the {@condition ([^}]+)} condition`, // XMM :: Animated Rug of Smothering :: Smother; XMM :: Poltergeist :: Vanish
+	{re: `(?<!while [^.!?]+? |can't use this trait if [^.!?]+? |unless [^.!?]+? |suppressed while [^.!?]+? |doesn't |that )ha(?:s|ve) the {@condition ([^}]+)}${TagCondition.__CONDITION_INFLICTED_MODERN_TAIL}`, flags: "gi"}, // XPHB :: Animal Friendship; XPHB :: Constrictor Snake
 ]
 	.map(it => typeof it === "object" ? it : ({re: it, flags: "gi"}))
 	.map(({re, flags}) => new RegExp(`${re}((?:, {@condition [^}]+})*)(,? (?:and|or) {@condition [^}]+})?`, flags));

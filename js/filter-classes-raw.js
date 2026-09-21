@@ -512,20 +512,20 @@ export class ModalFilterClasses extends ModalFilterBase {
 		<div class="ve-bold ve-col-9 ${cls._versionBase_isVersion ? "ve-italic" : ""}">${cls._versionBase_isVersion ? `<span class="ve-px-3"></span>` : ""}${cls.name}</div>
 		<div class="ve-col-2 ve-pr-0 ve-flex-h-center ${Parser.sourceJsonToSourceClassname(cls.source)}" title="${Parser.sourceJsonToFull(cls.source)}">${source}${Parser.sourceJsonToMarkerHtml(cls.source, {isList: true})}</div>`;
 
-		return new ListItem(
-			clsI,
-			eleLabel,
-			`${cls.name} -- ${cls.source}`,
-			{
+		return new ListItem({
+			id: clsI,
+			ele: eleLabel,
+			name: `${cls.name} -- ${cls.source}`,
+			values: {
 				source: `${source} -- ${cls.name}`,
 				...ListItem.getCommonValues(cls),
 			},
-			{
+			data: {
 				page: cls.page,
 				ixClass: clsI,
 				tglSel: eleLabel.firstElementChild.firstElementChild,
 			},
-		);
+		});
 	}
 
 	_getListItems_getSubclassItem (pageFilter, cls, clsI, sc, scI) {
@@ -538,20 +538,20 @@ export class ModalFilterClasses extends ModalFilterBase {
 		<div class="ve-col-9 ve-pl-1 ve-flex-v-center ${sc._versionBase_isVersion ? "ve-italic" : ""}">${sc._versionBase_isVersion ? `<span class="ve-px-3"></span>` : ""}<span class="ve-mx-3">\u2014</span> ${sc.name}</div>
 		<div class="ve-col-2 ve-pr-0 ve-flex-h-center ${Parser.sourceJsonToSourceClassname(sc.source)}" title="${Parser.sourceJsonToFull(sc.source)}">${source}${Parser.sourceJsonToMarkerHtml(sc.source, {isList: true})}</div>`;
 
-		return new ListItem(
-			`${clsI}--${scI}`,
-			eleLabel,
-			`${cls.name} -- ${cls.source} -- ${sc.name} -- ${sc.source}`,
-			{
+		return new ListItem({
+			id: `${clsI}--${scI}`,
+			ele: eleLabel,
+			name: `${cls.name} -- ${cls.source} -- ${sc.name} -- ${sc.source}`,
+			values: {
 				source: `${cls.source} -- ${cls.name} -- ${source} -- ${sc.name}`,
 				...ListItem.getCommonValues(sc),
 			},
-			{
+			data: {
 				page: sc.page,
 				ixClass: clsI,
 				ixSubclass: scI,
 				tglSel: eleLabel.firstElementChild.firstElementChild,
 			},
-		);
+		});
 	}
 }

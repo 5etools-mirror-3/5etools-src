@@ -50,10 +50,6 @@ const getFoundryGeneric = ({propsMatchAdditional = [], isFeature = false} = {}) 
 		...(
 			isFeature
 				? [
-					"isIgnored",
-					"ignoreSrdActivities",
-					"ignoreSrdEffects",
-
 					"entries",
 
 					new ObjectKey("entryData", {
@@ -68,6 +64,10 @@ const getFoundryGeneric = ({propsMatchAdditional = [], isFeature = false} = {}) 
 		new ObjectKey("subEntities", {
 			fnGetOrder: () => PROPORDER_ROOT,
 		}),
+
+		...(isFeature ? ["isIgnored"] : []),
+		"ignoreSrdActivities",
+		"ignoreSrdEffects",
 
 		"_merge",
 

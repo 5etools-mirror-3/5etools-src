@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.35.1"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.36.0"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -1167,11 +1167,6 @@ class ElementUtil {
 	 *
 	 * @property {function(string, function, object=): HTMLElementExtended} onn
 	 * @property {function(string, function=, object=): HTMLElementExtended} off
-	 * @property {function(function): HTMLElementExtended} onClick
-	 * @property {function(function): HTMLElementExtended} onContextmenu
-	 * @property {function(function): HTMLElementExtended} onChange
-	 * @property {function(function): HTMLElementExtended} onKeydown
-	 * @property {function(function): HTMLElementExtended} onKeyup
 	 *
 	 * @property {function(string): HTMLElementExtended} trigger
 	 *
@@ -1288,70 +1283,472 @@ class ElementUtil {
 		return ele;
 	}
 
-	static _getOrModify_bindMethods (ele) {
-		if (ele.vee) return;
+	static _ElementUtilVee = class {
+		constructor ({ele}) {
+			this._ele = ele;
+			this._listeners = {};
+		}
 
+		/** @this {HTMLElementExtended} */
+		static _find (selector) {
+			const eles = ElementUtil.getBySelectorMulti(selector, this);
+			if (!eles.length) return null;
+			if (eles.length > 1) throw new Error(`Single-select "find" found multiple elements! Consider using "findAll" instead`);
+			return eles[0];
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _findAll (selector) {
+			return ElementUtil.getBySelectorMulti(selector, this);
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _prev (selector) {
+			let prv = this.previousElementSibling;
+			if (selector != null) while (prv && !prv.matches(selector)) prv = prv.previousElementSibling;
+			return prv ? veE({ele: prv}) : null;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _prevAll () {
+			const out = [];
+			let tmp = this;
+			while (tmp.previousElementSibling) {
+				out.push(veE({ele: tmp.previousElementSibling}));
+				tmp = tmp.previousElementSibling;
+			}
+			return out;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _next (selector) {
+			let nxt = this.nextElementSibling;
+			if (selector != null) while (nxt && !nxt.matches(selector)) nxt = nxt.nextElementSibling;
+			return nxt ? veE({ele: nxt}) : null;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _nextAll () {
+			const out = [];
+			let tmp = this;
+			while (tmp.nextElementSibling) {
+				out.push(veE({ele: tmp.nextElementSibling}));
+				tmp = tmp.nextElementSibling;
+			}
+			return out;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _appends (child) {
+			if (typeof child === "string") child = veT`${child}`;
+			this.appendChild(child);
+			return this;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _appendsMove (child) {
+			if (child.isConnected) this.moveBefore(child, null);
+			else this.vee.appends(child);
+			return this;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _prepends (child) {
+			if (typeof child === "string") child = veT`${child}`;
+			this.prepend(child);
+			return this;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _appendTo (parent) {
+			parent.appendChild(this);
+			return this;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _prependTo (parent) {
+			parent.prepend(this);
+			return this;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _after (other) {
+			if (typeof other === "string") other = veT`${other}`;
+			this.after(other);
+			return this;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _insertAfter (parent) {
+			parent.after(this);
+			return this;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _before (other) {
+			if (typeof other === "string") other = veT`${other}`;
+			this.before(other);
+			return this;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _insertBefore (parent) {
+			parent.before(this);
+			return this;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _addClass (clazz) {
+			this.classList.add(clazz);
+			return this;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _removeClass (clazz) {
+			this.classList.remove(clazz);
+			return this;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _toggleClass (clazz, isActive) {
+			if (isActive == null) this.classList.toggle(clazz);
+			else if (isActive) this.classList.add(clazz);
+			else this.classList.remove(clazz);
+			return this;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _hasClass (clazz) {
+			return this.classList.contains(clazz);
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _show () {
+			this.classList.remove("ve-hidden");
+			return this;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _hide () {
+			this.classList.add("ve-hidden");
+			return this;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _toggle (isActive = null) {
+			this.vee.toggleClass("ve-hidden", isActive == null ? isActive : !isActive);
+			return this;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _empty () {
+			this.innerHTML = "";
+			return this;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _detach () {
+			if (this.parentElement) this.parentElement.removeChild(this);
+			return this;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _attr (...args) {
+			const [name, value] = args;
+			if (args.length <= 1) return this.getAttribute(name);
+			if (!value && ElementUtil._ATTRS_NO_FALSY.has(name)) this.removeAttribute(name);
+			else this.setAttribute(name, value);
+			return this;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _prop (...args) {
+			const [name, value] = args;
+			if (args.length <= 1) return this[name];
+			this[name] = value;
+			return this;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _html (...args) {
+			const [html] = args;
+			if (!args.length) return this.innerHTML;
+			this.innerHTML = html;
+			return this;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _txt (...args) {
+			const [txt] = args;
+			if (!args.length) return this.innerText;
+			this.innerText = txt;
+			return this;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _tooltip (...args) {
+			const [title] = args;
+			if (!args.length) return this.getAttribute("title");
+			return this.vee.attr("title", title);
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _placeholder (...args) {
+			const [placeholder] = args;
+			if (!args.length) return this.getAttribute("placeholder");
+			return this.vee.attr("placeholder", placeholder);
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _disableSpellcheck () {
+			// avoid setting input type to "search" as it visually offsets the contents of the input
+			return this
+				.vee.attr("autocomplete", "new-password")
+				.vee.attr("autocapitalize", "off")
+				.vee.attr("spellcheck", "false")
+				.vee.attr("inputmode", "text")
+				.vee.attr("autocorrect", "off")
+			;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _typeahead (values) {
+			const id = CryptUtil.md5(JSON.stringify(values));
+
+			if (!document.getElementById(id)) {
+				veT`<datalist id="${id}">${values.map(val => `<option value="${val.qq()}"></option>`).join("")}</datalist>`
+					.vee.appendTo(document.body);
+			}
+
+			return this
+				.vee.attr("list", id);
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _css (...args) {
+			const [keyOrObj, val] = args;
+			if (typeof keyOrObj === "string") {
+				if (args.length <= 1) return this.style[keyOrObj];
+				this.style[keyOrObj] = val;
+				return this;
+			}
+			Object.entries(keyOrObj)
+				.forEach(([k, v]) => this.style[k] = v);
+			return this;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _cssVar (...args) {
+			const [keyOrObj, val] = args;
+			if (typeof keyOrObj === "string") {
+				if (args.length <= 1) return this.style.getPropertyValue(keyOrObj);
+				this.style.setProperty(keyOrObj, val);
+				return this;
+			}
+			Object.entries(keyOrObj)
+				.forEach(([k, v]) => this.style.setProperty(k, v));
+			return this;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _onn (evtName, fn, opts) {
+			if (evtName.includes(" ")) throw new Error(`Event name "${evtName}" contains a space! This should be split into multiple ".onn" calls.`);
+			if (evtName.includes(".")) throw new Error(`Event name "${evtName}" contains a "."! This should be revised as a non-namespaced name.`);
+
+			((this.vee._listeners ||= {})[evtName] ||= []).push({fn, opts});
+
+			if (opts) this.addEventListener(evtName, fn, opts);
+			else this.addEventListener(evtName, fn);
+			return this;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _off (evtName, fn, opts) {
+			if (evtName.includes(" ")) throw new Error(`Event name "${evtName}" contains a space! This should be split into multiple ".onn" calls.`);
+			if (evtName.includes(".")) throw new Error(`Event name "${evtName}" contains a "."! This should be revised as a non-namespaced name.`);
+
+			if (!fn) {
+				(this.vee._listeners?.[evtName] || [])
+					.forEach(({fn, opts}) => {
+						this.removeEventListener(evtName, fn);
+						if (opts) this.removeEventListener(evtName, fn, opts);
+						else this.removeEventListener(evtName, fn);
+					});
+				return this;
+			}
+
+			if (this.vee._listeners?.[evtName]) this.vee._listeners[evtName] = this.vee._listeners[evtName].filter(({fn: fn_, opts: opts_}) => fn_ === fn && MiscUtil.isNearStrictlyEqual(opts_?.capture, opts?.capture));
+			this.removeEventListener(evtName, fn);
+			return this;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _trigger (evtOrEvtName) {
+			// e.g. `<input type="file">` requires a native `.click()` call to show file browser
+			if (evtOrEvtName === "click") {
+				this.click();
+				return this;
+			}
+			const evt = evtOrEvtName instanceof Event ? evtOrEvtName : new Event(evtOrEvtName);
+			this.dispatchEvent(evt);
+			return this;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _val (...args) {
+			if (!args.length) {
+				switch (this.tagName) {
+					case "SELECT": return this.options[this.selectedIndex]?.value;
+
+					default: return this.value;
+				}
+			}
+
+			const [val, {isSetAttribute = false} = {}] = args;
+
+			switch (this.tagName) {
+				case "SELECT": {
+					if (val == null) {
+						this.selectedIndex = -1;
+						return this;
+					}
+
+					if (typeof val !== "string") throw new Error(`Attempted to assign SELECT value to non-string "${val}"!`);
+
+					let selectedIndexNxt = -1;
+					for (let i = 0, len = this.options.length; i < len; ++i) {
+						if (this.options[i]?.value === val) {
+							selectedIndexNxt = i;
+							if (isSetAttribute) this.options[i].setAttribute("selected", "selected");
+							break;
+						}
+					}
+					this.selectedIndex = selectedIndexNxt;
+					return this;
+				}
+
+				default: {
+					if (val === undefined) this.value = null;
+					else this.value = val;
+					return this;
+				}
+			}
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _first (selector) {
+			if (selector == null) {
+				return this.firstElementChild ? veE({ele: this.firstElementChild}) : this.firstElementChild;
+			}
+			const child = this.querySelector(selector);
+			if (!child) return child;
+			return veE({ele: child});
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _closest (selector) {
+			const ancestor = this.closest(selector);
+			if (!ancestor) return ancestor;
+			return veE({ele: ancestor});
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _children (selector) {
+			if (!selector) return [...this.children].map(child => veE({ele: child}));
+			return veEm(selector, this);
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _siblings (selector) {
+			if (!selector) {
+				return [...this.parentNode.children]
+					.filter(ele => ele !== this)
+					.map(ele => veE({ele: ele}));
+			}
+
+			return [...this.parentNode.querySelectorAll(`:scope > ${selector}`)]
+				.filter(ele => ele !== this)
+				.map(ele => veE({ele: ele}));
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _parent (selector) {
+			if (selector) throw new Error(`.parent "select" argument is not supported!`);
+			return this.parentElement ? veE({ele: this.parentElement}) : null;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _outerWidth () { return this.getBoundingClientRect().width; }
+
+		/** @this {HTMLElementExtended} */
+		static _outerHeight () { return this.getBoundingClientRect().height; }
+
+		/** @this {HTMLElementExtended} */
+		static _focus () {
+			this.focus();
+			return this;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _select () {
+			this.select();
+			return this;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _blur () {
+			this.blur();
+			return this;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _scrollTop (...args) {
+			const [val] = args;
+			if (!args.length) return this.scrollTop;
+			this.scrollTop = val;
+			return this;
+		}
+
+		/** @this {HTMLElementExtended} */
+		static _is (nodeTypeOrEle) {
+			if (typeof nodeTypeOrEle === "string") return this.nodeName.toLowerCase() === nodeTypeOrEle.toLowerCase();
+
+			return nodeTypeOrEle === this;
+		}
+
+		/* -------------------------------------------- */
+
+		static {
+			Object.getOwnPropertyNames(this)
+				.filter(fnName => fnName.startsWith("_") && typeof this[fnName] === "function")
+				.forEach(fnName => {
+					const fnNameVee = fnName.slice(1);
+					const fn = this[fnName];
+
+					// Lazy-bind to avoid mass-bind spam at time of creation
+					Object.defineProperty(this.prototype, fnNameVee, {
+						get () {
+							const fnBound = fn.bind(this._ele);
+							Object.defineProperty(this, fnNameVee, {value: fnBound});
+							return fnBound;
+						},
+					});
+				});
+
+			Object.freeze(this.prototype);
+		}
+	};
+
+	static _getOrModify_bindMethods (ele) {
+		if (Object.hasOwn(ele, "vee")) return;
+
+		// Lazy-bind to avoid mass-instantiation spam at time of creation
 		Object.defineProperty(ele, "vee", {
 			configurable: true,
-			enumerable: false,
-			writable: true,
-			value: {
-				_listeners: {},
-				find: ElementUtil._find.bind(ele),
-				findAll: ElementUtil._findAll.bind(ele),
-				prev: ElementUtil._prev.bind(ele),
-				prevAll: ElementUtil._prevAll.bind(ele),
-				next: ElementUtil._next.bind(ele),
-				nextAll: ElementUtil._nextAll.bind(ele),
-				appends: ElementUtil._appends.bind(ele),
-				appendsMove: ElementUtil._appendsMove.bind(ele),
-				prepends: ElementUtil._prepends.bind(ele),
-				appendTo: ElementUtil._appendTo.bind(ele),
-				prependTo: ElementUtil._prependTo.bind(ele),
-				after: ElementUtil._after.bind(ele),
-				insertAfter: ElementUtil._insertAfter.bind(ele),
-				before: ElementUtil._before.bind(ele),
-				insertBefore: ElementUtil._insertBefore.bind(ele),
-				addClass: ElementUtil._addClass.bind(ele),
-				removeClass: ElementUtil._removeClass.bind(ele),
-				toggleClass: ElementUtil._toggleClass.bind(ele),
-				hasClass: ElementUtil._hasClass.bind(ele),
-				show: ElementUtil._show.bind(ele),
-				hide: ElementUtil._hide.bind(ele),
-				toggle: ElementUtil._toggle.bind(ele),
-				empty: ElementUtil._empty.bind(ele),
-				detach: ElementUtil._detach.bind(ele),
-				attr: ElementUtil._attr.bind(ele),
-				prop: ElementUtil._prop.bind(ele),
-				val: ElementUtil._val.bind(ele),
-				html: ElementUtil._html.bind(ele),
-				txt: ElementUtil._txt.bind(ele),
-				tooltip: ElementUtil._tooltip.bind(ele),
-				placeholder: ElementUtil._placeholder.bind(ele),
-				disableSpellcheck: ElementUtil._disableSpellcheck.bind(ele),
-				typeahead: ElementUtil._typeahead.bind(ele),
-				css: ElementUtil._css.bind(ele),
-				cssVar: ElementUtil._cssVar.bind(ele),
-				onn: ElementUtil._onX.bind(ele),
-				off: ElementUtil._offX.bind(ele),
-				onClick: ElementUtil._onX.bind(ele, "click"),
-				onContextmenu: ElementUtil._onX.bind(ele, "contextmenu"),
-				onChange: ElementUtil._onX.bind(ele, "change"),
-				onKeydown: ElementUtil._onX.bind(ele, "keydown"),
-				onKeyup: ElementUtil._onX.bind(ele, "keyup"),
-				trigger: ElementUtil._trigger.bind(ele),
-				first: ElementUtil._first.bind(ele),
-				closest: ElementUtil._closest.bind(ele),
-				children: ElementUtil._children.bind(ele),
-				siblings: ElementUtil._siblings.bind(ele),
-				parent: ElementUtil._parent.bind(ele),
-				outerWidth: ElementUtil._outerWidth.bind(ele),
-				outerHeight: ElementUtil._outerHeight.bind(ele),
-				focus: ElementUtil._focus.bind(ele),
-				select: ElementUtil._select.bind(ele),
-				blur: ElementUtil._blur.bind(ele),
-				scrollTop: ElementUtil._scrollTop.bind(ele),
-				is: ElementUtil._is.bind(ele),
+			get () {
+				const vee = new ElementUtil._ElementUtilVee({ele: this});
+				Object.defineProperty(this, "vee", {configurable: false, value: vee});
+				return vee;
 			},
 		});
 	}
@@ -1379,437 +1776,6 @@ class ElementUtil {
 			return {ele: eleId, isSetId: false};
 		}
 		throw new Error(`Could not find or create element!`);
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _find (selector) {
-		const eles = ElementUtil.getBySelectorMulti(selector, this);
-		if (!eles.length) return null;
-		if (eles.length > 1) throw new Error(`Single-select "find" found multiple elements! Consider using "findAll" instead`);
-		return eles[0];
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _findAll (selector) {
-		return ElementUtil.getBySelectorMulti(selector, this);
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _prev (selector) {
-		let prv = this.previousElementSibling;
-		if (selector != null) while (prv && !prv.matches(selector)) prv = prv.previousElementSibling;
-		return prv ? veE({ele: prv}) : null;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _prevAll () {
-		const out = [];
-		let tmp = this;
-		while (tmp.previousElementSibling) {
-			out.push(veE({ele: tmp.previousElementSibling}));
-			tmp = tmp.previousElementSibling;
-		}
-		return out;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _next (selector) {
-		let nxt = this.nextElementSibling;
-		if (selector != null) while (nxt && !nxt.matches(selector)) nxt = nxt.nextElementSibling;
-		return nxt ? veE({ele: nxt}) : null;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _nextAll () {
-		const out = [];
-		let tmp = this;
-		while (tmp.nextElementSibling) {
-			out.push(veE({ele: tmp.nextElementSibling}));
-			tmp = tmp.nextElementSibling;
-		}
-		return out;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _appends (child) {
-		if (typeof child === "string") child = veT`${child}`;
-		this.appendChild(child);
-		return this;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _appendsMove (child) {
-		if (child.isConnected) this.moveBefore(child, null);
-		else this.vee.appends(child);
-		return this;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _prepends (child) {
-		if (typeof child === "string") child = veT`${child}`;
-		this.prepend(child);
-		return this;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _appendTo (parent) {
-		parent.appendChild(this);
-		return this;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _prependTo (parent) {
-		parent.prepend(this);
-		return this;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _after (other) {
-		if (typeof other === "string") other = veT`${other}`;
-		this.after(other);
-		return this;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _insertAfter (parent) {
-		parent.after(this);
-		return this;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _before (other) {
-		if (typeof other === "string") other = veT`${other}`;
-		this.before(other);
-		return this;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _insertBefore (parent) {
-		parent.before(this);
-		return this;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _addClass (clazz) {
-		this.classList.add(clazz);
-		return this;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _removeClass (clazz) {
-		this.classList.remove(clazz);
-		return this;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _toggleClass (clazz, isActive) {
-		if (isActive == null) this.classList.toggle(clazz);
-		else if (isActive) this.classList.add(clazz);
-		else this.classList.remove(clazz);
-		return this;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _hasClass (clazz) {
-		return this.classList.contains(clazz);
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _show () {
-		this.classList.remove("ve-hidden");
-		return this;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _hide () {
-		this.classList.add("ve-hidden");
-		return this;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _toggle (isActive = null) {
-		this.vee.toggleClass("ve-hidden", isActive == null ? isActive : !isActive);
-		return this;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _empty () {
-		this.innerHTML = "";
-		return this;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _detach () {
-		if (this.parentElement) this.parentElement.removeChild(this);
-		return this;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _attr (...args) {
-		const [name, value] = args;
-		if (args.length <= 1) return this.getAttribute(name);
-		if (!value && ElementUtil._ATTRS_NO_FALSY.has(name)) this.removeAttribute(name);
-		else this.setAttribute(name, value);
-		return this;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _prop (...args) {
-		const [name, value] = args;
-		if (args.length <= 1) return this[name];
-		this[name] = value;
-		return this;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _html (...args) {
-		const [html] = args;
-		if (!args.length) return this.innerHTML;
-		this.innerHTML = html;
-		return this;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _txt (...args) {
-		const [txt] = args;
-		if (!args.length) return this.innerText;
-		this.innerText = txt;
-		return this;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _tooltip (...args) {
-		const [title] = args;
-		if (!args.length) return this.getAttribute("title");
-		return this.vee.attr("title", title);
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _placeholder (...args) {
-		const [placeholder] = args;
-		if (!args.length) return this.getAttribute("placeholder");
-		return this.vee.attr("placeholder", placeholder);
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _disableSpellcheck () {
-		// avoid setting input type to "search" as it visually offsets the contents of the input
-		return this
-			.vee.attr("autocomplete", "new-password")
-			.vee.attr("autocapitalize", "off")
-			.vee.attr("spellcheck", "false")
-			.vee.attr("inputmode", "text")
-			.vee.attr("autocorrect", "off")
-		;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _typeahead (values) {
-		const id = CryptUtil.md5(JSON.stringify(values));
-
-		if (!document.getElementById(id)) {
-			veT`<datalist id="${id}">${values.map(val => `<option value="${val.qq()}"></option>`).join("")}</datalist>`
-				.vee.appendTo(document.body);
-		}
-
-		return this
-			.vee.attr("list", id);
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _css (...args) {
-		const [keyOrObj, val] = args;
-		if (typeof keyOrObj === "string") {
-			if (args.length <= 1) return this.style[keyOrObj];
-			this.style[keyOrObj] = val;
-			return this;
-		}
-		Object.entries(keyOrObj)
-			.forEach(([k, v]) => this.style[k] = v);
-		return this;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _cssVar (...args) {
-		const [keyOrObj, val] = args;
-		if (typeof keyOrObj === "string") {
-			if (args.length <= 1) return this.style.getPropertyValue(keyOrObj);
-			this.style.setProperty(keyOrObj, val);
-			return this;
-		}
-		Object.entries(keyOrObj)
-			.forEach(([k, v]) => this.style.setProperty(k, v));
-		return this;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _onX (evtName, fn, opts) {
-		if (evtName.includes(" ")) throw new Error(`Event name "${evtName}" contains a space! This should be split into multiple ".onn" calls.`);
-		if (evtName.includes(".")) throw new Error(`Event name "${evtName}" contains a "."! This should be revised as a non-namespaced name.`);
-
-		((this.vee._listeners ||= {})[evtName] ||= []).push({fn, opts});
-
-		if (opts) this.addEventListener(evtName, fn, opts);
-		else this.addEventListener(evtName, fn);
-		return this;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _offX (evtName, fn, opts) {
-		if (evtName.includes(" ")) throw new Error(`Event name "${evtName}" contains a space! This should be split into multiple ".onn" calls.`);
-		if (evtName.includes(".")) throw new Error(`Event name "${evtName}" contains a "."! This should be revised as a non-namespaced name.`);
-
-		if (!fn) {
-			(this.vee._listeners?.[evtName] || [])
-				.forEach(({fn, opts}) => {
-					this.removeEventListener(evtName, fn);
-					if (opts) this.removeEventListener(evtName, fn, opts);
-					else this.removeEventListener(evtName, fn);
-				});
-			return this;
-		}
-
-		if (this.vee._listeners?.[evtName]) this.vee._listeners[evtName] = this.vee._listeners[evtName].filter(({fn: fn_, opts: opts_}) => fn_ === fn && MiscUtil.isNearStrictlyEqual(opts_?.capture, opts?.capture));
-		this.removeEventListener(evtName, fn);
-		return this;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _trigger (evtOrEvtName) {
-		// e.g. `<input type="file">` requires a native `.click()` call to show file browser
-		if (evtOrEvtName === "click") {
-			this.click();
-			return this;
-		}
-		const evt = evtOrEvtName instanceof Event ? evtOrEvtName : new Event(evtOrEvtName);
-		this.dispatchEvent(evt);
-		return this;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _val (...args) {
-		if (!args.length) {
-			switch (this.tagName) {
-				case "SELECT": return this.options[this.selectedIndex]?.value;
-
-				default: return this.value;
-			}
-		}
-
-		const [val, {isSetAttribute = false} = {}] = args;
-
-		switch (this.tagName) {
-			case "SELECT": {
-				if (val == null) {
-					this.selectedIndex = -1;
-					return this;
-				}
-
-				if (typeof val !== "string") throw new Error(`Attempted to assign SELECT value to non-string "${val}"!`);
-
-				let selectedIndexNxt = -1;
-				for (let i = 0, len = this.options.length; i < len; ++i) {
-					if (this.options[i]?.value === val) {
-						selectedIndexNxt = i;
-						if (isSetAttribute) this.options[i].setAttribute("selected", "selected");
-						break;
-					}
-				}
-				this.selectedIndex = selectedIndexNxt;
-				return this;
-			}
-
-			default: {
-				if (val === undefined) this.value = null;
-				else this.value = val;
-				return this;
-			}
-		}
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _first (selector) {
-		if (selector == null) {
-			return this.firstElementChild ? veE({ele: this.firstElementChild}) : this.firstElementChild;
-		}
-		const child = this.querySelector(selector);
-		if (!child) return child;
-		return veE({ele: child});
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _closest (selector) {
-		const ancestor = this.closest(selector);
-		if (!ancestor) return ancestor;
-		return veE({ele: ancestor});
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _children (selector) {
-		if (!selector) return [...this.children].map(child => veE({ele: child}));
-		return veEm(selector, this);
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _siblings (selector) {
-		if (!selector) {
-			return [...this.parentNode.children]
-				.filter(ele => ele !== this)
-				.map(ele => veE({ele: ele}));
-		}
-
-		return [...this.parentNode.querySelectorAll(`:scope > ${selector}`)]
-			.filter(ele => ele !== this)
-			.map(ele => veE({ele: ele}));
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _parent (selector) {
-		if (selector) throw new Error(`.parent "select" argument is not supported!`);
-		return this.parentElement ? veE({ele: this.parentElement}) : null;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _outerWidth () { return this.getBoundingClientRect().width; }
-
-	/** @this {HTMLElementExtended} */
-	static _outerHeight () { return this.getBoundingClientRect().height; }
-
-	/** @this {HTMLElementExtended} */
-	static _focus () {
-		this.focus();
-		return this;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _select () {
-		this.select();
-		return this;
-	}
-
-	/** @this {HTMLElementExtended} */
-	static _blur () {
-		this.blur();
-		return this;
-	}
-
-	/* -------------------------------------------- */
-
-	/** @this {HTMLElementExtended} */
-	static _scrollTop (...args) {
-		const [val] = args;
-		if (!args.length) return this.scrollTop;
-		this.scrollTop = val;
-		return this;
-	}
-
-	/* -------------------------------------------- */
-
-	/** @this {HTMLElementExtended} */
-	static _is (nodeTypeOrEle) {
-		if (typeof nodeTypeOrEle === "string") return this.nodeName.toLowerCase() === nodeTypeOrEle.toLowerCase();
-
-		return nodeTypeOrEle === this;
 	}
 
 	/* -------------------------------------------- */
@@ -1963,10 +1929,15 @@ globalThis.MiscUtil = class {
 	static copyFast (obj) {
 		if ((typeof obj !== "object") || obj == null) return obj;
 
-		if (obj instanceof Array) return obj.map(MiscUtil.copyFast);
+		if (obj instanceof Array) {
+			const n = obj.length;
+			const out = new Array(n);
+			for (let i = 0; i < n; ++i) out[i] = MiscUtil.copyFast(obj[i]);
+			return out;
+		}
 
 		const cpy = {};
-		for (const k of Object.keys(obj)) cpy[k] = MiscUtil.copyFast(obj[k]);
+		for (const k in obj) cpy[k] = MiscUtil.copyFast(obj[k]);
 		return cpy;
 	}
 
@@ -2832,7 +2803,15 @@ globalThis.MiscUtil = class {
 	}
 
 	static pDefer (fn) {
-		return (async () => fn())();
+		return new Promise((resolve, reject) => {
+			queueMicrotask(() => {
+				try {
+					resolve(fn());
+				} catch (e) {
+					reject(e);
+				}
+			});
+		});
 	}
 
 	static isNearStrictlyEqual (a, b) {
@@ -3146,9 +3125,9 @@ globalThis.ContextUtil = class {
 			this._initLazy({window: evt?.view?.window || window});
 
 			if (this.resolveResult_) this.resolveResult_(null);
-			this._pResult = new Promise(resolve => {
-				this.resolveResult_ = resolve;
-			});
+			const {promise: pResult, resolve: resolveResult} = Promise.withResolvers();
+			this._pResult = pResult;
+			this.resolveResult_ = resolveResult;
 			this.userData = userData;
 
 			this._ele
@@ -3533,6 +3512,26 @@ globalThis.UidUtil = class {
 	}
 };
 
+// CACHING =============================================================================================================
+globalThis.CacheUtil = class {
+	static FifoCache = class {
+		constructor ({sizeMax}) {
+			if (!Number.isInteger(sizeMax) || sizeMax < 1) throw new Error(`Cache "sizeMax" must be a positive integer!`);
+
+			this._sizeMax = sizeMax;
+			this._cache = new Map();
+		}
+
+		get (key) { return this._cache.get(key); }
+
+		set (key, value) {
+			if (this._cache.size >= this._sizeMax && !this._cache.has(key)) this._cache.delete(this._cache.keys().next().value);
+			this._cache.set(key, value);
+			return this;
+		}
+	};
+};
+
 // ENCODING/DECODING ===================================================================================================
 globalThis.UrlUtil = class {
 	static URL_TO_HASH_BUILDER = {};
@@ -3596,20 +3595,39 @@ globalThis.UrlUtil = class {
 
 	static URL_TO_HASH_GENERIC = (it) => UrlUtil.encodeArrayForHash(it.name, it.source);
 
+	/* -------------------------------------------- */
+
+	// Restrict to approx "source" strings; `Math.max(...Object.keys(Parser.SOURCE_JSON_TO_ABV).map(it => it.length))`
+	static _ENCODE_FOR_HASH_CACHE_MAX_KEY_LENGTH = 20;
+	static _ENCODE_FOR_HASH_CACHE = new CacheUtil.FifoCache({sizeMax: 10_000});
+
 	static encodeForHash (toEncode) {
-		if (toEncode instanceof Array) return toEncode.map(it => `${it}`.toUrlified()).join(HASH_LIST_SEP);
-		else return `${toEncode}`.toUrlified();
+		if (toEncode instanceof Array) return toEncode.map(val => UrlUtil.encodeForHash(val)).join(HASH_LIST_SEP);
+
+		const str = `${toEncode}`;
+		if (str.length > UrlUtil._ENCODE_FOR_HASH_CACHE_MAX_KEY_LENGTH) return str.toUrlified();
+
+		const cached = UrlUtil._ENCODE_FOR_HASH_CACHE.get(str);
+		if (cached != null) return cached;
+
+		const encoded = str.toUrlified();
+		UrlUtil._ENCODE_FOR_HASH_CACHE.set(str, encoded);
+		return encoded;
 	}
 
+	/* -------------------------------------------- */
+
 	static encodeArrayForHash (...toEncodes) {
-		return toEncodes.map(UrlUtil.encodeForHash).join(HASH_LIST_SEP);
+		let out = "";
+		for (let i = 0; i < toEncodes.length; ++i) {
+			if (i) out += HASH_LIST_SEP;
+			out += UrlUtil.encodeForHash(toEncodes[i]);
+		}
+		return out;
 	}
 
 	static autoEncodeHash (obj) {
-		const curPage = UrlUtil.getCurrentPage();
-		const encoder = UrlUtil.URL_TO_HASH_BUILDER[curPage];
-		if (!encoder) throw new Error(`No encoder found for page ${curPage}`);
-		return encoder(obj);
+		return UrlUtil.getHashBuilderCurrentPage()(obj);
 	}
 
 	static decodeHash (hash) {
@@ -3621,6 +3639,10 @@ globalThis.UrlUtil = class {
 	static getHashBuilder (propOrPage) {
 		if (!UrlUtil.URL_TO_HASH_BUILDER[propOrPage]) throw new Error(`No hash builder available for "${propOrPage}"!`);
 		return UrlUtil.URL_TO_HASH_BUILDER[propOrPage];
+	}
+
+	static getHashBuilderCurrentPage () {
+		return this.getHashBuilder(UrlUtil.getCurrentPage());
 	}
 
 	/* -------------------------------------------- */
@@ -4188,6 +4210,9 @@ UrlUtil.CAT_TO_HOVER_PAGE[Parser.CAT_ID_SKILLS] = "skill";
 UrlUtil.CAT_TO_HOVER_PAGE[Parser.CAT_ID_SENSES] = "sense";
 UrlUtil.CAT_TO_HOVER_PAGE[Parser.CAT_ID_LEGENDARY_GROUP] = "legendaryGroup";
 UrlUtil.CAT_TO_HOVER_PAGE[Parser.CAT_ID_ITEM_MASTERY] = "itemMastery";
+UrlUtil.CAT_TO_HOVER_PAGE[Parser.CAT_ID_VEHICLE_UPGRADE_SHIP] = "vehicleUpgrade";
+UrlUtil.CAT_TO_HOVER_PAGE[Parser.CAT_ID_VEHICLE_UPGRADE_INFERNAL_WAR_MACHINE] = "vehicleUpgrade";
+UrlUtil.CAT_TO_HOVER_PAGE[Parser.CAT_ID_VEHICLE_UPGRADE_OTHER] = "vehicleUpgrade";
 
 UrlUtil.HASH_START_CREATURE_SCALED = `${VeCt.HASH_SCALED}${HASH_SUB_KV_SEP}`;
 UrlUtil.HASH_START_CREATURE_SCALED_SPELL_SUMMON = `${VeCt.HASH_SCALED_SPELL_SUMMON}${HASH_SUB_KV_SEP}`;
@@ -7470,15 +7495,17 @@ globalThis.DataUtil = class {
 			return !(!name || !className || isNaN(level));
 		}
 
-		static packUidClassFeature (f) {
+		static packUidClassFeature (f, {isMaintainCase = false} = {}) {
 			// <name>|<className>|<classSource>|<level>|<source>
-			return [
+			const out = [
 				f.name,
 				f.className,
 				f.classSource === Parser.SRC_PHB ? "" : f.classSource, // assume the class has PHB source
 				f.level,
 				f.source === f.classSource ? "" : f.source, // assume the class feature has the class source
 			].join("|").replace(/\|+$/, ""); // Trim trailing pipes
+			if (isMaintainCase) return out;
+			return out.toLowerCase();
 		}
 
 		/**
@@ -7511,9 +7538,9 @@ globalThis.DataUtil = class {
 			return !(!name || !className || !subclassShortName || isNaN(level));
 		}
 
-		static packUidSubclassFeature (f) {
+		static packUidSubclassFeature (f, {isMaintainCase = false} = {}) {
 			// <name>|<className>|<classSource>|<subclassShortName>|<subclassSource>|<level>|<source>
-			return [
+			const out = [
 				f.name,
 				f.className,
 				f.classSource === Parser.SRC_PHB ? "" : f.classSource, // assume the class has the PHB source
@@ -7522,6 +7549,8 @@ globalThis.DataUtil = class {
 				f.level,
 				f.source === f.subclassSource ? "" : f.source, // assume the feature has the same source as the subclass
 			].join("|").replace(/\|+$/, ""); // Trim trailing pipes
+			if (isMaintainCase) return out;
+			return out.toLowerCase();
 		}
 
 		// region Subclass lookup
@@ -9475,8 +9504,7 @@ globalThis.VeLock = class {
 		// eslint-disable-next-line no-console
 		if (this._isDbg || this.constructor._IS_DBG_ALL) console.warn(`Lock ${"acquired".padEnd(this.constructor._MSG_PAD_LEN, " ")} "${this._name || "(unnamed)"}" at ${this._getCaller()}`);
 
-		let unlock = null;
-		const lock = new Promise(resolve => unlock = resolve);
+		const {promise: lock, resolve: unlock} = Promise.withResolvers();
 		this._lockMeta = {
 			lock,
 			unlock,

@@ -590,21 +590,21 @@ class BlocklistUi {
 			<span class="ve-col-1 ve-text-center">${btnRemove}</span>
 		</div>`;
 
-		const listItem = new ListItem(
+		const listItem = new ListItem({
 			id,
 			ele,
-			displayName,
-			{
+			name: displayName,
+			values: {
 				category: display.displayCategory,
 				source: sourceFull,
 			},
-			{
+			data: {
 				displayName: displayName,
 				hash: hash,
 				category: category,
 				source: source,
 			},
-		);
+		});
 
 		this._list.addItem(listItem);
 	}
@@ -664,7 +664,7 @@ class BlocklistUi {
 			.forEach(source => {
 				const item = this._list.items.find(it => it.data.hash === "*" && it.data.category === "*" && it.data.source === source);
 				if (!item) return;
-				this._remove(item.ix, "*", "*", source, {isSkipListUpdate: true});
+				this._remove(item.getId(), "*", "*", source, {isSkipListUpdate: true});
 			});
 		this._list.update();
 	}
@@ -687,9 +687,9 @@ class BlocklistUi {
 	_addAllNonModernSources () { this._addMassSources({fnFilter: source => !SourceUtil.isClassicSource(source)}); }
 	_removeAllModernSources () { this._removeMassSources({fnFilter: source => !SourceUtil.isClassicSource(source)}); }
 
-	_remove (ix, hash, category, source, {isSkipListUpdate = false} = {}) {
+	_remove (id, hash, category, source, {isSkipListUpdate = false} = {}) {
 		this._removeExclude(hash, category, source);
-		this._list.removeItemByIndex(ix);
+		this._list.removeItemById(id);
 		if (!isSkipListUpdate) this._list.update();
 	}
 

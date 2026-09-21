@@ -36,8 +36,8 @@ export class AdventuresBooksList {
 	}
 
 	static _sortAdventuresBooks (dataList, a, b, o) {
-		a = dataList[a.ix];
-		b = dataList[b.ix];
+		a = dataList[a.getId()];
+		b = dataList[b.getId()];
 
 		if (o.sortBy === "name") return this._sortAdventuresBooks_byName(a, b, o);
 		if (o.sortBy === "storyline") return this._sortAdventuresBooks_orFallback(SortUtil.ascSort, "storyline", a, b, o);
@@ -198,15 +198,15 @@ export class AdventuresBooksList {
 				storyline: it.storyline || "",
 			};
 
-			const listItem = new ListItem(
-				this._dataIx,
-				eleLi,
-				it.name,
-				listItemValues,
-				{
+			const listItem = new ListItem({
+				id: this._dataIx,
+				ele: eleLi,
+				name: it.name,
+				values: listItemValues,
+				data: {
 					btnToggleExpand,
 				},
-			);
+			});
 
 			this._list.addItem(listItem);
 
@@ -224,12 +224,12 @@ export class AdventuresBooksList {
 				<img src="${Renderer.adventureBook.getCoverUrl(it)}" class="ve-mb-2 bks__bookshelf-image" loading="lazy" alt="Cover Image: ${(it.name || "").qq()}">
 				<div class="bks__bookshelf-item-name ve-flex-vh-center ve-text-center">${it.name}</div>
 			</a>`;
-			const listItemAlt = new ListItem(
-				this._dataIx,
-				eleLiAlt,
-				it.name,
-				listItemValues,
-			);
+			const listItemAlt = new ListItem({
+				id: this._dataIx,
+				ele: eleLiAlt,
+				name: it.name,
+				values: listItemValues,
+			});
 			this._listAlt.addItem(listItemAlt);
 			// endregion
 		}

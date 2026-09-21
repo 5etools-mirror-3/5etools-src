@@ -90,7 +90,7 @@ export class PageFilterBase {
 			opts.definedInSource = definedInSource;
 		}
 
-		return new FilterItemClassSubclass(opts);
+		return new FilterItemClassSubclass(opts).getSerialized();
 	}
 
 	static _getSubclassFilterItem ({className, classSource, subclassShortName, subclassName, subclassSource, subSubclassName, isVariantClass, definedInSource}) {
@@ -105,7 +105,7 @@ export class PageFilterBase {
 			item: `${className}: ${classFilterItem.item}${subSubclassName ? `, ${subSubclassName}` : ""}`,
 			nest: className,
 			group,
-		});
+		}).getSerialized();
 	}
 
 	static isReprinted (ent, {fnMissingBuilder = null} = {}) {

@@ -285,6 +285,8 @@
 					"description": "The target's Hit Point maximum is increased for the duration."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -317,6 +319,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -497,6 +501,8 @@
 					"description": "When you use your Unarmed Strike to deal damage with that new growth, it deals 1d6 damage of the type in parentheses instead of dealing the normal damage for your Unarmed Strike, and you use your spellcasting ability modifier for the attack and damage rolls rather than using Strength."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -543,6 +549,8 @@
 					"description": "The target has the &Reference[charmed apply=false] condition for the duration. If you or one of your allies deals damage to the target, the spells ends."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -585,6 +593,8 @@
 					"description": "The Beast travels for the duration toward the specified location, covering about 25 miles per 24 hours or 50 miles if the Beast can fly. When the Beast arrives, it delivers your message to the creature that you described, mimicking your communication. If the Beast doesn't reach its destination before the spell ends, the message is lost, and the Beast returns to where you cast the spell."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -675,6 +685,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -701,6 +713,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -738,6 +752,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -764,6 +780,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -918,6 +936,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -1299,6 +1319,36 @@
 					"description": "Each target's body is left behind in a state of suspended animation; it has the &Reference[Unconscious apply=false] condition, doesn't need food or air, and doesn't age."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Aura of Evasion",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"effects": [
+						{
+							"foundryId": "auraOfEvasion"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "auraOfEvasion",
+					"name": "Aura",
+					"duration": {
+						"units": "seconds"
+					}
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -1343,6 +1393,8 @@
 					"description": "While in the aura, you and your allies have Resistance to Necrotic damage, and your Hit Point maximums can't be reduced. If an ally with 0 Hit Points starts its turn in the aura, that ally regains [[/healing 1 type=healing]]{1 Hit Point}."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -1497,6 +1549,8 @@
 					"description": "Whenever a target makes an attack roll or a saving throw before the spell ends, the target must subtract 1d4 from the attack roll or save."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -1597,6 +1651,8 @@
 					"description": "While there, the target has the &Reference[Incapacitated apply=false] condition. When the spell ends, the target reappears in the space it left or in the nearest unoccupied space if that space is occupied. If the target is an Aberration, a Celestial, an Elemental, a Fey, or a Fiend, the target doesn't return if the spell lasts for 1 minute. The target is instead transported to a random location on a plane (DM's choice) associated with its creature type."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -1629,6 +1685,50 @@
 							"value": 17
 						}
 					]
+				}
+			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Battle Familiar",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "summon",
+					"activation": {
+						"type": "action"
+					},
+					"profiles": [
+						{
+							"name": "Brute",
+							"uuid": "@creature[battle familiar (brute)|au]"
+						},
+						{
+							"name": "Flyer",
+							"uuid": "@creature[battle familiar (flyer)|au]"
+						},
+						{
+							"name": "Stalker",
+							"uuid": "@creature[battle familiar (stalker)|au]"
+						}
+					],
+					"creatureTypes": [
+						"celestial",
+						"fey",
+						"fiend"
+					],
+					"bonuses": {
+						"ac": "@item.level",
+						"hp": "5 * (@item.level - 2)"
+					},
+					"match": {
+						"attacks": true,
+						"disposition": true,
+						"proficiency": true
+					}
 				}
 			],
 			"migrationVersion": 3
@@ -1671,6 +1771,8 @@
 					"description": "The target has Advantage on Wisdom saving throws and Death Saving Throws and regains the maximum number of Hit Points possible from any healing."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -1721,6 +1823,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -1988,6 +2092,8 @@
 					"description": "If you deal damage to the target with an attack roll or a spell, the target takes an extra [[/damage 1d8 type=necrotic]] damage."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -2079,6 +2185,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -2188,6 +2296,8 @@
 					"description": "Whenever a target makes an attack roll or a saving throw before the spell ends, the target adds 1d4 to the attack roll or save."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -2316,6 +2426,8 @@
 					"description": "At the end of each of its turns, the target repeats the [[/save ability=con]] save, ending the spell on itself on a success."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -2351,6 +2463,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -2421,6 +2535,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -2483,6 +2599,44 @@
 					"description": "The creature becomes Indifferent about creatures of your choice that it's Hostile toward. This indifference ends if the target takes damage or witnesses its allies taking damage. When the spell ends, the creature's attitude returns to normal."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Catnap",
+			"source": "AU",
+			"system": {
+				"target.affects.count": "@item.level"
+			},
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"effects": [
+						{
+							"foundryId": "catnap"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "catnap",
+					"name": "Unconscious",
+					"duration": {
+						"value": 10,
+						"units": "minutes"
+					},
+					"statuses": [
+						"unconscious"
+					],
+					"description": "You have the &Reference[Unconscious] condition for the spell's duration."
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -2528,6 +2682,8 @@
 					"description": "The target has the &Reference[Charmed apply=false] condition until the spell ends or until you or your allies damage it. The Charmed creature is Friendly to you. When the spell ends, the target knows it was Charmed by you."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -2574,6 +2730,8 @@
 					"description": "the target has the &Reference[charmed apply=false] condition until the spell ends or until you or your allies damage it. The Charmed creature is Friendly to you. When the spell ends, the target knows it was Charmed by you."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -2623,6 +2781,8 @@
 					"description": "The target can't regain Hit Points until the end of your next turn."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -2663,6 +2823,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -2756,6 +2918,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -2783,6 +2947,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -2864,6 +3030,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -2906,6 +3074,8 @@
 					"description": "You can take a Bonus Action to designate a direction that is horizontal to you. Each &Reference[Charmed apply=false] target must use as much of its movement as possible to move in that direction on its next turn, taking the safest route. After moving in this way, a target repeats the [[/save ability=wis]] save, ending the spell on itself on a success."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -2980,6 +3150,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -3029,6 +3201,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -3111,6 +3285,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -3149,6 +3325,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -3200,6 +3378,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -3326,6 +3506,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -3360,6 +3542,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -3535,6 +3719,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -3578,6 +3764,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -3634,6 +3822,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -3668,6 +3858,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -3775,6 +3967,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -3794,6 +3988,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -3880,6 +4076,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -3993,6 +4191,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -4027,6 +4227,8 @@
 					"description": "For the duration, a willing creature you touch has &Reference[darkvision] with a range of 150 feet."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -4055,6 +4257,8 @@
 					"description": "The first time the target would drop to 0 Hit Points before the spell ends, the target instead drops to 1 Hit Point, and the spell ends. If the spell is still in effect when the target is subjected to an effect that would kill it instantly without dealing damage, that effect is negated against the target, and the spell ends."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -4184,6 +4388,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -4271,6 +4477,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -4297,6 +4505,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -4323,6 +4533,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -4366,6 +4578,89 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Detonate",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Detonate Target",
+					"type": "save",
+					"description": "The target makes a Constitution saving throw, taking [[/damage average]] damage on a failed save or half as much damage on a successful one.",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 10,
+								"denomination": 10,
+								"types": [
+									"fire"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				},
+				{
+					"name": "Explosion",
+					"type": "save",
+					"description": "Each creature in the [[lookup @target.template.size activity=d6Ijp0rgJgYpV8gc]]-foot Emanation, other than the original target, makes a Dexterity saving throw, taking [[/damage average]] damage on a failed save or half as much damage on a successful one. If the initial damage reduced the original target to 0 Hit Points, make these saving throws with Disadvantage.",
+					"activation": {
+						"type": "special"
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "radius",
+							"size": "60"
+						},
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 10,
+								"denomination": 10,
+								"types": [
+									"fire"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -4393,6 +4688,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -4440,6 +4737,8 @@
 					"description": "To discern that you are disguised, a creature must take the Study action to inspect your appearance and succeed on an [[/check ability=int skill=inv]] check against your spell save DC."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -4518,6 +4817,155 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Disruptive Tune",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Disruptive Tune",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "disruptiveTune"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "disruptiveTune",
+					"name": "Disadv. CON Saves",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.concentration.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Distorted Distance",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Dizzying Elongation",
+					"type": "save",
+					"description": "Choose this effect for an eligible creature in the Sphere. The creature makes an Intelligence saving throw. On a failed save, roll the Psychic damage and treat the Sphere as &Reference[Difficult Terrain] for that creature until the end of its turn.",
+					"activation": {
+						"type": "special"
+					},
+					"target": {
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"onSave": "none",
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 10,
+								"types": [
+									"psychic"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"int"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				},
+				{
+					"name": "Shortened Space",
+					"type": "utility",
+					"description": "Choose this effect for an eligible creature in the Sphere. Apply the Shortened Space effect to increase the creature's Speed by 20 feet until the end of its next turn.",
+					"activation": {
+						"type": "special"
+					},
+					"target": {
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "distortedDistanc"
+						}
+					]
+				},
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"description": "Create the 60-foot-radius Sphere. Choose Dizzying Elongation or Shortened Space for each eligible creature in the Sphere.",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "sphere",
+							"size": "60"
+						},
+						"affects": {
+							"type": "space",
+							"count": "1"
+						}
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "distortedDistanc",
+					"name": "+20 Speed",
+					"duration": {
+						"units": "seconds",
+						"expiry": "targetEnd"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.bonus",
+							"value": 20,
+							"mode": "ADD"
+						}
+					],
+					"description": "Your Speed is increased by 20 feet until the end of your next turn."
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -4558,6 +5006,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -4615,6 +5065,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -4688,6 +5140,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -4730,6 +5184,8 @@
 					"description": "Whenever the &Reference[Charmed apply=false] target takes damage, it repeats the [[/save ability=wis]] save, ending the spell on itself on a success."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -4775,6 +5231,8 @@
 					"description": "Whenever the target takes damage, it repeats the [[/save ability=wis]] save, ending the spell on itself on a success."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -4817,6 +5275,8 @@
 					"description": "Whenever the &Reference[charmed apply=false] target takes damage, it repeats the [[/save ability=wis]] save, ending the spell on itself on a success."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -4875,6 +5335,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -4912,6 +5374,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -4990,6 +5454,8 @@
 					"description": "While in the trance, the messenger is Incapacitated and has a Speed of 0."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -5012,6 +5478,47 @@
 							"type": "space"
 						}
 					}
+				}
+			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Dueling Ground",
+			"source": "AU",
+			"system": {
+				"target.affects.count": "@item.level"
+			},
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"description": "Place the 15-foot-radius Sphere and designate the willing creatures participating in the duel. Apply the {@b Dueling Ground Target} active effect to each designated creature.",
+					"activation": {
+						"type": "action"
+					},
+					"effects": [
+						{
+							"foundryId": "duelingGround"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "duelingGround",
+					"name": "Mark Dueling Ground Target",
+					"duration": {
+						"value": 1,
+						"units": "hours"
+					},
+					"statuses": [
+						"marked"
+					],
+					"descriptionEntries": [
+						"You are a designated target of {@i Dueling Ground}."
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -5043,9 +5550,10 @@
 					"name": "End of Turn Fissures",
 					"type": "save",
 					"img": "icons/magic/earth/lava-stone-fire-eye.webp",
-					"description": {
-						"chatFlavor": "[[1d6]] Fissure(s)<br>[[10 * 1d10]] Feet deep"
-					},
+					"descriptionEntriesChat": [
+						"[[1d6]] Fissure(s)",
+						"[[10 * 1d10]] Feet deep"
+					],
 					"activation": {
 						"type": "",
 						"condition": "end of turn of initial casting"
@@ -5134,6 +5642,8 @@
 					"description": "On a failed save, the creature takes 12d6 Bludgeoning damage, has the &Reference[Prone apply=false] condition, and is buried in the rubble, requiring a [[/check ability=str skill=ath dc=20]] check as an action to escape."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -5804,9 +6314,7 @@
 					"name": "Beckon Element",
 					"type": "utility",
 					"img": "systems/dnd5e/icons/svg/statuses/grappled.svg",
-					"description": {
-						"chatFlavor": "Fire and water beckoning lasts for 1 minute"
-					},
+					"descriptionChat": "Fire and water beckoning lasts for 1 minute",
 					"activation": {
 						"type": "action"
 					}
@@ -5832,6 +6340,70 @@
 							"count": "1",
 							"type": "space"
 						}
+					}
+				}
+			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Enervation",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Initial Life Drain",
+					"type": "save",
+					"description": "The target makes a [[/save format=long]]. On a failed save, roll the Necrotic damage and maintain the spell on that target. On a successful save, apply half damage and end the spell.",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 6,
+								"denomination": 8,
+								"types": [
+									"necrotic"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				},
+				{
+					"name": "Drain Life",
+					"type": "damage",
+					"description": "Deal [[/damage]] damage to the creature affected by this casting of {@i Enervation}.",
+					"activation": {
+						"type": "bonus"
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 8,
+								"types": [
+									"necrotic"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
 					}
 				}
 			],
@@ -5942,6 +6514,8 @@
 					"description": "The target has Advantage on ability checks made with the chosen ability."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -6026,6 +6600,8 @@
 					"description": "The target's size decreases by one category\u2014from Medium to Small, for example. The target also has Disadvantage on Strength checks and Strength saving throws. The target's attacks with its reduced weapons or Unarmed Strikes deal 1d4 less damage on a hit (this can't reduce the damage below 1)."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -6115,6 +6691,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -6158,6 +6736,8 @@
 					"description": "A Restrained creature can take an action to make a [[/check ability=str skill=ath]] check against your spell save DC. On a success, it frees itself from the grasping plants and is no longer Restrained by them."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -6204,6 +6784,73 @@
 					"description": "The target has a \u221210 penalty to [[/check ability=wis skill=prc]] checks and Passive Perception until the spell ends."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Entrancing Mirrors",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Save",
+					"type": "save",
+					"description": "Each target makes an Intelligence saving throw. On a failed save, the target takes Psychic damage and gains the &Reference[Stunned apply=false] condition. On a successful save, the target takes half damage only.",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 7,
+								"denomination": 6,
+								"types": [
+									"psychic"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"int"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "entrancingMirror"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "entrancingMirror",
+					"name": "Stunned",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"statuses": [
+						"stunned"
+					],
+					"changes": [
+						{
+							"key": "system.attributes.movement.multiplier",
+							"value": 0.5,
+							"mode": "MULTIPLY"
+						}
+					],
+					"description": "You have the &Reference[Stunned apply=false] condition. While Stunned by this spell, your Speed is halved."
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -6237,6 +6884,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -6288,6 +6937,8 @@
 					"description": "A &Reference[Restrained apply=false] creature can take an action to make a [[/check ability=str skill=ath dc=@attributes.spell.dc]] check against your spell save DC, ending the condition on itself on a success."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -6389,6 +7040,8 @@
 					"description": "The target has the &Reference[Poisoned apply=false] condition."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -6428,6 +7081,8 @@
 					"description": "For the duration, objects and affected creatures shed &Reference[dimlight] in a 10-foot radius and can't benefit from the Invisible condition. Attack rolls against an affected creature or object have Advantage if the attacker can see it."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -6454,6 +7109,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -6496,6 +7153,8 @@
 					"description": "A &Reference[frightened apply=false] creature takes the &Reference[dash] action and moves away from you by the safest route on each of its turns unless there is nowhere to move. If the creature ends its turn in a space where it doesn't have line of sight to you, the creature makes a [[/save ability=wis]] saving throw. On a successful save, the spell ends on that creature."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -6594,6 +7253,126 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Festering Blast",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "save",
+					"description": "A line of festering miasma blasts from you. Creatures caught in the Line make a Constitution saving throw, taking Necrotic damage and becoming Poisoned on a failed save.",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "none",
+						"parts": [
+							{
+								"number": 4,
+								"denomination": 10,
+								"types": [
+									"necrotic"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "festeringBlast"
+						}
+					]
+				},
+				{
+					"name": "Ongoing Poison Damage",
+					"type": "damage",
+					"description": "A creature Poisoned by {@i Festering Blast} takes Poison damage at the start of its turn.",
+					"activation": {
+						"type": "special"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1",
+							"special": "Poisoned by the spell"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 10,
+								"types": [
+									"poison"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					}
+				},
+				{
+					"name": "Repeat Save",
+					"type": "save",
+					"description": "At the end of its turn, a creature Poisoned by {@i Festering Blast} repeats the Constitution saving throw, ending the spell on itself on a success.",
+					"activation": {
+						"type": "special"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "festeringBlast",
+					"name": "Poisoned",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"statuses": [
+						"poisoned"
+					],
+					"description": "The target is &Reference[Poisoned apply=false] for one minute."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Find Familiar",
 			"source": "XPHB",
 			"activities": [
@@ -6622,6 +7401,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -6726,6 +7507,8 @@
 					"description": "The steed has a Fly speed of 60ft. when summoned by a level 4+ spell."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -6779,6 +7562,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -6836,6 +7621,8 @@
 					"description": "Whenever a creature within 5 feet of you hits you with a melee attack roll, the attacker takes [[/damage 2d8 type=cold]] damage."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -6873,6 +7660,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -6947,6 +7736,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -7001,6 +7792,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -7051,6 +7844,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -7131,6 +7926,8 @@
 					"description": "On a successful save, its Speed is 0 until the start of your next turn."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -7173,6 +7970,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -7221,6 +8020,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -7264,6 +8065,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -7354,6 +8157,8 @@
 					"description": "For the duration, the target has Advantage on D20 Tests, and other creatures have Disadvantage on attack rolls against it."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -7449,6 +8254,78 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Fractured Awareness",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "save",
+					"description": "The target is flooded with conflicting visions of possible futures. It makes an Intelligence saving throw, taking Psychic damage and suffering fractured awareness on a failed save.",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 12,
+								"denomination": 10,
+								"types": [
+									"psychic"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"int"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "fracturedAwarene"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "fracturedAwarene",
+					"name": "Disadv. D20 Tests",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"changes": [
+						{
+							"key": "system.rolls.attack.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.rolls.ability.check.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.rolls.ability.save.mode",
+							"value": -1,
+							"mode": "ADD"
+						}
+					],
+					"description": "Conflicting visions disrupt the target's ability to act decisively, imposing Disadvantage on their D20 Tests."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Freedom of Movement",
 			"source": "XPHB",
 			"system": {
@@ -7498,6 +8375,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -7625,6 +8504,8 @@
 					"description": "The target's only method of movement is a Fly Speed of 10 feet, and it can hover. The target can enter and occupy the space of another creature. The target has Resistance to Bludgeoning, Piercing, and Slashing damage; it has Immunity to the &Reference[prone apply=false] condition; and it has Advantage on Strength, Dexterity, and Constitution saving throws. The target can pass through narrow openings, but it treats liquids as though they were solid surfaces. The target can't talk or manipulate objects, and any objects it was carrying or holding can't be dropped, used, or otherwise interacted with. Finally, the target can't attack or cast spells."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -7716,6 +8597,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -7770,6 +8653,8 @@
 					"description": "While &Reference[Charmed apply=false], the creature takes [[/damage 5d10 type=psychic]] damage if it acts in a manner directly counter to your command. It takes this damage no more than once each day."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -7804,6 +8689,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -7831,6 +8718,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -7880,6 +8769,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -7892,6 +8783,124 @@
 					"activation": {
 						"type": "action"
 					}
+				}
+			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Grave Ground",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "save",
+					"description": "Skeletal hands burst from the ground. Enemies caught in the area make a Strength saving throw, taking Necrotic damage and weakening their damage rolls on a failed save.",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "none",
+						"parts": [
+							{
+								"number": 6,
+								"denomination": 6,
+								"types": [
+									"necrotic"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"str"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"behaviors": [
+						{
+							"type": "difficultTerrain"
+						}
+					],
+					"effects": [
+						{
+							"foundryId": "graveGround"
+						}
+					]
+				},
+				{
+					"name": "Grave Ground Save",
+					"type": "save",
+					"description": "An enemy that enters the grave ground or ends its turn there makes a Strength saving throw. On a failed save, the skeletal hands deal Necrotic damage and weaken the creature's damage rolls.",
+					"activation": {
+						"type": "special",
+						"condition": "When an enemy enters the area or ends its turn there"
+					},
+					"target": {
+						"affects": {
+							"type": "enemy",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"onSave": "none",
+						"parts": [
+							{
+								"number": 6,
+								"denomination": 6,
+								"types": [
+									"necrotic"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"str"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "graveGround"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "graveGround",
+					"name": "-1d6 Damage Penalty",
+					"duration": {
+						"units": "seconds",
+						"expiry": "targetEnd"
+					},
+					"changes": [
+						{
+							"key": "damage",
+							"value": "-1d6",
+							"mode": "DND5E.BONUS"
+						}
+					],
+					"description": "Skeletal hands sap the creature's strength. It subtracts 1d6 from its damage rolls until the end of its next turn."
 				}
 			],
 			"migrationVersion": 3
@@ -7918,6 +8927,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -7948,6 +8959,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -8034,6 +9047,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -8054,6 +9069,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -8377,6 +9394,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -8429,6 +9448,8 @@
 					"description": "The next attack roll made against the target before the end of your next turn has Advantage."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -8453,6 +9474,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -8535,6 +9558,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -8658,6 +9683,8 @@
 					"description": "When the spell ends, the target is &Reference[incapacitated apply=false] and has a Speed of 0 until the end of its next turn, as a wave of lethargy washes over it."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -8681,6 +9708,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -8775,6 +9804,8 @@
 					"description": "If a creature is holding or wearing the object and takes the damage from it, The creature must succeed on a [[/save ability=con format=long]] or drop the object if it can. If it doesn't drop the object, it has Disadvantage on attack rolls and ability checks until the start of your next turn."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -8805,9 +9836,7 @@
 				{
 					"name": "Consume Feast",
 					"type": "heal",
-					"description": {
-						"chatFlavor": "Hit Point maximum increased by healing amount"
-					},
+					"descriptionChat": "Hit Point maximum increased by healing amount",
 					"activation": {
 						"type": "hour",
 						"value": 1
@@ -8874,6 +9903,8 @@
 					"description": "The creature has &Reference[damageResistance]{Resistance} to Poison damage, and it has Immunity to the &Reference[Frightened] and &Reference[Poisoned] conditions. Its Hit Point maximum also increases by 2d10, and it gains the same number of Hit Points."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -8921,6 +9952,8 @@
 					"description": "The creature is immune to the Frightened condition and gains Temporary Hit Points equal to your spellcasting ability modifier at the start of each of its turns."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -9130,6 +10163,23 @@
 					"description": "The target has Disadvantage on ability checks made with the chosen ability."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Hindsight",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"description": "You peer backward through the fabric of time, witnessing visions of events that occurred within range during the past 10 years.",
+					"activation": {
+						"type": "action"
+					}
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -9175,6 +10225,8 @@
 					"description": "At the end of each of its turns, the target repeats the [[/save ability=wis]] save, ending the spell on itself on a success."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -9220,6 +10272,8 @@
 					"description": "At the end of each of its turns, the target repeats the [[/save ability=wis]] save, ending the spell on itself on a success."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -9328,6 +10382,8 @@
 					"description": "The attacker has the &Reference[Blinded apply=false] condition until the end of its next turn."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -9485,6 +10541,8 @@
 					"description": "Until the spell ends, the caster deals an extra [[/damage 1d6 force]] damage to the target whenever they hit it with an attack roll."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -9555,6 +10613,8 @@
 					"description": "While &Reference[charmed apply=false], the creature has the &Reference[incapacitated apply=false] condition and a Speed of 0. The spell ends for an affected creature if it takes any damage or if someone else uses an action to shake the creature out of its stupor."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -9627,6 +10687,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -9674,6 +10736,42 @@
 						"dc": {
 							"calculation": "spellcasting"
 						}
+					}
+				}
+			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Illusory Dragon",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Study Illusion",
+					"type": "check",
+					"description": "A creature studies the shadowy dragon, making an Intelligence (Investigation) check against the caster's spell save DC to discern its illusory nature.",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"check": {
+						"associated": [
+							"inv"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true,
+						"ability": "int"
 					}
 				}
 			],
@@ -9751,6 +10849,8 @@
 					"description": "The target has the &Reference[Unconscious apply=false] condition and can't be awoken."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -9788,6 +10888,68 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Inflict Doubt",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "save",
+					"description": "The target makes a Wisdom saving throw. On a failed save, it has Disadvantage on D20 Tests for the duration.",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"wis"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "inflictDoubt"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "inflictDoubt",
+					"name": "Disadv. D20 Tests",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"changes": [
+						{
+							"key": "system.rolls.attack.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.rolls.ability.check.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.rolls.ability.save.mode",
+							"value": -1,
+							"mode": "ADD"
+						}
+					],
+					"description": "The creature has Disadvantage on D20 Tests."
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -9820,6 +10982,119 @@
 						"invisible"
 					],
 					"description": "The spell ends early immediately after the target makes an attack roll, deals damage, or casts a spell."
+				}
+			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Invulnerability",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"description": "You become immune to all damage until the spell ends.",
+					"activation": {
+						"type": "action"
+					},
+					"effects": [
+						{
+							"foundryId": "invulnerability"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "invulnerability",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"value": 10,
+						"units": "minutes"
+					},
+					"changes": [
+						{
+							"key": "system.traits.di.value",
+							"value": "ALL",
+							"mode": "ADD"
+						}
+					],
+					"description": "You have Immunity to all damage until the spell ends."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Iron Body",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"description": "A willing creature you touch transforms into living metal, gaining the spell's resistances and immunities for the duration.",
+					"activation": {
+						"type": "action"
+					},
+					"effects": [
+						{
+							"foundryId": "ironBody"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "ironBody",
+					"duration": {
+						"value": 1,
+						"units": "hours"
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"value": "bludgeoning",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "fire",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "piercing",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "slashing",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.di.value",
+							"value": "poison",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.ci.value",
+							"value": "paralyzed",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.ci.value",
+							"value": "petrified",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.ci.value",
+							"value": "poisoned",
+							"mode": "ADD"
+						}
+					],
+					"description": "The creature has Resistance to Bludgeoning, Fire, Piercing, and Slashing damage; Immunity to Poison damage; and Immunity to the Paralyzed, Petrified, and Poisoned conditions."
 				}
 			],
 			"migrationVersion": 3
@@ -9914,6 +11189,8 @@
 					"description": "Once on each of its turns until the spell ends, that creature can jump up to 30 feet by spending 10 feet of movement."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -9944,6 +11221,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -9983,6 +11262,8 @@
 					"description": "The target can move only by pushing or pulling against a fixed object or surface within reach (such as a wall or a ceiling), which allows it to move as if it were climbing."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -10051,6 +11332,118 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Lightning Ring",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Emanation Save",
+					"type": "save",
+					"description": "The creature makes a Constitution saving throw, taking [[/damage]] damage on a failed save or half as much damage on a successful one. On a failed save, it also becomes deafened for 1 minute.",
+					"activation": {
+						"type": "special",
+						"condition": "When the Emanation enters a creature's space, or a creature enters the Emanation or ends its turn there"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 3,
+								"denomination": 6,
+								"types": [
+									"lightning"
+								],
+								"scaling": {
+									"number": 1
+								}
+							},
+							{
+								"number": 3,
+								"denomination": 6,
+								"types": [
+									"thunder"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "lightningRing"
+						}
+					]
+				},
+				{
+					"name": "Lightning Line",
+					"type": "save",
+					"description": "You emit a 60-foot-long, 5-foot-wide Line of lightning. Creatures in the Line make a Dexterity saving throw, taking [[/damage]] damage on a failed save or half as much damage on a successful one.",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "line",
+							"size": "60",
+							"width": "5"
+						},
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 6,
+								"denomination": 6,
+								"types": [
+									"lightning"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "lightningRing",
+					"name": "Deafened",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"statuses": [
+						"deafened"
+					],
+					"description": "The target is &Reference[deafened apply=false] for one minute."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Longstrider",
 			"source": "XPHB",
 			"system": {
@@ -10085,6 +11478,8 @@
 					"description": "The target's Speed increases by 10 feet until the spell ends."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -10119,6 +11514,8 @@
 					"description": "The target's base AC becomes 13 + its Dexterity modifier."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -10146,6 +11543,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -10260,6 +11659,8 @@
 					"description": "the possessed creature's soul can perceive from the container using its own senses, but it can't move and it is &Reference[Incapacitated apply=false]."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -10314,6 +11715,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -10490,6 +11893,8 @@
 					"description": "Until the spell ends, that weapon becomes a magic weapon with a +3 bonus to attack rolls and damage rolls."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -10522,6 +11927,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -10544,6 +11951,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -10586,6 +11995,8 @@
 					"description": "The target has the &Reference[Charmed apply=false] condition for the duration or until you or your allies deal damage to the target. Each Charmed target pursues the suggestion to the best of its ability."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -10623,6 +12034,8 @@
 					"description": "The target can take a Study action to try to escape. When it does so, it makes a [[/check ability=int skill=inv dc=20]] check. If it succeeds, it escapes, and the spell ends."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -10663,6 +12076,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -10767,6 +12182,8 @@
 					"description": "On a hit, the target takes 4d4 Acid damage and [[/damage 2d4 type=acid]] (plus 1d4 per spell slot level above 2) Acid damage at the end of its next turn."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -10806,6 +12223,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -10917,6 +12336,8 @@
 					"description": "You always know the target's location until the spell ends, but only while the two of you are on the same plane of existence. While you have this knowledge, the target can't become hidden from you, and if it has the &Reference[invisible apply=false] condition, it gains no benefit from that condition against you."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -10949,6 +12370,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -10963,6 +12386,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -11040,6 +12465,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -11083,6 +12510,23 @@
 					"description": "While &Reference[Charmed apply=false] in this way, the target also has the &Reference[Incapacitated apply=false] condition and is unaware of its surroundings, though it can hear you. If it takes any damage or is targeted by another spell, this spell ends, and no memories are modified."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Moment of Prescience",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"description": "Change the roll of your failed D20 test to a 20, or turn the roll of the triggering attack roll into a 1.",
+					"activation": {
+						"type": "action"
+					}
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -11106,6 +12550,95 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Mordenkainen's Lucubration",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"description": "You can recover up to two expended spell slots of the level allowed by the spell slot used to cast this spell.",
+					"activation": {
+						"type": "action"
+					}
+				},
+				{
+					"name": "Recover 1st-Level Slot",
+					"type": "utility",
+					"description": "Recover one 1st-level spell slot.",
+					"activation": {
+						"type": "special",
+						"condition": "After casting the spell."
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "attribute",
+								"value": "-1",
+								"target": "spells.spell1.value"
+							}
+						]
+					}
+				},
+				{
+					"name": "Recover 2nd-Level Slot",
+					"type": "utility",
+					"description": "Recover one 2nd-level spell slot.",
+					"activation": {
+						"type": "special",
+						"condition": "After casting the spell."
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "attribute",
+								"value": "-1",
+								"target": "spells.spell2.value"
+							}
+						]
+					}
+				},
+				{
+					"name": "Recover 3rd-Level Slot",
+					"type": "utility",
+					"description": "Recover one 3rd-level spell slot.",
+					"activation": {
+						"type": "special",
+						"condition": "After casting the spell."
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "attribute",
+								"value": "-1",
+								"target": "spells.spell3.value"
+							}
+						]
+					}
+				},
+				{
+					"name": "Recover 4th-Level Slot",
+					"type": "utility",
+					"description": "Recover one 4th-level spell slot.",
+					"activation": {
+						"type": "special",
+						"condition": "After casting the spell."
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "attribute",
+								"value": "-1",
+								"target": "spells.spell4.value"
+							}
+						]
+					}
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -11120,6 +12653,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -11139,6 +12674,85 @@
 					"activation": {
 						"type": ""
 					}
+				}
+			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Negative Energy Flood",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Save: Living Target",
+					"type": "save",
+					"description": "A non-Undead creature makes a Constitution saving throw, taking [[/damage]] damage on a failed save or half as much damage on a successful one.",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 3,
+								"denomination": 10,
+								"bonus": "25",
+								"types": [
+									"necrotic"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				},
+				{
+					"name": "Heal: Undead Target",
+					"type": "heal",
+					"description": "An Undead target gains [[/healing]] Temporary Hit Points.",
+					"activation": {
+						"type": "action"
+					},
+					"healing": {
+						"types": [
+							"temphp"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"number": 3,
+						"denomination": 10
+					}
+				},
+				{
+					"name": "Raise Zombie",
+					"type": "summon",
+					"description": "A humanoid killed by this spell rises as a zombie at the start of your next turn.",
+					"activation": {
+						"type": "special",
+						"condition": "At the start of your next turn after a Humanoid is killed by this spell"
+					},
+					"duration": {
+						"units": "hour",
+						"value": "24"
+					},
+					"profiles": [
+						{
+							"uuid": "@creature[zombie|xmm]"
+						}
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -11168,6 +12782,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -11196,6 +12812,8 @@
 					"description": "Choose a creature type other than the target's actual type. Spells and other magical effects treat the target as if it were a creature of the chosen type."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -11338,6 +12956,8 @@
 					"description": "Creatures that were swimming on the surface of frozen water are trapped in the ice and have the &Reference[Restrained apply=false] condition. A trapped creature can take an action to make a [[/check ability=str skill=ath]] check against your spell save DC to break free."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -11377,6 +12997,8 @@
 					"description": "An enclosed creature can take an action to push against the sphere's walls and thus roll the sphere at up to half the creature's Speed."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -11430,6 +13052,8 @@
 					"description": "The target dances comically until the end of its next turn, during which it must spend all its movement to dance in place."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -11465,6 +13089,8 @@
 					"description": "While in the aura, you and each creature you choose have a +10 bonus to [[/check ability=dex skill=ste]] checks and leave no tracks."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -11490,6 +13116,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -11585,6 +13213,8 @@
 					"description": "The target can take a &Reference[Study]{Study} action to examine the phantasm with an [[/check ability=int skill=inv]] check against your spell save DC. If the check succeeds, the target realizes that the phantasm is an illusion, and the spell ends."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -11669,6 +13299,8 @@
 					"description": "The target has Disadvantage on ability checks and attack rolls for the duration. For the duration, the target makes a [[/save ability=wis]] saving throw at the end of each of its turns. On a failed save, it takes the Psychic damage again. On a successful save, the spell ends."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -11694,6 +13326,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -11733,6 +13367,8 @@
 					"description": "A bound creature must follow your commands to the best of its ability. If the creature is Hostile, it strives to twist your commands to achieve its own objectives."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -11747,6 +13383,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -11781,6 +13419,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -11823,6 +13463,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -11867,6 +13509,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -11893,6 +13537,157 @@
 							}
 						]
 					}
+				}
+			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Power Word Pain",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "damage",
+					"description": "The target takes [[/damage]] Force damage. If it has 100 Hit Points or fewer, apply the {@b Power Word Pain} active effect.",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 6,
+								"denomination": 8,
+								"types": [
+									"force"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"effects": [
+						{
+							"foundryId": "powerWordPain"
+						}
+					]
+				},
+				{
+					"name": "Spellcasting Save",
+					"type": "save",
+					"description": "The affected creature makes a Constitution saving throw before casting its spell. On a failed save, resolve the failed-casting consequences described in {@i Power Word Pain}.",
+					"activation": {
+						"type": "special"
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				},
+				{
+					"name": "Repeat Save",
+					"type": "save",
+					"description": "At the end of its turn, the affected creature makes a Constitution saving throw, ending {@i Power Word Pain} on itself on a successful save.",
+					"activation": {
+						"type": "special"
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "powerWordPain",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"statuses": [
+						"charmed"
+					],
+					"changes": [
+						{
+							"key": "system.rolls.attack.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.rolls.ability.check.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.str.save.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.dex.save.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.int.save.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.wis.save.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.cha.save.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.attributes.death.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.attributes.movement.speeds.walk",
+							"value": 10,
+							"mode": "DOWNGRADE"
+						},
+						{
+							"key": "system.attributes.movement.speeds.burrow",
+							"value": 10,
+							"mode": "DOWNGRADE"
+						},
+						{
+							"key": "system.attributes.movement.speeds.climb",
+							"value": 10,
+							"mode": "DOWNGRADE"
+						},
+						{
+							"key": "system.attributes.movement.speeds.fly",
+							"value": 10,
+							"mode": "DOWNGRADE"
+						}
+					],
+					"description": "The target is &Reference[Charmed apply=false]. Its Speed can be no more than 10 feet, and it has Disadvantage on D20 Tests except Constitution saving throws."
 				}
 			],
 			"migrationVersion": 3
@@ -11961,6 +13756,8 @@
 					"description": "The target's Speed is 0 until the start of your next turn."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -11999,6 +13796,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -12127,6 +13926,8 @@
 					"description": "The target has the &Reference[Blinded apply=false] condition and makes a [[/save ability=wis format=long]] at the start of your next turn. On a successful save, the condition ends. On a failed save, the condition ends, and the creature teleports to another plane of existence (DM's choice)."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -12293,6 +14094,8 @@
 					"description": "The target has the &Reference[Blinded apply=false] condition and makes a [[/save ability=wis dc=@attributes.spell.dc format=long]] at the start of your next turn. On a successful save, the condition ends. On a failed save, the condition ends, and the creature teleports to another plane of existence (DM's choice)."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -12345,6 +14148,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -12377,6 +14182,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -12409,6 +14216,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -12511,6 +14320,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -12539,6 +14350,8 @@
 					"description": "Creatures of those types have Disadvantage on attack rolls against the target. The target also can't be possessed by or gain the &Reference[Charmed apply=false] or &Reference[Frightened apply=false] conditions from them."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -12574,6 +14387,8 @@
 					"description": "For the duration, the target has Advantage on saving throws to avoid or end the Poisoned condition, and it has Resistance to Poison damage."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -12781,6 +14596,8 @@
 					"description": "Coming back from the dead is an ordeal. The target takes a \u22124 penalty to D20 Tests. Every time the target finishes a Long Rest, the penalty is reduced by 1 until it becomes 0."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -12816,6 +14633,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -12898,6 +14717,8 @@
 					"description": "The target has Disadvantage on Strength-based D20 Tests for the duration. During that time, it also subtracts 1d8 from all its damage rolls. The target repeats the [[/save ability=con]] save at the end of each of its turns, ending the spell on a success."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -12974,6 +14795,8 @@
 					"description": "The target's Speed is reduced by 10 feet until the start of your next turn."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -13009,6 +14832,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -13048,6 +14873,8 @@
 					"description": "For the duration, the target regains [[/healing 1 type=healing]]{1 Hit Point} at the start of each of its turns, and any severed body parts regrow after 2 minutes."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -13061,6 +14888,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -13204,6 +15033,8 @@
 					"description": "When the creature takes damage of the chosen type before the spell ends, the creature reduces the total damage taken by [[/r 1d4]]. A creature can benefit from this spell only once per turn."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -13434,6 +15265,8 @@
 					"description": "Until you finish a Long Rest, you can't cast spells again, and you have Disadvantage on D20 Tests."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -13457,6 +15290,41 @@
 								}
 							}
 						]
+					}
+				}
+			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Reweave Fate",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"description": "The creature that failed the triggering D20 Test can reroll it with Advantage and must use the new roll.",
+					"activation": {
+						"type": "action"
+					}
+				},
+				{
+					"name": "Strengthened Fate",
+					"type": "heal",
+					"description": "If the rerolled D20 Test succeeds, the creature gains [[/healing]] Temporary Hit Points.",
+					"activation": {
+						"type": "special"
+					},
+					"healing": {
+						"types": [
+							"temphp"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"number": 6,
+						"denomination": 10
 					}
 				}
 			],
@@ -13510,6 +15378,8 @@
 					"description": "Until the spell ends, any creature who targets the warded creature with an attack roll or a damaging spell must succeed on a [[/save ability=wis format=long]] or either choose a new target or lose the attack or spell. The spell ends if the warded creature makes an attack roll, casts a spell, or deals damage."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -13541,6 +15411,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -13733,6 +15605,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -13811,6 +15685,8 @@
 					"description": "At the start of each of its turns until the spell ends, the target takes [[/damage 1d6 type=fire]] damage and then makes a [[/save ability=con]] saving throw. On a failed save, the spell continues. On a successful save, the spell ends."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -13850,6 +15726,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -13919,6 +15797,8 @@
 					"description": "A creature that takes the Study action to examine a target can make an [[/check ability=int skill=inv]] check against your spell save DC. If it succeeds, it becomes aware that the target is disguised."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -13935,6 +15815,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -13964,6 +15846,8 @@
 					"description": "If the target is a creature, it enters a state of suspended animation; it has the &Reference[Unconscious apply=false] condition, doesn't age, and doesn't need food, water, or air. This spell also ends if the target takes any damage."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -14070,6 +15954,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -14108,6 +15994,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -14143,6 +16031,8 @@
 					"description": "The target gains a +2 bonus to AC for the duration."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -14440,6 +16330,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -14493,6 +16385,8 @@
 					"description": "Until the spell ends, the target sheds &Reference[BrightLight] in a 5-foot radius, attack rolls against it have Advantage, and it can't benefit from the &Reference[Invisible] condition."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -14542,6 +16436,8 @@
 					"description": "The target can't make Opportunity Attacks until the start of its next turn."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -14581,6 +16477,8 @@
 					"description": "Any creature or object entirely inside the Sphere has Immunity to Thunder damage, and creatures have the Deafened condition while entirely inside it. Casting a spell that includes a Verbal component is impossible there."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -14613,6 +16511,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -14627,6 +16527,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -14672,6 +16574,8 @@
 					"description": "The target has the &Reference[incapacitated apply=false] condition until the end of its next turn, at which point it must repeat the save. If the target fails the second save, the target has the &Reference[unconscious] condition for the duration. The spell ends on a target if it takes damage or someone within 5 feet of it takes an action to shake it out of the spell's effect."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -14696,6 +16600,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -14772,6 +16678,8 @@
 					"description": "An affected target's Speed is halved, it takes a \u22122 penalty to AC and Dexterity saving throws, and it can't take Reactions. On its turns, it can take either an action or a Bonus Action, not both, and it can make only one attack if it takes the Attack action. If it casts a spell with a Somatic component, there is a [[/r 1d100cs>25#Slowed spell cast success]]{25 percent} chance the spell fails as a result of the target making the spell's gestures too slowly. An affected target repeats the [[/save ability=wis]] save at the end of each of its turns, ending the spell on itself on a success."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -14816,6 +16724,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -14846,6 +16756,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -14883,6 +16795,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -14910,6 +16824,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -14946,6 +16862,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -14973,6 +16891,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -15062,6 +16982,198 @@
 						}
 					],
 					"description": "The creature's speed is halved while within the Emanation."
+				}
+			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Spirit Lantern",
+			"source": "AU",
+			"system": {
+				"uses.max": "@attributes.spell.mod"
+			},
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"description": "You conjure the spirit lantern, which sheds Dim Light in a 60-foot radius for the spell's duration.",
+					"activation": {
+						"type": "action"
+					},
+					"effects": [
+						{
+							"foundryId": "spiritLantern"
+						}
+					]
+				},
+				{
+					"name": "Drain Life",
+					"type": "save",
+					"description": "The soul fragment darts at a creature of your choice that you can see within 60 feet of yourself. The target makes a [[/save format=long]], taking Necrotic damage equal to 4d8 plus your spellcasting ability modifier on a failed save or half as much damage on a successful one.",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "60"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 4,
+								"denomination": 8,
+								"bonus": "@mod",
+								"types": [
+									"necrotic"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				},
+				{
+					"name": "Repair Undead",
+					"type": "heal",
+					"description": "The soul fragment flies into an Undead creature of your choice that you can see within 60 feet of yourself. That creature regains Hit Points equal to 4d8 plus your spellcasting ability modifier.",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "60"
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"number": 4,
+						"denomination": 8,
+						"bonus": "@mod"
+					}
+				},
+				{
+					"name": "Ward Ally",
+					"type": "utility",
+					"description": "The soul fragment darts around a creature of your choice that you can see within 60 feet of yourself. Other creatures have Disadvantage on attack rolls against the chosen creature until the start of your next turn.",
+					"activation": {
+						"type": "bonus"
+					},
+					"duration": {
+						"units": "round",
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "60"
+					},
+					"effects": [
+						{
+							"foundryId": "spiritLantern1"
+						}
+					]
+				},
+				{
+					"name": "Capture Soul",
+					"type": "utility",
+					"description": "When an eligible enemy dies within the lantern's Dim Light, use this activity to store 1 soul fragment, up to the lantern's maximum capacity.",
+					"activation": {
+						"type": "special"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "-1"
+							}
+						]
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "spiritLantern",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"value": 10,
+						"units": "minutes"
+					},
+					"changes": [
+						{
+							"key": "token.light.dim",
+							"value": 60,
+							"mode": "UPGRADE"
+						}
+					],
+					"description": "A ghostly black lantern hovers above you and sheds Dim Light in a 60-foot radius."
+				},
+				{
+					"foundryId": "spiritLantern1",
+					"name": "Ward Ally",
+					"duration": {
+						"units": "seconds",
+						"expiry": "sourceStart"
+					},
+					"description": "Other creatures have Disadvantage on attack rolls against this creature until the start of the caster's next turn."
 				}
 			],
 			"migrationVersion": 3
@@ -15205,6 +17317,8 @@
 					"description": "Until the end of your next turn, it emits Dim Light in a 10-foot radius and can't benefit from the &Reference[Invisible] condition."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -15257,6 +17371,8 @@
 					"description": "While &Reference[poisoned apply=false] in this way, the creature can't take an action or a Bonus Action."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -15300,6 +17416,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -15492,6 +17610,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -15534,6 +17654,8 @@
 					"description": "The Charmed target pursues the suggestion to the best of its ability. The suggested activity can continue for the entire duration, but if the suggested activity can be completed in a shorter time, the spell ends for the target upon completing it."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -15587,7 +17709,7 @@
 							"uuid": "@creature[aberrant spirit (slaad)|xphb]"
 						},
 						{
-							"uuid": "@creature[aberrant spirit (star spawn)|xphb]"
+							"uuid": "@creature[aberrant spirit (mind flayer)|xphb]"
 						}
 					],
 					"bonuses": {
@@ -15804,6 +17926,54 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Summon Dinosaur",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Summon Dinosaur",
+					"type": "summon",
+					"description": "Summon one Dinosaur Spirit, choosing Ankylosaur, Triceratops, or Tyrannosaur.",
+					"activation": {
+						"type": "action"
+					},
+					"profiles": [
+						{
+							"uuid": "@creature[dinosaur spirit (ankylosaur)|au]",
+							"level": {
+								"min": 6,
+								"max": 9
+							}
+						},
+						{
+							"uuid": "@creature[dinosaur spirit (triceratops)|au]",
+							"level": {
+								"min": 6,
+								"max": 9
+							}
+						},
+						{
+							"uuid": "@creature[dinosaur spirit (tyrannosaur)|au]",
+							"level": {
+								"min": 6,
+								"max": 9
+							}
+						}
+					],
+					"bonuses": {
+						"ac": "@item.level",
+						"hp": "10 * (@item.level - 6)",
+						"attackDamage": "@item.level"
+					},
+					"match": {
+						"attacks": true,
+						"disposition": true,
+						"proficiency": true
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Summon Draconic Spirit",
 			"source": "FTD",
 			"activities": [
@@ -15865,6 +18035,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -16086,6 +18258,44 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Summon Plant",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Summon Plant",
+					"type": "summon",
+					"activation": {
+						"type": "action"
+					},
+					"profiles": [
+						{
+							"name": "Fungus",
+							"uuid": "@creature[plant spirit (fungus)|au]"
+						},
+						{
+							"name": "Tree",
+							"uuid": "@creature[plant spirit (tree)|au]"
+						},
+						{
+							"name": "Vine",
+							"uuid": "@creature[plant spirit (vine)|au]"
+						}
+					],
+					"bonuses": {
+						"ac": "@item.level",
+						"hp": "10 * (@item.level - 5)",
+						"attackDamage": "@item.level"
+					},
+					"match": {
+						"attacks": true,
+						"disposition": true,
+						"proficiency": true
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Summon Shadowspawn",
 			"source": "TCE",
 			"activities": [
@@ -16275,6 +18485,8 @@
 					"description": "The target has the &Reference[Blinded apply=false] condition until the start of your next turn."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -16329,6 +18541,8 @@
 					"description": "A creature &Reference[Blinded apply=false] by this spell makes another [[/save ability=con format=long]] at the end of each of its turns, ending the effect on itself on a success."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -16687,6 +18901,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -16887,6 +19103,8 @@
 					"description": "has the &Reference[prone apply=false] and &Reference[incapacitated apply=false] conditions for the duration. During that time, it laughs uncontrollably if it's capable of laughter, and it can't end the Prone condition on itself. At the end of each of its turns and each time it takes damage, it makes another [[/save ability=wis dc=@attributes.spell.dc]] saving throw. The target has Advantage on the save if the save is triggered by damage. On a successful save, the spell ends."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -16928,6 +19146,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -16963,6 +19183,8 @@
 					"description": "Your voice booms up to three times as loud as normal for 1 minute. For the duration, you have Advantage on [[/check ability=cha skill=itm]] checks."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -17076,6 +19298,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -17195,6 +19419,98 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Transfix",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "save",
+					"description": "One creature you can see within 60 feet makes a Charisma saving throw. On a failed save, it becomes Charmed and Incapacitated by this spell. For subsequent targets and damaging-terrain saves during this casting, use this card's Charisma saving throw without activating the spell again.",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "60"
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"cha"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "transfix"
+						}
+					]
+				},
+				{
+					"name": "Psychic Damage",
+					"type": "damage",
+					"description": "Roll the Psychic damage when a creature Charmed by this casting ends its turn within 5 feet of you.",
+					"activation": {
+						"type": "special"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "5"
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 4,
+								"denomination": 8,
+								"types": [
+									"psychic"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "transfix",
+					"name": "Charmed & Incapacitated",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"statuses": [
+						"charmed",
+						"incapacitated"
+					],
+					"description": "This creature is &Reference[Charmed apply=false] and &Reference[Incapacitated apply=false] for the duration."
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -17249,6 +19565,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -17262,6 +19580,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -17297,6 +19617,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -17436,6 +19758,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -17533,6 +19857,58 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Uncertain Footing",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "save",
+					"description": "Up to three creatures make an Intelligence saving throw. On a failed save, apply the Hampered effect. At the end of a hampered creature's turn, use this card's Intelligence saving throw without activating the spell again.",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"int"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "uncertainFooting"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "uncertainFooting",
+					"name": "Hampered",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.multiplier",
+							"value": 0.5,
+							"mode": "ADD"
+						}
+					],
+					"description": "The creature's Speed is halved, and it can't take the &Reference[Dash] action."
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -17568,6 +19944,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -17618,6 +19996,66 @@
 						"rounds": 1
 					},
 					"description": "The target has Disadvantage on the next attack roll it makes before the end of its next turn."
+				}
+			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Vision of Elapsing Eons",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "save",
+					"description": "One creature makes an Intelligence saving throw. On a failed save, it takes [[/damage]] Psychic damage and becomes &Reference[Paralyzed apply=false] for the duration.",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "none",
+						"parts": [
+							{
+								"number": 10,
+								"denomination": 12,
+								"types": [
+									"psychic"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"int"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "visionOfElapsing"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "visionOfElapsing",
+					"name": "Paralyzed",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"statuses": [
+						"paralyzed"
+					],
+					"description": "The target is &Reference[Paralyzed apply=false] condition for the duration."
 				}
 			],
 			"migrationVersion": 3
@@ -17703,6 +20141,65 @@
 						"turns": 1
 					},
 					"description": "The creature takes [[/damage 5d4 type=acid]] damage at the end of its next turn"
+				}
+			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Wail of the Banshee",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 12,
+								"denomination": 10,
+								"types": [
+									"psychic"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "wailOfTheBanshee"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "wailOfTheBanshee",
+					"name": "Deafened",
+					"duration": {
+						"value": 1,
+						"units": "hours"
+					},
+					"statuses": [
+						"deafened"
+					],
+					"description": "The target is &Reference[Deafened apply=false] condition for 1 hour."
 				}
 			],
 			"migrationVersion": 3
@@ -17800,6 +20297,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -17839,6 +20338,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -17970,6 +20471,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -18013,6 +20516,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -18150,6 +20655,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -18255,6 +20762,8 @@
 					"description": "While the target is within 60 feet of you, it gains a +1 bonus to AC and saving throws, and it has Resistance to all damage. Also, each time it takes damage, you take the same amount of damage. The spell ends if you drop to 0 Hit Points or if you and the target become separated by more than 60 feet. It also ends if the spell is cast again on either of the connected creatures."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -18281,6 +20790,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -18308,6 +20819,52 @@
 						"seconds": 3600
 					},
 					"description": "An affected target must take a Bonus Action to pass from the liquid's surface into the liquid itself and vice versa, but if the target falls into the liquid, the target passes through the surface into the liquid below."
+				}
+			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Waves of Exhaustion",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Emit Wave",
+					"type": "save",
+					"activation": {
+						"type": "bonus"
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "wavesOfExhaustio"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "wavesOfExhaustio",
+					"name": "Exhaustion",
+					"duration": {
+						"units": "seconds"
+					},
+					"statuses": [
+						"exhaustion"
+					],
+					"description": "The target gains a level of &Reference[Exhaustion apply=false]."
 				}
 			],
 			"migrationVersion": 3
@@ -18346,6 +20903,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -18440,6 +20999,8 @@
 					"description": "A &Reference[Frightened apply=false] target makes a [[/save ability=wis format=long]] at the end of each of its turns. On a failed save, it takes [[/damage 5d10 type=psychic]] damage. On a successful save, the spell ends on that target."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -18507,6 +21068,8 @@
 					"description": "The only actions a target can take in this form are the &Reference[Dash] action or a Magic action to begin reverting to its normal form. Reverting takes 1 minute, during which the target has the &Reference[Stunned apply=false] condition. Until the spell ends, the target can revert to cloud form, which also requires a Magic action followed by a 1-minute transformation."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -18600,6 +21163,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -18608,9 +21173,7 @@
 			"activities": [
 				{
 					"type": "utility",
-					"description": {
-						"chatFlavor": "<em>Wish</em> lost on 1: [[/r 1d3cs1]]"
-					},
+					"descriptionChat": "{@i Wish} lost on 1: [[/r 1d3cs1]]",
 					"activation": {
 						"type": "action"
 					},
@@ -18639,6 +21202,8 @@
 					"description": "Each time you cast a spell until you finish a Long Rest, you take [[/damage 1d10 type=necrotic]] damage per level of that spell. This damage can't be reduced or prevented in any way. In addition, your Strength score becomes 3 for [[/r 2d4]] days."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -18797,6 +21362,71 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Wither and Bloom",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Cast Spell: Wither",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 3,
+								"denomination": 6,
+								"types": [
+									"necrotic"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				},
+				{
+					"name": "Bloom",
+					"type": "heal",
+					"description": "Choose one creature in the spell's area. That creature can roll and expend the number of unexpended Hit Point Dice allowed by this casting, then regains Hit Points equal to the total rolled plus your spellcasting ability modifier once.",
+					"activation": {
+						"type": "special"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "@attributes.spell.mod"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Word of Recall",
 			"source": "XPHB",
 			"activities": [
@@ -18823,6 +21453,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -18894,9 +21526,7 @@
 				{
 					"name": "Emanation Save",
 					"type": "save",
-					"description": {
-						"chatFlavor": "Push 10 ft. and &Reference[prone] on failure"
-					},
+					"descriptionChat": "Push 10 ft. and &Reference[prone] on failure",
 					"activation": {
 						"type": "",
 						"condition": "a creature is within the Emanation"
@@ -18939,6 +21569,38 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Zone of Amicability",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					}
+				}
+			],
+			"effects": [
+				{
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"value": 10,
+						"units": "minutes"
+					},
+					"changes": [
+						{
+							"key": "check",
+							"value": 10,
+							"mode": "DND5E.MINIMUM"
+						}
+					],
+					"description": "Enable this effect when making an ability check to influence a creature within the spell's Emanation, then disable it after the check."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Zone of Truth",
 			"source": "XPHB",
 			"activities": [
@@ -18975,6 +21637,8 @@
 					"description": "On a failed save, a creature can't speak a deliberate lie while in the radius. You know whether a creature succeeds or fails on this save. An affected creature is aware of the spell and can avoid answering questions to which it would normally respond with a lie. Such a creature can be evasive yet must be truthful."
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		}
 	]
