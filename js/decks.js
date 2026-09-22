@@ -22,21 +22,21 @@ class DecksSublistManager extends SublistManager {
 			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
 			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
-		const listItem = new ListItem(
-			hash,
+		const listItem = new ListItem({
+			id: hash,
 			ele,
-			ent.name,
-			{
+			name: ent.name,
+			values: {
 				...ListItem.getCommonValues(ent),
 				alias: PageFilterDecks.getListAliases(ent),
 			},
-			{
+			data: {
 				hash,
 				page: ent.page,
 				entity: ent,
 				mdRow: [...cellsText],
 			},
-		);
+		});
 		return listItem;
 	}
 }
@@ -148,20 +148,20 @@ class DecksPage extends ListPage {
 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(ent.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(ent.source)}">${source}</span>
 		</a>`;
 
-		const listItem = new ListItem(
-			anI,
-			eleLi,
-			ent.name,
-			{
+		const listItem = new ListItem({
+			id: anI,
+			ele: eleLi,
+			name: ent.name,
+			values: {
 				source,
 				...ListItem.getCommonValues(ent),
 			},
-			{
+			data: {
 				hash,
 				page: ent.page,
 				isExcluded,
 			},
-		);
+		});
 
 		eleLi.addEventListener("click", (evt) => this._list.doSelect(listItem, evt));
 		eleLi.addEventListener("contextmenu", (evt) => this._openContextMenu(evt, this._list, listItem));

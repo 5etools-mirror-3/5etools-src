@@ -431,8 +431,7 @@ class UiUtil {
 		UiUtil._initModalMouseupHandlers({doc});
 		if (doc.activeElement) doc.activeElement.blur(); // blur any active element as it will be behind the modal
 
-		let resolveModal;
-		const pResolveModal = new Promise(resolve => { resolveModal = resolve; });
+		const {promise: pResolveModal, resolve: resolveModal} = Promise.withResolvers();
 
 		// if the user closed the modal by clicking the "cancel" background, isDataEntered is false
 		const pHandleCloseClick = async (isDataEntered, ...args) => {
@@ -1106,14 +1105,14 @@ class ListUiUtil {
 				stats: {
 					help: `\`stats:"query"\` (/query/ for regex; \`stats:! ...\` to invert) to search within stat blocks.`,
 					fn: (listItem, searchTerm) => {
-						if (listItem.data._textCacheStats == null) listItem.data._textCacheStats = this._getSearchCacheStats(this._dataList[listItem.ix]);
+						if (listItem.data._textCacheStats == null) listItem.data._textCacheStats = this._getSearchCacheStats(this._dataList[listItem.getId()]);
 						return this._listSyntax_isTextMatch(listItem.data._textCacheStats, searchTerm);
 					},
 				},
 				info: {
 					help: `\`info:"query" (/query/ for regex; \`info:! ...\` to invert) to search within info.`,
 					fn: async (listItem, searchTerm) => {
-						if (listItem.data._textCacheFluff == null) listItem.data._textCacheFluff = await this._pGetSearchCacheFluff(this._dataList[listItem.ix]);
+						if (listItem.data._textCacheFluff == null) listItem.data._textCacheFluff = await this._pGetSearchCacheFluff(this._dataList[listItem.getId()]);
 						return this._listSyntax_isTextMatch(listItem.data._textCacheFluff, searchTerm);
 					},
 					isAsync: true,
@@ -1122,7 +1121,7 @@ class ListUiUtil {
 					help: `\`text:"query" (/query/ for regex; \`text:! ...\` to invert) to search within stat blocks plus info.`,
 					fn: async (listItem, searchTerm) => {
 						if (listItem.data._textCacheAll == null) {
-							const {textCacheStats, textCacheFluff, textCacheAll} = await this._pGetSearchCacheAll(this._dataList[listItem.ix], {textCacheStats: listItem.data._textCacheStats, textCacheFluff: listItem.data._textCacheFluff});
+							const {textCacheStats, textCacheFluff, textCacheAll} = await this._pGetSearchCacheAll(this._dataList[listItem.getId()], {textCacheStats: listItem.data._textCacheStats, textCacheFluff: listItem.data._textCacheFluff});
 							listItem.data._textCacheStats = listItem.data._textCacheStats || textCacheStats;
 							listItem.data._textCacheFluff = listItem.data._textCacheFluff || textCacheFluff;
 							listItem.data._textCacheAll = textCacheAll;
@@ -5241,8 +5240,8 @@ class ComponentUiUtil {
 			clazz: "ve-btn ve-btn-xs ve-btn-default",
 			txt: opts.text || "Toggle",
 		}))
-			.vee.onClick(() => component[stateProp][prop] = !component[stateProp][prop])
-			.vee.onContextmenu(evt => {
+			.vee.onn("click", () => component[stateProp][prop] = !component[stateProp][prop])
+			.vee.onn("contextmenu", evt => {
 				evt.preventDefault();
 				component[stateProp][prop] = !component[stateProp][prop];
 			});

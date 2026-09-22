@@ -27,21 +27,21 @@ class RewardsSublistManager extends SublistManager {
 			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
 			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
-		const listItem = new ListItem(
-			hash,
+		const listItem = new ListItem({
+			id: hash,
 			ele,
-			reward.name,
-			{
+			name: reward.name,
+			values: {
 				...ListItem.getCommonValues(reward),
 				type: reward.type,
 			},
-			{
+			data: {
 				hash,
 				page: reward.page,
 				entity: reward,
 				mdRow: [...cellsText],
 			},
-		);
+		});
 		return listItem;
 	}
 }
@@ -88,21 +88,21 @@ class RewardsPage extends ListPage {
 			<div class="ve-flex-col ve-py-3 ve-ml-4 ve-accordion__wrp-preview-inner"></div>
 		</div>`;
 
-		const listItem = new ListItem(
-			rwI,
-			eleLi,
-			reward.name,
-			{
+		const listItem = new ListItem({
+			id: rwI,
+			ele: eleLi,
+			name: reward.name,
+			values: {
 				source,
 				...ListItem.getCommonValues(reward),
 				type: reward.type,
 			},
-			{
+			data: {
 				hash,
 				page: reward.page,
 				isExcluded,
 			},
-		);
+		});
 
 		eleLi.addEventListener("click", (evt) => this._list.doSelect(listItem, evt));
 		eleLi.addEventListener("contextmenu", (evt) => this._openContextMenu(evt, this._list, listItem));

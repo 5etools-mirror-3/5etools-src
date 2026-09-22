@@ -2719,6 +2719,8 @@ Renderer.get = () => {
  *   but a property injector *is* valid inside a tag.
  */
 Renderer.applyProperties = function (entry, object) {
+	if (!entry.includes("{=")) return entry;
+
 	const propSplit = Renderer.splitByTags(entry);
 	const len = propSplit.length;
 
@@ -2787,16 +2789,25 @@ Renderer.applyProperties._OP_ORDER = [
 ];
 
 Renderer.applyAllProperties = function (entries, object = null) {
+	Renderer.applyAllProperties._WALKER ||= MiscUtil.getWalker();
+
+	if (object) {
+		return Renderer.applyAllProperties._WALKER.walk(
+			entries,
+			{string: str => Renderer.applyProperties(str, object)},
+		);
+	}
+
 	let lastObj = null;
-	const handlers = {
-		object: (obj) => {
-			lastObj = obj;
-			return obj;
+	return Renderer.applyAllProperties._WALKER.walk(
+		entries,
+		{
+			object: (obj) => lastObj = obj,
+			string: (str) => Renderer.applyProperties(str, lastObj),
 		},
-		string: (str) => Renderer.applyProperties(str, object || lastObj),
-	};
-	return MiscUtil.getWalker().walk(entries, handlers);
+	);
 };
+Renderer.applyAllProperties._WALKER = null;
 
 Renderer.attackTagToFull = function (tagStr, {isRoll = false} = {}) {
 	function renderTag (tags) {
@@ -12921,6 +12932,8 @@ Renderer.item = class {
 		Renderer.utils.initFullEntries_(item, {propEntries: "additionalEntries", propFullEntries: "_fullAdditionalEntries"});
 	}
 
+	/* -------------------------------------------- */
+
 	/**
 	 * @param baseItems
 	 * @param genericVariants
@@ -12950,6 +12963,8 @@ Renderer.item = class {
 		});
 		return genericAndSpecificVariants;
 	}
+
+	/* ----- */
 
 	/**
 	 * When creating specific variants, the application of "classic" and "one" editions
@@ -12985,35 +13000,62 @@ Renderer.item = class {
 		throw new Error(`Unhandled edition combination "${curBaseItem.edition}"/"${curGenericVariant.edition}" for base item "${curBaseItem.name}" and generic variant "${curGenericVariant.name}"!`);
 	}
 
+	/* ----- */
+
+	static _createSpecificVariants_isRequiresExcludesMatch_isMatching ({candidateVal, requirement, isEvery}) {
+		if (requirement instanceof Array) {
+			return candidateVal instanceof Array
+				? candidateVal.some(it => requirement.includes(it))
+				: requirement.includes(candidateVal);
+		}
+
+		// Recurse for e.g. `"customProperties": { ... }`
+		if (requirement != null && typeof requirement === "object") {
+			return this._createSpecificVariants_isRequiresExcludesMatch({
+				candidate: candidateVal,
+				requirements: requirement,
+				isEvery,
+			});
+		}
+
+		return candidateVal instanceof Array
+			? candidateVal.some(val => val === requirement)
+			: requirement === candidateVal;
+	}
+
+	static _createSpecificVariants_isRequiresExcludesMatch ({candidate, requirements, isEvery = false}) {
+		if (candidate == null || requirements == null) return false;
+
+		for (const reqKey in requirements) {
+			const isMatch = this._createSpecificVariants_isRequiresExcludesMatch_isMatching({
+				candidateVal: candidate[reqKey],
+				requirement: requirements[reqKey],
+				isEvery,
+			});
+
+			if (isEvery && !isMatch) return false;
+			if (!isEvery && isMatch) return true;
+		}
+
+		return isEvery;
+	}
+
 	static _createSpecificVariants_hasRequiredProperty (baseItem, genericVariant) {
-		return genericVariant.requires.some(req => Renderer.item._createSpecificVariants_isRequiresExcludesMatch(baseItem, req, "every"));
+		return genericVariant.requires.some(requirements => Renderer.item._createSpecificVariants_isRequiresExcludesMatch({
+			candidate: baseItem,
+			requirements,
+			isEvery: true,
+		}));
 	}
 
 	static _createSpecificVariants_hasExcludedProperty (baseItem, genericVariant) {
-		const curExcludes = genericVariant.excludes || {};
-		return Renderer.item._createSpecificVariants_isRequiresExcludesMatch(baseItem, genericVariant.excludes, "some");
-	}
-
-	static _createSpecificVariants_isRequiresExcludesMatch (candidate, requirements, method) {
-		if (candidate == null || requirements == null) return false;
-
-		return Object.entries(requirements)[method](([reqKey, reqVal]) => {
-			if (reqVal instanceof Array) {
-				return candidate[reqKey] instanceof Array
-					? candidate[reqKey].some(it => reqVal.includes(it))
-					: reqVal.includes(candidate[reqKey]);
-			}
-
-			// Recurse for e.g. `"customProperties": { ... }`
-			if (reqVal != null && typeof reqVal === "object") {
-				return Renderer.item._createSpecificVariants_isRequiresExcludesMatch(candidate[reqKey], reqVal, method);
-			}
-
-			return candidate[reqKey] instanceof Array
-				? candidate[reqKey].some(it => reqVal === it)
-				: reqVal === candidate[reqKey];
+		return Renderer.item._createSpecificVariants_isRequiresExcludesMatch({
+			candidate: baseItem,
+			requirements: genericVariant.excludes,
 		});
 	}
+
+	/* ----- */
 
 	/**
 	 * @param baseItem

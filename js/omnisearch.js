@@ -189,13 +189,13 @@ class OmnisearchUi {
 
 	static _render_doBindElementListeners ({rdState}) {
 		rdState.dispSearchOutput
-			.vee.onClick(evt => {
+			.vee.onn("click", evt => {
 				evt.stopPropagation();
 				Renderer.hover.cleanTempWindows();
 			});
 
 		rdState.iptSearch
-			.vee.onKeydown((evt) => {
+			.vee.onn("keydown", (evt) => {
 				evt.stopPropagation();
 				Renderer.hover.cleanTempWindows();
 				switch (evt.key) {
@@ -235,16 +235,16 @@ class OmnisearchUi {
 
 		let typeTimer;
 		rdState.iptSearch
-			.vee.onKeyup((evt) => {
+			.vee.onn("keyup", (evt) => {
 				if (evt.key !== "Enter") rdState.clickFirst = false;
 				if (this._IPT_SEARCH_SPECIAL_KEYS.has(evt.key)) return;
 				clearTimeout(typeTimer);
 				typeTimer = setTimeout(() => this._handleClick_pSubmit({rdState}), this._TYPE_TIMEOUT_MS);
 			});
 		rdState.iptSearch
-			.vee.onKeydown(() => clearTimeout(typeTimer));
+			.vee.onn("keydown", () => clearTimeout(typeTimer));
 		rdState.iptSearch
-			.vee.onClick(evt => {
+			.vee.onn("click", evt => {
 				evt.stopPropagation();
 				Renderer.hover.cleanTempWindows();
 				if (rdState.iptSearch.vee.val()?.trim().length) this._handleClick_pSubmit({rdState}).then(null);

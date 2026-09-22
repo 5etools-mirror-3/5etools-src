@@ -81,19 +81,19 @@ export class ModalFilterGemsArtObjects extends ModalFilterBase {
 			<div class="ve-col-2 ve-pl-1 ve-pr-0 ve-flex-h-center ${Parser.sourceJsonToSourceClassname(ent.source)}" title="${Parser.sourceJsonToFull(ent.source)}">${source}${Parser.sourceJsonToMarkerHtml(ent.source, {isList: true})}</div>
 		</div>`;
 
-		return new ListItem(
-			ix,
-			eleRow,
-			ent.name,
-			{
+		return new ListItem({
+			id: ix,
+			ele: eleRow,
+			name: ent.name,
+			values: {
 				source,
 				sourceJson: ent.source,
 				...ListItem.getCommonValues(ent),
 			},
-			{
+			data: {
 				page: ent.page,
 				cbSel: eleRow.firstElementChild.firstElementChild.firstElementChild,
 			},
-		);
+		});
 	}
 }

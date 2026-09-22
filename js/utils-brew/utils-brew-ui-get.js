@@ -253,8 +253,8 @@ export class GetBrewUi {
 	}
 
 	_sortUrlList (a, b, o) {
-		a = this._dataList[a.ix];
-		b = this._dataList[b.ix];
+		a = this._dataList[a.getId()];
+		b = this._dataList[b.getId()];
 
 		switch (o.sortBy) {
 			case "name": return this.constructor._sortUrlList_byName(a, b);
@@ -420,7 +420,7 @@ export class GetBrewUi {
 
 	_handleFilterChange (rdState) {
 		const f = rdState.pageFilter.filterBox.getValues();
-		rdState.list.filter(li => rdState.pageFilter.toDisplay(f, this._dataList[li.ix]));
+		rdState.list.filter(li => rdState.pageFilter.toDisplay(f, this._dataList[li.getId()]));
 	}
 
 	_pRender_getUrlRowMeta (rdState, brewInfo, ix) {
@@ -493,22 +493,22 @@ export class GetBrewUi {
 		})
 			.vee.attr("tabindex", ix);
 
-		const listItem = new ListItem(
-			ix,
-			eleLi,
-			brewInfo._brewName,
-			{
+		const listItem = new ListItem({
+			id: ix,
+			ele: eleLi,
+			name: brewInfo._brewName,
+			values: {
 				author: brewInfo._brewAuthor,
 				// category: brewInfo._brewPropDisplayName, // Unwanted in search
 				internalSources: brewInfo._brewInternalSources, // Used for search
 			},
-			{
+			data: {
 				btnAdd,
 				cbSel,
 				btnShowHidePreview,
 				pFnDoDownload: ({isLazy = false} = {}) => this._pHandleClick_btnGetRemote({btn: btnAdd, url: brewInfo.urlDownload, isLazy}),
 			},
-		);
+		});
 
 		eleLi.addEventListener("click", evt => rdState.listSelectClickHandler.handleSelectClick(listItem, evt, {isPassThroughEvents: true}));
 

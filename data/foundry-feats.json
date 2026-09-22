@@ -74,6 +74,48 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Abjuration Adept",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Protective Ward",
+					"type": "heal",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true,
+							"max": "9"
+						}
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					},
+					"healing": {
+						"types": [
+							"temphp"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "@scaling * 2"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Actor",
 			"source": "XPHB",
 			"activities": [
@@ -132,6 +174,302 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Arcane Artist",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Inspiring Magic",
+					"type": "utility",
+					"activation": {
+						"type": "special",
+						"condition": "you cast a spell from the Illusion school"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "ally",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Arcane Eloquence",
+			"source": "AU",
+			"effects": [
+				{
+					"name": "Smooth Talker",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Arcane Infiltrator",
+			"source": "AU",
+			"system": {
+				"uses.max": "@prof"
+			},
+			"activities": [
+				{
+					"name": "Dodge",
+					"type": "utility",
+					"description": "Take the Dodge action as a Bonus Action.",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "arcaneInfiltrato"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "arcaneInfiltrato",
+					"name": "Dodging",
+					"duration": {
+						"units": "seconds",
+						"expiry": "targetStart"
+					},
+					"statuses": [
+						"dodging"
+					],
+					"description": "&Reference[dodge]"
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Arcane Omens",
+			"source": "AU",
+			"system": {
+				"uses.max": "@prof"
+			},
+			"activities": [
+				{
+					"name": "Helpful Premonition",
+					"type": "utility",
+					"activation": {
+						"type": "reaction",
+						"condition": "you or a target you can see within range fails a saving throw"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1",
+							"special": "visible"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					},
+					"roll": {
+						"name": "Save Bonus",
+						"formula": "1d4"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Arcane Overload",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Power Surge",
+					"type": "damage",
+					"activation": {
+						"type": "special",
+						"condition": "when you cast an Evocation spell and deal damage with it"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "any"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"critical": {
+							"allow": true
+						},
+						"parts": [
+							{
+								"bonus": "@prof",
+								"types": [
+									"bludgeoning",
+									"piercing",
+									"slashing",
+									"acid",
+									"cold",
+									"fire",
+									"force",
+									"lightning",
+									"necrotic",
+									"poison",
+									"psychic",
+									"radiant",
+									"thunder"
+								]
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Arcane Safeguard",
+			"source": "AU",
+			"system": {
+				"advancement.tkAWLfJZfdNCKVl7.configuration.spell.uses.max": "@prof"
+			},
+			"activities": [
+				{
+					"name": "Sheltering Aid",
+					"type": "heal",
+					"activation": {
+						"type": "special",
+						"condition": "when you take the Help action to assist with an ally's ability check"
+					},
+					"target": {
+						"affects": {
+							"type": "ally",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"healing": {
+						"types": [
+							"temphp"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"bonus": "@prof"
+					}
+				}
+			],
+			"effects": [
+				{
+					"name": "Cantrip Modifications",
+					"type": "enchantment",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "activities[forward].name",
+							"value": "Cast as Bonus Action",
+							"mode": "OVERRIDE"
+						},
+						{
+							"key": "activities[forward].activation.type",
+							"value": "bonus",
+							"mode": "OVERRIDE"
+						},
+						{
+							"key": "activities[forward].activation.override",
+							"value": true,
+							"mode": "OVERRIDE"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Arcane Undertaker",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Understanding of Death",
+					"type": "utility",
+					"activation": {
+						"type": "special",
+						"condition": "you take the Help action to stabilize a creature"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					}
+				}
+			],
+			"effects": [
+				{
+					"name": "Knowledge from the Dead",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					}
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -150,6 +488,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -193,6 +533,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -406,6 +748,54 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Boon of Erupting Spellpower",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Spell Overload",
+					"type": "utility",
+					"activation": {
+						"type": "special",
+						"condition": "When you cast a spell that deals damage using a spell slot"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"effects": [
+						{
+							"foundryId": "boonOfEruptingSp"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "boonOfEruptingSp",
+					"name": "Prone",
+					"duration": {
+						"units": "seconds"
+					},
+					"statuses": [
+						"prone"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Boon of Fate",
 			"source": "XPHB",
 			"activities": [
@@ -440,6 +830,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -605,6 +997,8 @@
 					}
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -699,6 +1093,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -830,6 +1226,58 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Conjuration Adept",
+			"source": "AU",
+			"effects": [
+				{
+					"name": "Conjuration Focus (INT)",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.concentration.roll.bonus",
+							"value": "@abilities.int.mod",
+							"mode": "ADD"
+						}
+					]
+				},
+				{
+					"name": "Conjuration Focus (WIS)",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.concentration.roll.bonus",
+							"value": "@abilities.wis.mod",
+							"mode": "ADD"
+						}
+					]
+				},
+				{
+					"name": "Conjuration Focus (CHA)",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.concentration.roll.bonus",
+							"value": "@abilities.cha.mod",
+							"mode": "ADD"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Defense",
 			"source": "XPHB",
 			"effects": [
@@ -844,6 +1292,8 @@
 					]
 				}
 			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
 			"migrationVersion": 3
 		},
 		{
@@ -878,6 +1328,54 @@
 							"value": "@prof"
 						}
 					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Divination Adept",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Prescient Intervention",
+					"type": "utility",
+					"activation": {
+						"type": "reaction"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "60"
+					}
+				},
+				{
+					"name": "Restore Use",
+					"type": "utility",
+					"activation": {
+						"type": "special",
+						"condition": "After casting a Divination spell using a spell slot"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "-1"
+							}
+						]
+					}
 				}
 			],
 			"migrationVersion": 3
@@ -1089,6 +1587,409 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Elemental Familiar",
+			"source": "AU",
+			"activities": [
+				{
+					"foundryId": "elementalFamilia",
+					"name": "Acid Elemental Familiar",
+					"type": "summon",
+					"activation": {
+						"type": "hour",
+						"value": 1
+					},
+					"target": {
+						"affects": {
+							"type": "space",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "10"
+					},
+					"profiles": [
+						{
+							"cr": "0",
+							"name": "CR 0 Beast",
+							"types": [
+								"beast"
+							]
+						}
+					],
+					"summon": {
+						"mode": "cr"
+					},
+					"creatureTypes": [
+						"celestial",
+						"fey",
+						"fiend"
+					],
+					"match": {
+						"disposition": true
+					},
+					"effects": [
+						{
+							"foundryId": "elementalFamilia"
+						}
+					]
+				},
+				{
+					"foundryId": "elementalFamili1",
+					"name": "Cold Elemental Familiar",
+					"type": "summon",
+					"activation": {
+						"type": "hour",
+						"value": 1
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "space"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "10"
+					},
+					"profiles": [
+						{
+							"cr": "0",
+							"name": "CR 0 Beast",
+							"types": [
+								"beast"
+							]
+						}
+					],
+					"summon": {
+						"mode": "cr"
+					},
+					"creatureTypes": [
+						"celestial",
+						"fey",
+						"fiend"
+					],
+					"match": {
+						"disposition": true
+					},
+					"effects": [
+						{
+							"foundryId": "elementalFamili1"
+						}
+					]
+				},
+				{
+					"foundryId": "elementalFamili2",
+					"name": "Fire Elemental Familiar",
+					"type": "summon",
+					"activation": {
+						"type": "hour",
+						"value": 1
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "space"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "10"
+					},
+					"profiles": [
+						{
+							"cr": "0",
+							"name": "CR 0 Beast",
+							"types": [
+								"beast"
+							]
+						}
+					],
+					"summon": {
+						"mode": "cr"
+					},
+					"creatureTypes": [
+						"celestial",
+						"fey",
+						"fiend"
+					],
+					"match": {
+						"disposition": true
+					},
+					"effects": [
+						{
+							"foundryId": "elementalFamili2"
+						}
+					]
+				},
+				{
+					"foundryId": "elementalFamili3",
+					"name": "Lightning Elemental Familiar",
+					"type": "summon",
+					"activation": {
+						"type": "hour",
+						"value": 1
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "space"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "10"
+					},
+					"profiles": [
+						{
+							"cr": "0",
+							"name": "CR 0 Beast",
+							"types": [
+								"beast"
+							]
+						}
+					],
+					"summon": {
+						"mode": "cr"
+					},
+					"creatureTypes": [
+						"celestial",
+						"fey",
+						"fiend"
+					],
+					"match": {
+						"disposition": true
+					},
+					"effects": [
+						{
+							"foundryId": "elementalFamili3"
+						}
+					]
+				},
+				{
+					"foundryId": "elementalFamili4",
+					"name": "Thunder Elemental Familiar",
+					"type": "summon",
+					"activation": {
+						"type": "hour",
+						"value": 1
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "space"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "10"
+					},
+					"profiles": [
+						{
+							"cr": "0",
+							"name": "CR 0 Beast",
+							"types": [
+								"beast"
+							]
+						}
+					],
+					"summon": {
+						"mode": "cr"
+					},
+					"creatureTypes": [
+						"celestial",
+						"fey",
+						"fiend"
+					],
+					"match": {
+						"disposition": true
+					},
+					"effects": [
+						{
+							"foundryId": "elementalFamili4"
+						}
+					]
+				},
+				{
+					"name": "Energy Pulse",
+					"type": "save",
+					"activation": {
+						"type": "bonus"
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "radius",
+							"size": "5"
+						},
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "120"
+					},
+					"damage": {
+						"onSave": "none",
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 4,
+								"types": [
+									"acid",
+									"cold",
+									"fire",
+									"lightning",
+									"thunder"
+								]
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "elementalFamili5"
+						}
+					]
+				},
+				{
+					"name": "Elemental Energy",
+					"type": "enchant",
+					"activation": {
+						"type": ""
+					},
+					"restrictions": {
+						"type": "spell"
+					},
+					"effects": [
+						{
+							"foundryId": "elementalFamili6",
+							"riders": {
+								"activity": [
+									{
+										"foundryId": "elementalFamilia"
+									},
+									{
+										"foundryId": "elementalFamili1"
+									},
+									{
+										"foundryId": "elementalFamili2"
+									},
+									{
+										"foundryId": "elementalFamili3"
+									},
+									{
+										"foundryId": "elementalFamili4"
+									}
+								]
+							}
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "elementalFamili6",
+					"type": "enchantment",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					}
+				},
+				{
+					"foundryId": "elementalFamilia",
+					"name": "Acid Resistance",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"value": "acid",
+							"mode": "ADD"
+						}
+					]
+				},
+				{
+					"foundryId": "elementalFamili1",
+					"name": "Cold Resistance",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"value": "cold",
+							"mode": "ADD"
+						}
+					]
+				},
+				{
+					"foundryId": "elementalFamili2",
+					"name": "Fire Resistance",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"value": "fire",
+							"mode": "ADD"
+						}
+					]
+				},
+				{
+					"foundryId": "elementalFamili3",
+					"name": "Lightning Resistance",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"value": "lightning",
+							"mode": "ADD"
+						}
+					]
+				},
+				{
+					"foundryId": "elementalFamili4",
+					"name": "Thunder Resistance",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"value": "thunder",
+							"mode": "ADD"
+						}
+					]
+				},
+				{
+					"foundryId": "elementalFamili5",
+					"name": "Prone",
+					"duration": {
+						"units": "seconds"
+					},
+					"statuses": [
+						"prone"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Elven Accuracy",
 			"source": "XGE",
 			"effects": [
@@ -1099,6 +2000,179 @@
 							"key": "flags.dnd5e.elvenAccuracy",
 							"mode": "OVERRIDE",
 							"value": true
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Evocation Adept",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Fueled Evocation (Smallest Hit Die)",
+					"type": "damage",
+					"activation": {
+						"type": "special",
+						"condition": "When you cast an Evocation spell and deal damage"
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true,
+							"max": "2"
+						},
+						"targets": [
+							{
+								"type": "hitDice",
+								"value": "1",
+								"target": "smallest",
+								"scaling": {
+									"mode": "amount"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"critical": {
+							"allow": true
+						},
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "(@scaling)d(@attributes.hd.smallestFace)"
+								},
+								"types": [
+									"bludgeoning",
+									"piercing",
+									"slashing",
+									"acid",
+									"cold",
+									"fire",
+									"force",
+									"lightning",
+									"necrotic",
+									"poison",
+									"psychic",
+									"radiant",
+									"thunder"
+								]
+							}
+						]
+					}
+				},
+				{
+					"name": "Fueled Evocation (Largest Hit Die)",
+					"type": "damage",
+					"activation": {
+						"type": "special",
+						"condition": "When you cast an Evocation spell and deal damage"
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true,
+							"max": "2"
+						},
+						"targets": [
+							{
+								"type": "hitDice",
+								"value": "1",
+								"target": "largest",
+								"scaling": {
+									"mode": "amount"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"critical": {
+							"allow": true
+						},
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "(@scaling)d(@attributes.hd.largestFace)"
+								},
+								"types": [
+									"bludgeoning",
+									"piercing",
+									"slashing",
+									"acid",
+									"cold",
+									"fire",
+									"force",
+									"lightning",
+									"necrotic",
+									"poison",
+									"psychic",
+									"radiant",
+									"thunder"
+								]
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Familiar Friend",
+			"source": "AU",
+			"system": {
+				"uses.max": "@prof"
+			},
+			"activities": [
+				{
+					"name": "Helpful Friend",
+					"type": "utility",
+					"activation": {
+						"type": "special",
+						"condition": "you make an ability check with proficiency while your familiar is in range"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "5"
+					}
+				}
+			],
+			"effects": [
+				{
+					"name": "Fortified Familiar",
+					"type": "enchantment",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "activities[summon].bonuses.hp",
+							"value": "2 * @details.level",
+							"mode": "ADD"
 						}
 					]
 				}
@@ -1915,6 +2989,95 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Necromancy Adept",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Life Manipulation (Smallest Hit Die)",
+					"type": "heal",
+					"activation": {
+						"type": "special",
+						"condition": "Cast a Necromancy school spell using a spell slot"
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true,
+							"max": "2"
+						},
+						"targets": [
+							{
+								"type": "hitDice",
+								"value": "1",
+								"target": "smallest",
+								"scaling": {
+									"mode": "amount"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "(@scaling)d(@attributes.hd.smallestFace)"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				},
+				{
+					"name": "Life Manipulation (Largest Hit Die)",
+					"type": "heal",
+					"activation": {
+						"type": "special",
+						"condition": "Cast a Necromancy school spell using a spell slot"
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true,
+							"max": "2"
+						},
+						"targets": [
+							{
+								"type": "hitDice",
+								"value": "1",
+								"target": "largest",
+								"scaling": {
+									"mode": "amount"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "(@scaling)d(@attributes.hd.largestFace)"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Observant",
 			"source": "PHB",
 			"effects": [
@@ -1925,6 +3088,298 @@
 							"key": "flags.dnd5e.observantFeat",
 							"mode": "OVERRIDE",
 							"value": true
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Otherworldly Familiar",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Enchant",
+					"type": "enchant",
+					"activation": {
+						"type": ""
+					},
+					"restrictions": {
+						"type": "spell"
+					},
+					"effects": [
+						{
+							"foundryId": "otherworldlyFami",
+							"riders": {
+								"activity": [
+									{
+										"foundryId": "otherworldlyFami"
+									},
+									{
+										"foundryId": "otherworldlyFam1"
+									},
+									{
+										"foundryId": "otherworldlyFam2"
+									},
+									{
+										"foundryId": "otherworldlyFam3"
+									},
+									{
+										"foundryId": "otherworldlyFam4"
+									}
+								]
+							}
+						}
+					]
+				},
+				{
+					"foundryId": "otherworldlyFami",
+					"name": "Otherworldly Necrotic Familiar",
+					"type": "summon",
+					"activation": {
+						"type": "hour",
+						"value": 1
+					},
+					"profiles": [
+						{
+							"cr": "0",
+							"name": "CR 0 Beast",
+							"types": [
+								"beast"
+							]
+						}
+					],
+					"summon": {
+						"mode": "cr"
+					},
+					"creatureTypes": [
+						"celestial",
+						"fey",
+						"fiend"
+					],
+					"match": {
+						"disposition": true
+					},
+					"effects": [
+						{
+							"foundryId": "otherworldlyFam1"
+						}
+					]
+				},
+				{
+					"foundryId": "otherworldlyFam1",
+					"name": "Otherworldly Poison Familiar",
+					"type": "summon",
+					"activation": {
+						"type": "hour",
+						"value": 1
+					},
+					"profiles": [
+						{
+							"cr": "0",
+							"name": "CR 0 Beast",
+							"types": [
+								"beast"
+							]
+						}
+					],
+					"summon": {
+						"mode": "cr"
+					},
+					"creatureTypes": [
+						"celestial",
+						"fey",
+						"fiend"
+					],
+					"match": {
+						"disposition": true
+					},
+					"effects": [
+						{
+							"foundryId": "otherworldlyFam2"
+						}
+					]
+				},
+				{
+					"foundryId": "otherworldlyFam2",
+					"name": "Otherworldly Psychic Familiar",
+					"type": "summon",
+					"activation": {
+						"type": "hour",
+						"value": 1
+					},
+					"profiles": [
+						{
+							"cr": "0",
+							"name": "CR 0 Beast",
+							"types": [
+								"beast"
+							]
+						}
+					],
+					"summon": {
+						"mode": "cr"
+					},
+					"creatureTypes": [
+						"celestial",
+						"fey",
+						"fiend"
+					],
+					"match": {
+						"disposition": true
+					},
+					"effects": [
+						{
+							"foundryId": "otherworldlyFam3"
+						}
+					]
+				},
+				{
+					"foundryId": "otherworldlyFam3",
+					"name": "Otherworldly Radiant Familiar",
+					"type": "summon",
+					"activation": {
+						"type": "hour",
+						"value": 1
+					},
+					"profiles": [
+						{
+							"cr": "0",
+							"name": "CR 0 Beast",
+							"types": [
+								"beast"
+							]
+						}
+					],
+					"summon": {
+						"mode": "cr"
+					},
+					"creatureTypes": [
+						"celestial",
+						"fey",
+						"fiend"
+					],
+					"match": {
+						"disposition": true
+					},
+					"effects": [
+						{
+							"foundryId": "otherworldlyFam4"
+						}
+					]
+				},
+				{
+					"foundryId": "otherworldlyFam4",
+					"name": "Otherworldly Thunder Familiar",
+					"type": "summon",
+					"activation": {
+						"type": "hour",
+						"value": 1
+					},
+					"profiles": [
+						{
+							"cr": "0",
+							"name": "CR 0 Beast",
+							"types": [
+								"beast"
+							]
+						}
+					],
+					"summon": {
+						"mode": "cr"
+					},
+					"creatureTypes": [
+						"celestial",
+						"fey",
+						"fiend"
+					],
+					"match": {
+						"disposition": true
+					},
+					"effects": [
+						{
+							"foundryId": "otherworldlyFam5"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "otherworldlyFami",
+					"type": "enchantment",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					}
+				},
+				{
+					"foundryId": "otherworldlyFam1",
+					"name": "Necrotic Resistance",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"value": "necrotic",
+							"mode": "ADD"
+						}
+					]
+				},
+				{
+					"foundryId": "otherworldlyFam2",
+					"name": "Poison Resistance",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"value": "poison",
+							"mode": "ADD"
+						}
+					]
+				},
+				{
+					"foundryId": "otherworldlyFam3",
+					"name": "Psychic Resistance",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"value": "psychic",
+							"mode": "ADD"
+						}
+					]
+				},
+				{
+					"foundryId": "otherworldlyFam4",
+					"name": "Radiant Resistance",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"value": "radiant",
+							"mode": "ADD"
+						}
+					]
+				},
+				{
+					"foundryId": "otherworldlyFam5",
+					"name": "Thunder Resistance",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"value": "thunder",
+							"mode": "ADD"
 						}
 					]
 				}
@@ -1991,9 +3446,7 @@
 					"foundryId": "poisoner",
 					"name": "Poison Save (Dexterity)",
 					"type": "save",
-					"description": {
-						"chatFlavor": "&Reference[poisoned] on failure"
-					},
+					"descriptionChat": "&Reference[poisoned] on failure",
 					"activation": {
 						"type": ""
 					},
@@ -2046,9 +3499,7 @@
 					"foundryId": "poisoner1",
 					"name": "Poison Save (Intelligence)",
 					"type": "save",
-					"description": {
-						"chatFlavor": "&Reference[poisoned] on failure"
-					},
+					"descriptionChat": "&Reference[poisoned] on failure",
 					"activation": {
 						"type": ""
 					},
@@ -2181,6 +3632,46 @@
 							"count": "1",
 							"type": "creature"
 						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Portal Jumper",
+			"source": "AU",
+			"system": {
+				"uses.max": "@prof"
+			},
+			"activities": [
+				{
+					"name": "Portal Step",
+					"type": "teleport",
+					"activation": {
+						"type": "special",
+						"condition": "spending 15 feet of movement"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "space",
+							"count": "1",
+							"special": "unoccupied"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "15"
+					},
+					"teleport": {
+						"units": "ft"
 					}
 				}
 			],
@@ -2493,6 +3984,64 @@
 							"value": 10
 						}
 					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Spell Resistant",
+			"source": "AU",
+			"system": {
+				"uses.max": "@prof"
+			},
+			"activities": [
+				{
+					"name": "Magic Resistant",
+					"type": "utility",
+					"activation": {
+						"type": "special",
+						"condition": "When you would fail a saving throw against a spell or magical effect"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"roll": {
+						"name": "Magic Resistant Bonus",
+						"formula": "1d6"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Spell Subterfuge",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Shrouding Spells",
+					"type": "utility",
+					"activation": {
+						"type": "bonus",
+						"condition": "After you cast a spell that has a casting time of an action using a spell slot"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					}
 				}
 			],
 			"migrationVersion": 3
@@ -2949,6 +4498,99 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Transmutation Adept",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Magical Augmentation",
+					"type": "utility",
+					"activation": {
+						"type": "special",
+						"condition": "Cast a Transmutation spell using a spell slot"
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true,
+							"max": "9"
+						}
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "transmutationAde"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "transmutationAde",
+					"name": "Magical Augmentation: Speed Increase",
+					"duration": {
+						"units": "seconds",
+						"expiry": "turnEnd"
+					},
+					"description": "On your turn when you cast a spell from the Transmutation school using a spell slot, your Speed increases by a number of feet equal to five times the level of spell slot expended. This increase lasts until the end of the turn."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Transmuted Anatomy",
+			"source": "AU",
+			"system": {
+				"uses.max": "@prof"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "reaction",
+						"condition": "you fail a Constitution saving throw"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"roll": {
+						"prompt": true,
+						"name": "Save Bonus",
+						"formula": "1d4"
+					}
+				}
+			],
+			"effects": [
+				{
+					"name": "Lengthened Stride",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.bonus",
+							"value": 5,
+							"mode": "ADD"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Unarmed Fighting",
 			"source": "XPHB",
 			"activities": [
@@ -3075,6 +4717,31 @@
 							"value": 1
 						}
 					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Warlike Familiar",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Intercept Attack",
+					"type": "utility",
+					"activation": {
+						"type": "reaction",
+						"condition": "A creature within 5 feet of your familiar is hit by an attack roll"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"roll": {
+						"name": "Armor Class Bonus",
+						"formula": "@prof"
+					}
 				}
 			],
 			"migrationVersion": 3

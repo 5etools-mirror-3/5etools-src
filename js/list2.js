@@ -1,4 +1,5 @@
 import {List2SyntaxParser} from "./list2/list2-syntaxparser.js";
+import {ListSearchCache} from "./list2/list2-search-cache.js";
 
 class _ListHelpers {
 	static getSearchText (text) {
@@ -28,34 +29,72 @@ export class ListItem {
 	}
 
 	/**
-	 * @param ix External ID information (e.g. the location of the entry this ListItem represents in a list of entries)
-	 * @param ele An element.
-	 * @param name A name for this item.
-	 * @param values A dictionary of indexed values for this item.
-	 * @param [data] An optional dictionary of additional data to store with the item (not indexed).
+	 * @param opts
+	 * @param opts.id External ID information (e.g. the location of the entry this ListItem represents in a list of entries).
+	 * @param [opts.ele] An element.
+	 * @param [opts.fnGetEle] A function which creates an element on first access.
+	 * @param opts.name A name for this item.
+	 * @param [opts.values] A dictionary of indexed values for this item.
+	 * @param [opts.data] An optional dictionary of additional data to store with the item (not indexed).
 	 */
-	constructor (ix, ele, name, values, data) {
-		this.ix = ix;
-		this.ele = ele;
+	constructor ({id, ele, fnGetEle, name, values, data} = {}) {
+		if (id == null) throw new Error(`"id" must be provided!`);
+		if (name == null) throw new Error(`"name" must be provided!`);
+		if ((ele == null && fnGetEle == null) || (ele != null && fnGetEle != null)) throw new Error(`Exactly one of "ele" and "fnGetEle" must be provided!`);
+
+		this._id = id;
+		this._ele = ele ?? null;
+		this._fnGetEle = fnGetEle ?? null;
 		this.name = name;
 		this.values = values || {};
 		this.data = data || {};
 
-		this.searchText = null;
-		this.mutRegenSearchText();
+		this._searchText = undefined;
 
 		this._isSelected = false;
 	}
 
-	mutRegenSearchText () {
+	/* ----- */
+
+	getId () { return this._id; }
+
+	/* ----- */
+
+	get ele () {
+		if (this._fnGetEle) {
+			this._ele = this._fnGetEle();
+			this._fnGetEle = null;
+		}
+		return this._ele;
+	}
+
+	set ele (ele) {
+		this._ele = ele;
+		this._fnGetEle = null;
+	}
+
+	/* ----- */
+
+	_mutRegenSearchText () {
 		let searchText = `${this.name} - `;
 		for (const k in this.values) {
 			const v = this.values[k]; // unsafe for performance
 			if (!v) continue;
 			searchText += `${v} - `;
 		}
-		this.searchText = _ListHelpers.getNormalizedText(_ListHelpers.getSearchText(searchText));
+		this._searchText = _ListHelpers.getNormalizedText(_ListHelpers.getSearchText(searchText));
 	}
+
+	get searchText () {
+		if (this._searchText === undefined) this._mutRegenSearchText();
+		return this._searchText;
+	}
+
+	set searchText (searchText) {
+		this._searchText = searchText;
+	}
+
+	/* -------------------------------------------- */
 
 	set isSelected (val) {
 		if (this._isSelected === val) return;
@@ -136,6 +175,7 @@ export class List {
 
 		this._items = [];
 		this._eventHandlers = {};
+		this._listSearchCache = new ListSearchCache({fnIsMatch: (item, searchTerm) => this.constructor.isVisibleDefaultSearch(item, searchTerm)});
 
 		this._searchTerm = List._DEFAULTS.searchTerm;
 		this._sortBy = opts.sortByInitial || List._DEFAULTS.sortBy;
@@ -169,6 +209,7 @@ export class List {
 
 	setFnSearch (fn) {
 		this._fnSearch = fn;
+		this._listSearchCache.doReset();
 		this._isDirty = true;
 	}
 
@@ -256,7 +297,7 @@ export class List {
 		elasticlunr.clearStopWords();
 		this._fuzzySearch = elasticlunr(function () {
 			this.addField("s");
-			this.setRef("ix");
+			this.setRef("id");
 		});
 		SearchUtil.removeStemmer(this._fuzzySearch);
 	}
@@ -283,30 +324,32 @@ export class List {
 		if (this._doSearch_doSearchTerm_preSyntax()) return;
 
 		const matchingSyntaxInfo = this._doSearch_getMatchingSyntaxInfo();
-		if (matchingSyntaxInfo) {
-			if (this._doSearch_doSearchTerm_syntax(matchingSyntaxInfo.syntaxMetas)) {
-				this._doSearch_doSearchTerm_basic({searchedItems: this._searchedItems, searchTerm: matchingSyntaxInfo.searchTerm});
-				return;
-			}
-
-			// For async syntax, blank the list for now, and allow the search to "resume" later
-			this._searchedItems = [];
-			this._doSearch_doSearchTerm_pSyntax(matchingSyntaxInfo.syntaxMetas)
-				.then(isContinue => {
-					if (!isContinue) return;
-					this._doSearch_doSearchTerm_basic({searchedItems: this._searchedItems, searchTerm: matchingSyntaxInfo.searchTerm});
-					this._doSearch_doPostSearchTerm();
-				});
-
+		if (!matchingSyntaxInfo?.syntaxMetas.length) {
+			this._doSearch_doSearchTerm_basic({searchTerm: matchingSyntaxInfo?.searchTerm});
 			return;
 		}
 
-		this._doSearch_doSearchTerm_basic();
+		this._listSearchCache.doReset();
+		if (this._doSearch_doSearchTerm_syntax(matchingSyntaxInfo.syntaxMetas)) {
+			this._doSearch_doSearchTerm_basic({searchedItems: this._searchedItems, searchTerm: matchingSyntaxInfo.searchTerm});
+			return;
+		}
+
+		// For async syntax, blank the list for now, and allow the search to "resume" later
+		this._searchedItems = [];
+		this._doSearch_doSearchTerm_pSyntax(matchingSyntaxInfo.syntaxMetas)
+			.then(isContinue => {
+				if (!isContinue) return;
+				this._doSearch_doSearchTerm_basic({searchedItems: this._searchedItems, searchTerm: matchingSyntaxInfo.searchTerm});
+				this._doSearch_doPostSearchTerm();
+			});
 	}
 
 	_doSearch_doSearchTerm_preSyntax () {
 		if (!this._searchTerm && !this._fnSearch) {
-			this._searchedItems = [...this._items];
+			this._searchedItems = this._isFuzzy
+				? this._items.slice(0)
+				: this._listSearchCache.setItems({items: this._items});
 			return true;
 		}
 	}
@@ -326,7 +369,12 @@ export class List {
 		if (this._fnSearch) return this._searchedItems = (searchedItems || this._items).filter(it => this._fnSearch(it, searchTerm));
 
 		const searchTermNormalized = _ListHelpers.getNormalizedText(searchTerm);
-		this._searchedItems = (searchedItems || this._items).filter(it => this.constructor.isVisibleDefaultSearch(it, searchTermNormalized));
+		if (searchedItems) {
+			this._listSearchCache.doReset();
+			return this._searchedItems = searchedItems.filter(it => this.constructor.isVisibleDefaultSearch(it, searchTermNormalized));
+		}
+
+		this._searchedItems = this._listSearchCache.getMatchingItems({items: this._items, searchTerm: searchTermNormalized});
 	}
 
 	_doSearch_getMatchingSyntaxInfo () {
@@ -425,7 +473,7 @@ export class List {
 				},
 			);
 
-		return results.map(res => this._items[res.doc.ix]);
+		return results.map(res => this._items[res.doc.id]);
 	}
 
 	_doSearch_doPostSearchTerm () {
@@ -491,6 +539,7 @@ export class List {
 	filter (fnFilter) {
 		if (this._fnFilter === fnFilter) return;
 		this._fnFilter = fnFilter;
+		if (!this._isInit) return;
 		this._doFilter();
 	}
 
@@ -515,35 +564,37 @@ export class List {
 	addItem (listItem) {
 		this._isDirty = true;
 		this._items.push(listItem);
+		this._listSearchCache.doReset();
 
-		if (this._isFuzzy) this._fuzzySearch.addDoc({ix: listItem.ix, s: listItem.searchText});
+		if (this._isFuzzy) this._fuzzySearch.addDoc({id: listItem.getId(), s: listItem.searchText});
 	}
 
 	removeItem (listItem) {
 		const ixItem = this._items.indexOf(listItem);
-		return this.removeItemByIndex(listItem.ix, ixItem);
+		return this.removeItemById(listItem.getId(), ixItem);
 	}
 
-	removeItemByIndex (ix, ixItem) {
-		ixItem = ixItem ?? this._items.findIndex(it => it.ix === ix);
+	removeItemById (id, ixItem) {
+		ixItem = ixItem ?? this._items.findIndex(it => it.getId() === id);
 		if (!~ixItem) return;
 
 		this._isDirty = true;
 		const removed = this._items.splice(ixItem, 1);
+		this._listSearchCache.doReset();
 
-		if (this._isFuzzy) this._fuzzySearch.removeDocByRef(ix);
+		if (this._isFuzzy) this._fuzzySearch.removeDocByRef(id);
 
 		return removed[0];
 	}
 
 	removeItemBy (valueName, value) {
 		const ixItem = this._items.findIndex(it => it.values[valueName] === value);
-		return this.removeItemByIndex(ixItem, ixItem);
+		return this.removeItemById(this._items[ixItem]?.getId(), ixItem);
 	}
 
 	removeItemByData (dataName, value) {
 		const ixItem = this._items.findIndex(it => it.data[dataName] === value);
-		return this.removeItemByIndex(ixItem, ixItem);
+		return this.removeItemById(this._items[ixItem]?.getId(), ixItem);
 	}
 
 	removeItemsByFilter (fnFilter) {
@@ -552,13 +603,15 @@ export class List {
 
 		this._isDirty = true;
 		this._items = itemsNxt;
+		this._listSearchCache.doReset();
 
-		if (this._isFuzzy) itemsToRemove.forEach(li => this._fuzzySearch.removeDocByRef(li.ix));
+		if (this._isFuzzy) itemsToRemove.forEach(li => this._fuzzySearch.removeDocByRef(li.getId()));
 	}
 
 	removeAllItems () {
 		this._isDirty = true;
 		this._items = [];
+		this._listSearchCache.doReset();
 		if (this._isFuzzy) this._initFuzzySearch();
 	}
 
@@ -598,13 +651,13 @@ export class List {
 		for (let i = 0; i < len; ++i) {
 			const node = children[i];
 			const dataItem = dataArr[i];
-			const listItem = new ListItem(
-				i,
-				node,
-				opts.fnGetName(dataItem),
-				opts.fnGetValues ? opts.fnGetValues(dataItem) : {},
-				{},
-			);
+			const listItem = new ListItem({
+				id: i,
+				ele: node,
+				name: opts.fnGetName(dataItem),
+				values: opts.fnGetValues ? opts.fnGetValues(dataItem) : {},
+				data: {},
+			});
 			if (opts.fnGetData) listItem.data = opts.fnGetData(listItem, dataItem);
 			if (opts.fnBindListeners) opts.fnBindListeners(listItem, dataItem);
 			this.addItem(listItem);

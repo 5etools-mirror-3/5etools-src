@@ -1,4 +1,4 @@
-import {FilterItem} from "../filter-item.js";
+import {FilterItem, FilterItemBase, FilterItemRegistry} from "../filter-item.js";
 import {FilterBase} from "./filter-filter-base.js";
 import {MISC_FILTER_VALUE__BASIC_RULES_2014, MISC_FILTER_VALUE__BASIC_RULES_2024, MISC_FILTER_VALUE__SRD_5_1, MISC_FILTER_VALUE__SRD_5_2, PILL_STATE__IGNORE, PILL_STATE__NO, PILL_STATE__YES, PILL_STATES, getPillStateDisplayClass} from "../filter-constants.js";
 import {FilterUtils} from "../filter-utils.js";
@@ -22,8 +22,26 @@ export class CompSearch extends BaseComponent {
 }
 
 export class Filter extends FilterBase {
+	static _getAsFilterItem (item) {
+		if (item instanceof FilterItemBase) return item;
+		if (FilterItemRegistry.isSerialized(item)) return FilterItemRegistry.getDeserialized(item);
+		return new FilterItem({item});
+	}
+
 	static _getAsFilterItems (items) {
-		return items ? items.map(it => it instanceof FilterItem ? it : new FilterItem({item: it})) : null;
+		return items ? items.map(it => this._getAsFilterItem(it)) : null;
+	}
+
+	static _getEntryVal_getFIlterItemItem (entryVal) {
+		return entryVal != null && typeof entryVal === "object"
+			? entryVal.item
+			: entryVal;
+	}
+
+	static _getEntryVal_isIgnoreRed (entryVal) {
+		return entryVal != null
+			&& typeof entryVal === "object"
+			&& entryVal.isIgnoreRed;
 	}
 
 	static _validateItemNests (items, nests) {
@@ -46,7 +64,7 @@ export class Filter extends FilterBase {
 	 * @param opts Options object.
 	 * @param opts.header Filter header (name)
 	 * @param [opts.headerHelp] Filter header help text (tooltip)
-	 * @param opts.items Array of filter items, either `FilterItem` or strings. e.g. `["DMG", "VGM"]`
+	 * @param opts.items Array of filter items, as strings, `FilterItem` instances, or serialized filter-item objects. E.g. `["DMG", "VGM"]`.
 	 * @param [opts.nests] Key-value object of `"Nest Name": {...nestMeta}`. Nests are used to group/nest filters.
 	 * @param [opts.displayFn] Function which translates an item to a displayable form, e.g. `"MM` -> "Monster Manual"`
 	 * @param [opts.displayFnMini] Function which translates an item to a shortened displayable form, e.g. `"UABravoCharlie` -> "UABC"`
@@ -96,7 +114,12 @@ export class Filter extends FilterBase {
 		this._items.forEach(it => this._defaultItemState(it, {isForce: true}));
 		this.__wrpFilter = null;
 		this.__wrpPills = null;
+
 		this.__wrpMiniPills = null;
+		this._miniPillItemsHooked = new Set();
+		this._miniPillAnchor = null;
+		this._pMiniPillsRender = null;
+
 		this.__wrpNestHeadInner = null;
 		this._updateNestSummary = null;
 		this.__nestsHidden = {};
@@ -557,14 +580,6 @@ export class Filter extends FilterBase {
 			},
 		}).vee.attr("data-state", PILL_STATES[this._state[item.item] || 0]);
 
-		const hook = () => {
-			const val = PILL_STATES[this._state[item.item] || 0];
-			btnMini.vee.attr("data-state", val);
-			// Bind change handlers in the mini-pill render step, as the mini-pills should always be available.
-			if (this._pFnOnChange) this._pFnOnChange(item.item, val);
-		};
-		this._addHook("state", item.item, hook);
-
 		const hideHook = () => btnMini.vee.toggleClass("ve-hidden", this._filterBox.isMinisHidden(this.header));
 		this._filterBox.registerMinisHiddenHook(this.header, hideHook);
 
@@ -848,6 +863,11 @@ export class Filter extends FilterBase {
 		this._filterBox = opts.filterBox;
 		this.__wrpMiniPills = veE({ele: opts.wrpMini});
 
+		// Use a comment ("invisible node") as an anchor, to ensure per-filter pills are inserted in correct order w.r.t filters
+		// TODO(Future) use this to enable per-filter sorting, e.g., allow "Source" filter to be sorted by "name"/"release date"
+		this._miniPillAnchor ||= document.createComment(`Pill anchor -- ${this.header}`);
+		if (this._miniPillAnchor.parentNode !== this.__wrpMiniPills) this.__wrpMiniPills.append(this._miniPillAnchor);
+
 		this._doRenderMiniPills();
 	}
 
@@ -1001,21 +1021,51 @@ export class Filter extends FilterBase {
 
 	_doRenderPills_doRenderWrpGroup_getWrpPillsSub () { return veE({tag: "div", clazz: `ve-fltr__wrp-pills--sub ve-fltr__container-pills`}); }
 
+	/* -------------------------------------------- */
+
+	_doRenderMiniPills_queueRender () {
+		return this._pMiniPillsRender ||= MiscUtil.pDefer(() => {
+			this._pMiniPillsRender = null;
+			this._doRenderMiniPills();
+		});
+	}
+
+	_doRenderMiniPills_doBindHookState (item) {
+		if (this._miniPillItemsHooked.has(item.item)) return;
+		this._miniPillItemsHooked.add(item.item);
+
+		this._addHook("state", item.item, () => {
+			const val = PILL_STATES[this._state[item.item] || 0];
+
+			if (!item.btnMini && val !== PILL_STATES[PILL_STATE__IGNORE]) this._doRenderMiniPills_queueRender();
+
+			item.btnMini?.vee.attr("data-state", val);
+			if (this._pFnOnChange) this._pFnOnChange(item.item, val);
+		});
+	}
+
 	_doRenderMiniPills () {
-		// create a list view so we can freely sort
+		if (!this.__wrpMiniPills) return;
+
 		const view = this._items.slice(0);
 		if (this._itemSortFnMini || this._itemSortFn) {
 			const fnSort = this._itemSortFnMini || this._itemSortFn;
 			view.sort(this._isSortByDisplayItems && this._displayFn ? (a, b) => fnSort(this._displayFn(a.item, a), this._displayFn(b.item, b)) : fnSort);
 		}
 
-		if (this.__wrpMiniPills) {
-			view.forEach(it => {
-				// re-append existing elements to sort them
-				(it.btnMini = it.btnMini || this._getBtnMini(it)).vee.appendTo(this.__wrpMiniPills);
-			});
-		}
+		const frag = document.createDocumentFragment();
+		view.forEach(item => {
+			this._doRenderMiniPills_doBindHookState(item);
+
+			if (!item.btnMini && this._state[item.item] === PILL_STATE__IGNORE) return;
+
+			// Re-append existing elements to sort them, and insure correct insertion point w.r.t the anchor
+			frag.append(item.btnMini ||= this._getBtnMini(item));
+		});
+		this.__wrpMiniPills.insertBefore(frag, this._miniPillAnchor);
 	}
+
+	/* -------------------------------------------- */
 
 	_doToggleDisplay () {
 		// if there are no items, hide everything
@@ -1096,27 +1146,30 @@ export class Filter extends FilterBase {
 	}
 
 	_getFilterItem (item) {
-		return item instanceof FilterItem ? item : new FilterItem({item});
+		return Filter._getAsFilterItem(item);
 	}
 
 	addItem (item) {
-		if (item == null) return;
+		if (item == null) return false;
 
 		if (item instanceof Array) {
 			const len = item.length;
-			for (let i = 0; i < len; ++i) this.addItem(item[i]);
-			return;
+			let isAdded = false;
+			for (let i = 0; i < len; ++i) isAdded = this.addItem(item[i]) || isAdded;
+			return isAdded;
 		}
 
-		if (!this.__itemsSet.has(item.item || item)) {
-			item = this._getFilterItem(item);
-			Filter._validateItemNest(item, this._nests);
+		if (this.__itemsSet.has(item.item || item)) return false;
 
-			this._isItemsDirty = true;
-			this._items.push(item);
-			this.__itemsSet.add(item.item);
-			if (this._state[item.item] == null) this._defaultItemState(item);
-		}
+		item = this._getFilterItem(item);
+		Filter._validateItemNest(item, this._nests);
+
+		this._isItemsDirty = true;
+		this._items.push(item);
+		this.__itemsSet.add(item.item);
+		if (this._state[item.item] == null) this._defaultItemState(item);
+
+		return true;
 	}
 
 	addNest (nestName, nestMeta) {
@@ -1140,9 +1193,7 @@ export class Filter extends FilterBase {
 	}
 
 	_toDisplay_getMappedEntryVal (entryVal) {
-		if (!(entryVal instanceof Array)) entryVal = [entryVal];
-		entryVal = entryVal.map(it => it instanceof FilterItem ? it : new FilterItem({item: it}));
-		return entryVal;
+		return entryVal instanceof Array ? entryVal : [entryVal];
 	}
 
 	_toDisplay_getFilterState (boxState) { return boxState[this.header]; }
@@ -1162,7 +1213,7 @@ export class Filter extends FilterBase {
 
 		if (this._umbrellaExcludes && this._umbrellaExcludes.some(it => filterState[it.item])) return ptrCacheIsUmbrella._ = false;
 
-		return ptrCacheIsUmbrella._ = this._umbrellaItems.some(u => entryVal.includes(u.item))
+		return ptrCacheIsUmbrella._ = this._umbrellaItems.some(u => entryVal.some(it => Filter._getEntryVal_getFIlterItemItem(it) === u.item))
 			&& (this._umbrellaItems.some(u => filterState[u.item] === PILL_STATE__IGNORE) || this._umbrellaItems.some(u => filterState[u.item] === PILL_STATE__YES));
 	}
 
@@ -1186,12 +1237,14 @@ export class Filter extends FilterBase {
 
 		return entryVal
 			.filter(fi => {
-				if (stateRequired === PILL_STATE__NO && fi.isIgnoreRed) return false;
+				if (stateRequired === PILL_STATE__NO && Filter._getEntryVal_isIgnoreRed(fi)) return false;
 
-				if (seenItems[fi.item]) return false;
-				seenItems[fi.item] = true;
+				const filterItemItem = Filter._getEntryVal_getFIlterItemItem(fi);
 
-				if (filterState[fi.item] === stateRequired) return true;
+				if (seenItems[filterItemItem]) return false;
+				seenItems[filterItemItem] = true;
+
+				if (filterState[filterItemItem] === stateRequired) return true;
 
 				if (!ptrCacheIsUmbrella) return false;
 				return this._toDisplay_isUmbrella({ptrCacheIsUmbrella, entryVal, filterState});
@@ -1217,7 +1270,7 @@ export class Filter extends FilterBase {
 				if (totals.yes === 0) display = true;
 
 				// if any are 1 (blue) include if they match
-				display = display || entryVal.some(fi => filterState[fi.item] === PILL_STATE__YES || this._toDisplay_isUmbrella({entryVal, filterState, ptrCacheIsUmbrella}));
+				display = display || entryVal.some(fi => filterState[Filter._getEntryVal_getFIlterItemItem(fi)] === PILL_STATE__YES || this._toDisplay_isUmbrella({entryVal, filterState, ptrCacheIsUmbrella}));
 
 				break;
 			}
@@ -1242,7 +1295,7 @@ export class Filter extends FilterBase {
 		switch (filterState._combineRed) {
 			case "or": {
 				// if any are 2 (red) exclude if they match
-				hide = hide || entryVal.filter(fi => !fi.isIgnoreRed).some(fi => filterState[fi.item] === PILL_STATE__NO);
+				hide = hide || entryVal.some(fi => !Filter._getEntryVal_isIgnoreRed(fi) && filterState[Filter._getEntryVal_getFIlterItemItem(fi)] === PILL_STATE__NO);
 
 				break;
 			}

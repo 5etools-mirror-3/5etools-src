@@ -999,7 +999,26 @@ export class BrewUtil2Base {
 		return brewDocsAdded;
 	}
 
+	/**
+	 * Permit files which only contain an exported blocklist, by providing them with a randomly-generated source.
+	 */
+	static _mutEnsureBlocklistSource ({json, filename}) {
+		if (!json || json._meta?.sources != null) return;
+		if (!json.blocklist || !(json.blocklist instanceof Array)) return;
+		if (Object.entries(json).some(([prop, val]) => prop !== "blocklist" && val instanceof Array)) return;
+
+		(json._meta ||= {}).sources = [
+			{
+				json: CryptUtil.uid(),
+				abbreviation: "BLOCK",
+				full: `Content Blocklist`,
+			},
+		];
+	}
+
 	_getBrewDoc ({json, url = null, filename = null, isLocal = false, isEditable = false}) {
+		this.constructor._mutEnsureBlocklistSource({json, filename});
+
 		return BrewDoc.fromValues({
 			head: {
 				json,

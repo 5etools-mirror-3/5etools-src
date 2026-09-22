@@ -39,11 +39,11 @@ class Hist {
 					}
 				}
 
-				const toLoad = listItem.ix;
+				const toLoad = listItem.getId();
 				if (toLoad === undefined) this._freshLoad();
 				else {
-					this.lastLoadedId = listItem.ix;
-					this._pLoadHash(listItem.ix);
+					this.lastLoadedId = listItem.getId();
+					this._pLoadHash(listItem.getId());
 					document.title = `${listItem.name ? `${listItem.name} - ` : ""}5etools`;
 				}
 			}

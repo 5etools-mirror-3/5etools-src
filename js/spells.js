@@ -67,11 +67,11 @@ class SpellsSublistManager extends SublistManager {
 			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
 			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
-		const listItem = new ListItem(
-			hash,
+		const listItem = new ListItem({
+			id: hash,
 			ele,
-			spell.name,
-			{
+			name: spell.name,
+			values: {
 				...ListItem.getCommonValues(spell),
 				school,
 				level: spell.level,
@@ -81,13 +81,13 @@ class SpellsSublistManager extends SublistManager {
 				normalisedTime: spell._normalisedTime,
 				normalisedRange: spell._normalisedRange,
 			},
-			{
+			data: {
 				hash,
 				page: spell.page,
 				entity: spell,
 				mdRow: [...cellsText],
 			},
-		);
+		});
 		return listItem;
 	}
 }
@@ -340,40 +340,22 @@ class SpellsPage extends ListPageMultiSource {
 			clazz: `ve-lst__row ve-flex-col ${isExcluded ? "ve-lst__row--blocklisted" : ""}`,
 			click: (evt) => this._list.doSelect(listItem, evt),
 			contextmenu: (evt) => this._openContextMenu(evt, this._list, listItem),
-			children: [
-				veE({
-					tag: "a",
-					href: `#${hash}`,
-					clazz: "ve-lst__row-border ve-lst__row-inner",
-					children: [
-						veE({tag: "span", clazz: `ve-bold ve-col-2-9 ve-pl-0 ve-pr-1`, txt: spell.name}),
-						veE({tag: "span", clazz: `ve-col-1-5 ve-px-1 ve-text-center`, txt: PageFilterSpells.getTblLevelStr(spell)}),
-						veE({tag: "span", clazz: `ve-col-1-7 ve-px-1 ve-text-center`, txt: time}),
-						veE({
-							tag: "span",
-							clazz: `ve-col-1-2 ve-px-1 ${schoolClassName} ve-text-center`,
-							title: Parser.spSchoolAndSubschoolsAbvsToFull(spell.school, spell.subschools),
-							style: Parser.spSchoolAbvToStylePart(spell.school),
-							txt: school,
-						}),
-						veE({tag: "span", clazz: `ve-col-0-6 ve-px-1 ve-text-center`, title: "Concentration", txt: concentration}),
-						veE({tag: "span", clazz: `ve-col-2-4 ve-px-1 ve-text-right`, txt: range}),
-						veE({
-							tag: "span",
-							clazz: `ve-col-1-7 ve-text-center ${Parser.sourceJsonToSourceClassname(spell.source)} ve-pl-1 ve-pr-0`,
-							title: `${Parser.sourceJsonToFull(spell.source)}${Renderer.utils.getSourceSubText(spell)}`,
-							txt: source,
-						}),
-					],
-				}),
-			],
+			html: `<a href="#${hash.qq()}" class="ve-lst__row-border ve-lst__row-inner">
+				<span class="ve-bold ve-col-2-9 ve-pl-0 ve-pr-1">${spell.name.qq()}</span>
+				<span class="ve-col-1-5 ve-px-1 ve-text-center">${PageFilterSpells.getTblLevelStr(spell).qq()}</span>
+				<span class="ve-col-1-7 ve-px-1 ve-text-center">${time.qq()}</span>
+				<span class="ve-col-1-2 ve-px-1 ${schoolClassName.qq()} ve-text-center" title="${Parser.spSchoolAndSubschoolsAbvsToFull(spell.school, spell.subschools).qq()}" ${Parser.spSchoolAbvToStyle(spell.school) || ""}>${school.qq()}</span>
+				<span class="ve-col-0-6 ve-px-1 ve-text-center" title="Concentration">${concentration}</span>
+				<span class="ve-col-2-4 ve-px-1 ve-text-right">${range.qq()}</span>
+				<span class="ve-col-1-7 ve-text-center ${Parser.sourceJsonToSourceClassname(spell.source).qq()} ve-pl-1 ve-pr-0" title="${`${Parser.sourceJsonToFull(spell.source)}${Renderer.utils.getSourceSubText(spell)}`.qq()}">${source.qq()}</span>
+			</a>`,
 		});
 
-		const listItem = new ListItem(
-			spI,
-			eleLi,
-			spell.name,
-			{
+		const listItem = new ListItem({
+			id: spI,
+			ele: eleLi,
+			name: spell.name,
+			values: {
 				source,
 				...ListItem.getCommonValues(spell),
 				level: spell.level,
@@ -383,12 +365,12 @@ class SpellsPage extends ListPageMultiSource {
 				normalisedTime: spell._normalisedTime,
 				normalisedRange: spell._normalisedRange,
 			},
-			{
+			data: {
 				hash,
 				page: spell.page,
 				isExcluded,
 			},
-		);
+		});
 
 		return listItem;
 	}

@@ -17,7 +17,7 @@ class ListUtil {
 				const entity = await Renderer.hover.pApplyCustomHashId(
 					page,
 					// Pull from the list page, as there may be list-page-specific temp data
-					dataList[listItem.ix],
+					dataList[listItem.getId()],
 					// Support lowercase prop from URL
 					ser.customHashId || ser.customhashid,
 				);

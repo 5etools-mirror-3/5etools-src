@@ -21,19 +21,19 @@ class TablePageSublistManager extends SublistManager {
 			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
 			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
-		const listItem = new ListItem(
-			hash,
+		const listItem = new ListItem({
+			id: hash,
 			ele,
-			displayName,
-			{
+			name: displayName,
+			values: {
 				sortName: displayName,
 			},
-			{
+			data: {
 				hash,
 				entity: ent,
 				mdRow: [...cellsText],
 			},
-		);
+		});
 		return listItem;
 	}
 }
@@ -167,16 +167,16 @@ export class TableListPage extends ListPage {
 				.vee.onn("contextmenu", evt => this._openContextMenu(evt, this._listMetas[headerId].list, listItem))
 				.vee.onn("click", evt => this._listMetas[headerId].list.doSelect(listItem, evt));
 
-			const listItem = new ListItem(
-				i,
+			const listItem = new ListItem({
+				id: i,
 				ele,
-				displayName,
-				{},
-				{
+				name: displayName,
+				values: {},
+				data: {
 					hash,
 					...this._getListItemData(ent, i),
 				},
-			);
+			});
 
 			this._listMetas[headerId].list.addItem(listItem);
 		}

@@ -33,22 +33,22 @@ class RecipesSublistManager extends SublistManager {
 			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
 			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
-		const listItem = new ListItem(
-			hash,
+		const listItem = new ListItem({
+			id: hash,
 			ele,
 			name,
-			{
+			values: {
 				...ListItem.getCommonValues(it),
 				type: it.type,
 			},
-			{
+			data: {
 				hash,
 				page: it.page,
 				entity: it,
 				mdRow: [...cellsText],
 				customHashId,
 			},
-		);
+		});
 		return listItem;
 	}
 }
@@ -94,22 +94,22 @@ class RecipesPage extends ListPage {
 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(ent.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(ent.source)}">${source}</span>
 		</a>`;
 
-		const listItem = new ListItem(
-			rpI,
-			eleLi,
-			ent.name,
-			{
+		const listItem = new ListItem({
+			id: rpI,
+			ele: eleLi,
+			name: ent.name,
+			values: {
 				source,
 				...ListItem.getCommonValues(ent),
 				type: ent.type,
 				alias: PageFilterRecipes.getListAliases(ent),
 			},
-			{
+			data: {
 				hash,
 				page: ent.page,
 				isExcluded,
 			},
-		);
+		});
 
 		eleLi.addEventListener("click", (evt) => this._list.doSelect(listItem, evt));
 		eleLi.addEventListener("contextmenu", (evt) => this._openContextMenu(evt, this._list, listItem));

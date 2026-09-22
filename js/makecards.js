@@ -163,7 +163,7 @@ class MakeCards extends BaseComponent {
 				async () => {
 					const sel = getSelCards();
 					if (!sel) return;
-					sel.forEach(it => this._list.removeItemByIndex(it.ix));
+					sel.forEach(it => this._list.removeItemById(it.getId()));
 					this._list.update();
 					this._doSaveStateDebounced();
 				},
@@ -370,7 +370,7 @@ class MakeCards extends BaseComponent {
 			});
 		const btnDelete = veT`<button class="ve-btn ve-btn-danger ve-btn-xs" title="Remove"><span class="glyphicon glyphicon-trash"></span></button>`
 			.vee.onn("click", () => {
-				this._list.removeItemByIndex(uid);
+				this._list.removeItemById(uid);
 				this._list.update();
 				this._doSaveStateDebounced();
 			});
@@ -386,11 +386,11 @@ class MakeCards extends BaseComponent {
 			<div class="ve-col-1-1 ve-flex-v-center ve-flex-h-right">${btnCopy}${btnDelete}</div>
 		</label>`;
 
-		const listItem = new ListItem(
-			uid,
+		const listItem = new ListItem({
+			id: uid,
 			ele,
-			loaded.name,
-			{
+			name: loaded.name,
+			values: {
 				source: cardMeta.source,
 				color: cardMeta.color,
 				icon: cardMeta.icon,
@@ -399,7 +399,7 @@ class MakeCards extends BaseComponent {
 
 				entity: loaded,
 			},
-			{
+			data: {
 				hash: cardMeta.hash,
 				page: cardMeta.page,
 				cbSel,
@@ -407,7 +407,7 @@ class MakeCards extends BaseComponent {
 				setColor,
 				setIcon,
 			},
-		);
+		});
 		return listItem;
 	}
 

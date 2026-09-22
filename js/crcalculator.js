@@ -26,7 +26,7 @@ function addMonsterFeatures (mfData) {
 	veEm("#crcalc input").map(ele => ele.vee.onn("change", calculateCr));
 	veEm("#saveprofs, #resistances").map(ele => ele.vee.onn("change", calculateCr));
 
-	veEs("#saveinstead").vee.onChange((evt) => {
+	veEs("#saveinstead").vee.onn("change", (evt) => {
 		const curVal = parseInt(veEs("#attackbonus").vee.val());
 		if (!veE({ele: evt.target}).vee.prop(":checked")) veEs("#attackbonus").vee.val(curVal - 10);
 		if (veE({ele: evt.target}).vee.prop(":checked")) veEs("#attackbonus").vee.val(curVal + 10);
@@ -44,13 +44,13 @@ function addMonsterFeatures (mfData) {
 		veEs("#hp").vee.val(calculateHp());
 	}
 
-	veEs("select#size").vee.onChange((evt) => {
+	veEs("select#size").vee.onn("change", (evt) => {
 		changeSize(veE({ele: evt.target}));
 		calculateCr();
 	});
 
 	veEm("#hd, #con").map(ele => {
-		ele.vee.onChange(function () {
+		ele.vee.onn("change", function () {
 			veEs("#hp").vee.val(calculateHp());
 			calculateCr();
 		});
@@ -73,7 +73,7 @@ function addMonsterFeatures (mfData) {
 			calculateCr();
 		}));
 
-	veEs("#hp").vee.onChange(function () {
+	veEs("#hp").vee.onn("change", function () {
 		veEs("#hd").vee.val(calculateHd());
 		calculateCr();
 	});
@@ -145,13 +145,13 @@ function addMonsterFeatures (mfData) {
 	}
 
 	// Monster Features table
-	veEs(".crc__mon_feature_cb").vee.onChange((evt) => {
+	veEs(".crc__mon_feature_cb").vee.onn("change", (evt) => {
 		const cbFeature = veE({ele: evt.target});
 		const iptNum = veE({ele: evt.target}).vee.siblings("input[type=number]")[0];
 		handleMonsterFeaturesChange(cbFeature, iptNum);
 	});
 
-	veEs(`.crc__mon_feature_num`).vee.onChange((evt) => {
+	veEs(`.crc__mon_feature_num`).vee.onn("change", (evt) => {
 		const iptNum = veE({ele: evt.target});
 		const cbFeature = veE({ele: evt.target}).vee.siblings("input[type=checkbox]")[0];
 		handleMonsterFeaturesChange(cbFeature, iptNum);
@@ -159,7 +159,7 @@ function addMonsterFeatures (mfData) {
 
 	veEm("#monsterfeatures .crc__wrp_mon_features input").map(ele => ele.vee.onn("change", calculateCr));
 
-	veEs("#crcalc_reset").vee.onClick(async () => {
+	veEs("#crcalc_reset").vee.onn("click", async () => {
 		if (!await InputUiUtil.pGetUserBoolean({title: "Reset", htmlDescription: "Are you sure?", textYes: "Yes", textNo: "Cancel"})) return;
 		window.location = "";
 		parseUrl();
