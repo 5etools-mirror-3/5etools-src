@@ -15143,7 +15143,8 @@ Renderer.recipe = class {
 		if (ent.equipment) ent._fullEquipment = Renderer.applyAllProperties(MiscUtil.copyFast(ent.equipment));
 	}
 
-	static _RE_AMOUNT = /(?<tagAmount>{=amount\d+(?:\/[^}]+)?})/g;
+	static _RE_AMOUNT_SPLITTER = /(?<tagAmount>{=amount\d+(?:\/[^}]+)?})/g;
+	static _RE_AMOUNT = /(?<tagAmount>{=(?<propAmount>amount\d+)(?:\/[^}]+)?})/;
 	static _SCALED_PRECISION_LIMIT = 10 ** 6;
 	static getScaledRecipe (r, scaleFactor) {
 		const cpyR = MiscUtil.copyFast(r);
@@ -15175,28 +15176,26 @@ Renderer.recipe = class {
 								});
 
 							// region Attempt to singularize/pluralize units
-							const amountsOriginal = Object.keys(objOriginal).filter(k => /^amount\d+$/.test(k)).map(k => objOriginal[k]);
-							const amountsScaled = Object.keys(obj).filter(k => /^amount\d+$/.test(k)).map(k => obj[k]);
-
-							const entryParts = obj.entry.split(Renderer.recipe._RE_AMOUNT).filter(Boolean);
+							const entryParts = obj.entry.split(Renderer.recipe._RE_AMOUNT_SPLITTER).filter(Boolean);
 							const entryPartsOut = entryParts.slice(0, entryParts.findIndex(it => Renderer.recipe._RE_AMOUNT.test(it)) + 1);
-							let ixAmount = 0;
+							let propAmount = null;
 							for (let i = entryPartsOut.length; i < entryParts.length; ++i) {
 								let pt = entryParts[i];
 
-								if (Renderer.recipe._RE_AMOUNT.test(pt)) {
-									ixAmount++;
+								const mAmount = Renderer.recipe._RE_AMOUNT.exec(pt);
+								if (mAmount) {
+									propAmount = mAmount.groups.propAmount;
 									entryPartsOut.push(pt);
 									continue;
 								}
 
-								if (amountsOriginal[ixAmount] == null || amountsScaled[ixAmount] == null) {
+								if (objOriginal[propAmount] == null || obj[propAmount] == null) {
 									entryPartsOut.push(pt);
 									continue;
 								}
 
-								const isSingleToPlural = amountsOriginal[ixAmount] <= 1 && amountsScaled[ixAmount] > 1;
-								const isPluralToSingle = amountsOriginal[ixAmount] > 1 && amountsScaled[ixAmount] <= 1;
+								const isSingleToPlural = objOriginal[propAmount] <= 1 && obj[propAmount] > 1;
+								const isPluralToSingle = objOriginal[propAmount] > 1 && obj[propAmount] <= 1;
 
 								if (!isSingleToPlural && !isPluralToSingle) {
 									entryPartsOut.push(pt);
@@ -15322,8 +15321,10 @@ Renderer.recipe = class {
 		if (stack) parts.push(stack);
 		obj.entry = parts
 			.map(pt => pt.replace(Renderer.recipe._RE_AMOUNT, (...m) => {
-				const ixStart = m.slice(-3, -2)[0];
-				if (ixStart !== 0 || m[0].length !== pt.length) return m[0];
+				if (m[0].length !== pt.length) return m[0];
+
+				const propAmount = m.at(-1).propAmount;
+				if (obj[propAmount] === objOriginal[propAmount]) return m[0];
 
 				const originalValue = Renderer.applyProperties(m.last().tagAmount, objOriginal);
 				return `{@help ${m.last().tagAmount}|In the original recipe: ${originalValue}}`;
