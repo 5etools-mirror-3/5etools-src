@@ -15234,6 +15234,7 @@ Renderer.recipe = class {
 
 	static _UNITS_SINGLE_TO_PLURAL_S = [
 		"bag",
+		"ball",
 		"bundle",
 		"can",
 		"cube",
@@ -15243,6 +15244,7 @@ Renderer.recipe = class {
 		"ounce",
 		"packet",
 		"piece",
+		"pint",
 		"pod",
 		"pound",
 		"sheet",
