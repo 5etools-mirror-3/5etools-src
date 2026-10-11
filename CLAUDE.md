@@ -145,7 +145,9 @@ page (`src/web/brewbuilder.js`, with the kinds and their form ⇄ entity rules i
 species, background, item, spell, creature, subclass, class, language — saved to the account, and
 installed into this repository's `BrewUtil2` on the sheet, builder and sidekick pages by that
 repository's `brewsync.js` (`BrewUtil2.pGetBrew` / `_getBrewDoc` / `pSetBrew`, documents named
-`online-brew-<id>-v<n>.json`). The fork carries no homebrew builder code and no merge point for it;
+`online-brew-<id>-v<n>-f<format>.json`; a 2014 subclass goes in with its 2024 copy beside it, because
+this repository's brew content migrator otherwise makes that copy itself and reads inline features as
+string refs). The fork carries no homebrew builder code and no merge point for it;
 what that repository reads from here is the renderer (to draw a preview), the data loader (to copy an
 entry from the books) and `BrewUtil2`.
 
