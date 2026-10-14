@@ -257,8 +257,7 @@ class RendererCard extends Renderer {
 
 	_renderAbilityGeneric (entry, textStack, meta, options) {
 		this._renderPrefix(entry, textStack, meta, options);
-		// TODO(MIGRATION)
-		textStack[0] += `${entry.name ? `<b>${entry.name}</b> = ` : ""}${entry.entry ?? entry.text}${entry.attributes ? ` ${Parser.attrChooseToFull(entry.attributes)}` : ""}`;
+		textStack[0] += `${entry.name ? `<b>${entry.name}</b> = ` : ""}${entry.entry}${entry.attributes ? ` ${Parser.attrChooseToFull(entry.attributes)}` : ""}`;
 		this._renderSuffix(entry, textStack, meta, options);
 	}
 	// endregion
@@ -287,8 +286,7 @@ class RendererCard extends Renderer {
 	}
 
 	_renderLink (entry, textStack, meta, options) {
-		// TODO(MIGRATION)
-		this._recursiveRender(entry.entry ?? entry.text, textStack, meta);
+		this._recursiveRender(entry.entry, textStack, meta);
 	}
 
 	/*

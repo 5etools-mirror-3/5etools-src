@@ -415,10 +415,10 @@ export class BookUtil {
 		hdlNarrowUpdate();
 
 		if (!this._TOP_MENU) {
-			const doDownloadFullText = () => {
+			const pDoDownloadFullText = async () => {
 				DataUtil.userDownloadText(
 					`${this.curRender.fromIndex.name}.md`,
-					this.curRender.data
+					(await Renderer.utils.preload.pGetPreloaded(this.curRender.data))
 						.map(chapter => RendererMarkdown.get().render(chapter))
 						.join("\n\n------\n\n"),
 				);
@@ -427,20 +427,22 @@ export class BookUtil {
 			this._TOP_MENU = ContextUtil.getMenu([
 				new ContextUtil.Action(
 					"Download Chapter as Markdown",
-					() => {
-						if (!~BookUtil.curRender.chapter) return doDownloadFullText();
+					async () => {
+						if (!~BookUtil.curRender.chapter) return pDoDownloadFullText();
 
 						const contentsInfo = this.curRender.fromIndex.contents[this.curRender.chapter];
 						DataUtil.userDownloadText(
 							`${this.curRender.fromIndex.name} - ${Parser.bookOrdinalToAbv(contentsInfo.ordinal, {isPlainText: true}).replace(/:/g, "")}${contentsInfo.name}.md`,
-							RendererMarkdown.get().render(this.curRender.data[this.curRender.chapter]),
+							RendererMarkdown.get().render(
+								await Renderer.utils.preload.pGetPreloaded(this.curRender.data[this.curRender.chapter]),
+							),
 						);
 					},
 				),
 				new ContextUtil.Action(
 					`Download ${this.typeTitle} as Markdown`,
 					() => {
-						doDownloadFullText();
+						pDoDownloadFullText().then(null);
 					},
 				),
 			]);

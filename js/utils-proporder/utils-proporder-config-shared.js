@@ -45,6 +45,8 @@ export const PROPORDER_ENTRY_DATA_OBJECT = [
 	"languageProficiencies",
 	"skillProficiencies",
 	"weaponProficiencies",
+	"itemMasteries",
+	"itemMasteriesProgression",
 	"armorProficiencies",
 	"toolProficiencies",
 	"skillToolLanguageProficiencies",

@@ -1,17 +1,17 @@
 @use "sass:color";
 
 @use "../vars/vars";
-@use "../vars/vars-night";
+@use "../vars/vars--night";
 
 @layer vetools {
 	.ve-night-mode .ve-fltr {
-		$flt-ignore: vars-night.$rgb-bg--night;
+		$flt-ignore: vars--night.$rgb-bg--night;
 		$flt-ignore--hover: #323232;
 
 		&__ {
 			&btn_nest {
 				background: $flt-ignore;
-				border-color: vars-night.$rgb-border-grey--night;
+				border-color: vars--night.$rgb-border-grey--night;
 
 				&:hover {
 					background: $flt-ignore--hover;
@@ -25,7 +25,7 @@
 					}
 
 					span {
-						background: vars-night.$rgb-bg--night;
+						background: vars--night.$rgb-bg--night;
 					}
 				}
 
@@ -45,7 +45,7 @@
 					}
 
 					span {
-						background: vars-night.$rgb-bg--night;
+						background: vars--night.$rgb-bg--night;
 					}
 				}
 
@@ -67,20 +67,20 @@
 			}
 
 			&dropdown-divider {
-				border-color: vars-night.$rgb-border-grey--night;
+				border-color: vars--night.$rgb-border-grey--night;
 
 				@media screen and (width <= #{vars.$width-screen-sm}) {
 					box-shadow: inset 0 0 2px 2px vars.$rgb-off-black;
-					background: vars-night.$rgb-border-grey--night;
+					background: vars--night.$rgb-border-grey--night;
 				}
 			}
 
 			&dropdown-divider--sub {
-				border-color: vars-night.$rgb-border-grey--trans-night;
+				border-color: vars--night.$rgb-border-grey--trans-night;
 			}
 
 			&pill {
-				border-color: vars-night.$rgb-border-grey--night;
+				border-color: vars--night.$rgb-border-grey--night;
 
 				&[data-state="ignore"] {
 					background: $flt-ignore;
@@ -109,8 +109,8 @@
 			}
 
 			&mini-view {
-				border-color: vars-night.$rgb-border-grey--night;
-				background: linear-gradient(to top, vars-night.$rgb-border-grey--night, #343434 1px);
+				border-color: vars--night.$rgb-border-grey--night;
+				background: linear-gradient(to top, vars--night.$rgb-border-grey--night, #343434 1px);
 			}
 
 			&h-btn-logic--blue {
@@ -134,13 +134,13 @@
 			&wrp-row {
 				&:focus,
 				&:hover {
-					background-color: color.adjust(vars-night.$rgb-bg--night, $lightness: 2%);
+					background-color: color.adjust(vars--night.$rgb-bg--night, $lightness: 2%);
 				}
 			}
 
 			&wrp-values {
-				background-color: vars-night.$rgb-bg--night;
-				border-color: vars-night.$rgb-border-grey--night;
+				background-color: vars--night.$rgb-bg--night;
+				border-color: vars--night.$rgb-border-grey--night;
 			}
 		}
 
@@ -152,7 +152,7 @@
 
 		&-cls__ {
 			&tgl {
-				@include vars-night.mix-cb-custom--night;
+				@include vars--night.mix-cb-custom--night;
 			}
 		}
 	}

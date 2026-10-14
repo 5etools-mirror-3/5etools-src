@@ -1,7 +1,7 @@
 @use "sass:color";
 
 @use "../vars/vars";
-@use "../vars/vars-night";
+@use "../vars/vars--night";
 
 @layer vetools {
 	@mixin mix-source-color ($rgb) {
@@ -13,13 +13,13 @@
 	.ve-night-mode .ve-source {
 		$rgb-source-category-site: #de000a;
 		$rgb-source-category-extras: #bb6468;
-		$rgb-source-category-prerelease: vars-night.$rgb-subclass-ua--night;
+		$rgb-source-category-prerelease: vars--night.$rgb-subclass-ua--night;
 		$rgb-source-category-prerelease--local: #60c52f;
-		$rgb-source-category-homebrew: vars-night.$rgb-class-brew--night;
+		$rgb-source-category-homebrew: vars--night.$rgb-class-brew--night;
 		$rgb-source-category-homebrew--local: #514bff;
 		$rgb-source-category-homebrew--partnered: #b44051;
 
-		$rgb-source-PHB: vars-night.$rgb-subclass--night;
+		$rgb-source-PHB: vars--night.$rgb-subclass--night;
 		$rgb-source-DMG: #ba1eba;
 		$rgb-source-SADS: #4f63f5;
 		$rgb-source-CoS: #be11be;
@@ -248,7 +248,7 @@
 	.ve-night-mode .ve-itm__ {
 		&rarity-alt- {
 			&common {
-				color: color.adjust(vars-night.$rgb-font--night, $lightness: -15%);
+				color: color.adjust(vars--night.$rgb-font--night, $lightness: -15%);
 			}
 
 			&uncommon {
@@ -276,7 +276,7 @@
 	.ve-night-mode .ve-itm__ {
 		&rarity- {
 			&common {
-				color: color.adjust(vars-night.$rgb-font--night, $lightness: -15%);
+				color: color.adjust(vars--night.$rgb-font--night, $lightness: -15%);
 			}
 
 			&uncommon {

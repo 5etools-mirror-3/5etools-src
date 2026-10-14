@@ -6102,6 +6102,117 @@
 			"hasFluff": true
 		},
 		{
+			"name": "Discredited Neural Tuner",
+			"source": "PL",
+			"edition": "one",
+			"ability": [
+				{
+					"choose": {
+						"weighted": {
+							"from": [
+								"str",
+								"dex",
+								"int"
+							],
+							"weights": [
+								2,
+								1
+							]
+						}
+					}
+				},
+				{
+					"choose": {
+						"weighted": {
+							"from": [
+								"str",
+								"dex",
+								"int"
+							],
+							"weights": [
+								1,
+								1,
+								1
+							]
+						}
+					}
+				}
+			],
+			"feats": [
+				{
+					"gathered whispers|rhw": true
+				},
+				{
+					"anyFromCategory": {
+						"category": [
+							"DG"
+						]
+					}
+				}
+			],
+			"skillProficiencies": [
+				{
+					"medicine": true,
+					"nature": true
+				}
+			],
+			"toolProficiencies": [
+				{
+					"tinker's tools": true
+				}
+			],
+			"startingEquipment": [
+				{
+					"a": [
+						{
+							"item": "tinker's tools|xphb",
+							"displayName": "Tinker's Tools (as engineer's toolkit)"
+						}
+					],
+					"b": [
+						{
+							"value": 5000
+						}
+					]
+				}
+			],
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Ability Scores:",
+							"entry": "Strength, Dexterity, Intelligence"
+						},
+						{
+							"type": "item",
+							"name": "Feat:",
+							"entry": "{@feat Gathered Whispers|RHW} or a {@filter Dark Gift feat of your choice|feats|category=DG}"
+						},
+						{
+							"type": "item",
+							"name": "Skill Proficiencies:",
+							"entry": "{@skill Medicine|XPHB} and {@skill Nature|XPHB}"
+						},
+						{
+							"type": "item",
+							"name": "Tool Proficiencies:",
+							"entry": "{@item Tinker's Tools|XPHB} (as engineer's toolkit)"
+						},
+						{
+							"type": "item",
+							"name": "Equipment:",
+							"entry": "Choose A or B: (A) {@item Tinker's Tools|XPHB} (as engineer's toolkit); or (B) 50 GP (as 50 dollars)"
+						}
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Dragon Cultist",
 			"source": "FRHoF",
 			"page": 29,
@@ -6740,6 +6851,127 @@
 							"type": "item",
 							"name": "Equipment:",
 							"entry": "Choose A or B: (A) {@item Musical Instrument|XPHB} (same as above), {@item Costume|XPHB|2 Costumes}, {@item Mirror|XPHB}, {@item Perfume|XPHB}, {@item Traveler's Clothes|XPHB}, 11 GP; or (B) 50 GP"
+						}
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Fabricated Mind",
+			"source": "PL",
+			"edition": "one",
+			"ability": [
+				{
+					"choose": {
+						"weighted": {
+							"from": [
+								"dex",
+								"int",
+								"cha"
+							],
+							"weights": [
+								2,
+								1
+							]
+						}
+					}
+				},
+				{
+					"choose": {
+						"weighted": {
+							"from": [
+								"dex",
+								"int",
+								"cha"
+							],
+							"weights": [
+								1,
+								1,
+								1
+							]
+						}
+					}
+				}
+			],
+			"feats": [
+				{
+					"echoing soul|rhw": true
+				},
+				{
+					"anyFromCategory": {
+						"category": [
+							"DG"
+						]
+					}
+				}
+			],
+			"skillProficiencies": [
+				{
+					"deception": true,
+					"insight": true
+				}
+			],
+			"toolProficiencies": [
+				{
+					"forgery kit": true
+				}
+			],
+			"startingEquipment": [
+				{
+					"a": [
+						"forgery kit|xphb",
+						"fine clothes|xphb",
+						"ink|xphb",
+						{
+							"item": "ink pen|xphb",
+							"quantity": 2
+						},
+						{
+							"item": "iron spike|xphb",
+							"quantity": 3
+						},
+						{
+							"value": 700
+						}
+					],
+					"b": [
+						{
+							"value": 5000
+						}
+					]
+				}
+			],
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Ability Scores:",
+							"entry": "Dexterity, Intelligence, Charisma"
+						},
+						{
+							"type": "item",
+							"name": "Feat:",
+							"entry": "{@feat Echoing Soul|RHW} or a {@filter Dark Gift feat of your choice|feats|category=DG}"
+						},
+						{
+							"type": "item",
+							"name": "Skill Proficiencies:",
+							"entry": "{@skill Deception|XPHB} and {@skill Insight|XPHB}"
+						},
+						{
+							"type": "item",
+							"name": "Tool Proficiencies:",
+							"entry": "{@item Forgery Kit|XPHB}"
+						},
+						{
+							"type": "item",
+							"name": "Equipment:",
+							"entry": "Choose A or B: (A) {@item Forgery Kit|XPHB}, {@item Fine Clothes|XPHB}, {@item Ink|XPHB}, 2 {@item Ink Pen|XPHB|Ink Pens}, 3 {@item Iron Spikes|XPHB}, 7 GP (as 7 dollars); or (B) 50 GP (as 50 dollars)"
 						}
 					]
 				}
@@ -17945,6 +18177,128 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Mutated Commuter",
+			"source": "PL",
+			"edition": "one",
+			"ability": [
+				{
+					"choose": {
+						"weighted": {
+							"from": [
+								"con",
+								"wis",
+								"cha"
+							],
+							"weights": [
+								2,
+								1
+							]
+						}
+					}
+				},
+				{
+					"choose": {
+						"weighted": {
+							"from": [
+								"con",
+								"wis",
+								"cha"
+							],
+							"weights": [
+								1,
+								1,
+								1
+							]
+						}
+					}
+				}
+			],
+			"feats": [
+				{
+					"aberrant anatomy|rhw": true
+				},
+				{
+					"anyFromCategory": {
+						"category": [
+							"DG"
+						]
+					}
+				}
+			],
+			"skillProficiencies": [
+				{
+					"arcana": true,
+					"investigation": true
+				}
+			],
+			"toolProficiencies": [
+				{
+					"anyGamingSet": 1
+				}
+			],
+			"startingEquipment": [
+				{
+					"a": [
+						{
+							"equipmentType": "setGaming",
+							"displayName": "Gaming Set (same as above)"
+						},
+						{
+							"item": "book|xphb",
+							"displayName": "Book (horror novel)"
+						},
+						"flask|xphb",
+						"lock|xphb",
+						"signal whistle|xphb",
+						"traveler's clothes|xphb",
+						{
+							"value": 1100
+						}
+					],
+					"b": [
+						{
+							"value": 5000
+						}
+					]
+				}
+			],
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Ability Scores:",
+							"entry": "Constitution, Wisdom, Charisma"
+						},
+						{
+							"type": "item",
+							"name": "Feat:",
+							"entry": "{@feat Aberrant Anatomy|RHW} or a {@filter Dark Gift feat of your choice|feats|category=DG}"
+						},
+						{
+							"type": "item",
+							"name": "Skill Proficiencies:",
+							"entry": "{@skill Arcana|XPHB} and {@skill Investigation|XPHB}"
+						},
+						{
+							"type": "item",
+							"name": "Tool Proficiencies:",
+							"entry": "Choose one kind of {@item Gaming Set|XPHB}"
+						},
+						{
+							"type": "item",
+							"name": "Equipment:",
+							"entry": "Choose A or B: (A) {@item Gaming Set|XPHB} (same as above), {@item Book|XPHB} (horror novel), {@item Flask|XPHB}, {@item Lock|XPHB}, {@item Signal Whistle|XPHB}, {@item Traveler's Clothes|XPHB}, and 11 GP (as 11 dollars); or (B) 50 GP (as 50 dollars)"
+						}
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Myriad Operative (Criminal)",
 			"source": "EGW",
 			"page": 203,
@@ -20991,6 +21345,133 @@
 							"type": "item",
 							"name": "Equipment:",
 							"entry": "Choose A or B: (A) {@item Cartographer's Tools|XPHB}, {@item Backpack|XPHB}, {@item Bedroll|XPHB}, {@item Hooded Lantern|XPHB}, {@item Oil|XPHB} (3 flasks), {@item Rope|XPHB}, {@item Tinderbox|XPHB}, {@item Traveler's Clothes|XPHB}, {@item Waterskin|XPHB}, 23 GP; or (B) 50 GP"
+						}
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Reconstructed Runaway",
+			"source": "PL",
+			"edition": "one",
+			"ability": [
+				{
+					"choose": {
+						"weighted": {
+							"from": [
+								"str",
+								"con",
+								"wis"
+							],
+							"weights": [
+								2,
+								1
+							]
+						}
+					}
+				},
+				{
+					"choose": {
+						"weighted": {
+							"from": [
+								"str",
+								"con",
+								"wis"
+							],
+							"weights": [
+								1,
+								1,
+								1
+							]
+						}
+					}
+				}
+			],
+			"feats": [
+				{
+					"symbiotic being|rhw": true
+				},
+				{
+					"anyFromCategory": {
+						"category": [
+							"DG"
+						]
+					}
+				}
+			],
+			"skillProficiencies": [
+				{
+					"athletics": true,
+					"medicine": true
+				}
+			],
+			"toolProficiencies": [
+				{
+					"smith's tools": true
+				}
+			],
+			"startingEquipment": [
+				{
+					"a": [
+						{
+							"item": "smith's tools|xphb",
+							"displayName": "Smith's Tools (as welding tools)"
+						},
+						{
+							"item": "bullseye lantern|xphb",
+							"displayName": "Bullseye Lantern (as flashlight)"
+						},
+						"caltrops|xphb",
+						"chain|xphb",
+						"crowbar|xphb",
+						"grappling hook|xphb",
+						{
+							"item": "oil|xphb",
+							"quantity": 3,
+							"displayName": "Oil (as flashlight batteries)"
+						},
+						{
+							"value": 900
+						}
+					],
+					"b": [
+						{
+							"value": 5000
+						}
+					]
+				}
+			],
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Ability Scores:",
+							"entry": "Strength, Constitution, Wisdom"
+						},
+						{
+							"type": "item",
+							"name": "Feat:",
+							"entry": "{@feat Symbiotic Being|RHW} or a {@filter Dark Gift feat of your choice|feats|category=DG}"
+						},
+						{
+							"type": "item",
+							"name": "Skill Proficiencies:",
+							"entry": "{@skill Athletics|XPHB} and {@skill Medicine|XPHB}"
+						},
+						{
+							"type": "item",
+							"name": "Tool Proficiencies:",
+							"entry": "{@item Smith's Tools|XPHB} (as welding tools)"
+						},
+						{
+							"type": "item",
+							"name": "Equipment:",
+							"entry": "Choose A or B: (A) {@item Smith's Tools|XPHB} (as welding tools), {@item Bullseye Lantern|XPHB} (as flashlight), {@item Caltrops|XPHB}, {@item Chain|XPHB}, {@item Crowbar|XPHB}, {@item Grappling Hook|XPHB}, {@item Oil|XPHB} (3 flasks; as 3 flashlight batteries), 9 GP (as 9 dollars); or (B) 50 GP (as 50 dollars)"
 						}
 					]
 				}

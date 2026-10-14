@@ -1,7 +1,7 @@
 @use "sass:color";
 
 @use "../vars/vars";
-@use "../vars/vars-night";
+@use "../vars/vars--night";
 
 @layer vetools {
 	.viewport-wrapper {
@@ -362,7 +362,7 @@
 
 	.ve-night-mode {
 		.initial-message {
-			color: vars-night.$rgb-name-red--night;
+			color: vars--night.$rgb-name-red--night;
 		}
 	}
 
@@ -509,7 +509,7 @@
 	.ve-night-mode .bkmv {
 		&__ {
 			&wrp-item {
-				border-color: vars-night.$rgb-border-grey--night;
+				border-color: vars--night.$rgb-border-grey--night;
 			}
 		}
 	}
@@ -540,7 +540,7 @@
 
 	.ve-night-mode {
 		.ve-tbl-border {
-			background: vars-night.$rgb-border-grey--statblock-night;
+			background: vars--night.$rgb-border-grey--statblock-night;
 		}
 	}
 
@@ -554,7 +554,7 @@
 
 	.ve-night-mode {
 		.ve-tbl-divider {
-			background-color: vars-night.$rgb-name-red--night;
+			background-color: vars--night.$rgb-name-red--night;
 		}
 	}
 
@@ -643,12 +643,12 @@
 
 	.ve-night-mode .bk__ {
 		&contents-header {
-			border-color: vars-night.$rgb-border-grey--night;
+			border-color: vars--night.$rgb-border-grey--night;
 		}
 
 		&overlay-loading {
-			background: vars-night.$rgb-bg--night;
-			border-bottom-color: vars-night.$rgb-border-grey--statblock-night;
+			background: vars--night.$rgb-bg--night;
+			border-bottom-color: vars--night.$rgb-border-grey--statblock-night;
 		}
 	}
 
@@ -697,10 +697,10 @@
 	.ve-night-mode .bks__ {
 		&wrp-bookshelf-item,
 		&wrp-bookshelf-item:hover {
-			background: vars-night.$rgb-bg--night;
-			border-color: vars-night.$rgb-border-grey--night;
-			color: vars-night.$rgb-font--night;
-			text-decoration-color: vars-night.$rgb-font--night;
+			background: vars--night.$rgb-bg--night;
+			border-color: vars--night.$rgb-border-grey--night;
+			color: vars--night.$rgb-font--night;
+			text-decoration-color: vars--night.$rgb-font--night;
 		}
 	}
 
@@ -753,7 +753,7 @@
 	/* Night Mode */
 	.ve-night-mode {
 		body {
-			color: vars-night.$rgb-font--night;
+			color: vars--night.$rgb-font--night;
 		}
 
 		h1,
@@ -762,29 +762,29 @@
 		h4,
 		h5,
 		h6 {
-			color: vars-night.$rgb-font--night;
+			color: vars--night.$rgb-font--night;
 		}
 
 		pre {
-			color: vars-night.$rgb-font--night;
-			background: vars-night.$rgb-bg--night;
-			border-color: vars-night.$rgb-border-grey--night;
+			color: vars--night.$rgb-font--night;
+			background: vars--night.$rgb-bg--night;
+			border-color: vars--night.$rgb-border-grey--night;
 		}
 
 		hr {
-			border-color: vars-night.$rgb-border-grey--night;
+			border-color: vars--night.$rgb-border-grey--night;
 		}
 
 		a,
 		.ve-roller {
-			color: vars-night.$rgb-link-blue--night;
+			color: vars--night.$rgb-link-blue--night;
 		}
 
 		.ve-hwin__top-border-icon {
-			color: vars-night.$rgb-font--night;
+			color: vars--night.$rgb-font--night;
 
 			&:hover {
-				color: color.adjust(vars-night.$rgb-font--night, $lightness: vars.$pct-darken-hover);
+				color: color.adjust(vars--night.$rgb-font--night, $lightness: vars.$pct-darken-hover);
 			}
 		}
 
@@ -800,25 +800,25 @@
 		.ve-btn-default:hover,
 		.ve-btn-default:focus,
 		.ve-btn-default:active {
-			background-color: vars-night.$rgb-form-control-bg--night;
-			color: vars-night.$rgb-font--night;
-			border-color: vars-night.$rgb-border-grey--night;
+			background-color: vars--night.$rgb-form-control-bg--night;
+			color: vars--night.$rgb-font--night;
+			border-color: vars--night.$rgb-border-grey--night;
 		}
 
 		.ve-btn-primary,
 		.ve-btn-primary:hover,
 		.ve-btn-primary:focus,
 		.ve-btn-primary:active {
-			background-color: vars-night.$rgb-btn-primary-blue--night;
-			color: vars-night.$rgb-font--night;
+			background-color: vars--night.$rgb-btn-primary-blue--night;
+			color: vars--night.$rgb-font--night;
 		}
 
 		.ve-btn-danger,
 		.ve-btn-danger:hover,
 		.ve-btn-danger:focus,
 		.ve-btn-danger:active {
-			background-color: vars-night.$rgb-btn-danger-red--night;
-			color: vars-night.$rgb-font--night;
+			background-color: vars--night.$rgb-btn-danger-red--night;
+			color: vars--night.$rgb-font--night;
 		}
 
 		.ve-btn-danger:hover {
@@ -829,24 +829,24 @@
 		.ve-btn-warning:hover,
 		.ve-btn-warning:focus,
 		.ve-btn-warning:active {
-			background-color: vars-night.$rgb-btn-warning-orange--night;
-			color: vars-night.$rgb-font--night;
+			background-color: vars--night.$rgb-btn-warning-orange--night;
+			color: vars--night.$rgb-font--night;
 		}
 
 		.ve-btn-info,
 		.ve-btn-info:hover,
 		.ve-btn-info:focus,
 		.ve-btn-info:active {
-			background-color: vars-night.$rgb-btn-info-blue--night;
-			color: vars-night.$rgb-font--night;
+			background-color: vars--night.$rgb-btn-info-blue--night;
+			color: vars--night.$rgb-font--night;
 		}
 
 		.ve-btn-success,
 		.ve-btn-success:hover,
 		.ve-btn-success:focus,
 		.ve-btn-success:active {
-			background-color: vars-night.$rgb-btn-success-green--night;
-			color: vars-night.$rgb-font--night;
+			background-color: vars--night.$rgb-btn-success-green--night;
+			color: vars--night.$rgb-font--night;
 		}
 
 		.ve-btn-default.ve-active {
@@ -868,19 +868,19 @@
 		}
 
 		.ve-dropdown-menu {
-			background: vars-night.$rgb-bg--night;
-			color: vars-night.$rgb-font--night;
+			background: vars--night.$rgb-bg--night;
+			color: vars--night.$rgb-font--night;
 			box-shadow: 0 6px 12px rgb(0 0 0 / 56%);
 		}
 
 		.ve-dropdown-menu > li {
 			> a,
 			> span {
-				color: vars-night.$rgb-font--night;
+				color: vars--night.$rgb-font--night;
 
 				&:focus,
 				&:hover {
-					background-color: vars-night.$rgb-bg--alt-night;
+					background-color: vars--night.$rgb-bg--alt-night;
 					color: #fff;
 				}
 			}
@@ -889,7 +889,7 @@
 				> a,
 				> span {
 					color: #fff;
-					background-color: vars-night.$rgb-btn-danger-bg-red--night;
+					background-color: vars--night.$rgb-btn-danger-bg-red--night;
 
 					&:focus,
 					&:hover {
@@ -921,22 +921,22 @@
 		}
 
 		.ve-dropdown-divider {
-			background-color: vars-night.$rgb-border-grey--night;
+			background-color: vars--night.$rgb-border-grey--night;
 		}
 
 		select,
 		input {
-			background-color: vars-night.$rgb-bg--night;
-			color: vars-night.$rgb-font--night;
+			background-color: vars--night.$rgb-bg--night;
+			color: vars--night.$rgb-font--night;
 		}
 
 		select option {
-			color: vars-night.$rgb-font--night;
-			background: vars-night.$rgb-bg--night;
+			color: vars--night.$rgb-font--night;
+			background: vars--night.$rgb-bg--night;
 		}
 
 		.list .row {
-			background: vars-night.$rgb-bg--night;
+			background: vars--night.$rgb-bg--night;
 		}
 
 		/* Bootstrap overrides */
@@ -946,48 +946,48 @@
 
 		.alert-info {
 			color: #fff;
-			background-color: color.adjust(vars-night.$rgb-alert-info-blue--night, $alpha: - 0.5);
-			border-color: vars-night.$rgb-alert-info-border-blue--night;
+			background-color: color.adjust(vars--night.$rgb-alert-info-blue--night, $alpha: - 0.5);
+			border-color: vars--night.$rgb-alert-info-border-blue--night;
 
 			.alert-link {
-				color: vars-night.$rgb-alert-info-border-blue--night;
+				color: vars--night.$rgb-alert-info-border-blue--night;
 			}
 		}
 
 		.alert-danger {
 			color: #fff;
-			background-color: color.adjust(vars-night.$rgb-alert-danger-red--night, $alpha: - 0.5);
-			border-color: vars-night.$rgb-alert-danger-border-red--night;
+			background-color: color.adjust(vars--night.$rgb-alert-danger-red--night, $alpha: - 0.5);
+			border-color: vars--night.$rgb-alert-danger-border-red--night;
 
 			.alert-link {
-				color: vars-night.$rgb-alert-danger-border-red--night;
+				color: vars--night.$rgb-alert-danger-border-red--night;
 			}
 		}
 
 		.alert-warning {
 			color: #fff;
-			background-color: color.adjust(vars-night.$rgb-alert-warning-orange--night, $alpha: - 0.5);
-			border-color: vars-night.$rgb-alert-warning-border-orange--night;
+			background-color: color.adjust(vars--night.$rgb-alert-warning-orange--night, $alpha: - 0.5);
+			border-color: vars--night.$rgb-alert-warning-border-orange--night;
 
 			.alert-link {
-				color: vars-night.$rgb-alert-warning-border-orange--night;
+				color: vars--night.$rgb-alert-warning-border-orange--night;
 			}
 		}
 
 		.alert-success {
 			color: #fff;
-			background-color: color.adjust(vars-night.$rgb-alert-success-green--night, $alpha: - 0.5);
-			border-color: vars-night.$rgb-alert-success-border-green--night;
+			background-color: color.adjust(vars--night.$rgb-alert-success-green--night, $alpha: - 0.5);
+			border-color: vars--night.$rgb-alert-success-border-green--night;
 
 			.alert-link {
-				color: vars-night.$rgb-alert-success-border-green--night;
+				color: vars--night.$rgb-alert-success-border-green--night;
 			}
 		}
 
 		.ve-form-control {
-			background: vars-night.$rgb-form-control-bg--night;
-			color: vars-night.$rgb-font--night;
-			border-color: vars-night.$rgb-border-grey--night;
+			background: vars--night.$rgb-form-control-bg--night;
+			color: vars--night.$rgb-font--night;
+			border-color: vars--night.$rgb-border-grey--night;
 		}
 
 		.ve-form-control[disabled] {
@@ -1038,7 +1038,7 @@
 
 		@media screen and (width > #{vars.$width-screen-hg}) {
 			#listcontainer.book-contents {
-				background: vars-night.$rgb-bg--night;
+				background: vars--night.$rgb-bg--night;
 				border-right: 1px solid #404040;
 			}
 		}
@@ -1046,31 +1046,31 @@
 		.bk__ {
 			&head-chapter--active,
 			&head-section--active {
-				background: vars-night.$rgb-bg--alt-night;
+				background: vars--night.$rgb-bg--alt-night;
 			}
 		}
 
 		.bklist__ {
 			&wrp-rows-inner {
-				background: vars-night.$rgb-bg--night;
+				background: vars--night.$rgb-bg--night;
 			}
 
 			&vr-contents {
-				border-color: vars-night.$rgb-border-grey--list-row-night;
+				border-color: vars--night.$rgb-border-grey--list-row-night;
 			}
 		}
 
 		.ve-hwin .ve-hoverborder {
-			background: vars-night.$rgb-border-grey--statblock-night;
+			background: vars--night.$rgb-border-grey--statblock-night;
 		}
 
 		.ve-hwin__wrp-table {
-			background: vars-night.$rgb-bg--night;
+			background: vars--night.$rgb-bg--night;
 		}
 
 		.wrp-stats-table {
-			border-top: 1px solid vars-night.$rgb-border-grey--statblock-night;
-			border-bottom: 1px solid vars-night.$rgb-border-grey--statblock-night;
+			border-top: 1px solid vars--night.$rgb-border-grey--statblock-night;
+			border-bottom: 1px solid vars--night.$rgb-border-grey--statblock-night;
 		}
 
 		.f-all-wrapper > input,
@@ -1084,7 +1084,7 @@
 
 		.stripe-odd-table > tbody > tr:nth-child(odd),
 		.stripe-even-table > tbody > tr:nth-child(even) {
-			background-color: vars-night.$rgb-stripe-grey--night;
+			background-color: vars--night.$rgb-stripe-grey--night;
 		}
 
 		.bkmv {
@@ -1092,7 +1092,7 @@
 		}
 
 		.bkmv__spacer-name {
-			background-color: vars-night.$rgb-border-grey--statblock-night;
+			background-color: vars--night.$rgb-border-grey--statblock-night;
 		}
 
 		.list-multi-selected .ve-lst__row-border {
@@ -1101,7 +1101,7 @@
 
 		.list-multi-selected.ve-lst__row--sublist {
 			.ve-lst__row-border {
-				border-color: vars-night.$rgb-border-grey--night;
+				border-color: vars--night.$rgb-border-grey--night;
 			}
 		}
 

@@ -1,10 +1,10 @@
 @use "../vars/vars";
-@use "../vars/vars-night";
+@use "../vars/vars--night";
 
 @layer vetools {
 	.ve-night-mode .ve-lst__ {
 		&row {
-			background: vars-night.$rgb-bg--night;
+			background: vars--night.$rgb-bg--night;
 
 			&:hover {
 				background: vars.$rgb-off-black;
@@ -19,7 +19,7 @@
 			}
 
 			&-border {
-				border-color: vars-night.$rgb-border-grey--list-row-night;
+				border-color: vars--night.$rgb-border-grey--list-row-night;
 			}
 		}
 	}

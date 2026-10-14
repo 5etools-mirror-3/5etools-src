@@ -1,5 +1,5 @@
 @use "../vars/vars";
-@use "../vars/vars-night";
+@use "../vars/vars--night";
 
 @layer vetools {
 	.page__ {
@@ -146,7 +146,7 @@
 	.ve-night-mode {
 		.page__ {
 			&header {
-				color: vars-night.$rgb-font--night;
+				color: vars--night.$rgb-font--night;
 				background: vars.$rgb-off-black;
 			}
 
@@ -165,7 +165,7 @@
 			}
 
 			&wrp-download {
-				background: vars-night.$rgb-bg--night;
+				background: vars--night.$rgb-bg--night;
 			}
 
 			&disp-download-progress-text {
@@ -178,7 +178,7 @@
 				> li.ve-active > a:hover {
 					background-color: vars.$rgb-off-black;
 					border-top: 0;
-					border-color: vars-night.$rgb-border-grey--night;
+					border-color: vars--night.$rgb-border-grey--night;
 					border-left-color: transparent;
 					border-right-color: transparent;
 					color: #d0d0d0;

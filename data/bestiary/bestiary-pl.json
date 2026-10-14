@@ -1,0 +1,1670 @@
+{
+	"monster": [
+		{
+			"name": "Adam",
+			"isNamedCreature": true,
+			"source": "PL",
+			"size": [
+				"M"
+			],
+			"type": "construct",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				18
+			],
+			"hp": {
+				"average": 161,
+				"formula": "19d8 + 76"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 22,
+			"dex": 16,
+			"con": 19,
+			"int": 14,
+			"wis": 10,
+			"cha": 5,
+			"save": {
+				"str": "+10",
+				"dex": "+7"
+			},
+			"skill": {
+				"acrobatics": "+7",
+				"athletics": "+14"
+			},
+			"senses": [
+				"Darkvision 60 ft."
+			],
+			"passive": 10,
+			"resist": [
+				"bludgeoning",
+				"piercing",
+				"slashing"
+			],
+			"immune": [
+				"lightning",
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"languages": [
+				"Common"
+			],
+			"cr": "12",
+			"trait": [
+				{
+					"name": "Bloodied Fury",
+					"entries": [
+						"While {@status Bloodied|XPHB}, Adam has {@variantrule Advantage|XPHB} on attack rolls."
+					]
+				},
+				{
+					"name": "Immutable Form",
+					"entries": [
+						"Adam can't shape-shift."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"Adam has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Adam makes two Slam attacks and uses Crush or Throw."
+					]
+				},
+				{
+					"name": "Slam",
+					"entries": [
+						"{@atkr m} {@hit 10}, reach 5 ft. {@h}13 ({@damage 2d6 + 6}) Bludgeoning damage plus 7 ({@damage 2d6}) Lightning damage. If the target is a Medium or smaller creature, it has the {@condition Grappled|XPHB} condition (escape {@dc 18}) from one of two hands."
+					]
+				},
+				{
+					"name": "Crush",
+					"entries": [
+						"{@actSave str} {@dc 18}, one creature {@condition Grappled|XPHB} by Adam. {@actSaveFail} 13 ({@damage 2d6 + 6}) Bludgeoning damage plus 7 ({@damage 2d6}) Lightning damage, and the target has the {@condition Restrained|XPHB} condition. While {@condition Restrained|XPHB}, the target is suffocating."
+					]
+				},
+				{
+					"name": "Throw",
+					"entries": [
+						"Adam throws a creature {@condition Grappled|XPHB} by him to a space he can see within 30 feet of himself that isn't in the air. {@actSave dex} {@dc 18}, the creature thrown and each creature in the destination space. {@actSaveFail} 13 ({@damage 2d6 + 6}) Bludgeoning damage, and the target has the {@condition Prone|XPHB} condition. {@actSaveSuccess} Half damage only."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Violent Leap",
+					"entries": [
+						"Adam spends 10 feet of movement to jump to a space within 40 feet that contains one or more Medium or smaller creatures. {@actSave dex} {@dc 18}, each creature in Adam's destination space. {@actSaveFail} 14 ({@damage 4d6}) Bludgeoning damage, and the target has the {@condition Prone|XPHB} condition. {@actSaveSuccessOrFail} The target moves to the nearest unoccupied space."
+					]
+				}
+			],
+			"traitTags": [
+				"Immutable Form",
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"B",
+				"L"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"conditionInflict": [
+				"grappled",
+				"prone",
+				"restrained"
+			],
+			"savingThrowForced": [
+				"dexterity",
+				"strength"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "CEO Viktra Mordenheim",
+			"shortName": "Viktra",
+			"isNamedCreature": true,
+			"source": "PL",
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				15
+			],
+			"hp": {
+				"average": 123,
+				"formula": "19d8 + 38"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 11,
+			"dex": 16,
+			"con": 15,
+			"int": 21,
+			"wis": 10,
+			"cha": 10,
+			"save": {
+				"con": "+5",
+				"cha": "+3"
+			},
+			"skill": {
+				"arcana": "+8",
+				"investigation": "+8",
+				"medicine": "+6"
+			},
+			"passive": 10,
+			"languages": [
+				"Common",
+				"Draconic",
+				"Dwarvish",
+				"Elvish",
+				"Goblin",
+				"Halfling"
+			],
+			"cr": "7",
+			"gear": [
+				"studded leather armor|xphb"
+			],
+			"spellcasting": [
+				{
+					"name": "Activate Constructs (1/Day)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Viktra casts {@spell Animate Objects|XPHB}, using Intelligence as the spellcasting ability."
+					],
+					"daily": {
+						"1": [
+							"{@spell Animate Objects|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "bonus",
+					"hidden": [
+						"daily"
+					]
+				}
+			],
+			"trait": [
+				{
+					"name": "Bolster Inventions",
+					"entries": [
+						"At the end of each of Viktra's turns, each of her Construct allies in a 5-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from Viktra gains 5 {@variantrule Temporary Hit Points|XPHB}. This trait doesn't function if Viktra has the {@condition Incapacitated|XPHB} condition."
+					]
+				},
+				{
+					"name": "Darklord Restoration",
+					"entries": [
+						"If Viktra dies, she revives with all her {@variantrule Hit Points|XPHB} in {@dice 1d10} weeks somewhere in Mordenheim Kinetics."
+					]
+				},
+				{
+					"name": "Legendary Resistance (3/Day, or 4/Day in Domain)",
+					"entries": [
+						"If Viktra fails a saving throw, she can choose to succeed instead."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Viktra makes two Lightning Rod attacks. She can replace one attack with a use of Syringe."
+					]
+				},
+				{
+					"name": "Lightning Rod",
+					"entries": [
+						"{@atkr m,r} {@hit 6}, reach 5 ft. or range 90 ft. {@h}12 ({@damage 2d8 + 3}) Lightning damage, and the target can't take Reactions until the start of its next turn."
+					]
+				},
+				{
+					"name": "Syringe",
+					"entries": [
+						"{@actSave con} {@dc 16}, one creature Viktra can see within 5 feet. {@actSaveFail} The target has the {@condition Poisoned|XPHB} condition for 1 minute. While {@condition Poisoned|XPHB} in this way, the target suffers one of the following effects (Viktra's choice). The target repeats the save at the end of each of its turns, ending the effect on itself on a success. The target succeeds automatically after 1 minute:",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "Corrosive Serum",
+									"entries": [
+										"The target takes 10 ({@damage 4d4}) Acid damage at the start of each of its turns, and its {@variantrule Speed|XPHB} decreases by 10 feet."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Deadly Serum",
+									"entries": [
+										"The target takes 11 ({@damage 2d10}) Necrotic damage at the start of each of its turns, and it can't regain {@variantrule Hit Points|XPHB}."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Mind-Altering Serum",
+									"entries": [
+										"The target takes 10 ({@damage 3d6}) Psychic damage at the start of each of its turns, and it has {@variantrule Disadvantage|XPHB} on saving throws to maintain {@status Concentration|XPHB}."
+									]
+								}
+							]
+						}
+					]
+				}
+			],
+			"legendary": [
+				{
+					"name": "Shocking Prod",
+					"entries": [
+						"Viktra moves up to half her {@variantrule Speed|XPHB} and makes one Lightning Rod attack. Viktra can't take this action again until the start of her next turn."
+					]
+				},
+				{
+					"name": "Static Explosion",
+					"entries": [
+						"{@actSave dex} {@dc 16}, each creature in a 10-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point Viktra can see within 90 feet. {@actSaveFail} 5 ({@damage 2d4}) Lightning damage. {@actSaveSuccess} Half damage."
+					]
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"D",
+				"DR",
+				"E",
+				"GO",
+				"H"
+			],
+			"damageTags": [
+				"A",
+				"L",
+				"N",
+				"Y"
+			],
+			"damageTagsSpell": [
+				"B",
+				"P",
+				"S"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"MA",
+				"RA"
+			],
+			"conditionInflict": [
+				"incapacitated",
+				"poisoned"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Created",
+			"source": "PL",
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "construct",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				9
+			],
+			"hp": {
+				"average": 127,
+				"formula": "15d8 + 60"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 19,
+			"dex": 9,
+			"con": 18,
+			"int": 6,
+			"wis": 10,
+			"cha": 5,
+			"senses": [
+				"Darkvision 60 ft."
+			],
+			"passive": 10,
+			"immune": [
+				"lightning",
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"languages": [
+				"Common"
+			],
+			"cr": "5",
+			"trait": [
+				{
+					"name": "Berserk",
+					"entries": [
+						"Whenever the created starts its turn {@status Bloodied|XPHB}, roll {@dice 1d6}. On a 6, the created goes berserk. On each of its turns while berserk, the created attacks the nearest creature it can see. If no creature is near enough to move to and attack, the created attacks an object. Once the created goes berserk, it remains so until it is destroyed or it is no longer {@status Bloodied|XPHB}.",
+						"The created's creator, if within 60 feet of the berserk created, can try to calm it by taking an action to make a {@dc 15} Charisma ({@skill Persuasion|XPHB}) check; the created must be able to hear its creator. If this check succeeds, the created ceases being berserk until the start of its next turn, at which point it resumes rolling for the Berserk trait again if it is still {@status Bloodied|XPHB}."
+					]
+				},
+				{
+					"name": "Immutable Form",
+					"entries": [
+						"The created can't shape-shift."
+					]
+				},
+				{
+					"name": "Lightning Absorption",
+					"entries": [
+						"Whenever the created is subjected to Lightning damage, it regains a number of {@variantrule Hit Points|XPHB} equal to the Lightning damage dealt."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The created has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The created makes two Slam attacks."
+					]
+				},
+				{
+					"name": "Slam",
+					"entries": [
+						"{@atkr m} {@hit 7}, reach 5 ft. {@h}13 ({@damage 2d8 + 4}) Bludgeoning damage plus 4 ({@damage 1d8}) Lightning damage."
+					]
+				},
+				{
+					"name": "Malfunction {@recharge}",
+					"entries": [
+						"The created randomly creates one of the following effects (roll {@dice 1d4}):",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "1: Insect Hive",
+									"entries": [
+										"{@actSave con} {@dc 15}, each creature within 10 feet. {@actSaveFail} The creature takes 13 ({@damage 3d8}) Poison damage and has the {@condition Poisoned|XPHB} condition until the start of its next turn."
+									]
+								},
+								{
+									"type": "item",
+									"name": "2: Melting Plastic",
+									"entries": [
+										"{@actSave dex} {@dc 15}, each creature in a 15-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}. {@actSaveFail} 13 ({@damage 3d8}) Fire damage. Until the end of the target's next turn, the target's {@variantrule Speed|XPHB} is halved; the target can't take Reactions; and the target can take either an action or {@variantrule Bonus Action|XPHB} on its turn, not both. {@actSaveSuccess} Half damage only"
+									]
+								},
+								{
+									"type": "item",
+									"name": "3: Electrical Discharge",
+									"entries": [
+										"{@actSave dex} {@dc 15}, each creature within 10 feet. {@actSaveFail} 18 ({@damage 4d8}) Lightning damage. {@actSaveSuccess} Half damage"
+									]
+								},
+								{
+									"type": "item",
+									"name": "4: Haywire",
+									"entries": [
+										"The created makes two Slam attacks and goes berserk. It rolls for the Berserk trait each round, whether or not it is {@status Bloodied|XPHB}, for 1 minute."
+									]
+								}
+							]
+						}
+					]
+				}
+			],
+			"environment": [
+				"urban"
+			],
+			"treasure": [
+				"implements"
+			],
+			"traitTags": [
+				"Damage Absorption",
+				"Immutable Form",
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"B",
+				"F",
+				"I",
+				"L"
+			],
+			"miscTags": [
+				"AOE",
+				"MA"
+			],
+			"conditionInflict": [
+				"poisoned"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Echo",
+			"source": "PL",
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "construct",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 22,
+				"formula": "4d8 + 4"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 14,
+			"dex": 10,
+			"con": 13,
+			"int": 10,
+			"wis": 10,
+			"cha": 5,
+			"skill": {
+				"athletics": "+4",
+				"perception": "+2"
+			},
+			"senses": [
+				"Darkvision 60 ft."
+			],
+			"passive": 12,
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"languages": [
+				"Common plus one other language"
+			],
+			"cr": "1/2",
+			"gear": [
+				"club|xphb"
+			],
+			"trait": [
+				{
+					"name": "Immutable Form",
+					"entries": [
+						"The echo can't shape-shift."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The echo makes two Club attacks."
+					]
+				},
+				{
+					"name": "Club",
+					"entries": [
+						"{@atkr m} {@hit 4}, reach 5 ft. {@h}4 ({@damage 1d4 + 2}) Bludgeoning damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Automated Self-Preservation",
+					"entries": [
+						"The echo takes the Dash or Disengage action."
+					]
+				}
+			],
+			"environment": [
+				"urban"
+			],
+			"traitTags": [
+				"Immutable Form"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"X"
+			],
+			"damageTags": [
+				"B"
+			],
+			"miscTags": [
+				"MA",
+				"MLW"
+			],
+			"hasFluff": true
+		},
+		{
+			"name": "Empty Echo",
+			"source": "PL",
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "construct",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 22,
+				"formula": "4d8 + 4"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 14,
+			"dex": 10,
+			"con": 13,
+			"int": 2,
+			"wis": 6,
+			"cha": 5,
+			"senses": [
+				"Darkvision 60 ft."
+			],
+			"passive": 8,
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"cr": "1/2",
+			"trait": [
+				{
+					"name": "Immutable Form",
+					"entries": [
+						"The echo can't shape-shift."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Slam",
+					"entries": [
+						"{@atkr m} {@hit 4}, reach 5 ft. {@h}6 ({@damage 1d8 + 2}) Bludgeoning damage."
+					]
+				},
+				{
+					"name": "Static Scream {@recharge}",
+					"entries": [
+						"{@actSave con} {@dc 11}, each creature of the echo's choice within 30 feet. {@actSaveFail} 5 ({@damage 2d4}) Thunder damage, and the creature has the {@condition Deafened|XPHB} condition until the start of the echo's next turn."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Automated Self-Preservation",
+					"entries": [
+						"The echo takes the Dash or Disengage action."
+					]
+				}
+			],
+			"environment": [
+				"urban"
+			],
+			"traitTags": [
+				"Immutable Form"
+			],
+			"senseTags": [
+				"D"
+			],
+			"damageTags": [
+				"B",
+				"T"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"conditionInflict": [
+				"deafened"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasFluff": true
+		},
+		{
+			"name": "Gerta von Aubrecker",
+			"isNamedCreature": true,
+			"source": "PL",
+			"size": [
+				"M"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				14
+			],
+			"hp": {
+				"average": 84,
+				"formula": "13d8 + 26"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 9,
+			"dex": 14,
+			"con": 14,
+			"int": 17,
+			"wis": 12,
+			"cha": 11,
+			"save": {
+				"int": "+6",
+				"wis": "+4"
+			},
+			"skill": {
+				"perception": "+4"
+			},
+			"senses": [
+				"Darkvision 60 ft."
+			],
+			"passive": 14,
+			"immune": [
+				"cold"
+			],
+			"conditionImmune": [
+				"exhaustion"
+			],
+			"languages": [
+				"Common"
+			],
+			"cr": "5",
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Gerta makes three Cryogun attacks."
+					]
+				},
+				{
+					"name": "Cryogun",
+					"entries": [
+						"{@atkr m,r} {@hit 6}, reach 5 ft. or range 60 ft. {@h}16 ({@damage 3d8 + 3}) Cold damage."
+					]
+				},
+				{
+					"name": "Cryocannon {@recharge 5}",
+					"entries": [
+						"{@actSave con} {@dc 14}, each creature in a 60-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}. {@actSaveFail} 36 ({@damage 8d8}) Cold damage. {@actSaveSuccess} Half damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Camouflage Generator",
+					"entries": [
+						"While in {@variantrule Dim Light|XPHB} or {@variantrule Darkness|XPHB}, Gerta takes the Hide action."
+					]
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"C"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasFluff": true
+		},
+		{
+			"name": "Hendrik von Aubrecker",
+			"isNamedCreature": true,
+			"source": "PL",
+			"size": [
+				"M"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				15
+			],
+			"hp": {
+				"average": 65,
+				"formula": "10d8 + 20"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 10,
+			"dex": 18,
+			"con": 15,
+			"int": 14,
+			"wis": 12,
+			"cha": 9,
+			"save": {
+				"con": "+4"
+			},
+			"skill": {
+				"acrobatics": "+6",
+				"perception": "+3"
+			},
+			"senses": [
+				"Darkvision 60 ft."
+			],
+			"passive": 13,
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"exhaustion"
+			],
+			"languages": [
+				"Common"
+			],
+			"cr": "3",
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Hendrik makes two Slam attacks and uses Numbing Needle."
+					]
+				},
+				{
+					"name": "Slam",
+					"entries": [
+						"{@atkr m} {@hit 6}, reach 5 ft. {@h}8 ({@damage 1d8 + 4}) Bludgeoning damage."
+					]
+				},
+				{
+					"name": "Numbing Needle",
+					"entries": [
+						"{@actSave con} {@dc 14}, one creature within 5 feet. {@actSaveFail} 7 ({@damage 2d6}) Poison damage. Until the end of the target's next turn, the target's {@variantrule Speed|XPHB} is halved; the target can't take Reactions; and it can take either an action or a {@variantrule Bonus Action|XPHB} on its turn, not both. {@actSaveSuccess} Half damage only."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Parry",
+					"entries": [
+						"{@actTrigger} Hendrik is hit by a melee attack roll. {@actResponse} Hendrik adds 2 to his AC against that attack, possibly causing it to miss."
+					]
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Parry"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"B",
+				"I"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "K-Nine",
+			"source": "PL",
+			"size": [
+				"M"
+			],
+			"type": "construct",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				14
+			],
+			"hp": {
+				"average": 22,
+				"formula": "3d10 + 6"
+			},
+			"speed": {
+				"walk": 50
+			},
+			"str": 17,
+			"dex": 15,
+			"con": 15,
+			"int": 3,
+			"wis": 12,
+			"cha": 7,
+			"skill": {
+				"perception": "+5",
+				"stealth": "+4"
+			},
+			"senses": [
+				"Darkvision 60 ft."
+			],
+			"passive": 15,
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"cr": "1",
+			"trait": [
+				{
+					"name": "Immutable Form",
+					"entries": [
+						"The K-Nine can't shape-shift."
+					]
+				},
+				{
+					"name": "Pack Tactics",
+					"entries": [
+						"The K-Nine has {@variantrule Advantage|XPHB} on an attack roll against a creature if at least one of the K-Nine's allies is within 5 feet of the creature and the ally doesn't have the {@condition Incapacitated|XPHB} condition."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atkr m} {@hit 5}, reach 5 ft. {@h}8 ({@damage 1d10 + 3}) Piercing damage. If the target is a Large or smaller creature, it has the {@condition Prone|XPHB} condition."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "X-Ray Scanning",
+					"entries": [
+						"The K-Nine gains Blindsight to a range of 60 feet. This Blindsight ignores {@variantrule Cover|XPHB|Total Cover} created by up to 1 foot of stone, 1 inch of common metal, or 3 feet of wood or dirt. Thicker substances or thin sheets of lead block the Blindsight as usual. This benefit lasts for 1 minute or until the K-Nine has the {@condition Blinded|XPHB} condition."
+					]
+				}
+			],
+			"environment": [
+				"urban"
+			],
+			"traitTags": [
+				"Immutable Form",
+				"Pack Tactics"
+			],
+			"senseTags": [
+				"D"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"conditionInflict": [
+				"blinded",
+				"prone"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Lamordian Evangelist",
+			"source": "PL",
+			"size": [
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				{
+					"ac": 11,
+					"from": [
+						"{@item Shield|XPHB} (as metal placard)"
+					]
+				}
+			],
+			"hp": {
+				"average": 9,
+				"formula": "2d8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 12,
+			"dex": 9,
+			"con": 10,
+			"int": 11,
+			"wis": 9,
+			"cha": 13,
+			"save": {
+				"cha": "+3"
+			},
+			"skill": {
+				"persuasion": "+3",
+				"religion": "+2"
+			},
+			"passive": 9,
+			"languages": [
+				"Common"
+			],
+			"cr": {
+				"cr": "None",
+				"xp": 0
+			},
+			"pbNote": "+2",
+			"gear": [
+				"quarterstaff|xphb",
+				{
+					"item": "shield|xphb",
+					"displayName": "Shield (as metal placard; included in AC)"
+				}
+			],
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The evangelist casts one of the following spells, using Charisma as the spellcasting ability:"
+					],
+					"will": [
+						"{@spell Guidance|XPHB}"
+					],
+					"daily": {
+						"2": [
+							"{@spell Cure Wounds|XPHB}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action"
+				}
+			],
+			"action": [
+				{
+					"name": "Quarterstaff",
+					"entries": [
+						"{@atkr m} {@hit 3}, reach 5 ft. {@h}4 ({@damage 1d6 + 1}) Bludgeoning damage, or 5 ({@damage 1d8 + 1}) Bludgeoning damage if used with both hands."
+					]
+				},
+				{
+					"name": "Feedback Loop",
+					"entries": [
+						"{@actSave con} {@dc 11}, one creature within 60 feet. {@actSaveFail} 4 ({@damage 1d8}) Thunder damage, and the target has the {@condition Deafened|XPHB} condition until the end of its next turn."
+					]
+				}
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"B",
+				"T"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"MLW"
+			],
+			"conditionInflict": [
+				"deafened"
+			],
+			"savingThrowForced": [
+				"constitution"
+			]
+		},
+		{
+			"name": "Lamordian Infiltrator",
+			"source": "PL",
+			"size": [
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				{
+					"ac": 12,
+					"from": [
+						"{@item Leather Armor|XPHB}"
+					]
+				}
+			],
+			"hp": {
+				"average": 9,
+				"formula": "2d6 + 2"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 8,
+			"dex": 13,
+			"con": 12,
+			"int": 11,
+			"wis": 12,
+			"cha": 9,
+			"save": {
+				"dex": "+3"
+			},
+			"skill": {
+				"sleight of hand": "+3",
+				"stealth": "+3"
+			},
+			"passive": 11,
+			"languages": [
+				"Common"
+			],
+			"cr": {
+				"cr": "None",
+				"xp": 0
+			},
+			"pbNote": "+2",
+			"gear": [
+				"dagger|xphb",
+				"leather armor|xphb"
+			],
+			"action": [
+				{
+					"name": "Dagger",
+					"entries": [
+						"{@atkr m,r} {@hit 3}, reach 5 ft. or range 20/60 ft. {@h}3 ({@damage 1d4 + 1}) Piercing damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Disengage",
+					"entries": [
+						"The infiltrator takes the {@action Disengage|XPHB} action."
+					]
+				}
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MA",
+				"MLW",
+				"RA",
+				"THW"
+			]
+		},
+		{
+			"name": "Lamordian Mercenary",
+			"source": "PL",
+			"size": [
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"{@item Chain Mail|XPHB} (as bulletproof vest)"
+					]
+				}
+			],
+			"hp": {
+				"average": 11,
+				"formula": "2d8 + 2"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 13,
+			"dex": 10,
+			"con": 12,
+			"int": 8,
+			"wis": 11,
+			"cha": 9,
+			"save": {
+				"str": "+3"
+			},
+			"skill": {
+				"athletics": "+3"
+			},
+			"passive": 10,
+			"languages": [
+				"Common"
+			],
+			"cr": {
+				"cr": "None",
+				"xp": 0
+			},
+			"pbNote": "+2",
+			"gear": [
+				{
+					"item": "chain mail|xphb",
+					"displayName": "Chain Mail (as bulletproof vest)"
+				},
+				{
+					"item": "greatclub|xphb",
+					"displayName": "Greatclub (as metal baseball bat)"
+				},
+				"pistol|xphb"
+			],
+			"action": [
+				{
+					"name": "Greatclub",
+					"entries": [
+						"{@atkr m} {@hit 3}, reach 5 ft. {@h}5 ({@damage 1d8 + 1}) Bludgeoning damage."
+					]
+				},
+				{
+					"name": "Pistol",
+					"entries": [
+						"{@atkr r} {@hit 2}, range 30/90 ft. {@h}5 ({@damage 1d10}) Piercing damage."
+					]
+				}
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"B",
+				"P"
+			],
+			"miscTags": [
+				"MA",
+				"MLW",
+				"RA",
+				"RNG"
+			]
+		},
+		{
+			"name": "Lamordian Technician",
+			"source": "PL",
+			"size": [
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				10
+			],
+			"hp": {
+				"average": 7,
+				"formula": "2d8 - 2"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 8,
+			"dex": 10,
+			"con": 9,
+			"int": 13,
+			"wis": 11,
+			"cha": 12,
+			"save": {
+				"int": "+3"
+			},
+			"skill": {
+				"arcana": "+3",
+				"history": "+3"
+			},
+			"passive": 10,
+			"languages": [
+				"Common"
+			],
+			"cr": {
+				"cr": "None",
+				"xp": 0
+			},
+			"pbNote": "+2",
+			"gear": [
+				{
+					"item": "tinker's tools|xphb",
+					"displayName": "Tinker's Tools (as engineer's toolkit)"
+				}
+			],
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The technician casts one of the following spells, using Intelligence as the spellcasting ability (spell save {@dc 11}):"
+					],
+					"will": [
+						"{@spell Minor Illusion|XPHB}"
+					],
+					"daily": {
+						"2e": [
+							"{@spell Burning Hands|XPHB}",
+							"{@spell Grease|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				}
+			],
+			"action": [
+				{
+					"name": "Static Arc",
+					"entries": [
+						"{@atkr m,r} {@hit 3}, reach 5 ft. or range 120 ft. {@h}5 ({@damage 1d10}) Lightning damage."
+					]
+				}
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"L"
+			],
+			"damageTagsSpell": [
+				"F"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"conditionInflictSpell": [
+				"prone"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity"
+			]
+		},
+		{
+			"name": "Rudolph von Aubrecker",
+			"isNamedCreature": true,
+			"source": "PL",
+			"size": [
+				"M"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				15
+			],
+			"hp": {
+				"average": 112,
+				"formula": "15d8 + 45"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 11,
+			"dex": 16,
+			"con": 17,
+			"int": 19,
+			"wis": 14,
+			"cha": 15,
+			"save": {
+				"int": "+7",
+				"cha": "+5"
+			},
+			"skill": {
+				"perception": "+8",
+				"performance": "+5"
+			},
+			"senses": [
+				"Darkvision 60 ft."
+			],
+			"passive": 16,
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"paralyzed"
+			],
+			"languages": [
+				"Common"
+			],
+			"cr": "6",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Rudolph casts one of the following spells, requiring no spell components and using Intelligence as the spellcasting ability (spell save {@dc 15}):"
+					],
+					"will": [
+						"{@spell Detect Thoughts|XPHB}",
+						"{@spell Mind Spike|XPHB}"
+					],
+					"daily": {
+						"1": [
+							"{@spell Command|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				},
+				{
+					"name": "Forcefield Generator",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Rudolph casts {@spell Shield|XPHB} in response to the spell's trigger, requiring no spell components and using the same spellcasting ability as Spellcasting."
+					],
+					"will": [
+						"{@spell Shield|XPHB}"
+					],
+					"ability": "int",
+					"displayAs": "reaction",
+					"hidden": [
+						"will"
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Rudolph makes one Taser attack and uses Spellcasting to cast {@spell Command|XPHB} or {@spell Mind Spike|XPHB}."
+					]
+				},
+				{
+					"name": "Taser",
+					"entries": [
+						"{@atkr m} {@hit 6}, reach 5 ft. {@h}14 ({@damage 4d6}) Lightning damage, and the target has the {@condition Paralyzed|XPHB} condition until the start of Rudolph's next turn."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "X-Ray Scanning",
+					"entries": [
+						"Rudolph gains Blindsight to a range of 60 feet. This Blindsight ignores {@variantrule Cover|XPHB|Total Cover} created by up to 1 foot of stone, 1 inch of common metal, or 3 feet of wood or dirt. Thicker substances or thin sheets of lead block the Blindsight as usual. This benefit lasts for 1 minute or until Rudolph has the {@condition Blinded|XPHB} condition."
+					]
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"L"
+			],
+			"damageTagsSpell": [
+				"Y"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"conditionInflict": [
+				"blinded",
+				"paralyzed"
+			],
+			"conditionInflictSpell": [
+				"prone"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Shattered Echo",
+			"source": "PL",
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "construct",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 60,
+				"formula": "8d8 + 24"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 18,
+			"dex": 15,
+			"con": 16,
+			"int": 8,
+			"wis": 10,
+			"cha": 6,
+			"senses": [
+				"Darkvision 60 ft."
+			],
+			"passive": 10,
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"languages": [
+				"Common plus one other language"
+			],
+			"cr": "3",
+			"trait": [
+				{
+					"name": "Immutable Form",
+					"entries": [
+						"The echo can't shape-shift."
+					]
+				},
+				{
+					"name": "Mimicry",
+					"entries": [
+						"The echo can mimic voices. A creature that hears the sound can tell it is an imitation only with a successful {@dc 10} Wisdom ({@skill Insight|XPHB}) check."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The echo makes two Slam attacks."
+					]
+				},
+				{
+					"name": "Slam",
+					"entries": [
+						"{@atkr m} {@hit 6}, reach 5 ft. {@h}15 ({@damage 2d10 + 4}) Bludgeoning damage."
+					]
+				},
+				{
+					"name": "Unearthly Scream {@recharge}",
+					"entries": [
+						"{@actSave con} {@dc 13}, each creature of the echo's choice within 30 feet. {@actSaveFail} 9 ({@damage 2d8}) Thunder damage, and the creature has the {@condition Deafened|XPHB} condition until the start of the echo's next turn. While {@condition Deafened|XPHB}, the creature also has the {@condition Frightened|XPHB} condition."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Automated Self-Preservation",
+					"entries": [
+						"The echo takes the Dash or Disengage action."
+					]
+				}
+			],
+			"environment": [
+				"urban"
+			],
+			"traitTags": [
+				"Immutable Form",
+				"Mimicry"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"X"
+			],
+			"damageTags": [
+				"B",
+				"T"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"conditionInflict": [
+				"deafened",
+				"frightened"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		}
+	]
+}

@@ -1,4 +1,5 @@
 import {ModalFilterRenderDemo} from "./filter-renderdemo.js";
+import {RenderDemoValidator} from "./renderdemo/renderdemo-validator.js";
 
 export class RenderDemoPage extends BaseComponent {
 	static _STORAGE_LOCATION_STATE = "demoState";
@@ -213,6 +214,13 @@ export class RenderDemoPage extends BaseComponent {
 			StorageUtil.pSetForPage(this.constructor._STORAGE_LOCATION_STATE, this.getSaveableState());
 		}, VeCt.DUR_DEBOUNCE_SAVE);
 		this._addHookAllBase(() => renderAndSaveDebounced());
+
+		try {
+			await RenderDemoValidator.pInit({editor: this._editor});
+		} catch (e) {
+			setTimeout(() => { throw e; });
+			JqueryUtil.doToast({content: `JSON validation is unavailable! ${VeCt.STR_SEE_CONSOLE}`, type: "warning"});
+		}
 
 		window.dispatchEvent(new Event("toolsLoaded"));
 	}

@@ -1,7 +1,7 @@
 @use "sass:color";
 
 @use "../vars/vars";
-@use "../vars/vars-night";
+@use "../vars/vars--night";
 
 @layer vetools {
 	.ve-stats {
@@ -200,11 +200,11 @@
 	}
 
 	.ve-night-mode .ve-stats {
-		background-color: vars-night.$rgb-bg--night;
+		background-color: vars--night.$rgb-bg--night;
 
 		&__ {
 			&h-name {
-				color: vars-night.$rgb-name-red--night;
+				color: vars--night.$rgb-name-red--night;
 			}
 
 			&btn-token-cycle {
@@ -212,13 +212,13 @@
 				background: rgb(255 255 255 / 15%);
 
 				&:hover {
-					color: vars-night.$rgb-font--night;
+					color: vars--night.$rgb-font--night;
 				}
 			}
 
 			&token-footer {
 				color: #ddd;
-				background: vars-night.$rgb-bg--night;
+				background: vars--night.$rgb-bg--night;
 			}
 
 			$rgb-stripe-physical: #6663;
@@ -245,8 +245,8 @@
 			}
 
 			&sect-header-inner {
-				color: vars-night.$rgb-name-red--night;
-				border-bottom-color: vars-night.$rgb-name-red--night;
+				color: vars--night.$rgb-name-red--night;
+				border-bottom-color: vars--night.$rgb-name-red--night;
 			}
 		}
 	}
@@ -280,8 +280,8 @@
 
 	.ve-night-mode .mon__ {
 		&cr-slider-wrp {
-			border-color: vars-night.$rgb-border-grey--night;
-			background: vars-night.$rgb-bg--night;
+			border-color: vars--night.$rgb-border-grey--night;
+			background: vars--night.$rgb-bg--night;
 			color: #bbb;
 		}
 	}
@@ -312,7 +312,7 @@
 		}
 
 		.ve-tbl-border {
-			background: vars-night.$rgb-border-grey--statblock-night;
+			background: vars--night.$rgb-border-grey--statblock-night;
 		}
 	}
 
