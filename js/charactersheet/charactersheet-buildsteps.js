@@ -12,7 +12,7 @@ import {
 	getWeaponMasteryCount,
 } from "./charactersheet-levelengine.js";
 import {CHAR_SHEET_SKILLS, PROF_STATE_EXPERTISE} from "./charactersheet-consts.js";
-import {CHOICE_TYPE_LANGUAGE, FEAT_CATEGORY_ANY, getChoiceSignature, getChoiceWithoutHeld, getClassFeatureLanguageChoices, getGrantedFeatCategories, getGrantedFeatChoice, getGrantedFeats, getHeldProficiencyNames, getPendingChoices, getRulesLanguageChoice} from "./charactersheet-choices.js";
+import {CHOICE_TYPE_ABILITY, CHOICE_TYPE_LANGUAGE, FEAT_CATEGORY_ANY, getChoiceSignature, getChoiceWithoutHeld, getClassFeatureLanguageChoices, getGrantedFeatCategories, getGrantedFeatChoice, getGrantedFeats, getHeldProficiencyNames, getPendingChoices, getRulesLanguageChoice} from "./charactersheet-choices.js";
 import {getTraitChoices} from "./charactersheet-traitchoices.js";
 import {getFeatureOptionCantripBonus, getFeatureOptionGroups} from "./charactersheet-features.js";
 
@@ -413,6 +413,239 @@ export function getOutstandingDecisions ({state, loaded = [], speciesEnt = null,
 	}
 
 	return out;
+}
+
+/**
+ * Every decision the character has already answered, with its answer — the other half of
+ * `getOutstandingDecisions`, and read the same way from the same data.
+ *
+ * Answered decisions used to vanish: the guide listed what was owed, and once a skill or a +2/+1 was
+ * picked, nothing anywhere showed the pick or offered to change it. A mistake made in the guide was
+ * permanent. Each entry here has the `kind` and `ctx` its outstanding twin had, so whatever asked the
+ * question can ask it again.
+ *
+ * It is also where "too many" is found. `allowed` is how many the rules give (null where there is no
+ * count, as for a subclass), and `isOver` says the answer has more — a choice answered twice, a level
+ * lowered after its improvement was spent, a class's skills picked again after it was re-added.
+ *
+ * @param opts as `getOutstandingDecisions`, plus `extraExpertise` — Expertise that feats grant, which
+ *   the class tables do not count.
+ * @return {Array<{key, kind, label, detail, answer: string[], allowed: ?number, isOver: boolean, ctx}>}
+ */
+export function getAnsweredDecisions ({state, loaded = [], speciesEnt = null, backgroundEnt = null, isClassic = false, extraExpertise = 0} = {}) {
+	const out = [];
+	const st = state || {};
+	const log = st.choiceLog || [];
+	const recordOf = choice => log.find(it => it.sig === getChoiceSignature(choice) && (it.picks || []).length);
+	const push = ({key, kind, label, detail, answer, allowed = null, isOver = null, ctx = {}}) => out.push({
+		key,
+		kind,
+		label,
+		detail,
+		answer: answer.map(String),
+		allowed,
+		isOver: isOver ?? (allowed != null && answer.length > allowed),
+		ctx,
+	});
+
+	/* ---------- a species and a background ---------- */
+
+	[[speciesEnt, "species"], [backgroundEnt, "background"]].forEach(([ent, kind]) => {
+		if (!ent) return;
+
+		getPendingChoices(kind === "species" ? {race: ent} : {background: ent}).forEach(choice => {
+			const rec = recordOf(choice);
+			if (!rec) return;
+			const sig = getChoiceSignature(choice);
+			push({
+				key: `${STEP_ORIGIN_CHOICE}:${sig}`,
+				kind: STEP_ORIGIN_CHOICE,
+				label: choice.label,
+				detail: ent.name,
+				answer: rec.picks,
+				// An ability choice's picks are its increases, which the package itself decides
+				allowed: choice.type === CHOICE_TYPE_ABILITY ? null : (choice.count || 1),
+				ctx: {ent, kind, choice, sig},
+			});
+		});
+
+		const fromHere = (st.originFeats || []).filter(it => it.from === ent.name);
+		const named = getGrantedFeats(ent.feats, {fromFeature: ent.fromFeature});
+		const featChoice = getGrantedFeatChoice(ent.feats, {fromFeature: ent.fromFeature});
+		const nOffered = named.length + (featChoice ? 1 : 0) + getGrantedFeatCategories(ent.feats).reduce((acc, it) => acc + it.count, 0);
+		fromHere.forEach((feat, ix) => push({
+			key: `${STEP_ORIGIN_FEAT}:${ent.name}:taken:${feat.id}`,
+			kind: STEP_ORIGIN_FEAT,
+			label: "Origin feat",
+			detail: ent.name,
+			answer: [feat.displayName || feat.name],
+			allowed: 1,
+			isOver: ix >= nOffered,
+			ctx: {ent, feat},
+		}));
+
+		if (kind === "species" && [ent.size].flat().filter(Boolean).length > 1 && st.size) {
+			push({key: `${STEP_SIZE}:${ent.name}`, kind: STEP_SIZE, label: "Size", detail: ent.name, answer: [st.size], ctx: {ent}});
+		}
+
+		getTraitChoices(ent).forEach(choice => {
+			const picked = (st.traitChoices || []).find(it => it.source === ent.name && it.trait === choice.trait);
+			if (!picked) return;
+			push({key: `${STEP_TRAIT_CHOICE}:${ent.name}:${choice.trait}`, kind: STEP_TRAIT_CHOICE, label: choice.trait, detail: ent.name, answer: [picked.option], ctx: {ent, choice}});
+		});
+
+		if (kind === "species") _pushSpellGroupAnswer(push, st, "race", ent);
+	});
+
+	/* ---------- each class ---------- */
+
+	loaded.forEach(({entry, cls, sc}) => {
+		if (!cls) return;
+
+		getPendingChoices({cls}).forEach(choice => {
+			const rec = recordOf(choice);
+			if (!rec) return;
+			const sig = getChoiceSignature(choice);
+			push({
+				key: `${STEP_CLASS_PROFICIENCY}:${entry.id}:${sig}`,
+				kind: STEP_CLASS_PROFICIENCY,
+				label: choice.label,
+				detail: cls.name,
+				answer: rec.picks,
+				allowed: choice.count || 1,
+				ctx: {ent: cls, choice, sig},
+			});
+		});
+
+		if (entry.subclass?.name) {
+			push({key: `${STEP_SUBCLASS}:${entry.id}`, kind: STEP_SUBCLASS, label: cls.subclassTitle || "Subclass", detail: entry.name, answer: [entry.subclass.name], ctx: {entry, cls}});
+		}
+
+		const asi = (entry.asiFeatChoices || []).filter(Boolean);
+		if (asi.length) {
+			push({
+				key: `${STEP_ASI}:${entry.id}`,
+				kind: STEP_ASI,
+				label: "Ability Score Improvement or feat",
+				detail: `${entry.name} ${entry.level}`,
+				answer: asi.map(it => it.name),
+				allowed: getAsiCount(cls, entry.level),
+				ctx: {entry, cls},
+			});
+		}
+
+		[...getFeatProgressionCounts(cls, entry.level), ...(sc ? getFeatProgressionCounts(sc, entry.level) : [])].forEach(prog => {
+			const taken = (st.featureFeats || []).filter(it => it.entryId === entry.id && prog.categories.includes(String(it.category || "").toUpperCase()));
+			if (!taken.length) return;
+			push({key: `${STEP_CLASS_FEAT}:${entry.id}:${prog.name}`, kind: STEP_CLASS_FEAT, label: prog.name, detail: entry.name, answer: taken.map(it => it.name), allowed: prog.count, ctx: {entry, prog}});
+		});
+
+		getOptionalFeatureCounts(cls, entry.level).forEach(prog => {
+			const chosen = (entry.optionalFeatures || []).filter(it => it.progressionName === prog.name);
+			if (!chosen.length) return;
+			push({key: `${STEP_OPTIONAL_FEATURE}:${entry.id}:${prog.name}`, kind: STEP_OPTIONAL_FEATURE, label: prog.name, detail: entry.name, answer: chosen.map(it => it.name), allowed: prog.count, ctx: {entry, prog}});
+		});
+
+		const reached = [
+			...(cls.classFeatures || []).slice(0, entry.level).flat(),
+			...(sc?.subclassFeatures || []).flat().filter(f => (f?.level ?? 0) <= entry.level),
+		];
+		getFeatureOptionGroups(reached).forEach(group => {
+			const picked = (entry.featureOptions || []).find(it => it.feature === group.feature);
+			if (!picked) return;
+			push({key: `${STEP_FEATURE_OPTION}:${entry.id}:${group.feature}`, kind: STEP_FEATURE_OPTION, label: group.feature, detail: entry.name, answer: [picked.option], ctx: {entry, group}});
+		});
+
+		if (sc) _pushSpellGroupAnswer(push, st, "subclass", sc, {entry});
+
+		const cantripsBase = getCantripsKnown(sc, entry.level) ?? getCantripsKnown(cls, entry.level);
+		const cantrips = cantripsBase == null ? null : cantripsBase + getFeatureOptionCantripBonus(entry);
+		const known = getSpellsKnown(sc, entry.level) ?? getSpellsKnown(cls, entry.level);
+		const have = (st.spellsKnown || []).filter(it => !it.className || it.className === entry.name);
+		if (have.length) {
+			const nCantrips = have.filter(it => !it.level).length;
+			const nLeveled = have.filter(it => it.level).length;
+			push({
+				key: `${STEP_SPELLS}:${entry.id}`,
+				kind: STEP_SPELLS,
+				label: "Spells",
+				detail: entry.name,
+				answer: have.map(it => it.name),
+				// A prepared caster's list may be longer than what it prepares today; only counts the
+				// rules fix are counted against it
+				allowed: cantrips != null && known != null ? cantrips + known : null,
+				isOver: (cantrips != null && nCantrips > cantrips) || (known != null && nLeveled > known),
+				ctx: {entry, cls},
+			});
+		}
+
+		getClassFeatureLanguageChoices({features: cls.classFeatures, level: entry.level}).forEach(choice => {
+			const rec = recordOf(choice);
+			if (!rec) return;
+			push({key: `${STEP_LANGUAGE}:${entry.id}:${choice.sourceName}`, kind: STEP_LANGUAGE, label: choice.label, detail: entry.name, answer: rec.picks, allowed: choice.count, ctx: {choice, sig: getChoiceSignature(choice)}});
+		});
+
+		getFixedSpellsKnownGrants(cls, entry.level).forEach(grant => {
+			const grantKey = `${entry.id}:${cls.name}:${grant.id}`;
+			const picked = (st.grantedSpellChoices || []).filter(it => it.grantKey === grantKey);
+			if (!picked.length) return;
+			push({key: `${STEP_FIXED_SPELL}:${grantKey}`, kind: STEP_FIXED_SPELL, label: grant.groupName || "Fixed-level spell", detail: entry.name, answer: picked.map(it => it.name), allowed: 1, ctx: {entry, cls, grant, grantKey}});
+		});
+	});
+
+	/* ---------- pools that span the classes ---------- */
+
+	const expertise = CHAR_SHEET_SKILLS.filter(({key}) => Number(st[`skill_${key}`]) === PROF_STATE_EXPERTISE).map(({name}) => name);
+	if (expertise.length) {
+		const total = loaded.reduce((acc, {entry, cls}) => acc + (cls ? getExpertiseSkillCount(cls, entry.level) : 0), 0) + (Number(extraExpertise) || 0);
+		push({key: STEP_EXPERTISE, kind: STEP_EXPERTISE, label: "Expertise", detail: "double your proficiency in a skill", answer: expertise, allowed: total, ctx: {}});
+	}
+
+	const masteries = st.weaponMasteries || [];
+	if (masteries.length) {
+		const total = loaded.reduce((acc, {entry, cls}) => acc + (cls ? getWeaponMasteryCount(cls, entry.level) : 0), 0);
+		push({key: STEP_MASTERY, kind: STEP_MASTERY, label: "Weapon mastery", detail: "which weapons' mastery properties you can use", answer: masteries, allowed: total, ctx: {}});
+	}
+
+	const languageChoice = getRulesLanguageChoice({isClassic});
+	const languageRec = languageChoice && recordOf(languageChoice);
+	if (languageRec) {
+		push({key: `${STEP_LANGUAGE}:rules`, kind: STEP_LANGUAGE, label: languageChoice.label, detail: "Every character knows Common and two more", answer: languageRec.picks, allowed: languageChoice.count, ctx: {choice: languageChoice, sig: getChoiceSignature(languageChoice)}});
+	}
+
+	if (Number(st.hpMax) > 0 && (st.classes || []).length) {
+		push({key: STEP_HP, kind: STEP_HP, label: "Hit points", detail: st.hpMode || "", answer: [`${st.hpMax}`], ctx: {}});
+	}
+
+	return out;
+}
+
+function _pushSpellGroupAnswer (push, st, kind, ent, ctx = {}) {
+	const groups = getSpellGrantGroups(ent);
+	if (groups.length < 2) return;
+	const ix = getSpellGroupIndex(st, kind, ent);
+	if (ix == null || !groups[ix]) return;
+	push({key: `${STEP_SPELL_GROUP}:${kind}:${ent.name}|${ent.source}`, kind: STEP_SPELL_GROUP, label: `${ent.name}: spell list`, detail: groups.map(g => g.name).join(" or "), answer: [groups[ix].name], ctx: {...ctx, kind, ent, groups}});
+}
+
+/**
+ * The signature of every choice the character's species, background, classes and the rules still
+ * ask — what an answer on record must belong to. One that belongs to none is left over from something
+ * removed (`getOrphanChoiceRecords`). A feat's own questions are the caller's to add: feats are not
+ * loaded here.
+ */
+export function getAskedChoiceSigs ({loaded = [], speciesEnt = null, backgroundEnt = null, isClassic = false} = {}) {
+	const sigs = new Set();
+	const add = choice => sigs.add(getChoiceSignature(choice));
+	getPendingChoices({race: speciesEnt, background: backgroundEnt}).forEach(add);
+	loaded.forEach(({entry, cls}) => {
+		if (!cls) return;
+		getPendingChoices({cls}).forEach(add);
+		getClassFeatureLanguageChoices({features: cls.classFeatures, level: entry.level}).forEach(add);
+	});
+	const languageChoice = getRulesLanguageChoice({isClassic});
+	if (languageChoice) add(languageChoice);
+	return sigs;
 }
 
 const _getSpellLabel = ({owedCantrips, owedKnown, isNothingAtAll}) => {

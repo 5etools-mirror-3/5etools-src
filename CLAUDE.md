@@ -211,6 +211,18 @@ template, run `node node/generate-pages.js` and commit both.
   guide, the species picker, the background picker — and every path reads it. Without it a skill
   carries no provenance, so nothing could tell an answered choice from an unasked one, and the guide
   and the panels each guessed differently.
+- **An answer can be taken back exactly.** A record also says what each pick applied (`applied`:
+  skill, Expertise, tool or language, and where) and, for an ability choice, its own `logId` in
+  `abilityBonusLog`. `getChoiceReversal` (pure, in `choices`) turns a record into the undo, reading
+  older records by their type; `revertChoice` / `revertChoicesFrom` in the model apply it. A skill
+  something else still grants stays ticked. Removing a class, or replacing a species or background
+  (pass `prevEnt`), goes through these. Before this, a Ranger removed and added back kept its first
+  answer's skills, was offered the rest of its list, and ended up with five.
+- **Answered decisions are listed too.** `getAnsweredDecisions` (in `buildsteps`) is the other half of
+  `getOutstandingDecisions`: each answer with its `kind`/`ctx` (so it can be asked again), how many
+  are `allowed`, and `isOver` when there are more. `getAskedChoiceSigs` + `getOrphanChoiceRecords` find
+  answers for something the character no longer has; `getUnexplainedSkills` finds skills nothing
+  grants. The account system's builder shows all of it, with a Change button on every answer.
 - **The same proficiency is never granted twice.** A skill records a state, not a count, so a second
   grant lands on a ticked box and the pick is simply lost — a Human Fighter offered Acrobatics by
   both its species and its class could spend two of its three skills on one. `getHeldProficiencyNames`

@@ -1,5 +1,5 @@
 import {CHAR_SHEET_ABILITIES, CHAR_SHEET_SCHEMA_VERSION, CHAR_SHEET_SKILLS, EXPENDABLE_RESOURCES, getSkillKeyByName} from "./charactersheet-consts.js";
-import {getProfListDisplay} from "./charactersheet-choices.js";
+import {getChoiceReversal, getEntitySkillNames, getProfListDisplay, getSkillNamesFromRecords} from "./charactersheet-choices.js";
 import {getClassProficiencies, getEntityProficiencies, getMulticlassProficiencies} from "./charactersheet-proficiencies.js";
 import {getEntityDefenses} from "./charactersheet-defenses.js";
 import {formatSpeeds, getNaturalArmor, getSpeciesTraitNames, getSpeeds, getTraitTags} from "./charactersheet-appearance.js";
@@ -332,6 +332,7 @@ export class CharacterModel extends BaseComponent {
 	removeOriginFeat (id) {
 		const feat = this._state.originFeats.find(it => it.id === id);
 		if (!feat) return;
+		this._takeBackFeat(feat.name, {exceptId: id});
 		if (feat.bonuses) this.applyAbilityBonuses(feat.bonuses, {isRevert: true, logId: id});
 		this._state.originFeats = this._state.originFeats.filter(it => it.id !== id);
 	}
@@ -348,6 +349,7 @@ export class CharacterModel extends BaseComponent {
 	removeFeatureFeat (id) {
 		const feat = this._state.featureFeats.find(it => it.id === id);
 		if (!feat) return;
+		this._takeBackFeat(feat.name, {exceptId: id});
 		if (feat.bonuses) this.applyAbilityBonuses(feat.bonuses, {isRevert: true, logId: id});
 		this._state.featureFeats = this._state.featureFeats.filter(it => it.id !== id);
 	}
@@ -368,6 +370,7 @@ export class CharacterModel extends BaseComponent {
 	removeManualFeat (id) {
 		const feat = (this._state.manualFeats || []).find(it => it.id === id);
 		if (!feat) return;
+		this._takeBackFeat(feat.name, {exceptId: id});
 		if (feat.bonuses) this.applyAbilityBonuses(feat.bonuses, {isRevert: true, logId: id});
 		this._state.manualFeats = this._state.manualFeats.filter(it => it.id !== id);
 	}
@@ -792,7 +795,11 @@ export class CharacterModel extends BaseComponent {
 	/* -------------------------------------------- Entity application -------------------------------------------- */
 
 	/** Apply a picked species/race: search doc bookkeeping + mechanical fields from the entity. */
-	applyPickedRace ({doc, ent}) {
+	/**
+	 * @param [opts.prevEnt] the species being replaced, so the skills it granted outright come off too.
+	 * @param [opts.keepSkillNames] lower-case skills something else grants outright (the background).
+	 */
+	applyPickedRace ({doc, ent, prevEnt = null, keepSkillNames = []}) {
 		// Swapping species takes what the old one gave with it
 		const prev = this._state.refSpecies?.name;
 		if (prev && prev !== doc.n) {
@@ -800,8 +807,9 @@ export class CharacterModel extends BaseComponent {
 			this.setProficienciesFromSource(prev, []);
 			this.setDefensesFromSource(prev, []);
 			this.clearPendingAbilityOffers(prev);
-			// The new species asks its own questions rather than inheriting the old one's answers
-			this.clearChoicesFrom(`Species: ${prev}`);
+			// The new species asks its own questions rather than inheriting the old one's answers — and
+			// the old answers come off the character, not only out of the record
+			this._takeBackSource({sourceName: `Species: ${prev}`, name: prev, prevEnt, keepSkillNames: [...keepSkillNames, ...(ent ? getEntitySkillNames(ent) : [])]});
 		}
 
 		this._state.speciesText = doc.n;
@@ -872,12 +880,57 @@ export class CharacterModel extends BaseComponent {
 	 * panels and the Build Check read it. Re-answering the same choice replaces the old record
 	 * rather than adding a second.
 	 */
-	recordChoice ({sig, sourceName, type, picks = []}) {
+	recordChoice ({sig, sourceName, type, picks = [], applied = null, logId = null, bonuses = null}) {
 		if (!sig) return;
+		// What the answer put on the character, so it can be taken back exactly (`getChoiceReversal`)
+		const extra = {
+			...(applied ? {applied: applied.map(it => ({...it}))} : {}),
+			...(logId ? {logId} : {}),
+			...(bonuses ? {bonuses: {...bonuses}} : {}),
+		};
 		this._state.choiceLog = [
 			...(this._state.choiceLog || []).filter(it => it.sig !== sig),
-			{sig, sourceName, type, picks: [...picks]},
+			{sig, sourceName, type, picks: [...picks], ...extra},
 		];
+	}
+
+	/**
+	 * Take one answered choice back: its skills, tools, languages and ability increases come off, and
+	 * the choice is asked again. A skill something else still grants stays — the caller knows the
+	 * entities, so it passes those in; the other answers on record are counted here.
+	 *
+	 * @param [opts.keepSkillNames] lower-case skill names granted outright by an entity.
+	 * @return `true` if there was an answer to take back.
+	 */
+	revertChoice (sig, {keepSkillNames = []} = {}) {
+		const log = this._state.choiceLog || [];
+		const record = log.find(it => it.sig === sig);
+		if (!record) return false;
+		const others = getSkillNamesFromRecords(log.filter(it => it.sig !== sig), this._state);
+		this._applyChoiceReversal(getChoiceReversal({state: this._state, record, keepSkillNames: new Set([...keepSkillNames, ...others])}));
+		this._state.choiceLog = log.filter(it => it.sig !== sig);
+		return true;
+	}
+
+	/** Every answer a source gave, taken back — the source itself is gone (a class removed, a species replaced). */
+	revertChoicesFrom (sourceName, {keepSkillNames = []} = {}) {
+		if (!sourceName) return;
+		const log = this._state.choiceLog || [];
+		const own = log.filter(it => it.sourceName === sourceName);
+		if (!own.length) return;
+		const others = getSkillNamesFromRecords(log.filter(it => it.sourceName !== sourceName), this._state);
+		const keep = new Set([...keepSkillNames, ...others]);
+		own.forEach(record => this._applyChoiceReversal(getChoiceReversal({state: this._state, record, keepSkillNames: keep})));
+		this._state.choiceLog = (this._state.choiceLog || []).filter(it => it.sourceName !== sourceName);
+	}
+
+	_applyChoiceReversal ({skills, proficiencyIds, abilityLog}) {
+		Object.entries(skills || {}).forEach(([key, level]) => { this._state[`skill_${key}`] = level; });
+		if (proficiencyIds?.length) {
+			const ids = new Set(proficiencyIds);
+			this._state.proficiencies = (this._state.proficiencies || []).filter(it => !ids.has(it.id));
+		}
+		(abilityLog || []).forEach(({id, bonuses}) => this.applyAbilityBonuses(bonuses, {isRevert: true, logId: id}));
 	}
 
 	hasAnsweredChoice (sig) {
@@ -893,10 +946,55 @@ export class CharacterModel extends BaseComponent {
 		this._state.choiceLog = (this._state.choiceLog || []).filter(it => it.sourceName !== sourceName);
 	}
 
-	/** Apply a picked background: search doc bookkeeping + mechanical fields from the entity. */
-	applyPickedBackground ({doc, ent, isFixedOnly = false}) {
+	/** Every feat the character holds, wherever it was taken. */
+	_getAllTakenFeats () {
+		const st = this._state;
+		return [
+			...(st.originFeats || []), ...(st.featureFeats || []), ...(st.manualFeats || []),
+			...(st.classes || []).flatMap(c => (c.asiFeatChoices || []).filter(it => it?.type === "feat")),
+		];
+	}
+
+	/**
+	 * What a feat gave beyond its ability increases: the questions it asked, the proficiencies and
+	 * defenses it granted. Kept while another copy is held — a second Skilled answers under the same
+	 * name, so taking one back would take both.
+	 */
+	_takeBackFeat (featName, {keepSkillNames = [], exceptId = null} = {}) {
+		if (!featName) return;
+		if (this._getAllTakenFeats().some(it => it.name === featName && it.id !== exceptId)) return;
+		this.revertChoicesFrom(featName, {keepSkillNames});
+		this.setProficienciesFromSource(featName, []);
+		this.setDefensesFromSource(featName, []);
+	}
+
+	/**
+	 * Everything one species or background gave, taken back: its answered choices (skills, tools,
+	 * languages, ability increases), the skills it granted outright, and the Origin feats it brought
+	 * with the questions those answered.
+	 */
+	_takeBackSource ({sourceName, name, prevEnt = null, keepSkillNames = []}) {
+		(this._state.originFeats || []).filter(it => it.from === name).forEach(feat => this.removeOriginFeat(feat.id));
+		this.revertChoicesFrom(sourceName, {keepSkillNames});
+		if (!prevEnt) return;
+		const keep = new Set([...keepSkillNames, ...getSkillNamesFromRecords(this._state.choiceLog || [], this._state)]);
+		getEntitySkillNames(prevEnt).forEach(skill => {
+			const key = keep.has(skill) ? null : getSkillKeyByName(skill);
+			if (key) this._state[`skill_${key}`] = 0;
+		});
+	}
+
+	/**
+	 * Apply a picked background: search doc bookkeeping + mechanical fields from the entity.
+	 * @param [opts.prevEnt] the background being replaced, so the skills it granted outright come off too.
+	 * @param [opts.keepSkillNames] lower-case skills something else grants outright (the species).
+	 */
+	applyPickedBackground ({doc, ent, isFixedOnly = false, prevEnt = null, keepSkillNames = []}) {
 		const prev = this._state.refBackground?.name;
-		if (prev && prev !== doc.n) this.clearChoicesFrom(`Background: ${prev}`);
+		if (prev && prev !== doc.n) {
+			this.setProficienciesFromSource(prev, []);
+			this._takeBackSource({sourceName: `Background: ${prev}`, name: prev, prevEnt, keepSkillNames: [...keepSkillNames, ...(ent ? getEntitySkillNames(ent) : [])]});
+		}
 
 		this._state.backgroundText = doc.n;
 		this._state.refBackground = {name: doc.n, source: doc.source, tag: doc.tag};
@@ -1000,9 +1098,23 @@ export class CharacterModel extends BaseComponent {
 		this._syncDisplayFromClasses();
 	}
 
-	removeClassEntry (id) {
+	/**
+	 * Remove a class, and what it gave: its proficiencies, the skills and tools picked from its list,
+	 * the improvements and feats taken at its levels, the proficiencies its feature options brought.
+	 * Adding it back then asks the same questions again from its whole list.
+	 *
+	 * @param [opts.keepSkillNames] lower-case skills an entity grants outright (species, background).
+	 */
+	removeClassEntry (id, {keepSkillNames = []} = {}) {
 		const entry = this._state.classes.find(it => it.id === id);
-		if (entry) this.setProficienciesFromSource(entry.name, []);
+		if (entry) {
+			this.setProficienciesFromSource(entry.name, []);
+			(entry.featureOptions || []).forEach(it => this.setProficienciesFromSource(`${it.feature} (${entry.name})`, []));
+			(entry.asiFeatChoices || []).forEach(it => this.removeAsiFeatChoice(id, it.id));
+			(this._state.featureFeats || []).filter(it => it.entryId === id).forEach(it => this.removeFeatureFeat(it.id));
+			// Two entries of one class is a multiclass into itself; its picks belong to the one left
+			if (!this._state.classes.some(it => it.id !== id && it.name === entry.name)) this.revertChoicesFrom(`Class: ${entry.name}`, {keepSkillNames});
+		}
 		this._state.classes = this._state.classes.filter(it => it.id !== id);
 		this._syncDisplayFromClasses();
 	}
@@ -1088,6 +1200,7 @@ export class CharacterModel extends BaseComponent {
 		if (!entry?.asiFeatChoices) return;
 		const choice = entry.asiFeatChoices.find(it => it.id === choiceId);
 		if (!choice) return;
+		if (choice.type === "feat") this._takeBackFeat(choice.name, {exceptId: choiceId});
 		if (choice.bonuses) this.applyAbilityBonuses(choice.bonuses, {isRevert: true, logId: choiceId});
 		entry.asiFeatChoices = entry.asiFeatChoices.filter(it => it.id !== choiceId);
 		this._triggerCollectionUpdate("classes");

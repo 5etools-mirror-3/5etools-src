@@ -1,4 +1,4 @@
-import {CHAR_SHEET_SKILLS, getSkillKeyByName, getSkillNameByKey} from "./charactersheet-consts.js";
+import {CHAR_SHEET_ABILITIES, CHAR_SHEET_SKILLS, PROF_STATE_EXPERTISE, PROF_STATE_NONE, PROF_STATE_PROFICIENT, getSkillKeyByName, getSkillNameByKey} from "./charactersheet-consts.js";
 import {getEntityProficiencies, PROF_KIND_LANGUAGE, PROF_KIND_TOOL} from "./charactersheet-proficiencies.js";
 
 /**
@@ -715,4 +715,173 @@ export function getWeaponChoices ({groups, sourceName}) {
 	});
 
 	return out;
+}
+
+/* -------------------------------------------- taking an answer back -------------------------------------------- */
+
+const _SOURCE_PREFIX = /^(Species|Background|Class): /;
+
+/**
+ * The entity a choice record's `sourceName` names: "Class: Ranger" is the Ranger. A proficiency a pick
+ * added carries the entity's own name as its source, not the record's, so undoing one needs this.
+ */
+export function getSourceEntityName (sourceName) {
+	return String(sourceName || "").replace(_SOURCE_PREFIX, "");
+}
+
+const _ABILITY_BY_NAME = () => Object.fromEntries(CHAR_SHEET_ABILITIES.map(([abv, name]) => [name.toLowerCase(), abv]));
+
+/**
+ * The increases an ability choice was answered with, as `{abv: n}`.
+ *
+ * A record written since this existed carries them (`bonuses`); an older one only has its picks as
+ * they were shown — "+2 Strength", "+1 Dexterity" — which say the same thing.
+ */
+export function getRecordBonuses (record) {
+	if (record?.bonuses && typeof record.bonuses === "object") return {...record.bonuses};
+	const byName = _ABILITY_BY_NAME();
+	const out = {};
+	(record?.picks || []).forEach(pick => {
+		const m = /^([+-]?\d+)\s+(.+)$/.exec(String(pick).trim());
+		const abv = m && (byName[m[2].toLowerCase()] || (CHAR_SHEET_ABILITIES.some(([it]) => it === m[2].toLowerCase()) ? m[2].toLowerCase() : null));
+		if (abv) out[abv] = (out[abv] || 0) + Number(m[1]);
+	});
+	return out;
+}
+
+/**
+ * What a recorded choice put on the character, pick by pick: `[{type, name, source}]`, `type` being
+ * a skill, expertise, a tool or a language. An ability choice applies none of these (see
+ * `getRecordBonuses`).
+ *
+ * A record written since this existed says so itself (`applied`). An older one only lists its picks,
+ * so they are classified the way they were applied: a mixed pool's pick is a skill if a skill has that
+ * name, a language if the character holds it as one, and a tool otherwise.
+ */
+export function getRecordApplied (record, state = null) {
+	if (Array.isArray(record?.applied)) return record.applied;
+	if (!record || record.type === CHOICE_TYPE_ABILITY) return [];
+
+	const source = getSourceEntityName(record.sourceName);
+	const skillNames = new Set(CHAR_SHEET_SKILLS.map(({name}) => name.toLowerCase()));
+	const isHeldLanguage = name => (state?.proficiencies || [])
+		.some(it => it.kind === PROF_KIND_LANGUAGE && String(it.name).toLowerCase() === String(name).toLowerCase());
+
+	return (record.picks || []).map(name => {
+		const lower = String(name).toLowerCase();
+		switch (record.type) {
+			case CHOICE_TYPE_SKILL: return {type: CHOICE_TYPE_SKILL, name, source};
+			case CHOICE_TYPE_EXPERTISE: return {type: CHOICE_TYPE_EXPERTISE, name, source};
+			case CHOICE_TYPE_LANGUAGE: return {type: CHOICE_TYPE_LANGUAGE, name, source};
+			case CHOICE_TYPE_TOOL: return {type: CHOICE_TYPE_TOOL, name, source};
+			case CHOICE_TYPE_SKILL_TOOL_LANGUAGE:
+				if (skillNames.has(lower)) return {type: CHOICE_TYPE_SKILL, name, source};
+				return {type: isHeldLanguage(name) ? CHOICE_TYPE_LANGUAGE : CHOICE_TYPE_TOOL, name, source};
+			default: return null;
+		}
+	}).filter(Boolean);
+}
+
+/** The skills a set of records made the character proficient (or expert) in, by display name, lower case. */
+export function getSkillNamesFromRecords (records, state = null) {
+	const out = new Set();
+	(records || []).forEach(rec => getRecordApplied(rec, state).forEach(it => {
+		if (it.type === CHOICE_TYPE_SKILL || it.type === CHOICE_TYPE_EXPERTISE) out.add(String(it.name).toLowerCase());
+	}));
+	return out;
+}
+
+/** The skills an entity grants outright, by display name, lower case. */
+export function getEntitySkillNames (ent) {
+	return new Set([...getFixedProficiencyNames({race: ent})[CHOICE_TYPE_SKILL]].map(it => it.toLowerCase()));
+}
+
+/**
+ * Everything it takes to undo one answered choice, without touching the character.
+ *
+ * A skill comes off unless something else still grants it (`keepSkillNames` — another source's
+ * fixed grant, another choice's pick): a skill records a state and not a count, so taking off one of
+ * two grants must leave it ticked. An Expertise pick drops back to proficient. A tool or language
+ * comes off where the pick put it, and only there. An ability choice gives back exactly the increase
+ * it was logged as.
+ *
+ * Without this, nothing could be answered twice. Removing a Ranger kept the Nature and Survival it
+ * had picked; adding it back offered the rest of its list, and the character ended up with five.
+ *
+ * @param opts.keepSkillNames lower-case skill names still granted by something else.
+ * @return `{skills: {key: level}, proficiencyIds: [], abilityLog: [{id, bonuses}]}`
+ */
+export function getChoiceReversal ({state, record, keepSkillNames = new Set()}) {
+	const out = {skills: {}, proficiencyIds: [], abilityLog: []};
+	if (!record) return out;
+	const st = state || {};
+	const keep = new Set([...keepSkillNames].map(it => String(it).toLowerCase()));
+	const source = getSourceEntityName(record.sourceName);
+
+	getRecordApplied(record, st).forEach(it => {
+		const name = String(it.name);
+		if (it.type === CHOICE_TYPE_SKILL || it.type === CHOICE_TYPE_EXPERTISE) {
+			const key = getSkillKeyByName(name);
+			if (!key) return;
+			const cur = Number(st[`skill_${key}`]) || 0;
+			if (it.type === CHOICE_TYPE_EXPERTISE) {
+				if (cur >= PROF_STATE_EXPERTISE) out.skills[key] = PROF_STATE_PROFICIENT;
+				return;
+			}
+			if (cur > 0 && !keep.has(name.toLowerCase())) out.skills[key] = PROF_STATE_NONE;
+			return;
+		}
+
+		const kind = it.type === CHOICE_TYPE_LANGUAGE ? PROF_KIND_LANGUAGE : PROF_KIND_TOOL;
+		// Where the pick put it: its own source, or — the rules' languages, and a feature's — "Languages"
+		const sources = new Set([it.source, source, record.sourceName, "Languages"].filter(Boolean));
+		const row = (st.proficiencies || []).find(p => p.kind === kind && String(p.name).toLowerCase() === name.toLowerCase() && sources.has(p.source));
+		if (row && !out.proficiencyIds.includes(row.id)) out.proficiencyIds.push(row.id);
+	});
+
+	if (record.type === CHOICE_TYPE_ABILITY) {
+		const log = st.abilityBonusLog || [];
+		const byId = record.logId ? log.find(it => it.id === record.logId) : null;
+		if (byId) out.abilityLog.push({id: byId.id, bonuses: {...byId.bonuses}});
+		else {
+			// An older record: the entry logged under the entity's name with these very increases
+			const want = getRecordBonuses(record);
+			const isSame = bonuses => Object.keys(want).length
+				&& Object.keys(want).length === Object.keys(bonuses || {}).length
+				&& Object.entries(want).every(([abv, n]) => Number(bonuses?.[abv]) === n);
+			const hit = log.find(it => it.source === source && isSame(it.bonuses));
+			if (hit) out.abilityLog.push({id: hit.id, bonuses: {...hit.bonuses}});
+		}
+	}
+
+	return out;
+}
+
+/**
+ * Skills the character is proficient in that nothing on record explains — no species, background,
+ * feat or class grants them, and no answered choice picked them.
+ *
+ * That is how a choice answered twice shows up: the first answer's skills stayed when the second was
+ * made. It is also a skill ticked by hand, which is allowed and is still worth saying — the Build
+ * Check reports these as unclaimed, not as broken.
+ *
+ * @param opts.explained lower-case names of every skill something grants.
+ * @return `[{key, name, level}]`
+ */
+export function getUnexplainedSkills ({state, explained = new Set()}) {
+	const known = new Set([...explained].map(it => String(it).toLowerCase()));
+	return CHAR_SHEET_SKILLS
+		.map(({key, name}) => ({key, name, level: Number(state?.[`skill_${key}`]) || 0}))
+		.filter(it => it.level > 0 && !known.has(it.name.toLowerCase()));
+}
+
+/**
+ * Choice records nothing on the character asks any more — answers for a class that was removed, a
+ * species that was replaced. Their picks are still applied, which is how a character ends up with
+ * more than it was ever offered.
+ *
+ * @param opts.knownSigs the signatures of every choice the character's entities still ask.
+ */
+export function getOrphanChoiceRecords ({state, knownSigs = new Set()}) {
+	return (state?.choiceLog || []).filter(rec => rec?.sig && !knownSigs.has(rec.sig));
 }
