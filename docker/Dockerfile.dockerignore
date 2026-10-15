@@ -1,0 +1,10 @@
+# Read by BuildKit for `docker/Dockerfile` instead of upstream's `.dockerignore`, which leaves out the
+# build tooling (`package.json`, `node/`) the service worker is built with. The image itself still
+# takes only what upstream's list names (the `/out` step in the Dockerfile).
+.git
+.github/workflows
+node_modules
+test
+spellcheck
+*.md
+*.zip
