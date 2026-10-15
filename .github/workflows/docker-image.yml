@@ -1,0 +1,91 @@
+name: Build Docker Image
+
+# The fork's one addition to upstream 5etools: a small image of the site (`docker/Dockerfile`),
+# published to ghcr.io for amd64 and arm64. Everything else in this repository is upstream's.
+#
+#   main → :latest and :<version>      beta → :beta      every build → :sha-<commit>
+
+on:
+   push:
+      branches:
+         - main
+         - beta
+   # Allow running manually from the actions tab
+   workflow_dispatch:
+
+env:
+   REGISTRY: ghcr.io
+   IMAGE_NAME: ${{ github.repository }}
+
+concurrency:
+   group: "docker-image-${{ github.ref }}"
+   cancel-in-progress: true
+
+jobs:
+   build-image:
+      runs-on: ubuntu-latest
+      permissions:
+         contents: read
+         packages: write
+      steps:
+         -  uses: actions/checkout@v4
+
+         -  name: Read Version
+            id: version
+            run: echo "version=$(node -p 'require("./package.json").version')" >> "$GITHUB_OUTPUT"
+
+         -  name: Set Up Docker Buildx
+            uses: docker/setup-buildx-action@v3
+
+         # Build for this runner and serve it before anything is published: the site's front page, its
+         # data and its service worker answer, compressed
+         -  name: Build Image for the Smoke Test
+            uses: docker/build-push-action@v6
+            with:
+               context: .
+               file: docker/Dockerfile
+               load: true
+               tags: smoke-test
+               cache-from: type=gha
+               cache-to: type=gha,mode=max
+
+         -  name: Smoke-Test Image
+            run: |
+               docker run -d --name smoke-test -p 8080:80 smoke-test
+               for i in $(seq 1 20); do curl -sf http://127.0.0.1:8080/health && break; sleep 1; done
+               curl -sf -o /dev/null http://127.0.0.1:8080/index.html
+               curl -sf -o /dev/null http://127.0.0.1:8080/js/parser.js
+               curl -sf -o /dev/null http://127.0.0.1:8080/sw.js
+               curl -sf -o /dev/null http://127.0.0.1:8080/search/index.json
+               curl -sf -H 'Accept-Encoding: gzip' -D - -o /dev/null http://127.0.0.1:8080/data/races.json | grep -qi '^content-encoding: gzip'
+               docker rm -f smoke-test
+
+         -  name: Log In to Registry
+            uses: docker/login-action@v3
+            with:
+               registry: ${{ env.REGISTRY }}
+               username: ${{ github.actor }}
+               password: ${{ secrets.GITHUB_TOKEN }}
+
+         -  name: Extract Image Metadata
+            id: meta
+            uses: docker/metadata-action@v5
+            with:
+               images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+               tags: |
+                  type=ref,event=branch,enable=${{ github.ref != format('refs/heads/{0}', github.event.repository.default_branch) }}
+                  type=raw,value=latest,enable={{is_default_branch}}
+                  type=raw,value=${{ steps.version.outputs.version }},enable={{is_default_branch}}
+                  type=sha
+
+         -  name: Build and Push Image
+            uses: docker/build-push-action@v6
+            with:
+               context: .
+               file: docker/Dockerfile
+               platforms: linux/amd64,linux/arm64
+               push: true
+               tags: ${{ steps.meta.outputs.tags }}
+               labels: ${{ steps.meta.outputs.labels }}
+               cache-from: type=gha
+               cache-to: type=gha,mode=max
