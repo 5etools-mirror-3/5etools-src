@@ -15,7 +15,7 @@
 {{> "adRhsScrollingPage" }}
 
 <main class="container" data-cancer-id="cancer-wrapper">
-	<div class="ve-flex no-print">
+	<div class="ve-flex ve-print__hidden">
 		<div class="form-group ve-col-2-4 ve-mr-2">
 			<label for="race">Species</label>
 			<select class="ve-form-control form-inline" id="race" disabled><option>Loading...</option></select>
@@ -41,44 +41,44 @@
 			<select class="ve-form-control form-inline" id="age" disabled><option>Loading...</option></select>
 		</div>
 	</div>
-	<div class="ve-flex no-print">
+	<div class="ve-flex ve-print__hidden">
 		<div class="form-group ve-col-12">
 			<button class="ve-btn ve-btn-default" id="btn-generate">Generate</button>
 		</div>
 	</div>
 
-	<div class="ve-flex-col no-print ve-py-0">
+	<div class="ve-flex-col ve-print__hidden ve-py-0">
 		<p>Based on the tables and rules in <a href="#" id="xge_link">Xanathar's Guide to Everything</a>, pages 61-73.</p>
 		<p><i>NOTE: Text displayed in italics is generated for the sake of ease and speed of use, and does not correspond to a table in the original generator. Ignore it as you see fit.</i></p>
 	</div>
 
 	<hr class="life__output ve-hidden">
 	<div class="ve-flex-col life__output ve-bg-solid ve-shadow-big ve-b-1p ve-bc-5p ve-my-3 ve-py-1 ve-px-3 ve-hidden">
-		<div class="wrp-sect-head"><h4>Parents</h4><button class="ve-btn ve-btn-xs ve-btn-default no-print" id="btn-reroll-parents">Reroll</button></div>
+		<div class="wrp-sect-head"><h4>Parents</h4><button class="ve-btn ve-btn-xs ve-btn-default ve-print__hidden" id="btn-reroll-parents">Reroll</button></div>
 		<p id="parents"></p>
 	</div>
 	<div class="ve-flex-col life__output ve-bg-solid ve-shadow-big ve-b-1p ve-bc-5p ve-my-3 ve-py-1 ve-px-3 ve-hidden">
-		<div class="wrp-sect-head"><h4>Birthplace</h4><button class="ve-btn ve-btn-xs ve-btn-default no-print" id="btn-reroll-birthplace">Reroll</button></div>
+		<div class="wrp-sect-head"><h4>Birthplace</h4><button class="ve-btn ve-btn-xs ve-btn-default ve-print__hidden" id="btn-reroll-birthplace">Reroll</button></div>
 		<p id="birthplace"></p>
 	</div>
 	<div class="ve-flex-col life__output ve-bg-solid ve-shadow-big ve-b-1p ve-bc-5p ve-my-3 ve-py-1 ve-px-3 ve-hidden">
-		<div class="wrp-sect-head"><h4>Siblings</h4><button class="ve-btn ve-btn-xs ve-btn-default no-print" id="btn-reroll-siblings">Reroll</button></div>
+		<div class="wrp-sect-head"><h4>Siblings</h4><button class="ve-btn ve-btn-xs ve-btn-default ve-print__hidden" id="btn-reroll-siblings">Reroll</button></div>
 		<p id="siblings"></p>
 	</div>
 	<div class="ve-flex-col life__output ve-bg-solid ve-shadow-big ve-b-1p ve-bc-5p ve-my-3 ve-py-1 ve-px-3 ve-hidden">
-		<div class="wrp-sect-head"><h4>Family and Friends</h4><button class="ve-btn ve-btn-xs ve-btn-default no-print" id="btn-reroll-family">Reroll</button></div>
+		<div class="wrp-sect-head"><h4>Family and Friends</h4><button class="ve-btn ve-btn-xs ve-btn-default ve-print__hidden" id="btn-reroll-family">Reroll</button></div>
 		<p id="family"></p>
 	</div>
 	<div class="ve-flex-col life__output ve-bg-solid ve-shadow-big ve-b-1p ve-bc-5p ve-my-3 ve-py-1 ve-px-3 ve-hidden">
-		<div class="wrp-sect-head"><h4>Personal Decisions</h4><button class="ve-btn ve-btn-xs ve-btn-default no-print" id="btn-reroll-personal">Reroll</button></div>
+		<div class="wrp-sect-head"><h4>Personal Decisions</h4><button class="ve-btn ve-btn-xs ve-btn-default ve-print__hidden" id="btn-reroll-personal">Reroll</button></div>
 		<p id="personal"></p>
 	</div>
 	<div class="ve-flex-col life__output ve-bg-solid ve-shadow-big ve-b-1p ve-bc-5p ve-my-3 ve-py-1 ve-px-3 ve-hidden">
-		<div class="wrp-sect-head"><h4>Class Training</h4><button class="ve-btn ve-btn-xs ve-btn-default no-print" id="btn-reroll-class">Reroll</button></div>
+		<div class="wrp-sect-head"><h4>Class Training</h4><button class="ve-btn ve-btn-xs ve-btn-default ve-print__hidden" id="btn-reroll-class">Reroll</button></div>
 		<p id="clss"></p>
 	</div>
 	<div class="ve-flex-col life__output ve-bg-solid ve-shadow-big ve-b-1p ve-bc-5p ve-my-3 ve-py-1 ve-px-3 ve-hidden">
-		<div class="wrp-sect-head"><h4>Life Events</h4><button class="ve-btn ve-btn-xs ve-btn-default no-print" id="btn-reroll-events">Reroll</button></div>
+		<div class="wrp-sect-head"><h4>Life Events</h4><button class="ve-btn ve-btn-xs ve-btn-default ve-print__hidden" id="btn-reroll-events">Reroll</button></div>
 		<p id="events"></p>
 	</div>
 	<div class="ve-h-50h"></div>

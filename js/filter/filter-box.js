@@ -393,9 +393,15 @@ export class FilterBox extends ProxyBase {
 	}
 
 	getValues ({nxtStateOuter = null} = {}) {
-		const outObj = {};
-		this._filters.forEach(f => Object.assign(outObj, f.getValues({nxtState: nxtStateOuter?.filters})));
-		return outObj;
+		const filterVals = {};
+		this._filters.forEach(f => Object.assign(filterVals, f.getValues({nxtState: nxtStateOuter?.filters})));
+
+		filterVals._filtersActive = {};
+		for (const filter of this._filters) {
+			filterVals._filtersActive[filter.header] = filter.isActive(filterVals);
+		}
+
+		return filterVals;
 	}
 
 	addEventListener (type, listener) {
@@ -826,18 +832,30 @@ export class FilterBox extends ProxyBase {
 	}
 
 	_toDisplay_isAndDisplay (boxState, filters, vals) {
-		return filters
-			.map((f, i) => f.toDisplay(boxState, vals[i]))
-			.every(it => it);
+		for (let i = 0; i < filters.length; ++i) {
+			const filter = filters[i];
+			if (
+				(boxState._filtersActive?.[filter.header] ?? filter.isActive(boxState))
+				&& !filter.toDisplay(boxState, vals[i])
+			) return false;
+		}
+		return true;
 	}
 
 	_toDisplay_isOrDisplay (boxState, filters, vals) {
-		const res = filters.map((f, i) => {
-			// filter out "ignored" filter (i.e. all white)
-			if (!f.isActive(boxState)) return null;
-			return f.toDisplay(boxState, vals[i]);
-		}).filter(it => it != null);
-		return res.length === 0 || res.find(it => it);
+		let isAnyResult = false;
+		for (let i = 0; i < filters.length; ++i) {
+			const filter = filters[i];
+
+			if (!(boxState._filtersActive?.[filter.header] ?? filter.isActive(boxState))) continue;
+
+			const result = filter.toDisplay(boxState, vals[i]);
+			if (result == null) continue;
+
+			isAnyResult = true;
+			if (result) return result;
+		}
+		return !isAnyResult;
 	}
 
 	_getSubhashPrefix (prop) {

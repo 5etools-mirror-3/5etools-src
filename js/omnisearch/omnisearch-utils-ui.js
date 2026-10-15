@@ -58,7 +58,7 @@ export class OmnisearchUtilsUi {
 		const btnToTop = veT`<button class="ve-btn ve-btn-sm ve-btn-default" title="To Top"><span class="glyphicon glyphicon-arrow-up"></span></button>`
 			.vee.onn("click", () => MiscUtil.scrollPageTop());
 
-		const wrpTop = veT`<div class="bk__to-top no-print">
+		const wrpTop = veT`<div class="bk__to-top ve-print__hidden">
 			${btnToTop}
 		</div>`.vee.appendTo(document.body);
 

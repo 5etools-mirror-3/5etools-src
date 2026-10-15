@@ -299,6 +299,7 @@ export class AbilityScoreFilter extends FilterBase {
 				out._totals.yes++;
 				out[uid] = true;
 			});
+		out._isActive = !!out._totals.yes;
 
 		return {[this.header]: out};
 	}

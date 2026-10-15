@@ -18,7 +18,12 @@ export class PropOrder {
 	static getOrderedRoot (obj, opts) {
 		opts ||= {};
 
-		return this._getOrdered(obj, PROPORDER_ROOT, opts, "root");
+		return this._getOrdered({
+			obj,
+			order: PROPORDER_ROOT,
+			opts,
+			logPath: "root",
+		});
 	}
 
 	static hasOrderRoot (obj) {
@@ -41,7 +46,12 @@ export class PropOrder {
 		const order = PROPORDER_PROP_TO_LIST[dataProp];
 		if (!order) throw new Error(`Unhandled prop "${dataProp}"`);
 
-		return this._getOrdered(obj, order, opts, dataProp);
+		return this._getOrdered({
+			obj,
+			order,
+			opts,
+			logPath: dataProp,
+		});
 	}
 
 	static _getModifiedProp ({keyInfo, isFoundryPrefixProps}) {
@@ -52,7 +62,43 @@ export class PropOrder {
 		return prop.replace(/^foundry/, "").lowercaseFirst();
 	}
 
-	static _getOrdered (obj, order, opts, logPath) {
+	static _getLogPathNext (
+		{
+			opts,
+			logPath,
+			prop,
+			propMod = null,
+			isRecursive = false,
+			isArray = false,
+		},
+	) {
+		propMod ??= prop;
+
+		if (isRecursive) {
+			if (opts.isLoggingCollapsed) return logPath;
+
+			opts.isLoggingCollapsed = true;
+			return `${logPath} \u2026`;
+		}
+
+		const joiner = opts.isLoggingCollapsed ? " " : "";
+		opts.isLoggingCollapsed = false;
+
+		return [
+			logPath,
+			`${isArray ? "[n]" : ""}.${prop}${propMod !== prop ? ` (${propMod})` : ""}`,
+		]
+			.join(joiner);
+	}
+
+	static _getOrdered (
+		{
+			obj,
+			order,
+			opts,
+			logPath,
+		},
+	) {
 		const out = {};
 
 		const [keysComposite, keysStandard] = Object.keys(obj)
@@ -80,21 +126,18 @@ export class PropOrder {
 				if (opts.isFoundryPrefixProps && !prop.startsWith("_") && !prop.startsWith("foundry")) return;
 
 				if (!keySetStandard.has(propMod)) {
-					handleCompositeKeys();
-					return;
+					return handleCompositeKeys();
 				}
 				seenKeys.add(propMod);
 
 				if (typeof keyInfo === "string") {
 					out[propMod] = obj[propMod];
-					handleCompositeKeys();
-					return;
+					return handleCompositeKeys();
 				}
 
 				if (!obj[propMod]) { // Handle nulls
 					out[propMod] = obj[propMod];
-					handleCompositeKeys();
-					return;
+					return handleCompositeKeys();
 				}
 
 				const optsNxt = {
@@ -109,15 +152,54 @@ export class PropOrder {
 					: keyInfo instanceof ObjectOrArrayKey && obj[propMod]?.constructor === Object ? keyInfo.objectKey : null;
 
 				if (keyInfoObj) {
-					const logPathNxt = `${logPath}.${prop}${propMod !== prop ? ` (${propMod})` : ""}`;
+					const logPathNxt = this._getLogPathNext({opts: optsNxt, logPath, prop, propMod, isRecursive: keyInfoObj.isRecursive});
 
-					if (keyInfoObj.fnGetOrder) out[propMod] = this._getOrdered(obj[propMod], keyInfoObj.fnGetOrder(obj[propMod]), optsNxt, logPathNxt);
-					else if (keyInfoObj.order) out[propMod] = this._getOrdered(obj[propMod], keyInfoObj.order, optsNxt, logPathNxt);
-					else out[propMod] = obj[propMod];
+					// Handle case where e.g. `entry` is a primitive, rather than an entry object
+					if (typeof obj[propMod] !== "object") {
+						out[propMod] = obj[propMod];
+						return handleCompositeKeys();
+					}
 
-					handleCompositeKeys();
+					if (obj[propMod] instanceof Array) {
+						throw new Error(`Array ${JSON.stringify(obj[propMod])} found where an object was expected! This should never occur!`);
+					}
 
-					return;
+					if (keyInfoObj.fnGetOrder) {
+						out[propMod] = this._getOrdered({
+							obj: obj[propMod],
+							order: keyInfoObj.fnGetOrder(obj[propMod]),
+							opts: optsNxt,
+							logPath: logPathNxt,
+						});
+						return handleCompositeKeys();
+					}
+
+					if (keyInfoObj.fnGetObjectOrderProp) {
+						const orderNxt = PROPORDER_PROP_TO_LIST[keyInfoObj.fnGetObjectOrderProp(obj)];
+						out[propMod] = orderNxt
+							? this._getOrdered({
+								obj: obj[propMod],
+								order: orderNxt,
+								opts: optsNxt,
+								logPath: logPathNxt,
+							})
+							: obj[propMod];
+						return handleCompositeKeys();
+					}
+
+					if (keyInfoObj.order) {
+						out[propMod] = this._getOrdered({
+							obj: obj[propMod],
+							order: keyInfoObj.order,
+							opts: optsNxt,
+							logPath: logPathNxt,
+						});
+						return handleCompositeKeys();
+					}
+
+					out[propMod] = obj[propMod];
+
+					return handleCompositeKeys();
 				}
 
 				const keyInfoArray = keyInfo instanceof ArrayKey
@@ -125,13 +207,35 @@ export class PropOrder {
 					: (keyInfo instanceof ObjectOrArrayKey && obj[propMod] instanceof Array) ? keyInfo.arrayKey : null;
 
 				if (keyInfoArray) {
-					const logPathNxt = `${logPath}[n].${prop}${propMod !== prop ? ` (${propMod})` : ""}`;
+					const logPathNxt = this._getLogPathNext({
+						opts: optsNxt,
+						logPath,
+						prop,
+						propMod,
+						isArray: true,
+						isRecursive: keyInfoArray.isRecursive,
+					});
+
+					if (!(obj[propMod] instanceof Array)) {
+						throw new Error(`Object ${JSON.stringify(obj[propMod])} found where an array was expected! This should never occur!`);
+					}
 
 					// Handle mixed arrays of e.g. strings + objects
 					const fnGetOrdered = (arrOrPrimitive, fnGetOrder) => {
-						return arrOrPrimitive != null && typeof arrOrPrimitive === "object"
-							? this._getOrdered(arrOrPrimitive, fnGetOrder(arrOrPrimitive), optsNxt, logPathNxt)
-							: arrOrPrimitive;
+						if (arrOrPrimitive == null) return arrOrPrimitive;
+						if (typeof arrOrPrimitive !== "object") return arrOrPrimitive;
+
+						if (arrOrPrimitive instanceof Array) {
+							if (keyInfoArray.isRecursive) return arrOrPrimitive.map(nxt => fnGetOrdered(nxt, fnGetOrder));
+							return arrOrPrimitive;
+						}
+
+						return this._getOrdered({
+							obj: arrOrPrimitive,
+							order: fnGetOrder(arrOrPrimitive),
+							opts: optsNxt,
+							logPath: logPathNxt,
+						});
 					};
 
 					if (keyInfoArray.fnGetOrder) out[propMod] = obj[propMod].map(it => fnGetOrdered(it, keyInfoArray.fnGetOrder));
@@ -140,15 +244,12 @@ export class PropOrder {
 
 					if (!opts.isNoSortRootArrays && keyInfoArray.fnSort && out[propMod] instanceof Array) out[propMod].sort(keyInfoArray.fnSort);
 
-					handleCompositeKeys();
-
-					return;
+					return handleCompositeKeys();
 				}
 
 				if (keyInfo instanceof IgnoredKey) {
 					out[propMod] = obj[propMod];
-					handleCompositeKeys();
-					return;
+					return handleCompositeKeys();
 				}
 
 				throw new Error(`Unimplemented!`);
@@ -161,7 +262,7 @@ export class PropOrder {
 			if (!opts.fnUnhandledKey) return;
 
 			const propMod = opts.isFoundryPrefixProps ? `foundry${prop.uppercaseFirst()}` : prop;
-			const logPathNxt = `${logPath}.${prop}${propMod !== prop ? ` (${propMod})` : ""}`;
+			const logPathNxt = this._getLogPathNext({opts: {...opts}, logPath, prop, propMod});
 			opts.fnUnhandledKey(logPathNxt);
 		});
 

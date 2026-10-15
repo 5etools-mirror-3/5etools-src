@@ -786,7 +786,7 @@ async function pSectSiblings () {
 				})));
 			};
 
-			const btnReroll = veT`<button class="ve-btn ve-btn-default ve-btn-xxs no-print">Reroll</button>`
+			const btnReroll = veT`<button class="ve-btn ve-btn-default ve-btn-xxs ve-print__hidden">Reroll</button>`
 				.vee.onn("click", () => pDoRollAndDisplay());
 
 			veT`<div class="ve-flex-col life__output-wrp-border ve-p-3 ve-my-2">
@@ -817,16 +817,16 @@ function sectFamily () {
 	family.vee.appends(veT`<div>${`<b>Family:</b> ${GenUtil.getFromTable(FAMILY, RNG(100)).result}<br>`}</div>`);
 
 	let ixFamily = 1;
-	const btnSuppFam = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-btn-supp-fam no-print"></button>`
+	const btnSuppFam = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-btn-supp-fam ve-print__hidden"></button>`
 		.vee.onn("click", async () => {
 			const dispDetails = veT`<div></div>`;
 
 			const pDoRollAndDisplay = async () => dispDetails.vee.html(joinParaList(await getPersonDetails()));
 
-			const btnReroll = veT`<button class="ve-btn ve-btn-default ve-btn-xxs no-print">Reroll</button>`
+			const btnReroll = veT`<button class="ve-btn ve-btn-default ve-btn-xxs ve-print__hidden">Reroll</button>`
 				.vee.onn("click", () => pDoRollAndDisplay());
 
-			const btnRemove = veT`<button class="ve-btn ve-btn-xxs no-print ve-btn-danger" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>`
+			const btnRemove = veT`<button class="ve-btn ve-btn-xxs ve-print__hidden ve-btn-danger" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>`
 				.vee.onn("click", () => wrpRes.remove());
 
 			const wrpRes = veT`<div class="life__output-wrp-border ve-p-3 ve-my-2">
@@ -897,7 +897,7 @@ async function pSectLifeEvents () {
 			const wrpNextRoll = veT`<div></div>`;
 
 			if (nextRoll.title) {
-				const btnReroll = veT`<button class="ve-btn ve-btn-default ve-btn-xxs no-print">Reroll</button>`
+				const btnReroll = veT`<button class="ve-btn ve-btn-default ve-btn-xxs ve-print__hidden">Reroll</button>`
 					.vee.onn("click", () => pRecurseNextRolls({lifeEvent, wrpOutput}));
 
 				veT`<div class="life__output-wrp-border ve-p-3 ve-my-2">

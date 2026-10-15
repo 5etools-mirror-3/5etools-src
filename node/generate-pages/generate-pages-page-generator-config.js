@@ -109,54 +109,6 @@ class _PageGeneratorConverter extends PageGeneratorGeneric {
 	];
 }
 
-class _PageGeneratorCharactersheet extends PageGeneratorGeneric {
-	_filename = "page/template-page-charactersheet.hbs";
-	_page = "charactersheet.html";
-
-	_pageTitle = "Character Sheet";
-	_navbarDescription = "Build and manage a character. Autosaves to your browser.";
-
-	_stylesheets = [
-		"charactersheet",
-	];
-
-	_scriptsModules = [
-		"charactersheet.js",
-	];
-}
-
-class _PageGeneratorCharbuilder extends PageGeneratorGeneric {
-	_filename = "page/template-page-charbuilder.hbs";
-	_page = "charbuilder.html";
-
-	_pageTitle = "Character Builder";
-	_navbarDescription = "Plan and level a character. Autosaves to your browser.";
-
-	_stylesheets = [
-		"charactersheet",
-	];
-
-	_scriptsModules = [
-		"charbuilder.js",
-	];
-}
-
-class _PageGeneratorSidekick extends PageGeneratorGeneric {
-	_filename = "page/template-page-sidekick.hbs";
-	_page = "sidekick.html";
-
-	_pageTitle = "Sidekick Builder";
-	_navbarDescription = "Build and level a sidekick from a stat block. Autosaves to your browser.";
-
-	_stylesheets = [
-		"charactersheet",
-	];
-
-	_scriptsModules = [
-		"sidekick.js",
-	];
-}
-
 class _PageGeneratorCrcalculator extends PageGeneratorGeneric {
 	_filename = "page/template-page-crcalculator.hbs";
 	_page = "crcalculator.html";
@@ -446,9 +398,6 @@ export const PAGE_GENERATORS = 	[
 	new _PageGeneratorBlocklist(),
 	new _PageGeneratorChangelog(),
 	new _PageGeneratorConverter(),
-	new _PageGeneratorCharactersheet(),
-	new _PageGeneratorCharbuilder(),
-	new _PageGeneratorSidekick(),
 	new _PageGeneratorCrcalculator(),
 	new _PageGeneratorIndex(),
 	new _PageGeneratorInittrackerplayerview(),

@@ -180,6 +180,7 @@ class SublistManager {
 		});
 
 		this._wrpSummaryControls = wrpSummaryControls;
+		this._wrpSummaryControls.vee.hide();
 
 		this._hkOnListUpdated = () => cbOnListUpdated({cntVisibleItems: this._listSub.visibleItems.length});
 		this._listSub.on("updated", this._hkOnListUpdated);
@@ -471,8 +472,8 @@ class SublistManager {
 					entries: [
 						{
 							type: "statblockInline",
-							dataType: ent.__prop,
-							data: ent,
+							statblockType: ent.__prop,
+							statblockData: ent,
 						},
 					],
 				})
@@ -1091,6 +1092,7 @@ class ListPage {
 	 * @param [opts.hasAudio] True if the entities have pronunciation audio.
 	 * @param [opts.isPreviewable] True if the entities can be previewed in-line as part of the list.
 	 * @param [opts.isLoadDataAfterFilterInit] If the order of data loading and filter-state loading should be flipped.
+	 * @param [opts.isLazyLoadingItems] If list items should be lazily loaded.
 	 * @param [opts.propEntryData]
 	 * @param [opts.listSyntax]
 	 * @param [opts.compSettings]
@@ -1110,6 +1112,7 @@ class ListPage {
 		this._hasAudio = opts.hasAudio;
 		this._isPreviewable = opts.isPreviewable;
 		this._isLoadDataAfterFilterInit = !!opts.isLoadDataAfterFilterInit;
+		this._isLazyLoadingItems = !!opts.isLazyLoadingItems;
 		this._propEntryData = opts.propEntryData;
 		this._listSyntax = opts.listSyntax || new ListUiUtil.ListSyntax({fnGetDataList: () => this._dataList, pFnGetFluff: opts.pFnGetFluff});
 		this._compSettings = opts.compSettings ? opts.compSettings : null;
@@ -1124,6 +1127,7 @@ class ListPage {
 		this._sublistManager = null;
 		this._btnsTabs = {};
 		this._lastRender = {};
+		this._lastListFilterValues = null;
 
 		this._pgContent = null;
 		this._wrpTabs = null;
@@ -1172,12 +1176,6 @@ class ListPage {
 		this._pOnLoad_initVisibleItemsDisplay();
 
 		if (this._sublistManager) {
-			if (this._sublistManager.isSublistItemsCountable) {
-				this._bindAddButton();
-				this._bindSubtractButton();
-			} else {
-				this._bindPinButton();
-			}
 			this._initContextMenu();
 
 			await this._sublistManager.pCreateSublist();
@@ -1191,6 +1189,14 @@ class ListPage {
 
 		await this._pOnLoad_pLoadListState();
 
+		if (this._sublistManager) {
+			if (this._sublistManager.isSublistItemsCountable) {
+				this._bindAddButton();
+				this._bindSubtractButton();
+			} else {
+				this._bindPinButton();
+			}
+		}
 		this._pOnLoad_bindMiscButtons();
 
 		this._pOnLoad_pBookView().then(null);
@@ -1199,6 +1205,8 @@ class ListPage {
 		Hist.setFnLoadHash(this.pDoLoadHash.bind(this));
 		Hist.setFnLoadSubhash(this.pDoLoadSubHash.bind(this));
 		Hist.setFnHandleUnknownHash(this.pHandleUnknownHash.bind(this));
+
+		if (this._isLazyLoadingItems) this.handleFilterChange({isLazyLoad: true});
 
 		this.primaryLists.forEach(list => list.init({
 			// Throttle input changes if the user has an arbitrarily large number of items loaded
@@ -1324,7 +1332,7 @@ class ListPage {
 					entities: sublisted.length
 						? sublisted
 						: this.primaryLists
-							.map(list => list.visibleItems.map(({ix}) => this._dataList[ix]))
+							.map(list => list.visibleItems.map(listItem => this._dataList[listItem.getId()]))
 							.flat(),
 					sorter: (a, b) => SortUtil.ascSort(a.name, b.name) || SortUtil.ascSort(a.source, b.source),
 					additionalData: await this._pGetTableViewAdditionalData(),
@@ -1356,10 +1364,12 @@ class ListPage {
 		}
 
 		const len = this._dataList.length;
+		const fnGetHash = UrlUtil.getHashBuilderCurrentPage();
 		for (; this._ixData < len; this._ixData++) {
 			const it = this._dataList[this._ixData];
-			const isExcluded = ExcludeUtil.isExcluded(UrlUtil.autoEncodeHash(it), it.__prop, it.source);
-			const listItem = this.getListItem(it, this._ixData, isExcluded);
+			const hash = fnGetHash(it);
+			const isExcluded = ExcludeUtil.isExcluded(hash, it.__prop, it.source);
+			const listItem = this.getListItem(it, this._ixData, isExcluded, hash);
 			if (!listItem) continue;
 			if (this._isPreviewable) this._doBindPreview(listItem);
 			this._addListItem(listItem);
@@ -1463,7 +1473,7 @@ class ListPage {
 	_doPreviewExpand ({listItem, dispExpandedOuter, btnToggleExpand, dispExpandedInner}) {
 		dispExpandedOuter.classList.remove("ve-hidden");
 		btnToggleExpand.innerHTML = `[\u2212]`;
-		Renderer.hover.getHoverContent_stats(UrlUtil.getCurrentPage(), this._dataList[listItem.ix]).vee.appendTo(dispExpandedInner);
+		Renderer.hover.getHoverContent_stats(UrlUtil.getCurrentPage(), this._dataList[listItem.getId()]).vee.appendTo(dispExpandedInner);
 	}
 
 	_doPreviewCollapse ({dispExpandedOuter, btnToggleExpand, dispExpandedInner}) {
@@ -1567,8 +1577,8 @@ class ListPage {
 			entries: [
 				{
 					type: "statblockInline",
-					dataType: this._propEntryData || this._lastRender.entity.__prop,
-					data: this._lastRender.entity,
+					statblockType: this._propEntryData || this._lastRender.entity.__prop,
+					statblockData: this._lastRender.entity,
 				},
 			],
 		});
@@ -1653,7 +1663,7 @@ class ListPage {
 		// endregion
 
 		if (dispPageTagline) {
-			dispPageTagline.innerHTML += ` Press ${this._sublistManager ? `<span title="J/K to navigate within pinned list; p/P to pin and unpin."><kbd>j</kbd>/<kbd>k</kbd></span>` : "<kbd>j</kbd>/<kbd>k</kbd>"} to navigate${isPreviewable ? `, <kbd>m</kbd> to expand` : ""}.`;
+			dispPageTagline.innerHTML += ` Press ${this._sublistManager ? `<span title="J/K to navigate within pinned list; p/P to pin and unpin."><kbd>j</kbd><span class="ve-mx-1">/</span><kbd>k</kbd></span>` : `<kbd>j</kbd><span class="ve-mx-1">/</span><kbd>k</kbd>`} to navigate${isPreviewable ? `, <kbd>m</kbd> to expand` : ""}.`;
 			this._initList_bindWindowHandlers();
 		}
 
@@ -1827,7 +1837,7 @@ class ListPage {
 			.map(list => list.getSelected()
 				.map(li => {
 					li.isSelected = false;
-					return this._dataList[li.ix];
+					return this._dataList[li.getId()];
 				}),
 			)
 			.flat();
@@ -1864,7 +1874,7 @@ class ListPage {
 
 		this._btnsTabs[ident] = veE({
 			tag: "button",
-			clazz: "ve-ui-tab__btn-tab-head ve-btn ve-btn-default ve-pt-2p ve-px-4p ve-pb-0",
+			clazz: "ve-ui-tab__btn-tab-head ve-btn ve-btn-default ve-pt-2p ve-px-4p ve-pb-0 ve-w-24p",
 			children: [
 				veE({
 					tag: "span",
@@ -2026,12 +2036,12 @@ class ListPage {
 	}
 
 	async _handleGenericContextMenuClick_pDoMassPopout (evt, ele, selection) {
-		const entities = selection.map(listItem => ({entity: this._dataList[listItem.ix], hash: listItem.data.hash}));
+		const entities = selection.map(listItem => ({entity: this._dataList[listItem.getId()], hash: listItem.data.hash}));
 		return _UtilListPage.pDoMassPopout(evt, ele, entities);
 	}
 
 	async _handleGenericContextMenuClick_pDoMassBlocklist (evt, ele, selection) {
-		await this._pDoMassBlocklist(selection.map(listItem => this._dataList[listItem.ix]));
+		await this._pDoMassBlocklist(selection.map(listItem => this._dataList[listItem.getId()]));
 	}
 
 	async _pDoMassBlocklist (ents) {
@@ -2116,10 +2126,17 @@ class ListPage {
 
 	/* -------------------------------------------- */
 
-	handleFilterChange () {
+	handleFilterChange ({isLazyLoad = false} = {}) {
 		const f = this._filterBox.getValues();
-		this._list.filter(item => this._pageFilter.toDisplay(f, this._dataList[item.ix]));
-		FilterBox.selectFirstVisible(this._dataList);
+		const isFilterValuesUnchanged = this._lastListFilterValues != null && CollectionUtil.deepEquals(this._lastListFilterValues, f);
+		this._lastListFilterValues = f;
+
+		if (!isFilterValuesUnchanged) {
+			const listFilter = listItem => this._pageFilter.toDisplay(f, this._dataList[listItem.getId()]);
+			for (const primaryList of this.primaryLists) primaryList.filter(listFilter);
+		}
+
+		if (!isLazyLoad) FilterBox.selectFirstVisible(this._dataList);
 	}
 
 	/* -------------------------------------------- */
@@ -2299,6 +2316,7 @@ class ListPage {
 	/* -------------------------------------------- */
 
 	static _OFFSET_WINDOW_EXPORT_AS_IMAGE = 17;
+	static _STORAGE_KEY__EXPORT_IMAGE_DAY = "isExportAsImageForceDayTheme";
 
 	_pHandleClick_exportAsImage_mutOptions ({ele, optsDomToImage}) {
 		// See:
@@ -2373,6 +2391,16 @@ class ListPage {
 		const cpy = veE({outer: html})
 			.vee.addClass("ve-lst__is-exporting-image");
 
+		let isForceDayThemeExport = (await StorageUtil.pGet(this.constructor._STORAGE_KEY__EXPORT_IMAGE_DAY)) ?? true;
+
+		const btnToggleDayTheme = veT`<button class="ve-btn ve-btn-default ve-btn-xs ${isForceDayThemeExport ? "ve-active" : ""}" title="Enable Light Theme on Copy/Save"><span class="glyphicon glyphicon-adjust"></span></button>`
+			.vee.onn("click", async () => {
+				isForceDayThemeExport = !isForceDayThemeExport;
+				btnToggleDayTheme
+					.vee.toggleClass("ve-active", isForceDayThemeExport);
+				await StorageUtil.pSet(this.constructor._STORAGE_KEY__EXPORT_IMAGE_DAY, isForceDayThemeExport);
+			});
+
 		const btnCpy = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="SHIFT to Copy and Close; ALT to Copy in Day Theme">Copy</button>`
 			.vee.onn("click", async evt => {
 				this._pHandleClick_exportAsImage_mutOptions({ele: cpy, optsDomToImage});
@@ -2380,7 +2408,7 @@ class ListPage {
 				const blob = await this._pHandleClick_exportAsImage_pGetBlob({
 					ele: cpy,
 					optsDomToImage,
-					isForceDayTheme: evt.altKey,
+					isForceDayTheme: isForceDayThemeExport || evt.altKey,
 				});
 
 				const isCopy = await MiscUtil.pCopyBlobToClipboard(blob);
@@ -2396,7 +2424,7 @@ class ListPage {
 				const dataUrl = await this._pHandleClick_exportAsImage_pGetPngDataUrl({
 					ele: cpy,
 					optsDomToImage,
-					isForceDayTheme: evt.altKey,
+					isForceDayTheme: isForceDayThemeExport || evt.altKey,
 				});
 
 				DataUtil.userDownloadDataUrl(`${ent.name}.png`, dataUrl);
@@ -2410,9 +2438,12 @@ class ListPage {
 			veT`<div class="ve-flex-col">
 				<div class="ve-split-v-center ve-mb-2 ve-px-2 ve-mt-2">
 					<i class="ve-mr-2">Optionally resize <kbd title="(The width of)">&harr;</kbd> the window, then Copy or Save.</i>
-					<div class="ve-btn-group">
-						${btnCpy}
-						${btnSave}
+					<div class="ve-flex-v-center">
+						${btnToggleDayTheme}
+						<div class="ve-btn-group ve-ml-2">
+							${btnCpy}
+							${btnSave}
+						</div>
 					</div>
 				</div>
 				${cpy}
@@ -2638,7 +2669,7 @@ class ListPageBookView extends BookModeViewBase {
 	}
 
 	_getEleNoneVisible () {
-		return veT`<div class="ve-w-100 ve-flex-col ve-flex-h-center ve-no-shrink no-print ve-mb-3 ve-mt-auto">
+		return veT`<div class="ve-w-100 ve-flex-col ve-flex-h-center ve-no-shrink ve-print__hidden ve-mb-3 ve-mt-auto">
 			<div class="ve-mb-2 ve-flex-vh-center ve-min-h-0">
 				<span class="initial-message initial-message--med">If you wish to view multiple ${this._namePlural}, please first make a list</span>
 			</div>
@@ -2703,7 +2734,7 @@ class ListPageBookView extends BookModeViewBase {
 	}
 
 	_getRenderedEnt (ent) {
-		return `<div class="bkmv__wrp-item ve-inline-block print__ve-block print__my-2">
+		return `<div class="bkmv__wrp-item ve-inline-block ve-print__block ve-print__my-2">
 			<table class="ve-w-100 ve-stats ve-stats--book ve-stats--bkmv"><tbody>
 			${Renderer.hover.getFnRenderCompact(UrlUtil.getCurrentPage(), {isStatic: true})(ent)}
 			</tbody></table>
@@ -2775,6 +2806,6 @@ class ListPageBookView extends BookModeViewBase {
 	}
 
 	_getEntityMarkdown (ent) {
-		return RendererMarkdown.get().render({type: "statblockInline", dataType: this._propMarkdown, data: ent}).trim();
+		return RendererMarkdown.get().render({type: "statblockInline", statblockType: this._propMarkdown, statblockData: ent}).trim();
 	}
 }

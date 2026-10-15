@@ -1,0 +1,309 @@
+@use "sass:color";
+
+@use "../vars/vars";
+@use "../vars/vars--night";
+
+@layer vetools {
+	@mixin mix-source-color ($rgb) {
+		color: $rgb !important;
+		border-color: $rgb !important;
+		text-decoration-color: $rgb !important;
+	}
+
+	.ve-night-mode .ve-source {
+		$rgb-source-category-site: #de000a;
+		$rgb-source-category-extras: #bb6468;
+		$rgb-source-category-prerelease: vars--night.$rgb-subclass-ua--night;
+		$rgb-source-category-prerelease--local: #60c52f;
+		$rgb-source-category-homebrew: vars--night.$rgb-class-brew--night;
+		$rgb-source-category-homebrew--local: #514bff;
+		$rgb-source-category-homebrew--partnered: #b44051;
+
+		$rgb-source-PHB: vars--night.$rgb-subclass--night;
+		$rgb-source-DMG: #ba1eba;
+		$rgb-source-SADS: #4f63f5;
+		$rgb-source-CoS: #be11be;
+		$rgb-source-OGA: #b44f18;
+		$rgb-source-MTF: #2a8c9c;
+		$rgb-source-WDMM: #cc2c2b;
+		$rgb-source-AZfyT: #5071b1;
+		$rgb-source-GoS: #508170;
+		$rgb-source-BGDIA: #c33b27;
+		$rgb-source-LR: #846b44;
+		$rgb-source-ERLW: #bb4838;
+		$rgb-source-EGW: #9b6b81;
+		$rgb-source-MOT: #657e38;
+		$rgb-source-VRGR: #d02634;
+		$rgb-source-RtG: #9f5f7a;
+		$rgb-source-AitFR: #816ec9;
+		$rgb-source-MaBJoV: #be3c82;
+		$rgb-source-FTD: #cc311a;
+		$rgb-source-SAiS: #0b80b3;
+		$rgb-source-DSotDQ: #b9484b;
+		$rgb-source-PAitM: #b8419c;
+		$rgb-source-BMT: #846481;
+		$rgb-source-HAT: #2985ac;
+		$rgb-source-CoA: #be4e20;
+		$rgb-source-PSA: #eec276;
+		$rgb-source-PSI: #7b64b3;
+		$rgb-source-PSX: #cb3631;
+		$rgb-source-XMtS: #be3e8d;
+		$rgb-source-XPHB: #d98d2a;
+		$rgb-source-CaBoMP: #b35a89;
+		$rgb-source-RHW: #be242b;
+
+		// region Categories
+
+		&-category- {
+			&site {
+				@include mix-source-color($rgb-source-category-site);
+			}
+
+			&extras {
+				@include mix-source-color($rgb-source-category-extras);
+			}
+
+			&homebrew {
+				@include mix-source-color($rgb-source-category-homebrew);
+
+				&--partnered {
+					@include mix-source-color($rgb-source-category-homebrew--partnered);
+				}
+
+				&--local {
+					@include mix-source-color($rgb-source-category-homebrew--local);
+				}
+			}
+
+			&spicy {
+				@include mix-source-color($rgb-source-category-prerelease);
+
+				&--partnered {
+					@include mix-source-color(#ff00ff); // (Should never occur)
+				}
+
+				&--local {
+					@include mix-source-color($rgb-source-category-prerelease--local);
+				}
+			}
+		}
+
+		// endregion
+
+		&__ {
+			&PHB {
+				@include mix-source-color($rgb-source-PHB);
+			}
+
+			&DMG {
+				@include mix-source-color($rgb-source-DMG);
+			}
+
+			&OGA {
+				@include mix-source-color($rgb-source-OGA);
+			}
+
+			&XMtS {
+				@include mix-source-color($rgb-source-XMtS);
+			}
+
+			&CoS {
+				@include mix-source-color($rgb-source-CoS);
+			}
+
+			&MTF {
+				@include mix-source-color($rgb-source-MTF);
+			}
+
+			&WDMM {
+				@include mix-source-color($rgb-source-WDMM);
+			}
+
+			&AZfyT {
+				@include mix-source-color($rgb-source-AZfyT);
+			}
+
+			&GoS {
+				@include mix-source-color($rgb-source-GoS);
+			}
+
+			&BGDIA {
+				@include mix-source-color($rgb-source-BGDIA);
+			}
+
+			&ERLW,
+			&EFR {
+				@include mix-source-color($rgb-source-ERLW);
+			}
+
+			&LR {
+				@include mix-source-color($rgb-source-LR);
+			}
+
+			&SADS {
+				@include mix-source-color($rgb-source-SADS);
+			}
+
+			&EGW,
+			&FS,
+			&DD,
+			&US,
+			&ToR {
+				@include mix-source-color($rgb-source-EGW);
+			}
+
+			&MOT {
+				@include mix-source-color($rgb-source-MOT);
+			}
+
+			&VRGR,
+			&HoL {
+				@include mix-source-color($rgb-source-VRGR);
+			}
+
+			&RtG {
+				@include mix-source-color($rgb-source-RtG);
+			}
+
+			&AitFR {
+				@include mix-source-color($rgb-source-AitFR);
+
+				&-ISF,
+				&-THP,
+				&-AVT,
+				&-DN,
+				&-FCD {
+					@include mix-source-color($rgb-source-AitFR);
+				}
+			}
+
+			&MaBJoV {
+				@include mix-source-color($rgb-source-MaBJoV);
+			}
+
+			&FTD {
+				@include mix-source-color($rgb-source-FTD);
+			}
+
+			&SjA,
+			&SAiS,
+			&AAG,
+			&BAM,
+			&LoX {
+				@include mix-source-color($rgb-source-SAiS);
+			}
+
+			&DSotDQ {
+				@include mix-source-color($rgb-source-DSotDQ);
+			}
+
+			&PSA {
+				@include mix-source-color($rgb-source-PSA);
+			}
+
+			&PSI {
+				@include mix-source-color($rgb-source-PSI);
+			}
+
+			&PSX {
+				@include mix-source-color($rgb-source-PSX);
+			}
+
+			&HAT-TG,
+			&HAT-LMI {
+				@include mix-source-color($rgb-source-HAT);
+			}
+
+			&PAitM,
+			&SatO,
+			&ToFW,
+			&MPP {
+				@include mix-source-color($rgb-source-PAitM);
+			}
+
+			&CoA {
+				@include mix-source-color($rgb-source-CoA);
+			}
+
+			&BMT,
+			&DMTCRG {
+				@include mix-source-color($rgb-source-BMT);
+			}
+
+			&XPHB {
+				@include mix-source-color($rgb-source-XPHB);
+			}
+
+			&CaBoMP {
+				@include mix-source-color($rgb-source-CaBoMP);
+			}
+
+			&RHW {
+				@include mix-source-color($rgb-source-RHW);
+			}
+		}
+	}
+
+	// (Unused)
+	.ve-night-mode .ve-itm__ {
+		&rarity-alt- {
+			&common {
+				color: color.adjust(vars--night.$rgb-font--night, $lightness: -15%);
+			}
+
+			&uncommon {
+				color: #6ba167;
+			}
+
+			&rare {
+				color: #5384bd;
+			}
+
+			&very {
+				color: #945bd3;
+			}
+
+			&legendary {
+				color: #dd9332;
+			}
+
+			&artifact {
+				color: #c82727;
+			}
+		}
+	}
+
+	.ve-night-mode .ve-itm__ {
+		&rarity- {
+			&common {
+				color: color.adjust(vars--night.$rgb-font--night, $lightness: -15%);
+			}
+
+			&uncommon {
+				color: #b27f5e;
+			}
+
+			&rare {
+				color: #a69bbe;
+			}
+
+			&very {
+				color: #c59e3f;
+			}
+
+			&legendary {
+				color: #8cc2d8;
+			}
+
+			&artifact {
+				color: #c82727;
+			}
+		}
+	}
+
+	.ve-night-mode .ve-source-marker {
+		&--partnered {
+			color: #27ac8c;
+		}
+	}
+}

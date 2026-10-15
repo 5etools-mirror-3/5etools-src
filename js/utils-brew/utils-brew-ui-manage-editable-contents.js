@@ -17,6 +17,12 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 		}
 	};
 
+	static _Helpers = class {
+		static getEntityName (ent) { return ent.name || ent._copy?.name; }
+
+		static getEntitySource (ent) { return SourceUtil.getEntitySource(ent) || ent._copy?.source; }
+	};
+
 	static _PageFilter = class extends PageFilterBase {
 		constructor () {
 			super();
@@ -27,7 +33,7 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 
 		static mutateForFilters (meta) {
 			const {ent, prop} = meta;
-			meta._fSource = SourceUtil.getEntitySource(ent);
+			meta._fSource = ManageEditableBrewContentsUi._Helpers.getEntitySource(ent);
 			meta._fCategory = ManageEditableBrewContentsUi._getDisplayProp({ent, prop});
 		}
 
@@ -167,7 +173,7 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 		const sourceSetRemoved = new Set(listItemsSel.map(li => li.data.source.json));
 		rdState.listEntities.visibleItems
 			.forEach(li => {
-				const source = SourceUtil.getEntitySource(li.data.ent);
+				const source = this.constructor._getEntitySource(li.data.ent);
 				if (!sourceSetRemoved.has(source)) return;
 
 				this._doEntityListDelete({rdState, li});
@@ -287,7 +293,7 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 
 	_handleFilterChange_entities ({rdState}) {
 		const f = rdState.pageFilterEntities.filterBox.getValues();
-		rdState.listEntities.filter(li => rdState.pageFilterEntities.toDisplay(f, rdState.contentEntities[li.ix]));
+		rdState.listEntities.filter(li => rdState.pageFilterEntities.toDisplay(f, rdState.contentEntities[li.getId()]));
 	}
 
 	_pRender_getEntityRowMeta ({rdState, prop, ent, ixParent}) {
@@ -305,20 +311,20 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 			<div class="ve-col-5 ve-flex-vh-center ve-pr-0">${dispProp}</div>
 		</label>`;
 
-		const listItem = new ListItem(
-			ixParent, // We identify the item in the list according to its position across all props
-			eleLi,
-			dispName,
-			{
+		const listItem = new ListItem({
+			id: ixParent, // We identify the item in the list according to its position across all props
+			ele: eleLi,
+			name: dispName,
+			values: {
 				source: sourceMeta.abbreviation,
 				category: dispProp,
 			},
-			{
+			data: {
 				cbSel: this._isReadOnly ? null : eleLi.firstElementChild.firstElementChild.firstElementChild,
 				prop,
 				ent,
 			},
-		);
+		});
 
 		if (!this._isReadOnly) eleLi.addEventListener("click", evt => rdState.listEntitiesSelectClickHandler.handleSelectClick(listItem, evt));
 
@@ -440,19 +446,19 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 			<div class="ve-col-4 ve-flex-vh-center ve-pr-0">${source.json}</div>
 		</label>`;
 
-		const listItem = new ListItem(
-			ix,
-			eleLi,
+		const listItem = new ListItem({
+			id: ix,
+			ele: eleLi,
 			name,
-			{
+			values: {
 				abbreviation: abv,
 				json: source.json,
 			},
-			{
+			data: {
 				cbSel: this._isReadOnly ? null : eleLi.firstElementChild.firstElementChild.firstElementChild,
 				source,
 			},
-		);
+		});
 
 		if (!this._isReadOnly) eleLi.addEventListener("click", evt => rdState.listSourcesSelectClickHandler.handleSelectClick(listItem, evt));
 
@@ -466,7 +472,8 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 	static _getDisplayName ({brew, ent, prop}) {
 		switch (prop) {
 			case "itemProperty": {
-				if (ent.name) return ent.name || this._NAME_UNKNOWN;
+				const entName = this._Helpers.getEntityName(ent);
+				if (entName) return entName;
 				if (ent.entries) {
 					const name = Renderer.findName(ent.entries);
 					if (name) return name;
@@ -482,17 +489,17 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 			case "bookData": {
 				const propContents = prop === "adventureData" ? "adventure" : "book";
 
-				if (!brew[propContents]) return ent.id || this._NAME_UNKNOWN;
+				if (!brew[propContents]) return this._Helpers.getEntityName(ent) || ent.id || this._NAME_UNKNOWN;
 
-				return brew[propContents].find(it => it.id === ent.id)?.name || ent.id || this._NAME_UNKNOWN;
+				return brew[propContents].find(it => it.id === ent.id)?.name || this._Helpers.getEntityName(ent) || ent.id || this._NAME_UNKNOWN;
 			}
 
-			default: return ent.name || this._NAME_UNKNOWN;
+			default: return this._Helpers.getEntityName(ent) || this._NAME_UNKNOWN;
 		}
 	}
 
 	static _getSourceMeta ({brew, ent}) {
-		const entSource = SourceUtil.getEntitySource(ent);
+		const entSource = this._Helpers.getEntitySource(ent);
 		if (!entSource) return {abbreviation: SOURCE_UNKNOWN_ABBREVIATION, full: SOURCE_UNKNOWN_FULL};
 		const source = (brew.body?._meta?.sources || []).find(src => src.json === entSource);
 		if (!source) return {abbreviation: SOURCE_UNKNOWN_ABBREVIATION, full: SOURCE_UNKNOWN_FULL};

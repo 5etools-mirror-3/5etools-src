@@ -93,7 +93,7 @@ const getFileTextOnlyCredits = ({file}) => {
 			if (ixCredits == null || ixCredits < 0) return;
 
 			const jsonAdventureBook = readJsonSync(`data/${meta.dir}/${meta.prop}-${head.id.toLowerCase()}.json`);
-			const entCredits = jsonAdventureBook.data?.[ixCredits];
+			const entCredits = jsonAdventureBook[`${meta.prop}Data`]?.find(corpusData => corpusData.id === head.id)?.data?.[ixCredits];
 			if (!entCredits) return;
 
 			out.push(entCredits);

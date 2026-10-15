@@ -1,5 +1,5 @@
 @use "vars/vars";
-@use "vars/vars-night";
+@use "vars/vars--night";
 
 @layer vetools {
 	.maps {
@@ -58,28 +58,28 @@
 	.ve-night-mode .maps {
 		&__ {
 			&disp-message-initial {
-				background: vars-night.$rgb-bg--night;
-				border-color: vars-night.$rgb-border-grey--trans-night;
+				background: vars--night.$rgb-bg--night;
+				border-color: vars--night.$rgb-border-grey--trans-night;
 			}
 		}
 
 		&-menu {
-			background: vars-night.$rgb-bg--night;
-			border-top-color: vars-night.$rgb-border-grey--trans-night;
+			background: vars--night.$rgb-bg--night;
+			border-top-color: vars--night.$rgb-border-grey--trans-night;
 
 			&__label-cb {
-				border-bottom-color: vars-night.$rgb-border-grey--night;
+				border-bottom-color: vars--night.$rgb-border-grey--night;
 
 				&:hover {
-					background-color: vars-night.$rgb-bg--alt-night;
+					background-color: vars--night.$rgb-bg--alt-night;
 				}
 			}
 		}
 
 		&-gallery {
 			&__wrp-chapter {
-				background: vars-night.$rgb-bg--night;
-				border-color: vars-night.$rgb-border-grey--trans-night;
+				background: vars--night.$rgb-bg--night;
+				border-color: vars--night.$rgb-border-grey--trans-night;
 			}
 		}
 	}

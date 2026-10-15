@@ -170,7 +170,8 @@ $font-line-height: 1.42857143;
 		@content;
 	}
 
-	@at-root html.is-faux-print #{&} {
+	// Use same specificity as real print rules
+	@at-root :where(html.is-faux-print) #{&} {
 		@content;
 	}
 }

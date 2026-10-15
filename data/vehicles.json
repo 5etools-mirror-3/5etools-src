@@ -18,6 +18,7 @@
 			"capCrew": 1,
 			"capPassenger": 1,
 			"ac": 20,
+			"hp": 200,
 			"speed": {
 				"walk": 30,
 				"swim": {
@@ -25,7 +26,6 @@
 					"condition": "(or 0 ft. for both if the legs aren't extended)"
 				}
 			},
-			"hp": 200,
 			"immune": [
 				"poison",
 				"psychic"
@@ -120,6 +120,7 @@
 			"capCrew": 1,
 			"capPassenger": 1,
 			"ac": 20,
+			"hp": 200,
 			"speed": {
 				"walk": 30,
 				"swim": {
@@ -127,7 +128,6 @@
 					"condition": "(or 0 ft. for both if the legs aren't extended)"
 				}
 			},
-			"hp": 200,
 			"immune": [
 				"poison",
 				"psychic"
@@ -140,15 +140,15 @@
 				{
 					"type": "table",
 					"caption": "Apparatus of Kwalish Levers",
-					"colStyles": [
-						"col-1 text-center",
-						"col-5-5",
-						"col-5-5"
-					],
 					"colLabels": [
 						"Lever",
 						"Up",
 						"Down"
+					],
+					"colStyles": [
+						"col-1 text-center",
+						"col-5-5",
+						"col-5-5"
 					],
 					"rows": [
 						[
@@ -345,9 +345,9 @@
 				},
 				{
 					"name": "Harpoon Gun",
-					"count": 3,
 					"ac": 15,
 					"hp": 50,
+					"count": 3,
 					"entries": [
 						"{@atk rw} {@hit 8} to hit, range 120/480 ft., one target. {@h}11 ({@damage 2d10}) piercing damage, and the target is {@condition grappled} (escape {@dc 16}). Until the grapple ends, the target's speed is halved, and it can't move farther away from the battle balloon. Each of the battle balloon's harpoon guns can grapple one target. While it has one or more targets {@condition grappled} with its harpoon gun attack, the battle balloon's speed is not halved."
 					]
@@ -425,10 +425,10 @@
 			"weapon": [
 				{
 					"name": "Ballistae",
-					"crew": 3,
-					"count": 2,
 					"ac": 15,
 					"hp": 50,
+					"count": 2,
+					"crew": 3,
 					"costs": [
 						{
 							"cost": 5000,
@@ -453,9 +453,9 @@
 				},
 				{
 					"name": "Giant Cannon",
-					"crew": 4,
 					"ac": 19,
 					"hp": 250,
+					"crew": 4,
 					"costs": [
 						{
 							"note": "cannon"
@@ -514,9 +514,9 @@
 			"weapon": [
 				{
 					"name": "Ballista",
-					"crew": 3,
 					"ac": 15,
 					"hp": 50,
+					"crew": 3,
 					"costs": [
 						{
 							"cost": 5000,
@@ -541,9 +541,9 @@
 				},
 				{
 					"name": "Mangonel",
-					"crew": 4,
 					"ac": 15,
 					"hp": 100,
+					"crew": 4,
 					"costs": [
 						{
 							"cost": 10000,
@@ -774,9 +774,9 @@
 			"weapon": [
 				{
 					"name": "Ballista",
-					"crew": 3,
 					"ac": 15,
 					"hp": 50,
+					"crew": 3,
 					"costs": [
 						{
 							"cost": 5000,
@@ -801,9 +801,9 @@
 				},
 				{
 					"name": "Mangonel",
-					"crew": 5,
 					"ac": 15,
 					"hp": 100,
+					"crew": 5,
 					"costs": [
 						{
 							"cost": 10000,
@@ -919,18 +919,18 @@
 			"weapon": [
 				{
 					"name": "Ballistas",
-					"count": 4,
 					"ac": 15,
 					"hp": 50,
+					"count": 4,
 					"entries": [
 						"{@atk rw} {@hit 6} to hit, range 120/480 ft., one target. {@h}16 ({@damage 3d10}) piercing damage."
 					]
 				},
 				{
 					"name": "Mangonels",
-					"count": 2,
 					"ac": 15,
 					"hp": 100,
+					"count": 2,
 					"entries": [
 						"{@atk rw} {@hit 5} to hit, range 200/800 ft. (can't hit targets within 60 ft. of it), one target. {@h}27 ({@damage 5d10}) bludgeoning damage."
 					]
@@ -1046,9 +1046,9 @@
 				},
 				{
 					"name": "Mangonels",
-					"count": 2,
 					"ac": 15,
 					"hp": 100,
+					"count": 2,
 					"crew": 5,
 					"costs": [
 						{
@@ -1255,10 +1255,10 @@
 			"weapon": [
 				{
 					"name": "Ballistae",
-					"crew": 3,
-					"count": 4,
 					"ac": 15,
 					"hp": 50,
+					"count": 4,
+					"crew": 3,
 					"costs": [
 						{
 							"cost": 5000,
@@ -1340,9 +1340,9 @@
 			"weapon": [
 				{
 					"name": "Ballista",
-					"crew": 3,
 					"ac": 15,
 					"hp": 50,
+					"crew": 3,
 					"costs": [
 						{
 							"cost": 5000,
@@ -1513,9 +1513,9 @@
 					"size": [
 						"M"
 					],
-					"count": 6,
 					"ac": 17,
 					"hp": 50,
+					"count": 6,
 					"crew": 1,
 					"entries": [
 						"This turret swivels to shoot lightning blasts and can accommodate up to one Medium creature.",
@@ -1791,9 +1791,9 @@
 			"weapon": [
 				{
 					"name": "Eye Ray Tentacles",
-					"count": 6,
 					"ac": 14,
 					"hp": 50,
+					"count": 6,
 					"entries": [
 						"{@atk g} The mechanical beholder shoots the following magical eye rays at up to three targets that would be visible to the crew and are within 120 feet of it.",
 						{
@@ -1879,10 +1879,10 @@
 			"weapon": [
 				{
 					"name": "Ballistae",
-					"crew": 3,
-					"count": 4,
 					"ac": 15,
 					"hp": 50,
+					"count": 4,
+					"crew": 3,
 					"costs": [
 						{
 							"cost": 5000,
@@ -1907,9 +1907,9 @@
 				},
 				{
 					"name": "Mangonel",
-					"crew": 5,
 					"ac": 15,
 					"hp": 100,
+					"crew": 5,
 					"costs": [
 						{
 							"cost": 10000,
@@ -1993,10 +1993,10 @@
 			"weapon": [
 				{
 					"name": "Ballistae",
-					"crew": 3,
-					"count": 4,
 					"ac": 15,
 					"hp": 50,
+					"count": 4,
+					"crew": 3,
 					"costs": [
 						{
 							"cost": 5000,
@@ -2021,9 +2021,9 @@
 				},
 				{
 					"name": "Mangonel",
-					"crew": 5,
 					"ac": 15,
 					"hp": 100,
+					"crew": 5,
 					"costs": [
 						{
 							"cost": 10000,
@@ -2412,9 +2412,9 @@
 			"weapon": [
 				{
 					"name": "Ballista",
-					"crew": 3,
 					"ac": 15,
 					"hp": 50,
+					"crew": 3,
 					"costs": [
 						{
 							"cost": 5000,
@@ -2439,8 +2439,8 @@
 				},
 				{
 					"name": "Claws",
-					"crew": 1,
 					"count": 2,
+					"crew": 1,
 					"costs": [
 						{
 							"note": "included in ship cost"
@@ -2460,9 +2460,9 @@
 				},
 				{
 					"name": "Mangonel",
-					"crew": 5,
 					"ac": 15,
 					"hp": 100,
+					"crew": 5,
 					"costs": [
 						{
 							"cost": 10000,
@@ -2522,10 +2522,10 @@
 			"weapon": [
 				{
 					"name": "Ballistae",
-					"crew": 3,
-					"count": 3,
 					"ac": 15,
 					"hp": 50,
+					"count": 3,
+					"crew": 3,
 					"costs": [
 						{
 							"cost": 5000,
@@ -2605,10 +2605,10 @@
 			"weapon": [
 				{
 					"name": "Ballistae",
-					"crew": 3,
-					"count": 2,
 					"ac": 15,
 					"hp": 50,
+					"count": 2,
+					"crew": 3,
 					"costs": [
 						{
 							"cost": 5000,
@@ -2633,9 +2633,9 @@
 				},
 				{
 					"name": "Mangonel",
-					"crew": 5,
 					"ac": 15,
 					"hp": 100,
+					"crew": 5,
 					"costs": [
 						{
 							"cost": 10000,
@@ -2700,9 +2700,9 @@
 			"weapon": [
 				{
 					"name": "Ballista",
-					"count": 2,
 					"ac": 15,
 					"hp": 50,
+					"count": 2,
 					"crew": 3,
 					"costs": [
 						{
@@ -2796,6 +2796,10 @@
 					]
 				}
 			],
+			"hp": {
+				"average": 67,
+				"formula": "9d10 + 18"
+			},
 			"speed": {
 				"walk": 30
 			},
@@ -2805,10 +2809,6 @@
 			"int": 0,
 			"wis": 0,
 			"cha": 0,
-			"hp": {
-				"average": 67,
-				"formula": "9d10 + 18"
-			},
 			"immune": [
 				"poison",
 				"psychic"
@@ -2887,10 +2887,10 @@
 			"weapon": [
 				{
 					"name": "Ballistae",
-					"crew": 3,
-					"count": 2,
 					"ac": 15,
 					"hp": 50,
+					"count": 2,
+					"crew": 3,
 					"costs": [
 						{
 							"cost": 5000,
@@ -2915,9 +2915,9 @@
 				},
 				{
 					"name": "Mangonel",
-					"crew": 5,
 					"ac": 15,
 					"hp": 100,
+					"crew": 5,
 					"costs": [
 						{
 							"cost": 10000,
@@ -2979,8 +2979,8 @@
 					],
 					"ac": 17,
 					"hp": 30,
-					"crew": 1,
 					"count": 4,
+					"crew": 1,
 					"entries": [
 						"This miniature cannon shoots bursts of magical force. A creature operating the Arcane Launcher can take the Energy Blast action to aim and fire the cannon."
 					],
@@ -3196,10 +3196,10 @@
 			"weapon": [
 				{
 					"name": "Ballistae",
-					"crew": 3,
-					"count": 3,
 					"ac": 15,
 					"hp": 50,
+					"count": 3,
+					"crew": 3,
 					"costs": [
 						{
 							"cost": 5000,
@@ -3224,9 +3224,9 @@
 				},
 				{
 					"name": "Mangonel",
-					"crew": 5,
 					"ac": 15,
 					"hp": 100,
+					"crew": 5,
 					"costs": [
 						{
 							"cost": 10000,
@@ -3285,8 +3285,8 @@
 			"weapon": [
 				{
 					"name": "Eyestalk Cannons",
-					"crew": 1,
 					"count": 3,
+					"crew": 1,
 					"costs": [
 						{
 							"note": "included in ship cost"
@@ -3460,18 +3460,18 @@
 			"weapon": [
 				{
 					"name": "Ballistas",
-					"count": 2,
 					"ac": 15,
 					"hp": 50,
+					"count": 2,
 					"entries": [
 						"{@atk rw} {@hit 6} to hit, range 120/480 ft., one target. {@h}16 ({@damage 3d10}) piercing damage."
 					]
 				},
 				{
 					"name": "Mangonels",
-					"count": 2,
 					"ac": 15,
 					"hp": 100,
+					"count": 2,
 					"entries": [
 						"{@atk rw} {@hit 5} to hit, range 200/800 ft. (can't hit targets within 60 ft. of it), one target. {@h}27 ({@damage 5d10}) bludgeoning damage."
 					]
@@ -3554,9 +3554,9 @@
 			"weapon": [
 				{
 					"name": "Ballista",
-					"crew": 3,
 					"ac": 15,
 					"hp": 50,
+					"crew": 3,
 					"costs": [
 						{
 							"cost": 5000,
@@ -3705,13 +3705,13 @@
 				{
 					"type": "table",
 					"caption": "Dragon Sails",
-					"colStyles": [
-						"col-6 text-center",
-						"col-6 text-center"
-					],
 					"colLabels": [
 						"Dragon Type",
 						"Damage Type"
+					],
+					"colStyles": [
+						"col-6 text-center",
+						"col-6 text-center"
 					],
 					"rows": [
 						[

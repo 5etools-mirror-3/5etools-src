@@ -313,10 +313,10 @@ export class BookUtil {
 		BookUtil.curRender.controls.btnsPrv = BookUtil.curRender.controls.btnsPrv || [];
 		let btnPrev;
 		if (BookUtil.referenceId) {
-			btnPrev = veT`<button class="ve-btn ve-btn-xs ve-btn-default bk__nav-head-foot-item no-print"><span class="glyphicon glyphicon-chevron-left"></span>Previous</button>`
+			btnPrev = veT`<button class="ve-btn ve-btn-xs ve-btn-default bk__nav-head-foot-item ve-print__hidden"><span class="glyphicon glyphicon-chevron-left"></span>Previous</button>`
 				.vee.onn("click", () => this._showBookContent_goToPage({mod: -1, bookId, ixChapter}));
 		} else {
-			btnPrev = veT`<a href="#${this._showBookContent_goToPage({mod: -1, isGetHref: true, bookId, ixChapter})}" class="ve-btn ve-btn-xs ve-btn-default bk__nav-head-foot-item no-print"><span class="glyphicon glyphicon-chevron-left"></span>Previous</a>`
+			btnPrev = veT`<a href="#${this._showBookContent_goToPage({mod: -1, isGetHref: true, bookId, ixChapter})}" class="ve-btn ve-btn-xs ve-btn-default bk__nav-head-foot-item ve-print__hidden"><span class="glyphicon glyphicon-chevron-left"></span>Previous</a>`
 				.vee.onn("click", () => MiscUtil.scrollPageTop());
 		}
 		btnPrev
@@ -325,7 +325,7 @@ export class BookUtil {
 		BookUtil.curRender.controls.btnsPrv.push(btnPrev);
 
 		(BookUtil.curRender.controls.divsPrv = BookUtil.curRender.controls.divsPrv || [])
-			.push(veT`<div class="bk__nav-head-foot-item no-print"></div>`
+			.push(veT`<div class="bk__nav-head-foot-item ve-print__hidden"></div>`
 				.vee.toggle(!showPrev)
 				.vee.appendTo(wrpControls));
 
@@ -336,10 +336,10 @@ export class BookUtil {
 		BookUtil.curRender.controls.btnsNxt = BookUtil.curRender.controls.btnsNxt || [];
 		let btnNext;
 		if (BookUtil.referenceId) {
-			btnNext = veT`<button class="ve-btn ve-btn-xs ve-btn-default bk__nav-head-foot-item no-print">Next<span class="glyphicon glyphicon-chevron-right"></span></button>`
+			btnNext = veT`<button class="ve-btn ve-btn-xs ve-btn-default bk__nav-head-foot-item ve-print__hidden">Next<span class="glyphicon glyphicon-chevron-right"></span></button>`
 				.vee.onn("click", () => this._showBookContent_goToPage({mod: 1, bookId, ixChapter}));
 		} else {
-			btnNext = veT`<a href="#${this._showBookContent_goToPage({mod: 1, isGetHref: true, bookId, ixChapter})}" class="ve-btn ve-btn-xs ve-btn-default bk__nav-head-foot-item no-print">Next<span class="glyphicon glyphicon-chevron-right"></span></a>`
+			btnNext = veT`<a href="#${this._showBookContent_goToPage({mod: 1, isGetHref: true, bookId, ixChapter})}" class="ve-btn ve-btn-xs ve-btn-default bk__nav-head-foot-item ve-print__hidden">Next<span class="glyphicon glyphicon-chevron-right"></span></a>`
 				.vee.onn("click", () => MiscUtil.scrollPageTop());
 		}
 		btnNext
@@ -348,7 +348,7 @@ export class BookUtil {
 		BookUtil.curRender.controls.btnsNxt.push(btnNext);
 
 		(BookUtil.curRender.controls.divsNxt = BookUtil.curRender.controls.divsNxt || [])
-			.push(veT`<div class="bk__nav-head-foot-item no-print"></div>`
+			.push(veT`<div class="bk__nav-head-foot-item ve-print__hidden"></div>`
 				.vee.toggle(!showNxt)
 				.vee.appendTo(wrpControls));
 
@@ -394,7 +394,7 @@ export class BookUtil {
 		const href = ~this.curRender.chapter
 			? this._getHrefShowAll(bookId)
 			: `#${UrlUtil.encodeForHash(bookId)}`;
-		const btnEntireBook = veT`<a href="${href}" class="ve-btn ve-btn-xs ve-btn-default no-print ${~this.curRender.chapter ? "" : "ve-active"}" title="Warning: Slow">View Entire ${this.contentType.uppercaseFirst()}</a>`;
+		const btnEntireBook = veT`<a href="${href}" class="ve-btn ve-btn-xs ve-btn-default ve-print__hidden ${~this.curRender.chapter ? "" : "ve-active"}" title="Warning: Slow">View Entire ${this.contentType.uppercaseFirst()}</a>`;
 
 		if (this._isNarrow == null) {
 			const saved = StorageUtil.syncGetForPage("narrowMode");
@@ -415,10 +415,10 @@ export class BookUtil {
 		hdlNarrowUpdate();
 
 		if (!this._TOP_MENU) {
-			const doDownloadFullText = () => {
+			const pDoDownloadFullText = async () => {
 				DataUtil.userDownloadText(
 					`${this.curRender.fromIndex.name}.md`,
-					this.curRender.data
+					(await Renderer.utils.preload.pGetPreloaded(this.curRender.data))
 						.map(chapter => RendererMarkdown.get().render(chapter))
 						.join("\n\n------\n\n"),
 				);
@@ -427,20 +427,22 @@ export class BookUtil {
 			this._TOP_MENU = ContextUtil.getMenu([
 				new ContextUtil.Action(
 					"Download Chapter as Markdown",
-					() => {
-						if (!~BookUtil.curRender.chapter) return doDownloadFullText();
+					async () => {
+						if (!~BookUtil.curRender.chapter) return pDoDownloadFullText();
 
 						const contentsInfo = this.curRender.fromIndex.contents[this.curRender.chapter];
 						DataUtil.userDownloadText(
 							`${this.curRender.fromIndex.name} - ${Parser.bookOrdinalToAbv(contentsInfo.ordinal, {isPlainText: true}).replace(/:/g, "")}${contentsInfo.name}.md`,
-							RendererMarkdown.get().render(this.curRender.data[this.curRender.chapter]),
+							RendererMarkdown.get().render(
+								await Renderer.utils.preload.pGetPreloaded(this.curRender.data[this.curRender.chapter]),
+							),
 						);
 					},
 				),
 				new ContextUtil.Action(
 					`Download ${this.typeTitle} as Markdown`,
 					() => {
-						doDownloadFullText();
+						pDoDownloadFullText().then(null);
 					},
 				),
 			]);
@@ -449,11 +451,11 @@ export class BookUtil {
 		const btnMenu = veT`<button class="ve-btn ve-btn-xs ve-btn-default" title="Other Options"><span class="glyphicon glyphicon-option-vertical"></span></button>`
 			.vee.onn("click", evt => ContextUtil.pOpenMenu(evt, this._TOP_MENU));
 
-		veT`<div class="no-print ve-flex-v-center ve-btn-group">${btnEntireBook}${btnToggleNarrow}${btnMenu}</div>`.vee.appendTo(wrpControls);
+		veT`<div class="ve-print__hidden ve-flex-v-center ve-btn-group">${btnEntireBook}${btnToggleNarrow}${btnMenu}</div>`.vee.appendTo(wrpControls);
 	}
 
 	static _showBookContent_renderNavButtons_bottom ({bookId, wrpControls}) {
-		veT`<button class="ve-btn ve-btn-xs ve-btn-default no-print">Back to Top</button>`
+		veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-print__hidden">Back to Top</button>`
 			.vee.onn("click", () => MiscUtil.scrollPageTop())
 			.vee.appendTo(wrpControls);
 	}
@@ -759,8 +761,17 @@ export class BookUtil {
 		}
 	}
 
+	static async _pLoadChapter_pGetData ({fromIndex, bookId, homebrewData}) {
+		if (homebrewData) return homebrewData;
+
+		if (BookUtil.referenceId) return DataUtil.loadJSON(`${BookUtil.baseDataUrl}${bookId.toLowerCase()}.json`);
+
+		const pack = await DataLoader.pCacheAndGet(DataLoader.getPropPage(BookUtil.propHomebrewData), fromIndex.source, UrlUtil.encodeForHash(bookId), {isRequired: true});
+		return pack[BookUtil.propHomebrewData];
+	}
+
 	static async _pLoadChapter (fromIndex, bookId, hashParts, homebrewData, wrpContents) {
-		const data = homebrewData || (await DataUtil.loadJSON(`${BookUtil.baseDataUrl}${bookId.toLowerCase()}.json`));
+		const data = await this._pLoadChapter_pGetData({fromIndex, bookId, homebrewData});
 
 		const isInitialLoad = BookUtil.curRender.curBookId !== bookId;
 
@@ -808,19 +819,19 @@ export class BookUtil {
 			});
 
 		// region Mobile only "open find bar" buttons
-		const btnToTop = veT`<button class="ve-btn ve-btn-default ve-btn-sm no-print ve-bbl-0" title="To Top"><span class="glyphicon glyphicon-arrow-up"></span></button>`
+		const btnToTop = veT`<button class="ve-btn ve-btn-default ve-btn-sm ve-print__hidden ve-bbl-0" title="To Top"><span class="glyphicon glyphicon-arrow-up"></span></button>`
 			.vee.onn("click", evt => {
 				evt.stopPropagation();
 				MiscUtil.scrollPageTop();
 			});
 
-		const btnOpenFind = veT`<button class="ve-btn ve-btn-default ve-btn-sm no-print" title="Find"><kbd>f</kbd></button>`
+		const btnOpenFind = veT`<button class="ve-btn ve-btn-default ve-btn-sm ve-print__hidden" title="Find"><kbd>f</kbd></button>`
 			.vee.onn("click", evt => {
 				evt.stopPropagation();
 				BookUtil._showSearchBox(indexData, bookId, false);
 			});
 
-		const btnOpenGoto = veT`<button class="ve-btn ve-btn-default ve-btn-sm no-print ve-bbr-0" title="Go to Page"><kbd>g</kbd></button>`
+		const btnOpenGoto = veT`<button class="ve-btn ve-btn-default ve-btn-sm ve-print__hidden ve-bbr-0" title="Go to Page"><kbd>g</kbd></button>`
 			.vee.onn("click", evt => {
 				evt.stopPropagation();
 				BookUtil._showSearchBox(indexData, bookId, true);

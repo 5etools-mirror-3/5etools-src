@@ -425,7 +425,7 @@ class RendererMarkdown extends Renderer {
 
 	_renderAbilityGeneric (entry, textStack, meta, options) {
 		this._renderPrefix(entry, textStack, meta, options);
-		textStack[0] += `${entry.name ? `**${entry.name}**  = ` : ""}${entry.text}${entry.attributes ? ` ${Parser.attrChooseToFull(entry.attributes)}` : ""}`;
+		textStack[0] += `${entry.name ? `**${entry.name}**  = ` : ""}${entry.entry}${entry.attributes ? ` ${Parser.attrChooseToFull(entry.attributes)}` : ""}`;
 		this._renderSuffix(entry, textStack, meta, options);
 	}
 	// endregion
@@ -455,7 +455,7 @@ class RendererMarkdown extends Renderer {
 
 	_renderLink (entry, textStack, meta, options) {
 		const href = this._renderLink_getHref(entry);
-		textStack[0] += `[${href}](${this.render(entry.text)})`;
+		textStack[0] += `[${href}](${this.render(entry.entry)})`;
 	}
 
 	_renderActions (entry, textStack, meta, options) {
@@ -529,26 +529,33 @@ class RendererMarkdown extends Renderer {
 	 * inline data passed to this method is assumed to be complete, i.e., require no further loading or mutating.
 	 */
 	_renderStatblockInline (entry, textStack, meta, options) {
-		const fnGetRenderCompact = RendererMarkdown.hover.getFnRenderCompact(entry.dataType);
+		const fnGetRenderCompact = RendererMarkdown.hover.getFnRenderCompact(entry.statblockType);
 
 		if (!fnGetRenderCompact) {
 			this._renderPrefix(entry, textStack, meta, options);
-			textStack[0] += `**Cannot render "${entry.type}"\u2014unknown type "${entry.dataType}"!**\n`;
+			textStack[0] += `**Cannot render "${entry.type}"\u2014unknown statblock type "${entry.statblockType}"!**\n`;
+			this._renderSuffix(entry, textStack, meta, options);
+			return;
+		}
+
+		if (!entry.statblockData) {
+			this._renderPrefix(entry, textStack, meta, options);
+			textStack[0] += `**Cannot render "${entry.type}"\u2014no "statblockData"!**\n`;
 			this._renderSuffix(entry, textStack, meta, options);
 			return;
 		}
 
 		this._renderPrefix(entry, textStack, meta, options);
 		// Pass `entry` here to allow e.g. `legendaryGroup` to be included when rendering creatures
-		textStack[0] += fnGetRenderCompact(entry.data, {...entry, meta});
+		textStack[0] += fnGetRenderCompact(entry.statblockData, {...entry, meta});
 		this._renderSuffix(entry, textStack, meta, options);
 	}
 
-	/*
 	_renderStatblock (entry, textStack, meta, options) {
-		// TODO assume the entity is pre-cached, and sync fetch it from the cache?
+		this._renderPrefix(entry, textStack, meta, options);
+		textStack[0] += `**Cannot render "${entry.type}"\u2014entity was not preloaded (${entry.displayName || entry.name || entry.abbreviation || "Unknown"})!**\n`;
+		this._renderSuffix(entry, textStack, meta, options);
 	}
-	*/
 	// endregion
 
 	// region images
@@ -857,7 +864,7 @@ RendererMarkdown.exporting = class {
 	static async pGetMarkdownDoc ({ents, prop, pFnGetFluff = null}) {
 		const asEntries = (await Promise.all(ents
 			.map(async (ent, i) => {
-				const monEntry = ({type: "statblockInline", dataType: prop, data: ent});
+				const monEntry = ({type: "statblockInline", statblockType: prop, statblockData: ent});
 
 				const fluff = pFnGetFluff ? await pFnGetFluff(ent) : null;
 
@@ -1545,7 +1552,7 @@ RendererMarkdown.table = class {
 
 RendererMarkdown.tableGroup = class {
 	static getCompactRenderedString (tbl, opts = {}) {
-		return RendererMarkdown.table.getCompactRenderedString({type: "table", ...tbl}, opts);
+		return RendererMarkdown.generic.getCompactRenderedString({...tbl, entries: tbl.tables}, opts);
 	}
 };
 
@@ -2281,6 +2288,37 @@ RendererMarkdown.variantrule = class {
 	}
 };
 
+RendererMarkdown.card = class {
+	static getCompactRenderedString (ent, opts = {}) {
+		const entCard = {
+			...ent,
+			entries: [
+				ent.face,
+				...Renderer.card.getFullEntries(ent),
+			]
+				.filter(Boolean),
+		};
+
+		return RendererMarkdown.generic.getCompactRenderedString(entCard, opts);
+	}
+};
+
+RendererMarkdown.deck = class {
+	static getCompactRenderedString (ent, opts = {}) {
+		const {entryCards} = Renderer.deck.getDeckRenderableEntriesMeta(ent);
+
+		const entDeck = {
+			...ent,
+			entries: [
+				...(ent.entries || []),
+				entryCards,
+			],
+		};
+
+		return RendererMarkdown.generic.getCompactRenderedString(entDeck, opts);
+	}
+};
+
 RendererMarkdown.facility = class {
 	static getCompactRenderedString (ent, opts = {}) {
 		const entriesMeta = Renderer.facility.getFacilityRenderableEntriesMeta(ent);
@@ -2298,11 +2336,48 @@ RendererMarkdown.facility = class {
 	}
 };
 
+RendererMarkdown.skill = class {
+	static getCompactRenderedString (ent, opts = {}) {
+		const {entryAbility} = Renderer.skill.getSkillRenderableEntriesMeta(ent);
+
+		const entSkill = {
+			...ent,
+			entries: [
+				entryAbility,
+				...(ent.entries || []),
+			]
+				.filter(Boolean),
+		};
+
+		return RendererMarkdown.generic.getCompactRenderedString(entSkill, opts);
+	}
+};
+
+RendererMarkdown.sense = class {
+	static getCompactRenderedString (ent, opts = {}) {
+		return RendererMarkdown.generic.getCompactRenderedString(ent, opts);
+	}
+};
+
+RendererMarkdown.itemProperty = class {
+	static getCompactRenderedString (ent, opts = {}) {
+		const {entryFaux} = Renderer.itemProperty.getItemPropertyRenderableEntriesMeta(ent);
+
+		return RendererMarkdown.generic.getCompactRenderedString(entryFaux, opts);
+	}
+};
+
+RendererMarkdown.itemMastery = class {
+	static getCompactRenderedString (ent, opts = {}) {
+		return RendererMarkdown.generic.getCompactRenderedString(ent, opts);
+	}
+};
+
 RendererMarkdown.generic = class {
 	static getCompactRenderedString (ent, opts = {}) {
 		const subStack = [""];
 		subStack[0] += `## ${ent._displayName || ent.name}\n\n`;
-		ent.entries.forEach(entry => {
+		(ent.entries || []).forEach(entry => {
 			RendererMarkdown.generic.getRenderedSubEntry(entry, opts, {subStack});
 			subStack[0] += "\n\n";
 		});
@@ -2325,7 +2400,9 @@ RendererMarkdown.generic = class {
 
 RendererMarkdown.hover = class {
 	static getFnRenderCompact (prop) {
-		return RendererMarkdown[prop]?.getCompactRenderedString?.bind(RendererMarkdown[prop]);
+		if (prop?.endsWith("Fluff")) return RendererMarkdown.generic.getCompactRenderedString.bind(RendererMarkdown.generic);
+		if (RendererMarkdown[prop]?.getCompactRenderedString) return RendererMarkdown[prop].getCompactRenderedString.bind(RendererMarkdown[prop]);
+		return RendererMarkdown.generic.getCompactRenderedString.bind(RendererMarkdown.generic);
 	}
 };
 

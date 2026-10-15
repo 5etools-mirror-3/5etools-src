@@ -13,7 +13,6 @@ window.addEventListener("load", async () => {
 });
 
 async function onJsonLoad (data) {
-	BookUtil.baseDataUrl = "data/adventure/adventure-";
 	BookUtil.allPageUrl = "adventures.html";
 	BookUtil.propHomebrewData = "adventureData";
 	BookUtil.typeTitle = "Adventure";

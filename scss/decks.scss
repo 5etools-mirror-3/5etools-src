@@ -1,7 +1,7 @@
 @use "sass:color";
 
 @use "vars/vars";
-@use "vars/vars-night";
+@use "vars/vars--night";
 
 @layer vetools {
 	:root {
@@ -366,7 +366,7 @@
 			&wrp-card-rows {
 				&--list {
 					.decks__wrp-row {
-						border-color: vars-night.$rgb-border-grey--night;
+						border-color: vars--night.$rgb-border-grey--night;
 					}
 				}
 			}
@@ -374,18 +374,18 @@
 
 		&-draw__ {
 			&wrp-card {
-				background-color: vars-night.$rgb-name-red--night;
-				box-shadow: 0 0 30px 10px color.adjust(vars-night.$rgb-name-red--night, $alpha: - 0.7);
+				background-color: vars--night.$rgb-name-red--night;
+				box-shadow: 0 0 30px 10px color.adjust(vars--night.$rgb-name-red--night, $alpha: - 0.7);
 				color: rgb(255 255 255 / 53%);
 			}
 
 			&wrp-desc {
-				border-color: vars-night.$rgb-name-red--night;
+				border-color: vars--night.$rgb-name-red--night;
 				background-color: #574930;
 				box-shadow: 0 0 10px 0 #000;
 
 				&::-webkit-scrollbar-thumb {
-					background: vars-night.$rgb-name-red--night;
+					background: vars--night.$rgb-name-red--night;
 				}
 			}
 		}

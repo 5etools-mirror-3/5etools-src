@@ -1,0 +1,37 @@
+@use "../vars/vars--night";
+
+@layer vetools {
+	.ve-night-mode {
+		.best-ecgen__ {
+			&wrp {
+				background: vars--night.$rgb-bg--night;
+			}
+		}
+
+		.ecgen {
+			&-viewer__ {
+				&wrp-output {
+					background: vars--night.$rgb-bg--alt-night;
+				}
+
+				&ele-resize {
+					background: vars--night.$rgb-bg--alt-night;
+				}
+
+				&wrp-row-hovers {
+					color: vars--night.$rgb-font--night;
+				}
+			}
+
+			&-therm__ {
+				&wrp {
+					background: vars--night.$rgb-bg--alt-night;
+				}
+
+				&notch {
+					outline-color: vars--night.$rgb-bg--night;
+				}
+			}
+		}
+	}
+}

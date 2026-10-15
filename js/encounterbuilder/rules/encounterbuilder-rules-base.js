@@ -336,7 +336,7 @@ export class EncounterBuilderRulesBase extends BaseComponent {
 	_getRenderedWrpRandomAndAdjust_getBtnSendToFoundry () {
 		if (globalThis.IS_VTT || !ExtensionUtil.ACTIVE) return null;
 
-		return veT`<button title="Send to Foundry" class="no-print ve-btn ve-btn-md ve-btn-default ve-ml-2"><span class="glyphicon glyphicon-send"></span></button>`
+		return veT`<button title="Send to Foundry" class="ve-print__hidden ve-btn ve-btn-md ve-btn-default ve-ml-2"><span class="glyphicon glyphicon-send"></span></button>`
 			.vee.onn("click", async () => {
 				const encounterActorName = await InputUiUtil.pGetUserString({title: "Encounter Actor Name", isSkippable: true});
 

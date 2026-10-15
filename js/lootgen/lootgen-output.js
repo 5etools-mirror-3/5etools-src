@@ -32,7 +32,7 @@ export class LootGenOutput {
 
 	_getEleTitleSplit () {
 		const btnRivet = !globalThis.IS_VTT && ExtensionUtil.ACTIVE
-			? veT`<button title="Send to Foundry (SHIFT for Temporary Import)" class="no-print ve-btn ve-btn-xs ve-btn-default"><span class="glyphicon glyphicon-send"></span></button>`
+			? veT`<button title="Send to Foundry (SHIFT for Temporary Import)" class="ve-print__hidden ve-btn ve-btn-xs ve-btn-default"><span class="glyphicon glyphicon-send"></span></button>`
 				.vee.onn("click", evt => this._pDoSendToFoundry({isTemp: !!evt.shiftKey}))
 			: null;
 

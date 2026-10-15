@@ -547,7 +547,7 @@ export class ManageBrewUi {
 		const getSelBrews = ({fnFilter = null} = {}) => {
 			const brews = rdState.list.items
 				.filter(li => li.data.cbSel.checked)
-				.map(li => rdState.brews[li.ix])
+				.map(li => rdState.brews[li.getId()])
 				.filter(brew => fnFilter ? fnFilter(brew) : true);
 
 			if (!brews.length) JqueryUtil.doToast({content: `Please select some suitable ${this._brewUtil.DISPLAY_NAME_PLURAL} first!`, type: "warning"});
@@ -816,18 +816,18 @@ export class ManageBrewUi {
 			],
 		});
 
-		const listItem = new ListItem(
-			ix,
-			eleLi,
-			brewName,
-			{
+		const listItem = new ListItem({
+			id: ix,
+			ele: eleLi,
+			name: brewName,
+			values: {
 				authors: rowsSubMetas.map(it => it.authorsFull).join(", "),
 				abbreviation: rowsSubMetas.map(it => it.abbreviation).join(", "),
 			},
-			{
+			data: {
 				cbSel,
 			},
-		);
+		});
 
 		eleLi.addEventListener("click", evt => rdState.listSelectClickHandler.handleSelectClick(listItem, evt, {isPassThroughEvents: true}));
 

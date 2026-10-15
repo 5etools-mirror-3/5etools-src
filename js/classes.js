@@ -604,13 +604,13 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				ixToLoad = -1;
 				if (link && await this.pHandleUnknownHash(link, sub)) return;
 			} else {
-				const toLoad = listItem.ix;
+				const toLoad = listItem.getId();
 				if (toLoad == null) ixToLoad = -1;
-				else ixToLoad = listItem.ix;
+				else ixToLoad = listItem.getId();
 			}
 		}
 
-		if (!~ixToLoad && this._list.visibleItems.length) ixToLoad = this._list.visibleItems[0].ix;
+		if (!~ixToLoad && this._list.visibleItems.length) ixToLoad = this._list.visibleItems[0].getId();
 
 		if (~ixToLoad) {
 			const target = isInitialLoad ? this.__classId : this._classId;
@@ -921,20 +921,20 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 		const lnk = veT`<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
 			<span class="ve-bold ve-col-8 ve-pl-0 ve-pr-1">${cls.name}</span>
-			<span class="ve-col-4 ve-pl-0 ve-pr-1 ve-text-center ${Parser.sourceJsonToSourceClassname(cls.source)} ve-pr-0" title="${Parser.sourceJsonToFull(cls.source)}">${source}</span>
+			<span class="ve-col-4 ve-pl-0 ve-pr-1 ve-text-center ${Parser.sourceJsonToSourceClassname(cls.source)} ve-pr-0" title="${Parser.sourceJsonToFull(cls.source).qq()}">${source.qq()}</span>
 		</a>`;
 
 		const ele = veT`<li class="ve-lst__row ve-flex-col ${isExcluded ? "ve-lst__row--blocklisted" : ""}">${lnk}</li>`;
 
-		return new ListItem(
-			clsI,
+		return new ListItem({
+			id: clsI,
 			ele,
-			cls.name,
-			{
+			name: cls.name,
+			values: {
 				source,
 				...ListItem.getCommonValues(cls),
 			},
-			{
+			data: {
 				hash,
 				page: cls.page,
 				lnk,
@@ -942,7 +942,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				entity: cls,
 				isExcluded,
 			},
-		);
+		});
 	}
 
 	_doGenerateFilteredActiveClassData () {
@@ -971,7 +971,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			});
 		});
 
-		// Ensure the correct filter values are used, and reset badly-copied `FilterItem`s
+		// Re-populate filter values after copying and filtering class data
 		this._pageFilter.constructor.mutateForFilters(cpyCls);
 
 		this._activeClassDataFiltered = cpyCls;
@@ -1574,12 +1574,12 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		});
 
 		const dispCount = veT`<div class="ve-muted ve-m-1 cls-tabs__sc-not-shown ve-flex-vh-center"></div>`;
-		this._listSubclass.addItem(new ListItem(
-			-1,
-			dispCount,
-			null,
-			{isAlwaysVisible: true},
-		));
+		this._listSubclass.addItem(new ListItem({
+			id: -1,
+			ele: dispCount,
+			name: "",
+			values: {isAlwaysVisible: true},
+		}));
 
 		this._listSubclass.on("updated", () => {
 			dispCount.vee.off("click");
@@ -1623,7 +1623,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		const doSetSourceFilter = () => {
 			filterValuesNxt[this._pageFilter.sourceFilter.header] = this.activeClass.subclasses
 				.reduce((accum, sc) => {
-					[sc._fSources || []].flat().forEach(src => accum[src] = 1);
+					[sc._fSources || []].flat().forEach(src => accum[src.item || src] = 1);
 					return accum;
 				}, {});
 		};
@@ -1830,8 +1830,8 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 		if (this._state[stateKey] == null) this._state[stateKey] = false;
 
-		const dispName = veT`<div title="${ClassesPage.getBtnTitleSubclass(sc)}"></div>`;
-		const dispSource = veT`<div class="ve-ml-1" title="${Parser.sourceJsonToFull(sc.source)}">(${Parser.sourceJsonToAbv(sc.source)})</div>`;
+		const dispName = veT`<div title="${ClassesPage.getBtnTitleSubclass(sc).qq()}"></div>`;
+		const dispSource = veT`<div class="ve-ml-1" title="${Parser.sourceJsonToFull(sc.source).qq()}">(${Parser.sourceJsonToAbv(sc.source).qq()})</div>`;
 		const hkSourcesVisible = () => {
 			dispName.vee.txt(this._state.isShowScSources ? ClassesPage.getBaseShortName(sc) : sc.shortName);
 			dispSource.vee.toggle(!!this._state.isShowScSources);
@@ -1868,23 +1868,23 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		this._addHookBase(stateKey, hkVisible);
 		MiscUtil.pDefer(hkVisible);
 
-		return new ListItem(
-			ix,
-			btn,
-			sc.name,
-			{
+		return new ListItem({
+			id: ix,
+			ele: btn,
+			name: sc.name,
+			values: {
 				source: sc.source,
 				...ListItem.getCommonValues(sc),
 				shortName: sc.shortName,
 				stateKey,
 				displayType,
 			},
-			{
+			data: {
 				page: sc.page,
 				isExcluded,
 				entity: sc,
 			},
-		);
+		});
 	}
 
 	_trackOutlineFluffData (depthData) { this._outlineData.fluff = depthData; }
@@ -2618,7 +2618,7 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
 		const {stg, fnCleanup} = this._getSelectSubclassesMeta();
 		this._fnsCleanup.push(fnCleanup);
 
-		return veT`<div class="ve-h-100 ve-w-100 ve-flex-vh-center ve-no-shrink no-print">
+		return veT`<div class="ve-h-100 ve-w-100 ve-flex-vh-center ve-no-shrink ve-print__hidden">
 			${stg}
 		</div>`;
 	}
@@ -2785,7 +2785,7 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
 		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
 
 		// Top bar
-		const pnlMenu = veT`<div class="cls-bkmv__wrp-tabs ve-flex-h-center no-print"></div>`.vee.appendTo(wrpContent);
+		const pnlMenu = veT`<div class="cls-bkmv__wrp-tabs ve-flex-h-center ve-print__hidden"></div>`.vee.appendTo(wrpContent);
 
 		// Main panel
 		const tblBook = veT`<table class="ve-w-100 ve-stats ve-stats--book ve-stats--book-large ve-stats--bkmv"></div>`;
@@ -2885,7 +2885,7 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
 				const activeClassName = UtilClassesPage.getSubclassDisplayClassButton({displayType: UtilClassesPage.getSubclassDisplayType(cls, sc)});
 				const stateKey = UrlUtil.getStateKeySubclass(sc);
 
-				const btnToggleSc = veT`<span class="cls-bkmv__btn-tab ${sc.isReprinted ? "cls__btn-sc--reprinted" : ""}" title="${ClassesPage.getBtnTitleSubclass(sc)}">${name}</span>`
+				const btnToggleSc = veT`<span class="cls-bkmv__btn-tab ${sc.isReprinted ? "cls__btn-sc--reprinted" : ""}" title="${ClassesPage.getBtnTitleSubclass(sc).qq()}">${name.qq()}</span>`
 					.vee.onn("click", () => this._parent.set(stateKey, !this._parent.get(stateKey)));
 				const isVisible = this._pageFilter.isSubclassVisible(filterValues, cls, sc);
 				if (!isVisible) btnToggleSc.vee.hide();

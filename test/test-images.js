@@ -234,10 +234,6 @@ class _TestAdventureBookImages {
 		"img/covers/SAiS.webp",
 		"img/covers/ToD.webp",
 
-		// TODO(Future) covers to be utilized in future products
-		"img/covers/AU.webp",
-		"img/covers/AUD.webp",
-
 		// (Legacy option)
 		"img/decks/CoS/Tarokka Deck/999-dnd_tarokka_back.webp",
 	]);

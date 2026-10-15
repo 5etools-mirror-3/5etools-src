@@ -9,7 +9,7 @@ const onLoadSeo = async () => {
 	document.title = `${it.name} - 5etools`;
 	veEs(`.page__title`).vee.txt(`${globalThis._SEO_PAGE.toTitleCase()}: ${it.name}`);
 
-	veT`<div class="ve-col-12 ve-flex-vh-center ve-my-2 ve-pt-3 no-print">
+	veT`<div class="ve-col-12 ve-flex-vh-center ve-my-2 ve-pt-3 ve-print__hidden">
 		<button class="ve-btn ve-btn-primary">
 			<a href="/${globalThis._SEO_PAGE}.html" style="font-size: 1.7em; color: white;">View All</a>
 		</button>

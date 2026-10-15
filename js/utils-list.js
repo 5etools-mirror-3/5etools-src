@@ -17,7 +17,7 @@ class ListUtil {
 				const entity = await Renderer.hover.pApplyCustomHashId(
 					page,
 					// Pull from the list page, as there may be list-page-specific temp data
-					dataList[listItem.ix],
+					dataList[listItem.getId()],
 					// Support lowercase prop from URL
 					ser.customHashId || ser.customhashid,
 				);
@@ -712,7 +712,7 @@ class SaveManager extends BaseComponent {
 			cbOnUpload,
 		},
 	) {
-		const wrp = veT`<div class="ve-pt-2 ve-flex-col no-print"></div>`;
+		const wrp = veT`<div class="ve-pt-2 ve-flex-col ve-print__hidden"></div>`;
 
 		const renderableCollectionSummary = new SaveManager._RenderableCollectionSaves_Summary(
 			{

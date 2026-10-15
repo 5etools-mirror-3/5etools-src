@@ -1,7 +1,7 @@
 @use "sass:color";
 
 @use "../vars/vars";
-@use "../vars/vars-night";
+@use "../vars/vars--night";
 
 @layer vetools {
 	// region Old
@@ -18,15 +18,15 @@
 		}
 
 		.ve-night-mode .nav > li > a {
-			border-color: vars-night.$rgb-border-grey--night;
+			border-color: vars--night.$rgb-border-grey--night;
 		}
 	}
 
 	.ve-night-mode {
 		.nav > li:not(.ve-active) > a {
-			color: vars-night.$rgb-font--night;
-			background-color: vars-night.$rgb-bg--night;
-			border: 1px solid vars-night.$rgb-border-grey--trans-night;
+			color: vars--night.$rgb-font--night;
+			background-color: vars--night.$rgb-bg--night;
+			border: 1px solid vars--night.$rgb-border-grey--trans-night;
 			border-top-width: 0;
 
 			@media screen and (width <= #{vars.$width-screen-md}) {
@@ -35,7 +35,7 @@
 
 			&:focus,
 			&:hover {
-				background-color: color.adjust(vars-night.$rgb-bg--night, $lightness: 2%);
+				background-color: color.adjust(vars--night.$rgb-bg--night, $lightness: 2%);
 				color: #fff;
 			}
 		}
@@ -50,7 +50,7 @@
 		.nav li.open > a,
 		.nav li.open > a:focus,
 		.nav li.open > a:hover {
-			background-color: color.adjust(vars-night.$rgb-bg--night, $lightness: 2%);
+			background-color: color.adjust(vars--night.$rgb-bg--night, $lightness: 2%);
 			border-left: 1px solid vars.$rgb-link-blue;
 			border-right: 1px solid vars.$rgb-link-blue;
 			border-color: vars.$rgb-link-blue;
@@ -153,7 +153,7 @@
 			&head {
 				&:focus,
 				&:hover {
-					background-color: vars-night.$rgb-bg--alt-night;
+					background-color: vars--night.$rgb-bg--alt-night;
 					color: #fff;
 				}
 
@@ -168,11 +168,11 @@
 			}
 
 			&lnk-item {
-				color: vars-night.$rgb-font--night;
+				color: vars--night.$rgb-font--night;
 
 				&:focus,
 				&:hover {
-					background-color: vars-night.$rgb-bg--alt-night;
+					background-color: vars--night.$rgb-bg--alt-night;
 					color: #fff;
 				}
 

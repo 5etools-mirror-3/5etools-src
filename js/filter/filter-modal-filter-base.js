@@ -163,7 +163,7 @@ export class ModalFilterBase {
 		};
 	}
 
-	_isListItemMatchingFilter (f, li) { return this._isEntityItemMatchingFilter(f, this._allData[li.ix]); }
+	_isListItemMatchingFilter (f, li) { return this._isEntityItemMatchingFilter(f, this._allData[li.getId()]); }
 	_isEntityItemMatchingFilter (f, it) { return this._pageFilter.toDisplay(f, it); }
 
 	async pPopulateHiddenWrapper () {

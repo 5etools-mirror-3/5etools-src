@@ -130,12 +130,7 @@ export class TagTestUrlLookup {
 	}
 
 	async _pInit_pPopulateUrlsAdditionalFluff () {
-		// TODO(Future) revise/expand
-		for (const prop of [
-			"monsterFluff",
-			"raceFluff",
-			"crochetPatternFluff",
-		]) {
+		for (const prop of Renderer.tag.TAGS.filter(it => it.tag.endsWith("Fluff")).map(it => it.page)) {
 			[
 				...(await DataLoader.pCacheAndGetAllSite(prop)),
 				...(await DataLoader.pCacheAndGetAllPrerelease(prop)),

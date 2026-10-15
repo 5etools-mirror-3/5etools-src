@@ -56,6 +56,7 @@ const isBlocklistedEntity = ({prop, ent}) => {
 const _isMissingPage = ({ent}) => {
 	if (ent.inherits ? ent.inherits.page : ent.page) return false;
 	if (ent._copy?._preserve?.page) return false;
+	if (ent._copy?._mod?.["inherits.page"]) return false;
 	return true;
 };
 

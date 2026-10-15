@@ -151,7 +151,7 @@ class DmMapperRoot extends BaseComponent {
 		eleParent.vee.appends(`<div class="ve-flex-vh-center ve-w-100 ve-h-100"><i class="ve-dnd-font ve-muted">Loading...</i></div>`);
 
 		RenderMap.pGetRendered(
-			this._state,
+			MiscUtil.copyFast(this._state),
 			{
 				fnGetContainerDimensions: () => {
 					const bcr = eleParent.getBoundingClientRect();

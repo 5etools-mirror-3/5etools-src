@@ -59,12 +59,12 @@
 
 <body>
 
-<div class="overlay-noise no-print"></div>
+<div class="overlay-noise ve-print__hidden"></div>
 
 <div class="cancer__wrp-sidebar cancer__wrp-sidebar-lhs cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__sidebar-inner cancer__sidebar-inner--top cancer__wrp-interactive"><!--5ETOOLS_AD_LEFT_1--></div><div class="cancer__sidebar-inner cancer__sidebar-inner--bottom cancer__wrp-interactive"><!--5ETOOLS_AD_LEFT_2--></div></div>
 <div class="cancer__wrp-sidebar cancer__wrp-sidebar-rhs cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__sidebar-inner cancer__sidebar-inner--top cancer__wrp-interactive"><!--5ETOOLS_AD_RIGHT_1--></div><div class="cancer__sidebar-inner cancer__sidebar-inner--bottom cancer__wrp-interactive"><!--5ETOOLS_AD_RIGHT_2--></div></div>
 
-<div class="viewport-wrapper">
+<div class="viewport-wrapper ve-print__overflow-visible">
 	<div class="cancer__wrp-leaderboard cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__wrp-leaderboard-inner cancer__wrp-interactive"><!--5ETOOLS_AD_LEADERBOARD--></div></div>
 
 	<div class="ve-flex-col" data-cancer-id="cancer-header">
@@ -80,33 +80,45 @@
 		</nav>
 	</div>
 
-	<div class="view-col-wrapper" data-cancer-id="cancer-wrapper">
-		<div class="view-col no-print" id="wrp-jsoninput">
-			<pre id="jsoninput" class="inputArea ace_editor"></pre>
-
-			<div class="ve-split-v-center">
-				<div>
-					<button class="ve-btn ve-btn-default ve-btn-sm" id="btn-format">Format</button>
-				</div>
-
-				<div class="ve-flex-v-center">
-					<select class="ve-form-control ve-input-sm ve-mr-2" id="sel-renderer">
-						<option value="html">HTML</option>
-						<option value="md">Markdown</option>
-						<option value="cards">RPG Cards</option>
-					</select>
-					<button class="ve-btn ve-btn-default ve-btn-sm ve-mr-2" id="btn-render">Render</button>
-					<button class="ve-btn ve-btn-default ve-btn-sm" id="btn-reset">Reset</button>
-				</div>
+	<div class="ve-h-100 ve-flex-col ve-min-h-0 ve-print__h-initial" data-cancer-id="cancer-wrapper">
+		<div class="ve-pt-2 ve-mb-1 ve-pl-7p ve-pr-7p ve-flex-v-center ve-mobile-md__flex-col ve-mobile-md__flex-ai-start ve-print__hidden">
+			<div class="ve-flex-v-stretch ve-mr-2 ve-mobile-md__mr-0 ve-mobile-md__mb-2" id="wrp-sel-renderer">
+				<div class="ve-mr-2 ve-bold ve-flex-v-center">Renderer</div>
 			</div>
+
+			<div class="ve-flex-v-stretch ve-mobile-md__flex-col ve-mobile-md__flex-ai-start" id="wrp-settings"></div>
 		</div>
 
-		<div id="wrp-output" class="view-col">
-			<div class="ve-code ve-mb-2 ve-p-2 ve-hidden alert alert-danger" id="message"></div>
+		<div class="ve-flex ve-h-100 ve-min-h-0 ve-mobile-md__flex-col ve-mobile-md__h-initial ve-mobile-md__min-h-initial ve-mobile-md__flex-col ve-print__h-initial">
+			<div class="view-col ve-print__hidden">
+				<div class="ve-mb-2 ve-split-v-center ve-w-100">
+					<h4 class="ve-my-0 ve-italic">Input</h4>
 
-			<table id="pagecontent" class="ve-w-100 ve-stats">
-				<!-- populate with JS -->
-			</table>
+					<button class="ve-btn ve-btn-default ve-btn-xs" id="btn-format">Format</button>
+				</div>
+
+				<pre id="jsoninput" class="ve-h-100 ve-mb-0 ace_editor"></pre>
+			</div>
+
+			<div class="view-col ve-print__h-initial ve-print__m-0">
+				<div class="ve-mb-2 ve-split-v-center ve-w-100 ve-print__hidden">
+					<div class="ve-flex-v-center">
+						<h4 class="ve-my-0 ve-italic">Output</h4>
+					</div>
+
+					<div class="ve-flex-v-center ve-mobile-xs__flex-col ve-mobile-xs__flex-ai-start">
+						<!-- (Space for future controls) -->
+					</div>
+				</div>
+
+				<div class="ve-min-h-0 ve-overflow-auto ve-print__overflow-visible">
+					<table id="pagecontent" class="ve-w-100 ve-stats">
+						<!-- populate with JS -->
+					</table>
+				</div>
+
+				<div class="ve-mt-2 ve-p-2 ve-hidden ve-no-shrink alert alert-danger ve-print__hidden" id="disp-errors"></div>
+			</div>
 		</div>
 	</div>
 </div>

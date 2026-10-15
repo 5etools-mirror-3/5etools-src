@@ -117,7 +117,12 @@ export class StatGenUiCompAsi extends BaseComponent {
 					// endregion
 
 					// region Feat
-					const {stgFeat, btnChooseFeat, hkIxFeat} = this._render_getMetaFeat({propIxFeat, propIxFeatAbility, propFeatAbilityChooseFrom});
+					const {stgFeat, btnChooseFeat, hkIxFeat} = this._render_getMetaFeat({
+						propIxFeat,
+						propIxFeatAbility,
+						propFeatAbilityChooseFrom,
+						filterExpression: namespace === "ability" ? "category=!EB" : null,
+					});
 					// endregion
 
 					const hkMode = () => {
@@ -248,7 +253,12 @@ export class StatGenUiCompAsi extends BaseComponent {
 
 				[...new Array(featSet?.anyFromCategory?.count || 0)].map((_, ix) => {
 					const {propIxFeat, propIxFeatAbility, propFeatAbilityChooseFrom} = this._parent.getPropsAdditionalFeatsFeatSet_(namespace, "chooseCategory", ix);
-					const {stgFeat, hkIxFeat, cleanup} = this._render_getMetaFeat({propIxFeat, propIxFeatAbility, propFeatAbilityChooseFrom, category: featSet.anyFromCategory.category});
+					const {stgFeat, hkIxFeat, cleanup} = this._render_getMetaFeat({
+						propIxFeat,
+						propIxFeatAbility,
+						propFeatAbilityChooseFrom,
+						filterExpression: `category=${featSet.anyFromCategory.category.join(";")}`,
+					});
 					fnsCleanupGroup.push(cleanup);
 					hkIxFeat();
 
@@ -279,17 +289,17 @@ export class StatGenUiCompAsi extends BaseComponent {
 	 * @param {?string} propIxFeat Dynamic feat UID property.
 	 * @param {string} propIxFeatAbility Feat chosen ability score set property.
 	 * @param {string} propFeatAbilityChooseFrom Feat chosen-from ability score property.
-	 * @param {?string} category Category feat is to be chosen from, e.g. `O` ("Origin").
+	 * @param {?string} filterExpression Filter expression applied when choosing a feat.
 	 * @private
 	 */
-	_render_getMetaFeat ({featStatic = null, propIxFeat = null, propIxFeatAbility, propFeatAbilityChooseFrom, category = null}) {
+	_render_getMetaFeat ({featStatic = null, propIxFeat = null, propIxFeatAbility, propFeatAbilityChooseFrom, filterExpression = null}) {
 		if (featStatic && propIxFeat) throw new Error(`Cannot combine static feat and feat property!`);
 		if (featStatic == null && propIxFeat == null) throw new Error(`Either a static feat or a feat property must be specified!`);
 
 		const btnChooseFeat = featStatic ? null : veT`<button class="ve-btn ve-btn-xxs ve-btn-default ve-mr-2" title="Choose a Feat"><span class="glyphicon glyphicon-search"></span></button>`
 			.vee.onn("click", async () => {
 				const selecteds = await this._parent.modalFilterFeats.pGetUserSelection({
-					filterExpression: category ? `Category=${category}` : `Category=`,
+					filterExpression: filterExpression ?? "category=", // TODO(Future) hack; revise as required
 				});
 				if (selecteds == null || !selecteds.length) return;
 

@@ -160,7 +160,7 @@ export class MoneyConverter extends DmScreenPanelAppBase {
 			board.doSaveStateDebounced();
 		};
 
-		const buildCurrencySelect = (isOutput) => veT`<select class="ve-form-control ve-input-sm ve-p-2">${isOutput ? `<option value="-1">(No conversion)</option>` : ""}${CURRENCY.map((c, i) => `<option value="${i}">${c.n}</option>`).join("")}</select>`;
+		const buildCurrencySelect = (isOutput) => veT`<select class="ve-form-control ve-input-sm ve-p-2">${isOutput ? `<option value="-1">(No conversion)</option>` : ""}${CURRENCY.map((c, i) => `<option value="${i}">${c.n.qq()}</option>`).join("")}</select>`;
 
 		const addRow = (currency, count) => {
 			const eleRow = veT`<div class="dm-money__row"></div>`.vee.appendTo(this._wrpRows);

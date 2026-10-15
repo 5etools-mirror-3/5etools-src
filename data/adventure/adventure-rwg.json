@@ -1,0 +1,2009 @@
+{
+	"adventureData": [
+		{
+			"id": "RWG",
+			"source": "RWG",
+			"data": [
+				{
+					"type": "section",
+					"name": "Introduction: Red Wizards' Gambit",
+					"id": "000",
+					"entries": [
+						"Welcome to {@i Red Wizards' Gambit}, a play series for the Season of Magic and part of the D&D Encounters program.",
+						"D&D Encounters is a seasonal, organized play mini-campaign where people from around the world participate in a series of shared weekly adventures during the same time period. While many participate in game stores, you can take part from anywhere and still be part of the excitement, even playing with your own group at your own pace.",
+						"Premade level 3 characters are provided where you obtained this adventure. You can use these, or players can create their own characters. Details on how to do that are listed in a sidebar at the beginning of the D&D Celebration adventure, {@adventure Stolen Spirits|RWG|1}.",
+						{
+							"type": "section",
+							"name": "Season of Magic Schedule",
+							"id": "001",
+							"entries": [
+								"This series is broken into two main beats: a Celebration event designed for multi-table play and weekly sessions designed for bite-size play that easily fit a variety of schedules.",
+								"If you want to play along with the global community, Season of Magic D&D Encounters follows this schedule:",
+								{
+									"type": "list",
+									"items": [
+										"September 4\u201313, 2026: The D&D Encounters Celebration Event, {@i Stolen Spirits}, kicks off the season.",
+										"September 9\u2013October 11, 2026: Try out a new mini-adventure each week over four successive weeks."
+									]
+								},
+								"Some regions may have different dates depending on their market. Check with your local game store for more details."
+							]
+						},
+						{
+							"type": "section",
+							"name": "Dungeon Masters Actual Play Series",
+							"id": "002",
+							"entries": [
+								"In addition to participating in this adventure series, we have an actual play series available online that ties into the D&D Encounters season! If you'd like to watch Dungeon Masters Campaign 2: {@i Arcana Unleashed}, you can head {@link here|https://www.youtube.com/@dndwizards} to check it out!"
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Stolen Spirits",
+					"id": "003",
+					"entries": [
+						"{@i An adventure for level 3 characters set in the realm of Rashemen.}",
+						"{@i Stolen Spirits} is a D&D Encounters Celebration adventure that serves as an event play experience to kick off the Season of Magic. It's designed to fill a three-hour session.",
+						{
+							"type": "section",
+							"name": "D&D Celebration Event Overview",
+							"id": "004",
+							"entries": [
+								"This adventure is part of a multigroup event designed to be played by up to four groups simultaneously, with five players and one DM per group. The event can be played with fewer than four groups, and each group can have more or fewer than five players, though the DM might need to adjust the adventure for larger or smaller group sizes.",
+								"If there are multiple groups, one person should serve as the Event Coordinator, tracking time, managing inter-group interactions, recording each group's successes and failures, and noting how they affect various aspects of the event. {@area Appendix A|053|x} of this adventure provides a guide for the Event Coordinator. If there is no Event Coordinator, the DMs can use appendix A to coordinate the event's interactive elements."
+							]
+						},
+						{
+							"type": "section",
+							"name": "Key Plot Points",
+							"id": "005",
+							"entries": [
+								"The following information is key to the adventure's story:",
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"items": [
+										{
+											"type": "item",
+											"name": "Character Hook",
+											"entry": "A Harper agent asks the characters to travel to Immilmar, the capital of Rashemen. There, they investigate rumors of a Red Wizard plot to sow discord ahead of a potential Thayan invasion."
+										},
+										{
+											"type": "item",
+											"name": "Panic at the Plazas",
+											"entry": "In Immilmar, Red Wizards interrupt a celebration ceremony."
+										},
+										{
+											"type": "item",
+											"name": "Missing Mages",
+											"entry": "A Rashemi leader asks the characters to travel into Ashenwood Forest to find Rashemi magic-item crafters who are being hunted by Thayan mercenaries."
+										},
+										{
+											"type": "item",
+											"name": "The Standing Stones",
+											"entry": "At a sacred grove in Ashenwood, the characters face off against the Thayans and then learn of a greater plot underway against Rashemen."
+										}
+									]
+								},
+								{
+									"type": "inset",
+									"name": "Characters for the Season",
+									"id": "006",
+									"entries": [
+										"For the Celebration event, players should create a level 3 character using the {@book Player's Handbook|XPHB} and {@book Arcana Unleashed|AU}. The following additional guidelines apply to these characters:",
+										"Ability scores are generated using either the Standard Array or Point Cost options detailed in chapter 2 of the {@i Player's Handbook}.",
+										"Each time a character gains a level after level 1, their Hit Point Maximum increases according to the {@table Adjust Hit Points and Hit Point Dice; Fixed Hit Points by Class|XPHB|Fixed Hit Point by Class table} in chapter 2 of the {@i Player's Handbook}.",
+										"Characters begin with their normal starting equipment plus one Common magic item of their choice from {@book chapter 7|XDMG|6|Magic Items} of the {@i Dungeon Master's Guide}. Alternatively, they can select a {@item Potion of Healing|XDMG} from the {@i Player's Handbook} instead of the Common magic item.",
+										"After completing {@i Stolen Spirits}, the characters advance to level 4. After completing the Week 2 encounter, {@adventure The Depth of Despair|RWG|3}, the characters advance to level 5. Characters are granted a Long Rest between each week."
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Preparation",
+							"id": "007",
+							"entries": [
+								"Before running the adventure, prepare as follows:",
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"items": [
+										{
+											"type": "item",
+											"name": "Step 1",
+											"entry": "Read the \"{@area Adventure Background|008|x}\" section."
+										},
+										{
+											"type": "item",
+											"name": "Step 2",
+											"entry": "Review the \"{@area Beginning the Adventure|054|x}\" section and all of the encounters."
+										}
+									]
+								},
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"items": [
+										{
+											"type": "item",
+											"name": "Step 3",
+											"entry": "Review the following stat blocks from the {@book Monster Manual|XMM} and {@book Arcana Unleashed|AU}. Monsters marked with an * appear in Arcana Unleashed."
+										}
+									]
+								},
+								{
+									"type": "list",
+									"style": "list-no-bullets",
+									"columns": 3,
+									"items": [
+										"{@creature Archmage|XMM}",
+										"{@creature Animated Flying Sword|XMM}",
+										"{@creature Berserker|XMM}",
+										"{@creature Darkenbeast|AU}",
+										"{@creature Death Cultist|XMM}",
+										"{@creature Mage Apprentice|XMM}",
+										"{@creature Scout|XMM}",
+										"{@creature Xorn|XMM}"
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Adventure Background",
+							"id": "008",
+							"entries": [
+								"The Red Wizard Delia D'caryn is as ambitious as any other Thayan mage. Looking to rise within the ranks of the corrupt and power-hungry organization, she concocts a plan that harnesses the unique magic inherent to the land of Rashemen.",
+								"Rashemen is famous for its spirit magic, closely tied to the untamed land and the connected spirits. A group of special Rashemen wizards, known as vremyonni, are renowned for crafting powerful enchanted items using spirit magic.",
+								"Delia believes these enchanted items can grant the Red Wizards great power. She also thinks that by combining certain items into a single powerful artifact, she can lead a force to conquer the long-coveted Rashemen, which no other Red Wizard force has been able to vanquish.",
+								"The first step in her plan is to kidnap several vremyonni and compel each to craft a separate piece of this artifact. She also aims to sow large-scale chaos across Rashemen, forcing the magical leaders who hold Rashemi society together to focus inward rather than working to foil her plot.",
+								"A Harper agent named Simmia Dairn has connections to a network of Thayan insurgents. Simmia hears rumors that an attack on Immilmar, the capital of Rashemen, may be imminent, so she sends one or more groups of heroes to investigate."
+							]
+						},
+						{
+							"type": "section",
+							"name": "Beginning the Adventure",
+							"id": "009",
+							"entries": [
+								"To begin the adventure, the Event Coordinator (or the individual table DMs, if there is no Event Coordinator) reads or paraphrases the following text to the entire event:",
+								{
+									"type": "insetReadaloud",
+									"id": "00a",
+									"entries": [
+										"A friend or associate put you in touch with a Harper agent named Simmia Dairn. She paid you each twenty-five pieces of gold to investigate a rumor she'd heard: The Red Wizards of Thay may be planning something sinister in the magical, untamed land of Rashemen.",
+										"And that's how you find yourself in Immilmar, the capital of Rashemen. In other nations, Immilmar would be a large town at best; in Rashemen, it is the closest thing to a cosmopolitan hub. The central square of Immilmar comprises four plazas. Each plaza is surrounded by wooden buildings and makeshift stalls selling market goods. At the center of each plaza, a pegasus statue carved from a rare Rashemi wood has been erected and is being dedicated today.",
+										"A Rashemi woman stands at the center of the square, in view of all four plazas. The citizens of the capital look on in reverence as she speaks. \"The spirits of Rashemen and the souls of its people are represented by these beasts: full of power, both natural and magical. Let these statues remind us of who we are and what we must always be. May the spirits guide us.\" The crowds gathered in each plaza admire the statues. Outsiders clap politely, and the Rashemi bow their heads in silent contemplation.",
+										"The solemnity of the occasion is interrupted by red-robed figures stepping forward: one in each of the plazas. They scream in unison, \"Prepare to serve your Thayan masters.\" As they do, the pegasi statues transform into monstrous winged beasts with bodies like desiccated horses, their bones glowing with an inner light. Where each robed figure stood just moments before, each has been replaced by four hovering, spinning, wickedly sharp blades.",
+										"The screams of citizens and visitors explode as the winged creatures shriek and the slashing blades whirl around the plaza, endangering anyone nearby."
+									]
+								},
+								"When you get the go-ahead from the Event Coordinator, proceed with \"{@area Encounter 1: Gift Horses|055|x}.\""
+							]
+						},
+						{
+							"type": "section",
+							"name": "Immilmar Plazas",
+							"id": "00b",
+							"entries": [
+								"Each group of characters inhabits its own plaza and must deal with the threats there. Use the Fountain Plaza Map for this encounter. Characters can start anywhere on the map.",
+								{
+									"type": "gallery",
+									"images": [
+										{
+											"type": "image",
+											"id": "0aa",
+											"href": {
+												"type": "internal",
+												"path": "adventure/RWG/000-map-01-001.immilmar-plazas-dm.webp"
+											},
+											"width": 1700,
+											"height": 1251,
+											"imageType": "map",
+											"title": "Map: Immilmar Plaza",
+											"credit": "Mike Schley"
+										},
+										{
+											"type": "image",
+											"href": {
+												"type": "internal",
+												"path": "adventure/RWG/001-map-01-001.immilmar-plazas-player.webp"
+											},
+											"width": 1700,
+											"height": 1251,
+											"imageType": "mapPlayer",
+											"title": "Player Version",
+											"credit": "Mike Schley",
+											"mapParent": {
+												"id": "0aa"
+											}
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Immilmar Plaza Features",
+									"id": "00c",
+									"entries": [
+										"The plaza has the following features:",
+										{
+											"type": "entries",
+											"name": "Light",
+											"id": "00d",
+											"entries": [
+												"This encounter takes place at midday on a bright, cloudless day. The area is {@variantrule Bright Light|XPHB|Brightly Lit}."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Crowded Streets",
+											"id": "00e",
+											"entries": [
+												"The plazas' cobblestone streets do not impede movement, but on the first round of combat, people crowd the area, creating {@variantrule Difficult Terrain|XPHB}. At the start of the second round of combat, the plazas mostly clear as the crowds scatter, so the areas are no longer Difficult Terrain."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Fountain and Benches",
+											"id": "00f",
+											"entries": [
+												"After the statues animate, the five-foot-high central plinth is no longer occupied. The fountain's water is one foot deep and does not impede movement. The benches are three feet high and can provide {@table Cover|XPHB|Half Cover}."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Buildings",
+											"id": "010",
+											"entries": [
+												"When combat begins, the people inside the building close and bolt the doors and windows. For each point of stray Fire damage inflicted on a section of the building, there is a {@chance 2|2% chance||Catches fire!|No effect} the building catches fire and begins to burn. No citizens are injured by the fire, but the characters may be held responsible if you as the DM wish.",
+												{
+													"type": "inset",
+													"name": "Adjusting for Different Groups",
+													"id": "011",
+													"entries": [
+														"The encounters in these adventures are written for five or six experienced players. If your group has fewer players or inexperienced players, use your best judgement and adjust the encounters to make the challenge reasonable for your group.",
+														"Also, if there are fewer than four groups of players taking part in this Celebration adventure, assume that NPC adventurers are taking part in the place of other player characters. The NPCs can be left in the background, or you can have one step in to assist (or need assistance from) the groups with player characters."
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Encounter 1: Gift Horses",
+									"id": "012",
+									"entries": [
+										"After receiving the go-ahead from the Event Coordinator, each table DM runs players through this encounter independently. Each group's combat occurs in a separate plaza of Immilmar's central square, but the map for each group is the same.",
+										"Start the encounter by reading or paraphrasing the following text:",
+										{
+											"type": "insetReadaloud",
+											"id": "013",
+											"entries": [
+												"The dread beast that was once the fountain statue shrieks a challenge, seeking a worthy opponent. The four magical floating swords whirl around the statue. If not dealt with quickly, their reckless spinning could endanger innocent bystanders."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Creatures",
+											"id": "014",
+											"entries": [
+												"The characters now face a {@creature Darkenbeast|AU} and four {@creature Animated Flying Sword|XMM|Animated Flying Swords}. The darkenbeast begins the encounter atop the fountain plinth, while the animated flying swords begin in the squares marked {@b A} on the map."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Tactics",
+											"id": "015",
+											"entries": [
+												"Roll Initiative normally for the darkenbeast. The animated flying swords go on Initiative count 0 (losing ties). On the first round of combat, each sword targets an adjacent character or moves to attack any character that previously damaged it. A sword that has taken no damage and has no character adjacent to it cuts down one innocent civilian.",
+												"Keep track of the number of civilians cut down, as this number affects how the spirits of Rashemen view the characters and impacts later encounters."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Fallen Characters",
+											"id": "016",
+											"entries": [
+												"If a character is reduced to 0 Hit Points, a local cleric intervenes. If the character is still at 0 Hit Points at the start of their next turn, the local cleric casts {@spell Healing Word|XPHB} on them, allowing that character to act on their turn after healing {@dice 2d4 + 3} Hit Points. This can be done a number of times per group equal to the number of characters in the group."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Aftermath",
+											"id": "017",
+											"entries": [
+												"When your group has defeated all enemy creatures on their map, inform the Event Coordinator and provide the number of civilians killed during your group's combat.",
+												"Once all combat has concluded, the Event Coordinator addresses the combined groups, reading the following text:",
+												{
+													"type": "insetReadaloud",
+													"id": "018",
+													"entries": [
+														"With the enemies defeated, the Rashemi witch who earlier addressed the town square steps forward. \"I am Zorri, one of the wychlaran who tend to Rashemen. Though some of you are outsiders, you showed courage and decency here. I believe the spirits have a greater plan for all of you.\"",
+														"She pauses for a moment, as if listening to a whisper only she can hear. \"The spirits tell me this attack was one part of a larger plot against our land by the vile Thayans and their Red Wizard leaders. Even as we speak, these intruders attempt to capture some of our magic-making brethren, whom we call 'vremyonni.' Five vremyonni have entered the forest to escape Thayan forces. Ashenwood Forest is a sacred place, normally off-limits to outsiders, but the spirits have told me that only outsiders can defeat those who breach our sacred lands.\""
+													]
+												},
+												"From here, the Event Coordinator will instruct the table DMs to wrap up the rest of the encounter.",
+												"If there is more than one group, Zorri asks each to take a different path into the forest to cover as much area as possible. If there is only one group, she asks them to take the closest path into Ashenwood.",
+												"Continue reading or paraphrasing the following text:",
+												{
+													"type": "insetReadaloud",
+													"id": "019",
+													"entries": [
+														"Zorri calls forth some Rashemi scouts. \"One of my children will guide you to the edge of Ashenwood. Once you arrive, however, you are on your own. I cannot predict how the spirits will welcome you, but beware the forest's many dangers. Find our missing brethren and root out the Thayans who hunt them. I'll continue to speak to the spirits, and I will know if you've succeeded or failed.\"",
+														"Zorri gives a shrill whistle, and a large owl flies down to her. In its talons is a rod made of intertwined plant stems, covered in buds about to bloom. Zorri takes it and holds it out toward you. \"A gift for your bravery. This rod is blessed by the spirits and crafted by one of our vremyonni. May it serve you well, just as you serve the spirits. These vials of healing water may also aid your journey.\""
+													]
+												},
+												"The rod is an evolving magic item known as an Uncommon {@item Blossom Rod|AU}. When the character who attunes to it reaches level 5, it becomes a Rare {@item Blossom Rod|AU}. Each of the three vials contains a {@item Potion of Greater Healing|XDMG}.",
+												{
+													"type": "image",
+													"href": {
+														"type": "internal",
+														"path": "adventure/RWG/002-01-001.blossom-rod.webp"
+													},
+													"width": 850,
+													"height": 1414,
+													"credit": "Swatches Studio"
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Blessing or Curse?",
+											"id": "01a",
+											"entries": [
+												"Based on the average number of citizens killed per group calculated by the Event Coordinator, Zorri may have one more thing to add, per the Protecting the Civilians table below.",
+												{
+													"type": "table",
+													"caption": "Protecting the Civilians",
+													"colLabels": [
+														"Average Civilian Deaths/Group",
+														"Consequences"
+													],
+													"colStyles": [
+														"col-2 text-center",
+														"col-10"
+													],
+													"rows": [
+														[
+															"0\u20132",
+															"Zorri gives each group the Blessing of the Forest."
+														],
+														[
+															"3\u20134",
+															"No consequences."
+														],
+														[
+															"5+",
+															"The spirits will be angry and punish the characters with cursed luck in the next encounter."
+														]
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Success: Blessing of the Forest",
+											"id": "01b",
+											"entries": [
+												"The Blessing of the Forest is a magical gift that Zorri bestows upon any group that earned it. When a creature fails an ability check while with 60 feet of a blessed individual,, the blessed individual can use a Reaction to allow the creature who failed the ability check to reroll. After being used in this way twice, the blessing on the entire group fades away.",
+												"If the characters still have the Blessing of the Forest at the start of {@area encounter 3|057|x}, it helps them in that fight as well.",
+												{
+													"type": "insetReadaloud",
+													"id": "01c",
+													"entries": [
+														"Zorri says a silent prayer and reaches a hand out toward your group. \"You've pleased the spirits with your efforts here, and I offer you this blessing as thanks. It may help you in your journey through the forest.\""
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Failure: Cursed Luck",
+											"id": "01d",
+											"entries": [
+												"If the Protecting the Civilians table indicates that the group suffers a bad luck curse, read or paraphrase the following text:",
+												{
+													"type": "insetReadaloud",
+													"id": "01e",
+													"entries": [
+														"Zorri squints her eyes at you for a moment and shakes her head sadly. \"It seems the death of so many people during your battle has agitated the spirits. You may find yourselves suffering ill luck when you least expect it.\""
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Concluding the Encounter",
+											"id": "01f",
+											"entries": [
+												"Each group can take a Short Rest, but Zorri insists that a Long Rest would result in the death of the vremyonni. However, Zorri uses her healing magic to ensure that all characters are healed to their maximum Hit Point value before they leave.",
+												"Let the Event Coordinator know when your group is ready to continue. Once you receive the Event Coordinator's go-ahead, each table DM can proceed with \"{@area Encounter 2: A Haunted and Deadly Forest|056|x}.\""
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Into Ashenwood",
+							"id": "020",
+							"entries": [
+								"Each group is guided by one of Zorri's apprentices to a different path leading into Ashenwood.",
+								{
+									"type": "entries",
+									"name": "Ashenwood Features",
+									"id": "021",
+									"entries": [
+										"Ashenwood is a vast evergreen forest of mostly pines and firs. No settlements exist in the forest, and few people who live on its borders dare enter, even for a few hours.",
+										"In addition to the regular animals, great beasts dwell in the forest. The spirits of Rashemen do not control these dangerous creatures but often direct them into the paths of trespassers.",
+										{
+											"type": "entries",
+											"name": "No Roads",
+											"id": "022",
+											"entries": [
+												"No roads or walking paths cut through Ashenwood. Apart from an occasional game trail or path created by a large predator, the characters must traverse untamed terrain carpeted with pine needles and dotted with countless trees and brush."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Short Rests Only",
+											"id": "023",
+											"entries": [
+												"Once the characters enter Ashenwood, they cannot take a Long Rest until the adventure concludes. This wilderness contains too many threats, and the spirits themselves bristle at the intrusion."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Encounter 2: A Haunted and Deadly Forest",
+									"id": "024",
+									"entries": [
+										"At the forest's edge, Zorri's apprentice offers a brief prayer to the forest's spirits and bids the characters luck on their quest.",
+										"The characters must overcome three challenges to survive the forest and find the Thayan mercenaries. Failing these challenges drains the characters' resources, making the final encounters more difficult.",
+										{
+											"type": "entries",
+											"name": "Challenge: Tracking the Thayans",
+											"id": "025",
+											"entries": [
+												"The group's first challenge is to find their quarry's tracks. This requires a group ability check. Each character must attempt a {@dc 12} ability check, and no two characters can attempt the same check.",
+												"If a character uses a limited resource, such as a spell slot or a use-limited class ability, it counts as an automatic success for that character toward the group check.",
+												"You can use the ability checks listed below or allow alternative checks if players suggest ones that make sense. At least one character must attempt each ability check marked with an *.",
+												{
+													"type": "list",
+													"items": [
+														"Dexterity ({@skill Acrobatics|XPHB}) to squeeze through tight spaces and avoid hazardous terrain.",
+														"Intelligence ({@skill Investigation|XPHB}) to interpret clues and ascertain the best direction to travel.",
+														"Intelligence ({@skill Nature|XPHB})* to understand and navigate the natural landscape.",
+														"Strength ({@skill Athletics|XPHB}) to remove deadfalls and climb trees for better views.",
+														"Wisdom ({@skill Perception|XPHB}) to notice clues and avoid hazards.",
+														"Wisdom ({@skill Survival|XPHB})* to follow any tracks that are found."
+													]
+												},
+												{
+													"type": "entries",
+													"name": "Cursed Luck",
+													"id": "026",
+													"entries": [
+														"If the group was cursed with bad luck by the angry spirits in the previous encounter (per the {@adventure Protecting the Civilians table|RWG|1|Protecting the Civilians}), the DC of these ability checks increases to 14."
+													]
+												},
+												{
+													"type": "entries",
+													"name": "Failures",
+													"id": "027",
+													"entries": [
+														"Regardless of the results, the group finds the trail and can follow it. For each failed check, however, all characters in the group take damage based on the Ashenwood Damage table below.",
+														{
+															"type": "table",
+															"caption": "Ashenwood Damage",
+															"colLabels": [
+																"Failed Checks",
+																"Consequences"
+															],
+															"colStyles": [
+																"col-2 text-center",
+																"col-10"
+															],
+															"rows": [
+																[
+																	"0\u20131",
+																	"No damage."
+																],
+																[
+																	"2",
+																	"Each character takes {@damage 1d4} Poison damage from dangerous flora."
+																],
+																[
+																	"3",
+																	"Each character takes {@damage 1d8} Bludgeoning damage from a rock fall."
+																],
+																[
+																	"4+",
+																	"Each character takes {@damage 1d12} Acid damage from a swarm of acid-spewing insects."
+																]
+															]
+														},
+														"After dealing with the consequences of failed checks, move to the next challenge."
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Challenge: Pine Haunting",
+											"id": "028",
+											"entries": [
+												"When the characters are ready for this challenge, read or paraphrase the following text:",
+												{
+													"type": "insetReadaloud",
+													"id": "029",
+													"entries": [
+														"A fog settles around you as you pass a particularly dense copse of pine trees. A breeze swirls the fog and seems to sway the trees. Suddenly, you realize that dozens of those trees are moving toward you, sprouting wooden faces.",
+														"\"We are spirits of these woods,\" says the tallest. \"Why do you disturb our pine children? Why are each of you worthy of being allowed to continue? Tell us of a time when you honored the spirits of the natural world!\""
+													]
+												},
+												"Each character, in turn, must recount a time they honored nature. After telling the story, they must make a {@dc 10} Charisma ({@skill Persuasion|XPHB}) check. If they are lying, they can make a {@dc 10} Charisma ({@skill Deception|XPHB}) check instead. If a player expresses a good argument to make a different check, allow it at your discretion.",
+												"Consult the Pine Haunting table below to determine consequences of failed checks.",
+												{
+													"type": "table",
+													"caption": "Pine Haunting",
+													"colLabels": [
+														"Failed Checks",
+														"Consequences"
+													],
+													"colStyles": [
+														"col-2 text-center",
+														"col-10"
+													],
+													"rows": [
+														[
+															"0\u20131",
+															"No damage."
+														],
+														[
+															"2",
+															"Each character takes {@damage 1d4} Slashing damage from the trees."
+														],
+														[
+															"3+",
+															"Each character takes {@damage 1d8} Slashing damage from the trees."
+														]
+													]
+												},
+												"After accepting their stories or slashing the characters with their branches, the trees let them pass. Proceed to the next challenge."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Challenge: Expanding Rift",
+											"id": "02a",
+											"entries": [
+												"When the characters are ready for this challenge, read or paraphrase the following text:",
+												{
+													"type": "insetReadaloud",
+													"id": "02b",
+													"entries": [
+														"Your trek is interrupted by a rift in the earth, roughly 20 feet wide. The rift extends in either direction as far as you can see, but a felled tree has been placed across the gap here, providing a means to continue."
+													]
+												},
+												"Under normal circumstances, the characters would be able to cross the felled tree without needing a check. However, an unfortunately timed earthquake makes this task more difficult. As the characters begin to cross, read or paraphrase the following text:",
+												{
+													"type": "insetReadaloud",
+													"id": "02c",
+													"entries": [
+														"The ground begins to shake violently. Trees topple to your left and right. If you do not cross immediately, the rift may widen and make crossing impossible."
+													]
+												},
+												"Each character must cross quickly. Whether they traverse the rift using the fallen tree or other means, it needs to happen in seconds.",
+												"If they run across the fallen tree spanning the rift, they must make a {@dc 10} Strength ({@skill Athletics|XPHB}) or Dexterity ({@skill Acrobatics|XPHB}) check. On a failed check, they still cross successfully but take {@damage 1d6} Bludgeoning damage from the jostling of the tree.",
+												"If they expend spell slots or other limited resources in order to traverse the tree, they automatically succeed. If checks are required, they make it across regardless of the check's result, though a failure results in {@damage 1d6} Bludgeoning damage from the jostling of the tree."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Concluding the Encounter",
+											"id": "02d",
+											"entries": [
+												"When the characters in your group have completed each challenge, for better or worse, let the Event Coordinator know so they can begin the next encounter."
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "The Standing Stones",
+							"id": "02e",
+							"entries": [
+								"The trail of the vremyonni and Thayan mercenaries leads the characters to several sets of standing stones arranged in circles within a single large clearing deep in Ashenwood. The circles are identical, so each group can use the Standing Stones map.",
+								{
+									"type": "gallery",
+									"images": [
+										{
+											"type": "image",
+											"id": "0ab",
+											"href": {
+												"type": "internal",
+												"path": "adventure/RWG/003-map-01-002.standing-stones-dm.webp"
+											},
+											"width": 1700,
+											"height": 1251,
+											"imageType": "map",
+											"title": "Map: The Standing Stones",
+											"credit": "Mike Schley"
+										},
+										{
+											"type": "image",
+											"href": {
+												"type": "internal",
+												"path": "adventure/RWG/004-map-01-002.standing-stones-player.webp"
+											},
+											"width": 1700,
+											"height": 1251,
+											"imageType": "mapPlayer",
+											"title": "Player Version",
+											"credit": "Mike Schley",
+											"mapParent": {
+												"id": "0ab"
+											}
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Standing Stones Map Features",
+									"id": "02f",
+									"entries": [
+										"The standing stones have the following features:",
+										{
+											"type": "entries",
+											"name": "Standing Stones",
+											"id": "030",
+											"entries": [
+												"The intact standing stones are made of granite and reach 15 feet tall. They are stable and sturdy enough to stand on their own.",
+												"A stone can be pushed over with a {@dc 25} Strength ({@skill Athletics|XPHB}) check or by an equivalent force. This inflicts {@damage 4d6} Bludgeoning damage on any creatures beneath it unless they succeed on a {@dc 15} Dexterity ({@skill Acrobatics|XPHB}) saving throw. However, such an action greatly angers the spirits of Ashenwood. Any creature that destroys a standing stone takes {@damage 2d6} Psychic damage from the spirits' assault."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Small Boulders",
+											"id": "031",
+											"entries": [
+												"The smaller boulders on the outskirts of the stone circles are only 2 feet tall. They do not provide cover, but their spaces count as {@variantrule Difficult Terrain|XPHB}."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Spirit Dome",
+											"id": "032",
+											"entries": [
+												"A dome of translucent green energy envelops the central circle of standing stones, trapping a vremyonni and several pursuing Thayan mercenaries inside.",
+												"A {@action Study|XPHB} action with a successful {@dc 10} Intelligence ({@skill Arcana|XPHB}) check reveals that the dome could severely injure anyone who touches it and that it cannot be damaged, passed through, burrowed beneath, or circumvented.",
+												"The dome blocks all movement, whether magical or mundane and remains in place until the {@creature xorn|XMM} is defeated. If a creature touches the dome, it takes {@damage 1d8} Force damage."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Encounter 3: An Earthly Guardian",
+									"id": "033",
+									"entries": [
+										"When all the groups have completed \"{@area Encounter 2: A Haunted and Deadly Forest|056|x},\" the Event Coordinator should read or paraphrase the following text aloud to the whole event:",
+										{
+											"type": "insetReadaloud",
+											"id": "034",
+											"entries": [
+												"You follow the trail of the vremyonni and Thayan mercenaries until you all reach a large clearing, though from different directions. Within the clearing are four sets of stone circles.",
+												"Each set of standing stones is enclosed within a shimmering, translucent dome of green energy. Inside each dome, a single man in vremyonni garb chants from atop the central stone as mercenaries in Thayan clothing and armor slowly converge on him from the other stones below.",
+												"High in the air, flying above the whole clearing, a pair of wizards face off. One wears clothes similar to the other vremyonni, and the other is draped in red robes."
+											]
+										},
+										"Once the Event Coordinator gives the go-ahead, each table DM can proceed with the encounter by reading or paraphrasing the following text to their group:",
+										{
+											"type": "insetReadaloud",
+											"id": "035",
+											"entries": [
+												"The vremyonni perched atop the central standing stone of the circle before you chants intensely, maintaining the magical green dome. The dome's green energy seems to impede the Thayan mercenaries, who move very slowly and only with great effort. Unfortunately, the Rashemi mage also seems to be tiring.",
+												"Before you can investigate further, the ground shakes as a creature erupts from a nearby circle of smaller boulders. The rocky, three-armed, three-legged beast scoops up a nearby boulder and pops it into its large, toothy maw, swallowing it like a grape. Then, it turns hungrily toward you."
+											]
+										},
+										"The {@creature Xorn|XMM} appears in the space marked {@b X} on the map. Drawn to the stones by the magic surging through the area, it attacks the characters immediately and fights to the death.",
+										"During this encounter, groups will not have time to interact with one another. As soon as they finish dealing with the rampaging xorn, they will move on to the next encounter.",
+										{
+											"type": "entries",
+											"name": "Blessing Magic!",
+											"id": "036",
+											"entries": [
+												"If the group still possesses the Blessing of the Forest, the magical gift bestowed upon them causes spirits to swirl around the xorn. Its AC for this battle is 16 instead of 19."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "NPC Action",
+											"id": "037",
+											"entries": [
+												"While the characters fight the xorn, the vremyonni struggles to keep the spirit dome active, and the Thayans within it struggle against its effects.",
+												"Flying above the fracas, the Red Wizard duels the vremyonni leader. The characters cannot affect their combat, and the pair ignore everything on the ground until the next encounter."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Concluding the Encounter",
+											"id": "038",
+											"entries": [
+												"Let the Event Coordinator know when your group has defeated the xorn. This will be announced to the other groups, and you can then immediately proceed to \"Encounter 4: Fallen Heroes.\" Be aware that circumstances, particularly the strength of enemies, may change based on when other groups complete their combat with the xorn."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Encounter 4: Fallen Heroes",
+									"id": "039",
+									"entries": [
+										"When you are ready to run this encounter for your group, read or paraphrase the following text:",
+										{
+											"type": "insetReadaloud",
+											"id": "03a",
+											"entries": [
+												"As the xorn falls, the vremyonni atop the central standing stone falters. The green dome of energy wavers and disappears. The Rashemi falls from the stone, but before he hits the ground, he vanishes.",
+												"One of the Thayans on the ground, dressed in red robes, yells to the others. \"We've got what we came for! Deal with these interlopers so we can get out of this gods-forsaken forest!\" They all turn their attention toward you.",
+												"At the same time, the red-robed wizard in the sky blasts her adversary with a bolt of arcane energy, sending the vremyonni plummeting to the ground. She smiles wickedly and looks down at the battle below."
+											]
+										},
+										"The chanting vremyonni begins at the spot marked {@b V} on the map but disappears before combat begins. Whether the defeated vremyonni who fell from the sky lives or dies depends on the outcome of this adventure (see \"{@area Conclusion|04c|x}\").",
+										{
+											"type": "entries",
+											"name": "Enemies",
+											"id": "03b",
+											"entries": [
+												"Each group faces a band of Thayan Mercenaries consisting of a {@creature Mage Apprentice|XMM} (marked {@b M on the map}), a {@creature Berserker|XMM} ({@b B}), and four {@creature Scout|XMM|Scouts} ({@b S}).",
+												{
+													"type": "entries",
+													"name": "Tactics",
+													"id": "03c",
+													"entries": [
+														"The berserker charges the closest character on its turn, while the scouts stay back and attack with their Longbows, using the standing stones for cover. They come out to engage in melee only when the mage apprentice is threatened. The mage apprentice stays out of melee as much as possible."
+													]
+												},
+												{
+													"type": "entries",
+													"name": "Round 2",
+													"id": "03d",
+													"entries": [
+														"Let the Event Coordinator know when you are about to begin the second round of combat, so they can come to your group and join as the flying Red Wizard."
+													]
+												},
+												{
+													"type": "entries",
+													"name": "Defeat",
+													"id": "03e",
+													"entries": [
+														"If the mage apprentice and the berserker are defeated, the scouts flee into the forest to escape. Their screams are a clear indication that the unhappy spirits of Ashenwood have dealt with them in their own way."
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Enemy Difficulty",
+											"id": "03f",
+											"entries": [
+												"The difficulty of this encounter may vary for some groups based on how many groups are playing and the order in which they completed the previous combat.",
+												{
+													"type": "entries",
+													"name": "First Group",
+													"id": "040",
+													"entries": [
+														"If multiple groups are playing this adventure, the first group that finished the previous combat must contend with stronger opponents. The {@creature Berserker|XMM} begins the encounter with 90 Hit Points, and the {@creature Mage Apprentice|XMM} starts with 60 Hit Points."
+													]
+												},
+												{
+													"type": "entries",
+													"name": "Last Group",
+													"id": "041",
+													"entries": [
+														"If multiple groups are playing this adventure, the last group to finish the previous combat deals with weaker opponents. The {@b Berserker} begins the encounter with only 50 Hit Points, and the {@b Mage Apprentice} has already used {@spell Ice Knife|XPHB}."
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "The Flying Red Wizard",
+											"id": "042",
+											"entries": [
+												{
+													"type": "image",
+													"href": {
+														"type": "internal",
+														"path": "adventure/RWG/005-01-002.red-wizard.webp"
+													},
+													"width": 850,
+													"height": 1330,
+													"credit": "Ivan Shavrin"
+												},
+												"The Red Wizard flying above the fray is {@creature Ri'all|RWG}, the leader of this Thayan expedition. Let the Event Coordinator know when you are about to begin the second round of combat in this encounter, so they can come to your table to play Ri'all for one round of combat.",
+												"To introduce Ri'all, the Event Coordinator will have her swoop down to the group and say the following:",
+												{
+													"type": "insetReadaloud",
+													"id": "043",
+													"entries": [
+														"\"You have no hope of winning. Surrender now and spare yourselves a painful death. Soon, the spirits of Rashemen will serve Thay!\""
+													]
+												},
+												"After this is conveyed, the table DM can resume combat. The Event Coordinator tracks how much damage Ri'all takes, which affects the conclusion of the adventure.",
+												{
+													"type": "entries",
+													"name": "Combat with Ri'all",
+													"id": "044",
+													"entries": [
+														"The Red Wizard uses the {@b Death Cultist} stat block, with a few alterations, as described below."
+													]
+												},
+												{
+													"type": "entries",
+													"name": "Character Actions",
+													"id": "045",
+													"entries": [
+														"The characters get to act first in this round of combat. Each character can use one action and one Bonus Action to attack Ri'all. This can be ranged or melee. If they wish, they can use this attack on the Thayan mercenaries instead of the Red Wizard."
+													]
+												},
+												{
+													"type": "entries",
+													"name": "Immunities and Saves",
+													"id": "046",
+													"entries": [
+														"Ri'all has Immunity to all conditions and automatically succeeds on all saving throws."
+													]
+												},
+												{
+													"type": "entries",
+													"name": "Ri'all's Attack",
+													"id": "047",
+													"entries": [
+														"Once the characters have taken their actions, the Event Coordinator will have Ri'all use her Spirit Wail. Instead of using the power as written in the stat block, this affects all player characters but none of the Thayan mercenaries, and it does 7 ({@dice 2d6}) Psychic damage instead of {@dice 4d6}."
+													]
+												},
+												{
+													"type": "entries",
+													"name": "Thayan Mercenaries",
+													"id": "048",
+													"entries": [
+														"During the round of combat between Ri'all and the characters, the mercenaries at that location do not move or take actions, Bonus Actions, or Reactions, in deference to her. This, however, does not prevent the characters from attacking the mercenaries if they choose."
+													]
+												},
+												{
+													"type": "entries",
+													"name": "One Round Only",
+													"id": "049",
+													"entries": [
+														"After one round of combat, Ri'all flies off to a different group and does not return. She does not provoke {@action opportunity attack|XPHB|Opportunity Attacks} with her movement. This group cannot interact with or affect her again until they have concluded their combat with the mercenaries."
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Table Interaction",
+											"id": "04a",
+											"entries": [
+												"If multiple groups are playing the adventure, any table that defeats their band of mercenaries while other groups are still fighting can choose one of the following options to assist another table or to inflict additional damage on the Red Wizard. These effects are abstracted rather than played out as specific actions by the characters.",
+												{
+													"type": "list",
+													"style": "list-hang-notitle",
+													"items": [
+														{
+															"type": "item",
+															"name": "Heal Another Group",
+															"entry": "The group heals wounded characters at one other table. All characters in the wounded group immediately regain {@dice 2d8} Hit Points."
+														},
+														{
+															"type": "item",
+															"name": "Help Defeat an Enemy",
+															"entry": "The group assists another table in the fight. The group being helped gains {@dice 1d6} per character at the table. They can each roll their die to deal that much damage to an enemy of their choice, either the same enemy or different ones. If this damage would reduce an enemy's Hit Points to 0, the enemy is at 1 Hit Point instead."
+														},
+														{
+															"type": "item",
+															"name": "Deal Damage to Ri'all",
+															"entry": "The group can forgo helping another table and instead focus on dealing damage to Ri'all. Each character rolls {@dice 1d6}, and that damage is dealt to Ri'all. The damage ignores Resistances and Immunities and cannot be countered or blocked."
+														}
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Concluding Combat",
+											"id": "04b",
+											"entries": [
+												"All combat ends when the last Thayan mercenary is defeated or flees. Inform the Event Coordinator when your table is done. The Event Coordinator must calculate all damage inflicted on the Red Wizard to determine her fate."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Ri'all's Fate",
+									"id": "04c",
+									"entries": [
+										"After the final group completes their combat with the mercenaries, the Event Coordinator (or a DM) can reveal whether Ri'all was defeated or escaped.",
+										{
+											"type": "entries",
+											"name": "Ri'all Defeated",
+											"id": "04d",
+											"entries": [
+												"If Ri'all was defeated, the Event Coordinator should read or paraphrase the following text:",
+												{
+													"type": "insetReadaloud",
+													"id": "04e",
+													"entries": [
+														"As the last enemy falls, the flying wizard screams in fury. The blows from weapons and spells have taken their toll, and she plummets to the ground with a thud, smashing into one of the standing stones.",
+														"The vremyonni who was knocked from the sky earlier stirs, regaining consciousness after his fall."
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Ri'all Escapes",
+											"id": "04f",
+											"entries": [
+												"If Ri'all was not defeated, the Event Coordinator should read or paraphrase the following text:",
+												{
+													"type": "insetReadaloud",
+													"id": "050",
+													"entries": [
+														"As the last enemy falls, the flying wizard sneers at you. Though wounded by your spells and weapons, she has survived. \"You are only delaying the inevitable. You will not be so lucky next time.\" With an arcane gesture, she vanishes.",
+														"Unfortunately, the vremyonni she knocked from the sky did not survive the fall."
+													]
+												},
+												"With that settled, the table DMs can proceed to \"Conclusion.\""
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Conclusion",
+							"id": "051",
+							"entries": [
+								"The wychlaran Zorri arrives on the scene. Read or paraphrase the following text:",
+								{
+									"type": "insetReadaloud",
+									"id": "052",
+									"entries": [
+										"\"The spirits rejoice at your success here today. Unfortunately, it seems the Thayans have captured four of our vremyonni. Each is well-versed in crafting magical items infused with the power of the spirits. I fear this may be part of a larger plot. Would you be willing to help locate and rescue our friends from the evil grasp of the Red Wizards?\""
+									]
+								},
+								"If the characters agree, they are given the following rewards:",
+								{
+									"type": "list",
+									"items": [
+										"Box containing a variety of rare gems and wooden carvings (worth a total of 250 GP)",
+										"{@item Potion of Lightning Resistance|XDMG}",
+										"{@item Bracers of Archery|XDMG}"
+									]
+								},
+								"If the players are going to continue playing these characters in the other adventures in the D&D Encounters season, the characters also gain a level, beginning the next session at level 4."
+							]
+						},
+						{
+							"type": "section",
+							"name": "Appendix A: Event Coordinator Guide",
+							"id": "053",
+							"entries": [
+								"This document provides guidance for running the {@i Stolen Spirits} event with multiple groups. If there are multiple groups but no Event Coordinator, the DMs should coordinate using this document.",
+								{
+									"type": "entries",
+									"name": "Beginning the Adventure",
+									"id": "054",
+									"entries": [
+										"Read the boxed text content in this section of the adventure, and then tell the table DMs to run encounter 1.",
+										"At this point, each table DM takes control of their group to continue the adventure. Instruct them to proceed with \"Encounter 1: Gift Horses.\""
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Encounter 1: Gift Horses",
+									"id": "055",
+									"entries": [
+										"As the table DMs run the encounter for their groups, remind them to keep track of the number of civilians killed in the first round of combat.",
+										"Use that number to find the average number of civilians killed, and inform the table DMs of what the consequences of those results are, based on the chart in the adventure.",
+										"Read or paraphrase the boxed text in the {@area Concluding the Combat|038|x} section of this encounter. When you have done that, instruction the table DMs to begin \"Encounter 2: A Haunted and Deadly Forest.\""
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Encounter 2: A Haunted and Deadly Forest",
+									"id": "056",
+									"entries": [
+										"As the table DMs run this encounter, keep track of time and remind them of time limitations if they lag too far behind. When all groups have completed this encounter, move on to \"Encounter 3: An Earthly Guardian.\""
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Encounter 3: An Earthly Guardian",
+									"id": "057",
+									"entries": [
+										"To kick off this encounter, read or paraphrase the boxed text in the \"{@area Setting the Scene|057|x}\" within the section of the adventure entitled {@i The Standing Stones}. When you finish, instruct the table DMs to proceed with the rest of the encounter.",
+										"As each group finishes the encounter, let the entire event know. Tell the table DM for the finished group to immediately move on to \"Encounter 4: Fallen Heroes.\""
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Encounter 4: Fallen Heroes",
+									"id": "058",
+									"entries": [
+										"When a table DM tells you that their group has started Round 2 of this encounter, you (or an assistant or the table DM) should take on the role of the flying Red Wizard, {@creature Ri'all|RWG}.",
+										{
+											"type": "entries",
+											"name": "Running Ri'all",
+											"id": "059",
+											"entries": [
+												"Ri'all uses the {@b Death Cultist} stat block with a few alterations that are spelled out in the encounter for the DM. To enter combat with the group, she flies down and says the following:",
+												{
+													"type": "insetReadaloud",
+													"id": "05a",
+													"entries": [
+														"\"You have no hope of winning. Surrender now and spare yourselves a painful death. Soon, the spirits of Rashemen will serve Thay!\""
+													]
+												},
+												"At this point, the table DM can resume combat, with you playing the role of Ri'all. Keep track of any damage she takes, as this affects the end of the adventure.",
+												"The characters get to make their attacks first, after which Ri'all uses her Spirit Wail, affecting all player characters but none of the Thayan mercenaries. The Red Wizard then leaves the group and does not return.",
+												"You will repeat this encounter with each group during their second round of combat."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Ri'all's Damage Threshold",
+											"id": "05b",
+											"entries": [
+												"Ri'all has a number of Hit Points equal to 30 times the number of groups playing in the event. If the total damage inflicted on her by all the groups meets or exceeds this threshold, Ri'all is considered defeated."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Conclusion",
+									"id": "05c",
+									"entries": [
+										"Allow the table DMs to wrap up the event, reminding them if there is a time crunch."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "The Height of Danger",
+					"id": "05d",
+					"entries": [
+						"{@i An adventure for level 4 characters set in Rashemen}",
+						"This is the Week 1 D&D Encounters adventure for the Season of Magic, designed to fill one 90-minute session of play.",
+						{
+							"type": "section",
+							"name": "Adventure Background",
+							"id": "05e",
+							"entries": [
+								"Four Rashemi vremyonni, crafters of magical items, have been kidnapped by Thayan mercenaries serving the Red Wizard Delia D'caryn. The first of these prisoners is being forced to create a magical dagger. He's being held on the ruins of a floating earth mote high above the Rashemi countryside."
+							]
+						},
+						{
+							"type": "section",
+							"name": "Beginning the Adventure",
+							"id": "05f",
+							"entries": [
+								"Read or paraphrase the following text:",
+								{
+									"type": "insetReadaloud",
+									"id": "060",
+									"entries": [
+										"A Rashemi spy working for the wychlaran Zorri has located one of the vremyonni captured by Thayan forces. He stands before you now, pointing up. Hundreds of feet above you, several magical earth motes float in the sky.",
+										"\"That's where they've got him, I hear,\" says the spy. \"Drink these potions that Zorri sent, so you can fly up there and rescue him. They only last an hour, so make it quick. Here's an extra for him if needed.\""
+									]
+								},
+								"The spy provides each character with a {@item Potion of Flying|XDMG}, plus one spare. He doesn't know much else about the situation, except that various creatures and people have been spotted flying around the area."
+							]
+						},
+						{
+							"type": "section",
+							"name": "Encounter 1: Wings and Prayers",
+							"id": "061",
+							"entries": [
+								"When the characters fly toward the earth motes, read or paraphrase the following text:",
+								{
+									"type": "insetReadaloud",
+									"id": "062",
+									"entries": [
+										"The earth motes are 600 feet above the ground. When you are halfway there, creatures swoop out of nearby clouds and dive toward you."
+									]
+								},
+								"Two {@creature Manticore|XMM|Manticores} and four {@creature Giant Vulture|XMM|Giant Vultures} guard the earth motes. They fight to the death.",
+								{
+									"type": "inset",
+									"name": "Adding Details",
+									"id": "063",
+									"entries": [
+										"In this and other adventures in D&D Encounters, details are left for the DM to fill in. Use your imagination and information from the {@book Arcana Unleashed|AU} books to provide details. You should also adjust the number of enemies in an encounter to match the party's size.",
+										"Additionally, each adventure uses a map from the {@book Arcana Unleashed Map Pack|AU} for the combat encounters."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Concluding the Encounter",
+									"id": "064",
+									"entries": [
+										"When the enemies are defeated, the characters can proceed to the earth motes. Continue with \"Encounter 2: Mote Makes Right.\""
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Encounter 2: Mote Makes Right",
+							"id": "065",
+							"entries": [
+								{
+									"type": "gallery",
+									"images": [
+										{
+											"type": "image",
+											"id": "0ac",
+											"href": {
+												"type": "internal",
+												"path": "adventure/RWG/006-map-02-001.the-height-of-danger-dm.webp"
+											},
+											"width": 1700,
+											"height": 1251,
+											"imageType": "map",
+											"title": "Map: The Height of Danger",
+											"credit": "Mike Schley"
+										},
+										{
+											"type": "image",
+											"href": {
+												"type": "internal",
+												"path": "adventure/RWG/007-map-02-001.the-height-of-danger-player.webp"
+											},
+											"width": 1700,
+											"height": 1251,
+											"imageType": "mapPlayer",
+											"title": "Player Version",
+											"credit": "Mike Schley",
+											"mapParent": {
+												"id": "0ac"
+											}
+										}
+									]
+								},
+								"When the characters arrive at the earth motes, read or paraphrase the following text:",
+								{
+									"type": "insetReadaloud",
+									"id": "066",
+									"entries": [
+										"These motes hold the ruins of whatever stood on them before they were ripped from the earth. The largest mote at the cluster's center links to another via a makeshift wooden bridge.",
+										"On that mote, a man dressed in vremyonni garb chants and holds a dagger toward the sky. A woman, armored in a breastplate and wielding a longsword and shield, stands over him menacingly. Four leather-clad guards with crossbows watch from nearby.",
+										"A smaller mote at the end of the cluster holds a rune-covered stone platform glowing with magical energy."
+									]
+								},
+								"One {@creature Guard Captain|XMM} {@b (G)} named Agaratha and four {@creature Tough|XMM|Toughs} {@b (T)} guard the earth motes. They also have the support of four {@creature Living Thunderwave|AU|Living Thunderwaves} {@b (L)} left behind by a Red Wizard. The vremyonni captive is marked {@b V} on the map.",
+								{
+									"type": "entries",
+									"name": "Flying Suppression",
+									"id": "067",
+									"entries": [
+										"When the characters get above or within 5 feet of the top of an earth mote, a magical field suppresses the effects of the {@item Potion of Flying|XDMG|Potions of Flying}. Characters can land on the earth motes and move normally, however.",
+										"If a character still under the effects of a {@i Potion of Flying} is pushed off an earth mote, they fall 30 feet, but then the potion's magic regains control, allowing them to fly again at the start of their next turn.",
+										"The toughs are not under any flying effects, so they fall to their deaths if pushed off an earth mote. Agaratha is under the effects of flying magic (Fly Speed 30 ft.), and the living thunderwaves have a Fly Speed, so they fall only 30 feet if pushed off, just like the characters."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Living Thunderwaves",
+									"id": "068",
+									"entries": [
+										{
+											"type": "image",
+											"href": {
+												"type": "internal",
+												"path": "adventure/RWG/008-02-001.living-thunderwaves.webp"
+											},
+											"width": 1700,
+											"height": 968,
+											"credit": "Hendry Iwanaga"
+										},
+										"Agaratha controls the living thunderwaves, which are bound to the earth mote. They appear and enter combat at the start of the second round. If Agaratha is killed or knocked unconscious, the living thunderwaves become free agents, attacking the nearest creature rather than just the characters."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Runed Platform",
+									"id": "069",
+									"entries": [
+										"The runed platform is a teleportation device that allows creatures to travel between the ground and the earth mote without flying. As a {@action Magic|XPHB} action, a creature standing atop the platform can say the command word, \"Homeward!\" The creature immediately appears on a matching platform on the ground, one mile north of this place."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Concluding the Encounter",
+									"id": "06a",
+									"entries": [
+										"If Agaratha and two of the toughs are defeated, the remaining toughs give up. Rather than surrender, they throw themselves off the earth mote, knowing their failure makes death preferable to the fates their Red Wizard employers would inflict on them."
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Conclusion",
+							"id": "06b",
+							"entries": [
+								"If the characters defeat the enemies and rescue the vremyonni, he introduces himself as Ezzik. Read or paraphrase the following text:",
+								{
+									"type": "insetReadaloud",
+									"id": "06c",
+									"entries": [
+										"\"Spirits bless us all! I thought for sure I was dead. These Thayan bastards were forcing me to use my magic to craft an enchanted dagger that delivers deadly poison to its victim. But they had strange specifications, which makes me think this was meant to be something more than a simple venomous dagger. I'd completed the rituals to empower it a day ago, but I've been pretending it wasn't finished to buy time for rescue.\""
+									]
+								},
+								"Ezzik knows little else about the plot or his captors. He can relate that a Red Wizard did visit the earth mote when he was first brought here. His description matches that of Delia.",
+								{
+									"type": "entries",
+									"name": "Rewards",
+									"id": "06d",
+									"entries": [
+										"If the characters search the earth motes and the defeated enemies, they find the following:",
+										{
+											"type": "list",
+											"style": "list-no-bullets",
+											"columns": 3,
+											"items": [
+												"150 GP",
+												"2 {@item Potion of Healing|XDMG|Potions of Healing} (greater)",
+												"2 {@item Spell Scroll|XDMG|Spell Scrolls} ({@spell Lesser Restoration|XPHB} and {@spell Feather Fall|XPHB})",
+												"{@item Dagger of Venom|XDMG}"
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Continuing the Adventure",
+									"id": "06e",
+									"entries": [
+										"If you are running this adventure as part of the D&D Encounters Weekly Play series, the characters can take a Long Rest. Continue next time with the session \"The Depth of Despair!\""
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "The Depth of Despair",
+					"id": "06f",
+					"entries": [
+						"{@i An adventure for level 4 characters set in Rashemen}",
+						"This is the Week 2 D&D Encounters adventure, designed to fill one 90-minute session of play.",
+						{
+							"type": "section",
+							"name": "Adventure Background",
+							"id": "070",
+							"entries": [
+								"Under orders from the Red Wizard Delia D'caryn, Thayan mercenaries have kidnapped four Rashemi vremyonni, renowned for crafting powerful magical items. The second vremyonni has been taken to a place of arcane power deep underground. They are forcing him to create a {@i Ring of Mind Shielding}, intended to become part of a powerful artifact to help the Red Wizards dominate Faerûn."
+							]
+						},
+						{
+							"type": "section",
+							"name": "Beginning the Adventure",
+							"id": "071",
+							"entries": [
+								"Read or paraphrase the following text:",
+								{
+									"type": "insetReadaloud",
+									"id": "072",
+									"entries": [
+										"A Rashemi spy working for the wychlaran Zorri leads you to a dreary, desolate section of Rashemen. \"This is where some explorers saw folks in Thayan garb leading a vremyonni down into the earth. They took note because the spirits have forsaken this place. Something dark and evil has tainted the area, and any Rashemi in their right mind would avoid it.\""
+									]
+								},
+								"The spy knows nothing else about this region. She points to a hole in the ground amid ruined buildings and dead vegetation, adding that she thinks the vremyonni was taken down there.",
+								"When the characters descend into the hole, they find a passageway that opens into a wider chamber. Proceed to \"Encounter 1: Stream of Tortured Souls.\"",
+								{
+									"type": "gallery",
+									"images": [
+										{
+											"type": "image",
+											"id": "0ad",
+											"href": {
+												"type": "internal",
+												"path": "adventure/RWG/009-map-03-001.the-depth-of-despair-dm.webp"
+											},
+											"width": 1700,
+											"height": 1530,
+											"imageType": "map",
+											"title": "Map: The Depth of Despair",
+											"credit": "Mike Schley"
+										},
+										{
+											"type": "image",
+											"href": {
+												"type": "internal",
+												"path": "adventure/RWG/010-map-03-001.the-depth-of-despair-player.webp"
+											},
+											"width": 1700,
+											"height": 1530,
+											"imageType": "mapPlayer",
+											"title": "Player Version",
+											"credit": "Mike Schley",
+											"mapParent": {
+												"id": "0ad"
+											}
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Encounter 1: Stream of Tortured Souls",
+							"id": "073",
+							"entries": [
+								"Read or paraphrase the following text:",
+								{
+									"type": "insetReadaloud",
+									"id": "074",
+									"entries": [
+										"The chamber in front of you echoes with the sound of rushing water. A stream cuts through the center of the room, spanned by a bridge.",
+										"A woman in chainmail stands on the far side of the bridge, dipping a corpse into the rushing water and examining it with curiosity.",
+										"Two bestial creatures, dressed in the tattered remains of Thayan uniforms, growl and grunt, taking in the scene around them."
+									]
+								},
+								"Two Thayan soldiers ({@b Q}) stationed here fell victim to the place's foul magic, which changed them into monsters (use the {@creature Quaggoth Thonot|XMM} stat block). They follow the orders of a {@creature Tough Boss|XMM} ({@b T}) named Missoth, who is experimenting to learn what the stream's magic does to a corpse.",
+								{
+									"type": "entries",
+									"name": "Stream",
+									"id": "075",
+									"entries": [
+										"The stream passing through this area is 10 feet deep and flows rapidly south, cutting through the edge of the chamber detailed in the next encounter.",
+										"Creatures who touch the water must succeed on a {@dc 15} Strength ({@skill Athletics|XPHB}) check or be pulled under the surface and pushed 20 feet downstream by the end of their turn. A creature who fails the check also takes 7 ({@dice 2d6}) Poison damage as the magically tainted water enters their nose and mouth.",
+										"The stream contains ordinary water, but it is tainted with the souls of those who betrayed the spirits of Rashemen. Anyone studying the water catches an occasional glimpse of tortured faces within the stream's current."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Door",
+									"id": "076",
+									"entries": [
+										"The heavy doors between this room and the next require a successful {@dc 20} Strength ({@skill Athletics|XPHB}) check to open."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Concluding the Encounter",
+									"id": "077",
+									"entries": [
+										"After defeating the enemies here, the characters can attempt to open the door to search the room beyond. They can also brave the stream and pass through the southern opening to reach that room."
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Encounter 2: Spooky Symbol",
+							"id": "078",
+							"entries": [
+								"When the characters enter the room, read or paraphrase the following text:",
+								{
+									"type": "insetReadaloud",
+									"id": "079",
+									"entries": [
+										"A skull symbol dominates the center of this room. Like the four bone-white pillars supporting the ceiling, the skull carving in the floor glows a sickly purple. Flanking the skull are two bipedal wolverines.",
+										"On a raised platform at the far end of the room rests a red-cushioned stone throne. A man in vremyonni garb is picking up a ring from the throne. Another bipedal wolverine looms over him."
+									]
+								},
+								"These bipedal wolverines (ST) are Thayan mercenaries corrupted by the area's magic. They each use the {@creature Groundling Stalker|AU} stat block. The vremyonni is marked {@b V} on the map.",
+								"The groundling stalkers attack the characters as soon as they enter the room or show themselves. They fight to the death.",
+								{
+									"type": "entries",
+									"name": "Pillars and Skull Symbol",
+									"id": "07a",
+									"entries": [
+										"Though the entire skull symbol glows, only the area within the four pillars (marked with a square on the map) is dangerous. A creature that enters the area for the first time on a turn or that ends its turn there must succeed on a {@dc 15} Constitution saving throw or take 7 ({@dice 2d6}) Poison damage."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Concluding the Encounter",
+									"id": "07b",
+									"entries": [
+										"When enemies are defeated, the vremyonni collapses, exhausted by his ordeal. The characters have 3 rounds to restore at least 1 Hit Point or succeed on a {@dc 10} Wisdom ({@skill Medicine|XPHB}) check to revive him."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Conclusion",
+									"id": "07c",
+									"entries": [
+										"If the characters defeat the enemies and rescue the vremyonni, he introduces himself as Ivorge. Read or paraphrase the following text:",
+										{
+											"type": "insetReadaloud",
+											"id": "07d",
+											"entries": [
+												"\"Please get me out of here. This is a cursed place, and the spirits are revolted by its presence in their lands. The Thayans have been corrupted by its energy, and I can feel myself succumbing as well. They have made me craft this ring using the corrupt power held in the throne.\""
+											]
+										},
+										"Ivorge goes on to say that the ring is enchanted to protect the user from mental probing, but he was instructed to make it in a strange way, as if it might have some other purpose. He also says that a Red Wizard matching Delia D'Caryn's description did visit the chamber when he was first brought here."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Rewards",
+									"id": "07e",
+									"entries": [
+										"If the characters search the chambers and the defeated enemies, they find the following:",
+										{
+											"type": "list",
+											"style": "list-no-bullets",
+											"columns": 3,
+											"items": [
+												"200 GP",
+												"{@item Potion of Giant Strength|XDMG} (stone)",
+												"{@item Ring of Mind Shielding|XDMG}",
+												"{@item Spell Scroll|XDMG} {@i of} {@spell Aid|XPHB}"
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Continuing the Adventure",
+							"id": "07f",
+							"entries": [
+								"If you are running this adventure as part of the D&D Encounters Weekly Play series, the characters can take a Long Rest and gain a level. Continue with \"The Weight of Responsibility\" adventure next session!"
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "The Weight of Responsibility",
+					"id": "080",
+					"entries": [
+						"{@i An adventure for level 5 characters set in Rashemen}",
+						"This is the Week 3 D&D Encounters adventure, designed to fill one 90-minute session of play.",
+						{
+							"type": "section",
+							"name": "Adventure Background",
+							"id": "081",
+							"entries": [
+								"Under orders from the Red Wizard Delia D'caryn, Thayan mercenaries have kidnapped four Rashemi vremyonni, renowned for crafting powerful magical items. They are forcing the third of these prisoners to craft boots that allow the wearer to fly. He's being held at a sacred site atop a mountain."
+							]
+						},
+						{
+							"type": "section",
+							"name": "Beginning the Adventure",
+							"id": "082",
+							"entries": [
+								"Read or paraphrase the following text:",
+								{
+									"type": "insetReadaloud",
+									"id": "083",
+									"entries": [
+										"A Rashemi greets you at the bottom of a path leading up the side of a mountain. The steep trail looks passable, though difficult.",
+										"\"This path leads to a place normally forbidden to all but the wychlaran,\" says the woman. \"Nearby farmers have heard strange noises from the summit, but the wychlaran say no one has been there in years. Zorri believes one of the missing vremyonni could have been taken there by the Thayans.\""
+									]
+								},
+								"The Rashemi knows only that the mountain's summit features switchback trails and stairs leading to an area once used for magical rituals. When the characters reach the area shown on the map after a two-hour climb, proceed to \"Encounter 1: Steep Steps.\"",
+								{
+									"type": "gallery",
+									"images": [
+										{
+											"type": "image",
+											"id": "0ae",
+											"href": {
+												"type": "internal",
+												"path": "adventure/RWG/011-map-04-001.the-weight-of-responsibility-dm.webp"
+											},
+											"width": 1700,
+											"height": 1251,
+											"imageType": "map",
+											"title": "Map: The Weight of Responsibility",
+											"credit": "Mike Schley"
+										},
+										{
+											"type": "image",
+											"href": {
+												"type": "internal",
+												"path": "adventure/RWG/012-map-04-001.the-weight-of-responsibility-player.webp"
+											},
+											"width": 1700,
+											"height": 1251,
+											"imageType": "mapPlayer",
+											"title": "Player Version",
+											"credit": "Mike Schley",
+											"mapParent": {
+												"id": "0ae"
+											}
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Encounter 1: Steep Steps",
+							"id": "084",
+							"entries": [
+								"When the characters arrive, read or paraphrase the following text:",
+								{
+									"type": "insetReadaloud",
+									"id": "085",
+									"entries": [
+										"The steep path gives way to a series of switchback trails connected by steep staircases. The wind whistles loudly along the mountainside. Rubble from higher up the mountain litters the trails."
+									]
+								},
+								"Three {@creature Spellguard|AU|Spellguards} ({@b S}) were hired by the Thayans to protect the area from intruders. As professional mercenaries with a strict code, they fight to the death.",
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/RWG/013-04-001.spellguards.webp"
+									},
+									"width": 850,
+									"height": 1068,
+									"credit": "Brian Valeza"
+								},
+								{
+									"type": "entries",
+									"name": "The Trail",
+									"id": "086",
+									"entries": [
+										"Each switchback trail is 20 feet higher than the one below. Creatures take full falling damage if pushed off a ledge, landing on the previous trail. Climbing a ledge without using the stairs requires a successful {@dc 15} Strength ({@skill Athletics|XPHB}) check. Climbing the stairs counts as {@variantrule Difficult Terrain|XPHB}.",
+										"A creature staying close to the ledge base has {@table Cover|XPHB|Half Cover} from creatures on other ledges unless the observers are standing on the edge of the overhanging ledge."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Concluding the Encounter",
+									"id": "087",
+									"entries": [
+										"Once the spellguards are defeated, the characters can climb the rest of the way to the top. Proceed to \"Encounter 2: Breathtaking View.\""
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Encounter 2: Breathtaking View",
+							"id": "088",
+							"entries": [
+								"When the characters arrive at the top of the stairs, read or paraphrase the following text:",
+								{
+									"type": "insetReadaloud",
+									"id": "089",
+									"entries": [
+										"Arcane symbols and trappings bedeck the ledge at the mountain's summit. Four pillars surround a circular arcane sigil at the center of the ledge. Four fiery braziers burn along the edges, and smaller motes of purple energy hover near the pillars.",
+										"One of the pillars has fallen, and a pair of warriors in Thayan armor attempt to lift it back into place. Within the central sigil, a man in vremyonni garb kneels, holding a pair of leather boots. An aarakocra stands watch beside him."
+									]
+								},
+								"An {@creature Aarakocra Aeromancer|XMM} ({@b A}) named Grazzle leads two Thayan warriors ({@b G}) who use the {@creature Gladiator|XMM} stat block. Nearby, an {@creature Air Elemental|XMM} ({@b E}) watches. The vremyonni captive is marked {@b V} on the map.",
+								{
+									"type": "entries",
+									"name": "Ledge",
+									"id": "08a",
+									"entries": [
+										"The ledge is 30 feet higher than the switchback ledge to the west. The steeper side ends in a cliff that drops 60 feet to a pair of shelves to the northwest and northeast. A creature falling off the cliff directly to the north falls 120 feet to a larger ledge below."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Circle and Columns",
+									"id": "08b",
+									"entries": [
+										"The circle was used to summon the elemental, from which the vremyonni was forced to siphon power to craft the {@item Winged Boots|XDMG}. The air elemental has {@variantrule Disadvantage|XPHB} on attack rolls against creatures within the circle.",
+										"The 10-foot-tall stone pillars are part of the protection magic, but one has been knocked over, causing the enchantment to malfunction. If a creature ends its turn within 5 feet of an intact pillar, it must succeed on a {@dc 10} Strength saving throw or take 10 ({@dice 3d6}) Thunder damage, be pushed 10 feet directly away from the pillar, and have the {@condition Prone|XPHB} condition."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Braziers and Motes",
+									"id": "08c",
+									"entries": [
+										"A character taking a {@action Study|XPHB} action and succeeding on a {@dc 10} Intelligence ({@skill Arcana|XPHB}) check realizes that the burning braziers keep the {@creature air elemental|XMM} tethered to this plane. Each time a brazier is extinguished (requiring an action), one purple mote disappears. If all the motes disappear, the air elemental returns to its home plane."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Concluding the Encounter",
+									"id": "08d",
+									"entries": [
+										"If Grazzle and the two gladiators are defeated, the air elemental continues attacking for three more rounds, at which point the magic holding it here fades. It flies off and does not return."
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Conclusion",
+							"id": "08e",
+							"entries": [
+								"If the characters defeat the enemies and rescue the vremyonni, he introduces himself as Osmik. Read or paraphrase the following text:",
+								{
+									"type": "insetReadaloud",
+									"id": "08f",
+									"entries": [
+										"\"This place's connection to the spirit world became too dangerous, so the wychlaran deemed it off-limits. The Thayans must have learned about it, because they brought me here and told me to create these boots that allow the wearer to fly. The strange alterations they demanded make me think they have a different purpose in mind for them, though.\""
+									]
+								},
+								"Osmik knows little else about the plot or his captors. He can recall that a Red Wizard matching Delia's description visited the earth mote when he was first brought here.",
+								{
+									"type": "entries",
+									"name": "Rewards",
+									"id": "090",
+									"entries": [
+										"If the characters search the area and the defeated enemies, they find the following:",
+										{
+											"type": "list",
+											"style": "list-no-bullets",
+											"columns": 3,
+											"items": [
+												"300 GP",
+												"2 {@item Potion of Hill Giant Strength|XDMG|Potions of Giant Strength (hill)}",
+												"{@item Spell Scroll|XDMG} {@i of} {@spell Lightning Bolt|XPHB}",
+												"{@item Winged Boots|XDMG}"
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Continuing the Adventure",
+									"id": "091",
+									"entries": [
+										"If you are running this adventure as part of the D&D Encounters Weekly Play series, the characters can take a Long Rest. Continue with the session \"Delia's Dagger\" next time!"
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Delia's Dagger",
+					"id": "092",
+					"entries": [
+						"{@i An adventure for level 5 characters set in Rashemen}",
+						"This is the Week 4 D&D Encounters adventure, designed to fill one 90-minute session of play.",
+						{
+							"type": "section",
+							"name": "Adventure Background",
+							"id": "093",
+							"entries": [
+								"Under orders from the Red Wizard Delia D'caryn, Thayan mercenaries have kidnapped four Rashemi vremyonni, renowned for crafting powerful magical items. The last of these prisoners awaits the items crafted by the other three, which he will be forced to combine into a device of devastating power."
+							]
+						},
+						{
+							"type": "section",
+							"name": "Beginning the Adventure",
+							"id": "094",
+							"entries": [
+								"Read or paraphrase the following text:",
+								{
+									"type": "insetReadaloud",
+									"id": "095",
+									"entries": [
+										"A Rashemi scout points to an ivy-covered tower nestled in a forest clearing. A porch on the tower's top floor holds a large telescope.",
+										"\"This tower was built ages ago by a wizard who mocked the wychlaran's beliefs. When the wizard disappeared, the wychlaran warded the place to ensure no one could release its magic on Rashemen. Those wards recently triggered, so I was sent to investigate. I think the Thayans who captured our vremyonni elders may have brought one here.\""
+									]
+								},
+								"The Rashemi scout points out a door leading into the base of the tower, but she knows nothing more about the structure or its contents.",
+								{
+									"type": "entries",
+									"name": "The Entrance",
+									"id": "096",
+									"entries": [
+										"The door leading into the tower is locked and trapped.",
+										{
+											"type": "entries",
+											"id": "097",
+											"entries": [
+												{
+													"type": "entries",
+													"name": "Trap",
+													"id": "098",
+													"entries": [
+														"If a creature attempts to unlock or open the door without first disarming the trap, that creature and anyone within 20 feet of the door or 10 feet of the outer wall of the tower must make a {@dc 15} Dexterity saving throw. On a failed save, the creature takes 14 ({@dice 4d6}) Thunder damage and has the {@condition Unconscious|XPHB} condition until the end of their next turn. A successful save results in half as much damage only.",
+														"Additionally, if the trap is triggered, the door is blown off the hinges, summoning both vrocks from encounter 1, who appear outside the tower and trigger an Initiative roll immediately.",
+														"A {@action Search|XPHB} action and a successful {@dc 20} Wisdom ({@skill Perception|XPHB}) check locates the trap, which can be disarmed with a {@action Utilize|XPHB} action and a successful {@dc 15} Dexterity ({@skill Sleight of Hand|XPHB}) check. If that check fails by 5 or more, the trap is triggered."
+													]
+												},
+												{
+													"type": "entries",
+													"name": "Lock",
+													"id": "099",
+													"entries": [
+														"Once the trap is disarmed, the lock can be picked with a successful {@dc 15} Dexterity ({@skill Sleight of Hand|XPHB}) check, or the door can be bashed down with a successful {@dc 20} Strength ({@skill Athletics|XPHB}) check.",
+														"If the characters bypass the door leading into the bottom level, go to \"Encounter 1: Demonic Welcome.\""
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Encounter 1: Demonic Welcome",
+							"id": "09a",
+							"entries": [
+								{
+									"type": "gallery",
+									"images": [
+										{
+											"type": "image",
+											"id": "0af",
+											"href": {
+												"type": "internal",
+												"path": "adventure/RWG/014-map-05-001.delias-dagger-dm.webp"
+											},
+											"width": 1700,
+											"height": 875,
+											"imageType": "map",
+											"title": "Map: Delia's Dagger",
+											"credit": "Mike Schley"
+										},
+										{
+											"type": "image",
+											"href": {
+												"type": "internal",
+												"path": "adventure/RWG/015-map-05-001.delias-dagger-player.webp"
+											},
+											"width": 1700,
+											"height": 875,
+											"imageType": "mapPlayer",
+											"title": "Player Version",
+											"credit": "Mike Schley",
+											"mapParent": {
+												"id": "0af"
+											}
+										}
+									]
+								},
+								"This description of the bottom level of the two-tiered tower assumes the characters entered through the door. If the battle with the vrocks takes place outside the tower, adjust the text below:",
+								{
+									"type": "insetReadaloud",
+									"id": "09b",
+									"entries": [
+										"The interior of the tower is dusty but intact. Two suits of armor flank the entryway. One is plain gray, with the word \"Unwelcome\" written in Common across its breastplate. The other is decorated in yellow, red, purple, and aqua and bears the word \"Welcome.\"",
+										"In the center of the room, a square of red, yellow, aqua, and purple tiles surrounds a large circle etched into the floor. Footprints in the dust travel all around the room and finally lead to a staircase leading up 80 feet to another floor."
+									]
+								},
+								"Unless they have been summoned by the characters' actions outside the tower, two {@creature Vrock|XMM|Vrocks} ({@b V}) appear and attack when the characters do any of the following:",
+								{
+									"type": "list",
+									"items": [
+										"Touch a suit of armor",
+										"Step onto a colorful tile",
+										"Step or appear in the central circle",
+										"Step onto the stairway"
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Colorful Tiles and Circle",
+									"id": "09c",
+									"entries": [
+										"The characters can attune themselves to the tower by walking across one tile of each color. If they do this, they can proceed to the top level of the tower and explore it unimpeded. If a character does not attune themselves, they are teleported back to the circle at the start of each turn in which they stand on the top level.",
+										"Note that if they fly or climb the tower and touch down on the top floor before attuning, the first character teleported into the circle triggers the vrocks, if they can still be summoned.",
+										"Once the vrocks have been summoned, another pair is not summoned for 1 hour."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Concluding the Encounter",
+									"id": "09d",
+									"entries": [
+										"When the characters climb the stairs or otherwise enter the top level of the tower, proceed to \"Encounter 2: Close-Up Magic.\""
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Encounter 2: Close-up Magic",
+							"id": "09e",
+							"entries": [
+								"Characters can enter the room at the top floor either by the stairs or through the doors on the telescope porch.",
+								{
+									"type": "entries",
+									"name": "Telescope Porch",
+									"id": "09f",
+									"entries": [
+										"On the porch, a woman in red robes lies unconscious, engulfed in a beam of light from the telescope. Until the mechanical globe in the top-floor room is destroyed, the telescope cannot be moved, and the beam cannot be turned off or obstructed."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Top Floor Room",
+									"id": "0a0",
+									"entries": [
+										"When the characters reach the top of the stairs or enter through the patio doors, read or paraphrase the following text:",
+										{
+											"type": "insetReadaloud",
+											"id": "0a1",
+											"entries": [
+												"A strange mechanical device composed of metal gears and rotating spheres sits at the center of the tower's top floor."
+											]
+										},
+										"A {@creature Cambion|XMM} {@b (C)} named Del'Drog supervises the work of the last vremyonni ({@b V}). Two {@creature Living Vitriolic Sphere|AU|Living Vitriolic Spheres} ({@b S}) hover at the edges of the chamber, awaiting deployment by their cambion master. These enemies fight to the death.",
+										{
+											"type": "entries",
+											"name": "Delia's Dagger",
+											"id": "0a2",
+											"entries": [
+												"This mechanical device is a crucible in which the vremyonni is meant to forge the powerful weapon. It has no other obvious powers and can be destroyed either by dealing 50 Hit Points of damage to it or by defeating the cambion. When the device shatters, its connection to the telescope on the porch is severed, freeing the wizard there."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "The Red-Robed Woman",
+									"id": "0a3",
+									"entries": [
+										"When the \"Delia's Dagger\" device is destroyed, the woman on the porch awakens and tells the characters her story. Read or paraphrase the following text:",
+										{
+											"type": "insetReadaloud",
+											"id": "0a4",
+											"entries": [
+												"\"I am Kalah Qaree, and I serve a zulkir of Thay named {@adventure Xelnene Thrul|AUD|9|Xelnene Thrul}. She seeks to end {@book Szass Tam's|XDMG|8|Szass Tam} unholy reign over our homeland, so she sent me to sabotage the device you destroyed. It was created under the command of another Red Wizard named Delia who intended to use Rashemen's spirit magic to forge a powerful weapon. I can connect you with Xelnene's network if you'd like to continue working to free Thay from the evil rotting at its core.\""
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Conclusion",
+							"id": "0a5",
+							"entries": [
+								"If the characters defeat the enemies and rescue the vremyonni, he introduces himself as Uelek. Read or paraphrase the following text:",
+								{
+									"type": "insetReadaloud",
+									"id": "0a6",
+									"entries": [
+										"\"The demon you killed forced me to construct this device. I was supposed to combine items crafted by some of my brethren to forge a powerful, undetectable weapon capable of flying anywhere in the world and poisoning a victim without anyone realizing it.\""
+									]
+								},
+								"Uelek can report that the Red Wizard apprentice on the porch arrived with another, matching the description of Delia. When the other left, the apprentice turned against the cambion, as if trying to prevent what was happening. She was caught in a ray from the telescope and rendered unconscious.",
+								{
+									"type": "entries",
+									"name": "Rewards",
+									"id": "0a7",
+									"entries": [
+										"If the characters search the area and the defeated enemies, they find the following:",
+										{
+											"type": "list",
+											"style": "list-no-bullets",
+											"columns": 3,
+											"items": [
+												"500 GP",
+												"2 {@item Potion of Greater Healing|XDMG|Potions of Healing (greater)}",
+												"{@item +2 Weapon|XDMG}"
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "The Red Wizards Will Return in Deadfall",
+									"id": "0a8",
+									"entries": [
+										"This concludes the Season of Magic D&D Encounters Weekly Play series! If you want to continue the story, we suggest you check out {@adventure Arcana Unleashed: Deadfall|AUD}, which involves the characters at the center of a covert operation to take down the evil lich {@book Szass Tam|XDMG|8|Szass Tam} before he unleashes his heinous plot and dooms the land of Thay.",
+										"If you decide to take on {@i Deadfall} next, characters need to be level 11 to begin that adventure. You may choose to run some interlude adventures of your own taking place in and around the Forgotten Realms (many examples can be found within {@book Forgotten Realms: Adventures in Faerûn|FRAiF}).",
+										"Alternatively, you can just assume some time has passed and level up characters as appropriate, using the \"Starting at Higher Levels\" section of Chapter 2 of the {@book Player's Handbook|XPHB} to ensure that they have the appropriate equipment and magic items."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Credits",
+					"id": "0a9",
+					"entries": [
+						{
+							"type": "image",
+							"href": {
+								"type": "internal",
+								"path": "adventure/RWG/016-03-005.masqueraders-brooch.webp"
+							},
+							"width": 850,
+							"height": 866,
+							"credit": "Linda Lithen"
+						},
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"columns": 2,
+							"items": [
+								{
+									"type": "item",
+									"name": "Project Lead:",
+									"entry": "Chris Tulach"
+								},
+								{
+									"type": "item",
+									"name": "Designer:",
+									"entry": "Shawn Merwin"
+								},
+								{
+									"type": "item",
+									"name": "Editor:",
+									"entry": "Cindi Rice"
+								},
+								{
+									"type": "item",
+									"name": "Graphic Designer:",
+									"entry": "Rich Lescouflair"
+								},
+								{
+									"type": "item",
+									"name": "Cover Illustrator:",
+									"entry": "Magali Villeneuve"
+								},
+								{
+									"type": "item",
+									"name": "Interior Illustrators:",
+									"entry": "Hendry Iwanaga, Ivan Shavrin, Swatches Studio, Brian Valeza, Linda Lithen"
+								},
+								{
+									"type": "item",
+									"name": "Cartographer:",
+									"entry": "Mike Schley"
+								},
+								{
+									"type": "item",
+									"name": "Consultant:",
+									"entry": "Shawn Banerjee"
+								},
+								{
+									"type": "item",
+									"name": "Product Architect:",
+									"entry": "Greg Bilsland"
+								},
+								{
+									"type": "item",
+									"name": "Producer:",
+									"entry": "Bill Benham"
+								},
+								{
+									"type": "item",
+									"name": "D&D Beyond Team:",
+									"entry": "Randy Balisalisa, Hayley Schmelzer, Janelle Bawayan, Veronica Harris, Samuel Holder"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

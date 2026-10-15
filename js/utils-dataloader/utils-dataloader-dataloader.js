@@ -403,6 +403,13 @@ class DataTypeLoaderTrapHazardFluff extends DataTypeLoaderSingleSource {
 	_filename = "fluff-trapshazards.json";
 }
 
+class DataTypeLoaderRenderDemo extends DataTypeLoaderSingleSource {
+	static PROPS = ["renderdemo"];
+	static PAGE = UrlUtil.PG_DEMO_RENDER;
+
+	_filename = "renderdemo.json";
+}
+
 class DataTypeLoaderPredefined extends DataTypeLoader {
 	_loader;
 	_loadJsonArgs = null;
@@ -1088,13 +1095,13 @@ class DataTypeLoaderCustomAdventureBook extends DataTypeLoader {
 		const [prop, propData] = this.constructor.PROPS;
 
 		// Get only the ids that exist in both data + contents
-		const dataIds = (obj[propData] || []).filter(it => it.id).map(it => it.id);
-		const contentsIds = new Set((obj[prop] || []).filter(it => it.id).map(it => it.id));
+		const dataIds = (obj[propData] || []).filter(corpusData => corpusData.id).map(corpusData => corpusData.id);
+		const contentsIds = new Set((obj[prop] || []).filter(corpusContents => corpusContents.id).map(corpusContents => corpusContents.id));
 		const matchingIds = dataIds.filter(id => contentsIds.has(id));
 
 		matchingIds.forEach(id => {
-			const data = (obj[propData] || []).find(it => it.id === id);
-			const contents = (obj[prop] || []).find(it => it.id === id);
+			const data = (obj[propData] || []).find(corpusData => corpusData.id === id);
+			const contents = (obj[prop] || []).find(corpusContents => corpusContents.id === id);
 
 			const hash = UrlUtil.URL_TO_HASH_BUILDER[this.constructor.PAGE](contents);
 			this._addImageBackReferences(data, this.constructor.PAGE, contents.source, hash);
@@ -1128,13 +1135,7 @@ class DataTypeLoaderCustomAdventureBook extends DataTypeLoader {
 
 		return {
 			[prop]: [contents],
-			[propData]: [
-				{
-					source: contents.source,
-					id: contents.id,
-					...json,
-				},
-			],
+			[propData]: json[propData],
 		};
 	}
 
@@ -1230,6 +1231,7 @@ export class DataLoader {
 		"adventureData": UrlUtil.PG_ADVENTURE,
 		"book": UrlUtil.PG_BOOK,
 		"bookData": UrlUtil.PG_BOOK,
+		"renderdemo": UrlUtil.PG_DEMO_RENDER,
 	};
 
 	static getPropPage (prop) { return this._PROP_TO_HASH_PAGE[prop]; }
@@ -1322,6 +1324,7 @@ export class DataLoader {
 		DataTypeLoaderItemMastery.register({fnRegister});
 		DataTypeLoaderEncounterShape.register({fnRegister});
 		DataTypeLoaderBestiaryTemplate.register({fnRegister});
+		DataTypeLoaderRenderDemo.register({fnRegister});
 		// endregion
 
 		// region Fluff
