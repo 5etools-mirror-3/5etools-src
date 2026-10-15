@@ -9,11 +9,11 @@ class GenVariantrules {
 				if (GenVariantrules.ADVENTURE_ALLOWLIST[idx.id]) {
 					return {
 						adventure: idx,
-						adventureData: JSON.parse(fs.readFileSync(`./data/adventure/adventure-${idx.id.toLowerCase()}.json`, "utf-8")),
+						adventureData: ut.readJson(`./data/adventure/adventure-${idx.id.toLowerCase()}.json`).adventureData.find(corpusData => corpusData.id === idx.id),
 					};
 				}
 			})
-			.filter(it => it);
+			.filter(Boolean);
 	}
 
 	_doLoadBookData () {
@@ -22,11 +22,11 @@ class GenVariantrules {
 				if (!GenVariantrules.BOOK_BLOCKLIST[idx.id]) {
 					return {
 						book: idx,
-						bookData: JSON.parse(fs.readFileSync(`./data/book/book-${idx.id.toLowerCase()}.json`, "utf-8")),
+						bookData: ut.readJson(`./data/book/book-${idx.id.toLowerCase()}.json`).bookData.find(corpusData => corpusData.id === idx.id),
 					};
 				}
 			})
-			.filter(it => it);
+			.filter(Boolean);
 	}
 
 	async pRun () {

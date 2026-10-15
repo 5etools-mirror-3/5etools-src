@@ -32,82 +32,17 @@ class _CorpusLoaderBase {
 	};
 
 	_type;
+	_cache = {};
 
-	constructor () {
-		this._cache = {};
-		this._pLoadings = {};
-		this._availableOfficial = new Set();
-
-		this._indexOfficial = null;
+	async pFill (corpusId) {
+		const id = corpusId.toLowerCase();
+		this._cache[id] ||= await DataLoader.pCacheAndGetHash(DataLoader.getPropPage(this._type), UrlUtil.encodeForHash(id));
 	}
 
-	async pInit () {
-		const indexPath = this._getIndexPath();
-		this._indexOfficial = await DataUtil.loadJSON(indexPath);
-		this._indexOfficial[this._type].forEach(meta => this._availableOfficial.add(meta.id.toLowerCase()));
-	}
-
-	_getIndexPath () {
-		switch (this._type) {
-			case "adventure": return `${Renderer.get().baseUrl}data/adventures.json`;
-			case "book": return `${Renderer.get().baseUrl}data/books.json`;
-			default: throw new Error(`Unknown loader type "${this._type}"`);
-		}
-	}
-
-	_getJsonPath (bookOrAdventure) {
-		switch (this._type) {
-			case "adventure": return `${Renderer.get().baseUrl}data/adventure/adventure-${bookOrAdventure.toLowerCase()}.json`;
-			case "book": return `${Renderer.get().baseUrl}data/book/book-${bookOrAdventure.toLowerCase()}.json`;
-			default: throw new Error(`Unknown loader type "${this._type}"`);
-		}
-	}
-
-	async _pGetPrereleaseData ({advBookId, prop}) {
-		return this._pGetPrereleaseBrewData({advBookId, prop, brewUtil: PrereleaseUtil});
-	}
-
-	async _pGetBrewData ({advBookId, prop}) {
-		return this._pGetPrereleaseBrewData({advBookId, prop, brewUtil: BrewUtil2});
-	}
-
-	async _pGetPrereleaseBrewData ({advBookId, prop, brewUtil}) {
-		const searchFor = advBookId.toLowerCase();
-		const brew = await brewUtil.pGetBrewProcessed();
-		switch (this._type) {
-			case "adventure":
-			case "book": {
-				return (brew[prop] || []).find(it => it.id.toLowerCase() === searchFor);
-			}
-			default: throw new Error(`Unknown loader type "${this._type}"`);
-		}
-	}
-
-	async pFill (advBookId) {
-		if (!this._pLoadings[advBookId]) {
-			this._pLoadings[advBookId] = (async () => {
-				this._cache[advBookId] = {};
-
-				let head, body;
-				if (this._availableOfficial.has(advBookId.toLowerCase())) {
-					head = this._indexOfficial[this._type].find(it => it.id.toLowerCase() === advBookId.toLowerCase());
-					body = await DataUtil.loadJSON(this._getJsonPath(advBookId));
-				} else {
-					head = await this._pGetBrewData({advBookId, prop: this._type});
-					body = await this._pGetBrewData({advBookId, prop: `${this._type}Data`});
-				}
-				if (!head || !body) return;
-
-				this._cache[advBookId] = {head, chapters: {}};
-				body.data.forEach((chap, i) => this._cache[advBookId].chapters[i] = chap);
-			})();
-		}
-		await this._pLoadings[advBookId];
-	}
-
-	getFromCache (adventure, chapter, {isAllowMissing = false} = {}) {
-		const outHead = this._cache?.[adventure]?.head;
-		const outBody = this._cache?.[adventure]?.chapters?.[chapter];
+	getFromCache (corpusId, chapter, {isAllowMissing = false} = {}) {
+		const pack = this._cache[corpusId.toLowerCase()];
+		const outHead = pack?.[this._type];
+		const outBody = pack?.[`${this._type}Data`]?.data?.[chapter];
 		if (outHead && outBody) return {chapter: outBody, head: outHead};
 		if (isAllowMissing) return null;
 		return {chapter: MiscUtil.copy(_CorpusLoaderBase._NOT_FOUND), head: {source: VeCt.STR_GENERIC, id: VeCt.STR_GENERIC}};

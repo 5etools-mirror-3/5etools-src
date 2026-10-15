@@ -27,21 +27,21 @@ class VariantRulesSublistManager extends SublistManager {
 			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
 			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
-		const listItem = new ListItem(
-			hash,
+		const listItem = new ListItem({
+			id: hash,
 			ele,
-			it.name,
-			{
+			name: it.name,
+			values: {
 				...ListItem.getCommonValues(it),
 				ruleType: it.ruleType || "",
 			},
-			{
+			data: {
 				hash,
 				page: it.page,
 				entity: it,
 				mdRow: [...cellsText],
 			},
-		);
+		});
 		return listItem;
 	}
 }
@@ -84,22 +84,22 @@ class VariantRulesPage extends ListPage {
 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(rule.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(rule.source)}">${source}</span>
 		</a>`;
 
-		const listItem = new ListItem(
-			rlI,
-			eleLi,
-			rule.name,
-			{
+		const listItem = new ListItem({
+			id: rlI,
+			ele: eleLi,
+			name: rule.name,
+			values: {
 				source,
 				...ListItem.getCommonValues(rule),
 				search: searchStack.join(","),
 				ruleType: rule.ruleType || "",
 			},
-			{
+			data: {
 				hash,
 				page: rule.page,
 				isExcluded,
 			},
-		);
+		});
 
 		eleLi.addEventListener("click", (evt) => this._list.doSelect(listItem, evt));
 		eleLi.addEventListener("contextmenu", (evt) => this._openContextMenu(evt, this._list, listItem));

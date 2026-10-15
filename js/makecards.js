@@ -163,7 +163,7 @@ class MakeCards extends BaseComponent {
 				async () => {
 					const sel = getSelCards();
 					if (!sel) return;
-					sel.forEach(it => this._list.removeItemByIndex(it.ix));
+					sel.forEach(it => this._list.removeItemById(it.getId()));
 					this._list.update();
 					this._doSaveStateDebounced();
 				},
@@ -370,7 +370,7 @@ class MakeCards extends BaseComponent {
 			});
 		const btnDelete = veT`<button class="ve-btn ve-btn-danger ve-btn-xs" title="Remove"><span class="glyphicon glyphicon-trash"></span></button>`
 			.vee.onn("click", () => {
-				this._list.removeItemByIndex(uid);
+				this._list.removeItemById(uid);
 				this._list.update();
 				this._doSaveStateDebounced();
 			});
@@ -378,7 +378,7 @@ class MakeCards extends BaseComponent {
 		const ele = veT`<label class="ve-flex-v-center ve-my-1 ve-w-100 ve-lst__row ve-lst__row-border ve-lst__row-inner">
 			<div class="ve-col-1 ve-mr-2 ve-flex-vh-center">${cbSel}</div>
 			<div class="ve-col-3 ve-mr-2 ve-flex-v-center">${Renderer.get().render(`{@${Parser.getPropTag(cardMeta.entityType)} ${DataUtil.proxy.getUid(loaded.__prop, loaded, {isMaintainCase: true})}}`)}</div>
-			<div class="ve-col-1-5 ve-mr-2 ve-flex-vh-center ${Parser.sourceJsonToSourceClassname(loaded.source)}" title="${Parser.sourceJsonToFull(loaded.source)}">${Parser.sourceJsonToAbv(loaded.source)}</div>
+			<div class="ve-col-1-5 ve-mr-2 ve-flex-vh-center ${Parser.sourceJsonToSourceClassname(loaded.source)}" title="${Parser.sourceJsonToFull(loaded.source).qq()}">${Parser.sourceJsonToAbv(loaded.source).qq()}</div>
 			<div class="ve-col-1-5 ve-mr-2 ve-flex-vh-center">${Parser.getPropDisplayName(cardMeta.entityType)}</div>
 			<div class="ve-col-1-1 ve-mr-2 ve-flex-vh-center">${iptRgb}</div>
 			<div class="ve-col-1-1 ve-mr-2 ve-flex-vh-center">${btnIcon}</div>
@@ -386,11 +386,11 @@ class MakeCards extends BaseComponent {
 			<div class="ve-col-1-1 ve-flex-v-center ve-flex-h-right">${btnCopy}${btnDelete}</div>
 		</label>`;
 
-		const listItem = new ListItem(
-			uid,
+		const listItem = new ListItem({
+			id: uid,
 			ele,
-			loaded.name,
-			{
+			name: loaded.name,
+			values: {
 				source: cardMeta.source,
 				color: cardMeta.color,
 				icon: cardMeta.icon,
@@ -399,7 +399,7 @@ class MakeCards extends BaseComponent {
 
 				entity: loaded,
 			},
-			{
+			data: {
 				hash: cardMeta.hash,
 				page: cardMeta.page,
 				cbSel,
@@ -407,7 +407,7 @@ class MakeCards extends BaseComponent {
 				setColor,
 				setIcon,
 			},
-		);
+		});
 		return listItem;
 	}
 

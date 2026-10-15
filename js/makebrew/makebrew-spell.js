@@ -227,7 +227,7 @@ export class SpellBuilder extends BuilderBase {
 			},
 			"entriesHigherLevel",
 		);
-		this._addHook("state", "level", () => iptEntriesHigherLevelMeta.vee.onChange());
+		this._addHook("state", "level", () => iptEntriesHigherLevelMeta.onChange());
 		iptEntriesHigherLevelMeta.row.vee.appendTo(detailsTab.wrpTab);
 
 		// SOURCES

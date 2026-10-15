@@ -1050,7 +1050,7 @@
 							"type": "entries",
 							"name": "All-Seeing",
 							"entries": [
-								"The DM decides the weapon evolves one final time, becoming Legendary and gaining the All-Seeing property. The DM decides this represents the Paladin becoming a paragon of watchful protection."
+								"The DM decides the weapon evolves one final time, becoming Legendary and gaining the {@table Magic Item Property Tables; Legendary Magic Item Properties|AU|All-Seeing} property. The DM decides this represents the Paladin becoming a paragon of watchful protection."
 							]
 						}
 					},
@@ -1062,6 +1062,9 @@
 						"mode": "setProp",
 						"value": "legendary"
 					}
+				},
+				"_preserve": {
+					"page": true
 				}
 			}
 		},
@@ -1089,13 +1092,13 @@
 					"After dealing its extra damage to a creature, the ammunition becomes nonmagical.",
 					{
 						"type": "table",
-						"colStyles": [
-							"col-2 text-center",
-							"col-10"
-						],
 						"colLabels": [
 							"1d100",
 							"Creature Type"
+						],
+						"colStyles": [
+							"col-2 text-center",
+							"col-10"
 						],
 						"rows": [
 							[
@@ -2563,8 +2566,8 @@
 					"When you attack a creature with this magic weapon and roll a 20 on the attack roll, the creature must make a {@dc 15} Constitution saving throw in addition to suffering the attack's normal effects. On a failed save, the creature is restrained and must make another Constitution saving throw at the end of each of its turns. If it successfully saves against this effect three times, the effect ends. If it fails its saves three times, it is turned to stone and subjected to the {@condition petrified} condition for 1 hour.",
 					"A creature is immune to this effect if it is immune to damage of the weapon's type, does not have a body made of flesh, or has legendary actions.",
 					{
-						"name": "Curse",
 						"type": "entries",
+						"name": "Curse",
 						"entries": [
 							"This weapon is cursed, and becoming attuned to it extends the curse to you. Until the curse is broken with a {@spell remove curse} spell or similar magic, you are unwilling to part with the weapon. Whenever you attack a creature with this weapon and roll a 1 on the attack roll, you must succeed on a {@dc 15} Constitution saving throw or be {@condition restrained} and forced to make additional saves against being {@condition petrified}, as above."
 						]
@@ -4389,8 +4392,8 @@
 				"entries": [
 					"Choose a magical bonus of +1 to +3. This sword gains that bonus to its attack and damage rolls. For each point of bonus you choose for the sword, you take a corresponding penalty (\u22121 to \u22123) to your death saving throws. You can change this magical bonus each day at dawn.",
 					{
-						"name": "Curse",
 						"type": "entries",
+						"name": "Curse",
 						"entries": [
 							"This weapon is cursed, and becoming attuned to it extends the curse to you. Until the curse is broken with a {@spell remove curse} spell or similar magic, you are unwilling to part with the weapon."
 						]
@@ -5020,6 +5023,7 @@
 			"inherits": {
 				"namePrefix": "Life-Sapping ",
 				"source": "AUD",
+				"page": 118,
 				"rarity": "rare",
 				"reqAttune": true,
 				"bonusWeapon": "+1",
@@ -5616,13 +5620,13 @@
 					{
 						"type": "table",
 						"caption": "Moonblade Properties",
-						"colStyles": [
-							"col-2 text-center",
-							"col-10"
-						],
 						"colLabels": [
 							"1d100",
 							"Property"
+						],
+						"colStyles": [
+							"col-2 text-center",
+							"col-10"
 						],
 						"rows": [
 							[
@@ -6184,8 +6188,8 @@
 					},
 					"A creature is immune to this effect if it is immune to damage of the weapon's type, is a shapechanger, or has legendary actions.",
 					{
-						"name": "Curse",
 						"type": "entries",
+						"name": "Curse",
 						"entries": [
 							"This weapon is cursed, and becoming attuned to it extends the curse to you. Until the curse is broken with a {@spell remove curse} spell or similar magic, you are unwilling to part with the weapon. Whenever you attack a creature with this weapon and roll a 1 on the attack roll, you suffer the effect of a {@spell polymorph} spell for 1 hour, rolling on the table to determine your new form."
 						]
@@ -6207,7 +6211,7 @@
 							"type": "entries",
 							"name": "Regal",
 							"entries": [
-								"When the characters travel to an ancient battlefield, the DM decides the armor evolves, becoming Very Rare and gaining the Regal property. As the characters explore, they uncover iconography matching that on the armor."
+								"When the characters travel to an ancient battlefield, the DM decides the armor evolves, becoming Very Rare and gaining the {@table Magic Item Property Tables; Very Rare Magic Item Properties|AU|Regal} property. As the characters explore, they uncover iconography matching that on the armor."
 							]
 						}
 					},
@@ -6287,7 +6291,7 @@
 							"type": "entries",
 							"name": "Resistant",
 							"entries": [
-								"When the Paladin defends her companions against infernal forces, the DM decides the weapon evolves again, becoming Very Rare and gaining the Resistant property. The DM chooses Fire as the damage type it grants {@variantrule Resistance|XPHB} to, since that's thematically appropriate."
+								"When the Paladin defends her companions against infernal forces, the DM decides the weapon evolves again, becoming Very Rare and gaining the {@table Magic Item Property Tables; Very Rare Magic Item Properties|AU|Resistant} property. The DM chooses Fire as the damage type it grants {@variantrule Resistance|XPHB} to, since that's thematically appropriate."
 							]
 						}
 					},
@@ -6303,6 +6307,9 @@
 						"mode": "appendIfNotExistsArr",
 						"items": "fire"
 					}
+				},
+				"_preserve": {
+					"page": true
 				}
 			}
 		},
@@ -6640,6 +6647,7 @@
 			"inherits": {
 				"namePrefix": "Sniper's Bracelet ",
 				"source": "AUD",
+				"page": 119,
 				"rarity": "common",
 				"reqAttune": true,
 				"entries": [
@@ -6665,6 +6673,7 @@
 			"inherits": {
 				"namePrefix": "Spell-Fueling ",
 				"source": "AUD",
+				"page": 119,
 				"rarity": "very rare",
 				"reqAttune": "by a Spellcaster",
 				"reqAttuneTags": [
@@ -6783,7 +6792,7 @@
 							"type": "entries",
 							"name": "Studious",
 							"entries": [
-								"The DM decides the weapon evolves to a Rare item and gives it the Studious property, since the Paladin has improved her investigative skills to better understand potential threats."
+								"The DM decides the weapon evolves to a Rare item and gives it the {@table Magic Item Property Tables; Rare Magic Item Properties|AU|Studious} property, since the Paladin has improved her investigative skills to better understand potential threats."
 							]
 						}
 					},
@@ -6813,6 +6822,9 @@
 						"value": "AU"
 					},
 					"inherits.srd52": "remove"
+				},
+				"_preserve": {
+					"page": true
 				}
 			},
 			"requires": [
@@ -6873,7 +6885,7 @@
 							"type": "entries",
 							"name": "Subjugating",
 							"entries": [
-								"The characters' investigation leads them to an old castle, where they face an ancient, brutal tyrant wearing a tabard with iconography matching this armor. The characters defeat the tyrant thanks to the Fighter's heroics. The DM decides the armor evolves, becoming Legendary and gaining the Subjugating property."
+								"The characters' investigation leads them to an old castle, where they face an ancient, brutal tyrant wearing a tabard with iconography matching this armor. The characters defeat the tyrant thanks to the Fighter's heroics. The DM decides the armor evolves, becoming Legendary and gaining the {@table Magic Item Property Tables; Legendary Magic Item Properties|AU|Subjugating} property."
 							]
 						}
 					},
@@ -6885,6 +6897,9 @@
 						"mode": "setProp",
 						"value": "legendary"
 					}
+				},
+				"_preserve": {
+					"page": true
 				}
 			}
 		},
@@ -7139,8 +7154,8 @@
 				"entries": [
 					"You gain a +1 bonus to attack and damage rolls made with this magic weapon.",
 					{
-						"name": "Curse",
 						"type": "entries",
+						"name": "Curse",
 						"entries": [
 							"This sword is cursed and possessed by a vengeful spirit. Becoming attuned to it extends the curse to you. As long as you remain cursed, you are unwilling to part with the sword, keeping it on your person at all times. While attuned to this weapon, you have disadvantage on attack rolls made with weapons other than this one.",
 							"In addition, while the sword is on your person, you must succeed on a {@dc 15} Wisdom saving throw whenever you take damage in combat. On a failed save you must attack the creature that damaged you until you drop to 0 hit points or it does, or until you can't reach the creature to make a melee attack against it.",
@@ -7360,6 +7375,7 @@
 			"inherits": {
 				"namePrefix": "Thayan ",
 				"source": "AUD",
+				"page": 121,
 				"rarity": "rare",
 				"reqAttune": true,
 				"bonusWeapon": "+1",
@@ -7459,19 +7475,20 @@
 			"inherits": {
 				"namePrefix": "Trick ",
 				"source": "AUD",
+				"page": 121,
 				"rarity": "common",
 				"entries": [
 					"As a {@action Magic|XPHB} action while touching this weapon, you can transform it into a mundane item or back into its weapon form. It can't be used to make attacks while transformed into a mundane item.",
 					"Different Trick Weapons transform into different items. The DM chooses the mundane item or determines it randomly by rolling on the following table.",
 					{
 						"type": "table",
-						"colStyles": [
-							"col-2 text-center",
-							"col-10"
-						],
 						"colLabels": [
 							"{@dice 1d10}",
 							"The Weapon Transforms into a..."
+						],
+						"colStyles": [
+							"col-2 text-center",
+							"col-10"
 						],
 						"rows": [
 							[

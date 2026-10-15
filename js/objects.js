@@ -28,21 +28,21 @@ class ObjectsSublistManager extends SublistManager {
 			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
 			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
-		const listItem = new ListItem(
-			hash,
+		const listItem = new ListItem({
+			id: hash,
 			ele,
-			it.name,
-			{
+			name: it.name,
+			values: {
 				...ListItem.getCommonValues(it),
 				size,
 			},
-			{
+			data: {
 				hash,
 				page: it.page,
 				entity: it,
 				mdRow: [...cellsText],
 			},
-		);
+		});
 		return listItem;
 	}
 }
@@ -92,21 +92,21 @@ class ObjectsPage extends ListPage {
 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(obj.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(obj.source)}">${source}</span>
 		</a>`;
 
-		const listItem = new ListItem(
-			obI,
-			eleLi,
-			obj.name,
-			{
+		const listItem = new ListItem({
+			id: obI,
+			ele: eleLi,
+			name: obj.name,
+			values: {
 				source,
 				...ListItem.getCommonValues(obj),
 				size,
 			},
-			{
+			data: {
 				hash,
 				page: obj.page,
 				isExcluded,
 			},
-		);
+		});
 
 		eleLi.addEventListener("click", (evt) => this._list.doSelect(listItem, evt));
 		eleLi.addEventListener("contextmenu", (evt) => this._openContextMenu(evt, this._list, listItem));

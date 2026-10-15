@@ -354,7 +354,7 @@ export class InitiativeTrackerMonsterAdd extends BaseComponent {
 			<div class="ve-ui-search__row ve-flex-v-center" tabindex="0">
 				<span>${res.doc.n}</span>
 				<div class="ve-flex-vh-center">
-					<span class="ve-mr-2">${res.doc.s ? `<i title="${Parser.sourceJsonToFull(res.doc.s)}">${Parser.sourceJsonToAbv(res.doc.s)}${res.doc.p ? ` p${res.doc.p}` : ""}</i>` : ""}</span>
+					<span class="ve-mr-2">${res.doc.s ? `<i title="${Parser.sourceJsonToFull(res.doc.s).qq()}">${Parser.sourceJsonToAbv(res.doc.s).qq()}${res.doc.p ? ` p${res.doc.p}` : ""}</i>` : ""}</span>
 					${btnCustomize}
 				</div>
 			</div>

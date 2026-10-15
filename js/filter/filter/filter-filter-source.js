@@ -1,9 +1,11 @@
-import {FilterItem} from "../filter-item.js";
+import {FilterItem, FilterItemBase, FilterItemRegistry} from "../filter-item.js";
 import {Filter} from "./filter-filter-generic.js";
 import {MISC_FILTER_VALUE__BASIC_RULES_2014, MISC_FILTER_VALUE__BASIC_RULES_2024, MISC_FILTER_VALUE__SRD_5_1, MISC_FILTER_VALUE__SRD_5_2, PILL_STATE__IGNORE, PILL_STATE__NO, PILL_STATE__YES, SOURCE_HEADER} from "../filter-constants.js";
 import {PageFilterBase} from "../filter-page-filter-base.js";
 
 export class SourceFilterItem extends FilterItem {
+	static TYPE = "source";
+
 	/**
 	 * @param options
 	 * @param [options.isOtherSource] If this is not the primary source of the entity.
@@ -15,6 +17,20 @@ export class SourceFilterItem extends FilterItem {
 		this.isReferenceSource = options.isReferenceSource;
 		this._sortName = null;
 		this.itemFull = Parser.sourceJsonToFull(this.item);
+	}
+
+	getSerialized () {
+		return Object.assign(
+			super.getSerialized(),
+			{
+				isOtherSource: this.isOtherSource,
+				isReferenceSource: this.isReferenceSource,
+			},
+		);
+	}
+
+	static {
+		FilterItemRegistry.register(this);
 	}
 }
 
@@ -69,13 +85,18 @@ export class SourceFilter extends Filter {
 	doSetPillsClear () { return this._doSetPillsClear(); }
 
 	_getFilterItem (item) {
-		return item instanceof FilterItem ? item : new SourceFilterItem({item});
+		if (item instanceof FilterItemBase || FilterItemRegistry.isSerialized(item)) return super._getFilterItem(item);
+		return new SourceFilterItem({item});
 	}
 
 	addItem (item) {
-		const out = super.addItem(item);
+		if (item instanceof Array) return super.addItem(item);
+
+		const isAdded = super.addItem(item);
+		if (!isAdded) return false;
+
 		this._tmpState.ixAdded++;
-		return out;
+		return true;
 	}
 
 	trimState_ () {
@@ -360,7 +381,13 @@ export class SourceFilter extends Filter {
 	static getCompleteFilterSources (ent, {isIncludeBaseSource = false} = {}) {
 		const isSkipBaseSource = !isIncludeBaseSource || !ent._baseSource;
 
-		if (!ent.otherSources && !ent.referenceSources && isSkipBaseSource) return ent.source;
+		if (!ent.otherSources && !ent.referenceSources) {
+			if (isSkipBaseSource) return ent.source;
+
+			return this._getCompleteFilterSources_isIncludedSource(ent._baseSource)
+				? [ent.source, ent._baseSource]
+				: [ent.source];
+		}
 
 		// Avoid `otherSources`/`referenceSources` from e.g. homebrews which are not loaded, and so lack their metadata
 		const otherSourcesFilt = (ent.otherSources || [])
@@ -371,8 +398,8 @@ export class SourceFilter extends Filter {
 		if (!otherSourcesFilt.length && !referenceSourcesFilt.length && isSkipBaseSource) return ent.source;
 
 		const out = [ent.source]
-			.concat(otherSourcesFilt.map(src => new SourceFilterItem({item: src.source, isIgnoreRed: true, isOtherSource: true})))
-			.concat(referenceSourcesFilt.map(src => new SourceFilterItem({item: src, isIgnoreRed: true, isReferenceSource: true})))
+			.concat(otherSourcesFilt.map(src => new SourceFilterItem({item: src.source, isIgnoreRed: true, isOtherSource: true}).getSerialized()))
+			.concat(referenceSourcesFilt.map(src => new SourceFilterItem({item: src, isIgnoreRed: true, isReferenceSource: true}).getSerialized()))
 		;
 
 		// Base sources should already be filtered

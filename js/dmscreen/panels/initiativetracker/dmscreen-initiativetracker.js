@@ -354,7 +354,7 @@ class InitiativeTrackerComponent extends BaseComponent {
 				this._proxyAssignSimple("state", stateNxt);
 			});
 
-		const btnSendToFoundry = veT`<button title="Send to Foundry" class="no-print ve-btn ve-btn-default ve-btn-xs dm-init-lockable"><span class="glyphicon glyphicon-send"></span></button>`
+		const btnSendToFoundry = veT`<button title="Send to Foundry" class="ve-print__hidden ve-btn ve-btn-default ve-btn-xs dm-init-lockable"><span class="glyphicon glyphicon-send"></span></button>`
 			.vee.onn("click", async () => {
 				if (this._state.isLocked) return;
 

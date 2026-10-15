@@ -24,6 +24,8 @@ const FILE_EXTENSION_ALLOWLIST = [
 export const BLOCKLIST_FILE_PREFIXES = [
 	"bookref-",
 	"gendata-",
+	"package.json",
+	"package-lock.json",
 ];
 
 const DIR_PREFIX_BLOCKLIST = [
@@ -54,7 +56,9 @@ function listFiles (opts) {
 	opts.blocklistDirPrefixes = opts.blocklistDirPrefixes === undefined ? DIR_PREFIX_BLOCKLIST : opts.blocklistDirPrefixes;
 	opts.allowlistFileExts = opts.allowlistFileExts === undefined ? FILE_EXTENSION_ALLOWLIST : opts.allowlistFileExts;
 	opts.allowlistDirs = opts.allowlistDirs || null;
-	opts.blocklistDirs = opts.blocklistDirs === undefined ? BLOCKLIST_DIRS : new Set(opts.blocklistDirs);
+	opts.blocklistDirs = opts.blocklistDirs === undefined
+		? (opts.dir ? new Set([...BLOCKLIST_DIRS].map(subDir => pathlib.posix.join(opts.dir, subDir))) : BLOCKLIST_DIRS)
+		: new Set(opts.blocklistDirs);
 
 	const dirContent = fs.readdirSync(opts.dir, "utf8")
 		.filter(file => {

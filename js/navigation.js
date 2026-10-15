@@ -93,15 +93,12 @@ class NavBar {
 		this._addElement_li({keyPath: [NavBar._CAT_PLAYER], page: "optionalfeatures.html", aText: "Other Options & Features"});
 		this._addElement_divider({keyPath: [NavBar._CAT_PLAYER]});
 		this._addElement_li({keyPath: [NavBar._CAT_PLAYER], page: "statgen.html", aText: "Stat Generator"});
-		this._addElement_li({keyPath: [NavBar._CAT_PLAYER], page: "charbuilder.html", aText: "Character Builder"});
-		this._addElement_li({keyPath: [NavBar._CAT_PLAYER], page: "charactersheet.html", aText: "Character Sheet"});
 		this._addElement_divider({keyPath: [NavBar._CAT_PLAYER]});
 		this._addElement_li({keyPath: [NavBar._CAT_PLAYER], page: "lifegen.html", aText: "This Is Your Life"});
 		this._addElement_li({keyPath: [NavBar._CAT_PLAYER], page: "names.html", aText: "Names"});
 
 		this._addElement_dropdown({category: NavBar._CAT_DUNGEON_MASTER});
 		this._addElement_li({keyPath: [NavBar._CAT_DUNGEON_MASTER], page: "dmscreen.html", aText: "DM Screen"});
-		this._addElement_li({keyPath: [NavBar._CAT_DUNGEON_MASTER], page: "sidekick.html", aText: "Sidekick Builder"});
 		this._addElement_divider({keyPath: [NavBar._CAT_DUNGEON_MASTER]});
 		this._addElement_dropdown({keyPath: [NavBar._CAT_DUNGEON_MASTER], category: NavBar._CAT_ADVENTURES, isSide: true, page: "adventures.html"});
 		this._addElement_li({keyPath: [NavBar._CAT_DUNGEON_MASTER, NavBar._CAT_ADVENTURES], page: "adventures.html", aText: "View All/Homebrew"});

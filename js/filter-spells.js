@@ -317,7 +317,7 @@ class PageFilterSpells extends PageFilterBase {
 		};
 		if (r.baseName) opts.nest = r.baseName;
 		else opts.nest = "(No Subspecies)";
-		return new FilterItem(opts);
+		return new FilterItem(opts).getSerialized();
 	}
 	// endregion
 
@@ -487,7 +487,7 @@ class PageFilterSpells extends PageFilterBase {
 		s._fClassesAndVariantClasses = [
 			...s._fClasses,
 			...s._fVariantClasses
-				.map(it => (it.definedInSource && !SourceUtil.isNonstandardSource(it.definedInSource)) ? new FilterItem({item: it.equivalentClassName}) : null)
+				.map(it => (it.definedInSource && !SourceUtil.isNonstandardSource(it.definedInSource)) ? new FilterItem({item: it.equivalentClassName}).getSerialized() : null)
 				.filter(Boolean)
 				.filter(it => !s._fClasses.some(itCls => itCls.item === it.item)),
 		];
@@ -684,11 +684,11 @@ class ModalFilterSpells extends ModalFilterBase {
 
 		const btnShowHidePreview = eleRow.firstElementChild.children[1].firstElementChild;
 
-		const listItem = new ListItem(
-			spI,
-			eleRow,
-			spell.name,
-			{
+		const listItem = new ListItem({
+			id: spI,
+			ele: eleRow,
+			name: spell.name,
+			values: {
 				source,
 				sourceJson: spell.source,
 				...ListItem.getCommonValues(spell),
@@ -700,13 +700,13 @@ class ModalFilterSpells extends ModalFilterBase {
 				normalisedTime: spell._normalisedTime,
 				normalisedRange: spell._normalisedRange,
 			},
-			{
+			data: {
 				hash,
 				page: spell.page,
 				cbSel: eleRow.firstElementChild.firstElementChild.firstElementChild,
 				btnShowHidePreview,
 			},
-		);
+		});
 
 		this._previewButtonHandler.bindPreviewButton({entity: spell, listItem, btnShowHidePreview});
 

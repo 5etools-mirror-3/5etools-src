@@ -1,9 +1,52 @@
 import {ArrayKey} from "./utils-proporder-models.js";
 
+/**
+ * @param {?Array<string|ArrayKey|ObjectKey>} propsPreNameAdditional
+ * @param {?Array<string|ArrayKey|ObjectKey>} propsPostNameAdditional
+ * @param {?Array<string|ArrayKey|ObjectKey>} propsPostSourceAdditional
+ */
+export const getGenericMetadataPropOrder = (
+	{
+		propsPreNameAdditional = null,
+		propsPostNameAdditional = null,
+		propsPostSourceAdditional = null,
+	} = {},
+) => {
+	propsPreNameAdditional ??= [];
+	propsPostNameAdditional ??= ["alias"];
+	propsPostSourceAdditional ??= [];
+
+	return [
+		...propsPreNameAdditional,
+		"name",
+		...propsPostNameAdditional,
+
+		"source",
+		...propsPostSourceAdditional,
+
+		"id",
+
+		"page",
+
+		"srd",
+		"srd52",
+		"basicRules",
+		"basicRules2024",
+		"additionalSources",
+		"otherSources",
+		new ArrayKey("referenceSources", {fnSort: SortUtil.ascSortLower}),
+		"isReprinted",
+		"reprintedAs",
+		"legacy",
+	];
+};
+
 export const PROPORDER_ENTRY_DATA_OBJECT = [
 	"languageProficiencies",
 	"skillProficiencies",
 	"weaponProficiencies",
+	"itemMasteries",
+	"itemMasteriesProgression",
 	"armorProficiencies",
 	"toolProficiencies",
 	"skillToolLanguageProficiencies",
@@ -22,89 +65,3 @@ export const PROPORDER_ENTRY_DATA_OBJECT = [
 
 	"additionalSpells",
 ];
-
-export const PROPORDER_FOUNDRY_ACTIVITIES = new ArrayKey("activities", {
-	fnGetOrder: () => [
-		"foundryId",
-
-		"name",
-		"type",
-
-		"img",
-		"advice",
-		"description",
-		"descriptionEntries",
-
-		"activation",
-		"duration",
-		"consumption",
-		"uses",
-		"target",
-		"range",
-		"attack",
-		"damage",
-		"save",
-		"healing",
-		"roll",
-		"level",
-		"visibility",
-
-		// "check"-type
-		"check",
-
-		// "cast"-type"
-		"spell",
-
-		// "summon"-type
-		"profiles",
-		"summon",
-		"creatureTypes",
-		"bonuses",
-		"match",
-
-		// "enchant"-type
-		"restrictions",
-		"enchant",
-
-		// "transform"-type
-		"transform",
-		"settings",
-
-		// "forward"-type
-		"activity",
-
-		"effects",
-
-		// Other modules
-		"midiProperties",
-		"overTimeProperties",
-	],
-});
-
-export const PROPORDER_FOUNDRY_EFFECTS = new ArrayKey("effects", {
-	fnGetOrder: () => [
-		"foundryId",
-
-		"name",
-		"type",
-
-		"enchantmentRiderParent",
-
-		"disabled",
-		"transfer",
-
-		"duration",
-
-		"statuses",
-
-		"changes",
-
-		"flags",
-
-		"description",
-		"descriptionEntries",
-		"img",
-		"showIcon",
-		"advice",
-	],
-});

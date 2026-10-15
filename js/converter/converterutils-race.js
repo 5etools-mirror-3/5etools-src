@@ -292,41 +292,36 @@ export class RaceImmResVulnTag {
 	}
 
 	static _handleResist (race) {
-		if (!race.entries) return;
-
-		const out = new Set();
-
-		race.entries.forEach(ent => {
-			this._WALKER.walk(
-				ent.entries,
-				{
-					string: (str) => {
-						str.replace(/(?:resistance|resistant) (?:to|against) ([^.!?]+)/gi, (...m) => {
-							m[1].replace(this._RE_DAMAGE_TYPES, (...n) => {
-								out.add(n[1].toLowerCase());
-							});
-						});
-					},
-				},
-			);
+		const out = this._handleResistImmune({
+			race,
+			prop: "resist",
+			fnIsMatchingSentence: sent => /\b(?:resistance|resistant)\b/i.test(sent) && /\bdamage\b/i.test(sent),
 		});
 
 		// region Special cases
 		if (race.name === "Dragonborn" && race.source === Parser.SRC_PHB) {
-			out.add({"choose": {"from": ["acid", "cold", "fire", "lightning", "poison"]}});
+			out.push({"choose": {"from": ["acid", "cold", "fire", "lightning", "poison"]}});
 		} else if (race.name === "Revenant" && race.source === "UAGothicHeroes") {
-			out.add("necrotic");
+			out.push("necrotic");
 		}
 		// endregion
 
-		if (out.size) race.resist = [...out];
+		if (out.length) race.resist = [...out];
 		else delete race.resist;
 	}
 
 	static _handleImmune (race) {
+		this._handleResistImmune({
+			race,
+			prop: "immune",
+			fnIsMatchingSentence: sent => /\b(?:immune|immunity)\b/i.test(sent) && /\bdamage\b/i.test(sent),
+		});
+	}
+
+	static _handleResistImmune ({race, prop, fnIsMatchingSentence}) {
 		if (!race.entries) return;
 
-		const out = new Set();
+		const groups = [];
 
 		race.entries.forEach(ent => {
 			this._WALKER.walk(
@@ -337,18 +332,30 @@ export class RaceImmResVulnTag {
 
 						const sents = str.split(/[.?!]/g);
 						sents.forEach(sent => {
-							if (!sent.toLowerCase().includes("immune ") || !sent.toLowerCase().includes(" damage")) return;
+							if (!fnIsMatchingSentence(sent)) return;
+
+							const group = new Set();
 
 							const tokens = sent.replace(/[^A-z0-9 ]/g, "").split(" ").map(it => it.trim().toLowerCase());
-							Parser.DMG_TYPES.filter(typ => tokens.includes(typ)).forEach(it => out.add(it));
+							Parser.DMG_TYPES.filter(typ => tokens.includes(typ)).forEach(it => group.add(it));
+
+							if (!group.size) return;
+
+							if (group.size > 1 && /\b(?:choice|choose)\b/i.test(sent)) {
+								groups.push({choose: {from: [...group].sort(SortUtil.ascSortLower)}});
+								return;
+							}
+							groups.push(...[...group].sort(SortUtil.ascSortLower));
 						});
 					},
 				},
 			);
 		});
 
-		if (out.size) race.immune = [...out];
-		else delete race.immune;
+		if (groups.length) race[prop] = groups;
+		else delete race[prop];
+
+		return groups;
 	}
 
 	static _handleConditionImmune (race) {

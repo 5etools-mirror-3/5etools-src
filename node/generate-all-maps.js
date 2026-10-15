@@ -23,7 +23,8 @@ console.log("Updating maps...");
 ].forEach(({prop, index, dir}) => {
 	ut.readJson(index)[prop].forEach(head => {
 		console.log(`\tGenerating map data for ${head.id}`);
-		const body = ut.readJson(`${dir}/${prop}-${head.id.toLowerCase()}.json`).data;
+		const body = ut.readJson(`${dir}/${prop}-${head.id.toLowerCase()}.json`)[`${prop}Data`]
+			.find(corpusData => corpusData.id === head.id).data;
 		const imageData = MapsUtil.getImageData({prop, head, body});
 		if (imageData) Object.assign(out, imageData);
 	});

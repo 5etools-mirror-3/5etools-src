@@ -21,19 +21,19 @@ class TablePageSublistManager extends SublistManager {
 			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
 			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
-		const listItem = new ListItem(
-			hash,
+		const listItem = new ListItem({
+			id: hash,
 			ele,
-			displayName,
-			{
+			name: displayName,
+			values: {
 				sortName: displayName,
 			},
-			{
+			data: {
 				hash,
 				entity: ent,
 				mdRow: [...cellsText],
 			},
-		);
+		});
 		return listItem;
 	}
 }
@@ -48,7 +48,7 @@ class _GroupHeaderManager {
 		this._btnHeader = veT`<div class="ve-lst__item-group-header ve-mt-3 ve-split-v-center ve-py-1 ve-no-select ve-clickable" title="SHIFT to Toggle All">
 			<div class="ve-split-v-center ve-w-100 ve-min-w-0 ve-mr-2">
 				<div class="ve-bold">${ent.name}</div>
-				<div class="${Parser.sourceJsonToSourceClassname(ent.source)}" title="${Parser.sourceJsonToFull(ent.source).qq()}">${Parser.sourceJsonToAbv(ent.source)}</div>
+				<div class="${Parser.sourceJsonToSourceClassname(ent.source)}" title="${Parser.sourceJsonToFull(ent.source).qq()}">${Parser.sourceJsonToAbv(ent.source).qq()}</div>
 			</div>
 			${this._dispShowHide}
 		</div>`
@@ -167,16 +167,16 @@ export class TableListPage extends ListPage {
 				.vee.onn("contextmenu", evt => this._openContextMenu(evt, this._listMetas[headerId].list, listItem))
 				.vee.onn("click", evt => this._listMetas[headerId].list.doSelect(listItem, evt));
 
-			const listItem = new ListItem(
-				i,
+			const listItem = new ListItem({
+				id: i,
 				ele,
-				displayName,
-				{},
-				{
+				name: displayName,
+				values: {},
+				data: {
 					hash,
 					...this._getListItemData(ent, i),
 				},
-			);
+			});
 
 			this._listMetas[headerId].list.addItem(listItem);
 		}

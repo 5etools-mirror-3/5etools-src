@@ -32,22 +32,22 @@ class CultsBoonsSublistManager extends SublistManager {
 			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
 			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
-		const listItem = new ListItem(
-			hash,
+		const listItem = new ListItem({
+			id: hash,
 			ele,
-			it.name,
-			{
+			name: it.name,
+			values: {
 				...ListItem.getCommonValues(it),
 				type: it._lType,
 				subType: it._lSubType,
 			},
-			{
+			data: {
 				hash,
 				page: it.page,
 				entity: it,
 				mdRow: [...cellsText],
 			},
-		);
+		});
 		return listItem;
 	}
 }
@@ -89,22 +89,22 @@ class CultsBoonsPage extends ListPage {
 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(it.source)}">${source}</span>
 		</a>`;
 
-		const listItem = new ListItem(
-			bcI,
-			eleLi,
-			it.name,
-			{
+		const listItem = new ListItem({
+			id: bcI,
+			ele: eleLi,
+			name: it.name,
+			values: {
 				source,
 				...ListItem.getCommonValues(it),
 				type: it._lType,
 				subType: it._lSubType,
 			},
-			{
+			data: {
 				hash,
 				page: it.page,
 				isExcluded,
 			},
-		);
+		});
 
 		eleLi.addEventListener("click", (evt) => this._list.doSelect(listItem, evt));
 		eleLi.addEventListener("contextmenu", (evt) => this._openContextMenu(evt, this._list, listItem));

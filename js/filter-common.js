@@ -109,7 +109,7 @@ class FilterCommon {
 	}
 
 	static _getAllImmResNonPlayer (val, key) {
-		if (!val) return [];
+		if (!val) return null;
 		const out = [];
 		for (const valSub of val) this._getAllImmResNonPlayer_recurse(valSub, key, out);
 		return out;
@@ -140,7 +140,7 @@ class FilterCommon {
 	}
 
 	static _getAllImmResPlayer (val) {
-		if (!val) return [];
+		if (!val) return null;
 		const out = [];
 		for (const valSub of val) {
 			if (typeof valSub === "string") {

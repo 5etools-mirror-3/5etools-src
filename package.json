@@ -1,7 +1,7 @@
 {
 	"name": "5etools",
 	"author": "TheGiddyLimit",
-	"version": "2.35.1",
+	"version": "2.38.0",
 	"license": "MIT",
 	"description": "A site dedicated to making playing games with your friends as easy as possible.",
 	"type": "module",
@@ -33,7 +33,6 @@
 		"test:json": "node test/test-json.js",
 		"test:tags": "node test/test-tags.js",
 		"test:unit": "node --localstorage-file test/temp/localstorage.tmp --experimental-vm-modules node_modules/jest/bin/jest.js",
-		"test:e2e": "node test/e2e/run-e2e.mjs",
 		"test": "npm run test:js && npm run test:unit && npm run test:css && npm run test:data",
 		"lint": "npm run lint:js && npm run lint:css && npm run lint:data",
 		"build:css": "sass --style=compressed scss/:css/ && node node/rm.js css/includes/ css/vars/",
@@ -60,7 +59,7 @@
 		"node": ">=24"
 	},
 	"devDependencies": {
-		"5etools-utils": "^0.17.2",
+		"5etools-utils": "^0.17.23",
 		"ajv": "^8.18.0",
 		"ajv-formats": "^3.0.1",
 		"commander": "^14.0.3",
@@ -70,7 +69,6 @@
 		"http-server": "^14.1.1",
 		"jest": "^30.2.0",
 		"json-source-map": "^0.6.1",
-		"playwright-core": "^1.61.1",
 		"prettier": "^3.8.1",
 		"probe-image-size": "^7.2.3",
 		"readline-sync": "^1.4.10",

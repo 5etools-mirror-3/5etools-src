@@ -9,7 +9,6 @@ const FILE_BLOCKLIST = new Set([
 	"data/index.json",
 	"data/life.json",
 	"data/makecards.json",
-	"data/renderdemo.json",
 	"data/sources.json",
 	"data/changelog.json",
 
@@ -35,6 +34,7 @@ const FILE_BLOCKLIST = new Set([
 
 const program = mutCommanderJsonFileOptions({command: new Command()})
 	.option("--no-sort", `If arrays in the root should not be sorted`)
+	.option("--dry", `If this should be a dry-run`)
 ;
 
 program.parse(process.argv);
@@ -54,7 +54,7 @@ getCliJsonFiles(
 )
 	.map(jsonFile => jsonFile.getFilePath())
 	.filter(file => file.endsWith(".json"))
-	.forEach(file => prettifyFile(file, {unhandledKeys, isNoSortRootArrays: !params.sort}));
+	.forEach(file => prettifyFile(file, {unhandledKeys, isNoSortRootArrays: !params.sort, isDryRun: params.dry}));
 
 if (Object.keys(unhandledKeys).length) {
 	console.warn(`Unhandled keys:`);

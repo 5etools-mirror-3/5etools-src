@@ -5,10 +5,10 @@ import * as ut from "../node/util.js";
 import {CorpusMapImageExtractor} from "../js/foundry/foundry-maps.js";
 import {Command} from "commander";
 import {getCliJsonFiles, mutCommanderJsonFileOptions, pInitConsoleOut} from "../node/util-commander.js";
-import {getCleanPath, JsonFile} from "../node/util-json-files.js";
+import {getCleanPath} from "../node/util-json-files.js";
 
 const getJoinedWarnings = ({jsonFile, warnings}) => {
-	return `in "${jsonFile.getFilePath()}"\n${warnings.map(it => `\t${it}`).join("\n")}`;
+	return `in "${jsonFile.getFilePath()}"\n${warnings.map(warning => `\t${warning}`).join("\n")}`;
 };
 
 let ixLogGroup = 0;
@@ -25,40 +25,37 @@ const program = mutCommanderJsonFileOptions({command: new Command()});
 program.parse(process.argv);
 const params = program.opts();
 
-const getFauxCorporaVehicleFluff = ({jsonFile}) => {
+const getFauxJsonVehicleFluff = ({jsonFile}) => {
 	return (jsonFile.getContents().vehicleFluff || [])
 		.filter(fluff => fluff?.images?.some(img => ["map", "mapPlayer"].includes(img?.imageType)))
 		.map(fluff => {
-			const {prop} = Parser.SOURCES_ADVENTURES.has(fluff.source)
-				? {propData: "adventureData", prop: "adventure"}
-				: {propData: "bookData", prop: "book"};
-
+			const id = DataUtil.proxy.getUid("vehicleFluff", fluff);
 			return {
-				head: {
+				book: {
 					name: Parser.sourceJsonToFull(fluff.source),
-					id: DataUtil.proxy.getUid("vehicleFluff", fluff),
+					id,
 					source: fluff.source,
-					contents: [
-						{
-							name: "Vehicles",
-						},
-					],
+					contents: [{name: "Vehicles"}],
 				},
-				body: {
-					data: [
-						{
-							type: "section",
-							name: "Vehicles",
-							entries: [
-								...fluff.images,
-							],
-						},
-					],
+				bookData: {
+					id,
+					source: fluff.source,
+					data: [{
+						type: "section",
+						name: "Vehicles",
+						entries: [...fluff.images],
+					}],
 				},
-				corpusType: prop,
-				propOriginal: "vehicleFluff",
 			};
-		});
+		})
+		.reduce(
+			(accum, {book, bookData}) => {
+				(accum.book ||= []).push(book);
+				(accum.bookData ||= []).push(bookData);
+				return accum;
+			},
+			{},
+		);
 };
 
 async function main () {
@@ -76,13 +73,8 @@ async function main () {
 		.flatMap(({filename, prop, dir}) => ut.readJson(`./data/${filename}`)[prop]
 			.map(head => ({head, prop, filename: `./data/${dir}/${dir}-${head.id.toLowerCase()}.json`})))
 		.forEach(({head, prop, filename}) => {
-			lookupOfficial[getCleanPath(filename)] = [{head, corpusType: prop}];
+			lookupOfficial[getCleanPath(filename)] = {[prop]: [head]};
 		});
-	lookupOfficial[getCleanPath("./data/fluff-vehicles.json")] = getFauxCorporaVehicleFluff({
-		jsonFile: new JsonFile({
-			filePath: "./data/fluff-vehicles.json",
-		}),
-	});
 
 	const jsonFiles = getCliJsonFiles(
 		{
@@ -93,41 +85,37 @@ async function main () {
 			filter: params.filter,
 			fnMutDefaultSelection: ({files}) => {
 				files.push(...Object.keys(lookupOfficial));
+				files.push("./data/fluff-vehicles.json");
 			},
 		},
 	);
 
 	const getCorpora = ({jsonFile}) => {
-		if (lookupOfficial[jsonFile.getFilePath()]) {
-			return lookupOfficial[jsonFile.getFilePath()]
-				.map(fromLookup => ({body: jsonFile.getContents(), ...fromLookup}));
-		}
-
-		return [
-			...[
-				{prop: "adventure", propData: "adventureData"},
-				{prop: "book", propData: "bookData"},
-			]
-				.flatMap(({prop, propData}) => {
-					if (!jsonFile.getContents()[prop]?.length) return [];
-
-					return jsonFile.getContents()[prop]
-						.map(head => {
-							const body = jsonFile.getContents()[propData]?.find(body => body.id === head.id);
-							if (!body) return null;
-							return {head, corpusType: prop, body};
-						})
-						.filter(Boolean);
-				}),
-			...getFauxCorporaVehicleFluff({jsonFile}),
+		const jsonSources = [
+			jsonFile.getContents(),
+			lookupOfficial[jsonFile.getFilePath()] || {},
+			getFauxJsonVehicleFluff({jsonFile}),
 		];
+
+		return ["adventure", "book"]
+			.flatMap(corpusType => {
+				const {propHead, propBody} = UrlUtil.getPagePropsCorpus(corpusType);
+				const bodies = jsonSources.flatMap(json => json[propBody] || []);
+				return jsonSources.flatMap(json => json[propHead] || [])
+					.map(head => {
+						const body = bodies.find(corpusData => corpusData.id === head.id);
+						if (!body) return null;
+						return {head, corpusType, body};
+					})
+					.filter(Boolean);
+			});
 	};
 
 	jsonFiles
 		.forEach(jsonFile => {
 			getCorpora({jsonFile})
-				.forEach(({head, corpusType, propOriginal, body}) => {
-					console.log(`\tValidating ${corpusType}${propOriginal ? ` (from ${propOriginal})` : ""} "${head.id}"...`);
+				.forEach(({head, corpusType, body}) => {
+					console.log(`\tValidating ${corpusType} "${head.id}"...`);
 
 					const {availableMaps} = new CorpusMapImageExtractor().getMutMapMeta({head, body, corpusType});
 

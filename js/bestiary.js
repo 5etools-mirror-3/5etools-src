@@ -171,17 +171,18 @@ class BestiarySublistManager extends SublistManager {
 			return {stg, ipt, comp};
 		})();
 
-		const listItem = new ListItem(
-			hash,
-			null,
+		let eleListItem;
+		const listItem = new ListItem({
+			id: hash,
+			fnGetEle: () => eleListItem,
 			name,
-			{
+			values: {
 				source: Parser.sourceJsonToAbv(mon.source),
 				type,
 				cr,
 				...ListItem.getCommonValues(mon),
 			},
-			{
+			data: {
 				hash,
 				page: mon.page,
 				count,
@@ -197,12 +198,12 @@ class BestiarySublistManager extends SublistManager {
 				),
 				mdRow: [...cellsText, ({listItem}) => listItem.data.count],
 			},
-		);
+		});
 
 		const sublistButtonsMeta = this._encounterBuilder.getSublistButtonsMeta(listItem);
 		listItem.data.fnsUpdate.push(sublistButtonsMeta.fnUpdate);
 
-		listItem.ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col ve-lst__row--bestiary-sublist">
+		eleListItem = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col ve-lst__row--bestiary-sublist">
 			<a href="#${hash}" draggable="false" class="best-ecgen__hidden ve-lst__row-border ve-lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText, templates: this.constructor._ROW_TEMPLATE.slice(0, 3)})}
 				${eleCount1}
@@ -288,7 +289,7 @@ class BestiaryPageBookView extends ListPageBookView {
 
 		const renderCreature = (mon) => {
 			isAnyEntityRendered = true;
-			stack.push(`<div class="bkmv__wrp-item ve-inline-block print__ve-block print__my-2"><table class="ve-w-100 ve-stats ve-stats--book ve-stats--bkmv"><tbody>`);
+			stack.push(`<div class="bkmv__wrp-item ve-inline-block ve-print__block ve-print__my-2"><table class="ve-w-100 ve-stats ve-stats--book ve-stats--bkmv"><tbody>`);
 			stack.push(Renderer.monster.getCompactRenderedString(mon));
 			stack.push(`</tbody></table></div>`);
 		};
@@ -511,22 +512,22 @@ class BestiaryPage extends ListPageMultiSource {
 			],
 		});
 
-		const listItem = new ListItem(
-			mI,
-			eleLi,
-			mon.name,
-			{
+		const listItem = new ListItem({
+			id: mI,
+			ele: eleLi,
+			name: mon.name,
+			values: {
 				source,
 				type,
 				cr,
 				...ListItem.getCommonValues(mon),
 			},
-			{
+			data: {
 				hash,
 				page: mon.page,
 				isExcluded,
 			},
-		);
+		});
 
 		return listItem;
 	}
@@ -687,7 +688,7 @@ class BestiaryPage extends ListPageMultiSource {
 	}
 
 	_handleBestiaryLiClick (evt, listItem) {
-		if (this._encounterBuilder.isActive()) Renderer.hover.doPopoutCurPage(evt, this._dataList[listItem.ix]);
+		if (this._encounterBuilder.isActive()) Renderer.hover.doPopoutCurPage(evt, this._dataList[listItem.getId()]);
 		else this._list.doSelect(listItem, evt);
 	}
 
@@ -826,7 +827,7 @@ class BestiaryPage extends ListPageMultiSource {
 	) {
 		Renderer.get().setFirstSection(true);
 
-		const btnScaleCr = !ScaleCreature.isCrInScaleRange(mon) ? null : veT`<button id="btn-scale-cr" title="Scale Creature By CR (Highly Experimental)" class="mon__btn-scale-cr ve-btn ve-btn-xs ve-btn-default ve-popwindow__hidden no-print ve-lst-is-exporting-image__hidden"><span class="glyphicon glyphicon-signal"></span></button>`
+		const btnScaleCr = !ScaleCreature.isCrInScaleRange(mon) ? null : veT`<button id="btn-scale-cr" title="Scale Creature By CR (Highly Experimental; based on the &quot;Monster Statistics by Challenge Rating&quot; table in the Dungeon Master's Guide (2014), page 274)" class="mon__btn-scale-cr ve-btn ve-btn-xs ve-btn-default ve-popwindow__hidden ve-print__hidden ve-lst-is-exporting-image__hidden"><span class="glyphicon glyphicon-signal"></span></button>`
 			.vee.onn("click", (evt) => {
 				evt.stopPropagation();
 				const win = (evt.view || {}).window;
@@ -843,14 +844,14 @@ class BestiaryPage extends ListPageMultiSource {
 				});
 			});
 
-		const btnResetScaleCr = !ScaleCreature.isCrInScaleRange(mon) ? null : veT`<button id="btn-reset-cr" title="Reset CR Scaling" class="mon__btn-reset-cr ve-btn ve-btn-xs ve-btn-default ve-popwindow__hidden no-print ve-lst-is-exporting-image__hidden ve-ml-2"><span class="glyphicon glyphicon-refresh"></span></button>`
+		const btnResetScaleCr = !ScaleCreature.isCrInScaleRange(mon) ? null : veT`<button id="btn-reset-cr" title="Reset CR Scaling" class="mon__btn-reset-cr ve-btn ve-btn-xs ve-btn-default ve-popwindow__hidden ve-print__hidden ve-lst-is-exporting-image__hidden ve-ml-2"><span class="glyphicon glyphicon-refresh"></span></button>`
 			.vee.onn("click", () => Hist.setSubhash(VeCt.HASH_SCALED, null))
 			.vee.toggle(isScaledCr);
 
 		const selSummonSpellLevel = Renderer.monster.getSelSummonSpellLevel(mon);
 		if (selSummonSpellLevel) {
 			selSummonSpellLevel
-				.vee.onChange(evt => {
+				.vee.onn("change", evt => {
 					evt.stopPropagation();
 					const scaleTo = Number(selSummonSpellLevel.vee.val());
 					if (!~scaleTo) Hist.setSubhash(VeCt.HASH_SCALED_SPELL_SUMMON, null);
@@ -862,7 +863,7 @@ class BestiaryPage extends ListPageMultiSource {
 		const selSummonClassLevel = Renderer.monster.getSelSummonClassLevel(mon);
 		if (selSummonClassLevel) {
 			selSummonClassLevel
-				.vee.onChange(evt => {
+				.vee.onn("change", evt => {
 					evt.stopPropagation();
 					const scaleTo = Number(selSummonClassLevel.vee.val());
 					if (!~scaleTo) Hist.setSubhash(VeCt.HASH_SCALED_CLASS_SUMMON, null);
@@ -979,7 +980,7 @@ class BestiaryPage extends ListPageMultiSource {
 	_getEncounterBuilderCreatures () {
 		// Note that this intentionally provides only creatures visible in search results
 		return this._list.visibleItems
-			.map(li => this._dataList[li.ix]);
+			.map(li => this._dataList[li.getId()]);
 	}
 }
 

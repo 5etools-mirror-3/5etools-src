@@ -54,6 +54,8 @@ export const getFnRootPropListSort = (prop, {isRequired = false} = {}) => {
 		case "optionalfeature":
 		case "foundryOptionalfeature":
 		case "psionic":
+		case "foundryPsionicDisciplineFocus":
+		case "foundryPsionicDisciplineActive":
 		case "reward":
 		case "foundryReward":
 		case "rewardFluff":
@@ -80,6 +82,7 @@ export const getFnRootPropListSort = (prop, {isRequired = false} = {}) => {
 		case "encounterShape":
 		case "crochetPattern":
 		case "crochetPatternFluff":
+		case "renderdemo":
 			return SortUtil.ascSortGenericEntity.bind(SortUtil);
 		case "deity":
 			return SortUtil.ascSortDeity.bind(SortUtil);
@@ -112,10 +115,16 @@ export const getFnRootPropListSort = (prop, {isRequired = false} = {}) => {
 			|| SortUtil.ascSortLower(a.raceSource || "", b.raceSource || "")
 			|| SortUtil.ascSortLower(a.name || "", b.name || "")
 			|| SortUtil.ascSortLower(a.source || "", b.source || "");
-		case "backgroundFeature": return (a, b) => SortUtil.ascSortLower(a.backgroundName, b.backgroundName)
+		case "backgroundFeature":
+		case "foundryBackgroundFeature": return (a, b) => SortUtil.ascSortLower(a.backgroundName, b.backgroundName)
 			|| SortUtil.ascSortLower(a.backgroundSource, b.backgroundSource)
 			|| SortUtil.ascSortGenericEntity(a, b);
-		case "foundryMonsterAction": return (a, b) => SortUtil.ascSortLower(a.monsterName, b.monsterName)
+		case "foundryMonsterAction":
+		case "foundryMonsterBonus":
+		case "foundryMonsterReaction":
+		case "foundryMonsterTrait":
+		case "foundryMonsterLegendary":
+		case "foundryMonsterMythic": return (a, b) => SortUtil.ascSortLower(a.monsterName, b.monsterName)
 			|| SortUtil.ascSortLower(a.monsterSource, b.monsterSource)
 			|| SortUtil.ascSortGenericEntity(a, b);
 		case "encounter":

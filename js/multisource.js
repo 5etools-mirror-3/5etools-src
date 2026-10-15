@@ -29,7 +29,7 @@ class ListPageMultiSource extends ListPage {
 
 	handleFilterChange () {
 		const f = this._pageFilter.filterBox.getValues();
-		this._list.filter(li => this._pageFilter.toDisplay(f, this._dataList[li.ix]));
+		this._list.filter(li => this._pageFilter.toDisplay(f, this._dataList[li.getId()]));
 		this._onFilterChangeMulti(this._dataList, f);
 	}
 

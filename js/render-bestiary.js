@@ -56,7 +56,7 @@ class _RenderBestiaryImplBase {
 	}
 
 	_getBtnPronounceHtml ({mon}) {
-		return `<button class="ve-btn ve-btn-xs ve-btn-default ve-stats__btn-name-pronounce ve-lst-is-exporting-image__hidden no-print ve-ml-2 ve-mb-2 ve-self-flex-end">
+		return `<button class="ve-btn ve-btn-xs ve-btn-default ve-stats__btn-name-pronounce ve-lst-is-exporting-image__hidden ve-print__hidden ve-ml-2 ve-mb-2 ve-self-flex-end">
 			<span class="glyphicon glyphicon-volume-up ve-stats__icn-pronounce-name"></span>
 			<audio class="ve-hidden" preload="none" data-name="aud-pronounce">
 			   <source src="${Renderer.utils.getEntryMediaUrl(mon, "soundClip", "audio")}" type="audio/mpeg">

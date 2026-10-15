@@ -492,10 +492,13 @@ class PageFilterBestiary extends PageFilterBase {
 	static _getEquipmentList (mon) {
 		if (mon.gear) {
 			return mon.gear
-				.map(ref => (ref.item || ref).toLowerCase());
+				.map(ref => DataUtil.proxy.unpackUid("item", ref.item || ref, "item", {isLower: true}).name);
 		}
 
-		const itemSet = new Set(mon.attachedItems || []);
+		const itemSet = new Set(
+			(mon.attachedItems || [])
+				.map(ref => DataUtil.proxy.unpackUid("item", ref.item || ref, "item", {isLower: true}).name),
+		);
 
 		const walker = this._getInitWalker();
 
@@ -761,24 +764,24 @@ class ModalFilterBestiary extends ModalFilterBase {
 
 		const btnShowHidePreview = eleRow.firstElementChild.children[1].firstElementChild;
 
-		const listItem = new ListItem(
-			itI,
-			eleRow,
-			mon.name,
-			{
+		const listItem = new ListItem({
+			id: itI,
+			ele: eleRow,
+			name: mon.name,
+			values: {
 				source,
 				sourceJson: mon.source,
 				...ListItem.getCommonValues(mon),
 				type,
 				cr,
 			},
-			{
+			data: {
 				hash,
 				page: mon.page,
 				cbSel: eleRow.firstElementChild.firstElementChild.firstElementChild,
 				btnShowHidePreview,
 			},
-		);
+		});
 
 		this._previewButtonHandler.bindPreviewButton({entity: mon, listItem, btnShowHidePreview});
 

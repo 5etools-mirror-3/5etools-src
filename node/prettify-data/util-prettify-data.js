@@ -27,7 +27,7 @@ export const getPrettified = (json, {isFoundryPrefixProps = false, unhandledKeys
 	return {json, isModified: true};
 };
 
-export const prettifyFile = (file, {unhandledKeys = null, isNoSortRootArrays = false} = {}) => {
+export const prettifyFile = (file, {unhandledKeys = null, isNoSortRootArrays = false, isDryRun = false} = {}) => {
 	const isLogUnhandledProps = unhandledKeys == null;
 	unhandledKeys ||= {};
 
@@ -42,7 +42,7 @@ export const prettifyFile = (file, {unhandledKeys = null, isNoSortRootArrays = f
 			isNoSortRootArrays,
 		},
 	);
-	if (isModified) fs.writeFileSync(file, CleanUtil.getCleanJson(jsonPrettified), "utf-8");
+	if (isModified && !isDryRun) fs.writeFileSync(file, CleanUtil.getCleanJson(jsonPrettified), "utf-8");
 
 	if (isLogUnhandledProps) _logUnhandledProps({unhandledKeys});
 };
