@@ -1129,6 +1129,7 @@ class ListPage {
 		this._lastRender = {};
 		this._lastListFilterValues = null;
 
+		this._wrpContainer = null;
 		this._pgContent = null;
 		this._wrpTabs = null;
 
@@ -1229,6 +1230,7 @@ class ListPage {
 	_pOnLoad_findPageElements () {
 		this._pgContent = veE(document.getElementById("pagecontent"));
 		this._wrpTabs = veE(document.getElementById("stat-tabs"));
+		this._wrpContainer = veE(document.getElementById("wrp-pagecontent"));
 	}
 
 	async _pOnLoad_pInitSettingsManager () {
@@ -2145,6 +2147,7 @@ class ListPage {
 
 	async _pDoLoadHash ({id, lockToken}) {
 		this._pgContent.vee.empty();
+		this._wrpContainer.scrollTop = 0;
 
 		this._renderer.setFirstSection(true);
 		const ent = this._dataList[id];

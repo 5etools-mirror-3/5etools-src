@@ -757,6 +757,7 @@ class BestiaryPage extends ListPageMultiSource {
 		this._wrpBtnProf = this._wrpBtnProf || veE(document.getElementById("wrp-profbonusdice"));
 
 		this._pgContent.vee.empty();
+		this._wrpContainer.scrollTop = 0;
 
 		if (this._btnProf != null) {
 			this._wrpBtnProf.vee.appends(this._btnProf);
