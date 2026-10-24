@@ -100,22 +100,34 @@ export class UtilsBlocklist {
 	static _mutExcludeSubEntities ({ent, propEnt}) {
 		switch (propEnt) {
 			case "class": return this._mutExcludeSubEntities_class({ent});
+			case "subclass": return this._mutExcludeSubEntities_subclass({ent});
 		}
+	}
+
+	static _getBlocklistFilteredFeatureRefs ({refs, prop, fnUnpackUid}) {
+		return refs
+			.filter(ref => {
+				const uid = typeof ref === "string" ? ref : ref[prop];
+
+				if (ref.hash == null && uid == null) return true;
+
+				const unpacked = ref.hash == null ? fnUnpackUid(uid) : ref;
+				return !ExcludeUtil.isExcluded(
+					ref.hash ?? UrlUtil.URL_TO_HASH_BUILDER[prop](unpacked),
+					prop,
+					unpacked.source,
+					{isNoCount: true},
+				);
+			});
 	}
 
 	static _mutExcludeSubEntities_class ({ent}) {
 		if (ent.classFeatures?.length) {
-			ent.classFeatures = ent.classFeatures
-				.filter(cf => {
-					if (cf.hash == null) return true;
-
-					return !ExcludeUtil.isExcluded(
-						cf.hash,
-						"classFeature",
-						cf.source,
-						{isNoCount: true},
-					);
-				});
+			ent.classFeatures = this._getBlocklistFilteredFeatureRefs({
+				refs: ent.classFeatures,
+				prop: "classFeature",
+				fnUnpackUid: DataUtil.class.unpackUidClassFeature,
+			});
 		}
 
 		if (ent.subclasses?.length) {
@@ -132,21 +144,17 @@ export class UtilsBlocklist {
 				});
 
 			ent.subclasses
-				.forEach(sc => {
-					if (!sc.subclassFeatures) return;
-
-					sc.subclassFeatures = sc.subclassFeatures
-						.filter(scf => {
-							if (scf.hash == null) return true;
-
-							return !ExcludeUtil.isExcluded(
-								scf.hash,
-								"subclassFeature",
-								scf.source,
-								{isNoCount: true},
-							);
-						});
-				});
+				.forEach(sc => this._mutExcludeSubEntities_subclass({ent: sc}));
 		}
+	}
+
+	static _mutExcludeSubEntities_subclass ({ent}) {
+		if (!ent.subclassFeatures?.length) return;
+
+		ent.subclassFeatures = this._getBlocklistFilteredFeatureRefs({
+			refs: ent.subclassFeatures,
+			prop: "subclassFeature",
+			fnUnpackUid: DataUtil.class.unpackUidSubclassFeature,
+		});
 	}
 }

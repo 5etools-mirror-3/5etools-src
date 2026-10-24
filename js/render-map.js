@@ -35,7 +35,7 @@ export class RenderMap {
 		const hoverWindow = Renderer.hover.getShowWindow(
 			wrp,
 			// Open in the top-right corner of the screen
-			Renderer.hover.getWindowPositionExact(document.body.clientWidth, 7, evt),
+			Renderer.hover.getWindowPositionExact(document.body.clientWidth, 7, {evt}),
 			{
 				title: `Dynamic Map Viewer`,
 				isPermanent: true,
@@ -387,7 +387,7 @@ export class RenderMap {
 					Renderer.hover.getWindowPositionExactVisibleBottom(
 						EventUtil.getClientX(evt),
 						EventUtil.getClientY(evt),
-						evt,
+						{evt},
 					),
 					{
 						title: area.entry.name || "",

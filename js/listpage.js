@@ -15,7 +15,7 @@ class _UtilListPage {
 				Renderer.hover.getWindowPositionExact(
 					elePos.x + posOffset,
 					elePos.y + posOffset,
-					evt,
+					{evt},
 				),
 				{
 					title: entity.name,
@@ -1129,6 +1129,7 @@ class ListPage {
 		this._lastRender = {};
 		this._lastListFilterValues = null;
 
+		this._wrpContainer = null;
 		this._pgContent = null;
 		this._wrpTabs = null;
 
@@ -1229,6 +1230,7 @@ class ListPage {
 	_pOnLoad_findPageElements () {
 		this._pgContent = veE(document.getElementById("pagecontent"));
 		this._wrpTabs = veE(document.getElementById("stat-tabs"));
+		this._wrpContainer = veE(document.getElementById("wrp-pagecontent"));
 	}
 
 	async _pOnLoad_pInitSettingsManager () {
@@ -1343,6 +1345,8 @@ class ListPage {
 
 	async _pOnLoad_pPreDataAdd () { /* Implement as required */ }
 
+	/* -------------------------------------------- */
+
 	static _MAX_DATA_CHUNK_SIZE = 4096;
 
 	_addData (data) {
@@ -1380,6 +1384,8 @@ class ListPage {
 		if (!Hist.initialLoad) this.handleFilterChange();
 	}
 
+	/* -------------------------------------------- */
+
 	/* Implement as required */
 	get _bindOtherButtonsOptions () { return null; }
 
@@ -1413,9 +1419,13 @@ class ListPage {
 		};
 	}
 
+	/* -------------------------------------------- */
+
 	_addListItem (listItem) {
 		this._list.addItem(listItem);
 	}
+
+	/* -------------------------------------------- */
 
 	_doBindPreviewAllButton (btn) {
 		btn
@@ -1482,7 +1492,7 @@ class ListPage {
 		dispExpandedInner.innerHTML = "";
 	}
 
-	// ==================
+	/* -------------------------------------------- */
 
 	static _checkShowAllExcluded (list, elePagecontent) {
 		if (!ExcludeUtil.isAllContentExcluded(list)) return;
@@ -1491,6 +1501,8 @@ class ListPage {
 			<tr><td colspan="6">${ExcludeUtil.getAllContentBlocklistedHtml()}</td></tr>
 			<tr><th class="ve-tbl-border" colspan="6"></th></tr>`);
 	}
+
+	/* -------------------------------------------- */
 
 	_renderListShowHide ({wrpContent, wrpList, btnReset}) {
 		const btnHideSearch = veT`<button class="ve-btn ve-btn-default" title="Hide Search Bar and Entry List">Hide</button>`;
@@ -1528,6 +1540,8 @@ class ListPage {
 
 		btnReset.before(btnRoll);
 	}
+
+	/* -------------------------------------------- */
 
 	_bindLinkExportButton ({btn} = {}) {
 		btn ||= this._getOrTabRightButton(`link-export`, `glyphicon-magnet`);
@@ -1601,6 +1615,8 @@ class ListPage {
 	_pHandleClick_doDownloadMarkdown () {
 		DataUtil.userDownloadText(`${this._lastRender.entity._displayName || this._lastRender.entity.name}.md`, this._getLastRenderedMarkdown());
 	}
+
+	/* -------------------------------------------- */
 
 	setListItemHash (hash) {
 		window.location.hash = hash;
@@ -1786,12 +1802,20 @@ class ListPage {
 		}
 	}
 
+	/* -------------------------------------------- */
+
 	_updateSelected () {
 		const curSelectedItem = Hist.getSelectedListItem();
 		this.primaryLists.forEach(l => l.updateSelected(curSelectedItem));
 
 		if (this._sublistManager) this._sublistManager.doUpdateSelected({hash: curSelectedItem.data.hash});
 	}
+
+	_doScrollStatsTop () {
+		this._wrpContainer.scrollTop = 0;
+	}
+
+	/* -------------------------------------------- */
 
 	_openContextMenu (evt, list, listItem) {
 		const listsWithSelections = this.primaryLists.map(l => ({l, selected: l.getSelected()}));
@@ -2146,6 +2170,8 @@ class ListPage {
 	async _pDoLoadHash ({id, lockToken}) {
 		this._pgContent.vee.empty();
 
+		this._doScrollStatsTop();
+
 		this._renderer.setFirstSection(true);
 		const ent = this._dataList[id];
 
@@ -2451,7 +2477,7 @@ class ListPage {
 			Renderer.hover.getWindowPositionExact(
 				posBtn.left - width + posBtn.width - this.constructor._OFFSET_WINDOW_EXPORT_AS_IMAGE,
 				posBtn.top + posBtn.height + this.constructor._OFFSET_WINDOW_EXPORT_AS_IMAGE,
-				evt,
+				{evt},
 			),
 			{
 				title: `Image Export - ${ent.name}`,

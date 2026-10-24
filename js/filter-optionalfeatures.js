@@ -111,6 +111,18 @@ class PageFilterOptionalFeatures extends PageFilterBase {
 		return out;
 	}
 
+	static _FILTER_SPELL_TERM_ORDER = [
+		"spell attack",
+		"class",
+		"level",
+	];
+
+	static _mutateForFilters_getSortedSpellFilterTerms (a, b) {
+		a = a.split("=")[0].toLowerCase();
+		b = b.split("=")[0].toLowerCase();
+		return SortUtil.ascSort(this._FILTER_SPELL_TERM_ORDER.indexOf(a), this._FILTER_SPELL_TERM_ORDER.indexOf(b));
+	}
+
 	static mutateForFilters (ent) {
 		this._mutateForFilters_commonSources(ent);
 
@@ -132,19 +144,26 @@ class PageFilterOptionalFeatures extends PageFilterBase {
 							// TODO(Future) improve if required -- refactor this + `PageFilterSpells` display fns to e.g. render
 							const ptChoose = strOrObj.choose
 								.split("|")
-								.sort(SortUtil.ascSortLower)
+								.sort(this._mutateForFilters_getSortedSpellFilterTerms.bind(this))
 								.map(pt => {
 									const [filter, values] = pt.split("=");
 									switch (filter.toLowerCase()) {
 										case "level": return values.split(";").map(v => Parser.spLevelToFullLevelText(Number(v), {isPluralCantrips: false})).join("/");
 										case "class": return values.split(";").map(v => v.toTitleCase()).join("/");
+										case "spell attack": {
+											const spl = values.split(";");
+											return spl.length === Object.keys(Parser.SPELL_ATTACK_TYPE_TO_FULL).length
+												? `Spell Attack`
+												: `${spl.map(v => Parser.spAttackTypeToFull(v.toUpperCase())).join("/")} Spell Attack`;
+										}
 										default: return pt;
 									}
 								})
 								.join(" ");
 							return `Any ${ptChoose}`;
 						});
-				});
+				})
+				.flat();
 			ent._fPrereqLevel = ent.prerequisite.filter(it => it.level).map(PageFilterOptionalFeatures.getLevelFilterItem.bind(PageFilterOptionalFeatures));
 		}
 

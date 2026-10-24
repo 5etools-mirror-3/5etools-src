@@ -5,6 +5,7 @@ import {LegendaryGroupBuilder} from "./makebrew/makebrew-legendarygroup.js";
 import {TagCondition, TaggerUtils} from "./converter/converterutils-tags.js";
 import {SITE_STYLE__CLASSIC} from "./consts.js";
 import {SourceUiUtil} from "./utils-ui/utils-ui-sourcebuilder.js";
+import {PropOrder} from "./utils-proporder.js";
 
 class PageUi extends ProxyBase {
 	static _STORAGE_STATE = "brewbuilderState";
@@ -176,7 +177,7 @@ class PageUi extends ProxyBase {
 				await this._pSetActiveBuilder({nxtActiveBuilder: val});
 			});
 
-		veT`<div class="ve-flex-v-center ve-mr-2 ve-mobile-md__mr-0 ve-mobile-md__mb-2">
+		veT`<div class="ve-flex-v-center ve-mobile-md__mr-0 ve-mobile-md__mb-2">
 			<div class="ve-mr-2 ve-bold">Mode</div>
 			${this._selBuilderMode}
 		</div>`
@@ -301,8 +302,10 @@ class PageUi extends ProxyBase {
 	}
 
 	_initHeader_download ({wrpSettingsTop}) {
-		const btnDownloadJson = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">JSON</button>`
+		const btnDownloadJson = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="Download all entities for the selected Source and the active Mode.">JSON (Mode)</button>`
 			.vee.onn("click", () => this._getActiveBuilderInstance().pDoHandleClickDownloadJson());
+		const btnDownloadJsonAll = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="Download all entities for the selected Source.">JSON (All)</button>`
+			.vee.onn("click", () => this._pDoHandleClickDownloadJsonAll());
 
 		const btnMarkdownDownload = veT`<button class="ve-btn ve-btn-default ve-btn-xs">Markdown</button>`
 			.vee.onn("click", async () => this._getActiveBuilderInstance().pDoHandleClickDownloadMarkdown());
@@ -312,10 +315,49 @@ class PageUi extends ProxyBase {
 
 		veT`<div class="ve-flex-v-center ve-ml-auto ve-mobile-md__ml-0">
 				<div class="ve-mr-2">Download</div>
-				${btnDownloadJson}
+				<div class="ve-flex-v-center ve-btn-group ve-mr-2">${btnDownloadJson}${btnDownloadJsonAll}</div>
 				<div class="ve-flex-v-center ve-btn-group">${btnMarkdownDownload}${btnMarkdownSettings}</div>
 			</div>`
 			.vee.appendTo(wrpSettingsTop);
+	}
+
+	async _pDoHandleClickDownloadJsonAll () {
+		const out = MiscUtil.copyFast((await BrewUtil2.pGetOrCreateEditableBrewDoc()).body);
+
+		const template = this._getJsonOutputTemplate();
+		Object.entries(template)
+			.forEach(([k, v]) => {
+				switch (k) {
+					case "_meta": Object.assign(out._meta ||= {}, v); break;
+					default: throw new Error(`Unimplemented!`);
+				}
+			});
+
+		Object.entries(out)
+			.forEach(([prop, arr]) => {
+				if (!(arr instanceof Array)) return;
+
+				const ents = arr.filter(ent => ent?.source === this._state.activeSource)
+					.sort((a, b) => SortUtil.ascSort(a.name, b.name));
+
+				if (!ents.length) return delete out[prop];
+
+				out[prop] = ents
+					.map(ent => {
+						const entClean = DataUtil.cleanJson(ent);
+						return PropOrder.hasOrder(prop)
+							? PropOrder.getOrdered(entClean, prop)
+							: entClean;
+					});
+			});
+
+		DataUtil.userDownload(
+			DataUtil.getCleanFilename(BrewUtil2.sourceJsonToFull(this._state.activeSource)),
+			out,
+			{
+				isSkipAdditionalMetadata: true,
+			},
+		);
 	}
 
 	_initLhs () {

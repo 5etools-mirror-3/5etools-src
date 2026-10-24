@@ -1,0 +1,2256 @@
+{
+	"adventureData": [
+		{
+			"id": "SoS",
+			"source": "SoS",
+			"data": [
+				{
+					"type": "section",
+					"name": "Introduction: Shadows of Sithicus",
+					"id": "000",
+					"entries": [
+						{
+							"type": "image",
+							"href": {
+								"type": "internal",
+								"path": "adventure/SoS/000-00-001.party-faces-mist.webp"
+							},
+							"width": 1700,
+							"height": 1100,
+							"credit": "Pauline Voss"
+						},
+						"Welcome to {@i Shadows of Sithicus}, a play series for the Season of Horror and part of the D&D Encounters program.",
+						"D&D Encounters is a seasonal organized play mini-campaign, where people from around the world participate in adventures each week over a period of time. While many participate in game stores, you can be a part of the excitement and play anywhere or play with your own group at your own pace.",
+						"The adventure begins at level 3, with characters advancing to levels 4 and 5 before the season ends. For more information, see the sidebar \"{@area Characters for This Season|005|x}\" in {@area Grave Awakenings|003|x}.",
+						{
+							"type": "section",
+							"name": "Season of Horror Schedule",
+							"id": "001",
+							"entries": [
+								"This series is broken up into two main beats\u2013a celebration event, which is designed for multi-table play; and weekly sessions, designed for bite-sized play that is easy to fit into a variety of schedules.",
+								"If you want to play along with the global community, Season of Horror D&D Encounters play follows this schedule:",
+								{
+									"type": "list",
+									"style": "list-no-bullets",
+									"items": [
+										"June 5\u201314, 2026: D&D Encounters Celebration Event; {@area Grave Awakenings|003|x} kicks off the season in a big way.",
+										"June 10\u2013July 12, 2026: D&D Encounters Weekly Play; try out a new mini-adventure each week over four successive weeks."
+									]
+								},
+								"Some regions may have different play dates depending on their market. Check with your local game store for more details."
+							]
+						},
+						{
+							"type": "section",
+							"name": "Dungeon Masters Actual Play Series",
+							"id": "002",
+							"entries": [
+								"In addition to participating in this adventure series, we have an actual play series available online that ties into the D&D Encounters season! In particular, the first campaign \"Ashes of the Black Rose\" is great to watch before playing but not required to enjoy these adventures. Check out the {@link Dungeon Masters|https://www.dungeonsanddragons.com/dungeon-masters-ravenloft/}!"
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Grave Awakenings",
+					"id": "003",
+					"entries": [
+						"{@i An adventure for level 3 characters set in the domain of Sithicus}",
+						"{@i Grave Awakenings} is a Dungeons & Dragons Encounters Celebration adventure that serves as an event play experience at the beginning of the Season of Horror. It is designed to fill a three-hour session.",
+						{
+							"type": "section",
+							"name": "D&D Celebration Event Overview",
+							"id": "004",
+							"entries": [
+								"This adventure is part of a multigroup event meant to be played by up to four groups at the same time, with five players and one DM per group. The event can be played by fewer than four groups, and each group can have more or fewer than five players, but adjustments might need to be made to the adventure.",
+								"One person takes the role of the Event Coordinator, who keeps track of time, manages intertable interactions, and records each table's successes and failures, noting how they change elements of the event. {@area Appendix A|043|x} of this adventure is a guide for the Event Coordinator. If only one table is playing, or if there is no Event Coordinator, a DM can use Appendix A to manage the event's interactive elements.",
+								{
+									"type": "inset",
+									"name": "Characters for This Season",
+									"id": "005",
+									"entries": [
+										"For the Celebration Event, players should create a level 3 character using the {@book Player's Handbook|XPHB} and {@book Ravenloft: The Horrors Within|RHW}. The following additional guidelines apply to these characters:",
+										{
+											"type": "list",
+											"items": [
+												"Ability scores are generated using either the Standard Array or Point Cost options detailed in {@book chapter 2|XPHB|2|Generate Your Scores} of the {@i Player's Handbook}.",
+												"Each time a character gains a level after level 1, their Hit Point maximum increases according to the {@table Adjust Hit Points and Hit Point Dice; Fixed Hit Points by Class|XPHB|Fixed Hit Points by Class table} in {@book chapter 2|XPHB|2|Chapter 2: Creating a Character} of the {@i Player's Handbook}.",
+												"Characters begin with their normal starting equipment plus one Common magic item of their choice from {@book chapter 7|XDMG|7} of the {@book Dungeon Master's Guide|XDMG}. Alternatively, they can select a {@item Potion of Healing|XDMG} from the {@i Player's Handbook}."
+											]
+										},
+										"After completing {@i Grave Awakenings}, the characters advance to level 4. After completing the Week 2 encounter {@adventure Death in Darkon|SoS|3} the characters advance to level 5. Characters are granted a Long Rest between each week's session."
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Key Plot Points",
+							"id": "006",
+							"entries": [
+								"The following information is key to the adventure's story:",
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"items": [
+										{
+											"type": "item",
+											"name": "Inza in Sithicus",
+											"entry": "The characters are pulled into the Mists from their home worlds, emerging in the ruined city of Har-Thelen in the Dread Domain Sithicus, home of Lord Soth. The characters are approached by a witch named Inza, who tells them that something has awakened the wrath of Lord Soth, making the spirits in this realm deadly."
+										},
+										{
+											"type": "item",
+											"name": "Danger in the Cemetery",
+											"entry": "The center of the unnatural activity is a large cemetery at the edge of town. Whatever awakened the spirits is lurking there. The characters arrive at the cemetery and are immediately attacked by hostile spirits. After dealing with the spirits, the characters learn that innocent people have been grabbed and pulled into graves, requiring rescue."
+										},
+										{
+											"type": "item",
+											"name": "Grave Encounters",
+											"entry": "As the characters rescue people from the graves, the six lanterns that illuminate this section of the cemetery are extinguished. Characters must relight the lanterns while fending off {@creature Wereraven|RHW|wereravens}. After the characters relight the lamps and rescue the remaining innocents, corporeal undead enemies attack."
+										},
+										{
+											"type": "item",
+											"name": "Final Rest",
+											"entry": "A witness reveals that they saw people get dragged into the mausoleum by dark shadows. The door is magically sealed, but the magic can be overcome through teamwork. When the door is opened, a massive {@creature zombie clot|RHW} is revealed and attacks. At the end of the adventure, innocent lives are saved, but four shadowy forms fly off into the Mists, promising further adventure!"
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Preparation",
+							"id": "007",
+							"entries": [
+								"Before running the adventure, prepare as follows:",
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"items": [
+										{
+											"type": "item",
+											"name": "Step 1",
+											"entry": "Read the {@area Adventure Background|008|x} section."
+										},
+										{
+											"type": "item",
+											"name": "Step 2",
+											"entry": "Review the {@area Beginning the Adventure|009|x} section and all the encounters."
+										},
+										{
+											"type": "item",
+											"name": "Step 3",
+											"entry": "Review the monster stat blocks listed below. Monsters marked with * appear in {@book Ravenloft: The Horrors Within|RHW}."
+										}
+									]
+								},
+								{
+									"type": "list",
+									"style": "list-no-bullets",
+									"columns": 2,
+									"items": [
+										"{@creature Boneless|RHW}*",
+										"{@creature Ghoul|XMM}",
+										"{@creature Shadow|XMM}",
+										"{@creature Swarm of Zombie Limbs|RHW}*",
+										"{@creature Wight|XMM}",
+										"{@creature Ghast|XMM}",
+										"{@creature Ogre Zombie|XMM}",
+										"{@creature Specter|XMM}",
+										"{@creature Wereraven|RHW}*",
+										"{@creature Zombie Clot|RHW}*"
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Adventure Background",
+							"id": "008",
+							"entries": [
+								"{@book Lord Soth|RHW|2|Lord Soth} is the Dark Lord of the Dread Domain of {@book Sithicus|RHW|2|Sithicus}. He broods in his castle, tormented by his past and haunted by spirits who remind him of his failures. Recently, Soth's rage has been awakened, and Sithicus deteriorated as a result. While his rage has been quelled, the aftereffects on the domain leave dangerous forces about that could still put Sithicus's future in jeopardy.",
+								"The witch Inza Kulchevich recognizes Sithicus's potential fate. Other adventurers have taken the journey to stand up against Soth's ire; but they recently left. Now, she needs different adventurers to keep Sithicus from suffering from the aftershocks of Soth's actions.",
+								"What Inza doesn't know is that the changes to Soth and Sithicus are part of a larger problem. Powerful forces plan to use Soth's rage and its consequences to infect other Dread Domains with instability, threatening anyone dwelling therein."
+							]
+						},
+						{
+							"type": "section",
+							"name": "Beginning the Adventure",
+							"id": "009",
+							"entries": [
+								"To begin the adventure, the Event Coordinator (or DM, if applicable) reads the following aloud to the entire event:",
+								{
+									"type": "insetReadaloud",
+									"id": "00a",
+									"entries": [
+										"You travel along a familiar road on a sunny day\u2014then come the shadows. Clouds blot out the sun, then a haze closes around you. In just a few heartbeats, you cannot see anything within the thick mist. After another moment, or possibly longer, the mists clear. You are now in another place entirely, standing amid other bewildered figures.",
+										"A gloomy, ruined city surrounds you. Abandoned, crumbling buildings loom over smaller structures and tents. From the shadows of an old cathedral strides a tall woman with raven hair, bright green eyes, and gray robes.",
+										"\"They say that when the need is greatest, heroes always appear. And here you are. I am Inza, protector of the meek and innocent here in Har-Thelen, and we have need of heroes. The dark master of this realm, Lord Soth, raged and the realm nearly was destroyed in a cataclysmic upheaval. While now quelled, the effects of his actions linger, and that which has remained dormant has awoken. I need you to tidy things up here and ensure the shadows once again return to rest.\""
+									]
+								},
+								"Inza (Medium {@creature Death Cultist|XMM}) is worried about the aftereffects of the violent upheaval in Sithicus, and she speaks truthfully about the dangers plaguing the realm.",
+								"The Event Coordinator or DM can use the following points to guide the conversation between Inza and the characters:",
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"items": [
+										{
+											"type": "item",
+											"name": "Sithicus and Soth's Rage",
+											"entry": "This land, Sithicus, is ruled by a dread figure called Lord Soth. Soth's rage, recently unchecked, led to a near cataclysmic breakdown of the domain. This has disturbed ancient spirits, to the detriment of the folk living here."
+										},
+										{
+											"type": "item",
+											"name": "Shadow Spirits",
+											"entry": "The realm has always been rife with shadowy spirits who wander the land. These spirits are normally unsettling but not dangerous. Recently, however, the shadows in the city of Har-Thelen have become aggressive and volatile."
+										},
+										{
+											"type": "item",
+											"name": "Har-Thelen Cemetery",
+											"entry": "The center of this spirit activity is the Har-Thelen Cemetery. People say that innocent civilians are trapped in the cemetery, and someone needs to rescue them."
+										},
+										{
+											"type": "item",
+											"name": "Widespread Danger",
+											"entry": "Each group of characters should go to a different quadrant of the cemetery to investigate the happenings there and rescue anyone in danger."
+										}
+									]
+								},
+								"At this point, each table DM takes control of their group and continues the adventure. Each group goes to a different section of the cemetery, but the map for each group is the same.",
+								"When you get the go-ahead from the Event Coordinator, start {@area Encounter 1: From the Shadows|013|x}."
+							]
+						},
+						{
+							"type": "section",
+							"name": "The Har-Thelen Cemetery",
+							"id": "00b",
+							"entries": [
+								"The cemetery is the hotspot for the shadow spirits, one of Sithicus's many threats. With the troubles involving Lord Soth affecting these spirits, the cemetery has become deadly.",
+								{
+									"type": "gallery",
+									"images": [
+										{
+											"type": "image",
+											"id": "0a8",
+											"href": {
+												"type": "internal",
+												"path": "adventure/SoS/001-map-01-001.grave-awakenings-dm.webp"
+											},
+											"hrefThumbnail": {
+												"type": "internal",
+												"path": "adventure/SoS/thumbnail/001-map-01-001.grave-awakenings-dm.webp"
+											},
+											"width": 4096,
+											"height": 3012,
+											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 271,
+												"offsetX": 31,
+												"offsetY": 31,
+												"scale": 2
+											},
+											"title": "Map: Grave Awakenings",
+											"credit": "Jared Blando",
+											"mapRegions": [
+												{
+													"area": "01b",
+													"points": [
+														[
+															2141,
+															1064
+														],
+														[
+															2141,
+															1252
+														],
+														[
+															2390,
+															1252
+														],
+														[
+															2390,
+															1064
+														]
+													]
+												},
+												{
+													"area": "01b",
+													"points": [
+														[
+															3669,
+															1389
+														],
+														[
+															3669,
+															1631
+														],
+														[
+															3835,
+															1631
+														],
+														[
+															3835,
+															1389
+														]
+													]
+												},
+												{
+													"area": "01b",
+													"points": [
+														[
+															1356,
+															26
+														],
+														[
+															1356,
+															287
+														],
+														[
+															1525,
+															287
+														],
+														[
+															1525,
+															26
+														]
+													]
+												},
+												{
+													"area": "04e",
+													"points": [
+														[
+															1656,
+															664
+														],
+														[
+															1656,
+															968
+														],
+														[
+															1910,
+															968
+														],
+														[
+															1910,
+															664
+														]
+													]
+												},
+												{
+													"area": "04f",
+													"points": [
+														[
+															1228,
+															554
+														],
+														[
+															1228,
+															1100
+														],
+														[
+															1511,
+															1100
+														],
+														[
+															1511,
+															554
+														]
+													]
+												},
+												{
+													"area": "046",
+													"points": [
+														[
+															37,
+															2047
+														],
+														[
+															37,
+															2464
+														],
+														[
+															420,
+															2464
+														],
+														[
+															420,
+															2047
+														]
+													]
+												},
+												{
+													"area": "046",
+													"points": [
+														[
+															1367,
+															2576
+														],
+														[
+															1367,
+															3011
+														],
+														[
+															1643,
+															3011
+														],
+														[
+															1643,
+															2576
+														]
+													]
+												},
+												{
+													"area": "046",
+													"points": [
+														[
+															164,
+															558
+														],
+														[
+															164,
+															835
+														],
+														[
+															544,
+															835
+														],
+														[
+															544,
+															558
+														]
+													]
+												}
+											]
+										},
+										{
+											"type": "image",
+											"href": {
+												"type": "internal",
+												"path": "adventure/SoS/002-map-01-001.grave-awakenings-player.webp"
+											},
+											"width": 4096,
+											"height": 3012,
+											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 271,
+												"offsetX": 31,
+												"offsetY": 31,
+												"scale": 2
+											},
+											"title": "Player Version",
+											"credit": "Jared Blando",
+											"mapParent": {
+												"id": "0a8"
+											}
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Har-Thelen Cemetery Features",
+									"id": "00c",
+									"entries": [
+										"The cemetery has the following features.",
+										{
+											"type": "entries",
+											"name": "Light",
+											"id": "00d",
+											"entries": [
+												"The area is {@variantrule Bright Light|XPHB|Brightly Lit} by four oil lanterns hanging from lampposts throughout the cemetery, as well as two oil lanterns attached to the mausoleum. When these lanterns are extinguished (see {@area Encounter 2: Grave Concerns|01a|x}), the entire area is left in complete {@variantrule Darkness|XPHB} until the characters relight the lanterns."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Graves",
+											"id": "00e",
+											"entries": [
+												"At the start of the adventure, all of the graves are filled with loose dirt. After a grave is emptied by the characters or monsters, it becomes a 10-foot-deep hole. The gravestones are too short to provide cover."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Sarcophagi",
+											"id": "00f",
+											"entries": [
+												"Each sarcophagus is 5 feet deep and covered with a heavy lid that requires an action and a successful {@dc 15} Strength ({@skill Athletics|XPHB}) check to remove. Once a lid is removed, the sarcophagus's contents are exposed."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Mausoleum",
+											"id": "010",
+											"entries": [
+												"The mausoleum is 10 feet high and made of stone. The mausoleum's double doors are enchanted and can't be opened without solving a puzzle. A creature who tries to open the door before solving the puzzle triggers a harmful magical effect (as described in {@area Encounter 4: Mausoleum Door|033|x}). The mausoleum's interior is described in {@area Encounter 5: A Final Horror|038|x}."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Fences",
+											"id": "011",
+											"entries": [
+												"The fences are 3 feet high. A space with a fence is {@variantrule Difficult Terrain|XPHB}."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Statues and Lampposts",
+											"id": "012",
+											"entries": [
+												"The statues and lampposts are 10 feet high and can be climbed (no ability check required)."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Encounter 1: From the Shadows",
+									"id": "013",
+									"entries": [
+										{
+											"type": "image",
+											"href": {
+												"type": "internal",
+												"path": "adventure/SoS/003-01-001.from-the-shadows.webp"
+											},
+											"width": 1750,
+											"height": 1126,
+											"credit": "Aaron J. Riley"
+										},
+										"When the characters arrive at the cemetery, read or paraphrase the following:",
+										{
+											"type": "insetReadaloud",
+											"id": "014",
+											"entries": [
+												"Six lanterns light this section of the gloomy cemetery. A pair of terrified townsfolk lie at the base of a large statue, screaming for help."
+											]
+										},
+										"The characters begin in the space marked {@adventure A on the map|SoS|1|Map: Grave Awakenings}. Four {@creature Shadow|XMM|Shadows} and three {@creature Specter|XMM|Specters} hide in the areas marked B and C respectively on the map. The undead enemies immediately attack the characters.",
+										{
+											"type": "entries",
+											"name": "Townsfolk",
+											"id": "015",
+											"entries": [
+												"The two townsfolk remain in their original position, frozen in fear, until the characters defeat the shadows and specters. Until they are rescued, the pair answer the characters' questions or commands with only terrified screams."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Spotting the Enemies",
+											"id": "016",
+											"entries": [
+												"Characters with a Passive Perception of 13 or higher notice the undead enemies lurking before they attack. Any creature that didn't notice the undead is {@status Surprised|XPHB|surprised}."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Concluding the Encounter",
+											"id": "017",
+											"entries": [
+												"After she's rescued, Millis (Medium {@creature Commoner|XMM}), the older of the two townsfolk and a human alchemist from the area, tells the characters that other spirits pulled four still-living townspeople down into the graves just a few moments before the characters arrived. If the characters hurry, they might be able to rescue the innocent folks. She isn't sure exactly which graves, however; she only knows it was throughout this part of the cemetery.",
+												{
+													"type": "entries",
+													"name": "Treasure",
+													"id": "018",
+													"entries": [
+														"Millis carries two {@item Potion of Greater Healing|XDMG|Potions of Greater Healing}, a {@item Potion of Heroism|XDMG}, and 50 GP, all of which she gives to the characters as thanks for rescuing her."
+													]
+												},
+												{
+													"type": "entries",
+													"name": "Moving On",
+													"id": "019",
+													"entries": [
+														"When the characters are ready to search the graves for survivors, check with the Event Coordinator to see if you can continue. When you get the go-ahead, start the next encounter."
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Encounter 2: Grave Concerns",
+									"id": "01a",
+									"entries": [
+										"The characters need to successfully discern which graves hold the four living victims.",
+										{
+											"type": "entries",
+											"name": "Checking Graves",
+											"id": "01b",
+											"entries": [
+												"Tell the players that none of the graves show obvious signs of holding the victims and ask them how their characters plan to find the missing innocents. Give each player the chance to answer. A successful {@dc 12} check pinpoints a correct grave. They can use any method you deem appropriate, but the following list provides ability checks or methods they might use:",
+												{
+													"type": "list",
+													"items": [
+														"Strength ({@skill Athletics|XPHB})",
+														"Intelligence ({@skill Investigation|XPHB})",
+														"Intelligence ({@skill Nature|XPHB})",
+														"Wisdom ({@skill Perception|XPHB})",
+														"Wisdom ({@skill Survival|XPHB})",
+														"Magic that assists in locating"
+													]
+												},
+												"On a successful check, a character finds a victim in one of the graves and can rescue them (no action required). Keep track of each failed check before two successes, as they're important later in this encounter: the time allowed to rescue the remaining two victims is reduced by the number of failures (to a maximum of four failures)."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Raven Interruption",
+											"id": "01c",
+											"entries": [
+												"After the characters save the second victim, read or paraphrase the following:",
+												{
+													"type": "insetReadaloud",
+													"id": "01d",
+													"entries": [
+														"As you search for the remaining victims, a trio of impossibly large ravens descend into the cemetery. With angry squawks, they assault the six lamps lighting the area, plunging it into darkness. The ravens then turn their attention to you."
+													]
+												},
+												{
+													"type": "image",
+													"href": {
+														"type": "internal",
+														"path": "adventure/SoS/004-01-002.raven-interruption.webp"
+													},
+													"width": 850,
+													"height": 1668,
+													"credit": "Rowan Holloway"
+												},
+												"Three {@creature Wereraven|RHW|Wereravens} fly into the cemetery and extinguish the six lanterns hanging around the gloomy area.",
+												{
+													"type": "entries",
+													"name": "Character Locations",
+													"id": "01e",
+													"entries": [
+														"The graves that hold the victims are marked on the map as {@adventure G1\u2013G4|SoS|1|Map: Grave Awakenings}. When the ravens attack, put the characters who found the first two victims by their graves. Put the other characters by other random graves unless their players have detailed where they are.",
+														"Characters searching for the remaining two victims when the lights go out can spot the correct graves from a distance with a successful {@dc 12} {@skill Perception|XPHB} check, but they must still move to the grave to rescue the victim."
+													]
+												},
+												{
+													"type": "entries",
+													"name": "Darkness Effects",
+													"id": "01f",
+													"entries": [
+														"When the lanterns are extinguished, the entire area is enveloped in magical {@variantrule Darkness|XPHB}. Until at least three of the lamps on a map are relit, the following encounter effects are triggered:",
+														{
+															"type": "list",
+															"items": [
+																"Everything on the map is enveloped in magic Darkness that can't be illuminated by nonmagical or magical light sources.",
+																"The wereravens are unaffected by the Darkness.",
+																"Creatures have {@variantrule Disadvantage|XPHB} on checks to find the remaining victims.",
+																"The {@creature Wereraven|RHW|wereravens} have {@variantrule Resistance|XPHB} to all damage.",
+																"A character who succeeds on a {@dc 10} Intelligence ({@skill Arcana|XPHB}) check (no action required) recognizes the effects of the Darkness and knows these effects end only if the lanterns are relit. If no character asks to make the check, call for the characters to make this check after the second round of combat."
+															]
+														}
+													]
+												},
+												{
+													"type": "entries",
+													"name": "Relighting Lanterns",
+													"id": "020",
+													"entries": [
+														"A lamp can be relit in a number of ways:",
+														{
+															"type": "list",
+															"items": [
+																"A character can climb a lamppost with a successful {@dc 10} Strength ({@skill Athletics|XPHB}) or Dexterity ({@skill Acrobatics|XPHB}) check and light it through normal means, such as with a {@item Tinderbox|XPHB}.",
+																"A character can cast a cantrip or spell that creates fire or deals Fire damage.",
+																"A character can shoot or throw an object set aflame (such as an arrow or oil-soaked cloth) into the lantern, requiring a successful attack roll. Each lantern has AC 10.",
+																"A character can use any other method you deem appropriate."
+															]
+														},
+														"The {@variantrule Darkness|XPHB} ends when the third lantern is lit, leaving the area {@variantrule Dim Light|XPHB|Dimly Lit} and ending the aforementioned Darkness effects. When all six lanterns are lit, or when the tables light at least three lanterns each, the area returns to being {@variantrule Bright Light|XPHB|Brightly Lit}, and the wereravens have {@variantrule Vulnerability|XPHB} to all damage."
+													]
+												},
+												{
+													"type": "entries",
+													"name": "Continuing the Search",
+													"id": "021",
+													"entries": [
+														"The remaining two victims die if they aren't saved quickly. Once the lanterns are extinguished, the characters have a number of rounds equal to 6 minus the number of failed checks (to a maximum of 4) in your group. At the end of the designated round, any unfound victims die. Note how many die, for each victim that dies causes more enemies to appear in the next encounter.",
+														{
+															"type": "inset",
+															"name": "Lycanthropy",
+															"id": "022",
+															"entries": [
+																"If a character becomes a {@creature wereraven|RHW}, give them the Wereraven handout (see below). They can continue to play their character using the provided rules. Only one character per group can be cursed with lycanthropy. Characters in the same group who would normally be cursed with lycanthropy are immune to the curse for this encounter."
+															]
+														},
+														{
+															"type": "image",
+															"href": {
+																"type": "internal",
+																"path": "adventure/SoS/005-01-003.wereraven-lycanthropy-handout.webp"
+															},
+															"width": 1700,
+															"height": 1688
+														},
+														{
+															"type": "insetReadaloud",
+															"id": "023",
+															"entries": [
+																"You have gained the curse of lycanthropy. For the rest of this event and the four additional weeks of this D&D Encounters season, you can use a Bonus Action to take on the hybrid form of a wereraven for 1 minute. You regain the use of this ability when you finish a Short or Long Rest. While in this hybrid form, you gain the following:",
+																{
+																	"type": "list",
+																	"style": "list-hang-notitle",
+																	"items": [
+																		{
+																			"type": "item",
+																			"name": "Fly",
+																			"entry": "As a Bonus Action, you can sprout a pair of wings. For 1 minute, you have a Fly Speed of 50 feet."
+																		},
+																		{
+																			"type": "item",
+																			"name": "Beak",
+																			"entry": "You have a Beak attack, {@atkr m} {@hit 6}, reach 5 ft. {@h}13 ({@damage 2d8 + 4}) Piercing damage. This attack does not spread the curse."
+																		},
+																		{
+																			"type": "item",
+																			"name": "Dark Urges",
+																			"entry": "At the start of each of your turns while in hybrid form, you must succeed on a {@dc 10} Wisdom saving throw. On a failed save, you must use your action to make a Beak attack against the nearest creature. Once you succeed on this saving throw, you do not have to make it until the next time you use a Bonus Action to take on the hybrid form."
+																		}
+																	]
+																}
+															]
+														}
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Concluding the Encounter",
+											"id": "024",
+											"entries": [
+												"The encounter ends when the characters defeat the wereravens, relight all the lanterns, and rescue the remaining victims (or the victims die).",
+												{
+													"type": "entries",
+													"name": "Treasure",
+													"id": "025",
+													"entries": [
+														"The final grave the characters search contains 250 GP and a {@item +1 Shortsword|XDMG}. The magical sword has been forged in the shape of an angelic wing.",
+														"Let the Event Coordinator know you've completed this encounter, then tell them how many victims died, as that has a bearing on the next encounter. When you get the go-ahead, start the next encounter."
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Encounter 3: In Pieces",
+									"id": "026",
+									"entries": [
+										"Give the characters one minute to collect themselves, check on rescued townspeople, heal themselves, and so forth. When that minute passes, read or paraphrase the following:",
+										{
+											"type": "insetReadaloud",
+											"id": "027",
+											"entries": [
+												"Some of the graves explode with a spray of dirt, and the lids slide off some of the sarcophagi. Undead creatures emerge, surrounded by crawling piles of dead limbs."
+											]
+										},
+										"Each group faces a different challenge, as detailed below. You are responsible for letting your Event Coordinator know when any NPC or character dies, as it has consequences for all the tables once four deaths have occurred.",
+										{
+											"type": "entries",
+											"name": "Table 1",
+											"id": "028",
+											"entries": [
+												{
+													"type": "insetReadaloud",
+													"id": "029",
+													"entries": [
+														"A cackling undead form lopes toward you, followed by severed body parts that crawl and squirm in a mass of rotting flesh."
+													]
+												},
+												"One {@creature Wight|XMM} and three {@creature Swarm of Zombie Limbs|RHW|Swarms of Zombie Limbs} emerge from the graves and attack. Add one additional {@creature Swarm of Zombie Limbs|RHW} for each victim who died in the previous encounter at your table. If four or more victims died across all tables, add a {@creature Wight|XMM} instead."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Table 2",
+											"id": "02a",
+											"entries": [
+												{
+													"type": "insetReadaloud",
+													"id": "02b",
+													"entries": [
+														"Three gaunt forms run at you carrying armfuls of writhing severed limbs that they hurl in your direction. The gruesome appendages congregate into a pile of grasping, clawing death and surge at you."
+													]
+												},
+												"Three {@creature Ghoul|XMM|Ghouls} and three {@creature Swarm of Zombie Limbs|RHW|Swarms of Zombie Limbs} emerge from the graves and attack. Add one additional {@creature Swarm of Zombie Limbs|RHW} for each victim who died in the previous encounter at your table. If four or more victims died across all tables, add a {@creature Ghast|XMM} instead."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Table 3",
+											"id": "02c",
+											"entries": [
+												{
+													"type": "insetReadaloud",
+													"id": "02d",
+													"entries": [
+														"Two large rotting forms stagger in your direction. Piles of putrid limbs skitter along behind them, all focused on you."
+													]
+												},
+												"Two {@creature Ogre Zombie|XMM|Ogre Zombies} and two {@creature Swarm of Zombie Limbs|RHW|Swarms of Zombie Limbs} emerge from the graves and attack. Add one additional {@creature Swarm of Zombie Limbs|RHW} for each victim who died in the previous encounter at your table. If four or more victims died across all tables, add one {@creature Ogre Zombie|XMM} instead."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Table 4",
+											"id": "02e",
+											"entries": [
+												{
+													"type": "insetReadaloud",
+													"id": "02f",
+													"entries": [
+														"The empty skins of three corpses undulate toward you like massive rotting worms. Behind them, a pile of severed, rotting limbs surge in your direction."
+													]
+												},
+												"Three {@creature Boneless|RHW} and three {@creature Swarm of Zombie Limbs|RHW|Swarms of Zombie Limbs} emerge from the graves and attack. Add one additional {@creature Swarm of Zombie Limbs|RHW} for every victim who died in the previous encounter at your table. If four or more victims died across all tables, add two {@creature Boneless|RHW} instead."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Random Events",
+											"id": "030",
+											"entries": [
+												"When the first group defeats their enemies, the Event Coordinator goes to that table and has one player roll {@dice 1d6}, consulting the Random Events table below to see which random event occurs. This adds more foes to their combat and triggers an event that affects the other groups.",
+												{
+													"type": "table",
+													"caption": "Random Events",
+													"colLabels": [
+														"1d6",
+														"Name",
+														"Summary"
+													],
+													"colStyles": [
+														"col-2 text-center",
+														"col-2 text-center",
+														"col-8"
+													],
+													"rows": [
+														[
+															"1",
+															"Chittering Disturbance",
+															"The group must fight two {@creature Swarm of Infesting Insects|RHW|Swarms of Infesting Insects}. The other groups' characters gain {@variantrule Heroic Inspiration|XPHB}."
+														],
+														[
+															"2",
+															"Cry of Despair",
+															"The group must fight two {@creature Harpy|XMM|Harpies}. The other groups' characters gain the effects of {@spell Bless|XPHB} until the end of the encounter."
+														],
+														[
+															"3",
+															"Dread Arcanist",
+															"The group must fight a {@creature Mage Apprentice|XMM}. The other groups' enemies have the {@condition Stunned|XPHB} condition until the end of their next turns."
+														],
+														[
+															"4",
+															"Hungry Wanderers",
+															"The group must fight one {@creature Ghast|XMM} and one {@creature Ghoul|XMM}. The other groups' characters gain 10 {@variantrule Temporary Hit Points|XPHB}."
+														],
+														[
+															"5",
+															"Lunar Event",
+															"The group must fight a {@creature Peryton|XMM}. The other groups' characters have {@variantrule Advantage|XPHB} on the next {@variantrule D20 Test|XPHB|D20 Tests} they make."
+														],
+														[
+															"6",
+															"Stirge Swarm",
+															"The group must fight a {@creature Swarm of Stirges|XMM}. The other groups' characters regain {@dice 2d8} Hit Points."
+														]
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Concluding the Encounter",
+											"id": "031",
+											"entries": [
+												"The encounter ends when the final group defeats their enemies and the consequences of the random event play out. Let the Event Coordinator know when this happens.",
+												{
+													"type": "entries",
+													"name": "Treasure",
+													"id": "032",
+													"entries": [
+														"The enemies carried three {@item Potion of Greater Healing|XDMG|Potions of Greater Healing} and 100 GP in random coins per group.",
+														"All groups should be finished with their encounter before any group proceeds. When the Event Coordinator gives you the go-ahead, start the next encounter."
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Encounter 4: The Mausoleum Door",
+									"id": "033",
+									"entries": [
+										"When all groups are ready to continue, you or the Event Coordinator should read or paraphrase the following:",
+										{
+											"type": "insetReadaloud",
+											"id": "034",
+											"entries": [
+												"A young woman runs up to your group as you catch your breath. Her panicked voice trembles. \"Dark shadows grabbed my brother and sister and pulled them through the walls of the mausoleum like they were ghosts. Please save them!\"",
+												"The mausoleum's double doors glow with a dark energy, which forms runes and letters across the surface. A whispered voice hisses in your minds: \"His name echoes through the realm. His fury reverberates and duplicates his power.\" The individual runes glow brighter."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "The Door Puzzle",
+											"id": "035",
+											"entries": [
+												"The doors are sealed and can't be opened through normal means. To open the doors without taking damage and risking the lives of the innocent people inside, the characters must touch the correct symbol on their doors: the symbol that is duplicated. Each group gets one of the four Mausoleum Door handouts (or multiple handouts for events with less than four groups).",
+												"Each of the handouts are the same, except in each handout a different letter is repeated. Those repeated letters are S, O, T, and H. To solve the puzzle, the characters must find the repeated letter in their handout(s) and confer with the other tables. If the letters are reported correctly, the players should realize they can spell SOTH. Touching the duplicated symbol on a door opens all the doors and kicks off the final encounter.",
+												{
+													"type": "entries",
+													"name": "Incorrect Answers",
+													"id": "036",
+													"entries": [
+														"If a character touches a letter or symbol that isn't the duplicated symbol, each character takes 2 ({@damage 1d4}) Necrotic damage as unholy energy pulses out from the door. Additionally, screams from inside the mausoleum indicate that the innocent people are harmed as well. Each victim inside the mausoleum has HP 10. When a victim is reduced to 0 Hit Points, they die. If both victims die in every group, the doors automatically open.",
+														{
+															"type": "gallery",
+															"images": [
+																{
+																	"type": "image",
+																	"href": {
+																		"type": "internal",
+																		"path": "adventure/SoS/006-01-004.mausoleum-door-1-handout.webp"
+																	},
+																	"width": 850,
+																	"height": 1023,
+																	"title": "Door 1"
+																},
+																{
+																	"type": "image",
+																	"href": {
+																		"type": "internal",
+																		"path": "adventure/SoS/008-01-005.mausoleum-door-2-handout.webp"
+																	},
+																	"width": 850,
+																	"height": 1023,
+																	"title": "Door 2"
+																},
+																{
+																	"type": "image",
+																	"href": {
+																		"type": "internal",
+																		"path": "adventure/SoS/007-01-006.mausoleum-door-3-handout.webp"
+																	},
+																	"width": 850,
+																	"height": 1023,
+																	"title": "Door 3"
+																},
+																{
+																	"type": "image",
+																	"href": {
+																		"type": "internal",
+																		"path": "adventure/SoS/009-01-007.mausoleum-door-4-handout.webp"
+																	},
+																	"width": 850,
+																	"height": 1023,
+																	"title": "Door 4"
+																}
+															]
+														}
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Concluding the Encounter",
+											"id": "037",
+											"entries": [
+												"The encounter ends when the groups each touch their duplicated symbol and open their door or both victims die in every group. When the Event Coordinator gives you the go-ahead, start the next encounter."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Encounter 5: A Final Horror",
+									"id": "038",
+									"entries": [
+										{
+											"type": "image",
+											"href": {
+												"type": "internal",
+												"path": "adventure/SoS/010-01-009.a-final-horror.webp"
+											},
+											"width": 1700,
+											"height": 1110,
+											"credit": "Hinchel Or"
+										},
+										"When the mausoleum door is opened, read or paraphrase the following:",
+										{
+											"type": "insetReadaloud",
+											"id": "039",
+											"entries": [
+												"The doors of the mausoleum open, accompanied by the sound of a doleful, ethereal bell's tolling. The doors grind slowly at first, but then a fused mass of writhing zombies and rotting flesh spills out into the cemetery, blocking the opening to the mausoleum.",
+												"The voice you heard returns. \"This is the final product of Soth's rage. Quell it once and for all.\""
+											]
+										},
+										"When the door is open, a {@creature Zombie Clot|RHW} tumbles from the stone structure and attacks. Any creatures standing in the spaces in front of the doorway are pushed back 5 feet but otherwise suffer no ill effects.",
+										{
+											"type": "entries",
+											"name": "Table Interaction",
+											"id": "03a",
+											"entries": [
+												"To help the Event Coordinator manage this encounter, report when the zombie clot is {@status Bloodied|XPHB}, and then again when it's defeated. This encounter is very difficult, but the characters have some advantages:",
+												{
+													"type": "list",
+													"style": "list-hang-notitle",
+													"items": [
+														{
+															"type": "item",
+															"name": "Deathly Stench",
+															"entry": "The zombie clot's Deathly Stench trait isn't enabled until the zombie clot at each table is {@status Bloodied|XPHB}."
+														},
+														{
+															"type": "item",
+															"name": "Undead Fortitude",
+															"entry": "Its Undead Fortitude trait doesn't function for the last zombie clot remaining among the groups\u2014or at all, if there is only one group."
+														},
+														{
+															"type": "item",
+															"name": "Unearthly Benefits",
+															"entry": "After the first group defeats their zombie clot, the other groups gain these benefits: the zombie clot at their table can't recharge its Flesh Entomb attack, and they make saving throws against it with {@variantrule Advantage|XPHB}."
+														}
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "The Mausoleum",
+											"id": "03b",
+											"entries": [
+												"The mausoleum's interior is in disarray due to the stirring undead. The bodies interred here were crushed into the zombie clot."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "The Victims",
+											"id": "03c",
+											"entries": [
+												"The two living victims are trapped inside the mausoleum by the zombie clot's massive form."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Concluding the Encounter",
+											"id": "03d",
+											"entries": [
+												"The encounter ends when each group defeats their zombie clot.",
+												{
+													"type": "entries",
+													"name": "Treasure",
+													"id": "03e",
+													"entries": [
+														"Among the body parts from the zombie clot are pieces of jewelry worth a total of 100 GP."
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Conclusion",
+									"id": "03f",
+									"entries": [
+										"After each group has completed the encounter, you or the Event Coordinator should read or paraphrase the following:",
+										{
+											"type": "insetReadaloud",
+											"id": "040",
+											"entries": [
+												"As the ghastly mass of zombie flesh stills, you see a shadow rise from it, take on the form of a massive raven, and fly off into the mist.",
+												"Inza approaches, calling you back together after your battle. \"Your bravery and skill did not disappoint. The people of Har-Thelen owe you a debt of gratitude. I fear our trials might not be over. I witnessed four shadow ravens disappear into the mist. They're undoubtedly servants of whatever caused the troubles here. There will be other realms suffering under their machinations. If you're willing\u2014and if you want to find your way home\u2014help me solve these problems.\""
+											]
+										},
+										"Inza asks each character individually if they're willing to hunt down the four raven shadows. Inza marks any character who agrees to help with a magic sigil that glows above their palm and then disappears, imbuing them with {@i Inza's Blessing} (see below). She also offers each group a {@item Pearl of Power|XDMG} to help them in their travels."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Ongoing Effect",
+									"id": "041",
+									"entries": [
+										{
+											"type": "entries",
+											"name": "Inza's Blessing",
+											"id": "042",
+											"entries": [
+												"{@i The witch Inza's sigil gives you the power to complete your quest.}",
+												"As a Bonus Action, you can use this blessing to regain {@dice 2d4 + 2} Hit Points. This blessing can be used once per session during the Season of Horror."
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Appendix A: Event Coordinator Guide",
+							"id": "043",
+							"entries": [
+								"This document provides instruction on how to run this event with multiple groups. If there isn't an Event Coordinator but there are multiple groups, the DMs should coordinate efforts using this document.",
+								{
+									"type": "entries",
+									"name": "Beginning the Adventure",
+									"id": "044",
+									"entries": [
+										"Read the following aloud to the entire event. If there is no Event Coordinator, one DM can read to everyone, or DMs can each read to their own table:",
+										{
+											"type": "insetReadaloud",
+											"id": "045",
+											"entries": [
+												"You travel along a familiar road on a sunny day\u2014then come the shadows. Clouds blot out the sun, then a haze closes around you. In just a few heartbeats, you cannot see anything within the thick mist. After another moment, or possibly longer, the mists clear. You are now in another place entirely, standing amid other bewildered figures.",
+												"A gloomy, ruined city surrounds you. Abandoned, crumbling buildings loom over smaller structures and tents. From the shadows of an old cathedral strides a tall woman with raven hair, bright green eyes, and gray robes.",
+												"\"They say that when the need is greatest, heroes always appear. And here you are. I am Inza, protector of the meek and innocent here in Har-Thelen, and we have need of heroes. The dark master of this realm, Lord Soth, has abandoned his responsibilities, and the land is turning against its people.\""
+											]
+										},
+										"Answer any questions the players might have using the information in the adventure. Then begin {@area Encounter 1: From the Shadows|013|x}."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Encounter 1",
+									"id": "046",
+									"entries": [
+										"Keep track of all groups' progress. If the final group isn't finished within 45 minutes, the remaining enemies disintegrate. After the final group has finished, instruct the DMs to start {@area Encounter 2: Grave Concerns|01a|x}."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Encounter 2",
+									"id": "047",
+									"entries": [
+										"Note when each table relights their first three lamps, and keep track of how many victims die by asking the DMs to call out deaths as they occur. If four victims total die across all groups, the groups fight more difficult monsters during the third encounter.",
+										{
+											"type": "entries",
+											"id": "048",
+											"entries": [
+												{
+													"type": "entries",
+													"name": "Curse of Lycanthropy",
+													"id": "049",
+													"entries": [
+														"If a character gains the wereraven's curse of lycanthropy, give them the {@area Wereraven handout|023|x}. Remember that only the first player in each group can get the curse."
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Encounter 3",
+									"id": "04a",
+									"entries": [
+										"When the third encounter begins, let the DMs know if four victims died across all groups during the second encounter.",
+										{
+											"type": "entries",
+											"id": "04b",
+											"entries": [
+												{
+													"type": "entries",
+													"name": "Random Event",
+													"id": "04c",
+													"entries": [
+														"When the first table defeats their enemies, go to that table and have one of the players roll {@dice 1d6}, consulting the {@area Random Events table|030|x} in the adventure to see which random event occurs. Tell that DM which new monsters appear in their combat, then let the other DMs know what benefit their parties receive."
+													]
+												},
+												{
+													"type": "entries",
+													"name": "Ending the Encounter",
+													"id": "04d",
+													"entries": [
+														"Keep track of each group's progress. If the final group hasn't finished within 45 minutes, the remaining enemies disintegrate. After the final group has finished, instruct the DMs to start {@area Encounter 4: The Mausoleum Door|033|x}."
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Encounter 4",
+									"id": "04e",
+									"entries": [
+										"Distribute the four Mausoleum Door handouts. If there are four groups, each group receives one handout. If there are three groups, one group receives the extra handout. If there are two groups, each group receives two handouts. If there is only one group, that group receives all four handouts.",
+										"Coordinate the efforts of the tables in solving the puzzle and performing the required steps to move on. If tables are slow in solving the puzzle, encourage them to share information with each other, including comparing handouts.",
+										"When the correct steps are performed to open the door(s), tell the DMs to proceed to {@area Encounter 5: A Final Horror|038|x}."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Encounter 5",
+									"id": "04f",
+									"entries": [
+										"Keep track of each group's progress, including when the zombie clots are {@status Bloodied|XPHB} and defeated at each table. Remember the following:",
+										{
+											"type": "list",
+											"style": "list-hang-notitle",
+											"items": [
+												{
+													"type": "item",
+													"name": "Deathly Stench",
+													"entry": "The zombie clot's Deathly Stench trait isn't enabled until the zombie clot at each table is {@status Bloodied|XPHB}."
+												},
+												{
+													"type": "item",
+													"name": "Undead Fortitude",
+													"entry": "Its Undead Fortitude trait doesn't function for the last zombie clot remaining among the groups\u2014or at all, if there is only one group."
+												},
+												{
+													"type": "item",
+													"name": "Unearthly Benefits",
+													"entry": "After the first group defeats their zombie clot, the other groups gain these benefits: the zombie clot at their table can't recharge its Flesh Entomb attack, and they make saving throws against it with {@variantrule Advantage|XPHB}."
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"id": "050",
+											"entries": [
+												{
+													"type": "entries",
+													"name": "Conclusion",
+													"id": "051",
+													"entries": [
+														"Each DM can run the adventure's conclusion for their group but be available to answer questions as needed."
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Terror in Tepest",
+					"id": "052",
+					"entries": [
+						"{@i An adventure for level 4 characters set in the domain of Tepest}",
+						"This is the Week 1 D&D Encounters adventure, designed to fill one 90-minute session of play.",
+						{
+							"type": "section",
+							"name": "Adventure Background",
+							"id": "053",
+							"entries": [
+								"South of Kellee in the Dread Domain of {@book Tepest|RHW|2|Tepest} rests the village of Oatmarsh. Its farmers and craftspeople live idyllic lives in reverence to the Mother. As the festival of High Harvest approaches, however, their preparations are interrupted by the chaos spread by the first shadow raven that escaped from {@book Sithicus|RHW|2|Sithicus}.",
+								"A druid named Burla was corrupted by the raven, and she used that power to create a {@creature death's head tree|RHW}. She seeks to kill more innocent villagers, but the characters arrive in time to foil her plan."
+							]
+						},
+						{
+							"type": "section",
+							"name": "Beginning the Adventure",
+							"id": "054",
+							"entries": [
+								"Read or paraphrase the following:",
+								{
+									"type": "insetReadaloud",
+									"id": "055",
+									"entries": [
+										"Inza addresses you as the mists close in. \"I've scried and thrown bones, and I now have insight into the destination of the shadow ravens. Take the path before you to find the first. Good luck!\""
+									]
+								},
+								"Inza acts as the quest-giver in each of the adventures in this season of D&D Encounters. She doesn't know exactly where the characters may end up, but she knows a shadow raven lies just beyond the Mists."
+							]
+						},
+						{
+							"type": "section",
+							"name": "Encounter 1: Full Bellies",
+							"id": "056",
+							"entries": [
+								"Read or paraphrase the following:",
+								{
+									"type": "insetReadaloud",
+									"id": "057",
+									"entries": [
+										"The mists clear, revealing a bucolic scene. It's dusk, and a small village rests before you. Villagers carry plates of heaping food toward tables in the village square.",
+										"A young woman, her straw-colored hair swept under a red kerchief, sees you, smiles, and calls out. \"Ah, look all. Travelers! Just in time to join us for our meal. I'm Viviana, but everyone calls me Viv. Sit! Eat!\""
+									]
+								},
+								"Viv hustles the characters to seats at one of the many tables and a meal is served. During the meal, she and the others ask questions about the characters and give answers in return. Use the following text to guide conversations:",
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"items": [
+										{
+											"type": "item",
+											"name": "Oatmarsh",
+											"entry": "This simple farming village in the realm of Tepest is self-sufficient, like many of the small villages in the area."
+										},
+										{
+											"type": "item",
+											"name": "Feast",
+											"entry": "It is High Harvest, a weeklong celebration of all that nature provides. A feast is held each night, and the week ends with the ritual burning of a figure that represents Famine. The ritual keeps away hunger for the upcoming winter season."
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Concluding the Encounter",
+									"id": "058",
+									"entries": [
+										"At the end of the feast, Viv tells the characters that several villagers were sent to prepare the ritual site, which lies about an hour away. They should have returned already. She asks the characters to go there and check on the villagers.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"id": "059",
+											"entries": [
+												"Viv offers the characters 50 GP total to complete the mission. She pays up front, trusting the characters to be honest.",
+												{
+													"type": "inset",
+													"name": "Adding Details",
+													"id": "05a",
+													"entries": [
+														"In this and the other adventures in D&D Encounters, many details are left up to the DM to fill in. Use the information about the Dread Domains in {@book Ravenloft: The Horrors Within|RHW} to add story elements.",
+														"Additionally, each adventure uses a map from the {@i Ravenloft: The Horrors Within Map Pack} for the combat encounters."
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Encounter 2: Rough Hands",
+							"id": "05b",
+							"entries": [
+								"When the characters arrive at the festival site, read or paraphrase the following:",
+								{
+									"type": "insetReadaloud",
+									"id": "05c",
+									"entries": [
+										"At the site described by Viv, a hobgoblin stands in front of a dilapidated farmhouse as five bugbears wait nearby. The ground is covered in blood. Nearby, a stone wall encapsulates a strange-looking tree, lit by a meager campfire.",
+										"The hobgoblin opens the door to the farmhouse, which shows no signs of habitation."
+									]
+								},
+								"A {@creature Hobgoblin Captain|XMM} named Greeve and her five {@creature Guard|XMM|Bugbear Guards} have been summoned by the druid Burla, who told them they could move into this area, where the food is plentiful and monsters rare. They arrived and found the blood, but they're not responsible.",
+								{
+									"type": "image",
+									"id": "0a9",
+									"href": {
+										"type": "internal",
+										"path": "adventure/SoS/011-map-02-001.terror-in-tepest.webp"
+									},
+									"width": 4096,
+									"height": 3012,
+									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 271,
+										"offsetX": 31,
+										"offsetY": 31,
+										"scale": 2
+									},
+									"title": "Map: Terror in Tepest",
+									"credit": "Marco Bernardini"
+								},
+								{
+									"type": "entries",
+									"name": "Fight or Talk?",
+									"id": "05d",
+									"entries": [
+										"The enemies start the encounter {@variantrule Hostile [Attitude]|XPHB|Hostile}. When Greeve sees the characters, she tells them to leave, for this area now belongs to her. If the characters attack or don't leave quickly, Greeve and her bugbear allies attack.",
+										"If a character takes an {@action Influence|XPHB} action and succeeds on a {@dc 15} Charisma ({@skill Deception|XPHB}, {@skill Intimidation|XPHB}, or {@skill Persuasion|XPHB}) check, Greeve and her companions become {@variantrule Indifferent [Attitude]|XPHB|Indifferent}. Still, they refuse to leave. They claim the area was given to them by an elf who said it was abandoned by the people who lived here (which is a lie).",
+										"If the characters take another {@action Influence|XPHB} action and succeed on a {@dc 10} Charisma ({@skill Deception|XPHB}, {@skill Intimidation|XPHB}, or {@skill Persuasion|XPHB}) check, they can convince Greeve and the bugbears to leave the area peacefully.",
+										"Greeve truthfully denies any interaction with the missing villagers. The blood was already here when they arrived a few hours ago."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Concluding the Encounter",
+									"id": "05e",
+									"entries": [
+										"After the characters either dispatch or defeat Greeve and the bugbears, they hear noises from the direction of a strange tree. When they move to investigate, start \"Encounter 3: Death Heads.\"",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"id": "05f",
+											"entries": [
+												"Greeve carries 100 GP, two {@item Potion of Greater Healing|XDMG|Potions of Greater Healing}, and a {@item Spell Scroll (Level 2)|XDMG|Spell Scroll} of {@spell Invisibility|XPHB}."
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Encounter 3: Death Heads",
+							"id": "060",
+							"entries": [
+								"When the characters approach the plant, read or paraphrase the following:",
+								{
+									"type": "insetReadaloud",
+									"id": "061",
+									"entries": [
+										"The large figure here looks like a tree grown or shaped into a gaunt, scowling figure. Large circular fruits, obscured by roiling shadows, hang from its limbs."
+									]
+								},
+								"When a character steps into the area enclosed by a short stone wall, Burla (Medium {@creature Druid|XMM}), an elf with bronze skin and unkempt green hair, appears at the base of the {@creature Death's Head Tree|RHW}. She created the tree using the power offered by the shadow raven. Eight {@creature Death's Head|RHW|Death's Heads} are draped in the corrupting shadow and hang from the tree like grisly ornaments.",
+								{
+									"type": "entries",
+									"name": "Losing Your Head",
+									"id": "062",
+									"entries": [
+										"A character reduced to 0 Hit Points by a death's head has their own head replaced by the one that knocked them {@condition Unconscious|XPHB|unconscious}. Roll on the Losing Your Head table to determine the character's new appearance. The change is permanent but does not change the character's abilities.",
+										{
+											"type": "table",
+											"caption": "Losing Your Head",
+											"colLabels": [
+												"1d10",
+												"New Head",
+												"Other Feature"
+											],
+											"colStyles": [
+												"col-2 text-center",
+												"col-5",
+												"col-5"
+											],
+											"rows": [
+												[
+													"1",
+													"A giant lizard",
+													"One eye"
+												],
+												[
+													"2",
+													"A drow elf",
+													"Forked tongue"
+												],
+												[
+													"3",
+													"A perpetually frowning old dwarf",
+													"Always slick with sweat"
+												],
+												[
+													"4",
+													"A zebra",
+													"Far too large"
+												],
+												[
+													"5",
+													"A cat",
+													"Desiccated"
+												],
+												[
+													"6",
+													"A snake",
+													"Gold teeth"
+												],
+												[
+													"7",
+													"A ghoul",
+													"Far too small"
+												],
+												[
+													"8",
+													"A pumpkin with facial features",
+													"Always blinking"
+												],
+												[
+													"9",
+													"A hawk",
+													"Reflective eyes"
+												],
+												[
+													"10",
+													"A troll",
+													"Writhing hair"
+												]
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Conclusion",
+									"id": "063",
+									"entries": [
+										"When the enemies are defeated, read or paraphrase the following:",
+										{
+											"type": "insetReadaloud",
+											"id": "064",
+											"entries": [
+												"A dark shadow rises off the defeated enemies. It takes the form of an enormous dark raven, but before it can fly away, it dissolves into nothingness with a cacophonous caw. As the mists close around you, the glint of gold and treasure catches your eye."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"id": "065",
+											"entries": [
+												"The characters find a cache of treasure on Burla's person and within the remains of the death's head tree that includes 200 GP, a {@item Quiver of Ehlonna|XDMG} holding 10 pieces of {@item +1 Ammunition|XDMG}, and a {@item Cloak of Elvenkind|XDMG}."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Ongoing Effect",
+									"id": "066",
+									"entries": [
+										"Keep track of the following ongoing effects for the remaining weekly sessions for characters affected.",
+										{
+											"type": "entries",
+											"name": "Lost Your Head",
+											"id": "067",
+											"entries": [
+												"Your head now looks like the death's head that knocked you {@condition Unconscious|XPHB|unconscious}. This might affect your interactions with other creatures, at the DM's discretion."
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Death in Darkon",
+					"id": "068",
+					"entries": [
+						"{@i An adventure for level 4 characters set in the domain of Darkon}",
+						"This is the Week 2 D&D Encounters adventure, designed to fill one 90-minute session of play.",
+						{
+							"type": "section",
+							"name": "Adventure Background",
+							"id": "069",
+							"entries": [
+								"A secret police force called the Kargat operates within the Dread Domain of {@book Darkon|RHW|2|Darkon}. Members of the Kargatane follow the orders of their immediate superiors without question. In a stronghold beneath the city of Martira Bay, one of those superiors has undergone a terrible transformation.",
+								"Jocast Troob was a Kargatane operative with great ambition. The second shadow raven turned a willing Troob into a vampire mind flayer. Now, under the pretense of Kargat activities, Troob has her minions capturing innocent folks and turning them into vampires."
+							]
+						},
+						{
+							"type": "section",
+							"name": "Beginning the Adventure",
+							"id": "06a",
+							"entries": [
+								"Read or paraphrase the following:",
+								{
+									"type": "insetReadaloud",
+									"id": "06b",
+									"entries": [
+										"Inza sent you into the Mist again to track the second shadow raven. Rather than emerging on a road, however, you fell into the cold water of a subterranean stream. Luckily, a wooden dock allowed you to climb out. A ladder gave you access to a perch that led to a wooden door. That is where you begin your adventure!"
+									]
+								},
+								"The characters start in area A on the map. The door is unlocked and not trapped. When they open it, start \"{@area Encounter 1: Unwelcome Party|06c|x}.\"",
+								{
+									"type": "gallery",
+									"images": [
+										{
+											"type": "image",
+											"id": "0aa",
+											"href": {
+												"type": "internal",
+												"path": "adventure/SoS/012-map-03-001.death-in-darkon-dm.webp"
+											},
+											"width": 4096,
+											"height": 3012,
+											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 271,
+												"offsetX": 31,
+												"offsetY": 31,
+												"scale": 2
+											},
+											"title": "Map: Death in Darkon",
+											"credit": "Jared Blando"
+										},
+										{
+											"type": "image",
+											"href": {
+												"type": "internal",
+												"path": "adventure/SoS/013-map-03-001.death-in-darkon-player.webp"
+											},
+											"width": 4096,
+											"height": 3012,
+											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 271,
+												"offsetX": 31,
+												"offsetY": 31,
+												"scale": 2
+											},
+											"title": "Player Version",
+											"credit": "Jared Blando",
+											"mapParent": {
+												"id": "0aa"
+											}
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Encounter 1: Unwelcome Party",
+							"id": "06c",
+							"entries": [
+								"Read or paraphrase the following:",
+								{
+									"type": "insetReadaloud",
+									"id": "06d",
+									"entries": [
+										"A long table spans the center of this rough-hewn stone chamber. Two identical humans hold two struggling gnomes, while a pale elf sneers. \"Kill them if they keep struggling.\" Four mace-wielding dwarves look on as they drink from pewter mugs."
+									]
+								},
+								"The leader is the elf Yanddi ({@creature Vampire Familiar|XMM}), Troob's first victim, who serves her master faithfully. The twin humans are Rivan and Regor ({@creature Bandit Captain|XMM|Bandit Captains}), Yanddi's assistants. The four dwarves are Milah, Narl, Okar, and Pretta ({@creature Tough|XMM|Toughs}), low-ranking members of the Kargatane.",
+								{
+									"type": "entries",
+									"name": "Battle",
+									"id": "06e",
+									"entries": [
+										"Yanddi notices the characters and orders her minions to attack, then joins the fray. She and the twins fight to the death, but the dwarves surrender if their leaders are dead."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Concluding the Encounter",
+									"id": "06f",
+									"entries": [
+										"The gnomes are Benna and Cortland, a married couple snatched by the Kargatane to be put into sarcophagi as part of a ritual. Questioning them, or any of the dwarves who surrendered, reveals the following information:",
+										{
+											"type": "list",
+											"style": "list-hang-notitle",
+											"items": [
+												"{@b Gnomes}. The gnomes heard Troob make reference to \"taking the gnomes to the crypts.\"",
+												"{@b Dwarves}. The dwarves are new to the Kargatane, so they know nothing about its layout. They know their leader is called Troob and she ordered them to take people for experiments."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"id": "070",
+											"entries": [
+												"Yanddi carried two {@item Potion of Speed|XDMG|Potions of Speed}, although she doesn't know their powers. A dwarf stole a {@item Spell Scroll (Level 4)|XDMG|Spell Scroll} of {@spell Death Ward|XPHB} and planned to sell it. The group carried 200 GP of coins and jewelry."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Continuing",
+											"id": "071",
+											"entries": [
+												"The door to the west is bricked over, so the only path forward is through the north door."
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Encounter 2: Unpleasant Rest",
+							"id": "072",
+							"entries": [
+								"When the characters proceed through the north door, read or paraphrase the following:",
+								{
+									"type": "insetReadaloud",
+									"id": "073",
+									"entries": [
+										"The hallway is lined with alcoves, and each alcove holds a sarcophagus. Thin tendrils of shadow stretch from each sarcophagus and travel to the west and then the south, then up a flight of stairs."
+									]
+								},
+								"Each sarcophagus contains a dead body except for the four marked with an X (see {@adventure Map: Death in Darkon|SoS|3|Map: Death in Darkon}). These contain a living person whose life force is slowly being drained. These four sarcophagi are also locked and trapped.",
+								{
+									"type": "entries",
+									"name": "Opening a Trapped Sarcophagus",
+									"id": "074",
+									"entries": [
+										"A sarcophagus can be opened with a successful {@dc 15} Dexterity ({@skill Sleight of Hand|XPHB}) check or {@dc 20} Strength ({@skill Athletics|XPHB}) check. If the trap isn't removed first, the character attempting the check takes 7 ({@damage 2d6}) Force damage.",
+										"To remove the trap, a character must succeed on a {@dc 15} Intelligence ({@skill Arcana|XPHB}) check to use the correct magical phrasing to suppress the trap's energy for one minute. If they fail the check, they take 7 ({@damage 2d6}) Force damage.",
+										"The victims within the sarcophagi are random folks who can't offer any information about what's happening here.",
+										"If the characters fail to rescue all four prisoners here, the time it takes for the enemies in the next encounter to turn into vampire familiars is halved."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Concluding the Encounter",
+									"id": "075",
+									"entries": [
+										"The characters can follow the shadow strands through the area to the next encounter.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"id": "076",
+											"entries": [
+												"The first victim the characters rescue gives the characters a {@item Ring of Protection|XDMG} and a bracelet worth 50 GP."
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Encounter 3: Unhappy Surprise",
+							"id": "077",
+							"entries": [
+								"Read or paraphrase the following:",
+								{
+									"type": "insetReadaloud",
+									"id": "078",
+									"entries": [
+										"At the top of the stairs is a chamber dominated by four statues. The shadow strands run toward the statues, leaving each covered in roiling shadows. In the corners of the room, behind each of the statues, stands a human transfixed as if hypnotized."
+									]
+								},
+								"Each of the four humans ({@creature Tough|XMM|Toughs}) is undergoing the process of being changed into a {@creature Vampire Familiar|XMM} under Troob's command. Unless the characters kill the toughs, kill Troob, or sever the connection between the sarcophagi and the statues, one tough is turned into a vampire familiar every 8 rounds (or 4 rounds if the characters failed in the previous encounter). Once a human is turned into a vampire familiar, they attack when Troob orders them to.",
+								"Troob ({@creature Vampire Mind Flayer|RHW}) is behind the unlocked, nontrapped door to the east. As soon as she hears anything happening in the main chamber, she emerges and attacks. She also knows something is amiss if more than one sarcophagus is disabled in the second encounter.",
+								{
+									"type": "entries",
+									"name": "Zone of Psychic Pain",
+									"id": "079",
+									"entries": [
+										"The 10-foot-square area between the statues reverberates with psychic energy. A creature entering that area or starting its turn there must succeed on a {@dc 10} Intelligence saving throw. On a failed save, the creature takes 7 ({@damage 2d6}) Psychic damage, is hurled north to the end of the hallway, takes an additional 3 ({@damage 1d6}) Bludgeoning damage, and has the {@condition Prone|XPHB} condition. A character who takes Psychic damage in this way also is marked on their forehead with the Symbol of Azalin (see \"{@area Ongoing Effect|07c|x}\").",
+										{
+											"type": "image",
+											"href": {
+												"type": "internal",
+												"path": "adventure/SoS/014-03-001.unhappy-surprise.webp"
+											},
+											"width": 850,
+											"height": 2123,
+											"credit": "David Astruga"
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Conclusion",
+									"id": "07a",
+									"entries": [
+										"If the characters defeat Troob, the remaining wisps of shadow coalesce into a shadow raven, which caws angrily and dissipates. The characters can investigate the rest of the complex to find the treasure, but nothing else is noteworthy. When the characters leave the stronghold, the Mists take them again.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"id": "07b",
+											"entries": [
+												"Searching the rest of the stronghold reveals a total of 200 GP in coins and gems, as well as a set of {@item +1 Armor|XDMG|+1 Armor (Light or Heavy)}."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Ongoing Effect",
+									"id": "07c",
+									"entries": [
+										"Keep track of the following ongoing effects for the remaining weekly sessions for characters affected.",
+										{
+											"type": "entries",
+											"name": "Symbol of Azalin",
+											"id": "07d",
+											"entries": [
+												"You have been marked with a symbol of Azalin: a desiccated skull. You have {@variantrule Advantage|XPHB} on Initiative rolls but {@variantrule Disadvantage|XPHB} on Constitution saving throws."
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Blood in Borca",
+					"id": "07e",
+					"entries": [
+						"{@i An adventure for level 5 characters set in the domain of Borca}",
+						"This is the Week 3 D&D Encounters adventure, designed to fill one 90-minute session of play.",
+						{
+							"type": "section",
+							"name": "Adventure Background",
+							"id": "07f",
+							"entries": [
+								"{@book Borca|RHW|2|Borca} is a Dread Domain of intrigue and treachery. Noble families make temporary truces to gain power, then betray their allies for the slightest chance of more.",
+								"The Nobriskov and Olzanik families have made such a truce, one that is about to be broken because of the third shadow raven, and the characters find themselves in the center of the conflict.",
+								{
+									"type": "inset",
+									"name": "Borca Intrigue",
+									"id": "080",
+									"entries": [
+										"While the Nobriskov and Olzanik families have enjoyed a mutually beneficial business partnership, like most in Borca, machinations are always afoot to gain any advantage over one another. You can use the details below to help provide additional depth to Avri's and Ansilo's opportunistic relationship.",
+										"The Nobriskov family has made their fortune off selling unwise patrons \"miracle\" cures, performing fraudulent seances, and generally using their knowledge of the supernatural to make profit wherever they can. A deeper secret lies within their ranks\u2013many follow the cult of Osybus, a foul order that seeks escape from the Mists at any cost.",
+										"The Olzanik family keeps their respected station in Borca by their work in metallurgy and artifice. Selling their services to the highest bidder, they have provided wondrous machines often twisted to terrible ends. Their most reliable client is General Vladeska Drakov, Falkovnia's darklord, who uses the Olzanik creations against the zombie hordes she is besieged by as well as to pacify her own people."
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Beginning the Adventure",
+							"id": "081",
+							"entries": [
+								"Read or paraphrase the following:",
+								{
+									"type": "insetReadaloud",
+									"id": "082",
+									"entries": [
+										"Inza sent you into the mists in pursuit of the third shadow raven, and this time you emerged into a rain-soaked landscape. A road leads through a pine forest, and in the distance, atop a steep mountain surrounded by cliffs, you see a castle.",
+										"On the road before you, a carriage is surrounded by snarling wolves, with three dead guards lying among the corpses of a larger pack. A guard dressed in livery cuts down a trio of beasts with three swift cuts, but a final wolf leaps and tears out his throat. Panicked shouts come from inside the carriage."
+									]
+								},
+								"After the scene plays out, just one {@creature Wolf|XMM} is left, and it has only 1 Hit Point. If the characters intervene, they can easily defeat the wolf and rescue the carriage passenger: a human {@creature Noble|XMM} named Avri Olzanik.",
+								"If the characters eliminate the wolves, he emerges from the carriage and addresses the characters:",
+								{
+									"type": "insetReadaloud",
+									"id": "083",
+									"entries": [
+										"\"Many thanks! Never have I seen so many wolves. I thought four bodyguards would suffice, but apparently the dangers here are greater than I'd been told. I'm Avri Olzanik, and I have further need of your services, if you'll indulge me for a moment.\""
+									]
+								},
+								"Avri tells the characters he's attending a dinner in his honor at the home of Ansilo Nobriskov, a friend and business partner. He offers to pay the characters 100 GP total to act as his guards. He doesn't expect trouble, but you can never be too careful in Borca.",
+								"When the characters and Avri arrive at the castle, read or paraphrase the following:",
+								{
+									"type": "insetReadaloud",
+									"id": "084",
+									"entries": [
+										"The carriage arrives at the front of the castle, and a welcome party awaits. A sharply dressed young human steps from among an array of guards and waves. \"There's Ansilo,\" says Avri.",
+										"Then you notice the shadows covering Ansilo. A wicked smile plays across his face. The shadows surge away from him, enveloping your carriage. The world goes black, then you're gone."
+									]
+								},
+								"The characters fall {@condition Unconscious|XPHB|unconscious} and are taken into Ansilo's castle. Start \"Encounter 1: Quick Fix.\""
+							]
+						},
+						{
+							"type": "section",
+							"name": "Encounter 1: Quick Fix",
+							"id": "085",
+							"entries": [
+								"Read or paraphrase the following:",
+								{
+									"type": "insetReadaloud",
+									"id": "086",
+									"entries": [
+										"You regain your senses in a room with steaming pipes, large valves lining the walls, and a mechanical spider resting on the floor. A locked door to the south is the only way out. Apart from your group and Avri, no one else is here.",
+										"A sneering voice resounds in the room, as if coming through the pipes. \"Thank you for your patience, Avri. Now you can do what I asked you here to do. Use your expertise with metal and magic to fix my pet. Do so quickly, and you might even live to be ransomed back to your family. I've added some extra motivation.\""
+									]
+								},
+								"When Ansilo finishes speaking, an {@creature Azer Pyromancer|XMM} appears in the center of the room and attacks the nearest creature. It doesn't harm Avri, however.",
+								{
+									"type": "image",
+									"id": "0ab",
+									"href": {
+										"type": "internal",
+										"path": "adventure/SoS/015-map-04-001.blood-in-borca.webp"
+									},
+									"width": 2841,
+									"height": 4096,
+									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 184,
+										"offsetX": 23,
+										"offsetY": 22
+									},
+									"title": "Map: Blood in Borca",
+									"credit": "Marco Bernardini"
+								},
+								{
+									"type": "entries",
+									"name": "Fixing the Spider",
+									"id": "087",
+									"entries": [
+										"The mechanical spider can be fixed by an adjacent creature taking an action to use {@item Tinker's Tools|XPHB} and succeeding on a {@dc 20} Intelligence ({@skill Arcana|XPHB} or {@skill Investigation|XPHB}) check. Avri (Medium {@creature Noble|XMM}) acts on Initiative count 0. On his turn, he automatically succeeds on his check.",
+										"Five successful checks must be made to completely fix the spider. A character can also attempt the check, but if their check is 15 or less, they undo one of the previous successes and an additional success is needed.",
+										"When the spider is fixed, the azer pyromancer gets pulled into the spider to act as a power source and can no longer attack."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Concluding the Encounter",
+									"id": "088",
+									"entries": [
+										"The door to the south is the only means of leaving the room. The lock can be picked by a character who takes a {@action Utilize|XPHB} action and succeeds on a {@dc 10} Dexterity ({@skill Sleight of Hand|XPHB}) check. If the characters can't lockpick the door, Avri can do it for them.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"id": "089",
+											"entries": [
+												"The characters find mechanical parts worth 100 GP and a {@item Spell Scroll (Level 3)|XDMG|Spell Scroll} of {@spell Fireball|XPHB} if they search the room. The mechanical spider acts as {@creature Animated Armor|XMM} under the characters' control. Unfortunately, it breaks apart the first time it deals or takes damage."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Continuing",
+											"id": "08a",
+											"entries": [
+												"When the characters leave the room, start the next encounter."
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Encounter 2: Slow Burn",
+							"id": "08b",
+							"entries": [
+								"Read or paraphrase the following:",
+								{
+									"type": "insetReadaloud",
+									"id": "08c",
+									"entries": [
+										"This laboratory contains arcane equipment. Ansilo stands near doors to the south, with two robed cultists and four armed servants between you and him. The shadows play across his skin in the form of arcane tattoos. \"Thank you for your help. Now you can die.\""
+									]
+								},
+								"Ansilo (Medium {@creature Priest of Osybus|RHW}) commands two {@creature Cultist Fanatic|XMM|Cultist Fanatics} and four {@creature Spy|XMM|Spies}. Only the spies surrender, and only if Ansilo and the fanatics are defeated. If the characters kill Ansilo, they earn the Two's Company ongoing effect ({@area see below|091|x}).",
+								{
+									"type": "entries",
+									"name": "Arcane Mishaps",
+									"id": "08d",
+									"entries": [
+										"At the end of each round, one of the tanks in the northeast and northwest corners of the room expels a surge of electricity. Any creature within 10 feet of these tanks must succeed on a {@dc 15} Constitution saving throw. On a failure, they take 10 ({@damage 3d6}) Lightning damage, or half as much on a success."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Conclusion",
+									"id": "08e",
+									"entries": [
+										"When the enemies are defeated, the shadowy tattoos on Ansilo coalesce into a shadow raven, then explode into a magical shimmer that dissipates. When the characters leave through the south doors, they emerge in a cliff face beneath the castle. The Mists quickly close in and pull them away to the final adventure.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"id": "08f",
+											"entries": [
+												"Among the equipment in the room, the character can find 200 GP, 2 {@item Potion of Hill Giant Strength|XDMG|Potions of Hill Giant Strength}, and a {@item +1 Wand of the War Mage|XDMG}. If Avri survived, he also provides an additional 200 GP and {@item Bracers of Defense|XDMG}."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Ongoing Effect",
+									"id": "090",
+									"entries": [
+										"Keep track of the following ongoing effects for the remaining weekly session if it applies.",
+										{
+											"type": "entries",
+											"name": "Two's Company",
+											"id": "091",
+											"entries": [
+												"You slew the Priest of Osybus, and now you house Osybus's spirit. She is wrathful and petty, and this affects your personality. You have {@variantrule Advantage|XPHB} on Intelligence ability checks concerning the undead and the Mists."
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Victory in Valachan",
+					"id": "092",
+					"entries": [
+						"{@i An adventure for level 5 characters set in the domain of Valachan}",
+						"This is the Week 4 D&D Encounters adventure, designed to fill one 90-minute session of play.",
+						{
+							"type": "section",
+							"name": "Adventure Background",
+							"id": "093",
+							"entries": [
+								"One rule governs the Dread Domain of {@book Valachan|RHW|2|Valachan}: hunt or be hunted. Its people live in fear, racing from one sanctuary to another, constantly pursued by predators that feast on the weak. The characters are thrust into a race for survival, where the last of the raven shadows has taken control of a truly terrible predator."
+							]
+						},
+						{
+							"type": "section",
+							"name": "Beginning the Adventure",
+							"id": "094",
+							"entries": [
+								"Read or paraphrase the following:",
+								{
+									"type": "insetReadaloud",
+									"id": "095",
+									"entries": [
+										"Inza sent you into the mists in pursuit of the fourth and final shadow raven, and this time jungle environs greet you. There is a moment of peace, but then a score of terrified people run past you down the jungle path.",
+										"\"Run!\" shouts one of the runners. \"Run or die!\""
+									]
+								},
+								"The characters begin on the southern portion of the trail on the map.",
+								{
+									"type": "image",
+									"id": "0ac",
+									"href": {
+										"type": "internal",
+										"path": "adventure/SoS/016-map-05-001.victory-in-valachan.webp"
+									},
+									"width": 4096,
+									"height": 3012,
+									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 271,
+										"offsetX": 31,
+										"offsetY": 31,
+										"scale": 2
+									},
+									"title": "Map: Victory in Valachan",
+									"credit": "Jared Blando"
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Encounter 1: Run!",
+							"id": "096",
+							"entries": [
+								"After the characters react, read or paraphrase the following:",
+								{
+									"type": "insetReadaloud",
+									"id": "097",
+									"entries": [
+										"Ahead of you, the terrified runners navigate the uneven path. Suddenly, something skitters out of the thick jungle growth, tears a runner off his feet, and yanks him into the overgrowth. Then it happens to another. \"Mama! Papa!\" yells one of the younger runners. She stops to peer into the foliage. Then she's pulled in as well. Screams for help echo off the trees. Then silence."
+									]
+								},
+								"The family was three Medium human {@creature Commoner|XMM|Commoners}: the teenage daughter Winota, the mother Pahla, and the father Bozzt. Unless the characters intervene, they're killed by the monsters: six {@creature Phase Spider|XMM|Phase Spiders}.",
+								{
+									"type": "entries",
+									"name": "The Unnatural Wonders",
+									"id": "098",
+									"entries": [
+										"The land itself is dangerous in Valachan. The following is true about the terrain:",
+										{
+											"type": "list",
+											"style": "list-hang-notitle",
+											"items": [
+												"{@b Terrain}. All terrain off the path is {@variantrule Difficult Terrain|XPHB}.",
+												"{@b Ensnared}. The first time a character enters a square adjacent to a tree trunk, the tree attempts to snare the character. That character must succeed on a {@dc 13} Strength saving throw or have the {@condition Grappled|XPHB} condition (escape {@dc 13}). If that tree takes any damage, it goes inert and releases any {@condition Grappled|XPHB} characters.",
+												"{@b Webbed}. The webbed areas act as if covered by a {@spell Web|XPHB} spell for creatures other than spiders."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Concluding the Encounter",
+									"id": "099",
+									"entries": [
+										"If the characters intervene and draw the focus of the spiders, the family is saved. As thanks, they provide treasure and information.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"id": "09a",
+											"entries": [
+												"The family gives the characters jewelry worth a total of 300 GP and three {@item Potion of Greater Healing|XDMG|Potions of Greater Healing}."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Continuing",
+											"id": "09b",
+											"entries": [
+												"The rescued family tells the characters that a great shadowy form in the shape of a bat has been chasing them for hours. It's also taken control of various predators along the way, making it even more dangerous.",
+												"The family tells the characters that if they wait on this path, the shadow and the predators it puppets should chase down their scent soon. The characters might be able to set up an ambush and take the pursuers by surprise. None of the runners are warriors, but the characters are obviously great heroes, so maybe they can defeat the enemies!",
+												{
+													"type": "entries",
+													"name": "Ambush",
+													"id": "09c",
+													"entries": [
+														"To hide and set up an ambush, the characters must all take {@action Hide|XPHB} actions and succeed on a group {@dc 15} Dexterity ({@skill Stealth|XPHB}) check. A character can replace that check with an Intelligence ({@skill Nature|XPHB}) check to know how to blend in with the strange fauna. If the party succeeds, the enemies in the next encounter are {@status Surprised|XPHB}."
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Encounter 2: Ambush?",
+							"id": "09d",
+							"entries": [
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/SoS/017-05-001.ambush.webp"
+									},
+									"width": 1700,
+									"height": 1114,
+									"credit": "Jarel Threat"
+								},
+								"After the characters have hidden, read or paraphrase the following:",
+								{
+									"type": "insetReadaloud",
+									"id": "09e",
+									"entries": [
+										"An enormous two-legged dinosaur roars ferociously, crashing through the jungle. Flying behind it is a winged creature made of shadows. It appears as a combination of stirge and man, and its proboscis darts about as if sniffing the air."
+									]
+								},
+								"The last of the shadow ravens has taken the form of a {@creature Strigoi|RHW}, and it has brought a {@creature Tyrannosaurus Rex|XMM} under its spell.",
+								{
+									"type": "entries",
+									"name": "Help from Friends",
+									"id": "09f",
+									"entries": [
+										"If the characters rescued the entire family, the trio hide in the jungle foliage and throw rocks at the enemies on Initiative count 1. Each has a {@hit 2} to their attack roll and deals 2 ({@damage 1d4}) Bludgeoning damage on a hit. They can also use their actions to assist the characters in other ways if instructed to do so, but they try to remain outside of harm's way."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "T-Rex Taming",
+									"id": "0a0",
+									"entries": [
+										"When the strigoi is defeated, the tyrannosaurus is freed from its spell. It's still a killing machine, but the characters can try to lure it away or otherwise trick it into leaving the area with an {@action Influence|XPHB} action and a successful {@dc 20} Wisdom ({@skill Animal Handling|XPHB}) check."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Conclusion",
+									"id": "0a1",
+									"entries": [
+										"When both enemies are defeated or driven off, the characters can search the remains and find treasure. The rescued runners thank the characters, but then the Mists move in for the final time.",
+										{
+											"type": "insetReadaloud",
+											"id": "0a2",
+											"entries": [
+												"The shadowy creature dissipates, leaving behind only the dead body of a normal-looking raven. The body rots and sinks into the soil, as if a century just passed in a matter of seconds.",
+												"Then the Mists engulf you again, and Inza steps forward. \"You've defeated the last shadow, and all is well for the time being. I can send you back to your homes if you wish. Otherwise, you will return to Sithicus.\""
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"id": "0a3",
+											"entries": [
+												"The characters find 300 GP of coins and gems. Inza offers the characters a {@item Cloak of Arachnida|XDMG} and a {@item Ring of Free Action|XDMG}.",
+												"Inza also offers another blessing. If the characters accept, they get {@i Inza's Final Blessing}, which is detailed below."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Ongoing Effect",
+									"id": "0a4",
+									"entries": [
+										"The characters can gain one final ongoing effect. This replaces Inza's Blessing if a character already has that ongoing effect.",
+										{
+											"type": "entries",
+											"name": "Inza's Final Blessing",
+											"id": "0a5",
+											"entries": [
+												"As a Bonus Action, you can use this blessing to regain {@dice 4d4 + 4} Hit Points. You regain this ability after completing a Long Rest. Additionally, any attacks against Inza are made with {@variantrule Disadvantage|XPHB}, and you have {@variantrule Disadvantage|XPHB} on saving throws against Inza's spells or abilities."
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Continue Your Adventures",
+							"id": "0a6",
+							"entries": [
+								"While this concludes the D&D Encounters play sessions, the fun doesn't have to stop here! There are more adventure ideas in {@book Ravenloft: The Horrors Within|RHW} that are already outlined and just need a little more preparation to get them ready for your groups to continue a harrowing tour through the Domains of Dread. Some good places to continue on in that book include:",
+								{
+									"type": "list",
+									"items": [
+										"\"{@book Isles of Agony|RHW|2|Isles of Agony},\" a level 5 adventure set in {@book Lamordia|RHW|2|Lamordia}, a frigid domain of amoral science.",
+										"\"{@book Lethal Lavender|RHW|2|Lethal Lavender},\" a level 5 adventure set in {@book Borca|RHW|2|Borca}, allowing characters to make a return visit.",
+										"\"{@book Blood o' the Vine|RHW|2|Blood o' the Vine},\" a level 6 adventure set in the legendary domain of {@book Barovia|RHW|2|Barovia}, the home of {@book Strahd von Zarovich|RHW|2|Strahd von Zarovich}."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Credits",
+					"id": "0a7",
+					"entries": [
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"columns": 2,
+							"items": [
+								{
+									"type": "item",
+									"name": "Project Lead:",
+									"entry": "Chris Tulach"
+								},
+								{
+									"type": "item",
+									"name": "Designer:",
+									"entry": "Shawn Merwin"
+								},
+								{
+									"type": "item",
+									"name": "Editor:",
+									"entry": "Sadie Lowry"
+								},
+								{
+									"type": "item",
+									"name": "Graphic Designer:",
+									"entry": "Rich Lescouflair"
+								},
+								{
+									"type": "item",
+									"name": "Cover Illustrator:",
+									"entry": "Pauline Voss"
+								},
+								{
+									"type": "item",
+									"name": "Interior Illustrators:",
+									"entry": "Rowan Holloway, Valera Lutfullina, Ivan Shavrin, Hinchel Or"
+								},
+								{
+									"type": "item",
+									"name": "Cartographers:",
+									"entry": "Jared Blando, Marco Bernardini"
+								},
+								{
+									"type": "item",
+									"name": "Consultant:",
+									"entry": "Shawn Banerjee"
+								},
+								{
+									"type": "item",
+									"name": "Producer:",
+									"entry": "Bill Benham"
+								},
+								{
+									"type": "item",
+									"name": "D&D Beyond Digital Publishing:",
+									"entry": "Randy Balisalisa, Bailey Vaughan, Janelle Bawayan, Lauren Erwin, Giuliana Funkhouser, Cameron R. Powell"
+								}
+							]
+						},
+						{
+							"type": "image",
+							"href": {
+								"type": "internal",
+								"path": "adventure/SoS/018-06-001.dark-fantasy.webp"
+							},
+							"width": 850,
+							"height": 1162,
+							"credit": "Ivan Shavrin"
+						}
+					]
+				}
+			]
+		}
+	]
+}

@@ -758,6 +758,8 @@ class BestiaryPage extends ListPageMultiSource {
 
 		this._pgContent.vee.empty();
 
+		this._doScrollStatsTop();
+
 		if (this._btnProf != null) {
 			this._wrpBtnProf.vee.appends(this._btnProf);
 		}

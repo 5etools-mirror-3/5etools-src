@@ -65,10 +65,19 @@ export class RenderDemoPage extends BaseComponent {
 			return this._doShowJsonParseError(e);
 		}
 
+		const posCursorPrev = this._editor.getCursorPosition();
+
 		this._editor.setValue(CleanUtil.getCleanJson(json));
 		this._editor.clearSelection();
 		this._doRender();
-		this._editor.selection.moveCursorToPosition({row: 0, column: 0});
+
+		// Attempt to restore cursor position; note that this is best-guess as we're not *really* formatting via the text editor
+		// TODO(Future) wire up a real Ace formatter, which presumably would not have this issue
+		const row = Math.min(posCursorPrev.row, this._editor.session.getLength() - 1);
+		this._editor.selection.moveCursorToPosition({
+			row,
+			column: Math.min(posCursorPrev.column, this._editor.session.getLine(row).length),
+		});
 	}
 
 	_doReset () {
@@ -173,6 +182,27 @@ export class RenderDemoPage extends BaseComponent {
 
 		// init editor
 		this._editor = await EditorUtil.pInitEditor("jsoninput", {mode: "ace/mode/json"});
+
+		document.body.addEventListener(
+			"keydown",
+			(evt) => {
+				if (
+					evt.shiftKey
+					|| !EventUtil.isCtrlMetaKey(evt)
+					|| !EventUtil.isAltOptionKey(evt)
+					|| evt.code !== "KeyL" // `OPTION` can change `key`, so match `code`.
+				) return;
+
+				evt.preventDefault();
+				evt.stopPropagation();
+
+				this._doFormat();
+			},
+			{
+				capture: true, // Avoid ace stealing keys
+			},
+		);
+
 		(
 			new ResizeObserver(() => this._editor.resize())
 		)

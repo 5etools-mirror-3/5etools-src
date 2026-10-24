@@ -494,7 +494,13 @@ export class BuilderBase extends ProxyBase {
 		const out = this._ui._getJsonOutputTemplate();
 		out[this._prop] = entities
 			.map(entry => PropOrder.getOrdered(DataUtil.cleanJson(MiscUtil.copy(entry)), this._prop));
-		DataUtil.userDownload(DataUtil.getCleanFilename(BrewUtil2.sourceJsonToFull(this._ui.source)), out);
+		DataUtil.userDownload(
+			DataUtil.getCleanFilename(BrewUtil2.sourceJsonToFull(this._ui.source)),
+			out,
+			{
+				isSkipAdditionalMetadata: true,
+			},
+		);
 	}
 
 	reset ({isResetAllMeta = false} = {}) {

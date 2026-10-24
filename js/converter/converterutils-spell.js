@@ -117,6 +117,16 @@ export class MiscTagsTagger {
 		if (/\b(?:you|embers?)\b[^.!?]*\blight\b[^.!?]*\b(?:candles?|torches?|lamps?|campfires?)\b/i.test(stripped)) return this._addTag({tags, tag: "BO", options});
 	}
 
+	static _mutTags_WLT ({tags, stripped, options}) {
+		if (new RegExp(`\\bwilling (?:creature|${Parser.MON_TYPES.join("|")})s?\\b|\\bcreatures? (?:[^.!?]+ )?that (?:is|are) willing\\b`, "i").test(stripped)) this._addTag({tags, tag: "WLT", options});
+	}
+
+	static _mutTags_ALT ({tags, stripped, options}) {
+		if (/(?<!\bto )\byou and your allies\b/i.test(stripped)) return this._addTag({tags, tag: "ALT", options});
+		if (/\b(?:friendly|nonhostile) creatures?\b/i.test(stripped)) return this._addTag({tags, tag: "ALT", options});
+		if (new RegExp(`\\b(?:creature|${Parser.MON_TYPES.join("|")})s? (?:you touch )?that (?:is|are) friendly to you\\b(?! are fighting)`, "i").test(stripped)) return this._addTag({tags, tag: "ALT", options});
+	}
+
 	static tryRun (sp, options) {
 		const tags = new Set(sp.miscTags || []);
 
@@ -134,6 +144,8 @@ export class MiscTagsTagger {
 					if (/you summon/ig.test(stripped) || /creature shares your initiative count/ig.test(stripped)) this._addTag({tags, tag: "SMN", options});
 					this._mutTags_SGT({tags, str, stripped, options});
 					this._mutTags_BO({tags, stripped, options});
+					this._mutTags_WLT({tags, stripped, options});
+					this._mutTags_ALT({tags, stripped, options});
 					if (/you (?:can then )?teleport/i.test(stripped) || /instantly (?:transports you|teleport)/i.test(stripped) || /enters(?:[^.]+)portal instantly/i.test(stripped) || /entering the portal exits from the other portal/i.test(stripped)) this._addTag({tags, tag: "TP", options});
 
 					if ((stripped.includes("bonus") || stripped.includes("penalty")) && stripped.includes("AC")) this._addTag({tags, tag: "MAC", options});

@@ -375,6 +375,17 @@ class OmnisearchUi {
 		}
 	}
 
+	static _handleFocus_link ({evt, lnk, resultDoc}) {
+		if (!resultDoc.h) return;
+		if (!Renderer.hover.isMinLargeScreen(evt)) return;
+
+		const {left, top} = lnk.getBoundingClientRect();
+		Renderer.hover.pHandleLinkFocus(evt, lnk, {
+			position: Renderer.hover.getWindowPositionExactRight(left, top, {evt, offsetX: -9}),
+		})
+			.then(null);
+	}
+
 	static _doCleanup ({rdState}) {
 		rdState.lastRender = null;
 		rdState.wrpSearchOutput.vee.hide();
@@ -429,7 +440,9 @@ class OmnisearchUi {
 				const resultDoc = result.doc;
 
 				const lnk = OmnisearchUtilsUi.getResultLink(resultDoc)
-					.vee.onn("keydown", evt => this._handleKeydown_link({rdState, evt, results, ixPage, rowMetas, ixInPage}));
+					.vee.onn("keydown", evt => this._handleKeydown_link({rdState, evt, results, ixPage, rowMetas, ixInPage}))
+					.vee.onn("focus", evt => this._handleFocus_link({evt, lnk, resultDoc}))
+					.vee.onn("blur", evt => Renderer.hover.handleLinkBlur(evt, lnk));
 
 				const {
 					source,

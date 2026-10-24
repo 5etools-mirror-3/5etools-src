@@ -1807,6 +1807,8 @@ Parser.SP_MISC_TAG_TO_FULL = {
 	"ADV": "Grants Advantage",
 	"PIR": "Permanent If Repeated",
 	"BO": "Burns Objects",
+	"WLT": "Targets Willing Creatures",
+	"ALT": "Targets Allies",
 };
 Parser.spMiscTagToFull = function (type) {
 	return Parser._parse_aToB(Parser.SP_MISC_TAG_TO_FULL, type);
@@ -3358,6 +3360,7 @@ Parser.SRC_HBTD = "HBTD";
 Parser.SRC_BQGT = "BQGT";
 Parser.SRC_CaBoMP = "CaBoMP";
 Parser.SRC_BQDD = "BQDD";
+Parser.SRC_SoS = "SoS";
 Parser.SRC_RWG = "RWG";
 Parser.SRC_PL = "PL";
 
@@ -3582,6 +3585,7 @@ Parser.SOURCE_JSON_TO_FULL[Parser.SRC_MisMV1] = `${Parser.MisMVX_PREFIX}1`;
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_AATM] = `${Parser.AA_PREFIX}The Mortuary`;
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_CaBoMP] = "Crochet: A Book of Many Patterns";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_BQDD] = "Borderlands Quest: Dagger Danger!";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_SoS] = "Shadows of Sithicus";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_RWG] = "Red Wizards' Gambit";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_PL] = "Project_Lamordia";
 
@@ -3770,6 +3774,7 @@ Parser.SOURCE_JSON_TO_ABV[Parser.SRC_MisMV1] = "MisMV1";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_AATM] = "AATM";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_CaBoMP] = "CaBoMP";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_BQDD] = "BQDD";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_SoS] = "SoS";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_RWG] = "RWG";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_PL] = "PL";
 
@@ -3957,6 +3962,7 @@ Parser.SOURCE_JSON_TO_DATE[Parser.SRC_MisMV1] = "2023-05-03";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_AATM] = "2023-10-17";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_CaBoMP] = "2026-03-31";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_BQDD] = "2026-05-28";
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_SoS] = "2026-05-29";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_RWG] = "2026-09-15";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_PL] = "2026-10-13";
 
@@ -4063,6 +4069,7 @@ Parser.SOURCES_ADVENTURES = new Set([
 	Parser.SRC_FFotR,
 	Parser.SRC_AUD,
 	Parser.SRC_AWM,
+	Parser.SRC_SoS,
 	Parser.SRC_RWG,
 	Parser.SRC_PL,
 ]);
@@ -4114,6 +4121,7 @@ Parser.SOURCES_NON_STANDARD_WOTC = new Set([
 	Parser.SRC_ScoEE,
 	Parser.SRC_HBTD,
 	Parser.SRC_BQGT,
+	Parser.SRC_SoS,
 	Parser.SRC_RWG,
 	Parser.SRC_PL,
 ]);
@@ -4316,6 +4324,7 @@ Parser.SOURCES_AVAILABLE_DOCS_BOOK = {};
 	Parser.SRC_RHW,
 	Parser.SRC_XSCREEN_RHW,
 	Parser.SRC_AU,
+	Parser.SRC_PL,
 ].forEach(src => {
 	Parser.SOURCES_AVAILABLE_DOCS_BOOK[src] = src;
 	Parser.SOURCES_AVAILABLE_DOCS_BOOK[src.toLowerCase()] = src;
@@ -4432,7 +4441,7 @@ Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE = {};
 	Parser.SRC_BQDD,
 	Parser.SRC_AUD,
 	Parser.SRC_RWG,
-	Parser.SRC_PL,
+	Parser.SRC_SoS,
 ].forEach(src => {
 	Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE[src] = src;
 	Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE[src.toLowerCase()] = src;
@@ -4472,6 +4481,7 @@ Parser.TAG_TO_PROPS = {
 	"table": ["table", "tableGroup"],
 	"vehupgrade": ["vehicleUpgrade"],
 	"item": ["item", "baseitem", "itemGroup", "magicvariant"],
+	"legroup": ["legendaryGroup"],
 };
 Parser.getTagProps = function (tag) {
 	if (Parser.TAG_TO_PROPS[tag]) return Parser.TAG_TO_PROPS[tag];
@@ -4479,6 +4489,7 @@ Parser.getTagProps = function (tag) {
 };
 
 Parser.PROP_TO_DISPLAY_NAME = {
+	"monster": "Creature",
 	"variantrule": "Rule",
 	"optionalfeature": "Option/Feature",
 	"magicvariant": "Magic Item Variant",
