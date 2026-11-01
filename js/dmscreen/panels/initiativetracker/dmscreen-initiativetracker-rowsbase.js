@@ -75,17 +75,56 @@ export class RenderableCollectionRowDataBase extends RenderableCollectionAsyncGe
 		this._pPopulateRow_bindParentRowStatColsIsEditableHook({comp, entity, mon, fluff, fnsCleanup});
 
 		const wrpLhs = veT`<div class="dm-init__row-lhs"></div>`.vee.appendTo(wrpRow);
+		const iptSelect = veT`<input class="dm-init__row-select dm-init-lockable" type="checkbox" title="Select for bulk actions" aria-label="Select for bulk actions">`
+			.vee.prop("checked", this._comp._isBulkRowSelected({rowId: entity.id}));
+		const setIsSelected = isSelected => {
+			iptSelect.vee.prop("checked", isSelected);
+			wrpRow.vee.toggleClass("dm-init__row-selected", isSelected);
+			this._comp._setBulkRowSelected({rowId: entity.id, isSelected});
+		};
+		iptSelect.vee.onn("change", () => setIsSelected(iptSelect.vee.prop("checked")));
+		const wrpSelect = veT`<div class="dm-init__wrp-select">${iptSelect}</div>`
+			.vee.onn("click", evt => {
+				if (evt.target === iptSelect) return;
+				setIsSelected(!iptSelect.vee.prop("checked"));
+			})
+			.vee.appendTo(wrpLhs);
+		wrpRow.vee.toggleClass("dm-init__row-selected", this._comp._isBulkRowSelected({rowId: entity.id}));
+		wrpLhs.vee.onn("click", evt => {
+			if (!evt.shiftKey || !evt.target.closest(".dm-init__ipt-name, .dm-init__wrp-creature")) return;
+			evt.preventDefault();
+			evt.stopPropagation();
+			setIsSelected(!iptSelect.vee.prop("checked"));
+		});
 
 		this._pPopulateRow_player({comp, wrpLhs, isMon});
 		this._pPopulateRow_monster({comp, wrpLhs, isMon, mon, fluff});
 
 		this._pPopulateRow_conditions({comp, wrpLhs});
+		const {wrp: wrpBulkMultiplier, btns: btnsBulkMultiplier} = this._pPopulateRow_bulkDamageMultiplier({rowId: entity.id, wrpLhs});
 
 		this._pPopulateRow_statsCols({comp, wrpRow, mon, fnsCleanup});
 
 		const wrpRhs = veT`<div class="dm-init__row-rhs"></div>`.vee.appendTo(wrpRow);
 
-		this._pPopulateRow_hp({comp, wrpRhs, fnsCleanup});
+		const {wrpHpCurrent, iptBulkTotal} = this._pPopulateRow_hp({comp, rowId: entity.id, wrpRhs, fnsCleanup});
+		const fnUpdateBulkDamage = () => {
+			const isSelected = this._comp._isBulkRowSelected({rowId: entity.id});
+			const isDamageMode = this._comp._dmInitBulkDamageMode && isSelected;
+			const draft = this._comp._dmInitBulkDamageDrafts.get(entity.id);
+
+			wrpBulkMultiplier.vee.toggle(isDamageMode);
+			wrpRow.vee.toggleClass("dm-init__row-bulk-mode", this._comp._dmInitBulkDamageMode);
+			wrpRow.vee.toggleClass("dm-init__row-bulk-inactive", this._comp._dmInitBulkDamageMode && !isSelected);
+			wrpHpCurrent.vee.toggle(!isDamageMode);
+			iptBulkTotal.vee.toggle(isDamageMode);
+
+			if (!draft) return;
+			iptBulkTotal.vee.val(draft.total ?? "");
+			btnsBulkMultiplier.forEach(({btn, multiplier}) => btn.vee.toggleClass("ve-btn-primary", draft.multiplier === multiplier));
+		};
+		this._comp._registerBulkDamageRow({rowId: entity.id, comp, fnUpdate: fnUpdateBulkDamage});
+		fnsCleanup.push(() => this._comp._dmInitBulkDamageRowHooks.delete(entity.id));
 		this._pPopulateRow_initiative({comp, wrpRhs});
 		this._pPopulateRow_btns({comp, entity, wrpRhs});
 
@@ -112,6 +151,24 @@ export class RenderableCollectionRowDataBase extends RenderableCollectionAsyncGe
 			},
 			fnsCleanup,
 		};
+	}
+
+	_pPopulateRow_bulkDamageMultiplier ({rowId, wrpLhs}) {
+		const metas = [
+			{label: "x0", multiplier: 0},
+			{label: "x½", multiplier: 0.5},
+			{label: "x1", multiplier: 1},
+			{label: "x2", multiplier: 2},
+		];
+		const btns = metas.map(({label, multiplier}) => ({
+			btn: veT`<button class="ve-btn ve-btn-default ve-btn-xs dm-init-lockable" title="${label}" aria-label="${label}">${label}</button>`
+				.vee.onn("click", () => this._comp._setBulkDamageRowMultiplier({rowId, multiplier})),
+			multiplier,
+		}));
+		const wrp = veT`<div class="dm-init__bulk-multiplier">${btns.map(({btn}) => btn)}</div>`
+			.vee.appendTo(wrpLhs);
+
+		return {wrp, btns};
 	}
 
 	_pOpenHpOverlay ({comp, iptHpCurrent}) {
@@ -328,7 +385,7 @@ export class RenderableCollectionRowDataBase extends RenderableCollectionAsyncGe
 
 	/* ----- */
 
-	_pPopulateRow_hp ({comp, wrpRhs, fnsCleanup}) {
+	_pPopulateRow_hp ({comp, rowId, wrpRhs, fnsCleanup}) {
 		const iptHpCurrent = ComponentUiUtil.getIptNumber(
 			comp,
 			"hpCurrent",
@@ -339,7 +396,18 @@ export class RenderableCollectionRowDataBase extends RenderableCollectionAsyncGe
 				html: `<input class="ve-form-control ve-input-sm hp dm-init__row-input ve-text-right ve-w-40p ve-mr-0 ve-br-0">`,
 			},
 		)
-			.vee.onn("click", () => this._pOpenHpOverlay({comp, iptHpCurrent}));
+			.vee.onn("click", () => {
+				if (this._comp._dmInitBulkDamageMode) return;
+				this._pOpenHpOverlay({comp, iptHpCurrent});
+			});
+		const iptBulkTotal = veT`<input class="ve-form-control ve-input-sm dm-init__bulk-hp-total dm-init-lockable" aria-label="Bulk total hit points" type="number">`;
+		iptBulkTotal.vee.onn("input", () => {
+			const raw = iptBulkTotal.vee.val();
+			this._comp._setBulkDamageRowTotal({
+				rowId,
+				total: raw == null || !`${raw}`.trim() ? null : Number(raw),
+			});
+		});
 
 		const iptHpMax = ComponentUiUtil.getIptNumber(
 			comp,
@@ -374,14 +442,18 @@ export class RenderableCollectionRowDataBase extends RenderableCollectionAsyncGe
 		this._comp._addHookBase("isInvertWoundDirection", hkHpColors)();
 		fnsCleanup.push(() => this._comp._removeHookBase("isInvertWoundDirection", hkHpColors));
 
+		const wrpHpCurrent = veT`<div class="ve-text-right">${iptHpCurrent}</div>`;
 		veT`<div class="ve-flex ve-relative ve-mr-3p">
-			<div class="ve-text-right">${iptHpCurrent}</div>
+			${wrpHpCurrent}
+			<div class="ve-text-right">${iptBulkTotal}</div>
 			<div class="dm-init__sep-fields-slash ve-flex-vh-center">/</div>
 			<div class="ve-text-left">${iptHpMax}</div>
 		</div>`
 			.vee.appendTo(wrpRhs);
 
 		fnsCleanup.push(() => this._comp._dmInitHpOverlay?.close());
+
+		return {wrpHpCurrent, iptBulkTotal};
 	}
 
 	/* ----- */

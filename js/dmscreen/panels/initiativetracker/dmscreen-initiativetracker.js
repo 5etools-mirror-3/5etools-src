@@ -68,6 +68,14 @@ class InitiativeTrackerComponent extends BaseComponent {
 
 		this._viewRowsActive = null;
 		this._viewRowsActiveMeta = null;
+		this._dmInitBulkSelectedRowIds = new Set();
+		this._dmInitBulkSelectionChange = null;
+		this._dmInitWrpTracker = null;
+		this._dmInitBulkDamageMode = false;
+		this._dmInitBulkDamageDelta = 0;
+		this._dmInitBulkDamageDrafts = new Map();
+		this._dmInitBulkDamageRowHooks = new Map();
+		this._dmInitBulkDamageFooterChange = null;
 
 		this._compDefaultParty = null;
 
@@ -107,12 +115,142 @@ class InitiativeTrackerComponent extends BaseComponent {
 		return this;
 	}
 
+	_isBulkRowSelected ({rowId}) {
+		return this._dmInitBulkSelectedRowIds.has(rowId);
+	}
+
+	_setBulkRowSelected ({rowId, isSelected}) {
+		if (isSelected) this._dmInitBulkSelectedRowIds.add(rowId);
+		else this._dmInitBulkSelectedRowIds.delete(rowId);
+
+		if (this._dmInitBulkDamageMode) {
+			if (isSelected) this._dmInitBulkDamageDrafts.set(rowId, {multiplier: 1, total: null});
+			else this._dmInitBulkDamageDrafts.delete(rowId);
+			if (!this._dmInitBulkSelectedRowIds.size) return this._exitBulkDamageMode();
+			this._updateBulkDamageDrafts();
+		}
+
+		this._dmInitBulkSelectionChange?.();
+	}
+
+	_clearBulkRowSelection () {
+		if (this._dmInitBulkDamageMode) this._exitBulkDamageMode();
+		this._dmInitBulkSelectedRowIds.clear();
+		this._dmInitWrpTracker?.vee.findAll(".dm-init__row-select").forEach(ipt => ipt.vee.prop("checked", false));
+		this._dmInitWrpTracker?.vee.findAll(".dm-init__row").forEach(row => row.vee.toggleClass("dm-init__row-selected", false));
+		this._dmInitBulkSelectionChange?.();
+	}
+
+	_getBulkDamageRowEntity ({rowId}) {
+		return this._state.rows.find(row => row.id === rowId)?.entity;
+	}
+
+	_getBulkDamageClampedValue ({rowEntity, value}) {
+		if (!Number.isFinite(value)) return null;
+		if (!this._state.isInvertWoundDirection || rowEntity.hpMax == null) return Math.max(0, value);
+		return Math.max(0, Math.min(rowEntity.hpMax, value));
+	}
+
+	_getBulkDamageDraftTotal ({rowEntity, multiplier}) {
+		const effectiveDelta = Math.sign(this._dmInitBulkDamageDelta)
+			* Math.floor(Math.abs(this._dmInitBulkDamageDelta) * multiplier);
+		if (rowEntity.hpCurrent == null && effectiveDelta === 0) return null;
+		return this._getBulkDamageClampedValue({
+			rowEntity,
+			value: (rowEntity.hpCurrent ?? 0) + effectiveDelta,
+		});
+	}
+
+	_updateBulkDamageDrafts () {
+		this._dmInitBulkDamageDrafts.forEach((draft, rowId) => {
+			const rowEntity = this._getBulkDamageRowEntity({rowId});
+			if (!rowEntity) return;
+			draft.total = this._getBulkDamageDraftTotal({rowEntity, multiplier: draft.multiplier});
+		});
+		this._dmInitBulkDamageRowHooks.forEach(({fnUpdate}) => fnUpdate());
+		this._dmInitBulkDamageFooterChange?.();
+	}
+
+	_setBulkDamageRowMultiplier ({rowId, multiplier}) {
+		const draft = this._dmInitBulkDamageDrafts.get(rowId);
+		if (!draft) return;
+		draft.multiplier = multiplier;
+		this._updateBulkDamageDrafts();
+	}
+
+	_setBulkDamageRowTotal ({rowId, total}) {
+		const draft = this._dmInitBulkDamageDrafts.get(rowId);
+		const rowEntity = this._getBulkDamageRowEntity({rowId});
+		if (!draft || !rowEntity) return;
+		draft.total = total == null ? null : this._getBulkDamageClampedValue({rowEntity, value: total});
+		this._dmInitBulkDamageRowHooks.get(rowId)?.fnUpdate();
+	}
+
+	_applyBulkDamage () {
+		if (this._state.isLocked) return;
+
+		this._dmInitBulkSelectedRowIds.forEach(rowId => {
+			const draft = this._dmInitBulkDamageDrafts.get(rowId);
+			const rowHook = this._dmInitBulkDamageRowHooks.get(rowId);
+			if (!draft || !rowHook) return;
+			rowHook.comp._state.hpCurrent = draft.total;
+		});
+
+		this._exitBulkDamageMode();
+	}
+
+	_registerBulkDamageRow ({rowId, comp, fnUpdate, fnCleanup}) {
+		this._dmInitBulkDamageRowHooks.set(rowId, {comp, fnUpdate});
+		fnUpdate();
+		return () => {
+			this._dmInitBulkDamageRowHooks.delete(rowId);
+			fnCleanup?.();
+		};
+	}
+
+	_enterBulkDamageMode () {
+		if (this._state.isLocked || !this._dmInitBulkSelectedRowIds.size) return;
+		this._dmInitHpOverlay?.close();
+		this._dmInitBulkDamageMode = true;
+		this._dmInitBulkDamageDelta = 0;
+		this._dmInitBulkDamageDrafts = new Map(
+			[...this._dmInitBulkSelectedRowIds].map(rowId => [rowId, {multiplier: 1, total: null}]),
+		);
+		this._updateBulkDamageDrafts();
+		this._dmInitBulkDamageFooterChange?.();
+	}
+
+	_exitBulkDamageMode () {
+		this._dmInitBulkDamageMode = false;
+		this._dmInitBulkDamageDrafts.clear();
+		this._dmInitBulkDamageRowHooks.forEach(({fnUpdate}) => fnUpdate());
+		this._dmInitBulkDamageFooterChange?.();
+	}
+
+	_syncBulkRowSelection () {
+		const rowIds = new Set(this._state.rows.map(row => row.id));
+		this._dmInitBulkSelectedRowIds.forEach(rowId => {
+			if (!rowIds.has(rowId)) {
+				this._dmInitBulkSelectedRowIds.delete(rowId);
+				this._dmInitBulkDamageDrafts.delete(rowId);
+			}
+		});
+		if (this._dmInitBulkDamageMode) {
+			if (!this._dmInitBulkSelectedRowIds.size) this._exitBulkDamageMode();
+			else this._updateBulkDamageDrafts();
+		}
+		this._dmInitBulkSelectionChange?.();
+	}
+
 	render () {
 		if (this._viewRowsActiveMeta) this._viewRowsActiveMeta.cbDoCleanup();
 		this._resetHooks("state");
 		this._resetHooksAll("state");
 
 		this._setStateFromSerialized();
+		this._dmInitBulkSelectedRowIds.clear();
+		this._dmInitBulkDamageMode = false;
+		this._dmInitBulkDamageDrafts.clear();
 
 		this._render_bindSortDirHooks();
 
@@ -142,6 +280,8 @@ class InitiativeTrackerComponent extends BaseComponent {
 		});
 		this._viewRowsActiveMeta = this._viewRowsActive.getRenderedView();
 		this._viewRowsActiveMeta.ele.vee.appendTo(wrpTracker);
+		this._dmInitWrpTracker = wrpTracker;
+		this._addHookBase("rows", () => this._syncBulkRowSelection());
 
 		this._render_getWrpFooter({wrpTracker, doUpdateExternalStates: this._doUpdateExternalStates}).vee.appendTo(wrpTracker);
 
@@ -343,6 +483,7 @@ class InitiativeTrackerComponent extends BaseComponent {
 			.vee.onn("click", async () => {
 				if (this._state.isLocked) return;
 				if (!await InputUiUtil.pGetUserBoolean({title: "Reset", htmlDescription: "Are you sure?", textYes: "Yes", textNo: "Cancel"})) return;
+				this._clearBulkRowSelection();
 
 				const stateNxt = {
 					rows: await this._compDefaultParty.pGetConvertedDefaultPartyActiveRows(),
@@ -410,7 +551,12 @@ class InitiativeTrackerComponent extends BaseComponent {
 				});
 			});
 
-		return veT`<div class="dm-init__wrp-controls">
+		const btnDamage = veT`<button class="ve-btn ve-btn-danger ve-btn-xs dm-init-lockable" title="Damage" aria-label="Damage">Damage</button>`
+			.vee.onn("click", () => this._enterBulkDamageMode());
+		const btnClearSelection = veT`<button class="ve-btn ve-btn-default ve-btn-xs dm-init-lockable" title="Clear Selection" aria-label="Clear Selection"><span class="glyphicon glyphicon-remove"></span></button>`
+			.vee.onn("click", () => this._clearBulkRowSelection());
+
+		const wrpControlsNormal = veT`<div class="dm-init__wrp-controls__normal">
 			<div class="ve-flex">
 				<div class="ve-btn-group ve-flex">
 					${btnAdd}
@@ -437,6 +583,60 @@ class InitiativeTrackerComponent extends BaseComponent {
 				</div>
 			</div>
 		</div>`;
+
+		const wrpControlsBulk = veT`<div class="dm-init__wrp-controls__bulk">
+			${btnDamage}
+			${btnClearSelection}
+		</div>`;
+		const iptBulkDamageDelta = veT`<input class="ve-form-control ve-input-sm dm-init__bulk-damage-delta dm-init-lockable" aria-label="Bulk hit point adjustment" type="number">`;
+		iptBulkDamageDelta.vee.onn("input", () => {
+			const delta = Number(iptBulkDamageDelta.vee.val());
+			if (!Number.isFinite(delta)) return;
+			this._dmInitBulkDamageDelta = delta;
+			this._updateBulkDamageDrafts();
+		});
+		const setBulkDamageDelta = delta => {
+			this._dmInitBulkDamageDelta = delta;
+			iptBulkDamageDelta.vee.val(delta);
+			this._updateBulkDamageDrafts();
+		};
+		const btnBulkDamage = (label, delta) => veT`<button class="ve-btn ve-btn-default ve-btn-xs dm-init-lockable" title="${delta < 0 ? `Decrease by ${-delta}` : `Increase by ${delta}`}" aria-label="${label}">${label}</button>`
+			.vee.onn("click", () => setBulkDamageDelta(this._dmInitBulkDamageDelta + delta));
+		const wrpControlsDamage = veT`<div class="dm-init__wrp-controls__damage">
+			${btnBulkDamage("-10", -10)}
+			${btnBulkDamage("-5", -5)}
+			${btnBulkDamage("-1", -1)}
+			${iptBulkDamageDelta}
+			${btnBulkDamage("+1", 1)}
+			${btnBulkDamage("+5", 5)}
+			${btnBulkDamage("+10", 10)}
+			<button class="ve-btn ve-btn-danger ve-btn-xs dm-init-lockable" title="Cancel" aria-label="Cancel"><span class="glyphicon glyphicon-remove"></span></button>
+			<button class="ve-btn ve-btn-success ve-btn-xs dm-init-lockable" title="Confirm" aria-label="Confirm"><span class="glyphicon glyphicon-ok"></span></button>
+		</div>`;
+		wrpControlsDamage.vee.findAll("button")[6].vee.onn("click", () => this._exitBulkDamageMode());
+		wrpControlsDamage.vee.findAll("button")[7].vee.onn("click", () => this._applyBulkDamage());
+
+		const wrpControls = veT`<div class="dm-init__wrp-controls">
+			${wrpControlsNormal}
+			${wrpControlsBulk}
+			${wrpControlsDamage}
+		</div>`;
+
+		this._dmInitBulkSelectionChange = () => {
+			const isAnySelected = this._dmInitBulkSelectedRowIds.size > 0;
+			wrpControlsNormal.vee.toggle(!isAnySelected);
+			wrpControlsBulk.vee.toggle(isAnySelected && !this._dmInitBulkDamageMode);
+		};
+		this._dmInitBulkDamageFooterChange = () => {
+			const isDamageMode = this._dmInitBulkDamageMode && this._dmInitBulkSelectedRowIds.size > 0;
+			wrpControlsDamage.vee.toggle(isDamageMode);
+			if (isDamageMode) iptBulkDamageDelta.vee.val(this._dmInitBulkDamageDelta);
+			this._dmInitBulkSelectionChange();
+		};
+		this._dmInitBulkSelectionChange();
+		this._dmInitBulkDamageFooterChange();
+
+		return wrpControls;
 	}
 
 	_render_bindSortDirHooks () {
@@ -526,6 +726,7 @@ class InitiativeTrackerComponent extends BaseComponent {
 	/* -------------------------------------------- */
 
 	async _pDoLoadEncounter ({entityInfos, encounterInfo}) {
+		this._clearBulkRowSelection();
 		const rowsPrev = [...this._state.rows];
 
 		// Reset rows early, such that our ordinals are correct for creatures from the encounter
