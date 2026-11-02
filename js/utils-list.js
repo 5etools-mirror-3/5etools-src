@@ -497,8 +497,8 @@ class SaveManager extends BaseComponent {
 		const wrpIsReference = !this._isReferencable
 			? null
 			: veT`<label class="ve-flex-v-center ve-mr-2">
-				<div class="ve-mr-1 ve-help" title="Turning this on will make a copy of the list as it currently exists, allowing the original to be modified or deleted without affecting the copy. Leaving this off will instead keep a reference to the list, so any change to the list will be reflected in applications which make use of it.">Make Copy</div>
 				${ComponentUiUtil.getCbBool(this, "isLoadAsCopy")}
+				<div class="ve-ml-1 ve-help" title="Turning this on will make a copy of the list as it currently exists, allowing the original to be modified or deleted without affecting the copy. Leaving this off will instead keep a reference to the list, so any change to the list will be reflected in applications which make use of it.">Make Copy</div>
 			</label>`;
 
 		const btnExportAll = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="Save All Lists to File">Export All</button>`

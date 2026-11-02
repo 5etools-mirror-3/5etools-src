@@ -18,9 +18,9 @@ export class InitiativeTrackerEncounterConverter {
 			rowStateBuilderActive,
 			isInvertWoundDirection,
 			importIsAddPlayers,
-			importIsRollGroups,
 			isRollInit,
 			isRollHp,
+			isRollGroups,
 		},
 	) {
 		this._roller = roller;
@@ -28,9 +28,9 @@ export class InitiativeTrackerEncounterConverter {
 
 		this._isInvertWoundDirection = isInvertWoundDirection;
 		this._importIsAddPlayers = importIsAddPlayers;
-		this._importIsRollGroups = importIsRollGroups;
 		this._isRollInit = isRollInit;
 		this._isRollHp = isRollHp;
+		this._isRollGroups = isRollGroups;
 	}
 
 	async pGetConverted ({entityInfos, encounterInfo}) {
@@ -188,12 +188,12 @@ export class InitiativeTrackerEncounterConverter {
 		await entityInfos
 			.filter(Boolean)
 			.pSerialAwaitMap(async entityInfo => {
-				const groupInit = this._importIsRollGroups && this._isRollInit ? await this._roller.pGetRollInitiative({mon: entityInfo.entity}) : null;
-				const groupHp = this._importIsRollGroups ? await this._roller.pGetOrRollHp(entityInfo.entity, {isRollHp: this._isRollHp}) : null;
+				const groupInit = this._isRollGroups && this._isRollInit ? await this._roller.pGetRollInitiative({mon: entityInfo.entity}) : null;
+				const groupHp = this._isRollGroups ? await this._roller.pGetOrRollHp(entityInfo.entity, {isRollHp: this._isRollHp}) : null;
 
 				await [...new Array(entityInfo.count || 1)]
 					.pSerialAwaitMap(async () => {
-						const hpVal = this._importIsRollGroups
+						const hpVal = this._isRollGroups
 							? groupHp
 							: await this._roller.pGetOrRollHp(entityInfo.entity, {isRollHp: this._isRollHp});
 
@@ -207,7 +207,7 @@ export class InitiativeTrackerEncounterConverter {
 									scaledSummonSpellLevel: entityInfo.entity._summonedBySpell_level,
 									scaledSummonClassLevel: entityInfo.entity._summonedByClass_level,
 									initiative: this._isRollInit
-										? this._importIsRollGroups ? groupInit : await this._roller.pGetRollInitiative({mon: entityInfo.entity})
+										? this._isRollGroups ? groupInit : await this._roller.pGetRollInitiative({mon: entityInfo.entity})
 										: null,
 									isActive: false,
 									source: entityInfo.entity.source,

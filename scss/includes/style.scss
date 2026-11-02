@@ -496,6 +496,13 @@
 				display: inline-block;
 				border-radius: 0.2em;
 				border: vars.$rgb-border-grey 1px solid;
+
+				.bkmv__spacer-name + & {
+					@include vars.mix-is-not-print {
+						border-top-left-radius: 0;
+						border-top-right-radius: 0;
+					}
+				}
 			}
 
 			&no-breaks {

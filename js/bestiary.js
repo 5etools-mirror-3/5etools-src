@@ -237,75 +237,15 @@ class BestiaryPageBookView extends ListPageBookView {
 			nameSingular: "creature",
 			namePlural: "creatures",
 			pageTitle: "Bestiary Printer View",
+			isIncludeFluffMarkdown: true,
 			...opts,
 		});
 	}
 
-	async _pGetWrpControls ({wrpContent}) {
-		const out = await super._pGetWrpControls({wrpContent});
-		const {wrpPrint} = out;
-
-		// region Markdown
-		// TODO refactor this and spell markdown section
-		const pGetAsMarkdown = async () => {
-			const toRender = this._bookViewToShow.length ? this._bookViewToShow.map(({entity}) => entity) : [this._fnGetEntLastLoaded()];
-			return RendererMarkdown.exporting.pGetMarkdownDoc({
-				ents: toRender,
-				prop: "monster",
-				pFnGetFluff: Renderer.monster.pGetFluff.bind(Renderer.monster),
-			});
-		};
-
-		const btnDownloadMarkdown = veT`<button class="ve-btn ve-btn-default ve-btn-sm">Download as Markdown</button>`
-			.vee.onn("click", async () => DataUtil.userDownloadText("bestiary.md", await pGetAsMarkdown()));
-
-		const btnCopyMarkdown = veT`<button class="ve-btn ve-btn-default ve-btn-sm ve-px-2" title="Copy Markdown to Clipboard"><span class="glyphicon glyphicon-copy"></span></button>`
-			.vee.onn("click", async () => {
-				await MiscUtil.pCopyTextToClipboard(await pGetAsMarkdown());
-				JqueryUtil.showCopiedEffect(btnCopyMarkdown);
-			});
-
-		const btnDownloadMarkdownSettings = veT`<button class="ve-btn ve-btn-default ve-btn-sm ve-px-2" title="Markdown Settings"><span class="glyphicon glyphicon-cog"></span></button>`
-			.vee.onn("click", async () => RendererMarkdown.pShowSettingsModal());
-
-		veT`<div class="ve-flex-v-center ve-btn-group ve-ml-2">
-			${btnDownloadMarkdown}
-			${btnCopyMarkdown}
-			${btnDownloadMarkdownSettings}
-		</div>`.vee.appendTo(wrpPrint);
-		// endregion
-
-		return out;
-	}
-
-	async _pGetRenderContentMeta ({wrpContent}) {
-		this._bookViewToShow = this._sublistManager.getSublistedEntityMetas()
-			.sort(this._getSorted.bind(this));
-
-		let cntSelectedEnts = 0;
-		let isAnyEntityRendered = false;
-
-		const stack = [];
-
-		const renderCreature = (mon) => {
-			isAnyEntityRendered = true;
-			stack.push(`<div class="bkmv__wrp-item ve-inline-block ve-print__block ve-print__my-2"><table class="ve-w-100 ve-stats ve-stats--book ve-stats--bkmv"><tbody>`);
-			stack.push(Renderer.monster.getCompactRenderedString(mon));
-			stack.push(`</tbody></table></div>`);
-		};
-
-		this._bookViewToShow
-			.filter(Boolean)
-			.forEach(({entity, count}) => Array.from({length: this._comp._state.isRenderCopies ? count : 1}, () => renderCreature(entity)));
-
-		if (!this._bookViewToShow.length && Hist.lastLoadedId != null) {
-			renderCreature(this._fnGetEntLastLoaded());
-		}
-
-		cntSelectedEnts += this._bookViewToShow.length;
-		wrpContent.vee.appends(stack.join(""));
-
-		return {cntSelectedEnts, isAnyEntityRendered};
+	_getRenderedEnt (ent) {
+		return `<div class="bkmv__wrp-item ve-inline-block ve-print__block ve-print__my-2"><table class="ve-w-100 ve-stats ve-stats--book ve-stats--bkmv"><tbody>
+		${Renderer.monster.getCompactRenderedString(ent)}
+		</tbody></table></div>`;
 	}
 
 	_getSorted (a, b) {
@@ -543,7 +483,10 @@ class BestiaryPage extends ListPageMultiSource {
 		this._renderStatblock(mon);
 
 		await this._pDoLoadSubHash({sub: [], lockToken});
+
 		this._updateSelected();
+
+		this._doScrollStatsTop();
 	}
 
 	async _pDoLoadSubHash_pScaler_ ({sub}) {
@@ -757,8 +700,6 @@ class BestiaryPage extends ListPageMultiSource {
 		this._wrpBtnProf = this._wrpBtnProf || veE(document.getElementById("wrp-profbonusdice"));
 
 		this._pgContent.vee.empty();
-
-		this._doScrollStatsTop();
 
 		if (this._btnProf != null) {
 			this._wrpBtnProf.vee.appends(this._btnProf);

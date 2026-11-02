@@ -1085,7 +1085,7 @@ class ListPage {
 	 * @param [opts.bookViewOptions.ClsBookView]
 	 * @param [opts.bookViewOptions.pageTitle]
 	 * @param [opts.bookViewOptions.namePlural]
-	 * @param [opts.bookViewOptions.propMarkdown]
+	 * @param [opts.bookViewOptions.isIncludeFluffMarkdown]
 	 * @param [opts.bookViewOptions.fnPartition]
 	 *
 	 * @param [opts.tableViewOptions] Table view options.
@@ -2170,8 +2170,6 @@ class ListPage {
 	async _pDoLoadHash ({id, lockToken}) {
 		this._pgContent.vee.empty();
 
-		this._doScrollStatsTop();
-
 		this._renderer.setFirstSection(true);
 		const ent = this._dataList[id];
 
@@ -2192,6 +2190,8 @@ class ListPage {
 		});
 
 		this._updateSelected();
+
+		this._doScrollStatsTop();
 
 		await this._renderStats_pBuildFluffTabs({
 			ent,
@@ -2674,7 +2674,7 @@ class ListPageBookView extends BookModeViewBase {
 			nameSingular,
 			namePlural,
 			isSublistItemsCountable = false,
-			propMarkdown,
+			isIncludeFluffMarkdown = false,
 			fnPartition = null,
 			...rest
 		},
@@ -2686,10 +2686,9 @@ class ListPageBookView extends BookModeViewBase {
 		this._nameSingular = nameSingular;
 		this._namePlural = namePlural;
 		this._isSublistItemsCountable = isSublistItemsCountable;
-		this._propMarkdown = propMarkdown;
+		this._isIncludeFluffMarkdown = isIncludeFluffMarkdown;
 		this._fnPartition = fnPartition;
 
-		this._bookViewToShow = null;
 		this._comp = new _ListPageBookViewComponent();
 		this._fnsCleanupCompRender = [];
 	}
@@ -2721,40 +2720,44 @@ class ListPageBookView extends BookModeViewBase {
 	async _pGetWrpControls ({wrpContent}) {
 		const out = await super._pGetWrpControls({wrpContent});
 		const {wrpPrint} = out;
-		if (this._propMarkdown) this._getControlsMarkdown().vee.appendTo(wrpPrint);
+		this._getControlsMarkdown().vee.appendTo(wrpPrint);
 		if (this._isSublistItemsCountable) this._getControlsCount().vee.appendTo(wrpPrint);
 		return out;
+	}
+
+	_getRenderableContentMeta () {
+		const entityMetas = this._sublistManager.getSublistedEntityMetas()
+			.sort(({entity: a}, {entity: b}) => this._getSorted(a, b));
+		const cntEntsPinned = entityMetas.length;
+
+		if (!cntEntsPinned) {
+			const entity = this._fnGetEntLastLoaded();
+			return {entityMetas: entity ? [{entity, count: 1}] : [], cntEntsPinned};
+		}
+
+		if (!this._fnPartition) return {entityMetas, cntEntsPinned};
+
+		// TODO(Future) refactor to keep partitions throughout pipeline
+		const partitions = [];
+		entityMetas.forEach(entityMeta => {
+			const partition = this._fnPartition(entityMeta.entity);
+			(partitions[partition] = partitions[partition] || []).push(entityMeta);
+		});
+
+		return {entityMetas: partitions.filter(Boolean).flat(), cntEntsPinned};
 	}
 
 	async _pGetRenderContentMeta ({wrpContent, wrpContentOuter}) {
 		wrpContent.vee.addClass("ve-p-2");
 
-		this._bookViewToShow = this._sublistManager.getSublistedEntityMetas()
-			.sort(this._getSorted.bind(this));
+		const {entityMetas, cntEntsPinned} = this._getRenderableContentMeta();
+		const stack = entityMetas
+			.flatMap(({entity, count}) => Array.from({length: this._comp._state.isRenderCopies ? count : 1}, () => this._getRenderedEnt(entity)));
 
-		const partitions = [];
-		if (this._fnPartition) {
-			this._bookViewToShow.forEach(entityMeta => {
-				const partition = this._fnPartition(entityMeta);
-				(partitions[partition] = partitions[partition] || []).push(entityMeta);
-			});
-		} else partitions[0] = this._bookViewToShow;
-
-		const stack = partitions
-			.filter(Boolean)
-			.flatMap(arr => {
-				return arr
-					.flatMap(({entity, count}) => Array.from({length: this._comp._state.isRenderCopies ? count : 1}, () => this._getRenderedEnt(entity)));
-			});
-
-		if (!this._bookViewToShow.length && Hist.lastLoadedId != null) {
-			stack.push(this._getRenderedEnt(this._fnGetEntLastLoaded()));
-		}
-
-		wrpContent.vee.appends(stack.join(""));
+		if (stack.length) wrpContent.vee.appends(stack.join(""));
 
 		return {
-			cntSelectedEnts: this._bookViewToShow.length,
+			cntSelectedEnts: cntEntsPinned,
 			isAnyEntityRendered: !!stack.length,
 		};
 	}
@@ -2767,43 +2770,26 @@ class ListPageBookView extends BookModeViewBase {
 		</div>`;
 	}
 
-	_getVisibleAsMarkdown () {
-		const toRender = this._bookViewToShow?.length
-			? this._bookViewToShow.map(({entity}) => entity)
-			: [this._fnGetEntLastLoaded()];
-		const parts = [...toRender]
-			.sort(this._getSorted.bind(this))
-			// Ignore count, as we presume markdown is not being printed
-			.map(entity => this._getEntityMarkdown(entity));
+	async _pGetVisibleAsMarkdown () {
+		const {entityMetas} = this._getRenderableContentMeta();
 
-		const out = [];
-		let charLimit = RendererMarkdown.CHARS_PER_PAGE;
-		for (let i = 0; i < parts.length; ++i) {
-			const part = parts[i];
-			out.push(part);
-
-			if (i < parts.length - 1) {
-				if ((charLimit -= part.length) < 0) {
-					if (VetoolsConfig.get("markdown", "isAddPageBreaks")) out.push("", "\\pagebreak", "");
-					charLimit = RendererMarkdown.CHARS_PER_PAGE;
-				}
-			}
-		}
-
-		return out.join("\n\n");
+		return RendererMarkdown.exporting.pGetMarkdownDoc({
+			ents: entityMetas.map(({entity}) => entity),
+			isIncludeFluff: this._isIncludeFluffMarkdown,
+		});
 	}
 
 	_getControlsMarkdown () {
-		const btnDownloadMarkdown = veT`<button class="ve-btn ve-btn-default ve-btn-sm">Download as Markdown</button>`
-			.vee.onn("click", () => DataUtil.userDownloadText(`${UrlUtil.getCurrentPage().replace(".html", "")}.md`, this._getVisibleAsMarkdown()));
+		const btnDownloadMarkdown = veT`<button class="ve-btn ve-btn-default ve-btn-xs">Download as Markdown</button>`
+			.vee.onn("click", async () => DataUtil.userDownloadText(`${UrlUtil.getCurrentPage().replace(".html", "")}.md`, await this._pGetVisibleAsMarkdown()));
 
-		const btnCopyMarkdown = veT`<button class="ve-btn ve-btn-default ve-btn-sm ve-px-2" title="Copy Markdown to Clipboard"><span class="glyphicon glyphicon-copy"></span></button>`
+		const btnCopyMarkdown = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-px-2" title="Copy Markdown to Clipboard"><span class="glyphicon glyphicon-copy"></span></button>`
 			.vee.onn("click", async () => {
-				await MiscUtil.pCopyTextToClipboard(this._getVisibleAsMarkdown());
+				await MiscUtil.pCopyTextToClipboard(await this._pGetVisibleAsMarkdown());
 				JqueryUtil.showCopiedEffect(btnCopyMarkdown);
 			});
 
-		const btnDownloadMarkdownSettings = veT`<button class="ve-btn ve-btn-default ve-btn-sm ve-px-2" title="Markdown Settings"><span class="glyphicon glyphicon-cog"></span></button>`
+		const btnDownloadMarkdownSettings = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-px-2" title="Markdown Settings"><span class="glyphicon glyphicon-cog"></span></button>`
 			.vee.onn("click", async () => RendererMarkdown.pShowSettingsModal());
 
 		return veT`<div class="ve-flex-v-center ve-btn-group ve-ml-3">
@@ -2822,16 +2808,12 @@ class ListPageBookView extends BookModeViewBase {
 		this._fnsCleanupCompRender.push(() => this._comp._removeHookBase("isRenderCopies", hkIsRenderCopies));
 
 		return veT`<label class="ve-flex-vh-center ve-ml-3">
-			<span class="ve-mr-2 ve-help" title="If enabled, each copy of a listed ${this._nameSingular} will be displayed separately. This may be preferable when printing handouts.">Show Duplicates</span>
 			${cbIsRenderCopies}
+			<span class="ve-ml-2 ve-help" title="If enabled, each copy of a listed ${this._nameSingular} will be displayed separately. This may be preferable when printing handouts.">Show Duplicates</span>
 		</label>`;
 	}
 
 	_getSorted (a, b) {
 		return SortUtil.ascSortLower(a.name, b.name);
-	}
-
-	_getEntityMarkdown (ent) {
-		return RendererMarkdown.get().render({type: "statblockInline", statblockType: this._propMarkdown, statblockData: ent}).trim();
 	}
 }

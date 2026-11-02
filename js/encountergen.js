@@ -26,7 +26,7 @@ class EncountersPage extends TableListPage {
 	}
 
 	_getDisplayName (ent) {
-		return Renderer.encounters.getDisplayName(ent);
+		return Renderer.encounter.getDisplayName(ent);
 	}
 
 	_getRenderedTable (ent) {

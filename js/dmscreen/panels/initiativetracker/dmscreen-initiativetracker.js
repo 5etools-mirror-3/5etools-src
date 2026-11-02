@@ -1,7 +1,6 @@
 import {InitiativeTrackerConst} from "./dmscreen-initiativetracker-consts.js";
 import {InitiativeTrackerNetworking} from "./dmscreen-initiativetracker-networking.js";
 import {InitiativeTrackerSettings} from "./dmscreen-initiativetracker-settings.js";
-import {InitiativeTrackerSettingsImport} from "./dmscreen-initiativetracker-importsettings.js";
 import {InitiativeTrackerMonsterAdd} from "./dmscreen-initiativetracker-monsteradd.js";
 import {InitiativeTrackerRoller} from "./dmscreen-initiativetracker-roller.js";
 import {InitiativeTrackerEncounterConverter} from "./dmscreen-initiativetracker-encounterconverter.js";
@@ -319,20 +318,11 @@ class InitiativeTrackerComponent extends BaseComponent {
 				return ContextUtil.pOpenMenu(evt, menuConfigure);
 			});
 
-		const menuImport = ContextUtil.getMenu([
-			...ListUtilBestiary.getContextOptionsLoadSublist({
+		const menuImport = ContextUtil.getMenu(
+			ListUtilBestiary.getContextOptionsLoadSublist({
 				pFnOnSelect: this._pDoLoadEncounter.bind(this),
 			}),
-			null,
-			new ContextUtil.Action(
-				"Import Settings",
-				async () => {
-					const compImportSettings = new InitiativeTrackerSettingsImport({state: MiscUtil.copyFast(this._state)});
-					await compImportSettings.pGetShowModalResults();
-					Object.assign(this._state, compImportSettings.getStateUpdate());
-				},
-			),
-		]);
+		);
 
 		const btnLoad = veT`<button title="Import an encounter from the Bestiary" class="ve-btn ve-btn-success ve-btn-xs dm-init-lockable"><span class="glyphicon glyphicon-upload"></span></button>`
 			.vee.onn("click", (evt) => {
@@ -539,7 +529,6 @@ class InitiativeTrackerComponent extends BaseComponent {
 
 			isInvertWoundDirection: this._state.isInvertWoundDirection,
 			importIsAddPlayers: isAddPlayers,
-			importIsRollGroups: this._state.importIsRollGroups,
 			isRollInit: this._state.isRollInit,
 			isRollHp: this._state.isRollHp,
 			isRollGroups: this._state.isRollGroups,
@@ -729,7 +718,6 @@ class InitiativeTrackerComponent extends BaseComponent {
 		if (this._savedState.rg != null) stateNxt.isRollGroups = this._savedState.rg;
 		if (this._savedState.rri != null) stateNxt.isRerollInitiativeEachRound = this._savedState.rri;
 		if (this._savedState.wId != null) stateNxt.isInvertWoundDirection = this._savedState.wId;
-		if (this._savedState.g != null) stateNxt.importIsRollGroups = this._savedState.g;
 		if (this._savedState.p != null) stateNxt.importIsAddPlayers = this._savedState.p;
 		if (this._savedState.a != null) stateNxt.importIsAppend = this._savedState.a;
 		if (this._savedState.k != null) stateNxt.isStatsAddColumns = this._savedState.k;
@@ -758,7 +746,6 @@ class InitiativeTrackerComponent extends BaseComponent {
 			rg: this._state.isRollGroups,
 			rri: this._state.isRerollInitiativeEachRound,
 			wId: this._state.isInvertWoundDirection,
-			g: this._state.importIsRollGroups,
 			p: this._state.importIsAddPlayers,
 			a: this._state.importIsAppend,
 			k: this._state.isStatsAddColumns,
@@ -798,7 +785,6 @@ class InitiativeTrackerComponent extends BaseComponent {
 			isRollGroups: false,
 			isRerollInitiativeEachRound: false,
 			isInvertWoundDirection: false,
-			importIsRollGroups: true,
 			importIsAddPlayers: true,
 			importIsAppend: false,
 			isStatsAddColumns: false,

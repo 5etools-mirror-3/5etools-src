@@ -20,7 +20,7 @@ class NamesPage extends TableListPage {
 	}
 
 	_getDisplayName (ent) {
-		return Renderer.names.getDisplayName(ent);
+		return Renderer.namez.getDisplayName(ent);
 	}
 
 	_getRenderedTable (ent) {

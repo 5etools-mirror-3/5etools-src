@@ -760,6 +760,19 @@ const PROPORDER_CLASS = [
 	getFluffObjectKey(),
 
 	...PROPORDER_FOUNDRY_DATA_INLINE,
+
+	new ArrayKey("_versions", {
+		fnGetOrder: () => [
+			"name",
+			"source",
+			ObjectKey.getCopyModKey({fnGetModOrder: () => PROPORDER_CLASS__COPY_MOD}),
+			"_preserve",
+			"_abstract",
+			"_implementations",
+			...PROPORDER_CLASS,
+		],
+		fnSort: getFnRootPropListSort("class", {isRequired: true}),
+	}),
 ];
 const PROPORDER_CLASS__COPY_MOD = [
 	"*",
@@ -840,6 +853,22 @@ const PROPORDER_SUBCLASS = [
 	getFluffObjectKey(),
 
 	...PROPORDER_FOUNDRY_DATA_INLINE,
+
+	new ArrayKey("_versions", {
+		fnGetOrder: () => [
+			"name",
+			"source",
+			"shortName",
+			"className",
+			"classSource",
+			ObjectKey.getCopyModKey({fnGetModOrder: () => PROPORDER_SUBCLASS__COPY_MOD}),
+			"_preserve",
+			"_abstract",
+			"_implementations",
+			...PROPORDER_SUBCLASS,
+		],
+		fnSort: getFnRootPropListSort("subclass", {isRequired: true}),
+	}),
 ];
 const PROPORDER_SUBCLASS__COPY_MOD = [
 	"*",

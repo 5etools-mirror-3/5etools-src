@@ -111,15 +111,22 @@
 					},
 					"effects": [
 						{
-							"foundryId": "arcanePropulsion"
+							"foundryId": "arcanePropulsion",
+							"riders": {
+								"effect": [
+									{
+										"foundryId": "arPropulsionRide"
+									}
+								]
+							}
 						}
 					]
 				}
 			],
 			"effects": [
 				{
+					"foundryId": "arPropulsionRide",
 					"name": "Arcane Propulsion Armor",
-					"enchantmentRiderParent": "arcanePropulsion",
 					"transfer": true,
 					"changes": [
 						{
@@ -1716,7 +1723,14 @@
 					},
 					"effects": [
 						{
-							"foundryId": "enhancedArcaneFo"
+							"foundryId": "enhancedArcaneFo",
+							"riders": {
+								"effect": [
+									{
+										"foundryId": "arcaneFocusRide1"
+									}
+								]
+							}
 						}
 					]
 				},
@@ -1731,7 +1745,14 @@
 					},
 					"effects": [
 						{
-							"foundryId": "enhancedArcaneF2"
+							"foundryId": "enhancedArcaneF2",
+							"riders": {
+								"effect": [
+									{
+										"foundryId": "arcaneFocusRide2"
+									}
+								]
+							}
 						}
 					]
 				}
@@ -1792,8 +1813,8 @@
 					]
 				},
 				{
+					"foundryId": "arcaneFocusRide1",
 					"name": "Enhanced Arcane Focus",
-					"enchantmentRiderParent": "enhancedArcaneFo",
 					"transfer": true,
 					"changes": [
 						{
@@ -1809,8 +1830,8 @@
 					]
 				},
 				{
+					"foundryId": "arcaneFocusRide2",
 					"name": "Enhanced Arcane Focus +2",
-					"enchantmentRiderParent": "enhancedArcaneF2",
 					"transfer": true,
 					"changes": [
 						{
@@ -4741,7 +4762,14 @@
 					},
 					"effects": [
 						{
-							"foundryId": "arResistanceAcid"
+							"foundryId": "arResistanceAcid",
+							"riders": {
+								"effect": [
+									{
+										"foundryId": "arRiderAcid"
+									}
+								]
+							}
 						}
 					]
 				},
@@ -4756,7 +4784,14 @@
 					},
 					"effects": [
 						{
-							"foundryId": "arResistanceCold"
+							"foundryId": "arResistanceCold",
+							"riders": {
+								"effect": [
+									{
+										"foundryId": "arRiderCold"
+									}
+								]
+							}
 						}
 					]
 				},
@@ -4771,7 +4806,14 @@
 					},
 					"effects": [
 						{
-							"foundryId": "arResistanceFire"
+							"foundryId": "arResistanceFire",
+							"riders": {
+								"effect": [
+									{
+										"foundryId": "arRiderFire"
+									}
+								]
+							}
 						}
 					]
 				},
@@ -4786,7 +4828,14 @@
 					},
 					"effects": [
 						{
-							"foundryId": "arResistanceForc"
+							"foundryId": "arResistanceForc",
+							"riders": {
+								"effect": [
+									{
+										"foundryId": "arRiderForce"
+									}
+								]
+							}
 						}
 					]
 				},
@@ -4801,7 +4850,14 @@
 					},
 					"effects": [
 						{
-							"foundryId": "arResistanceLigh"
+							"foundryId": "arResistanceLigh",
+							"riders": {
+								"effect": [
+									{
+										"foundryId": "arRiderLightning"
+									}
+								]
+							}
 						}
 					]
 				},
@@ -4816,7 +4872,14 @@
 					},
 					"effects": [
 						{
-							"foundryId": "arResistanceNecr"
+							"foundryId": "arResistanceNecr",
+							"riders": {
+								"effect": [
+									{
+										"foundryId": "arRiderNecrotic"
+									}
+								]
+							}
 						}
 					]
 				},
@@ -4831,7 +4894,14 @@
 					},
 					"effects": [
 						{
-							"foundryId": "arResistancePois"
+							"foundryId": "arResistancePois",
+							"riders": {
+								"effect": [
+									{
+										"foundryId": "arRiderPoison"
+									}
+								]
+							}
 						}
 					]
 				},
@@ -4846,7 +4916,14 @@
 					},
 					"effects": [
 						{
-							"foundryId": "arResistancePsyc"
+							"foundryId": "arResistancePsyc",
+							"riders": {
+								"effect": [
+									{
+										"foundryId": "arRiderPsychic"
+									}
+								]
+							}
 						}
 					]
 				},
@@ -4861,7 +4938,14 @@
 					},
 					"effects": [
 						{
-							"foundryId": "arResistanceRadi"
+							"foundryId": "arResistanceRadi",
+							"riders": {
+								"effect": [
+									{
+										"foundryId": "arRiderRadiant"
+									}
+								]
+							}
 						}
 					]
 				},
@@ -4876,7 +4960,14 @@
 					},
 					"effects": [
 						{
-							"foundryId": "arResistanceThun"
+							"foundryId": "arResistanceThun",
+							"riders": {
+								"effect": [
+									{
+										"foundryId": "arRiderThunder"
+									}
+								]
+							}
 						}
 					]
 				}
@@ -5103,8 +5194,8 @@
 					]
 				},
 				{
+					"foundryId": "arRiderAcid",
 					"name": "Acid Resistance",
-					"enchantmentRiderParent": "arResistanceAcid",
 					"transfer": true,
 					"changes": [
 						{
@@ -5115,8 +5206,8 @@
 					]
 				},
 				{
+					"foundryId": "arRiderCold",
 					"name": "Cold Resistance",
-					"enchantmentRiderParent": "arResistanceCold",
 					"transfer": true,
 					"changes": [
 						{
@@ -5127,8 +5218,8 @@
 					]
 				},
 				{
+					"foundryId": "arRiderFire",
 					"name": "Fire Resistance",
-					"enchantmentRiderParent": "arResistanceFire",
 					"transfer": true,
 					"changes": [
 						{
@@ -5139,8 +5230,8 @@
 					]
 				},
 				{
+					"foundryId": "arRiderForce",
 					"name": "Force Resistance",
-					"enchantmentRiderParent": "arResistanceForc",
 					"transfer": true,
 					"changes": [
 						{
@@ -5151,8 +5242,8 @@
 					]
 				},
 				{
+					"foundryId": "arRiderLightning",
 					"name": "Lightning Resistance",
-					"enchantmentRiderParent": "arResistanceLigh",
 					"transfer": true,
 					"changes": [
 						{
@@ -5163,8 +5254,8 @@
 					]
 				},
 				{
+					"foundryId": "arRiderNecrotic",
 					"name": "Necrotic Resistance",
-					"enchantmentRiderParent": "arResistanceNecr",
 					"transfer": true,
 					"changes": [
 						{
@@ -5175,8 +5266,8 @@
 					]
 				},
 				{
+					"foundryId": "arRiderPoison",
 					"name": "Poison Resistance",
-					"enchantmentRiderParent": "arResistancePois",
 					"transfer": true,
 					"changes": [
 						{
@@ -5187,8 +5278,8 @@
 					]
 				},
 				{
+					"foundryId": "arRiderPsychic",
 					"name": "Psychic Resistance",
-					"enchantmentRiderParent": "arResistancePsyc",
 					"transfer": true,
 					"changes": [
 						{
@@ -5199,8 +5290,8 @@
 					]
 				},
 				{
+					"foundryId": "arRiderRadiant",
 					"name": "Radiant Resistance",
-					"enchantmentRiderParent": "arResistanceRadi",
 					"transfer": true,
 					"changes": [
 						{
@@ -5211,8 +5302,8 @@
 					]
 				},
 				{
+					"foundryId": "arRiderThunder",
 					"name": "Thunder Resistance",
-					"enchantmentRiderParent": "arResistanceThun",
 					"transfer": true,
 					"changes": [
 						{

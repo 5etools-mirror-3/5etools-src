@@ -1,4 +1,4 @@
-import {ArrayKey} from "./utils-proporder-models.js";
+import {ArrayKey, ObjectKey} from "./utils-proporder-models.js";
 import {EntryPropOrder} from "./utils-proporder-config-entries.js";
 import {PROPS_FOUNDRY_DATA_INLINE} from "../foundry/foundry-consts.js";
 
@@ -78,14 +78,33 @@ export const PROPORDER_FOUNDRY_EFFECTS = new ArrayKey(
 			"name",
 			"type",
 
-			"enchantmentRiderParent",
-
 			"disabled",
 			"transfer",
 
 			"duration",
 
 			"statuses",
+
+			new ObjectKey("system", {
+				order: [
+					new ObjectKey("rider", {
+						order: [
+							new ArrayKey("activities", {
+								order: [
+									"foundryId",
+								],
+							}),
+							new ArrayKey("effects", {
+								order: [
+									"foundryId",
+								],
+							}),
+							"items",
+						],
+					},
+					),
+				],
+			}),
 
 			"changes",
 

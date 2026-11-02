@@ -108,16 +108,16 @@ class SpellPageBookView extends ListPageBookView {
 			pageTitle: "Spells Book View",
 			nameSingular: "spell",
 			namePlural: "spells",
-			propMarkdown: "spell",
 			...opts,
 		});
 
-		this._bookViewLastOrder = null;
-		this._wrpContent = null;
+		const lastOrder = StorageUtil.syncGetForPage(SpellPageBookView._BOOK_VIEW_MODE_K);
+		this._bookViewLastOrder = `${lastOrder ?? 0}`;
 	}
 
 	_getSorted (a, b) {
-		return this._bookViewLastOrder === "0" ? SortUtil.ascSort(a.level, b.level) : SortUtil.ascSortLower(a.name, b.name);
+		return (this._bookViewLastOrder === "0" ? SortUtil.ascSort(a.level, b.level) : 0)
+			|| SortUtil.ascSortLower(a.name, b.name);
 	}
 
 	async _pGetWrpControls ({wrpContent}) {
@@ -125,90 +125,74 @@ class SpellPageBookView extends ListPageBookView {
 
 		const {wrpPrint} = out;
 
-		this._bookViewLastOrder = StorageUtil.syncGetForPage(SpellPageBookView._BOOK_VIEW_MODE_K);
-		if (this._bookViewLastOrder != null) this._bookViewLastOrder = `${this._bookViewLastOrder}`;
-
-		const onChangeSortMode = () => {
-			if (!this._bookViewToShow.length && Hist.lastLoadedId != null) return;
-
+		const onChangeSortMode = async () => {
 			const val = selSortMode.vee.val();
-			if (val === "0") this._renderByLevel();
-			else this._renderByAlpha();
+			this._bookViewLastOrder = val;
+			await this._pGetRenderContentMeta({wrpContent});
 
 			StorageUtil.syncSetForPage(SpellPageBookView._BOOK_VIEW_MODE_K, val);
 		};
 
-		const selSortMode = veT`<select class="ve-form-control ve-input-sm">
+		const selSortMode = veT`<select class="ve-form-control ve-input-xs">
 			<option value="0">Spell Level</option>
 			<option value="1">Alphabetical</option>
 		</select>`
 			.vee.onn("change", () => onChangeSortMode());
 
 		selSortMode.vee.val(`${this._bookViewLastOrder ?? 0}`);
-		veT`<div class="ve-flex-vh-center ve-ml-3"><div class="ve-mr-2 ve-no-wrap">Sort order:</div>${selSortMode}</div>`.vee.appendTo(wrpPrint);
+		veT`<label class="ve-flex-vh-center ve-ml-3"><span class="ve-mr-2 ve-no-wrap">Sort Order:</span>${selSortMode}</label>`.vee.appendTo(wrpPrint);
 
 		return out;
 	}
 
-	_renderSpell ({stack, sp}) {
-		stack.push(`<div class="bkmv__wrp-item ve-inline-block ve-print__block ve-print__my-2"><table class="ve-w-100 ve-stats ve-stats--book ve-stats--bkmv"><tbody>`);
-		stack.push(Renderer.spell.getCompactRenderedString(sp));
-		stack.push(`</tbody></table></div>`);
-	}
-
-	_renderByLevel () {
-		let isAnyEntityRendered = false;
-		const stack = [];
-		for (let i = 0; i < 10; ++i) {
-			const atLvl = this._bookViewToShow.filter(({entity}) => entity.level === i);
-			if (atLvl.length) {
-				stack.push(`<div class="bkmv__no-breaks">`);
-				stack.push(`<div class="bkmv__spacer-name ve-flex-v-center ve-no-shrink ve-print__hidden ve-pl-2">${Parser.spLevelToFullLevelText(i)}</div>`);
-				atLvl.forEach(({entity}) => this._renderSpell({stack, sp: entity}));
-				isAnyEntityRendered = true;
-				stack.push(`</div>`);
-			}
+	_pGetRenderContentMeta_getRenderedEntries ({entityMetas, cntEntsPinned}) {
+		if (!cntEntsPinned && entityMetas.length) {
+			return [
+				`<div class="ve-w-100 ve-h-100 ve-no-breaks">`,
+				this._getRenderedEnt(entityMetas[0].entity),
+				`</div>`,
+			]
+				.join("");
 		}
-		this._wrpContent.vee.empty().vee.appends(stack.join(""));
-		this._bookViewLastOrder = "0";
-		return {isAnyEntityRendered};
+
+		if (this._bookViewLastOrder === "1") {
+			return entityMetas
+				.map(({entity}) => this._getRenderedEnt(entity))
+				.join("");
+		}
+
+		if (this._bookViewLastOrder === "0") {
+			return Array.from({length: 10})
+				.map((_, i) => {
+					const atLvl = entityMetas.filter(({entity}) => entity.level === i);
+					if (!atLvl.length) return null;
+
+					return [
+						`<div class="bkmv__no-breaks"><div class="bkmv__spacer-name ve-flex-v-center ve-no-shrink ve-print__hidden ve-pl-2">${Parser.spLevelToFullLevelText(i)}</div>`,
+						...atLvl.map(({entity}) => this._getRenderedEnt(entity)),
+						`</div>`,
+					];
+				})
+				.filter(Boolean)
+				.flat()
+				.join("");
+		}
+
+		throw new Error(`Unhandled spell sort mode "${this._bookViewLastOrder}"`);
 	}
 
-	_renderByAlpha () {
-		const stack = [];
-		this._bookViewToShow.forEach(({entity}) => this._renderSpell({stack, sp: entity}));
-		this._wrpContent.vee.empty().vee.appends(stack.join(""));
-		this._bookViewLastOrder = "1";
-		return {isAnyEntityRendered: !!this._bookViewToShow.length};
-	}
-
-	_renderNoneSelected () {
-		const stack = [];
-		stack.push(`<div class="ve-w-100 ve-h-100 ve-no-breaks">`);
-		this._renderSpell({stack, sp: this._fnGetEntLastLoaded()});
-		stack.push(`</div>`);
-		this._wrpContent.vee.empty().vee.appends(stack.join(""));
-		return {isAnyEntityRendered: false};
-	}
-
-	_renderSpells () {
-		if (!this._bookViewToShow.length && Hist.lastLoadedId != null) return this._renderNoneSelected();
-		else if (this._bookViewLastOrder === "1") return this._renderByAlpha();
-		else return this._renderByLevel();
-	}
-
-	async _pGetRenderContentMeta ({wrpContent, wrpControls}) {
-		this._wrpContent = wrpContent;
+	async _pGetRenderContentMeta ({wrpContent, wrpContentOuter}) {
 		wrpContent.vee.addClass("ve-p-2");
 
-		this._bookViewToShow = this._sublistManager.getSublistedEntityMetas()
-			.sort(this._getSorted.bind(this));
+		const {entityMetas, cntEntsPinned} = this._getRenderableContentMeta();
+		const ptEntries = this._pGetRenderContentMeta_getRenderedEntries({entityMetas, cntEntsPinned});
 
-		const {isAnyEntityRendered} = this._renderSpells();
+		wrpContent.vee.empty();
+		if (ptEntries.length) wrpContent.vee.appends(ptEntries);
 
 		return {
-			cntSelectedEnts: this._bookViewToShow.length,
-			isAnyEntityRendered,
+			cntSelectedEnts: cntEntsPinned,
+			isAnyEntityRendered: !!ptEntries.length,
 		};
 	}
 }

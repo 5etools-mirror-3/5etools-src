@@ -3946,7 +3946,7 @@ Renderer.utils = class {
 		if (entity._versionBase_isVersion && (entity._versionBase_hasFluff || entity._versionBase_hasFluffImages)) {
 			return DataLoader.pCacheAndGet(
 				fluffProp,
-				SourceUtil.getEntitySource(entity),
+				entity._versionBase_source,
 				entity._versionBase_hash,
 				{
 					lockToken2,
@@ -3963,7 +3963,8 @@ Renderer.utils = class {
 			case "monster":
 				return Renderer.monster.pGetFluff(entity);
 			case "item":
-			case "magivariant":
+			case "itemGroup":
+			case "magicvariant":
 			case "baseitem":
 				return Renderer.item.pGetFluff(entity);
 			default: return Renderer.utils.pGetFluff({entity, fluffProp: `${prop}Fluff`});
@@ -11542,51 +11543,54 @@ Renderer.monster = class {
 
 	/* -------------------------------------------- */
 
-	static _getRenderedAbilityScores_isSpecial ({mon, abv}) {
-		return mon[abv] != null && typeof mon[abv] !== "number";
-	}
+	static getAbilityScoresRenderableEntriesMeta (mon, {styleHint = null} = {}) {
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
-	static _getRenderedAbilityScores_getSpecialMeta ({mon, styleHint}) {
-		const specialByAbil = {};
 		const specialByValue = {};
 
-		Parser.ABIL_ABVS
-			.forEach(abv => {
-				if (!this._getRenderedAbilityScores_isSpecial({mon, abv})) return;
+		const infosAbilities = Parser.ABIL_ABVS
+			.map(abv => {
+				const score = mon[abv];
+				const isSpecial = score != null && typeof score !== "number";
+				const isNumeric = typeof score === "number";
 
-				const specialMeta = {abil: abv, value: mon[abv].special};
-				specialByAbil[abv] = specialMeta;
-				specialMeta.family = (specialByValue[specialMeta.value] = specialByValue[specialMeta.value] || []);
-				specialMeta.family.push(specialMeta);
+				if (isSpecial) {
+					(specialByValue[score.special] ||= []).push(abv);
+				}
+
+				return {
+					abv,
+					isSpecial,
+					entry: isSpecial ? score.special : Renderer.utils.getAbilityRollerEntry(mon, abv),
+					entryScore: isNumeric ? `${score}` : "\u2013",
+					entryBonus: isNumeric ? Renderer.utils.getAbilityRollerEntry(mon, abv, {isDisplayAsBonus: true}) : "\u2013",
+					entrySave: mon.save?.[abv] != null
+						? `{@savingThrow ${abv} ${mon.save[abv]}}`
+						: isNumeric
+							? `{@savingThrow ${abv} ${Parser.getAbilityModNumber(score)}}`
+							: "\u2013",
+				};
 			});
 
-		const specialSeenAbs = new Set();
-		const ptsSpecial = Parser.ABIL_ABVS
-			.map(abv => {
-				if (!specialByAbil[abv]) return null;
-				if (specialSeenAbs.has(specialByAbil[abv].abil)) return null;
-				specialByAbil[abv].family.forEach(meta => specialSeenAbs.add(meta.abil));
-				return `<b>${specialByAbil[abv].family.map(meta => styleHint === "classic" ? meta.abil.toUpperCase() : `${meta.abil.uppercaseFirst()}.`).join(", ")}</b> ${specialByAbil[abv].value}`;
-			})
-			.filter(Boolean);
+		const entriesSpecial = infosAbilities
+			.filter(({abv, entry, isSpecial}) => isSpecial && specialByValue[entry][0] === abv)
+			.map(({entry}) => `{@b ${specialByValue[entry].map(abv => styleHint === "classic" ? abv.toUpperCase() : `${abv.uppercaseFirst()}.`).join(", ")}} ${entry}`);
 
-		const abvsRemaining = Parser.ABIL_ABVS.filter(ab => !specialSeenAbs.has(ab));
-
-		return {
-			abvsRemaining,
-			ptsSpecial,
-		};
+		return {infosAbilities, entriesSpecial};
 	}
 
-	static _getRenderedAbilityScores_classic ({mon}) {
-		const {abvsRemaining, ptsSpecial} = this._getRenderedAbilityScores_getSpecialMeta({mon, styleHint: "classic"});
-		const ptSpecial = ptsSpecial.map(pt => `<tr><td colspan="6">${pt}</td></tr>`).join("");
+	static _getRenderedAbilityScores_classic ({mon, renderer}) {
+		renderer ||= Renderer.get();
 
-		if (Parser.ABIL_ABVS.every(abv => this._getRenderedAbilityScores_isSpecial({mon, abv}))) return ptSpecial;
+		const {infosAbilities, entriesSpecial} = this.getAbilityScoresRenderableEntriesMeta(mon, {styleHint: "classic"});
+		const infosAbilitiesRemaining = infosAbilities.filter(info => !info.isSpecial);
+		const ptSpecial = entriesSpecial.map(entry => `<tr><td colspan="6">${renderer.render(entry)}</td></tr>`).join("");
+
+		if (!infosAbilitiesRemaining.length) return ptSpecial;
 
 		return `${ptSpecial}
-		<tr>${abvsRemaining.map(ab => `<th class="ve-col-2 ve-text-center ve-bold">${ab.toUpperCase()}</th>`).join("")}</tr>
-		<tr>${abvsRemaining.map(ab => `<td class="ve-text-center">${Renderer.utils.getAbilityRoller(mon, ab)}</td>`).join("")}</tr>`;
+		<tr>${infosAbilitiesRemaining.map(({abv}) => `<th class="ve-col-2 ve-text-center ve-bold">${abv.toUpperCase()}</th>`).join("")}</tr>
+		<tr>${infosAbilitiesRemaining.map(({entry}) => `<td class="ve-text-center">${renderer.render(entry)}</td>`).join("")}</tr>`;
 	}
 
 	static _ABILITY_ROW_STYLE_TO_CLASS_SCORE = {
@@ -11602,11 +11606,11 @@ Renderer.monster = class {
 	static _getRenderedAbilityScores_one ({mon, renderer}) {
 		renderer ||= Renderer.get();
 
-		const {abvsRemaining, ptsSpecial} = this._getRenderedAbilityScores_getSpecialMeta({mon, styleHint: "one"});
-		const ptSpecial = ptsSpecial.map(pt => `<tr><td colspan="6">${pt}</td></tr>`).join("");
+		const {infosAbilities, entriesSpecial} = this.getAbilityScoresRenderableEntriesMeta(mon, {styleHint: "one"});
+		const ptSpecial = entriesSpecial.map(entry => `<tr><td colspan="6">${renderer.render(entry)}</td></tr>`).join("");
 
 		// e.g. "Behemoth" (XUA2026VillainousOptions)
-		if (!abvsRemaining.length) return ptSpecial;
+		if (infosAbilities.every(info => info.isSpecial)) return ptSpecial;
 
 		const ptHeaders = Array.from(
 			{length: 14},
@@ -11619,27 +11623,17 @@ Renderer.monster = class {
 		)
 			.join("");
 
-		Object.keys(mon.save || {})
-			.map(s => Renderer.monster.getSave(Renderer.get(), s, mon.save[s]));
-
-		const ptsCells = Parser.ABIL_ABVS
-			.flatMap((abv, i) => {
+		const ptsCells = infosAbilities
+			.flatMap(({abv, entryScore, entryBonus, entrySave}, i) => {
 				const styleName = i < 3 ? "physical" : "mental";
 				const styleClassNameScore = this._ABILITY_ROW_STYLE_TO_CLASS_SCORE[styleName];
 				const styleClassNameBonus = this._ABILITY_ROW_STYLE_TO_CLASS_BONUS[styleName];
 
-				const numScore = abvsRemaining.includes(abv) ? mon[abv] : null;
-				const ptScore = numScore != null ? `${mon[abv]}` : `\u2013`;
-				const ptBonus = numScore != null ? Renderer.utils.getAbilityRoller(mon, abv, {isDisplayAsBonus: true}) : `\u2013`;
-				const ptSave = mon.save?.[abv] == null
-					? numScore == null ? "\u2013" : renderer.render(`{@savingThrow ${abv} ${Parser.getAbilityModNumber(ptScore)}}`)
-					: renderer.render(`{@savingThrow ${abv} ${mon.save[abv]}}`);
-
 				return [
 					`<td class="ve-stats-tbl-ability-scores__lbl-abv ${styleClassNameScore} ve-stats__disp-as-score--label"><div class="ve-bold ve-small-caps ve-text-right">${abv.toTitleCase()}</div></td>`,
-					`<td class="ve-stats-tbl-ability-scores__lbl-score ${styleClassNameScore}"><div class="ve-text-center">${ptScore}</div></td>`,
-					`<td class="ve-stats-tbl-ability-scores__lbl-score ${styleClassNameBonus}"><div class="ve-text-center">${ptBonus}</div></td>`,
-					`<td class="ve-stats-tbl-ability-scores__lbl-score ${styleClassNameBonus}"><div class="ve-text-center">${ptSave}</div></td>`,
+					`<td class="ve-stats-tbl-ability-scores__lbl-score ${styleClassNameScore}"><div class="ve-text-center">${renderer.render(entryScore)}</div></td>`,
+					`<td class="ve-stats-tbl-ability-scores__lbl-score ${styleClassNameBonus}"><div class="ve-text-center">${renderer.render(entryBonus)}</div></td>`,
+					`<td class="ve-stats-tbl-ability-scores__lbl-score ${styleClassNameBonus}"><div class="ve-text-center">${renderer.render(entrySave)}</div></td>`,
 					i % 3 !== 2 ? `<td class="ve-stats-tbl-ability-scores__lbl-spacer"><div></div></td>` : "",
 				];
 			});
@@ -14214,7 +14208,7 @@ Renderer.table = class {
 	}
 };
 
-Renderer.names = class {
+Renderer.namez = class {
 	static getDisplayName (ent) {
 		return Renderer.table.getConvertedNameTableName(ent, ent);
 	}
@@ -14244,7 +14238,7 @@ Renderer.names = class {
 	static getCompactRenderedString (ent) { return this.getRenderedString(ent); }
 };
 
-Renderer.encounters = class {
+Renderer.encounter = class {
 	static getDisplayName (ent) {
 		return Renderer.table.getConvertedEncounterTableName(ent, ent);
 	}
@@ -17971,8 +17965,9 @@ Renderer.hover = class {
 			case UrlUtil.PG_VARIANTRULES: return Renderer.variantrule.getCompactRenderedString.bind(Renderer.variantrule);
 			case UrlUtil.PG_CULTS_BOONS: return Renderer.cultboon.getCompactRenderedString.bind(Renderer.cultboon);
 			case UrlUtil.PG_TABLES: return Renderer.table.getCompactRenderedString.bind(Renderer.table);
-			case UrlUtil.PG_NAMES: return Renderer.names.getCompactRenderedString.bind(Renderer.names);
-			case UrlUtil.PG_ENCOUNTERGEN: return Renderer.encounters.getCompactRenderedString.bind(Renderer.encounters);
+			case "name":
+			case UrlUtil.PG_NAMES: return Renderer.namez.getCompactRenderedString.bind(Renderer.namez);
+			case UrlUtil.PG_ENCOUNTERGEN: return Renderer.encounter.getCompactRenderedString.bind(Renderer.encounter);
 			case UrlUtil.PG_VEHICLES: return Renderer.vehicle.getCompactRenderedString.bind(Renderer.vehicle);
 			case UrlUtil.PG_ACTIONS: return Renderer.action.getCompactRenderedString.bind(Renderer.action);
 			case UrlUtil.PG_LANGUAGES: return Renderer.language.getCompactRenderedString.bind(Renderer.language);

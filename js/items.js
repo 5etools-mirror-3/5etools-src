@@ -242,7 +242,6 @@ class ItemsPage extends ListPage {
 				nameSingular: "item",
 				namePlural: "items",
 				pageTitle: "Items Book View",
-				propMarkdown: "item",
 				isSublistItemsCountable: true,
 			},
 

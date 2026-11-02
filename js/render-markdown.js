@@ -176,7 +176,7 @@ class RendererMarkdown extends Renderer {
 						const entryNxt = entCellHeader?.type === "cellHeader"
 							? entCellHeader.entry
 							: entCellHeader;
-						const ptCellPrimary = ` ${Renderer.stripTags(entryNxt)} `;
+						const ptCellPrimary = ` ${RendererMarkdown.utils.getCleanTableCell(Renderer.stripTags(entryNxt))} `;
 
 						// No "colspan" equivalent, so add empty cells
 						const cntPadCells = (entCellHeader?.type === "cellHeader" ? entCellHeader?.width || 1 : 1) - 1;
@@ -235,10 +235,7 @@ class RendererMarkdown extends Renderer {
 				this._recursiveRender(toRenderCell, textStackCell, meta);
 				meta.depth = cacheDepth;
 
-				const mdCell = ` ${textStackCell.join("").trim()} `
-					// Markdown tables can't handle multi-line cells, so HTML linebreaks must be used
-					.split(/\n+/)
-					.join("<br>");
+				const mdCell = ` ${RendererMarkdown.utils.getCleanTableCell(textStackCell.join(""))} `;
 
 				widths[ixCell] = Math.max(widths[ixCell] || 0, mdCell.length);
 				(mdTable[ixRow] = mdTable[ixRow] || [])[ixCell] = mdCell;
@@ -586,7 +583,7 @@ class RendererMarkdown extends Renderer {
 
 	_renderFlowBlock (entry, textStack, meta, options) {
 		textStack[0] += "\n";
-		if (entry.name != null) textStack[0] += `> ##### ${entry.name}\n>\n`;
+		if (entry.name != null) textStack[0] += `> ##### ${Renderer.stripTags(entry.name)}\n>\n`;
 		if (entry.entries) {
 			const len = entry.entries.length;
 			for (let i = 0; i < len; ++i) {
@@ -813,6 +810,14 @@ class RendererMarkdown extends Renderer {
 }
 
 RendererMarkdown.utils = class {
+	static getCleanTableCell (str) {
+		return str
+			.trim()
+			.replace(/\|/g, "\\|")
+			// Markdown tables can't handle multi-line cells, so HTML linebreaks must be used
+			.replace(/\n+/g, "<br>");
+	}
+
 	static getPageText (it) {
 		const sourceSub = Renderer.utils.getSourceSubText(it);
 		const baseText = Renderer.utils.isDisplayPage(it.page) ? `**Source:** *${Parser.sourceJsonToAbv(it.source)}${sourceSub}*, page ${it.page}` : "";
@@ -837,10 +842,13 @@ RendererMarkdown.utils = class {
 
 	static compact = class {
 		// TODO(Future) nicely pad widths (render as table?)
-		static getRenderedAbilityScores (ent, {prefix = ""} = "") {
-			return `${prefix}|${Parser.ABIL_ABVS.map(it => `${it.toUpperCase()}|`).join("")}
+		static getRenderedAbilityScores (ent, {prefix = ""} = {}) {
+			const {infosAbilities} = Renderer.monster.getAbilityScoresRenderableEntriesMeta(ent);
+			const renderer = RendererMarkdown.get();
+
+			return `${prefix}|${infosAbilities.map(({abv}) => `${abv.toUpperCase()}|`).join("")}
 ${prefix}|:---:|:---:|:---:|:---:|:---:|:---:|
-${prefix}|${Parser.ABIL_ABVS.map(ab => ent[ab] == null ? `\u2014|` : `${ent[ab]} (${Parser.getAbilityModifier(ent[ab])})|`).join("")}`;
+${prefix}|${infosAbilities.map(({entry}) => `${RendererMarkdown.utils.getCleanTableCell(renderer.render(entry))}|`).join("")}`;
 		}
 	};
 
@@ -861,49 +869,175 @@ ${prefix}|${Parser.ABIL_ABVS.map(ab => ent[ab] == null ? `\u2014|` : `${ent[ab]}
 };
 
 RendererMarkdown.exporting = class {
-	static async pGetMarkdownDoc ({ents, prop, pFnGetFluff = null}) {
-		const asEntries = (await Promise.all(ents
-			.map(async (ent, i) => {
-				const monEntry = ({type: "statblockInline", statblockType: prop, statblockData: ent});
+	static PAGE_BREAK_MODE__PRESERVE_STATBLOCK = "preserveStatblock";
+	static PAGE_BREAK_MODE__GENERIC = "generic";
+	static PAGE_BREAK_MODE__NONE = "none";
 
-				const fluff = pFnGetFluff ? await pFnGetFluff(ent) : null;
+	static _getPageBreakModeDefault ({prop}) {
+		switch (prop) {
+			case "monster":
+			case "vehicle":
+			case "object":
+				return this.PAGE_BREAK_MODE__PRESERVE_STATBLOCK;
 
-				const fluffEntries = (fluff || {}).entries || [];
+			default: return this.PAGE_BREAK_MODE__GENERIC;
+		}
+	}
 
-				RendererMarkdown.get().setFirstSection(true);
-				const fluffText = fluffEntries.map(ent => RendererMarkdown.get().render(ent)).join("\n\n");
+	/* -------------------------------------------- */
 
-				const out = [monEntry];
+	static _getPageBreakParts ({parts, joiner, isFluff = false}) {
+		const pages = [];
 
-				const isAddPageBreaks = VetoolsConfig.get("markdown", "isAddPageBreaks");
-				if (fluffText) {
-					// Insert a page break before every fluff section
-					if (isAddPageBreaks) out.push("", "\\pagebreak", "");
-
-					out.push(`## ${ent.name}`);
-
-					// Split into runs of <X characters, and join these with page breaks
-					let stack = [];
-					let charLimit = RendererMarkdown.CHARS_PER_PAGE;
-					fluffText.split("\n").forEach(l => {
-						if ((charLimit -= l.length) < 0) {
-							out.push(stack.join("\n"));
-							if (isAddPageBreaks) out.push("", "\\pagebreak", "");
-							stack = [];
-							charLimit = RendererMarkdown.CHARS_PER_PAGE - l.length;
-						}
-						stack.push(l);
-					});
-					if (stack.length) out.push(stack.join("\n"));
+		let page = [];
+		let charLimit = RendererMarkdown.CHARS_PER_PAGE;
+		parts
+			// Fluff breaks before an overflowing line; entities break after a whole entity
+			.forEach(part => {
+				if (isFluff && page.length && part.length > charLimit) {
+					pages.push(page);
+					page = [];
+					charLimit = RendererMarkdown.CHARS_PER_PAGE;
 				}
 
-				// Insert a page break after every creature statblock or fluff section
-				if (i !== ents.length - 1 && isAddPageBreaks) out.push("", "\\pagebreak", "");
-				return out;
-			})))
-			.flat();
+				page.push(part);
+				charLimit -= part.length;
 
-		return RendererMarkdown.get().render({entries: asEntries});
+				if (!isFluff && charLimit < 0) {
+					pages.push(page);
+					page = [];
+					charLimit = RendererMarkdown.CHARS_PER_PAGE;
+				}
+			});
+
+		if (page.length) pages.push(page);
+
+		return pages
+			.flatMap((page, i) => [
+				...(i ? ["\\pagebreak"] : []),
+				page.join(joiner),
+			]);
+	}
+
+	/* -------------------------------------------- */
+
+	static _getFluff_pageBreak_preserveStatblock ({ent, fluffText}) {
+		return [
+			// Insert a page break before every fluff section
+			"",
+			"\\pagebreak",
+			"",
+			`## ${ent.name}`,
+			...this._getPageBreakParts({parts: fluffText.split("\n"), joiner: "\n", isFluff: true}),
+		];
+	}
+
+	static _getFluff_pageBreak_generic ({ent, fluffText}) {
+		// Avoid specific breaks in fluff; break entire text as a post-step
+		return this._getFluff_pageBreak_none({ent, fluffText});
+	}
+
+	static _getFluff_pageBreak_none ({ent, fluffText}) {
+		return [`## ${ent.name}\n\n${fluffText}`];
+	}
+
+	/* -------------------------------------------- */
+
+	static _getRendered_getParts ({entriesByEntity}) {
+		return entriesByEntity
+			.map(entries => (
+				entries
+					.map(entry => RendererMarkdown.get().render(entry).trim())
+					.join("\n\n")
+			));
+	}
+
+	static _getRendered_pageBreak_preserveStatblock ({entriesByEntity}) {
+		const entries = entriesByEntity
+			.flatMap((entries, i) => {
+				return i < entriesByEntity.length - 1 ? [...entries, "", "\\pagebreak", ""] : entries;
+			});
+		return RendererMarkdown.get().render({entries});
+	}
+
+	static _getRendered_pageBreak_generic ({entriesByEntity}) {
+		const parts = this._getRendered_getParts({entriesByEntity});
+
+		return this._getPageBreakParts({parts, joiner: "\n\n"})
+			.join("\n\n");
+	}
+
+	static _getRendered_pageBreak_none ({entriesByEntity}) {
+		return this._getRendered_getParts({entriesByEntity})
+			.join("\n\n");
+	}
+
+	static _getRendered ({entryMetas}) {
+		const groups = [];
+
+		entryMetas
+			.forEach(({entries, pageBreakMode}) => {
+				const lastGroup = groups.last();
+				if (lastGroup?.pageBreakMode === pageBreakMode) {
+					lastGroup.entriesByEntity.push(entries);
+					return;
+				}
+				groups.push({entriesByEntity: [entries], pageBreakMode});
+			});
+
+		return groups
+			.map(({entriesByEntity, pageBreakMode}) => {
+				switch (pageBreakMode) {
+					case this.PAGE_BREAK_MODE__PRESERVE_STATBLOCK: return this._getRendered_pageBreak_preserveStatblock({entriesByEntity});
+					case this.PAGE_BREAK_MODE__GENERIC: return this._getRendered_pageBreak_generic({entriesByEntity});
+					case this.PAGE_BREAK_MODE__NONE: return this._getRendered_pageBreak_none({entriesByEntity});
+					default: throw new Error(`Unhandled Markdown page-break mode "${pageBreakMode}"!`);
+				}
+			})
+			.map(part => part.trim())
+			.join("\n\n\\pagebreak\n\n");
+	}
+
+	/* -------------------------------------------- */
+
+	static async pGetMarkdownDoc ({ents, prop = null, fnGetProp = null, pFnGetFluff = null, isIncludeFluff = false, pageBreakMode = null}) {
+		if (!ents.length) return "";
+
+		const isAddPageBreaks = VetoolsConfig.get("markdown", "isAddPageBreaks");
+		if (!isAddPageBreaks) pageBreakMode = this.PAGE_BREAK_MODE__NONE;
+
+		const entryMetas = await ents
+			.pSerialAwaitMap(async ent => {
+				const propEnt = fnGetProp?.(ent) ?? prop ?? ent.__prop;
+				const entryMeta = {
+					pageBreakMode: pageBreakMode ?? this._getPageBreakModeDefault({prop: propEnt}),
+					entries: [
+						{type: "statblockInline", statblockType: propEnt, statblockData: ent},
+					],
+				};
+
+				if (!isIncludeFluff) return entryMeta;
+
+				const fluff = pFnGetFluff
+					? await pFnGetFluff(ent)
+					: await Renderer.utils.pGetProxyFluff({entity: ent, prop: propEnt});
+
+				const fluffText = (fluff?.entries || [])
+					.map(entry => RendererMarkdown.get().render(entry))
+					.join("\n\n");
+				if (!fluffText) return entryMeta;
+
+				switch (entryMeta.pageBreakMode) {
+					case this.PAGE_BREAK_MODE__PRESERVE_STATBLOCK: entryMeta.entries.push(...this._getFluff_pageBreak_preserveStatblock({ent, fluffText})); break;
+					case this.PAGE_BREAK_MODE__GENERIC: entryMeta.entries.push(...this._getFluff_pageBreak_generic({ent, fluffText})); break;
+					case this.PAGE_BREAK_MODE__NONE: entryMeta.entries.push(...this._getFluff_pageBreak_none({ent, fluffText})); break;
+					default: throw new Error(`Unhandled Markdown page-break mode "${entryMeta.pageBreakMode}"!`);
+				}
+
+				return entryMeta;
+			});
+
+		return this._getRendered({entryMetas});
 	}
 };
 
@@ -1553,6 +1687,30 @@ RendererMarkdown.table = class {
 RendererMarkdown.tableGroup = class {
 	static getCompactRenderedString (tbl, opts = {}) {
 		return RendererMarkdown.generic.getCompactRenderedString({...tbl, entries: tbl.tables}, opts);
+	}
+};
+
+RendererMarkdown.namez = class {
+	static getCompactRenderedString (ent, opts = {}) {
+		const table = Renderer.table.getConvertedEncounterOrNamesTable({
+			group: ent,
+			tableRaw: ent,
+			fnGetNameCaption: Renderer.namez.getDisplayName.bind(Renderer.namez),
+			colLabel1: "Name",
+		});
+		return RendererMarkdown.table.getCompactRenderedString(table, opts);
+	}
+};
+
+RendererMarkdown.encounter = class {
+	static getCompactRenderedString (ent, opts = {}) {
+		const table = Renderer.table.getConvertedEncounterOrNamesTable({
+			group: ent,
+			tableRaw: ent,
+			fnGetNameCaption: Renderer.encounter.getDisplayName.bind(Renderer.encounter),
+			colLabel1: "Encounter",
+		});
+		return RendererMarkdown.table.getCompactRenderedString(table, opts);
 	}
 };
 
@@ -2399,7 +2557,13 @@ RendererMarkdown.generic = class {
 };
 
 RendererMarkdown.hover = class {
+	static _PROP_TO_RENDERER = {
+		name: "namez", // (reserved-ish prop)
+	};
+
 	static getFnRenderCompact (prop) {
+		if (this._PROP_TO_RENDERER[prop]) prop = this._PROP_TO_RENDERER[prop];
+
 		if (prop?.endsWith("Fluff")) return RendererMarkdown.generic.getCompactRenderedString.bind(RendererMarkdown.generic);
 		if (RendererMarkdown[prop]?.getCompactRenderedString) return RendererMarkdown[prop].getCompactRenderedString.bind(RendererMarkdown[prop]);
 		return RendererMarkdown.generic.getCompactRenderedString.bind(RendererMarkdown.generic);

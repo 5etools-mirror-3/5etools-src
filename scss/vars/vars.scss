@@ -176,6 +176,14 @@ $font-line-height: 1.42857143;
 	}
 }
 
+@mixin mix-is-not-print {
+	@media not print {
+		@at-root :where(html:not(.is-faux-print)) #{&} {
+			@content;
+		}
+	}
+}
+
 /* *** */
 
 @mixin mix-font-regular {

@@ -62,6 +62,8 @@ export class InitiativeTrackerSettings extends BaseComponent {
 		"isRollGroups",
 		"isRerollInitiativeEachRound",
 		"isInvertWoundDirection",
+		"importIsAddPlayers",
+		"importIsAppend",
 		"playerInitShowExactPlayerHp",
 		"playerInitShowExactMonsterHp",
 		"playerInitHideNewMonster",
@@ -125,6 +127,8 @@ export class InitiativeTrackerSettings extends BaseComponent {
 		UiUtil.addModalSep(eleModalInner);
 		this._pGetShowModalResults_renderSection_wounds({eleModalInner});
 		UiUtil.addModalSep(eleModalInner);
+		this._pGetShowModalResults_renderSection_import({eleModalInner});
+		UiUtil.addModalSep(eleModalInner);
 		this._pGetShowModalResults_renderSection_playerView({eleModalInner});
 		UiUtil.addModalSep(eleModalInner);
 		this._pGetShowModalResults_renderSection_additionalCols({eleModalInner});
@@ -138,13 +142,18 @@ export class InitiativeTrackerSettings extends BaseComponent {
 
 	_pGetShowModalResults_renderSection_isRolls ({eleModalInner}) {
 		UiUtil.getAddModalRowCb2({wrp: eleModalInner, comp: this, prop: "isRollInit", text: "Roll initiative"});
-		UiUtil.getAddModalRowCb2({wrp: eleModalInner, comp: this, prop: "isRollHp", text: "Roll hit points"});
+		UiUtil.getAddModalRowCb2({wrp: eleModalInner, comp: this, prop: "isRollHp", text: "Roll creature hit points"});
 		UiUtil.getAddModalRowCb2({wrp: eleModalInner, comp: this, prop: "isRollGroups", text: "Roll groups of creatures together"});
 		UiUtil.getAddModalRowCb2({wrp: eleModalInner, comp: this, prop: "isRerollInitiativeEachRound", text: "Reroll initiative each round"});
 	}
 
 	_pGetShowModalResults_renderSection_wounds ({eleModalInner}) {
 		UiUtil.getAddModalRowCb2({wrp: eleModalInner, comp: this, prop: "isInvertWoundDirection", text: "Track Hit Points as Damage", title: `For example, by default a creature might have "100/100" hit points when at full HP. When tracking damage, this would instead be displayed as "0/100" when the creature is at full HP.`});
+	}
+
+	_pGetShowModalResults_renderSection_import ({eleModalInner}) {
+		UiUtil.getAddModalRowCb2({wrp: eleModalInner, comp: this, prop: "importIsAddPlayers", text: "Import Encounter: Add players"});
+		UiUtil.getAddModalRowCb2({wrp: eleModalInner, comp: this, prop: "importIsAppend", text: "Import Encounter: Add to existing tracker state"});
 	}
 
 	_pGetShowModalResults_renderSection_playerView ({eleModalInner}) {

@@ -299,7 +299,7 @@ export class List {
 			this.addField("s");
 			this.setRef("id");
 		});
-		SearchUtil.removeStemmer(this._fuzzySearch);
+		SearchUtil.initSearchIndex(this._fuzzySearch);
 	}
 
 	update ({isForce = false} = {}) {

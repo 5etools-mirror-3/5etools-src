@@ -116,6 +116,7 @@ export class TableListPage extends ListPage {
 						const out = MiscUtil.copyFast(group);
 						delete out.tables;
 						Object.assign(out, MiscUtil.copyFast(tbl));
+						out.__prop = this._dataProps[0];
 						return out;
 					});
 			})

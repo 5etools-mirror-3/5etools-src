@@ -152,8 +152,6 @@ class Omnidexer {
 
 		const {arbiter, index, options} = state;
 
-		if (name) name = name.toAscii();
-
 		const toAdd = await this._pAddToIndex_pGetToAdd(state, ent, {n: name}, ix);
 		if (!toAdd) return;
 

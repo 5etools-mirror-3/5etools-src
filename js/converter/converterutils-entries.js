@@ -38,13 +38,13 @@ export class TagJsons {
 	 * @param {"classic" | "one" | null} styleHint
 	 */
 	static mutTagObject (json, {keySet = null, isOptimistic = true, creaturesToTag = null, styleHint = null} = {}) {
-		TagJsons.OPTIMISTIC = isOptimistic;
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
 		const fnCreatureTagSpecific = CreatureTag.getFnTryRunSpecific(creaturesToTag);
 
 		Object.keys(json)
 			.forEach(k => {
+				if (WALKER_CONVERTER_KEY_BLOCKLIST.has(k)) return;
 				if (keySet != null && !keySet.has(k)) return;
 
 				json[k] = WALKER_CONVERTER.walk(
@@ -55,8 +55,10 @@ export class TagJsons {
 
 							obj = TagCondition.tryRun(obj, {styleHint});
 							obj = SkillTag.tryRunStrictCapsWords(obj, {styleHint});
+							// spells > senses, as "casts Darkvision" should reference the spell
+							// spells > rules, as "Cone of Cold" can be mis-tagged as "Cone [AoE] of Cold"
+							obj = SpellTag.tryRun(obj, {styleHint, isOptimistic});
 							obj = SenseTag.tryRun(obj, {styleHint});
-							obj = SpellTag.tryRun(obj, {styleHint});
 							// items > actions, as "Hide Armor" can be mis-tagged as "Hide"
 							obj = ItemTag.tryRun(obj, {styleHint});
 							obj = ActionTag.tryRunStrictCapsWords(obj, {styleHint});
@@ -67,7 +69,6 @@ export class TagJsons {
 							obj = HazardTag.tryRun(obj, {styleHint});
 							obj = ChanceTag.tryRun(obj, {styleHint});
 							obj = QuickrefTag.tryRun(obj, {styleHint});
-							// rules > dice, as "D20 Test" can be mis-tagged as a rollable dice
 							obj = CoreRuleTag.tryRun(obj, {styleHint});
 							obj = DiceConvert.getTaggedEntry(obj, {styleHint});
 							obj = FeatTag.tryRun(obj, {styleHint});
@@ -93,6 +94,7 @@ export class TagJsons {
 
 		Object.keys(json)
 			.forEach(k => {
+				if (WALKER_CONVERTER_KEY_BLOCKLIST.has(k)) return;
 				if (keySet != null && !keySet.has(k)) return;
 
 				json[k] = WALKER_CONVERTER.walk(
@@ -118,8 +120,6 @@ export class TagJsons {
 			});
 	}
 }
-
-TagJsons.OPTIMISTIC = true;
 
 TagJsons._BLOCKLIST_FILE_PREFIXES = null;
 
@@ -160,7 +160,7 @@ export class SpellTag extends ConverterTaggerInitializable {
 		this._SPELL_NAME_REGEX_STRICT = new RegExp(`^(${Object.values(this._SPELL_NAMES).map(it => it.name.escapeRegexp()).join("|")})$`, "g");
 	}
 
-	static _tryRun (ent, {styleHint = null, blocklistNames = null} = {}) {
+	static _tryRun (ent, {styleHint = null, blocklistNames = null, isOptimistic = true} = {}) {
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
 		if (blocklistNames) blocklistNames = blocklistNames.getWithBlocklistIgnore([ent.name]);
@@ -177,7 +177,7 @@ export class SpellTag extends ConverterTaggerInitializable {
 						0,
 						str,
 						{
-							fnTag: (strMod) => this._fnTag({strMod, styleHint, blocklistNames}),
+							fnTag: (strMod) => this._fnTag({strMod, styleHint, blocklistNames, isOptimistic}),
 						},
 					);
 					return ptrStack._;
@@ -192,8 +192,8 @@ export class SpellTag extends ConverterTaggerInitializable {
 		return this._SPELL_NAMES_LEGACY[name];
 	}
 
-	static _fnTag ({strMod, styleHint, blocklistNames}) {
-		if (TagJsons.OPTIMISTIC) {
+	static _fnTag ({strMod, styleHint, blocklistNames, isOptimistic}) {
+		if (isOptimistic) {
 			strMod = strMod
 				.replace(this._SPELL_NAME_REGEX_SPELL, (...m) => {
 					const spellMeta = this._getSpellMeta({name: m[1], styleHint});
@@ -334,7 +334,6 @@ export class ItemTag extends ConverterTaggerInitializable {
 
 	static _ITEM_NAMES__ONE = {};
 	static _ITEM_PROPERTY_NAMES__ONE = {};
-	static _ITEM_NAMES_REGEX_TOOLS__ONE = null;
 	static ITEM_NAMES_REGEX_OTHER__ONE = null;
 	static _ITEM_NAMES_REGEX_EQUIPMENT__ONE = null;
 	static _ITEM_NAMES_REGEX_STRICT__ONE = null;
@@ -348,7 +347,6 @@ export class ItemTag extends ConverterTaggerInitializable {
 			standardProperties,
 			lookupItemNames: this._ITEM_NAMES__ONE,
 			lookupItemPropertyNames: this._ITEM_PROPERTY_NAMES__ONE,
-			propItemNamesRegexTools: "_ITEM_NAMES_REGEX_TOOLS__ONE",
 			propItemNamesRegexOther: "ITEM_NAMES_REGEX_OTHER__ONE",
 			propItemNamesRegexEquipment: "_ITEM_NAMES_REGEX_EQUIPMENT__ONE",
 			propItemNamesRegexStrict: "_ITEM_NAMES_REGEX_STRICT__ONE",
@@ -361,9 +359,9 @@ export class ItemTag extends ConverterTaggerInitializable {
 
 	static _ITEM_NAMES__CLASSIC = {};
 	static _ITEM_PROPERTY_NAMES__CLASSIC = {};
-	static _ITEM_NAMES_REGEX_TOOLS__CLASSIC = null;
 	static ITEM_NAMES_REGEX_OTHER__CLASSIC = null;
 	static _ITEM_NAMES_REGEX_EQUIPMENT__CLASSIC = null;
+	static _ITEM_NAMES_REGEX_STRICT__CLASSIC = null;
 	static _ITEM_NAMES_GEMSTONE__CLASSIC = {};
 	static _ITEM_NAMES_REGEX_GEMSTONE__CLASSIC = null;
 	static _ITEM_PROPERTY_REGEX__CLASSIC = null;
@@ -374,9 +372,9 @@ export class ItemTag extends ConverterTaggerInitializable {
 			standardProperties,
 			lookupItemNames: this._ITEM_NAMES__CLASSIC,
 			lookupItemPropertyNames: this._ITEM_PROPERTY_NAMES__CLASSIC,
-			propItemNamesRegexTools: "_ITEM_NAMES_REGEX_TOOLS__CLASSIC",
 			propItemNamesRegexOther: "ITEM_NAMES_REGEX_OTHER__CLASSIC",
 			propItemNamesRegexEquipment: "_ITEM_NAMES_REGEX_EQUIPMENT__CLASSIC",
+			propItemNamesRegexStrict: "_ITEM_NAMES_REGEX_STRICT__CLASSIC",
 			lookupItemNamesGemstone: this._ITEM_NAMES_GEMSTONE__CLASSIC,
 			propItemNamesRegexGemstone: "_ITEM_NAMES_REGEX_GEMSTONE__CLASSIC",
 			propItemPropertyNamesRegex: "_ITEM_PROPERTY_REGEX__CLASSIC",
@@ -406,7 +404,6 @@ export class ItemTag extends ConverterTaggerInitializable {
 			standardProperties,
 			lookupItemNames,
 			lookupItemPropertyNames,
-			propItemNamesRegexTools,
 			propItemNamesRegexOther,
 			propItemNamesRegexEquipment,
 			propItemNamesRegexStrict,
@@ -424,7 +421,6 @@ export class ItemTag extends ConverterTaggerInitializable {
 			lookupItemNames[tool.name.toLowerCase()] = {name: tool.name, source: tool.source};
 		});
 
-		if (tools.length) this[propItemNamesRegexTools] = new RegExp(`\\b(${tools.map(it => it.name.escapeRegexp()).join("|")})\\b`, "gi");
 		// endregion
 
 		// region Other items
@@ -433,12 +429,14 @@ export class ItemTag extends ConverterTaggerInitializable {
 				if (it.type && this._TOOL_TYPES.has(DataUtil.itemType.unpackUid(it.type).abbreviation)) return false;
 				// Disallow specific items
 				if (it.name === "Wave" && [Parser.SRC_DMG, Parser.SRC_XDMG].includes(it.source)) return false;
-				// Allow all non-specific-variant DMG items
-				if ([Parser.SRC_DMG, Parser.SRC_XDMG].includes(it.source) && !Renderer.item.isMundane(it) && it._category !== "Specific Variant") return true;
+				// Allow all non-mundane DMG items
+				if ([Parser.SRC_DMG, Parser.SRC_XDMG].includes(it.source) && !Renderer.item.isMundane(it)) return true;
 				// Allow "sufficiently complex name" items
 				if (it.name.split(" ").length > 2) return true;
 				// Allow basic weapons
 				if (it.weaponCategory && Renderer.item.isMundane(it)) return true;
+				// Allow specific variants, as generally longer "basic weapon" names
+				if (it._category === "Specific Variant") return true;
 				return false;
 			})
 			.sort((itemA, itemB) => {
@@ -455,21 +453,29 @@ export class ItemTag extends ConverterTaggerInitializable {
 			lookupItemNames[it.name.toLowerCase()] = {name: it.name, source: it.source};
 		});
 
-		if (otherItems.length) this[propItemNamesRegexOther] = new RegExp(`\\b(${otherItems.map(it => it.name.escapeRegexp()).join("|")})\\b`, "gi");
+		// Match tools and other items together, so a tool cannot end up part of a longer item name/tag
+		const itemNames = [...tools, ...otherItems].map(it => it.name);
+		if (itemNames.length) this[propItemNamesRegexOther] = TaggerUtils.getNameRegex(itemNames, {flags: "gi"});
 		// endregion
 
 		// region Basic equipment
 		// (Has some overlap with others)
 		const itemsEquipment = standardItems
 			.filter(itm => itm.source === srcPhb && (!itm.type || !this._NON_EQUIPMENT_TYPES.has(DataUtil.itemType.unpackUid(itm.type).abbreviation)));
-		if (itemsEquipment.length) this[propItemNamesRegexEquipment] = new RegExp(`\\b(${itemsEquipment.map(it => it.name.escapeRegexp()).join("|")})\\b`, "gi");
+		if (itemsEquipment.length) this[propItemNamesRegexEquipment] = TaggerUtils.getNameRegex(itemsEquipment.map(it => it.name), {flags: "gi"});
 		itemsEquipment.forEach(itm => lookupItemNames[itm.name.toLowerCase()] = {name: itm.name, source: itm.source});
 		// endregion
 
 		// region Strict naming
 		if (propItemNamesRegexStrict) {
 			this[propItemNamesRegexStrict] = new RegExp(`^(${standardItems.map(it => it.name.escapeRegexp()).join("|")})$`, "gi");
-			standardItems.forEach(itm => lookupItemNames[itm.name.toLowerCase()] = {name: itm.name, source: itm.source});
+
+			standardItems.forEach(itm => {
+				const key = itm.name.toLowerCase();
+				// Prevent e.g. SCAG "Musical Instrument" overriding PHB
+				if (lookupItemNames[key]?.source === srcPhb) return;
+				lookupItemNames[key] = {name: itm.name, source: itm.source};
+			});
 		}
 		// endregion
 
@@ -615,14 +621,6 @@ export class ItemTag extends ConverterTaggerInitializable {
 	}
 
 	static _fnTag_one (strMod) {
-		if (this._ITEM_NAMES_REGEX_TOOLS__ONE != null) {
-			strMod = strMod
-				.replace(this._ITEM_NAMES_REGEX_TOOLS__ONE, (...m) => {
-					const itemMeta = this._ITEM_NAMES__ONE[m[1].toLowerCase()];
-					return `{@item ${m[1]}|${itemMeta.source}}`;
-				});
-		}
-
 		if (this.ITEM_NAMES_REGEX_OTHER__ONE != null) {
 			strMod = strMod
 				.replace(this.ITEM_NAMES_REGEX_OTHER__ONE, (...m) => {
@@ -635,14 +633,6 @@ export class ItemTag extends ConverterTaggerInitializable {
 	}
 
 	static _fnTag_classic (strMod) {
-		if (this._ITEM_NAMES_REGEX_TOOLS__CLASSIC != null) {
-			strMod = strMod
-				.replace(this._ITEM_NAMES_REGEX_TOOLS__CLASSIC, (...m) => {
-					const itemMeta = this._ITEM_NAMES__CLASSIC[m[1].toLowerCase()];
-					return `{@item ${m[1]}${itemMeta.source !== Parser.SRC_DMG ? `|${itemMeta.source}` : ""}}`;
-				});
-		}
-
 		if (this.ITEM_NAMES_REGEX_OTHER__CLASSIC != null) {
 			strMod = strMod
 				.replace(this.ITEM_NAMES_REGEX_OTHER__CLASSIC, (...m) => {
@@ -782,7 +772,9 @@ export class ItemTag extends ConverterTaggerInitializable {
 
 	/* -------------------------------------------- */
 
-	static _tryRunStrictCapsWords (ent) {
+	static _tryRunStrictCapsWords (ent, {styleHint = null} = {}) {
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
 		return WALKER_CONVERTER.walk(
 			ent,
 			{
@@ -793,7 +785,7 @@ export class ItemTag extends ConverterTaggerInitializable {
 						ptrStack,
 						str,
 						{
-							fnTag: (strMod) => this._fnTagStrict({strMod}),
+							fnTag: (strMod) => this._fnTagStrict({strMod, styleHint}),
 						},
 					);
 					return ptrStack._;
@@ -802,12 +794,19 @@ export class ItemTag extends ConverterTaggerInitializable {
 		);
 	}
 
-	static _fnTagStrict ({strMod}) {
-		return strMod
-			.replace(this._ITEM_NAMES_REGEX_STRICT__ONE, (...m) => {
+	static _fnTagStrict ({strMod, styleHint}) {
+		if (styleHint === SITE_STYLE__ONE) {
+			const out = strMod.replace(this._ITEM_NAMES_REGEX_STRICT__ONE, (...m) => {
 				const itemMeta = this._ITEM_NAMES__ONE[m[1].toLowerCase()];
 				return `{@item ${m[1]}|${itemMeta.source}}`;
 			});
+			if (out !== strMod) return out;
+		}
+
+		return strMod.replace(this._ITEM_NAMES_REGEX_STRICT__CLASSIC, (...m) => {
+			const itemMeta = this._ITEM_NAMES__CLASSIC[m[1].toLowerCase()];
+			return `{@item ${m[1]}|${itemMeta.source}}`;
+		});
 	}
 }
 
@@ -1292,31 +1291,42 @@ export class CoreRuleTag extends ConverterTaggerInitializable {
 		"Spell",
 		"Illusions",
 	]);
+	static _ALIASES_XPHB = {
+		"Proficiency Bonus": "Proficiency",
+		"Half Cover": "Cover",
+		"Three-Quarters Cover": "Cover",
+		"Total Cover": "Cover",
+		"Short": "Short Rest",
+		"Hit Point Die": "Hit Point Dice",
+		"Death Saving Throws": "Death Saving Throw",
+		"D20 Tests": "D20 Test",
+	};
 	static _LOOKUP_XPHB = {};
 
 	static async _pInit () {
 		const variantruleData = await DataUtil.variantrule.loadJSON();
 
 		const coreRules = [...variantruleData.variantrule]
-			.filter(rule => SourceUtil.getEntitySource(rule) === Parser.SRC_XPHB && rule.ruleType === "C" && !this._BLOCKLIST_XPHB.has(rule.name))
-			.map(rule => ({
-				...MiscUtil.copyFast(rule),
-				_sortWeight: rule.name.countSubstring(" "),
-			}))
-			.sort((a, b) => SortUtil.ascSort(b._sortWeight, a._sortWeight));
+			.filter(rule => SourceUtil.getEntitySource(rule) === Parser.SRC_XPHB && rule.ruleType === "C" && !this._BLOCKLIST_XPHB.has(rule.name));
 
 		coreRules
 			.forEach(rule => {
 				this._LOOKUP_XPHB[rule.name] = rule;
-
-				const nameNoSquareBrackets = rule.name.replace(/ \[[^\]]]+$/, "").trim();
+			});
+		coreRules
+			.forEach(rule => {
+				const nameNoSquareBrackets = rule.name.replace(/ \[[^\]]+\]$/, "").trim();
 				const nameNoPlural = rule.name.replace(/s$/, "").trim();
 
-				this._LOOKUP_XPHB[nameNoSquareBrackets] = rule;
-				this._LOOKUP_XPHB[nameNoPlural] = rule;
+				this._LOOKUP_XPHB[nameNoSquareBrackets] ||= rule;
+				this._LOOKUP_XPHB[nameNoPlural] ||= rule;
+			});
+		Object.entries(this._ALIASES_XPHB)
+			.forEach(([alias, name]) => {
+				this._LOOKUP_XPHB[alias] = this._LOOKUP_XPHB[name];
 			});
 
-		this._RE_BASIC_XPHB = new RegExp(`\\b(?<ruleName>${(Object.keys(this._LOOKUP_XPHB).join("|"))})\\b`, "g");
+		this._RE_BASIC_XPHB = TaggerUtils.getNameRegex(Object.keys(this._LOOKUP_XPHB), {flags: "g"});
 	}
 
 	static _tryRun (it, {styleHint = null} = {}) {
@@ -1343,36 +1353,22 @@ export class CoreRuleTag extends ConverterTaggerInitializable {
 		);
 	}
 
-	static _fnTag (strMod) {
+	static _fnTag (strMod, context) {
 		return strMod
 			.replace(this._RE_BASIC_XPHB, (...m) => {
-				const {ruleName} = m.at(-1);
-				const rule = this._LOOKUP_XPHB[ruleName];
-				if (ruleName === rule.name) return `{@variantrule ${ruleName}|${Parser.SRC_XPHB}}`;
-				return `{@variantrule ${rule.name}|${Parser.SRC_XPHB}|${ruleName}}`;
+				const {name} = m.at(-1);
+				const ixStart = context.ixStart + m.at(-3);
+				const ptPrecedes = context.str.slice(0, ixStart);
+				const ptFollows = context.str.slice(ixStart + name.length);
+
+				if (name === "Short" && !/^ or Long Rest\b/.test(Renderer.stripTags(ptFollows))) return m[0];
+				if (name === "Action" && /\bLegendary $/.test(ptPrecedes)) return m[0];
+				if (name === "Flying" && /^ Sword\b/.test(ptFollows)) return m[0];
+
+				const rule = this._LOOKUP_XPHB[name];
+				if (name === rule.name) return `{@variantrule ${name}|${Parser.SRC_XPHB}}`;
+				return `{@variantrule ${rule.name}|${Parser.SRC_XPHB}|${name}}`;
 			})
-			.replace(/{@variantrule Proficiency\|XPHB} Bonus/g, (...m) => {
-				return `{@variantrule Proficiency|XPHB|Proficiency Bonus}`;
-			})
-			.replace(/Short or {@variantrule Long Rest\|XPHB}/g, (...m) => {
-				return `{@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}`;
-			})
-			.replace(/(Half|Three-Quarters|Total) {@variantrule Cover\|XPHB}/g, (...m) => {
-				return `{@variantrule Cover|XPHB|${m[1]} Cover}`;
-			})
-			.replace(/\b(Cone|Cube|Cylinder|Emanation|Line|Sphere)\b/g, (...m) => {
-				return `{@variantrule ${m[1]} [Area of Effect]|XPHB|${m[1]}}`;
-			})
-			.replace(/\b(Friendly|Hostile|Indifferent)\b/g, (...m) => {
-				return `{@variantrule ${m[1]} [Attitude]|XPHB|${m[1]}}`;
-			})
-			.replace(/\b(Death Saving Throws)\b/g, (...m) => {
-				return `{@variantrule Death Saving Throw|XPHB|${m[1]}}`;
-			})
-			.replace(/{@variantrule Hit Points\|XPHB\|Hit Point} Die\b/g, `{@variantrule Hit Point Dice|XPHB|Hit Point Die}`)
-			.replace(/\b(Legendary) {@variantrule Action\|XPHB}/g, "$1 Action")
-			.replace(/{@variantrule Flying\|XPHB} (Sword)/g, "Flying $1")
-			.replace(/(?<!{@variantrule )(?:{@dice )?D20(?:})? Test(?<plural>s?)/g, (...m) => `{@variantrule D20 Test|XPHB${m.at(-1).plural ? `|D20 Tests` : ""}}`)
 		;
 	}
 
@@ -1389,7 +1385,7 @@ export class CoreRuleTag extends ConverterTaggerInitializable {
 						ptrStack,
 						str,
 						{
-							fnTag: strMod => this._fnTagStrict_one(strMod),
+							fnTag: (strMod, context) => this._fnTagStrict_one(strMod, context),
 						},
 					);
 					return ptrStack._;
@@ -1398,8 +1394,8 @@ export class CoreRuleTag extends ConverterTaggerInitializable {
 		);
 	}
 
-	static _fnTagStrict_one (strMod) {
-		return this._fnTag(strMod);
+	static _fnTagStrict_one (strMod, context) {
+		return this._fnTag(strMod, context);
 	}
 }
 

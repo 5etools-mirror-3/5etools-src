@@ -66,8 +66,8 @@ export class StatGenUiRenderLevelOneRace extends StatGenUiRenderLevelOneEntityBa
 
 		const stgTashasControls = veT`<div class="ve-flex-col ve-w-100">
 			<label class="ve-flex-v-center ve-mb-1">
-				<div class="ve-mr-2">Allow Origin Customization</div>
 				${ComponentUiUtil.getCbBool(this._parent, "common_isTashas")}
+				<div class="ve-ml-2">Allow Origin Customization</div>
 			</label>
 
 			<div class="ve-flex">

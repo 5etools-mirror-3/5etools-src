@@ -346,6 +346,7 @@ export class BuilderBase extends ProxyBase {
 			ents: entities,
 			prop: this._prop,
 			pFnGetFluff: this._pFnGetFluff,
+			isIncludeFluff: !!this._pFnGetFluff,
 		});
 		DataUtil.userDownloadText(`${DataUtil.getCleanFilename(BrewUtil2.sourceJsonToFull(this._ui.source))}.md`, mdOut);
 	}

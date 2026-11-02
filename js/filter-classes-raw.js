@@ -1,3 +1,5 @@
+import {DataLoaderConst} from "./utils-dataloader/utils-dataloader-const.js";
+
 export class PageFilterClassesRaw extends PageFilterClassesBase {
 	async _pPopulateBoxOptions (opts) {
 		await super._pPopulateBoxOptions(opts);
@@ -336,63 +338,30 @@ export class ModalFilterClasses extends ModalFilterBase {
 	/** Caches the result for fast re-querying. */
 	async _pLoadAllData () {
 		this._pLoadingAllData = this._pLoadingAllData || (async () => {
-			const data = MiscUtil.copyFast(await DataUtil.class.loadRawJSON());
-			const propsCopied = new Set(Object.keys(data));
+			const data = {};
+			const props = ["class", "subclass"];
 
-			const [prerelease, brew] = await Promise.all([
-				PrereleaseUtil.pGetBrewProcessed(),
-				BrewUtil2.pGetBrewProcessed(),
-			]);
+			await props
+				.pSerialAwaitMap(async prop => {
+					data[prop] = MiscUtil.copyFast([
+						...await DataLoader.pCacheAndGetAllSite(`${DataLoaderConst.PROP_RAW_PREFIX}${prop}`),
+						...await DataLoader.pCacheAndGetAllPrerelease(`${DataLoaderConst.PROP_RAW_PREFIX}${prop}`),
+						...await DataLoader.pCacheAndGetAllBrew(`${DataLoaderConst.PROP_RAW_PREFIX}${prop}`),
+					]);
+				});
 
-			// Combine main data with prerelease/brew
-			this._pLoadAllData_mutAddPrereleaseBrew({data, brew: prerelease, brewUtil: PrereleaseUtil});
-			this._pLoadAllData_mutAddPrereleaseBrew({data, brew: brew, brewUtil: BrewUtil2});
-
-			this._allData = (await this.constructor.pPostLoad(data, {propsCopied})).class;
+			this._allData = (await this.constructor.pPostLoad(data, {propsCopied: new Set(props)})).class;
 		})();
 
 		await this._pLoadingAllData;
 		return this._allData;
 	}
 
-	_pLoadAllData_mutAddPrereleaseBrew ({data, brew, brewUtil}) {
-		const clsProps = brewUtil.getPageProps({page: UrlUtil.PG_CLASSES});
-
-		if (!clsProps.includes("*")) {
-			clsProps.forEach(prop => data[prop] = [...(data[prop] || []), ...MiscUtil.copyFast(brew[prop] || [])]);
-			return;
-		}
-
-		Object.entries(brew)
-			.filter(([, brewVal]) => brewVal instanceof Array)
-			.forEach(([prop, brewArr]) => data[prop] = [...(data[prop] || []), ...MiscUtil.copyFast(brewArr)]);
-	}
-
 	/* -------------------------------------------- */
 
 	static async _pGetParentClass (sc) {
-		// Search in base classes
-		let baseClass = (await DataUtil.class.loadRawJSON()).class.find(bc => bc.name.toLowerCase() === sc.className.toLowerCase() && (bc.source.toLowerCase() || Parser.SRC_PHB) === sc.classSource.toLowerCase());
-
-		// Search in brew classes
-		baseClass = baseClass || await this._pGetParentClass_pPrerelease({sc});
-		baseClass = baseClass || await this._pGetParentClass_pBrew({sc});
-
-		return baseClass;
-	}
-
-	static async _pGetParentClass_pPrerelease ({sc}) {
-		return this._pGetParentClass_pPrereleaseBrew({sc, brewUtil: PrereleaseUtil});
-	}
-
-	static async _pGetParentClass_pBrew ({sc}) {
-		return this._pGetParentClass_pPrereleaseBrew({sc, brewUtil: BrewUtil2});
-	}
-
-	static async _pGetParentClass_pPrereleaseBrew ({sc, brewUtil}) {
-		const brew = await brewUtil.pGetBrewProcessed();
-		return (brew.class || [])
-			.find(bc => bc.name.toLowerCase() === sc.className.toLowerCase() && (bc.source.toLowerCase() || Parser.SRC_PHB) === sc.classSource.toLowerCase());
+		const hash = UrlUtil.URL_TO_HASH_BUILDER["class"]({name: sc.className, source: sc.classSource});
+		return DataLoader.pCacheAndGet("raw_class", sc.classSource, hash, {isCopy: true});
 	}
 
 	static async pPostLoad (data, {...opts} = {}) {
