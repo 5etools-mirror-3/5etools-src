@@ -37,6 +37,7 @@ export const getGenericMetadataPropOrder = (
 		new ArrayKey("referenceSources", {fnSort: SortUtil.ascSortLower}),
 		"isReprinted",
 		"reprintedAs",
+		"reskinOf",
 		"legacy",
 	];
 };

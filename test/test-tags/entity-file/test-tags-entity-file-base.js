@@ -167,10 +167,10 @@ export class EntityFileHandlerBase extends DataTesterBase {
 		});
 	}
 
-	_testReprintedAs (file, obj, tag) {
-		if (!obj.reprintedAs) return;
+	_testReprintedAsBase ({prop, file, obj, tag}) {
+		if (!obj[prop]) return;
 
-		obj.reprintedAs
+		obj[prop]
 			.forEach(rep => {
 				const _tag = rep.tag ?? tag;
 				const _uid = rep.uid ?? rep;
@@ -179,8 +179,16 @@ export class EntityFileHandlerBase extends DataTesterBase {
 
 				if (this._tagTestUrlLookup.hasUrl(url)) return;
 
-				this._addMessage(`Missing reprintedAs link: ${_uid} ${url} in file ${file} (evaluates to "${url}") in "${_tag}"\n${this._tagTestUrlLookup.getLogPtSimilarUrls({url})}`);
+				this._addMessage(`Missing ${prop} link: ${_uid} ${url} in file ${file} (evaluates to "${url}") in "${_tag}"\n${this._tagTestUrlLookup.getLogPtSimilarUrls({url})}`);
 			});
+	}
+
+	_testReprintedAs (file, obj, tag) {
+		return this._testReprintedAsBase({prop: "reprintedAs", file, obj, tag});
+	}
+
+	_testReskinOf (file, obj, tag) {
+		return this._testReprintedAsBase({prop: "reskinOf", file, obj, tag});
 	}
 
 	_testStartingEquipment (file, obj, {propDotPath = "startingEquipment"} = {}) {

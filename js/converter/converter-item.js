@@ -134,7 +134,19 @@ export class ConverterItem extends ConverterBase {
 		TagCondition.tryTagConditions(stats, {styleHint: options.styleHint});
 		ArtifactPropertiesTag.tryRun(stats, {styleHint: options.styleHint});
 		if (stats.entries) {
-			EntryCoalesceEntryLists.mutCoalesce(stats, "entries", {styleHint: options.styleHint});
+			EntryCoalesceEntryLists.mutCoalesce(
+				stats,
+				"entries",
+				{
+					styleHint: options.styleHint,
+
+					isPossibleHangingListItem: ent => {
+						// Artifact-specific; never merge
+						if (/^(?:Random Properties$|Destroying\b)/i.test(ent.name || "")) return false;
+						return true;
+					},
+				},
+			);
 
 			if (/is a (tiny|small|medium|large|huge|gargantuan) object/i.test(JSON.stringify(stats.entries))) options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Item may be an object!`);
 		}

@@ -5,11 +5,6 @@ export class EntityFileHandlerClass extends EntityFileHandlerBase {
 	_props = ["class", "subclass", "classFeature", "subclassFeature"];
 
 	static _FileState = class extends EntityFileHandlerBase._FileState {
-		isNonSiteData = false;
-
-		classFeatureLookup = {};
-		subclassFeatureLookup = {};
-
 		walkerHandlersNestedRefsClass = null;
 		walkerHandlersNestedRefsSubclass = null;
 		walkerHandlersNestedRefsOptionalFeatures = null;
@@ -36,21 +31,12 @@ export class EntityFileHandlerClass extends EntityFileHandlerBase {
 		if (!this._tagTestUrlLookup.hasUrl(urlSubclass)) this._addMessage(`Missing subclass in ${logIdentOriginal}: ${uidOriginal} in file ${filePath} subclass part, "${uidSubclass}"\n${this._tagTestUrlLookup.getLogPtSimilarUrls({url: urlSubclass})}`);
 	};
 
-	/* -------------------------------------------- */
-
-	_pHandleFile_preProcess_initLookups ({filePath, contents, fileState}) {
-		(contents.classFeature || [])
-			.forEach(cf => {
-				const hash = UrlUtil.URL_TO_HASH_BUILDER["classFeature"](cf);
-				fileState.classFeatureLookup[hash] = true;
-			});
-
-		(contents.subclassFeature || [])
-			.forEach(scf => {
-				const hash = UrlUtil.URL_TO_HASH_BUILDER["subclassFeature"](scf);
-				fileState.subclassFeatureLookup[hash] = true;
-			});
+	_doCheckFeatureRef ({logIdentOriginal, uidOriginal, filePath, prop}) {
+		const url = this._tagTestUrlLookup.getEncodedProxy(uidOriginal, prop);
+		if (!this._tagTestUrlLookup.hasUrl(url)) this._addMessage(`Missing ${prop} in ${logIdentOriginal}: ${uidOriginal} in file ${filePath} (evaluates to "${url}")\n${this._tagTestUrlLookup.getLogPtSimilarUrls({url})}`);
 	}
+
+	/* -------------------------------------------- */
 
 	_pHandleFile_preProcess_initWalkerHandlers ({filePath, contents, fileState}) {
 		fileState.walkerHandlersNestedRefsClass = {
@@ -60,9 +46,7 @@ export class EntityFileHandlerClass extends EntityFileHandlerBase {
 
 					const uid = it.classFeature || it;
 					const unpacked = DataUtil.class.unpackUidClassFeature(uid, {isLower: true});
-					const hash = UrlUtil.URL_TO_HASH_BUILDER["classFeature"](unpacked);
-
-					if (!fileState.isNonSiteData && !fileState.classFeatureLookup[hash]) this._addMessage(`Missing class feature: ${uid} in file ${fileState.filePath} not found in the files "classFeature" array\n`);
+					this._doCheckFeatureRef({logIdentOriginal: `"refClassFeature"`, uidOriginal: uid, filePath: fileState.filePath, prop: "classFeature"});
 
 					this._doCheckClassRef({
 						logIdentOriginal: `"refClassFeature"`,
@@ -83,9 +67,7 @@ export class EntityFileHandlerClass extends EntityFileHandlerBase {
 
 					const uid = it.subclassFeature || it;
 					const unpacked = DataUtil.class.unpackUidSubclassFeature(uid, {isLower: true});
-					const hash = UrlUtil.URL_TO_HASH_BUILDER["subclassFeature"](unpacked);
-
-					if (!fileState.isNonSiteData && !fileState.subclassFeatureLookup[hash]) this._addMessage(`Missing subclass feature in "refSubclassFeature": ${uid} in file ${filePath} not found in the files "subclassFeature" array\n`);
+					this._doCheckFeatureRef({logIdentOriginal: `"refSubclassFeature"`, uidOriginal: uid, filePath, prop: "subclassFeature"});
 
 					this._doCheckClassRef({
 						logIdentOriginal: `"refClassFeature"`,
@@ -135,20 +117,16 @@ export class EntityFileHandlerClass extends EntityFileHandlerBase {
 	}
 
 	async _pHandleFile_preProcess ({filePath, contents, fileState}) {
-		fileState.isNonSiteData = this._isNonSiteData(filePath, contents);
-		this._pHandleFile_preProcess_initLookups({filePath, contents, fileState});
 		this._pHandleFile_preProcess_initWalkerHandlers({filePath, contents, fileState});
 	}
 
 	/* -------------------------------------------- */
 
 	_pDoTestEntity_class_featureLinks ({filePath, fileState, ent, prop, propPrefixed}) {
-		ent.classFeatures.forEach(ref => {
+		(ent.classFeatures || []).forEach(ref => {
 			const uid = ref.classFeature || ref;
 			const unpacked = DataUtil.class.unpackUidClassFeature(uid, {isLower: true});
-			const hash = UrlUtil.URL_TO_HASH_BUILDER["classFeature"](unpacked);
-
-			if (!fileState.isNonSiteData && !fileState.classFeatureLookup[hash]) this._addMessage(`Missing class feature: ${uid} in file ${filePath} not found in the files "classFeature" array\n`);
+			this._doCheckFeatureRef({logIdentOriginal: `"classFeature" array`, uidOriginal: uid, filePath, prop: "classFeature"});
 
 			this._doCheckClassRef({
 				logIdentOriginal: `"classFeature" array`,
@@ -160,11 +138,20 @@ export class EntityFileHandlerClass extends EntityFileHandlerBase {
 		});
 	}
 
+	_pDoTestEntity_class_includeSubclassesFrom ({filePath, fileState, ent, prop, propPrefixed}) {
+		(ent.includeSubclassesFrom || []).forEach(uid => {
+			const {name, source} = DataUtil.generic.unpackUid(uid, "class");
+			this._doCheckClassRef({logIdentOriginal: "includeSubclassesFrom", uidOriginal: uid, filePath, name, source});
+		});
+	}
+
 	async _pDoTestEntity_class ({filePath, fileState, ent, prop, propPrefixed}) {
 		this._pDoTestEntity_class_featureLinks({filePath, fileState, ent, prop, propPrefixed});
+		this._pDoTestEntity_class_includeSubclassesFrom({filePath, fileState, ent, prop, propPrefixed});
 
 		this._testAdditionalSpells(filePath, ent);
 		this._testReprintedAs(filePath, ent, "class");
+		this._testReskinOf(filePath, ent, "class");
 		this._testSrd(filePath, ent);
 		this._testStartingEquipment(filePath, ent, {propDotPath: "startingEquipment.defaultData"});
 	}
@@ -174,10 +161,7 @@ export class EntityFileHandlerClass extends EntityFileHandlerBase {
 	_pDoTestEntity_subclass_featureLinks ({filePath, fileState, ent, prop, propPrefixed}) {
 		ent.subclassFeatures.forEach(ref => {
 			const uid = ref.subclassFeature || ref;
-			const unpacked = DataUtil.class.unpackUidSubclassFeature(uid, {isLower: true});
-			const hash = UrlUtil.URL_TO_HASH_BUILDER["subclassFeature"](unpacked);
-
-			if (!fileState.isNonSiteData && !fileState.subclassFeatureLookup[hash]) this._addMessage(`Missing subclass feature: ${uid} in file ${filePath} not found in the files "subclassFeature" array\n`);
+			this._doCheckFeatureRef({logIdentOriginal: `"subclassFeature" array`, uidOriginal: uid, filePath, prop: "subclassFeature"});
 		});
 	}
 

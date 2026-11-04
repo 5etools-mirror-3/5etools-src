@@ -484,7 +484,9 @@ export class ConverterRace extends ConverterFeatureBase {
 			}
 
 			race.creatureTypes = [type];
-			entryParentList.items = entryParentList.items.filter(it => it !== entry);
+
+			if (isInRoot) race.entries = race.entries.filter(it => it !== entry);
+			else entryParentList.items = entryParentList.items.filter(it => it !== entry);
 
 			return;
 		}

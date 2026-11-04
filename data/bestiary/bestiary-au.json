@@ -15,6 +15,7 @@
 				"AUD"
 			],
 			"size": [
+				"S",
 				"M"
 			],
 			"type": {
@@ -45,6 +46,11 @@
 			"int": 20,
 			"wis": 15,
 			"cha": 16,
+			"save": {
+				"con": "+6",
+				"int": "+10",
+				"wis": "+7"
+			},
 			"skill": {
 				"arcana": "+15",
 				"history": "+10",
@@ -55,7 +61,13 @@
 				"psychic"
 			],
 			"conditionImmune": [
-				"charmed"
+				{
+					"conditionImmune": [
+						"charmed"
+					],
+					"note": "(with Mind Blank)",
+					"cond": true
+				}
 			],
 			"languages": [
 				"Common plus five other languages"
@@ -244,6 +256,12 @@
 			"int": 21,
 			"wis": 14,
 			"cha": 16,
+			"save": {
+				"dex": "+9",
+				"con": "+9",
+				"int": "+11",
+				"wis": "+8"
+			},
 			"skill": {
 				"arcana": "+17",
 				"history": "+11",
@@ -264,6 +282,7 @@
 			],
 			"conditionImmune": [
 				"charmed",
+				"exhaustion",
 				"frightened",
 				"paralyzed",
 				"poisoned"
@@ -386,6 +405,10 @@
 					]
 				}
 			],
+			"legendaryGroup": {
+				"name": "Baelnorn",
+				"source": "AU"
+			},
 			"environment": [
 				"forest",
 				"urban"
@@ -669,6 +692,7 @@
 				"AUD"
 			],
 			"size": [
+				"S",
 				"M"
 			],
 			"type": {
@@ -699,6 +723,11 @@
 			"int": 20,
 			"wis": 15,
 			"cha": 16,
+			"save": {
+				"con": "+6",
+				"int": "+10",
+				"wis": "+7"
+			},
 			"skill": {
 				"arcana": "+15",
 				"history": "+10",
@@ -864,6 +893,9 @@
 			"int": 5,
 			"wis": 10,
 			"cha": 13,
+			"save": {
+				"str": "+5"
+			},
 			"skill": {
 				"perception": "+2",
 				"stealth": "+4"
@@ -1159,6 +1191,7 @@
 				"AUD"
 			],
 			"size": [
+				"S",
 				"M"
 			],
 			"type": {
@@ -1189,6 +1222,11 @@
 			"int": 20,
 			"wis": 15,
 			"cha": 16,
+			"save": {
+				"con": "+6",
+				"int": "+10",
+				"wis": "+7"
+			},
 			"skill": {
 				"arcana": "+15",
 				"history": "+10",
@@ -1196,6 +1234,9 @@
 				"investigation": "+10",
 				"perception": "+7"
 			},
+			"senses": [
+				"Truesight 60 ft."
+			],
 			"passive": 17,
 			"languages": [
 				"all"
@@ -1283,6 +1324,9 @@
 			"traitTags": [
 				"Magic Resistance"
 			],
+			"senseTags": [
+				"U"
+			],
 			"actionTags": [
 				"Multiattack"
 			],
@@ -1318,6 +1362,7 @@
 				"AUD"
 			],
 			"size": [
+				"S",
 				"M"
 			],
 			"type": {
@@ -1348,6 +1393,11 @@
 			"int": 20,
 			"wis": 15,
 			"cha": 16,
+			"save": {
+				"con": "+6",
+				"int": "+10",
+				"wis": "+7"
+			},
 			"skill": {
 				"arcana": "+15",
 				"history": "+10",
@@ -1512,6 +1562,7 @@
 			"source": "AU",
 			"page": 138,
 			"size": [
+				"S",
 				"M"
 			],
 			"type": {
@@ -1543,6 +1594,11 @@
 			"int": 20,
 			"wis": 15,
 			"cha": 16,
+			"save": {
+				"con": "+6",
+				"int": "+10",
+				"wis": "+7"
+			},
 			"skill": {
 				"arcana": "+15",
 				"history": "+10",
@@ -1710,6 +1766,9 @@
 			"int": 7,
 			"wis": 10,
 			"cha": 8,
+			"save": {
+				"con": "+4"
+			},
 			"skill": {
 				"perception": "+2",
 				"stealth": "+4",
@@ -1812,6 +1871,10 @@
 			"int": 10,
 			"wis": 13,
 			"cha": 8,
+			"save": {
+				"dex": "+5",
+				"con": "+4"
+			},
 			"skill": {
 				"perception": "+3",
 				"stealth": "+7",
@@ -1931,6 +1994,10 @@
 			"int": 8,
 			"wis": 12,
 			"cha": 8,
+			"save": {
+				"dex": "+5",
+				"con": "+4"
+			},
 			"skill": {
 				"perception": "+3",
 				"stealth": "+5",
@@ -2009,6 +2076,7 @@
 				"AUD"
 			],
 			"size": [
+				"S",
 				"M"
 			],
 			"type": {
@@ -2039,6 +2107,11 @@
 			"int": 20,
 			"wis": 15,
 			"cha": 16,
+			"save": {
+				"con": "+6",
+				"int": "+10",
+				"wis": "+7"
+			},
 			"skill": {
 				"arcana": "+15",
 				"deception": "+8",
@@ -2207,7 +2280,11 @@
 			},
 			"speed": {
 				"walk": 25,
-				"fly": 25
+				"fly": {
+					"number": 25,
+					"condition": "(hover)"
+				},
+				"canHover": true
 			},
 			"str": 10,
 			"dex": 15,
@@ -2226,6 +2303,7 @@
 				"blinded",
 				"charmed",
 				"deafened",
+				"exhaustion",
 				"frightened",
 				"grappled",
 				"poisoned",
@@ -2318,7 +2396,11 @@
 			},
 			"speed": {
 				"walk": 25,
-				"fly": 25
+				"fly": {
+					"number": 25,
+					"condition": "(hover)"
+				},
+				"canHover": true
 			},
 			"str": 10,
 			"dex": 13,
@@ -2337,6 +2419,7 @@
 				"blinded",
 				"charmed",
 				"deafened",
+				"exhaustion",
 				"frightened",
 				"grappled",
 				"poisoned",
@@ -2418,7 +2501,11 @@
 			},
 			"speed": {
 				"walk": 25,
-				"fly": 25
+				"fly": {
+					"number": 25,
+					"condition": "(hover)"
+				},
+				"canHover": true
 			},
 			"str": 10,
 			"dex": 15,
@@ -2437,6 +2524,7 @@
 				"blinded",
 				"charmed",
 				"deafened",
+				"exhaustion",
 				"frightened",
 				"grappled",
 				"poisoned",
@@ -2512,6 +2600,7 @@
 			"source": "AU",
 			"page": 139,
 			"size": [
+				"S",
 				"M"
 			],
 			"type": {
@@ -2542,6 +2631,11 @@
 			"int": 20,
 			"wis": 15,
 			"cha": 16,
+			"save": {
+				"con": "+6",
+				"int": "+10",
+				"wis": "+7"
+			},
 			"skill": {
 				"arcana": "+15",
 				"history": "+10",
@@ -2926,6 +3020,7 @@
 				"RWG"
 			],
 			"size": [
+				"S",
 				"M"
 			],
 			"type": "humanoid",
@@ -2952,6 +3047,10 @@
 			"int": 12,
 			"wis": 13,
 			"cha": 10,
+			"save": {
+				"con": "+6",
+				"wis": "+4"
+			},
 			"skill": {
 				"arcana": "+4",
 				"athletics": "+7",
@@ -3055,7 +3154,11 @@
 			},
 			"speed": {
 				"walk": 40,
-				"fly": 60
+				"fly": {
+					"number": 60,
+					"condition": "(hover)"
+				},
+				"canHover": true
 			},
 			"initiative": {
 				"proficiency": 1
@@ -3066,6 +3169,12 @@
 			"int": 25,
 			"wis": 22,
 			"cha": 19,
+			"save": {
+				"dex": "+10",
+				"con": "+11",
+				"int": "+13",
+				"wis": "+12"
+			},
 			"skill": {
 				"arcana": "+19",
 				"insight": "+12",
@@ -3080,6 +3189,7 @@
 			],
 			"conditionImmune": [
 				"charmed",
+				"exhaustion",
 				"frightened",
 				"grappled",
 				"paralyzed",
@@ -3088,7 +3198,8 @@
 				"restrained"
 			],
 			"languages": [
-				"all; telepathy 120 ft."
+				"all",
+				"telepathy 120 ft."
 			],
 			"cr": "19",
 			"spellcasting": [
@@ -3247,6 +3358,7 @@
 				"AUD"
 			],
 			"size": [
+				"S",
 				"M"
 			],
 			"type": {
@@ -3278,6 +3390,11 @@
 			"int": 20,
 			"wis": 15,
 			"cha": 16,
+			"save": {
+				"con": "+6",
+				"int": "+10",
+				"wis": "+7"
+			},
 			"skill": {
 				"arcana": "+15",
 				"history": "+10",
@@ -3455,6 +3572,10 @@
 			"int": 17,
 			"wis": 14,
 			"cha": 21,
+			"save": {
+				"con": "+9",
+				"wis": "+8"
+			},
 			"skill": {
 				"arcana": "+9",
 				"deception": "+11",
@@ -3612,6 +3733,10 @@
 					]
 				}
 			],
+			"legendaryGroup": {
+				"name": "Venger",
+				"source": "AU"
+			},
 			"traitTags": [
 				"Legendary Resistances",
 				"Magic Resistance"

@@ -1612,6 +1612,7 @@ export class SpellcastingTraitConvert {
 				line = line.replace(/,\s*\*/g, ",*"); // put asterisks on the correct side of commas
 
 				const entFaux = {entries: [line]};
+
 				const propPathUsage = this.getMutUsagePropPath({entry: entFaux, prop});
 				if (propPathUsage) {
 					line = entFaux.entries[0];
@@ -1770,6 +1771,7 @@ export class SpellcastingTraitConvert {
 		{re: /(?<cnt>\d+)\/week(?<ptEach> each)?/i, prop: "weekly"},
 		{re: /(?<cnt>\d+)\/month(?<ptEach> each)?/i, prop: "monthly"},
 		{re: /(?<cnt>\d+)\/year(?<ptEach> each)?/i, prop: "yearly"},
+		{re: /(?<cnt>\d+) charges?(?<ptEach> each)?/i, prop: "charges"},
 	];
 
 	static _USES_RE_INFOS_ENTRY = this._USES_RE_INFOS_NAME

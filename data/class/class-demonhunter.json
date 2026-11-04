@@ -1,0 +1,578 @@
+{
+	"_meta": {
+		"dependencies": {
+			"class": [
+				"ranger"
+			],
+			"subclass": [
+				"ranger"
+			],
+			"classFeature": [
+				"ranger"
+			]
+		}
+	},
+	"class": [
+		{
+			"name": "Demon Hunter",
+			"alias": [
+				"Ranger"
+			],
+			"source": "WoW",
+			"reskinOf": [
+				"Ranger|XPHB"
+			],
+			"isHero": true,
+			"_copy": {
+				"name": "Ranger",
+				"source": "XPHB"
+			},
+			"classFeatures": [
+				"Spellcasting|Demon Hunter|WoW|1",
+				"Favored Enemy|Ranger|XPHB|1",
+				"Weapon Mastery|Ranger|XPHB|1",
+				"Deft Explorer|Demon Hunter|WoW|2",
+				"Fighting Style|Demon Hunter|WoW|2",
+				{
+					"classFeature": "Demon Hunter Subclass|Demon Hunter|WoW|3",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Ranger|XPHB|4",
+				"Extra Attack|Ranger|XPHB|5",
+				"Roving|Ranger|XPHB|6",
+				{
+					"classFeature": "Subclass Feature|Ranger|XPHB|7",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Ranger|XPHB|8",
+				"Expertise|Ranger|XPHB|9",
+				"Tireless|Ranger|XPHB|10",
+				{
+					"classFeature": "Subclass Feature|Ranger|XPHB|11",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Ranger|XPHB|12",
+				"Relentless Hunter|Ranger|XPHB|13",
+				"Nature's Veil|Ranger|XPHB|14",
+				{
+					"classFeature": "Subclass Feature|Ranger|XPHB|15",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Ranger|XPHB|16",
+				"Precise Hunter|Ranger|XPHB|17",
+				"Improved Spectral Sight|Demon Hunter|WoW|18",
+				"Epic Boon|Ranger|XPHB|19",
+				"Foe Slayer|Ranger|XPHB|20"
+			],
+			"includeSubclassesFrom": [
+				"Ranger|XPHB"
+			],
+			"subclassTitle": "Demon Hunter Subclass",
+			"hasFluff": true,
+			"hasFluffImages": true
+		}
+	],
+	"subclass": [
+		{
+			"name": "Demon Hunter",
+			"shortName": "Demon Hunter",
+			"source": "WoW",
+			"className": "Demon Hunter",
+			"classSource": "WoW",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"name": "Devourer",
+					"ability": "wis",
+					"prepared": {
+						"3": [
+							"throw glaive|wow",
+							"consume soul|wow"
+						],
+						"5": [
+							"sigil of flame|wow",
+							"misty step|xphb"
+						],
+						"9": [
+							"metamorphosis|wow",
+							"soul reap|wow"
+						],
+						"13": [
+							"chaos nova|wow",
+							"collapsing star|wow"
+						],
+						"17": [
+							"destructive wave|xphb",
+							"steel wind strike|xphb"
+						]
+					}
+				},
+				{
+					"name": "Havoc",
+					"ability": "wis",
+					"prepared": {
+						"3": [
+							"throw glaive|wow",
+							"fel rush|wow"
+						],
+						"5": [
+							"sigil of flame|wow",
+							"eye beam|wow"
+						],
+						"9": [
+							"metamorphosis|wow",
+							"blink|xphb"
+						],
+						"13": [
+							"chaos nova|wow",
+							"fire shield|xphb"
+						],
+						"17": [
+							"destructive wave|xphb",
+							"conjure volley|xphb"
+						]
+					}
+				},
+				{
+					"name": "Vengeance",
+					"ability": "wis",
+					"prepared": {
+						"3": [
+							"throw glaive|wow",
+							"infernal strike|wow"
+						],
+						"5": [
+							"sigil of flame|wow",
+							"fiery brand|wow"
+						],
+						"9": [
+							"metamorphosis|wow",
+							"demon spikes|wow"
+						],
+						"13": [
+							"chaos nova|wow",
+							"banishment|xphb"
+						],
+						"17": [
+							"destructive wave|xphb",
+							"sigil of chains|wow"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Demon Hunter|Demon Hunter|WoW|Demon Hunter|WoW|3",
+				"Torment|Demon Hunter|WoW|Demon Hunter|WoW|7",
+				"Illidari Knowledge|Demon Hunter|WoW|Demon Hunter|WoW|11",
+				"Soul Shatter|Demon Hunter|WoW|Demon Hunter|WoW|15"
+			]
+		}
+	],
+	"classFeature": [
+		{
+			"name": "Spellcasting",
+			"source": "WoW",
+			"className": "Demon Hunter",
+			"classSource": "WoW",
+			"level": 1,
+			"entries": [
+				"You have learned to channel the magical essence of nature to cast spells. See {@book chapter 7|XPHB|7} for the rules on spellcasting. The information below details how you use those rules with Ranger spells, which appear in the {@filter Ranger spell list|spells|class=Ranger} later in the class's description.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Spell Slots",
+							"entries": [
+								"The Ranger Features table shows how many spell slots you have to cast your level 1+ spells. You regain all expended slots when you finish a {@variantrule Long Rest|XPHB}."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Prepared Spells of Level 1+",
+							"entries": [
+								"You prepare the list of level 1+ spells that are available for you to cast with this feature. To start, choose two {@filter level 1 Ranger spells|spells|class=Ranger|level=1}. {@spell Cure Wounds|XPHB} and {@spell Ensnaring Strike|XPHB} are recommended.",
+								"The number of spells on your list increases as you gain Ranger levels, as shown in the Prepared Spells column of the Ranger Features table. Whenever that number increases, choose additional Ranger spells until the number of spells on your list matches the number in the Ranger Features table. The chosen spells must be of a level for which you have spell slots. For example, if you're a level 5 Ranger, your list of prepared spells can include six Ranger spells of level 1 or 2 in any combination.",
+								"If another Ranger feature gives you spells that you always have prepared, those spells don't count against the number of spells you can prepare with this feature, but those spells otherwise count as Ranger spells for you."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Changing Your Prepared Spells",
+							"entries": [
+								"Whenever you finish a {@variantrule Long Rest|XPHB}, you can replace one spell on your list with another Ranger spell for which you have spell slots."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Spellcasting Ability",
+							"entries": [
+								"Wisdom is your spellcasting ability for your Ranger spells."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Spellcasting Focus",
+							"entries": [
+								"You can use an {@item Arcane Focus|XPHB} (not a {@item Druidic Focus|XPHB}) as a {@variantrule Spellcasting Focus|XPHB} for your Ranger spells."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Deft Explorer",
+			"source": "WoW",
+			"className": "Demon Hunter",
+			"classSource": "WoW",
+			"level": 2,
+			"entries": [
+				"Thanks to your travels, you gain the following benefits.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Expertise",
+							"entries": [
+								"Choose one of your skill proficiencies with which you lack {@variantrule Expertise|XPHB}. You gain {@variantrule Expertise|XPHB} in that skill."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Languages",
+							"entries": [
+								"When you choose languages for the {@classFeature Deft Explorer|Ranger|XPHB|2|XPHB} class feature, choose from the {@book language tables in chapter 2|WoW|2|Languages}. Eredun and Nathrezim are recommended."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Fighting Style",
+			"source": "WoW",
+			"className": "Demon Hunter",
+			"classSource": "WoW",
+			"level": 2,
+			"entries": [
+				"As a Demon Hunter, you can choose a {@filter Fighting Style feat|feats|category=FS}, the {@feat Druidic Warrior|XPHB} option in the {@book Player's Handbook|XPHB}, or the {@feat Void Warrior|WoW} option below.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "refFeat",
+							"feat": "Druidic Warrior|XPHB"
+						}
+					]
+				},
+				{
+					"type": "refFeat",
+					"feat": "Void Warrior|WoW"
+				}
+			]
+		},
+		{
+			"name": "Demon Hunter Subclass",
+			"source": "WoW",
+			"className": "Demon Hunter",
+			"classSource": "WoW",
+			"level": 3,
+			"entries": [
+				"You gain a Demon Hunter subclass of your choice. A subclass is a specialization that grants you features at certain Demon Hunter levels. For the rest of your career, you gain each of your subclass's features that are of your Demon Hunter level or lower."
+			]
+		},
+		{
+			"name": "Improved Spectral Sight",
+			"source": "WoW",
+			"className": "Demon Hunter",
+			"classSource": "WoW",
+			"level": 18,
+			"entries": [
+				"This feature replaces the Ranger's {@classFeature Feral Senses|Ranger|XPHB|18|XPHB} feature.",
+				"You have {@sense Truesight|XPHB} with a range of 30 feet."
+			]
+		}
+	],
+	"subclassFeature": [
+		{
+			"name": "Demon Hunter",
+			"source": "WoW",
+			"className": "Demon Hunter",
+			"classSource": "WoW",
+			"subclassShortName": "Demon Hunter",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"{@i Embrace the Magic of Demons to Fight Fire with Fire}",
+				"Most Demon Hunters joined Illidan on Outland as he marshaled his forces to battle the Burning Legion. You might have followed a different path, inspired by Illidan rather than directly trained by him, but the result is the same: You have embraced the magic of the Burning Legion with the singular goal of defeating it on Azeroth and every other world.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Demon Hunter Spells|Demon Hunter|WoW|Demon Hunter|WoW|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Soul Fragments|Demon Hunter|WoW|Demon Hunter|WoW|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Spectral Sight|Demon Hunter|WoW|Demon Hunter|WoW|3"
+				}
+			]
+		},
+		{
+			"name": "Demon Hunter Spells",
+			"source": "WoW",
+			"className": "Demon Hunter",
+			"classSource": "WoW",
+			"subclassShortName": "Demon Hunter",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"When you reach a Ranger level specified in the Demon Hunter Spells table, you thereafter always have the spell in the Spells (All) column prepared. You also have the additional spells listed in one other column of your choice.",
+				{
+					"type": "table",
+					"caption": "Demon Hunter Spells",
+					"colLabels": [
+						"Ranger Level",
+						"Spells (All)",
+						"Spells (Devourer)",
+						"Spells (Havoc)",
+						"Spells (Vengeance)"
+					],
+					"colStyles": [
+						"col-1-2 text-center",
+						"col-2-7",
+						"col-2-7",
+						"col-2-7",
+						"col-2-7"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Throw Glaive|WoW}",
+							"{@spell Consume Soul|WoW}",
+							"{@spell Fel Rush|WoW}",
+							"{@spell Infernal Strike|WoW}"
+						],
+						[
+							"5",
+							"{@spell Sigil of Flame|WoW}",
+							"{@spell Misty Step|XPHB}",
+							"{@spell Eye Beam|WoW}",
+							"{@spell Fiery Brand|WoW}"
+						],
+						[
+							"9",
+							"{@spell Metamorphosis|WoW}",
+							"{@spell Soul Reap|WoW}",
+							"{@spell Blink|XPHB}",
+							"{@spell Demon Spikes|WoW}"
+						],
+						[
+							"13",
+							"{@spell Chaos Nova|WoW}",
+							"{@spell Collapsing Star|WoW}",
+							"{@spell Fire Shield|XPHB}",
+							"{@spell Banishment|XPHB}"
+						],
+						[
+							"17",
+							"{@spell Destructive Wave|XPHB}",
+							"{@spell Steel Wind Strike|XPHB}",
+							"{@spell Conjure Volley|XPHB}",
+							"{@spell Sigil of Chains|WoW}"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Double Jump",
+			"source": "WoW",
+			"className": "Demon Hunter",
+			"classSource": "WoW",
+			"subclassShortName": "Demon Hunter",
+			"subclassSource": "WoW",
+			"level": 3,
+			"consumes": {
+				"name": "Soul Fragment"
+			},
+			"entries": [
+				"You can expend one soul fragment to cast {@spell Feather Fall|XPHB} or {@spell Jump|XPHB} without expending a spell slot."
+			]
+		},
+		{
+			"name": "Soul Cleave",
+			"source": "WoW",
+			"className": "Demon Hunter",
+			"classSource": "WoW",
+			"subclassShortName": "Demon Hunter",
+			"subclassSource": "WoW",
+			"level": 3,
+			"consumes": {
+				"name": "Soul Fragment"
+			},
+			"entries": [
+				"Once on each of your turns, when you take the {@action Attack|XPHB} action, you can expend one soul fragment and replace one of your attacks with a whirlwind of soul energy. Each creature in a 10-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from you makes a Dexterity saving throw. On a failed save, a creature takes Psychic damage equal to {@damage 1d12} plus your Wisdom modifier, and you regain {@variantrule Hit Points|XPHB} equal to your Wisdom modifier."
+			]
+		},
+		{
+			"name": "Soul Fragments",
+			"source": "WoW",
+			"className": "Demon Hunter",
+			"classSource": "WoW",
+			"subclassShortName": "Demon Hunter",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"You harvest the energy of souls to fuel some of your special powers. Whenever you finish a {@variantrule Long Rest|XPHB}, you gain a number of soul fragments equal to your Wisdom modifier (minimum of one fragment); each soul fragment is a Tiny object in the form of a crystal. These fragments last until you finish another {@variantrule Long Rest|XPHB}, at which point they disintegrate. If you ever move more than 30 feet from a fragment, the fragment immediately teleports to you, appearing somewhere on your person.",
+				"If a soul fragment effect requires a saving throw, the DC equals your Ranger spell save DC.",
+				"The number of soul fragments you gain when you finish a {@variantrule Long Rest|XPHB} increases when you reach Ranger levels 13 (Wisdom modifier plus one soul fragment) and 17 (Wisdom modifier plus two soul fragments).",
+				{
+					"type": "entries",
+					"name": "Using Soul Fragments",
+					"entries": [
+						"You can use soul fragments in the following ways:",
+						{
+							"type": "options",
+							"style": "list-hang-notitle",
+							"entries": [
+								{
+									"type": "refSubclassFeature",
+									"subclassFeature": "Double Jump|Demon Hunter|WoW|Demon Hunter|WoW|3"
+								},
+								{
+									"type": "refSubclassFeature",
+									"subclassFeature": "Soul Cleave|Demon Hunter|WoW|Demon Hunter|WoW|3"
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Regaining Soul Fragments",
+					"entries": [
+						"When an enemy you can see within 30 feet of you dies, you can take a {@variantrule Reaction|XPHB} to regain one expended soul fragment."
+					]
+				}
+			]
+		},
+		{
+			"name": "Spectral Sight",
+			"source": "WoW",
+			"className": "Demon Hunter",
+			"classSource": "WoW",
+			"subclassShortName": "Demon Hunter",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"You have {@sense Blindsight|XPHB} with a range of 10 feet."
+			]
+		},
+		{
+			"name": "Torment",
+			"source": "WoW",
+			"className": "Demon Hunter",
+			"classSource": "WoW",
+			"subclassShortName": "Demon Hunter",
+			"subclassSource": "WoW",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"A creature marked by your {@spell Hunter's Mark|XPHB} spell has {@variantrule Disadvantage|XPHB} on attack rolls against targets other than you.",
+				"Additionally, once per turn when you hit a creature marked by your {@spell Hunter's Mark|XPHB} with an attack roll with a weapon or a Ranger spell, you can impose one of the following effects on the target (your choice):",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Aura of Pain",
+							"entry": "The target subtracts {@dice 1d4} from the next saving throw it makes before the end of your next turn."
+						},
+						{
+							"type": "item",
+							"name": "Chaos Strike",
+							"entry": "The target takes an extra {@damage 1d8} Fire damage."
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Disrupt",
+			"source": "WoW",
+			"className": "Demon Hunter",
+			"classSource": "WoW",
+			"subclassShortName": "Demon Hunter",
+			"subclassSource": "WoW",
+			"level": 11,
+			"consumes": {
+				"name": "Soul Fragment",
+				"amount": 2
+			},
+			"entries": [
+				"You can expend two soul fragments to cast {@spell Counterspell|XPHB} in response to that spell's trigger, using your spellcasting ability."
+			]
+		},
+		{
+			"name": "Warglaive Mastery",
+			"source": "WoW",
+			"className": "Demon Hunter",
+			"classSource": "WoW",
+			"subclassShortName": "Demon Hunter",
+			"subclassSource": "WoW",
+			"level": 11,
+			"consumes": {
+				"name": "Soul Fragment"
+			},
+			"entries": [
+				"As a {@variantrule Bonus Action|XPHB}, you can expend one soul fragment to cast {@spell Throw Glaive|WoW} without expending a spell slot."
+			]
+		},
+		{
+			"name": "Illidari Knowledge",
+			"source": "WoW",
+			"className": "Demon Hunter",
+			"classSource": "WoW",
+			"subclassShortName": "Demon Hunter",
+			"subclassSource": "WoW",
+			"level": 11,
+			"header": 2,
+			"entries": [
+				"You gain new mastery over souls, granting you new ways to use soul fragments:",
+				{
+					"type": "options",
+					"style": "list-hang-notitle",
+					"entries": [
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Disrupt|Demon Hunter|WoW|Demon Hunter|WoW|11"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Warglaive Mastery|Demon Hunter|WoW|Demon Hunter|WoW|11"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Soul Shatter",
+			"source": "WoW",
+			"className": "Demon Hunter",
+			"classSource": "WoW",
+			"subclassShortName": "Demon Hunter",
+			"subclassSource": "WoW",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"Your mastery of fel magic reaches new heights. When you use the {@subclassFeature Soul Cleave|Demon Hunter|WoW|Demon Hunter|WoW|3|WoW} option of {@subclassFeature Soul Fragments|Demon Hunter|WoW|Demon Hunter|WoW|3|WoW}, the damage increases to {@damage 2d12} plus your Wisdom modifier.",
+				"In addition, when you roll {@variantrule Initiative|XPHB}, you regain one soul fragment if you have none."
+			]
+		}
+	]
+}

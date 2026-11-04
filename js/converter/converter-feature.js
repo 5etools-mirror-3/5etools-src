@@ -6,6 +6,9 @@ import {ConverterUtils} from "./converterutils-utils.js";
 export class ConverterFeatureBase extends ConverterBase {
 	static _RE_FEAT_TYPE = new RegExp(`\\b(?<category>${Object.values(Parser.FEAT_CATEGORY_TO_FULL).join("|")})\\b`);
 
+	static _STR_RE_ABILITY = Object.values(Parser.ATB_ABV_TO_FULL).join("|");
+	static _RE_PREREQUISITE_ABILITY_SCORE = new RegExp(`^(?<abilities>(?:${this._STR_RE_ABILITY})(?:,? (?:(?:and|or) )?(?:${this._STR_RE_ABILITY}))*) (?:score of )?(?<score>\\d+)(?:\\+| or higher)[,;]?(?=$| )`, "i");
+
 	/* -------------------------------------------- */
 
 	static _doParse_getInitialState (inText, options) {
@@ -27,6 +30,32 @@ export class ConverterFeatureBase extends ConverterBase {
 	}
 
 	/* -------------------------------------------- */
+
+	static _RE_PREREQUISITE_TOOLS = null;
+	static _RE_PREREQUISITE_TOOL_NAME = null;
+
+	static _doPostProcess_setPrerequisites_getPrerequisiteToolMeta (text) {
+		if (!this._RE_PREREQUISITE_TOOLS) {
+			const toolNames = Renderer.generic.FEATURE__TOOLS_ALL
+				.map(name => name.escapeRegexp())
+				.sort((a, b) => b.length - a.length)
+				.join("|");
+			this._RE_PREREQUISITE_TOOLS = new RegExp(`^Proficiency with (?<tools>(?:${toolNames})(?:,? (?:(?:and|or) )?(?:${toolNames}))*)[,;]?(?=$| )`, "i");
+			this._RE_PREREQUISITE_TOOL_NAME = new RegExp(toolNames, "gi");
+		}
+
+		const m = this._RE_PREREQUISITE_TOOLS.exec(text);
+		if (!m) return null;
+
+		return {
+			strMatched: m[0],
+			tools: m.groups.tools.match(this._RE_PREREQUISITE_TOOL_NAME).map(name => name.toLowerCase()).unique(),
+			isAnd: /\band\b/i.test(m.groups.tools),
+			isOr: /\bor\b/i.test(m.groups.tools),
+		};
+	}
+
+	/* ----- */
 
 	static _doPostProcess_setPrerequisites (state, options) {
 		const [entsPrereq, entsRest] = state.entity.entries.segregate(ent => ent.name === "Prerequisite:");
@@ -50,7 +79,7 @@ export class ConverterFeatureBase extends ConverterBase {
 		const tokens = this._getPrerequisiteTokens(entPrereqString);
 
 		// Collect ability score requirements and cross-product them with other prerequisites later
-		const preAbilsMeta = {abils: [], score: null};
+		const preAbilsMeta = {abils: [], score: null, isAnd: false};
 
 		let tkStack = [];
 
@@ -64,24 +93,29 @@ export class ConverterFeatureBase extends ConverterBase {
 			tkStack = [];
 		};
 
-		const reAbils = /^(?:Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma),?/;
+		const reAbils = new RegExp(`^(?:${this._STR_RE_ABILITY})\\b`, "i");
 
 		for (let i = 0; i < tokens.length; ++i) {
 			const tk = tokens[i];
-			const tkNxt = tokens[i + 1];
 
-			// If we're in a list of abilities, greedily take tokens
-			if (reAbils.test(tk)) {
-				tkStack.push(tk);
-
-				let j = i + 1;
-				for (; j < tokens.length; ++j) {
-					const tkNxt = tokens[j];
-					if (!reAbils.test(tk) && tkNxt !== "or") break;
-					tkStack.push(tkNxt);
+			// Handle tools early, as no consistent "... tools" form exists
+			if (/^proficiency$/i.test(tk)) {
+				const toolMeta = this._doPostProcess_setPrerequisites_getPrerequisiteToolMeta(tokens.slice(i).join(" "));
+				if (toolMeta) {
+					tkStack.push(toolMeta.strMatched.replace(/,(?= )/g, ""));
+					i += ConverterUtils.getTokens(toolMeta.strMatched).length - 1;
+					continue;
 				}
-				if (j > i + 1) i = j;
-				continue;
+			}
+
+			if (reAbils.test(tk)) {
+				const mAbilities = this._RE_PREREQUISITE_ABILITY_SCORE.exec(tokens.slice(i).join(" "));
+
+				if (mAbilities) {
+					tkStack.push(mAbilities[0].replace(/,(?= )/g, ""));
+					i += ConverterUtils.getTokens(mAbilities[0]).length - 1;
+					continue;
+				}
 			}
 
 			if (tk !== "or") {
@@ -93,34 +127,26 @@ export class ConverterFeatureBase extends ConverterBase {
 		}
 		handleStack();
 
-		if (
-			(preAbilsMeta.score && !preAbilsMeta.abils.length)
-			|| (!preAbilsMeta.score && preAbilsMeta.abils.length)
-		) {
-			return options.cbWarning(`(${state.entity.name}) Prerequisite require manual conversion`);
-		}
-
 		const presDeduped = [];
 		pres.forEach(pre => {
 			if (presDeduped.some(it => CollectionUtil.deepEquals(pre, it))) return;
 			presDeduped.push(pre);
 		});
 
+		const preAbils = preAbilsMeta.isAnd
+			? [Object.fromEntries(preAbilsMeta.abils.map(abv => [abv, preAbilsMeta.score]))]
+			: preAbilsMeta.abils.map(abv => ({[abv]: preAbilsMeta.score}));
+
 		const presOut = [];
-		if (!preAbilsMeta.abils.length) presOut.push(...presDeduped);
+		if (!preAbils.length) presOut.push(...presDeduped);
 		else if (!presDeduped.length) {
-			presOut.push(
-				...preAbilsMeta.abils
-					.map(abv => ({
-						"ability": [{[abv]: preAbilsMeta.score}],
-					})),
-			);
+			presOut.push(...preAbils.map(ability => ({ability: [ability]})));
 		} else {
-			preAbilsMeta.abils
-				.forEach(abv => {
+			preAbils
+				.forEach(ability => {
 					MiscUtil.copyFast(presDeduped)
 						.forEach(cpy => {
-							cpy.ability = [{[abv]: preAbilsMeta.score}];
+							cpy.ability = [ability];
 							presOut.push(cpy);
 						});
 				});
@@ -147,6 +173,25 @@ export class ConverterFeatureBase extends ConverterBase {
 
 		parts.forEach(pt => {
 			pt = pt.trim().replace(/[,;]\s*$/, "");
+
+			if (/^(?:Tool Proficiency|Proficiency with a Tool)$/i.test(pt)) {
+				pre.proficiency ||= [];
+				pre.proficiency.push({tool: true});
+				return;
+			}
+
+			const toolMeta = this._doPostProcess_setPrerequisites_getPrerequisiteToolMeta(pt);
+			if (toolMeta?.strMatched.length === pt.length && !(toolMeta.isAnd && toolMeta.isOr)) {
+				pre.proficiency ||= [];
+				pre.proficiency.push(
+					...(
+						toolMeta.isAnd
+							? [{tool: toolMeta.tools}]
+							: toolMeta.tools.map(tool => ({tool: [tool]}))
+					),
+				);
+				return;
+			}
 
 			if (/^the ability to cast at least one spell$/i.test(pt)) return pre.spellcasting = true;
 
@@ -183,14 +228,16 @@ export class ConverterFeatureBase extends ConverterBase {
 			const mLevelAlt = /^Level (?<level>\d+)\+?$/i.exec(pt);
 			if (mLevelAlt) return pre.level = Number(mLevelAlt.groups.level);
 
-			const mAbilityPlain = new RegExp(`^(${Object.values(Parser.ATB_ABV_TO_FULL).join("|")})$`).exec(pt);
-			if (mAbilityPlain) {
-				preAbilsMeta.abils.push(mAbilityPlain[0].slice(0, 3).toLowerCase());
-				return;
-			}
+			const mAbility = this._RE_PREREQUISITE_ABILITY_SCORE.exec(pt);
+			if (mAbility?.[0].length === pt.length) {
+				const isAnd = /\band\b/i.test(mAbility.groups.abilities);
 
-			const mAbility = new RegExp(`^${Object.entries(Parser.ATB_ABV_TO_FULL).map(([abv, full]) => `(?:or )?(?<${abv}>${full})?(?:,? )?`).join("")} (?:score of )?(?<score>\\d+)(?:\\+| or higher)$`).exec(pt);
-			if (mAbility) {
+				if (isAnd && /\bor\b/i.test(mAbility.groups.abilities)) {
+					pre.other = pt;
+					options.cbWarning(`(${state.entity.name}) Ability score prerequisite "${pt}" requires manual conversion`);
+					return;
+				}
+
 				// Expect only one ability score threshold (i.e. no "str 15 OR dex 13")
 				if (preAbilsMeta.score) {
 					options.cbWarning(`(${state.entity.name}) Ability score prerequisite "${pt}" requires manual conversion`);
@@ -198,12 +245,11 @@ export class ConverterFeatureBase extends ConverterBase {
 				}
 
 				preAbilsMeta.score = Number(mAbility.groups.score);
-				Parser.ABIL_ABVS
-					.filter(abv => mAbility.groups[abv])
-					.forEach(abv => {
-						if (preAbilsMeta.abils.includes(abv)) return options.cbWarning(`(${state.entity.name}) Ability score prerequisite (${abv}) requires manual conversion`);
-						preAbilsMeta.abils.push(abv);
-					});
+				preAbilsMeta.isAnd = isAnd;
+				preAbilsMeta.abils = mAbility.groups.abilities
+					.split(/(?:,?\s+(?:and\s+|or\s+)?)/i)
+					.map(ability => ability.slice(0, 3).toLowerCase())
+					.unique();
 
 				return;
 			}
@@ -231,6 +277,12 @@ export class ConverterFeatureBase extends ConverterBase {
 				if (!ptSpecifier) return pre.feat.push(`${rawFeat}|${state.entity.source.toLowerCase()}`);
 
 				return pre.feat.push(`${ptName}|${state.entity.source.toLowerCase()}|${rawFeat}`);
+			}
+
+			const mSpecies = /^(?<name>.+?) species$/i.exec(pt);
+			if (mSpecies) {
+				pre.race ||= [];
+				return pre.race.push({name: mSpecies.groups.name.toLowerCase().trim()});
 			}
 
 			const mBackground = /^(?<name>.*?) background$/i.exec(pt);

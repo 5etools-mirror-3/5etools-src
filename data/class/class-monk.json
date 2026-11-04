@@ -1,6 +1,7 @@
 {
 	"_meta": {
 		"internalCopies": [
+			"class",
 			"subclass"
 		]
 	},
@@ -1008,6 +1009,22 @@
 			"subclassTitle": "Monk Subclass",
 			"hasFluff": true,
 			"hasFluffImages": true
+		},
+		{
+			"name": "Monk",
+			"source": "WoW",
+			"reskinOf": [
+				"Monk|XPHB"
+			],
+			"_copy": {
+				"name": "Monk",
+				"source": "XPHB"
+			},
+			"includeSubclassesFrom": [
+				"Monk|XPHB"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
 		}
 	],
 	"subclass": [
@@ -1233,6 +1250,9 @@
 			"className": "Monk",
 			"classSource": "PHB",
 			"page": 33,
+			"reprintedAs": [
+				"Mystic Brews|Monk|WoW|WoW"
+			],
 			"edition": "classic",
 			"subclassFeatures": [
 				"Way of the Drunken Master|Monk||Drunken Master|XGE|3",
@@ -1908,6 +1928,50 @@
 			],
 			"hasFluff": true,
 			"hasFluffImages": true
+		},
+		{
+			"name": "Warrior of Mercy",
+			"shortName": "Mercy",
+			"source": "WoW",
+			"className": "Monk",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Warrior of Mercy",
+				"source": "XPHB",
+				"shortName": "Mercy",
+				"className": "Monk",
+				"classSource": "XPHB"
+			}
+		},
+		{
+			"name": "Warrior of Mystic Brews",
+			"shortName": "Mystic Brews",
+			"source": "WoW",
+			"className": "Monk",
+			"classSource": "WoW",
+			"edition": "one",
+			"subclassFeatures": [
+				"Warrior of Mystic Brews|Monk|WoW|Mystic Brews|WoW|3",
+				"Tipsy Sway|Monk|WoW|Mystic Brews|WoW|6",
+				"Mystic Brew|Monk|WoW|Mystic Brews|WoW|6",
+				"Wizened Brewer|Monk|WoW|Mystic Brews|WoW|11",
+				"Master Brewer|Monk|WoW|Mystic Brews|WoW|17",
+				"Intoxicated Frenzy|Monk|WoW|Mystic Brews|WoW|17"
+			]
+		},
+		{
+			"name": "Warrior of the Open Hand",
+			"shortName": "Open Hand",
+			"source": "WoW",
+			"className": "Monk",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Warrior of the Open Hand",
+				"source": "XPHB",
+				"shortName": "Open Hand",
+				"className": "Monk",
+				"classSource": "XPHB"
+			}
 		}
 	],
 	"classFeature": [
@@ -4327,6 +4391,226 @@
 			"entries": [
 				"At 17th level, you become wreathed in a luminous, magical aura. You shed bright light in a 30-foot radius and dim light for an additional 30 feet. You can extinguish or restore the light as a bonus action.",
 				"If a creature hits you with a melee attack while this light shines, you can use your reaction to deal radiant damage to the creature. The radiant damage equals 5 + your Wisdom modifier."
+			]
+		},
+		{
+			"name": "Bonus Proficiencies",
+			"source": "WoW",
+			"className": "Monk",
+			"classSource": "WoW",
+			"subclassShortName": "Mystic Brews",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"You gain proficiency in the {@skill Performance|XPHB} skill, or if you already have it, you gain proficiency in one skill of your choice from the skills available to Monks at level 1. You also gain proficiency with {@item Brewer's Supplies|XPHB} if you don't already have it."
+			]
+		},
+		{
+			"name": "Drunken Technique",
+			"source": "WoW",
+			"className": "Monk",
+			"classSource": "WoW",
+			"subclassShortName": "Mystic Brews",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"You twist and turn quickly as you move. Whenever you expend a {@classFeature Monk's Focus|Monk|XPHB|2|XPHB|Focus Point} using {@classFeature Patient Defense|Monk|XPHB|2|XPHB}, your {@variantrule Speed|XPHB} increases by 10 feet until the end of the current turn, and you can make one {@variantrule Unarmed Strike|XPHB} immediately after the {@variantrule Bonus Action|XPHB}."
+			]
+		},
+		{
+			"name": "Warrior of Mystic Brews",
+			"source": "WoW",
+			"className": "Monk",
+			"classSource": "WoW",
+			"subclassShortName": "Mystic Brews",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"{@i Drink Mystic Brews to Overwhelm and Confound Foes}",
+				"Warriors of Mystic Brews move with the jerky, unpredictable movements typical of someone who is intoxicated. Their apparently erratic stumbles conceal a carefully executed dance of blocks, parries, advances, attacks, and retreats. Warriors of Mystic Brews frequent bars and taverns to gather information or spy on potential threats. These warriors drink magical concoctions that enhance their martial arts.",
+				"Warriors of Mystic Brews often enjoy playing the fool to bring gladness to the downtrodden or to teach humility to the arrogant, but these Monks are maddening, masterful foes in battle.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Bonus Proficiencies|Monk|WoW|Mystic Brews|WoW|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Drunken Technique|Monk|WoW|Mystic Brews|WoW|3"
+				}
+			]
+		},
+		{
+			"name": "Enhancing a Magical Beverage",
+			"source": "WoW",
+			"className": "Monk",
+			"classSource": "WoW",
+			"subclassShortName": "Mystic Brews",
+			"subclassSource": "WoW",
+			"level": 6,
+			"consumes": {
+				"name": "Focus Point"
+			},
+			"entries": [
+				"When you create a magical beverage, you can expend 1 {@classFeature Monk's Focus|Monk|XPHB|2|XPHB|Focus Point} to extend the benefits' duration to 8 hours."
+			]
+		},
+		{
+			"name": "Leap to Your Feet",
+			"source": "WoW",
+			"className": "Monk",
+			"classSource": "WoW",
+			"subclassShortName": "Mystic Brews",
+			"subclassSource": "WoW",
+			"level": 6,
+			"entries": [
+				"When you have the {@condition Prone|XPHB} condition, you can stand up by spending 5 feet of movement."
+			]
+		},
+		{
+			"name": "Redirect Attack",
+			"source": "WoW",
+			"className": "Monk",
+			"classSource": "WoW",
+			"subclassShortName": "Mystic Brews",
+			"subclassSource": "WoW",
+			"level": 6,
+			"consumes": {
+				"name": "Focus Point"
+			},
+			"entries": [
+				"When an enemy misses you with a melee attack roll, you can take a {@variantrule Reaction|XPHB} and spend 1 {@classFeature Monk's Focus|Monk|XPHB|2|XPHB|Focus Point} to cause that attack to hit one creature of your choice, other than the attacker, that you can see within 5 feet of yourself."
+			]
+		},
+		{
+			"name": "Mystic Brew",
+			"source": "WoW",
+			"className": "Monk",
+			"classSource": "WoW",
+			"subclassShortName": "Mystic Brews",
+			"subclassSource": "WoW",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"Whenever you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB} while holding {@item Brewer's Supplies|XPHB}, you can use that tool to magically produce one magical beverage, chosen from the following options: Cinnamon Dragon, Heavenly Spirit, or Refreshing Dip. A pint of the beverage appears in a bottle or flask you are holding or carrying; otherwise, the beverage spills out on the ground and then vanishes. If any beverage remains when you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}, the beverage vanishes.",
+				{
+					"type": "entries",
+					"name": "Drinking a Magical Beverage",
+					"entries": [
+						"Only you can gain the benefits of drinking the beverage. You must drink the full pint of the beverage before gaining its benefit. You can spend 1 minute drinking the beverage. You then gain the benefits of the beverage for 1 hour or until you drink another magical beverage, as described below:",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "Cinnamon Dragon",
+									"entry": "You can take a {@action Magic|XPHB} action to exhale toxic flames in a 30-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}. Each creature in the {@variantrule Cone [Area of Effect]|XPHB|Cone} makes a Dexterity saving throw ({@dc 8} plus your Wisdom modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}). On a failed save, a creature takes Fire damage equal to four rolls of your {@classFeature Martial Arts|Monk|XPHB|1|XPHB} die and has the {@condition Poisoned|XPHB} condition until the end of its next turn. On a successful save, a creature takes half as much damage only."
+								},
+								{
+									"type": "item",
+									"name": "Heavenly Spirit",
+									"entry": "You gain {@variantrule Resistance|XPHB} to two of the following damage types of your choice: Cold, Necrotic, Psychic, or Radiant damage."
+								},
+								{
+									"type": "item",
+									"name": "Refreshing Dip",
+									"entry": "You have a pool of dice of the same type as your {@classFeature Martial Arts|Monk|XPHB|1|XPHB} die. The maximum number of dice equals your Wisdom modifier plus half your Monk level (round down). Whenever you regain {@variantrule Hit Points|XPHB}, you can expend and roll one die from this pool to regain additional {@variantrule Hit Points|XPHB} equal to the number rolled."
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Enhancing a Magical Beverage|Monk|WoW|Mystic Brews|WoW|6"
+				}
+			]
+		},
+		{
+			"name": "Tipsy Sway",
+			"source": "WoW",
+			"className": "Monk",
+			"classSource": "WoW",
+			"subclassShortName": "Mystic Brews",
+			"subclassSource": "WoW",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"You can move in sudden, swaying ways. You gain the following benefits.",
+				{
+					"type": "options",
+					"style": "list-hang-notitle",
+					"entries": [
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Leap to Your Feet|Monk|WoW|Mystic Brews|WoW|6"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Redirect Attack|Monk|WoW|Mystic Brews|WoW|6"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Wizened Brewer",
+			"source": "WoW",
+			"className": "Monk",
+			"classSource": "WoW",
+			"subclassShortName": "Mystic Brews",
+			"subclassSource": "WoW",
+			"level": 11,
+			"header": 2,
+			"entries": [
+				"You learn more complex flavors. The following beverages are added to your {@subclassFeature Mystic Brew|Monk|WoW|Mystic Brews|WoW|6|WoW} options:",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Blue Lightning",
+							"entry": "Whenever you take a {@variantrule Reaction|XPHB} that isn't making an {@action Opportunity Attack|XPHB} or casting a spell, you can make one {@variantrule Unarmed Strike|XPHB} as part of that {@variantrule Reaction|XPHB}."
+						},
+						{
+							"type": "item",
+							"name": "Drunkard's Luck",
+							"entry": "You gain {@variantrule Heroic Inspiration|XPHB} if you don't already have it. In addition, you can give yourself {@variantrule Heroic Inspiration|XPHB} when you make an ability check or saving throw without it."
+						},
+						{
+							"type": "item",
+							"name": "Stumbling Monk",
+							"entry": "When you take a {@variantrule Bonus Action|XPHB} other than {@classFeature Patient Defense|Monk|XPHB|2|XPHB}, you can also use {@classFeature Patient Defense|Monk|XPHB|2|XPHB} immediately after that {@variantrule Bonus Action|XPHB}."
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Intoxicated Frenzy",
+			"source": "WoW",
+			"className": "Monk",
+			"classSource": "WoW",
+			"subclassShortName": "Mystic Brews",
+			"subclassSource": "WoW",
+			"level": 17,
+			"header": 2,
+			"entries": [
+				"Immediately after you use your {@classFeature Patient Defense|Monk|XPHB|2|XPHB}, you can move up to your {@variantrule Speed|XPHB}. During this movement, whenever you enter a space within 5 feet of a creature, you can make an {@variantrule Unarmed Strike|XPHB} targeting that creature. In addition, when you hit a creature with an {@variantrule Unarmed Strike|XPHB} granted by this feature, the creature must succeed on a Dexterity saving throw or have the {@condition Prone|XPHB} condition. A creature can be targeted by an {@variantrule Unarmed Strike|XPHB} granted by this feature only once per turn."
+			]
+		},
+		{
+			"name": "Master Brewer",
+			"source": "WoW",
+			"className": "Monk",
+			"classSource": "WoW",
+			"subclassShortName": "Mystic Brews",
+			"subclassSource": "WoW",
+			"level": 17,
+			"header": 2,
+			"entries": [
+				"When you create a magical beverage using your {@subclassFeature Mystic Brew|Monk|WoW|Mystic Brews|WoW|6|WoW} feature, you can choose two different options and produce one magical beverage. Drinking the beverage provides the effects of both options for the duration."
 			]
 		},
 		{

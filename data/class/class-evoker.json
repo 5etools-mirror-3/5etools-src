@@ -1,0 +1,231 @@
+{
+	"_meta": {
+		"dependencies": {
+			"class": [
+				"sorcerer"
+			],
+			"subclass": [
+				"sorcerer"
+			],
+			"classFeature": [
+				"sorcerer"
+			],
+			"subclassFeature": [
+				"sorcerer"
+			]
+		}
+	},
+	"class": [
+		{
+			"name": "Evoker",
+			"alias": [
+				"Sorcerer"
+			],
+			"source": "WoW",
+			"reskinOf": [
+				"Sorcerer|XPHB"
+			],
+			"isHero": true,
+			"_copy": {
+				"name": "Sorcerer",
+				"source": "XPHB"
+			},
+			"includeSubclassesFrom": [
+				"Sorcerer|XPHB"
+			],
+			"subclassTitle": "Evoker Subclass",
+			"hasFluff": true,
+			"hasFluffImages": true
+		}
+	],
+	"subclass": [
+		{
+			"name": "Draconic Sorcery",
+			"shortName": "Draconic",
+			"source": "WoW",
+			"className": "Evoker",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Draconic Sorcery",
+				"source": "XPHB",
+				"shortName": "Draconic",
+				"className": "Sorcerer",
+				"classSource": "XPHB"
+			},
+			"additionalSpells": [
+				{
+					"name": "Augmentation",
+					"ability": "cha",
+					"prepared": {
+						"3": [
+							"chromatic orb|xphb",
+							"dragon's breath|xphb",
+							"ebon might|wow",
+							"eruption|wow"
+						],
+						"5": [
+							"fly|xphb",
+							"blistering scales|wow"
+						],
+						"7": [
+							"arcane eye|xphb",
+							"upheaval|wow"
+						],
+						"9": [
+							"summon dragon|xphb",
+							"breath of eons|wow"
+						]
+					}
+				},
+				{
+					"name": "Devastation",
+					"ability": "cha",
+					"prepared": {
+						"3": [
+							"chromatic orb|xphb",
+							"dragon's breath|xphb",
+							"azure strike|wow",
+							"scorching ray|xphb"
+						],
+						"5": [
+							"fly|xphb",
+							"fireball|xphb"
+						],
+						"7": [
+							"arcane eye|xphb",
+							"emberstorm|wow"
+						],
+						"9": [
+							"summon dragon|xphb",
+							"shattering star|wow"
+						]
+					}
+				},
+				{
+					"name": "Preservation",
+					"ability": "cha",
+					"prepared": {
+						"3": [
+							"chromatic orb|xphb",
+							"dragon's breath|xphb",
+							"dream breath|wow",
+							"living flame|wow"
+						],
+						"5": [
+							"fly|xphb",
+							"emerald blossom|wow"
+						],
+						"7": [
+							"arcane eye|xphb",
+							"time dilation|wow"
+						],
+						"9": [
+							"summon dragon|xphb",
+							"dream flight|wow"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Draconic Sorcery|Evoker|WoW|Draconic|WoW|3",
+				"Elemental Affinity|Sorcerer|XPHB|Draconic|XPHB|6",
+				"Dragon Wings|Sorcerer|XPHB|Draconic|XPHB|14",
+				"Dragon Companion|Sorcerer|XPHB|Draconic|XPHB|18"
+			]
+		}
+	],
+	"subclassFeature": [
+		{
+			"name": "Draconic Sorcery",
+			"source": "WoW",
+			"className": "Evoker",
+			"classSource": "WoW",
+			"subclassShortName": "Draconic",
+			"subclassSource": "WoW",
+			"level": 3,
+			"_copy": {
+				"name": "Draconic Sorcery",
+				"source": "XPHB",
+				"className": "Sorcerer",
+				"classSource": "XPHB",
+				"subclassShortName": "Draconic",
+				"subclassSource": "XPHB",
+				"level": 3,
+				"_mod": {
+					"entries": {
+						"mode": "replaceArr",
+						"replace": {
+							"index": 3
+						},
+						"items": [
+							{
+								"type": "refSubclassFeature",
+								"subclassFeature": "Evoker Spells|Evoker|WoW|Draconic|WoW|3"
+							}
+						]
+					}
+				}
+			}
+		},
+		{
+			"name": "Evoker Spells",
+			"source": "WoW",
+			"className": "Evoker",
+			"classSource": "WoW",
+			"subclassShortName": "Draconic",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"When you reach a Sorcerer level specified in the Evoker Spells table, you thereafter always have the spells in the Spells (All) column prepared. You also have the additional spells listed in one other column of your choice.",
+				{
+					"type": "table",
+					"caption": "Evoker Spells",
+					"colLabels": [
+						"Sorcerer Level",
+						"Spells (All)",
+						"Spells (Augmentation)",
+						"Spells (Devastation)",
+						"Spells (Preservation)"
+					],
+					"colStyles": [
+						"col-1-2 text-center",
+						"col-2-7",
+						"col-2-7",
+						"col-2-7",
+						"col-2-7"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Chromatic Orb|XPHB}, {@spell Dragon's Breath|XPHB}",
+							"{@spell Ebon Might|WoW}, {@spell Eruption|WoW}",
+							"{@spell Azure Strike|WoW}, {@spell Scorching Ray|XPHB}",
+							"{@spell Dream Breath|WoW}, {@spell Living Flame|WoW}"
+						],
+						[
+							"5",
+							"{@spell Fly|XPHB}",
+							"{@spell Blistering Scales|WoW}",
+							"{@spell Fireball|XPHB}",
+							"{@spell Emerald Blossom|WoW}"
+						],
+						[
+							"7",
+							"{@spell Arcane Eye|XPHB}",
+							"{@spell Upheaval|WoW}",
+							"{@spell Emberstorm|WoW}",
+							"{@spell Time Dilation|WoW}"
+						],
+						[
+							"9",
+							"{@spell Summon Dragon|XPHB}",
+							"{@spell Breath of Eons|WoW}",
+							"{@spell Shattering Star|WoW}",
+							"{@spell Dream Flight|WoW}"
+						]
+					]
+				}
+			]
+		}
+	]
+}

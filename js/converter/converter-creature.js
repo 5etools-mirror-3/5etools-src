@@ -460,7 +460,13 @@ export class ConverterCreature extends ConverterBase {
 
 				// Avoid eating spellcasting `At Will: ...`
 				const splColonNext = lineNxt.split(/(?::| -) /g).filter(Boolean);
-				if (line.trim().endsWith(":") && splColonNext.length > 1 && /^[A-Z\d][\\/a-z]/.test(splColonNext[0].trim())) continue;
+				if (
+					splColonNext.length > 1
+					&& (
+						/^[A-Z\d][\\/a-z]/.test(splColonNext[0].trim())
+						|| /^\d+ Charge/i.test(splColonNext[0].trim())
+					)
+				) continue;
 
 				meta.toConvert[j] = `${line.trim()} ${lineNxt.trim()}`;
 				meta.toConvert.splice(j + 1, 1);

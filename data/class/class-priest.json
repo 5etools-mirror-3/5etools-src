@@ -1,0 +1,422 @@
+{
+	"_meta": {
+		"dependencies": {
+			"class": [
+				"cleric"
+			],
+			"subclass": [
+				"cleric"
+			],
+			"classFeature": [
+				"cleric"
+			]
+		}
+	},
+	"class": [
+		{
+			"name": "Priest",
+			"alias": [
+				"Cleric"
+			],
+			"source": "WoW",
+			"reskinOf": [
+				"Cleric|XPHB"
+			],
+			"_copy": {
+				"name": "Cleric",
+				"source": "XPHB"
+			},
+			"includeSubclassesFrom": [
+				"Cleric|XPHB"
+			],
+			"subclassTitle": "Priest Subclass",
+			"hasFluff": true,
+			"hasFluffImages": true
+		}
+	],
+	"subclass": [
+		{
+			"name": "Discipline Domain",
+			"shortName": "Discipline",
+			"source": "WoW",
+			"className": "Priest",
+			"classSource": "WoW",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"ability": "wis",
+					"prepared": {
+						"3": [
+							"arcane vigor|xphb",
+							"guiding bolt|xphb",
+							"magic weapon|xphb",
+							"shield of faith|xphb"
+						],
+						"5": [
+							"prayer of mending|wow",
+							"protection from energy|xphb"
+						],
+						"7": [
+							"guardian of faith|xphb",
+							"stoneskin|xphb"
+						],
+						"9": [
+							"circle of power|xphb",
+							"destructive wave|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Discipline Domain|Priest|WoW|Discipline|WoW|3",
+				"Luminous Barrier|Priest|WoW|Discipline|WoW|6",
+				"Ultimate Penitence|Priest|WoW|Discipline|WoW|17"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Life Domain",
+			"shortName": "Life",
+			"source": "WoW",
+			"className": "Priest",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Life Domain",
+				"source": "XPHB",
+				"shortName": "Life",
+				"className": "Cleric",
+				"classSource": "XPHB"
+			}
+		},
+		{
+			"name": "Shadow Domain",
+			"shortName": "Shadow",
+			"source": "WoW",
+			"className": "Priest",
+			"classSource": "WoW",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"ability": "wis",
+					"prepared": {
+						"3": [
+							"crown of madness|xphb",
+							"dissonant whispers|xphb",
+							"mind spike|xphb",
+							"shadow word: pain|wow"
+						],
+						"5": [
+							"summon undead|xphb",
+							"vampiric touch|xphb"
+						],
+						"7": [
+							"evard's black tentacles|xphb",
+							"psychic horror|wow"
+						],
+						"9": [
+							"dominate person|xphb",
+							"void eruption|wow"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Shadow Domain|Priest|WoW|Shadow|WoW|3",
+				"Dispersion|Priest|WoW|Shadow|WoW|6",
+				"Vampiric Embrace|Priest|WoW|Shadow|WoW|17"
+			]
+		},
+		{
+			"name": "War Domain",
+			"shortName": "War",
+			"source": "WoW",
+			"className": "Priest",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "War Domain",
+				"source": "XPHB",
+				"shortName": "War",
+				"className": "Cleric",
+				"classSource": "XPHB"
+			}
+		}
+	],
+	"subclassFeature": [
+		{
+			"name": "Atonement",
+			"source": "WoW",
+			"className": "Priest",
+			"classSource": "WoW",
+			"subclassShortName": "Discipline",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"When a level 1+ spell you cast restores {@variantrule Hit Points|XPHB} to one or more creatures, each of those creatures gains a blessing that lasts until the end of your next turn. Whenever you cast a spell that deals damage to a creature using a spell slot, each blessed creature regains additional {@variantrule Hit Points|XPHB} equal to the level of the spell slot you used to cast the damaging spell."
+			]
+		},
+		{
+			"name": "Discipline Domain",
+			"source": "WoW",
+			"className": "Priest",
+			"classSource": "WoW",
+			"subclassShortName": "Discipline",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"{@i Cure Allies' Wounds While Smiting Enemies}",
+				"The Discipline Domain focuses on the balance between the Holy Light and its shadowy mirror, the Void. Wielding both powers at once, Clerics who embrace this domain aid their allies and harm their foes, often with a single spell.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Discipline Spells|Priest|WoW|Discipline|WoW|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Holy Bolt|Priest|WoW|Discipline|WoW|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Atonement|Priest|WoW|Discipline|WoW|3"
+				}
+			]
+		},
+		{
+			"name": "Discipline Spells",
+			"source": "WoW",
+			"className": "Priest",
+			"classSource": "WoW",
+			"subclassShortName": "Discipline",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"Your connection to this domain ensures you always have certain spells ready. When you reach a Cleric level specified in the Discipline Domain Spells table, you thereafter always have the listed spells prepared.",
+				{
+					"type": "table",
+					"caption": "Discipline Domain Spells",
+					"colLabels": [
+						"Cleric Level",
+						"Spells"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Arcane Vigor|XPHB}, {@spell Guiding Bolt|XPHB}, {@spell Magic Weapon|XPHB}, {@spell Shield of Faith|XPHB}"
+						],
+						[
+							"5",
+							"{@spell Prayer of Mending|WoW}, {@spell Protection from Energy|XPHB}"
+						],
+						[
+							"7",
+							"{@spell Guardian of Faith|XPHB}, {@spell Stoneskin|XPHB}"
+						],
+						[
+							"9",
+							"{@spell Circle of Power|XPHB}, {@spell Destructive Wave|XPHB}"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Holy Bolt",
+			"source": "WoW",
+			"className": "Priest",
+			"classSource": "WoW",
+			"subclassShortName": "Discipline",
+			"subclassSource": "WoW",
+			"level": 3,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"As a {@variantrule Bonus Action|XPHB}, you present your {@item Holy Symbol|XPHB} and expend a use of your {@classFeature Channel Divinity|Cleric|XPHB|2|XPHB} to make a ranged spell attack, hurling a bolt of holy energy targeting one creature within 60 feet of yourself. On a hit, the target takes Radiant damage equal to {@damage 2d10} plus your Wisdom modifier, and you can choose a creature you can see within 60 feet of yourself to regain {@variantrule Hit Points|XPHB} equal to {@dice 1d10} plus your Wisdom modifier."
+			]
+		},
+		{
+			"name": "Luminous Barrier",
+			"source": "WoW",
+			"className": "Priest",
+			"classSource": "WoW",
+			"subclassShortName": "Discipline",
+			"subclassSource": "WoW",
+			"level": 6,
+			"header": 2,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"As a {@variantrule Bonus Action|XPHB}, you can expend a use of your {@classFeature Channel Divinity|Cleric|XPHB|2|XPHB} to place a magical ward of glowing light on each creature blessed by your {@subclassFeature Atonement|Priest|WoW|Discipline|WoW|3|WoW}. Each affected creature gains a number of {@variantrule Temporary Hit Points|XPHB} equal to your Cleric level plus your Wisdom modifier. While a creature has {@variantrule Temporary Hit Points|XPHB} gained from this feature, it has {@variantrule Resistance|XPHB} to all damage."
+			]
+		},
+		{
+			"name": "Ultimate Penitence",
+			"source": "WoW",
+			"className": "Priest",
+			"classSource": "WoW",
+			"subclassShortName": "Discipline",
+			"subclassSource": "WoW",
+			"level": 17,
+			"header": 2,
+			"entries": [
+				"Your {@subclassFeature Holy Bolt|Priest|WoW|Discipline|WoW|3|WoW} grows more powerful as detailed below.",
+				{
+					"type": "entries",
+					"name": "Ascending Step",
+					"entries": [
+						"When you use {@subclassFeature Holy Bolt|Priest|WoW|Discipline|WoW|3|WoW}, you can teleport to an unoccupied space you can see within 30 feet before you make an attack roll."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Ascending Volley",
+					"entries": [
+						"When you use {@subclassFeature Holy Bolt|Priest|WoW|Discipline|WoW|3|WoW}, you can expend a spell slot as part of the {@variantrule Bonus Action|XPHB} to hurl a number of additional bolts equal to the spell slot level expended. You can direct the bolts to hit one creature or several. Make a separate attack roll for each bolt."
+					]
+				}
+			]
+		},
+		{
+			"name": "Devouring Plague",
+			"source": "WoW",
+			"className": "Priest",
+			"classSource": "WoW",
+			"subclassShortName": "Shadow",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"When a creature you can see within 30 feet of you fails a saving throw, you can cause that creature to take {@damage 1d10} Necrotic damage. If you do, you regain {@variantrule Hit Points|XPHB} equal to the Necrotic damage dealt.",
+				"You can use this feature a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+			]
+		},
+		{
+			"name": "Shadow Domain",
+			"source": "WoW",
+			"className": "Priest",
+			"classSource": "WoW",
+			"subclassShortName": "Shadow",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"{@i Draw on the Debilitating Power of the Void}",
+				"The Shadow Domain deals with the powers of shadow and the Void\u2014a sinister mirror of the life-giving powers of the Light. Clerics who embrace these powers can wither their enemies' flesh and debilitate their minds.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Shadow Spells|Priest|WoW|Shadow|WoW|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Shadowform|Priest|WoW|Shadow|WoW|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Devouring Plague|Priest|WoW|Shadow|WoW|3"
+				}
+			]
+		},
+		{
+			"name": "Shadow Spells",
+			"source": "WoW",
+			"className": "Priest",
+			"classSource": "WoW",
+			"subclassShortName": "Shadow",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"Your connection to this domain ensures you always have certain spells ready. When you reach a Cleric level specified in the Shadow Domain Spells table, you thereafter always have the listed spells prepared.",
+				{
+					"type": "table",
+					"caption": "Shadow Domain Spells",
+					"colLabels": [
+						"Cleric Level",
+						"Spells"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Crown of Madness|XPHB}, {@spell Dissonant Whispers|XPHB}, {@spell Mind Spike|XPHB}, {@spell Shadow Word: Pain|WoW}"
+						],
+						[
+							"5",
+							"{@spell Summon Undead|XPHB}, {@spell Vampiric Touch|XPHB}"
+						],
+						[
+							"7",
+							"{@spell Evard's Black Tentacles|XPHB}, {@spell Psychic Horror|WoW}"
+						],
+						[
+							"9",
+							"{@spell Dominate Person|XPHB}, {@spell Void Eruption|WoW}"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Shadowform",
+			"source": "WoW",
+			"className": "Priest",
+			"classSource": "WoW",
+			"subclassShortName": "Shadow",
+			"subclassSource": "WoW",
+			"level": 3,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"As a {@variantrule Bonus Action|XPHB}, you can expend a use of your {@classFeature Channel Divinity|Cleric|XPHB|2|XPHB} to take on a shadowy form that grants you the following benefits:",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Shadow Stealth",
+							"entry": "While you are in an area of {@variantrule Dim Light|XPHB} or {@variantrule Darkness|XPHB}, you can take the {@action Hide|XPHB} action as a {@variantrule Bonus Action|XPHB}."
+						},
+						{
+							"type": "item",
+							"name": "Void Empowerment",
+							"entry": "When you cast a spell using a spell slot that deals Psychic or Necrotic damage, you can add {@dice 1d6} to one damage roll of the spell."
+						}
+					]
+				},
+				"The form lasts for 1 minute, but it ends early if you dismiss it (no action required), if you have the {@condition Incapacitated|XPHB} condition, or if you deal Radiant damage with a spell."
+			]
+		},
+		{
+			"name": "Dispersion",
+			"source": "WoW",
+			"className": "Priest",
+			"classSource": "WoW",
+			"subclassShortName": "Shadow",
+			"subclassSource": "WoW",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"When you are hit by an attack roll, you can take a {@variantrule Reaction|XPHB} to disperse into shadowy energy. Until the end of your next turn, you have {@variantrule Resistance|XPHB} to all damage (including the damage from the triggering attack); you can't take any action, {@variantrule Bonus Action|XPHB}, or {@variantrule Reaction|XPHB}; and you have a {@variantrule Fly Speed|XPHB} of 40 feet. When the effect ends, you can spend up to half of your total {@variantrule Hit Point Dice|XPHB}, regaining {@variantrule Hit Points|XPHB} as if you had finished a {@variantrule Short Rest|XPHB}.",
+				"Once you use this feature, you can't use it again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
+			]
+		},
+		{
+			"name": "Vampiric Embrace",
+			"source": "WoW",
+			"className": "Priest",
+			"classSource": "WoW",
+			"subclassShortName": "Shadow",
+			"subclassSource": "WoW",
+			"level": 17,
+			"header": 2,
+			"entries": [
+				"While your {@subclassFeature Shadowform|Priest|WoW|Shadow|WoW|3|WoW} is active, whenever you roll {@dice 1d6} to add extra damage to a spell, one creature of your choice within 30 feet of you regains that many {@variantrule Hit Points|XPHB}."
+			]
+		}
+	]
+}

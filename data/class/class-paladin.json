@@ -1,6 +1,7 @@
 {
 	"_meta": {
 		"internalCopies": [
+			"class",
 			"subclass"
 		]
 	},
@@ -802,6 +803,22 @@
 				}
 			],
 			"subclassTitle": "Paladin Subclass",
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Paladin",
+			"source": "WoW",
+			"reskinOf": [
+				"Paladin|XPHB"
+			],
+			"_copy": {
+				"name": "Paladin",
+				"source": "XPHB"
+			},
+			"includeSubclassesFrom": [
+				"Paladin|XPHB"
+			],
 			"hasFluff": true,
 			"hasFluffImages": true
 		}
@@ -1647,6 +1664,75 @@
 				"Noble Scion|Paladin|XPHB|Noble Genies|FRHoF|20|FRHoF"
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Oath of Devotion",
+			"shortName": "Devotion",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Oath of Devotion",
+				"source": "XPHB",
+				"shortName": "Devotion",
+				"className": "Paladin",
+				"classSource": "XPHB"
+			}
+		},
+		{
+			"name": "Oath of the Holy",
+			"shortName": "Holy",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "WoW",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"ability": "cha",
+					"prepared": {
+						"3": [
+							"cure wounds|xphb",
+							"healing word|xphb"
+						],
+						"5": [
+							"lesser restoration|xphb",
+							"prayer of healing|xphb"
+						],
+						"9": [
+							"dispel magic|xphb",
+							"mass healing word|xphb"
+						],
+						"13": [
+							"aura of life|xphb",
+							"death ward|xphb"
+						],
+						"17": [
+							"greater restoration|xphb",
+							"mass cure wounds|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Oath of the Holy|Paladin|WoW|Holy|WoW|3",
+				"Lightbringer's Aura|Paladin|WoW|Holy|WoW|7",
+				"Infusion of Light|Paladin|WoW|Holy|WoW|15",
+				"Holy Deliverance|Paladin|WoW|Holy|WoW|20"
+			]
+		},
+		{
+			"name": "Oath of Vengeance",
+			"shortName": "Vengeance",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Oath of Vengeance",
+				"source": "XPHB",
+				"shortName": "Vengeance",
+				"className": "Paladin",
+				"classSource": "XPHB"
+			}
 		}
 	],
 	"classFeature": [
@@ -4579,6 +4665,150 @@
 					]
 				},
 				"If you attack a creature, cast a spell on it, or deal damage to it by any means but this feature, neither benefit works against that creature until you finish a long rest."
+			]
+		},
+		{
+			"name": "Beacon of Light",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "WoW",
+			"subclassShortName": "Holy",
+			"subclassSource": "WoW",
+			"level": 3,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"As a {@action Magic|XPHB} action, you can expend one use of your {@classFeature Channel Divinity|Paladin|XPHB|3|XPHB} to wrap an ally within 60 feet in holy energy. For 1 minute, anytime you heal a creature other than the affected ally with a spell or your {@classFeature Lay On Hands|Paladin|XPHB|1|XPHB}, the chosen ally also regains half as many {@variantrule Hit Points|XPHB}."
+			]
+		},
+		{
+			"name": "Oath of the Holy",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "WoW",
+			"subclassShortName": "Holy",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"{@i Serve as a Beacon of the Light}",
+				"The Oath of the Holy unites Paladins who nurture life and use the power of the Light for healing and support. They combine great piety and virtue with martial skill, aspiring to the highest standards of morality, service to others, and self-sacrifice.",
+				"These paladins share the following tenets:",
+				{
+					"type": "list",
+					"items": [
+						"Live your life in service to others of goodwill.",
+						"Do all in your power to ease the suffering of the innocent.",
+						"Let the Light shine through you to banish the darkness."
+					]
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Oath of the Holy Spells|Paladin|WoW|Holy|WoW|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Beacon of Light|Paladin|WoW|Holy|WoW|3"
+				}
+			]
+		},
+		{
+			"name": "Oath of the Holy Spells",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "WoW",
+			"subclassShortName": "Holy",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"The magic of your oath ensures you always have certain spells ready; when you reach a Paladin level specified in the Oath of the Holy Spells table, you thereafter always have the listed spells prepared.",
+				{
+					"type": "table",
+					"caption": "Oath of the Holy Spells",
+					"colLabels": [
+						"Paladin Level",
+						"Spells"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Cure Wounds|XPHB}, {@spell Healing Word|XPHB}"
+						],
+						[
+							"5",
+							"{@spell Lesser Restoration|XPHB}, {@spell Prayer of Healing|XPHB}"
+						],
+						[
+							"9",
+							"{@spell Dispel Magic|XPHB}, {@spell Mass Healing Word|XPHB}"
+						],
+						[
+							"13",
+							"{@spell Aura of Life|XPHB}, {@spell Death Ward|XPHB}"
+						],
+						[
+							"17",
+							"{@spell Greater Restoration|XPHB}, {@spell Mass Cure Wounds|XPHB}"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Lightbringer's Aura",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "WoW",
+			"subclassShortName": "Holy",
+			"subclassSource": "WoW",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"Whenever you cast a spell or use {@classFeature Lay On Hands|Paladin|XPHB|1|XPHB} to restore {@variantrule Hit Points|XPHB} to a {@status Bloodied|XPHB} creature within your {@classFeature Aura of Protection|Paladin|XPHB|6|XPHB}, the creature regains an extra {@dice 1d6} {@variantrule Hit Points|XPHB}."
+			]
+		},
+		{
+			"name": "Infusion of Light",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "WoW",
+			"subclassShortName": "Holy",
+			"subclassSource": "WoW",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"Whenever you cast a spell that deals Radiant damage, you refresh the pool of healing power that fuels your {@classFeature Lay On Hands|Paladin|XPHB|1|XPHB} feature. Your pool of healing power regains a number of {@variantrule Hit Points|XPHB} equal to the total number rolled for the spell's Radiant damage, to a maximum of five times your Paladin level."
+			]
+		},
+		{
+			"name": "Holy Deliverance",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "WoW",
+			"subclassShortName": "Holy",
+			"subclassSource": "WoW",
+			"level": 20,
+			"header": 2,
+			"entries": [
+				"As a {@variantrule Bonus Action|XPHB}, you can imbue your {@classFeature Aura of Protection|Paladin|XPHB|6|XPHB} with holy power, granting the benefits below for 10 minutes or until you end them (no action required). Once you use this feature, you can't use it again until you finish a {@variantrule Long Rest|XPHB}. You can also restore your use of it by expending a level 5 spell slot (no action required).",
+				{
+					"type": "entries",
+					"name": "Healing Power",
+					"entries": [
+						"Whenever an ally starts its turn {@status Bloodied|XPHB} and in the aura, that creature regains {@variantrule Hit Points|XPHB} equal to your Charisma modifier plus your {@variantrule Proficiency|XPHB|Proficiency Bonus}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Sunlight",
+					"entries": [
+						"The aura is filled with {@variantrule Bright Light|XPHB} that is sunlight."
+					]
+				}
 			]
 		},
 		{

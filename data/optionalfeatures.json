@@ -377,6 +377,19 @@
 			]
 		},
 		{
+			"name": "Battle Shout",
+			"source": "WoW",
+			"featureType": [
+				"MV:B"
+			],
+			"consumes": {
+				"name": "Superiority Die"
+			},
+			"entries": [
+				"As a {@variantrule Bonus Action|XPHB}, you can expend one {@subclassFeature Combat Superiority|Fighter|XPHB|Battle Master|XPHB|3|XPHB|Superiority Die} to shout encouragement to allies within 30 feet of you that can hear you. Until the start of your next turn, each affected ally adds the {@subclassFeature Combat Superiority|Fighter|XPHB|Battle Master|XPHB|3|XPHB|Superiority Die} to the damage roll the next time it hits with a melee attack."
+			]
+		},
+		{
 			"name": "Beast Speech",
 			"source": "PHB",
 			"page": 110,
@@ -721,6 +734,52 @@
 			]
 		},
 		{
+			"name": "Call of the Void",
+			"source": "WoW",
+			"featureType": [
+				"EI"
+			],
+			"prerequisite": [
+				{
+					"level": {
+						"level": 5,
+						"class": {
+							"name": "Warlock",
+							"source": "XPHB",
+							"visibleStats": true
+						}
+					},
+					"optionalfeature": [
+						"pact of the legion|wow"
+					]
+				}
+			],
+			"entries": [
+				"When you cast {@spell Find Familiar|XPHB} using {@optfeature Pact of the Legion|WoW}, you can choose to summon a {@creature Fel Imp|WoW} familiar or a {@creature Voidwalker|WoW}. In addition, you gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Quick Attack",
+					"entries": [
+						"As a {@variantrule Bonus Action|XPHB}, you can command the familiar to take the {@action Attack|XPHB} action."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Your Spell Attack",
+					"entries": [
+						"The familiar uses your spell attack bonus for its attacks."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Shadow Shield",
+					"entries": [
+						"When your Voidwalker familiar takes damage, you can take a {@variantrule Reaction|XPHB} to grant it {@variantrule Resistance|XPHB} against that damage."
+					]
+				}
+			]
+		},
+		{
 			"name": "Careful Spell",
 			"source": "PHB",
 			"page": 102,
@@ -955,6 +1014,28 @@
 			]
 		},
 		{
+			"name": "Curse of Corruption",
+			"source": "WoW",
+			"featureType": [
+				"EI"
+			],
+			"prerequisite": [
+				{
+					"level": {
+						"level": 2,
+						"class": {
+							"name": "Warlock",
+							"source": "XPHB",
+							"visibleStats": true
+						}
+					}
+				}
+			],
+			"entries": [
+				"When an enemy starts its turn cursed by a Warlock spell you cast (such as {@spell Hex|XPHB}), it must succeed on a Charisma saving throw or take Necrotic damage equal to your Charisma modifier."
+			]
+		},
+		{
 			"name": "Defense",
 			"source": "PHB",
 			"page": 72,
@@ -982,6 +1063,19 @@
 			],
 			"entries": [
 				"While you are wearing armor, you gain a +1 bonus to AC."
+			]
+		},
+		{
+			"name": "Demoralizing Shout",
+			"source": "WoW",
+			"featureType": [
+				"MV:B"
+			],
+			"consumes": {
+				"name": "Superiority Die"
+			},
+			"entries": [
+				"As a {@variantrule Bonus Action|XPHB}, you can expend one {@subclassFeature Combat Superiority|Fighter|XPHB|Battle Master|XPHB|3|XPHB|Superiority Die} to shout, demoralizing enemies within 30 feet of you that can hear you. Until the end of your next turn, each affected enemy subtracts the {@subclassFeature Combat Superiority|Fighter|XPHB|Battle Master|XPHB|3|XPHB|Superiority Die} from the damage roll the next time it hits a target other than you with a melee attack."
 			]
 		},
 		{
@@ -1642,6 +1736,28 @@
 			},
 			"entries": [
 				"As a {@variantrule Bonus Action|XPHB}, you can expend one Superiority Die and take the {@action Disengage|XPHB} action. You also roll the die and add the number rolled to your AC until the start of your next turn."
+			]
+		},
+		{
+			"name": "Expendable Minions",
+			"source": "WoW",
+			"featureType": [
+				"EI"
+			],
+			"prerequisite": [
+				{
+					"level": {
+						"level": 9,
+						"class": {
+							"name": "Warlock",
+							"source": "XPHB",
+							"visibleStats": true
+						}
+					}
+				}
+			],
+			"entries": [
+				"When your familiar or a summoned creature you control dies, you or another creature within 60 feet of you regains {@variantrule Hit Points|XPHB} equal to your Warlock level plus your Charisma modifier."
 			]
 		},
 		{
@@ -2313,6 +2429,28 @@
 			]
 		},
 		{
+			"name": "Health Funnel",
+			"source": "WoW",
+			"featureType": [
+				"EI"
+			],
+			"prerequisite": [
+				{
+					"level": {
+						"level": 2,
+						"class": {
+							"name": "Warlock",
+							"source": "XPHB",
+							"visibleStats": true
+						}
+					}
+				}
+			],
+			"entries": [
+				"As a {@variantrule Bonus Action|XPHB}, you can expend any number of your unexpended {@variantrule Hit Point Dice|XPHB|Hit Dice} to roll those dice, add your Charisma modifier to each die, and total the rolls. Your familiar or another Fiend you command gains that many {@variantrule Temporary Hit Points|XPHB}."
+			]
+		},
+		{
 			"name": "Heightened Spell",
 			"source": "PHB",
 			"page": 102,
@@ -2376,6 +2514,19 @@
 			],
 			"entries": [
 				"While wearing this helmet, a creature has advantage on initiative rolls. In addition, the wearer can't be {@status surprised}, provided it isn't {@condition incapacitated}."
+			]
+		},
+		{
+			"name": "Heroic Leap",
+			"source": "WoW",
+			"featureType": [
+				"MV:B"
+			],
+			"consumes": {
+				"name": "Superiority Die"
+			},
+			"entries": [
+				"As a {@variantrule Bonus Action|XPHB}, you can expend one {@subclassFeature Combat Superiority|Fighter|XPHB|Battle Master|XPHB|3|XPHB|Superiority Die} to jump a number of feet up to your Strength score. Creatures within 5 feet of you when you land make a Strength saving throw, taking Bludgeoning damage equal to the {@subclassFeature Combat Superiority|Fighter|XPHB|Battle Master|XPHB|3|XPHB|Superiority Die} roll on a failed save, or half as much damage on a successful one."
 			]
 		},
 		{
@@ -2583,6 +2734,45 @@
 			],
 			"entries": [
 				"Once on each of your turns when you hit a creature with your {@spell eldritch blast}, you can reduce that creature's speed by 10 feet until the end of your next turn."
+			]
+		},
+		{
+			"name": "Legion Summoning",
+			"source": "WoW",
+			"featureType": [
+				"EI"
+			],
+			"prerequisite": [
+				{
+					"level": {
+						"level": 9,
+						"class": {
+							"name": "Warlock",
+							"source": "XPHB",
+							"visibleStats": true
+						}
+					},
+					"optionalfeature": [
+						"pact of the legion|wow"
+					]
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": "cha",
+					"innate": {
+						"_": {
+							"daily": {
+								"1": [
+									"planar binding|xphb"
+								]
+							}
+						}
+					}
+				}
+			],
+			"entries": [
+				"You can cast {@spell Planar Binding|XPHB} without expending a spell slot. When you do, you summon a {@creature Felguard|WoW}, a {@creature Felhound|WoW}, an {@creature Incubus|XMM}, or a {@creature Succubus|XMM}, and that Fiend becomes the target of the spell. Once you cast the spell in this way, you can't do so again until you finish a {@variantrule Long Rest|XPHB}."
 			]
 		},
 		{
@@ -2826,6 +3016,28 @@
 			],
 			"entries": [
 				"You can cast {@spell Disguise Self|XPHB} without expending a spell slot."
+			]
+		},
+		{
+			"name": "Master Demonologist",
+			"source": "WoW",
+			"featureType": [
+				"EI"
+			],
+			"prerequisite": [
+				{
+					"level": {
+						"level": 5,
+						"class": {
+							"name": "Warlock",
+							"source": "XPHB",
+							"visibleStats": true
+						}
+					}
+				}
+			],
+			"entries": [
+				"Any Fiends you command also deal extra damage to the target of your {@spell Hex|XPHB} spell as if they were you."
 			]
 		},
 		{
@@ -3117,6 +3329,19 @@
 			]
 		},
 		{
+			"name": "Mortal Strike",
+			"source": "WoW",
+			"featureType": [
+				"MV:B"
+			],
+			"consumes": {
+				"name": "Superiority Die"
+			},
+			"entries": [
+				"When you hit a creature with an attack roll, you can expend one {@subclassFeature Combat Superiority|Fighter|XPHB|Battle Master|XPHB|3|XPHB|Superiority Die} to prevent the target from healing. Add the {@subclassFeature Combat Superiority|Fighter|XPHB|Battle Master|XPHB|3|XPHB|Superiority Die} to the attack's damage roll. The target can't regain {@variantrule Hit Points|XPHB} until the end of your next turn."
+			]
+		},
+		{
 			"name": "One with Shadows",
 			"source": "PHB",
 			"page": 111,
@@ -3325,6 +3550,27 @@
 				"You learn the {@spell Find Familiar|XPHB} spell and can cast it as a {@action Magic|XPHB} action without expending a spell slot.",
 				"When you cast the spell, you choose one of the normal forms for your familiar or one of the following special forms: {@creature Imp|XMM}, {@creature Pseudodragon|XMM}, {@creature Quasit|XMM}, {@creature Skeleton|XMM}, {@creature Slaad Tadpole|XMM}, {@creature Sphinx of Wonder|XMM}, {@creature Sprite|XMM}, or {@creature Venomous Snake|XMM} (see appendix B for the familiar's stat block).",
 				"Additionally, when you take the {@action Attack|XPHB} action, you can forgo one of your own attacks to allow your familiar to make one attack of its own with its {@variantrule Reaction|XPHB}."
+			]
+		},
+		{
+			"name": "Pact of the Legion",
+			"source": "WoW",
+			"featureType": [
+				"EI"
+			],
+			"additionalSpells": [
+				{
+					"ability": "cha",
+					"innate": {
+						"_": [
+							"find familiar|xphb"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You learn the {@spell Find Familiar|XPHB} spell and can cast it as a {@action Magic|XPHB} action without expending a spell slot. When you cast the spell, you summon a {@creature Fel Imp|WoW} familiar.",
+				"Additionally, when you take the {@action Attack|XPHB} action, you can forgo one of your own attacks to allow your familiar to make one attack with its {@variantrule Reaction|XPHB}."
 			]
 		},
 		{
@@ -5273,6 +5519,19 @@
 			],
 			"entries": [
 				"You can communicate telepathically with your familiar and perceive through your familiar's senses as long as you are on the same plane of existence. Additionally, while perceiving through your familiar's senses, you can also speak through your familiar in your own voice, even if your familiar is normally incapable of speech."
+			]
+		},
+		{
+			"name": "Warding Maneuver",
+			"source": "WoW",
+			"featureType": [
+				"MV:B"
+			],
+			"consumes": {
+				"name": "Superiority Die"
+			},
+			"entries": [
+				"When you or a creature you can see within 5 feet of you is hit by an attack roll, you can take a {@variantrule Reaction|XPHB} and expend one {@subclassFeature Combat Superiority|Fighter|XPHB|Battle Master|XPHB|3|XPHB|Superiority Die} if you're wielding a Melee weapon or a {@item Shield|XPHB}. Add the {@subclassFeature Combat Superiority|Fighter|XPHB|Battle Master|XPHB|3|XPHB|Superiority Die} to the target's AC against the triggering attack. If the attack still hits, the target has {@variantrule Resistance|XPHB} against the attack's damage."
 			]
 		},
 		{

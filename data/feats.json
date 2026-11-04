@@ -716,6 +716,41 @@
 			]
 		},
 		{
+			"name": "Arathi Heritage",
+			"source": "WoW",
+			"page": 85,
+			"category": "O",
+			"prerequisite": [
+				{
+					"campaign": [
+						"World of Warcraft"
+					],
+					"race": [
+						{
+							"name": "human"
+						}
+					]
+				}
+			],
+			"entries": [
+				"As a descendant of humans from Arathor and high elves from Quel'Thalas, you gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Fey Ancestry",
+					"entries": [
+						"You have {@variantrule Advantage|XPHB} on saving throws to avoid or end the {@condition Charmed|XPHB} condition."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Lethargy Resilience",
+					"entries": [
+						"When you fail a saving throw to avoid or end the {@condition Unconscious|XPHB} condition, you can succeed instead. Once you use this trait, you can't do so again until you finish {@dice 1d4} {@variantrule Long Rest|XPHB|Long Rests}."
+					]
+				}
+			]
+		},
+		{
 			"name": "Arcane Artist",
 			"source": "AU",
 			"page": 26,
@@ -3458,6 +3493,44 @@
 			]
 		},
 		{
+			"name": "Child of the Sea",
+			"source": "WoW",
+			"page": 85,
+			"category": "O",
+			"prerequisite": [
+				{
+					"campaign": [
+						"World of Warcraft"
+					],
+					"race": [
+						{
+							"name": "human"
+						}
+					]
+				}
+			],
+			"traitTags": [
+				"Speed"
+			],
+			"entries": [
+				"As a Kul Tiran, you gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Lasting Breath",
+					"entries": [
+						"You can hold your breath for a number of minutes equal to 2 plus your Constitution modifier (minimum of 1 minute)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Ocean Born",
+					"entries": [
+						"You have a {@variantrule Swim Speed|XPHB} equal to your {@variantrule Speed|XPHB}."
+					]
+				}
+			]
+		},
+		{
 			"name": "Child of the Sun",
 			"source": "LFL",
 			"category": "O",
@@ -3496,6 +3569,39 @@
 					"entries": [
 						"You learn the {@spell Faerie Fire|XPHB} spell. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat). You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have.",
 						"When you cast {@spell Faerie Fire|XPHB} without a spell slot using this benefit, taking damage can't break your {@status Concentration|XPHB} on the spell."
+					]
+				}
+			]
+		},
+		{
+			"name": "Clearcasting",
+			"source": "WoW",
+			"page": 40,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"int": 1
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Clearcasting",
+					"entries": [
+						"When you score a {@variantrule Critical Hit|XPHB} with a spell's attack roll, you can take a {@variantrule Reaction|XPHB} to cast a {@filter cantrip with a casting time of an action|spells|level=0|cast time=action}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Force Adept",
+					"entries": [
+						"When you roll damage for a spell you cast that deals Force damage, you can treat any 1 on a damage die as a 2."
 					]
 				}
 			]
@@ -4967,6 +5073,43 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Elusive Brawler",
+			"source": "WoW",
+			"page": 45,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"dex": 13,
+							"wis": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"dex",
+							"wis"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Reactive Dodge",
+					"entries": [
+						"When you take damage, you can take a {@variantrule Reaction|XPHB} to take the {@action Dodge|XPHB} action."
+					]
+				}
+			]
+		},
+		{
 			"name": "Elven Accuracy",
 			"source": "XGE",
 			"page": 74,
@@ -5248,6 +5391,45 @@
 					"name": "Two Hearts, One Mind",
 					"entries": [
 						"You always have the {@spell Beast Sense|XPHB} spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}. When you cast it without a spell slot using this feature, it doesn't require {@status Concentration|XPHB}. You can also cast the spell using any spell slots you have of the appropriate level. The spell's spellcasting ability is the ability increased by this feat."
+					]
+				}
+			]
+		},
+		{
+			"name": "Enveloping Mist",
+			"source": "WoW",
+			"page": 45,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"dex": 13,
+							"wis": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"dex",
+							"wis"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Enveloping Mist",
+					"entries": [
+						"When you cast a spell or use a feature to restore {@variantrule Hit Points|XPHB} to a creature, the creature is wrapped in a healing mist. Roll one of the dice from the feature that healed it, and note that number as the creature's Life Cocoon value.",
+						"If the creature is hit by an attack roll before the start of its next turn, you can take a {@variantrule Reaction|XPHB} to reduce the damage it takes from that attack by its Life Cocoon value. The mist then disappears.",
+						"At the start of the creature's next turn, if the mist persists, the creature gains {@variantrule Temporary Hit Points|XPHB} equal to its Life Cocoon value."
 					]
 				}
 			]
@@ -5648,6 +5830,83 @@
 			"entries": [
 				"Your martial training has helped you develop a particular style of fighting. As a result, you learn one {@filter Fighting Style|optionalfeatures|Feature Type=FS:F} option of your choice from the fighter class. If you already have a style, the one you choose must be different.",
 				"Whenever you reach a level that grants the Ability Score Improvement feature, you can replace this feat's fighting style with another one from the fighter class that you don't have."
+			]
+		},
+		{
+			"name": "Fingers of Frost",
+			"source": "WoW",
+			"page": 40,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"int": 1
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Cold Mastery",
+					"entries": [
+						"Spells you cast ignore {@variantrule Resistance|XPHB} to Cold damage."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Frostbite",
+					"entries": [
+						"When you deal Cold damage to a creature that has the {@condition Restrained|XPHB} condition, the creature takes extra Cold damage. To determine the extra damage, roll a number of d4s equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus} and add them together."
+					]
+				}
+			]
+		},
+		{
+			"name": "Fists of Fury",
+			"source": "WoW",
+			"page": 45,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"dex": 13,
+							"wis": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"dex",
+							"wis"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Clean Hits",
+					"entries": [
+						"When you roll damage for an attack you make with an {@variantrule Unarmed Strike|XPHB} or a weapon that has the {@itemProperty L|XPHB|Light} property, you can treat any 1 on a damage die as a 2."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Combo Strikes",
+					"entries": [
+						"When you deal damage to a creature with an {@variantrule Unarmed Strike|XPHB}, you gain a +1 bonus to the damage roll for each time you previously hit that creature with a melee attack roll in the same turn."
+					]
+				}
 			]
 		},
 		{
@@ -7035,6 +7294,39 @@
 			]
 		},
 		{
+			"name": "Hot Streak",
+			"source": "WoW",
+			"page": 41,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"int": 1
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Fire Mastery",
+					"entries": [
+						"Spells you cast ignore {@variantrule Resistance|XPHB} to Fire damage."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Ignite",
+					"entries": [
+						"When a spell you cast deals Fire damage to a creature, the target starts {@hazard burning|XPHB}. When you deal Fire damage to a creature that is already burning, the flames become more severe, increasing the burning damage by {@damage 1d4}."
+					]
+				}
+			]
+		},
+		{
 			"name": "Illusion Adept",
 			"source": "AU",
 			"page": 30,
@@ -7346,6 +7638,105 @@
 				"Your spellcasting ability for this feat's spells is Intelligence, Wisdom, or Charisma (choose when you select this feat)."
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Inscription Adept",
+			"source": "WoW",
+			"page": 101,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"proficiency": [
+						{
+							"tool": [
+								"calligrapher's supplies"
+							]
+						},
+						{
+							"tool": [
+								"cartographer's tools"
+							]
+						},
+						{
+							"tool": [
+								"painter's supplies"
+							]
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": "inherit",
+					"prepared": {
+						"5": {
+							"daily": {
+								"1": [
+									"glyph of warding|xphb"
+								]
+							}
+						},
+						"13": {
+							"daily": {
+								"1": [
+									"symbol|xphb"
+								]
+							}
+						},
+						"_": {
+							"daily": {
+								"1": [
+									"illusory script|xphb"
+								]
+							}
+						}
+					}
+				}
+			],
+			"entries": [
+				"Your mastery of inscription allows you to duplicate the effects of certain spells with your written magic. You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Inscription Magic",
+					"entries": [
+						"You learn the {@spell Illusory Script|XPHB} spell and always have it prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have of the appropriate level. You can use herbalism resources of the appropriate value in place of the Material component specified for that spell. The spell's spellcasting ability is the ability increased by this feat.",
+						"When you reach higher levels of proficiency in inscription, you learn higher-level spells and can cast them in the same way, as shown on the table."
+					]
+				},
+				{
+					"type": "table",
+					"colLabels": [
+						"Proficiency",
+						"Spell"
+					],
+					"colStyles": [
+						"col-6",
+						"col-6"
+					],
+					"rows": [
+						[
+							"Journeyman (+3)",
+							"{@spell Glyph of Warding|XPHB}"
+						],
+						[
+							"Artisan (+5)",
+							"{@spell Symbol|XPHB}"
+						]
+					]
+				}
+			]
 		},
 		{
 			"name": "Inspiring Leader",
@@ -13766,6 +14157,50 @@
 			]
 		},
 		{
+			"name": "Stagger and Sway",
+			"source": "WoW",
+			"page": 45,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"dex": 13,
+							"wis": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"dex",
+							"wis"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Defer Damage",
+					"entries": [
+						"When you take damage, reduce the damage you take by your Dexterity modifier (minimum of 1). Then add a {@dice d6} to your Delayed Reaction pool. At the end of your turn, remove all the dice from your Delayed Reaction pool and roll them. You take Force damage equal to the total rolled."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Purify",
+					"entries": [
+						"As a {@variantrule Bonus Action|XPHB}, you can remove a number of dice equal to your Wisdom modifier from your Delayed Reaction pool."
+					]
+				}
+			]
+		},
+		{
 			"name": "Street Justice",
 			"source": "FRHoF",
 			"page": 41,
@@ -15424,6 +15859,36 @@
 			]
 		},
 		{
+			"name": "Void Warrior",
+			"source": "WoW",
+			"page": 18,
+			"category": "FS:R",
+			"prerequisite": [
+				{
+					"otherSummary": {
+						"entry": "Demon Hunter Fighting Style",
+						"entrySummary": "Special"
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": "wis",
+					"known": {
+						"_": [
+							{
+								"choose": "level=0|class=warlock",
+								"count": 2
+							}
+						]
+					}
+				}
+			],
+			"entries": [
+				"You learn two {@filter Warlock cantrips|spells|level=0|class=warlock} of your choice. {@spell Chill Touch|XPHB} and {@spell Mind Sliver|XPHB} are recommended. The chosen cantrips count as Ranger spells for you, and Wisdom is your spellcasting ability for them. Whenever you gain a Ranger level, you can replace one of these cantrips with another Warlock cantrip."
+			]
+		},
+		{
 			"name": "War Caster",
 			"source": "PHB",
 			"page": 170,
@@ -15680,6 +16145,27 @@
 				}
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Will to Survive",
+			"source": "WoW",
+			"page": 85,
+			"category": "O",
+			"prerequisite": [
+				{
+					"campaign": [
+						"World of Warcraft"
+					],
+					"race": [
+						{
+							"name": "human"
+						}
+					]
+				}
+			],
+			"entries": [
+				"When you have the {@condition Incapacitated|XPHB} condition but not the {@condition Unconscious|XPHB} condition, you can draw on the proud heritage of Stormwind or Stromgarde to ignore the {@condition Incapacitated|XPHB} condition on your turn. If you do, you gain 1 {@condition Exhaustion|XPHB} level."
+			]
 		},
 		{
 			"name": "Wood Elf Magic",

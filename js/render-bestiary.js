@@ -214,8 +214,9 @@ class _RenderBestiaryImplBase {
 	/* ----- */
 
 	_getCommonHtmlParts_hitPoints ({mon, isInlinedToken}) {
-		const label = this._style === "classic" ? "Hit Points" : "HP";
-		const ptTitle = this._style === "classic" ? "" : `title="Hit Points"`;
+		const labelFull = mon.hp?.isTemporary ? "Temporary Hit Points" : "Hit Points";
+		const label = this._style === "classic" ? labelFull : mon.hp?.isTemporary ? "Temp HP" : "HP";
+		const ptTitle = this._style === "classic" ? "" : `title="${labelFull}"`;
 		const rendered = mon.hp == null ? "\u2014" : Renderer.monster.getRenderedHp(mon.hp);
 		return `<tr><td colspan="6"><div ${isInlinedToken ? `class="ve-stats__wrp-avoid-token"` : ""}><strong ${ptTitle}>${label}</strong> ${rendered}</div></td></tr>`;
 	}

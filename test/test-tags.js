@@ -808,6 +808,10 @@ class HasFluffCheck extends DataTesterBase {
 	}
 
 	_getHashesAlt ({page, ent}) {
+		// e.g. `_subclassFluff`
+		const fluffRef = ent.fluff?.[`_${ent.__prop}Fluff`];
+		if (fluffRef) return [UrlUtil.URL_TO_HASH_BUILDER[page](fluffRef)];
+
 		if (ent.__prop === "item" && ent._variantName) return [UrlUtil.URL_TO_HASH_BUILDER[page]({name: ent._variantName, source: ent.source})];
 		return [];
 	}

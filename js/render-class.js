@@ -31,6 +31,7 @@ class _RenderClassesSidebarImplBase {
 	) {
 		return {
 			eleName: this._getCommonElements_name({comp, cls}),
+			eleNameSub: this._getCommonElements_nameSub({cls, renderer}),
 			eleAuthors: this._getCommonElements_authors({comp, cls}),
 
 			eleGroup: this._getCommonElements_group({comp, cls}),
@@ -66,6 +67,22 @@ class _RenderClassesSidebarImplBase {
 				<div class="ve-flex-v-center">${btnSendToFoundry}${btnToggleSidebar}</div>
 			</div>
 		</th></tr>`;
+	}
+
+	_getCommonElements_nameSub ({cls, renderer}) {
+		const ptReskins = (cls.reskinOf || [])
+			.map(it => renderer.render(`{@${it.tag ?? "class"} ${it.uid ?? it}}`))
+			.join(", ");
+
+		const ptMeta = [
+			cls.isHero ? `<span class="ve-help-subtle" title="Hero classes are typically available only to characters starting at level 3 or higher.">${renderer.render(`{@book Hero Class|WoW|1|Hero Classes}`)}</span>` : null,
+			ptReskins ? `Reskins: ${ptReskins}` : null,
+		]
+			.filter(Boolean)
+			.join(" • ");
+		if (!ptMeta) return null;
+
+		return veT`<tr><td colspan="6" class="ve-small ve-italic ve-pt-0">${ptMeta}</td></tr>`;
 	}
 
 	_getCommonElements_authors ({comp, cls}) {
@@ -326,6 +343,7 @@ class _RenderClassesSidebarImplClassic extends _RenderClassesSidebarImplBase {
 	_getRenderedClassSidebar ({comp, cls, renderer}) {
 		const {
 			eleName,
+			eleNameSub,
 			eleAuthors,
 			eleGroup,
 			eleRequirements,
@@ -350,6 +368,7 @@ class _RenderClassesSidebarImplClassic extends _RenderClassesSidebarImplBase {
 			<tr><th class="ve-tbl-border" colspan="6"></th></tr>
 
 			${eleName}
+			${eleNameSub}
 			${eleAuthors}
 
 			${eleGroup}
@@ -418,6 +437,7 @@ class _RenderClassesSidebarImplOne extends _RenderClassesSidebarImplBase {
 	_getRenderedClassSidebar ({comp, cls, renderer}) {
 		const {
 			eleName,
+			eleNameSub,
 			eleAuthors,
 			eleGroup,
 			eleRequirements,
@@ -440,6 +460,7 @@ class _RenderClassesSidebarImplOne extends _RenderClassesSidebarImplBase {
 			<tr><th class="ve-tbl-border" colspan="6"></th></tr>
 
 			${eleName}
+			${eleNameSub}
 			${eleAuthors}
 
 			${eleGroup}

@@ -57,7 +57,7 @@ export class RaceTraitTag {
 									found = true;
 								}
 
-								if (/\b(?:tool|poisoner's kit)\b/i.test(str)) {
+								if (/\b(?:tools?|poisoner's kit)\b/i.test(str)) {
 									traitTags.add("Tool Proficiency");
 									found = true;
 								}

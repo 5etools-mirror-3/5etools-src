@@ -746,7 +746,7 @@ class ModalFilterBestiary extends ModalFilterBase {
 
 		const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BESTIARY](mon);
 		const source = Parser.sourceJsonToAbv(mon.source);
-		const type = mon._pTypes.asText;
+		const type = mon._pTypes.asTextShort;
 		const cr = mon._pCr;
 
 		eleRow.innerHTML = `<div class="ve-w-100 ve-flex-vh-center ve-lst__row-border veapp__list-row ve-no-select ve-lst__wrp-cells">

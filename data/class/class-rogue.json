@@ -1,6 +1,7 @@
 {
 	"_meta": {
 		"internalCopies": [
+			"class",
 			"subclass"
 		]
 	},
@@ -911,6 +912,22 @@
 			"subclassTitle": "Rogue Subclass",
 			"hasFluff": true,
 			"hasFluffImages": true
+		},
+		{
+			"name": "Rogue",
+			"source": "WoW",
+			"reskinOf": [
+				"Rogue|XPHB"
+			],
+			"_copy": {
+				"name": "Rogue",
+				"source": "XPHB"
+			},
+			"includeSubclassesFrom": [
+				"Rogue|XPHB"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
 		}
 	],
 	"subclass": [
@@ -1482,6 +1499,9 @@
 					"source": "SCAG",
 					"page": 135
 				}
+			],
+			"reprintedAs": [
+				"Swashbuckler|Rogue|WoW|WoW"
 			],
 			"edition": "classic",
 			"subclassFeatures": [
@@ -2138,6 +2158,48 @@
 				"Death's Friend|Rogue|XPHB|Phantom|RHW|17|RHW"
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Assassin",
+			"shortName": "Assassin",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Assassin",
+				"source": "XPHB",
+				"shortName": "Assassin",
+				"className": "Rogue",
+				"classSource": "XPHB"
+			}
+		},
+		{
+			"name": "Soulknife",
+			"shortName": "Soulknife",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Soulknife",
+				"source": "XPHB",
+				"shortName": "Soulknife",
+				"className": "Rogue",
+				"classSource": "XPHB"
+			}
+		},
+		{
+			"name": "Swashbuckler",
+			"shortName": "Swashbuckler",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "WoW",
+			"edition": "one",
+			"subclassFeatures": [
+				"Swashbuckler|Rogue|WoW|Swashbuckler|WoW|3",
+				"Panache|Rogue|WoW|Swashbuckler|WoW|9",
+				"Dashing Strikes|Rogue|WoW|Swashbuckler|WoW|13",
+				"Master Duelist|Rogue|WoW|Swashbuckler|WoW|17"
+			]
 		}
 	],
 	"classFeature": [
@@ -3978,6 +4040,119 @@
 			"header": 2,
 			"entries": [
 				"Beginning at 17th level, your mastery of the blade lets you turn failure into success in combat. If you miss with an attack roll, you can roll it again with advantage. Once you do so, you can't use this feature again until you finish a short or long rest."
+			]
+		},
+		{
+			"name": "Fancy Footwork",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "WoW",
+			"subclassShortName": "Swashbuckler",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"You've learned how to land a strike and then slip away without reprisal. If you make a melee attack roll against a creature during your turn, that creature can't make {@action opportunity attack|XPHB|Opportunity Attacks} against you for the rest of that turn."
+			]
+		},
+		{
+			"name": "Rakish Audacity",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "WoW",
+			"subclassShortName": "Swashbuckler",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"When you roll {@variantrule Initiative|XPHB}, you can give yourself a bonus to the roll equal to your Charisma modifier.",
+				"You also gain an additional way to use your {@classFeature Sneak Attack|Rogue|XPHB|1|XPHB}: You don't need {@variantrule Advantage|XPHB} on the attack roll to use your Sneak Attack against a creature if you are within 5 feet of it, no other creatures are within 5 feet of you, and you don't have {@variantrule Disadvantage|XPHB} on the attack roll. All the other rules for Sneak Attack still apply to you."
+			]
+		},
+		{
+			"name": "Swashbuckler",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "WoW",
+			"subclassShortName": "Swashbuckler",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"{@i Glide into Melee with Panache and Agility}",
+				"As a Swashbuckler, you focus on the art of the blade, bringing speed, elegance, and charm to your combat style\u2014topped off with an exquisite flourish of panache. You excel in single combat, and your methods make a duel look like a flamboyant performance.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Fancy Footwork|Rogue|WoW|Swashbuckler|WoW|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Rakish Audacity|Rogue|WoW|Swashbuckler|WoW|3"
+				}
+			]
+		},
+		{
+			"name": "Panache",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "WoW",
+			"subclassShortName": "Swashbuckler",
+			"subclassSource": "WoW",
+			"level": 9,
+			"header": 2,
+			"entries": [
+				"You have practiced new ways to use your {@classFeature Sneak Attack|Rogue|XPHB|1|XPHB}. The following effects are now among your {@classFeature Cunning Strike|Rogue|XPHB|5|XPHB} options.",
+				{
+					"type": "entries",
+					"name": "Goad (Cost: 1d6)",
+					"entries": [
+						"The target must succeed on a Wisdom saving throw, or until the end of its next turn, the target has {@variantrule Disadvantage|XPHB} on attack rolls against targets other than you and can't make {@action opportunity attack|XPHB|Opportunity Attacks} against targets other than you."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Awe (Cost: 3d6)",
+					"entries": [
+						"Each creature of your choice within 30 feet of you must succeed on a Wisdom saving throw or have the {@condition Charmed|XPHB} condition until the end of your next turn."
+					]
+				}
+			]
+		},
+		{
+			"name": "Dashing Strikes",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "WoW",
+			"subclassShortName": "Swashbuckler",
+			"subclassSource": "WoW",
+			"level": 13,
+			"header": 2,
+			"entries": [
+				"You have practiced new ways to use your {@classFeature Sneak Attack|Rogue|XPHB|1|XPHB}. The following effects are now among your {@classFeature Cunning Strike|Rogue|XPHB|5|XPHB} options.",
+				{
+					"type": "entries",
+					"name": "Invigorate (Cost: 2d6)",
+					"entries": [
+						"Choose a creature you can see within 30 feet of yourself. Until the end of that creature's next turn, whenever it makes an attack roll or a saving throw, it can roll {@dice 1d6} and add the number rolled to the attack roll or saving throw."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Parrying Stance (Cost: 2d6)",
+					"entries": [
+						"Roll {@dice 1d6}. Until the start of your next turn, you gain a bonus to your AC equal to the number rolled."
+					]
+				}
+			]
+		},
+		{
+			"name": "Master Duelist",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "WoW",
+			"subclassShortName": "Swashbuckler",
+			"subclassSource": "WoW",
+			"level": 17,
+			"header": 2,
+			"entries": [
+				"Immediately after you use your {@classFeature Sneak Attack|Rogue|XPHB|1|XPHB}, you can make another attack against the same target, provided you are within 5 feet of it and no other creatures are within 5 feet of you."
 			]
 		},
 		{

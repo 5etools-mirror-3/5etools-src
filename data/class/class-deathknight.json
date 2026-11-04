@@ -1,0 +1,497 @@
+{
+	"_meta": {
+		"dependencies": {
+			"class": [
+				"paladin"
+			],
+			"subclass": [
+				"paladin"
+			],
+			"classFeature": [
+				"paladin"
+			]
+		}
+	},
+	"class": [
+		{
+			"name": "Death Knight",
+			"alias": [
+				"Paladin"
+			],
+			"source": "WoW",
+			"reskinOf": [
+				"Paladin|XPHB"
+			],
+			"isHero": true,
+			"_copy": {
+				"name": "Paladin",
+				"source": "XPHB"
+			},
+			"additionalSpells": [
+				{
+					"prepared": {
+						"2": [
+							"rune strike|wow"
+						],
+						"5": [
+							"find steed|xphb"
+						]
+					}
+				}
+			],
+			"classFeatures": [
+				"Death Coil|Death Knight|WoW|1",
+				"Spellcasting|Paladin|XPHB|1",
+				"Weapon Mastery|Paladin|XPHB|1",
+				"Fighting Style|Paladin|XPHB|2",
+				"Runic Smite|Death Knight|WoW|2",
+				"Channel Divinity|Paladin|XPHB|3",
+				{
+					"classFeature": "Death Knight Subclass|Death Knight|WoW|3",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Paladin|XPHB|4",
+				"Extra Attack|Paladin|XPHB|5",
+				"Faithful Steed|Death Knight|WoW|5",
+				"Aura of Protection|Paladin|XPHB|6",
+				{
+					"classFeature": "Subclass Feature|Paladin|XPHB|7",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Paladin|XPHB|8",
+				"Abjure Foes|Paladin|XPHB|9",
+				"Aura of Courage|Paladin|XPHB|10",
+				"Runic Strikes|Death Knight|WoW|11",
+				"Ability Score Improvement|Paladin|XPHB|12",
+				"Improved Death Coil|Death Knight|WoW|14",
+				{
+					"classFeature": "Subclass Feature|Paladin|XPHB|15",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Paladin|XPHB|16",
+				"Aura Expansion|Paladin|XPHB|18",
+				"Epic Boon|Paladin|XPHB|19",
+				{
+					"classFeature": "Subclass Feature|Paladin|XPHB|20",
+					"gainSubclassFeature": true
+				}
+			],
+			"includeSubclassesFrom": [
+				"Paladin|XPHB"
+			],
+			"subclassTitle": "Death Knight Subclass",
+			"hasFluff": true,
+			"hasFluffImages": true
+		}
+	],
+	"subclass": [
+		{
+			"name": "Oath of the Ebon Blade",
+			"shortName": "Ebon Blade",
+			"source": "WoW",
+			"className": "Death Knight",
+			"classSource": "WoW",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"name": "Blood",
+					"ability": "cha",
+					"prepared": {
+						"3": [
+							"death grip|wow",
+							"vampiric blood|wow"
+						],
+						"5": [
+							"death and decay|wow",
+							"spiritual weapon|xphb"
+						],
+						"9": [
+							"summon undead|xphb",
+							"leeching strike|wow"
+						],
+						"13": [
+							"freedom of movement|xphb",
+							"evard's black tentacles|xphb"
+						],
+						"17": [
+							"circle of power|xphb",
+							"bonestorm|wow"
+						]
+					}
+				},
+				{
+					"name": "Frost",
+					"ability": "cha",
+					"prepared": {
+						"3": [
+							"death grip|wow",
+							"chains of ice|wow"
+						],
+						"5": [
+							"death and decay|wow",
+							"frostscythe|wow"
+						],
+						"9": [
+							"summon undead|xphb",
+							"remorseless winter|wow"
+						],
+						"13": [
+							"freedom of movement|xphb",
+							"ice storm|xphb"
+						],
+						"17": [
+							"circle of power|xphb",
+							"cone of cold|xphb"
+						]
+					}
+				},
+				{
+					"name": "Unholy",
+					"ability": "cha",
+					"prepared": {
+						"3": [
+							"death grip|wow",
+							"scourge strike|wow"
+						],
+						"5": [
+							"death and decay|wow",
+							"ray of enfeeblement|xphb"
+						],
+						"9": [
+							"summon undead|xphb",
+							"bestow curse|xphb"
+						],
+						"13": [
+							"freedom of movement|xphb",
+							"blight|xphb"
+						],
+						"17": [
+							"circle of power|xphb",
+							"contagion|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Oath of the Ebon Blade|Death Knight|WoW|Ebon Blade|WoW|3",
+				"Aura of Deathly Endurance|Death Knight|WoW|Ebon Blade|WoW|7",
+				"Runic Mastery|Death Knight|WoW|Ebon Blade|WoW|15",
+				"Aspect of the Horsemen|Death Knight|WoW|Ebon Blade|WoW|20"
+			]
+		}
+	],
+	"classFeature": [
+		{
+			"name": "Death Coil",
+			"source": "WoW",
+			"className": "Death Knight",
+			"classSource": "WoW",
+			"level": 1,
+			"entries": [
+				"This feature replaces the {@classFeature Lay On Hands|Paladin|XPHB|1|XPHB} feature of the Paladin class.",
+				"Your creature type becomes Undead.",
+				"You also gain the ability to manipulate negative energy. You have a pool of d8s to fuel this ability. The number of dice in the pool equals one plus your Charisma modifier (minimum of one die).",
+				"As a {@variantrule Bonus Action|XPHB}, you can target a creature you can see within 60 feet of yourself and force it to make a Constitution saving throw, expending dice from the pool. The maximum number of dice you can expend at once equals your Charisma modifier (minimum of one die). Roll the dice you expend. The target takes Necrotic damage equal to the roll's total on a failed save or half as much damage on a successful one. If the target is an Undead, you can choose to have it regain {@variantrule Hit Points|XPHB} equal to the roll's total instead. Your pool regains all expended dice when you finish a {@variantrule Long Rest|XPHB}."
+			]
+		},
+		{
+			"name": "Runic Smite",
+			"source": "WoW",
+			"className": "Death Knight",
+			"classSource": "WoW",
+			"level": 2,
+			"entries": [
+				"This feature replaces the Paladin's {@classFeature Paladin's Smite|Paladin|XPHB|2|XPHB|Smite} feature of the Paladin class.",
+				"You always have the {@spell Rune Strike|WoW} spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}."
+			]
+		},
+		{
+			"name": "Death Knight Subclass",
+			"source": "WoW",
+			"className": "Death Knight",
+			"classSource": "WoW",
+			"level": 3,
+			"entries": [
+				"You gain a Death Knight subclass of your choice. A subclass is a specialization that grants you features at certain Death Knight levels. For the rest of your career, you gain each of your subclass's features that are of your Death Knight level or lower."
+			]
+		},
+		{
+			"name": "Faithful Steed",
+			"source": "WoW",
+			"className": "Death Knight",
+			"classSource": "WoW",
+			"level": 5,
+			"entries": [
+				"You can call on the aid of an otherworldly steed. You always have the {@spell Find Steed|XPHB} spell prepared.",
+				"You can also cast the spell once without expending a spell slot, and you regain the ability to do so when you finish a {@variantrule Long Rest|XPHB}.",
+				"In addition to the benefits of the Paladin's {@classFeature Faithful Steed|Paladin|XPHB|5|XPHB} feature, when you cast {@spell Find Steed|XPHB}, the {@b Otherworldly Steed} can be Undead. An Undead steed deals Necrotic damage with its Otherworldly Slam action and has this {@variantrule Bonus Action|XPHB}:",
+				{
+					"type": "entries",
+					"name": "Ghostly Stride (Undead Only; Recharges After a Long Rest)",
+					"entries": [
+						"The steed and its rider can move through other creatures and objects this turn as if they were {@variantrule Difficult Terrain|XPHB}. Both steed and rider take 5 ({@dice 1d10}) Force damage if they end their turn inside an object."
+					]
+				}
+			]
+		},
+		{
+			"name": "Runic Strikes",
+			"source": "WoW",
+			"className": "Death Knight",
+			"classSource": "WoW",
+			"level": 11,
+			"entries": [
+				"This feature replaces the Paladin's {@classFeature Radiant Strikes|Paladin|XPHB|11|XPHB} feature.",
+				"When you hit a target with an attack roll using a Melee weapon or an {@variantrule Unarmed Strike|XPHB}, the target takes an extra {@damage 1d8} Necrotic damage."
+			]
+		},
+		{
+			"name": "Improved Death Coil",
+			"source": "WoW",
+			"className": "Death Knight",
+			"classSource": "WoW",
+			"level": 14,
+			"entries": [
+				"This feature replaces the Paladin's {@classFeature Restoring Touch|Paladin|XPHB|14|XPHB} feature.",
+				"When you use {@classFeature Death Coil|Death Knight|WoW|1|WoW} to deal damage, the target takes extra Necrotic damage equal to your Charisma modifier (minimum of 1) whether or not it fails its saving throw. If the target is an Undead, and you have it regain {@variantrule Hit Points|XPHB}, it regains additional {@variantrule Hit Points|XPHB} equal to your Paladin level."
+			]
+		}
+	],
+	"subclassFeature": [
+		{
+			"name": "Oath of the Ebon Blade",
+			"source": "WoW",
+			"className": "Death Knight",
+			"classSource": "WoW",
+			"subclassShortName": "Ebon Blade",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"{@i Wield the Power of Death Against the Scourge}",
+				"The Oath of the Ebon Blade unites the free death knights of Azeroth. No longer directly under the Lich King's control, they still serve Bolvar Fordragon\u2014first as agents of the new Lich King, and later, after the destruction of the {@item Helm of Domination|WoW}, as troops devoted to stopping the Scourge's spread.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Oath of the Ebon Blade Spells|Death Knight|WoW|Ebon Blade|WoW|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Runeforging|Death Knight|WoW|Ebon Blade|WoW|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Runic Power|Death Knight|WoW|Ebon Blade|WoW|3"
+				}
+			]
+		},
+		{
+			"name": "Oath of the Ebon Blade Spells",
+			"source": "WoW",
+			"className": "Death Knight",
+			"classSource": "WoW",
+			"subclassShortName": "Ebon Blade",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"The magic of your oath and your {@subclassFeature Runeforging|Death Knight|WoW|Ebon Blade|WoW|3|WoW} feature (see below) ensure you always have certain spells ready; when you reach a Paladin level specified in the Oath of the Ebon Blade Spells table, you thereafter always have the spell in the Spells (All) column prepared. You also have the additional spells listed in the column matching the rune you have inscribed on your weapon, if any.",
+				{
+					"type": "table",
+					"caption": "Oath of the Ebon Blade Spells",
+					"colLabels": [
+						"Paladin Level",
+						"Spells (All)",
+						"Spells (Blood)",
+						"Spells (Frost)",
+						"Spells (Unholy)"
+					],
+					"colStyles": [
+						"col-1-2 text-center",
+						"col-2-7",
+						"col-2-7",
+						"col-2-7",
+						"col-2-7"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Death Grip|WoW}",
+							"{@spell Vampiric Blood|WoW}",
+							"{@spell Chains of Ice|WoW}",
+							"{@spell Scourge Strike|WoW}"
+						],
+						[
+							"5",
+							"{@spell Death and Decay|WoW}",
+							"{@spell Spiritual Weapon|XPHB}",
+							"{@spell Frostscythe|WoW}",
+							"{@spell Ray of Enfeeblement|XPHB}"
+						],
+						[
+							"9",
+							"{@spell Summon Undead|XPHB}",
+							"{@spell Leeching Strike|WoW}",
+							"{@spell Remorseless Winter|WoW}",
+							"{@spell Bestow Curse|XPHB}"
+						],
+						[
+							"13",
+							"{@spell Freedom of Movement|XPHB}",
+							"{@spell Evard's Black Tentacles|XPHB}",
+							"{@spell Ice Storm|XPHB}",
+							"{@spell Blight|XPHB}"
+						],
+						[
+							"17",
+							"{@spell Circle of Power|XPHB}",
+							"{@spell Bonestorm|WoW}",
+							"{@spell Cone of Cold|XPHB}",
+							"{@spell Contagion|XPHB}"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Runeforging",
+			"source": "WoW",
+			"className": "Death Knight",
+			"classSource": "WoW",
+			"subclassShortName": "Ebon Blade",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"When you finish a {@variantrule Long Rest|XPHB}, you can inscribe one of the following runes on a melee weapon you are holding, or you can transfer the rune to a different weapon. Whenever you gain a level, you can replace it with a different rune.",
+				{
+					"type": "entries",
+					"name": "Blood",
+					"entries": [
+						"When you inscribe this rune on your weapon, and whenever you finish a {@variantrule Long Rest|XPHB} while the rune is inscribed on your weapon, you gain {@variantrule Temporary Hit Points|XPHB} equal to your Charisma modifier plus your Paladin level. While you are wielding your inscribed weapon, you gain these {@variantrule Temporary Hit Points|XPHB} whenever you reduce an enemy to 0 {@variantrule Hit Points|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Frost",
+					"entries": [
+						"While you are wielding your inscribed weapon, damage from your weapon attacks, Paladin spells, and Paladin features ignores {@variantrule Resistance|XPHB} to Cold damage. When you make the extra attack of the {@itemProperty L|XPHB|Light} property and hit while wielding your inscribed weapon, you deal an extra {@damage 1d4} Cold damage."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Unholy",
+					"entries": [
+						"While you are wielding your inscribed weapon, damage from your weapon attacks, Paladin spells, and Paladin features ignores {@variantrule Resistance|XPHB} to Necrotic damage. If your inscribed weapon has the {@itemProperty H|XPHB|Heavy} property, the first creature you hit with it each turn takes extra Necrotic damage equal to your Charisma modifier (minimum of 1)."
+					]
+				}
+			]
+		},
+		{
+			"name": "Runic Power",
+			"source": "WoW",
+			"className": "Death Knight",
+			"classSource": "WoW",
+			"subclassShortName": "Ebon Blade",
+			"subclassSource": "WoW",
+			"level": 3,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"Immediately after you cast {@spell Rune Strike|WoW}, you can expend one use of your {@classFeature Channel Divinity|Paladin|XPHB|3|XPHB} to gain one of the following benefits based on the rune inscribed on your weapon.",
+				{
+					"type": "entries",
+					"name": "Blood",
+					"entries": [
+						"You regain a number of {@variantrule Hit Points|XPHB} equal to the Necrotic damage dealt with your {@spell Rune Strike|WoW}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Frost",
+					"entries": [
+						"Frost covers your weapon and shatters on impact. The target of your {@spell Rune Strike|WoW} and each enemy in a 10-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the target take {@damage 2d6} Cold damage."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Unholy",
+					"entries": [
+						"The target of your {@spell Rune Strike|WoW} is cursed until the end of your next turn. The next time the cursed target makes a saving throw, it subtracts {@dice 1d6} from the roll, and the curse ends."
+					]
+				}
+			]
+		},
+		{
+			"name": "Aura of Deathly Endurance",
+			"source": "WoW",
+			"className": "Death Knight",
+			"classSource": "WoW",
+			"subclassShortName": "Ebon Blade",
+			"subclassSource": "WoW",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"You and your allies have {@variantrule Resistance|XPHB} to Cold, Necrotic, and Psychic damage while in your {@classFeature Aura of Protection|Paladin|XPHB|6|XPHB}."
+			]
+		},
+		{
+			"name": "Runic Mastery",
+			"source": "WoW",
+			"className": "Death Knight",
+			"classSource": "WoW",
+			"subclassShortName": "Ebon Blade",
+			"subclassSource": "WoW",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"You can invoke the power of the rune inscribed on your weapon. Once you use this feature, you can't do so again until you finish a {@variantrule Long Rest|XPHB}. The effect depends on the rune you have inscribed.",
+				{
+					"type": "entries",
+					"name": "Blood",
+					"entries": [
+						"When a creature hits another creature you can see within 10 feet of you with an attack roll, you can take a {@variantrule Reaction|XPHB} to reduce the damage the target takes by your Paladin level. You then lose a number of {@variantrule Hit Points|XPHB} equal to your Paladin level."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Frost",
+					"entries": [
+						"When you take the {@action Attack|XPHB} action on your turn, you can replace one attack with an exhalation of frost magic in a 30-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}. Each creature in that area makes a Dexterity saving throw against your spell save DC. A creature takes {@damage 8d6} Cold damage on a failed save or half as much damage on a successful one."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Unholy",
+					"entries": [
+						"When you cast {@spell Summon Undead|XPHB}, you can modify it so that the spell doesn't require {@status Concentration|XPHB}. If you do so, the spell's duration becomes 1 minute for that casting, and when summoned, the {@b Undead Spirit} has a number of {@variantrule Temporary Hit Points|XPHB} equal to your Paladin level plus your Charisma modifier. In addition, the first time each turn the spirit hits a creature, the spirit deals extra Necrotic damage equal to half your Paladin level (round up)."
+					]
+				}
+			]
+		},
+		{
+			"name": "Aspect of the Horsemen",
+			"source": "WoW",
+			"className": "Death Knight",
+			"classSource": "WoW",
+			"subclassShortName": "Ebon Blade",
+			"subclassSource": "WoW",
+			"level": 20,
+			"header": 2,
+			"entries": [
+				"As a {@variantrule Bonus Action|XPHB}, you gain the benefits below for 10 minutes or until you end them (no action required). Once you use this feature, you can't use it again until you finish a {@variantrule Long Rest|XPHB}. You can also restore your use of it by expending a level 5 spell slot (no action required).",
+				{
+					"type": "entries",
+					"name": "Generate Runic Power",
+					"entries": [
+						"You can restore a use of your {@subclassFeature Runic Mastery|Death Knight|WoW|Ebon Blade|WoW|15|WoW} by expending a level 4 spell slot (no action required)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Runeforging",
+					"entries": [
+						"When you use your {@subclassFeature Runic Power|Death Knight|WoW|Ebon Blade|WoW|3|WoW} and {@subclassFeature Runic Mastery|Death Knight|WoW|Ebon Blade|WoW|15|WoW} features, you can choose any effect, not just the one that corresponds to the rune inscribed on your weapon."
+					]
+				}
+			]
+		}
+	]
+}

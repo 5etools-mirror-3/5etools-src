@@ -3455,6 +3455,598 @@
 			]
 		},
 		{
+			"name": "Ashbringer",
+			"source": "WoW",
+			"page": 106,
+			"baseItem": "greatsword|xphb",
+			"type": "M|XPHB",
+			"rarity": "artifact",
+			"reqAttune": "by a Paladin",
+			"reqAttuneTags": [
+				{
+					"class": "paladin"
+				}
+			],
+			"sentient": true,
+			"weight": 6,
+			"weaponCategory": "martial",
+			"property": [
+				"H|XPHB",
+				"2H|XPHB"
+			],
+			"mastery": [
+				"Graze|XPHB"
+			],
+			"dmg1": "2d6",
+			"dmgType": "S",
+			"bonusWeapon": "+3",
+			"entries": [
+				"Infused with the Holy Light and forged by King Magni Bronzebeard on the Great Anvil of Ironforge, Ashbringer was once the pride and joy of the knightly Mograine family. But when the traitorous Renault Mograine used the sword to kill his father, it became corrupted. The sword was claimed by the Scourge until Renault's brother, Darion Mograine, betrayed the Lich King and delivered the weapon to Tirion Fordring\u2014an act of heroism that cleansed Ashbringer of its corruption and restored the sword to its rightful form.",
+				{
+					"type": "entries",
+					"name": "Magic Weapon",
+					"entries": [
+						"You gain a +3 bonus to attack rolls and damage rolls made with this magic weapon. It deals an extra {@damage 1d10} Fire damage on a hit, or an extra {@damage 3d10} Fire damage if the target is Undead."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Changing States",
+					"entries": [
+						"When first encountered, Ashbringer is in either its {@item Ashbringer (True State)|WoW|True State} or its {@item Corrupted Ashbringer|WoW|Corrupted State}. At the DM's discretion, Ashbringer changes into its Corrupted State if its wielder uses it to commit an act of legendary wickedness; it changes into its True State if its wielder uses it to commit an act of legendary heroism. Ashbringer's current state grants you one of the following benefits:"
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Steal Life (Corrupted State Only)",
+					"entries": [
+						"Whenever you use Ashbringer to reduce a creature to 0 {@variantrule Hit Points|XPHB}, you gain 20 {@variantrule Temporary Hit Points|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Wake of Ashes (True State Only)",
+					"entries": [
+						"Whenever you use Ashbringer to reduce a creature to 0 {@variantrule Hit Points|XPHB}, you can make its corpse explode into a cloud of smoldering ash. Each creature of your choice in a 10-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the target must succeed on a {@dc 18} Constitution saving throw or have the {@condition Blinded|XPHB} condition until the end of its next turn."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Sentience",
+					"entries": [
+						"Ashbringer is a sentient weapon with an Intelligence of 14, a Wisdom of 17, and a Charisma of 17. It is Lawful Good in its True State or Lawful Evil in its Corrupted State. It has hearing and {@sense Darkvision|XPHB} with a range of 120 feet.",
+						"The weapon communicates telepathically with its wielder and speaks Common and Dwarven."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Personality",
+					"entries": [
+						"Ashbringer's voice sounds like faint, intermittent whispers. In its True State, Ashbringer seeks to serve the forces of the Light and reduce the unholy to ash. In its Corrupted State, Ashbringer wants to undermine faith in the Light and destroy the righteous. Conflict arises if the wielder doesn't share the goals of Ashbringer's current state."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Random Properties",
+					"entries": [
+						"Ashbringer has the following random properties:",
+						{
+							"type": "list",
+							"items": [
+								"1 {@table Artifact Properties; Minor Beneficial Properties|XDMG|minor beneficial} property",
+								"1 {@table Artifact Properties; Major Beneficial Properties|XDMG|major beneficial} property",
+								"1 {@table Artifact Properties; Minor Detrimental Properties|XDMG|minor detrimental} property"
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Destroying Ashbringer",
+					"entries": [
+						"Ashbringer can be destroyed only by its creator, Magni Bronzebeard. The weapon will shatter when he strikes it against the Great Anvil of Ironforge."
+					]
+				}
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Ashbringer (True State)",
+			"source": "WoW",
+			"_copy": {
+				"name": "Ashbringer",
+				"source": "WoW",
+				"_mod": {
+					"entries": [
+						{
+							"mode": "removeArr",
+							"names": [
+								"Steal Life (Corrupted State Only)"
+							]
+						},
+						{
+							"mode": "replaceArr",
+							"replace": "Sentience",
+							"items": {
+								"type": "entries",
+								"name": "Sentience",
+								"entries": [
+									"Ashbringer is a sentient weapon with an Intelligence of 14, a Wisdom of 17, and a Charisma of 17. It is Lawful Good in its True State. It has hearing and {@sense Darkvision|XPHB} with a range of 120 feet.",
+									"The weapon communicates telepathically with its wielder and speaks Common and Dwarven."
+								]
+							}
+						},
+						{
+							"mode": "replaceArr",
+							"replace": "Personality",
+							"items": {
+								"type": "entries",
+								"name": "Personality",
+								"entries": [
+									"Ashbringer's voice sounds like faint, intermittent whispers. In its True State, Ashbringer seeks to serve the forces of the Light and reduce the unholy to ash. Conflict arises if the wielder doesn't share the goals of Ashbringer's current state."
+								]
+							}
+						}
+					]
+				},
+				"_preserve": {
+					"page": true,
+					"hasFluffImages": true
+				}
+			}
+		},
+		{
+			"name": "Ashen Band of Courage",
+			"source": "ICC",
+			"page": 71,
+			"type": "RG|XDMG",
+			"rarity": "uncommon",
+			"reqAttune": "by a Character with Ashen Verdict Renown 3+",
+			"entries": [
+				"This metal band is adorned with five gleaming crystals suggesting a beast's claw. The forge mark of Ormus the Penitent\u2014a stylized O\u2014is imprinted inside the band.",
+				"While wearing this ring, you have {@variantrule Advantage|XPHB} on saving throws to avoid or end the {@condition Charmed|XPHB} and {@condition Frightened|XPHB} conditions."
+			]
+		},
+		{
+			"name": "Ashen Band of Destruction",
+			"source": "ICC",
+			"page": 71,
+			"type": "RG|XDMG",
+			"rarity": "uncommon",
+			"reqAttune": "by a Character with Ashen Verdict Renown 3+",
+			"bonusSpellAttack": "+1",
+			"bonusSpellSaveDc": "+1",
+			"entries": [
+				"This thick metal band is adorned with a skull design, with two luminous blue gems serving as eyes. The forge mark of Ormus the Penitent\u2014a stylized O\u2014is imprinted inside the band.",
+				"While wearing this ring, you gain a +1 bonus to spell attack rolls, and your spell saving throw DC increases by 1."
+			]
+		},
+		{
+			"name": "Ashen Band of Endless Courage",
+			"source": "ICC",
+			"_copy": {
+				"name": "Ashen Band of Courage",
+				"source": "ICC",
+				"_mod": {
+					"entries": {
+						"mode": "replaceArr",
+						"replace": {
+							"regex": "^While wearing this ring,"
+						},
+						"items": "While wearing this ring, you have {@variantrule Immunity|XPHB} to the {@condition Charmed|XPHB} and {@condition Frightened|XPHB} conditions, and you gain a +1 bonus to {@variantrule Armor Class|XPHB}. In addition, you gain a +1 bonus to saving throws."
+					}
+				},
+				"_preserve": {
+					"page": true
+				}
+			},
+			"conditionImmune": [
+				"charmed",
+				"frightened"
+			],
+			"rarity": "legendary",
+			"reqAttune": "by a Character with Ashen Verdict Renown 50+",
+			"bonusAc": "+1",
+			"bonusSavingThrow": "+1"
+		},
+		{
+			"name": "Ashen Band of Endless Destruction",
+			"source": "ICC",
+			"_copy": {
+				"name": "Ashen Band of Destruction",
+				"source": "ICC",
+				"_mod": {
+					"entries": {
+						"mode": "replaceArr",
+						"replace": {
+							"regex": "^While wearing this ring,"
+						},
+						"items": "While wearing this ring, you gain a +3 bonus to spell attack rolls, and your spell saving throw DC increases by 3, and you can treat any 1 you roll on a damage die for a spell you cast as a 2. In addition, your spellcasting ability increases by 2 (to a maximum of 30). You can also add a +3 bonus to one damage roll of each spell you cast."
+					}
+				},
+				"_preserve": {
+					"page": true
+				}
+			},
+			"rarity": "legendary",
+			"reqAttune": "by a Character with Ashen Verdict Renown 50+",
+			"ability": {
+				"choose": [
+					{
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						],
+						"count": 1,
+						"amount": 2
+					}
+				]
+			},
+			"bonusSpellAttack": "+3",
+			"bonusSpellDamage": "+3",
+			"bonusSpellSaveDc": "+3"
+		},
+		{
+			"name": "Ashen Band of Endless Might",
+			"source": "ICC",
+			"_copy": {
+				"name": "Ashen Band of Might",
+				"source": "ICC",
+				"_mod": {
+					"entries": {
+						"mode": "replaceArr",
+						"replace": {
+							"regex": "^While wearing this ring,"
+						},
+						"items": "While wearing this ring, you gain a +1 bonus to damage rolls for melee weapon attacks, and you can treat any 1 you roll on a melee weapon's damage die as a 2. In addition, your Strength is 25. This property has no effect if your Strength is 25 or higher without it."
+					}
+				},
+				"_preserve": {
+					"page": true
+				}
+			},
+			"rarity": "legendary",
+			"reqAttune": "by a Character with Ashen Verdict Renown 50+",
+			"ability": {
+				"static": {
+					"str": 25
+				}
+			}
+		},
+		{
+			"name": "Ashen Band of Endless Vengeance",
+			"source": "ICC",
+			"_copy": {
+				"name": "Ashen Band of Vengeance",
+				"source": "ICC",
+				"_mod": {
+					"entries": {
+						"mode": "replaceArr",
+						"replace": {
+							"regex": "^While wearing this ring,"
+						},
+						"items": "While wearing this ring, you ignore {@variantrule Cover|XPHB|Half Cover} when making a ranged weapon attack roll, you gain a +2 bonus to damage rolls made with ranged weapons, and using a ranged weapon at long range doesn't impose {@variantrule Disadvantage|XPHB} on your attack roll. In addition, you ignore {@variantrule Cover|XPHB|Three-Quarters Cover} when making a ranged attack roll, and the maximum range of your ranged weapon attacks is doubled. You can treat any 1 or 2 you roll on a ranged weapon's damage die as a 3."
+					}
+				},
+				"_preserve": {
+					"page": true
+				}
+			},
+			"rarity": "legendary",
+			"reqAttune": "by a Character with Ashen Verdict Renown 50+"
+		},
+		{
+			"name": "Ashen Band of Endless Wisdom",
+			"source": "ICC",
+			"_copy": {
+				"name": "Ashen Band of Wisdom",
+				"source": "ICC",
+				"_mod": {
+					"entries": {
+						"mode": "replaceArr",
+						"replace": {
+							"regex": "^While wearing this ring,"
+						},
+						"items": "While wearing this ring, you can treat any 1 you roll on a die to restore {@variantrule Hit Points|XPHB} to yourself or another creature as a 2. In addition, whenever an effect you create restores {@variantrule Hit Points|XPHB} to one creature, you can choose another creature within 30 feet of the first to also regain half that many {@variantrule Hit Points|XPHB} (round down). When you cast a spell with a range of touch that doesn't require an attack roll, you can increase the spell's range to 30 feet. Your spellcasting ability also increases by 2 (to a maximum of 30)."
+					}
+				},
+				"_preserve": {
+					"page": true
+				}
+			},
+			"rarity": "legendary",
+			"reqAttune": "by a Character with Ashen Verdict Renown 50+",
+			"ability": {
+				"choose": [
+					{
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						],
+						"count": 1,
+						"amount": 2
+					}
+				]
+			}
+		},
+		{
+			"name": "Ashen Band of Greater Courage",
+			"source": "ICC",
+			"_copy": {
+				"name": "Ashen Band of Courage",
+				"source": "ICC",
+				"_mod": {
+					"entries": {
+						"mode": "replaceArr",
+						"replace": {
+							"regex": "^While wearing this ring,"
+						},
+						"items": "While wearing this ring, you have {@variantrule Advantage|XPHB} on saving throws to avoid or end the {@condition Charmed|XPHB} and {@condition Frightened|XPHB} conditions. In addition, you gain a +1 bonus to {@variantrule Armor Class|XPHB}."
+					}
+				},
+				"_preserve": {
+					"page": true
+				}
+			},
+			"rarity": "rare",
+			"reqAttune": "by a Character with Ashen Verdict Renown 10+",
+			"bonusAc": "+1"
+		},
+		{
+			"name": "Ashen Band of Greater Destruction",
+			"source": "ICC",
+			"_copy": {
+				"name": "Ashen Band of Destruction",
+				"source": "ICC",
+				"_mod": {
+					"entries": {
+						"mode": "replaceArr",
+						"replace": {
+							"regex": "^While wearing this ring,"
+						},
+						"items": "While wearing this ring, you gain a +2 bonus to spell attack rolls, and your spell saving throw DC increases by 2."
+					}
+				},
+				"_preserve": {
+					"page": true
+				}
+			},
+			"rarity": "rare",
+			"reqAttune": "by a Character with Ashen Verdict Renown 10+",
+			"bonusSpellAttack": "+2",
+			"bonusSpellSaveDc": "+2"
+		},
+		{
+			"name": "Ashen Band of Greater Might",
+			"source": "ICC",
+			"_copy": {
+				"name": "Ashen Band of Might",
+				"source": "ICC",
+				"_mod": {
+					"entries": {
+						"mode": "replaceArr",
+						"replace": {
+							"regex": "^While wearing this ring,"
+						},
+						"items": "While wearing this ring, you gain a +1 bonus to damage rolls for melee weapon attacks. In addition, your Strength is 19. This property has no effect if your Strength is 19 or higher without it."
+					}
+				},
+				"_preserve": {
+					"page": true
+				}
+			},
+			"rarity": "rare",
+			"reqAttune": "by a Character with Ashen Verdict Renown 10+",
+			"ability": {
+				"static": {
+					"str": 19
+				}
+			}
+		},
+		{
+			"name": "Ashen Band of Greater Vengeance",
+			"source": "ICC",
+			"_copy": {
+				"name": "Ashen Band of Vengeance",
+				"source": "ICC",
+				"_mod": {
+					"entries": {
+						"mode": "replaceArr",
+						"replace": {
+							"regex": "^While wearing this ring,"
+						},
+						"items": "While wearing this ring, you ignore {@variantrule Cover|XPHB|Half Cover} when making a ranged weapon attack roll, and you gain a +2 bonus to damage rolls made with ranged weapons. In addition, using a ranged weapon at long range doesn't impose {@variantrule Disadvantage|XPHB} on your attack roll."
+					}
+				},
+				"_preserve": {
+					"page": true
+				}
+			},
+			"rarity": "rare",
+			"reqAttune": "by a Character with Ashen Verdict Renown 10+"
+		},
+		{
+			"name": "Ashen Band of Greater Wisdom",
+			"source": "ICC",
+			"_copy": {
+				"name": "Ashen Band of Wisdom",
+				"source": "ICC",
+				"_mod": {
+					"entries": {
+						"mode": "replaceArr",
+						"replace": {
+							"regex": "^While wearing this ring,"
+						},
+						"items": "While wearing this ring, you can treat any 1 you roll on a die to restore {@variantrule Hit Points|XPHB} to yourself or another creature as a 2. In addition, whenever an effect you create restores {@variantrule Hit Points|XPHB} to one creature, you can choose another creature within 30 feet of the first to also regain half that many {@variantrule Hit Points|XPHB} (round down)."
+					}
+				},
+				"_preserve": {
+					"page": true
+				}
+			},
+			"rarity": "rare",
+			"reqAttune": "by a Character with Ashen Verdict Renown 10+"
+		},
+		{
+			"name": "Ashen Band of Might",
+			"source": "ICC",
+			"page": 71,
+			"type": "RG|XDMG",
+			"rarity": "uncommon",
+			"reqAttune": "by a Character with Ashen Verdict Renown 3+",
+			"bonusWeaponDamage": "+1",
+			"entries": [
+				"This metal band is adorned with a stylized helm design, with purple gems forming the nose guard and crest. The forge mark of Ormus the Penitent\u2014a stylized O\u2014is imprinted inside the band.",
+				"While wearing this ring, you gain a +1 bonus to damage rolls for melee weapon attacks."
+			]
+		},
+		{
+			"name": "Ashen Band of Unmatched Courage",
+			"source": "ICC",
+			"_copy": {
+				"name": "Ashen Band of Courage",
+				"source": "ICC",
+				"_mod": {
+					"entries": {
+						"mode": "replaceArr",
+						"replace": {
+							"regex": "^While wearing this ring,"
+						},
+						"items": "While wearing this ring, you have {@variantrule Advantage|XPHB} on saving throws to avoid or end the {@condition Charmed|XPHB} and {@condition Frightened|XPHB} conditions, and you gain a +1 bonus to {@variantrule Armor Class|XPHB}. In addition, you gain a +1 bonus to saving throws."
+					}
+				},
+				"_preserve": {
+					"page": true
+				}
+			},
+			"rarity": "very rare",
+			"reqAttune": "by a Character with Ashen Verdict Renown 25+",
+			"bonusAc": "+1",
+			"bonusSavingThrow": "+1"
+		},
+		{
+			"name": "Ashen Band of Unmatched Destruction",
+			"source": "ICC",
+			"_copy": {
+				"name": "Ashen Band of Destruction",
+				"source": "ICC",
+				"_mod": {
+					"entries": {
+						"mode": "replaceArr",
+						"replace": {
+							"regex": "^While wearing this ring,"
+						},
+						"items": "While wearing this ring, you gain a +3 bonus to spell attack rolls, and your spell saving throw DC increases by 3. In addition, you can treat any 1 you roll on a damage die for a spell you cast as a 2."
+					}
+				},
+				"_preserve": {
+					"page": true
+				}
+			},
+			"rarity": "very rare",
+			"reqAttune": "by a Character with Ashen Verdict Renown 25+",
+			"bonusSpellAttack": "+3",
+			"bonusSpellSaveDc": "+3"
+		},
+		{
+			"name": "Ashen Band of Unmatched Might",
+			"source": "ICC",
+			"_copy": {
+				"name": "Ashen Band of Might",
+				"source": "ICC",
+				"_mod": {
+					"entries": {
+						"mode": "replaceArr",
+						"replace": {
+							"regex": "^While wearing this ring,"
+						},
+						"items": "While wearing this ring, you gain a +1 bonus to damage rolls for melee weapon attacks, and you can treat any 1 you roll on a melee weapon's damage die as a 2. In addition, your Strength is 21. This property has no effect if your Strength is 21 or higher without it."
+					}
+				},
+				"_preserve": {
+					"page": true
+				}
+			},
+			"rarity": "very rare",
+			"reqAttune": "by a Character with Ashen Verdict Renown 25+",
+			"ability": {
+				"static": {
+					"str": 21
+				}
+			}
+		},
+		{
+			"name": "Ashen Band of Unmatched Vengeance",
+			"source": "ICC",
+			"_copy": {
+				"name": "Ashen Band of Vengeance",
+				"source": "ICC",
+				"_mod": {
+					"entries": {
+						"mode": "replaceArr",
+						"replace": {
+							"regex": "^While wearing this ring,"
+						},
+						"items": "While wearing this ring, you ignore {@variantrule Cover|XPHB|Half Cover} when making a ranged weapon attack roll, you gain a +2 bonus to damage rolls made with ranged weapons, and using a ranged weapon at long range doesn't impose {@variantrule Disadvantage|XPHB} on your attack roll. In addition, you ignore {@variantrule Cover|XPHB|Three-Quarters Cover} when making a ranged attack roll, and the maximum range of your ranged weapon attacks is doubled."
+					}
+				},
+				"_preserve": {
+					"page": true
+				}
+			},
+			"rarity": "very rare",
+			"reqAttune": "by a Character with Ashen Verdict Renown 25+"
+		},
+		{
+			"name": "Ashen Band of Unmatched Wisdom",
+			"source": "ICC",
+			"_copy": {
+				"name": "Ashen Band of Wisdom",
+				"source": "ICC",
+				"_mod": {
+					"entries": {
+						"mode": "replaceArr",
+						"replace": {
+							"regex": "^While wearing this ring,"
+						},
+						"items": "While wearing this ring, you can treat any 1 you roll on a die to restore {@variantrule Hit Points|XPHB} to yourself or another creature as a 2. In addition, whenever an effect you create restores {@variantrule Hit Points|XPHB} to one creature, you can choose another creature within 30 feet of the first to also regain half that many {@variantrule Hit Points|XPHB} (round down). When you cast a spell with a range of touch that doesn't require an attack roll, you can increase the spell's range to 30 feet."
+					}
+				},
+				"_preserve": {
+					"page": true
+				}
+			},
+			"rarity": "very rare",
+			"reqAttune": "by a Character with Ashen Verdict Renown 25+"
+		},
+		{
+			"name": "Ashen Band of Vengeance",
+			"source": "ICC",
+			"page": 72,
+			"type": "RG|XDMG",
+			"rarity": "uncommon",
+			"reqAttune": "by a Character with Ashen Verdict Renown 3+",
+			"bonusWeaponDamage": "+2",
+			"entries": [
+				"This metal band is adorned with a stylized helm design, with deep-blue gems forming the nose guard and crest. The forge mark of Ormus the Penitent\u2014a stylized O\u2014is imprinted inside the band.",
+				"While wearing this ring, you ignore {@variantrule Cover|XPHB|Half Cover} when making a ranged weapon attack roll, and you gain a +2 bonus to damage rolls made with ranged weapons."
+			]
+		},
+		{
+			"name": "Ashen Band of Wisdom",
+			"source": "ICC",
+			"page": 72,
+			"type": "RG|XDMG",
+			"rarity": "uncommon",
+			"reqAttune": "by a Character with Ashen Verdict Renown 3+",
+			"entries": [
+				"This metal band is adorned with an oval design suggestive of an eye, with a luminous turquoise stone at the center. The forge mark of Ormus the Penitent\u2014a stylized O\u2014is imprinted inside the band.",
+				"While wearing this ring, you can treat any 1 you roll on a die to restore {@variantrule Hit Points|XPHB} to yourself or another creature as a 2."
+			]
+		},
+		{
 			"name": "Assassin's Blood",
 			"source": "DMG",
 			"page": 258,
@@ -3606,6 +4198,18 @@
 				"word of recall"
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Aviana's Feather",
+			"source": "WoW",
+			"page": 107,
+			"rarity": "legendary",
+			"reqAttune": true,
+			"wondrous": true,
+			"entries": [
+				"While attuned to this golden feather, you can take a {@action Magic|XPHB} action to sprout a pair of glowing, golden wings from your back. The wings give you a {@variantrule Fly Speed|XPHB} of 80 feet, and any creature that makes an {@action Opportunity Attack|XPHB} against you when you fly out of its reach has {@variantrule Disadvantage|XPHB} on the attack roll. If you fall while you have the wings, you descend at a rate of 60 feet per round until you land.",
+				"The wings last until you end the effect early as a {@action Magic|XPHB} action or until your {@variantrule Attunement|XPHB} ends. If you are aloft when the wings disappear, you fall."
+			]
 		},
 		{
 			"name": "Axe Beak",
@@ -5660,6 +6264,24 @@
 				"While you hold the banner, your weapon attacks and those of all allied creatures within 300 feet of you count as magical for the purposes of overcoming damage immunities and resistances."
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Bauble of True Blood",
+			"source": "ICC",
+			"page": 72,
+			"rarity": "very rare",
+			"reqAttune": true,
+			"wondrous": true,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6}",
+			"charges": 9,
+			"entries": [
+				"The red pendant on this necklace has 9 charges and regains {@dice 1d6} expended charges daily at dawn. You can also expend {@variantrule Hit Point Dice|XPHB} when you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB} to replenish its charges, with each {@variantrule Hit Point Dice|XPHB|Hit Die} you expend contributing 1 charge.",
+				"You can expend any number of charges to cast {@spell Cure Wounds|XPHB} from the bauble, with the number of charges determining the level of the spell (maximum of 9 charges for a level 9 spell)."
+			],
+			"attachedSpells": [
+				"cure wounds|xphb"
+			]
 		},
 		{
 			"name": "Bead of Force",
@@ -7782,6 +8404,30 @@
 			"value": 5000,
 			"entries": [
 				"A dark gray with red flecks gemstone."
+			]
+		},
+		{
+			"name": "Bloodvenom Blade",
+			"source": "ICC",
+			"page": 72,
+			"baseItem": "longsword|xphb",
+			"type": "M|XPHB",
+			"rarity": "legendary",
+			"reqAttune": true,
+			"weight": 3,
+			"weaponCategory": "martial",
+			"property": [
+				"V|XPHB"
+			],
+			"mastery": [
+				"Sap|XPHB"
+			],
+			"dmg1": "1d8",
+			"dmgType": "S",
+			"dmg2": "1d10",
+			"bonusWeapon": "+3",
+			"entries": [
+				"You gain a +3 bonus to attack rolls and damage rolls made with this magic weapon. In addition, it deals an extra {@damage 2d6} Poison damage to any creature it hits, and the creature has the {@condition Poisoned|XPHB} condition until the start of your next turn."
 			]
 		},
 		{
@@ -10361,6 +11007,11 @@
 			"page": 229,
 			"srd52": true,
 			"basicRules2024": true,
+			"otherSources": [
+				{
+					"source": "WoW"
+				}
+			],
 			"type": "MNT|XPHB",
 			"rarity": "none",
 			"value": 5000,
@@ -11427,6 +12078,17 @@
 				"Relics - Very Rare|XDMG"
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Cenarion War Hippogryph",
+			"source": "WoW",
+			"type": "MNT|XPHB",
+			"rarity": "none",
+			"value": 200000,
+			"entries": [
+				"Use the {@creature Hippogriff|XMM} stat block.",
+				"{@b Prerequisite:} Renown 50+ with the {@book Cenarion Circle|WoW|4|Cenarion Circle Renown Perks}. If your Renown Score with the Cenarion Circle falls below 50, your mount no longer obeys your commands."
+			]
 		},
 		{
 			"name": "Censer of Controlling Air Elementals",
@@ -13443,6 +14105,50 @@
 			]
 		},
 		{
+			"name": "Corrupted Ashbringer",
+			"source": "WoW",
+			"_copy": {
+				"name": "Ashbringer",
+				"source": "WoW",
+				"_mod": {
+					"entries": [
+						{
+							"mode": "removeArr",
+							"names": [
+								"Wake of Ashes (True State Only)"
+							]
+						},
+						{
+							"mode": "replaceArr",
+							"replace": "Sentience",
+							"items": {
+								"type": "entries",
+								"name": "Sentience",
+								"entries": [
+									"Ashbringer is a sentient weapon with an Intelligence of 14, a Wisdom of 17, and a Charisma of 17. It is Lawful Evil in its Corrupted State. It has hearing and {@sense Darkvision|XPHB} with a range of 120 feet.",
+									"The weapon communicates telepathically with its wielder and speaks Common and Dwarven."
+								]
+							}
+						},
+						{
+							"mode": "replaceArr",
+							"replace": "Personality",
+							"items": {
+								"type": "entries",
+								"name": "Personality",
+								"entries": [
+									"Ashbringer's voice sounds like faint, intermittent whispers. In its Corrupted State, Ashbringer wants to undermine faith in the Light and destroy the righteous. Conflict arises if the wielder doesn't share the goals of Ashbringer's current state."
+								]
+							}
+						}
+					]
+				},
+				"_preserve": {
+					"page": true
+				}
+			}
+		},
+		{
 			"name": "Costume",
 			"source": "XPHB",
 			"page": 225,
@@ -14015,6 +14721,26 @@
 				"While wearing this crown, a character automatically fails any Intelligence ({@skill Investigation}) check made to see through an illusion. An illusion that is touched still has its true nature revealed. However, a character wearing a crown has such a strong sense that the illusion is real that they might not know which of their senses to believe.",
 				"If this crown is closely examined by a character who succeeds on a {@dc 20} Intelligence ({@skill Nature}) or Wisdom ({@skill Perception}) check, or with a {@spell detect magic} spell cast using a 3rd-level or higher spell slot, the nature of its magic is discovered."
 			]
+		},
+		{
+			"name": "Crown of the Ogre King",
+			"source": "WoW",
+			"page": 107,
+			"rarity": "very rare",
+			"reqAttune": true,
+			"wondrous": true,
+			"curse": true,
+			"entries": [
+				"While wearing this crown, you can take a {@action Magic|XPHB} action to release a powerful belch that can be heard up to 300 feet away. Each creature in a 20-foot {@variantrule Cone [Area of Effect]|XPHB|Cone} originating from you makes a {@dc 17} Strength saving throw. On a failed save, a creature is pushed up to 20 feet away from you and has the {@condition Prone|XPHB} condition.",
+				{
+					"type": "entries",
+					"name": "Cursed",
+					"entries": [
+						"This item is cursed. Attuning to it curses you until you are targeted by a {@spell Remove Curse|XPHB} spell or similar magic. Removing the crown fails to end the curse on you. While cursed, you are far hungrier than normal. You lose all your table manners, and your daily food requirement triples."
+					]
+				}
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Crown of the Wrath Bringer",
@@ -18913,6 +19639,40 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Defias Leather",
+			"source": "WoW",
+			"page": 108,
+			"baseItem": "leather armor|xphb",
+			"type": "LA|XPHB",
+			"rarity": "rare",
+			"weight": 10,
+			"ac": 11,
+			"entries": [
+				"Elite members of the Defias Brotherhood wear this armor to honor the faction's stonemason founders. While wearing the armor, you gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Mason's Camouflage",
+					"entries": [
+						"You have {@variantrule Advantage|XPHB} on Dexterity ({@skill Stealth|XPHB}) checks made to hide behind stone objects and structures."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Meld into Stone",
+					"entries": [
+						"You can cast {@spell Meld into Stone|XPHB} from the armor. Once the armor has been used to cast this spell, it can't be used to cast it again until the next dawn."
+					]
+				}
+			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"meld into stone|xphb"
+					]
+				}
+			}
+		},
+		{
 			"name": "Dekella, Bident of Thassa",
 			"source": "MOT",
 			"page": 199,
@@ -19936,6 +20696,18 @@
 			]
 		},
 		{
+			"name": "Dire Wolf",
+			"source": "WoW",
+			"type": "MNT|XPHB",
+			"rarity": "none",
+			"value": 75000,
+			"carryingCapacity": 510,
+			"entries": [
+				"Use the {@creature Dire Wolf|XMM} stat block.",
+				"{@b Prerequisite:} Renown 10+ with {@book Orgrimmar|WoW|4|Orgrimmar Renown Perks}."
+			]
+		},
+		{
 			"name": "Disguise Kit",
 			"source": "PHB",
 			"page": 154,
@@ -20363,6 +21135,113 @@
 			"speed": 40
 		},
 		{
+			"name": "Doomhammer",
+			"source": "WoW",
+			"page": 108,
+			"baseItem": "warhammer|xphb",
+			"type": "M|XPHB",
+			"rarity": "artifact",
+			"reqAttune": "by a Barbarian",
+			"reqAttuneTags": [
+				{
+					"class": "barbarian"
+				}
+			],
+			"weight": 5,
+			"weaponCategory": "martial",
+			"property": [
+				"V|XPHB"
+			],
+			"mastery": [
+				"Push|XPHB"
+			],
+			"dmg1": "1d8",
+			"dmgType": "B",
+			"dmg2": "1d10",
+			"bonusWeapon": "+3",
+			"entries": [
+				"Long ago on the world of Draenor, an orc named Gelnar set out to fashion a weapon that would empower his people against their ogre foes. He forged a fearsome hammer in the heat of an elemental pool of lava. Dubbed Doomhammer, this weapon was passed down through generations of Blackrock orcs. An ancient prophecy foretold that possession of the hammer would someday leave the Blackrock lineage; this prophecy came true when {@creature Thrall|WoW}, an orc shaman, proved himself the weapon's worthy wielder.",
+				{
+					"type": "entries",
+					"name": "Magic Weapon",
+					"entries": [
+						"You gain a +3 bonus to attack rolls and damage rolls made with this magic weapon. It deals an extra {@damage 1d8} Lightning damage on a hit."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Gelnar's Gifts",
+					"entries": [
+						"While holding Doomhammer, you gain the following benefits:",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "Doom Winds",
+									"entries": [
+										"Your fury carries the unbridled momentum of a windstorm. While your {@classFeature Rage|Barbarian|XPHB|1|XPHB} is active, your {@variantrule Speed|XPHB} is doubled, and you can take an extra {@action Attack|XPHB} action (one attack only) on each of your turns."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Lava Stride",
+									"entries": [
+										"You take no damage from molten lava and can walk across it as if it were solid ground."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Lightning Rod",
+									"entries": [
+										"When a creature you can see within 60 feet of you would take Lightning damage, you can take a {@variantrule Reaction|XPHB} to reduce the damage to 0."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Storm's Passage",
+									"entries": [
+										"You can cast {@spell Wind Walk|XPHB} from this weapon. Once the weapon has been used to cast this spell, it can't be used to cast it again until the next dawn."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Random Properties",
+					"entries": [
+						"Doomhammer has the following random properties:",
+						{
+							"type": "list",
+							"items": [
+								"2 {@table Artifact Properties; Minor Beneficial Properties|XDMG|minor beneficial} properties",
+								"1 {@table Artifact Properties; Major Beneficial Properties|XDMG|major beneficial} property",
+								"1 {@table Artifact Properties; Minor Detrimental Properties|XDMG|minor detrimental} property"
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Destroying Doomhammer",
+					"entries": [
+						"To destroy Doomhammer, a descendant of Gelnar must hurl the weapon into the eye of a storm in Outland, the remnants of the destroyed world of Draenor."
+					]
+				}
+			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"wind walk|xphb"
+					]
+				}
+			},
+			"hasFluffImages": true
+		},
+		{
 			"name": "Dowsing Dagger",
 			"source": "XMtS",
 			"page": 19,
@@ -20437,6 +21316,11 @@
 			"page": 229,
 			"srd52": true,
 			"basicRules2024": true,
+			"otherSources": [
+				{
+					"source": "WoW"
+				}
+			],
 			"type": "MNT|XPHB",
 			"rarity": "none",
 			"value": 5000,
@@ -21952,6 +22836,18 @@
 			"type": "$C",
 			"rarity": "none",
 			"value": 50
+		},
+		{
+			"name": "Elekk",
+			"source": "WoW",
+			"type": "MNT|XPHB",
+			"rarity": "none",
+			"value": 40000,
+			"carryingCapacity": 510,
+			"entries": [
+				"Use the {@creature Giant Goat|XMM} stat block.",
+				"{@b Prerequisite:} Renown 10+ with the {@book Exodar|WoW|4|Exodar Renown Perks}."
+			]
 		},
 		{
 			"name": "Elemental Essence Shard",
@@ -23514,6 +24410,17 @@
 			]
 		},
 		{
+			"name": "Experimental Goblin Jetpack",
+			"source": "WoW",
+			"page": 108,
+			"rarity": "rare",
+			"reqAttune": true,
+			"wondrous": true,
+			"entries": [
+				"While wearing this pack, you can take a {@action Magic|XPHB} action to fire up its jets. The jets remain active for 1 hour or until you end the effect early as a {@action Magic|XPHB} action. The jets give you a {@variantrule Fly Speed|XPHB} of 60 feet. If you are aloft when the jets become inactive, you fall. When the jets stop, you can't use them again for {@dice 1d12} hours."
+			]
+		},
+		{
 			"name": "Explorer's Pack",
 			"source": "PHB",
 			"page": 151,
@@ -24903,6 +25810,25 @@
 			"capCargo": 100
 		},
 		{
+			"name": "Figurine of Wondrous Power (Jeweled Panther)",
+			"source": "WoW",
+			"page": 108,
+			"rarity": "rare",
+			"wondrous": true,
+			"entries": [
+				"A {@item Figurine of Wondrous Power|XDMG} is a statuette small enough to fit in a pocket. If you take a {@action Magic|XPHB} action to throw the figurine to a point on the ground within 60 feet of yourself, the figurine becomes a living creature specified in the figurine's description below. If the space where the creature would appear is occupied by other creatures or objects, or if there isn't enough space for the creature, the figurine doesn't become a creature.",
+				"The creature is {@variantrule Friendly [Attitude]|XPHB|Friendly} to you and your allies. It understands your languages, obeys your commands, and takes its turn immediately after you on your {@variantrule Initiative|XPHB} count. If you issue no commands, the creature defends itself but takes no other actions.",
+				"The creature exists for a duration specific to each figurine. At the end of the duration, the creature reverts to its figurine form. It reverts to a figurine early if its creature form drops to 0 {@variantrule Hit Points|XPHB} or if you take a {@action Magic|XPHB} action while touching the creature to make it revert to figurine form. When the creature becomes a figurine again, its property can't be used again until a certain amount of time has passed, as specified below.",
+				{
+					"type": "entries",
+					"name": "Jeweled Panther (Rare)",
+					"entries": [
+						"This statuette is of a panther made from jade, onyx, ruby, sapphire, or sunstone. It can become a Large {@creature Panther|XMM} with a {@variantrule Fly Speed|XPHB} of 30 feet for up to 12 hours and can be ridden as a mount. Once it has been used, it can't be used again until 2 days have passed."
+					]
+				}
+			]
+		},
+		{
 			"name": "Figurine of Wondrous Power, Bronze Griffon",
 			"source": "DMG",
 			"page": 169,
@@ -25765,6 +26691,20 @@
 			}
 		},
 		{
+			"name": "Flask of the Titans",
+			"source": "WoW",
+			"page": 109,
+			"type": "P|XPHB",
+			"rarity": "very rare",
+			"entries": [
+				"When you drink this potion, your {@variantrule Hit Points|XPHB|Hit Point} maximum and current {@variantrule Hit Points|XPHB} increase by 30 for 1 hour.",
+				"The golden liquid in this flask tastes like honey and gleams with the light of dawn."
+			],
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
 			"name": "Flayer Slayer",
 			"source": "PaBTSO",
 			"page": 217,
@@ -25990,6 +26930,24 @@
 			],
 			"seeAlsoVehicle": [
 				"flying fish ship|aag"
+			]
+		},
+		{
+			"name": "Flying Machine",
+			"source": "WoW",
+			"type": "AIR|XPHB",
+			"rarity": "none",
+			"crew": 1,
+			"vehAc": 19,
+			"vehHp": 27,
+			"vehSpeed": 4,
+			"capPassenger": 0,
+			"capCargo": 0.15,
+			"hasRefs": true,
+			"entries": [
+				"A small gyrocopter with a rotor on top, two side-mounted engines, and skis as landing gear.",
+				"{#itemEntry Powered Vehicles|WoW}",
+				"A Flying Machine can't be purchased; it must be made by a character with expert {@book engineering|WoW|3|Engineering}. Crafting the machine requires 2,000 GP of resources."
 			]
 		},
 		{
@@ -26259,6 +27217,16 @@
 			]
 		},
 		{
+			"name": "Fragment of Frozen Bone",
+			"source": "ICC",
+			"page": 73,
+			"rarity": "very rare",
+			"wondrous": true,
+			"entries": [
+				"As a {@action Magic|XPHB} action, you can use a command word to cause this tiny piece of bone from {@creature Lord Marrowgar|ICC|Lord Marrowgar's} remains to transform into a miniature replica of Lord Marrowgar called Boneshard. Boneshard serves as an undead companion creature using the rules in D&D: {@book World of Warcraft|WoW}. It remains transformed until you use the command word to dismiss it, it takes any damage, or you summon another companion creature. Occasionally it shouts, \"BONE STORM!\" as it circles you on the ground."
+			]
+		},
+		{
 			"name": "Fragmentation Grenade",
 			"source": "DMG",
 			"page": 268,
@@ -26352,6 +27320,112 @@
 			],
 			"miscTags": [
 				"TT"
+			]
+		},
+		{
+			"name": "Frostmourne",
+			"source": "WoW",
+			"page": 109,
+			"baseItem": "greatsword|xphb",
+			"type": "M|XPHB",
+			"rarity": "artifact",
+			"reqAttune": true,
+			"weight": 6,
+			"weaponCategory": "martial",
+			"property": [
+				"H|XPHB",
+				"2H|XPHB"
+			],
+			"mastery": [
+				"Graze|XPHB"
+			],
+			"dmg1": "2d6",
+			"dmgType": "S",
+			"bonusWeapon": "+3",
+			"entries": [
+				"Runes of domination adorn this icy mourneblade. The Jailer\u2014one of the rulers of the Shadowlands\u2014originally sought to use Frostmourne to subjugate Azeroth, and that cruel intention forever lingers in the form of a prophecy: \"Whosoever takes up this blade shall wield power eternal. Just as the blade rends flesh, so must power scar the spirit.\" Arthas Menethil was the first to discover the prophecy's true meaning when he lost his soul by wielding the sword, ultimately becoming the {@creature Lich King Arthas|WoW|Lich King}.",
+				{
+					"type": "entries",
+					"name": "Magic Weapon",
+					"entries": [
+						"You gain a +3 bonus to attack rolls and damage rolls made with this magic weapon. It deals an extra {@damage 2d12} Cold damage on a hit. Whenever you use Frostmourne to reduce a creature to 0 {@variantrule Hit Points|XPHB}, the creature dies, and its soul is trapped in the sword. The target can't be raised from the dead until Frostmourne is destroyed."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Pawn of the Lich King",
+					"entries": [
+						"While you're attuned to Frostmourne, the Lich King can see through your eyes, hear through your ears, and communicate with you telepathically over any distance, even across planes."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Prophecy of Frostmourne",
+					"entries": [
+						"When you attune to Frostmourne, your creature type becomes Undead, and your alignment becomes Neutral Evil. These changes remain even if your {@variantrule Attunement|XPHB} ends."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Twisted Aura",
+					"entries": [
+						"If you are a Paladin, you also gain the following benefits while attuned to Frostmourne:",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "Marshal Undead",
+									"entries": [
+										"Undead creatures of your choice (excluding you) in your {@classFeature Aura of Protection|Paladin|XPHB|6|XPHB} have {@variantrule Advantage|XPHB} on attack rolls and saving throws."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Numb to Cold",
+									"entries": [
+										"Allies in your {@classFeature Aura of Protection|Paladin|XPHB|6|XPHB} have {@variantrule Immunity|XPHB} to Cold damage."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Random Properties",
+					"entries": [
+						"Frostmourne has the following random properties:",
+						{
+							"type": "list",
+							"items": [
+								"1 {@table Artifact Properties; Major Beneficial Properties|XDMG|major beneficial} property",
+								"1 {@table Artifact Properties; Minor Detrimental Properties|XDMG|minor detrimental} property",
+								"1 {@table Artifact Properties; Major Detrimental Properties|XDMG|major detrimental} property"
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Destroying Frostmourne",
+					"entries": [
+						"Frostmourne shatters if its wielder is slain by the legendary sword {@item Ashbringer|WoW}. Only the Runecarver, who forged the weapon at the Jailer's command, can reforge Frostmourne from the resulting fragments."
+					]
+				}
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Fuel",
+			"source": "WoW",
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 10,
+			"value": 100,
+			"entries": [
+				"This Fuel powers a vehicle for 8 hours of travel. Characters can use the {@book alchemy|WoW|3|Alchemy} profession to craft Fuel."
 			]
 		},
 		{
@@ -26962,6 +28036,41 @@
 			]
 		},
 		{
+			"name": "Giant Goat",
+			"source": "WoW",
+			"type": "MNT|XPHB",
+			"rarity": "none",
+			"value": 40000,
+			"carryingCapacity": 510,
+			"entries": [
+				"Use the {@creature Giant Goat|XMM} stat block.",
+				"{@b Prerequisite:} Renown 10+ with {@book Ironforge|WoW|4|Ironforge Renown Perks}."
+			]
+		},
+		{
+			"name": "Giant Hyena",
+			"source": "WoW",
+			"type": "MNT|XPHB",
+			"rarity": "none",
+			"value": 75000,
+			"carryingCapacity": 480,
+			"entries": [
+				"Use the {@creature Giant Hyena|XMM} stat block.",
+				"{@b Prerequisite:} Renown 10+ with {@book Steamwheedle Cartel|WoW|4|Steamwheedle Cartel}."
+			]
+		},
+		{
+			"name": "Giant Seahorse",
+			"source": "WoW",
+			"type": "MNT|XPHB",
+			"rarity": "none",
+			"value": 100000,
+			"carryingCapacity": 450,
+			"entries": [
+				"Use the {@creature Giant Seahorse|XMM} stat block."
+			]
+		},
+		{
 			"name": "Giant Trinket",
 			"source": "BGG",
 			"page": 16,
@@ -27347,6 +28456,26 @@
 			]
 		},
 		{
+			"name": "Gnomeregan Engineering Device",
+			"source": "WoW",
+			"_copy": {
+				"name": "Wand of Wonder",
+				"source": "XDMG",
+				"_mod": {
+					"type": "remove",
+					"reqAttune": "remove",
+					"weight": "remove",
+					"recharge": "remove",
+					"rechargeAmount": "remove"
+				}
+			},
+			"wondrous": true,
+			"entries": [
+				"{@i Prerequisite: Renown 25+ with Gnomeregan}",
+				"You can request a complicated engineering device from the leaders of Gnomeregan before you undertake a quest on their behalf. You receive a mechanical device that functions as a {@item Wand of Wonder|XDMG}, but it can't regain charges, and it explodes dramatically but harmlessly when its last charge is expended. The device doesn't require Attunement, but it functions only for you."
+			]
+		},
+		{
 			"name": "Goat",
 			"source": "PHB",
 			"page": 157,
@@ -27366,6 +28495,36 @@
 			"type": "TG|XDMG",
 			"rarity": "none",
 			"value": 100
+		},
+		{
+			"name": "Goblin Jumper Cables",
+			"source": "WoW",
+			"page": 109,
+			"rarity": "uncommon",
+			"wondrous": true,
+			"entries": [
+				"As a {@action Magic|XPHB} action, you can attach these cables to a dead creature and attempt to return the creature to life. Make a {@dc 15} Intelligence ({@skill Arcana|XPHB}) check using {@item Tinker's Tools|XPHB}. On a successful check, the creature revives with 1 {@variantrule Hit Points|XPHB|Hit Point} as long as the creature has been dead no longer than 1 minute and didn't die of old age. On a failed check, you take {@damage 2d6} Lightning damage.",
+				"Once used, a set of Goblin Jumper Cables can't be used again until the next dawn."
+			]
+		},
+		{
+			"name": "Goblin Trike",
+			"source": "WoW",
+			"type": "VEH|XPHB",
+			"rarity": "none",
+			"value": 40000,
+			"crew": 1,
+			"vehAc": 19,
+			"vehHp": 27,
+			"vehSpeed": 3,
+			"capPassenger": 0,
+			"capCargo": 0.3,
+			"hasRefs": true,
+			"entries": [
+				"A three-wheeled motor vehicle with luxurious wood paneling.",
+				"{#itemEntry Powered Vehicles|WoW}",
+				"{@b Prerequisite:} Renown 10+ with any goblin cartel."
+			]
 		},
 		{
 			"name": "Goggles of Night",
@@ -28578,6 +29737,18 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Gryphon",
+			"source": "WoW",
+			"type": "MNT|XPHB",
+			"rarity": "none",
+			"value": 200000,
+			"carryingCapacity": 540,
+			"entries": [
+				"Use the {@creature Griffon|XMM} stat block.",
+				"{@b Prerequisite:} Renown 25+ with the {@book Alliance|WoW|4|Alliance Renown Perks}."
+			]
+		},
+		{
 			"name": "Guardian Emblem",
 			"source": "TCE",
 			"page": 128,
@@ -29685,6 +30856,18 @@
 			]
 		},
 		{
+			"name": "Hawkstrider",
+			"source": "WoW",
+			"type": "MNT|XPHB",
+			"rarity": "none",
+			"value": 15000,
+			"carryingCapacity": 420,
+			"entries": [
+				"Use the {@creature Axe Beak|XMM} stat block.",
+				"{@b Prerequisite:} Renown 10+ with {@book Silvermoon City|WoW|4|Silvermoon City Renown Perks}."
+			]
+		},
+		{
 			"name": "Hazirawn",
 			"source": "HotDQ",
 			"page": 94,
@@ -29907,6 +31090,19 @@
 				"hypnotic pattern",
 				"modify memory",
 				"suggestion"
+			]
+		},
+		{
+			"name": "Hearthstone",
+			"source": "WoW",
+			"page": 109,
+			"rarity": "uncommon",
+			"reqAttune": true,
+			"wondrous": true,
+			"entries": [
+				"A Hearthstone teleports you to a predetermined location\u2014usually an inn. Activating the stone takes 1 minute and a {@action Magic|XPHB} action. You appear in an unoccupied space within 30 feet of the destination you previously set.",
+				"While you are at an inn (or other locations at the DM's discretion), you can take a {@action Magic|XPHB} action to set that location as the destination for your Hearthstone's teleportation. That location becomes your destination until you change it.",
+				"One Hearthstone doesn't count against the number of magic items you can have {@variantrule Attunement|XPHB} to."
 			]
 		},
 		{
@@ -30253,6 +31449,139 @@
 				}
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Helm of Domination",
+			"source": "WoW",
+			"page": 110,
+			"rarity": "artifact",
+			"reqAttune": true,
+			"wondrous": true,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d4 + 4}",
+			"charges": 8,
+			"entries": [
+				"This ornate helm is infused with the power of domination\u2014a form of runic magic intended to utterly suppress the will of another being. The helm (along with its companion Artifact, {@item Frostmourne|WoW}) allowed its wearers\u2014three successive Lich Kings\u2014to rule the Scourge.",
+				{
+					"type": "entries",
+					"name": "Attuning to the Helm",
+					"entries": [
+						"When you attune to the helm, make a {@dc 18} Charisma saving throw. On a successful save, you take {@damage 10d6} Psychic damage. On a failed save, your soul merges with the Lich King, who then takes control of your body like a puppet, and you become an NPC under the DM's control.",
+						"While attuned to the helm, you are unwilling to part with the helm, wearing it at all times, and you can't voluntarily end your {@variantrule Attunement|XPHB} to the helm."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Properties of the Helm",
+					"entries": [
+						"While attuned to the helm, your alignment is Neutral Evil, and you gain the following benefits:",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "Command the Scourge",
+									"entries": [
+										"As a {@action Magic|XPHB} action, you can send a psychic command to each Undead that is part of the Scourge. Make an ability check using your spellcasting ability ({@dc 20}). On a successful check, you can issue a general command to the Undead Scourge, such as \"attack any creature you come across\" or \"guard my stronghold,\" or you can issue a command to a specific member of the Scourge, such as \"deliver a plague to Stormwind.\" Whether or not you succeed, this property of the helm can't be used again until the next dawn."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Truesight",
+									"entries": [
+										"You have {@sense Truesight|XPHB} with a range of 120 feet."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Spellcasting",
+									"entries": [
+										"The helm has 8 charges and regains {@dice 1d4 + 4} expended charges daily at dawn. While wearing the helm, you can cast one of the spells on the following table from it (save {@dc 18}). The table indicates how many charges you must expend to cast the spell.",
+										{
+											"type": "table",
+											"colLabels": [
+												"Spell",
+												"Charge Cost"
+											],
+											"colStyles": [
+												"col-10",
+												"col-2 text-center"
+											],
+											"rows": [
+												[
+													"{@spell Animate Dead|XPHB}",
+													"1"
+												],
+												[
+													"{@spell Clairvoyance|XPHB}",
+													"2"
+												],
+												[
+													"{@spell Dream|XPHB}",
+													"4"
+												],
+												[
+													"{@spell Speak with Dead|XPHB}",
+													"1"
+												],
+												[
+													"{@spell Telepathy|XPHB}",
+													"5"
+												],
+												[
+													"{@spell Word of Recall|XPHB}",
+													"5"
+												]
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Random Properties",
+					"entries": [
+						"The Helm of Domination has the following random properties:",
+						{
+							"type": "list",
+							"items": [
+								"1 {@table Artifact Properties; Major Beneficial Properties|XDMG|major beneficial} property",
+								"1 {@table Artifact Properties; Minor Detrimental Properties|XDMG|minor detrimental} property",
+								"1 {@table Artifact Properties; Major Detrimental Properties|XDMG|major detrimental} property"
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Destroying the Helm of Domination",
+					"entries": [
+						"The helm is shattered if struck by a blade forged in the Shadowlands. Only the Runecarver, who originally forged the helm, can reforge it from the fragments."
+					]
+				}
+			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"animate dead|xphb",
+						"speak with dead|xphb"
+					],
+					"2": [
+						"clairvoyance|xphb"
+					],
+					"4": [
+						"dream|xphb"
+					],
+					"5": [
+						"telepathy|xphb",
+						"word of recall|xphb"
+					]
+				}
+			}
 		},
 		{
 			"name": "Helm of Perfect Potential",
@@ -33893,6 +35222,37 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Invincible's Reins",
+			"source": "ICC",
+			"page": 73,
+			"rarity": "legendary",
+			"reqAttune": true,
+			"wondrous": true,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d3}",
+			"charges": 3,
+			"entries": [
+				"These reins are a heavy metal chain attached to a bridle set with glowing blue crystals. The reins have 3 charges and regain {@dice 1d3} expended charges daily at dawn. You can expend 1 charge to cast {@spell Find Steed|XPHB} (level 5 version).",
+				"When you cast {@spell Find Steed|XPHB} from the reins, the summoned steed is Invincible, the mount of {@creature Lich King Arthas|WoW|Arthas}\u2014an Undead horse with mummified flesh, glowing blue eyes, and batlike wings. The steed has the Undead type, deals Necrotic damage with its Otherworldly Slam attack, and has this {@variantrule Bonus Action|XPHB}:",
+				{
+					"type": "entries",
+					"name": "Ghostly Stride (Undead Only; Recharges After a Long Rest)",
+					"entries": [
+						"The steed and its rider can move through other creatures and objects this turn as if they were {@variantrule Difficult Terrain|XPHB}. Both steed and rider take 5 ({@damage 1d10}) Force damage if they end their turn inside an object."
+					]
+				},
+				"Invincible is Neutral Evil and unshakably loyal to Arthas, the Lich King. Use the guidelines for conflict with sentient magic items in the {@book Dungeon Master's Guide|XDMG} to determine what happens if Invincible's rider acts contrary to the mount's alignment or in opposition to the Lich King. Invincible can refuse the reins' summons in situations of conflict."
+			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"find steed|xphb"
+					]
+				}
+			},
+			"hasFluffImages": true
+		},
+		{
 			"name": "Ioun Stone of Vitality",
 			"source": "IMR",
 			"page": 94,
@@ -35877,6 +37237,27 @@
 			"value": 750000
 		},
 		{
+			"name": "Judgment Armor",
+			"source": "WoW",
+			"page": 110,
+			"baseItem": "plate armor|xphb",
+			"type": "HA|XPHB",
+			"rarity": "legendary",
+			"weight": 65,
+			"ac": 18,
+			"strength": "15",
+			"stealth": true,
+			"entries": [
+				"While wearing this armor, you are under the effects of the {@spell Detect Evil and Good|XPHB} and {@spell Protection from Evil and Good|XPHB} spells (no {@status Concentration|XPHB} required). If you are a Paladin, the effects of {@spell Protection from Evil and Good|XPHB} extend to creatures of your choice in your {@classFeature Aura of Protection|Paladin|XPHB|6|XPHB}."
+			],
+			"attachedSpells": {
+				"other": [
+					"detect evil and good|xphb",
+					"protection from evil and good|xphb"
+				]
+			}
+		},
+		{
 			"name": "Jug",
 			"source": "PHB",
 			"page": 153,
@@ -36439,6 +37820,18 @@
 				"As an action, you can throw this card to an unoccupied space on the ground within 60 feet of yourself while speaking a command word, whereupon the card magically transforms into a {@creature deck defender|BMT} (see {@book chapter 9|BMT|8|Deck Defender} for its stat block) for up to 1 minute or until you use an action to speak the command word again, whereupon it transforms back into a card. The deck defender obeys your spoken commands. If you issue no commands, it takes the {@action Dodge} action and moves to avoid danger. The deck defender reverts to a card early if it drops to 0 hit points. Once this property is used, it can't be used again until the next dawn."
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Kodo",
+			"source": "WoW",
+			"type": "MNT|XPHB",
+			"rarity": "none",
+			"value": 10000,
+			"carryingCapacity": 450,
+			"entries": [
+				"Use the {@creature Giant Lizard|XMM} stat block.",
+				"{@b Prerequisite:} Renown 10+ with {@book Thunder Bluff|WoW|4|Thunder Bluff Renown Perks}."
+			]
 		},
 		{
 			"name": "Korolnor Scepter",
@@ -37248,6 +38641,68 @@
 			]
 		},
 		{
+			"name": "Life-Staff of the Web Lair",
+			"source": "WoW",
+			"page": 110,
+			"type": "M|XPHB",
+			"rarity": "legendary",
+			"reqAttune": true,
+			"weight": 4,
+			"weaponCategory": "simple",
+			"property": [
+				"V|XPHB"
+			],
+			"mastery": [
+				"Topple|XPHB"
+			],
+			"dmg1": "1d6",
+			"dmgType": "B",
+			"dmg2": "1d8",
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6 + 2}",
+			"charges": 8,
+			"staff": true,
+			"entries": [
+				"This staff has 8 charges.",
+				{
+					"type": "entries",
+					"name": "Arachnid's Grace",
+					"entries": [
+						"While attuned to the staff, you can move up, down, and across vertical surfaces and along ceilings without using your hands. You also gain a {@variantrule Climb Speed|XPHB} equal to your {@variantrule Speed|XPHB}. You ignore movement restrictions caused by webs, and you know the location of any other creature in contact with the same web."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Web",
+					"entries": [
+						"While holding the staff, you can expend 1 charge to cast {@spell Web|XPHB} (save {@dc 18}) from it."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Vampiric Silk",
+					"entries": [
+						"While holding the staff, you can take a {@variantrule Bonus Action|XPHB} and expend 1 charge to have a creature in the area of your {@spell Web|XPHB} spell make a {@dc 18} Constitution saving throw. (The creature makes the save with {@variantrule Disadvantage|XPHB} if it has the {@condition Restrained|XPHB} condition from the webbing.) The creature takes {@damage 4d10} Necrotic damage on a failed save or half as much damage on a successful one. Either way, you regain {@variantrule Hit Points|XPHB} equal to half the damage dealt."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Regaining Charges",
+					"entries": [
+						"The staff regains {@dice 1d6 + 2} expended charges daily at dawn. If you expend the last charge, roll {@dice 1d20}. On a 1, the staff dissolves into a swarm of harmless spiders and is destroyed."
+					]
+				}
+			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"web|xphb"
+					]
+				}
+			},
+			"hasFluffImages": true
+		},
+		{
 			"name": "Lifewell Tattoo",
 			"source": "TCE",
 			"page": 129,
@@ -37283,6 +38738,67 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Light's Vengeance",
+			"source": "ICC",
+			"page": 73,
+			"baseItem": "maul|xphb",
+			"type": "M|XPHB",
+			"rarity": "artifact",
+			"reqAttune": true,
+			"weight": 10,
+			"weaponCategory": "martial",
+			"property": [
+				"H|XPHB",
+				"2H|XPHB"
+			],
+			"mastery": [
+				"Topple|XPHB"
+			],
+			"dmg1": "2d6",
+			"dmgType": "B",
+			"bonusWeapon": "+3",
+			"entries": [
+				"Light's Vengeance is the weapon Arthas Menethil wielded during his life as a paladin in service to the Order of the Silver Hand\u2014before his corruption and transformation into the {@creature Lich King Arthas|WoW|Lich King}. An enormous and heavy hammer, its silver head etched with runes of power and its haft wrapped in blue leather, it carries the blessing of the Light. Arthas discarded the weapon when he took up {@item Frostmourne|WoW}.",
+				{
+					"type": "entries",
+					"name": "Magic Weapon",
+					"entries": [
+						"You gain a +3 bonus to attack rolls and damage rolls made with this weapon, and it deals an extra {@damage 2d10} Radiant damage to Undead."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Repel Undead",
+					"entries": [
+						"While holding the weapon, you can take the {@action Magic|XPHB} action to cause brilliant light to burst around you in a 30-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation}. Each Undead in the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} makes a {@dc 20} Wisdom saving throw. On a failed save, a target takes {@damage 4d8} Radiant damage and has the {@condition Frightened|XPHB} and {@condition Incapacitated|XPHB} conditions for 1 minute. While {@condition Frightened|XPHB}, a target must use its movement on each of its turns to move as far from you as it can. This effect ends early on a target if it takes any damage."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Random Properties",
+					"entries": [
+						"Though Light's Vengeance was blessed by the Light and wielded by the Light's champion, the weapon carries the stain of the Lich King's corruption. The weapon has the following random properties:",
+						{
+							"type": "list",
+							"items": [
+								"2 {@table Artifact Properties; Minor Beneficial Properties|XDMG|minor beneficial} properties",
+								"1 {@table Artifact Properties; Major Beneficial Properties|XDMG|major beneficial} property",
+								"2 {@table Artifact Properties; Minor Detrimental Properties|XDMG|minor detrimental} properties"
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Destroying the Weapon",
+					"entries": [
+						"Striking Light's Vengeance with {@item Frostmourne|WoW} destroys the {@item maul|XPHB}."
+					]
+				}
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Lightbringer",
@@ -39860,6 +41376,37 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Mechano-Hog",
+			"source": "WoW",
+			"type": "VEH|XPHB",
+			"rarity": "none",
+			"value": 400000,
+			"crew": 1,
+			"vehAc": 19,
+			"vehHp": 27,
+			"vehSpeed": 4,
+			"capPassenger": 1,
+			"capCargo": 0.4,
+			"hasRefs": true,
+			"entries": [
+				"A powerful motorcycle with an optional sidecar, made by the Horde.",
+				"{#itemEntry Powered Vehicles|WoW}",
+				"{@b Prerequisite:} Renown 10+ with the {@book Horde|WoW|4|Horde Renown Perks}."
+			]
+		},
+		{
+			"name": "Mechanostrider",
+			"source": "WoW",
+			"type": "MNT|XPHB",
+			"rarity": "none",
+			"value": 45000,
+			"carryingCapacity": 420,
+			"entries": [
+				"Use the {@creature Mechanostrider|WoW} stat block.",
+				"{@b Prerequisite:} Renown 10+ with {@book Gnomeregan|WoW|4|Gnomeregan Renown Perks}."
+			]
+		},
+		{
 			"name": "Medal of Muscle",
 			"source": "CRCotN",
 			"page": 214,
@@ -40006,6 +41553,25 @@
 				"Arcana - Uncommon|XDMG"
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Mekgineer's Chopper",
+			"source": "WoW",
+			"type": "VEH|XPHB",
+			"rarity": "none",
+			"value": 400000,
+			"crew": 1,
+			"vehAc": 19,
+			"vehHp": 27,
+			"vehSpeed": 4,
+			"capPassenger": 1,
+			"capCargo": 0.4,
+			"hasRefs": true,
+			"entries": [
+				"A powerful motorcycle with an optional sidecar, made by the Alliance.",
+				"{#itemEntry Powered Vehicles|WoW}",
+				"{@b Prerequisite:} Renown 10+ with the {@book Alliance|WoW|4|Alliance Renown Perks}."
+			]
 		},
 		{
 			"name": "Menga leaves (1 ounce)",
@@ -42467,6 +44033,18 @@
 			]
 		},
 		{
+			"name": "Nightsaber",
+			"source": "WoW",
+			"type": "MNT|XPHB",
+			"rarity": "none",
+			"value": 75000,
+			"carryingCapacity": 510,
+			"entries": [
+				"Use the {@creature Tiger|XMM} stat block.",
+				"{@b Prerequisite:} Renown 10+ with {@book Darnassus|WoW|4|Darnassus Renown Perks}."
+			]
+		},
+		{
 			"name": "Nightspider",
 			"source": "AAG",
 			"page": 40,
@@ -42613,6 +44191,24 @@
 			],
 			"miscTags": [
 				"TT"
+			]
+		},
+		{
+			"name": "Noggenfogger Elixir",
+			"source": "WoW",
+			"page": 111,
+			"type": "P|XPHB",
+			"rarity": "rare",
+			"entries": [
+				"Noggenfogger Elixir is an unpredictable potion invented by Marin Noggenfogger, the trade prince of the Steamwheedle Cartel. It is highly coveted by adventurers (particularly goblins), despite or perhaps because of its unpredictable effects. When you drink this potion, roll {@dice 1d6}: On a 1-2, you take on a skeletal appearance for {@dice 1d4} hours, during which time you don't need to breathe. (Not breathing doesn't give you {@condition Exhaustion|XPHB} levels.) On a 3-4, you gain the Reduce effect of the {@spell Enlarge/Reduce|XPHB} spell for {@dice 1d4} hours (no {@status Concentration|XPHB} required). On a 5-6, your rate of descent while falling slows to 60 feet per round for 10 minutes. During that time, you take no damage from falling.",
+				"Drinking multiple Noggenfogger Elixirs doesn't require you to roll on the {@table Mixing Potions; Potion Miscibility|XDMG|Potion Miscibility} table in the {@book Dungeon Master's Guide|XDMG}.",
+				"This green potion is oily in the mouth."
+			],
+			"attachedSpells": [
+				"enlarge/reduce|xphb"
+			],
+			"miscTags": [
+				"CNS"
 			]
 		},
 		{
@@ -44623,6 +46219,18 @@
 			]
 		},
 		{
+			"name": "Pandarian Dragon Turtle",
+			"source": "WoW",
+			"type": "MNT|XPHB",
+			"rarity": "none",
+			"value": 50000,
+			"carryingCapacity": 480,
+			"entries": [
+				"Use the {@creature Pandarian Dragon Turtle|WoW} stat block.",
+				"{@b Prerequisite:} Renown 10+ with the {@book Huojin|WoW|4|Huojin Renown Perks} or the {@book Tushui|WoW|4|Tushui Renown Perks}."
+			]
+		},
+		{
 			"name": "Paper",
 			"source": "XPHB",
 			"page": 227,
@@ -45323,6 +46931,38 @@
 			],
 			"miscTags": [
 				"TT"
+			]
+		},
+		{
+			"name": "Philosopher's Stone",
+			"source": "WoW",
+			"page": 111,
+			"rarity": "very rare",
+			"reqAttune": "by its creator",
+			"wondrous": true,
+			"entries": [
+				"A Philosopher's Stone is a powerful reagent used in alchemy, and it can be effectively used only by the alchemist who created it. While you carry it, you gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Spellcasting Focus",
+					"entries": [
+						"You can use your Philosopher's Stone as a {@variantrule Spellcasting Focus|XPHB} for your spells."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Transmute Resources",
+					"entries": [
+						"If you spend 1 hour (which can be concurrent with a {@variantrule Short Rest|XPHB}) with your Philosopher's Stone and crafting resources of a single kind (fish, gems, herbs, ores or stones, leather or hide, or cloth), you can magically transmute the resources into resources of a different kind but the same value. Thus, you can convert 100 GP worth of herbs into 100 GP worth of ore or vice versa, or change 500 GP of mithril (a common ore) into 500 GP of truesilver (a rare ore)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Mixology",
+					"entries": [
+						"When you roll a die to determine the effect of a potion you drink (including the result of mixing potions), you can roll the die twice and choose either result. If a potion you drink has a duration, that duration is doubled."
+					]
+				}
 			]
 		},
 		{
@@ -48160,6 +49800,48 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Potion of Mana",
+			"source": "WoW",
+			"page": 111,
+			"type": "P|XPHB",
+			"rarity": "common",
+			"entries": [
+				"You regain one expended level 1 spell slot when you drink this potion.",
+				"The potion's blue liquid glows with an inner light."
+			],
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
+			"name": "Potion of Mana (Greater)",
+			"source": "WoW",
+			"page": 111,
+			"type": "P|XPHB",
+			"rarity": "uncommon",
+			"entries": [
+				"You regain one expended level 1-3 spell slot when you drink this potion. You choose the spell slot you regain.",
+				"The potion's blue liquid glows with an inner light."
+			],
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
+			"name": "Potion of Mana (Superior)",
+			"source": "WoW",
+			"page": 111,
+			"type": "P|XPHB",
+			"rarity": "rare",
+			"entries": [
+				"You regain one expended level 1-5 spell slot when you drink this potion. You choose the spell slot you regain.",
+				"The potion's blue liquid glows with an inner light."
+			],
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
 			"name": "Potion of Maximum Power",
 			"source": "EGW",
 			"page": 268,
@@ -48595,6 +50277,48 @@
 			"hasRefs": true,
 			"entries": [
 				"{#itemEntry Potion of Resistance|XDMG}"
+			],
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
+			"name": "Potion of Rejuvenation",
+			"source": "WoW",
+			"page": 111,
+			"type": "P|XPHB",
+			"rarity": "uncommon",
+			"entries": [
+				"You regain {@dice 3d4 + 3} {@variantrule Hit Points|XPHB} and one expended level 1 spell slot when you drink this potion.",
+				"The potion's magenta liquid glows faintly from within."
+			],
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
+			"name": "Potion of Rejuvenation (Greater)",
+			"source": "WoW",
+			"page": 111,
+			"type": "P|XPHB",
+			"rarity": "rare",
+			"entries": [
+				"You regain {@dice 6d4 + 6} {@variantrule Hit Points|XPHB} and one expended level 1-3 spell slot when you drink this potion. You choose the spell slot you regain.",
+				"The potion's magenta liquid glows faintly from within."
+			],
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
+			"name": "Potion of Rejuvenation (Superior)",
+			"source": "WoW",
+			"page": 111,
+			"type": "P|XPHB",
+			"rarity": "very rare",
+			"entries": [
+				"You regain {@dice 9d4 + 9} {@variantrule Hit Points|XPHB} and one expended level 1-5 spell slot when you drink this potion. You choose the spell slot you regain.",
+				"The potion's magenta liquid glows faintly from within."
 			],
 			"miscTags": [
 				"CNS"
@@ -51117,6 +52841,18 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Raptor",
+			"source": "WoW",
+			"type": "MNT|XPHB",
+			"rarity": "none",
+			"value": 100000,
+			"carryingCapacity": 570,
+			"entries": [
+				"Use the {@creature Allosaurus|XMM} stat block.",
+				"{@b Prerequisite:} Renown 10+ with the {@book Darkspear Tribe|WoW|4|Darkspear Tribe Renown Perks}."
+			]
+		},
+		{
 			"name": "Rations",
 			"source": "XPHB",
 			"page": 228,
@@ -51596,6 +53332,11 @@
 			"page": 229,
 			"srd52": true,
 			"basicRules2024": true,
+			"otherSources": [
+				{
+					"source": "WoW"
+				}
+			],
 			"type": "MNT|XPHB",
 			"rarity": "none",
 			"value": 7500,
@@ -52809,6 +54550,30 @@
 			"entries": [
 				"{#itemEntry Ring of Resistance|XDMG}"
 			]
+		},
+		{
+			"name": "Ring of Maddening Whispers",
+			"source": "ICC",
+			"page": 74,
+			"type": "RG|XDMG",
+			"rarity": "legendary",
+			"reqAttune": "by a Spellcaster",
+			"reqAttuneTags": [
+				{
+					"spellcasting": true
+				}
+			],
+			"entries": [
+				"This ring resembles a fleshy purple tentacle banded with dark metal and suffused with a reddish glow. While wearing it, you can cast {@spell Dominate Monster|XPHB} (level 9 version) from it (spell save {@dc 19}). Once you do, you can't use the ring to do so again until the next dawn.",
+				"Whenever a creature makes a successful saving throw against the spell cast from the ring, you take {@damage 5d10} Psychic damage and have the {@condition Incapacitated|XPHB} condition until the end of your next turn, as a chorus of babbling whispers assails your mind."
+			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"dominate monster|xphb"
+					]
+				}
+			}
 		},
 		{
 			"name": "Ring of Mind Shielding",
@@ -55503,6 +57268,45 @@
 				}
 			},
 			"hasFluffImages": true
+		},
+		{
+			"name": "Rod of the Sleepwalker",
+			"source": "WoW",
+			"page": 111,
+			"type": "RD|XDMG",
+			"rarity": "very rare",
+			"entries": [
+				"This rod puts creatures into a suggestible, sleepwalking state. You can cast {@spell Dominate Monster|XPHB} (save {@dc 17}) from this rod, with the following modifications:",
+				{
+					"type": "entries",
+					"name": "Duration",
+					"entries": [
+						"The spell's duration is {@status Concentration|XPHB}, up to 8 hours."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Immunity",
+					"entries": [
+						"Creatures that don't sleep, such as elves, or that have {@variantrule Immunity|XPHB} to the {@condition Exhaustion|XPHB} condition automatically succeed on the save."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Memory",
+					"entries": [
+						"An affected creature remembers nothing from the spell's duration once the spell ends."
+					]
+				},
+				"Once the rod has been used to cast the spell in this way, it can't be used to do so again until the next dawn."
+			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"dominate monster|xphb"
+					]
+				}
+			}
 		},
 		{
 			"name": "Rod of the Vonindod",
@@ -58373,6 +60177,150 @@
 			"value": 750000
 		},
 		{
+			"name": "Shadow's Edge",
+			"source": "ICC",
+			"page": 74,
+			"baseItem": "greataxe|xphb",
+			"type": "M|XPHB",
+			"rarity": "artifact",
+			"reqAttune": true,
+			"weight": 7,
+			"weaponCategory": "martial",
+			"property": [
+				"H|XPHB",
+				"2H|XPHB"
+			],
+			"mastery": [
+				"Cleave|XPHB"
+			],
+			"dmg1": "1d12",
+			"dmgType": "S",
+			"bonusWeapon": "+3",
+			"entries": [
+				"Highlord Darion Mograine of the Knights of the Ebon Blade forged Shadow's Edge in his runeforge, combining the holy power of {@item Light's Vengeance|ICC} with primordial saronite\u2014the blood of the Old God Yogg-Saron in mineral form\u2014and the toxic venom from two of the {@creature Lich King Arthas|WoW|Lich King's} minions. The result is a mighty axe with the potential, ultimately, to destroy the Lich King.",
+				{
+					"type": "entries",
+					"name": "Magic Weapon",
+					"entries": [
+						"You gain a +3 bonus to attack rolls and damage rolls made with this weapon."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Drain Soul",
+					"entries": [
+						"Whenever you use Shadow's Edge to reduce a creature to 0 {@variantrule Hit Points|XPHB}, the axe slays the creature and devours its soul unless it is a Construct. A creature whose soul has been devoured by Shadow's Edge can be restored to life only by a {@spell Wish|XPHB} spell.",
+						"When Shadow's Edge devours a soul, you gain {@variantrule Temporary Hit Points|XPHB} equal to half the slain creature's {@variantrule Hit Points|XPHB|Hit Point} maximum (round down)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Random Properties",
+					"entries": [
+						"The weapon has the following random properties:",
+						{
+							"type": "list",
+							"items": [
+								"1 {@table Artifact Properties; Minor Beneficial Properties|XDMG|minor beneficial} property",
+								"1 {@table Artifact Properties; Minor Detrimental Properties|XDMG|minor detrimental} property"
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Unholy Infusion",
+					"entries": [
+						"Once Shadow's Edge has been infused with {@creature Professor Putricide, Phase 1|ICC|Professor Putricide's} mutated slime, it gains the following additional random properties:",
+						{
+							"type": "list",
+							"items": [
+								"1 {@table Artifact Properties; Minor Beneficial Properties|XDMG|minor beneficial} property",
+								"1 {@table Artifact Properties; Major Detrimental Properties|XDMG|major detrimental} property"
+							]
+						},
+						"In addition, when you hit a creature with Shadow's Edge, you can cast {@spell Blight|XPHB} (save {@dc 19}) from it on the target as a {@variantrule Bonus Action|XPHB}. Once you use the weapon to cast the spell in this way, you can't do so again until the next dawn."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Blood Infusion",
+					"entries": [
+						"Once Shadow's Edge has been infused with blood from {@creature Blood-Queen Lana'thel|ICC|Lana'thel's} Blood Mirror, it gains the following additional random properties:",
+						{
+							"type": "list",
+							"items": [
+								"1 {@table Artifact Properties; Major Beneficial Properties|XDMG|major beneficial} property",
+								"1 {@table Artifact Properties; Minor Detrimental Properties|XDMG|minor detrimental} property"
+							]
+						},
+						"In addition, when you hit a creature with Shadow's Edge, you can cast {@spell Evard's Black Tentacles|XPHB} (save {@dc 19}) from the weapon with an area that includes the target as a {@variantrule Bonus Action|XPHB}. Once you use the weapon to cast the spell in this way, you can't do so again until the next dawn."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Frost Infusion",
+					"entries": [
+						"Once Shadow's Edge has been infused with frost from {@creature Sindragosa|ICC|Sindragosa's} breath, it gains the following additional random properties:",
+						{
+							"type": "list",
+							"items": [
+								"1 {@table Artifact Properties; Major Beneficial Properties|XDMG|major beneficial} property",
+								"1 {@table Artifact Properties; Major Detrimental Properties|XDMG|major detrimental} property"
+							]
+						},
+						"In addition, when you hit a creature with Shadow's Edge, you can cast {@spell Cone of Cold|XPHB} (save {@dc 19}) from it with an area that includes the target as a {@variantrule Bonus Action|XPHB}. Once you use the weapon to cast the spell in this way, you can't do so again until the next dawn."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Destroying the Weapon",
+					"entries": [
+						"The axe can be destroyed by melting it down in Highlord Mograine's runeforge, where it was created. Destroying it frees the souls it devoured."
+					]
+				}
+			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"blight|xphb",
+						"cone of cold|xphb",
+						"evard's black tentacles|xphb"
+					]
+				}
+			}
+		},
+		{
+			"name": "Shadowfang",
+			"source": "WoW",
+			"page": 111,
+			"baseItem": "longsword|xphb",
+			"type": "M|XPHB",
+			"rarity": "rare",
+			"weight": 3,
+			"weaponCategory": "martial",
+			"property": [
+				"V|XPHB"
+			],
+			"mastery": [
+				"Sap|XPHB"
+			],
+			"dmg1": "1d8",
+			"dmgType": "S",
+			"dmg2": "1d10",
+			"bonusWeapon": "+1",
+			"entries": [
+				"You gain a +1 bonus to attack rolls and damage rolls made with this magic weapon.",
+				{
+					"type": "entries",
+					"name": "Mark of the Worgen",
+					"entries": [
+						"In most circumstances, the weapon appears unremarkable. But under the night sky, ragged fur and sharp fangs sprout around the sword's cross guard. While transformed in this way, Shadowfang deals an extra {@damage 2d6} Necrotic damage on a hit. The weapon returns to normal at dawn or if it is brought indoors."
+					]
+				}
+			]
+		},
+		{
 			"name": "Shadowfell Brand Tattoo",
 			"source": "TCE",
 			"page": 134,
@@ -58428,6 +60376,208 @@
 				"When you use a Metamagic option on a spell while you are holding or wearing the shard, you can momentarily curse one creature targeted by the spell; choose one ability score, and until the end of your next turn, the creature has disadvantage on ability checks and saving throws that use that ability."
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Shadowmourne",
+			"source": "ICC",
+			"page": 75,
+			"baseItem": "greataxe|xphb",
+			"type": "M|XPHB",
+			"rarity": "artifact",
+			"reqAttune": true,
+			"weight": 7,
+			"weaponCategory": "martial",
+			"property": [
+				"H|XPHB",
+				"2H|XPHB"
+			],
+			"mastery": [
+				"Cleave|XPHB"
+			],
+			"dmg1": "1d12",
+			"dmgType": "S",
+			"bonusWeapon": "+3",
+			"entries": [
+				"Highlord Darion Mograine transformed {@item Shadow's Edge|ICC} into Shadowmourne after the weapon had been infused with unholy power, blood magic, and undying frost, along with shadowfrost shards from the Frozen Throne.",
+				{
+					"type": "entries",
+					"name": "Magic Weapon",
+					"entries": [
+						"You gain a +3 bonus to attack rolls and damage rolls made with this weapon."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Soul Fragments",
+					"entries": [
+						"When you hit a creature with a melee attack roll using Shadowmourne, the creature takes an extra {@damage 1d12} Necrotic damage, and you gain {@variantrule Temporary Hit Points|XPHB} equal to the Necrotic damage taken."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Drain Soul",
+					"entries": [
+						"Whenever you use Shadowmourne to reduce a creature to 0 {@variantrule Hit Points|XPHB}, the axe slays the creature and devours its soul unless it is a Construct. A creature whose soul has been devoured by Shadowmourne can be restored to life only by a {@spell Wish|XPHB} spell.",
+						"When Shadowmourne devours a soul, you gain {@variantrule Temporary Hit Points|XPHB} equal to the slain creature's {@variantrule Hit Points|XPHB|Hit Point} maximum."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Chaos Bane",
+					"entries": [
+						"If you have at least 12 {@variantrule Temporary Hit Points|XPHB}, you can take a {@variantrule Bonus Action|XPHB} to sacrifice all your {@variantrule Temporary Hit Points|XPHB}. Each creature of your choice in a 15-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from you makes a Constitution saving throw ({@dc 21}), taking damage equal to the {@variantrule Temporary Hit Points|XPHB} you sacrificed on a failed save or half as much damage on a successful one. Until the end of your next turn, you have {@variantrule Advantage|XPHB} on attack rolls and saving throws."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Random Properties",
+					"entries": [
+						"The weapon has the same random properties it had in its final stage as {@item Shadow's Edge|ICC}:",
+						{
+							"type": "list",
+							"items": [
+								"2 {@table Artifact Properties; Minor Beneficial Properties|XDMG|minor beneficial} properties",
+								"2 {@table Artifact Properties; Major Beneficial Properties|XDMG|major beneficial} properties",
+								"2 {@table Artifact Properties; Minor Detrimental Properties|XDMG|minor detrimental} properties",
+								"2 {@table Artifact Properties; Major Detrimental Properties|XDMG|major detrimental} properties"
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Destroying the Weapon",
+					"entries": [
+						"The axe can be destroyed by immersing it in a pool of the fresh blood of an Old God. Destroying it frees the souls it devoured."
+					]
+				}
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Shalamayne",
+			"source": "WoW",
+			"page": 112,
+			"baseItem": "greatsword|xphb",
+			"type": "M|XPHB",
+			"rarity": "artifact",
+			"reqAttune": true,
+			"weight": 6,
+			"weaponCategory": "martial",
+			"property": [
+				"H|XPHB",
+				"2H|XPHB"
+			],
+			"mastery": [
+				"Graze|XPHB",
+				"Sap|XPHB"
+			],
+			"dmg1": "2d6",
+			"dmgType": "S",
+			"bonusWeapon": "+3",
+			"entries": [
+				"When dragon magic split King Varian Wrynn into two versions of himself, one of his selves wielded the night elven blade {@item Shalamayne (Shalla'tor)|WoW|Shalla'tor}, while the other wielded the night elven blade {@item Shalamayne (Ellemayne)|WoW|Ellemayne}. Varian eventually merged his twin selves back into one whole. In doing so, he inadvertently fused the blades into a new weapon called Shalamayne.",
+				"The Jailer, one of the rulers of the Shadowlands, once stole and reforged Shalamayne into a mourneblade called Kingsmourne. But Varian's son, Anduin Wrynn, later restored Shalamayne to its rightful form. Anduin is the sword's last known wielder.",
+				{
+					"type": "entries",
+					"name": "Magic Weapon",
+					"entries": [
+						"You gain a +3 bonus to attack rolls and damage rolls made with this magic weapon. It deals an extra {@damage 2d12} Force damage on a hit."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Dual Mastery",
+					"entries": [
+						"If you have the Weapon Mastery feature and choose {@item Greatsword|XPHB} as one of your mastered weapons, you can use both the {@itemMastery Graze|XPHB} and {@itemMastery Sap|XPHB} mastery properties at once while wielding Shalamayne."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Splitting and Reuniting the Sword",
+					"entries": [
+						"While holding Shalamayne, you can take a {@action Magic|XPHB} action to end your {@variantrule Attunement|XPHB} to the weapon and split it into two magic swords: {@item Shalamayne (Shalla'tor)|WoW|Shalla'tor} and {@item Shalamayne (Ellemayne)|WoW|Ellemayne}. Each is a {@item +3 Longsword|XDMG} with the {@itemProperty F|XPHB|Finesse} and {@itemProperty L|XPHB|Light} properties. A creature who holds both swords can take a {@action Magic|XPHB} action to rejoin them into Shalamayne, attuning to the weapon instantly."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Random Properties",
+					"entries": [
+						"Shalamayne has the following random properties:",
+						{
+							"type": "list",
+							"items": [
+								"2 {@table Artifact Properties; Minor Beneficial Properties|XDMG|minor beneficial} properties",
+								"1 {@table Artifact Properties; Major Beneficial Properties|XDMG|major beneficial} property"
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Destroying Shalamayne",
+					"entries": [
+						"One can destroy Shalamayne by splitting it into Shalla'tor and Ellemayne, then burying one or both swords at the roots of a World Tree in the Emerald Dream. After one year, the buried swords dissolve into the soil."
+					]
+				}
+			]
+		},
+		{
+			"name": "Shalamayne (Ellemayne)",
+			"source": "WoW",
+			"_copy": {
+				"name": "Shalamayne (Shalla'tor)",
+				"source": "WoW",
+				"_preserve": {
+					"page": true
+				}
+			}
+		},
+		{
+			"name": "Shalamayne (Shalla'tor)",
+			"source": "WoW",
+			"_copy": {
+				"name": "Shalamayne",
+				"source": "WoW",
+				"_mod": {
+					"reqAttune": "remove",
+					"entries": [
+						{
+							"mode": "removeArr",
+							"names": [
+								"Dual Mastery",
+								"Random Properties"
+							]
+						},
+						{
+							"mode": "replaceArr",
+							"replace": "Magic Weapon",
+							"items": {
+								"type": "entries",
+								"name": "Magic Weapon",
+								"entries": [
+									"You gain a +3 bonus to attack rolls and damage rolls made with this magic weapon."
+								]
+							}
+						}
+					]
+				},
+				"_preserve": {
+					"page": true
+				}
+			},
+			"baseItem": "longsword|xphb",
+			"weight": 3,
+			"property": [
+				"F|XPHB",
+				"L|XPHB",
+				"V|XPHB"
+			],
+			"mastery": [
+				"Sap|XPHB"
+			],
+			"dmg1": "1d8",
+			"dmg2": "1d10"
 		},
 		{
 			"name": "Shard",
@@ -63877,6 +66027,138 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Staff of Light and Shadow",
+			"source": "WoW",
+			"page": 112,
+			"type": "M|XPHB",
+			"rarity": "legendary",
+			"reqAttune": "by a Cleric",
+			"reqAttuneTags": [
+				{
+					"class": "cleric"
+				}
+			],
+			"weight": 4,
+			"weaponCategory": "simple",
+			"property": [
+				"V|XPHB"
+			],
+			"mastery": [
+				"Topple|XPHB"
+			],
+			"dmg1": "1d6",
+			"dmgType": "B",
+			"dmg2": "1d8",
+			"staff": true,
+			"entries": [
+				"This staff has two forms: a shadowy state known as {@item Staff of Light and Shadow (Anathema)|WoW|Anathema} and a holy state known as {@item Staff of Light and Shadow (Benediction)|WoW|Benediction}. While attuned to the staff, you can switch the staff from one state to the other at dawn.",
+				{
+					"type": "entries",
+					"name": "Anathema",
+					"entries": [
+						"As Anathema, the staff grants the following benefits:",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "Necrotic Resistance",
+									"entries": [
+										"While attuned to the staff, you have {@variantrule Resistance|XPHB} to Necrotic damage."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Shadow Mana",
+									"entries": [
+										"While you're holding the staff, when you cast a {@filter level 1-5 spell|spells|level=1;2;3;4;5|school=N} from the Necromancy school that would expend a spell slot, you can roll {@dice 1d6}. If the number on the die exceeds the spell's level, the spell slot isn't expended."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Benediction",
+					"entries": [
+						"As Benediction, the staff grants the following benefits:",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "Radiant Resistance",
+									"entries": [
+										"While attuned to the staff, you have {@variantrule Resistance|XPHB} to Radiant {@variantrule Damage|XPHB}."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Light-Blessed Healing",
+									"entries": [
+										"While you're holding the staff, when you cast a spell that would restore {@variantrule Hit Points|XPHB} to a creature, you can treat the spell as if it had been cast using a spell slot of 1 level higher."
+									]
+								}
+							]
+						}
+					]
+				}
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Staff of Light and Shadow (Anathema)",
+			"source": "WoW",
+			"_copy": {
+				"name": "Staff of Light and Shadow",
+				"source": "WoW",
+				"_mod": {
+					"entries": [
+						{
+							"mode": "removeArr",
+							"names": [
+								"Benediction"
+							]
+						}
+					]
+				},
+				"_preserve": {
+					"page": true,
+					"hasFluffImages": true
+				}
+			},
+			"resist": [
+				"necrotic"
+			]
+		},
+		{
+			"name": "Staff of Light and Shadow (Benediction)",
+			"source": "WoW",
+			"_copy": {
+				"name": "Staff of Light and Shadow",
+				"source": "WoW",
+				"_mod": {
+					"entries": [
+						{
+							"mode": "removeArr",
+							"names": [
+								"Anathema"
+							]
+						}
+					]
+				},
+				"_preserve": {
+					"page": true
+				}
+			},
+			"resist": [
+				"radiant"
+			]
+		},
+		{
 			"name": "Staff of Power",
 			"source": "DMG",
 			"page": 202,
@@ -65749,6 +68031,26 @@
 			]
 		},
 		{
+			"name": "Steamwheedle Apparatus",
+			"source": "WoW",
+			"_copy": {
+				"name": "Apparatus of Kwalish",
+				"source": "XDMG",
+				"_mod": {
+					"entries": {
+						"mode": "replaceTxt",
+						"replace": "Apparatus of Kwalish",
+						"with": "Steamwheedle Apparatus",
+						"props": [
+							null,
+							"caption"
+						]
+					}
+				}
+			},
+			"value": 10000000
+		},
+		{
 			"name": "Steel",
 			"source": "WBtW",
 			"page": 214,
@@ -66478,6 +68780,102 @@
 			]
 		},
 		{
+			"name": "Sulfuras, Hand of Ragnaros",
+			"source": "WoW",
+			"page": 112,
+			"baseItem": "maul|xphb",
+			"type": "M|XPHB",
+			"rarity": "artifact",
+			"reqAttune": true,
+			"weight": 10,
+			"weaponCategory": "martial",
+			"property": [
+				"H|XPHB",
+				"2H|XPHB"
+			],
+			"mastery": [
+				"Topple|XPHB"
+			],
+			"dmg1": "2d6",
+			"dmgType": "B",
+			"bonusWeapon": "+3",
+			"entries": [
+				"The elementium {@item Maul|XPHB} Sulfuras is the weapon of {@creature Ragnaros|WoW}, the Elemental Lord of Fire. In the beginning, the four elemental lords warred against one another for dominance over the nascent Azeroth. While the other elemental lords fought with mastery of their own elements, Ragnaros used Sulfuras to turn their elements against them, boiling seas, choking the skies with smoke and embers, and turning mountains into erupting volcanoes.",
+				{
+					"type": "entries",
+					"name": "Magic Weapon",
+					"entries": [
+						"You gain a +3 bonus to attack rolls and damage rolls made with this magic weapon. A creature hit by this weapon takes an extra {@damage 1d10} Fire damage and starts {@hazard burning|XPHB}, taking {@damage 1d10} Fire damage at the start of each of its turns instead of the normal burning damage."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Ignite the Elements",
+					"entries": [
+						"While holding this weapon, you can take a {@action Magic|XPHB} action to produce one of the following effects. Once an effect has been used, that effect can't be used again until the next dawn:",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "Boiling Point",
+									"entries": [
+										"You cause any container or body of water within 1 mile of you to boil for 1 minute. A creature that enters the boiling water or starts its turn there takes {@damage 2d10} Fire damage."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Embersmoke",
+									"entries": [
+										"You cast {@spell Incendiary Cloud|XPHB} (save {@dc 18}) from the weapon."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Eruption",
+									"entries": [
+										"You make lava erupt in a 10-foot-radius, 60-foot-high {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} centered on a point on the ground you can see within 120 feet. Each creature in that area makes a {@dc 18} Dexterity saving throw, taking {@damage 9d10} Fire damage plus {@damage 9d10} Bludgeoning damage on a failed save or half as much damage on a successful one."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Random Properties",
+					"entries": [
+						"Sulfuras has the following random properties:",
+						{
+							"type": "list",
+							"items": [
+								"1 {@table Artifact Properties; Minor Beneficial Properties|XDMG|minor beneficial} property",
+								"1 {@table Artifact Properties; Major Beneficial Properties|XDMG|major beneficial} property",
+								"1 {@table Artifact Properties; Minor Detrimental Properties|XDMG|minor detrimental} property",
+								"1 {@table Artifact Properties; Major Detrimental Properties|XDMG|major detrimental} property"
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Destroying Sulfuras",
+					"entries": [
+						"In an underwater tunnel network deep beneath Vashj'ir lies an abandoned, heavily trapped temple to Neptulon, the Elemental Lord of Water. Placing Sulfuras on the temple's central altar quenches its fire permanently, rendering it nonmagical and destructible."
+					]
+				}
+			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"incendiary cloud|xphb"
+					]
+				}
+			},
+			"hasFluffImages": true
+		},
+		{
 			"name": "Sun",
 			"source": "WDH",
 			"page": 169,
@@ -66663,6 +69061,117 @@
 					"dim": 30
 				}
 			]
+		},
+		{
+			"name": "Sundial of Eternal Dusk",
+			"source": "ICC",
+			"page": 76,
+			"resist": [
+				"radiant"
+			],
+			"rarity": "legendary",
+			"reqAttune": true,
+			"wondrous": true,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6 + 3}",
+			"charges": 20,
+			"focus": true,
+			"entries": [
+				"Despite its name, a Sundial of Eternal Dusk resembles a lantern more than a sundial. A rough shard of green saronite metal hangs suspended above an iron cylinder, flanked by wings sculpted from brass. Glowing green gas billows between the saronite shard and the cylinder, and a smaller green shard bobs between two forked prongs on the bottom of the implement. A curved handle above the larger shard allows the item to be held easily in one hand. While you hold the sundial, you know what time it is.",
+				{
+					"type": "entries",
+					"name": "Spellcasting Focus",
+					"entries": [
+						"You can use the sundial as a {@variantrule Spellcasting Focus|XPHB} for your spells."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Cloak of Shadows",
+					"entries": [
+						"The sundial emits shadow that fills your space with {@variantrule Dim Light|XPHB}, making the space {@variantrule Lightly Obscured|XPHB} and giving you {@variantrule Resistance|XPHB} to Radiant damage. The shadow doesn't obscure your vision."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spells",
+					"entries": [
+						"The sundial has 20 charges and regains {@dice 1d6 + 3} expended charges daily at dawn. While holding the sundial, you can cast one of the spells on the following table from it (save {@dc 19}). The table indicates how many charges you must expend to cast the spell.",
+						{
+							"type": "table",
+							"colLabels": [
+								"Spell",
+								"Charge Cost"
+							],
+							"colStyles": [
+								"col-10",
+								"col-2 text-right"
+							],
+							"rows": [
+								[
+									"{@spell Darkness|XPHB}",
+									"2"
+								],
+								[
+									"{@spell Dimension Door|XPHB} (the destination must be in {@variantrule Dim Light|XPHB} or {@variantrule Darkness|XPHB})",
+									"4"
+								],
+								[
+									"{@spell Evard's Black Tentacles|XPHB}",
+									"4"
+								],
+								[
+									"{@spell Fear|XPHB}",
+									"3"
+								],
+								[
+									"{@spell Hunger of Hadar|XPHB}",
+									"3"
+								],
+								[
+									"{@spell Phantasmal Killer|XPHB}",
+									"4"
+								],
+								[
+									"{@spell Summon Undead|XPHB}",
+									"3"
+								],
+								[
+									"{@spell Toll the Dead|XPHB}",
+									"0"
+								],
+								[
+									"{@spell True Seeing|XPHB}",
+									"6"
+								]
+							]
+						}
+					]
+				}
+			],
+			"attachedSpells": {
+				"charges": {
+					"0": [
+						"toll the dead|xphb"
+					],
+					"2": [
+						"darkness|xphb"
+					],
+					"3": [
+						"fear|xphb",
+						"hunger of hadar|xphb",
+						"summon undead|xphb"
+					],
+					"4": [
+						"dimension door|xphb",
+						"evard's black tentacles|xphb",
+						"phantasmal killer|xphb"
+					],
+					"6": [
+						"true seeing|xphb"
+					]
+				}
+			}
 		},
 		{
 			"name": "Sunforger",
@@ -67688,6 +70197,17 @@
 			"entries": [
 				"The {@creature reigar|BAM} who creates this piece of jewelry chooses its form: bracelet, brooch, diadem, or necklace. While the reigar wears the talarith, any weapon wielded by the {@creature reigar|BAM} deals an extra {@damage 1d6} force damage when it hits.",
 				"As an action, a reigar can use its talarith to summon a golem that looks just like the reigar. The golem obeys the reigar's commands and uses the {@creature reigar|BAM|reigar's} statistics, except it is a Construct that doesn't have a talarith of its own. The golem vanishes after 1 hour, or when it is reduced to 0 hit points. After summoning a golem, the reigar must finish a short or long rest before this property can be used again."
+			]
+		},
+		{
+			"name": "Talbuk",
+			"source": "WoW",
+			"type": "MNT|XPHB",
+			"rarity": "none",
+			"value": 15000,
+			"carryingCapacity": 480,
+			"entries": [
+				"Use the {@creature Elk|XMM} stat block."
 			]
 		},
 		{
@@ -69651,6 +72171,18 @@
 			]
 		},
 		{
+			"name": "Thrice Fanged Signet",
+			"source": "ICC",
+			"page": 76,
+			"type": "RG|XDMG",
+			"rarity": "legendary",
+			"reqAttune": true,
+			"entries": [
+				"This silver ring is adorned with a pyramid shape topped with a glowing blue crystal. The three fangs that give it its name protrude from the underside of the pyramid to pierce the wearer's finger.",
+				"When you cast a spell while wearing this ring, you can let the ring draw your blood to empower the spell. If you do, your current and maximum {@variantrule Hit Points|XPHB} are reduced by {@dice 3d6}, and the spell's effects are determined as if you had used a spell slot 1 level higher than the slot you used (maximum level 9)."
+			]
+		},
+		{
 			"name": "Throne Card",
 			"source": "BMT",
 			"page": 15,
@@ -69983,6 +72515,19 @@
 				}
 			},
 			"hasFluffImages": true
+		},
+		{
+			"name": "Tiny Abomination in a Jar",
+			"source": "ICC",
+			"page": 77,
+			"rarity": "legendary",
+			"reqAttune": true,
+			"wondrous": true,
+			"entries": [
+				"When you roll an 11 on the {@dice d20} for an attack roll while this monstrous item is on your person, you gain a Mote of Anger\u2014a Tiny, invulnerable mote of glowing red light that orbits your head at a distance of {@dice 1d3} feet. A Mote of Anger lasts until you finish a {@variantrule Long Rest|XPHB}. Each Mote of Anger gives you a +2 bonus to damage rolls.",
+				"If you ever have four Motes of Anger at once, they erupt and fill you with rage, allowing you to make an immediate weapon attack with {@variantrule Advantage|XPHB} on the attack roll. The Motes of Anger grant their damage bonuses to this attack if they hit, and they dissipate after the attack whether it hits or misses.",
+				"The tiny abomination floating in this jar appears lifeless, but if you have one or more Motes of Anger, it stirs, growing increasingly animated the more Motes of Anger you have."
+			]
 		},
 		{
 			"name": "Tiny jade figurine (River Heralds)",
@@ -72613,6 +75158,62 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Troll's Blood Elixir",
+			"source": "WoW",
+			"page": 113,
+			"type": "P|XPHB",
+			"rarity": "uncommon",
+			"entries": [
+				"When you drink this potion, you regain 2 {@variantrule Hit Points|XPHB}. At the start of each of your turns for the next 1 minute, you regain that number of {@variantrule Hit Points|XPHB} again if you have at least 1 {@variantrule Hit Points|XPHB|Hit Point}. This thick green elixir is made from herbs.",
+				"No trolls were harmed in the making of this elixir."
+			],
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
+			"name": "Troll's Blood Elixir (Greater)",
+			"source": "WoW",
+			"page": 113,
+			"type": "P|XPHB",
+			"rarity": "rare",
+			"entries": [
+				"When you drink this potion, you regain 4 {@variantrule Hit Points|XPHB}. At the start of each of your turns for the next 1 minute, you regain that number of {@variantrule Hit Points|XPHB} again if you have at least 1 {@variantrule Hit Points|XPHB|Hit Point}. This thick green elixir is made from herbs.",
+				"No trolls were harmed in the making of this elixir."
+			],
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
+			"name": "Troll's Blood Elixir (Superior)",
+			"source": "WoW",
+			"page": 113,
+			"type": "P|XPHB",
+			"rarity": "very rare",
+			"entries": [
+				"When you drink this potion, you regain 6 {@variantrule Hit Points|XPHB}. At the start of each of your turns for the next 1 minute, you regain that number of {@variantrule Hit Points|XPHB} again if you have at least 1 {@variantrule Hit Points|XPHB|Hit Point}. This thick green elixir is made from herbs.",
+				"No trolls were harmed in the making of this elixir."
+			],
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
+			"name": "Troll's Blood Elixir (Supreme)",
+			"source": "WoW",
+			"page": 113,
+			"type": "P|XPHB",
+			"rarity": "legendary",
+			"entries": [
+				"When you drink this potion, you regain 8 {@variantrule Hit Points|XPHB}. At the start of each of your turns for the next 1 minute, you regain that number of {@variantrule Hit Points|XPHB} again if you have at least 1 {@variantrule Hit Points|XPHB|Hit Point}. This thick green elixir is made from herbs.",
+				"No trolls were harmed in the making of this elixir."
+			],
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
 			"name": "True-Ice Shards (Dagger)",
 			"source": "CoA",
 			"page": 275,
@@ -72879,6 +75480,76 @@
 			],
 			"seeAlsoVehicle": [
 				"turtle ship|aag"
+			]
+		},
+		{
+			"name": "Twin Blades of Azzinoth",
+			"source": "WoW",
+			"page": 113,
+			"baseItem": "scimitar|xphb",
+			"type": "M|XPHB",
+			"rarity": "artifact",
+			"reqAttune": true,
+			"weight": 3,
+			"weaponCategory": "martial",
+			"property": [
+				"F|XPHB",
+				"L|XPHB"
+			],
+			"mastery": [
+				"Nick|XPHB"
+			],
+			"dmg1": "1d6",
+			"dmgType": "S",
+			"bonusWeapon": "+3",
+			"entries": [
+				"This pair of demonic warglaives once belonged to Azzinoth, an ancient doomguard commander of the Burning Legion. {@creature Illidan Stormrage|WoW} slew Azzinoth millennia ago during the War of the Ancients and reforged the blades for himself, allowing him to use fel magic against the demons of the Legion.",
+				{
+					"type": "entries",
+					"name": "Magic Weapons",
+					"entries": [
+						"You gain a +3 bonus to attack rolls and damage rolls made with these magic weapons. Each deals an extra {@damage 2d8} Psychic damage if the target is a Fiend; this Psychic damage ignores {@variantrule Resistance|XPHB} and {@variantrule Immunity|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Fel Synchronization",
+					"entries": [
+						"If you hit the same creature with both weapons on a turn, that creature makes a {@dc 18} Wisdom saving throw immediately after the second weapon hits. On a failed save, the creature is racked by fel magic and has the {@condition Stunned|XPHB} condition until the end of its next turn."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Flames of Azzinoth",
+					"entries": [
+						"As a {@action Magic|XPHB} action, you can throw one of the weapons to an unoccupied space on the ground you can see within 30 feet of you. The blade transforms into a fiery green fiend as if you had cast the {@spell Summon Fiend|XPHB} spell (choose the Devil option). The spell lasts for 1 minute, and when the summoned fiend disappears, the weapon reappears in your hand. You can't turn that weapon into a Fiend again until 7 days have passed."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Random Properties",
+					"entries": [
+						"The Twin Blades of Azzinoth have the following random properties:",
+						{
+							"type": "list",
+							"items": [
+								"1 {@table Artifact Properties; Minor Beneficial Properties|XDMG|minor beneficial} property",
+								"1 {@table Artifact Properties; Major Beneficial Properties|XDMG|major beneficial} property",
+								"1 {@table Artifact Properties; Minor Detrimental Properties|XDMG|minor detrimental} property"
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Destroying the Blades",
+					"entries": [
+						"Reciting an ancient poem called \"Gift of the Light\" over the blades causes them to dissolve into glittering dust. This poem has largely been lost to time, but a few rare naaru remember it."
+					]
+				}
+			],
+			"attachedSpells": [
+				"summon fiend|xphb"
 			]
 		},
 		{
@@ -73390,6 +76061,19 @@
 				}
 			},
 			"rarity": "rare"
+		},
+		{
+			"name": "Vithrak, Gaze of the Deadman",
+			"source": "WoW",
+			"page": 113,
+			"type": "RG|XDMG",
+			"rarity": "very rare",
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d3}",
+			"charges": 3,
+			"entries": [
+				"This ring has 3 charges and regains {@dice 1d3} expended charges daily at dawn. While wearing the ring, you can take a {@action Magic|XPHB} action and expend 1 charge to learn the {@variantrule Resistance|XPHB|Resistances}, {@variantrule Vulnerability|XPHB|Vulnerabilities}, and {@variantrule Immunity|XPHB|Immunities} (if any) of a creature you can see within 120 feet of yourself. When you use this effect, your eyes briefly become glassy, gray husks."
+			]
 		},
 		{
 			"name": "Void Card",
@@ -75578,6 +78262,18 @@
 		},
 		{
 			"name": "Warhorse",
+			"source": "WoW",
+			"type": "MNT|XPHB",
+			"rarity": "none",
+			"value": 40000,
+			"carryingCapacity": 540,
+			"entries": [
+				"Use the {@creature Warhorse|XMM} stat block.",
+				"{@b Prerequisite:} Renown 10+ with {@book Stormwind|WoW|4|Stormwind Renown Perks}."
+			]
+		},
+		{
+			"name": "Warhorse",
 			"source": "XPHB",
 			"page": 229,
 			"srd52": true,
@@ -75587,6 +78283,18 @@
 			"value": 40000,
 			"carryingCapacity": 540,
 			"speed": 60
+		},
+		{
+			"name": "Warhorse Skeleton",
+			"source": "WoW",
+			"type": "MNT|XPHB",
+			"rarity": "none",
+			"value": 50000,
+			"carryingCapacity": 540,
+			"entries": [
+				"Use the {@creature Warhorse Skeleton|XMM} stat block.",
+				"{@b Prerequisite:} Renown 10+ with {@book Undercity|WoW|4|Undercity Renown Perks}."
+			]
 		},
 		{
 			"name": "Warm Fungal Clothing",
@@ -76852,6 +79560,18 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Wind Rider",
+			"source": "WoW",
+			"type": "MNT|XPHB",
+			"rarity": "none",
+			"value": 200000,
+			"carryingCapacity": 450,
+			"entries": [
+				"Use the {@creature Giant Bat|XMM} stat block.",
+				"{@b Prerequisite:} Renown 25+ with the {@book Horde|WoW|4|Horde Renown Perks}."
+			]
+		},
+		{
 			"name": "Windskiff",
 			"source": "FRAiF",
 			"page": 247,
@@ -77938,6 +80658,17 @@
 			]
 		},
 		{
+			"name": "Zhevra",
+			"source": "WoW",
+			"type": "MNT|XPHB",
+			"rarity": "none",
+			"value": 20000,
+			"carryingCapacity": 480,
+			"entries": [
+				"Use the {@creature Elk|XMM} stat block."
+			]
+		},
+		{
 			"name": "Zircon",
 			"source": "DMG",
 			"page": 134,
@@ -78077,7 +80808,8 @@
 				"Psychic Absorbing Tattoo|TCE",
 				"Radiant Absorbing Tattoo|TCE",
 				"Thunder Absorbing Tattoo|TCE"
-			]
+			],
+			"itemsHidden": true
 		},
 		{
 			"name": "Arcane Focus",
@@ -78210,6 +80942,7 @@
 				"Armor of Radiant Resistance",
 				"Armor of Thunder Resistance"
 			],
+			"itemsHidden": true,
 			"hasFluffImages": true
 		},
 		{
@@ -78412,6 +81145,123 @@
 				"Tinker's Tools|XPHB",
 				"Weaver's Tools|XPHB",
 				"Woodcarver's Tools|XPHB"
+			]
+		},
+		{
+			"name": "Ashen Bands of Courage",
+			"source": "ICC",
+			"page": 71,
+			"type": "RG|XDMG",
+			"rarity": "varies",
+			"reqAttune": "by a Character with Ashen Verdict Renown",
+			"entries": [
+				"This metal band is adorned with five gleaming crystals suggesting a beast's claw. The forge mark of Ormus the Penitent\u2014a stylized O\u2014is imprinted inside the band.",
+				"{@item Ashen Band of Courage|ICC} (Uncommon, Requires Renown 3+). While wearing this ring, you have {@variantrule Advantage|XPHB} on saving throws to avoid or end the {@condition Charmed|XPHB} and {@condition Frightened|XPHB} conditions.",
+				"{@item Ashen Band of Greater Courage|ICC} (Rare, Requires Renown 10+). In addition to the Uncommon property, you gain a +1 bonus to {@variantrule Armor Class|XPHB} while wearing this ring.",
+				"{@item Ashen Band of Unmatched Courage|ICC} (Very Rare, Requires Renown 25+). In addition to the Uncommon and Rare properties, you gain a +1 bonus to saving throws while wearing this ring.",
+				"{@item Ashen Band of Endless Courage|ICC} (Legendary, Requires Renown 50+). In addition to the Rare and Very Rare properties, you have {@variantrule Immunity|XPHB} to the {@condition Charmed|XPHB} and {@condition Frightened|XPHB} conditions while wearing this ring."
+			],
+			"items": [
+				"Ashen Band of Courage|ICC",
+				"Ashen Band of Greater Courage|ICC",
+				"Ashen Band of Unmatched Courage|ICC",
+				"Ashen Band of Endless Courage|ICC"
+			]
+		},
+		{
+			"name": "Ashen Bands of Destruction",
+			"source": "ICC",
+			"page": 71,
+			"type": "RG|XDMG",
+			"rarity": "varies",
+			"reqAttune": "by a Character with Ashen Verdict Renown",
+			"entries": [
+				"This thick metal band is adorned with a skull design, with two luminous blue gems serving as eyes. The forge mark of Ormus the Penitent\u2014a stylized O\u2014is imprinted inside the band.",
+				"{@item Ashen Band of Destruction|ICC} (Uncommon, Requires Renown 3+). While wearing this ring, you gain a +1 bonus to spell attack rolls, and your spell saving throw DC increases by 1.",
+				"{@item Ashen Band of Greater Destruction|ICC} (Rare, Requires Renown 10+). The bonus to attack rolls and increase to saving throw DC increase to +2.",
+				"{@item Ashen Band of Unmatched Destruction|ICC} (Very Rare, Requires Renown 25+). The bonus to attack rolls and increase to saving throw DC increase to +3. In addition, you can treat any 1 you roll on a damage die for a spell you cast as a 2 while wearing this ring.",
+				{
+					"type": "entries",
+					"name": "{@item Ashen Band of Endless Destruction|ICC} (Charisma, Intelligence, or Wisdom) (Legendary, Requires Renown 50+)",
+					"entries": [
+						"In addition to the Very Rare property, your spellcasting ability increases by 2 (to a maximum of 30) while wearing this ring. You can also add a +3 bonus to one damage roll of each spell you cast."
+					]
+				}
+			],
+			"items": [
+				"Ashen Band of Destruction|ICC",
+				"Ashen Band of Greater Destruction|ICC",
+				"Ashen Band of Unmatched Destruction|ICC",
+				"Ashen Band of Endless Destruction|ICC"
+			]
+		},
+		{
+			"name": "Ashen Bands of Might",
+			"source": "ICC",
+			"page": 71,
+			"type": "RG|XDMG",
+			"rarity": "varies",
+			"reqAttune": "by a Character with Ashen Verdict Renown",
+			"entries": [
+				"This metal band is adorned with a stylized helm design, with purple gems forming the nose guard and crest. The forge mark of Ormus the Penitent\u2014a stylized O\u2014is imprinted inside the band.",
+				"{@item Ashen Band of Might|ICC} (Uncommon, Requires Renown 3+). While wearing this ring, you gain a +1 bonus to damage rolls for melee weapon attacks.",
+				"{@item Ashen Band of Greater Might|ICC} (Rare, Requires Renown 10+). In addition to the Uncommon property, your Strength is 19 while you're wearing this ring. This property has no effect if your Strength is 19 or higher without it.",
+				"{@item Ashen Band of Unmatched Might|ICC} (Very Rare, Requires Renown 25+). In addition to the Uncommon property, your Strength is 21 while you're wearing this ring. This property has no effect if your Strength is 21 or higher without it. In addition, you can treat any 1 you roll on a melee weapon's damage die as a 2.",
+				"{@item Ashen Band of Endless Might|ICC} (Legendary, Requires Renown 50+). In addition to the Uncommon and Very Rare properties, your Strength is 25 while you're wearing this ring. This property has no effect if your Strength is 25 or higher without it."
+			],
+			"items": [
+				"Ashen Band of Might|ICC",
+				"Ashen Band of Greater Might|ICC",
+				"Ashen Band of Unmatched Might|ICC",
+				"Ashen Band of Endless Might|ICC"
+			]
+		},
+		{
+			"name": "Ashen Bands of Vengeance",
+			"source": "ICC",
+			"page": 72,
+			"type": "RG|XDMG",
+			"rarity": "varies",
+			"reqAttune": "by a Character with Ashen Verdict Renown",
+			"entries": [
+				"This metal band is adorned with a stylized helm design, with deep-blue gems forming the nose guard and crest. The forge mark of Ormus the Penitent\u2014a stylized O\u2014is imprinted inside the band.",
+				"{@item Ashen Band of Vengeance|ICC} (Uncommon, Requires Renown 3+). While wearing this ring, you ignore {@variantrule Cover|XPHB|Half Cover} when making a ranged weapon attack roll, and you gain a +2 bonus to damage rolls made with ranged weapons.",
+				"{@item Ashen Band of Greater Vengeance|ICC} (Rare, Requires Renown 10+). In addition to the Uncommon property, while you're wearing this ring, using a ranged weapon at long range doesn't impose {@variantrule Disadvantage|XPHB} on your attack roll.",
+				"{@item Ashen Band of Unmatched Vengeance|ICC} (Very Rare, Requires Renown 25+). In addition to the Uncommon and Rare properties, while wearing this ring, you ignore {@variantrule Cover|XPHB|Three-Quarters Cover} when making a ranged attack roll, and the maximum range of your ranged weapon attacks is doubled.",
+				"{@item Ashen Band of Endless Vengeance|ICC} (Legendary, Requires Renown 50+). In addition to the Uncommon, Rare, and Very Rare properties, while wearing this ring, you can treat any 1 or 2 you roll on a ranged weapon's damage die as a 3."
+			],
+			"items": [
+				"Ashen Band of Vengeance|ICC",
+				"Ashen Band of Greater Vengeance|ICC",
+				"Ashen Band of Unmatched Vengeance|ICC",
+				"Ashen Band of Endless Vengeance|ICC"
+			]
+		},
+		{
+			"name": "Ashen Bands of Wisdom",
+			"source": "ICC",
+			"page": 72,
+			"type": "RG|XDMG",
+			"rarity": "varies",
+			"reqAttune": "by a Character with Ashen Verdict Renown",
+			"entries": [
+				"This metal band is adorned with an oval design suggestive of an eye, with a luminous turquoise stone at the center. The forge mark of Ormus the Penitent\u2014a stylized O\u2014is imprinted inside the band.",
+				"{@item Ashen Band of Wisdom|ICC} (Uncommon, Requires Renown 3+). While wearing this ring, you can treat any 1 you roll on a die to restore {@variantrule Hit Points|XPHB} to yourself or another creature as a 2.",
+				"{@item Ashen Band of Greater Wisdom|ICC} (Rare, Requires Renown 10+). In addition to the Uncommon property, whenever an effect you create restores {@variantrule Hit Points|XPHB} to one creature while you're wearing this ring, you can choose another creature within 30 feet of the first to also regain half that many {@variantrule Hit Points|XPHB} (round down).",
+				"{@item Ashen Band of Unmatched Wisdom|ICC} (Very Rare, Requires Renown 25+). In addition to the Uncommon and Rare properties, when you cast a spell with a range of touch that doesn't require an attack roll while wearing this ring, you can increase the spell's range to 30 feet.",
+				{
+					"type": "entries",
+					"name": "{@item Ashen Band of Endless Wisdom|ICC} (Charisma, Intelligence, or Wisdom) (Legendary, Requires Renown 50+)",
+					"entries": [
+						"In addition to the Uncommon, Rare, and Very Rare properties, your spellcasting ability also increases by 2 (to a maximum of 30) while you're wearing this ring."
+					]
+				}
+			],
+			"items": [
+				"Ashen Band of Wisdom|ICC",
+				"Ashen Band of Greater Wisdom|ICC",
+				"Ashen Band of Unmatched Wisdom|ICC",
+				"Ashen Band of Endless Wisdom|ICC"
 			]
 		},
 		{
@@ -78810,7 +81660,8 @@
 				"Green Chromatic Rose|WBtW",
 				"Red Chromatic Rose|WBtW",
 				"White Chromatic Rose|WBtW"
-			]
+			],
+			"itemsHidden": true
 		},
 		{
 			"name": "Crystal Ball (Legendary Version)",
@@ -79363,6 +82214,7 @@
 				"Eye of Vecna|DMG",
 				"Hand of Vecna|DMG"
 			],
+			"itemsHidden": true,
 			"attachedSpells": {
 				"charges": {
 					"1": [
@@ -80126,7 +82978,8 @@
 				"Imbued Wood (Risian Pine)|ERLW",
 				"Imbued Wood (Shavarran Birch)|ERLW",
 				"Imbued Wood (Xorian Wenge)|ERLW"
-			]
+			],
+			"itemsHidden": true
 		},
 		{
 			"name": "Infiltrator's Key",
@@ -80841,7 +83694,8 @@
 				"Orb of Shielding (Risian Shale)|ERLW",
 				"Orb of Shielding (Shavarran Chert)|ERLW",
 				"Orb of Shielding (Xorian Marble)|ERLW"
-			]
+			],
+			"itemsHidden": true
 		},
 		{
 			"name": "Potion of Giant Strength",
@@ -81103,6 +83957,106 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Potions of Mana",
+			"source": "WoW",
+			"page": 111,
+			"type": "P|XPHB",
+			"rarity": "varies",
+			"entries": [
+				"You regain one expended spell slot when you drink this potion. The level of the spell slot depends on the potion's rarity, as shown in the table below. (When a level range is presented, you choose the spell slot you regain.)",
+				"Whatever its potency, the potion's blue liquid glows with an inner light.",
+				{
+					"type": "table",
+					"colLabels": [
+						"Potion",
+						"Spell Slot Level",
+						"Rarity"
+					],
+					"colStyles": [
+						"col-8",
+						"col-2 text-center",
+						"col-2 text-center"
+					],
+					"rows": [
+						[
+							"{@item Potion of Mana|WoW}",
+							"1",
+							"Common"
+						],
+						[
+							"{@item Potion of Mana (Greater)|WoW}",
+							"1-3",
+							"Uncommon"
+						],
+						[
+							"{@item Potion of Mana (Superior)|WoW}",
+							"1-5",
+							"Rare"
+						]
+					]
+				}
+			],
+			"items": [
+				"Potion of Mana|WoW",
+				"Potion of Mana (Greater)|WoW",
+				"Potion of Mana (Superior)|WoW"
+			],
+			"itemsHidden": true,
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
+			"name": "Potions of Rejuvenation",
+			"source": "WoW",
+			"page": 111,
+			"type": "P|XPHB",
+			"rarity": "varies",
+			"entries": [
+				"You regain {@variantrule Hit Points|XPHB} and one expended spell slot when you drink this potion. The number of {@variantrule Hit Points|XPHB} and the level of the spell slot depend on the potion's rarity, as shown in the table below. (When a level range is presented, you choose the spell slot you regain.)",
+				"Whatever its potency, the potion's magenta liquid glows faintly from within.",
+				{
+					"type": "table",
+					"colLabels": [
+						"Potion",
+						"HP and Spell Slot Regained",
+						"Rarity"
+					],
+					"colStyles": [
+						"col-5",
+						"col-5 text-center",
+						"col-2 text-center"
+					],
+					"rows": [
+						[
+							"{@item Potion of Rejuvenation|WoW}",
+							"{@dice 3d4 + 3} HP; Slot level: 1",
+							"Uncommon"
+						],
+						[
+							"{@item Potion of Rejuvenation (Greater)|WoW}",
+							"{@dice 6d4 + 6} HP; Slot level: 1-3",
+							"Rare"
+						],
+						[
+							"{@item Potion of Rejuvenation (Superior)|WoW}",
+							"{@dice 9d4 + 9} HP; Slot level: 1-5",
+							"Very Rare"
+						]
+					]
+				}
+			],
+			"items": [
+				"Potion of Rejuvenation|WoW",
+				"Potion of Rejuvenation (Greater)|WoW",
+				"Potion of Rejuvenation (Superior)|WoW"
+			],
+			"itemsHidden": true,
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
 			"name": "Prehistoric Figurine of Wondrous Power",
 			"source": "BGG",
 			"page": 114,
@@ -81185,6 +84139,7 @@
 				"Quaal's Feather Token, Tree",
 				"Quaal's Feather Token, Whip"
 			],
+			"itemsHidden": true,
 			"lootTables": [
 				"Magic Item Table C"
 			],
@@ -81398,6 +84353,7 @@
 				"Ring of Radiant Resistance",
 				"Ring of Thunder Resistance"
 			],
+			"itemsHidden": true,
 			"lootTables": [
 				"Magic Item Table G"
 			],
@@ -81668,6 +84624,7 @@
 				"Sage's Signet (Songbird)|BMT",
 				"Sage's Signet (Wolf)|BMT"
 			],
+			"itemsHidden": true,
 			"attachedSpells": {
 				"daily": {
 					"1e": [
@@ -81990,6 +84947,7 @@
 				"Shard Solitaire (Rainbow Pearl)|KftGV",
 				"Shard Solitaire (Ruby)|KftGV"
 			],
+			"itemsHidden": true,
 			"attachedSpells": {
 				"charges": {
 					"1": [
@@ -82348,6 +85306,62 @@
 			}
 		},
 		{
+			"name": "Troll's Blood Elixirs",
+			"source": "WoW",
+			"page": 113,
+			"type": "P|XPHB",
+			"rarity": "varies",
+			"entries": [
+				"When you drink this potion, you regain a number of {@variantrule Hit Points|XPHB} depending on the potion's rarity, as shown in the table below. At the start of each of your turns for the next 1 minute, you regain that number of {@variantrule Hit Points|XPHB} again if you have at least 1 {@variantrule Hit Points|XPHB|Hit Point}.",
+				"This thick green elixir is made from herbs. No trolls were harmed in the making of this elixir.",
+				{
+					"type": "table",
+					"colLabels": [
+						"Potion",
+						"HP",
+						"Rarity"
+					],
+					"colStyles": [
+						"col-8",
+						"col-2 text-center",
+						"col-2 text-center"
+					],
+					"rows": [
+						[
+							"{@item Troll's Blood Elixir|WoW}",
+							"2",
+							"Uncommon"
+						],
+						[
+							"{@item Troll's Blood Elixir (Greater)|WoW}",
+							"4",
+							"Rare"
+						],
+						[
+							"{@item Troll's Blood Elixir (Superior)|WoW}",
+							"6",
+							"Very Rare"
+						],
+						[
+							"{@item Troll's Blood Elixir (Supreme)|WoW}",
+							"8",
+							"Legendary"
+						]
+					]
+				}
+			],
+			"items": [
+				"Troll's Blood Elixir|WoW",
+				"Troll's Blood Elixir (Greater)|WoW",
+				"Troll's Blood Elixir (Superior)|WoW",
+				"Troll's Blood Elixir (Supreme)|WoW"
+			],
+			"itemsHidden": true,
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
 			"name": "True-Ice Shards",
 			"source": "CoA",
 			"page": 275,
@@ -82418,6 +85432,7 @@
 				"True-Ice Shards (Rapier)|CoA",
 				"True-Ice Shards (Dagger)|CoA"
 			],
+			"itemsHidden": true,
 			"attachedSpells": {
 				"will": [
 					"detect thoughts",

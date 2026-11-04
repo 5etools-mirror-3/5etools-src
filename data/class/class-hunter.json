@@ -1,0 +1,197 @@
+{
+	"_meta": {
+		"dependencies": {
+			"class": [
+				"ranger"
+			],
+			"subclass": [
+				"ranger"
+			],
+			"classFeature": [
+				"ranger"
+			]
+		}
+	},
+	"class": [
+		{
+			"name": "Hunter",
+			"alias": [
+				"Ranger"
+			],
+			"source": "WoW",
+			"reskinOf": [
+				"Ranger|XPHB"
+			],
+			"_copy": {
+				"name": "Ranger",
+				"source": "XPHB"
+			},
+			"classFeatures": [
+				"Spellcasting|Ranger|XPHB|1",
+				"Favored Enemy|Ranger|XPHB|1",
+				"Weapon Mastery|Ranger|XPHB|1",
+				"Deft Explorer|Ranger|XPHB|2",
+				"Fighting Style|Ranger|XPHB|2",
+				{
+					"classFeature": "Hunter Subclass|Hunter|WoW|3",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Ranger|XPHB|4",
+				"Extra Attack|Ranger|XPHB|5",
+				{
+					"classFeature": "Subclass Feature|Hunter|WoW|6",
+					"gainSubclassFeature": true
+				},
+				{
+					"classFeature": "Subclass Feature|Ranger|XPHB|7",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Ranger|XPHB|8",
+				"Expertise|Ranger|XPHB|9",
+				"Tireless|Ranger|XPHB|10",
+				{
+					"classFeature": "Subclass Feature|Ranger|XPHB|11",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Ranger|XPHB|12",
+				"Relentless Hunter|Ranger|XPHB|13",
+				"Nature's Veil|Ranger|XPHB|14",
+				{
+					"classFeature": "Subclass Feature|Ranger|XPHB|15",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Ranger|XPHB|16",
+				"Precise Hunter|Ranger|XPHB|17",
+				"Feral Senses|Ranger|XPHB|18",
+				"Epic Boon|Ranger|XPHB|19",
+				"Foe Slayer|Ranger|XPHB|20"
+			],
+			"includeSubclassesFrom": [
+				"Ranger|XPHB"
+			],
+			"subclassTitle": "Hunter Subclass",
+			"hasFluff": true,
+			"hasFluffImages": true
+		}
+	],
+	"subclass": [
+		{
+			"name": "Beast Master",
+			"shortName": "Beast Master",
+			"source": "WoW",
+			"className": "Hunter",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Beast Master",
+				"source": "XPHB",
+				"shortName": "Beast Master",
+				"className": "Ranger",
+				"classSource": "XPHB",
+				"_mod": {
+					"subclassFeatures": {
+						"mode": "insertArr",
+						"index": 1,
+						"items": [
+							"Pet Specialization|Hunter|WoW|Beast Master|WoW|6"
+						]
+					}
+				}
+			}
+		},
+		{
+			"name": "Hunter",
+			"shortName": "Hunter",
+			"source": "WoW",
+			"className": "Hunter",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Hunter",
+				"source": "XPHB",
+				"shortName": "Hunter",
+				"className": "Ranger",
+				"classSource": "XPHB",
+				"_mod": {
+					"subclassFeatures": {
+						"mode": "insertArr",
+						"index": 1,
+						"items": [
+							"Roving|Hunter|WoW|Hunter|WoW|6"
+						]
+					}
+				}
+			}
+		}
+	],
+	"classFeature": [
+		{
+			"name": "Hunter Subclass",
+			"source": "WoW",
+			"className": "Hunter",
+			"classSource": "WoW",
+			"level": 3,
+			"entries": [
+				"You gain a Hunter subclass of your choice. A subclass is a specialization that grants you features at certain Hunter levels. For the rest of your career, you gain each of your subclass's features that are of your Hunter level or lower."
+			]
+		},
+		{
+			"name": "Subclass Feature",
+			"source": "WoW",
+			"className": "Hunter",
+			"classSource": "WoW",
+			"level": 6,
+			"entries": [
+				"You gain a feature from your Hunter Subclass."
+			]
+		}
+	],
+	"subclassFeature": [
+		{
+			"name": "Pet Specialization",
+			"source": "WoW",
+			"className": "Hunter",
+			"classSource": "WoW",
+			"subclassShortName": "Beast Master",
+			"subclassSource": "WoW",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"This feature replaces the {@classFeature Roving|Ranger|XPHB|6} feature for a Hunter with the {@subclass Beast Master|Hunter|WoW|WoW} subclass.",
+				"While the beast from your {@subclassFeature Primal Companion|Ranger|XPHB|Beast Master|XPHB|3|XPHB} feature is within 60 feet of you, you gain one of the following benefits, depending on the beast's pet family and its specialization (see \"{@book Hunter Pets|WoW|1|Hunter Pets}\").",
+				{
+					"type": "entries",
+					"name": "Cunning",
+					"entries": [
+						"Your {@variantrule Speed|XPHB} and all of your primal beast's speeds increase by 10 feet. In addition, your primal beast can use its action to cast {@spell Freedom of Movement|XPHB} without any spell components, affecting itself and you (if you are within range). Once it does so, it can't do so again until you finish a {@variantrule Long Rest|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Ferocity",
+					"entries": [
+						"When your primal beast is {@status Bloodied|XPHB} and it hits with its Beast's Strike attack, you and your primal beast each regain {@variantrule Hit Points|XPHB} equal to your Wisdom modifier. In addition, your primal beast can use its action to cast {@spell Haste|XPHB} without any spell components, affecting itself and you (if you are within range). Once it does so, it can't do so again until you finish a {@variantrule Long Rest|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Tenacity",
+					"entries": [
+						"Your {@variantrule Hit Points|XPHB|Hit Point} maximum increases by 6. Whenever you gain a Ranger level, your {@variantrule Hit Points|XPHB|Hit Point} maximum increases by an additional 1 {@variantrule Hit Points|XPHB|Hit Point}. Your primal beast's {@variantrule Hit Points|XPHB|Hit Point} maximum also increases by your Ranger level. In addition, your primal beast can use its action to cast {@spell Stoneskin|XPHB} without any spell components, affecting itself and you (if you are within range). Once it does so, it can't do so again until you finish a {@variantrule Long Rest|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Roving",
+			"source": "WoW",
+			"className": "Hunter",
+			"classSource": "WoW",
+			"subclassShortName": "Hunter",
+			"subclassSource": "WoW",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"Your {@variantrule Speed|XPHB} increases by 10 feet while you aren't wearing Heavy armor. You also have a {@variantrule Climb Speed|XPHB} and a {@variantrule Swim Speed|XPHB} equal to your {@variantrule Speed|XPHB}."
+			]
+		}
+	]
+}

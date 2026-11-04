@@ -12433,6 +12433,25 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Soul Fragments",
+			"source": "WoW",
+			"className": "Demon Hunter",
+			"classSource": "WoW",
+			"subclassShortName": "Demon Hunter",
+			"subclassSource": "WoW",
+			"level": 3,
+			"system": {
+				"uses.max": "max(1, @abilities.wis.mod + min(floor(@classes.demon-hunter.levels / 13), 1) + min(floor(@classes.demon-hunter.levels / 17), 1))",
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"migrationVersion": 3
+		},
+		{
 			"name": "Frenzy",
 			"source": "XPHB",
 			"className": "Barbarian",

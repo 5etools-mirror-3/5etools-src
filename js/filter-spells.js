@@ -442,7 +442,7 @@ class PageFilterSpells extends PageFilterBase {
 		});
 		this._affectsCreatureTypeFilter = new Filter({
 			header: "Affects Creature Types",
-			items: [...Parser.MON_TYPES],
+			items: [...Parser.MON_TYPES_STANDARD],
 			displayFn: StrUtil.toTitleCase.bind(StrUtil),
 		});
 	}
@@ -504,7 +504,7 @@ class PageFilterSpells extends PageFilterBase {
 		if (s.range.type === "line" && !s._fAreaTags.includes("L")) s._fAreaTags.push("L");
 		if (s.range.type === "emanation" && !s._fAreaTags.includes("E")) s._fAreaTags.push("E");
 
-		s._fAffectsCreatureType = s.affectsCreatureType || [...Parser.MON_TYPES];
+		s._fAffectsCreatureType = s.affectsCreatureType || [...Parser.MON_TYPES_STANDARD];
 	}
 
 	static unmutateForFilters (s) {

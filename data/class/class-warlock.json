@@ -1,6 +1,7 @@
 {
 	"_meta": {
 		"internalCopies": [
+			"class",
 			"subclass",
 			"subclassFeature"
 		]
@@ -809,6 +810,22 @@
 				"Eldritch Master|Warlock|XPHB|20"
 			],
 			"subclassTitle": "Warlock Subclass",
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Warlock",
+			"source": "WoW",
+			"reskinOf": [
+				"Warlock|XPHB"
+			],
+			"_copy": {
+				"name": "Warlock",
+				"source": "XPHB"
+			},
+			"includeSubclassesFrom": [
+				"Warlock|XPHB"
+			],
 			"hasFluff": true,
 			"hasFluffImages": true
 		}
@@ -1949,6 +1966,34 @@
 			],
 			"hasFluff": true,
 			"hasFluffImages": true
+		},
+		{
+			"name": "Fiend Patron",
+			"shortName": "Fiend",
+			"source": "WoW",
+			"className": "Warlock",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Fiend Patron",
+				"source": "XPHB",
+				"shortName": "Fiend",
+				"className": "Warlock",
+				"classSource": "XPHB"
+			}
+		},
+		{
+			"name": "Great Old One Patron",
+			"shortName": "Great Old One",
+			"source": "WoW",
+			"className": "Warlock",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Great Old One Patron",
+				"source": "XPHB",
+				"shortName": "Great Old One",
+				"className": "Warlock",
+				"classSource": "XPHB"
+			}
 		}
 	],
 	"classFeature": [
@@ -2303,6 +2348,20 @@
 						},
 						{
 							"type": "refOptionalfeature",
+							"optionalfeature": "Call of the Void|WoW",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Curse of Corruption|WoW",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
 							"optionalfeature": "Devil's Sight|XPHB",
 							"preserve": {
 								"prerequisite": true
@@ -2338,6 +2397,13 @@
 						},
 						{
 							"type": "refOptionalfeature",
+							"optionalfeature": "Expendable Minions|WoW",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
 							"optionalfeature": "Fiendish Vigor|XPHB",
 							"preserve": {
 								"prerequisite": true
@@ -2366,7 +2432,21 @@
 						},
 						{
 							"type": "refOptionalfeature",
+							"optionalfeature": "Health Funnel|WoW",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
 							"optionalfeature": "Investment of the Chain Master|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Legion Summoning|WoW",
 							"preserve": {
 								"prerequisite": true
 							}
@@ -2388,6 +2468,13 @@
 						{
 							"type": "refOptionalfeature",
 							"optionalfeature": "Mask of Many Faces|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Master Demonologist|WoW",
 							"preserve": {
 								"prerequisite": true
 							}
@@ -2430,6 +2517,13 @@
 						{
 							"type": "refOptionalfeature",
 							"optionalfeature": "Pact of the Chain|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Pact of the Legion|WoW",
 							"preserve": {
 								"prerequisite": true
 							}

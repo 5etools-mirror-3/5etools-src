@@ -2428,6 +2428,515 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Dracthyr",
+			"source": "WoW",
+			"page": 70,
+			"edition": "one",
+			"creatureTypes": [
+				"dragon"
+			],
+			"size": [
+				"M"
+			],
+			"speed": 30,
+			"darkvision": 60,
+			"traitTags": [
+				"Natural Weapon"
+			],
+			"sizeEntry": {
+				"type": "item",
+				"name": "Size:",
+				"entries": [
+					"Medium (about 7 feet tall)"
+				]
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Darkvision",
+					"entries": [
+						"You have {@sense Darkvision|XPHB} with a range of 60 feet."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Gliding Wings",
+					"entries": [
+						"While you're in your natural form and don't have the {@condition Incapacitated|XPHB} condition, when you fall, you subtract up to 100 feet from the distance fallen when calculating the fall's damage, and you can move up to 2 feet horizontally for every 1 foot you descend."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Natural Weaponry",
+					"entries": [
+						"While you're in your natural form, your wings and tail are powerful weapons. As a {@variantrule Bonus Action|XPHB}, you can use your wings or tail to make an {@variantrule Unarmed Strike|XPHB} to Shove a creature."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Visage",
+					"entries": [
+						"As a {@action Magic|XPHB} action, you can shape-shift into a humanoid form called your visage, or back to your natural form. Your visage has a specific appearance that you choose when you select this species, including your coloration, height and weight, hair length, and sex. Changing shape with this trait doesn't change your clothing, equipment, or game statistics."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Draconic Flight",
+					"entries": [
+						"When you reach character level 5, you can use your natural form's wings to fly short distances. As a {@variantrule Bonus Action|XPHB}, you leap into the air and give yourself a {@variantrule Fly Speed|XPHB} equal to your {@variantrule Speed|XPHB} that lasts for 10 minutes. Once you use this trait, you can't use it again until you finish a {@variantrule Long Rest|XPHB}."
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Draenei",
+			"source": "WoW",
+			"page": 72,
+			"edition": "one",
+			"creatureTypes": [
+				"humanoid"
+			],
+			"size": [
+				"M"
+			],
+			"speed": 30,
+			"darkvision": 60,
+			"resist": [
+				{
+					"choose": {
+						"from": [
+							"necrotic",
+							"poison",
+							"radiant",
+							"fire"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"name": "Draenei",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"1": [
+							"spare the dying|xphb#c"
+						]
+					},
+					"prepared": {
+						"3": {
+							"daily": {
+								"1": [
+									"healing word|xphb"
+								]
+							}
+						},
+						"5": {
+							"daily": {
+								"1": [
+									"prayer of healing|xphb"
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Krokul",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"1": [
+							"poison spray|xphb#c"
+						]
+					},
+					"prepared": {
+						"3": {
+							"daily": {
+								"1": [
+									"ray of sickness|xphb"
+								]
+							}
+						},
+						"5": {
+							"daily": {
+								"1": [
+									"hold person|xphb"
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Lightforged",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"1": [
+							"sacred flame|xphb#c"
+						]
+					},
+					"prepared": {
+						"3": {
+							"daily": {
+								"1": [
+									"guiding bolt|xphb"
+								]
+							}
+						},
+						"5": {
+							"daily": {
+								"1": [
+									"aid|xphb"
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Man'ari",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"1": [
+							"fire bolt|xphb#c"
+						]
+					},
+					"prepared": {
+						"3": {
+							"daily": {
+								"1": [
+									"hellish rebuke|xphb"
+								]
+							}
+						},
+						"5": {
+							"daily": {
+								"1": [
+									"darkness|xphb"
+								]
+							}
+						}
+					}
+				}
+			],
+			"sizeEntry": {
+				"type": "item",
+				"name": "Size:",
+				"entries": [
+					"Medium (over 7 feet tall)"
+				]
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Darkvision",
+					"entries": [
+						"You have {@sense Darkvision|XPHB} with a range of 60 feet."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Eredar Lineage",
+					"entries": [
+						"You are part of a lineage related to your ancestors' embrace of the Light\u2014or of the power of the Burning Legion. This lineage grants you supernatural abilities. Choose a lineage from the Eredar Lineages table: Draenei, Krokul, Lightforged, or Man'ari. You gain the level 1 benefit of that lineage.",
+						"When you reach character levels 3 and 5, you learn a higher-level spell, as shown on the table. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}. You can also cast it using any spell slots you have of the appropriate level.",
+						"Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose when you select the lineage).",
+						{
+							"type": "table",
+							"caption": "Eredar Lineages",
+							"colLabels": [
+								"Lineage",
+								"Level 1",
+								"Level 3",
+								"Level 5"
+							],
+							"colStyles": [
+								"col-2",
+								"col-6",
+								"col-2",
+								"col-2"
+							],
+							"rows": [
+								[
+									"Draenei",
+									"You have {@variantrule Resistance|XPHB} to Necrotic damage. You also know the {@spell Spare the Dying|XPHB} cantrip.",
+									"{@spell Healing Word|XPHB}",
+									"{@spell Prayer of Healing|XPHB}"
+								],
+								[
+									"Krokul",
+									"You have {@variantrule Resistance|XPHB} to Poison damage. You also know the {@spell Poison Spray|XPHB} cantrip.",
+									"{@spell Ray of Sickness|XPHB}",
+									"{@spell Hold Person|XPHB}"
+								],
+								[
+									"Lightforged",
+									"You have {@variantrule Resistance|XPHB} to Radiant damage. You also know the {@spell Sacred Flame|XPHB} cantrip.",
+									"{@spell Guiding Bolt|XPHB}",
+									"{@spell Aid|XPHB}"
+								],
+								[
+									"Man'ari",
+									"You have {@variantrule Resistance|XPHB} to Fire damage. You also know the {@spell Fire Bolt|XPHB} cantrip.",
+									"{@spell Hellish Rebuke|XPHB}",
+									"{@spell Darkness|XPHB}"
+								]
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Heroic Presence",
+					"entries": [
+						"When you cast a spell granted by your Eredar Lineage, if you don't have {@variantrule Heroic Inspiration|XPHB}, you gain it. You can gain {@variantrule Heroic Inspiration|XPHB} in this way once, and you regain the ability to do so when you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"_versions": [
+				{
+					"name": "Draenei; Draenei Lineage",
+					"source": "WoW",
+					"_mod": {
+						"entries": {
+							"mode": "replaceArr",
+							"replace": "Eredar Lineage",
+							"items": {
+								"name": "Eredar Lineage (Draenei)",
+								"type": "entries",
+								"entries": [
+									"You have {@variantrule Resistance|XPHB} to Necrotic damage. You also know the {@spell Spare the Dying|XPHB} cantrip.",
+									"When you reach character level 3, you learn the {@spell Healing Word|XPHB} spell. When you reach character level 5, you also learn the {@spell Prayer of Healing|XPHB} spell. You always have these spells prepared, and you can cast each spell once without a spell slot. Once you cast either of these spells with this trait, you can't cast that spell with it again until you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have of the appropriate level.",
+									"Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose when you select the lineage)."
+								]
+							}
+						}
+					},
+					"resist": [
+						"necrotic"
+					],
+					"additionalSpells": [
+						{
+							"ability": {
+								"choose": [
+									"int",
+									"wis",
+									"cha"
+								]
+							},
+							"known": {
+								"1": [
+									"spare the dying|xphb#c"
+								]
+							},
+							"prepared": {
+								"3": {
+									"daily": {
+										"1": [
+											"healing word|xphb"
+										]
+									}
+								},
+								"5": {
+									"daily": {
+										"1": [
+											"prayer of healing|xphb"
+										]
+									}
+								}
+							}
+						}
+					]
+				},
+				{
+					"name": "Draenei; Krokul Lineage",
+					"source": "WoW",
+					"_mod": {
+						"entries": {
+							"mode": "replaceArr",
+							"replace": "Eredar Lineage",
+							"items": {
+								"name": "Eredar Lineage (Krokul)",
+								"type": "entries",
+								"entries": [
+									"You have {@variantrule Resistance|XPHB} to Poison damage. You also know the {@spell Poison Spray|XPHB} cantrip.",
+									"When you reach character level 3, you learn the {@spell Ray of Sickness|XPHB} spell. When you reach character level 5, you also learn the {@spell Hold Person|XPHB} spell. You always have these spells prepared, and you can cast each spell once without a spell slot. Once you cast either of these spells with this trait, you can't cast that spell with it again until you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have of the appropriate level.",
+									"Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose when you select the lineage)."
+								]
+							}
+						}
+					},
+					"resist": [
+						"poison"
+					],
+					"additionalSpells": [
+						{
+							"ability": {
+								"choose": [
+									"int",
+									"wis",
+									"cha"
+								]
+							},
+							"known": {
+								"1": [
+									"poison spray|xphb#c"
+								]
+							},
+							"prepared": {
+								"3": {
+									"daily": {
+										"1": [
+											"ray of sickness|xphb"
+										]
+									}
+								},
+								"5": {
+									"daily": {
+										"1": [
+											"hold person|xphb"
+										]
+									}
+								}
+							}
+						}
+					]
+				},
+				{
+					"name": "Draenei; Lightforged Lineage",
+					"source": "WoW",
+					"_mod": {
+						"entries": {
+							"mode": "replaceArr",
+							"replace": "Eredar Lineage",
+							"items": {
+								"name": "Eredar Lineage (Lightforged)",
+								"type": "entries",
+								"entries": [
+									"You have {@variantrule Resistance|XPHB} to Radiant damage. You also know the {@spell Sacred Flame|XPHB} cantrip.",
+									"When you reach character level 3, you learn the {@spell Guiding Bolt|XPHB} spell. When you reach character level 5, you also learn the {@spell Aid|XPHB} spell. You always have these spells prepared, and you can cast each spell once without a spell slot. Once you cast either of these spells with this trait, you can't cast that spell with it again until you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have of the appropriate level.",
+									"Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose when you select the lineage)."
+								]
+							}
+						}
+					},
+					"resist": [
+						"radiant"
+					],
+					"additionalSpells": [
+						{
+							"ability": {
+								"choose": [
+									"int",
+									"wis",
+									"cha"
+								]
+							},
+							"known": {
+								"1": [
+									"sacred flame|xphb#c"
+								]
+							},
+							"prepared": {
+								"3": {
+									"daily": {
+										"1": [
+											"guiding bolt|xphb"
+										]
+									}
+								},
+								"5": {
+									"daily": {
+										"1": [
+											"aid|xphb"
+										]
+									}
+								}
+							}
+						}
+					]
+				},
+				{
+					"name": "Draenei; Man'ari Lineage",
+					"source": "WoW",
+					"_mod": {
+						"entries": {
+							"mode": "replaceArr",
+							"replace": "Eredar Lineage",
+							"items": {
+								"name": "Eredar Lineage (Man'ari)",
+								"type": "entries",
+								"entries": [
+									"You have {@variantrule Resistance|XPHB} to Fire damage. You also know the {@spell Fire Bolt|XPHB} cantrip.",
+									"When you reach character level 3, you learn the {@spell Hellish Rebuke|XPHB} spell. When you reach character level 5, you also learn the {@spell Darkness|XPHB} spell. You always have these spells prepared, and you can cast each spell once without a spell slot. Once you cast either of these spells with this trait, you can't cast that spell with it again until you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have of the appropriate level.",
+									"Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose when you select the lineage)."
+								]
+							}
+						}
+					},
+					"resist": [
+						"fire"
+					],
+					"additionalSpells": [
+						{
+							"ability": {
+								"choose": [
+									"int",
+									"wis",
+									"cha"
+								]
+							},
+							"known": {
+								"1": [
+									"fire bolt|xphb#c"
+								]
+							},
+							"prepared": {
+								"3": {
+									"daily": {
+										"1": [
+											"hellish rebuke|xphb"
+										]
+									}
+								},
+								"5": {
+									"daily": {
+										"1": [
+											"darkness|xphb"
+										]
+									}
+								}
+							}
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Dragonborn",
 			"source": "PHB",
 			"page": 32,
@@ -3653,6 +4162,17 @@
 		},
 		{
 			"name": "Dwarf",
+			"source": "WoW",
+			"page": 74,
+			"_copy": {
+				"name": "Dwarf",
+				"source": "XPHB"
+			},
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Dwarf",
 			"source": "XPHB",
 			"page": 188,
 			"srd52": true,
@@ -3813,6 +4333,71 @@
 					"name": "Languages",
 					"entries": [
 						"You can speak, read, and write Common and {@language Dwarvish}. {@language Dwarvish} is full of hard consonants and guttural sounds, and those characteristics spill over into whatever other language a dwarf might speak."
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Earthen",
+			"source": "WoW",
+			"page": 75,
+			"edition": "one",
+			"creatureTypes": [
+				"humanoid"
+			],
+			"size": [
+				"M"
+			],
+			"speed": 30,
+			"darkvision": 120,
+			"resist": [
+				"poison"
+			],
+			"sizeEntry": {
+				"type": "item",
+				"name": "Size:",
+				"entries": [
+					"Medium (about 4\u20135 feet tall)"
+				]
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Azerite Surge",
+					"entries": [
+						"When you take the {@action Attack|XPHB} action on your turn, you can replace one of the attacks with a blast of Azerite energy in a 15-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}. Each creature of your choice in the {@variantrule Cone [Area of Effect]|XPHB|Cone} regains {@dice 1d10} {@variantrule Hit Points|XPHB}. Each other creature in the {@variantrule Cone [Area of Effect]|XPHB|Cone} makes a Dexterity saving throw ({@dc 8} plus your Constitution modifier and your {@variantrule Proficiency|XPHB|Proficiency Bonus}), taking {@damage 1d10} Radiant damage on a failed save or half as much damage on a successful one.",
+						"Both the damage and the healing increase by {@dice 1d10} when you reach character levels 5 ({@dice 2d10}), 11 ({@dice 3d10}), and 17 ({@dice 4d10}).",
+						"You can use this ability a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Darkvision",
+					"entries": [
+						"You have {@sense Darkvision|XPHB} with a range of 120 feet."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Earthen Resilience",
+					"entries": [
+						"You have {@variantrule Resistance|XPHB} to Poison damage. You also have {@variantrule Advantage|XPHB} on saving throws you make to avoid or end the {@condition Poisoned|XPHB} condition."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Ingest Minerals",
+					"entries": [
+						"You don't gain {@condition Exhaustion|XPHB} levels from malnutrition."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Quiet Contemplation",
+					"entries": [
+						"When you spend {@variantrule Hit Point Dice|XPHB} when you finish a {@variantrule Short Rest|XPHB}, you regain 1 additional {@variantrule Hit Points|XPHB|Hit Point} per {@variantrule Hit Point Dice|XPHB|Hit Point Die} you spend."
 					]
 				}
 			],
@@ -4251,6 +4836,547 @@
 			],
 			"hasFluff": true,
 			"hasFluffImages": true
+		},
+		{
+			"name": "Elf",
+			"source": "WoW",
+			"page": 76,
+			"_copy": {
+				"name": "Elf",
+				"source": "XPHB",
+				"_mod": {
+					"entries": {
+						"mode": "replaceArr",
+						"replace": "Elven Lineage",
+						"items": {
+							"type": "entries",
+							"name": "Azeroth Elven Lineage",
+							"entries": [
+								"You are part of a lineage that grants you supernatural abilities. Choose a lineage from the Azeroth Elven Lineages table. You gain the level 1 benefit of that lineage.",
+								"When you reach character levels 3 and 5, you learn a higher-level spell, as shown on the table. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have of the appropriate level.",
+								"Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage).",
+								{
+									"type": "table",
+									"caption": "Azeroth Elven Lineages",
+									"colLabels": [
+										"Lineage",
+										"Level 1",
+										"Level 3",
+										"Level 5"
+									],
+									"colStyles": [
+										"col-2",
+										"col-6",
+										"col-2",
+										"col-2"
+									],
+									"rows": [
+										[
+											"Blood Elf",
+											"You know the {@spell Prestidigitation|XPHB} cantrip. Whenever you finish a {@variantrule Long Rest|XPHB}, you can replace that cantrip with a different {@filter cantrip from the Wizard spell list|spells|level=0|class=Wizard}.",
+											"{@spell Detect Magic|XPHB}",
+											"{@spell Arcane Vigor|XPHB}"
+										],
+										[
+											"Night Elf",
+											"You have proficiency in the {@skill Stealth|XPHB} skill, and while you are in {@variantrule Dim Light|XPHB} or {@variantrule Darkness|XPHB}, you can take the {@action Hide|XPHB} action as a {@variantrule Bonus Action|XPHB}.",
+											"{@spell Longstrider|XPHB}",
+											"{@spell Pass without Trace|XPHB}"
+										],
+										[
+											"Nightborne",
+											"The range of your {@sense Darkvision|XPHB} increases to 120 feet. You also know the {@spell Arcane Pulse|WoW} cantrip.",
+											"{@spell Faerie Fire|XPHB}",
+											"{@spell Darkness|XPHB}"
+										],
+										[
+											"Void Elf",
+											"The range of your {@sense Darkvision|XPHB} increases to 120 feet. You also know the {@spell Mind Sliver|XPHB} cantrip.",
+											"{@spell Entropic Embrace|WoW}",
+											"{@spell Misty Step|XPHB}"
+										],
+										[
+											"High Elf",
+											"You know the {@spell Prestidigitation|XPHB} cantrip. Whenever you finish a {@variantrule Long Rest|XPHB}, you can replace that cantrip with a different {@filter cantrip from the Wizard spell list|spells|level=0|class=Wizard}.",
+											"{@spell Detect Magic|XPHB}",
+											"{@spell Misty Step|XPHB}"
+										]
+									]
+								}
+							]
+						}
+					}
+				}
+			},
+			"additionalSpells": [
+				{
+					"name": "Blood Elf",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"1": {
+							"_": [
+								{
+									"choose": "level=0|class=Wizard"
+								}
+							]
+						}
+					},
+					"prepared": {
+						"3": {
+							"daily": {
+								"1": [
+									"detect magic|xphb"
+								]
+							}
+						},
+						"5": {
+							"daily": {
+								"1": [
+									"arcane vigor|xphb"
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Night Elf",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"prepared": {
+						"3": {
+							"daily": {
+								"1": [
+									"longstrider|xphb"
+								]
+							}
+						},
+						"5": {
+							"daily": {
+								"1": [
+									"pass without trace|xphb"
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Nightborne",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"1": [
+							"arcane pulse|wow#c"
+						]
+					},
+					"prepared": {
+						"3": {
+							"daily": {
+								"1": [
+									"faerie fire|xphb"
+								]
+							}
+						},
+						"5": {
+							"daily": {
+								"1": [
+									"darkness|xphb"
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Void Elf",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"1": [
+							"mind sliver|xphb#c"
+						]
+					},
+					"prepared": {
+						"3": {
+							"daily": {
+								"1": [
+									"entropic embrace|wow"
+								]
+							}
+						},
+						"5": {
+							"daily": {
+								"1": [
+									"misty step|xphb"
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "High Elf",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"1": {
+							"_": [
+								{
+									"choose": "level=0|class=Wizard"
+								}
+							]
+						}
+					},
+					"prepared": {
+						"3": {
+							"daily": {
+								"1": [
+									"detect magic|xphb"
+								]
+							}
+						},
+						"5": {
+							"daily": {
+								"1": [
+									"misty step|xphb"
+								]
+							}
+						}
+					}
+				}
+			],
+			"sizeEntry": {
+				"type": "item",
+				"name": "Size:",
+				"entries": [
+					"Medium (about 6\u20138 feet tall)"
+				]
+			},
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"_versions": [
+				{
+					"name": "Elf; Blood Elf Lineage",
+					"source": "WoW",
+					"_mod": {
+						"entries": {
+							"mode": "replaceArr",
+							"replace": "Azeroth Elven Lineage",
+							"items": {
+								"name": "Azeroth Elven Lineage (Blood Elf)",
+								"type": "entries",
+								"entries": [
+									"You know the {@spell Prestidigitation|XPHB} cantrip. Whenever you finish a {@variantrule Long Rest|XPHB}, you can replace that cantrip with a different {@filter cantrip from the Wizard spell list|spells|level=0|class=Wizard}.",
+									"When you reach character level 3, you learn the {@spell Detect Magic|XPHB} spell. When you reach character level 5, you also learn the {@spell Arcane Vigor|XPHB} spell. You always have these spells prepared, and you can cast each spell once without a spell slot. Once you cast either of these spells with this trait, you can't cast that spell with it again until you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have of the appropriate level.",
+									"Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage)."
+								]
+							}
+						}
+					},
+					"additionalSpells": [
+						{
+							"ability": {
+								"choose": [
+									"int",
+									"wis",
+									"cha"
+								]
+							},
+							"known": {
+								"1": {
+									"_": [
+										{
+											"choose": "level=0|class=Wizard"
+										}
+									]
+								}
+							},
+							"prepared": {
+								"3": {
+									"daily": {
+										"1": [
+											"detect magic|xphb"
+										]
+									}
+								},
+								"5": {
+									"daily": {
+										"1": [
+											"arcane vigor|xphb"
+										]
+									}
+								}
+							}
+						}
+					]
+				},
+				{
+					"name": "Elf; High Elf Lineage",
+					"source": "WoW",
+					"_mod": {
+						"entries": {
+							"mode": "replaceArr",
+							"replace": "Azeroth Elven Lineage",
+							"items": {
+								"name": "Azeroth Elven Lineage (High Elf)",
+								"type": "entries",
+								"entries": [
+									"You know the {@spell Prestidigitation|XPHB} cantrip. Whenever you finish a {@variantrule Long Rest|XPHB}, you can replace that cantrip with a different {@filter cantrip from the Wizard spell list|spells|level=0|class=Wizard}.",
+									"When you reach character level 3, you learn the {@spell Detect Magic|XPHB} spell. When you reach character level 5, you also learn the {@spell Misty Step|XPHB} spell. You always have these spells prepared, and you can cast each spell once without a spell slot. Once you cast either of these spells with this trait, you can't cast that spell with it again until you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have of the appropriate level.",
+									"Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage)."
+								]
+							}
+						}
+					},
+					"additionalSpells": [
+						{
+							"ability": {
+								"choose": [
+									"int",
+									"wis",
+									"cha"
+								]
+							},
+							"known": {
+								"1": {
+									"_": [
+										{
+											"choose": "level=0|class=Wizard"
+										}
+									]
+								}
+							},
+							"prepared": {
+								"3": {
+									"daily": {
+										"1": [
+											"detect magic|xphb"
+										]
+									}
+								},
+								"5": {
+									"daily": {
+										"1": [
+											"misty step|xphb"
+										]
+									}
+								}
+							}
+						}
+					]
+				},
+				{
+					"name": "Elf; Night Elf Lineage",
+					"source": "WoW",
+					"_mod": {
+						"entries": {
+							"mode": "replaceArr",
+							"replace": "Azeroth Elven Lineage",
+							"items": {
+								"name": "Azeroth Elven Lineage (Night Elf)",
+								"type": "entries",
+								"entries": [
+									"You have proficiency in the {@skill Stealth|XPHB} skill, and while you are in {@variantrule Dim Light|XPHB} or {@variantrule Darkness|XPHB}, you can take the {@action Hide|XPHB} action as a {@variantrule Bonus Action|XPHB}.",
+									"When you reach character level 3, you learn the {@spell Longstrider|XPHB} spell. When you reach character level 5, you also learn the {@spell Pass without Trace|XPHB} spell. You always have these spells prepared, and you can cast each spell once without a spell slot. Once you cast either of these spells with this trait, you can't cast that spell with it again until you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have of the appropriate level.",
+									"Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage)."
+								]
+							}
+						}
+					},
+					"skillProficiencies": [
+						{
+							"stealth": true,
+							"choose": {
+								"from": [
+									"insight",
+									"perception",
+									"survival"
+								]
+							}
+						}
+					],
+					"additionalSpells": [
+						{
+							"ability": {
+								"choose": [
+									"int",
+									"wis",
+									"cha"
+								]
+							},
+							"prepared": {
+								"3": {
+									"daily": {
+										"1": [
+											"longstrider|xphb"
+										]
+									}
+								},
+								"5": {
+									"daily": {
+										"1": [
+											"pass without trace|xphb"
+										]
+									}
+								}
+							}
+						}
+					]
+				},
+				{
+					"name": "Elf; Nightborne Lineage",
+					"source": "WoW",
+					"_mod": {
+						"entries": [
+							{
+								"mode": "replaceArr",
+								"replace": "Azeroth Elven Lineage",
+								"items": {
+									"name": "Azeroth Elven Lineage (Nightborne)",
+									"type": "entries",
+									"entries": [
+										"The range of your {@sense Darkvision|XPHB} increases to 120 feet. You also know the {@spell Arcane Pulse|WoW} cantrip.",
+										"When you reach character level 3, you learn the {@spell Faerie Fire|XPHB} spell. When you reach character level 5, you also learn the {@spell Darkness|XPHB} spell. You always have these spells prepared, and you can cast each spell once without a spell slot. Once you cast either of these spells with this trait, you can't cast that spell with it again until you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have of the appropriate level.",
+										"Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage)."
+									]
+								}
+							},
+							{
+								"mode": "replaceArr",
+								"replace": "Darkvision",
+								"items": {
+									"type": "entries",
+									"name": "Darkvision",
+									"entries": [
+										"You have {@sense Darkvision|XPHB} with a range of 120 feet."
+									]
+								}
+							}
+						]
+					},
+					"darkvision": 120,
+					"additionalSpells": [
+						{
+							"ability": {
+								"choose": [
+									"int",
+									"wis",
+									"cha"
+								]
+							},
+							"known": {
+								"1": [
+									"arcane pulse|wow#c"
+								]
+							},
+							"prepared": {
+								"3": {
+									"daily": {
+										"1": [
+											"faerie fire|xphb"
+										]
+									}
+								},
+								"5": {
+									"daily": {
+										"1": [
+											"darkness|xphb"
+										]
+									}
+								}
+							}
+						}
+					]
+				},
+				{
+					"name": "Elf; Void Elf Lineage",
+					"source": "WoW",
+					"_mod": {
+						"entries": [
+							{
+								"mode": "replaceArr",
+								"replace": "Azeroth Elven Lineage",
+								"items": {
+									"name": "Azeroth Elven Lineage (Void Elf)",
+									"type": "entries",
+									"entries": [
+										"The range of your {@sense Darkvision|XPHB} increases to 120 feet. You also know the {@spell Mind Sliver|XPHB} cantrip.",
+										"When you reach character level 3, you learn the {@spell Entropic Embrace|WoW} spell. When you reach character level 5, you also learn the {@spell Misty Step|XPHB} spell. You always have these spells prepared, and you can cast each spell once without a spell slot. Once you cast either of these spells with this trait, you can't cast that spell with it again until you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have of the appropriate level.",
+										"Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage)."
+									]
+								}
+							},
+							{
+								"mode": "replaceArr",
+								"replace": "Darkvision",
+								"items": {
+									"type": "entries",
+									"name": "Darkvision",
+									"entries": [
+										"You have {@sense Darkvision|XPHB} with a range of 120 feet."
+									]
+								}
+							}
+						]
+					},
+					"darkvision": 120,
+					"additionalSpells": [
+						{
+							"ability": {
+								"choose": [
+									"int",
+									"wis",
+									"cha"
+								]
+							},
+							"known": {
+								"1": [
+									"mind sliver|xphb#c"
+								]
+							},
+							"prepared": {
+								"3": {
+									"daily": {
+										"1": [
+											"entropic embrace|wow"
+										]
+									}
+								},
+								"5": {
+									"daily": {
+										"1": [
+											"misty step|xphb"
+										]
+									}
+								}
+							}
+						}
+					]
+				}
+			]
 		},
 		{
 			"name": "Elf",
@@ -5338,6 +6464,74 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Forsaken",
+			"source": "WoW",
+			"page": 78,
+			"edition": "one",
+			"creatureTypes": [
+				"undead"
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"speed": 30,
+			"darkvision": 60,
+			"traitTags": [
+				"Improved Resting"
+			],
+			"resist": [
+				"necrotic"
+			],
+			"sizeEntry": {
+				"type": "item",
+				"name": "Size:",
+				"entries": [
+					"Medium (about 4\u20137 feet tall) or Small (about 2\u20134 feet tall), chosen when you select this species"
+				]
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Darkvision",
+					"entries": [
+						"You have {@sense Darkvision|XPHB} with a range of 60 feet."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Deathly Endurance",
+					"entries": [
+						"You have {@variantrule Resistance|XPHB} to Necrotic damage."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Everlasting",
+					"entries": [
+						"You don't gain {@condition Exhaustion|XPHB} levels from dehydration, malnutrition, or suffocation. You don't need to sleep, and magic can't put you to sleep. You can finish a {@variantrule Long Rest|XPHB} in 4 hours if you spend those hours in an inactive, motionless state, during which you retain consciousness."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Touch of the Grave",
+					"entries": [
+						"When you deal damage to a creature, you can roll a number of d4s equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}. You deal extra Necrotic damage to the creature equal to the total rolled, and you regain a number of {@variantrule Hit Points|XPHB} equal to the extra damage dealt.",
+						"Once you use this benefit, you can't use it again until you finish a {@variantrule Long Rest|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Will of the Forsaken",
+					"entries": [
+						"You have {@variantrule Advantage|XPHB} on saving throws to avoid or end the {@condition Charmed|XPHB} or {@condition Frightened|XPHB} condition."
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Genasi",
 			"source": "EEPC",
 			"page": 9,
@@ -5844,6 +7038,48 @@
 		},
 		{
 			"name": "Gnome",
+			"source": "WoW",
+			"page": 80,
+			"_copy": {
+				"name": "Gnome",
+				"source": "XPHB",
+				"_mod": {
+					"entries": {
+						"mode": "replaceArr",
+						"replace": "Gnomish Lineage",
+						"items": {
+							"type": "entries",
+							"name": "Gnomish Lineage",
+							"entries": [
+								"You are part of a lineage that grants you supernatural abilities. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait:",
+								"You know the {@spell Mending|XPHB} and {@spell Prestidigitation|XPHB} cantrips. In addition, you can spend 10 minutes casting {@spell Prestidigitation|XPHB} to create a Tiny clockwork device (AC 5, 1 HP), such as a toy, fire starter, or music box. When you create the device, you determine its function by choosing one effect from {@spell Prestidigitation|XPHB}; the device produces that effect whenever you or another creature takes a {@variantrule Bonus Action|XPHB} to activate it with a touch. If the chosen effect has options within it, you choose one of those options for the device when you create it. For example, if you choose the spell's ignite-extinguish effect, you determine whether the device ignites or extinguishes fire; the device doesn't do both. You can have three such devices in existence at a time, and each falls apart 8 hours after its creation or when you dismantle it with a touch as a {@action Utilize|XPHB} action."
+							]
+						}
+					}
+				}
+			},
+			"additionalSpells": [
+				{
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"1": [
+							"mending|xphb#c",
+							"prestidigitation|xphb#c"
+						]
+					}
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Gnome",
 			"source": "XPHB",
 			"page": 191,
 			"srd52": true,
@@ -5861,6 +7097,48 @@
 				"type": "internal",
 				"path": "races/gnome.opus"
 			},
+			"additionalSpells": [
+				{
+					"name": "Forest Gnome",
+					"innate": {
+						"1": {
+							"daily": {
+								"pb": [
+									"speak with animals|xphb"
+								]
+							}
+						}
+					},
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"1": [
+							"minor illusion|xphb#c"
+						]
+					}
+				},
+				{
+					"name": "Rock Gnome",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"1": [
+							"mending|xphb#c",
+							"prestidigitation|xphb#c"
+						]
+					}
+				}
+			],
 			"sizeEntry": {
 				"type": "item",
 				"name": "Size:",
@@ -5933,7 +7211,7 @@
 					"additionalSpells": [
 						{
 							"innate": {
-								"3": {
+								"1": {
 									"daily": {
 										"pb": [
 											"speak with animals|xphb"
@@ -6475,6 +7753,60 @@
 					"name": "Languages",
 					"entries": [
 						"You can speak, read, and write Common and Goblin."
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Goblin",
+			"source": "WoW",
+			"page": 81,
+			"edition": "one",
+			"creatureTypes": [
+				"humanoid"
+			],
+			"size": [
+				"S"
+			],
+			"speed": 30,
+			"darkvision": 60,
+			"sizeEntry": {
+				"type": "item",
+				"name": "Size:",
+				"entries": [
+					"Small (about 4 feet tall)"
+				]
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Darkvision",
+					"entries": [
+						"You have {@sense Darkvision|XPHB} with a range of 60 feet."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Fey Ancestry",
+					"entries": [
+						"You have {@variantrule Advantage|XPHB} on saving throws you make to avoid or end the {@condition Charmed|XPHB} condition."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Fury of the Small",
+					"entries": [
+						"When you damage a creature with an attack or a spell and the creature's size is larger than yours, you can cause the attack or spell to deal extra damage to the creature. The extra damage equals your {@variantrule Proficiency|XPHB|Proficiency Bonus} and is the same damage type as the other damage dealt.",
+						"You can use this trait a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, regaining all expended uses when you finish a {@variantrule Long Rest|XPHB}, and you can use it no more than once per turn."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Nimble Escape",
+					"entries": [
+						"You can take the {@action Disengage|XPHB} or {@action Hide|XPHB} action as a {@variantrule Bonus Action|XPHB} on each of your turns."
 					]
 				}
 			],
@@ -7560,6 +8892,94 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Haranir",
+			"source": "WoW",
+			"page": 83,
+			"edition": "one",
+			"creatureTypes": [
+				"humanoid"
+			],
+			"size": [
+				"M"
+			],
+			"speed": 30,
+			"darkvision": 120,
+			"skillProficiencies": [
+				{
+					"nature": true,
+					"survival": true
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"1": [
+							"druidcraft|xphb#c",
+							"thorn whip|xphb#c"
+						]
+					},
+					"prepared": {
+						"3": {
+							"daily": {
+								"1": [
+									"entangle|xphb"
+								]
+							}
+						},
+						"5": {
+							"daily": {
+								"1": [
+									"spike growth|xphb"
+								]
+							}
+						}
+					}
+				}
+			],
+			"sizeEntry": {
+				"type": "item",
+				"name": "Size:",
+				"entries": [
+					"Medium (about 7\u20138 feet tall)"
+				]
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Darkvision",
+					"entries": [
+						"You have {@sense Darkvision|XPHB} with a range of 120 feet."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Gift of the World Tree",
+					"entries": [
+						"Because of your supernatural connection to the world trees, you have proficiency in the {@skill Nature|XPHB} and {@skill Survival|XPHB} skills."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Haranir Magic",
+					"entries": [
+						"You know the {@spell Druidcraft|XPHB} and {@spell Thorn Whip|XPHB} cantrips.",
+						"When you reach character level 3, you learn the {@spell Entangle|XPHB} spell. You always have it prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have of the appropriate level.",
+						"When you reach character level 5, you also always have the {@spell Spike Growth|XPHB} spell prepared and can cast it the same way.",
+						"Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select this species)."
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Harengon",
 			"source": "MPMM",
 			"page": 22,
@@ -8211,6 +9631,30 @@
 		},
 		{
 			"name": "Human",
+			"source": "WoW",
+			"page": 84,
+			"_copy": {
+				"name": "Human",
+				"source": "XPHB",
+				"_mod": {
+					"entries": {
+						"mode": "replaceArr",
+						"replace": "Versatile",
+						"items": {
+							"type": "entries",
+							"name": "Versatile",
+							"entries": [
+								"You gain an {@filter Origin feat|feats|category=O} of your choice."
+							]
+						}
+					}
+				}
+			},
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Human",
 			"source": "XPHB",
 			"page": 194,
 			"srd52": true,
@@ -8269,7 +9713,7 @@
 					"type": "entries",
 					"name": "Versatile",
 					"entries": [
-						"You gain an {@filter Origin feat|feats|category=o} of your choice."
+						"You gain an {@filter Origin feat|feats|category=o} of your choice (see {@book chapter 5|XPHB|5}). {@feat Skilled|XPHB} is recommended."
 					]
 				}
 			],
@@ -10344,6 +11788,76 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Mechagnome",
+			"source": "WoW",
+			"page": 80,
+			"edition": "one",
+			"creatureTypes": [
+				"construct"
+			],
+			"size": [
+				"S"
+			],
+			"speed": 30,
+			"traitTags": [
+				"Improved Resting"
+			],
+			"toolProficiencies": [
+				{
+					"any": 2
+				}
+			],
+			"resist": [
+				"poison"
+			],
+			"sizeEntry": {
+				"type": "item",
+				"name": "Size:",
+				"entries": [
+					"Small (about 4 feet tall)"
+				]
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Built for Success",
+					"entries": [
+						"You can add {@dice 1d4} to one {@variantrule D20 Test|XPHB} you make, and you can do so after rolling the die but before resolving the effects of the roll. You can use this trait a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Emergency Fail-Safe",
+					"entries": [
+						"When you become {@status Bloodied|XPHB}, you can take a {@variantrule Reaction|XPHB} to spend one {@variantrule Hit Point Dice|XPHB|Hit Point Die}, roll it, and regain a number of {@variantrule Hit Points|XPHB} equal to the roll plus your Constitution modifier (minimum of 1 {@variantrule Hit Points|XPHB|Hit Point}). Once you use this trait, you can't use it again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Mechanical Nature",
+					"entries": [
+						"You have {@variantrule Resistance|XPHB} to Poison damage, and you have {@variantrule Advantage|XPHB} on saving throws to avoid or end the {@condition Paralyzed|XPHB} or {@condition Poisoned|XPHB} condition. You don't gain {@condition Exhaustion|XPHB} levels from dehydration, malnutrition, or suffocation."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Sentry's Rest",
+					"entries": [
+						"You don't need to sleep. You can finish a {@variantrule Long Rest|XPHB} in 6 hours if you spend those hours in an inactive, motionless state, during which you retain consciousness."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Specialized Design",
+					"entries": [
+						"You gain proficiency with two {@filter tools|items|type=tool;artisan's tools;instrument;gaming set} of your choice."
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Merfolk",
 			"source": "DMG",
 			"page": 282,
@@ -11304,6 +12818,17 @@
 		},
 		{
 			"name": "Orc",
+			"source": "WoW",
+			"page": 86,
+			"_copy": {
+				"name": "Orc",
+				"source": "XPHB"
+			},
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Orc",
 			"source": "XPHB",
 			"page": 195,
 			"srd52": true,
@@ -11496,6 +13021,59 @@
 					"name": "Silent Feathers",
 					"entries": [
 						"You have proficiency in the {@skill Stealth} skill."
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Pandaren",
+			"source": "WoW",
+			"page": 87,
+			"edition": "one",
+			"creatureTypes": [
+				"humanoid"
+			],
+			"size": [
+				"M"
+			],
+			"speed": 30,
+			"darkvision": 60,
+			"sizeEntry": {
+				"type": "item",
+				"name": "Size:",
+				"entries": [
+					"Medium (about 6\u20137 feet tall)"
+				]
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Bouncy",
+					"entries": [
+						"You have {@variantrule Resistance|XPHB} to Bludgeoning damage from falling."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Darkvision",
+					"entries": [
+						"You have {@sense Darkvision|XPHB} with a range of 60 feet."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Inner Peace",
+					"entries": [
+						"When you spend {@variantrule Hit Point Dice|XPHB} to regain {@variantrule Hit Points|XPHB} after a {@variantrule Short Rest|XPHB}, you regain 1 additional {@variantrule Hit Points|XPHB|Hit Point} per {@variantrule Hit Point Dice|XPHB|Hit Point Die} you expend."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Quaking Palm",
+					"entries": [
+						"When you hit a creature with a melee attack on your turn, your movement doesn't provoke {@action Opportunity Attack|XPHB|Opportunity Attacks} from that creature until the end of your turn."
 					]
 				}
 			],
@@ -13049,6 +14627,158 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Tauren",
+			"source": "WoW",
+			"page": 88,
+			"edition": "one",
+			"creatureTypes": [
+				"humanoid"
+			],
+			"size": [
+				"M"
+			],
+			"speed": 30,
+			"traitTags": [
+				"Natural Armor",
+				"Natural Weapon"
+			],
+			"sizeEntry": {
+				"type": "item",
+				"name": "Size:",
+				"entries": [
+					"Medium (about 8\u20139 feet tall)"
+				]
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Horns",
+					"entries": [
+						"Your horns are powerful natural weapons. When you hit with your {@variantrule Unarmed Strike|XPHB} and deal damage, you can deal Piercing damage equal to {@damage 1d6} plus your Strength modifier instead of the normal damage of an {@variantrule Unarmed Strike|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Goring Rush",
+					"entries": [
+						"Immediately after you take the {@action Dash|XPHB} action on your turn and move at least 20 feet, you can make one {@variantrule Unarmed Strike|XPHB} as a {@variantrule Bonus Action|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Hammering Horns",
+					"entries": [
+						"Immediately after you hit a creature with a melee attack as part of the {@action Attack|XPHB} action on your turn, you can use a {@variantrule Bonus Action|XPHB} to shove that target with an {@variantrule Unarmed Strike|XPHB} as long as the target is within 5 feet of you. When you shove a target in this way, you can push the target up to 10 feet away instead of 5 feet."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Tauren Lineage",
+					"entries": [
+						"You are part of a lineage that grants you supernatural qualities. If your lineage grants you an ability that allows a saving throw, the DC equals 8 plus your Strength, Constitution, or Wisdom modifier (choose when you select the lineage) and {@variantrule Proficiency|XPHB|Proficiency Bonus}. Choose one of the following options:",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "Mulgore Tauren",
+									"entries": [
+										"When you take the {@action Attack|XPHB} action on your turn, you can replace one of the attacks with a magically empowered stomp on the ground. You can't use this feature if you have the {@condition Prone|XPHB} condition or if you are flying, climbing, or swimming. When you use your war stomp, each creature of your choice within a 5-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from you makes a Constitution saving throw. On a failed save, a creature has the {@condition Stunned|XPHB} condition until the end of your current turn."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Highmountain Tauren",
+									"entries": [
+										"As an action, you can move up to your {@variantrule Speed|XPHB} without provoking {@action Opportunity Attack|XPHB|Opportunity Attacks} and can move through the spaces of other creatures. Each Medium or smaller creature whose space you enter makes a Strength saving throw. On a failed save, a creature takes damage equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus} plus your Strength modifier and has the {@condition Prone|XPHB} condition. A creature can take this damage only once per turn."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Taunka",
+									"entries": [
+										"Your shaggy hide gives you a +1 bonus to {@variantrule Armor Class|XPHB} and {@variantrule Resistance|XPHB} to Cold damage."
+									]
+								}
+							]
+						}
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"_versions": [
+				{
+					"name": "Tauren; Highmountain Lineage",
+					"source": "WoW",
+					"_mod": {
+						"entries": {
+							"mode": "replaceArr",
+							"replace": "Tauren Lineage",
+							"items": {
+								"type": "entries",
+								"name": "Tauren Lineage (Highmountain Tauren)",
+								"entries": [
+									"You are part of a lineage that grants you supernatural qualities. If your lineage grants you an ability that allows a saving throw, the DC equals 8 plus your Strength, Constitution, or Wisdom modifier (choose when you select the lineage) and {@variantrule Proficiency|XPHB|Proficiency Bonus}.",
+									"As an action, you can move up to your {@variantrule Speed|XPHB} without provoking {@action Opportunity Attack|XPHB|Opportunity Attacks} and can move through the spaces of other creatures. Each Medium or smaller creature whose space you enter makes a Strength saving throw. On a failed save, a creature takes damage equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus} plus your Strength modifier and has the {@condition Prone|XPHB} condition. A creature can take this damage only once per turn."
+								]
+							}
+						}
+					},
+					"traitTags": [
+						"Natural Weapon"
+					]
+				},
+				{
+					"name": "Tauren; Mulgore Lineage",
+					"source": "WoW",
+					"_mod": {
+						"entries": {
+							"mode": "replaceArr",
+							"replace": "Tauren Lineage",
+							"items": {
+								"type": "entries",
+								"name": "Tauren Lineage (Mulgore Tauren)",
+								"entries": [
+									"You are part of a lineage that grants you supernatural qualities. If your lineage grants you an ability that allows a saving throw, the DC equals 8 plus your Strength, Constitution, or Wisdom modifier (choose when you select the lineage) and {@variantrule Proficiency|XPHB|Proficiency Bonus}.",
+									"When you take the {@action Attack|XPHB} action on your turn, you can replace one of the attacks with a magically empowered stomp on the ground. You can't use this feature if you have the {@condition Prone|XPHB} condition or if you are flying, climbing, or swimming. When you use your war stomp, each creature of your choice within a 5-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from you makes a Constitution saving throw. On a failed save, a creature has the {@condition Stunned|XPHB} condition until the end of your current turn."
+								]
+							}
+						}
+					},
+					"traitTags": [
+						"Natural Weapon"
+					]
+				},
+				{
+					"name": "Tauren; Taunka Lineage",
+					"source": "WoW",
+					"_mod": {
+						"entries": {
+							"mode": "replaceArr",
+							"replace": "Tauren Lineage",
+							"items": {
+								"type": "entries",
+								"name": "Tauren Lineage (Taunka)",
+								"entries": [
+									"You are part of a lineage that grants you supernatural qualities. If your lineage grants you an ability that allows a saving throw, the DC equals 8 plus your Strength, Constitution, or Wisdom modifier (choose when you select the lineage) and {@variantrule Proficiency|XPHB|Proficiency Bonus}.",
+									"Your shaggy hide gives you a +1 bonus to {@variantrule Armor Class|XPHB} and {@variantrule Resistance|XPHB} to Cold damage."
+								]
+							}
+						}
+					},
+					"traitTags": [
+						"Natural Armor",
+						"Natural Weapon"
+					],
+					"resist": [
+						"cold"
+					]
+				}
+			]
+		},
+		{
 			"name": "Thri-kreen",
 			"source": "AAG",
 			"page": 15,
@@ -14167,6 +15897,142 @@
 			]
 		},
 		{
+			"name": "Troll",
+			"source": "WoW",
+			"page": 91,
+			"edition": "one",
+			"creatureTypes": [
+				"humanoid"
+			],
+			"size": [
+				"M"
+			],
+			"speed": 30,
+			"darkvision": 60,
+			"sizeEntry": {
+				"type": "item",
+				"name": "Size:",
+				"entries": [
+					"Medium (about 7 feet tall)"
+				]
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Bloodied Frenzy",
+					"entries": [
+						"While {@status Bloodied|XPHB}, you have {@variantrule Advantage|XPHB} on attack rolls."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Darkvision",
+					"entries": [
+						"You have {@sense Darkvision|XPHB} with a range of 60 feet."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Troll Healing",
+					"entries": [
+						"When you expend {@variantrule Hit Point Dice|XPHB} to regain {@variantrule Hit Points|XPHB} after a {@variantrule Short Rest|XPHB}, you regain {@variantrule Hit Points|XPHB} equal to the maximum roll of the dice plus your Constitution modifier."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Troll Lineage",
+					"entries": [
+						"You are part of a lineage that grants you supernatural qualities. Choose one of the following options:",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "Amani Troll",
+									"entries": [
+										"Whenever you spend {@variantrule Heroic Inspiration|XPHB}, you regain 1 expended {@variantrule Hit Point Dice|XPHB|Hit Point Die}."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Darkspear Troll",
+									"entries": [
+										"When you take the {@action Dash|XPHB} action, {@variantrule Difficult Terrain|XPHB} composed of ice, rubble, snow, or undergrowth doesn't cost you extra movement until the end of your turn."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Zandalari Troll",
+									"entries": [
+										"If you roll a 1 on the {@dice d20} for a {@variantrule D20 Test|XPHB}, you gain {@variantrule Heroic Inspiration|XPHB} at the end of the current turn."
+									]
+								}
+							]
+						}
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"_versions": [
+				{
+					"name": "Troll; Amani Lineage",
+					"source": "WoW",
+					"_mod": {
+						"entries": {
+							"mode": "replaceArr",
+							"replace": "Troll Lineage",
+							"items": {
+								"type": "entries",
+								"name": "Troll Lineage (Amani Troll)",
+								"entries": [
+									"You are part of a lineage that grants you supernatural qualities.",
+									"Whenever you spend {@variantrule Heroic Inspiration|XPHB}, you regain 1 expended {@variantrule Hit Point Dice|XPHB|Hit Point Die}."
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Troll; Darkspear Lineage",
+					"source": "WoW",
+					"_mod": {
+						"entries": {
+							"mode": "replaceArr",
+							"replace": "Troll Lineage",
+							"items": {
+								"type": "entries",
+								"name": "Troll Lineage (Darkspear Troll)",
+								"entries": [
+									"You are part of a lineage that grants you supernatural qualities.",
+									"When you take the {@action Dash|XPHB} action, {@variantrule Difficult Terrain|XPHB} composed of ice, rubble, snow, or undergrowth doesn't cost you extra movement until the end of your turn."
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Troll; Zandalari Lineage",
+					"source": "WoW",
+					"_mod": {
+						"entries": {
+							"mode": "replaceArr",
+							"replace": "Troll Lineage",
+							"items": {
+								"type": "entries",
+								"name": "Troll Lineage (Zandalari Troll)",
+								"entries": [
+									"You are part of a lineage that grants you supernatural qualities.",
+									"If you roll a 1 on the {@dice d20} for a {@variantrule D20 Test|XPHB}, you gain {@variantrule Heroic Inspiration|XPHB} at the end of the current turn."
+								]
+							}
+						}
+					}
+				}
+			]
+		},
+		{
 			"name": "Vampire",
 			"source": "PSZ",
 			"page": 14,
@@ -14525,6 +16391,62 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Vulpera",
+			"source": "WoW",
+			"page": 92,
+			"edition": "one",
+			"creatureTypes": [
+				"humanoid"
+			],
+			"size": [
+				"S"
+			],
+			"speed": 30,
+			"darkvision": 60,
+			"resist": [
+				"fire"
+			],
+			"sizeEntry": {
+				"type": "item",
+				"name": "Size:",
+				"entries": [
+					"Small (about 4\u20135 feet tall)"
+				]
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Darkvision",
+					"entries": [
+						"You have {@sense Darkvision|XPHB} with a range of 60 feet."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Fire Resistance",
+					"entries": [
+						"You have {@variantrule Resistance|XPHB} to Fire damage."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Nose for Trouble",
+					"entries": [
+						"The first time you take damage after you roll {@variantrule Initiative|XPHB}, you reduce the damage you take by your level (to a minimum of 0 damage)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Vulpera Nimbleness",
+					"entries": [
+						"You can move through the space of any creature that is a size larger than you, but you can't stop in the same space."
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Warforged",
 			"source": "EFA",
 			"page": 38,
@@ -14735,6 +16657,80 @@
 					"name": "Languages",
 					"entries": [
 						"You can speak, read, and write Common and one other language of your choice."
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Worgen",
+			"source": "WoW",
+			"page": 93,
+			"edition": "one",
+			"creatureTypes": [
+				"humanoid"
+			],
+			"size": [
+				"M"
+			],
+			"speed": 30,
+			"darkvision": 60,
+			"sizeEntry": {
+				"type": "item",
+				"name": "Size:",
+				"entries": [
+					"Medium (4\u20137 feet tall)"
+				]
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Darkflight",
+					"entries": [
+						"As a {@variantrule Bonus Action|XPHB}, you can shape-shift to assume a more bestial appearance. This transformation lasts for 1 minute or until you revert to your normal appearance as a {@variantrule Bonus Action|XPHB}. When you enter your bestial form, you gain {@variantrule Temporary Hit Points|XPHB} equal to 2 times your {@variantrule Proficiency|XPHB|Proficiency Bonus}. You can enter this form a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}.",
+						"In your bestial form, you gain the following benefits:",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "Increased Speed",
+									"entries": [
+										"Your {@variantrule Speed|XPHB} increases by 10 feet."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Reactive Movement",
+									"entries": [
+										"You can take a {@variantrule Reaction|XPHB} to move up to 10 feet when a creature ends its turn within 5 feet of you. This reactive movement doesn't provoke {@action Opportunity Attack|XPHB|Opportunity Attacks}."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Necrotic Resistance",
+									"entries": [
+										"You have {@variantrule Resistance|XPHB} to Necrotic damage."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Darkvision",
+					"entries": [
+						"You have {@sense Darkvision|XPHB} with a range of 60 feet."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Instinctual Shift",
+					"entries": [
+						"When you roll {@variantrule Initiative|XPHB} while you have one or more uses of your Darkflight species trait remaining, you can immediately use that trait to shape-shift (no action required)."
 					]
 				}
 			],
