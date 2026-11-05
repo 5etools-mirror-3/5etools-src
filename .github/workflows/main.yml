@@ -100,8 +100,15 @@ jobs:
 
          # region See: https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-ghcrio
          # FIXME `timeout-minutes` due to `sleep` hack
-         -  name: Build Image
+         -  name: Wait for 5etools-img build action
             timeout-minutes: 60
+            run: |
+               until curl --header "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/users/$GITHUB_REPOSITORY_OWNER/packages/container/5etools-img/versions | grep "$IMAGE_VERSION"
+               do
+                  sleep 30
+               done
+
+         -  name: Build Image
             run: |
                if [[ "${{ github.ref }}" == "refs/tags/"* ]]
                then
@@ -116,9 +123,6 @@ jobs:
                      DO_CLEAN_BUILD=1
                   fi
                fi
-               
-               # FIXME hack to allow the `-img` build action to complete
-               sleep 20m
 
                if [[ $DO_CLEAN_BUILD == 1 ]]
                then
