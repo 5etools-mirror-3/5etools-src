@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.40.0"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.40.1"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -619,6 +619,11 @@ globalThis.SourceUtil = class {
 			|| SourceUtil.isPrereleaseSource(source);
 	}
 
+	static isUniversesBeyondSource (source) {
+		if (source == null) return false;
+		return Parser.SOURCES_UNIVERSES_BEYOND.has(source);
+	}
+
 	static isPartneredSourceWotc (source) {
 		if (source == null) return false;
 		if (Parser.SOURCES_PARTNERED_WOTC.has(source)) return true;
@@ -660,12 +665,14 @@ globalThis.SourceUtil = class {
 
 	static FILTER_GROUP_STANDARD = 0;
 	static FILTER_GROUP_PARTNERED = 1;
-	static FILTER_GROUP_NON_STANDARD = 2;
-	static FILTER_GROUP_PRERELEASE = 3;
-	static FILTER_GROUP_HOMEBREW = 4;
+	static FILTER_GROUP_UNIVERSES_BEYOND = 2;
+	static FILTER_GROUP_NON_STANDARD = 3;
+	static FILTER_GROUP_PRERELEASE = 4;
+	static FILTER_GROUP_HOMEBREW = 5;
 
 	static getFilterGroup (source) {
 		if (source instanceof FilterItem) source = source.item;
+		if (SourceUtil.isUniversesBeyondSource(source)) return SourceUtil.FILTER_GROUP_UNIVERSES_BEYOND;
 		if (SourceUtil.isPartneredSourceWotc(source)) return SourceUtil.FILTER_GROUP_PARTNERED;
 		if (typeof PrereleaseUtil !== "undefined" && PrereleaseUtil.hasSourceJson(source)) return SourceUtil.FILTER_GROUP_PRERELEASE;
 		if (typeof BrewUtil2 !== "undefined" && BrewUtil2.hasSourceJson(source)) return SourceUtil.FILTER_GROUP_HOMEBREW;
@@ -675,6 +682,7 @@ globalThis.SourceUtil = class {
 
 	static getFilterGroupName (group) {
 		switch (group) {
+			case SourceUtil.FILTER_GROUP_UNIVERSES_BEYOND: return "Universes Beyond";
 			case SourceUtil.FILTER_GROUP_NON_STANDARD: return "Other";
 			case SourceUtil.FILTER_GROUP_PRERELEASE: return "Prerelease";
 			case SourceUtil.FILTER_GROUP_HOMEBREW: return "Homebrew";

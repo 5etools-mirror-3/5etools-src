@@ -366,7 +366,7 @@ export class RenderMap {
 				// When in book mode, shift-click a region to navigate to it
 				if (evt.shiftKey && globalThis.BookUtil) {
 					const oldHash = location.hash;
-					location.hash = `#${globalThis.BookUtil.curRender.curBookId},${area.chapter},${UrlUtil.encodeForHash(area.entry.name)},0`;
+					location.hash = Renderer.tag.TAG_LOOKUP.area.getHref(globalThis.BookUtil.curRender, area);
 					if (oldHash.toLowerCase() === location.hash.toLowerCase()) {
 						globalThis.BookUtil.isHashReload = true;
 						globalThis.BookUtil.booksHashChange();

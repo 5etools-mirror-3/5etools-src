@@ -21,7 +21,7 @@ class PageFilterClassesBase extends PageFilterBase {
 		this._miscFilter = new Filter({
 			header: "Miscellaneous",
 			items: ["Reprinted", "Sidekick", "Legacy"],
-			deselFn: (it) => { return it === "Reprinted" || it === "Sidekick"; },
+			deselFn: (it) => { return ["Reprinted", "Sidekick", "Reskin"].includes(it); },
 			displayFnMini: it => it === "Reprinted" ? "Repr." : it,
 			displayFnTitle: it => it === "Reprinted" ? it : "",
 			isMiscFilter: true,
@@ -68,6 +68,11 @@ class PageFilterClassesBase extends PageFilterBase {
 			sc.shortName = sc.shortName || sc.name; // ensure shortName
 
 			this._mutateForFilters_commonMisc(sc);
+
+			// Retain subclasses when blue-misc-filtering classes
+			if (cls.isHero) sc._fMisc.push("Hero Class");
+			if (this.isReskin(cls) && !sc._fMisc.includes("Reskin")) sc._fMisc.push("Reskin");
+
 			this._mutateForFilters_commonSources(sc);
 		});
 
@@ -84,6 +89,7 @@ class PageFilterClassesBase extends PageFilterBase {
 		cls._fPrimaryAbility = this._mutateForFilters_getFilterPrimaryAbility(cls);
 
 		if (cls.isSidekick) cls._fMisc.push("Sidekick");
+		if (cls.isHero) cls._fMisc.push("Hero Class");
 	}
 
 	_addEntrySourcesToFilter (entry) { this._addEntrySourcesToFilter_walk(entry); }

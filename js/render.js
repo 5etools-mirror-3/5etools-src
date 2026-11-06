@@ -40,7 +40,8 @@ globalThis.Renderer = class {
 		this._tagExportDict = null;
 		this._roll20Ids = null;
 		this._trackTitles = {enabled: false, titles: {}};
-		this._enumerateTitlesRel = {enabled: false, titles: {}};
+		this._isEnumerateTitlesRel = false;
+		this._relativeTitles = new Renderer.utils.TitleRelativeIndexTracker();
 		this._isHeaderIndexIncludeTableCaptions = false;
 		this._isHeaderIndexIncludeImageTitles = false;
 		this._isRenderHeaderIndex = true;
@@ -148,7 +149,7 @@ globalThis.Renderer = class {
 	resetHeaderIndex () {
 		this._headerIndex = 1;
 		this._trackTitles.titles = {};
-		this._enumerateTitlesRel.titles = {};
+		this._relativeTitles.reset();
 		return this;
 	}
 
@@ -229,16 +230,15 @@ globalThis.Renderer = class {
 	 * This identifier is stored in `data-title-relative-index`
 	 */
 	setEnumerateTitlesRel (bool) {
-		this._enumerateTitlesRel.enabled = bool;
+		this._isEnumerateTitlesRel = bool;
 		return this;
 	}
 
-	_getEnumeratedTitleRel (name) {
-		if (this._enumerateTitlesRel.enabled && name) {
-			const clean = name.toLowerCase();
-			this._enumerateTitlesRel.titles[clean] = this._enumerateTitlesRel.titles[clean] || 0;
-			return `data-title-relative-index="${this._enumerateTitlesRel.titles[clean]++}"`;
-		} else return "";
+	_getEnumeratedTitleRel (entry) {
+		if (!this._isEnumerateTitlesRel) return "";
+
+		const meta = this._relativeTitles.getNextMetaForEntry(entry);
+		return meta ? `data-title-relative-index="${meta.ixTitleRel}"` : "";
 	}
 
 	setTrackTitles (bool) {
@@ -255,11 +255,15 @@ globalThis.Renderer = class {
 		// Invert it such that we have a map of `{"<name>": ["data-title-index-0", ..., "data-title-index-n"]}`
 		const trackedTitlesInverse = {};
 		Object.entries(this._trackTitles.titles || {}).forEach(([titleIx, titleName]) => {
-			if (isStripTags) titleName = Renderer.stripTags(titleName);
-			titleName = titleName.toLowerCase().trim();
+			titleName = Renderer.utils.TitleRelativeIndexTracker.getCleanName(titleName, {isStripTags});
 			(trackedTitlesInverse[titleName] = trackedTitlesInverse[titleName] || []).push(titleIx);
 		});
 		return trackedTitlesInverse;
+	}
+
+	_handleTrackEntryTitle (entry) {
+		const name = Renderer.utils.TitleRelativeIndexTracker.getEntryName(entry);
+		if (name != null) this._handleTrackTitles(name);
 	}
 
 	_handleTrackTitles (name, {isTable = false, isImage = false} = {}) {
@@ -270,7 +274,7 @@ globalThis.Renderer = class {
 	}
 
 	_handleTrackDepth (entry, depth) {
-		if (!entry.name || !this._depthTracker) return;
+		if (!this._depthTracker || !Renderer.utils.getEntryDisplayName(entry)) return;
 
 		this._lastDepthTrackerInheritedProps = MiscUtil.copyFast(this._lastDepthTrackerInheritedProps);
 		if (entry.source) this._lastDepthTrackerInheritedProps.source = entry.source;
@@ -998,7 +1002,7 @@ globalThis.Renderer = class {
 	}
 
 	_renderEntriesSubtypes (entry, textStack, meta, options, incDepth) {
-		const displayName = entry._displayName || entry.name;
+		const displayName = Renderer.utils.getEntryDisplayName(entry);
 		const isInlineTitle = meta.depth >= 2;
 
 		const cachedLastDepthTrackerProps = MiscUtil.copyFast(this._lastDepthTrackerInheritedProps);
@@ -1042,7 +1046,7 @@ globalThis.Renderer = class {
 		const styleString = this._renderEntriesSubtypes_getStyleString({entry, meta, isNamed: !!displayName});
 
 		const dataString = this._renderEntriesSubtypes_getDataString(entry);
-		if (entry.name != null && Renderer.ENTRIES_WITH_ENUMERATED_TITLES_LOOKUP[entry.type]) this._handleTrackTitles(entry.name);
+		this._handleTrackEntryTitle(entry);
 
 		const headerSpan = this._renderEntriesSubtypes_getHeaderSpan({
 			entry,
@@ -1080,7 +1084,7 @@ globalThis.Renderer = class {
 		const styleString = this._renderEntriesSubtypes_getStyleString({entry, meta, isInlineTitle: true, isNamed: !!displayName});
 
 		const dataString = this._renderEntriesSubtypes_getDataString(entry);
-		if (entry.name != null && Renderer.ENTRIES_WITH_ENUMERATED_TITLES_LOOKUP[entry.type]) this._handleTrackTitles(entry.name);
+		this._handleTrackEntryTitle(entry);
 
 		const headerSpan = this._renderEntriesSubtypes_getHeaderSpan({
 			entry,
@@ -1111,7 +1115,8 @@ globalThis.Renderer = class {
 	}
 
 	_renderEntriesSubtypes_getDataString (entry, {isCollapsibleChild = false} = {}) {
-		const displayName = entry._displayName || entry.name;
+		const displayName = Renderer.utils.getEntryDisplayName(entry);
+
 		let dataString = "";
 		if (displayName) dataString += ` data-roll-name-ancestor="${Renderer.stripTags(displayName).qq()}"`;
 		if (isCollapsibleChild) dataString += `data-rd-is-collapsible-child="true"`;
@@ -1139,14 +1144,14 @@ globalThis.Renderer = class {
 	}) {
 		if (!displayName) return "";
 
-		const type = entry.type || "entries";
+		const type = Renderer.utils.getRenderableEntryType(entry);
 
 		const headerClass = `ve-rd__h--${meta.depth + 1}${isInset ? "-inset" : ""}`; // adjust as the CSS is 0..4 rather than -1..3
 		const pluginDataNamePrefix = this._applyPlugins_getAll(`${type}_namePrefix`, {textStack, meta, options}, {input: entry});
 
 		const ptText = `${pluginDataNamePrefix.join("")}${this.render({type: "inline", entries: [displayName]})}${isAddPeriod ? "." : ""}`;
 
-		return `<${headerTag} class="ve-rd__h ${headerClass}" ${this._getRenderedTitleIndexAttribute()} ${this._getEnumeratedTitleRel(entry.name)}> <span class="entry-title-inner ${!pagePart && entry.source ? `ve-help-subtle` : ""}"${!pagePart && entry.source ? ` title="Source: ${Parser.sourceJsonToFull(entry.source)}${entry.page ? `, p${entry.page}` : ""}"` : ""}>${ptText}</span>${partPageExpandCollapse}</${headerTag}> `;
+		return `<${headerTag} class="ve-rd__h ${headerClass}" ${this._getRenderedTitleIndexAttribute()} ${this._getEnumeratedTitleRel(entry)}> <span class="entry-title-inner ${!pagePart && entry.source ? `ve-help-subtle` : ""}"${!pagePart && entry.source ? ` title="Source: ${Parser.sourceJsonToFull(entry.source)}${entry.page ? `, p${entry.page}` : ""}"` : ""}>${ptText}</span>${partPageExpandCollapse}</${headerTag}> `;
 	}
 
 	_renderEntriesSubtypes_renderPreReqText (entry, textStack, meta) {
@@ -1165,7 +1170,7 @@ globalThis.Renderer = class {
 
 	_renderEntriesSubtypes_getStyleString ({entry, meta, isNamed = false, isInlineTitle = false}) {
 		const styleClasses = ["ve-rd__b"];
-		styleClasses.push(this._getStyleClass(entry.type || "entries", entry));
+		styleClasses.push(this._getStyleClass(Renderer.utils.getRenderableEntryType(entry), entry));
 		if (isNamed) styleClasses.push("ve-rd__b--named");
 		if (isInlineTitle) {
 			if (this._subVariant) styleClasses.push(Renderer.HEAD_2_SUB_VARIANT);
@@ -1180,7 +1185,7 @@ globalThis.Renderer = class {
 		if (!entry.entries) return;
 		entry.entries = entry.entries.sort((a, b) => a.name && b.name ? SortUtil.ascSort(a.name, b.name) : a.name ? -1 : b.name ? 1 : 0);
 
-		if (entry.style && entry.style === "list-hang-notitle") {
+		if (Renderer.utils.getRenderableEntryType(entry) === "list") {
 			const fauxEntry = {
 				type: "list",
 				style: "list-hang-notitle",
@@ -1193,8 +1198,10 @@ globalThis.Renderer = class {
 					return out;
 				}),
 			};
-			this._renderList(fauxEntry, textStack, meta, options);
-		} else this._renderEntriesSubtypes(entry, textStack, meta, options, false);
+			return this._renderList(fauxEntry, textStack, meta, options);
+		}
+
+		return this._renderEntriesSubtypes(entry, textStack, meta, options, false);
 	}
 
 	_renderList (entry, textStack, meta, options) {
@@ -1253,7 +1260,7 @@ globalThis.Renderer = class {
 	}
 
 	_renderInset (entry, textStack, meta, options) {
-		const displayName = entry.name?.trim();
+		const displayName = Renderer.utils.getEntryDisplayName(entry);
 
 		const dataString = this._renderEntriesSubtypes_getDataString(entry, {isCollapsibleChild: !displayName});
 		textStack[0] += `<${this.wrapperTag} class="${this._renderInset_getCssClasses(entry, textStack, meta, options)}" ${dataString}>`;
@@ -1266,7 +1273,7 @@ globalThis.Renderer = class {
 		const partPageExpandCollapse = `<span class="ve-flex-vh-center">${[pagePart, partExpandCollapse].filter(Boolean).join("")}</span>`;
 
 		if (displayName != null) {
-			if (Renderer.ENTRIES_WITH_ENUMERATED_TITLES_LOOKUP[entry.type]) this._handleTrackTitles(entry.name);
+			this._handleTrackEntryTitle(entry);
 
 			const cacheDepth = meta.depth;
 			meta.depth = 1;
@@ -1303,7 +1310,7 @@ globalThis.Renderer = class {
 	}
 
 	_renderInsetReadaloud (entry, textStack, meta, options) {
-		const displayName = entry.name?.trim();
+		const displayName = Renderer.utils.getEntryDisplayName(entry);
 
 		const dataString = this._renderEntriesSubtypes_getDataString(entry, {isCollapsibleChild: !displayName});
 		textStack[0] += `<${this.wrapperTag} class="${this._renderInset_getCssClasses(entry, textStack, meta, options)}" ${dataString}>`;
@@ -1316,7 +1323,7 @@ globalThis.Renderer = class {
 		const partPageExpandCollapse = `<span class="ve-flex-vh-center">${[pagePart, partExpandCollapse].filter(Boolean).join("")}</span>`;
 
 		if (displayName != null) {
-			if (Renderer.ENTRIES_WITH_ENUMERATED_TITLES_LOOKUP[entry.type]) this._handleTrackTitles(entry.name);
+			this._handleTrackEntryTitle(entry);
 
 			const cacheDepth = meta.depth;
 			meta.depth = 1;
@@ -1351,9 +1358,11 @@ globalThis.Renderer = class {
 	}
 
 	_renderVariant (entry, textStack, meta, options) {
+		const displayName = Renderer.utils.getEntryDisplayName(entry);
+
 		const dataString = this._renderEntriesSubtypes_getDataString(entry);
 
-		if (entry.name != null && Renderer.ENTRIES_WITH_ENUMERATED_TITLES_LOOKUP[entry.type]) this._handleTrackTitles(entry.name);
+		this._handleTrackEntryTitle(entry);
 		const cachedLastDepthTrackerProps = MiscUtil.copyFast(this._lastDepthTrackerInheritedProps);
 		this._handleTrackDepth(entry, 1);
 
@@ -1370,7 +1379,7 @@ globalThis.Renderer = class {
 			textStack,
 			meta,
 			options,
-			displayName: entry.name ? `Variant: ${entry.name}` : "Variant",
+			displayName: displayName ? `Variant: ${displayName}` : "Variant",
 			headerTag: `h4`,
 			pagePart,
 			partPageExpandCollapse,
@@ -1394,14 +1403,18 @@ globalThis.Renderer = class {
 	}
 
 	_renderVariantInner (entry, textStack, meta, options) {
+		const displayName = Renderer.utils.getEntryDisplayName(entry);
+
 		const dataString = this._renderEntriesSubtypes_getDataString(entry);
 
-		if (entry.name != null && Renderer.ENTRIES_WITH_ENUMERATED_TITLES_LOOKUP[entry.type]) this._handleTrackTitles(entry.name);
+		this._handleTrackEntryTitle(entry);
 		const cachedLastDepthTrackerProps = MiscUtil.copyFast(this._lastDepthTrackerInheritedProps);
 		this._handleTrackDepth(entry, 1);
 
 		textStack[0] += `<${this.wrapperTag} class="ve-rd__b-inset-inner" ${dataString}>`;
-		textStack[0] += `<span class="ve-rd__h ve-rd__h--2-inset" ${this._getRenderedTitleIndexAttribute()} ${this._getEnumeratedTitleRel(entry.name)}><h4 class="entry-title-inner">${entry.name}</h4></span>`;
+		if (displayName != null) {
+			textStack[0] += `<span class="ve-rd__h ve-rd__h--2-inset" ${this._getRenderedTitleIndexAttribute()} ${this._getEnumeratedTitleRel(entry)}><h4 class="entry-title-inner">${this.render(displayName)}</h4></span>`;
+		}
 		const len = entry.entries.length;
 		for (let i = 0; i < len; ++i) {
 			const cacheDepth = meta.depth;
@@ -1419,7 +1432,7 @@ globalThis.Renderer = class {
 		// pretend this is an inline-header'd entry, but set a flag so we know not to add bold
 		this._subVariant = true;
 		const fauxEntry = entry;
-		fauxEntry.type = "entries";
+		fauxEntry.type = Renderer.utils.getRenderableEntryType(entry);
 		const cacheDepth = meta.depth;
 		meta.depth = 3;
 		this._recursiveRender(fauxEntry, textStack, meta, {prefix: "<p>", suffix: "</p>"});
@@ -1656,11 +1669,11 @@ globalThis.Renderer = class {
 	_renderActions (entry, textStack, meta, options) {
 		const dataString = this._renderEntriesSubtypes_getDataString(entry);
 
-		if (entry.name != null && Renderer.ENTRIES_WITH_ENUMERATED_TITLES_LOOKUP[entry.type]) this._handleTrackTitles(entry.name);
+		this._handleTrackEntryTitle(entry);
 		const cachedLastDepthTrackerProps = MiscUtil.copyFast(this._lastDepthTrackerInheritedProps);
 		this._handleTrackDepth(entry, 2);
 
-		const headerSpan = `<span class="ve-rd__h ve-rd__h--3" ${this._getRenderedTitleIndexAttribute()} ${this._getEnumeratedTitleRel(entry.name)}><span class="entry-title-inner">${entry.name}.</span></span> `;
+		const headerSpan = `<span class="ve-rd__h ve-rd__h--3" ${this._getRenderedTitleIndexAttribute()} ${this._getEnumeratedTitleRel(entry)}><span class="entry-title-inner">${entry.name}.</span></span> `;
 
 		textStack[0] += `<${this.wrapperTag} class="${Renderer.HEAD_2}" ${dataString}>`;
 		if (entry.entries) {
@@ -1696,9 +1709,10 @@ globalThis.Renderer = class {
 
 	_renderItemSubtypes (entry, textStack, meta, options) {
 		this._renderPrefix(entry, textStack, meta, options);
+		this._handleTrackEntryTitle(entry);
 		textStack[0] += `<p class="ve-rd__p-list-item" ${entry.name ? `data-roll-name-ancestor="${Renderer.stripTags(entry.name).qq()}"` : ""}>`;
 		if (entry.name) {
-			textStack[0] += `<span class="${entry.type === "itemSub" ? "ve-italic" : "ve-bold"} ve-rd__list-item-name">${this.render(entry.name)}${this._renderItemSubtypes_isAddPeriod(entry) ? "." : ""}</span> `;
+			textStack[0] += `<span class="${entry.type === "itemSub" ? "ve-italic" : "ve-bold"} ve-rd__list-item-name" ${this._getRenderedTitleIndexAttribute()} ${this._getEnumeratedTitleRel(entry)}>${this.render(entry.name)}${this._renderItemSubtypes_isAddPeriod(entry) ? "." : ""}</span> `;
 		}
 		if (entry.entry) this._recursiveRender(entry.entry, textStack, meta);
 		else if (entry.entries) {
@@ -1724,10 +1738,13 @@ globalThis.Renderer = class {
 	_renderItemSpell (entry, textStack, meta, options) {
 		this._renderPrefix(entry, textStack, meta, options);
 
+		this._handleTrackEntryTitle(entry);
+		const titleAttributes = entry.name ? `${this._getRenderedTitleIndexAttribute()} ${this._getEnumeratedTitleRel(entry)}` : "";
+
 		const tempStack = [""];
 		this._recursiveRender(entry.name || "", tempStack, meta);
 
-		this._recursiveRender(entry.entry, textStack, meta, {prefix: `<p>${tempStack.join("")} `, suffix: "</p>"});
+		this._recursiveRender(entry.entry, textStack, meta, {prefix: `<p ${titleAttributes}>${tempStack.join("")} `, suffix: "</p>"});
 		this._renderSuffix(entry, textStack, meta, options);
 	}
 
@@ -1966,15 +1983,17 @@ globalThis.Renderer = class {
 	}
 
 	_renderFlowBlock (entry, textStack, meta, options) {
+		const displayName = Renderer.utils.getEntryDisplayName(entry);
+
 		const dataString = this._renderEntriesSubtypes_getDataString(entry);
 		textStack[0] += `<${this.wrapperTag} class="ve-rd__b-special ve-rd__b-flow ve-text-center" ${dataString}>`;
 
 		const cachedLastDepthTrackerProps = MiscUtil.copyFast(this._lastDepthTrackerInheritedProps);
 		this._handleTrackDepth(entry, 1);
 
-		if (entry.name != null) {
-			if (Renderer.ENTRIES_WITH_ENUMERATED_TITLES_LOOKUP[entry.type]) this._handleTrackTitles(entry.name);
-			textStack[0] += `<span class="ve-rd__h ve-rd__h--2-flow-block" ${this._getRenderedTitleIndexAttribute()} ${this._getEnumeratedTitleRel(entry.name)}><h4 class="entry-title-inner">${this.render({type: "inline", entries: [entry.name]})}</h4></span>`;
+		if (displayName != null) {
+			this._handleTrackEntryTitle(entry);
+			textStack[0] += `<span class="ve-rd__h ve-rd__h--2-flow-block" ${this._getRenderedTitleIndexAttribute()} ${this._getEnumeratedTitleRel(entry)}><h4 class="entry-title-inner">${this.render({type: "inline", entries: [displayName]})}</h4></span>`;
 		}
 		if (entry.entries) {
 			const len = entry.entries.length;
@@ -2684,6 +2703,9 @@ Renderer.ENTRIES_WITH_ENUMERATED_TITLES = [
 	{type: "optfeature", key: "entries", depthIncrement: 1},
 	{type: "patron", key: "entries"},
 	{type: "image", propTitle: "title"},
+	{type: "item"},
+	{type: "itemSub"},
+	{type: "itemSpell"},
 ];
 
 Renderer.ENTRIES_WITH_ENUMERATED_TITLES_LOOKUP = Renderer.ENTRIES_WITH_ENUMERATED_TITLES.mergeMap(it => ({[it.type]: it}));
@@ -3366,6 +3388,51 @@ Renderer._cache = class {
 };
 
 Renderer.utils = class {
+	static getEntryDisplayName (entry) {
+		return (entry._displayName || entry.name)?.trim() || null;
+	}
+
+	static getRenderableEntryType (entry) {
+		if (!entry.type) return "entries";
+
+		// `variantSub` is rendered as an `entries` block
+		if (entry.type === "variantSub") return "entries";
+
+		if (entry.type === "options" && entry.style === "list-hang-notitle") return "list";
+
+		return entry.type;
+	}
+
+	static TitleRelativeIndexTracker = class {
+		static getEntryName (entry) {
+			const type = Renderer.utils.getRenderableEntryType(entry);
+			const meta = Renderer.ENTRIES_WITH_ENUMERATED_TITLES_LOOKUP[type];
+			if (!meta || meta.propTitle) return null;
+
+			return entry.name || null;
+		}
+
+		static getCleanName (name, {isStripTags = true} = {}) {
+			return (isStripTags ? Renderer.stripTags(name) : name).toLowerCase().trim();
+		}
+
+		_nameToCount = Object.create(null);
+
+		reset () { this._nameToCount = Object.create(null); }
+
+		getNextMetaForEntry (entry) {
+			const name = this.constructor.getEntryName(entry);
+			return name == null ? null : this.getNextMeta(name);
+		}
+
+		getNextMeta (name) {
+			const nameClean = this.constructor.getCleanName(name);
+			const ixTitleRel = this._nameToCount[nameClean] || 0;
+			this._nameToCount[nameClean] = ixTitleRel + 1;
+			return {nameClean, ixTitleRel};
+		}
+	};
+
 	static getBorderTr (optText = null) {
 		return `<tr><th class="ve-tbl-border" colspan="6">${optText || ""}</th></tr>`;
 	}
@@ -6513,7 +6580,7 @@ Renderer.tag = class {
 
 		getHref (bookRender, area) {
 			if (!area) return `javascript:void(0)`;
-			return `#${bookRender.curBookId},${area.chapter},${UrlUtil.encodeForHash(area.entry.name)},0`;
+			return `#${bookRender.curBookId},${area.chapter},${UrlUtil.encodeForHash(Renderer.stripTags(area.entry.name))},${area.ixTitleRelChapter ?? 0}`;
 		}
 	};
 
@@ -15040,8 +15107,8 @@ Renderer.language = class {
 Renderer.adventureBook = class {
 	static getEntryIdLookup (bookData, {isSilent = false} = {}) {
 		const out = {};
-		const titlesRel = {};
-		const titlesRelChapter = {};
+		const titlesRel = new Renderer.utils.TitleRelativeIndexTracker();
+		const titlesRelChapter = new Renderer.utils.TitleRelativeIndexTracker();
 
 		let chapIx;
 		const depthStack = [];
@@ -15062,6 +15129,10 @@ Renderer.adventureBook = class {
 						);
 					});
 
+				// Eagerly generate title rel info, to correctly match renderer indexing
+				const metaTitleRel = titlesRel.getNextMetaForEntry(obj);
+				const metaTitleRelChapter = titlesRelChapter.getNextMetaForEntry(obj);
+
 				if (!obj.id) return obj;
 
 				if (out[obj.id]) {
@@ -15077,18 +15148,11 @@ Renderer.adventureBook = class {
 
 				if (obj.name) {
 					out[obj.id].name = obj.name;
-
-					const cleanName = obj.name.toLowerCase();
-					out[obj.id].nameClean = cleanName;
-
-					// Relative title index for full-book mode
-					titlesRel[cleanName] = titlesRel[cleanName] || 0;
-					out[obj.id].ixTitleRel = titlesRel[cleanName]++;
-
-					// Relative title index per-chapter
-					MiscUtil.getOrSet(titlesRelChapter, chapIx, cleanName, -1);
-					out[obj.id].ixTitleRelChapter = ++titlesRelChapter[chapIx][cleanName];
+					out[obj.id].nameClean = metaTitleRel?.nameClean ?? Renderer.utils.TitleRelativeIndexTracker.getCleanName(obj.name);
 				}
+
+				if (metaTitleRel != null) out[obj.id].ixTitleRel = metaTitleRel.ixTitleRel;
+				if (metaTitleRelChapter != null) out[obj.id].ixTitleRelChapter = metaTitleRelChapter.ixTitleRel;
 
 				return obj;
 			},
@@ -15104,6 +15168,7 @@ Renderer.adventureBook = class {
 
 		bookData.forEach((chap, _chapIx) => {
 			chapIx = _chapIx;
+			titlesRelChapter.reset();
 			MiscUtil.getWalker({
 				isNoModification: true,
 				keyBlocklist: new Set(["mapParent"]),

@@ -795,7 +795,7 @@
 			"classSource": "PHB",
 			"page": 9,
 			"reprintedAs": [
-				"Spiritual Guardian|Shaman|WoW|WoW"
+				"Spiritual Guardian|Barbarian|XPHB|WoW"
 			],
 			"edition": "classic",
 			"spellcastingAbility": "wis",
@@ -1166,6 +1166,72 @@
 				"Fanatical Focus|Barbarian|XPHB|Zealot|XPHB|6",
 				"Zealous Presence|Barbarian|XPHB|Zealot|XPHB|10",
 				"Rage of the Gods|Barbarian|XPHB|Zealot|XPHB|14"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Path of the Elements",
+			"shortName": "Elements",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"ability": "wis",
+					"resourceName": "Rage",
+					"known": {
+						"6": [
+							"elementalism|xphb#c"
+						]
+					},
+					"innate": {
+						"6": {
+							"resource": {
+								"1": [
+									"daylight|xphb",
+									"water walk|xphb",
+									"wind wall|xphb"
+								]
+							}
+						}
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Path of the Elements|Barbarian|XPHB|Elements|WoW|3",
+				"Echo of the Elements|Barbarian|XPHB|Elements|WoW|6",
+				"Primordial Bond|Barbarian|XPHB|Elements|WoW|10",
+				"Elemental Overload|Barbarian|XPHB|Elements|WoW|14"
+			]
+		},
+		{
+			"name": "Path of the Spiritual Guardian",
+			"shortName": "Spiritual Guardian",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"ability": "wis",
+					"innate": {
+						"10": {
+							"rest": {
+								"1": [
+									"augury|xphb",
+									"clairvoyance|xphb"
+								]
+							}
+						}
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Path of the Spiritual Guardian|Barbarian|XPHB|Spiritual Guardian|WoW|3",
+				"Spirit Shield|Barbarian|XPHB|Spiritual Guardian|WoW|6",
+				"Consult the Spirits|Barbarian|XPHB|Spiritual Guardian|WoW|10",
+				"Spirits' Fury|Barbarian|XPHB|Spiritual Guardian|WoW|14"
 			],
 			"hasFluffImages": true
 		}
@@ -3301,6 +3367,210 @@
 			"entries": [
 				"Beginning at 14th level, the divine power that fuels your rage allows you to shrug off fatal blows.",
 				"While you're raging, having 0 hit points doesn't knock you {@condition unconscious}. You still must make death saving throws, and you suffer the normal effects of taking damage while at 0 hit points. However, if you would die due to failing death saving throws, you don't die until your rage ends, and you die then only if you still have 0 hit points."
+			]
+		},
+		{
+			"name": "Path of the Elements",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Elements",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"{@i Wield the Fury of the Elements}",
+				"Barbarians who follow the Path of the Elements learn to harness their {@classFeature Rage|Barbarian|XPHB|1|XPHB} into a storm of flames, frost, and lightning. When in their {@classFeature Rage|Barbarian|XPHB|1|XPHB}, these Barbarians tap into the elemental forces of nature to create powerful magical effects.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Raging Elements|Barbarian|XPHB|Elements|WoW|3"
+				}
+			]
+		},
+		{
+			"name": "Raging Elements",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Elements",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"Whenever you activate your {@classFeature Rage|Barbarian|XPHB|1|XPHB}, you can take one of the following Raging Elements options of your choice as part of that {@variantrule Bonus Action|XPHB}. While your {@classFeature Rage|Barbarian|XPHB|1|XPHB|rage} is active, you can take a {@variantrule Bonus Action|XPHB} to use that option again or a different option.",
+				"If a Raging Elements option requires a saving throw, the DC equals 8 plus your Constitution modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}.",
+				{
+					"type": "entries",
+					"name": "Icefury",
+					"entries": [
+						"When this effect is activated, roll a number of d8s equal to your {@classFeature Rage|Barbarian|XPHB|1|XPHB} Damage bonus, and add them together. You hurl frigid ice at one creature within 30 feet of yourself. Make either a melee spell attack (if the target is within 5 feet) or a ranged spell attack, using Constitution as your spellcasting ability. On a hit, the attack deals Cold damage equal to the number rolled, and the next time the target takes Fire damage before the end of your next turn, it takes an extra {@damage 1d10} Fire damage."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Lava Burst",
+					"entries": [
+						"When this effect is activated, roll a number of d4s equal to your {@classFeature Rage|Barbarian|XPHB|1|XPHB} Damage bonus, and add them together. You then hurl molten lava at one creature you can see within 30 feet. The target makes a Dexterity saving throw. On a failed save, the target takes Fire damage equal to the number rolled, and the next time the target takes Lightning damage until the end of your next turn, it takes an extra {@damage 1d8} Lightning damage. On a successful save, the target takes half as much damage only."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Lightning Bolt",
+					"entries": [
+						"When this effect is activated, roll a number of d6s equal to your {@classFeature Rage|Barbarian|XPHB|1|XPHB} Damage bonus, and add them together. You can then hurl a bolt of lightning at one other creature you can see within 30 feet. The target makes a Dexterity saving throw. On a failed save, the target takes Lightning damage equal to the roll's total, and the next time the target takes Cold damage until the end of your next turn, it takes an extra {@damage 1d6} Cold damage. On a successful save, the target takes half as much damage only."
+					]
+				}
+			]
+		},
+		{
+			"name": "Echo of the Elements",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Elements",
+			"subclassSource": "WoW",
+			"level": 6,
+			"header": 2,
+			"consumes": {
+				"name": "Rage"
+			},
+			"entries": [
+				"You tap into the tranquility of the elements. You know the {@spell Elementalism|XPHB} cantrip. In addition, you can expend a use of your {@classFeature Rage|Barbarian|XPHB|1|XPHB} to cast {@spell Daylight|XPHB}, {@spell Water Walk|XPHB}, or {@spell Wind Wall|XPHB}. Wisdom is your spellcasting ability for these spells."
+			]
+		},
+		{
+			"name": "Primordial Bond",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Elements",
+			"subclassSource": "WoW",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"While your {@classFeature Rage|Barbarian|XPHB|1|XPHB} is active, you have {@variantrule Resistance|XPHB} to Cold, Fire, and Lightning damage."
+			]
+		},
+		{
+			"name": "Elemental Overload",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Elements",
+			"subclassSource": "WoW",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"The power of the storm you channel grows mightier, lashing out at your foes. Your {@subclassFeature Raging Elements|Barbarian|XPHB|Elements|WoW|3|WoW} options gain the following effects.",
+				{
+					"type": "entries",
+					"name": "Icefury",
+					"entries": [
+						"Whether or not you hit the target with this option, the target subtracts half the number rolled (round down) from the next damage roll it makes before the start of your next turn."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Lava Burst",
+					"entries": [
+						"Whether or not the target fails its saving throw against this option, the target and each enemy within 10 feet of it start {@hazard burning|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Lightning Bolt",
+					"entries": [
+						"Whether or not the target fails its saving throw against this option, a bolt of lightning leaps from the target to another target of your choice that you can see within 30 feet of the first target. The new target makes a Dexterity saving throw, taking Lightning damage equal to the roll's total on a failed save or half as much damage on a successful one."
+					]
+				}
+			]
+		},
+		{
+			"name": "Path of the Spiritual Guardian",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Spiritual Guardian",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"{@i Call on the Spirits for Combat Aid}",
+				"Barbarians who walk the Path of the Spiritual Guardian call on spirits\u2014whether bestial spirits of nature, spirits of departed ancestors, or spirits of raw elemental power\u2014to guide and protect them. When these Barbarians rage, they contact the realm of the spirits and call on them for aid.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Spiritual Protectors|Barbarian|XPHB|Spiritual Guardian|WoW|3"
+				}
+			]
+		},
+		{
+			"name": "Spiritual Protectors",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Spiritual Guardian",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"Your {@classFeature Rage|Barbarian|XPHB|1|XPHB} summons spectral warriors to your aid. While your {@classFeature Rage|Barbarian|XPHB|1|XPHB} is active, when you hit a creature with a weapon or an {@variantrule Unarmed Strike|XPHB}, that creature becomes a target of the spirits, which cause one of the following effects of your choice.",
+				{
+					"type": "entries",
+					"name": "Distract",
+					"entries": [
+						"Until the start of your next turn, the target has {@variantrule Disadvantage|XPHB} on attack rolls against targets other than you or another Barbarian who has this feature."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Hinder",
+					"entries": [
+						"You can activate the {@itemMastery Slow} mastery property in addition to a different mastery property you're using with that weapon."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Strike",
+					"entries": [
+						"The target takes an extra {@damage 1d4} damage, which can be Cold, Fire, or Lightning damage (your choice)."
+					]
+				}
+			]
+		},
+		{
+			"name": "Spirit Shield",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Spiritual Guardian",
+			"subclassSource": "WoW",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"Your guardian spirits can provide supernatural protection to those you defend. While your {@classFeature Rage|Barbarian|XPHB|1|XPHB} is active, when another creature you can see within 30 feet of you takes damage, you can take a {@variantrule Reaction|XPHB} to reduce that damage. To determine the amount the damage is reduced by, roll a number of d6s equal to your {@classFeature Rage|Barbarian|XPHB|1|XPHB} Damage bonus, and add them together."
+			]
+		},
+		{
+			"name": "Consult the Spirits",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Spiritual Guardian",
+			"subclassSource": "WoW",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"You gain the ability to consult with your guardian spirits. When you do so, you cast the {@spell Augury|XPHB} or {@spell Clairvoyance|XPHB} spell without expending a spell slot or needing Material components. Rather than creating a spherical sensor, this use of {@spell Clairvoyance|XPHB} invisibly summons one of your guardian spirits to the chosen location. Wisdom is your spellcasting ability for these spells.",
+				"After you cast either spell in this way, you can't use this feature again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
+			]
+		},
+		{
+			"name": "Spirits' Fury",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Spiritual Guardian",
+			"subclassSource": "WoW",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"Your spirits hasten your attacks. When you make an attack roll with a Melee weapon as part of the {@action Attack|XPHB} action and roll 18\u201320 on the {@dice d20}, you can make one additional attack roll with the same weapon as part of that action. Once you use this feature, you can't do so again until the start of your next turn."
 			]
 		},
 		{

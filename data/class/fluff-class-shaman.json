@@ -1,4 +1,11 @@
 {
+	"_meta": {
+		"dependencies": {
+			"subclassFluff": [
+				"barbarian"
+			]
+		}
+	},
 	"classFluff": [
 		{
 			"name": "Shaman",
@@ -44,19 +51,16 @@
 			"source": "WoW",
 			"className": "Shaman",
 			"classSource": "WoW",
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "classes/WoW/Path of the Spiritual Guardian Shaman.webp"
-					},
-					"width": 850,
-					"height": 1671,
-					"title": "Thrall, an Orc Shaman",
-					"credit": "Alex Horley-Orlandelli"
+			"_copy": {
+				"name": "Path of the Spiritual Guardian",
+				"shortName": "Spiritual Guardian",
+				"source": "WoW",
+				"className": "Barbarian",
+				"classSource": "XPHB",
+				"_preserve": {
+					"*": true
 				}
-			]
+			}
 		}
 	]
 }

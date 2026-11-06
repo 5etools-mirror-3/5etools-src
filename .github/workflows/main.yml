@@ -99,9 +99,21 @@ jobs:
                npm run build:seo -- ${{ github.ref_name }}
 
          # region See: https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-ghcrio
-         # FIXME `timeout-minutes` due to `sleep` hack
-         -  name: Build Image
+         -  name: Log In to Registry
+            run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+         -  name: Wait for Img Image
             timeout-minutes: 60
+            run: |
+               # `pull` until `img` is ready; result won't be wasted, as it warms the Docker image cache
+               #    prior to next step
+               until docker pull "$IMAGE_ID_IMG:$IMAGE_VERSION"
+               do
+                  echo "Waiting for $IMAGE_ID_IMG:$IMAGE_VERSION..."
+                  sleep 30
+               done
+
+         -  name: Build Image
             run: |
                if [[ "${{ github.ref }}" == "refs/tags/"* ]]
                then
@@ -116,22 +128,18 @@ jobs:
                      DO_CLEAN_BUILD=1
                   fi
                fi
-               
-               # FIXME hack to allow the `-img` build action to complete
-               sleep 20m
 
                if [[ $DO_CLEAN_BUILD == 1 ]]
                then
                   # Build a clean image
                   echo "Version is ${{ github.ref_name }}, doing a clean docker build"
-                  docker build -t $IMAGE_NAME-src .
+                  docker build --build-arg "IMAGE_ID_IMG=$IMAGE_ID_IMG" --build-arg "IMAGE_VERSION=$IMAGE_VERSION" -t $IMAGE_NAME-src .
                else
                   # Build an incremental image...
                   echo "Version is ${{ github.ref_name }}, doing an incremental docker build"
 
-                  # Pull the old images
+                  # Pull the old site image
                   docker pull $IMAGE_ID_SRC:latest
-                  docker pull $IMAGE_ID_IMG:latest
 
                   # Save the current CMD from the image
                   SAVE_CMD=$(docker inspect --format='{{json .Config.Cmd}}' $IMAGE_ID_SRC:latest)
@@ -140,7 +148,7 @@ jobs:
                   bash ./.github/create-rsync-filter.sh
 
                   # Copy img files to host
-                  docker run --rm -v "$(pwd)":/tmp/5et-new $IMAGE_ID_IMG:latest rsync -rlcv --filter='dir-merge /tmp/5et-new/.rsync-filter' /var/www/localhost/htdocs/img /tmp/5et-new/
+                  docker run --rm -v "$(pwd)":/tmp/5et-new "$IMAGE_ID_IMG:$IMAGE_VERSION" rsync -rlcv --filter='dir-merge /tmp/5et-new/.rsync-filter' /var/www/localhost/htdocs/img /tmp/5et-new/
                   docker rmi $(docker images -q $IMAGE_ID_IMG:*)
 
                   # Run up the previous containers, and rsync the current new of files into it
@@ -150,9 +158,6 @@ jobs:
                   # Commit the changes
                   docker commit -c "CMD $SAVE_CMD" $CONTAINER_ID $IMAGE_NAME-src
                fi
-
-         -  name: Log In to Registry
-            run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
          -  name: Push Image
             run: |

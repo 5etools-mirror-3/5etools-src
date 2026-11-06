@@ -31,7 +31,7 @@ export class BookUtil {
 	}
 
 	static _scrollClick (ixChapter, headerText, headerNumber) {
-		headerText = headerText.toLowerCase().trim();
+		headerText = Renderer.utils.TitleRelativeIndexTracker.getCleanName(headerText);
 
 		// When handling a non-full-book header in full-book mode, map the header to the appropriate position
 		if (!~BookUtil.curRender.chapter && ~ixChapter) {
@@ -49,7 +49,7 @@ export class BookUtil {
 				let titleName = trackedTitles[ixTitle];
 				if (!titleName) throw new Error(`No tracked title for index "${ixTitle}"! This is a bug!`);
 
-				titleName = titleName.toLowerCase().trim();
+				titleName = Renderer.utils.TitleRelativeIndexTracker.getCleanName(titleName);
 				if (titleName === headerText) {
 					if (curHeaderNumber < headerNumber) {
 						curHeaderNumber++;
@@ -1325,7 +1325,7 @@ BookUtil.Search = class {
 	}
 
 	static _isNamedEntry (obj) {
-		return obj.name && (obj.type === "entries" || obj.type === "inset" || obj.type === "section");
+		return obj.name && ["entries", "inset", "section", "item", "itemSub", "itemSpell"].includes(obj.type);
 	}
 
 	static _getClosestPages (toSearch, targetPage) {

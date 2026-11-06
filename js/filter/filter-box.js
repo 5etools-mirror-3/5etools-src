@@ -241,6 +241,7 @@ export class FilterBox extends ProxyBase {
 				if (isPrereleaseDefaultHidden || isBrewDefaultHidden) {
 					const selFnAlt = (val) => {
 						return PageFilterBase.defaultSourceSelFnStandardPartnered(val)
+							|| SourceUtil.getFilterGroup(val) === SourceUtil.FILTER_GROUP_UNIVERSES_BEYOND
 							|| (SourceUtil.getFilterGroup(val) === SourceUtil.FILTER_GROUP_PRERELEASE && !isPrereleaseDefaultHidden)
 							|| (SourceUtil.getFilterGroup(val) === SourceUtil.FILTER_GROUP_HOMEBREW && !isBrewDefaultHidden);
 					};

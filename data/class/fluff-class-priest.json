@@ -1,4 +1,11 @@
 {
+	"_meta": {
+		"dependencies": {
+			"subclassFluff": [
+				"cleric"
+			]
+		}
+	},
 	"classFluff": [
 		{
 			"name": "Priest",
@@ -43,19 +50,16 @@
 			"source": "WoW",
 			"className": "Priest",
 			"classSource": "WoW",
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "classes/WoW/Discipline Domain Priest.webp"
-					},
-					"width": 850,
-					"height": 849,
-					"title": "Tyrande Whisperwind, a Night Elf Priest",
-					"credit": "Tooth Wu"
+			"_copy": {
+				"name": "Discipline Domain",
+				"shortName": "Discipline",
+				"source": "WoW",
+				"className": "Cleric",
+				"classSource": "XPHB",
+				"_preserve": {
+					"*": true
 				}
-			]
+			}
 		}
 	]
 }
