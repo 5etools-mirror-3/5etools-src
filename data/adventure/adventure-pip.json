@@ -149,7 +149,7 @@
 									"id": "00b",
 									"page": 3,
 									"entries": [
-										"When an attack roll hits, it deals damage. The damage roll appears after the attack on the character sheet. Shalefire's handaxe does \"{@damage 1d6 + 4} damage,\" so the player would roll one 6-sided die ({@dice d6}) and add 4 to the die roll."
+										"When an attack roll hits, it deals damage. The damage roll appears after the attack on the character sheet. Shalefire's handaxe does \"{@damage 1d6 + 4} damage,\" so the player would roll one 6-sided die ({@damage d6}) and add 4 to the die roll."
 									]
 								},
 								{
@@ -425,7 +425,7 @@
 									"id": "01c",
 									"page": 5,
 									"entries": [
-										"The character Noorah Eldenfield has a shortbow attack that says \"{@hit 5} to hit.\" When Noorah attacks with a shortbow, Noorah's player rolls a {@dice d20} and adds 5 to the number rolled on the die. I'll tell you if that attack hits the monster. If it does, Noorah's shortbow attack also says \"Damage {@dice 1d6 + 3}.\" The player rolls a 6-sided die and adds 3 to determine the damage dealt by the attack."
+										"The character Noorah Eldenfield has a shortbow attack that says \"{@hit 5} to hit.\" When Noorah attacks with a shortbow, Noorah's player rolls a {@dice d20} and adds 5 to the number rolled on the die. I'll tell you if that attack hits the monster. If it does, Noorah's shortbow attack also says \"Damage {@damage 1d6 + 3}.\" The player rolls a 6-sided die and adds 3 to determine the damage dealt by the attack."
 									]
 								},
 								"A \"Player Reference Sheet\" also details some of the terms on the character sheets.",
@@ -699,7 +699,7 @@
 									"entries": [
 										"First, describe how the monsters are vicious, and the danger they present. Highlight how sharp their claws are. Try to make the players feel as if they're in a battle for their characters' lives. If the monsters make one or two successful attacks, that helps with this feeling. Let the characters act first, starting with the player on your left and going clockwise. Ask each player what they want to do, and encourage them to describe their actions so everyone can imagine what the scene looks like.",
 										"After all the players have acted, any undefeated living icicles attack. Each monster that still has hit points moves to a different character and makes an attack using their claws.",
-										"Roll a {@dice d20} and add the attack modifier (+2) to the roll. If the total equals or exceeds the Armor Class of the character being attacked, the attack hits. Roll {@dice 1d6}, and tell the player to subtract that damage from their hit points. If the attack misses, nothing happens. Either way, describe the attack. Do the claws rend open a wound or rake harmlessly off armor?",
+										"Roll a {@dice d20} and add the attack modifier (+2) to the roll. If the total equals or exceeds the Armor Class of the character being attacked, the attack hits. Roll {@damage 1d6}, and tell the player to subtract that damage from their hit points. If the attack misses, nothing happens. Either way, describe the attack. Do the claws rend open a wound or rake harmlessly off armor?",
 										"Continue taking turns until all the living icicles are defeated. You can describe the living icicles shattering or melting as they're defeated. Or perhaps the living icicles flee when they're defeated. Just make it clear to the players that the living icicles can't be chased and caught, perhaps by having them flow into narrow cracks in the mountainside where the characters can't follow.",
 										{
 											"type": "inset",
@@ -831,7 +831,7 @@
 														"The cold, frosty passage continues until you reach an ice-covered wall. The passage continues fifty feet above. You'll have to climb the wall to move deeper into the mountain."
 													]
 												},
-												"Characters must succeed on a {@dc 10} {@skill Athletics} or {@skill Acrobatics} check to climb the wall. If a character fails the check, roll {@dice 1d6}. Tell the player to subtract that number from the character's hit points to represent the damage the character takes from falling before they eventually reach the top.",
+												"Characters must succeed on a {@dc 10} {@skill Athletics} or {@skill Acrobatics} check to climb the wall. If a character fails the check, roll {@damage 1d6}. Tell the player to subtract that number from the character's hit points to represent the damage the character takes from falling before they eventually reach the top.",
 												"Noorah has a Climber's Kit on her character sheet (under \"Other Equipment\") that gives her advantage on the check. If a character who reaches the top has a rope, they can lower the rope to help the other characters. Characters who use the rope can reach the top without making a check.",
 												"The passage then continues upward.",
 												{
@@ -884,7 +884,7 @@
 												},
 												"Bahamut blessed this water. Tell your players that the healing magic restores each character's hit points to the maximum amount listed on their character sheets.",
 												"Additionally, each character has advantage on the first roll they make in the next challenge (the ice slides).",
-												"Characters might use other methods of getting past the ice mirror, such as melting the ice with a torch or smashing it with a weapon. If they do that, however, they don't receive Bahamut's healing magic. Also, a character who breaks the mirror takes damage. Roll {@dice 1d6} and tell the player to subtract that number from their character's hit points when it shatters.",
+												"Characters might use other methods of getting past the ice mirror, such as melting the ice with a torch or smashing it with a weapon. If they do that, however, they don't receive Bahamut's healing magic. Also, a character who breaks the mirror takes damage. Roll {@damage 1d6} and tell the player to subtract that number from their character's hit points when it shatters.",
 												{
 													"type": "inset",
 													"name": "DM Tip",
@@ -929,7 +929,7 @@
 													"page": 11,
 													"entries": [
 														"A character who fails the check jumps onto a slide and quickly reaches dangerous sections of razor-sharp ice shards, long drops, ice walls, and other hazards. The character must succeed on a {@dc 15} {@skill Acrobatics} or {@skill Athletics} check to jump to a safer slide to avoid taking damage. A character who doesn't have {@skill Acrobatics} or {@skill Athletics} on their character sheet can still make checks with those skills, but they don't add any modifier to the {@dice d20} roll.",
-														"If a character fails the check, roll {@dice 1d6}. Tell the player to subtract that number from their character's hit points to represent the damage they take while reaching the bottom of the slide."
+														"If a character fails the check, roll {@damage 1d6}. Tell the player to subtract that number from their character's hit points to represent the damage they take while reaching the bottom of the slide."
 													]
 												},
 												{
@@ -1043,7 +1043,7 @@
 									"entries": [
 										"Let the characters act first, starting with the player on your left and going clockwise. Ask each player what they want to do.",
 										"After all the players have acted, any undefeated egg snatchers attack. Each monster that still has hit points moves to a different character and makes an attack with their bite.",
-										"Roll a {@dice d20} and add the attack modifier (+4) to the roll. If the total equals or exceeds the Armor Class of the character being attacked, the attack hits. Roll {@dice 1d6} and add the damage modifier (+2). Tell the player to subtract that damage from their hit points. If the attack misses, nothing happens. Either way, describe the attack. Perhaps a bite clamps around an ankle, or maybe the egg snatcher breaks a tooth on a piece of armor.",
+										"Roll a {@dice d20} and add the attack modifier (+4) to the roll. If the total equals or exceeds the Armor Class of the character being attacked, the attack hits. Roll {@damage 1d6} and add the damage modifier (+2). Tell the player to subtract that damage from their hit points. If the attack misses, nothing happens. Either way, describe the attack. Perhaps a bite clamps around an ankle, or maybe the egg snatcher breaks a tooth on a piece of armor.",
 										"Describe the egg snatchers falling to the ground as they are defeated, or fleeing into the darkness too fast for the characters to follow.",
 										{
 											"type": "inset",

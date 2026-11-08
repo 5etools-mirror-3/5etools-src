@@ -961,7 +961,7 @@
 										{
 											"type": "item",
 											"name": "Maeve:",
-											"entry": "{@i (Maeve rolls {@dice 3d6} for the spell's damage.)} 13 Fire damage if they fail the save, 6 if they succeed."
+											"entry": "{@i (Maeve rolls {@damage 3d6} for the spell's damage.)} 13 Fire damage if they fail the save, 6 if they succeed."
 										},
 										{
 											"type": "item",
@@ -2718,7 +2718,7 @@
 													},
 													"width": 1700,
 													"height": 1136,
-													"title": "When a flying fortress crashes to the ground, unfortunate adventurers in its path might take {@dice 18d10} damage or more!",
+													"title": "When a flying fortress crashes to the ground, unfortunate adventurers in its path might take {@damage 18d10} damage or more!",
 													"credit": "Calder Moore"
 												}
 											]
@@ -4682,11 +4682,11 @@
 												],
 												[
 													"5",
-													"You encounter a brawl in progress. Make a {@dc 15} Strength, Dexterity, or Charisma saving throw (your choice) to get past the brawlers unimpeded. On a failed save, you take {@dice 2d4} Bludgeoning damage, and the brawlers count as 10 feet of {@variantrule Difficult Terrain|XPHB} for you."
+													"You encounter a brawl in progress. Make a {@dc 15} Strength, Dexterity, or Charisma saving throw (your choice) to get past the brawlers unimpeded. On a failed save, you take {@damage 2d4} Bludgeoning damage, and the brawlers count as 10 feet of {@variantrule Difficult Terrain|XPHB} for you."
 												],
 												[
 													"6",
-													"You must make a sharp turn to avoid colliding with something impassable. Make a {@dc 10} Dexterity saving throw to navigate the turn. On a failed save, you collide with something hard and take {@dice 1d4} Bludgeoning damage."
+													"You must make a sharp turn to avoid colliding with something impassable. Make a {@dc 10} Dexterity saving throw to navigate the turn. On a failed save, you collide with something hard and take {@damage 1d4} Bludgeoning damage."
 												],
 												[
 													"7\u201312",
@@ -4724,7 +4724,7 @@
 												],
 												[
 													"5",
-													"Your path takes you near a patch of {@hazard razorvine|XDMG} (see \"{@area Hazards|18b|x}\" in this chapter). Make a {@dc 15} Dexterity saving throw or use 10 feet of movement (your choice) to avoid the razorvine. On a failed save, you take {@dice 1d10} Slashing damage."
+													"Your path takes you near a patch of {@hazard razorvine|XDMG} (see \"{@area Hazards|18b|x}\" in this chapter). Make a {@dc 15} Dexterity saving throw or use 10 feet of movement (your choice) to avoid the razorvine. On a failed save, you take {@damage 1d10} Slashing damage."
 												],
 												[
 													"6",
@@ -5300,7 +5300,7 @@
 									"page": 59,
 									"entries": [
 										"For any spell that deals damage, use the Spell Damage table to determine approximately how much damage is appropriate given the spell's level. The table assumes the spell deals half as much damage on a successful saving throw or a missed attack. If your spell doesn't deal damage on a successful save, you can increase the damage by 25 percent.",
-										"You can use different damage dice than the ones in the table if the average damage is about the same. For example, you could change a cantrip's damage from {@dice 1d10} (average 5.5) to {@dice 2d4} (average 5), reducing the maximum damage and making an average result more likely.",
+										"You can use different damage dice than the ones in the table if the average damage is about the same. For example, you could change a cantrip's damage from {@damage 1d10} (average 5.5) to {@damage 2d4} (average 5), reducing the maximum damage and making an average result more likely.",
 										{
 											"type": "table",
 											"caption": "Spell Damage",
@@ -5317,53 +5317,53 @@
 											"rows": [
 												[
 													"Cantrip",
-													"{@dice 1d10}",
-													"{@dice 1d6}"
+													"{@damage 1d10}",
+													"{@damage 1d6}"
 												],
 												[
 													"1",
-													"{@dice 2d10}",
-													"{@dice 2d6}"
+													"{@damage 2d10}",
+													"{@damage 2d6}"
 												],
 												[
 													"2",
-													"{@dice 3d10}",
-													"{@dice 3d6}"
+													"{@damage 3d10}",
+													"{@damage 3d6}"
 												],
 												[
 													"3",
-													"{@dice 5d10}",
-													"{@dice 6d6}"
+													"{@damage 5d10}",
+													"{@damage 6d6}"
 												],
 												[
 													"4",
-													"{@dice 6d10}",
-													"{@dice 7d6}"
+													"{@damage 6d10}",
+													"{@damage 7d6}"
 												],
 												[
 													"5",
-													"{@dice 7d10}",
-													"{@dice 8d6}"
+													"{@damage 7d10}",
+													"{@damage 8d6}"
 												],
 												[
 													"6",
-													"{@dice 10d10}",
-													"{@dice 11d6}"
+													"{@damage 10d10}",
+													"{@damage 11d6}"
 												],
 												[
 													"7",
-													"{@dice 11d10}",
-													"{@dice 12d6}"
+													"{@damage 11d10}",
+													"{@damage 12d6}"
 												],
 												[
 													"8",
-													"{@dice 12d10}",
-													"{@dice 13d6}"
+													"{@damage 12d10}",
+													"{@damage 13d6}"
 												],
 												[
 													"9",
-													"{@dice 15d10}",
-													"{@dice 16d6}"
+													"{@damage 15d10}",
+													"{@damage 16d6}"
 												]
 											]
 										}
@@ -6513,17 +6513,17 @@
 												[
 													"A character ingests a hallucinogenic substance that distorts the character's perception of reality.",
 													"10",
-													"{@dice 1d6}"
+													"{@damage 1d6}"
 												],
 												[
 													"A character touches a fiendish idol that tears at the character's mind, threatening to shatter it.",
 													"15",
-													"{@dice 3d6}"
+													"{@damage 3d6}"
 												],
 												[
 													"A magical trap flings a character into the Far Realm until the end of that character's next turn.",
 													"20",
-													"{@dice 9d6}"
+													"{@damage 9d6}"
 												]
 											]
 										},
@@ -6667,7 +6667,7 @@
 															"style": "row-indent-first",
 															"row": [
 																"{@item Automatic Rifle|XDMG}",
-																"{@dice 2d8} Piercing",
+																"{@damage 2d8} Piercing",
 																"{@itemProperty AF|XDMG|Ammunition} (Range 80/240; Bullet), {@itemProperty BF|XDMG|Burst Fire}, {@itemProperty RLD|XDMG|Reload} (30 shots), {@itemProperty 2H|XPHB|Two-Handed}",
 																"{@itemMastery Slow}",
 																"8 lb."
@@ -6678,7 +6678,7 @@
 															"style": "row-indent-first",
 															"row": [
 																"{@item Hunting Rifle|XDMG}",
-																"{@dice 2d10} Piercing",
+																"{@damage 2d10} Piercing",
 																"{@itemProperty AF|XDMG|Ammunition} (Range 80/240; Bullet), {@itemProperty RLD|XDMG|Reload} (5 shots), {@itemProperty 2H|XPHB|Two-Handed}",
 																"{@itemMastery Slow}",
 																"8 lb."
@@ -6689,7 +6689,7 @@
 															"style": "row-indent-first",
 															"row": [
 																"{@item Revolver|XDMG}",
-																"{@dice 2d8} Piercing",
+																"{@damage 2d8} Piercing",
 																"{@itemProperty AF|XDMG|Ammunition} (Range 40/120; Bullet), {@itemProperty RLD|XDMG|Reload} (6 shots)",
 																"{@itemMastery Sap}",
 																"3 lb."
@@ -6700,7 +6700,7 @@
 															"style": "row-indent-first",
 															"row": [
 																"{@item Semiautomatic Pistol|XDMG}",
-																"{@dice 2d6} Piercing",
+																"{@damage 2d6} Piercing",
 																"{@itemProperty AF|XDMG|Ammunition} (Range 50/150; Bullet), {@itemProperty RLD|XDMG|Reload} (15 shots)",
 																"{@itemMastery Vex}",
 																"3 lb."
@@ -6711,7 +6711,7 @@
 															"style": "row-indent-first",
 															"row": [
 																"{@item Shotgun|XDMG}",
-																"{@dice 2d8} Piercing",
+																"{@damage 2d8} Piercing",
 																"{@itemProperty AF|XDMG|Ammunition} (Range 30/90; Bullet), {@itemProperty RLD|XDMG|Reload} (2 shots), {@itemProperty 2H|XPHB|Two-Handed}",
 																"{@itemMastery Push}",
 																"7 lb."
@@ -6748,7 +6748,7 @@
 															"style": "row-indent-first",
 															"row": [
 																"{@item Antimatter Rifle|XDMG}",
-																"{@dice 6d8} Necrotic",
+																"{@damage 6d8} Necrotic",
 																"{@itemProperty AF|XDMG|Ammunition} (Range 120/360; Energy Cell), {@itemProperty RLD|XDMG|Reload} (2 shots), {@itemProperty 2H|XPHB|Two-Handed}",
 																"{@itemMastery Sap}",
 																"10 lb."
@@ -6759,7 +6759,7 @@
 															"style": "row-indent-first",
 															"row": [
 																"{@item Laser Pistol|XDMG}",
-																"{@dice 3d6} Radiant",
+																"{@damage 3d6} Radiant",
 																"{@itemProperty AF|XDMG|Ammunition} (Range 40/120; Energy Cell), {@itemProperty RLD|XDMG|Reload} (50 shots)",
 																"{@itemMastery Vex}",
 																"2 lb."
@@ -6770,7 +6770,7 @@
 															"style": "row-indent-first",
 															"row": [
 																"{@item Laser Rifle|XDMG}",
-																"{@dice 3d8} Radiant",
+																"{@damage 3d8} Radiant",
 																"{@itemProperty AF|XDMG|Ammunition} (Range 100/300; Energy Cell), {@itemProperty RLD|XDMG|Reload} (30 shots), {@itemProperty 2H|XPHB|Two-Handed}",
 																"{@itemMastery Slow}",
 																"7 lb."
@@ -6851,7 +6851,7 @@
 											"id": "17a",
 											"page": 72,
 											"entries": [
-												"As an action, you can light a Bomb and throw it at a point up to 60 feet away, where it explodes. Each creature in a 5-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on that point makes a {@dc 12} Dexterity saving throw, taking {@dice 3d6} Fire damage on a failed save or half as much damage on a successful one."
+												"As an action, you can light a Bomb and throw it at a point up to 60 feet away, where it explodes. Each creature in a 5-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on that point makes a {@dc 12} Dexterity saving throw, taking {@damage 3d6} Fire damage on a failed save or half as much damage on a successful one."
 											]
 										},
 										{
@@ -6860,8 +6860,8 @@
 											"id": "17b",
 											"page": 72,
 											"entries": [
-												"As an action, you can light a Dynamite Stick and throw it at a point up to 60 feet away, where it explodes. Each creature in a 5-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on that point makes a {@dc 12} Dexterity saving throw, taking {@dice 3d6} Force damage on a failed save or half as much damage on a successful one.",
-												"It takes 1 minute to bind two or more Dynamite Sticks together so they explode at the same time. Each stick after the first increases the damage by {@dice 1d6} (to a maximum of {@dice 10d6}) and the effect's radius by 5 feet (to a maximum of 20 feet).",
+												"As an action, you can light a Dynamite Stick and throw it at a point up to 60 feet away, where it explodes. Each creature in a 5-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on that point makes a {@dc 12} Dexterity saving throw, taking {@damage 3d6} Force damage on a failed save or half as much damage on a successful one.",
+												"It takes 1 minute to bind two or more Dynamite Sticks together so they explode at the same time. Each stick after the first increases the damage by {@damage 1d6} (to a maximum of {@damage 10d6}) and the effect's radius by 5 feet (to a maximum of 20 feet).",
 												"It takes 1 minute to rig dynamite with a longer fuse so it explodes after a longer period of time, such as 1 minute or 10 minutes."
 											]
 										},
@@ -6880,7 +6880,7 @@
 											"id": "17d",
 											"page": 73,
 											"entries": [
-												"Each creature in the {@variantrule Sphere [Area of Effect]|XPHB|Sphere} makes a {@dc 15} Dexterity saving throw, taking 17 ({@dice 5d6}) Piercing damage on a failed save or half as much damage on a successful one."
+												"Each creature in the {@variantrule Sphere [Area of Effect]|XPHB|Sphere} makes a {@dc 15} Dexterity saving throw, taking 17 ({@damage 5d6}) Piercing damage on a failed save or half as much damage on a successful one."
 											]
 										},
 										{
@@ -6898,7 +6898,7 @@
 											"id": "17f",
 											"page": 73,
 											"entries": [
-												"Setting fire to a container full of Gunpowder causes it to explode. When a container explodes, each creature in a 10-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on the container makes a {@dc 12} Dexterity saving throw, taking 10 ({@dice 3d6}) Fire damage (for a powder horn) or 24 ({@dice 7d6}) Fire damage (for a keg) on a failed save or half as much damage on a successful one."
+												"Setting fire to a container full of Gunpowder causes it to explode. When a container explodes, each creature in a 10-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on the container makes a {@dc 12} Dexterity saving throw, taking 10 ({@damage 3d6}) Fire damage (for a powder horn) or 24 ({@damage 7d6}) Fire damage (for a keg) on a failed save or half as much damage on a successful one."
 											]
 										}
 									],
@@ -21936,11 +21936,11 @@
 														],
 														[
 															"9\u201312",
-															"You take 11 ({@dice 2d10}) Psychic damage."
+															"You take 11 ({@damage 2d10}) Psychic damage."
 														],
 														[
 															"13\u201317",
-															"You take 22 ({@dice 4d10}) Psychic damage."
+															"You take 22 ({@damage 4d10}) Psychic damage."
 														],
 														[
 															"18\u201320",
@@ -24820,7 +24820,7 @@
 															"rows": [
 																[
 																	"01",
-																	"Both potions lose their effects, and the mixture creates a magical explosion in a 5-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on itself. Each creature in that area takes {@dice 4d10} Force damage."
+																	"Both potions lose their effects, and the mixture creates a magical explosion in a 5-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on itself. Each creature in that area takes {@damage 4d10} Force damage."
 																],
 																[
 																	"02\u201308",
@@ -25859,7 +25859,7 @@
 														],
 														[
 															"31\u201340",
-															"When you hit with an attack roll while attuned to the Artifact, the target takes an extra {@dice 1d6} Force damage."
+															"When you hit with an attack roll while attuned to the Artifact, the target takes an extra {@damage 1d6} Force damage."
 														],
 														[
 															"41\u201350",
@@ -25979,7 +25979,7 @@
 														],
 														[
 															"19\u201327",
-															"When you become attuned to the Artifact, you take {@dice 8d10} Psychic damage."
+															"When you become attuned to the Artifact, you take {@damage 8d10} Psychic damage."
 														],
 														[
 															"28\u201336",

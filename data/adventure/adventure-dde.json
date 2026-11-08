@@ -1,0 +1,1975 @@
+{
+	"adventureData": [
+		{
+			"id": "DDE",
+			"source": "DDE",
+			"data": [
+				{
+					"type": "section",
+					"name": "Introduction",
+					"id": "000",
+					"entries": [
+						"Welcome to {@i Deadmines Dungeon}, a play series for the Season of Champions and part of the D&D Encounters program.",
+						"D&D Encounters is a seasonal organized play mini-campaign that lets people from around the world play a series of shared weekly adventures during the same time period. While many participate in game stores, you can join the excitement by taking part from anywhere, even playing along with your own group at your own pace.",
+						"Premade level 3 characters are provided where you obtained this adventure. Players can use these or create their own characters. Details on how to do that are listed in a sidebar at the beginning of the D&D Celebration adventure \"{@adventure Enter the Deadmines|DDE|1}.\"",
+						{
+							"type": "section",
+							"name": "Season of Champions Schedule",
+							"id": "001",
+							"entries": [
+								"This series is broken into two main beats: a three-hour Celebration event and four shorter weekly sessions designed for bite-size play that easily fit a variety of schedules.",
+								"If you want to play along with the global community, Season of Champions D&D Encounters follows this schedule:",
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"items": [
+										{
+											"type": "item",
+											"name": "November 6\u201315, 2026:",
+											"entry": "The D&D Encounters Celebration Event kicks off the season."
+										},
+										{
+											"type": "item",
+											"name": "November 11\u2013December 13, 2026:",
+											"entry": "Try a new mini-adventure each week over four successive weeks."
+										}
+									]
+								},
+								"Some regions may have different dates depending on their market. Check with your local game store for more details.",
+								{
+									"type": "entries",
+									"name": "Characters for This Season",
+									"id": "002",
+									"entries": [
+										"For the Celebration Event, players should create a level 3 character using the {@book Player's Handbook|XPHB} and {@book Dungeons & Dragons: World of Warcraft|WoW}. The following additional guidelines apply to these characters:",
+										{
+											"type": "list",
+											"items": [
+												"Ability scores are generated using either the Standard Array or Point Cost options detailed in {@book chapter 2|XPHB|2|Step 3: Determine Ability Scores} of the {@i Player's Handbook}.",
+												"Each time a character gains a level after level 1, their Hit Point maximum increases according to the Fixed Hit Points by Class table in {@table Adjust Hit Points and Hit Point Dice; Fixed Hit Points by Class|XPHB|chapter 2} of the {@i Player's Handbook}.",
+												"Characters begin with their normal starting equipment plus one Common magic item of their choice from {@book chapter 7|XDMG|6|Magic Items} of the {@book Dungeon Master's Guide|XDMG}. Alternatively, they can select a {@item Potion of Healing|XDMG} from the {@i Player's Handbook}."
+											]
+										},
+										"After completing \"{@adventure The Trials|DDE|3},\" the characters advance to level 4. Characters are granted a {@variantrule Long Rest|XPHB} between each week's session."
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Dungeon Masters Actual Play Series",
+							"id": "003",
+							"entries": [
+								"In addition to participating in this adventure series, there's an actual play series available online that showcases {@i D&D: World of Warcraft}! If you'd like to watch the campaign, you can {@link head here|https://www.youtube.com/@dndwizards} to check it out!"
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Enter the Deadmines",
+					"id": "004",
+					"entries": [
+						"{@i An adventure for level 3 characters}",
+						"\"Enter the Deadmines\" is a D&D Encounters Celebration adventure that serves as an event play experience at the beginning of the Season of Champions. It is designed to fill a three-hour session.",
+						{
+							"type": "section",
+							"name": "D&D Celebration Event Overview",
+							"id": "005",
+							"entries": [
+								"\"Enter the Deadmines\" is meant to be run by one DM for one group\u2014although multiple groups can play the adventure at the same time with their own DMs. No Event Coordinator is needed."
+							]
+						},
+						{
+							"type": "section",
+							"name": "Key Plot Points",
+							"id": "006",
+							"entries": [
+								"In addition to the main plot of this adventure, characters are also offered two optional side quests they can complete in the same session. The following information is key to the adventure's story:",
+								"{@area Character Hook.|009|x} A representative of the People's Militia asks the characters to strike at the Defias Brotherhood in the abandoned gold mines beneath the town.",
+								"{@area The Mine Tunnels.|01f|x} In the mine tunnels, a henchman of {@creature Edwin VanCleef|WoW} confronts the characters. This ogre, called {@creature Foreman Rhahk'Zor|WoW}, is forcing prisoners to dig for gold in the once-prolific mines.",
+								"{@area The Collapsed Passage.|02a|x} Several of the potential {@area side quests|00b|x} send the characters to investigate a collapsed underground passage, either to {@area rescue a trapped miner|012|x} or to {@area recover a lost item|014|x}. The pinned workers have become undead creatures that must be put to rest.",
+								"{@area The Mast Room.|033|x} A group of goblins partnering with Edwin VanCleef has converted this chamber into a sawmill, guarded by a whirring machine of death (or two). Another potential side quest involves the characters investigating the disappearance of {@area volatile chemicals|016|x} and {@area steel blades|018|x} from Moonbrook, which may be found here."
+							]
+						},
+						{
+							"type": "section",
+							"name": "Preparation",
+							"id": "007",
+							"entries": [
+								"Before running \"Enter the Deadmines,\" prepare as follows:",
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"items": [
+										{
+											"type": "item",
+											"name": "Step 1",
+											"entry": "Read the \"Adventure Background\" section."
+										},
+										{
+											"type": "item",
+											"name": "Step 2",
+											"entry": "Review the \"Beginning the Adventure\" section and all of the encounters."
+										},
+										{
+											"type": "item",
+											"name": "Step 3",
+											"entry": "Bookmark the following stat blocks in the {@book Monster Manual|XMM}, {@book D&D: World of Warcraft|WoW}, or D&D Beyond. Monsters marked with an * appear in D&D: World of Warcraft."
+										}
+									]
+								},
+								{
+									"type": "list",
+									"style": "list-no-bullets",
+									"columns": 3,
+									"items": [
+										"{@creature Foreman Rhahk'Zor|WoW}*",
+										"{@creature Goblin Boss|XMM}",
+										"{@creature Guard|XMM}",
+										"{@creature Wight|XMM}",
+										"{@creature Ghoul|XMM}",
+										"{@creature Goblin Minion|XMM}",
+										"{@creature Sneed's Shredder|WoW}*"
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Adventure Background",
+							"id": "008",
+							"entries": [
+								"{@creature Edwin VanCleef|WoW}, the leader of the criminal organization known as the Defias Brotherhood, runs his operations from the abandoned mines beneath the town of Moonbrook. Though known as the {@book Deadmines|WoW|6|Deadmines}, these once-abandoned tunnels are far from dead, serving as the hub of the Brotherhood's web of thievery, piracy, and murder.",
+								"Prisoners of the Defias Brotherhood are forced to work in the mines, and a company of goblins has allied with VanCleef to supply his gang with goods and labor to further their nefarious plots. Many have suffered at the hands of VanCleef's crew and would love to see him brought down.",
+								"At the beginning of this adventure, the characters find themselves in the middle of this intrigue. Do they have what it takes to bring an end to the founder and leader of the Defias Brotherhood?"
+							]
+						},
+						{
+							"type": "section",
+							"name": "Beginning the Adventure",
+							"id": "009",
+							"entries": [
+								"To begin the adventure, read or paraphrase the following text:",
+								{
+									"type": "insetReadaloud",
+									"id": "00a",
+									"entries": [
+										"You were told by a friend or contact that someone from the mining town of Moonbrook needed adventurers to perform a dangerous task in exchange for a substantial reward. This contact told you to meet the potential employer in the woods outside Moonbrook.",
+										"Upon your arrival, a dark figure approaches and lowers the hood of her cloak. The human woman, her dark hair pulled back and her darker eyes fixed on you, wears an expression that conveys an almost chilling seriousness.",
+										"\"I'm Rezzina. I represent a group in the area called the People's Militia. Since the Defias Brotherhood gained power here, the area has become lawless and dangerous. Their leader, Edwin VanCleef, makes it impossible to do business or earn a living without interference and danger. Innocent people are regularly hurt or killed by Edwin's bandits and assassins. Simply keeping the peace in the area has stretched the People's Militia thin. We need someone to strike at the heart of the Brotherhood where they lair: the Deadmines.\""
+									]
+								},
+								"Rezzina can answer questions and provide details based on the information below.",
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"items": [
+										{
+											"type": "item",
+											"name": "VanCleef's Location",
+											"entry": "All rumors and evidence point to VanCleef's base of operations being in the Deadmines, a series of abandoned passages beneath Moonbrook."
+										},
+										{
+											"type": "item",
+											"name": "The Deadmines",
+											"entry": "The Deadmines once supported prolific mining operations. Years ago, yields declined. When the Defias Brotherhood made operating in the area increasingly problematic, the mines were eventually abandoned."
+										},
+										{
+											"type": "item",
+											"name": "Facing the Brotherhood",
+											"entry": "Although the Defias Brotherhood operates a network spanning hundreds of miles and many cells, the Deadmines are believed to be its base. This is where you can cut the head off the snake."
+										},
+										{
+											"type": "item",
+											"name": "Entering the Deadmines",
+											"entry": "Rezzina provides directions to the mine's entrance."
+										},
+										{
+											"type": "item",
+											"name": "Facing VanCleef",
+											"entry": "VanCleef is arrogant and believes himself invincible. He'll have few personal guards, though he'll have a crew, and his followers can be an unruly lot. He also has agreements with goblins. Despite these potential threats, there should be no army between the surface and wherever VanCleef is hiding."
+										}
+									]
+								},
+								"When the characters have all the information they desire, continue with the information in the \"Side Quests\" section below."
+							]
+						},
+						{
+							"type": "section",
+							"name": "Side Quests",
+							"id": "00b",
+							"entries": [
+								"As the characters prepare to enter the Deadmines in pursuit of Edwin VanCleef, word of their upcoming mission spreads among the downtrodden yet hopeful folks who once lived peacefully in Moonbrook. A few people seek assistance from the heroic group willing to face the Defias Brotherhood, counting on the characters to help them with more personal problems as well.",
+								{
+									"type": "entries",
+									"name": "Side Quest Selection",
+									"id": "00c",
+									"entries": [
+										"The Moonbrook Side Quests table lists potential side quests. Roll for two of these missions and present them to the players or simply choose the quests you prefer.",
+										{
+											"type": "table",
+											"caption": "Moonbrook Side Quests",
+											"colLabels": [
+												"1d6",
+												"Quest Name"
+											],
+											"colStyles": [
+												"col-2 text-center",
+												"col-10"
+											],
+											"rows": [
+												[
+													"1",
+													"{@area Missing Miners|00e|x}"
+												],
+												[
+													"2",
+													"{@area Barrels of Boom|010|x}"
+												],
+												[
+													"3",
+													"{@area Twin Connection|012|x}"
+												],
+												[
+													"4",
+													"{@area Magical Pick|014|x}"
+												],
+												[
+													"5",
+													"{@area Chemical Concern|016|x}"
+												],
+												[
+													"6",
+													"{@area Blades by Blaine|018|x}"
+												]
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Side Quest Descriptions",
+									"id": "00d",
+									"entries": [
+										"The following side quests can occur during this adventure. Read the provided quest information or roleplay the meeting if you have extra time. The quest-givers promise no specific compensation, since the rewards are determined randomly.",
+										{
+											"type": "entries",
+											"name": "Missing Miners",
+											"id": "00e",
+											"entries": [
+												{
+													"type": "insetReadaloud",
+													"id": "00f",
+													"entries": [
+														"A red-haired dwarf approaches you, hat in hand, looking world-weary. \"Pardon. News travels quickly here. Yer goin' after them Brotherhood thugs. Please look for my boys. They're miners, and I suspect they've been captured and forced to labor in the Deadmines. If you free 'em, I'd owe you a great debt. They're good lads named Rinslate, Ronshale, and Renflint. Everyone calls me Mother Redmarl.\""
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Barrels of Boom",
+											"id": "010",
+											"entries": [
+												{
+													"type": "insetReadaloud",
+													"id": "011",
+													"entries": [
+														"A nervous human man in robes sidles up to you. \"I'm Patricio the Alchemist, and my barrels have been stolen. Miners in the area use them to blast, but someone stole them all. If those Brotherhood ne'er-do-wells have them, they might be planning to use them. They also stole my recipe, so I need at least one undetonated barrel to figure out my secret blend again. If you can bring my barrels back, there's a reward. A false bottom in one of the stolen barrels hides some treasure. If you find that barrel, keep the treasure.\""
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Twin Connection",
+											"id": "012",
+											"entries": [
+												{
+													"type": "insetReadaloud",
+													"id": "013",
+													"entries": [
+														"A dwarf calls to you from across a crowded street. \"A word, if you would! I'm Wilder Thistlenettle. A few months back, my twin brother Eugene and I went down into the Deadmines to look for gold. We thought it was abandoned, but we heard voices and ran. As we ran, a tunnel collapsed. I escaped, but my brother and others were caught in the collapse. I know he's still down there; I feel his presence. Maybe he was taken by the Brotherhood. Please bring him back, dead or alive. I made a dwarven mark on the wall outside the collapsed passage that reads 'Save Them.'\""
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Magical Pick",
+											"id": "014",
+											"entries": [
+												{
+													"type": "insetReadaloud",
+													"id": "015",
+													"entries": [
+														"An orc standing in an alleyway calls for your attention. \"Rumor has it you're braving the Deadmines soon. My sister was lost there in a supposed cave-in months ago, when she joined a mining group scouting for gold. She carried a magical pickaxe with her that's been in my family for years. I doubt she survived, but if you see a pickaxe with runes etched into the metal, I would pay you well to return it.\""
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Chemical Concern",
+											"id": "016",
+											"entries": [
+												{
+													"type": "insetReadaloud",
+													"id": "017",
+													"entries": [
+														"A gnome hustles around a corner, almost bumping into your group. \"Ah, just those I seek! I'm Petrolea, and my experiments are at a standstill because my apprentice disappeared, taking several flasks of a very dangerous chemical. If not mixed correctly\u2014or mixed too correctly\u2014the resulting compound makes bombs! I don't know whether my apprentice\u2014a gnome named Dropach\u2014was responsible for the theft or was a victim of it. As you delve into the Deadmines, watch for the chemicals and Dropach. Their safe return could net you a dear reward!\""
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Blades by Blaine",
+											"id": "018",
+											"entries": [
+												{
+													"type": "insetReadaloud",
+													"id": "019",
+													"entries": [
+														"As you pass a weaponsmith's shop, the door opens and a human calls out. \"Could you spare a moment of your time? I'm Hazel, a weaponsmith. A few weeks ago, several blades were stolen from my workshop. I'm not sure what good they are to the thief, since they don't yet have hilts. If you find them on your excursion and return them to me, I'll pay you for the trouble.\""
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Side Quest Completion",
+									"id": "01a",
+									"entries": [
+										"When the characters complete a side quest, they receive a reward rolled randomly on the Side Quest Treasure table. The means of delivery depends upon the side quest completed and the reward granted.",
+										{
+											"type": "table",
+											"caption": "Side Quest Treasure",
+											"colLabels": [
+												"1d6",
+												"Treasure"
+											],
+											"colStyles": [
+												"col-2 text-center",
+												"col-10"
+											],
+											"rows": [
+												[
+													"1",
+													"Two {@item Alchemist's Fire|XPHB|Alchemist's Fires} and 90 GP in silver ingots"
+												],
+												[
+													"2",
+													"{@item Pouch|XPHB} containing four {@item Diamond|XDMG|diamonds} (worth 50 GP each)"
+												],
+												[
+													"3",
+													"Gold ring with an inset {@item ruby|XDMG} (worth 300 GP)"
+												],
+												[
+													"4",
+													"{@item Potion of Healing|XDMG} and 50 GP in coins"
+												],
+												[
+													"5",
+													"{@item Spell Scroll|XDMG} ({@spell Blink|XPHB}) and 75 GP in {@item jade|XDMG}"
+												],
+												[
+													"6",
+													"{@item Stone of Good Luck|XDMG}"
+												]
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Deadmines Encounters",
+							"id": "01b",
+							"entries": [
+								"In the mines, the characters can discover any or all of the following areas, each corresponding to a location on the Deadmines map and featuring its own encounters.",
+								{
+									"type": "entries",
+									"name": "General Features",
+									"id": "01c",
+									"entries": [
+										"The following features are prevalent throughout the Deadmines.",
+										{
+											"type": "entries",
+											"name": "Ceilings",
+											"id": "01d",
+											"entries": [
+												"The passage ceilings in the Deadmines are 15 feet high unless otherwise specified."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Light",
+											"id": "01e",
+											"entries": [
+												"Unless otherwise noted, lanterns fill the passageways and caverns with {@variantrule Bright Light|XPHB}, as indicated on the maps."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Area 1: Mine Tunnels",
+									"id": "01f",
+									"entries": [
+										{
+											"type": "gallery",
+											"images": [
+												{
+													"type": "image",
+													"id": "086",
+													"href": {
+														"type": "internal",
+														"path": "adventure/DDE/000-map-01-001.mine-tunnels.webp"
+													},
+													"hrefThumbnail": {
+														"type": "internal",
+														"path": "adventure/DDE/thumbnail/000-map-01-001.mine-tunnels.webp"
+													},
+													"width": 2743,
+													"height": 3182,
+													"imageType": "map",
+													"title": "Map 1: Mine Tunnels",
+													"credit": "Damien Mammoliti",
+													"mapRegions": [
+														{
+															"area": "026",
+															"points": [
+																[
+																	1187,
+																	841
+																],
+																[
+																	1187,
+																	975
+																],
+																[
+																	1291,
+																	975
+																],
+																[
+																	1291,
+																	841
+																]
+															]
+														},
+														{
+															"area": "026",
+															"points": [
+																[
+																	1246,
+																	1395
+																],
+																[
+																	1246,
+																	1499
+																],
+																[
+																	1356,
+																	1499
+																],
+																[
+																	1356,
+																	1395
+																]
+															]
+														},
+														{
+															"area": "026",
+															"points": [
+																[
+																	404,
+																	1456
+																],
+																[
+																	404,
+																	1574
+																],
+																[
+																	497,
+																	1574
+																],
+																[
+																	497,
+																	1456
+																]
+															]
+														},
+														{
+															"area": "026",
+															"points": [
+																[
+																	2117,
+																	919
+																],
+																[
+																	2117,
+																	1039
+																],
+																[
+																	2213,
+																	1039
+																],
+																[
+																	2213,
+																	919
+																]
+															]
+														},
+														{
+															"area": "026",
+															"points": [
+																[
+																	2124,
+																	1395
+																],
+																[
+																	2124,
+																	1492
+																],
+																[
+																	2208,
+																	1492
+																],
+																[
+																	2208,
+																	1395
+																]
+															]
+														},
+														{
+															"area": "026",
+															"points": [
+																[
+																	1783,
+																	1661
+																],
+																[
+																	1783,
+																	1761
+																],
+																[
+																	1884,
+																	1761
+																],
+																[
+																	1884,
+																	1661
+																]
+															]
+														},
+														{
+															"area": "026",
+															"points": [
+																[
+																	1523,
+																	1447
+																],
+																[
+																	1523,
+																	1555
+																],
+																[
+																	1610,
+																	1555
+																],
+																[
+																	1610,
+																	1447
+																]
+															]
+														},
+														{
+															"area": "026",
+															"points": [
+																[
+																	1467,
+																	1790
+																],
+																[
+																	1467,
+																	1895
+																],
+																[
+																	1530,
+																	1895
+																],
+																[
+																	1530,
+																	1790
+																]
+															]
+														},
+														{
+															"area": "026",
+															"points": [
+																[
+																	1525,
+																	2524
+																],
+																[
+																	1525,
+																	2625
+																],
+																[
+																	1614,
+																	2625
+																],
+																[
+																	1614,
+																	2524
+																]
+															]
+														},
+														{
+															"area": "026",
+															"points": [
+																[
+																	1955,
+																	2728
+																],
+																[
+																	1955,
+																	2803
+																],
+																[
+																	2013,
+																	2803
+																],
+																[
+																	2013,
+																	2728
+																]
+															]
+														},
+														{
+															"area": "026",
+															"points": [
+																[
+																	2243,
+																	2123
+																],
+																[
+																	2243,
+																	2212
+																],
+																[
+																	2325,
+																	2212
+																],
+																[
+																	2325,
+																	2123
+																]
+															]
+														},
+														{
+															"area": "026",
+															"points": [
+																[
+																	2180,
+																	1660
+																],
+																[
+																	2180,
+																	1763
+																],
+																[
+																	2257,
+																	1763
+																],
+																[
+																	2257,
+																	1660
+																]
+															]
+														}
+													]
+												},
+												{
+													"type": "image",
+													"id": "087",
+													"href": {
+														"type": "internal",
+														"path": "adventure/DDE/001-map-01-001.mine-tunnels-player.webp"
+													},
+													"width": 2743,
+													"height": 3182,
+													"imageType": "mapPlayer",
+													"title": "Player Version",
+													"credit": "Damien Mammoliti",
+													"mapParent": {
+														"id": "086"
+													}
+												}
+											]
+										},
+										"When the characters enter this location, read or paraphrase the following:",
+										{
+											"type": "insetReadaloud",
+											"id": "020",
+											"entries": [
+												"So far, you have not encountered anyone in the mines. However, beyond the passageway's sharp left turn ahead, you hear the unmistakable, rhythmic sound of picks striking stone. Aside from an occasional cough, you hear no other sounds."
+											]
+										},
+										"Prisoners currently mine this area for any remnants of the gold ore once so abundant here.",
+										{
+											"type": "entries",
+											"name": "Prisoners",
+											"id": "021",
+											"entries": [
+												"The prisoners here (marked {@i P} on the map) are {@creature Commoner|XMM|Commoners} captured by the Defias Brotherhood and forced to mine for gold.",
+												{
+													"type": "entries",
+													"name": "Shackles",
+													"id": "022",
+													"entries": [
+														"Each prisoner is weighed down by a heavy iron ball attached to their ankles with a chain. The chains can be unlocked and removed with a successful {@dc 10} Dexterity ({@skill Sleight of Hand|XPHB}) check."
+													]
+												},
+												{
+													"type": "entries",
+													"name": "Assistance",
+													"id": "023",
+													"entries": [
+														"Freed prisoners offer little help in a fight. They're malnourished, exhausted, and generally untrained in combat. However, a successful {@dc 10} Charisma ({@skill Intimidation|XPHB} or {@skill Persuasion|XPHB}) check can persuade them to attack if they're freed from their chains and given weapons. The prisoners know nothing about the other areas because they were brought in blindfolded. However, they do know the guards were afraid of what might be in the blocked passage to the east."
+													]
+												},
+												{
+													"type": "entries",
+													"name": "Side Quest: Dwarf Miners",
+													"id": "024",
+													"entries": [
+														"The first three prisoners the characters encounter are Rinslate, Ronshale, and Renflint. If freed and allowed to escape as part of the {@area Dwarf Miners|00e|x} side quest, these three dwarves give the characters a treasure from their secret cache, hidden in a hole in the wall. Roll on the {@adventure Side Quest Treasure table|DDE|1|Side Quest Treasure} to determine what the characters receive."
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Enemies",
+											"id": "025",
+											"entries": [
+												"Eight Brotherhood {@creature Guard|XMM|Guards} ({@i G} on the map) monitor the prisoners from their positions throughout the area. The guards answer to {@creature Foreman Rhahk'Zor|WoW} ({@i F} on the map), an ogre who patrols the area, barking commands at prisoners and guards alike."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Explosive Barrels",
+											"id": "026",
+											"entries": [
+												"Each space marked {@i B} on the map contains a barrel of explosives ({@variantrule Armor Class|XPHB|AC} 10, {@variantrule Hit Points|XPHB|HP} 5, {@variantrule Vulnerability|XPHB} to Fire damage). If a barrel is destroyed, it explodes in a 5-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere}, dealing 11 ({@damage 2d10}) Fire damage to creatures caught in the blast.",
+												"A character can use an action to move a barrel up to half their {@variantrule Speed|XPHB}. With a successful {@dc 15} Strength ({@skill Athletics|XPHB}) check, they can either move a barrel their full {@variantrule Speed|XPHB} or throw it a number of feet equal to the Strength check's total. If thrown, roll a {@dice D6}. On a result of 5-6, the barrel is destroyed upon impact and explodes (see above).",
+												{
+													"type": "entries",
+													"name": "Side Quest: Barrels of Boom",
+													"id": "027",
+													"entries": [
+														"One of these barrels (your choice) has a false bottom containing treasure. If the characters have {@area this side quest|010|x}, they automatically find the secret compartment because they know it's there. Even if the barrel explodes, the treasure is shielded from damage. Roll on the {@adventure Side Quest Treasure table|DDE|1|Side Quest Treasure} to determine what treasure the barrel contains."
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Infiltration",
+											"id": "028",
+											"entries": [
+												"A successful {@dc 12} Dexterity ({@skill Stealth|XPHB}) check allows a character to move through the passageway unnoticed, using barrels, wooden beams, or piles of rubble as cover.",
+												"Any prisoners who spot a character will shout for help, automatically alerting a guard. A character can quiet the prisoners before any guards notice by making a successful {@dc 10} Charisma ({@skill Persuasion|XPHB}) check."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Enemy Tactics",
+											"id": "029",
+											"entries": [
+												"When the characters' presence is revealed, the first set of guards moves to attack and raises an alarm. At the start of the following round, the next 4 guards join and move to attack the characters. On the round after that, {@creature Foreman Rhahk'Zor|WoW} joins the combat and moves to engage the characters.",
+												"Any guards still alive when the Foreman is defeated surrender. They can describe the general layout of the {@area Mast Room|033|x} but know nothing more about the Defias Brotherhood's operations here. They do know that something unholy is rumored to haunt the collapsed passageway to the east."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Area 2: Collapsed Passage",
+									"id": "02a",
+									"entries": [
+										{
+											"type": "gallery",
+											"images": [
+												{
+													"type": "image",
+													"id": "088",
+													"href": {
+														"type": "internal",
+														"path": "adventure/DDE/002-map-01-002.collapsed-passage.webp"
+													},
+													"hrefThumbnail": {
+														"type": "internal",
+														"path": "adventure/DDE/thumbnail/002-map-01-002.collapsed-passage.webp"
+													},
+													"width": 2381,
+													"height": 1539,
+													"imageType": "map",
+													"title": "Map 2: Collapsed Passage",
+													"credit": "Damien Mammoliti",
+													"mapRegions": [
+														{
+															"area": "032",
+															"points": [
+																[
+																	652,
+																	519
+																],
+																[
+																	652,
+																	665
+																],
+																[
+																	497,
+																	665
+																],
+																[
+																	497,
+																	519
+																]
+															]
+														}
+													]
+												},
+												{
+													"type": "image",
+													"id": "089",
+													"href": {
+														"type": "internal",
+														"path": "adventure/DDE/003-map-01-002.collapsed-passage-player.webp"
+													},
+													"width": 2381,
+													"height": 1539,
+													"imageType": "mapPlayer",
+													"title": "Player Version",
+													"credit": "Damien Mammoliti",
+													"mapParent": {
+														"id": "088"
+													}
+												}
+											]
+										},
+										"When the characters approach the blocked area between the {@area Mine Tunnels|01f|x} and the Collapsed Passage, read or paraphrase the following:",
+										{
+											"type": "insetReadaloud",
+											"id": "02b",
+											"entries": [
+												"The passage has been blocked by a cave-in. The walls and ceiling have been shored up to prevent further collapse. Rather than signs of an attempted excavation, it appears that more rocks have been piled atop the rubble to further block the passage. A dwarven mark on the wall near the blocking stones reads, \"Save them.\""
+											]
+										},
+										"To explore deeper into the passage, characters can clear the path with 30 minutes of work or by detonating a barrel next to the blockage.",
+										"When the passage is unblocked, read or paraphrase the following:",
+										{
+											"type": "insetReadaloud",
+											"id": "02c",
+											"entries": [
+												"The lanterns in this area are unlit. The route is choked with dust and debris. The passage splits ahead, with one branch heading north and the other east."
+											]
+										},
+										"A character who makes a successful {@dc 10} Wisdom ({@skill Survival|XPHB}) check notices dwarf-sized tracks in the dust on the floor, moving in all directions. There are no signs of recent movement, however.",
+										"Unless the party succeeds on a {@dc 20} group Dexterity ({@skill Stealth|XPHB}) check\u2014which they automatically fail if they have a light source or light the lanterns here\u2014their presence is known to the undead creatures in the area.",
+										{
+											"type": "entries",
+											"name": "Ambush!",
+											"id": "02d",
+											"entries": [
+												"When the characters either move around the corner to the southeast or stand by the door to the north, the undead creatures attack.",
+												"The eastern passage contains three {@creature Ghoul|XMM|Ghouls} ({@i G} on the map), the remnants of the trapped mining party. They rest in niches near the ceiling and can be spotted only with a successful {@dc 15} Wisdom ({@skill Perception|XPHB}) check. Behind the doors to the north waits a {@creature Wight|XMM} ({@i W} on the map), the animated corpse of Eugene Thistlenettle.",
+												{
+													"type": "entries",
+													"name": "Doors",
+													"id": "02e",
+													"entries": [
+														"If the wight knows the party is on the other side of the door, but they are unaware of its presence, the characters are {@book surprised|XPHB|1|Surprise}.",
+														"The wight uses its action to push the doors, which are not even properly attached to the hinges, onto anyone next to them. Anyone hit by the doors must succeed on a {@dc 15} Dexterity saving throw or take 7 ({@damage 2d6}) Bludgeoning damage and have the {@condition Prone|XPHB} condition. Prone characters must succeed on a {@dc 10} Strength ({@skill Athletics|XPHB}) or Dexterity ({@skill Acrobatics|XPHB}) check to right themselves or crawl away."
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Tactics",
+											"id": "02f",
+											"entries": [
+												"The undead creatures fight to the death. If they have the {@condition Frightened|XPHB} condition from an effect such as {@classFeature Turn Undead|Cleric|XPHB|2|XPHB}, they retreat only to the end of the passages sealed by the tower wall or to another collapse near the water.",
+												{
+													"type": "entries",
+													"name": "Side Quest: Twin Connection",
+													"id": "030",
+													"entries": [
+														"The wight's corpse bears a striking resemblance to Wilder Thistlenettle. The characters can secure the body and bring it back for burial. If the characters have {@area this side quest|012|x}, the wight's backpack contains any treasure rolled on the {@adventure Side Quest Treasure table|DDE|1|Side Quest Treasure}."
+													]
+												},
+												{
+													"type": "entries",
+													"name": "Side Quest: Magical Pickaxe",
+													"id": "031",
+													"entries": [
+														"If the characters have {@area this side quest|014|x}, they find the magical pickaxe stuck in a cave wall. When they pull it out, a small spirit emerges, thanks them for freeing it, and tells them the location of a bit of treasure secreted nearby (roll on the {@adventure Side Quest Treasure table|DDE|1|Side Quest Treasure}). It then flies away."
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Blocked Passages",
+											"id": "032",
+											"entries": [
+												"Although the map shows two passages leading from the Collapsed Passage to {@adventure Ironclad Cove|DDE|4}, for the purpose of this adventure, those passages are impassable."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Area 3: Mast Room",
+									"id": "033",
+									"entries": [
+										{
+											"type": "gallery",
+											"images": [
+												{
+													"type": "image",
+													"id": "08a",
+													"href": {
+														"type": "internal",
+														"path": "adventure/DDE/004-map-01-003.mastroom.webp"
+													},
+													"hrefThumbnail": {
+														"type": "internal",
+														"path": "adventure/DDE/thumbnail/004-map-01-003.mastroom.webp"
+													},
+													"width": 1889,
+													"height": 2370,
+													"imageType": "map",
+													"title": "Map 3: Mast Room",
+													"credit": "Damien Mammoliti",
+													"mapRegions": [
+														{
+															"area": "037",
+															"points": [
+																[
+																	530,
+																	170
+																],
+																[
+																	530,
+																	921
+																],
+																[
+																	624,
+																	921
+																],
+																[
+																	624,
+																	170
+																]
+															]
+														}
+													]
+												},
+												{
+													"type": "image",
+													"id": "08b",
+													"href": {
+														"type": "internal",
+														"path": "adventure/DDE/005-map-01-003.mast-room-player.webp"
+													},
+													"width": 1889,
+													"height": 2370,
+													"imageType": "mapPlayer",
+													"title": "Player Version",
+													"credit": "Damien Mammoliti",
+													"mapParent": {
+														"id": "08a"
+													}
+												}
+											]
+										},
+										"The doors to this chamber from the north and south are closed but not locked.",
+										"When the characters enter this location, read or paraphrase the following:",
+										{
+											"type": "insetReadaloud",
+											"id": "034",
+											"entries": [
+												"The ceiling of this chamber rises 30 feet. The majority of the room contains a conveyor belt where timber is cut into wooden planks for construction.",
+												"Eight goblins scamper across a mast suspended from the ceiling and spanning most of the room. In the center of the room stands a large machine with legs and an array of whirling blades. Inside the machine is another goblin, who screams, \"Intruders! Shred 'em! Burn 'em!\""
+											]
+										},
+										"The {@creature Goblin Boss|XMM} {@b Sneed} operates his invention, {@creature Sneed's Shredder|WoW} ({@i S} on the map). Eight {@creature Goblin Minion|XMM|Goblin Minions} ({@i G} on the map) are on the ceiling mast.",
+										{
+											"type": "entries",
+											"name": "Goblin Bombs",
+											"id": "035",
+											"entries": [
+												"Each goblin minion carries two bombs, which they can throw as an action. Characters can recover any bombs not used by the goblins.",
+												{
+													"type": "entries",
+													"name": "Throw Bomb",
+													"id": "036",
+													"entries": [
+														"Choose a point the thrower can see within 60 feet. {@i Dexterity Saving Throw:} {@dc 12}, creatures within a 5-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on that point. {@i Failure:} 10 ({@damage 3d6}) Fire damage. {@i Success:} Half damage only."
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Slicing Conveyor",
+											"id": "037",
+											"entries": [
+												"Any creature that gets onto the conveyor is moved 20 feet south along the belt on {@variantrule Initiative|XPHB} 20. If any movement causes a creature riding the conveyor to pass through a space marked {@i X} on the map, the creature must succeed on a {@dc 10} Dexterity saving throw or take 10 ({@damage 3d6}) Slashing damage from whirling blades."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Tactics",
+											"id": "038",
+											"entries": [
+												"Sneed remains in his machine until he is killed or ejected. The {@creature Goblin Minion|XMM|goblin minions} use their bombs until they run out, then they attack normally. The raised stones are 20 feet tall and can be climbed to reach the hanging mast. Goblins falling from the mast take {@damage 2d6} Bludgeoning damage.",
+												"At your discretion, you can allow characters to target the ropes securing the mast to the ceiling. If those ropes are destroyed, anyone on the mast falls."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Concluding the Encounter",
+											"id": "039",
+											"entries": [
+												"After defeating the goblins, the characters can search the area.",
+												{
+													"type": "entries",
+													"name": "Side Quest: Chemical Concern",
+													"id": "03a",
+													"entries": [
+														"Bound with rope in the southeast corner of the room is Dropach, assistant to Petrolea, the gnome alchemist. If the characters have {@area this side quest|016|x}, Dropach shows them where the goblins kept the remaining chemicals and reveals a secret compartment in the mast where they hid a treasure. Roll on the {@adventure Side Quest Treasure table|DDE|1|Side Quest Treasure} to determine what the characters find in the compartment."
+													]
+												},
+												{
+													"type": "entries",
+													"name": "Side Quest: Blades by Blaine",
+													"id": "03b",
+													"entries": [
+														"The sawmill conveyor belt and Sneed's Shredder used the blades stolen from Blaine. If the characters have {@area this side quest|018|x}, Hazel gives them a reward for returning the blades. Roll on the {@adventure Side Quest Treasure table|DDE|1|Side Quest Treasure} to determine what they receive."
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Conclusion",
+							"id": "03c",
+							"entries": [
+								"If the characters search the room, they find some treasure piled in the corner where Dropach was held. The treasure includes the following:",
+								{
+									"type": "list",
+									"columns": 3,
+									"items": [
+										"Assorted coins (worth a total of 200 GP)",
+										"Ten {@item +1 Arrow|XDMG|+1 Arrows}",
+										"{@item Cloak of Protection|XDMG}",
+										"Two {@item Potion of Greater Healing|XDMG|Potions of Healing (greater)}"
+									]
+								},
+								{
+									"type": "entries",
+									"id": "03d",
+									"entries": [
+										{
+											"type": "entries",
+											"name": "Time to Rest",
+											"id": "03e",
+											"entries": [
+												"The characters can search the passageway leading from the south door of the {@area Mast Room|033|x} to the {@adventure Goblin Foundry|DDE|2}. Tell them that further adventure awaits at a later time, and that they might want to return to Moonbrook for a {@variantrule Long Rest|XPHB} before tackling the rest of the Deadmines.",
+												{
+													"type": "inset",
+													"name": "Resting During This Adventure",
+													"id": "03f",
+													"entries": [
+														"Technically, there is nothing preventing the characters from taking a {@variantrule Short Rest|XPHB}\u2014or even a {@variantrule Long Rest|XPHB}\u2014during this adventure. If they take one {@variantrule Short Rest|XPHB}, let them finish without consequences. If they attempt to take a {@variantrule Long Rest|XPHB} or a second {@variantrule Short Rest|XPHB}, interrupt with an {@creature Ogre|XMM} and eight {@creature Guard|XMM|Guards} arriving to relieve the group stationed in the {@area Mine Tunnels|01f|x}."
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Goblin Foundry",
+					"id": "040",
+					"entries": [
+						"{@i An adventure for level 3 characters}",
+						"This is the Week 1 D&D Encounters adventure, designed to fill one 90-minute session of play.",
+						{
+							"type": "section",
+							"name": "Adventure Background",
+							"id": "041",
+							"entries": [
+								"The characters continue their infiltration of the Deadmines in search of {@creature Edwin VanCleef|WoW}, leader of the Defias Brotherhood. Their next challenge is the Goblin Foundry, where a goblin allied with VanCleef oversees the smelting of ore to create iron implements for VanCleef and his crew."
+							]
+						},
+						{
+							"type": "section",
+							"name": "Beginning the Adventure",
+							"id": "042",
+							"entries": [
+								"To begin this adventure, the characters should descend once again into the {@book Deadmines|WoW|6|Deadmines} and proceed through the passage leading from the Mast Room to the Goblin Foundry."
+							]
+						},
+						{
+							"type": "section",
+							"name": "Goblin Foundry",
+							"id": "043",
+							"entries": [
+								"When the characters arrive at the door to the Goblin Foundry, read or paraphrase the following text:",
+								{
+									"type": "insetReadaloud",
+									"id": "044",
+									"entries": [
+										"A sturdy set of double doors blocks your path. Bright light shines from beneath the doors, and a noticeable heat radiates from them. A loud hiss drowns out the obviously frustrated shouts from within."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Entering the Foundry",
+									"id": "045",
+									"entries": [
+										{
+											"type": "gallery",
+											"images": [
+												{
+													"type": "image",
+													"id": "08c",
+													"href": {
+														"type": "internal",
+														"path": "adventure/DDE/006-map-02-001.goblin-foundry.webp"
+													},
+													"hrefThumbnail": {
+														"type": "internal",
+														"path": "adventure/DDE/thumbnail/006-map-02-001.goblin-foundry.webp"
+													},
+													"width": 2231,
+													"height": 1856,
+													"imageType": "map",
+													"title": "Map 4: Goblin Foundry",
+													"credit": "Damien Mammoliti",
+													"mapRegions": [
+														{
+															"area": "046",
+															"points": [
+																[
+																	434,
+																	806
+																],
+																[
+																	434,
+																	1026
+																],
+																[
+																	528,
+																	1026
+																],
+																[
+																	528,
+																	806
+																]
+															]
+														},
+														{
+															"area": "046",
+															"points": [
+																[
+																	995,
+																	252
+																],
+																[
+																	995,
+																	350
+																],
+																[
+																	1269,
+																	350
+																],
+																[
+																	1269,
+																	252
+																]
+															]
+														}
+													]
+												},
+												{
+													"type": "image",
+													"id": "08d",
+													"href": {
+														"type": "internal",
+														"path": "adventure/DDE/007-map-02-001.goblin-foundry-player.webp"
+													},
+													"width": 2231,
+													"height": 1856,
+													"imageType": "mapPlayer",
+													"title": "Player Version",
+													"credit": "Damien Mammoliti",
+													"mapParent": {
+														"id": "08c"
+													}
+												}
+											]
+										},
+										"To enter the Goblin Foundry, the characters must bypass the sturdy double doors.",
+										{
+											"type": "entries",
+											"name": "The Doors",
+											"id": "046",
+											"entries": [
+												"The doors are locked and trapped. Only a few people have a key.",
+												{
+													"type": "entries",
+													"name": "Passphrase",
+													"id": "047",
+													"entries": [
+														"To gain entrance, knock three times and speak the special passphrase: \"Long Live the Brotherhood.\" If the characters do this, one of the bandits (see \"{@area Foundry Interior|04b|x}\") lets them in. The bandit is {@variantrule Indifferent [Attitude]|XPHB|Indifferent} to the characters and walks them back to the interior."
+													]
+												},
+												{
+													"type": "entries",
+													"name": "Trap",
+													"id": "048",
+													"entries": [
+														"The trap can be found with a {@action Study|XPHB} action and a successful {@dc 15} Intelligence ({@skill Investigation|XPHB}) check. Once discovered, it can be disarmed with a successful {@dc 10} Dexterity ({@skill Sleight of Hand|XPHB}) check. Failing this check by 4 or more triggers the trap.",
+														"If anyone attempts to open the doors or pick the lock without first disarming the trap, anything in the space marked {@i T} on the map is sprayed with an acidic substance. Creatures in the sprayed area must succeed on a {@dc 15} Dexterity saving throw or take 14 ({@damage 4d6}) Acid damage."
+													]
+												},
+												{
+													"type": "entries",
+													"name": "Lockpick or Smash",
+													"id": "049",
+													"entries": [
+														"The lock can be picked with a successful {@dc 15} Dexterity ({@skill Sleight of Hand|XPHB}) check. The door can also be smashed open with a successful {@dc 20} Strength ({@skill Athletics|XPHB}) check. Otherwise, the door has {@variantrule Armor Class|XPHB|AC} 10, 25 {@variantrule Hit Points|XPHB|HP}, and a {@variantrule Damage Threshold|XPHB} of 8."
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Making an Entrance",
+											"id": "04a",
+											"entries": [
+												"If the characters set off the trap or break or smash down the door, the enemies inside immediately become aware of the characters' presence and turn {@variantrule Hostile [Attitude]|XPHB|Hostile}.",
+												"If the characters disarm the trap and pick the lock, they can open the door without alerting the room's occupants, allowing for surprise attacks. If the characters don't attack, the foundry occupants begin the encounter {@variantrule Indifferent [Attitude]|XPHB|Indifferent}."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Foundry Interior",
+									"id": "04b",
+									"entries": [
+										"When the characters look into the chamber, read or paraphrase the following:",
+										{
+											"type": "insetReadaloud",
+											"id": "04c",
+											"entries": [
+												"You stand at the upper portion of a chamber, atop a curving ramp that descends to the floor. A device hangs from the ceiling, filled with a bubbling molten material. A tube from this hanging crucible points toward molds below, where the molten substance can be shaped.",
+												"Four humans stand around the room, watching an angry goblin gesticulate and shout. The goblin is flanked on three sides by whirring mechanical devices that resemble suits of armor fitted with blades. The wall near the goblin holds a control panel with various knobs and levers.",
+												"Another door leads north from the room."
+											]
+										},
+										"{@creature Gilnid|WoW} ({@i G}) has been trying to teach four {@creature Bandit|XMM|Bandits} ({@i B}) from the Defias Brotherhood to operate the foundry, but their inability to grasp even the most basic instructions has him at the end of his rope. Now, he just wants to get back to playing with his three Foe Reavers (use {@creature Animated Armor|XMM} ({@i A}) stats but replace Bludgeoning damage with Slashing damage).",
+										{
+											"type": "entries",
+											"id": "04d",
+											"entries": [
+												{
+													"type": "entries",
+													"name": "Ramp",
+													"id": "04e",
+													"entries": [
+														"The top of the ramp is 30 feet above the floor. It descends gradually, but moving up the ramp is {@variantrule Difficult Terrain|XPHB}."
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Foundry Controls",
+											"id": "04f",
+											"entries": [
+												"The panel on the wall ({@i C}) controls the release of molten iron. Gilnid knows how to operate the controls, which takes a {@action Utilize|XPHB} action. Neither the bandits nor the foe reavers can use the controls.",
+												{
+													"type": "entries",
+													"name": "Learning the Controls",
+													"id": "050",
+													"entries": [
+														"If a character uses a {@action Study|XPHB} action and succeeds on a {@dc 15} Intelligence ({@skill Investigation|XPHB}) check, they know how to control the foundry device."
+													]
+												},
+												{
+													"type": "entries",
+													"name": "Molten Steel",
+													"id": "051",
+													"entries": [
+														"The device can release molten iron into any 10-foot-square space within the room. Creatures in that area must make a {@dc 12} Dexterity saving throw. On a failed save, the creature takes 10 ({@damage 3d6}) Fire damage or half as much damage on a successful save. If a creature is reduced to 0 {@variantrule Hit Points|XPHB} by this damage, it is encased in molten iron and dies, becoming a permanent statue."
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Talking",
+											"id": "052",
+											"entries": [
+												"If the foundry's occupants are {@variantrule Indifferent [Attitude]|XPHB|Indifferent}, the characters convince the Brotherhood minions they belong there with a successful {@dc 15} Charisma ({@skill Deception|XPHB}) check. In this case, Gilnid bosses them around, insisting the characters help make iron cogs.",
+												"To complete the work for Gilnid, have each character make two {@dc 10} checks from the task list below. If a character fails a check, they take 4 ({@damage 1d8}) Fire damage from stray molten iron spills. Characters can choose any two tasks to attempt; if a task fails, Gilnid is frustrated and orders the character to attempt another task until two tasks have been successfully completed.",
+												{
+													"type": "list",
+													"items": [
+														"Strength ({@skill Athletics|XPHB}) checks to move heavy equipment",
+														"Dexterity ({@skill Acrobatics|XPHB}) checks to slide smoothly between moving parts",
+														"Dexterity ({@skill Sleight of Hand|XPHB}) checks to clear obstructions without being burned",
+														"Intelligence ({@skill Investigation|XPHB}) checks to notice problems with the machinery",
+														"Intelligence ({@skill Nature|XPHB}) checks to properly handle the materials",
+														"Wisdom ({@skill Insight|XPHB}) checks to identify co-workers who are not paying attention or not performing tasks correctly",
+														"Wisdom ({@skill Perception|XPHB}) checks to notice problems before they cause damage",
+														"Charisma ({@skill Persuasion|XPHB}) checks to get co-workers to do their jobs carefully"
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Fighting",
+											"id": "053",
+											"entries": [
+												"If combat occurs, {@creature Gilnid|WoW} orders the bandits and his foe reavers to attack the intruders. He uses the device controls to drop molten iron onto the characters. All but Gilnid fight to the death. The goblin surrenders if he is the last one standing."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Concluding the Encounter",
+									"id": "054",
+									"entries": [
+										"If the characters either defeat the enemies or successfully help Gilnid create the cogs, they can head through the north door without interference. They gain all the treasure listed below if they defeat the enemies here. They gain only the first two rewards on the list if they bluff their way through and help make the cogs."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Rewards",
+									"id": "055",
+									"entries": [
+										"The characters earn the following:",
+										{
+											"type": "list",
+											"columns": 3,
+											"items": [
+												"150 GP",
+												"{@item +1 Longsword|XDMG}, {@item +1 Shortsword|XDMG}, or {@item +1 Greatsword|XDMG}",
+												"Two {@item Potion of Fire Breath|XDMG|Potions of Fire Breath}",
+												"{@item Potion of Flying|XDMG}",
+												"{@item Spell Scroll|XDMG} of {@spell Speak with Animals|XPHB}"
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Continuing the Adventure",
+							"id": "056",
+							"entries": [
+								"If you are running this adventure as part of the D&D Encounters Weekly Play series, the characters can take a {@variantrule Short Rest|XPHB}. Continue with the adventure \"{@adventure The Trials|DDE|3}\" next time!"
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "The Trials",
+					"id": "057",
+					"entries": [
+						"{@i An adventure for level 3 characters}",
+						"This is the Week 2 D&D Encounters adventure, designed to fill one 90-minute session of play.",
+						{
+							"type": "section",
+							"name": "Adventure Background",
+							"id": "058",
+							"entries": [
+								"The characters continue their infiltration of the {@book Deadmines|WoW|6|Deadmines} in search of {@creature Edwin VanCleef|WoW}, leader of the Defias Brotherhood. Their next challenge is to pass through the area where the Brotherhood is testing potential new members. In this encounter, characters can face several enemies directly and possibly also rescue an unwilling initiate."
+							]
+						},
+						{
+							"type": "section",
+							"name": "Beginning the Adventure",
+							"id": "059",
+							"entries": [
+								"When the characters leave the Goblin Foundry and move north, read or paraphrase the following text:",
+								{
+									"type": "insetReadaloud",
+									"id": "05a",
+									"entries": [
+										"The passage from the Goblin Foundry quickly veers east and then splits. The northbound branch leads to a water-filled cavern that echoes with cheers, screams, and splashes. Several armored individuals mill around the intersection, while others shiver nearby in dripping underclothes. Beyond them, the main passage continues east for a short distance before ending at a huge, closed door."
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Membership Trials",
+							"id": "05b",
+							"entries": [
+								{
+									"type": "gallery",
+									"images": [
+										{
+											"type": "image",
+											"id": "08e",
+											"href": {
+												"type": "internal",
+												"path": "adventure/DDE/008-map-03-001.the-initiation.webp"
+											},
+											"hrefThumbnail": {
+												"type": "internal",
+												"path": "adventure/DDE/thumbnail/008-map-03-001.the-initiation.webp"
+											},
+											"width": 2473,
+											"height": 3098,
+											"imageType": "map",
+											"title": "Map 5: The Trials",
+											"credit": "Damien Mammoliti",
+											"mapRegions": [
+												{
+													"area": "060",
+													"points": [
+														[
+															1047,
+															1153
+														],
+														[
+															1047,
+															1317
+														],
+														[
+															1208,
+															1317
+														],
+														[
+															1208,
+															1153
+														]
+													]
+												}
+											]
+										},
+										{
+											"type": "image",
+											"id": "08f",
+											"href": {
+												"type": "internal",
+												"path": "adventure/DDE/009-map-03-001.the-initiation-player.webp"
+											},
+											"width": 2473,
+											"height": 3098,
+											"imageType": "mapPlayer",
+											"title": "Player Version",
+											"credit": "Damien Mammoliti",
+											"mapParent": {
+												"id": "08e"
+											}
+										}
+									]
+								},
+								"In the watery passageway, a mix of prisoners and volunteers face tests of skill and bravery to determine whether they have what it takes to join the Defias Brotherhood. The characters arrive as ten {@creature Commoner|XMM|Commoners} ({@i C}) attempt these trials, supervised by four {@creature Pirate|XMM|Pirates} ({@i P}) and four {@creature Tough|XMM|Toughs} ({@i T}).",
+								{
+									"type": "entries",
+									"name": "Talking",
+									"id": "05c",
+									"entries": [
+										"If the characters don't attack, an {@action Influence|XPHB} action with a successful {@dc 15} Charisma ({@skill Deception|XPHB}) check can convince the Brotherhood members that the characters pose no threat. Even so, the pirates challenge them, believing the characters should undergo the same trials as the new recruits (see \"Trial by Water\" below)."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Fighting",
+									"id": "05d",
+									"entries": [
+										"If a fight breaks out, the recruits do not take part. The pirates and toughs try to force the characters toward the water's edge, where their pet octopus, Mrs. Grabbems, can reach them. They fight to the death."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Trial by Water",
+									"id": "05e",
+									"entries": [
+										"When the characters arrive, some recruits have completed their trials, while others are midway through theirs. The test requires each recruit to swim from the south shore of the pool to one of the two alcoves, retrieve a skull, and return.",
+										"This would be relatively easy if not for the surprise lurking in the murky pool: a {@creature Giant Octopus|XMM} the pirates call \"Mrs. Grabbems.\" Already, Mrs. Grabbems has taken down two victims and is converging on a third as the characters enter the cavern.",
+										{
+											"type": "entries",
+											"name": "Rescuing the Prisoner",
+											"id": "05f",
+											"entries": [
+												"If the characters agree to the trial, they notice a recruit in trouble. The only remaining candidate in the water is being dragged beneath the surface. Once they notice the woman, she can survive only 5 more rounds unless a character enters the water to draw Mrs. Grabbems's attention or finds another way to rescue her.",
+												"The drowning commoner is a human woman named Luna Billings. She and her younger brother, Josiah, were taken captive by the Brotherhood. Having taken a liking to Josiah, Edwin is keeping him close, but he sent Luna to be tested with the other recruits."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Mrs. Grabbems",
+											"id": "060",
+											"entries": [
+												"Mrs. Grabbems was captured at sea by the pirates and brought here to be kept as a pet. Intelligent enough to understand her situation, she knows she is fed only if she does the pirates' bidding, though she is not loyal to them. A successful {@dc 10} Wisdom ({@skill Animal Handling|XPHB}) check can convince her not to attack the characters or even to attack the pirates. If the characters can communicate with her and promise to return her to the ocean, she automatically joins their side."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Concluding the Encounter",
+									"id": "061",
+									"entries": [
+										"If the characters defeat the Brotherhood minions or successfully complete the Trial by Water, they are free to continue exploring the Deadmines. Any remaining prisoners flee if the characters have cleared the path back to the {@area Mine Tunnels|01f|x}.",
+										{
+											"type": "inset",
+											"name": "Side Quest: Rescue Josiah",
+											"id": "062",
+											"entries": [
+												"If the characters rescue Luna, she begs them to find her brother, Josiah, and rescue him from {@creature Edwin VanCleef|WoW|Edwin}, the Brotherhood leader. She promises a reward if they do. Josiah is only 14 years old and has a scar down the left side of his face."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Rewards",
+									"id": "063",
+									"entries": [
+										"If the characters defeat the Brotherhood minions, they can loot them for the following rewards:",
+										{
+											"type": "list",
+											"columns": 3,
+											"items": [
+												"100 GP",
+												"{@item Potion of Animal Friendship|XDMG}",
+												"Two {@item Potion of Water Breathing|XDMG|Potions of Water Breathing}"
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Continuing the Adventure",
+							"id": "064",
+							"entries": [
+								"If you are running this adventure as part of the D&D Encounters Weekly Play series, the characters can take a {@variantrule Long Rest|XPHB} and gain a level. Continue with the adventure \"{@adventure Ironclad Cove|DDE|4}\" next time!"
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Ironclad Cove",
+					"id": "065",
+					"entries": [
+						"{@i An adventure for level 4 characters}",
+						{
+							"type": "section",
+							"name": "Adventure Background",
+							"id": "066",
+							"entries": [
+								"The characters enter the final area of the {@book Deadmines|WoW|6|Deadmines}, the dangerous Ironclad Cove, a secret dock where the Defias Brotherhood is building {@adventure the Juggernaut|DDE|5}, a secret weapon capable of destroying coastal settlements. The characters must make their way through the enemies to reach {@i the Juggernaut} and defeat {@creature Edwin VanCleef|WoW}."
+							]
+						},
+						{
+							"type": "section",
+							"name": "Beginning the Adventure",
+							"id": "067",
+							"entries": [
+								"The characters can open the door leading into Ironclad Cove without issue. When they do, read or paraphrase the following text:",
+								{
+									"type": "insetReadaloud",
+									"id": "068",
+									"entries": [
+										"An enormous cavern here holds a nearly completed warship, armed with cannons and other instruments of naval assault. A gate to the north is just large enough to accommodate the massive ship.",
+										"The area is crawling with workers and sailors. Most fall into one of three categories: Defias Brotherhood members wearing red bandanas, pirates in pirate garb, and goblins doing much of the work on the ship."
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Three Steps Closer to Edwin",
+							"id": "069",
+							"entries": [
+								"The characters have many possible paths from the doorway to the deck of the {@i Juggernaut}. Assume that the characters must interact with at least three of the encounters described below, depending on the direction they take. You decide how successful they are at fighting, sneaking, talking, or charming their way onto the deck of the {@i Juggernaut}.",
+								{
+									"type": "gallery",
+									"images": [
+										{
+											"type": "image",
+											"id": "090",
+											"href": {
+												"type": "internal",
+												"path": "adventure/DDE/010-map-04-001.juggernaut.webp"
+											},
+											"width": 3734,
+											"height": 4096,
+											"imageType": "map",
+											"title": "Ironclad Cove",
+											"credit": "Damien Mammoliti"
+										},
+										{
+											"type": "image",
+											"id": "091",
+											"href": {
+												"type": "internal",
+												"path": "adventure/DDE/011-map-04-001.juggernaut-player.webp"
+											},
+											"width": 3734,
+											"height": 4096,
+											"imageType": "mapPlayer",
+											"title": "Player Version",
+											"credit": "Damien Mammoliti",
+											"mapParent": {
+												"id": "090"
+											}
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "1. Brotherhood Ruffians",
+									"id": "06a",
+									"entries": [
+										"Five Brotherhood {@creature Scout|XMM|Scouts}, led by a {@creature Scout Captain|XMM}, carry crates of supplies along the docks. Angry at being relegated to portage duty, they are looking for a fight."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "2. Pirate Unrest",
+									"id": "06b",
+									"entries": [
+										"A pirate first mate ({@creature Tough Boss|XMM}) and her four {@creature Scout|XMM} crewmates row a dinghy toward the shore from the {@i Juggernaut}. They are drunk, celebrating another day of living the pirate life."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "3. Goblin Machinations",
+									"id": "06c",
+									"entries": [
+										"A {@creature Goblin Boss|XMM} and six goblin {@creature Scout|XMM|Scouts} take a break from their work on the {@i Juggernaut}. They mock others in the area, hurling insults and threats in {@language Goblin|WoW} and laughing because no one can understand them."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "4. Avian Menace",
+									"id": "06d",
+									"entries": [
+										"Three {@creature Griffon|XMM|gryphons} trained to guard the area swoop down on the characters (especially those who are flying or otherwise moving through the air). The gryphons do not bother any characters disguised as Brotherhood members, pirates, or goblins."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "5. Water Foul",
+									"id": "06e",
+									"entries": [
+										"Four {@creature Giant Octopus|XMM|Giant Octopi} have been brought here and released to keep the waters clear of pests. If the characters brought {@area Mrs. Grabbems|060|x} with them, she can communicate with the octopi to let them know the characters are friendly.",
+										{
+											"type": "inset",
+											"name": "Violence is Sometimes the Answer",
+											"id": "06f",
+											"entries": [
+												"None of the factions here likes the others. The Defias Brotherhood members despise the pirates {@creature Edwin VanCleef|WoW|Edwin} uses to crew the ships, and the feeling is mutual. Neither group likes the goblins who build and repair the ships. Even if the characters enter combat with one of the groups, the others do not interfere."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Concluding the Encounter",
+									"id": "070",
+									"entries": [
+										"When the characters reach the deck of the {@i Juggernaut}, this part of the adventure is concluded."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Rewards",
+									"id": "071",
+									"entries": [
+										"If the characters defeat one group, they find one treasure of your choice from the following list:",
+										{
+											"type": "list",
+											"columns": 3,
+											"items": [
+												"50 GP",
+												"Two {@item Potion of Greater Healing|XDMG|Potions of Greater Healing}",
+												"{@item +1 Wand of the War Mage|XDMG|Wand of the War Mage, +1}"
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Continuing the Adventure",
+							"id": "072",
+							"entries": [
+								"If you are running this adventure as part of the D&D Encounters Weekly Play series, the characters get no rest. Proceed immediately to the adventure \"{@adventure The Juggernaut|DDE|5}\" next time!"
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "The Juggernaut",
+					"id": "073",
+					"entries": [
+						"{@i An adventure for level 4 characters}",
+						"This is the Week 4 D&D Encounters adventure, designed to fill one 90-minute session of play.",
+						{
+							"type": "section",
+							"name": "Adventure Background",
+							"id": "074",
+							"entries": [
+								"The characters finally confront {@creature Edwin VanCleef|WoW}, leader of the Defias Brotherhood. They must defeat him and his minions to save Moonbrook and the surrounding area. If they are resourceful, the characters can also destroy a dangerous weapon before their enemies can deploy it."
+							]
+						},
+						{
+							"type": "section",
+							"name": "Beginning the Adventure",
+							"id": "075",
+							"entries": [
+								"Read or paraphrase the following text:",
+								{
+									"type": "insetReadaloud",
+									"id": "076",
+									"entries": [
+										"You've reached the deck of the {@i Juggernaut}. This technological marvel combines the impenetrable might of a floating fortress with enough advanced armaments to lay waste to a city. Fortunately for you, it's not yet complete. If the forces of evil finish this monstrosity and unleash it on the world, many innocents will suffer."
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Storming the Juggernaut",
+							"id": "077",
+							"entries": [
+								"The characters must first contend with a troll force intent on evicting them from the ship by lethal force. After that, Edwin VanCleef emerges from his quarters for {@area a final showdown|07e|x}.",
+								{
+									"type": "entries",
+									"name": "Troll Unwelcome Party",
+									"id": "078",
+									"entries": [
+										"As the characters consider their next actions, read or paraphrase the following:",
+										{
+											"type": "insetReadaloud",
+											"id": "079",
+											"entries": [
+												"A troll steps forward from a raised platform atop the vessel. She levels a wand at you and hisses contemptuously, \"These intruders should not be on the ship. Edwin would not like that. Kill them and toss their bodies to the fish.\" Four pirates begin moving toward you with ill intent."
+											]
+										},
+										"The troll hexer (use {@creature Goblin Hexer|XMM} stat block) is a close associate of Edwin's, in charge of his security while they are in port. She directs four {@creature Pirate|XMM|Pirates} to engage the characters while she casts spells from a safe distance.",
+										{
+											"type": "entries",
+											"name": "Tactics",
+											"id": "07a",
+											"entries": [
+												"The troll fires her spells and hexes at the characters from a distance until they prove dangerous at that range. If they damage her, she quickly backs up, hoping to force them onto the top deck, where reinforcements await.",
+												"The top deck is accessible only via the wooden ramps on the ship's west side. A successful {@dc 10} Strength ({@skill Athletics|XPHB}) check allows a character to climb the 20-foot-high walls to reach the top deck without using the ramps."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Armaments on the Top Deck",
+											"id": "07b",
+											"entries": [
+												"When a character accesses the top deck, have them make a {@dc 15} Wisdom ({@skill Perception|XPHB}) check. On a success, they notice that one of the small cannons on the top deck (marked {@i C}) is operational and loaded. As an action, the cannon can be fired in any direction, but no other ammunition is available. The enemies do not use this cannon because they know it will damage the vessel.",
+												"Lying around on both the main deck and the top deck are also several boom barrels ({@i B}), identical to those from the \"{@area Mine Tunnels|026|x}.\" If all of them are set off, they can damage the {@i Juggernaut} beyond repair and sink it.",
+												{
+													"type": "entries",
+													"name": "Cannon Shot",
+													"id": "07c",
+													"entries": [
+														"Choose a point the user can see within 120 feet of the cannon. {@i Dexterity Saving Throw:} {@dc 12}, creatures within a 10-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on that point. {@i Failure:} 21 ({@damage 6d6}) Bludgeoning damage. {@i Success:} Half damage."
+													]
+												},
+												{
+													"type": "entries",
+													"name": "Boom Barrel",
+													"id": "07d",
+													"entries": [
+														"Each space marked {@i B} on the map contains a barrel of explosives ({@variantrule Armor Class|XPHB|AC} 10, {@variantrule Hit Points|XPHB|HP} 5, {@variantrule Vulnerability|XPHB} to Fire damage). If a barrel is destroyed, it explodes in a 5-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere}, dealing 11 ({@damage 2d10}) Fire damage to anything caught in the blast."
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Battle with Edwin VanCleef",
+									"id": "07e",
+									"entries": [
+										"When the troll hexer is defeated, {@creature Edwin VanCleef|WoW} ({@i E}) rouses from his chambers and summons five {@creature Tough|XMM|Toughs} ({@i T}) to serve as his bodyguards.",
+										"When Edwin emerges from his quarters on the top deck, read or paraphrase the following:",
+										{
+											"type": "insetReadaloud",
+											"id": "07f",
+											"entries": [
+												"A man saunters out of a door on the top deck. You can almost imagine the smug look beneath the red bandanna covering his face. \"See this, Josiah? This is what I mean. The lapdogs of unjust authority don't even know what they're fighting for, but they'll kill to keep their leashes nice and snug.\"",
+												"Following the man is a child of about 14 with a scar down the left side of his face. He looks both scared and intrigued. The man continues. \"Stay close. I'll protect you. Watch how you put down the dogs of your enemies.\""
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Tactics",
+											"id": "080",
+											"entries": [
+												"Edwin uses Josiah ({@creature Commoner|XMM}) as a deterrent against area attacks. The boy moves with Edwin and stays adjacent to him unless physically moved by the characters.",
+												"A character can convince Josiah to move to safety on his own by using an {@action Influence|XPHB} action to make a successful {@dc 20} Charisma ({@skill Persuasion|XPHB}) check. The check is made with {@variantrule Advantage|XPHB}, and the DC drops to 10 if the character mentions that {@area Josiah's sister|062|x} is still alive and waiting for him."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Concluding the Encounter",
+											"id": "081",
+											"entries": [
+												"Edwin fights to the death, but his tough bodyguards surrender if he's defeated. If the characters begin detonating boom barrels to damage the ship, the forces within Ironclad Cove scatter to the four winds."
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Conclusion",
+							"id": "082",
+							"entries": [
+								"If the characters survive their assault on the Deadmines, they can return to Moonbrook with surviving prisoners in tow, where they witness many joyful reunions as friends, family, and loved ones are reunited. The characters are celebrated as heroes for eliminating the area's Defias Brotherhood threat and receive the rewards below.",
+								{
+									"type": "entries",
+									"name": "Rewards",
+									"id": "083",
+									"entries": [
+										"For eliminating the threat, {@area Rezzina|009|x} and the People's Militia reward the characters with the following:",
+										{
+											"type": "list",
+											"columns": 3,
+											"items": [
+												"500 GP",
+												"{@item Mariner's Armor|XDMG}",
+												"{@item Pearl of Power|XDMG}",
+												"Two {@item Potion of Greater Healing|XDMG|Potions of Healing (greater)}"
+											]
+										},
+										"If the characters rescued both Luna and Josiah, the grateful woman offers them one of the items from the {@adventure Side Quest Treasure|DDE|1|Side Quest Treasure} table in the {@area Celebration|005|x} adventure."
+									]
+								}
+							]
+						},
+						{
+							"type": "section",
+							"name": "Continuing Your Adventure",
+							"id": "084",
+							"entries": [
+								"This concludes the Season of Champions D&D Encounters Weekly Play series!",
+								"If you want to continue playing, keep expanding the story and let the characters explore more of Azeroth. For example, although they defeated the Defias Brotherhood's leader, its splinter cells remain active and capable of great harm. It's only a matter of time before a new leader emerges\u2014perhaps a lieutenant, a family member, or another wily entity\u2014to restore the group to its former glory. Such a person might want to make an example of the heroes who brought down their former leader.",
+								"The world of Azeroth offers countless other adventures to seek and endless villains to defeat for those with the skill, wits, and bravery to step into the role of hero. Check out {@book D&D: World of Warcraft|WoW} for more ideas, setting details, character options, and more!"
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Credits",
+					"id": "085",
+					"entries": [
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"columns": 2,
+							"items": [
+								{
+									"type": "item",
+									"name": "Project Lead:",
+									"entry": "Chris Tulach"
+								},
+								{
+									"type": "item",
+									"name": "Designer:",
+									"entry": "Shawn Merwin"
+								},
+								{
+									"type": "item",
+									"name": "Editor:",
+									"entry": "Cindi Rice"
+								},
+								{
+									"type": "item",
+									"name": "Graphic Designer:",
+									"entry": "Rich Lescouflair"
+								},
+								{
+									"type": "item",
+									"name": "Cover Illustrator:",
+									"entry": "Efrem Palacios"
+								},
+								{
+									"type": "item",
+									"name": "Cartographer:",
+									"entry": "Damien Mammoliti"
+								},
+								{
+									"type": "item",
+									"name": "Product Architect:",
+									"entry": "Laura Hohman"
+								},
+								{
+									"type": "item",
+									"name": "Producer:",
+									"entry": "Emily Gitelman"
+								},
+								{
+									"type": "item",
+									"name": "D&D Beyond Digital Publishing:",
+									"entry": "Randy Balisalisa, Hayley Schmelzer, Cat Smedley, Martin Frost, Lauren Erwin"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

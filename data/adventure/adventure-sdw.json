@@ -959,7 +959,7 @@
 													"name": "Rage of Bahamut",
 													"id": "03a",
 													"entries": [
-														"If a creature kills {@creature Lhammaruntosz|SDW} or a Scaly Eye member while inside the temple, a spectral dragon appears and attacks the creature. The dragon makes an attack roll with a {@hit 10} bonus to hit and deals 22 ({@dice 4d10}) psychic damage on a hit. After attacking once, the dragon disappears."
+														"If a creature kills {@creature Lhammaruntosz|SDW} or a Scaly Eye member while inside the temple, a spectral dragon appears and attacks the creature. The dragon makes an attack roll with a {@hit 10} bonus to hit and deals 22 ({@damage 4d10}) psychic damage on a hit. After attacking once, the dragon disappears."
 													]
 												},
 												{
@@ -1850,7 +1850,7 @@
 													"name": "Molten Bronze Trap",
 													"id": "041",
 													"entries": [
-														"A tripwire set 3 inches off the ground is extended across the doorway at the top of the stair that leads to {@area area B1|03d|x}. An iron pot full of molten bronze (magically heated) hangs above the door and overturns when a creature triggers the tripwire. The creature must make a {@dc 14} Dexterity saving throw, taking 33 ({@dice 6d10}) fire damage on a failed save, or half as much damage on a successful one. A creature that fails this save is covered in molten bronze and takes 5 ({@dice 1d10}) fire damage at the end of each of its turns until it uses an action to scrape off the bronze with a weapon or tool. If the weapon or tool is nonmagical, it is destroyed after removing the bronze.",
+														"A tripwire set 3 inches off the ground is extended across the doorway at the top of the stair that leads to {@area area B1|03d|x}. An iron pot full of molten bronze (magically heated) hangs above the door and overturns when a creature triggers the tripwire. The creature must make a {@dc 14} Dexterity saving throw, taking 33 ({@damage 6d10}) fire damage on a failed save, or half as much damage on a successful one. A creature that fails this save is covered in molten bronze and takes 5 ({@damage 1d10}) fire damage at the end of each of its turns until it uses an action to scrape off the bronze with a weapon or tool. If the weapon or tool is nonmagical, it is destroyed after removing the bronze.",
 														"A creature with a passive Wisdom ({@skill Perception}) score of 15 or higher notices the tripwire. A successful {@dc 15} Dexterity check using {@item thieves' tools|PHB} disables the tripwire harmlessly. A character without thieves' tools can attempt this check with disadvantage using any edged weapon or edged tool. On a failed check, the trap triggers."
 													]
 												}
@@ -1889,7 +1889,7 @@
 											"name": "B6. Statue Chamber",
 											"id": "045",
 											"entries": [
-												"A 20,000-pound, 25-foot-tall marble statue of Bahamut stands at the center of this chamber, encircled by a hoard of treasure on the floor. The {@spell detect magic} spell reveals that the statue radiates auras of abjuration and divination magic. The statue has AC 19, 200 hit points, and immunity to acid, cold, fire, lightning, poison, and psychic damage. Each time a creature damages the statue or touches any of the treasure, the statue shoots a bolt of lightning at the creature. The target must make a {@dc 19} Dexterity saving throw, taking 66 ({@dice 12d10}) lightning damage on a failed save, or half as much damage on a successful one.",
+												"A 20,000-pound, 25-foot-tall marble statue of Bahamut stands at the center of this chamber, encircled by a hoard of treasure on the floor. The {@spell detect magic} spell reveals that the statue radiates auras of abjuration and divination magic. The statue has AC 19, 200 hit points, and immunity to acid, cold, fire, lightning, poison, and psychic damage. Each time a creature damages the statue or touches any of the treasure, the statue shoots a bolt of lightning at the creature. The target must make a {@dc 19} Dexterity saving throw, taking 66 ({@damage 12d10}) lightning damage on a failed save, or half as much damage on a successful one.",
 												{
 													"type": "entries",
 													"name": "Treasure",
@@ -7837,7 +7837,7 @@
 											"id": "06b",
 											"entries": [
 												"The remains of ghouls, skeletons, zombies, and some other undead lay scattered across this cavern, torn to pieces by Claugiyliamatar. A creature with a passive Wisdom ({@skill Perception}) score of 17 of higher notices that the surfaces of the chamber are covered with a very fine green dust. This dust is made of tiny, hallucinogenic spores created by moss in the chamber. A {@spell detect magic} spell reveals that the moss and spores radiate auras of enchantment magic.",
-												"Whenever a creature enters this cavern, it must make a {@dc 15} Constitution saving throw. On a success, the creature is immune to the effect of the spores for 24 hours. On a failed save, the creature is {@condition poisoned} for 1 minute. While {@condition poisoned}, the creature is delirious and feels the need to frolic. At the start of its turn, the {@condition poisoned} creature rolls on the Frolic Direction table and moves its full speed in a direction indicated by the roll. The creature moves in a straight line that direction without regard for its own safety, stumbling into hazards and obstacles or over ledges. If a creature runs into a statue, stalagmite, or wall and still has movement left, the creature takes {@dice 1d6} bludgeoning damage per 10 feet of remaining movement (rounded down). The creature can repeat the saving throw at the end of its turns, ending the effect on a success.",
+												"Whenever a creature enters this cavern, it must make a {@dc 15} Constitution saving throw. On a success, the creature is immune to the effect of the spores for 24 hours. On a failed save, the creature is {@condition poisoned} for 1 minute. While {@condition poisoned}, the creature is delirious and feels the need to frolic. At the start of its turn, the {@condition poisoned} creature rolls on the Frolic Direction table and moves its full speed in a direction indicated by the roll. The creature moves in a straight line that direction without regard for its own safety, stumbling into hazards and obstacles or over ledges. If a creature runs into a statue, stalagmite, or wall and still has movement left, the creature takes {@damage 1d6} bludgeoning damage per 10 feet of remaining movement (rounded down). The creature can repeat the saving throw at the end of its turns, ending the effect on a success.",
 												{
 													"type": "table",
 													"caption": "Frolic Direction",
@@ -7931,13 +7931,13 @@
 											"entries": [
 												"These pools bubble with a dark green slime and are 15 feet deep. Swimming through the viscous slime requires a successful {@dc 12} Strength ({@skill Athletics}) check. A creature that fails this check is {@condition restrained} by the slime and sinks {@dice 1d4 + 1} feet into the pool. At the start of the creature's turns, it sinks another {@dice 1d4} feet. As long as the creature isn't completely submerged in the slime, it can escape by using its action and succeeding on a Strength ({@skill Athletics}) check. The DC is 12 plus the number of feet the creature has sunk into the slime. A creature fully submerged in slime can't breathe (see \"{@book Suffocating|PHB|8|Suffocating}\" in chapter 8 of the {@book Player's Handbook|PHB}).",
 												"A creature can pull another creature within its reach out of a slime pool by using its action and succeeding on a Strength ({@skill Athletics}) check. The DC is 7 plus the number of feet the target creature has sunk into the slime.",
-												"A creature that comes into contact with the slime takes 11 ({@dice 2d10}) acid damage. The creature takes this damage again at the start of each of its turns until the slime is scraped off or destroyed.",
+												"A creature that comes into contact with the slime takes 11 ({@damage 2d10}) acid damage. The creature takes this damage again at the start of each of its turns until the slime is scraped off or destroyed.",
 												{
 													"type": "entries",
 													"name": "Pushing Vines",
 													"id": "071",
 													"entries": [
-														"A {@spell detect magic} spell reveals that the vines directly above the slime pools radiate an aura of transmutation magic. Claugiyliamatar enchanted the vines to unfurl and attack creatures that fly over the pools, other than the dragon herself. When such a creature flies over a slime pool, it must succeed on a {@dc 15} Dexterity saving throw or take 11 ({@dice 2d10}) bludgeoning damage and be pushed into the slime pool."
+														"A {@spell detect magic} spell reveals that the vines directly above the slime pools radiate an aura of transmutation magic. Claugiyliamatar enchanted the vines to unfurl and attack creatures that fly over the pools, other than the dragon herself. When such a creature flies over a slime pool, it must succeed on a {@dc 15} Dexterity saving throw or take 11 ({@damage 2d10}) bludgeoning damage and be pushed into the slime pool."
 													]
 												},
 												{
@@ -7967,7 +7967,7 @@
 											"name": "C9. Zuri's Hidden Hoard",
 											"id": "074",
 											"entries": [
-												"A 5-foot-square patch of moss in the center of this area hides a spiked pit trap. A creature notices the moss is not actually attached to the ground with a successful {@dc 15} Wisdom ({@skill Perception}) check. A Medium or smaller creature that steps on the moss falls 10 feet onto the {@condition poisoned} spikes at the pit's bottom, taking 3 ({@dice 1d6}) bludgeoning damage and 11 ({@dice 2d10}) piercing damage, and it must make a {@dc 13} Constitution saving throw, taking 22 ({@dice 4d10}) poison damage on a failed save, or half as much damage on a successful one.",
+												"A 5-foot-square patch of moss in the center of this area hides a spiked pit trap. A creature notices the moss is not actually attached to the ground with a successful {@dc 15} Wisdom ({@skill Perception}) check. A Medium or smaller creature that steps on the moss falls 10 feet onto the {@condition poisoned} spikes at the pit's bottom, taking 3 ({@damage 1d6}) bludgeoning damage and 11 ({@damage 2d10}) piercing damage, and it must make a {@dc 13} Constitution saving throw, taking 22 ({@damage 4d10}) poison damage on a failed save, or half as much damage on a successful one.",
 												{
 													"type": "entries",
 													"name": "Treasure",
@@ -8084,10 +8084,10 @@
 													"type": "list",
 													"items": [
 														"A character who casts the {@spell disintegrate} spell destroys the wall.",
-														"If the statues of Dove Falconhand (in {@area area C8|070|x}), Storm Silverhand (in {@area area C8|070|x}), and Laeral Silverhand (in {@area area C4|06b|x}) are placed next to their sisters (see \"{@area Statues|081|x}\" below) in the divots, the wall is destroyed. The wall reforms if any of the statues on the plateau are removed. If a statue other than those three is placed in a divot, the statue explodes with violent force. Each creature within 10 feet of the statue must make a {@dc 15} Dexterity saving throw, taking 33 ({@dice 6d10}) bludgeoning damage on a failed save, or half as much damage on a successful one."
+														"If the statues of Dove Falconhand (in {@area area C8|070|x}), Storm Silverhand (in {@area area C8|070|x}), and Laeral Silverhand (in {@area area C4|06b|x}) are placed next to their sisters (see \"{@area Statues|081|x}\" below) in the divots, the wall is destroyed. The wall reforms if any of the statues on the plateau are removed. If a statue other than those three is placed in a divot, the statue explodes with violent force. Each creature within 10 feet of the statue must make a {@dc 15} Dexterity saving throw, taking 33 ({@damage 6d10}) bludgeoning damage on a failed save, or half as much damage on a successful one."
 													]
 												},
-												"If the wall is destroyed, the gas behind it immediately expands, filling all of area C13 and C14. A creature that enters or starts its turn in the gas must make {@dc 22} Constitution saving throw, taking 77 ({@dice 22d6}) poison damage on a failed save, or half as much damage on a successful one. Creatures and objects in the gas are {@quickref Vision and Light||2||lightly obscured}. The gas remains for 24 hours. A moderate wind (at least 10 miles per hour) disperses the gas after 4 hours. A strong wind (at least 20 miles per hour) disperses it after 1 hour.",
+												"If the wall is destroyed, the gas behind it immediately expands, filling all of area C13 and C14. A creature that enters or starts its turn in the gas must make {@dc 22} Constitution saving throw, taking 77 ({@damage 22d6}) poison damage on a failed save, or half as much damage on a successful one. Creatures and objects in the gas are {@quickref Vision and Light||2||lightly obscured}. The gas remains for 24 hours. A moderate wind (at least 10 miles per hour) disperses the gas after 4 hours. A strong wind (at least 20 miles per hour) disperses it after 1 hour.",
 												{
 													"type": "entries",
 													"name": "Statues",
@@ -9809,7 +9809,7 @@
 													"name": "Halberd",
 													"id": "09c",
 													"entries": [
-														"{@atk mw} {@hit 8} to hit, reach 20 ft., one target. {@i Hit}: 21 ({@dice 3d10 + 5}) slashing damage.",
+														"{@atk mw} {@hit 8} to hit, reach 20 ft., one target. {@i Hit}: 21 ({@damage 3d10 + 5}) slashing damage.",
 														"The evil spirit of the death knight can see and speak through the skeletal figurehead (see \"{@area Death Knight's Soul|094|x}\"). If the death knight spots intruders outside the ship, it alerts Fheralai below deck and she moves to confront her new guests (see \"{@area Fheralai Stormsworn|092|x}\")."
 													]
 												}
@@ -9829,7 +9829,7 @@
 											"name": "D4. Hellfire Orb",
 											"id": "09e",
 											"entries": [
-												"The iron brazier mounted on the mainmast contains an ever-burning orb of flame. The spirit of the death knight can see and talk through this orb, perceiving its surroundings with {@sense darkvision} to a range of 120 feet (see \"{@area Death Knight's Soul|094|x}\"). Once per day, the death knight can hurl a magical ball of fire that explodes at a point it can see within 240 feet of it. Each creature in a 20-foot-radius sphere centered on that point must make a {@dc 18} Dexterity saving throw. The sphere spreads around corners. A creature takes 35 ({@dice 10d6}) fire damage and 35 ({@dice 10d6}) necrotic damage on a failed save, or half as much damage on a successful one."
+												"The iron brazier mounted on the mainmast contains an ever-burning orb of flame. The spirit of the death knight can see and talk through this orb, perceiving its surroundings with {@sense darkvision} to a range of 120 feet (see \"{@area Death Knight's Soul|094|x}\"). Once per day, the death knight can hurl a magical ball of fire that explodes at a point it can see within 240 feet of it. Each creature in a 20-foot-radius sphere centered on that point must make a {@dc 18} Dexterity saving throw. The sphere spreads around corners. A creature takes 35 ({@damage 10d6}) fire damage and 35 ({@damage 10d6}) necrotic damage on a failed save, or half as much damage on a successful one."
 											]
 										},
 										{
@@ -9845,7 +9845,7 @@
 											"name": "D6. Quarterdeck",
 											"id": "0a0",
 											"entries": [
-												"The ship's wheel is fixed to the quarterdeck. The wheel is the round, iron shield that Emberlost carried in battle. If a creature the death knight doesn't know or like touches the wheel, the intruder must succeed at a {@dc 15} Constitution saving throw, taking 45 ({@dice 10d8}) necrotic damage on a failed save, or half as much necrotic damage on a successful one. After taking this damage, the creature can safely hold the wheel and steer the ship without taking further damage."
+												"The ship's wheel is fixed to the quarterdeck. The wheel is the round, iron shield that Emberlost carried in battle. If a creature the death knight doesn't know or like touches the wheel, the intruder must succeed at a {@dc 15} Constitution saving throw, taking 45 ({@damage 10d8}) necrotic damage on a failed save, or half as much necrotic damage on a successful one. After taking this damage, the creature can safely hold the wheel and steer the ship without taking further damage."
 											]
 										},
 										{
@@ -10677,7 +10677,7 @@
 											"id": "0c8",
 											"entries": [
 												"The Chimera Crew dug a 10-foot-deep pit trap with a 10-foot-square opening in the ground along the hole in the north wall. The pit is covered by a large tarp anchored on the pit's edge and camouflaged with dirt and debris. A creature with a passive Wisdom ({@skill Perception}) score of 14 or higher notices the pit.",
-												"Any creature that steps on the tarp falls into the pit and pulls the tarp with it, taking 3 ({@dice 1d6}) bludgeoning damage and landing {@condition prone}. The bottom of the pit contains a {@creature swarm of poisonous snakes}. Climbing the walls of the pit without equipment requires a successful {@dc 15} Strength ({@skill Athletics}) check."
+												"Any creature that steps on the tarp falls into the pit and pulls the tarp with it, taking 3 ({@damage 1d6}) bludgeoning damage and landing {@condition prone}. The bottom of the pit contains a {@creature swarm of poisonous snakes}. Climbing the walls of the pit without equipment requires a successful {@dc 15} Strength ({@skill Athletics}) check."
 											]
 										},
 										{
@@ -10686,7 +10686,7 @@
 											"id": "0c9",
 											"entries": [
 												"The stone gatehouse has two stories. The first story is one interior room with a 30-foot-high ceiling. The second story has no roof.",
-												"When the characters enter the first story, they immediately smell and see oil on the floor and walls. If set ablaze, the oil burns for 1 minute. While the oil burns, each creature that enters or starts its turn in the first story of the gatehouse takes 11 ({@dice 2d10}) fire damage.",
+												"When the characters enter the first story, they immediately smell and see oil on the floor and walls. If set ablaze, the oil burns for 1 minute. While the oil burns, each creature that enters or starts its turn in the first story of the gatehouse takes 11 ({@damage 2d10}) fire damage.",
 												{
 													"type": "entries",
 													"name": "Doors and Portcullises",
@@ -10755,7 +10755,7 @@
 											"id": "0d1",
 											"entries": [
 												"Ten {@creature Swarm of Ravens||swarms of ravens} live on what remains of the main tower's roof. They attack any creature that comes within 30 feet of the roof, fighting until the creature retreats.",
-												"If more than 100 pounds of weight are added to the remains of the roof, it collapses. Creatures inside the tower when the roof collapses must make a {@dc 12} Dexterity saving throw, taking 28 ({@dice 8d6}) bludgeoning damage on a failed save, or half as much damage on a successful one. Creatures on top of the roof when it collapses take 28 ({@dice 8d6}) bludgeoning damage from the fall and another 28 ({@dice 8d6}) bludgeoning damage from falling roof debris."
+												"If more than 100 pounds of weight are added to the remains of the roof, it collapses. Creatures inside the tower when the roof collapses must make a {@dc 12} Dexterity saving throw, taking 28 ({@damage 8d6}) bludgeoning damage on a failed save, or half as much damage on a successful one. Creatures on top of the roof when it collapses take 28 ({@damage 8d6}) bludgeoning damage from the fall and another 28 ({@damage 8d6}) bludgeoning damage from falling roof debris."
 											]
 										},
 										{
@@ -12140,7 +12140,7 @@
 											"name": "S1. Head Hall",
 											"id": "0eb",
 											"entries": [
-												"The severed heads of six humans on spears line the south wall of this cavern. The bodies of these humans are thrown at the back of the cave, covering a patch of floor where the {@spell glyph of warding} spell was cast. If the bodies are moved, the glyph is triggered, and it erupts with magical thunder in a 20-foot-radius sphere centered on it. Each creature in the area must make a {@dc 14} Dexterity saving throw, taking 22 ({@dice 5d8}) thunder damage on a failed saving throw, or half as much damage on a successful one. The glyph disappears after it is triggered.",
+												"The severed heads of six humans on spears line the south wall of this cavern. The bodies of these humans are thrown at the back of the cave, covering a patch of floor where the {@spell glyph of warding} spell was cast. If the bodies are moved, the glyph is triggered, and it erupts with magical thunder in a 20-foot-radius sphere centered on it. Each creature in the area must make a {@dc 14} Dexterity saving throw, taking 22 ({@damage 5d8}) thunder damage on a failed saving throw, or half as much damage on a successful one. The glyph disappears after it is triggered.",
 												"If the glyph is triggered, the sahuagin in area S2 investigate."
 											]
 										},

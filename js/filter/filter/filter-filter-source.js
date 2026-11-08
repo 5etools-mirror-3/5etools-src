@@ -127,7 +127,7 @@ export class SourceFilter extends Filter {
 		const btnAdventures = veE({
 			tag: "button",
 			clazz: `ve-btn ve-btn-default ve-w-100 ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"}`,
-			title: `SHIFT to add to existing selection; ALT to intersect; CTRL to include UA`,
+			title: `SHIFT to add to existing selection; ALT to intersect; CTRL to include UA/etc.`,
 			html: `Adventures`,
 			click: evt => this._doSetPinsAdventures({isIncludeUnofficial: EventUtil.isCtrlMetaKey(evt), isAdditive: evt.shiftKey, isIntersection: EventUtil.isAltOptionKey(evt)}),
 		});
@@ -318,11 +318,19 @@ export class SourceFilter extends Filter {
 	}
 
 	_doSetPinsSupplements ({isIncludeUnofficial = false, ...opts} = {}) {
-		this._doSetPins({...opts, fnIsMatch: k => SourceUtil.isCoreOrSupplement(k) && (isIncludeUnofficial || !SourceUtil.isNonstandardSource(k))});
+		this._doSetPins({
+			...opts,
+			fnIsMatch: k => SourceUtil.isCoreOrSupplement(k)
+				&& (isIncludeUnofficial || (!SourceUtil.isNonstandardSource(k) && !SourceUtil.isUniversesBeyondSource(k))),
+		});
 	}
 
 	_doSetPinsAdventures ({isIncludeUnofficial = false, ...opts} = {}) {
-		this._doSetPins({...opts, fnIsMatch: k => SourceUtil.isAdventure(k) && (isIncludeUnofficial || !SourceUtil.isNonstandardSource(k))});
+		this._doSetPins({
+			...opts,
+			fnIsMatch: k => SourceUtil.isAdventure(k)
+				&& (isIncludeUnofficial || (!SourceUtil.isNonstandardSource(k) && !SourceUtil.isUniversesBeyondSource(k))),
+		});
 	}
 
 	_doSetPinsHomebrew (opts) {

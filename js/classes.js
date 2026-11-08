@@ -648,8 +648,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 		const scUnknownHashSources = {};
 
-		// Track any incoming sources we need to filter to enable in order to display the desired subclasses
-		const requiredSources = new Set();
+		const scHashesRequired = new Set();
 
 		const seenKeys = new Set();
 		subs.forEach(sub => {
@@ -663,7 +662,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				if (k.startsWith("sub")) { // subclass selection state keys
 					if (validScLookup[k]) {
 						if (target[k] !== v) target[k] = v;
-						requiredSources.add(validScLookup[k].source);
+						if (v) scHashesRequired.add(k);
 						seenKeys.add(k);
 						return;
 					}
@@ -719,19 +718,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			if (!seenKeys.has(k) && v !== target[k]) target[k] = v;
 		});
 
-		if (requiredSources.size) {
-			const sourceFilterValues = this._pageFilter.sourceFilter.getValues().Source;
-			if (sourceFilterValues._isActive) {
-				// If the filter includes "blue" values, set our sources to be included
-				if (sourceFilterValues._totals.yes > 0) {
-					requiredSources.forEach(source => this._pageFilter.sourceFilter.setValue(source, 1));
-				} else { // if there are only "red"s active, disable them for our sources
-					requiredSources.forEach(source => {
-						if (sourceFilterValues[source] !== 0) this._pageFilter.sourceFilter.setValue(source, 0);
-					});
-				}
-			}
-		}
+		this._pageFilter.doSetSubclassesVisible([...scHashesRequired].map(hash => validScLookup[hash]));
 
 		Object.keys(validScLookup).forEach(k => {
 			if (!seenKeys.has(k) && target[k]) target[k] = false;

@@ -32,7 +32,7 @@ export class Filter extends FilterBase {
 		return items ? items.map(it => this._getAsFilterItem(it)) : null;
 	}
 
-	static _getEntryVal_getFIlterItemItem (entryVal) {
+	static _getEntryVal_getFilterItemItem (entryVal) {
 		return entryVal != null && typeof entryVal === "object"
 			? entryVal.item
 			: entryVal;
@@ -467,6 +467,53 @@ export class Filter extends FilterBase {
 	}
 
 	setValue (k, v) { this._state[k] = v; }
+
+	/**
+	 * Relax filters until every `entryVal` is displayed.
+	 */
+	setPillsToDisplay (entryVals) {
+		const getIsDisplayed = () => {
+			const values = this.getValues();
+			return entryVals.every(entryVal => this.toDisplay(values, entryVal));
+		};
+
+		if (getIsDisplayed()) return true;
+
+		// TODO(Future) complex cases -- punt
+		if (this.__meta.combineBlue !== "or" || this.__meta.combineRed !== "or") return false;
+
+		const mappedEntryVals = entryVals.map(entryVal => this._toDisplay_getMappedEntryVal(entryVal));
+		const flatEntryVals = mappedEntryVals.flat();
+		const filterItems = [...new Set(flatEntryVals.map(it => Filter._getEntryVal_getFilterItemItem(it)))]
+			.filter(it => this.__itemsSet.has(it));
+
+		// First pass: reset red-excludes states
+		flatEntryVals
+			.filter(entryVal => !Filter._getEntryVal_isIgnoreRed(entryVal))
+			.map(entryVal => Filter._getEntryVal_getFilterItemItem(entryVal))
+			.filter(entryVal => this._state[entryVal] === PILL_STATE__NO)
+			.forEach(entryVal => this._state[entryVal] = PILL_STATE__IGNORE);
+		if (getIsDisplayed()) return true;
+
+		// "No value" will never match blue-includes, so clear current includes
+		if (mappedEntryVals.some(entryVal => !entryVal.length)) {
+			this._items
+				.filter(it => this._state[it.item] === PILL_STATE__YES)
+				.forEach(it => this._state[it.item] = PILL_STATE__IGNORE);
+
+			return getIsDisplayed();
+		}
+
+		// Second pass: set blue-includes states
+		for (const item of filterItems) {
+			if (this._state[item] !== PILL_STATE__IGNORE) continue;
+
+			this._state[item] = PILL_STATE__YES;
+			if (getIsDisplayed()) return true;
+		}
+
+		return false;
+	}
 
 	_mutNextState_resetNestsHidden ({tgt}) {
 		if (!this._nests) return;
@@ -1213,7 +1260,7 @@ export class Filter extends FilterBase {
 
 		if (this._umbrellaExcludes && this._umbrellaExcludes.some(it => filterState[it.item])) return ptrCacheIsUmbrella._ = false;
 
-		return ptrCacheIsUmbrella._ = this._umbrellaItems.some(u => entryVal.some(it => Filter._getEntryVal_getFIlterItemItem(it) === u.item))
+		return ptrCacheIsUmbrella._ = this._umbrellaItems.some(u => entryVal.some(it => Filter._getEntryVal_getFilterItemItem(it) === u.item))
 			&& (this._umbrellaItems.some(u => filterState[u.item] === PILL_STATE__IGNORE) || this._umbrellaItems.some(u => filterState[u.item] === PILL_STATE__YES));
 	}
 
@@ -1239,7 +1286,7 @@ export class Filter extends FilterBase {
 			.filter(fi => {
 				if (stateRequired === PILL_STATE__NO && Filter._getEntryVal_isIgnoreRed(fi)) return false;
 
-				const filterItemItem = Filter._getEntryVal_getFIlterItemItem(fi);
+				const filterItemItem = Filter._getEntryVal_getFilterItemItem(fi);
 
 				if (seenItems[filterItemItem]) return false;
 				seenItems[filterItemItem] = true;
@@ -1270,7 +1317,7 @@ export class Filter extends FilterBase {
 				if (totals.yes === 0) display = true;
 
 				// if any are 1 (blue) include if they match
-				display = display || entryVal.some(fi => filterState[Filter._getEntryVal_getFIlterItemItem(fi)] === PILL_STATE__YES || this._toDisplay_isUmbrella({entryVal, filterState, ptrCacheIsUmbrella}));
+				display = display || entryVal.some(fi => filterState[Filter._getEntryVal_getFilterItemItem(fi)] === PILL_STATE__YES || this._toDisplay_isUmbrella({entryVal, filterState, ptrCacheIsUmbrella}));
 
 				break;
 			}
@@ -1295,7 +1342,7 @@ export class Filter extends FilterBase {
 		switch (filterState._combineRed) {
 			case "or": {
 				// if any are 2 (red) exclude if they match
-				hide = hide || entryVal.some(fi => !Filter._getEntryVal_isIgnoreRed(fi) && filterState[Filter._getEntryVal_getFIlterItemItem(fi)] === PILL_STATE__NO);
+				hide = hide || entryVal.some(fi => !Filter._getEntryVal_isIgnoreRed(fi) && filterState[Filter._getEntryVal_getFilterItemItem(fi)] === PILL_STATE__NO);
 
 				break;
 			}

@@ -110,6 +110,12 @@ export class ScaleSpellSummonedCreature extends ScaleSummonedCreature {
 		this._mutSimpleSpecialHp(mon);
 	}
 
+	static _scale_genericEntries_getSimplifiedDice ({str, summonSpellLevel}) {
+		return str
+			.replace(/\bsummonSpellLevel\b/g, () => summonSpellLevel)
+			.replace(/\(([\d\s+*/.-]+)\)(?=d\d)/g, (_, expression) => MiscUtil.expEval(expression));
+	}
+
 	static _scale_genericEntries (mon, toSpellLevel, state, prop) {
 		if (!mon[prop]) return;
 		mon[prop] = ScaleSpellSummonedCreature._WALKER.walk(
@@ -135,10 +141,22 @@ export class ScaleSpellSummonedCreature extends ScaleSummonedCreature {
 								.join(" ");
 						})
 						// "{@damage 1d8 + 3 + summonSpellLevel}"
-						.replace(/{@(?:dice|damage|hit|d20) [^}]+}/g, (...m) => {
-							return m[0]
-								.replace(/\bsummonSpellLevel\b/g, (...n) => toSpellLevel)
-							;
+						.replace(/{@(?<tag>dice|damage|hit|d20) (?<text>[^}]+)}/g, (...m) => {
+							const {tag, text} = m.at(-1);
+
+							const parts = Renderer.splitTagByPipe(text);
+							const [, displayText] = parts;
+
+							const isScaledRoll = /\bsummonSpellLevel\b/.test(parts[0]);
+							if (!isScaledRoll) return m[0].replace(/\bsummonSpellLevel\b/g, () => toSpellLevel);
+
+							const partsNxt = MiscUtil.copyFast(parts);
+							partsNxt[0] = this._scale_genericEntries_getSimplifiedDice({str: partsNxt[0], summonSpellLevel: toSpellLevel});
+
+							const simplifiedBase = !displayText ? null : this._scale_genericEntries_getSimplifiedDice({str: parts[0], summonSpellLevel: mon.summonedBySpellLevel});
+							if (displayText && simplifiedBase === displayText) partsNxt[1] = "";
+
+							return `{@${tag} ${partsNxt.join("|")}}`.replace(/\bsummonSpellLevel\b/g, () => toSpellLevel);
 						})
 					;
 

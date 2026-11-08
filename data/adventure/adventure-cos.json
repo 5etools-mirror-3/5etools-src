@@ -2571,13 +2571,13 @@
 										{
 											"type": "list",
 											"items": [
-												"The target is unable to perform a certain kind of act involving fine motor control, such as tying knots, writing, playing an instrument, sewing, or casting spells that have somatic components. When this curse ends, the Vistana takes {@dice 1d6} psychic damage.",
-												"The target's appearance changes in a sinister yet purely cosmetic way. For example, the curse can place a scar on the target's face, turn the target's teeth into yellow fangs, or give the target bad breath. When this curse ends, the Vistana it takes {@dice 1d6} psychic damage.",
-												"A nonmagical item in the target's possession (chosen by the DM) disappears and can't be found until the curse ends. The lost item can weigh no more than 1 pound. When this curse ends, the Vistana takes {@dice 1d6} psychic damage.",
-												"The target gains vulnerability to a damage type of the Vistana's choice. When this curse ends, the Vistana takes {@dice 3d6} psychic damage.",
-												"The target has disadvantage on ability checks and saving throws tied to one ability score of the Vistana's choice. When this curse ends, the Vistana takes {@dice 3d6} psychic damage.",
-												"The target's attunement to one magic item (chosen by the DM) ends, and the target can't attune to the chosen item until the curse ends. When this curse ends, the Vistana takes {@dice 5d6} psychic damage.",
-												"The target is {@condition blinded}, {@condition deafened}, or both. When this curse ends, the Vistana takes {@dice 5d6} psychic damage."
+												"The target is unable to perform a certain kind of act involving fine motor control, such as tying knots, writing, playing an instrument, sewing, or casting spells that have somatic components. When this curse ends, the Vistana takes {@damage 1d6} psychic damage.",
+												"The target's appearance changes in a sinister yet purely cosmetic way. For example, the curse can place a scar on the target's face, turn the target's teeth into yellow fangs, or give the target bad breath. When this curse ends, the Vistana it takes {@damage 1d6} psychic damage.",
+												"A nonmagical item in the target's possession (chosen by the DM) disappears and can't be found until the curse ends. The lost item can weigh no more than 1 pound. When this curse ends, the Vistana takes {@damage 1d6} psychic damage.",
+												"The target gains vulnerability to a damage type of the Vistana's choice. When this curse ends, the Vistana takes {@damage 3d6} psychic damage.",
+												"The target has disadvantage on ability checks and saving throws tied to one ability score of the Vistana's choice. When this curse ends, the Vistana takes {@damage 3d6} psychic damage.",
+												"The target's attunement to one magic item (chosen by the DM) ends, and the target can't attune to the chosen item until the curse ends. When this curse ends, the Vistana takes {@damage 5d6} psychic damage.",
+												"The target is {@condition blinded}, {@condition deafened}, or both. When this curse ends, the Vistana takes {@damage 5d6} psychic damage."
 											]
 										}
 									]
@@ -3035,7 +3035,7 @@
 														"The sound of snapping twigs draws your attention to several dark shapes in the fog. They carry torches and pitchforks."
 													]
 												},
-												"If the characters are moving quietly and not carrying light sources, they can try to hide from these Barovians, who carry pitchforks ({@hit 2} to hit) instead of clubs, dealing 3 ({@dice 1d6}) piercing damage on a hit.",
+												"If the characters are moving quietly and not carrying light sources, they can try to hide from these Barovians, who carry pitchforks ({@hit 2} to hit) instead of clubs, dealing 3 ({@damage 1d6}) piercing damage on a hit.",
 												"{@creature Barovian Commoner|CoS|Barovian commoners} rarely leave their settlements. This group might be a family looking for a safer place to live, or an angry mob searching for the characters or heading toward Castle Ravenloft to confront Strahd."
 											]
 										},
@@ -3054,7 +3054,7 @@
 													]
 												},
 												"If more than one scout is present, the others are spread out over a 100-foot-square area.",
-												"These {@creature Scout||scouts} are Barovian hunters or trappers searching for a missing villager or townsperson. Once they realize the characters aren't out to kill them, they lower their weapons and request help in finding their missing person. If the characters decline, the scouts point them in the direction of the nearest settlement and depart without so much as a farewell. They wield light crossbows ({@hit 4} to hit, range 80/320 ft.) instead of longbows, dealing 6 ({@dice 1d8 + 2}) piercing damage on a hit.",
+												"These {@creature Scout||scouts} are Barovian hunters or trappers searching for a missing villager or townsperson. Once they realize the characters aren't out to kill them, they lower their weapons and request help in finding their missing person. If the characters decline, the scouts point them in the direction of the nearest settlement and depart without so much as a farewell. They wield light crossbows ({@hit 4} to hit, range 80/320 ft.) instead of longbows, dealing 6 ({@damage 1d8 + 2}) piercing damage on a hit.",
 												{
 													"type": "inset",
 													"name": "Strahd's Spies",
@@ -3279,7 +3279,7 @@
 												},
 												"From a distance, the {@creature revenant} looks like a zombie and might be mistaken for such. A character within 30 feet of the revenant who succeeds on a {@dc 10} Wisdom ({@skill Insight}) check can see the intelligence and hate in its sunken eyes. The revenant is clad in tattered chain mail that affords the same protection as leather armor.",
 												"The revenant was a {@creature knight of the Order|CoS} of the Silver Dragon, which was annihilated defending the valley against Strahd's armies more than four centuries ago. The revenant no longer remembers its name and wanders the land in search of Strahd's wolves and other minions, slaying them on sight. If the characters attack it, the revenant assumes they are in league with Strahd and fights them until destroyed.",
-												"As an action, the revenant can attack twice with its longsword, wielding the weapon with both hands and dealing 15 ({@dice 2d10 + 4}) slashing damage on each hit.",
+												"As an action, the revenant can attack twice with its longsword, wielding the weapon with both hands and dealing 15 ({@damage 2d10 + 4}) slashing damage on each hit.",
 												"If the characters present themselves as enemies of Strahd, the revenant urges them to travel to Argynvostholt ({@area chapter 7|424|x}) and convince {@creature Vladimir Horngaard|CoS}, the leader of the Order of the Silver Dragon, to help them. The revenant would like nothing more than to kill Strahd, but it will not venture to Castle Ravenloft unless it receives orders to do so from Vladimir. If the characters ask the revenant to lead them to Horngaard in Argynvostholt, it does so while avoiding contact with Barovian settlements."
 											]
 										},
@@ -6477,7 +6477,7 @@
 														],
 														[
 															"2",
-															"A silver goblet (worth 50 gp) filled to the brim with wine. A character who drinks the wine must make a {@dc 15} Constitution saving throw, taking 44 ({@dice 8d10}) poison damage on a failed save, or half as much damage on a successful one. On future occurrences of this encounter, the wine acts as a {@item potion of healing}."
+															"A silver goblet (worth 50 gp) filled to the brim with wine. A character who drinks the wine must make a {@dc 15} Constitution saving throw, taking 44 ({@damage 8d10}) poison damage on a failed save, or half as much damage on a successful one. On future occurrences of this encounter, the wine acts as a {@item potion of healing}."
 														],
 														[
 															"3",
@@ -9738,7 +9738,7 @@
 											"id": "1c7",
 											"page": 57,
 											"entries": [
-												"The statuette on the altar is an artifact called the {@item Icon of Ravenloft|CoS} (see {@area appendix C|72b|x}). Any evil creature that touches the statuette must make a {@dc 17} Constitution saving throw, taking 88 ({@dice 16d10}) radiant damage on a failed save, or half as much damage on a successful one. The statuette is safe for all creatures to handle once it is no longer in contact with the altar.",
+												"The statuette on the altar is an artifact called the {@item Icon of Ravenloft|CoS} (see {@area appendix C|72b|x}). Any evil creature that touches the statuette must make a {@dc 17} Constitution saving throw, taking 88 ({@damage 16d10}) radiant damage on a failed save, or half as much damage on a successful one. The statuette is safe for all creatures to handle once it is no longer in contact with the altar.",
 												"Gustav's corpse wears a handsome, fur-lined black cloak embroidered with golden thread (worth 250 gp) and a suit of {@item chain mail|PHB}, both nonmagical. Gustav's black mace is a {@item mace of terror}."
 											]
 										},
@@ -9832,7 +9832,7 @@
 										},
 										"Both staircases on the south wall climb to {@area area K25|1e2|x}. The massive stairs lead down to {@area area K8|1b5|x}. Anyone who crosses in front of the alcoves along the south wall activates the suits of armor.",
 										"Both suits of armor are mechanical traps, each one activated by a pressure plate hidden in the floor in front of its alcove. A character who searches for traps in one of these locations notices both pressure plates with a successful {@dc 15} Wisdom ({@skill Perception}) check.",
-										"When 40 or more pounds of weight are placed on a pressure plate, the suit of armor nearest to that plate springs forward, flailing its arms and wielding its mace. Any creature standing on a pressure plate when its trap triggers must succeed on a {@dc 14} Dexterity saving throw or take 7 ({@dice 2d6}) bludgeoning damage from the flailing armor. After leaping out and attacking, the armor retracts. The pressure plate resets after 1 minute, after which its armor trap can be triggered again.",
+										"When 40 or more pounds of weight are placed on a pressure plate, the suit of armor nearest to that plate springs forward, flailing its arms and wielding its mace. Any creature standing on a pressure plate when its trap triggers must succeed on a {@dc 14} Dexterity saving throw or take 7 ({@damage 2d6}) bludgeoning damage from the flailing armor. After leaping out and attacking, the armor retracts. The pressure plate resets after 1 minute, after which its armor trap can be triggered again.",
 										"The suits of armor act much like metal puppets\u2014a little joke intended to spook visitors more than damage them. A pressure plate can be disabled by a character who uses thieves' tools and makes a successful {@dc 15} Dexterity check. A trap can also be disabled by destroying its suit of armor, which has AC 18, 5 hit points, and immunity to psychic and poison damage."
 									]
 								},
@@ -9886,7 +9886,7 @@
 													"id": "1d6",
 													"page": 59,
 													"entries": [
-														"Mounted on the walls along the section of staircase nearest the heart are ten {@creature Animated Halberd|CoS|animated halberds}; use the stat block for the {@creature flying sword} in the {@book Monster Manual|MM}, but increase each halberd's damage to {@dice 1d10 + 1} and reduce its AC to 15. The halberds attack any creature that threatens the Heart of Sorrow."
+														"Mounted on the walls along the section of staircase nearest the heart are ten {@creature Animated Halberd|CoS|animated halberds}; use the stat block for the {@creature flying sword} in the {@book Monster Manual|MM}, but increase each halberd's damage to {@damage 1d10 + 1} and reduce its AC to 15. The halberds attack any creature that threatens the Heart of Sorrow."
 													]
 												},
 												{
@@ -15194,7 +15194,7 @@
 										},
 										"This chamber has several exits, including a large set of double doors in the west wall, a door at each end of the north wall, and a door to the south.",
 										"The painting above the fireplace depicts Tatyana, a beautiful young woman with auburn hair. Strahd commissioned the painting over four centuries ago to impress his beloved. The fact that {@creature Ireena Kolyana|CoS} looks exactly like Tatyana is proof to Strahd that both women were born with the same soul.",
-										"The back wall of the fireplace contains a secret door, which is opened by lifting the poker from its stand. The fire must be extinguished in order for anyone to reach the secret door safely. Otherwise, a creature that enters the fireplace for the first time on a turn or starts its turn there takes 5 ({@dice 1d10}) fire damage and catches fire. Until someone takes an action to douse the flames on the creature, it takes 5 ({@dice 1d10}) fire damage at the start of each of its turns. (This fire damage is cumulative with the damage from standing in the fireplace.)",
+										"The back wall of the fireplace contains a secret door, which is opened by lifting the poker from its stand. The fire must be extinguished in order for anyone to reach the secret door safely. Otherwise, a creature that enters the fireplace for the first time on a turn or starts its turn there takes 5 ({@damage 1d10}) fire damage and catches fire. Until someone takes an action to douse the flames on the creature, it takes 5 ({@damage 1d10}) fire damage at the start of each of its turns. (This fire damage is cumulative with the damage from standing in the fireplace.)",
 										"The secret door provides access to {@area area K38|20c|x}.",
 										{
 											"type": "entries",
@@ -19245,7 +19245,7 @@
 												"Jutting from the steeply sloping rooftop of the castle, a spindly smokestack, five feet in diameter at the top, rises thirty feet above the roof's peak. Smoke belches from its iron-pronged capstone."
 											]
 										},
-										"The chimney leads down 60 feet to the blazing fireplace in {@area area K37|207|x}. A creature that starts its turn in the chimney takes 3 ({@dice 1d6}) fire damage."
+										"The chimney leads down 60 feet to the blazing fireplace in {@area area K37|207|x}. A creature that starts its turn in the chimney takes 3 ({@damage 1d6}) fire damage."
 									]
 								},
 								{
@@ -20132,7 +20132,7 @@
 											"page": 72,
 											"entries": [
 												"Each witch carries a {@item potion of healing} that she made herself. There is a {@chance 30} chance that a potion has \"gone bad,\" in which case it's actually a {@item potion of poison}.",
-												"Not visible from the entrance is a small table behind the cauldron on which sits an opened spellbook, seemingly on the verge of falling apart. The book is evil. Any non-evil creature that touches it or starts its turn with the book in its possession takes 5 ({@dice 1d10}) psychic damage. The book contains the following spells:",
+												"Not visible from the entrance is a small table behind the cauldron on which sits an opened spellbook, seemingly on the verge of falling apart. The book is evil. Any non-evil creature that touches it or starts its turn with the book in its possession takes 5 ({@damage 1d10}) psychic damage. The book contains the following spells:",
 												{
 													"type": "inset",
 													"id": "23d",
@@ -20217,7 +20217,7 @@
 												},
 												"{@creature Pidlwick II|CoS} can't speak and doesn't have an expressive face, so he relies mostly on hand gestures and simple diagrams to communicate. He understands Common but can't read or write.",
 												"If the characters show kindness to the clockwork effigy, it accompanies them and tries its best to be helpful and entertaining. It knows its way around the castle and can serve as a silent guide.",
-												"If one or more characters are mean toward {@creature Pidlwick II|CoS}, its quiet resentment of them grows, and at some point when the group is at the top of a staircase, it pushes one of the offending party members down the stairs. The target must succeed on a {@dc 10} Dexterity saving throw or tumble to the bottom of the staircase, taking {@dice 1d6} bludgeoning damage per 10 feet fallen."
+												"If one or more characters are mean toward {@creature Pidlwick II|CoS}, its quiet resentment of them grows, and at some point when the group is at the top of a staircase, it pushes one of the offending party members down the stairs. The target must succeed on a {@dc 10} Dexterity saving throw or tumble to the bottom of the staircase, taking {@damage 1d6} bludgeoning damage per 10 feet fallen."
 											]
 										}
 									]
@@ -25808,7 +25808,7 @@
 										"Once the elevator starts rising, its portcullises are locked in place and can't be lifted. The walls of the shaft are nearly flush with the elevator compartment; only a few inches of space exist between the portcullises and the shaft walls.",
 										"All creatures trapped inside the elevator (including {@condition unconscious} ones) must roll initiative. The compartment takes 1 round to reach the top of the shaft, stopping just beneath {@area area K47|225|x}. Each creature inside has one turn to act before the compartment comes to a dead stop. Their initiative rolls determine the order in which the occupants act. Conscious party members can take whatever actions they like. They might search for a way out, wake sleeping party members, cast spells, or take other actions. {@condition Unconscious} ones can do nothing.",
 										"A character who uses an action to search the ceiling of the elevator finds a secret trapdoor with a successful {@dc 10} Wisdom ({@skill Perception}) check. The trapdoor opens downward.",
-										"Any creature on top of the elevator when it reaches the top of the shaft must make a successful {@dc 15} Dexterity saving throw to avoid being crushed against the ceiling of the shaft. The character takes 44 ({@dice 8d10}) bludgeoning damage on a failed save, or half as much damage on a successful one. When the elevator comes to a stop, its portcullises retract.",
+										"Any creature on top of the elevator when it reaches the top of the shaft must make a successful {@dc 15} Dexterity saving throw to avoid being crushed against the ceiling of the shaft. The character takes 44 ({@damage 8d10}) bludgeoning damage on a failed save, or half as much damage on a successful one. When the elevator comes to a stop, its portcullises retract.",
 										"The elevator remains at the top of the shaft until the lever in {@area area K31|1f2|x} is moved to the \"down\" position. When that happens, the trap resets in 1 round: the portcullises come down, and the elevator compartment descends to its place in the hallway at the bottom of the shaft as the stone block rises to the top of the shaft. When the elevator reaches the bottom, its portcullises rise again.",
 										{
 											"type": "entries",
@@ -27121,7 +27121,7 @@
 												},
 												"The helm has three evenly spaced visors crafted to look like human faces\u2014one sad, one happy, and one angry. Only the angry visage is visible from the crypt's doorway. King Troisky wore this three-faced helm in battle, earning him the moniker of Three-Faced King. The helm is nonmagical and weighs 10 pounds.",
 												"The slab upon which the helm rests is weight-sensitive. If the helm is removed from the slab without 10 pounds of weight immediately being added, poisonous gas pours out of the slab's hollow interior and fills the crypt. A character who searches the slab for traps and succeeds on a {@dc 12} Wisdom ({@skill Perception}) check spots tiny holes bored into the slab's marble base. It's from these holes that the gas spews forth.",
-												"A creature in the crypt when the gas is released must make a {@dc 14} Constitution saving throw, taking 22 ({@dice 4d10}) poison damage on a failed save, or half as much damage on a successful one."
+												"A creature in the crypt when the gas is released must make a {@dc 14} Constitution saving throw, taking 22 ({@damage 4d10}) poison damage on a failed save, or half as much damage on a successful one."
 											]
 										},
 										{
@@ -27219,7 +27219,7 @@
 													"page": 89,
 													"entries": [
 														"The skull's {@item Black Opal||black opal eye-gems} are worth 1,000 gp apiece. The skull also has eight amber teeth worth 100 gp each.",
-														"Any creature that stands inside the crypt and boldly speaks the name \"Khazan\" causes the Pillarstone of Ravenloft to tremble as a {@item staff of power} materializes above the marble slab and hovers in place. The first creature to grab hold of the staff must make a {@dc 17} Constitution saving throw, taking 44 ({@dice 8d10}) lightning damage on a failed save, or half as much damage on a successful one. Afterward, the {@item staff of power} can be held and used normally. If no one grabs the staff within 1 round of its appearance, it vanishes, never to return."
+														"Any creature that stands inside the crypt and boldly speaks the name \"Khazan\" causes the Pillarstone of Ravenloft to tremble as a {@item staff of power} materializes above the marble slab and hovers in place. The first creature to grab hold of the staff must make a {@dc 17} Constitution saving throw, taking 44 ({@damage 8d10}) lightning damage on a failed save, or half as much damage on a successful one. Afterward, the {@item staff of power} can be held and used normally. If no one grabs the staff within 1 round of its appearance, it vanishes, never to return."
 													]
 												}
 											]
@@ -27466,7 +27466,7 @@
 														"A skeleton draped in white linen lies atop a marble slab in the center of the crypt, clutching a bell to its sunken chest. Fitted over its skull is a tall chef's hat."
 													]
 												},
-												"If the bell is rung inside the crypt, magic fire sweeps through the crypt to scorch Chef Ofenheiss's bones. A creature in the crypt must make a {@dc 17} Dexterity saving throw, taking 22 ({@dice 4d10}) fire damage on a failed save, or half damage on a successful one. Any creature that fails its save catches fire, taking 5 ({@dice 1d10}) fire damage at the end of each of its turns until it or another creature uses an action to douse the flames.",
+												"If the bell is rung inside the crypt, magic fire sweeps through the crypt to scorch Chef Ofenheiss's bones. A creature in the crypt must make a {@dc 17} Dexterity saving throw, taking 22 ({@damage 4d10}) fire damage on a failed save, or half damage on a successful one. Any creature that fails its save catches fire, taking 5 ({@damage 1d10}) fire damage at the end of each of its turns until it or another creature uses an action to douse the flames.",
 												{
 													"type": "entries",
 													"name": "Treasure",
@@ -27526,7 +27526,7 @@
 													"id": "2fa",
 													"page": 91,
 													"entries": [
-														"The prefect's gold holy symbol is festooned with tiny gemstones and is worth 750 gp. If touched by an evil creature, the holy symbol is consumed in a blast of intense light that deals 11 ({@dice 2d10}) radiant damage to all creatures within 5 feet of it. Characters familiar with Barovian religion recognize the symbol as that of the Morninglord."
+														"The prefect's gold holy symbol is festooned with tiny gemstones and is worth 750 gp. If touched by an evil creature, the holy symbol is consumed in a blast of intense light that deals 11 ({@damage 2d10}) radiant damage to all creatures within 5 feet of it. Characters familiar with Barovian religion recognize the symbol as that of the Morninglord."
 													]
 												}
 											]
@@ -27687,7 +27687,7 @@
 													]
 												},
 												"The staff is a nonmagical quarterstaff.",
-												"Inspection of the marble slab reveals a shallow, concave recess at one end. If the marble-knobbed end of Gralmore's staff is placed in the recess, the slab levitates 5 feet upward, revealing a compartment underneath (see \"Treasure\" below). The slab slowly sinks back into place after 1 minute. If the brass-knobbed end of the staff is placed in the recess, the holder of the staff takes 22 ({@dice 4d10}) lightning damage.",
+												"Inspection of the marble slab reveals a shallow, concave recess at one end. If the marble-knobbed end of Gralmore's staff is placed in the recess, the slab levitates 5 feet upward, revealing a compartment underneath (see \"Treasure\" below). The slab slowly sinks back into place after 1 minute. If the brass-knobbed end of the staff is placed in the recess, the holder of the staff takes 22 ({@damage 4d10}) lightning damage.",
 												{
 													"type": "entries",
 													"name": "Treasure",
@@ -28223,7 +28223,7 @@
 											]
 										},
 										"Heavy iron chains with iron padlocks keep the gates shut at night. During the day, the gates are closed but not typically locked.",
-										"Two town {@creature Guard||guards} (LG male and female humans) stand just inside each gate. Instead of spears, they carry pikes (reach 10 ft., {@dice 1d10 + 1} piercing damage on a hit). These weapons are long enough to stab creatures through the bars of the gate. The guards greet all visitors with suspicion, particularly those who arrive at night. If the characters arrive at night, one or more of them must succeed on a {@dc 20} Charisma ({@skill Persuasion}) check to convince the guards to unlock the gate and let them enter.",
+										"Two town {@creature Guard||guards} (LG male and female humans) stand just inside each gate. Instead of spears, they carry pikes (reach 10 ft., {@damage 1d10 + 1} piercing damage on a hit). These weapons are long enough to stab creatures through the bars of the gate. The guards greet all visitors with suspicion, particularly those who arrive at night. If the characters arrive at night, one or more of them must succeed on a {@dc 20} Charisma ({@skill Persuasion}) check to convince the guards to unlock the gate and let them enter.",
 										"If trouble breaks out at one of the gates, the guards there cry out, \"To arms!\" Their shouts are echoed across Vallaki, putting the entire town on alert within minutes. Vallaki has twenty-four human {@creature Guard||guards}, half of whom are on duty at any given time (six stand watch at the gates, six patrol the walls). The town can also muster a militia of fifty able-bodied human {@creature Commoner||commoners} armed with clubs, daggers, and {@item Torch|PHB|torches}."
 									]
 								},
@@ -28360,7 +28360,7 @@
 											"type": "list",
 											"items": [
 												"His Strength is 15 (+2).",
-												"His melee weapon attack bonus is +4, and he deals 4 ({@dice 1d4 + 2}) bludgeoning damage when he hits with the blunt head of his shovel."
+												"His melee weapon attack bonus is +4, and he deals 4 ({@damage 1d4 + 2}) bludgeoning damage when he hits with the blunt head of his shovel."
 											]
 										},
 										"{@creature Milivoj|CoS} rejects the burgomaster's proclamation that \"All will be well!\" and is frustrated that he can't protect his younger siblings. He wants to be free of Barovia's curse but sees no hope of escape.",
@@ -30356,7 +30356,7 @@
 														"Someone has carved a large skull into this door. Hanging from the doorknob is a wooden sign that reads \"ALL IS NOT WELL!\" You hear a young man's voice beyond."
 													]
 												},
-												"Anyone who inspects the carving and succeeds on a {@dc 14} Intelligence ({@skill Investigation}) check notices a small, nearly invisible glyph etched into the skull's forehead. This is a {@spell glyph of warding} ({@dice 5d8} lightning damage) that triggers if anyone other than Victor opens the door.",
+												"Anyone who inspects the carving and succeeds on a {@dc 14} Intelligence ({@skill Investigation}) check notices a small, nearly invisible glyph etched into the skull's forehead. This is a {@spell glyph of warding} ({@damage 5d8} lightning damage) that triggers if anyone other than Victor opens the door.",
 												"The voice belongs to Victor. He is reading aloud from his spellbook. Anyone who listens at the door and succeeds on a {@dc 14} Intelligence ({@skill Arcana}) check can tell he's badly pronouncing some kind of teleportation spell.",
 												"If the characters open the door, read:",
 												{
@@ -30386,7 +30386,7 @@
 													"page": 109,
 													"entries": [
 														"Victor's spellbook contains incomplete text for a {@spell teleportation circle} spell, along with the sigil sequences of three permanent teleportation circles, the locations of which aren't described. There's not enough text to prepare the spell properly, but that hasn't stopped Victor from trying to learn to cast it.",
-														"Victor recently inscribed his own version of a teleportation circle on the floor. It's hidden under the rug so that his parents don't find it. In the past couple of weeks, Victor has managed to imbue the circle with magic, but he failed to account for several factors. His circle doesn't fade after use, nor does it function like the {@spell teleportation circle} spell. If the circle is used in the casting of a {@spell teleportation circle} spell, whether the actual spell or Victor's version of it, any creature standing on the circle when the spell is cast takes {@dice 3d10} force damage and isn't teleported anywhere. If this damage reduces the creature to 0 hit points, the creature is disintegrated. Any character who studies the circle and succeeds on a {@dc 15} Intelligence ({@skill Arcana}) check realizes that Victor's circle is horribly flawed and potentially deadly when used.",
+														"Victor recently inscribed his own version of a teleportation circle on the floor. It's hidden under the rug so that his parents don't find it. In the past couple of weeks, Victor has managed to imbue the circle with magic, but he failed to account for several factors. His circle doesn't fade after use, nor does it function like the {@spell teleportation circle} spell. If the circle is used in the casting of a {@spell teleportation circle} spell, whether the actual spell or Victor's version of it, any creature standing on the circle when the spell is cast takes {@damage 3d10} force damage and isn't teleported anywhere. If this damage reduces the creature to 0 hit points, the creature is disintegrated. Any character who studies the circle and succeeds on a {@dc 15} Intelligence ({@skill Arcana}) check realizes that Victor's circle is horribly flawed and potentially deadly when used.",
 														"Victor has tested his circle on two reluctant servants (compelled by his {@spell suggestion} spell), in both cases linking his circle to one of the other circles whose sigils are in his spellbook. Each servant was torn apart before Victor's eyes before vanishing in a flash of purple light. Victor doesn't know how to fix the circle but plans to make more modifications to it before testing it again."
 													]
 												},
@@ -34506,7 +34506,7 @@
 														"A fire erupts in the dead hearth and assumes a draconic form. It hisses, crackles, and unfurls its smoky wings."
 													]
 												},
-												"Have the player characters roll initiative. The fire acts on initiative count 10 and has AC 15, 1 hit point, and immunity to fire, poison, and psychic damage. If it is reduced to 0 hit points, it explodes and fills the room with fire, setting fire to the dry furnishings. Each creature in the room must make a {@dc 12} Dexterity saving throw, taking 22 ({@dice 4d10}) fire damage on a failed save, or half as much damage on a successful one.",
+												"Have the player characters roll initiative. The fire acts on initiative count 10 and has AC 15, 1 hit point, and immunity to fire, poison, and psychic damage. If it is reduced to 0 hit points, it explodes and fills the room with fire, setting fire to the dry furnishings. Each creature in the room must make a {@dc 12} Dexterity saving throw, taking 22 ({@damage 4d10}) fire damage on a failed save, or half as much damage on a successful one.",
 												"The fire doesn't attack. On its first turn, if it has not been reduced to 0 hit points, it speaks:",
 												{
 													"type": "insetReadaloud",
@@ -34646,7 +34646,7 @@
 											]
 										},
 										"The figures are three {@creature Revenant||revenants} clad in tattered chain mail that affords the same protection as leather armor. Each revenant wields a longsword. If the beacon is lit, the revenants are cleansed of their hatred and laid to rest, and the characters find three armored corpses with longswords lying on the floor in front of the altar.",
-										"The revenants, if still active, are blinded by their hate and attack the characters on sight, seeking to drive them out of Argynvostholt. As an action, a revenant attacks twice with its longsword, wielding the weapon with both hands and dealing 15 ({@dice 2d10 + 4}) slashing damage on a hit.",
+										"The revenants, if still active, are blinded by their hate and attack the characters on sight, seeking to drive them out of Argynvostholt. As an action, a revenant attacks twice with its longsword, wielding the weapon with both hands and dealing 15 ({@damage 2d10 + 4}) slashing damage on a hit.",
 										"Characters who study the room's iconography and orientation (the fact that it draws light from the east) can determine, with a successful {@dc 10} Intelligence ({@skill Religion}) check, that the chapel is dedicated to a god of the dawn. Anyone familiar with Barovian religion can conclude that the god in question is the Morninglord.",
 										"The balcony ({@area area Q24|465|x}) is 20 feet high and can be reached by climbing either spiral staircase (area Q14).",
 										"Characters who stand near the altar and look up can see the hollow interior of the beacon tower. The tower's lower landing ({@area area Q50|4a8|x}) is 60 feet above the chapel floor, and the upper landing ({@area area Q51|4aa|x}) is another 20 feet above that.",
@@ -35992,7 +35992,7 @@
 												"The corpses tilt their heads in your direction. One of them growls, \"Why do you the living disturb the dead?\""
 											]
 										},
-										"The skeletal figures are five {@creature Revenant||revenants}. All five are lawful evil. They are awaiting orders from Vladimir ({@area area Q36|47e|x}) and fight only in self-defense. The revenants wear broken chainmail that affords as much protection as leather armor, and they wield longswords. As an action, a revenant attacks twice with its longsword, wielding the weapon with both hands and dealing 15 ({@dice 2d10 + 4}) slashing damage on a hit.",
+										"The skeletal figures are five {@creature Revenant||revenants}. All five are lawful evil. They are awaiting orders from Vladimir ({@area area Q36|47e|x}) and fight only in self-defense. The revenants wear broken chainmail that affords as much protection as leather armor, and they wield longswords. As an action, a revenant attacks twice with its longsword, wielding the weapon with both hands and dealing 15 ({@damage 2d10 + 4}) slashing damage on a hit.",
 										"One of the revenants, {@creature Sir Godfrey Gwilym|CoS}, is a spellcaster with a challenge rating of 6 (2,300 XP) and the following additional feature:",
 										{
 											"type": "inset",
@@ -36344,7 +36344,7 @@
 													"id": "4b0",
 													"page": 142,
 													"entries": [
-														"{@atk rw} {@hit 2} to hit, range 150/600 ft., one target. Hit: 4 ({@dice 1d8}) force damage."
+														"{@atk rw} {@hit 2} to hit, range 150/600 ft., one target. Hit: 4 ({@damage 1d8}) force damage."
 													]
 												}
 											]
@@ -38726,7 +38726,7 @@
 												"A peal of thunder shakes the land, and the dark clouds coalesce into a terrible visage. A deep, dark voice from beyond the mountains cries out, \"She is mine!\" A terrible crack resounds as blue lightning splits the sky and strikes the pool."
 											]
 										},
-										"Each creature within 15 feet of the pool must make a successful {@dc 17} Dexterity check or be knocked {@condition prone}. The blast knocks down the old gazebo as well. A creature in the water when the lightning strikes must make a {@dc 17} Constitution saving throw, taking 44 ({@dice 8d10}) lightning damage on a failed save, or half as much damage on a successful one.",
+										"Each creature within 15 feet of the pool must make a successful {@dc 17} Dexterity check or be knocked {@condition prone}. The blast knocks down the old gazebo as well. A creature in the water when the lightning strikes must make a {@dc 17} Constitution saving throw, taking 44 ({@damage 8d10}) lightning damage on a failed save, or half as much damage on a successful one.",
 										"Strahd's wrath destroys the blessing on the pool, rendering its waters nonmagical and preventing the spirit of Sergei from manifesting in them again.",
 										{
 											"type": "entries",
@@ -39095,7 +39095,7 @@
 									"id": "535",
 									"page": 157,
 									"entries": [
-										"A curtain of green flame fills the eastern archway of the gatehouse. Any creature that enters the curtain for the first time on a turn or starts its turn in the green flame takes 33 ({@dice 6d10}) fire damage.",
+										"A curtain of green flame fills the eastern archway of the gatehouse. Any creature that enters the curtain for the first time on a turn or starts its turn in the green flame takes 33 ({@damage 6d10}) fire damage.",
 										"A successful casting of {@spell dispel magic} ({@dc 16}) suppresses the curtain for 1 minute. The curtain is also suppressed within an {@spell antimagic field}."
 									]
 								},
@@ -39817,7 +39817,7 @@
 											"id": "561",
 											"page": 163,
 											"entries": [
-												"The wooden chest in the hut is protected by a {@spell glyph of warding} that requires a successful {@dc 17} Intelligence ({@skill Investigation}) check to find. The glyph deals {@dice 5d8} thunder damage when triggered. Opening the lid releases four {@creature Crawling Claw||crawling claws} that fight until destroyed. Also contained in the chest are various items that {@creature Baba Lysaga|CoS} has taken from dead adventurers over the years:",
+												"The wooden chest in the hut is protected by a {@spell glyph of warding} that requires a successful {@dc 17} Intelligence ({@skill Investigation}) check to find. The glyph deals {@damage 5d8} thunder damage when triggered. Opening the lid releases four {@creature Crawling Claw||crawling claws} that fight until destroyed. Also contained in the chest are various items that {@creature Baba Lysaga|CoS} has taken from dead adventurers over the years:",
 												{
 													"type": "list",
 													"items": [
@@ -40479,7 +40479,7 @@
 											"id": "57a",
 											"page": 168,
 											"entries": [
-												"The inside handle of the door has a wire looped around it, and the wire is connected to a flask of alchemist's fire hanging from the wagon's ceiling. When the door is opened, the flask falls and explodes, igniting one hundred more flasks of alchemist's fire that dangle from wires like ornaments along the wagon's interior walls. A creature within 30 feet of the wagon when it explodes must succeed on a {@dc 12} Constitution saving throw, taking 55 ({@dice 10d10}) fire damage on a failed save, or half as much damage on a successful one. Creatures inside the wagon or within 5 feet of it have disadvantage on the saving throw. The wagon is reduced to flinders by the explosion, and the contents of the wagon (see \"Treasure\" below) are destroyed as well.",
+												"The inside handle of the door has a wire looped around it, and the wire is connected to a flask of alchemist's fire hanging from the wagon's ceiling. When the door is opened, the flask falls and explodes, igniting one hundred more flasks of alchemist's fire that dangle from wires like ornaments along the wagon's interior walls. A creature within 30 feet of the wagon when it explodes must succeed on a {@dc 12} Constitution saving throw, taking 55 ({@damage 10d10}) fire damage on a failed save, or half as much damage on a successful one. Creatures inside the wagon or within 5 feet of it have disadvantage on the saving throw. The wagon is reduced to flinders by the explosion, and the contents of the wagon (see \"Treasure\" below) are destroyed as well.",
 												"A character inside the wagon spots the trap automatically (no ability check required) and can disable it with a successful {@dc 10} Dexterity check. A failed attempt to disable the trap triggers it."
 											]
 										},
@@ -40544,8 +40544,8 @@
 											"width": 663,
 											"height": 1000
 										},
-										"A creature that touches the door without first disabling the trap causes lightning to envelop the tower. Any creature outside the tower and within 10 feet of it must succeed on a {@dc 15} Dexterity saving throw, with disadvantage if it is wearing armor made of metal, taking 22 ({@dice 4d10}) lightning damage on a failed save, or half damage on a successful one. As long as the effect persists, any creature that enters the lightning for the first time on a turn or starts its turn there takes 22 ({@dice 4d10}) lightning damage. The lightning lasts for 10 minutes.",
-										"The third time this trap is triggered, the magic fails and causes the tower to collapse. Each creature inside the tower when it collapses takes 132 ({@dice 24d10}) bludgeoning damage, while those within 20 feet of the tower must succeed on a {@dc 15} Dexterity saving throw or take 44 ({@dice 8d10}) bludgeoning damage from falling debris. The collapse not only destroys the tower but also most of its contents, including the animated armor in {@area area V7|588|x}. The wooden chest in area V7 (as well as the severed head inside it) remains intact but requires {@dice 1d8 + 2} hours of digging through rubble to find. The clay golems in {@area area V4|582|x} are undamaged but buried under piles of debris. Every hour the characters spend searching through the rubble, they have a {@chance 10} chance of accidentally unearthing a berserk clay golem.",
+										"A creature that touches the door without first disabling the trap causes lightning to envelop the tower. Any creature outside the tower and within 10 feet of it must succeed on a {@dc 15} Dexterity saving throw, with disadvantage if it is wearing armor made of metal, taking 22 ({@damage 4d10}) lightning damage on a failed save, or half damage on a successful one. As long as the effect persists, any creature that enters the lightning for the first time on a turn or starts its turn there takes 22 ({@damage 4d10}) lightning damage. The lightning lasts for 10 minutes.",
+										"The third time this trap is triggered, the magic fails and causes the tower to collapse. Each creature inside the tower when it collapses takes 132 ({@damage 24d10}) bludgeoning damage, while those within 20 feet of the tower must succeed on a {@dc 15} Dexterity saving throw or take 44 ({@damage 8d10}) bludgeoning damage from falling debris. The collapse not only destroys the tower but also most of its contents, including the animated armor in {@area area V7|588|x}. The wooden chest in area V7 (as well as the severed head inside it) remains intact but requires {@dice 1d8 + 2} hours of digging through rubble to find. The clay golems in {@area area V4|582|x} are undamaged but buried under piles of debris. Every hour the characters spend searching through the rubble, they have a {@chance 10} chance of accidentally unearthing a berserk clay golem.",
 										{
 											"type": "entries",
 											"name": "Opening the Door",
@@ -40580,7 +40580,7 @@
 												"Rotting wooden beams support the scaffolding, which groans and creaks with the slightest breeze. A series of ladders and platforms lead to a hole in the northwest wall on the third floor."
 											]
 										},
-										"The scaffolding can't support more than 200 pounds of weight. If it collapses, anyone standing on it falls 20 feet to the ground, taking {@dice 1d6} bludgeoning damage per 10 feet fallen plus an additional {@dice 2d6} piercing damage from the debris. A creature underneath the scaffolding must succeed on a {@dc 13} Dexterity saving throw or take 14 ({@dice 4d6}) bludgeoning damage from falling debris."
+										"The scaffolding can't support more than 200 pounds of weight. If it collapses, anyone standing on it falls 20 feet to the ground, taking {@damage 1d6} bludgeoning damage per 10 feet fallen plus an additional {@damage 2d6} piercing damage from the debris. A creature underneath the scaffolding must succeed on a {@dc 13} Dexterity saving throw or take 14 ({@damage 4d6}) bludgeoning damage from falling debris."
 									]
 								},
 								{
@@ -43234,7 +43234,7 @@
 									"id": "5e6",
 									"page": 184,
 									"entries": [
-										"These amber doors are sealed with an {@spell arcane lock} spell. The password to suppress it is \"Etherna.\" A character can push open the doors with a successful {@dc 25} Strength check. The doors (AC 15, 60 hit points) can also be smashed. If they are reduced to 0 hit points, necrotic energy fills the 30-foot cube directly north of the them. A creature in that area takes 22 ({@dice 4d10}) necrotic damage, turning to dust if reduced to 0 hit points. Beyond the doors lie the temple catacombs ({@area area X31|626|x})."
+										"These amber doors are sealed with an {@spell arcane lock} spell. The password to suppress it is \"Etherna.\" A character can push open the doors with a successful {@dc 25} Strength check. The doors (AC 15, 60 hit points) can also be smashed. If they are reduced to 0 hit points, necrotic energy fills the 30-foot cube directly north of the them. A creature in that area takes 22 ({@damage 4d10}) necrotic damage, turning to dust if reduced to 0 hit points. Beyond the doors lie the temple catacombs ({@area area X31|626|x})."
 									]
 								},
 								{
@@ -45004,7 +45004,7 @@
 											"id": "633",
 											"page": 191,
 											"entries": [
-												"The amber door to this room is sealed with an {@spell arcane lock} spell. The password to suppress the spell is \"Shalx.\" A character can push open the doors with a successful {@dc 25} Strength check. The door (AC 15, 30 hit points) can also be smashed. If the door is reduced to 0 hit points, necrotic energy fills the 30-foot cube directly in front of it. A creature in the area takes 22 ({@dice 4d10}) necrotic damage, turning to dust and bones if reduced to 0 hit points.",
+												"The amber door to this room is sealed with an {@spell arcane lock} spell. The password to suppress the spell is \"Shalx.\" A character can push open the doors with a successful {@dc 25} Strength check. The door (AC 15, 30 hit points) can also be smashed. If the door is reduced to 0 hit points, necrotic energy fills the 30-foot cube directly in front of it. A creature in the area takes 22 ({@damage 4d10}) necrotic damage, turning to dust and bones if reduced to 0 hit points.",
 												"Adjust the following text if the creatures in this room have already been encountered and destroyed.",
 												{
 													"type": "insetReadaloud",
@@ -46030,7 +46030,7 @@
 												"Atop the hill is a wide ring of black boulders and smaller rocks that collectively form a makeshift wall enclosing a field of dead grass. Lightning strikes the edge of the ring from time to time, illuminating a ghastly, fifty-foot-tall statue made of tightly woven twigs and packed with black earth. The statue resembles a towering, cloaked man with fangs."
 											]
 										},
-										"The ring of boulders that surrounds the field is 250 feet in diameter and ranges from 5 to 10 feet high. Any creature that climbs over the black boulders has a {@chance 10} chance of being struck by lightning, taking 44 ({@dice 8d10}) lightning damage. Characters can avoid the damage by sticking to the two trails that pass through the ring.",
+										"The ring of boulders that surrounds the field is 250 feet in diameter and ranges from 5 to 10 feet high. Any creature that climbs over the black boulders has a {@chance 10} chance of being struck by lightning, taking 44 ({@damage 8d10}) lightning damage. Characters can avoid the damage by sticking to the two trails that pass through the ring.",
 										{
 											"type": "entries",
 											"name": "Wooden Statue",
@@ -46038,7 +46038,7 @@
 											"page": 198,
 											"entries": [
 												"The giant statue bears an eerie resemblance to {@creature Strahd von Zarovich|CoS}. Close inspection reveals roots sprouting from the ground around its base. These roots are part of the Gulthias tree in {@area area Y4|67e|x}. They wrap around the statue, providing added support and durability. The roots not only prevent the statue from being toppled but also allow the effigy to serve as a component in a ritual to create a tree blight (see \"{@area Druids' Ritual|685|x}\" in the \"Special Events\" section below). Planted in the \"heart\" of this wooden effigy is a magic gem stolen from the Wizard of Wines vineyard ({@area chapter 12|590|x}).",
-												"The statue has AC 10, 50 hit points, and immunity to poison and psychic damage. If the statue takes fire damage after being splashed with oil, it catches fire, taking {@dice 2d6} fire damage each round. If the statue is reduced to 0 hit points, it collapses, and the magic gem tumbles onto the field, glowing with a bright green light."
+												"The statue has AC 10, 50 hit points, and immunity to poison and psychic damage. If the statue takes fire damage after being splashed with oil, it catches fire, taking {@damage 2d6} fire damage each round. If the statue is reduced to 0 hit points, it collapses, and the magic gem tumbles onto the field, glowing with a bright green light."
 											]
 										},
 										{
@@ -46086,7 +46086,7 @@
 											"id": "680",
 											"page": 198,
 											"entries": [
-												"The dead adventurer's tattered leather armor isn't salvageable, but the axe embedded in the tree is a magic battleaxe. Its handle is carved with leaves and vines, and the weapon weighs half as much as a normal battleaxe. When the axe hits a plant, whether an ordinary plant or a plant creature, the target takes an extra {@dice 1d8} slashing damage. When a creature of non-good alignment wields the axe, it sprouts thorns whenever its wielder makes an attack with it. These thorns prick the wielder for 1 piercing damage after the attack is made, and this damage is considered magical."
+												"The dead adventurer's tattered leather armor isn't salvageable, but the axe embedded in the tree is a magic battleaxe. Its handle is carved with leaves and vines, and the weapon weighs half as much as a normal battleaxe. When the axe hits a plant, whether an ordinary plant or a plant creature, the target takes an extra {@damage 1d8} slashing damage. When a creature of non-good alignment wields the axe, it sprouts thorns whenever its wielder makes an attack with it. These thorns prick the wielder for 1 piercing damage after the attack is made, and this damage is considered magical."
 											]
 										},
 										{
@@ -49724,7 +49724,7 @@
 									"id": "710",
 									"page": 218,
 									"entries": [
-										"The ghostly chanting heard throughout the dungeon gets discernibly louder as one heads west along this tunnel. A successful {@dc 15} Wisdom ({@skill Perception}) check reveals an absence of footprints. Characters searching the floor for traps find a 5-foot-long, 10-foot-deep pit hidden under several rotted wooden planks, all hidden under a thin layer of dirt. The pit has sharpened wooden spikes at the bottom. The first character to step on the cover falls through, landing {@condition prone} and taking 3 ({@dice 1d6}) bludgeoning damage from the fall plus 11 ({@dice 2d10}) piercing damage from the spikes."
+										"The ghostly chanting heard throughout the dungeon gets discernibly louder as one heads west along this tunnel. A successful {@dc 15} Wisdom ({@skill Perception}) check reveals an absence of footprints. Characters searching the floor for traps find a 5-foot-long, 10-foot-deep pit hidden under several rotted wooden planks, all hidden under a thin layer of dirt. The pit has sharpened wooden spikes at the bottom. The first character to step on the cover falls through, landing {@condition prone} and taking 3 ({@damage 1d6}) bludgeoning damage from the fall plus 11 ({@damage 2d10}) piercing damage from the spikes."
 									]
 								},
 								{
@@ -49984,8 +49984,8 @@
 											"type": "list",
 											"items": [
 												"All the windows are bricked up; the bricked-up windows and the outer walls are impervious to the party's weapon attacks and damage-dealing spells.",
-												"All the doors are gone, replaced by slashing scythe-blades. A character must succeed on a {@dc 15} Dexterity ({@skill Acrobatics}) check to pass through a blade-trapped doorway unscathed. A character who spends 1 minute studying the blades in a particular doorway can try to take advantage of a momentary gap in their repeating movements and make a {@dc 15} Intelligence check instead. Failing either check, a character takes {@dice 2d10} slashing damage but manages to pass through the doorway. Any creature pushed through a doorway must succeed on a {@dc 15} Dexterity saving throw or take the damage. The blades can't be disarmed.",
-												"Every room that contains a fireplace, an oven, or a stove is filled with poisonous black smoke. The room is {@quickref Vision and Light||2||heavily obscured}, and any creature that starts its turn in the smoke must succeed on a {@dc 10} Constitution saving throw or take {@dice 1d10} poison damage.",
+												"All the doors are gone, replaced by slashing scythe-blades. A character must succeed on a {@dc 15} Dexterity ({@skill Acrobatics}) check to pass through a blade-trapped doorway unscathed. A character who spends 1 minute studying the blades in a particular doorway can try to take advantage of a momentary gap in their repeating movements and make a {@dc 15} Intelligence check instead. Failing either check, a character takes {@damage 2d10} slashing damage but manages to pass through the doorway. Any creature pushed through a doorway must succeed on a {@dc 15} Dexterity saving throw or take the damage. The blades can't be disarmed.",
+												"Every room that contains a fireplace, an oven, or a stove is filled with poisonous black smoke. The room is {@quickref Vision and Light||2||heavily obscured}, and any creature that starts its turn in the smoke must succeed on a {@dc 10} Constitution saving throw or take {@damage 1d10} poison damage.",
 												"The interior walls become rotted and brittle. Each 5-foot-section has AC 5 and 5 hit points, and can also be destroyed with a successful {@dc 10} Strength ({@skill Athletics}) check. Each 5-foot section of wall that's destroyed causes a {@creature swarm of rats} to pour out and attack. The swarm won't leave the house."
 											]
 										},
@@ -50325,7 +50325,7 @@
 													"page": 226,
 													"entries": [
 														"The gemstone that has given life to {@creature Baba Lysaga|CoS}'s hut was previously buried in the Wizard of Wines vineyard. The gem was one of three imbued with life-giving magic that made the grapevines in the vineyard healthier, guaranteeing the finest wines. {@creature Baba Lysaga|CoS} stole one of the gems and perverted its magic, using it instead to animate her wooden hut.",
-														"Removing the gem from the hut renders the hut {@condition incapacitated}. That task is easier said than done, however. The glowing green gem is contained in a cavity in the stump, beneath the rotted floorboards of the hut. The floorboards can be ripped up with a successful {@dc 14} Strength check or smashed by dealing 10 damage to them. Once the floorboards are out of the way, a creature can reach into the cavity and snatch the gem. But if someone attempts this while the hut is alive, the cavity sprouts wooden teeth, becoming a mouth that bites anything that tries to remove the gem; a creature trying to remove the gem must make a {@dc 20} Dexterity saving throw. On a successful save, the creature claims the stone without getting bitten. On a failed save, the creature is bitten for 10 ({@dice 3d6}) piercing damage and fails to obtain the gem."
+														"Removing the gem from the hut renders the hut {@condition incapacitated}. That task is easier said than done, however. The glowing green gem is contained in a cavity in the stump, beneath the rotted floorboards of the hut. The floorboards can be ripped up with a successful {@dc 14} Strength check or smashed by dealing 10 damage to them. Once the floorboards are out of the way, a creature can reach into the cavity and snatch the gem. But if someone attempts this while the hut is alive, the cavity sprouts wooden teeth, becoming a mouth that bites anything that tries to remove the gem; a creature trying to remove the gem must make a {@dc 20} Dexterity saving throw. On a successful save, the creature claims the stone without getting bitten. On a failed save, the creature is bitten for 10 ({@damage 3d6}) piercing damage and fails to obtain the gem."
 													]
 												},
 												{
@@ -51686,7 +51686,7 @@
 																"His Armor Class is 17 (half plate).",
 																"He has 192 hit points.",
 																"He speaks Common and Draconic.",
-																"Vladimir wields a {@item +2 Greatsword||greatsword, +2} with a hilt sculpted to resemble silver dragon wings and a pommel shaped like a silver dragon's head clutching a black opal between its teeth. As an action, he can make two attacks with the sword ({@hit 9} to hit). It deals 20 ({@dice 4d6 + 6}) slashing damage on a hit. Against Strahd, Vladimir deals an extra 14 ({@dice 4d6}) slashing damage with the weapon.",
+																"Vladimir wields a {@item +2 Greatsword||greatsword, +2} with a hilt sculpted to resemble silver dragon wings and a pommel shaped like a silver dragon's head clutching a black opal between its teeth. As an action, he can make two attacks with the sword ({@hit 9} to hit). It deals 20 ({@damage 4d6 + 6}) slashing damage on a hit. Against Strahd, Vladimir deals an extra 14 ({@damage 4d6}) slashing damage with the weapon.",
 																"Vladimir has a challenge rating of 7 (2,900 XP)."
 															]
 														},

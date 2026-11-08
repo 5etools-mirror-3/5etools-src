@@ -947,6 +947,7 @@
 				"Ability Score Improvement|Ranger|XPHB|4",
 				"Extra Attack|Ranger|XPHB|5",
 				"Roving|Ranger|XPHB|6",
+				"Pet Specialization|Ranger|XPHB|6|WoW",
 				{
 					"classFeature": "Subclass Feature|Ranger|XPHB|7",
 					"gainSubclassFeature": true
@@ -2331,6 +2332,39 @@
 			"level": 5,
 			"entries": [
 				"You can attack twice instead of once whenever you take the {@action Attack|XPHB} action on your turn."
+			]
+		},
+		{
+			"name": "Pet Specialization",
+			"source": "WoW",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 6,
+			"isClassFeatureVariant": true,
+			"entries": [
+				"This feature replaces the {@classFeature Roving|Ranger|XPHB|6} feature for a {@class Hunter|WoW} with the {@subclass Beast Master|Hunter|WoW|WoW} subclass.",
+				"While the beast from your {@subclassFeature Primal Companion|Ranger|XPHB|Beast Master|XPHB|3|XPHB} feature is within 60 feet of you, you gain one of the following benefits, depending on the beast's pet family and its specialization (see \"{@book Hunter Pets|WoW|1|Hunter Pets}\").",
+				{
+					"type": "entries",
+					"name": "Cunning",
+					"entries": [
+						"Your {@variantrule Speed|XPHB} and all of your primal beast's speeds increase by 10 feet. In addition, your primal beast can use its action to cast {@spell Freedom of Movement|XPHB} without any spell components, affecting itself and you (if you are within range). Once it does so, it can't do so again until you finish a {@variantrule Long Rest|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Ferocity",
+					"entries": [
+						"When your primal beast is {@status Bloodied|XPHB} and it hits with its Beast's Strike attack, you and your primal beast each regain {@variantrule Hit Points|XPHB} equal to your Wisdom modifier. In addition, your primal beast can use its action to cast {@spell Haste|XPHB} without any spell components, affecting itself and you (if you are within range). Once it does so, it can't do so again until you finish a {@variantrule Long Rest|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Tenacity",
+					"entries": [
+						"Your {@variantrule Hit Points|XPHB|Hit Point} maximum increases by 6. Whenever you gain a Ranger level, your {@variantrule Hit Points|XPHB|Hit Point} maximum increases by an additional 1 {@variantrule Hit Points|XPHB|Hit Point}. Your primal beast's {@variantrule Hit Points|XPHB|Hit Point} maximum also increases by your Ranger level. In addition, your primal beast can use its action to cast {@spell Stoneskin|XPHB} without any spell components, affecting itself and you (if you are within range). Once it does so, it can't do so again until you finish a {@variantrule Long Rest|XPHB}."
+					]
+				}
 			]
 		},
 		{
@@ -4025,7 +4059,7 @@
 					"name": "Polar Strikes",
 					"page": 6,
 					"entries": [
-						"When you hit a creature with an attack roll using a weapon, you can deal an extra {@damage 1d4} Cold damage to the target, which can take this extra damage only once per turn. When you reach Ranger level 11, this extra damage increases to {@dice 1d6}."
+						"When you hit a creature with an attack roll using a weapon, you can deal an extra {@damage 1d4} Cold damage to the target, which can take this extra damage only once per turn. When you reach Ranger level 11, this extra damage increases to {@damage 1d6}."
 					]
 				}
 			]

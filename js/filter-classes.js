@@ -159,9 +159,8 @@ class PageFilterClassesBase extends PageFilterBase {
 			.some(sc => this.isSubclassVisible(f, cls, sc));
 	}
 
-	isSubclassVisible (f, cls, sc) {
-		return this._filterBox.toDisplayByFilters(
-			f,
+	_getSubclassFilterToValueTuples (sc) {
+		return [
 			{
 				filter: this._sourceFilter,
 				value: sc._fSources,
@@ -170,6 +169,21 @@ class PageFilterClassesBase extends PageFilterBase {
 				filter: this._miscFilter,
 				value: sc._fMisc,
 			},
+		];
+	}
+
+	doSetSubclassesVisible (subclasses) {
+		subclasses
+			.forEach(sc => {
+				this._getSubclassFilterToValueTuples(sc)
+					.forEach(({filter, value}) => filter.setPillsToDisplay([value]));
+			});
+	}
+
+	isSubclassVisible (f, cls, sc) {
+		return this._filterBox.toDisplayByFilters(
+			f,
+			...this._getSubclassFilterToValueTuples(sc),
 		);
 	}
 

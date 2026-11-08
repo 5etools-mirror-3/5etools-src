@@ -2238,7 +2238,7 @@
 									"page": 29,
 									"entries": [
 										"The characters have the use of Grynsk's two rowboats (see the \"Rowboat Statistics\" sidebar). The damaged one has 36 hit points instead of 50. Three sets of {@item fishing tackle|PHB} are stashed in the center of each boat.",
-										"The lake is covered in ice floes, which make travel dangerous. As the characters row out from Bremen, their boats must steer around {@dice 1d4 + 1} ice floes. Any character who tries to steer a boat around an ice floe must succeed on a {@dc 14} Wisdom check, adding their proficiency bonus to the roll if they're proficient with water vehicles. On a failed check, the boat hits the ice floe and takes {@dice 1d6} bludgeoning damage.",
+										"The lake is covered in ice floes, which make travel dangerous. As the characters row out from Bremen, their boats must steer around {@dice 1d4 + 1} ice floes. Any character who tries to steer a boat around an ice floe must succeed on a {@dc 14} Wisdom check, adding their proficiency bonus to the roll if they're proficient with water vehicles. On a failed check, the boat hits the ice floe and takes {@damage 1d6} bludgeoning damage.",
 										{
 											"type": "inset",
 											"name": "Rowboat Statistics",
@@ -2360,11 +2360,11 @@
 												],
 												[
 													"2",
-													"The plesiosaurus rams a boat from beneath. (If the characters have more than one boat, randomly determine which one the monster rams.) The boat takes {@dice 3d6 + 4} bludgeoning damage, and any character standing in the boat must succeed on a {@dc 12} Dexterity saving throw or fall {@condition prone}. A character who fails this check by 5 or more is knocked overboard and falls into the frigid water."
+													"The plesiosaurus rams a boat from beneath. (If the characters have more than one boat, randomly determine which one the monster rams.) The boat takes {@damage 3d6 + 4} bludgeoning damage, and any character standing in the boat must succeed on a {@dc 12} Dexterity saving throw or fall {@condition prone}. A character who fails this check by 5 or more is knocked overboard and falls into the frigid water."
 												],
 												[
 													"3",
-													"The plesiosaurus surfaces 10 feet away from a boat and takes a bite out of it, using its 10-foot reach. (If the characters have multiple boats, randomly determine which boat the monster bites.) The boat takes {@dice 3d6 + 4} piercing damage."
+													"The plesiosaurus surfaces 10 feet away from a boat and takes a bite out of it, using its 10-foot reach. (If the characters have multiple boats, randomly determine which boat the monster bites.) The boat takes {@damage 3d6 + 4} piercing damage."
 												],
 												[
 													"4",
@@ -2841,7 +2841,7 @@
 											]
 										},
 										"The three dwarves work in a mine located in the valley at the base of Kelvin's Cairn. This mine is owned and operated by Clan Battlehammer, and it provides most of the iron for the smithies in Ten-Towns.",
-										"The dwarves wear {@item Clothing, cold weather|IDRotF|cold weather clothing}. Only their eyes are visible. Treat them as {@creature Commoner||commoners} who speak Common and Dwarvish; being dwarves, they have {@sense darkvision} out to a range of 60 feet and resistance to poison damage. They carry ice picks ({@dice 1d4} piercing damage) instead of clubs. Each dwarf is briefly described below:",
+										"The dwarves wear {@item Clothing, cold weather|IDRotF|cold weather clothing}. Only their eyes are visible. Treat them as {@creature Commoner||commoners} who speak Common and Dwarvish; being dwarves, they have {@sense darkvision} out to a range of 60 feet and resistance to poison damage. They carry ice picks ({@damage 1d4} piercing damage) instead of clubs. Each dwarf is briefly described below:",
 										{
 											"type": "list",
 											"items": [
@@ -6279,7 +6279,7 @@
 											]
 										},
 										"Two duergar watch for approaching intruders. One is stationed in the bunker ({@area area O1|114|x}), the other in the overlook ({@area area O3|11a|x}). These duergar are tired and bored, but they notice characters who are so incautious as to carry light sources or otherwise announce their presence.",
-										"If the overlook duergar sees what she perceives to be a threat, she sounds the alarm as she runs down to the main entrance ({@area area O2|117|x}) to pull up the drawbridge, taking 2 rounds to do so. The duergar in the bunker is armed with a {@item Heavy Crossbow|PHB|heavy crossbow} ({@dice 1d10} piercing damage) and takes pot shots at visible threats.",
+										"If the overlook duergar sees what she perceives to be a threat, she sounds the alarm as she runs down to the main entrance ({@area area O2|117|x}) to pull up the drawbridge, taking 2 rounds to do so. The duergar in the bunker is armed with a {@item Heavy Crossbow|PHB|heavy crossbow} ({@damage 1d10} piercing damage) and takes pot shots at visible threats.",
 										"Characters who succeed on a {@dc 10} Dexterity ({@skill Stealth}) check can approach the stronghold undetected by hugging the north cliff and moving behind the bunker and below the openings of the overlook. Once they reach the mouth of the frozen river, they can crawl through the culvert (which leads under area O2) or quietly approach the main entrance without being detected.",
 										{
 											"type": "inset",
@@ -6871,7 +6871,7 @@
 													"id": "122",
 													"page": 50,
 													"entries": [
-														"When the lever is pulled, iron spikes spring out from the floor and ceiling to form barriers across each doorway. A creature in either opening must succeed on a {@dc 12} Dexterity saving throw or take 7 ({@dice 2d6}) piercing damage from the spikes and be {@condition restrained} until the spikes are retracted or the barrier is destroyed. The spikes can be retracted only by pulling the lever a second time.",
+														"When the lever is pulled, iron spikes spring out from the floor and ceiling to form barriers across each doorway. A creature in either opening must succeed on a {@dc 12} Dexterity saving throw or take 7 ({@damage 2d6}) piercing damage from the spikes and be {@condition restrained} until the spikes are retracted or the barrier is destroyed. The spikes can be retracted only by pulling the lever a second time.",
 														"This trap is designed to isolate a single enemy in the western part of the room, blocking it from its allies with the spikes. Creatures can see through the gaps between the spikes, but the gaps aren't big enough for a character to slip through. The barriers of spikes grant {@quickref Cover||3||three-quarters cover} to creatures behind them. Each barrier has AC 15, 18 hit points, and immunity to poison and psychic damage."
 													]
 												}
@@ -11856,7 +11856,7 @@
 											"id": "17d",
 											"page": 65,
 											"entries": [
-												"A natural stone bridge spans the frozen river 20 feet below. The top of the bridge is covered with a slippery, icy glaze. Crossing the bridge safely requires a successful {@dc 10} Dexterity ({@skill Acrobatics}) check. A creature that fails the check falls off the bridge and lands {@condition prone} on the frozen river below, taking 7 ({@dice 2d6}) bludgeoning damage from the fall."
+												"A natural stone bridge spans the frozen river 20 feet below. The top of the bridge is covered with a slippery, icy glaze. Crossing the bridge safely requires a successful {@dc 10} Dexterity ({@skill Acrobatics}) check. A creature that fails the check falls off the bridge and lands {@condition prone} on the frozen river below, taking 7 ({@damage 2d6}) bludgeoning damage from the fall."
 											]
 										},
 										{
@@ -15564,7 +15564,7 @@
 													]
 												},
 												"If the characters make a lot of noise, the {@creature ogre} comes running from {@area area V5|1c9|x} and the {@creature verbeeg marauder|IDRotF} (see {@area appendix C|6fc|x}) approaches from {@area area V9|1d4|x}, both arriving at the same time. They try to kill intruders on sight. If more than two intruders are visible, the verbeeg whistles for the {@creature Cave Bear|MM|cave bear}, which arrives 3 rounds later from {@area area V7|1cf|x}.",
-												"If it's close enough to the bonfire, the verbeeg can use his action to try to shove a creature into the flames (see \"{@book Shoving a Creature|PHB|9|Shoving a Creature}\" in the combat chapter of the {@book Player's Handbook|PHB}). Any creature that enters the bonfire for the first time on a turn or starts its turn there takes 10 ({@dice 3d6}) fire damage. It also catches fire as it leaves the bonfire's space, taking 3 ({@dice 1d6}) fire damage at the starts of each of its turns until an action is used to put out the flames engulfing it.",
+												"If it's close enough to the bonfire, the verbeeg can use his action to try to shove a creature into the flames (see \"{@book Shoving a Creature|PHB|9|Shoving a Creature}\" in the combat chapter of the {@book Player's Handbook|PHB}). Any creature that enters the bonfire for the first time on a turn or starts its turn there takes 10 ({@damage 3d6}) fire damage. It also catches fire as it leaves the bonfire's space, taking 3 ({@damage 1d6}) fire damage at the starts of each of its turns until an action is used to put out the flames engulfing it.",
 												"Characters in a position to harm the verbeeg's goats and sheep (see \"Animals\" below) can use an action to threaten one or more of these animals and, with a successful {@dc 10} Charisma ({@skill Intimidation}) check, cause the verbeeg to cease hostilities and call off the ogre and the {@creature Cave Bear|MM|cave bear}. Under such pressure, the verbeeg is willing to let intruders leave the lair without further incident, provided the animals in the pen are not harmed or taken.",
 												"One crate is packed with straw, which the verbeeg feeds to the goats and sheep. The other contains ten large torches, which the verbeeg made out of wood and pitch. The barrels are half-filled with salt and pepper, which the verbeeg uses to season his meat.",
 												{
@@ -19059,7 +19059,7 @@
 													"page": 90,
 													"entries": [
 														"This cave has a 20-foot-high, concave roof. Most of the floor has fallen away, forming a chasm 80 feet deep. All that's left of the floor is a rocky ledge connected to area F2 by a natural stone bridge that's safe to cross. A 1-foot-thick sheet of ice spans the southern part of the chasm. Characters can walk across this ice to avoid area F2 and go directly to area F3.",
-														"A character can also try to collapse the ice sheet by dealing damage to it. The ice sheet has AC 13, 30 hit points, and immunity to cold, psychic, and poison damage; if reduced to 0 hit points, the ice sheet fractures and falls into the chasm. Any creature standing on the ice sheet when it begins to collapse must make a {@dc 16} Dexterity saving throw. On a failed check, the creature falls into the chasm, taking 28 ({@dice 8d6}) bludgeoning damage and landing {@condition prone}. On a success, the creature lunges and leaps to land on one side of the chasm or the other (its choice) and doesn't fall."
+														"A character can also try to collapse the ice sheet by dealing damage to it. The ice sheet has AC 13, 30 hit points, and immunity to cold, psychic, and poison damage; if reduced to 0 hit points, the ice sheet fractures and falls into the chasm. Any creature standing on the ice sheet when it begins to collapse must make a {@dc 16} Dexterity saving throw. On a failed check, the creature falls into the chasm, taking 28 ({@damage 8d6}) bludgeoning damage and landing {@condition prone}. On a success, the creature lunges and leaps to land on one side of the chasm or the other (its choice) and doesn't fall."
 													]
 												},
 												{
@@ -23541,7 +23541,7 @@
 													"page": 109,
 													"entries": [
 														"The frost giant has come down from the Spine of the World mountains to hunt for wild game on the tundra or on the shores of the Sea of Moving Ice. If the characters hide in the snow and keep their distance, the giant and its mount continue unimpeded, and the encounter ends without bloodshed.",
-														"Characters who confront the giant and the mammoth are in for the fight of their lives, for the evil giant is happy to claim their heads as trophies as well as their treasures. In addition to its {@item greataxe|PHB}, the giant carries a large {@item net|PHB} that it uses to catch walruses and seals, as well as an enormous {@item lance|PHB} made from a sharpened mast that it uses to spear creatures while it is mounted. This {@item lance|PHB} deals 25 ({@dice 3d12 + 6}) piercing damage in the giant's hands.",
+														"Characters who confront the giant and the mammoth are in for the fight of their lives, for the evil giant is happy to claim their heads as trophies as well as their treasures. In addition to its {@item greataxe|PHB}, the giant carries a large {@item net|PHB} that it uses to catch walruses and seals, as well as an enormous {@item lance|PHB} made from a sharpened mast that it uses to spear creatures while it is mounted. This {@item lance|PHB} deals 25 ({@damage 3d12 + 6}) piercing damage in the giant's hands.",
 														"A character who speaks Giant can use an action to try to change the frost giant's attitude from hostile to indifferent, either by offering it treasure worth at least 1,000 gp or by convincing it that the party is on a quest that would benefit frost giants in some way. For example, the frost giant considers {@creature Arveiaturace|IDRotF} (see \"{@area Arveiaturace|290|x}\") a natural enemy and might spare adventurers who claim to be hunting the great white dragon. The giant might also allow characters to pass unmolested if they claim to be on a quest for the spirits of Jarlmoot (see \"{@area Jarlmoot|373|x}\"). Changing the giant's attitude in this way requires a successful {@dc 17} Charisma ({@skill Deception} or {@skill Persuasion}) check in addition to a sufficient bribe or a convincing story. If the check fails, subsequent checks made by the characters to change its attitude have disadvantage."
 													]
 												}
@@ -25125,7 +25125,7 @@
 													"page": 117,
 													"entries": [
 														"Both entrances to the cabin are off this rickety, snow-covered walkway, the steps and boards of which crackle and creak underfoot.",
-														"There's a 4-foot-wide gap in the walkway that characters can easily leap across without making an ability check. But the walkway west of the gap (outside the door to {@area area B4|2d4|x}) collapses if more than 150 pounds of weight are placed on any 5-foot section of it. Any creature on the section of walkway when it collapses must make a {@dc 10} Dexterity saving throw. On a successful save, the creature drops 20 feet straight down into the snow, taking 1 bludgeoning damage from the cushioned fall and landing {@condition prone}. On a failed save, the creature slides down the collapsing walkway to the west and plunges into the gorge, taking 49 ({@dice 14d6}) bludgeoning damage from the hard fall and landing {@condition prone}."
+														"There's a 4-foot-wide gap in the walkway that characters can easily leap across without making an ability check. But the walkway west of the gap (outside the door to {@area area B4|2d4|x}) collapses if more than 150 pounds of weight are placed on any 5-foot section of it. Any creature on the section of walkway when it collapses must make a {@dc 10} Dexterity saving throw. On a successful save, the creature drops 20 feet straight down into the snow, taking 1 bludgeoning damage from the cushioned fall and landing {@condition prone}. On a failed save, the creature slides down the collapsing walkway to the west and plunges into the gorge, taking 49 ({@damage 14d6}) bludgeoning damage from the hard fall and landing {@condition prone}."
 													]
 												},
 												{
@@ -25194,7 +25194,7 @@
 															"page": 118,
 															"entries": [
 																"This magic item looks like a 6-inch-diameter gyroscope featuring two scorched rings inlaid with runes and a dense chunk of coal at its core. The Summer Star has lost its luster but not its magic. A {@spell detect magic} spell or similar magic reveals a weak, residual aura of transmutation magic surrounding it.",
-																"The first time a creature picks up the {@i Summer Star}, its core glows with a golden radiance as bright as a candle flame. Unless the creature drops the device immediately, the light suddenly blossoms, becoming a 10-foot-radius sphere of incinerating golden radiance centered on the device. Each creature in the sphere must make a {@dc 17} Constitution saving throw, taking 90 ({@dice 10d10 + 35}) radiant damage on a failed save, or half as much damage on a successful one. If this effect reduces a creature to 0 hit points and there is damage remaining, the creature is turned to ashes if the remaining damage equals or exceeds its hit point maximum. Once the explosion is triggered, the {@i Summer Star} becomes inoperable and safe to handle.",
+																"The first time a creature picks up the {@i Summer Star}, its core glows with a golden radiance as bright as a candle flame. Unless the creature drops the device immediately, the light suddenly blossoms, becoming a 10-foot-radius sphere of incinerating golden radiance centered on the device. Each creature in the sphere must make a {@dc 17} Constitution saving throw, taking 90 ({@damage 10d10 + 35}) radiant damage on a failed save, or half as much damage on a successful one. If this effect reduces a creature to 0 hit points and there is damage remaining, the creature is turned to ashes if the remaining damage equals or exceeds its hit point maximum. Once the explosion is triggered, the {@i Summer Star} becomes inoperable and safe to handle.",
 																"A character killed by the {@i Summer Star} becomes an ethereal spirit bound to the Black Cabin (see \"{@area Dying in the Black Cabin|2cc|x}\"). Don't fret if this happens to one or more characters; as spirits, they can figure out a way back to the realm of the living.",
 																"Once the {@i Summer Star} discharges its residual magic, the characters\u2014both the material and the ethereal ones\u2014can safely analyze and fix the device so that it functions as Macreadus intended. The steps to be followed are summarized below:"
 															]
@@ -25258,7 +25258,7 @@
 															"id": "2df",
 															"page": 119,
 															"entries": [
-																"The section of floor shown on map 2.3 has weakened over time and gives way if 150 pounds or more of weight crosses it. Any creature standing on the floor when it collapses must make a {@dc 15} Dexterity saving throw. On a failed save, the creature falls to the bottom of the gorge directly below this section of the cabin, taking 49 ({@dice 14d6}) bludgeoning damage and landing {@condition prone}. On a successful save, the creature grabs hold of the edge of the remaining floor and is hanging from it. The creature can use an action to try to pull itself up, doing so with a successful {@dc 10} Strength ({@skill Athletics}) check, while another creature within reach can use the {@action Help} action to assist. A hanging creature can repeat the check until it succeeds, but if a check fails by 5 or more, the creature lets go and falls."
+																"The section of floor shown on map 2.3 has weakened over time and gives way if 150 pounds or more of weight crosses it. Any creature standing on the floor when it collapses must make a {@dc 15} Dexterity saving throw. On a failed save, the creature falls to the bottom of the gorge directly below this section of the cabin, taking 49 ({@damage 14d6}) bludgeoning damage and landing {@condition prone}. On a successful save, the creature grabs hold of the edge of the remaining floor and is hanging from it. The creature can use an action to try to pull itself up, doing so with a successful {@dc 10} Strength ({@skill Athletics}) check, while another creature within reach can use the {@action Help} action to assist. A hanging creature can repeat the check until it succeeds, but if a check fails by 5 or more, the creature lets go and falls."
 															]
 														}
 													]
@@ -29202,7 +29202,7 @@
 																"Hundreds of icicles cling to the twelve-foot-high ceiling of this frost-rimed chamber, which is bathed in flickering blue light. The light's source is a blue flame crackling in a stone brazier that stands against the far wall. The white smoke that rises above it coalesces every few seconds into the form of a woman, but the image is fleeting."
 															]
 														},
-														"A {@spell detect magic} spell reveals a powerful aura of abjuration magic around the 3-foot-high stone brazier, which rises naturally from the floor and is therefore not a discrete object. It can't be moved or damaged, and its magical flame can't be smothered or put out with water. Any creature that comes into direct contact with the fire for the first time on a turn takes 10 ({@dice 3d6}) cold damage.",
+														"A {@spell detect magic} spell reveals a powerful aura of abjuration magic around the 3-foot-high stone brazier, which rises naturally from the floor and is therefore not a discrete object. It can't be moved or damaged, and its magical flame can't be smothered or put out with water. Any creature that comes into direct contact with the fire for the first time on a turn takes 10 ({@damage 3d6}) cold damage.",
 														"Casting {@spell dispel magic} on the fire snuffs it out for 1 hour, after which the fire reignites on its own. Using a {@spell stone shape} spell to alter the brazier's shape puts out the fire for good.",
 														"As long as the brazier's cold fire burns, chardalyn berserkers inside the cave (areas {@area Q3|30e|x} through {@area Q8|319|x}, and the tunnels and chutes that attach to them) can't drop below 1 hit point. No other creatures gain this benefit. Characters who fight the berserkers inside their lair see them shake off damage that would normally kill them.",
 														"The berserkers are aware of the fire's benefit, as evidenced by the rictus grins that cross their faces when intruders realize the berserkers are seemingly unkillable. The berserkers don't automatically sense when the fire has been put out, however."
@@ -31776,7 +31776,7 @@
 															"id": "35c",
 															"page": 134,
 															"entries": [
-																"This marvel of gnomish over-engineering is still operational. Dials, knobs, and levers festoon the gunner's station, which comes with firing instructions written in {@language Qualith|VGM} (a braille-like script that illithids read with their tentacles). A character who hasn't read the instructions or had them translated must succeed on a {@dc 15} Intelligence ({@skill Arcana}) check to fire the weapon. If the check fails by 5 or more, the device misfires, dealing 9 ({@dice 2d8}) slashing damage to one randomly determined creature within 10 feet of the ballista."
+																"This marvel of gnomish over-engineering is still operational. Dials, knobs, and levers festoon the gunner's station, which comes with firing instructions written in {@language Qualith|VGM} (a braille-like script that illithids read with their tentacles). A character who hasn't read the instructions or had them translated must succeed on a {@dc 15} Intelligence ({@skill Arcana}) check to fire the weapon. If the check fails by 5 or more, the device misfires, dealing 9 ({@damage 2d8}) slashing damage to one randomly determined creature within 10 feet of the ballista."
 															]
 														}
 													]
@@ -31880,7 +31880,7 @@
 															"id": "368",
 															"page": 136,
 															"entries": [
-																"If Vorryn touches one of the helm's blue orbs while Dredavex touches the other, they can jointly activate the nautiloid's self-destruct system. The gnome ceremorphs take this desperate action only if there's a good chance the ship's technology will fall into the wrong hands or if they're forced to abandon ship. Once the self-destruct's countdown timer has begun, it can't be stopped. A voice in Deep Speech counts down the seconds from 60. When the timer reaches 0, the ship disintegrates in an explosion bright enough to see from Ten-Towns. Any creature inside the ship or within 60 feet of it when this occurs takes 70 ({@dice 20d6}) force damage."
+																"If Vorryn touches one of the helm's blue orbs while Dredavex touches the other, they can jointly activate the nautiloid's self-destruct system. The gnome ceremorphs take this desperate action only if there's a good chance the ship's technology will fall into the wrong hands or if they're forced to abandon ship. Once the self-destruct's countdown timer has begun, it can't be stopped. A voice in Deep Speech counts down the seconds from 60. When the timer reaches 0, the ship disintegrates in an explosion bright enough to see from Ten-Towns. Any creature inside the ship or within 60 feet of it when this occurs takes 70 ({@damage 20d6}) force damage."
 															]
 														},
 														{
@@ -31944,7 +31944,7 @@
 																"Five strange, glowing gizmos are attached to the chitinous walls seven feet above the floor. These devices look like the tips of metal wands held in pincer-claws."
 															]
 														},
-														"The five gizmos on the walls fire beams of radiant energy whenever a non-illithid is in the room. At the start of each turn, each gizmo targets a random creature in the room (including mind flayers). The target must succeed on a {@dc 16} Dexterity saving throw or be struck by the gizmo's beam, taking 4 ({@dice 1d8}) radiant damage. Each gizmo is a Tiny object with AC 16, 3 hit points, and immunity to poison and psychic damage. A character can use an action to try to tear a gizmo from the wall, doing so with a successful {@dc 10} Strength check. Reducing a gizmo to 0 hit points or tearing it from the wall destroys it.",
+														"The five gizmos on the walls fire beams of radiant energy whenever a non-illithid is in the room. At the start of each turn, each gizmo targets a random creature in the room (including mind flayers). The target must succeed on a {@dc 16} Dexterity saving throw or be struck by the gizmo's beam, taking 4 ({@damage 1d8}) radiant damage. Each gizmo is a Tiny object with AC 16, 3 hit points, and immunity to poison and psychic damage. A character can use an action to try to tear a gizmo from the wall, doing so with a successful {@dc 10} Strength check. Reducing a gizmo to 0 hit points or tearing it from the wall destroys it.",
 														{
 															"type": "entries",
 															"name": "Crystal Sphere",
@@ -31960,7 +31960,7 @@
 															"id": "36f",
 															"page": 137,
 															"entries": [
-																"Amid the clutter on the table are two magic items (see \"Treasure\" below), which a character can find only by rooting through the junk. Any creature that does so has a {@chance 50} chance of knocking two things together and triggering an electrical discharge. When such a discharge occurs, every creature within 5 feet of the table must make a {@dc 17} Dexterity saving throw. On a failed save, the creature takes 4 ({@dice 1d8}) lightning damage."
+																"Amid the clutter on the table are two magic items (see \"Treasure\" below), which a character can find only by rooting through the junk. Any creature that does so has a {@chance 50} chance of knocking two things together and triggering an electrical discharge. When such a discharge occurs, every creature within 5 feet of the table must make a {@dc 17} Dexterity saving throw. On a failed save, the creature takes 4 ({@damage 1d8}) lightning damage."
 															]
 														},
 														{
@@ -32556,7 +32556,7 @@
 													]
 												},
 												"The frost giant, {@creature Gromin'gorn|IDRotF}, is hostile and has noble blood in her icy veins. She has come to Jarlmoot to be tested by the spirits of her ancestors. Only by passing this test can she hope to lead her tribe. If one of the characters is openly carrying the {@item horn of blasting} from {@area area J4|37f|x}, Gromin'gorn tries to claim it for herself, believing this is the test her ancestors have set before her.",
-												"Instead of a {@item greataxe|PHB}, Gromin'gorn wields a 10-foot-long chain with an anvil bolted to the end of it. In her hands, it deals 25 ({@dice 3d12 + 6}) bludgeoning damage on a hit. She can make two attacks with it as an action."
+												"Instead of a {@item greataxe|PHB}, Gromin'gorn wields a 10-foot-long chain with an anvil bolted to the end of it. In her hands, it deals 25 ({@damage 3d12 + 6}) bludgeoning damage on a hit. She can make two attacks with it as an action."
 											]
 										}
 									]
@@ -33642,7 +33642,7 @@
 															]
 														},
 														"Whenever Chief Yarb-Gnock wants to make an example of a goblin, the poor wretch is dragged screaming to this walkway. The goblin can either hurl itself off the cliff to its death or die by the swords of its kin. The skulls belong to goblins who never made it to the end of the walkway. Ravens have picked the skulls clean.",
-														"The walkway was shoddily constructed and shows signs of having been repaired many times after being damaged by wind. If more than 200 pounds is placed on the outermost half of it, the whole thing snaps off and tumbles down the mountainside. Any creature on the walkway when it breaks off must make a {@dc 16} Dexterity saving throw. On a successful save, the creature leaps off and falls {@condition prone} on the ground near the slope. On a failed save, the creature falls 150 feet onto icy rocks with goblin bones scattered among them, taking 52 ({@dice 15d6}) bludgeoning damage from the impact."
+														"The walkway was shoddily constructed and shows signs of having been repaired many times after being damaged by wind. If more than 200 pounds is placed on the outermost half of it, the whole thing snaps off and tumbles down the mountainside. Any creature on the walkway when it breaks off must make a {@dc 16} Dexterity saving throw. On a successful save, the creature leaps off and falls {@condition prone} on the ground near the slope. On a failed save, the creature falls 150 feet onto icy rocks with goblin bones scattered among them, taking 52 ({@damage 15d6}) bludgeoning damage from the impact."
 													]
 												}
 											]
@@ -38799,8 +38799,8 @@
 																	"type": "list",
 																	"items": [
 																		"At birth, the {@creature Young Griffon (Tiny)|IDRotF|griffon} is Tiny and has 5 ({@dice 1d4 + 3}) hit points, a flying speed of 40 feet, and a Strength score of 2. It has a {@hit 0} bonus to hit on its attacks and deals 1 piercing damage with its beak and 1 slashing damage with its claws. Its challenge rating is 0 (10 XP).",
-																		"After 1 year, the {@creature Young Griffon (Small)|IDRotF|griffon} is Small and has 13 ({@dice 2d6 + 6}) hit points and a Strength score of 8. It has a {@hit 1} bonus to hit on its attacks and deals 2 ({@dice 1d4}) piercing damage with its beak and 2 ({@dice 1d4}) slashing damage with its claws. Its challenge rating is 1/4 (50 XP).",
-																		"After 2 years, the {@creature Young Griffon (Medium)|IDRotF|griffon} is Medium and has 32 ({@dice 5d6 + 15}) hit points and a Strength score of 12. It has a {@hit 3} bonus to hit on its attacks and deals 4 ({@dice 1d6 + 1}) piercing damage with its beak and 6 ({@dice 2d4 + 1}) slashing damage with its claws. Its challenge rating is 1 (200 XP).",
+																		"After 1 year, the {@creature Young Griffon (Small)|IDRotF|griffon} is Small and has 13 ({@dice 2d6 + 6}) hit points and a Strength score of 8. It has a {@hit 1} bonus to hit on its attacks and deals 2 ({@damage 1d4}) piercing damage with its beak and 2 ({@damage 1d4}) slashing damage with its claws. Its challenge rating is 1/4 (50 XP).",
+																		"After 2 years, the {@creature Young Griffon (Medium)|IDRotF|griffon} is Medium and has 32 ({@dice 5d6 + 15}) hit points and a Strength score of 12. It has a {@hit 3} bonus to hit on its attacks and deals 4 ({@damage 1d6 + 1}) piercing damage with its beak and 6 ({@damage 2d4 + 1}) slashing damage with its claws. Its challenge rating is 1 (200 XP).",
 																		"After 3 years, the {@creature griffon} is fully grown and tame enough to be ridden as a mount."
 																	]
 																}
@@ -42878,7 +42878,7 @@
 													"page": 174,
 													"entries": [
 														"The western door opens into a closet that Xardorok has converted into a shrine. A shelf embedded in the south wall holds a 2-foot-tall statuette of Deep Duerra made of chardalyn. It depicts a nude female duergar with no facial features and a spiked crown atop her bald head. Stacked on smaller shelves around the statuette are seven mind flayer skulls. A character can identify the depiction with a successful {@dc 20} Intelligence ({@skill Religion}) check. An indentation in the statuette's base holds the key that unlocks the iron trunk in Xardorok's bedchamber. The characters can find the key if someone lifts the statuette and looks underneath it.",
-														"Anyone other than Xardorok who touches the statuette of Deep Duerra must make a {@dc 16} Wisdom saving throw, taking 18 ({@dice 4d8}) psychic damage on a failed save, or half as much damage on a successful one. Along with the psychic damage comes a terrible sensation of having one's brain devoured by an illithid. Once this effect has occurred, the statuette can be handled safely. Anyone who keeps the chardalyn statuette on their person for more than 1 hour gains a random form of indefinite madness (see \"{@table indefinite madness||Madness}\" in the {@book Dungeon Master's Guide|DMG})."
+														"Anyone other than Xardorok who touches the statuette of Deep Duerra must make a {@dc 16} Wisdom saving throw, taking 18 ({@damage 4d8}) psychic damage on a failed save, or half as much damage on a successful one. Along with the psychic damage comes a terrible sensation of having one's brain devoured by an illithid. Once this effect has occurred, the statuette can be handled safely. Anyone who keeps the chardalyn statuette on their person for more than 1 hour gains a random form of indefinite madness (see \"{@table indefinite madness||Madness}\" in the {@book Dungeon Master's Guide|DMG})."
 													]
 												},
 												{
@@ -42888,7 +42888,7 @@
 													"page": 174,
 													"entries": [
 														"The iron trunk is bolted to the floor. A character using {@item thieves' tools|PHB} can use an action to try to pick the lock, doing so with a successful {@dc 20} Dexterity check. A {@spell knock} spell or similar magic also opens the trunk.",
-														"The trunk contains Xardorok's personal possessions (see \"Treasure\" below), and it is trapped. If all its contents are removed, hidden springs raise the trunk's false bottom to rise slightly, at which point the stone visage above the bed opens its mouth and belches a cloud of poisonous gas large enough to fill the room. The gas hangs in the air for 10 minutes, then dissipates. Any creature that starts its turn in the cloud must make a {@dc 14} Constitution saving throw, taking 22 ({@dice 4d10}) poison damage on a failed save, or half as much damage on a successful one."
+														"The trunk contains Xardorok's personal possessions (see \"Treasure\" below), and it is trapped. If all its contents are removed, hidden springs raise the trunk's false bottom to rise slightly, at which point the stone visage above the bed opens its mouth and belches a cloud of poisonous gas large enough to fill the room. The gas hangs in the air for 10 minutes, then dissipates. Any creature that starts its turn in the cloud must make a {@dc 14} Constitution saving throw, taking 22 ({@damage 4d10}) poison damage on a failed save, or half as much damage on a successful one."
 													]
 												},
 												{
@@ -43293,7 +43293,7 @@
 											"id": "4a7",
 											"page": 179,
 											"entries": [
-												"Between two sets of double doors is a corridor with a dozen arrow slits along its walls. Four {@creature duergar} guards are stationed in the hallways to either side (two per location). In addition to their normal weapons, these duergar carry {@item Heavy Crossbow|PHB|heavy crossbows} ({@hit 2} to hit) that deal 5 ({@dice 1d10}) piercing damage on a hit.",
+												"Between two sets of double doors is a corridor with a dozen arrow slits along its walls. Four {@creature duergar} guards are stationed in the hallways to either side (two per location). In addition to their normal weapons, these duergar carry {@item Heavy Crossbow|PHB|heavy crossbows} ({@hit 2} to hit) that deal 5 ({@damage 1d10}) piercing damage on a hit.",
 												{
 													"type": "image",
 													"href": {
@@ -43448,7 +43448,7 @@
 													"id": "4b6",
 													"page": 181,
 													"entries": [
-														"Any creature that touches the forge for the first time on a turn or starts its turn in contact with the forge takes 10 ({@dice 3d6}) fire damage.",
+														"Any creature that touches the forge for the first time on a turn or starts its turn in contact with the forge takes 10 ({@damage 3d6}) fire damage.",
 														"Characters who get close enough to peer through the vents in the side of the forge can see that it contains a large, beating heart. A successful {@dc 15} Intelligence ({@skill Arcana}) check reveals that the heart belongs to a red dragon and is clearly kept alive by magic. The forge grants the heart {@quickref Cover||3||three-quarters cover}. The heart is a Large object with AC 13, 27 hit points, vulnerability to cold damage, and immunity to fire and psychic damage. The heart stops beating when reduced to 0 hit points, rendering the forge inoperable."
 													]
 												},
@@ -43559,7 +43559,7 @@
 													"id": "4c2",
 													"page": 183,
 													"entries": [
-														"Xardorok deals an extra 5 ({@dice 1d10}) psychic damage to any creature he hits with a weapon attack, and he regains a number of hit points equal to the amount of psychic damage dealt.",
+														"Xardorok deals an extra 5 ({@damage 1d10}) psychic damage to any creature he hits with a weapon attack, and he regains a number of hit points equal to the amount of psychic damage dealt.",
 														"A character who succeeds on a {@dc 20} Intelligence ({@skill Religion}) check recognizes the statue as a depiction of Deep Duerra (see the \"Deep Duerra\" sidebar). Dwarves have advantage on this check. The flame rising from the statue's head symbolizes Deep Duerra's destructive, all-consuming mind. If a creature uses an action to extinguish this fire, Xardorok loses his Psychic Conquest trait.",
 														"The creature chained to the statue's base is a {@creature mind flayer} with 9 hit points and no armor (AC 11). Klondorn, the duergar priest (see {@area area X31|4c8|x}), has amputated its face-tentacles and removed the part of its brain that enables the mind flayer to use its psionic powers. Consequently, it has no innate spellcasting abilities and no effective attacks. It retains its Magic Resistance and its telepathy, however. Its challenge rating is 0 (0 XP).",
 														"The mind flayer doesn't expect sympathy from the characters and shies away from them. If the characters question it, the mind flayer shares the following information with one of them telepathically:",
@@ -43677,7 +43677,7 @@
 														"Two sets of double doors frame a short corridor. Bolted to the walls are a dozen black boxes, each one measuring eight feet tall and one foot wide, that give off a low hum."
 													]
 												},
-												"Operating a lever in {@area area X36|4d9|x} deactivates the trap in this hall, which can't be disabled by any other means. Any creature that enters the hall for the first time on a turn or starts its turn in the hall is struck by bolts of lightning that leap from the boxes and must make a {@dc 15} Dexterity saving throw, taking 18 ({@dice 4d8}) lightning damage on a failed save, or half as much damage on a successful one."
+												"Operating a lever in {@area area X36|4d9|x} deactivates the trap in this hall, which can't be disabled by any other means. Any creature that enters the hall for the first time on a turn or starts its turn in the hall is struck by bolts of lightning that leap from the boxes and must make a {@dc 15} Dexterity saving throw, taking 18 ({@damage 4d8}) lightning damage on a failed save, or half as much damage on a successful one."
 											]
 										},
 										{
@@ -43739,7 +43739,7 @@
 													"id": "4d4",
 													"page": 184,
 													"entries": [
-														"The closed, upright sarcophagi are iron maidens. The room contains ten of these devices, each one with spikes lining the interior of its lid. A Small or Medium creature shackled inside an iron maiden takes 11 ({@dice 2d10}) piercing damage when the lid snaps shut. The creature takes this damage again at the start of each of its turns until it is released. A creature can use an action to try to break out of an iron maiden, doing so with a successful {@dc 20} Strength check."
+														"The closed, upright sarcophagi are iron maidens. The room contains ten of these devices, each one with spikes lining the interior of its lid. A Small or Medium creature shackled inside an iron maiden takes 11 ({@damage 2d10}) piercing damage when the lid snaps shut. The creature takes this damage again at the start of each of its turns until it is released. A creature can use an action to try to break out of an iron maiden, doing so with a successful {@dc 20} Strength check."
 													]
 												},
 												{
@@ -44525,7 +44525,7 @@
 														"Unrecognizable figures in cold weather clothing advance until they form a line twenty feet away from you. Each one clutches a {@item handaxe|PHB} threateningly. One of them points a gloved finger at you and shouts, \"Kill that one first!\""
 													]
 												},
-												"The character is singled out by {@dice 1d4 + 2} {@creature Commoner||commoners} who have become corrupted by the chardalyn dragon's Malevolent Presence. Each one wields a {@item handaxe|PHB} that deals 3 ({@dice 1d6}) slashing damage on a hit. These townsfolk act on the same initiative count.",
+												"The character is singled out by {@dice 1d4 + 2} {@creature Commoner||commoners} who have become corrupted by the chardalyn dragon's Malevolent Presence. Each one wields a {@item handaxe|PHB} that deals 3 ({@damage 1d6}) slashing damage on a hit. These townsfolk act on the same initiative count.",
 												"Rather than make saving throws for the commoners to end the effect of the dragon's Malevolent Presence on them, roll a {@dice d6} at the end of each of their turns. On a 6, the townsfolk regain their senses and cease to be hostile as the dragon's hold over them ends."
 											]
 										},
@@ -48361,7 +48361,7 @@
 													"id": "559",
 													"page": 204,
 													"entries": [
-														"The stairs, which descend 90 feet to {@area area G10|564|x}, are slippery. The slippery ice is {@quickref difficult terrain||3}. When a creature moves on these stairs for the first time on a turn, it must succeed on a {@dc 10} Dexterity ({@skill Acrobatics}) check or fall {@condition prone}. If the check fails by 5 or more, the creature also tumbles 10 feet down the stairs and takes 3 ({@dice 1d6}) bludgeoning damage."
+														"The stairs, which descend 90 feet to {@area area G10|564|x}, are slippery. The slippery ice is {@quickref difficult terrain||3}. When a creature moves on these stairs for the first time on a turn, it must succeed on a {@dc 10} Dexterity ({@skill Acrobatics}) check or fall {@condition prone}. If the check fails by 5 or more, the creature also tumbles 10 feet down the stairs and takes 3 ({@damage 1d6}) bludgeoning damage."
 													]
 												}
 											]
@@ -48380,7 +48380,7 @@
 													]
 												},
 												"The throne belonged to Vassavicken, the frost giant queen who originally occupied Grimskalle.",
-												"Auril has transformed seven of the icicles that cling to the ceiling into creatures that resemble piercers. They use the {@creature piercer} stat block, have immunity to cold damage, and deal 10 ({@dice 3d6}) piercing damage plus 10 ({@dice 3d6}) cold damage on a hit.",
+												"Auril has transformed seven of the icicles that cling to the ceiling into creatures that resemble piercers. They use the {@creature piercer} stat block, have immunity to cold damage, and deal 10 ({@damage 3d6}) piercing damage plus 10 ({@damage 3d6}) cold damage on a hit.",
 												{
 													"type": "entries",
 													"name": "Stairs Down",
@@ -48451,7 +48451,7 @@
 													]
 												},
 												"If Auril is home, so is her white {@creature roc}, Iskra. During the day, the roc sleeps in its nest. Shortly before midnight, the roc takes to the sky with the Frostmaiden on its back and doesn't return to the fortress until a few hours before sunrise. Without the roc to carry her around Icewind Dale, Auril can't cast her nightly spell, thus bringing an end to the everlasting winter.",
-												"The roc is too big to enter the fortress. If it takes damage from foes it can't reach, it gets clear of the fortress and climbs to a height that puts it outside the range of its enemies. If the roc grapples a foe, it heads toward open water with its prize; once there, it drops the {@condition grappled} creature into the water from a height of at least 200 feet. In addition to taking {@dice 20d6} bludgeoning damage from the fall, the victim must also contend with the {@hazard frigid water} (see \"{@area Frigid Water|023|x}\").",
+												"The roc is too big to enter the fortress. If it takes damage from foes it can't reach, it gets clear of the fortress and climbs to a height that puts it outside the range of its enemies. If the roc grapples a foe, it heads toward open water with its prize; once there, it drops the {@condition grappled} creature into the water from a height of at least 200 feet. In addition to taking {@damage 20d6} bludgeoning damage from the fall, the victim must also contend with the {@hazard frigid water} (see \"{@area Frigid Water|023|x}\").",
 												{
 													"type": "entries",
 													"name": "Treasure",
@@ -48511,7 +48511,7 @@
 													"id": "567",
 													"page": 206,
 													"entries": [
-														"From the ceiling to the floor, the stairs that lead up to {@area area G6|557|x} are enclosed by thick, 9-foot-high railings of sculpted ice. The stairs, like the floor, are {@quickref difficult terrain||3}. When a creature moves on these stairs for the first time on a turn, it must succeed on a {@dc 10} Dexterity ({@skill Acrobatics}) check or fall {@condition prone}. If the check fails by 5 or more, the creature also tumbles 10 feet down the stairs and takes 3 ({@dice 1d6}) bludgeoning damage."
+														"From the ceiling to the floor, the stairs that lead up to {@area area G6|557|x} are enclosed by thick, 9-foot-high railings of sculpted ice. The stairs, like the floor, are {@quickref difficult terrain||3}. When a creature moves on these stairs for the first time on a turn, it must succeed on a {@dc 10} Dexterity ({@skill Acrobatics}) check or fall {@condition prone}. If the check fails by 5 or more, the creature also tumbles 10 feet down the stairs and takes 3 ({@damage 1d6}) bludgeoning damage."
 													]
 												}
 											]
@@ -48589,7 +48589,7 @@
 													"id": "56f",
 													"page": 207,
 													"entries": [
-														"A character can reach Vassavicken's corpse by chipping away the ice that encases her, but Thrym will not stand for such an act of defilement. If enough ice is chipped away or melted to expose any portion of Vassavicken's corpse to the air, Thrym's visage opens its mouth and breathes a cloud of magical cold energy that fills the entire room, sealing Vassavicken's corpse in ice once more. Any creature in the room when Thrym breathes must succeed on a {@dc 16} Constitution saving throw, taking 44 ({@dice 8d10}) cold damage on a failed save, or half as much damage on a successful one. Thrym's visage is impervious to damage from spells and weapons."
+														"A character can reach Vassavicken's corpse by chipping away the ice that encases her, but Thrym will not stand for such an act of defilement. If enough ice is chipped away or melted to expose any portion of Vassavicken's corpse to the air, Thrym's visage opens its mouth and breathes a cloud of magical cold energy that fills the entire room, sealing Vassavicken's corpse in ice once more. Any creature in the room when Thrym breathes must succeed on a {@dc 16} Constitution saving throw, taking 44 ({@damage 8d10}) cold damage on a failed save, or half as much damage on a successful one. Thrym's visage is impervious to damage from spells and weapons."
 													]
 												},
 												{
@@ -54050,7 +54050,7 @@
 													]
 												},
 												"Seven {@creature Ice Mephit||ice mephits} created by Auril cling to the ceiling, their wings wrapped tightly around their bodies so that they are easily mistaken for icicles. Characters who have passive Wisdom ({@skill Perception}) scores of 13 or higher can distinguish the mephits from the scores of real icicles that festoon the ceiling.",
-												"The ice mephits are tasked with guarding the cave but do not enter melee combat willingly. An ice mephit's preferred tactic is to use its action to fly next to an icicle and break it off, causing it to fall on an enemy below. Any creature standing under a falling icicle must succeed on a {@dc 12} Dexterity saving throw or take 7 ({@dice 2d6}) piercing damage from it.",
+												"The ice mephits are tasked with guarding the cave but do not enter melee combat willingly. An ice mephit's preferred tactic is to use its action to fly next to an icicle and break it off, causing it to fall on an enemy below. Any creature standing under a falling icicle must succeed on a {@dc 12} Dexterity saving throw or take 7 ({@damage 2d6}) piercing damage from it.",
 												{
 													"type": "entries",
 													"name": "Tekeli-li",
@@ -54714,7 +54714,7 @@
 													]
 												},
 												"Frost-covered stone steps descend from the stone platform to the icy floor in the cavern's northernmost section, as shown on {@area map 6.1|71f|x}.",
-												"Auril the Frostmaiden has transformed ten of the icicles that cling to the ceiling into creatures resembling piercers. They use the {@creature piercer} stat block, have immunity to cold damage, and deal 10 ({@dice 3d6}) piercing damage plus 10 ({@dice 3d6}) cold damage on a hit. The drow in areas H27 and H28 are aware of the {@creature Ice Piercer|IDRotF|ice piercers}, having seen them creep along the ceiling, and do their best to avoid them."
+												"Auril the Frostmaiden has transformed ten of the icicles that cling to the ceiling into creatures resembling piercers. They use the {@creature piercer} stat block, have immunity to cold damage, and deal 10 ({@damage 3d6}) piercing damage plus 10 ({@damage 3d6}) cold damage on a hit. The drow in areas H27 and H28 are aware of the {@creature Ice Piercer|IDRotF|ice piercers}, having seen them creep along the ceiling, and do their best to avoid them."
 											]
 										},
 										{
@@ -54773,7 +54773,7 @@
 													]
 												},
 												"Something beyond mortal comprehension exists partially inside the wall of ice and partially within some distant, horrific demiplane. As this otherworldly entity peers into the cavern, visitors risk losing their sanity to its influence.",
-												"Any creature that comes within 20 feet of the wall of ice is targeted by a {@spell dominate monster} spell (save {@dc 15}). The entity can concentrate on up to ten such spells at once. Any creature that successfully saves against the spell resists it and can't be targeted by this effect again. On a failed save, the creature stands perfectly still and does nothing while the alien entity probes its mind for 1 hour. If a creature remains under the spell's effect for the full duration, it must make a {@dc 15} Intelligence saving throw at the end of the hour, taking 44 ({@dice 8d10}) psychic damage on a failed save, or half as much damage on a successful one. Whether the save succeeds or fails, a creature subjected to the hour-long probe also gains a randomly determined form of long-term madness, determined by rolling on the {@table long-term madness||Long-Term Madness table} in the {@book Dungeon Master's Guide|DMG}.",
+												"Any creature that comes within 20 feet of the wall of ice is targeted by a {@spell dominate monster} spell (save {@dc 15}). The entity can concentrate on up to ten such spells at once. Any creature that successfully saves against the spell resists it and can't be targeted by this effect again. On a failed save, the creature stands perfectly still and does nothing while the alien entity probes its mind for 1 hour. If a creature remains under the spell's effect for the full duration, it must make a {@dc 15} Intelligence saving throw at the end of the hour, taking 44 ({@damage 8d10}) psychic damage on a failed save, or half as much damage on a successful one. Whether the save succeeds or fails, a creature subjected to the hour-long probe also gains a randomly determined form of long-term madness, determined by rolling on the {@table long-term madness||Long-Term Madness table} in the {@book Dungeon Master's Guide|DMG}.",
 												"The ice wall has AC 13, vulnerability to fire damage, and immunity to cold, poison, and psychic damage. If the wall takes 50 points of damage or more, large cracks form along its surface, and the alien entity withdraws into its distant demiplane, never to return. As it withdraws, its {@spell dominate monster} spells end."
 											]
 										},
@@ -54831,7 +54831,7 @@
 													"id": "610",
 													"page": 227,
 													"entries": [
-														"The mummy's golden mask (750 gp) is a Netherese art object."
+														"The mummy's {@item Painted gold war mask||golden mask} (750 gp) is a Netherese art object."
 													]
 												}
 											]
@@ -56214,7 +56214,7 @@
 													"id": "639",
 													"page": 238,
 													"entries": [
-														"The first time a creature steps onto the playing field, a dome of crackling electricity encloses the entire stadium. Nothing can physically pass through this barrier, which is immune to all damage and can't be dispelled by {@spell dispel magic}. The barrier also extends into the Ethereal Plane, blocking ethereal travel. Any creature that touches the barrier for the first time on a turn takes 40 ({@dice 9d8}) lightning damage. When the barrier appears, read:",
+														"The first time a creature steps onto the playing field, a dome of crackling electricity encloses the entire stadium. Nothing can physically pass through this barrier, which is immune to all damage and can't be dispelled by {@spell dispel magic}. The barrier also extends into the Ethereal Plane, blocking ethereal travel. Any creature that touches the barrier for the first time on a turn takes 40 ({@damage 9d8}) lightning damage. When the barrier appears, read:",
 														{
 															"type": "insetReadaloud",
 															"id": "63a",
@@ -56234,7 +56234,7 @@
 													"id": "63b",
 													"page": 238,
 													"entries": [
-														"The trophy can't be removed from its pedestal until it is won. If a creature tries to move the trophy before then, the pedestal discharges a bolt of lightning that deals 18 ({@dice 4d8}) lightning damage to the creature. The trophy cup is made from mithral embedded with three blue spinel gemstones and is worth 1,800 gp. While carried by a member of the winning team, it functions as a {@item stone of good luck}.",
+														"The trophy can't be removed from its pedestal until it is won. If a creature tries to move the trophy before then, the pedestal discharges a bolt of lightning that deals 18 ({@damage 4d8}) lightning damage to the creature. The trophy cup is made from mithral embedded with three blue spinel gemstones and is worth 1,800 gp. While carried by a member of the winning team, it functions as a {@item stone of good luck}.",
 														{
 															"type": "inset",
 															"name": "Chain Lightning",
@@ -56242,7 +56242,7 @@
 															"page": 238,
 															"entries": [
 																"Chain Lightning is a game in which two teams of six players compete against each other. To win, a team must eliminate the other team's players by hitting them with a 3-inch-diameter iron ball. A player struck by the thrown ball is eliminated and teleported to the sidelines. The game ends when all of one team's players have been eliminated.",
-																"When the game begins, an iron ball magically appears in a random location on the arena floor roughly equidistant from the two teams. The ball is a simple ranged weapon with the finesse and thrown properties. Its range is 120 feet, and it deals {@dice 1d4} bludgeoning damage on a hit.",
+																"When the game begins, an iron ball magically appears in a random location on the arena floor roughly equidistant from the two teams. The ball is a simple ranged weapon with the finesse and thrown properties. Its range is 120 feet, and it deals {@damage 1d4} bludgeoning damage on a hit.",
 																"To simulate a game of Chain Lightning, follow these steps:",
 																{
 																	"type": "entries",
@@ -56264,7 +56264,7 @@
 																			"type": "list",
 																			"items": [
 																				"Hurling the ball between the tines of an electrified mast requires a successful ranged attack roll against AC 15. If this attack hits, the ball becomes electrically charged as it passes between the tines. Repeat step 1 to determine which team gets custody of the electrically charged ball.",
-																				"If the ball is thrown at a player on defense and it hits, the player struck by the ball is eliminated. If the ball is electrically charged when it hits, it deals an additional 3 ({@dice 1d6}) lightning damage to the eliminated player, and an arc of lightning shoots from the ball and automatically hits another randomly determined player on the same team. This second player takes 3 ({@dice 1d6}) lightning damage and is also eliminated. If the ball is thrown at a player and it misses, it loses its electrical charge if it has one. Repeat step 1 to determine which team gets custody of the ball."
+																				"If the ball is thrown at a player on defense and it hits, the player struck by the ball is eliminated. If the ball is electrically charged when it hits, it deals an additional 3 ({@damage 1d6}) lightning damage to the eliminated player, and an arc of lightning shoots from the ball and automatically hits another randomly determined player on the same team. This second player takes 3 ({@damage 1d6}) lightning damage and is also eliminated. If the ball is thrown at a player and it misses, it loses its electrical charge if it has one. Repeat step 1 to determine which team gets custody of the ball."
 																			]
 																		}
 																	]
@@ -56517,7 +56517,7 @@
 																],
 																[
 																	"5",
-																	"Charm of the Evoker. This charm allows you to cast the {@spell dancing lights} cantrip as an action at will. After 24 hours, this charm vanishes from you. Secret Effect: When this charm vanishes from you, sparks explode all around you. These sparks deal 5 ({@dice 2d4}) lightning damage to each creature within 20 feet of you."
+																	"Charm of the Evoker. This charm allows you to cast the {@spell dancing lights} cantrip as an action at will. After 24 hours, this charm vanishes from you. Secret Effect: When this charm vanishes from you, sparks explode all around you. These sparks deal 5 ({@damage 2d4}) lightning damage to each creature within 20 feet of you."
 																],
 																[
 																	"6",
@@ -56669,7 +56669,7 @@
 													"id": "663",
 													"page": 243,
 													"entries": [
-														"The stone plinth upon which the orb rests is engraved with instructions written in Draconic: \"Ask and we shall find.\" To use the orb, one must place one's hands on it and speak the name of an object or a person. If the target exists on the same plane of existence as the orb, the character touching the orb experiences a vivid vision of the target's location and knows how far away it is and in what direction. Such insight, however, comes with a risk: a creature that receives a vision must make a {@dc 20} Constitution saving throw. On a failed save, the creature takes 10 ({@dice 3d6}) piercing damage as one of its eyes is magically plucked from its socket and teleported inside the orb (see \"{@book Injuries|DMG|9|Injuries}\" in the {@book Dungeon Master's Guide|DMG} for rules on losing an eye).",
+														"The stone plinth upon which the orb rests is engraved with instructions written in Draconic: \"Ask and we shall find.\" To use the orb, one must place one's hands on it and speak the name of an object or a person. If the target exists on the same plane of existence as the orb, the character touching the orb experiences a vivid vision of the target's location and knows how far away it is and in what direction. Such insight, however, comes with a risk: a creature that receives a vision must make a {@dc 20} Constitution saving throw. On a failed save, the creature takes 10 ({@damage 3d6}) piercing damage as one of its eyes is magically plucked from its socket and teleported inside the orb (see \"{@book Injuries|DMG|9|Injuries}\" in the {@book Dungeon Master's Guide|DMG} for rules on losing an eye).",
 														"If asked for the whereabouts of the missing wall engraving needed to complete the Rite of the Arcane Octad (see \"{@area Rite of the Arcane Octad|62c|x}\"), the orb provides a vision of where it fell inside the observatory ({@area area Y15|66d|x}). The orb is magically anchored to this chamber and cannot be removed or destroyed. The only limit to how many times it can be used is how many eyeballs the party has remaining."
 													]
 												}
@@ -56854,7 +56854,7 @@
 																],
 																[
 																	"3",
-																	"A {@creature Chimeric Baboon|IDRotF|baboon} with a bite attack that deals an extra 3 ({@dice 1d6}) poison damage on a hit"
+																	"A {@creature Chimeric Baboon|IDRotF|baboon} with a bite attack that deals an extra 3 ({@damage 1d6}) poison damage on a hit"
 																],
 																[
 																	"4",
@@ -58392,7 +58392,7 @@
 													]
 												},
 												"This chamber was built to house unstable magic items during experimentation, but it couldn't contain the artifact that Iriolarthas and his apprentices retrieved from the bottom of the Sea of Moving Ice. During a routine examination, the spindle briefly became active, dispelled magical effects throughout Ythryn, and caused the city to plunge into the Reghed Glacier. The spindle is now dormant but can be reactivated to wreak havoc on the Weave.",
-												"The spindle is immune to all damage and is unaffected by any magic in existence today. It can't be moved from this location. If it is targeted by a spell of 5th level or higher, an explosion of magical energy blasts from it: all magic items and magical effects within a three-mile radius (including those within the spire) are suppressed for 24 hours, and spellcasters are drained of any unexpended spell slots. Living spells, constructs, and other magically created creatures are unaffected. The pulse of energy suppresses magical traps throughout the city and causes the floating chamber above Skydock Spire ({@area area Y28|6cd|x}) to crash into to the ground, pulverizing it and dealing 99 ({@dice 18d10}) bludgeoning damage to each creature inside it.",
+												"The spindle is immune to all damage and is unaffected by any magic in existence today. It can't be moved from this location. If it is targeted by a spell of 5th level or higher, an explosion of magical energy blasts from it: all magic items and magical effects within a three-mile radius (including those within the spire) are suppressed for 24 hours, and spellcasters are drained of any unexpended spell slots. Living spells, constructs, and other magically created creatures are unaffected. The pulse of energy suppresses magical traps throughout the city and causes the floating chamber above Skydock Spire ({@area area Y28|6cd|x}) to crash into to the ground, pulverizing it and dealing 99 ({@damage 18d10}) bludgeoning damage to each creature inside it.",
 												{
 													"type": "image",
 													"href": {
@@ -58787,7 +58787,7 @@
 													"entries": [
 														"To conduct the orchestra through the end of their final symphony, a character must succeed on three consecutive {@dc 15} Charisma ({@skill Performance}) checks made 1 minute apart. A character who knows The Dark Between the Stars gains advantage on each check.",
 														"On the first successful check, the orchestra launches into a hauntingly beautiful performance. If the next check succeeds, listeners experience a falling sensation in the pits of their stomachs, mirroring Ythryn's downward plunge, as the music reaches a crescendo. If the third and final check succeeds, the conductor brings the piece to a satisfying close as the sound of ghostly applause rises from the audience and phantasmal black roses rain down on the musicians, who face the audience and bow before fading into the afterlife. A character who successfully conducts the orchestra gains inspiration.",
-														"On each failed check, the spirits become angry, and their antipathy toward the conductor deals 27 ({@dice 5d10}) psychic damage to each creature in the music hall."
+														"On each failed check, the spirits become angry, and their antipathy toward the conductor deals 27 ({@damage 5d10}) psychic damage to each creature in the music hall."
 													]
 												}
 											]
