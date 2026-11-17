@@ -607,6 +607,7 @@
 					"gainSubclassFeature": true
 				},
 				"Primal Knowledge|Barbarian|XPHB|3",
+				"Totems|Barbarian|XPHB|3|WoW",
 				"Ability Score Improvement|Barbarian|XPHB|4",
 				"Extra Attack|Barbarian|XPHB|5",
 				"Fast Movement|Barbarian|XPHB|5",
@@ -1702,6 +1703,47 @@
 			"entries": [
 				"You gain proficiency in another skill of your choice from the skill list available to Barbarians at level 1.",
 				"In addition, while your Rage is active, you can channel primal power when you attempt certain tasks; whenever you make an ability check using one of the following skills, you can make it as a Strength check even if it normally uses a different ability: {@skill Acrobatics|XPHB}, {@skill Intimidation|XPHB}, {@skill Perception|XPHB}, {@skill Stealth|XPHB}, or {@skill Survival|XPHB}. When you use this ability, your Strength represents primal power coursing through you, honing your agility, bearing, and senses."
+			]
+		},
+		{
+			"name": "Totems",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 3,
+			"isClassFeatureVariant": true,
+			"entries": [
+				"This feature replaces the Barbarian's {@classFeature Primal Knowledge|Barbarian|XPHB|3|XPHB} feature.",
+				"You can coalesce elemental spirits into a totem that aids you and your allies. As a {@variantrule Bonus Action|XPHB}, you can plant one of the totems below into the ground in an unoccupied space you can see within 10 feet of yourself.",
+				"A totem is a Small object that has AC 10 and 1 {@variantrule Hit Points|XPHB|Hit Point} and lasts for 1 minute, until it drops to 0 {@variantrule Hit Points|XPHB}, or until you use this feature again. At the end of each of your turns, the totem pulses with elemental energy that fills a 30-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation}.",
+				{
+					"type": "entries",
+					"name": "Earthbind Totem",
+					"entries": [
+						"Each enemy in the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} has its {@variantrule Speed|XPHB} reduced by 10 feet until the end of your next turn."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Primal Knowledge Totem",
+					"entries": [
+						"Each ally in the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} is empowered with nature's focus until the end of your next turn. While empowered in this way, whenever the creature makes an ability check using one of the following skills, the creature can make it as a Strength check even if it normally uses a different ability: {@skill Acrobatics|XPHB}, {@skill Intimidation|XPHB}, {@skill Perception|XPHB}, {@skill Stealth|XPHB}, or {@skill Survival|XPHB}. After you plant this totem, you can't do so again until you finish a {@variantrule Long Rest|XPHB}. You can also restore your use of this totem by expending one use of your {@classFeature Rage|Barbarian|XPHB|1|XPHB} (no action required)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Tremor Totem",
+					"entries": [
+						"Each ally in the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} has {@variantrule Immunity|XPHB} to the {@condition Charmed|XPHB} and {@condition Frightened|XPHB} conditions until the end of your next turn. If the creature was already {@condition Charmed|XPHB} or {@condition Frightened|XPHB}, those conditions are suppressed until the end of its next turn."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Wind Rush Totem",
+					"entries": [
+						"Each ally in the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} has its {@variantrule Speed|XPHB} increased by 10 feet until the end of your next turn."
+					]
+				}
 			]
 		},
 		{

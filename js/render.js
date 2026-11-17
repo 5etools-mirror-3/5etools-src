@@ -4294,7 +4294,7 @@ Renderer.utils = class {
 					}
 
 					const prereqsToJoin = Object.entries(pr)
-						.filter(([k]) => !prereqsShared[k])
+						.filter(([k]) => !(k in prereqsShared))
 						.sort(([kA], [kB]) => this._WEIGHTS[kA] - this._WEIGHTS[kB])
 						.map(([k, v]) => {
 							if (k === "note" || blocklistKeys?.has(k)) return false;
@@ -4675,38 +4675,40 @@ Renderer.utils = class {
 			}
 
 			const parts = v.map(obj => {
-				return Object.entries(obj).map(([profType, prof]) => {
-					switch (profType) {
-						case "armor": {
-							if (prof === "shield") {
-								if (isListMode) return styleHint === "classic" ? `Prof ${prof}` : `${prof.toTitleCase()} Trai.`;
-								return styleHint === "classic" ? `Proficiency with ${prof}s` : `${prof.toTitleCase()} Training`;
-							}
+				return Object.entries(obj)
+					.map(([profType, prof]) => {
+						switch (profType) {
+							case "armor": {
+								if (prof === "shield") {
+									if (isListMode) return styleHint === "classic" ? `Prof ${prof}` : `${prof.toTitleCase()} Trai.`;
+									return styleHint === "classic" ? `Proficiency with ${prof}s` : `${prof.toTitleCase()} Training`;
+								}
 
-							if (isListMode) return styleHint === "classic" ? `Prof ${Parser.armorFullToAbv(prof)} armor` : `${Parser.armorFullToAbv(prof).toTitleCase()} Armor Trai.`;
-							return styleHint === "classic" ? `Proficiency with ${prof} armor` : `${prof.toTitleCase()} Armor Training`;
+								if (isListMode) return styleHint === "classic" ? `Prof ${Parser.armorFullToAbv(prof)} armor` : `${Parser.armorFullToAbv(prof).toTitleCase()} Armor Trai.`;
+								return styleHint === "classic" ? `Proficiency with ${prof} armor` : `${prof.toTitleCase()} Armor Training`;
+							}
+							case "weapon": {
+								return isListMode ? `Prof ${Parser.weaponFullToAbv(prof)} weapon` : `Proficiency with a ${prof} weapon`;
+							}
+							case "weaponGroup": {
+								return isListMode ? `Prof ${Parser.weaponFullToAbv(prof)} weapons` : `${prof.toTitleCase()} Weapon Proficiency`;
+							}
+							case "skill": {
+								if (prof === true) return isListMode ? `Skill Proficiency` : `Proficiency in a skill`;
+								return isListMode
+									? prof.map(skill => skill.toTitleCase()).join("+")
+									: `Proficiency in the ${prof.map(skill => `{@skill ${skill.toTitleCase()}}`).joinConjunct(", ", " and ")} skill${prof.length === 1 ? "" : "s"}`;
+							}
+							case "tool": {
+								if (prof === true) return isListMode ? "Tool Proficiency" : "Proficiency with a Tool";
+								return isListMode
+									? prof.map(tool => tool.toTitleCase()).join("+")
+									: `Proficiency with ${prof.map(tool => tool.toTitleCase()).joinConjunct(", ", " and ")}`;
+							}
+							default: throw new Error(`Unhandled proficiency type: "${profType}"`);
 						}
-						case "weapon": {
-							return isListMode ? `Prof ${Parser.weaponFullToAbv(prof)} weapon` : `Proficiency with a ${prof} weapon`;
-						}
-						case "weaponGroup": {
-							return isListMode ? `Prof ${Parser.weaponFullToAbv(prof)} weapons` : `${prof.toTitleCase()} Weapon Proficiency`;
-						}
-						case "skill": {
-							if (prof === true) return isListMode ? `Skill Proficiency` : `Proficiency in a skill`;
-							return isListMode
-								? prof.map(skill => skill.toTitleCase()).join("+")
-								: `Proficiency in the ${prof.map(skill => `{@skill ${skill.toTitleCase()}}`).joinConjunct(", ", " and ")} skill${prof.length === 1 ? "" : "s"}`;
-						}
-						case "tool": {
-							if (prof === true) return isListMode ? "Tool Proficiency" : "Proficiency with a Tool";
-							return isListMode
-								? prof.map(tool => tool.toTitleCase()).join("+")
-								: `Proficiency with ${prof.map(tool => tool.toTitleCase()).joinConjunct(", ", " and ")}`;
-						}
-						default: throw new Error(`Unhandled proficiency type: "${profType}"`);
-					}
-				});
+					})
+					.joinConjunct(isListMode ? "+" : ", ", isListMode ? "+" : " and ");
 			});
 			return isListMode ? parts.join("/") : parts.joinConjunct(", ", " or ");
 		}
@@ -10862,7 +10864,7 @@ Renderer.monster = class {
 
 		const prefix = mon.isNamedCreature ? "" : isTitleCase || isSentenceCase ? "The " : "the ";
 		if (shortName === true) return `${prefix}${name}`;
-		else if (shortName) return `${prefix}${!prefix && isTitleCase ? shortName.toTitleCase() : shortName.toLowerCase()}`;
+		else if (shortName) return `${prefix}${!prefix && isTitleCase ? shortName.toTitleCase() : (mon.isNamedCreature ? shortName : shortName.toLowerCase())}`;
 
 		const out = Renderer.monster.getShortNameFromName(name, {isNamedCreature: mon.isNamedCreature});
 		return `${prefix}${out}`;

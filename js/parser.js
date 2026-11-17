@@ -898,6 +898,8 @@ Parser.itemRechargeToFull = function (recharge) {
 Parser.ITEM_MISC_TAG_TO_FULL = {
 	"CF/W": "Creates Food/Water",
 	"CNS": "Consumable",
+	"DRK": "Drink",
+	"FOD": "Food",
 	"TT": "Trinket Table",
 };
 Parser.itemMiscTagToFull = function (type) {

@@ -1612,8 +1612,28 @@ class ListPage {
 		);
 	}
 
+	async _pHandleClick_doCopyMarkdown ({eleCopyEffect}) {
+		await MiscUtil.pCopyTextToClipboard(this._getLastRenderedMarkdown());
+		JqueryUtil.showCopiedEffect(eleCopyEffect);
+	}
+
 	_pHandleClick_doDownloadMarkdown () {
 		DataUtil.userDownloadText(`${this._lastRender.entity._displayName || this._lastRender.entity.name}.md`, this._getLastRenderedMarkdown());
+	}
+
+	/* -------------------------------------------- */
+
+	async _pHandleClick_doCopySourceData ({eleCopyEffect}) {
+		await MiscUtil.pCopyTextToClipboard(JSON.stringify(DataUtil.cleanJson(this._lastRender.entity), null, "\t"));
+		JqueryUtil.showCopiedEffect(eleCopyEffect);
+	}
+
+	_pHandleClick_doDownloadSourceData () {
+		DataUtil.userDownload(
+			this._lastRender.entity._displayName || this._lastRender.entity.name,
+			DataUtil.cleanJson(this._lastRender.entity),
+			{isSkipAdditionalMetadata: true},
+		);
 	}
 
 	/* -------------------------------------------- */
@@ -1960,10 +1980,27 @@ class ListPage {
 			),
 			null,
 			new ContextUtil.Action(
-				"Export as Image (SHIFT to Copy Image; SHIFT+ALT to Copy in Day Theme)",
-				evt => this._pHandleClick_exportAsImage({evt, isFast: evt.shiftKey, isForceDayTheme: evt.altKey, eleCopyEffect: btnOptions}),
+				"Copy as Image (SHIFT to Copy in Day Theme)",
+				evt => this._pHandleClick_exportAsImage({evt, isFast: true, isForceDayTheme: evt.shiftKey, eleCopyEffect: btnOptions}),
+			),
+			new ContextUtil.Action(
+				"Export as Image",
+				evt => this._pHandleClick_exportAsImage({evt, eleCopyEffect: btnOptions}),
 			),
 			null,
+			new ContextUtil.Action(
+				"Copy Source Data",
+				() => this._pHandleClick_doCopySourceData({eleCopyEffect: btnOptions}),
+			),
+			new ContextUtil.Action(
+				"Download Source Data",
+				() => this._pHandleClick_doDownloadSourceData(),
+			),
+			null,
+			new ContextUtil.Action(
+				"Copy as Markdown",
+				() => this._pHandleClick_doCopyMarkdown({eleCopyEffect: btnOptions}),
+			),
 			new ContextUtil.Action(
 				"Download as Markdown",
 				() => this._pHandleClick_doDownloadMarkdown(),

@@ -6,9 +6,6 @@
 			],
 			"subclass": [
 				"barbarian"
-			],
-			"classFeature": [
-				"barbarian"
 			]
 		}
 	},
@@ -26,46 +23,6 @@
 				"name": "Barbarian",
 				"source": "XPHB"
 			},
-			"classFeatures": [
-				"Rage|Barbarian|XPHB|1",
-				"Unarmored Defense|Barbarian|XPHB|1",
-				"Weapon Mastery|Barbarian|XPHB|1",
-				"Danger Sense|Barbarian|XPHB|2",
-				"Reckless Attack|Barbarian|XPHB|2",
-				{
-					"classFeature": "Shaman Subclass|Shaman|WoW|3",
-					"gainSubclassFeature": true
-				},
-				"Totems|Shaman|WoW|3",
-				"Ability Score Improvement|Barbarian|XPHB|4",
-				"Extra Attack|Barbarian|XPHB|5",
-				"Fast Movement|Barbarian|XPHB|5",
-				{
-					"classFeature": "Subclass Feature|Barbarian|XPHB|6",
-					"gainSubclassFeature": true
-				},
-				"Feral Instinct|Barbarian|XPHB|7",
-				"Instinctive Pounce|Barbarian|XPHB|7",
-				"Ability Score Improvement|Barbarian|XPHB|8",
-				"Brutal Strike|Barbarian|XPHB|9",
-				{
-					"classFeature": "Subclass Feature|Barbarian|XPHB|10",
-					"gainSubclassFeature": true
-				},
-				"Relentless Rage|Barbarian|XPHB|11",
-				"Ability Score Improvement|Barbarian|XPHB|12",
-				"Improved Brutal Strike|Barbarian|XPHB|13",
-				{
-					"classFeature": "Subclass Feature|Barbarian|XPHB|14",
-					"gainSubclassFeature": true
-				},
-				"Persistent Rage|Barbarian|XPHB|15",
-				"Ability Score Improvement|Barbarian|XPHB|16",
-				"Improved Brutal Strike|Barbarian|XPHB|17",
-				"Indomitable Might|Barbarian|XPHB|18",
-				"Epic Boon|Barbarian|XPHB|19",
-				"Primal Champion|Barbarian|XPHB|20"
-			],
 			"includeSubclassesFrom": [
 				"Barbarian|XPHB"
 			],
@@ -136,58 +93,6 @@
 				"className": "Barbarian",
 				"classSource": "XPHB"
 			}
-		}
-	],
-	"classFeature": [
-		{
-			"name": "Shaman Subclass",
-			"source": "WoW",
-			"className": "Shaman",
-			"classSource": "WoW",
-			"level": 3,
-			"entries": [
-				"You gain a Shaman subclass of your choice. A subclass is a specialization that grants you features at certain Shaman levels. For the rest of your career, you gain each of your subclass's features that are of your Shaman level or lower."
-			]
-		},
-		{
-			"name": "Totems",
-			"source": "WoW",
-			"className": "Shaman",
-			"classSource": "WoW",
-			"level": 3,
-			"entries": [
-				"This feature replaces the Barbarian's {@classFeature Primal Knowledge|Barbarian|XPHB|3|XPHB} feature.",
-				"You can coalesce elemental spirits into a totem that aids you and your allies. As a {@variantrule Bonus Action|XPHB}, you can plant one of the totems below into the ground in an unoccupied space you can see within 10 feet of yourself.",
-				"A totem is a Small object that has AC 10 and 1 {@variantrule Hit Points|XPHB|Hit Point} and lasts for 1 minute, until it drops to 0 {@variantrule Hit Points|XPHB}, or until you use this feature again. At the end of each of your turns, the totem pulses with elemental energy that fills a 30-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation}.",
-				{
-					"type": "entries",
-					"name": "Earthbind Totem",
-					"entries": [
-						"Each enemy in the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} has its {@variantrule Speed|XPHB} reduced by 10 feet until the end of your next turn."
-					]
-				},
-				{
-					"type": "entries",
-					"name": "Primal Knowledge Totem",
-					"entries": [
-						"Each ally in the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} is empowered with nature's focus until the end of your next turn. While empowered in this way, whenever the creature makes an ability check using one of the following skills, the creature can make it as a Strength check even if it normally uses a different ability: {@skill Acrobatics|XPHB}, {@skill Intimidation|XPHB}, {@skill Perception|XPHB}, {@skill Stealth|XPHB}, or {@skill Survival|XPHB}. After you plant this totem, you can't do so again until you finish a {@variantrule Long Rest|XPHB}. You can also restore your use of this totem by expending one use of your {@classFeature Rage|Barbarian|XPHB|1|XPHB} (no action required)."
-					]
-				},
-				{
-					"type": "entries",
-					"name": "Tremor Totem",
-					"entries": [
-						"Each ally in the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} has {@variantrule Immunity|XPHB} to the {@condition Charmed|XPHB} and {@condition Frightened|XPHB} conditions until the end of your next turn. If the creature was already {@condition Charmed|XPHB} or {@condition Frightened|XPHB}, those conditions are suppressed until the end of its next turn."
-					]
-				},
-				{
-					"type": "entries",
-					"name": "Wind Rush Totem",
-					"entries": [
-						"Each ally in the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} has its {@variantrule Speed|XPHB} increased by 10 feet until the end of your next turn."
-					]
-				}
-			]
 		}
 	]
 }

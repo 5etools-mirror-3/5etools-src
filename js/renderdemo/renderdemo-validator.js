@@ -1,5 +1,5 @@
 export class RenderDemoValidator {
-	static SCHEMA_URI = "https://raw.githack.com/TheGiddyLimit/5etools-utils/master/schema/site/entry.json";
+	static SCHEMA_URI = "https://raw.githack.com/TheGiddyLimit/5etools-utils/master/schema/brew/renderdemo-validation.json";
 
 	static async pInit ({editor}) {
 		await Promise.all([

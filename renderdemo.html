@@ -94,7 +94,10 @@
 				<div class="ve-mb-2 ve-split-v-center ve-w-100">
 					<h4 class="ve-my-0 ve-italic">Input</h4>
 
-					<button class="ve-btn ve-btn-default ve-btn-xs" id="btn-format" title="Format (CTRL+ALT+L)">Format</button>
+					<div class="ve-flex-v-center">
+						<div class="ve-mr-2 ve-no-select ve-clickable" id="wrp-validation" title="Jump to Next Error/Warning (ALT+E)"></div>
+						<button class="ve-btn ve-btn-default ve-btn-xs" id="btn-format" title="Format (CTRL+ALT+L)">Format</button>
+					</div>
 				</div>
 
 				<pre id="jsoninput" class="ve-h-100 ve-mb-0 ace_editor"></pre>
@@ -115,6 +118,8 @@
 					<table id="pagecontent" class="ve-w-100 ve-stats">
 						<!-- populate with JS -->
 					</table>
+
+					<div id="wrp-brew-summary" class="ve-hidden ve-w-100 ve-bg-solid ve-b-1p ve-bc-5p ve-p-2"></div>
 				</div>
 
 				<div class="ve-mt-2 ve-p-2 ve-hidden ve-no-shrink alert alert-danger ve-print__hidden" id="disp-errors"></div>

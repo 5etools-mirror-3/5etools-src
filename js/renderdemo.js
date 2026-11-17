@@ -1,5 +1,6 @@
 import {ModalFilterRenderDemo} from "./filter-renderdemo.js";
 import {RenderDemoValidator} from "./renderdemo/renderdemo-validator.js";
+import {BrewSummaryUi} from "./utils-brew/utils-brew-ui-summary.js";
 
 export class RenderDemoPage extends BaseComponent {
 	static _STORAGE_LOCATION_STATE = "demoState";
@@ -9,6 +10,7 @@ export class RenderDemoPage extends BaseComponent {
 
 		this._dispErrors = null;
 		this._eleOut = null;
+		this._wrpBrewSummary = null;
 
 		this._renderer = null;
 		this._editor = null;
@@ -30,6 +32,7 @@ export class RenderDemoPage extends BaseComponent {
 			.vee.show()
 			.vee.html(`Invalid JSON:<br><span class="ve-code">${msg}</span>`);
 		this._eleOut.vee.hide();
+		this._wrpBrewSummary.vee.hide();
 	}
 
 	/* ----- */
@@ -44,10 +47,23 @@ export class RenderDemoPage extends BaseComponent {
 			return this._doShowJsonParseError(e);
 		}
 
+		if (json?._meta) {
+			const brewSummary = BrewSummaryUi.getBrewSummary({brew: json});
+			this._eleOut.vee.hide();
+			this._wrpBrewSummary
+				.vee.show()
+				.vee.empty()
+				.vee.appends(BrewSummaryUi.getRenderedBrewSummary({brewSummary}));
+			return;
+		}
+
 		const renderStack = [];
 		this._renderer.setFirstSection(true);
 		this._renderer.resetHeaderIndex();
 		this._renderer.recursiveRender(json, renderStack);
+		this._wrpBrewSummary
+			.vee.hide()
+			.vee.empty();
 		this._eleOut
 			.vee.show()
 			.vee.html(`
@@ -126,22 +142,52 @@ export class RenderDemoPage extends BaseComponent {
 	_getInitElements () {
 		this._dispErrors = veEs(`#disp-errors`);
 		this._eleOut = veEs(`#pagecontent`);
+		this._wrpBrewSummary = veEs(`#wrp-brew-summary`);
 
 		const wrpSettings = veEs("#wrp-settings");
 		const btnFormat = veEs(`#btn-format`);
+		const wrpValidation = veEs(`#wrp-validation`);
 		const wrpSelRenderer = veEs(`#wrp-sel-renderer`);
 
 		return {
 			wrpSettings,
 			btnFormat,
+			wrpValidation,
 			wrpSelRenderer,
 		};
+	}
+
+	_pInitUi_validation ({wrpValidation}) {
+		wrpValidation
+			.vee.onn("click", () => {
+				this._editor.focus();
+				this._editor.execCommand("goToNextError");
+			});
+
+		const hkChangeAnnotation = () => {
+			const annotations = this._editor.session.getAnnotations();
+			const cntErrors = annotations.filter(({type}) => type === "error").length;
+			const cntWarnings = annotations.filter(({type}) => type === "warning").length;
+			wrpValidation
+				.vee.html(
+					[
+						cntErrors ? `<span class="text-danger">${cntErrors} Error${cntErrors === 1 ? "" : "s"}</span>` : null,
+						cntWarnings ? `<span class="text-warning">${cntWarnings} Warning${cntWarnings === 1 ? "" : "s"}</span>` : null,
+					]
+						.filter(Boolean)
+						.join("; "),
+				)
+				.vee.toggle(!!cntErrors || !!cntWarnings);
+		};
+		this._editor.session.on("changeAnnotation", hkChangeAnnotation);
+		hkChangeAnnotation();
 	}
 
 	async _pInitUi () {
 		const {
 			wrpSettings,
 			btnFormat,
+			wrpValidation,
 			wrpSelRenderer,
 		} = this._getInitElements();
 
@@ -182,6 +228,7 @@ export class RenderDemoPage extends BaseComponent {
 
 		// init editor
 		this._editor = await EditorUtil.pInitEditor("jsoninput", {mode: "ace/mode/json"});
+		this._pInitUi_validation({wrpValidation});
 
 		document.body.addEventListener(
 			"keydown",
