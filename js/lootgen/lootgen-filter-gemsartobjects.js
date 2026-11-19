@@ -61,7 +61,7 @@ export class ModalFilterGemsArtObjects extends ModalFilterBase {
 	}
 
 	async _pLoadAllData () {
-		const lootData = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/loot.json`);
+		const lootData = await DataUtil.loot.loadJSON();
 		return [
 			...lootData.gems,
 			...lootData.artObjects,

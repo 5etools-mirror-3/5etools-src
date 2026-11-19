@@ -975,7 +975,7 @@ class Lifegen {
 		ExcludeUtil.pInitialise().then(null); // don't await, as this is only used for search
 		const [lifeData, nameData] = await Promise.all([
 			DataUtil.loadJSON("data/life.json"),
-			DataUtil.loadJSON("data/names.json"),
+			DataUtil.namez.loadJSON(),
 		]);
 		onJsonLoad(lifeData, nameData);
 

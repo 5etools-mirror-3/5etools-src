@@ -764,7 +764,7 @@ export class BookUtil {
 	static async _pLoadChapter_pGetData ({fromIndex, bookId, homebrewData}) {
 		if (homebrewData) return homebrewData;
 
-		if (BookUtil.referenceId) return DataUtil.loadJSON(`${BookUtil.baseDataUrl}${bookId.toLowerCase()}.json`);
+		if (BookUtil.referenceId) return DataUtil.reference.pLoadReference(bookId);
 
 		const pack = await DataLoader.pCacheAndGet(DataLoader.getPropPage(BookUtil.propHomebrewData), fromIndex.source, UrlUtil.encodeForHash(bookId), {isRequired: true});
 		return pack[BookUtil.propHomebrewData];
@@ -1137,7 +1137,6 @@ BookUtil._isNarrow = null;
 // endregion
 
 // region Hashchange
-BookUtil.baseDataUrl = "";
 BookUtil.allPageUrl = "";
 BookUtil.bookIndex = [];
 BookUtil.bookIndexPrerelease = [];

@@ -794,6 +794,207 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Ashbringer",
+			"source": "WoW",
+			"activities": [
+				{
+					"type": "attack",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 10,
+								"types": [
+									"fire"
+								]
+							}
+						]
+					}
+				},
+				{
+					"name": "Attack Against Undead",
+					"type": "attack",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"number": 3,
+								"denomination": 10,
+								"types": [
+									"fire"
+								]
+							}
+						]
+					}
+				},
+				{
+					"name": "Change State",
+					"type": "enchant",
+					"activation": {
+						"type": "special",
+						"condition": "Perform an act of legendary heroism"
+					},
+					"visibility": {
+						"requireIdentification": true,
+						"requireMagic": true
+					},
+					"restrictions": {
+						"allowMagical": true,
+						"type": "weapon"
+					},
+					"enchant": {
+						"self": true
+					},
+					"effects": [
+						{
+							"foundryId": "ashbringer",
+							"riders": {
+								"activity": [
+									{
+										"foundryId": "ashbringer"
+									}
+								],
+								"effect": [
+									{
+										"foundryId": "ashbringer1"
+									}
+								]
+							}
+						},
+						{
+							"foundryId": "ashbringer2",
+							"riders": {
+								"activity": [
+									{
+										"foundryId": "ashbringer1"
+									}
+								]
+							}
+						}
+					]
+				},
+				{
+					"foundryId": "ashbringer",
+					"name": "Wake of Ashes",
+					"type": "save",
+					"activation": {
+						"type": "special",
+						"condition": "Reduce a creature to 0 Hit Points"
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "radius",
+							"size": "10"
+						},
+						"affects": {
+							"choice": true,
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"formula": "18"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "ashbringer1"
+						}
+					]
+				},
+				{
+					"foundryId": "ashbringer1",
+					"name": "Steal Life",
+					"type": "heal",
+					"activation": {
+						"type": "special",
+						"condition": "Reduce a creature to 0 Hit Points."
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"temphp"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "20"
+						},
+						"scaling": {
+							"number": 1
+						}
+					},
+					"visibility": {
+						"requireMagic": true
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "ashbringer",
+					"name": "True State",
+					"type": "enchantment",
+					"disabled": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "name",
+							"value": "{} (True)",
+							"mode": "OVERRIDE"
+						}
+					]
+				},
+				{
+					"foundryId": "ashbringer1",
+					"name": "Blinded by Ash",
+					"duration": {
+						"units": "seconds",
+						"expiry": "targetEnd"
+					},
+					"statuses": [
+						"blinded"
+					]
+				},
+				{
+					"foundryId": "ashbringer2",
+					"name": "Corrupted State",
+					"type": "enchantment",
+					"disabled": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "name",
+							"value": "{} (Corrupted)",
+							"mode": "OVERRIDE"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Assassin's Blood",
 			"source": "XDMG",
 			"activities": [
@@ -861,6 +1062,53 @@
 			],
 			"ignoreSrdActivities": true,
 			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Aviana's Feather",
+			"source": "WoW",
+			"activities": [
+				{
+					"type": "transform",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"visibility": {
+						"requireMagic": true
+					},
+					"transform": {
+						"formless": true,
+						"mode": "form"
+					},
+					"effects": [
+						{
+							"foundryId": "avianasFeather"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "avianasFeather",
+					"name": "Sprout Golden Wings",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.fly",
+							"value": 80,
+							"mode": "UPGRADE"
+						}
+					]
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -4151,6 +4399,66 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Crown of the Ogre King",
+			"source": "WoW",
+			"activities": [
+				{
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "cone",
+							"size": "20"
+						},
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"str"
+						],
+						"dc": {
+							"formula": "17"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "crownOfTheOgreKi"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"name": "Ogre-Like",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"description": "You are far hungrier than normal. You lose all your table manners, and your daily food requirement triples."
+				},
+				{
+					"foundryId": "crownOfTheOgreKi",
+					"name": "Prone",
+					"duration": {
+						"units": "seconds"
+					},
+					"statuses": [
+						"prone"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Crown of the Wrath Bringer",
 			"source": "BGG",
 			"activities": [
@@ -5218,6 +5526,40 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Defias Leather",
+			"source": "WoW",
+			"system": {
+				"uses.max": "1",
+				"uses.recovery": [
+					{
+						"period": "dawn",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"activities": [
+				{
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"spell": {
+						"uuid": "@spell[meld into stone|xphb]",
+						"level": 3
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Demonomicon of Iggwilv",
 			"source": "XDMG",
 			"activities": [
@@ -6119,6 +6461,101 @@
 						"frightened"
 					],
 					"description": "The target has the &Reference[Frightened apply=false] condition until the start of its next turn."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Doomhammer",
+			"source": "WoW",
+			"system": {
+				"uses.max": "1",
+				"uses.recovery": [
+					{
+						"period": "dawn",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"activities": [
+				{
+					"type": "attack",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 8,
+								"types": [
+									"lightning"
+								]
+							}
+						]
+					}
+				},
+				{
+					"name": "Lightning Rod",
+					"type": "utility",
+					"description": "When a creature you can see within 60 feet of you would take Lightning damage, you can take a Reaction to reduce the damage to 0.",
+					"activation": {
+						"type": "reaction"
+					}
+				},
+				{
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"spell": {
+						"uuid": "@spell[wind walk|xphb]",
+						"level": 6
+					}
+				},
+				{
+					"name": "Doom Winds",
+					"type": "utility",
+					"activation": {
+						"type": "special",
+						"condition": "When you start raging"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "doomhammer"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "doomhammer",
+					"name": "Doom Winds",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.walk",
+							"value": 2,
+							"mode": "MULTIPLY"
+						}
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -7098,6 +7535,98 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Experimental Goblin Jetpack",
+			"source": "WoW",
+			"system": {
+				"uses.max": "1",
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"activities": [
+				{
+					"foundryId": "experimentalGobl",
+					"name": "Jetpack Control",
+					"type": "transform",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"visibility": {
+						"requireMagic": true
+					},
+					"transform": {
+						"formless": true,
+						"mode": "form"
+					},
+					"effects": [
+						{
+							"foundryId": "experimentalGobl"
+						}
+					]
+				},
+				{
+					"name": "Restore Use",
+					"type": "utility",
+					"activation": {
+						"type": "special",
+						"condition": "After 1d12 hours"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "-1"
+							}
+						]
+					}
+				},
+				{
+					"name": "Activate Jetpack",
+					"type": "forward",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"activity": {
+						"foundryId": "experimentalGobl"
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "experimentalGobl",
+					"name": "Jetpack Activated",
+					"duration": {
+						"value": 1,
+						"units": "hours"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.fly",
+							"value": 60,
+							"mode": "UPGRADE"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Eye of Vecna",
 			"source": "XDMG",
 			"activities": [
@@ -7316,6 +7845,88 @@
 			],
 			"ignoreSrdActivities": true,
 			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Figurine of Wondrous Power (Jeweled Panther)",
+			"source": "WoW",
+			"system": {
+				"uses.max": "2",
+				"uses.recovery": [
+					{
+						"period": "day",
+						"type": "formula",
+						"formula": "1"
+					}
+				]
+			},
+			"activities": [
+				{
+					"type": "summon",
+					"activation": {
+						"type": "action"
+					},
+					"duration": {
+						"units": "hour",
+						"value": "12"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "2"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "space",
+							"special": "unoccupied space"
+						}
+					},
+					"range": {
+						"value": "60",
+						"units": "ft"
+					},
+					"visibility": {
+						"requireIdentification": true,
+						"requireMagic": true
+					},
+					"profiles": [
+						{
+							"uuid": "@creature[panther|xmm]"
+						}
+					],
+					"creatureSizes": [
+						"lg"
+					],
+					"match": {
+						"disposition": true
+					},
+					"effects": [
+						{
+							"foundryId": "figurineOfWondro"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "figurineOfWondro",
+					"name": "Jeweled Panther Enhancements",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.fly",
+							"value": 30,
+							"mode": "UPGRADE"
+						}
+					],
+					"description": "The panther has a Fly Speed of 30 feet."
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -7960,6 +8571,69 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Flask of the Titans",
+			"source": "WoW",
+			"activities": [
+				{
+					"type": "heal",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "touch"
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "30"
+						},
+						"scaling": {
+							"number": 1
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "flaskOfTheTitans"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "flaskOfTheTitans",
+					"duration": {
+						"value": 1,
+						"units": "hours"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.hp.max",
+							"value": 30,
+							"mode": "ADD"
+						}
+					],
+					"description": "Your Hit Point maximum and current Hit Points increase by 30 for 1 hour."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Flowering Blossom Rod",
 			"source": "AU",
 			"identifier": "blossom-rod",
@@ -8131,6 +8805,117 @@
 							"formula": "15"
 						}
 					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Frostmourne",
+			"source": "WoW",
+			"activities": [
+				{
+					"type": "attack",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 12,
+								"types": [
+									"cold"
+								]
+							}
+						]
+					},
+					"visibility": {
+						"requireMagic": true
+					}
+				},
+				{
+					"name": "Marshal Undead (Paladin)",
+					"type": "utility",
+					"activation": {
+						"type": "special"
+					},
+					"visibility": {
+						"level": {
+							"min": 1
+						},
+						"requireMagic": true,
+						"identifier": "paladin"
+					},
+					"effects": [
+						{
+							"foundryId": "frostmourne"
+						},
+						{
+							"foundryId": "frostmourne1"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"name": "Prophecy of Frostmourne",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.details.type.value",
+							"value": "undead",
+							"mode": "OVERRIDE"
+						},
+						{
+							"key": "system.details.alignment",
+							"value": "Neutral Evil",
+							"mode": "OVERRIDE"
+						}
+					]
+				},
+				{
+					"foundryId": "frostmourne",
+					"name": "Marshal Undead (Paladin)",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.rolls.attack.mode",
+							"value": 1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.rolls.ability.save.mode",
+							"value": 1,
+							"mode": "ADD"
+						}
+					]
+				},
+				{
+					"foundryId": "frostmourne1",
+					"name": "Numb to Cold (Paladin)",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.traits.di.value",
+							"value": "cold",
+							"mode": "ADD"
+						}
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -8408,6 +9193,79 @@
 			"name": "Gnomengarde Grenade",
 			"source": "DC",
 			"type": "consumable",
+			"migrationVersion": 3
+		},
+		{
+			"name": "Goblin Jumper Cables",
+			"source": "WoW",
+			"system": {
+				"uses.max": "1",
+				"uses.recovery": [
+					{
+						"period": "dawn",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"activities": [
+				{
+					"name": "Check",
+					"type": "check",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1",
+							"special": "dead creature"
+						}
+					},
+					"range": {
+						"units": "touch"
+					},
+					"check": {
+						"associated": [
+							"arc"
+						],
+						"dc": {
+							"formula": "15"
+						},
+						"visible": true
+					}
+				},
+				{
+					"name": "Failed Surge",
+					"type": "damage",
+					"activation": {
+						"type": "special"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 6,
+								"types": [
+									"lightning"
+								]
+							}
+						]
+					}
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -9394,6 +10252,48 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Hearthstone",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Teleport to Destination",
+					"type": "utility",
+					"activation": {
+						"type": "minute",
+						"value": 1
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"range": {
+						"units": "spec"
+					},
+					"visibility": {
+						"requireMagic": true
+					}
+				}
+			],
+			"effects": [
+				{
+					"name": "Attunement Allowance",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.attunement.max",
+							"value": 1,
+							"mode": "ADD"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Helm of Brilliance",
 			"source": "XDMG",
 			"activities": [
@@ -9613,6 +10513,275 @@
 			],
 			"ignoreSrdActivities": true,
 			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Helm of Domination",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Attuning to the Helm",
+					"type": "save",
+					"description": "When you attune to the helm, make a DC 18 Charisma saving throw. On a successful save, roll and apply this Activity's 10d6 Psychic damage. On a failed save, your soul merges with the Lich King, who takes control of your body like a puppet, and you become an NPC under the DM's control.",
+					"activation": {
+						"type": "special"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"damage": {
+						"onSave": "full",
+						"parts": [
+							{
+								"number": 10,
+								"denomination": 6,
+								"types": [
+									"psychic"
+								]
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"cha"
+						],
+						"dc": {
+							"formula": "18"
+						},
+						"visible": true
+					}
+				},
+				{
+					"name": "Command the Scourge",
+					"type": "check",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses",
+								"value": "1"
+							}
+						]
+					},
+					"uses": {
+						"recovery": [
+							{
+								"period": "dawn",
+								"type": "recoverAll"
+							}
+						],
+						"max": "1"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"visibility": {
+						"requireMagic": true
+					},
+					"check": {
+						"dc": {
+							"formula": "20"
+						},
+						"visible": true,
+						"ability": "spellcasting"
+					}
+				},
+				{
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"spell": {
+						"uuid": "@spell[animate dead|xphb]",
+						"challenge": {
+							"override": true,
+							"save": "18"
+						},
+						"properties": [
+							"vocal",
+							"somatic",
+							"material"
+						],
+						"spellbook": true,
+						"level": 3
+					}
+				},
+				{
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "2"
+							}
+						]
+					},
+					"spell": {
+						"uuid": "@spell[clairvoyance|xphb]",
+						"challenge": {
+							"override": true,
+							"save": "18"
+						},
+						"properties": [
+							"vocal",
+							"somatic",
+							"material"
+						],
+						"spellbook": true,
+						"level": 3
+					}
+				},
+				{
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "4"
+							}
+						]
+					},
+					"spell": {
+						"uuid": "@spell[dream|xphb]",
+						"challenge": {
+							"override": true,
+							"save": "18"
+						},
+						"properties": [
+							"vocal",
+							"somatic",
+							"material"
+						],
+						"spellbook": true,
+						"level": 5
+					}
+				},
+				{
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"spell": {
+						"uuid": "@spell[speak with dead|xphb]",
+						"challenge": {
+							"override": true,
+							"save": "18"
+						},
+						"properties": [
+							"vocal",
+							"somatic",
+							"material"
+						],
+						"spellbook": true,
+						"level": 3
+					}
+				},
+				{
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "5"
+							}
+						]
+					},
+					"spell": {
+						"uuid": "@spell[telepathy|xphb]",
+						"challenge": {
+							"override": true,
+							"save": "18"
+						},
+						"properties": [
+							"vocal",
+							"somatic",
+							"material"
+						],
+						"spellbook": true,
+						"level": 8
+					}
+				},
+				{
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "5"
+							}
+						]
+					},
+					"spell": {
+						"uuid": "@spell[word of recall|xphb]",
+						"challenge": {
+							"override": true,
+							"save": "18"
+						},
+						"properties": [
+							"vocal",
+							"somatic",
+							"material"
+						],
+						"spellbook": true,
+						"level": 6
+					}
+				}
+			],
+			"effects": [
+				{
+					"name": "Properties of the Helm",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.details.alignment",
+							"value": "Neutral Evil",
+							"mode": "OVERRIDE"
+						},
+						{
+							"key": "system.attributes.senses.ranges.truesight",
+							"value": 120,
+							"mode": "UPGRADE"
+						}
+					]
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -12845,6 +14014,122 @@
 			],
 			"ignoreSrdActivities": true,
 			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Life-Staff of the Web Lair",
+			"source": "WoW",
+			"activities": [
+				{
+					"type": "attack",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"includeBase": true
+					}
+				},
+				{
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"spell": {
+						"uuid": "@spell[web|xphb]",
+						"challenge": {
+							"override": true,
+							"save": "18"
+						},
+						"properties": [
+							"material"
+						],
+						"spellbook": true,
+						"level": 2
+					}
+				},
+				{
+					"name": "Vampiric Silk",
+					"type": "save",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "spec"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 4,
+								"denomination": 10,
+								"types": [
+									"necrotic"
+								]
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"formula": "18"
+						},
+						"visible": true
+					},
+					"visibility": {
+						"requireMagic": true
+					}
+				}
+			],
+			"effects": [
+				{
+					"name": "Arachnid's Grace",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.speeds.climb",
+							"value": "@attributes.movement.speeds.walk",
+							"mode": "OVERRIDE"
+						},
+						{
+							"key": "system.attributes.movement.ignoredDifficultTerrain",
+							"value": "web",
+							"mode": "ADD"
+						}
+					]
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -16239,6 +17524,31 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Noggenfogger Elixir",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Drink Elixir",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"roll": {
+						"formula": "1d6"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Nolzur's Marvelous Pigments",
 			"source": "XDMG",
 			"activities": [
@@ -17231,6 +18541,24 @@
 			],
 			"ignoreSrdActivities": true,
 			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Philosopher's Stone",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Transmute Resources",
+					"type": "utility",
+					"activation": {
+						"type": "hour",
+						"value": 1
+					},
+					"visibility": {
+						"requireMagic": true
+					}
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -18727,6 +20055,209 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Potion of Mana",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Drink Potion",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							},
+							{
+								"type": "attribute",
+								"value": "-1",
+								"target": "spells.spell1.value"
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Potion of Mana (Greater)",
+			"source": "WoW",
+			"identifier": "greater-mana",
+			"activities": [
+				{
+					"name": "Drink Potion (Recover 1st Level Slot)",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							},
+							{
+								"type": "attribute",
+								"value": "-1",
+								"target": "spells.spell1.value"
+							}
+						]
+					}
+				},
+				{
+					"name": "Drink Potion (Recover 2nd Level Slot)",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							},
+							{
+								"type": "attribute",
+								"value": "-1",
+								"target": "spells.spell2.value"
+							}
+						]
+					}
+				},
+				{
+					"name": "Drink Potion (Recover 3rd Level Slot)",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							},
+							{
+								"type": "attribute",
+								"value": "-1",
+								"target": "spells.spell3.value"
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Potion of Mana (Superior)",
+			"source": "WoW",
+			"identifier": "superior-mana",
+			"activities": [
+				{
+					"name": "Drink Potion (Recover 1st Level Slot)",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							},
+							{
+								"type": "attribute",
+								"value": "-1",
+								"target": "spells.spell1.value"
+							}
+						]
+					}
+				},
+				{
+					"name": "Drink Potion (Recover 2nd Level Slot)",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							},
+							{
+								"type": "attribute",
+								"value": "-1",
+								"target": "spells.spell2.value"
+							}
+						]
+					}
+				},
+				{
+					"name": "Drink Potion (Recover 3rd Level Slot)",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							},
+							{
+								"type": "attribute",
+								"value": "-1",
+								"target": "spells.spell3.value"
+							}
+						]
+					}
+				},
+				{
+					"name": "Drink Potion (Recover 4th Level Slot)",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							},
+							{
+								"type": "attribute",
+								"value": "-1",
+								"target": "spells.spell4.value"
+							}
+						]
+					}
+				},
+				{
+					"name": "Drink Potion (Recover 5th Level Slot)",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							},
+							{
+								"type": "attribute",
+								"value": "-1",
+								"target": "spells.spell5.value"
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Potion of Mind Reading",
 			"source": "XDMG",
 			"activities": [
@@ -19080,6 +20611,308 @@
 			],
 			"ignoreSrdActivities": true,
 			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Potion of Rejuvenation",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Drink Potion",
+					"type": "heal",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "attribute",
+								"value": "-1",
+								"target": "spells.spell1.value"
+							},
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"number": 3,
+						"denomination": 4,
+						"bonus": "3"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Potion of Rejuvenation (Greater)",
+			"source": "WoW",
+			"identifier": "greater-rejuvenation",
+			"activities": [
+				{
+					"name": "Drink Potion (Recover 1st Level Slot)",
+					"type": "heal",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "attribute",
+								"value": "-1",
+								"target": "spells.spell1.value"
+							},
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"number": 6,
+						"denomination": 4,
+						"bonus": "6"
+					}
+				},
+				{
+					"name": "Drink Potion (Recover 2nd Level Slot)",
+					"type": "heal",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "attribute",
+								"value": "-1",
+								"target": "spells.spell2.value"
+							},
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"number": 6,
+						"denomination": 4,
+						"bonus": "6"
+					}
+				},
+				{
+					"name": "Drink Potion (Recover 3rd Level Slot)",
+					"type": "heal",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "attribute",
+								"value": "-1",
+								"target": "spells.spell3.value"
+							},
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"number": 6,
+						"denomination": 4,
+						"bonus": "6"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Potion of Rejuvenation (Superior)",
+			"source": "WoW",
+			"identifier": "superior-rejuvenation",
+			"activities": [
+				{
+					"name": "Drink Potion (Recover 1st Level Slot)",
+					"type": "heal",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "attribute",
+								"value": "-1",
+								"target": "spells.spell1.value"
+							},
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"number": 9,
+						"denomination": 4,
+						"bonus": "9"
+					}
+				},
+				{
+					"name": "Drink Potion (Recover 2nd Level Slot)",
+					"type": "heal",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "attribute",
+								"value": "-1",
+								"target": "spells.spell2.value"
+							},
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"number": 9,
+						"denomination": 4,
+						"bonus": "9"
+					}
+				},
+				{
+					"name": "Drink Potion (Recover 3rd Level Slot)",
+					"type": "heal",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "attribute",
+								"value": "-1",
+								"target": "spells.spell3.value"
+							},
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"number": 9,
+						"denomination": 4,
+						"bonus": "9"
+					}
+				},
+				{
+					"name": "Drink Potion (Recover 4th Level Slot)",
+					"type": "heal",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "attribute",
+								"value": "-1",
+								"target": "spells.spell4.value"
+							},
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"number": 9,
+						"denomination": 4,
+						"bonus": "9"
+					}
+				},
+				{
+					"name": "Drink Potion (Recover 5th Level Slot)",
+					"type": "heal",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "attribute",
+								"value": "-1",
+								"target": "spells.spell5.value"
+							},
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"number": 9,
+						"denomination": 4,
+						"bonus": "9"
+					}
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -23046,6 +24879,55 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Rod of the Sleepwalker",
+			"source": "WoW",
+			"system": {
+				"uses.max": "1",
+				"uses.recovery": [
+					{
+						"period": "dawn",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"activities": [
+				{
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"duration": {
+						"units": "hour",
+						"concentration": true,
+						"value": "8"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"spell": {
+						"uuid": "@spell[dominate monster|xphb]",
+						"challenge": {
+							"override": true,
+							"save": "17"
+						},
+						"properties": [
+							"vocal",
+							"somatic",
+							"material"
+						],
+						"spellbook": true,
+						"level": 8
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Rope",
 			"source": "XPHB",
 			"activities": [
@@ -23613,6 +25495,149 @@
 								]
 							}
 						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Shadowfang",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Mark of the Worgen Attack",
+					"type": "attack",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 6,
+								"types": [
+									"necrotic"
+								]
+							}
+						]
+					}
+				},
+				{
+					"name": "Normal Attack",
+					"type": "attack",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"includeBase": true
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Shalamayne",
+			"source": "WoW",
+			"activities": [
+				{
+					"type": "attack",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 12,
+								"types": [
+									"force"
+								]
+							}
+						]
+					}
+				},
+				{
+					"name": "Split Shalamayne",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"visibility": {
+						"requireMagic": true
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Shalamayne (Ellemayne)",
+			"source": "WoW",
+			"identifier": "ellemayne",
+			"activities": [
+				{
+					"type": "attack",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"damage": {
+						"includeBase": true
+					}
+				},
+				{
+					"name": "Rejoin Shalamayne",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"visibility": {
+						"requireMagic": true
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Shalamayne (Shalla'tor)",
+			"source": "WoW",
+			"identifier": "shallator",
+			"activities": [
+				{
+					"type": "attack",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"damage": {
+						"includeBase": true
+					}
+				},
+				{
+					"name": "Rejoin Shalamayne",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"visibility": {
+						"requireMagic": true
 					}
 				}
 			],
@@ -24785,6 +26810,130 @@
 			],
 			"ignoreSrdActivities": true,
 			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Staff of Light and Shadow",
+			"source": "WoW",
+			"activities": [
+				{
+					"type": "attack",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"includeBase": true
+					}
+				},
+				{
+					"foundryId": "staffOfLightAndS",
+					"name": "Shadow Mana",
+					"type": "utility",
+					"description": "For a qualifying spell, roll before confirming its spell-slot expenditure. Compare the result with the spell's level. If the result is higher, cast without spending the slot.",
+					"activation": {
+						"type": "special"
+					},
+					"roll": {
+						"formula": "1d6"
+					},
+					"visibility": {
+						"requireMagic": true
+					}
+				},
+				{
+					"name": "Change Form",
+					"type": "enchant",
+					"activation": {
+						"type": "special"
+					},
+					"visibility": {
+						"requireMagic": true
+					},
+					"restrictions": {
+						"allowMagical": true
+					},
+					"enchant": {
+						"self": true
+					},
+					"effects": [
+						{
+							"foundryId": "staffOfLightAndS",
+							"riders": {
+								"activity": [
+									{
+										"foundryId": "staffOfLightAndS"
+									}
+								],
+								"effect": [
+									{
+										"foundryId": "staffOfLightAnd1"
+									}
+								]
+							}
+						},
+						{
+							"foundryId": "staffOfLightAnd2",
+							"riders": {
+								"effect": [
+									{
+										"foundryId": "staffOfLightAnd3"
+									}
+								]
+							}
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "staffOfLightAnd1",
+					"name": "Necrotic Resistance",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"value": "necrotic",
+							"mode": "ADD"
+						}
+					]
+				},
+				{
+					"foundryId": "staffOfLightAndS",
+					"name": "Anathema",
+					"type": "enchantment",
+					"disabled": true,
+					"duration": {
+						"units": "seconds"
+					}
+				},
+				{
+					"foundryId": "staffOfLightAnd3",
+					"name": "Radiant Resistance",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"value": "radiant",
+							"mode": "ADD"
+						}
+					]
+				},
+				{
+					"foundryId": "staffOfLightAnd2",
+					"name": "Benediction",
+					"type": "enchantment",
+					"disabled": true,
+					"duration": {
+						"units": "seconds"
+					}
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -26748,6 +28897,247 @@
 			],
 			"ignoreSrdActivities": true,
 			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Sulfuras, Hand of Ragnaros",
+			"source": "WoW",
+			"activities": [
+				{
+					"type": "attack",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 10,
+								"types": [
+									"fire"
+								]
+							}
+						]
+					},
+					"effects": [
+						{
+							"foundryId": "sulfurasHandOfRa"
+						}
+					]
+				},
+				{
+					"name": "Subsequent Fire Damage",
+					"type": "damage",
+					"activation": {
+						"type": "turnStart"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1",
+							"special": "Burning"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 10,
+								"types": [
+									"fire"
+								]
+							}
+						]
+					}
+				},
+				{
+					"name": "Boiling Point",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses",
+								"value": "1"
+							}
+						]
+					},
+					"uses": {
+						"recovery": [
+							{
+								"period": "dawn",
+								"type": "recoverAll"
+							}
+						],
+						"max": "1"
+					},
+					"target": {
+						"affects": {
+							"type": "object",
+							"count": "1",
+							"special": "water or container"
+						}
+					},
+					"range": {
+						"units": "mi",
+						"value": "1"
+					},
+					"visibility": {
+						"requireMagic": true
+					}
+				},
+				{
+					"name": "Boiling Point Damage",
+					"type": "damage",
+					"activation": {
+						"type": "special"
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 10,
+								"types": [
+									"fire"
+								]
+							}
+						]
+					}
+				},
+				{
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses",
+								"value": "1"
+							}
+						]
+					},
+					"uses": {
+						"recovery": [
+							{
+								"period": "dawn",
+								"type": "recoverAll"
+							}
+						],
+						"max": "1"
+					},
+					"spell": {
+						"uuid": "@spell[incendiary cloud|xphb]",
+						"challenge": {
+							"override": true,
+							"save": "18"
+						},
+						"properties": [
+							"vocal",
+							"somatic",
+							"material"
+						],
+						"spellbook": true,
+						"level": 8
+					}
+				},
+				{
+					"name": "Eruption",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses",
+								"value": "1"
+							}
+						]
+					},
+					"uses": {
+						"recovery": [
+							{
+								"period": "dawn",
+								"type": "recoverAll"
+							}
+						],
+						"max": "1"
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "cylinder",
+							"size": "10",
+							"height": "60"
+						},
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "120"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 9,
+								"denomination": 10,
+								"types": [
+									"fire"
+								]
+							},
+							{
+								"number": 9,
+								"denomination": 10,
+								"types": [
+									"bludgeoning"
+								]
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"formula": "18"
+						},
+						"visible": true
+					},
+					"visibility": {
+						"requireMagic": true
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "sulfurasHandOfRa",
+					"name": "Burning",
+					"duration": {
+						"units": "seconds"
+					},
+					"statuses": [
+						"burning"
+					],
+					"showIcon": 2
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -29163,6 +31553,185 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Troll's Blood Elixir",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Consume & Heal",
+					"type": "heal",
+					"activation": {
+						"type": "special",
+						"condition": "When you drink the potion and then at the start of each of your turns"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"custom": {
+							"enabled": true,
+							"formula": "2"
+						},
+						"scaling": {
+							"number": 1
+						}
+					},
+					"visibility": {
+						"requireMagic": true
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Troll's Blood Elixir (Greater)",
+			"source": "WoW",
+			"identifier": "greater-trolls-blood-elixir",
+			"activities": [
+				{
+					"name": "Consume & Heal",
+					"type": "heal",
+					"activation": {
+						"type": "special",
+						"condition": "When you drink the potion and then at the start of each of your turns"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"custom": {
+							"enabled": true,
+							"formula": "4"
+						},
+						"scaling": {
+							"number": 1
+						}
+					},
+					"visibility": {
+						"requireMagic": true
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Troll's Blood Elixir (Superior)",
+			"source": "WoW",
+			"identifier": "superior-trolls-blood-elixir",
+			"activities": [
+				{
+					"name": "Consume & Heal",
+					"type": "heal",
+					"activation": {
+						"type": "special",
+						"condition": "When you drink the potion and then at the start of each of your turns"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"custom": {
+							"enabled": true,
+							"formula": "6"
+						},
+						"scaling": {
+							"number": 1
+						}
+					},
+					"visibility": {
+						"requireMagic": true
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Troll's Blood Elixir (Supreme)",
+			"source": "WoW",
+			"identifier": "legendary-trolls-blood-elixir",
+			"activities": [
+				{
+					"name": "Consume & Heal",
+					"type": "heal",
+					"activation": {
+						"type": "special",
+						"condition": "When you drink the potion and then at the start of each of your turns"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"custom": {
+							"enabled": true,
+							"formula": "8"
+						},
+						"scaling": {
+							"number": 1
+						}
+					},
+					"visibility": {
+						"requireMagic": true
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Truth Serum",
 			"source": "XDMG",
 			"activities": [
@@ -29221,6 +31790,198 @@
 			],
 			"ignoreSrdActivities": true,
 			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Twin Blades of Azzinoth",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "First Blade Attack",
+					"type": "attack",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"damage": {
+						"includeBase": true
+					}
+				},
+				{
+					"name": "Fiend Damage",
+					"type": "damage",
+					"description": "Ignore Psychic Resistance and Immunity for this roll",
+					"activation": {
+						"type": "special",
+						"condition": "use after that blade hits a Fiend"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1",
+							"special": "Fiend only"
+						}
+					},
+					"damage": {
+						"critical": {
+							"allow": true
+						},
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 8,
+								"types": [
+									"psychic"
+								]
+							}
+						]
+					},
+					"visibility": {
+						"requireMagic": true
+					}
+				},
+				{
+					"name": "Second Blade Attack",
+					"type": "attack",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"includeBase": true
+					}
+				},
+				{
+					"name": "Fel Synchronization (Second Blade)",
+					"type": "save",
+					"activation": {
+						"type": "special",
+						"condition": "use immediately after the second distinct blade hits the same creature on a turn"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1",
+							"special": "Hit creature"
+						}
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"wis"
+						],
+						"dc": {
+							"formula": "18"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "twinBladesOfAzzi"
+						}
+					]
+				},
+				{
+					"name": "Flames of Azzinoth (First Blade)",
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"duration": {
+						"units": "minute",
+						"concentration": true,
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses",
+								"value": "1"
+							}
+						]
+					},
+					"uses": {
+						"max": "1"
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					},
+					"spell": {
+						"uuid": "@spell[summon fiend|xphb]",
+						"properties": [
+							"vocal",
+							"somatic",
+							"material"
+						],
+						"spellbook": true,
+						"level": 6
+					}
+				},
+				{
+					"name": "Flames of Azzinoth (Second Blade)",
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"duration": {
+						"units": "minute",
+						"concentration": true,
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses",
+								"value": "1"
+							}
+						]
+					},
+					"uses": {
+						"max": "1"
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					},
+					"spell": {
+						"uuid": "@spell[summon fiend|xphb]",
+						"properties": [
+							"vocal",
+							"somatic",
+							"material"
+						],
+						"spellbook": true,
+						"level": 6
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "twinBladesOfAzzi",
+					"name": "Stunned",
+					"duration": {
+						"units": "seconds",
+						"expiry": "targetEnd"
+					},
+					"statuses": [
+						"stunned"
+					],
+					"description": "The target is &Reference[stunned apply=false] until the end of its next turn."
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -29442,6 +32203,42 @@
 							"value": "slashing"
 						}
 					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Vithrak, Gaze of the Deadman",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Gaze of the Deadman",
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"condition": "While wearing the ring"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "120"
+					},
+					"visibility": {
+						"requireMagic": true
+					}
 				}
 			],
 			"migrationVersion": 3

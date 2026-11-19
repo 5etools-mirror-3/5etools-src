@@ -245,7 +245,7 @@ export class List {
 					.map(({help}) => help),
 			];
 
-			if (helpText.length) this._iptSearch.vee.tooltip(helpText.join(" "));
+			if (helpText.length) this._iptSearch.vee.tooltip(helpText.join("\n"));
 			// endregion
 		}
 

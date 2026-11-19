@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.41.1"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.41.2"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -3752,7 +3752,7 @@ globalThis.UrlUtil = class {
 		const [id] = parts;
 
 		const {propHead} = UrlUtil.getPagePropsCorpus(page);
-		const contents = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/${propHead}s.json`);
+		const contents = await DataUtil[propHead].loadJSON();
 		const ent = contents[propHead].find(corpus => corpus.id.toLowerCase() === id);
 		if (ent) return {name: ent.name, source: ent.source, id: ent.id};
 
@@ -4693,6 +4693,14 @@ class _DataUtilPropConfigSingleSource extends _DataUtilPropConfig {
 	static async loadUnmergedJSON () { return DataUtil.loadRawJSON(this.getDataUrl()); }
 }
 
+class _DataUtilPropConfigCorpus extends _DataUtilPropConfigSingleSource {
+	static _PROP = null;
+
+	static getCorpusDataUrl (id) { return `${Renderer.get().baseUrl}data/${this._PROP}/${this._PROP}-${UrlUtil.encodeForHash(id)}.json`; }
+
+	static async getCorpusData (id) { return DataUtil.loadJSON(this.getCorpusDataUrl(id)); }
+}
+
 class _DataUtilPropConfigMultiSource extends _DataUtilPropConfig {
 	static _DIR = null;
 	static _PROP = null;
@@ -5378,7 +5386,10 @@ globalThis.DataUtil = class {
 			case "item":
 			case "itemGroup":
 			case "baseitem":
-			case "magicvariant": {
+			case "magicvariant":
+			case "itemType":
+			case "itemProperty":
+			case "itemMastery": {
 				const data = await DataUtil.item.loadRawJSON();
 				if (SourceUtil.isSiteSource(source)) return data;
 				return DataUtil._pLoadByMeta_pGetPrereleaseBrew(source);
@@ -7025,6 +7036,12 @@ globalThis.DataUtil = class {
 					itemGroup: MiscUtil.copyFast(dataItems.itemGroup),
 					magicvariant: MiscUtil.copyFast(dataVariants.magicvariant),
 					baseitem: MiscUtil.copyFast(dataItemsBase.baseitem),
+					itemType: MiscUtil.copyFast(dataItemsBase.itemType),
+					itemProperty: MiscUtil.copyFast(dataItemsBase.itemProperty),
+					itemMastery: MiscUtil.copyFast(dataItemsBase.itemMastery),
+					itemEntry: MiscUtil.copyFast(dataItemsBase.itemEntry),
+					itemTypeAdditionalEntries: MiscUtil.copyFast(dataItemsBase.itemTypeAdditionalEntries),
+					linkedLootTables: MiscUtil.copyFast(dataVariants.linkedLootTables),
 				};
 			})();
 			await DataUtil.item._pLoadingRawJson;
@@ -7914,7 +7931,41 @@ globalThis.DataUtil = class {
 		static _FILENAME = "fluff-bastions.json";
 	};
 
+	static namez = class extends _DataUtilPropConfigSingleSource {
+		static _PAGE = UrlUtil.PG_NAMES;
+		static _FILENAME = "names.json";
+	};
+
+	static encounter = class extends _DataUtilPropConfigSingleSource {
+		static _PAGE = UrlUtil.PG_ENCOUNTERGEN;
+		static _FILENAME = "encounters.json";
+	};
+
+	static loot = class extends _DataUtilPropConfigSingleSource {
+		static _FILENAME = "loot.json";
+	};
+
+	static adventure = class extends _DataUtilPropConfigCorpus {
+		static _PAGE = UrlUtil.PG_ADVENTURE;
+		static _FILENAME = "adventures.json";
+		static _PROP = "adventure";
+	};
+
+	static book = class extends _DataUtilPropConfigCorpus {
+		static _PAGE = UrlUtil.PG_BOOK;
+		static _FILENAME = "books.json";
+		static _PROP = "book";
+	};
+
+	static reference = class {
+		static async pLoadReference (id) {
+			return DataUtil.loadJSON(`${Renderer.get().baseUrl}data/generated/${UrlUtil.encodeForHash(id)}.json`);
+		}
+	};
+
 	static quickreference = {
+		async loadJSON () { return DataUtil.reference.pLoadReference("bookref-quick"); },
+
 		/**
 		 * @param uid
 		 * @param [opts]

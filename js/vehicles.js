@@ -57,7 +57,7 @@ class VehiclesPage extends ListPage {
 		const pFnGetFluff = Renderer.vehicle.pGetFluff.bind(Renderer.vehicle);
 
 		super({
-			dataSource: "data/vehicles.json",
+			dataSource: DataUtil.vehicle.loadJSON.bind(DataUtil.vehicle),
 
 			pFnGetFluff,
 

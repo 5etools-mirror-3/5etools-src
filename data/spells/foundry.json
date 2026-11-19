@@ -117,6 +117,62 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Apotheosis",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"effects": [
+						{
+							"foundryId": "apotheosis"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "apotheosis",
+					"name": "Apotheosis Benefits",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.fly",
+							"value": 90,
+							"mode": "OVERRIDE"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "bludgeoning",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "piercing",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "radiant",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "slashing",
+							"mode": "ADD"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Arcane Gate",
 			"source": "XPHB",
 			"activities": [
@@ -140,6 +196,66 @@
 							"special": "Large, unoccupied spaces"
 						}
 					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Arcane Pulse",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "none",
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 8,
+								"types": [
+									"force"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "arcanePulse"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "arcanePulse",
+					"name": "Reduce Speed -10 Ft.",
+					"duration": {
+						"units": "seconds",
+						"expiry": "sourceEnd"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.walk",
+							"value": -10,
+							"mode": "ADD"
+						}
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -492,7 +608,22 @@
 					"name": "Aura",
 					"duration": {
 						"units": "seconds"
-					}
+					},
+					"changes": [
+						{
+							"key": "system.abilities.dex.save.roll.mode",
+							"value": 1,
+							"conditions": {
+								"o": "NOT",
+								"v": {
+									"k": "statuses.incapacitated",
+									"o": "exact",
+									"v": 1
+								}
+							},
+							"mode": "ADD"
+						}
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -578,6 +709,125 @@
 							"number": 1
 						}
 					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Azure Strike",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Attack",
+					"type": "attack",
+					"activation": {
+						"type": "action"
+					},
+					"attack": {
+						"type": {
+							"value": "ranged",
+							"classification": "spell"
+						},
+						"ability": "spellcasting"
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 6,
+								"types": [
+									"force"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					},
+					"effects": [
+						{
+							"foundryId": "azureStrike"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "azureStrike",
+					"name": "Speed -10 Ft.",
+					"duration": {
+						"units": "seconds",
+						"expiry": "targetEnd"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.walk",
+							"value": -10,
+							"mode": "ADD"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Azure Sweep",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Save",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 7,
+								"denomination": 8,
+								"types": [
+									"force"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "azureSweep"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "azureSweep",
+					"name": "Speed -20 Feet",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.walk",
+							"value": -20,
+							"mode": "ADD"
+						}
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -799,6 +1049,133 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Blistering Scales",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"description": "Explosive scales formed: [[5 + @scaling.increase]]",
+					"activation": {
+						"type": "action"
+					},
+					"effects": [
+						{
+							"foundryId": "blisteringScales"
+						}
+					]
+				},
+				{
+					"name": "Scale Explosion",
+					"type": "damage",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1",
+							"special": "the attacker"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 8,
+								"types": [
+									"fire"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "blisteringScales",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.ac.bonus",
+							"value": 1,
+							"mode": "ADD"
+						}
+					],
+					"showIcon": 2
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Bonestorm",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Save",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 4,
+								"denomination": 8,
+								"types": [
+									"necrotic"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				},
+				{
+					"name": "Regain Hit Points",
+					"type": "heal",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"number": 4,
+						"denomination": 6
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Booming Blade",
 			"source": "TCE",
 			"activities": [
@@ -826,6 +1203,110 @@
 							}
 						]
 					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Breath of Eons",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"effects": [
+						{
+							"foundryId": "breathOfEons"
+						}
+					]
+				},
+				{
+					"name": "Temporal Wounds",
+					"type": "utility",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "5"
+					},
+					"effects": [
+						{
+							"foundryId": "breathOfEons1"
+						}
+					]
+				},
+				{
+					"name": "Temporal Wounds Damage",
+					"type": "damage",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 10,
+								"types": [
+									"force"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "breathOfEons",
+					"name": "Fly Speed 60 Ft.",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.fly",
+							"value": 60,
+							"mode": "OVERRIDE"
+						},
+						{
+							"key": "system.attributes.movement.hover",
+							"value": true,
+							"mode": "OVERRIDE"
+						}
+					]
+				},
+				{
+					"foundryId": "breathOfEons1",
+					"name": "Cursed",
+					"duration": {
+						"units": "seconds",
+						"expiry": "sourceStart"
+					},
+					"statuses": [
+						"cursed"
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -862,6 +1343,144 @@
 						"unconscious"
 					],
 					"description": "You have the &Reference[Unconscious] condition for the spell's duration."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Chains of Ice",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Save",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 10,
+								"types": [
+									"cold"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "chainsOfIce"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "chainsOfIce",
+					"name": "Speed Halved",
+					"duration": {
+						"units": "seconds",
+						"expiry": "targetEnd"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.walk",
+							"value": 0.5,
+							"mode": "MULTIPLY"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Chaos Nova",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Damage",
+					"type": "damage",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 6,
+								"types": [
+									"force"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					}
+				},
+				{
+					"name": "Save",
+					"type": "save",
+					"activation": {
+						"type": ""
+					},
+					"duration": {
+						"expiry": "sourceEnd"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"special": "Chosen creatures in the Emanation"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"wis"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "chaosNova"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "chaosNova",
+					"name": "Stunned",
+					"duration": {
+						"units": "seconds",
+						"expiry": "sourceEnd"
+					},
+					"statuses": [
+						"stunned"
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -917,6 +1536,141 @@
 							}
 						]
 					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Collapsing Star",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Save",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 4,
+								"denomination": 12,
+								"types": [
+									"force"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Combustion",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"effects": [
+						{
+							"foundryId": "combustion"
+						}
+					]
+				},
+				{
+					"name": "Damage: End of Turn",
+					"type": "damage",
+					"activation": {
+						"type": "turnEnd"
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "radius",
+							"size": "5"
+						},
+						"affects": {
+							"choice": true,
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 3,
+								"denomination": 8,
+								"types": [
+									"fire"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "combustion",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"changes": [
+						{
+							"key": "system.traits.di.value",
+							"value": "fire",
+							"mode": "ADD"
+						},
+						{
+							"key": "token.light.bright",
+							"value": 20,
+							"mode": "OVERRIDE"
+						},
+						{
+							"key": "token.light.dim",
+							"value": 30,
+							"mode": "OVERRIDE"
+						},
+						{
+							"key": "token.light.color",
+							"value": "#7f4a14",
+							"mode": "OVERRIDE"
+						},
+						{
+							"key": "token.light.alpha",
+							"value": 0.5,
+							"mode": "OVERRIDE"
+						},
+						{
+							"key": "attack",
+							"value": 1,
+							"conditions": {
+								"k": "roll.attack.classification",
+								"o": "exact",
+								"v": "spell"
+							},
+							"mode": "dnd5e.advantage"
+						}
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -988,6 +1742,86 @@
 						"dc": {
 							"calculation": "spellcasting"
 						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Consecration",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					}
+				},
+				{
+					"name": "Consecration Damage",
+					"type": "damage",
+					"description": "A creature of your choice that starts its turn in the Emanation takes [[/damage]] damage.",
+					"activation": {
+						"type": "turnStart"
+					},
+					"target": {
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 8,
+								"types": [
+									"radiant"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Consume Soul",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Save",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 4,
+								"denomination": 4,
+								"types": [
+									"force"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
 					}
 				}
 			],
@@ -1152,6 +1986,368 @@
 							"key": "system.bonuses.rwak.damage",
 							"mode": "ADD",
 							"value": "1d4[radiant]"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Curse of Agony",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "full",
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 4,
+								"types": [
+									"psychic"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "curseOfAgony"
+						}
+					]
+				},
+				{
+					"name": "Save (1d6)",
+					"type": "save",
+					"activation": {
+						"type": "turnEnd"
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"onSave": "full",
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 6,
+								"types": [
+									"psychic"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				},
+				{
+					"name": "Save (1d8)",
+					"type": "save",
+					"activation": {
+						"type": "turnEnd"
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"onSave": "full",
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 8,
+								"types": [
+									"psychic"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				},
+				{
+					"name": "Save (1d10)",
+					"type": "save",
+					"activation": {
+						"type": "turnEnd"
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"onSave": "full",
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 10,
+								"types": [
+									"psychic"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				},
+				{
+					"name": "Save (1d12)",
+					"type": "save",
+					"activation": {
+						"type": "turnEnd"
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"onSave": "full",
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 12,
+								"types": [
+									"psychic"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "curseOfAgony",
+					"name": "Cursed",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"statuses": [
+						"cursed"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Death and Decay",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Save",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"duration": {
+						"expiry": "sourceEnd"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 6,
+								"types": [
+									"necrotic"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"wis"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "deathAndDecay"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "deathAndDecay",
+					"name": "Cursed",
+					"duration": {
+						"units": "seconds"
+					},
+					"statuses": [
+						"cursed"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Death Grip",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Save",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"str"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				},
+				{
+					"name": "Pull Target",
+					"type": "teleport",
+					"activation": {
+						"type": ""
+					},
+					"teleport": {
+						"units": "ft",
+						"value": "30"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Demon Spikes",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "demonSpikes"
+						}
+					]
+				},
+				{
+					"name": "Spikes Retaliation",
+					"type": "damage",
+					"activation": {
+						"type": "special",
+						"condition": "A creature within 5 feet hits you with a melee attack roll"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "5"
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "10"
+								},
+								"types": [
+									"piercing"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "demonSpikes",
+					"name": "+2 AC",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.ac.bonus",
+							"value": 2,
+							"mode": "ADD"
 						}
 					]
 				}
@@ -1449,6 +2645,135 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Divine Shield",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"effects": [
+						{
+							"foundryId": "divineShield"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "divineShield",
+					"name": "Immunity: All Damage",
+					"duration": {
+						"units": "seconds",
+						"expiry": "targetStart"
+					},
+					"changes": [
+						{
+							"key": "system.traits.di.value",
+							"value": "ALL",
+							"mode": "ADD"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Dream Breath",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Heal",
+					"type": "heal",
+					"activation": {
+						"type": "action"
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 2,
+							"mode": "whole"
+						},
+						"number": 2,
+						"denomination": 6
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Dream Flight",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"effects": [
+						{
+							"foundryId": "dreamFlight"
+						}
+					]
+				},
+				{
+					"name": "Healing Presence",
+					"type": "heal",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "5"
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"number": 5,
+						"denomination": 4
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "dreamFlight",
+					"name": "Fly Speed 60 Ft.",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.fly",
+							"value": 60,
+							"mode": "OVERRIDE"
+						},
+						{
+							"key": "system.attributes.movement.hover",
+							"value": true,
+							"mode": "OVERRIDE"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Dueling Ground",
 			"source": "AU",
 			"system": {
@@ -1482,6 +2807,57 @@
 					],
 					"descriptionEntries": [
 						"You are a designated target of {@spell Dueling Ground|AU}."
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Ebon Might",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"effects": [
+						{
+							"foundryId": "ebonMight"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "ebonMight",
+					"name": "Damage Bonuses",
+					"duration": {
+						"units": "seconds",
+						"expiry": "sourceEnd"
+					},
+					"changes": [
+						{
+							"key": "system.rolls.damage.mwak.bonus",
+							"value": "1d4[force]",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.rolls.damage.rwak.bonus",
+							"value": "1d4[force]",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.rolls.damage.msak.bonus",
+							"value": "1d4[force]",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.rolls.damage.rsak.bonus",
+							"value": "1d4[force]",
+							"mode": "ADD"
+						}
 					]
 				}
 			],
@@ -2148,6 +3524,134 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Emberstorm",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Save",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 6,
+								"denomination": 8,
+								"types": [
+									"fire"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "emberstorm"
+						}
+					]
+				},
+				{
+					"name": "Burning Damage",
+					"type": "damage",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"type": "any",
+							"special": "Any"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 8,
+								"types": [
+									"fire"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "emberstorm",
+					"name": "Emberstorm Burning",
+					"duration": {
+						"units": "seconds"
+					},
+					"statuses": [
+						"burning"
+					],
+					"showIcon": 2
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Emerald Blossom",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Conjure Bulb",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					}
+				},
+				{
+					"name": "Healing Pulse",
+					"type": "heal",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"type": "ally"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "5"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Enervation",
 			"source": "AU",
 			"activities": [
@@ -2275,6 +3779,269 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Entropic Embrace",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					}
+				},
+				{
+					"name": "Touch Damage",
+					"type": "damage",
+					"activation": {
+						"type": "special"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 4,
+								"types": [
+									"necrotic"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					}
+				},
+				{
+					"name": "Touch Healing",
+					"type": "heal",
+					"activation": {
+						"type": "special"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1,
+							"mode": "whole"
+						},
+						"number": 1,
+						"denomination": 4
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Eruption",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Save",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 3,
+								"denomination": 8,
+								"types": [
+									"fire"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"behaviors": [
+						{
+							"type": "difficultTerrain"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Explosive Trap",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"description": "An Invisible, intangible trap appears at the chosen ground point.",
+					"activation": {
+						"type": "action"
+					}
+				},
+				{
+					"name": "Detonate",
+					"type": "save",
+					"description": "Each creature in the Sphere makes a Dexterity saving throw. On a failed save, it takes 8d6 Fire damage and, if Huge or smaller, is pushed 20 feet straight away from the trap.",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "sphere",
+							"size": "20"
+						},
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"onSave": "none",
+						"parts": [
+							{
+								"number": 8,
+								"denomination": 6,
+								"types": [
+									"fire"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Eye Beam",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 3,
+								"denomination": 6,
+								"types": [
+									"force"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				},
+				{
+					"name": "Subsequent Eye Beam",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 3,
+								"denomination": 6,
+								"types": [
+									"force"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Feign Death",
 			"source": "XPHB",
 			"effects": [
@@ -2364,6 +4131,128 @@
 							"mode": "ADD",
 							"value": "poisoned"
 						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Fel Rush",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"effects": [
+						{
+							"foundryId": "felRush"
+						}
+					]
+				},
+				{
+					"name": "Fel Rush Damage",
+					"type": "save",
+					"activation": {
+						"type": "special",
+						"condition": "When you move within 5 feet of a creature or an object that isn't being worn or carried"
+					},
+					"target": {
+						"affects": {
+							"type": "creatureOrObject",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "5"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 6,
+								"types": [
+									"fire"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "felRush",
+					"name": "Speed +30 Ft.",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.speeds.walk",
+							"value": 30,
+							"mode": "ADD"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Feral Prowl",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "-1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Wild Shape|Druid|XPHB|2"
+								}
+							}
+						]
+					},
+					"effects": [
+						{
+							"foundryId": "feralProwl"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "feralProwl",
+					"name": "Invisible",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"statuses": [
+						"invisible"
 					]
 				}
 			],
@@ -2485,6 +4374,164 @@
 						"poisoned"
 					],
 					"description": "The target is &Reference[Poisoned apply=false] for one minute."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Fiery Brand",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Save",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 3,
+								"denomination": 10,
+								"types": [
+									"fire"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"wis"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "fieryBrand"
+						}
+					]
+				},
+				{
+					"name": "Repeat Save",
+					"type": "save",
+					"activation": {
+						"type": "special",
+						"condition": "at the end of the cursed creature's turn"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"wis"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "fieryBrand",
+					"name": "Cursed",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"statuses": [
+						"cursed"
+					]
+				},
+				{
+					"name": "Resistant to All Damage",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"value": "ALL",
+							"mode": "ADD"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Flurry",
+			"source": "WoW",
+			"system": {
+				"target.affects.count": "@item.level"
+			},
+			"activities": [
+				{
+					"name": "Cast & Attack",
+					"type": "attack",
+					"activation": {
+						"type": "action"
+					},
+					"attack": {
+						"type": {
+							"value": "ranged",
+							"classification": "spell"
+						},
+						"ability": "spellcasting"
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"number": 3,
+								"denomination": 6,
+								"types": [
+									"cold"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"effects": [
+						{
+							"foundryId": "flurry"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "flurry",
+					"name": "Restrained",
+					"duration": {
+						"units": "seconds",
+						"expiry": "sourceEnd"
+					},
+					"statuses": [
+						"restrained"
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -2654,6 +4701,68 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Freezing Trap",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"description": "An Invisible, intangible trap appears at the chosen ground point.",
+					"activation": {
+						"type": "action"
+					}
+				},
+				{
+					"name": "Detonate",
+					"type": "save",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "freezingTrap"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "freezingTrap",
+					"name": "Restrained",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"statuses": [
+						"restrained"
+					],
+					"description": "You are Restrained by freezing frost."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Friends",
 			"source": "XPHB",
 			"activities": [
@@ -2691,6 +4800,124 @@
 						"charmed"
 					],
 					"description": "The spell ends early if the &Reference[Charmed apply=false] target takes damage or if you make an attack roll, deal damage, or force anyone to make a saving throw. When the spell ends, the target knows it was Charmed by you."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Frost Nova",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Save",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 6,
+								"types": [
+									"cold"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "frostNova"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "frostNova",
+					"name": "Restrained",
+					"duration": {
+						"units": "seconds",
+						"expiry": "sourceEnd"
+					},
+					"statuses": [
+						"restrained"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Frostscythe",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Save",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 3,
+								"denomination": 8,
+								"types": [
+									"cold"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "frostscythe"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "frostscythe",
+					"name": "Speed Reduced 10 Ft.",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.walk",
+							"value": -10,
+							"mode": "ADD"
+						}
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -2803,7 +5030,7 @@
 						{
 							"key": "damage",
 							"value": "-1d6",
-							"mode": "DND5E.BONUS"
+							"mode": "dnd5e.bonus"
 						}
 					],
 					"description": "Skeletal hands sap the creature's strength. It subtracts 1d6 from its damage rolls until the end of its next turn."
@@ -2847,6 +5074,31 @@
 								]
 							}
 						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Guided Prayer",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Heal",
+					"type": "heal",
+					"activation": {
+						"type": "action"
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"number": 8,
+						"denomination": 4,
+						"bonus": "@mod"
 					}
 				}
 			],
@@ -2903,6 +5155,104 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Hand of Gul'dan",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 8,
+								"types": [
+									"fire"
+								],
+								"scaling": {
+									"number": 1
+								}
+							},
+							{
+								"number": 2,
+								"denomination": 8,
+								"types": [
+									"necrotic"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				},
+				{
+					"name": "Spirit Damage",
+					"type": "save",
+					"activation": {
+						"type": "special"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 8,
+								"types": [
+									"fire"
+								],
+								"scaling": {
+									"number": 1
+								}
+							},
+							{
+								"number": 1,
+								"denomination": 8,
+								"types": [
+									"necrotic"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Hindsight",
 			"source": "AU",
 			"activities": [
@@ -2912,6 +5262,72 @@
 					"description": "You peer backward through the fabric of time, witnessing visions of events that occurred within range during the past 10 years.",
 					"activation": {
 						"type": "action"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Holy Nova",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Save",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 5,
+								"denomination": 6,
+								"types": [
+									"radiant"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				},
+				{
+					"name": "Heal Other Creatures",
+					"type": "heal",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1,
+							"mode": "whole"
+						},
+						"number": 3,
+						"denomination": 6
 					}
 				}
 			],
@@ -3038,6 +5454,73 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Infernal Strike",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					}
+				},
+				{
+					"name": "Landing Burst",
+					"type": "save",
+					"activation": {
+						"type": "special"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 6,
+								"types": [
+									"fire"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "infernalStrike"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "infernalStrike",
+					"name": "Landing Burst",
+					"duration": {
+						"units": "seconds",
+						"expiry": "sourceStart"
+					},
+					"description": "You have Disadvantage on attack rolls against creatures other than the Infernal Strike caster."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Inflict Doubt",
 			"source": "AU",
 			"activities": [
@@ -3093,6 +5576,32 @@
 						}
 					],
 					"description": "The creature has Disadvantage on D20 Tests."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Innervate",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "-1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Wild Shape|Druid|XPHB|2"
+								}
+							}
+						]
+					}
 				}
 			],
 			"migrationVersion": 3
@@ -3268,6 +5777,116 @@
 						"silenced"
 					],
 					"description": "While in this area, creatures have the &Reference[Blinded apply=false] and &Reference[Deafened apply=false] conditions, and they can't cast spells with a Verbal component."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Lay Waste",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Save",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 12,
+								"denomination": 6,
+								"types": [
+									"fire"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				},
+				{
+					"name": "Teleport",
+					"type": "teleport",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"teleport": {
+						"units": "ft",
+						"value": "125"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Leeching Strike",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Damage",
+					"type": "damage",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"critical": {
+							"allow": true
+						},
+						"parts": [
+							{
+								"number": 3,
+								"denomination": 8,
+								"types": [
+									"necrotic"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					}
+				},
+				{
+					"name": "Regain Hit Points",
+					"type": "heal",
+					"activation": {
+						"type": "special",
+						"condition": "Resolve healing from that casting"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1,
+							"mode": "whole"
+						},
+						"number": 3,
+						"denomination": 4
+					}
 				}
 			],
 			"migrationVersion": 3
@@ -3450,6 +6069,86 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Living Flame",
+			"source": "WoW",
+			"system": {
+				"target.affects.count": "1 + floor((@item.level - 1) / 2)"
+			},
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					}
+				},
+				{
+					"name": "Healing Flames",
+					"type": "heal",
+					"description": "The target regains 2d6 Hit Points.",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"number": 2,
+						"denomination": 6
+					}
+				},
+				{
+					"name": "Searing Flames",
+					"type": "attack",
+					"description": "Make a ranged attack roll against the target. On a hit, the target takes 2d8 Fire damage.",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"attack": {
+						"type": {
+							"value": "ranged",
+							"classification": "spell"
+						},
+						"ability": "spellcasting"
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 8,
+								"types": [
+									"fire"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Magic Stone",
 			"source": "XGE",
 			"system": {
@@ -3485,6 +6184,170 @@
 							}
 						]
 					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Mass Polymorph",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Save",
+					"type": "save",
+					"description": "Creatures other than Beasts, Giants, Humanoids, and Monstrosities automatically succeed. After resolving saves, use Transform Targets for creatures that failed.",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"wis"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				},
+				{
+					"name": "Transform Targets",
+					"type": "transform",
+					"description": "Choose one CR 0 Beast for all affected creatures. The GM controls only the failed-save tokens, then clicks Transform. Use Restore Transformation when a target has no Temporary Hit Points or the spell ends.",
+					"activation": {
+						"type": "special"
+					},
+					"profiles": [
+						{
+							"cr": "0",
+							"types": [
+								"beast"
+							]
+						}
+					],
+					"transform": {
+						"mode": "cr",
+						"preset": "polymorph"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Metamorphosis",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Devourer",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"effects": [
+						{
+							"foundryId": "metamorphosis"
+						}
+					]
+				},
+				{
+					"name": "Havoc",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"effects": [
+						{
+							"foundryId": "metamorphosis1"
+						}
+					]
+				},
+				{
+					"name": "Havoc Fire Damage",
+					"type": "damage",
+					"description": "Use only while the Havoc Active Effect is active.",
+					"activation": {
+						"type": "special",
+						"condition": "after you hit a creature with a Melee weapon attack roll"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "spec",
+						"special": "triggering weapon's reach"
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 6,
+								"types": [
+									"fire"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					}
+				},
+				{
+					"name": "Vengeance",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"effects": [
+						{
+							"foundryId": "metamorphosis2"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "metamorphosis",
+					"name": "Devourer",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"description": "When you roll Force damage for a spell, weapon, or feature, treat each 1 or 2 on a damage die as a 3."
+				},
+				{
+					"foundryId": "metamorphosis1",
+					"name": "Havoc",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"description": "After you hit a creature with a Melee weapon attack roll, use the Havoc Fire Damage activity."
+				},
+				{
+					"foundryId": "metamorphosis2",
+					"name": "Vengeance",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.ac.bonus",
+							"value": 2,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.attributes.hp.tempmax",
+							"value": 5,
+							"mode": "ADD"
+						}
+					],
+					"description": "When this effect is applied, increase your current Hit Points by 5. Before removing it, reduce your current Hit Points by 5, to a minimum of 0."
 				}
 			],
 			"migrationVersion": 3
@@ -3559,6 +6422,118 @@
 					"activation": {
 						"type": "action"
 					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Moonfire",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 8,
+								"types": [
+									"radiant"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "moonfire"
+						}
+					]
+				},
+				{
+					"name": "Later Damage",
+					"type": "damage",
+					"description": "At the end of the affected creature's next turn, it takes the later Radiant damage, and the spell ends.",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 8,
+								"types": [
+									"radiant"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "moonfire",
+					"duration": {
+						"units": "seconds",
+						"expiry": "targetEnd"
+					},
+					"changes": [
+						{
+							"key": "system.traits.ci.value",
+							"value": "invisible",
+							"mode": "ADD"
+						},
+						{
+							"key": "token.light.dim",
+							"value": 10,
+							"mode": "UPGRADE"
+						},
+						{
+							"key": "token.light.angle",
+							"value": 360,
+							"mode": "OVERRIDE"
+						},
+						{
+							"key": "token.light.color",
+							"value": "#647080",
+							"mode": "OVERRIDE"
+						},
+						{
+							"key": "token.light.alpha",
+							"value": 0.25,
+							"mode": "OVERRIDE"
+						}
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -3898,6 +6873,368 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Prayer of Mending",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"effects": [
+						{
+							"foundryId": "prayerOfMending"
+						}
+					]
+				},
+				{
+					"name": "Ward Healing",
+					"type": "heal",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "spec"
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"number": 1,
+						"denomination": 8,
+						"bonus": "@mod"
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "prayerOfMending",
+					"name": "Warded",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Psychic Horror",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 10,
+								"types": [
+									"psychic"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"wis"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "psychicHorror"
+						},
+						{
+							"foundryId": "psychicHorror1"
+						}
+					]
+				},
+				{
+					"name": "Repeat Save",
+					"type": "save",
+					"activation": {
+						"type": "turnEnd"
+					},
+					"range": {
+						"units": "spec"
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"wis"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "psychicHorror",
+					"name": "Frightened",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"statuses": [
+						"frightened"
+					]
+				},
+				{
+					"foundryId": "psychicHorror1",
+					"name": "Stunned",
+					"duration": {
+						"units": "seconds",
+						"expiry": "sourceEnd"
+					},
+					"statuses": [
+						"stunned"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Rain of Fire",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 3,
+								"denomination": 8,
+								"types": [
+									"fire"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				},
+				{
+					"name": "Falling Fire",
+					"type": "save",
+					"activation": {
+						"type": "special"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 3,
+								"denomination": 8,
+								"types": [
+									"fire"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Regrowth",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Heal",
+					"type": "heal",
+					"activation": {
+						"type": "action"
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"number": 3,
+						"denomination": 8
+					}
+				},
+				{
+					"name": "Ongoing Healing",
+					"type": "heal",
+					"activation": {
+						"type": "turnStart"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"number": 1,
+						"denomination": 8
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Remorseless Winter",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Save",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 6,
+								"denomination": 6,
+								"types": [
+									"cold"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "remorselessWinte"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "remorselessWinte",
+					"name": "Speed 10 Ft.",
+					"duration": {
+						"units": "seconds",
+						"expiry": "targetEnd"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.walk",
+							"value": 10,
+							"mode": "OVERRIDE"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Rescue",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Teleport",
+					"type": "teleport",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"teleport": {
+						"units": "ft"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Reweave Fate",
 			"source": "AU",
 			"activities": [
@@ -3925,6 +7262,649 @@
 						},
 						"number": 6,
 						"denomination": 10
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Roar of Ursoc",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "-1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Wild Shape|Druid|XPHB|2"
+								}
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Rune Strike",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Damage",
+					"type": "damage",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 8,
+								"types": [
+									"necrotic"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					}
+				},
+				{
+					"name": "Celestial Bonus Damage",
+					"type": "damage",
+					"activation": {
+						"type": ""
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 8,
+								"types": [
+									"necrotic"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Scourge Strike",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Damage",
+					"type": "damage",
+					"activation": {
+						"type": "action"
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"critical": {
+							"allow": true
+						},
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 6,
+								"types": [
+									"necrotic"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					}
+				},
+				{
+					"name": "Initial Save",
+					"type": "save",
+					"activation": {
+						"type": ""
+					},
+					"duration": {
+						"expiry": "targetEnd"
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "scourgeStrike"
+						}
+					]
+				},
+				{
+					"name": "Repeat Save",
+					"type": "save",
+					"activation": {
+						"type": "special",
+						"condition": "End of the Poisoned target's turn"
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "scourgeStrike",
+					"name": "Poisoned",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"statuses": [
+						"poisoned"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Serpent Sting",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "damage",
+					"description": "The creature hit by your weapon takes an extra 4d6 Poison damage from the attack and is Poisoned until the spell ends.",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"critical": {
+							"allow": true
+						},
+						"parts": [
+							{
+								"number": 4,
+								"denomination": 6,
+								"types": [
+									"poison"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"effects": [
+						{
+							"foundryId": "serpentSting"
+						}
+					]
+				},
+				{
+					"name": "Save: End of Turn",
+					"type": "save",
+					"description": "At the end of its turn, the Poisoned target makes a Constitution saving throw. On a failed save, it takes 2d6 Poison damage. On a successful save, the spell ends.",
+					"activation": {
+						"type": "turnEnd"
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"onSave": "none",
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 6,
+								"types": [
+									"poison"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "serpentSting",
+					"name": "Poisoned",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"statuses": [
+						"poisoned"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Shadow Word: Pain",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 10,
+								"bonus": "@mod",
+								"types": [
+									"psychic"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"wis"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "shadowWordPain"
+						}
+					]
+				},
+				{
+					"name": "Ongoing Pain",
+					"type": "damage",
+					"activation": {
+						"type": "turnStart"
+					},
+					"range": {
+						"units": "spec"
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 10,
+								"types": [
+									"psychic"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					}
+				},
+				{
+					"name": "Repeat Save",
+					"type": "save",
+					"activation": {
+						"type": "turnEnd"
+					},
+					"range": {
+						"units": "spec"
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"wis"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "shadowWordPain",
+					"name": "Cursed",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"statuses": [
+						"cursed"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Shattering Star",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Attack",
+					"type": "attack",
+					"activation": {
+						"type": "action"
+					},
+					"attack": {
+						"type": {
+							"value": "ranged",
+							"classification": "spell"
+						},
+						"ability": "spellcasting"
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"number": 10,
+								"denomination": 8,
+								"types": [
+									"force"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					},
+					"effects": [
+						{
+							"foundryId": "shatteringStar"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "shatteringStar",
+					"name": "-2 AC  Penalty",
+					"duration": {
+						"units": "seconds",
+						"expiry": "sourceStart"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.ac.bonus",
+							"value": -2,
+							"mode": "ADD"
+						}
+					],
+					"description": "Clinging frost makes your exterior brittle, imposing a \u22122 penalty to AC."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Sigil of Chains",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Save",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 5,
+								"denomination": 6,
+								"types": [
+									"force"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "sigilOfChains"
+						},
+						{
+							"foundryId": "sigilOfChains1"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "sigilOfChains",
+					"name": "Restrained (Save Failure)",
+					"duration": {
+						"units": "seconds",
+						"expiry": "sourceEnd"
+					},
+					"statuses": [
+						"restrained"
+					],
+					"description": "After the failed save, move your token up to 10 feet straight toward the sigil."
+				},
+				{
+					"foundryId": "sigilOfChains1",
+					"name": "Speed -10 Ft. (Save Success)",
+					"duration": {
+						"units": "seconds",
+						"expiry": "sourceEnd"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.speeds.walk",
+							"value": -10,
+							"mode": "ADD"
+						}
+					],
+					"description": "Your walking Speed is reduced by 10 feet while this effect is active."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Sigil of Flame",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Save",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 8,
+								"types": [
+									"fire"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "sigilOfFlame"
+						}
+					]
+				},
+				{
+					"name": "Heat Burst",
+					"type": "save",
+					"activation": {
+						"type": "special",
+						"condition": "start of the marked creature's next turn"
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "radius",
+							"size": "10"
+						},
+						"affects": {
+							"type": "creature",
+							"special": "attach the Emanation to the marked creature's token"
+						}
+					},
+					"range": {
+						"units": "any",
+						"special": "the marked creature can move beyond 90 feet"
+					},
+					"damage": {
+						"onSave": "none",
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 8,
+								"types": [
+									"fire"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "sigilOfFlame",
+					"name": "Sigil of Flame Marker",
+					"duration": {
+						"units": "seconds",
+						"expiry": "targetEnd"
+					},
+					"description": "At the start of your next turn, the caster uses Heat Burst with its Emanation attached to your token."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Soul Reap",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Attack",
+					"type": "attack",
+					"activation": {
+						"type": "action"
+					},
+					"attack": {
+						"type": {
+							"value": "ranged",
+							"classification": "spell"
+						},
+						"ability": "spellcasting"
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "6d6x@mod=6"
+								},
+								"number": 6,
+								"denomination": 6,
+								"types": [
+									"force"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
 					}
 				}
 			],
@@ -4184,6 +8164,77 @@
 						"dc": {
 							"calculation": "spellcasting"
 						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Starfall",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 7,
+								"denomination": 8,
+								"types": [
+									"radiant"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				},
+				{
+					"name": "AOE Damage",
+					"type": "damage",
+					"activation": {
+						"type": "special",
+						"condition": "a creature that enters the Cylinder for the first time on a turn or ends its turn"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@classes.druid.levels"
+								},
+								"types": [
+									"radiant"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
 					}
 				}
 			],
@@ -5154,6 +9205,105 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Throw Glaive",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Attack",
+					"type": "attack",
+					"activation": {
+						"type": "action"
+					},
+					"attack": {
+						"type": {
+							"value": "ranged",
+							"classification": "spell"
+						},
+						"ability": "spellcasting"
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 8,
+								"types": [
+									"slashing"
+								],
+								"scaling": {
+									"number": 1
+								}
+							},
+							{
+								"number": 1,
+								"denomination": 8,
+								"types": [
+									"fire"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					}
+				},
+				{
+					"name": "Ricochet",
+					"type": "attack",
+					"activation": {
+						"type": "special",
+						"condition": "after the previous attack hits"
+					},
+					"target": {
+						"affects": {
+							"type": "creatureOrObject",
+							"count": "1",
+							"special": "different from the previous target"
+						}
+					},
+					"range": {
+						"units": "spec",
+						"special": "within 30 feet of the previous target"
+					},
+					"attack": {
+						"type": {
+							"value": "ranged",
+							"classification": "spell"
+						},
+						"ability": "spellcasting"
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 8,
+								"types": [
+									"slashing"
+								],
+								"scaling": {
+									"number": 1
+								}
+							},
+							{
+								"number": 1,
+								"denomination": 8,
+								"types": [
+									"fire"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Thunderous Smite",
 			"source": "XPHB",
 			"activities": [
@@ -5210,6 +9360,41 @@
 						"prone"
 					],
 					"description": "Due to being pushed 10 feet away, the target is &Reference[prone apply=false]."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Time Dilation",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Reduce Damage",
+					"type": "utility",
+					"description": "The target reduces the triggering damage by 4d8.",
+					"activation": {
+						"type": "action"
+					},
+					"roll": {
+						"name": "Damage Reduction",
+						"formula": "4d8"
+					}
+				},
+				{
+					"name": "Hit Point Loss",
+					"type": "utility",
+					"description": "At the end of the target's turn, the target loses 1d8 Hit Points.",
+					"activation": {
+						"type": "turnEnd"
+					},
+					"range": {
+						"units": "any"
+					},
+					"roll": {
+						"visible": true,
+						"name": "Hit Point Loss",
+						"formula": "1d8"
+					}
 				}
 			],
 			"migrationVersion": 3
@@ -5295,6 +9480,80 @@
 							"calculation": "spellcasting"
 						}
 					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Tranquility",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"effects": [
+						{
+							"foundryId": "tranquility"
+						}
+					]
+				},
+				{
+					"name": "Restore Hit Points",
+					"type": "heal",
+					"activation": {
+						"type": "bonus"
+					},
+					"target": {
+						"affects": {
+							"type": "ally",
+							"special": "Each ally in the emanation"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1,
+							"mode": "whole"
+						},
+						"number": 2,
+						"denomination": 8,
+						"bonus": "@mod"
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "tranquility",
+					"name": "Physical Damage Resistances",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"value": "bludgeoning",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "piercing",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "slashing",
+							"mode": "ADD"
+						}
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -5390,6 +9649,192 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Tree of Life",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					}
+				},
+				{
+					"name": "Tree Form",
+					"type": "utility",
+					"activation": {
+						"type": ""
+					},
+					"effects": [
+						{
+							"foundryId": "treeOfLife"
+						}
+					]
+				},
+				{
+					"name": "Bark Skin",
+					"type": "heal",
+					"activation": {
+						"type": ""
+					},
+					"healing": {
+						"types": [
+							"temphp"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "10"
+						},
+						"scaling": {
+							"number": 1
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "treeOfLife1"
+						}
+					]
+				},
+				{
+					"name": "Condition Immunity",
+					"type": "utility",
+					"activation": {
+						"type": ""
+					},
+					"effects": [
+						{
+							"foundryId": "treeOfLife2"
+						}
+					]
+				},
+				{
+					"name": "Source of Life",
+					"type": "heal",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"number": 1,
+						"denomination": 8
+					}
+				},
+				{
+					"name": "Spells Enhanced",
+					"type": "utility",
+					"activation": {
+						"type": ""
+					},
+					"effects": [
+						{
+							"foundryId": "treeOfLife3"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "treeOfLife",
+					"name": "Tree Form",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"changes": [
+						{
+							"key": "system.traits.size",
+							"value": "lg",
+							"mode": "OVERRIDE"
+						},
+						{
+							"key": "system.attributes.movement.ignoredDifficultTerrain",
+							"value": "all",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.attributes.movement.speeds.walk",
+							"value": 10,
+							"mode": "OVERRIDE"
+						},
+						{
+							"key": "token.width",
+							"value": 2,
+							"mode": "OVERRIDE"
+						},
+						{
+							"key": "token.height",
+							"value": 2,
+							"mode": "OVERRIDE"
+						}
+					]
+				},
+				{
+					"foundryId": "treeOfLife1",
+					"name": "+2 AC Bonus",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.ac.bonus",
+							"value": 2,
+							"mode": "ADD"
+						}
+					]
+				},
+				{
+					"foundryId": "treeOfLife2",
+					"name": "Condition Immunities",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"changes": [
+						{
+							"key": "system.traits.ci.value",
+							"value": "paralyzed",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.ci.value",
+							"value": "restrained",
+							"mode": "ADD"
+						}
+					]
+				},
+				{
+					"foundryId": "treeOfLife3",
+					"name": "Spells Enhanced",
+					"duration": {
+						"value": 1,
+						"units": "minutes"
+					},
+					"changes": [
+						{
+							"key": "system.bonuses.spell.dc",
+							"value": 1,
+							"mode": "ADD"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Uncertain Footing",
 			"source": "AU",
 			"activities": [
@@ -5435,6 +9880,119 @@
 						}
 					],
 					"description": "The creature's Speed is halved, and it can't take the &Reference[Dash] action."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Upheaval",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Save",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 12,
+								"types": [
+									"bludgeoning"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							},
+							{
+								"number": 3,
+								"denomination": 8,
+								"types": [
+									"fire"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"behaviors": [
+						{
+							"type": "difficultTerrain",
+							"config": {
+								"types": [
+									"rocks"
+								]
+							}
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Vampiric Blood",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"effects": [
+						{
+							"foundryId": "vampiricBlood"
+						}
+					]
+				},
+				{
+					"name": "Extra Healing",
+					"type": "heal",
+					"activation": {
+						"type": ""
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1,
+							"mode": "whole"
+						},
+						"number": 1,
+						"denomination": 6
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "vampiricBlood",
+					"duration": {
+						"value": 1,
+						"units": "minutes",
+						"expiry": "turnStart"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.hp.tempmax",
+							"value": 10,
+							"mode": "ADD"
+						}
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -5493,6 +10051,84 @@
 						"paralyzed"
 					],
 					"description": "The target is &Reference[Paralyzed apply=false] condition for the duration."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Void Eruption",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast Spell",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 5,
+								"denomination": 6,
+								"types": [
+									"necrotic"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					}
+				},
+				{
+					"name": "Void Bolt",
+					"type": "attack",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "60"
+					},
+					"attack": {
+						"type": {
+							"value": "ranged",
+							"classification": "spell"
+						},
+						"ability": "spellcasting"
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 6,
+								"bonus": "@mod",
+								"types": [
+									"necrotic"
+								],
+								"scaling": {
+									"number": 1
+								}
+							}
+						]
+					}
 				}
 			],
 			"migrationVersion": 3
@@ -5819,6 +10455,65 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Wrath",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Cast & Attack",
+					"type": "attack",
+					"activation": {
+						"type": "action"
+					},
+					"attack": {
+						"type": {
+							"value": "ranged",
+							"classification": "spell"
+						},
+						"ability": "spellcasting"
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 8,
+								"types": [
+									"lightning"
+								],
+								"scaling": {
+									"mode": "whole",
+									"number": 1
+								}
+							}
+						]
+					},
+					"effects": [
+						{
+							"foundryId": "wrath"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "wrath",
+					"name": "Speed Reduced 10 Ft.",
+					"duration": {
+						"units": "seconds",
+						"expiry": "sourceEnd"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.bonus",
+							"value": -10,
+							"mode": "ADD"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Wrathful Smite",
 			"source": "XPHB",
 			"activities": [
@@ -5953,7 +10648,7 @@
 						{
 							"key": "check",
 							"value": 10,
-							"mode": "DND5E.MINIMUM"
+							"mode": "dnd5e.minimum"
 						}
 					],
 					"description": "Enable this effect when making an ability check to influence a creature within the spell's Emanation, then disable it after the check."

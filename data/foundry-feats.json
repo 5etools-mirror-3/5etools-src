@@ -179,6 +179,39 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Arathi Heritage",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Lethargy Resilience",
+					"type": "utility",
+					"description": "When you fail a saving throw to avoid or end the &Reference[Unconscious apply=false] condition, you can succeed instead. Once you use this trait, you can't do so again until you finish 1d4 Long Rests.",
+					"activation": {
+						"type": "special",
+						"condition": "When you fail a saving throw to avoid or end the Unconcious condition"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses",
+								"value": "1d4"
+							}
+						]
+					},
+					"uses": {
+						"recovery": [
+							{
+								"period": "lr",
+								"type": "recoverAll"
+							}
+						],
+						"max": "4"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Arcane Artist",
 			"source": "AU",
 			"activities": [
@@ -220,7 +253,32 @@
 					"transfer": true,
 					"duration": {
 						"units": "seconds"
-					}
+					},
+					"changes": [
+						{
+							"key": "check",
+							"value": "1d4",
+							"conditions": {
+								"o": "AND",
+								"v": [
+									{
+										"k": "roll.skill",
+										"o": "in",
+										"v": [
+											"dec",
+											"itm",
+											"per"
+										]
+									},
+									{
+										"k": "roll.ability",
+										"v": "cha"
+									}
+								]
+							},
+							"mode": "dnd5e.bonus"
+						}
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -467,7 +525,45 @@
 					"transfer": true,
 					"duration": {
 						"units": "seconds"
-					}
+					},
+					"changes": [
+						{
+							"key": "check",
+							"value": "1d4",
+							"conditions": {
+								"o": "OR",
+								"v": [
+									{
+										"o": "AND",
+										"v": [
+											{
+												"k": "roll.ability",
+												"v": "int"
+											},
+											{
+												"k": "roll.skill",
+												"v": "his"
+											}
+										]
+									},
+									{
+										"o": "AND",
+										"v": [
+											{
+												"k": "roll.ability",
+												"v": "wis"
+											},
+											{
+												"k": "roll.skill",
+												"v": "med"
+											}
+										]
+									}
+								]
+							},
+							"mode": "dnd5e.bonus"
+						}
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -1220,6 +1316,44 @@
 								"value": "1"
 							}
 						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Child of the Sea",
+			"source": "WoW",
+			"effects": [
+				{
+					"name": "Ocean Born",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.speeds.swim",
+							"value": "@attributes.movement.speed",
+							"mode": "UPGRADE"
+						}
+					],
+					"description": "You have a Swim Speed equal to your &Reference[Speed]."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Clearcasting",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Clearcasting",
+					"type": "utility",
+					"description": "When you score a Critical Hit with a spell's attack roll, you can take a Reaction to cast a cantrip with a casting time of an action.",
+					"activation": {
+						"type": "reaction",
+						"condition": "When you score a Critical Hit with a spell's attack roll"
 					}
 				}
 			],
@@ -1990,6 +2124,27 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Elusive Brawler",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Reactive Dodge",
+					"type": "utility",
+					"description": "When you take damage, you can take a Reaction to take the &Reference[Dodge] action.",
+					"activation": {
+						"type": "reaction",
+						"condition": "When you take damage"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Elven Accuracy",
 			"source": "XGE",
 			"effects": [
@@ -2000,6 +2155,236 @@
 							"key": "flags.dnd5e.elvenAccuracy",
 							"mode": "OVERRIDE",
 							"value": true
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Enveloping Mist",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Enveloping Mist",
+					"type": "enchant",
+					"description": "When you cast a spell or use a feature to restore Hit Points to a creature, the creature is wrapped in a healing mist. Roll one of the dice from the feature that healed it, and note that number as the creature's Life Cocoon value. If the creature is hit by an attack roll before the start of its next turn, you can take a Reaction to reduce the damage it takes from that attack by its Life Cocoon value. The mist then disappears. At the start of the creature's next turn, if the mist persists, the creature gains Temporary Hit Points equal to its Life Cocoon value.",
+					"activation": {
+						"type": "special",
+						"condition": "When you cast a spell or use a feature to restore Hit Points to a creature"
+					},
+					"duration": {
+						"expiry": "targetEnd"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"enchant": {
+						"self": true
+					},
+					"effects": [
+						{
+							"foundryId": "envelopingMist",
+							"riders": {
+								"activity": [
+									{
+										"foundryId": "envelopingMist"
+									},
+									{
+										"foundryId": "envelopingMist1"
+									}
+								]
+							}
+						},
+						{
+							"foundryId": "envelopingMist1",
+							"riders": {
+								"activity": [
+									{
+										"foundryId": "envelopingMist"
+									},
+									{
+										"foundryId": "envelopingMist1"
+									}
+								]
+							}
+						},
+						{
+							"foundryId": "envelopingMist2",
+							"riders": {
+								"activity": [
+									{
+										"foundryId": "envelopingMist"
+									},
+									{
+										"foundryId": "envelopingMist1"
+									}
+								]
+							}
+						},
+						{
+							"foundryId": "envelopingMist3",
+							"riders": {
+								"activity": [
+									{
+										"foundryId": "envelopingMist"
+									},
+									{
+										"foundryId": "envelopingMist1"
+									}
+								]
+							}
+						},
+						{
+							"foundryId": "envelopingMist4",
+							"riders": {
+								"activity": [
+									{
+										"foundryId": "envelopingMist"
+									},
+									{
+										"foundryId": "envelopingMist1"
+									}
+								]
+							}
+						}
+					]
+				},
+				{
+					"foundryId": "envelopingMist1",
+					"name": "Enveloping Mist: Heal",
+					"type": "heal",
+					"description": "At the start of the creature's next turn, if the mist persists, the creature gains Temporary Hit Points equal to its Life Cocoon value.",
+					"activation": {
+						"type": "",
+						"condition": "At the start of the creature's next turn"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"healing": {
+						"types": [
+							"temphp"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "@flags.dnd5e.wow--life-cocoon"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				},
+				{
+					"foundryId": "envelopingMist",
+					"name": "Enveloping Mist: Reduce Damage",
+					"type": "utility",
+					"activation": {
+						"type": "reaction",
+						"condition": "When the creature is hit by an attack roll before the start of its next turn"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"roll": {
+						"name": "Damage Reduction",
+						"formula": "@flags.dnd5e.wow--life-cocoon"
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "envelopingMist",
+					"name": "Life Cocoon (d4)",
+					"type": "enchantment",
+					"disabled": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "flags.dnd5e.wow--life-cocoon",
+							"value": "1d4",
+							"mode": "OVERRIDE"
+						}
+					]
+				},
+				{
+					"foundryId": "envelopingMist1",
+					"name": "Life Coccon (d6)",
+					"type": "enchantment",
+					"disabled": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "flags.dnd5e.wow--life-cocoon",
+							"value": "1d6",
+							"mode": "OVERRIDE"
+						}
+					]
+				},
+				{
+					"foundryId": "envelopingMist2",
+					"name": "Life Cocoon (d8)",
+					"type": "enchantment",
+					"disabled": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "flags.dnd5e.wow--life-cocoon",
+							"value": "1d8",
+							"mode": "OVERRIDE"
+						}
+					]
+				},
+				{
+					"foundryId": "envelopingMist3",
+					"name": "Life Cocoon (d10)",
+					"type": "enchantment",
+					"disabled": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "flags.dnd5e.wow--life-cocoon",
+							"value": "1d10",
+							"mode": "OVERRIDE"
+						}
+					]
+				},
+				{
+					"foundryId": "envelopingMist4",
+					"name": "Life Cocoon (d12)",
+					"type": "enchantment",
+					"disabled": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "flags.dnd5e.wow--life-cocoon",
+							"value": "1d12",
+							"mode": "OVERRIDE"
 						}
 					]
 				}
@@ -2175,6 +2560,70 @@
 							"mode": "ADD"
 						}
 					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Fingers of Frost",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Frostbite",
+					"type": "damage",
+					"description": "When you deal Cold damage to a creature that has the &Reference[Restrained apply=false] condition, the creature takes extra Cold damage. To determine the extra damage, roll a number of d4s equal to your Proficiency Bonus and add them together.",
+					"activation": {
+						"type": "special",
+						"condition": "When you deal Cold Damage to a creature that has the Restrained condition"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1",
+							"special": "With the Restrained condition"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"critical": {
+							"allow": true
+						},
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "(@prof)d4"
+								},
+								"types": [
+									"cold"
+								]
+							}
+						]
+					}
+				}
+			],
+			"effects": [
+				{
+					"name": "Cold Mastery",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "damage",
+							"value": "cold",
+							"conditions": {
+								"k": "item.level",
+								"o": "gte",
+								"v": 0
+							},
+							"mode": "dnd5e.damage.ignore.resistance"
+						}
+					],
+					"description": "Spells you cast ignore &Reference[Resistance] to Cold damage."
 				}
 			],
 			"migrationVersion": 3
@@ -2549,6 +2998,64 @@
 							"value": "-(@prof)"
 						}
 					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Hot Streak",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Ignite",
+					"type": "damage",
+					"description": "When a spell you cast deals Fire damage to a creature, the target starts burning. When you deal Fire damage to a creature that is already burning, the flames become more severe, increasing the burning damage by 1d4.",
+					"activation": {
+						"type": "special",
+						"condition": "When a spell you cast deals Fire damage to a creature"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 4,
+								"types": [
+									"fire"
+								]
+							}
+						]
+					}
+				}
+			],
+			"effects": [
+				{
+					"name": "Fire Mastery",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "damage",
+							"value": "fire",
+							"conditions": {
+								"k": "item.level",
+								"o": "gte",
+								"v": 0
+							},
+							"mode": "dnd5e.damage.ignore.resistance"
+						}
+					],
+					"description": "Spells you cast ignore &Reference[Resistance] to Fire damage."
 				}
 			],
 			"migrationVersion": 3
@@ -4065,6 +4572,87 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Stagger and Sway",
+			"source": "WoW",
+			"system": {
+				"uses.max": "10",
+				"uses.spent": 10,
+				"uses.recovery": [
+					{
+						"period": "turnEnd",
+						"type": "loseAll"
+					}
+				]
+			},
+			"activities": [
+				{
+					"name": "Defer Damage",
+					"type": "utility",
+					"description": "When you take damage, reduce the damage you take by your Dexterity modifier (minimum of 1). Then add a d6 to your Delayed Reaction pool. At the end of your turn, remove all the dice from your Delayed Reaction pool and roll them. You take Force damage equal to the total rolled.",
+					"activation": {
+						"type": "",
+						"condition": "When you take damage"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "-1"
+							}
+						]
+					},
+					"roll": {
+						"name": "Damage Reduction",
+						"formula": "max(1, @abilities.dex.mod)"
+					}
+				},
+				{
+					"name": "Purify",
+					"type": "utility",
+					"description": "As a Bonus Action, you can remove a number of dice equal to your Wisdom modifier from your Delayed Reaction pool.",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "min(@abilities.wis.mod, @item.uses.value)"
+							}
+						]
+					}
+				},
+				{
+					"name": "Deferred Damage",
+					"type": "damage",
+					"description": "At the end of your turn, remove all the dice from your Delayed Reaction pool and roll them. You take Force damage equal to the total rolled.",
+					"activation": {
+						"type": "",
+						"condition": "At the end of your turn"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "(@item.uses.value)d6"
+								},
+								"types": [
+									"force"
+								]
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Survivor",
 			"source": "RHW",
 			"activities": [
@@ -4534,6 +5122,14 @@
 						"units": "seconds",
 						"expiry": "turnEnd"
 					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.walk",
+							"value": "@scaling * 5",
+							"replacement": "origin",
+							"mode": "ADD"
+						}
+					],
 					"description": "On your turn when you cast a spell from the Transmutation school using a spell slot, your Speed increases by a number of feet equal to five times the level of spell slot expended. This increase lasts until the end of the turn."
 				}
 			],

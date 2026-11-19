@@ -465,6 +465,175 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Azerite Surge",
+			"source": "WoW",
+			"raceName": "Earthen",
+			"raceSource": "WoW",
+			"system": {
+				"uses.max": "@prof",
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"activities": [
+				{
+					"type": "heal",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "cone",
+							"size": "15"
+						},
+						"affects": {
+							"choice": true,
+							"type": "creature"
+						}
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "(@details.tier)d10"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				},
+				{
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "cone",
+							"size": "15"
+						},
+						"affects": {
+							"choice": true,
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "(@details.tier)d10"
+								},
+								"types": [
+									"radiant"
+								]
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "con"
+						},
+						"visible": true
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Azeroth Elven Lineage (Night Elf)",
+			"source": "WoW",
+			"raceName": "Elf; Night Elf Lineage",
+			"raceSource": "WoW",
+			"identifier": "night-elf-lineage",
+			"activities": [
+				{
+					"name": "Hide",
+					"type": "utility",
+					"activation": {
+						"type": "bonus",
+						"condition": "While in Dim Light or Darkness"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Bloodied Frenzy",
+			"source": "WoW",
+			"raceName": "Troll",
+			"raceSource": "WoW",
+			"effects": [
+				{
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "attack",
+							"value": 1,
+							"conditions": {
+								"k": "statuses.bloodied",
+								"v": 1
+							},
+							"mode": "dnd5e.advantage"
+						}
+					],
+					"descriptionEntries": [
+						"While &Reference[Bloodied], you have Advantage on attack rolls."
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Bouncy",
+			"source": "WoW",
+			"raceName": "Pandaren",
+			"raceSource": "WoW",
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "falling"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Breath Weapon",
 			"source": "EGW",
 			"raceName": "Dragonborn (Draconblood; Black)",
@@ -3640,6 +3809,48 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Built for Success",
+			"source": "WoW",
+			"raceName": "Mechagnome",
+			"raceSource": "WoW",
+			"system": {
+				"uses.max": "@prof",
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "special",
+						"condition": "When you make a D20 Test"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"roll": {
+						"name": "Test Increase",
+						"formula": "1d4"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Celestial Revelation",
 			"source": "XPHB",
 			"raceName": "Aasimar",
@@ -3798,6 +4009,204 @@
 					},
 					"statuses": [
 						"frightened"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Darkflight",
+			"source": "WoW",
+			"raceName": "Worgen",
+			"raceSource": "WoW",
+			"system": {
+				"uses.max": "@prof",
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"activities": [
+				{
+					"foundryId": "darkflight",
+					"name": "Shape-Shift",
+					"type": "transform",
+					"description": "As a Bonus Action, you can shape-shift to assume a more bestial appearance. This transformation lasts for 1 minute or until you revert to your normal appearance as a Bonus Action.",
+					"activation": {
+						"type": "bonus"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"transform": {
+						"formless": true,
+						"mode": "form"
+					},
+					"effects": [
+						{
+							"foundryId": "darkflight"
+						}
+					]
+				},
+				{
+					"name": "Temp HP",
+					"type": "heal",
+					"description": "When you enter your bestial form, you gain Temporary Hit Points equal to 2 times your Proficiency Bonus.",
+					"activation": {
+						"type": "special",
+						"condition": "When you enter your bestial form"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"temphp"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "@prof * 2"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				},
+				{
+					"name": "Instinctual Shift",
+					"type": "forward",
+					"description": "When you roll Initiative while you have one or more uses of your Darkflight species trait remaining, you can immediately use that trait to shape-shift (no action required).",
+					"activation": {
+						"type": "encounter"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"activity": {
+						"foundryId": "darkflight"
+					}
+				},
+				{
+					"name": "Reactive Movement",
+					"type": "utility",
+					"description": "You can take a Reaction to move up to 10 feet when a creature ends its turn within 5 feet of you. This reactive movement doesn't provoke &Reference[Opportunity Attacks].",
+					"activation": {
+						"type": "reaction",
+						"condition": "When a creature ends its turn within 5 feet of you"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "darkflight",
+					"name": "Bestial Form",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.bonus",
+							"value": 10,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "necrotic",
+							"mode": "ADD"
+						}
+					],
+					"description": "In your bestial form, you gain the following benefits:"
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Draconic Flight",
+			"source": "WoW",
+			"raceName": "Dracthyr",
+			"raceSource": "WoW",
+			"system": {
+				"uses.max": "1",
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"activities": [
+				{
+					"name": "Leap",
+					"type": "utility",
+					"activation": {
+						"type": "bonus",
+						"condition": "While in your natural form"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "10"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "draconicFlight"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "draconicFlight",
+					"name": "Fly Speed",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.speeds.fly",
+							"value": "@attributes.movement.speed",
+							"mode": "UPGRADE"
+						}
 					]
 				}
 			],
@@ -4003,6 +4412,61 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Emergency Fail-Safe",
+			"source": "WoW",
+			"raceName": "Mechagnome",
+			"raceSource": "WoW",
+			"system": {
+				"uses.max": "1",
+				"uses.recovery": [
+					{
+						"period": "sr",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"activities": [
+				{
+					"type": "heal",
+					"activation": {
+						"type": "reaction",
+						"condition": "When you become Bloodied"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							},
+							{
+								"type": "hitDice",
+								"value": "1",
+								"target": "largest"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "max(1, @consumed.hd + @abilities.con.mod)"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Escaped Death",
 			"source": "RHW",
 			"raceName": "Reborn",
@@ -4020,6 +4484,124 @@
 							"mode": "ADD"
 						}
 					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Everlasting",
+			"source": "WoW",
+			"raceName": "Forsaken",
+			"raceSource": "WoW",
+			"effects": [
+				{
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.traits.ci.value",
+							"value": "dehydration",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.ci.value",
+							"value": "malnutrition",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.ci.value",
+							"value": "suffocation",
+							"mode": "ADD"
+						}
+					],
+					"description": "You don't gain &Reference[Exhaustion apply=false] levels from dehydration, malnutrition, or suffocation."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Fury of the Small",
+			"source": "WoW",
+			"raceName": "Goblin",
+			"raceSource": "WoW",
+			"system": {
+				"uses.max": "@prof",
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"activities": [
+				{
+					"name": "Extra Damage",
+					"type": "damage",
+					"activation": {
+						"type": "special",
+						"condition": "When you damage a creature with an attack or spell"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							},
+							{
+								"type": "activityUses",
+								"value": "1"
+							}
+						]
+					},
+					"uses": {
+						"recovery": [
+							{
+								"period": "turn",
+								"type": "recoverAll"
+							}
+						],
+						"max": "1"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1",
+							"special": "Creature's size is larger than yours"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"critical": {
+							"allow": true
+						},
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@prof"
+								},
+								"types": [
+									"bludgeoning",
+									"piercing",
+									"slashing",
+									"acid",
+									"cold",
+									"fire",
+									"force",
+									"lightning",
+									"necrotic",
+									"poison",
+									"psychic",
+									"radiant",
+									"thunder"
+								]
+							}
+						]
+					}
 				}
 			],
 			"migrationVersion": 3
@@ -4054,6 +4636,33 @@
 			],
 			"ignoreSrdActivities": true,
 			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Goring Rush",
+			"source": "WoW",
+			"raceName": "Tauren",
+			"raceSource": "WoW",
+			"activities": [
+				{
+					"name": "Unarmed Strike",
+					"type": "utility",
+					"activation": {
+						"type": "bonus",
+						"condition": "When you take the Dash action on your turn and move at least 20 feet"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "5"
+					}
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -4105,6 +4714,46 @@
 				"raceName": "Goblin (Zendikar; Grotag Tribe)",
 				"raceSource": "PSZ"
 			},
+			"migrationVersion": 3
+		},
+		{
+			"name": "Hammering Horns",
+			"source": "WoW",
+			"raceName": "Tauren",
+			"raceSource": "WoW",
+			"activities": [
+				{
+					"name": "Shove",
+					"type": "save",
+					"activation": {
+						"type": "bonus",
+						"condition": "When you hit a creature with a melee attack as part of the Attack action on your turn"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "5"
+					},
+					"damage": {
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"str",
+							"dex"
+						],
+						"dc": {
+							"calculation": "str"
+						},
+						"visible": true
+					}
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -4222,6 +4871,22 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Heroic Presence",
+			"source": "WoW",
+			"raceName": "Draenei",
+			"raceSource": "WoW",
+			"system": {
+				"uses.max": "1",
+				"uses.recovery": [
+					{
+						"period": "sr",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"migrationVersion": 3
+		},
+		{
 			"name": "Hooves",
 			"source": "GGR",
 			"raceName": "Centaur",
@@ -4232,6 +4897,51 @@
 					"activation": {
 						"type": "action",
 						"value": 1
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Horns",
+			"source": "WoW",
+			"raceName": "Tauren",
+			"raceSource": "WoW",
+			"activities": [
+				{
+					"name": "Horns Attack",
+					"type": "attack",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "5"
+					},
+					"attack": {
+						"type": {
+							"value": "melee",
+							"classification": "unarmed"
+						}
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 6,
+								"bonus": "@mod",
+								"types": [
+									"piercing"
+								]
+							}
+						]
 					}
 				}
 			],
@@ -4340,6 +5050,29 @@
 						"",
 						"{@i Disadvantage on attack rolls is not automated.}"
 					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Ingest Minerals",
+			"source": "WoW",
+			"raceName": "Earthen",
+			"raceSource": "WoW",
+			"effects": [
+				{
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.traits.ci.value",
+							"value": "malnutrition",
+							"mode": "ADD"
+						}
+					],
+					"description": "You don't gain &Reference[Exhaustion apply=false] levels from malnutrition."
 				}
 			],
 			"migrationVersion": 3
@@ -4484,6 +5217,35 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Mechanical Nature",
+			"source": "WoW",
+			"raceName": "Mechagnome",
+			"raceSource": "WoW",
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.traits.ci.value",
+							"mode": "ADD",
+							"value": "dehydration"
+						},
+						{
+							"key": "system.traits.ci.value",
+							"mode": "ADD",
+							"value": "malnutrition"
+						},
+						{
+							"key": "system.traits.ci.value",
+							"mode": "ADD",
+							"value": "suffocation"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Natural Armor",
 			"source": "DMG",
 			"raceName": "Lizardfolk",
@@ -4619,6 +5381,113 @@
 							"value": "13 + @abilities.dex.mod"
 						}
 					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Natural Weaponry",
+			"source": "WoW",
+			"raceName": "Dracthyr",
+			"raceSource": "WoW",
+			"activities": [
+				{
+					"name": "Shove",
+					"type": "save",
+					"description": "On a failed save, choose whether to push the target 5 feet away or knock it &Reference[Prone apply=false]. Apply the Prone effect only if you choose to knock it Prone. The target must be no more than one size larger than you.",
+					"activation": {
+						"type": "bonus",
+						"condition": "While in your natural form"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "5"
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"str",
+							"dex"
+						],
+						"dc": {
+							"formula": "8 + @abilities.str.mod + @prof"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "naturalWeaponry"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "naturalWeaponry",
+					"name": "Prone",
+					"duration": {
+						"units": "seconds"
+					},
+					"statuses": [
+						"prone"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Nimble Escape",
+			"source": "WoW",
+			"raceName": "Goblin",
+			"raceSource": "WoW",
+			"activities": [
+				{
+					"name": "Disengage",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					}
+				},
+				{
+					"name": "Hide",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Nose for Trouble",
+			"source": "WoW",
+			"raceName": "Vulpera",
+			"raceSource": "WoW",
+			"activities": [
+				{
+					"name": "Reduce Damage",
+					"type": "utility",
+					"activation": {
+						"type": "",
+						"condition": "First time you take damage after you roll Initiative"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"roll": {
+						"name": "Damage Reduction",
+						"formula": "@details.level"
+					}
 				}
 			],
 			"migrationVersion": 3
@@ -4805,6 +5674,365 @@
 			],
 			"ignoreSrdActivities": true,
 			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Tauren Lineage (Highmountain Tauren)",
+			"source": "WoW",
+			"raceName": "Tauren; Highmountain Lineage",
+			"raceSource": "WoW",
+			"identifier": "highmountain-tauren-lineage",
+			"activities": [
+				{
+					"name": "Move",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"special": "Medium or smaller"
+						}
+					},
+					"damage": {
+						"onSave": "none",
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@prof + @abilities.str.mod"
+								},
+								"types": [
+									"bludgeoning"
+								]
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"str"
+						],
+						"dc": {
+							"formula": "8 + max(@abilities.str.mod, @abilities.con.mod, @abilities.wis.mod) + @prof"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "highmountainTaur"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "highmountainTaur",
+					"name": "Prone",
+					"duration": {
+						"units": "seconds"
+					},
+					"statuses": [
+						"prone"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Tauren Lineage (Mulgore Tauren)",
+			"source": "WoW",
+			"raceName": "Tauren; Mulgore Lineage",
+			"raceSource": "WoW",
+			"identifier": "mulgore-tauren-lineage",
+			"activities": [
+				{
+					"name": "Stomp",
+					"type": "save",
+					"activation": {
+						"type": "special",
+						"condition": "When you take the Attack action on your turn"
+					},
+					"duration": {
+						"expiry": "turnEnd"
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "radius",
+							"size": "5"
+						},
+						"affects": {
+							"choice": true,
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"formula": "8 + max(@abilities.str.mod, @abilities.con.mod, @abilities.wis.mod) + @prof"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "mulgoreTauren"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "mulgoreTauren",
+					"name": "Stunned",
+					"duration": {
+						"units": "seconds"
+					},
+					"statuses": [
+						"stunned"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Tauren Lineage (Taunka)",
+			"source": "WoW",
+			"raceName": "Tauren; Taunka Lineage",
+			"raceSource": "WoW",
+			"identifier": "taunka-lineage",
+			"effects": [
+				{
+					"name": "Taunka Lineage",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.ac.bonus",
+							"value": 1,
+							"mode": "ADD"
+						}
+					],
+					"description": "Your shaggy hide gives you a +1 bonus to Armor Class."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Touch of the Grave",
+			"source": "WoW",
+			"raceName": "Forsaken",
+			"raceSource": "WoW",
+			"system": {
+				"uses.max": "1",
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"activities": [
+				{
+					"name": "Extra Damage",
+					"type": "damage",
+					"activation": {
+						"type": "special",
+						"condition": "When you deal damage to a creature"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"critical": {
+							"allow": true
+						},
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "(@prof)d4"
+								},
+								"types": [
+									"necrotic"
+								]
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Troll Lineage (Amani Troll)",
+			"source": "WoW",
+			"raceName": "Troll; Amani Lineage",
+			"raceSource": "WoW",
+			"identifier": "amani-troll-lineage",
+			"activities": [
+				{
+					"name": "Regain Hit Point Die",
+					"type": "utility",
+					"activation": {
+						"type": "",
+						"condition": "When you spend Heroic Inspiration"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "hitDice",
+								"value": "-1",
+								"target": "largest"
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Troll Lineage (Darkspear Troll)",
+			"source": "WoW",
+			"raceName": "Troll; Darkspear Lineage",
+			"raceSource": "WoW",
+			"identifier": "darkspear-troll-lineage",
+			"activities": [
+				{
+					"name": "Dash",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"duration": {
+						"expiry": "turnEnd"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "darkspearTroll"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "darkspearTroll",
+					"name": "Ignore Difficult Terrain",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.ignoredDifficultTerrain",
+							"value": "ice",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.attributes.movement.ignoredDifficultTerrain",
+							"value": "rocks",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.attributes.movement.ignoredDifficultTerrain",
+							"value": "snow",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.attributes.movement.ignoredDifficultTerrain",
+							"value": "plants",
+							"mode": "ADD"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Visage",
+			"source": "WoW",
+			"raceName": "Dracthyr",
+			"raceSource": "WoW",
+			"activities": [
+				{
+					"type": "transform",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"visibility": {
+						"requireMagic": true
+					},
+					"transform": {
+						"formless": true,
+						"mode": "form"
+					},
+					"effects": [
+						{
+							"foundryId": "visage"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "visage",
+					"duration": {
+						"units": "seconds"
+					},
+					"description": "As a &Reference[Magic] action, you can shape-shift into a humanoid form called your visage, or back to your natural form. Your visage has a specific appearance that you choose when you select this species, including your coloration, height and weight, hair length, and sex. Changing shape with this trait doesn't change your clothing, equipment, or game statistics."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Vulpera Nimbleness",
+			"source": "WoW",
+			"raceName": "Vulpera",
+			"raceSource": "WoW",
+			"effects": [
+				{
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "flags.dnd5e.halflingNimbleness",
+							"value": true,
+							"mode": "OVERRIDE"
+						}
+					]
+				}
+			],
 			"migrationVersion": 3
 		}
 	]

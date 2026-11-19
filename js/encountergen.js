@@ -3,7 +3,7 @@ import {TableListPage} from "./tablepage.js";
 class EncountersPage extends TableListPage {
 	constructor () {
 		super({
-			dataSource: "data/encounters.json",
+			dataSource: DataUtil.encounter.loadJSON.bind(DataUtil.encounter),
 
 			dataProps: ["encounter"],
 

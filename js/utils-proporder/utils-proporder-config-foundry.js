@@ -43,6 +43,7 @@ export const PROPORDER_FOUNDRY_ACTIVITIES = new ArrayKey(
 			"profiles",
 			"summon",
 			"creatureTypes",
+			"creatureSizes",
 			"bonuses",
 			"match",
 

@@ -52,7 +52,7 @@ class TrapsHazardsPage extends ListPage {
 		const pageFilter = new PageFilterTrapsHazards();
 
 		super({
-			dataSource: "data/trapshazards.json",
+			dataSource: DataUtil.trap.loadJSON.bind(DataUtil.trap),
 
 			pFnGetFluff: Renderer.traphazard.pGetFluff.bind(Renderer.traphazard),
 

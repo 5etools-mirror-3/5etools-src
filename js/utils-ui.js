@@ -2304,7 +2304,7 @@ class SearchWidget {
 			errorName: "legendary groups",
 			customIndexSubSpecs: [
 				new SearchWidget.CustomIndexSubSpec({
-					dataSource: `${Renderer.get().baseUrl}data/bestiary/legendarygroups.json`,
+					dataSource: DataUtil.legendaryGroup.loadJSON.bind(DataUtil.legendaryGroup),
 					prop: "legendaryGroup",
 					catId: Parser.CAT_ID_LEGENDARY_GROUP,
 					page: "legendaryGroup",
@@ -2333,7 +2333,7 @@ class SearchWidget {
 			errorName: "feats",
 			customIndexSubSpecs: [
 				new SearchWidget.CustomIndexSubSpec({
-					dataSource: `${Renderer.get().baseUrl}data/feats.json`,
+					dataSource: DataUtil.feat.loadJSON.bind(DataUtil.feat),
 					prop: "feat",
 					catId: Parser.CAT_ID_FEAT,
 					page: UrlUtil.PG_FEATS,
@@ -2362,7 +2362,7 @@ class SearchWidget {
 			errorName: "backgrounds",
 			customIndexSubSpecs: [
 				new SearchWidget.CustomIndexSubSpec({
-					dataSource: `${Renderer.get().baseUrl}data/backgrounds.json`,
+					dataSource: DataUtil.background.loadJSON.bind(DataUtil.background),
 					prop: "background",
 					catId: Parser.CAT_ID_BACKGROUND,
 					page: UrlUtil.PG_BACKGROUNDS,
@@ -2423,7 +2423,7 @@ class SearchWidget {
 			errorName: "optional features",
 			customIndexSubSpecs: [
 				new SearchWidget.CustomIndexSubSpec({
-					dataSource: `${Renderer.get().baseUrl}data/optionalfeatures.json`,
+					dataSource: DataUtil.optionalfeature.loadJSON.bind(DataUtil.optionalfeature),
 					prop: "optionalfeature",
 					catId: Parser.CAT_ID_OPTIONAL_FEATURE_OTHER,
 					page: UrlUtil.PG_OPT_FEATURES,
@@ -2451,7 +2451,7 @@ class SearchWidget {
 			errorName: "adventures",
 			customIndexSubSpecs: [
 				new SearchWidget.CustomIndexSubSpec({
-					dataSource: `${Renderer.get().baseUrl}data/adventures.json`,
+					dataSource: DataUtil.adventure.loadJSON.bind(DataUtil.adventure),
 					prop: "adventure",
 					catId: Parser.CAT_ID_ADVENTURE,
 					page: UrlUtil.PG_ADVENTURE,
@@ -2467,7 +2467,7 @@ class SearchWidget {
 			errorName: "books",
 			customIndexSubSpecs: [
 				new SearchWidget.CustomIndexSubSpec({
-					dataSource: `${Renderer.get().baseUrl}data/books.json`,
+					dataSource: DataUtil.book.loadJSON.bind(DataUtil.book),
 					prop: "book",
 					catId: Parser.CAT_ID_BOOK,
 					page: UrlUtil.PG_BOOK,
@@ -2484,14 +2484,14 @@ class SearchWidget {
 			errorName: "adventures/books",
 			customIndexSubSpecs: [
 				new SearchWidget.CustomIndexSubSpec({
-					dataSource: `${Renderer.get().baseUrl}data/adventures.json`,
+					dataSource: DataUtil.adventure.loadJSON.bind(DataUtil.adventure),
 					prop: "adventure",
 					catId: Parser.CAT_ID_ADVENTURE,
 					page: UrlUtil.PG_ADVENTURE,
 					pFnGetDocExtras: opts.pFnGetDocExtras,
 				}),
 				new SearchWidget.CustomIndexSubSpec({
-					dataSource: `${Renderer.get().baseUrl}data/books.json`,
+					dataSource: DataUtil.book.loadJSON.bind(DataUtil.book),
 					prop: "book",
 					catId: Parser.CAT_ID_BOOK,
 					page: UrlUtil.PG_BOOK,
@@ -2656,9 +2656,7 @@ class SearchWidget {
 		let id = 0;
 		for (const subSpec of customIndexSubSpecs) {
 			const [json, prerelease, brew] = await Promise.all([
-				typeof subSpec.dataSource === "string"
-					? DataUtil.loadJSON(subSpec.dataSource)
-					: subSpec.dataSource(),
+				subSpec.dataSource(),
 				PrereleaseUtil.pGetBrewProcessed(),
 				BrewUtil2.pGetBrewProcessed(),
 			]);

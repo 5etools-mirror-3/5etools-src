@@ -66,7 +66,7 @@ class PsionicsPage extends ListPage {
 	constructor () {
 		const pageFilter = new PageFilterPsionics();
 		super({
-			dataSource: "data/psionics.json",
+			dataSource: DataUtil.psionic.loadJSON.bind(DataUtil.psionic),
 
 			pageFilter,
 

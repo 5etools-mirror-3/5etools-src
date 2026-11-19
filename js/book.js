@@ -1,7 +1,5 @@
 import {BookUtil} from "./bookutils.js";
 
-const JSON_URL = "data/books.json";
-
 window.addEventListener("load", async () => {
 	BookUtil.dispBook = veEs(`#pagecontent`);
 	await Promise.all([
@@ -9,7 +7,7 @@ window.addEventListener("load", async () => {
 		BrewUtil2.pInit(),
 	]);
 	ExcludeUtil.pInitialise().then(null); // don't await, as this is only used for search
-	DataUtil.loadJSON(JSON_URL).then(onJsonLoad);
+	DataUtil.book.loadJSON().then(onJsonLoad);
 });
 
 async function onJsonLoad (data) {

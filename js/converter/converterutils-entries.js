@@ -1476,16 +1476,14 @@ export class AdventureBookTag extends ConverterTaggerInitializable {
 				propRes: "_ADVENTURE_RES",
 				propData: "adventure",
 				tag: "adventure",
-				contentsUrl: `${Renderer.get().baseUrl}data/adventures.json`,
 			},
 			{
 				propRes: "_BOOK_RES",
 				propData: "book",
 				tag: "book",
-				contentsUrl: `${Renderer.get().baseUrl}data/books.json`,
 			},
 		]) {
-			const contents = await DataUtil.loadJSON(meta.contentsUrl);
+			const contents = await DataUtil[meta.propData].loadJSON();
 
 			this[meta.propRes] = contents[meta.propData]
 				.map(({name, id}) => {

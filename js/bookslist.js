@@ -60,7 +60,7 @@ export class AdventuresBooksList {
 	}
 
 	constructor (options) {
-		this._contentsUrl = options.contentsUrl;
+		this._dataSource = options.dataSource;
 		this._fnSort = options.fnSort;
 		this._sortByInitial = options.sortByInitial;
 		this._sortDirInitial = options.sortDirInitial;
@@ -82,8 +82,8 @@ export class AdventuresBooksList {
 		]);
 
 		const [data] = await Promise.all([
-			await DataUtil.loadJSON(`${Renderer.get().baseUrl}${this._contentsUrl}`),
-			await ExcludeUtil.pInitialise(),
+			this._dataSource(),
+			ExcludeUtil.pInitialise(),
 		]);
 
 		const iptSearch = veEs(`#search`);

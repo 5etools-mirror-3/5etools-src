@@ -310,7 +310,6 @@ class Board {
 		// adventures
 		await this._pDoBuildAdventureOrBookIndex({
 			adventureOrBookIdToSource,
-			dataPath: `data/adventures.json`,
 			dataProp: "adventure",
 			page: UrlUtil.PG_ADVENTURE,
 			indexStorage: this.availAdventures,
@@ -320,7 +319,6 @@ class Board {
 		// books
 		await this._pDoBuildAdventureOrBookIndex({
 			adventureOrBookIdToSource,
-			dataPath: `data/books.json`,
 			dataProp: "book",
 			page: UrlUtil.PG_BOOK,
 			indexStorage: this.availBooks,
@@ -357,14 +355,13 @@ class Board {
 	async _pDoBuildAdventureOrBookIndex (
 		{
 			adventureOrBookIdToSource,
-			dataPath,
 			dataProp,
 			page,
 			indexStorage,
 			indexIdField,
 		},
 	) {
-		const data = await DataUtil.loadJSON(dataPath);
+		const data = await DataUtil[dataProp].loadJSON();
 		adventureOrBookIdToSource[dataProp] = adventureOrBookIdToSource[dataProp] || {};
 
 		indexStorage.ALL = elasticlunr(function () {

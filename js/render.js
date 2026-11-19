@@ -693,7 +693,7 @@ globalThis.Renderer = class {
 		return Renderer.stripTags(
 			[entry.title, entry.credit ? `Art credit: ${entry.credit}` : null]
 				.filter(Boolean)
-				.join(". "),
+				.join("\n"),
 		).qq();
 	}
 
@@ -3811,7 +3811,7 @@ Renderer.utils = class {
 			ent.tokenCustom ? `This is a custom/unofficial token.` : "",
 		]
 			.filter(Boolean)
-			.join(". ");
+			.join("\n");
 
 		return [
 			`alt="Token Image${tokenName ? `: ${tokenName.qq()}` : ""}"`,

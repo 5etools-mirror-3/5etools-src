@@ -4,7 +4,7 @@ export class RuleLoader {
 	static async pFill (book) {
 		if (this._cache[book]) return;
 
-		const data = await DataUtil.loadJSON(`data/generated/${book}.json`);
+		const data = await DataUtil.reference.pLoadReference(book);
 		Object.keys(data.data).forEach(b => {
 			const ref = data.data[b];
 			if (!this._cache[b]) this._cache[b] = {};

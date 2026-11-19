@@ -25,7 +25,19 @@
 			"isHero": true,
 			"_copy": {
 				"name": "Paladin",
-				"source": "XPHB"
+				"source": "XPHB",
+				"_mod": {
+					"classTableGroups": {
+						"mode": "replaceTxt",
+						"replace": "\\bclass=Paladin\\b",
+						"with": "class=Death Knight",
+						"flags": "i",
+						"props": [
+							"colLabels"
+						],
+						"tagInsensitive": true
+					}
+				}
 			},
 			"additionalSpells": [
 				{

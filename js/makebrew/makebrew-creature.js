@@ -436,7 +436,7 @@ export class CreatureBuilder extends BuilderBase {
 
 	async _pInit () {
 		const [bestiaryFluffIndex, jsonCreature, items] = await Promise.all([
-			DataUtil.loadJSON("data/bestiary/fluff-index.json"),
+			DataUtil.monsterFluff.pLoadIndex(),
 			DataUtil.loadJSON("data/makebrew-creature.json"),
 			Renderer.item.pBuildList(),
 			DataUtil.monster.pPreloadLegendaryGroupsSite(),

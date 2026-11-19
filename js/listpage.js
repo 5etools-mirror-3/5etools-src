@@ -1072,7 +1072,7 @@ class ListPage {
 
 	/**
 	 * @param opts Options object.
-	 * @param opts.dataSource Main JSON data url or function to fetch main data.
+	 * @param {function(): Promise<object>} opts.dataSource Function to fetch main data.
 	 * @param [opts.prereleaseDataSource] Function to fetch prerelease data.
 	 * @param [opts.brewDataSource] Function to fetch brew data.
 	 * @param [opts.pFnGetFluff] Function to fetch fluff for a given entity.
@@ -1303,7 +1303,7 @@ class ListPage {
 	async pDoLoadExportedSublistSources (exportedSublist) { /* Implement as required */ }
 
 	async _pOnLoad_pGetData () {
-		const data = await (typeof this._dataSource === "string" ? DataUtil.loadJSON(this._dataSource) : this._dataSource());
+		const data = await this._dataSource();
 		const prerelease = await (this._prereleaseDataSource ? this._prereleaseDataSource() : PrereleaseUtil.pGetBrewProcessed());
 		const homebrew = await (this._brewDataSource ? this._brewDataSource() : BrewUtil2.pGetBrewProcessed());
 

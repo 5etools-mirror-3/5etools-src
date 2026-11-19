@@ -733,6 +733,52 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Battle Shout",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Shout",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"duration": {
+						"units": "round",
+						"expiry": "sourceStart",
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Superiority Die"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "ally"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					},
+					"roll": {
+						"visible": true,
+						"name": "Damage Bonus",
+						"formula": "@scale.battle-master.superiority.die"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Beast Speech",
 			"source": "PHB",
 			"activities": [
@@ -961,6 +1007,87 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Call of the Void",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Quick Attack",
+					"type": "utility",
+					"description": "As a Bonus Action, you can command the familiar to take the &Reference[Attack] action.",
+					"activation": {
+						"type": "bonus"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1",
+							"special": "Your familiar"
+						}
+					},
+					"range": {
+						"units": "any"
+					}
+				},
+				{
+					"name": "Shadow Shield",
+					"type": "utility",
+					"description": "When your Voidwalker familiar takes damage, you can take a Reaction to grant it &Reference[Resistance] against that damage.",
+					"activation": {
+						"type": "reaction",
+						"condition": "When your Voidwalker familiar takes damage"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1",
+							"special": "Your Voidwalker familiar"
+						}
+					},
+					"range": {
+						"units": "any"
+					}
+				},
+				{
+					"name": "Summon Fel Imp or Voidwalker",
+					"type": "summon",
+					"activation": {
+						"type": "special",
+						"condition": "When you cast Find Familiar using Pact of the Legion"
+					},
+					"target": {
+						"affects": {
+							"type": "space",
+							"count": "1",
+							"special": "Unoccupied"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "10"
+					},
+					"profiles": [
+						{
+							"uuid": "@creature[fel imp|wow]"
+						},
+						{
+							"uuid": "@creature[voidwalker|wow]"
+						}
+					],
+					"creatureTypes": [
+						"celestial",
+						"fey",
+						"fiend"
+					],
+					"match": {
+						"attacks": true,
+						"disposition": true,
+						"ability": "cha"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Careful Spell",
 			"source": "XPHB",
 			"activities": [
@@ -1111,6 +1238,98 @@
 					},
 					"roll": {
 						"name": "Bonus",
+						"formula": "@scale.battle-master.superiority.die"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Curse of Corruption",
+			"source": "WoW",
+			"activities": [
+				{
+					"type": "save",
+					"activation": {
+						"type": "special",
+						"condition": "When an enemy starts its turn cursed by a Warlock spell you cast"
+					},
+					"target": {
+						"affects": {
+							"type": "enemy",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"onSave": "none",
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@abilities.cha.mod"
+								},
+								"types": [
+									"necrotic"
+								]
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"cha"
+						],
+						"dc": {
+							"calculation": "cha"
+						},
+						"visible": true
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Demoralizing Shout",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Shout",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"duration": {
+						"units": "round",
+						"expiry": "sourceEnd",
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Superiority Die"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "enemy"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					},
+					"roll": {
+						"visible": true,
+						"name": "Damage Reduction",
 						"formula": "@scale.battle-master.superiority.die"
 					}
 				}
@@ -2075,6 +2294,42 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Expendable Minions",
+			"source": "WoW",
+			"activities": [
+				{
+					"type": "heal",
+					"activation": {
+						"type": "special",
+						"condition": "When your familiar or a summoned creature you control dies"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "60"
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "@classes.warlock.levels + @abilities.cha.mod"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Extended Spell",
 			"source": "XPHB",
 			"activities": [
@@ -2634,6 +2889,57 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Health Funnel",
+			"source": "WoW",
+			"activities": [
+				{
+					"type": "heal",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true,
+							"max": "@attributes.hd.value"
+						},
+						"targets": [
+							{
+								"type": "hitDice",
+								"value": "1",
+								"target": "largest",
+								"scaling": {
+									"mode": "amount"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1",
+							"special": "Your familiar or another Fiend you command"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"healing": {
+						"types": [
+							"temphp"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "@consumed.hd + (@abilities.cha.mod * @scaling)"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Heightened Spell",
 			"source": "XPHB",
 			"activities": [
@@ -2729,6 +3035,70 @@
 							"value": "true"
 						}
 					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Heroic Leap",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Leap",
+					"type": "save",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Superiority Die"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "radius",
+							"size": "5"
+						},
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "@abilities.str.value"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@scale.battle-master.superiority.die"
+								},
+								"types": [
+									"bludgeoning"
+								]
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"str"
+						],
+						"dc": {
+							"formula": "8 + max(@abilities.dex.mod, @abilities.str.mod) + @prof"
+						},
+						"visible": true
+					}
 				}
 			],
 			"migrationVersion": 3
@@ -3160,6 +3530,41 @@
 							"key": "system.traits.dr.value",
 							"mode": "ADD",
 							"value": "thunder"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Legion Summoning",
+			"source": "WoW",
+			"activities": [
+				{
+					"type": "summon",
+					"activation": {
+						"type": "special",
+						"condition": "When you cast Planar Binding using this invocation"
+					},
+					"range": {
+						"units": "ft",
+						"value": "60"
+					},
+					"visibility": {
+						"requireMagic": true
+					},
+					"profiles": [
+						{
+							"uuid": "@creature[felguard|wow]"
+						},
+						{
+							"uuid": "@creature[felhound|wow]"
+						},
+						{
+							"uuid": "@creature[incubus|xmm]"
+						},
+						{
+							"uuid": "@creature[succubus|xmm]"
 						}
 					]
 				}
@@ -3830,6 +4235,90 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Mortal Strike",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Strike",
+					"type": "damage",
+					"activation": {
+						"type": "special",
+						"condition": "When you hit a creature with an attack roll"
+					},
+					"duration": {
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Superiority Die"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"critical": {
+							"allow": true
+						},
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@scale.battle-master.superiority.die"
+								},
+								"types": [
+									"bludgeoning",
+									"piercing",
+									"slashing",
+									"acid",
+									"cold",
+									"fire",
+									"force",
+									"lightning",
+									"necrotic",
+									"poison",
+									"psychic",
+									"radiant",
+									"thunder"
+								]
+							}
+						]
+					},
+					"effects": [
+						{
+							"foundryId": "mortalStrike"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "mortalStrike",
+					"name": "Can't Regain Hit Points",
+					"duration": {
+						"units": "seconds",
+						"expiry": "sourceEnd"
+					},
+					"description": "The target can't regain Hit Points until the end of your next turn."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "One with Shadows",
 			"source": "XPHB",
 			"activities": [
@@ -4147,6 +4636,45 @@
 			],
 			"ignoreSrdActivities": true,
 			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Pact of the Legion",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Summon Fel Imp",
+					"type": "summon",
+					"activation": {
+						"type": "special",
+						"condition": "When you cast Find Familiar using Pact of the Legion"
+					},
+					"target": {
+						"affects": {
+							"type": "space",
+							"count": "1",
+							"special": "Unoccupied"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "10"
+					},
+					"profiles": [
+						{
+							"uuid": "@creature[fel imp|wow]"
+						}
+					],
+					"creatureTypes": [
+						"celestial",
+						"fey",
+						"fiend"
+					],
+					"match": {
+						"disposition": true
+					}
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -6012,6 +6540,48 @@
 					"type": "utility",
 					"activation": {
 						"value": null
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Warding Maneuver",
+			"source": "WoW",
+			"activities": [
+				{
+					"name": "Ward",
+					"type": "utility",
+					"activation": {
+						"type": "reaction",
+						"condition": "When you or a creature you can see within 5 feet is hit by an attack roll while you are wielding a Melee weapon or a Shield."
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Superiority Die"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "5"
+					},
+					"roll": {
+						"name": "Armor Class Bonus",
+						"formula": "@scale.battle-master.superiority.die"
 					}
 				}
 			],

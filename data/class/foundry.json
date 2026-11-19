@@ -2537,6 +2537,308 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Death Coil",
+			"source": "WoW",
+			"className": "Death Knight",
+			"classSource": "WoW",
+			"level": 1,
+			"system": {
+				"uses.max": "max(1, @abilities.cha.mod + 1)",
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"activities": [
+				{
+					"type": "save",
+					"description": "As a Bonus Action, you can target a creature you can see within 60 feet of yourself and force it to make a Constitution saving throw, expending dice from the pool. The maximum number of dice you can expend at once equals your Charisma modifier (minimum of one die). Roll the dice you expend. The target takes Necrotic damage equal to the roll's total on a failed save or half as much damage on a successful one. If the target is an Undead, you can choose to have it regain Hit Points equal to the roll's total instead.",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true,
+							"max": "max(1, @abilities.cha.mod)"
+						},
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"scaling": {
+									"mode": "amount"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "60"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 8,
+								"types": [
+									"necrotic"
+								],
+								"scaling": {
+									"mode": "whole"
+								}
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "cha"
+						},
+						"visible": true
+					}
+				},
+				{
+					"name": "Heal Undead",
+					"type": "heal",
+					"description": "As a Bonus Action, you can target a creature you can see within 60 feet of yourself and force it to make a Constitution saving throw, expending dice from the pool. The maximum number of dice you can expend at once equals your Charisma modifier (minimum of one die). Roll the dice you expend. The target takes Necrotic damage equal to the roll's total on a failed save or half as much damage on a successful one. If the target is an Undead, you can choose to have it regain Hit Points equal to the roll's total instead.",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true,
+							"max": "max(1, @abilities.cha.mod)"
+						},
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"scaling": {
+									"mode": "amount"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1",
+							"special": "Undead"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "60"
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1,
+							"mode": "whole"
+						},
+						"number": 1,
+						"denomination": 8
+					},
+					"visibility": {
+						"level": {
+							"max": 13
+						},
+						"identifier": "death-knight"
+					}
+				},
+				{
+					"name": "Improved Heal Undead",
+					"type": "heal",
+					"descriptionEntries": [
+						"As a Bonus Action, you can target a creature you can see within 60 feet of yourself and force it to make a Constitution saving throw, expending dice from the pool. The maximum number of dice you can expend at once equals your Charisma modifier (minimum of one die). Roll the dice you expend. The target takes Necrotic damage equal to the roll's total on a failed save or half as much damage on a successful one. If the target is an Undead, you can choose to have it regain Hit Points equal to the roll's total instead.",
+						"If the target is an Undead, and you have it regain Hit Points, it regains additional Hit Points equal to your Paladin level."
+					],
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true,
+							"max": "max(1, @abilities.cha.mod)"
+						},
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"scaling": {
+									"mode": "amount"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1",
+							"special": "Undead"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "60"
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1,
+							"mode": "whole"
+						},
+						"number": 1,
+						"denomination": 8,
+						"bonus": "@classes.death-knight.levels"
+					},
+					"visibility": {
+						"level": {
+							"min": 14
+						},
+						"identifier": "death-knight"
+					}
+				},
+				{
+					"name": "Extra Damage",
+					"type": "damage",
+					"description": "When you use Death Coil to deal damage, the target takes extra Necrotic damage equal to your Charisma modifier (minimum of 1) whether or not it fails its saving throw.",
+					"activation": {
+						"type": "special",
+						"condition": "when you use Death Coil to deal damage"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "60"
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "max(1, @abilities.cha.mod)"
+								},
+								"types": [
+									"necrotic"
+								]
+							}
+						]
+					},
+					"visibility": {
+						"level": {
+							"min": 14
+						},
+						"identifier": "death-knight"
+					}
+				}
+			],
+			"effects": [
+				{
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.details.type.value",
+							"value": "undead",
+							"mode": "OVERRIDE"
+						}
+					],
+					"description": "Your creature type is Undead."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Runic Strikes",
+			"source": "WoW",
+			"className": "Death Knight",
+			"classSource": "WoW",
+			"level": 11,
+			"effects": [
+				{
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.bonuses.mwak.damage",
+							"value": "1d8[necrotic]",
+							"mode": "ADD"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Deft Explorer",
+			"source": "WoW",
+			"className": "Demon Hunter",
+			"classSource": "WoW",
+			"level": 2,
+			"entryData": {
+				"languageProficiencies": [
+					{
+						"any": 2
+					}
+				],
+				"expertise": [
+					{
+						"anyProficientSkill": 1
+					}
+				]
+			},
+			"migrationVersion": 3
+		},
+		{
+			"name": "Improved Spectral Sight",
+			"source": "WoW",
+			"className": "Demon Hunter",
+			"classSource": "WoW",
+			"level": 18,
+			"effects": [
+				{
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.senses.ranges.truesight",
+							"value": 30,
+							"mode": "UPGRADE"
+						}
+					],
+					"description": "You have &Reference[Truesight] with a range of 30 feet."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Rage",
 			"source": "XPHB",
 			"className": "Barbarian",
@@ -2721,6 +3023,254 @@
 			},
 			"ignoreSrdActivities": true,
 			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Totems",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 3,
+			"identifier": "totem",
+			"system": {
+				"uses.max": "1",
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"activities": [
+				{
+					"name": "Earthbind Totem",
+					"type": "utility",
+					"img": "icons/magic/earth/barrier-stone-brown-green.webp",
+					"description": "Each enemy in the Emanation has its &Reference[Speed] reduced by 10 feet until the end of your next turn.",
+					"activation": {
+						"type": "special",
+						"condition": "At the end of your turn while the totem is placed"
+					},
+					"duration": {
+						"units": "round",
+						"expiry": "sourceEnd",
+						"value": "1"
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "radius",
+							"size": "30"
+						},
+						"affects": {
+							"type": "enemy"
+						}
+					},
+					"range": {
+						"units": "spec",
+						"special": "The totem's space"
+					},
+					"effects": [
+						{
+							"foundryId": "totem"
+						}
+					]
+				},
+				{
+					"name": "Primal Knowledge Totem",
+					"type": "utility",
+					"img": "icons/magic/nature/root-vine-coiled-crook.webp",
+					"description": "Each ally in the Emanation is empowered with nature's focus until the end of your next turn. While empowered in this way, whenever the creature makes an ability check using one of the following skills, the creature can make it as a Strength check even if it normally uses a different ability: Acrobatics, Intimidation, Perception, Stealth, or Survival. After you plant this totem, you can't do so again until you finish a Long Rest. You can also restore your use of this totem by expending one use of your Rage (no action required).",
+					"activation": {
+						"type": "special",
+						"condition": "At the end of your turn while the totem is placed"
+					},
+					"duration": {
+						"units": "round",
+						"expiry": "sourceEnd",
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "radius",
+							"size": "30"
+						},
+						"affects": {
+							"type": "ally"
+						}
+					},
+					"range": {
+						"units": "spec",
+						"special": "The totem's space"
+					},
+					"effects": [
+						{
+							"foundryId": "totem1"
+						}
+					]
+				},
+				{
+					"name": "Tremor Totem",
+					"type": "utility",
+					"img": "icons/magic/sonic/explosion-shock-sound-wave.webp",
+					"description": "Each ally in the Emanation has Immunity to the &Reference[Charmed apply=false] and &Reference[Frightened apply=false] conditions until the end of your next turn. If the creature was already Charmed or Frightened, those conditions are suppressed until the end of its next turn.",
+					"activation": {
+						"type": "special",
+						"condition": "At the end of your turn while the totem is placed"
+					},
+					"duration": {
+						"units": "round",
+						"expiry": "sourceEnd",
+						"value": "1"
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "radius",
+							"size": "30"
+						},
+						"affects": {
+							"type": "ally"
+						}
+					},
+					"range": {
+						"units": "spec",
+						"special": "The totem's space"
+					},
+					"effects": [
+						{
+							"foundryId": "totem2"
+						}
+					]
+				},
+				{
+					"name": "Wind Rush Totem",
+					"type": "utility",
+					"img": "icons/creatures/birds/birds-flock-fly-yellow.webp",
+					"description": "Each ally in the Emanation has its &Reference[Speed] increased by 10 feet until the end of your next turn.",
+					"activation": {
+						"type": "special",
+						"condition": "At the end of your turn while the totem is placed"
+					},
+					"duration": {
+						"units": "round",
+						"expiry": "sourceEnd",
+						"value": "1"
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "radius",
+							"size": "30"
+						},
+						"affects": {
+							"type": "ally"
+						}
+					},
+					"range": {
+						"units": "spec",
+						"special": "The totem's space"
+					},
+					"effects": [
+						{
+							"foundryId": "totem3"
+						}
+					]
+				},
+				{
+					"name": "Recover Primal Knowledge",
+					"type": "utility",
+					"description": "You can also restore your use of the Primal Knowledge Totem by expending one use of your Rage (no action required).",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "-1"
+							},
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Rage|Barbarian|XPHB|1"
+								}
+							}
+						]
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "totem",
+					"name": "Earthbind",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.bonus",
+							"value": 10,
+							"mode": "SUBTRACT"
+						}
+					],
+					"description": "Each enemy in the Emanation has its &Reference[Speed] reduced by 10 feet until the end of your next turn."
+				},
+				{
+					"foundryId": "totem1",
+					"name": "Primal Knowledge",
+					"duration": {
+						"units": "seconds"
+					},
+					"description": "Each ally in the Emanation is empowered with nature's focus until the end of your next turn. While empowered in this way, whenever the creature makes an ability check using one of the following skills, the creature can make it as a Strength check even if it normally uses a different ability: Acrobatics, Intimidation, Perception, Stealth, or Survival. After you plant this totem, you can't do so again until you finish a Long Rest. You can also restore your use of this totem by expending one use of your Rage (no action required)."
+				},
+				{
+					"foundryId": "totem2",
+					"name": "Tremor",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.traits.ci.value",
+							"value": "charmed",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.ci.value",
+							"value": "frightened",
+							"mode": "ADD"
+						}
+					],
+					"description": "Each ally in the Emanation has Immunity to the &Reference[Charmed apply=false] and &Reference[Frightened apply=false] conditions until the end of your next turn. If the creature was already Charmed or Frightened, those conditions are suppressed until the end of its next turn."
+				},
+				{
+					"foundryId": "totem3",
+					"name": "Wind Rush",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.bonus",
+							"value": 10,
+							"mode": "ADD"
+						}
+					],
+					"description": "Each ally in the Emanation has its &Reference[Speed] increased by 10 feet until the end of your next turn."
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -5978,6 +6528,282 @@
 			],
 			"ignoreSrdActivities": true,
 			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Pet Specialization",
+			"source": "WoW",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 6,
+			"system": {
+				"uses.max": "1",
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"activities": [
+				{
+					"name": "Select Specialization",
+					"type": "enchant",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"enchant": {
+						"self": true
+					},
+					"effects": [
+						{
+							"foundryId": "petSpecializatio",
+							"riders": {
+								"activity": [
+									{
+										"foundryId": "petSpecializatio"
+									}
+								],
+								"effect": [
+									{
+										"foundryId": "petSpecializati1"
+									}
+								]
+							}
+						},
+						{
+							"foundryId": "petSpecializati2",
+							"riders": {
+								"activity": [
+									{
+										"foundryId": "petSpecializati1"
+									},
+									{
+										"foundryId": "petSpecializati2"
+									}
+								]
+							}
+						},
+						{
+							"foundryId": "petSpecializati3",
+							"riders": {
+								"activity": [
+									{
+										"foundryId": "petSpecializati3"
+									}
+								],
+								"effect": [
+									{
+										"foundryId": "petSpecializati4"
+									}
+								]
+							}
+						}
+					]
+				},
+				{
+					"foundryId": "petSpecializatio",
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"spell": {
+						"uuid": "@spell[freedom of movement|xphb]",
+						"properties": [
+							"vocal",
+							"somatic",
+							"material"
+						],
+						"spellbook": true,
+						"level": 4
+					}
+				},
+				{
+					"foundryId": "petSpecializati2",
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"spell": {
+						"uuid": "@spell[haste|xphb]",
+						"properties": [
+							"vocal",
+							"somatic",
+							"material"
+						],
+						"spellbook": true,
+						"level": 3
+					}
+				},
+				{
+					"foundryId": "petSpecializati3",
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"spell": {
+						"uuid": "@spell[stoneskin|xphb]",
+						"properties": [
+							"vocal",
+							"somatic",
+							"material"
+						],
+						"spellbook": true,
+						"level": 4
+					}
+				},
+				{
+					"foundryId": "petSpecializati1",
+					"name": "Heal",
+					"type": "heal",
+					"activation": {
+						"type": "special",
+						"condition": "When your primal beast is Bloodied and it hits with its Beast's Strike attack"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "2",
+							"special": "You and your primal beast"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "@abilities.wis.mod"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "petSpecializatio",
+					"name": "Cunning Specialization",
+					"type": "enchantment",
+					"disabled": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "name",
+							"value": "{} (Cunning)",
+							"mode": "OVERRIDE"
+						}
+					],
+					"descriptionEntries": [
+						"Your Speed and all of your primal beast's speeds increase by 10 feet. In addition, your primal beast can use its action to cast {@spell Freedom of Movement|XPHB} without any spell components, affecting itself and you (if you are within range). Once it does so, it can't do so again until you finish a Long Rest."
+					]
+				},
+				{
+					"foundryId": "petSpecializati2",
+					"name": "Ferocity Specialization",
+					"type": "enchantment",
+					"disabled": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "name",
+							"value": "{} (Ferocity)",
+							"mode": "OVERRIDE"
+						}
+					],
+					"descriptionEntries": [
+						"When your primal beast is &Reference[Bloodied] and it hits with its Beast's Strike attack, you and your primal beast each regain Hit Points equal to your Wisdom modifier. In addition, your primal beast can use its action to cast {@spell Haste|XPHB} without any spell components, affecting itself and you (if you are within range). Once it does so, it can't do so again until you finish a Long Rest."
+					]
+				},
+				{
+					"foundryId": "petSpecializati3",
+					"name": "Tenacity Specialization",
+					"type": "enchantment",
+					"disabled": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "name",
+							"value": "{} (Tenacity)",
+							"mode": "OVERRIDE"
+						}
+					],
+					"descriptionEntries": [
+						"Your Hit Point maximum increases by 6. Whenever you gain a Ranger level, your Hit Point maximum increases by an additional 1 Hit Point. Your primal beast's Hit Point maximum also increases by your Ranger level. In addition, your primal beast can use its action to cast {@spell Stoneskin|XPHB} without any spell components, affecting itself and you (if you are within range). Once it does so, it can't do so again until you finish a Long Rest."
+					]
+				},
+				{
+					"foundryId": "petSpecializati1",
+					"name": "Cunning Speed",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.bonus",
+							"value": 10,
+							"mode": "ADD"
+						}
+					],
+					"description": "Your Speed and all of your primal beast's speeds increase by 10 feet."
+				},
+				{
+					"foundryId": "petSpecializati4",
+					"name": "Tenacity Health",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.hp.bonuses.overall",
+							"value": "@classes.hunter.levels",
+							"mode": "ADD"
+						}
+					],
+					"description": "Your Hit Point maximum increases by 6. Whenever you gain a Ranger level, your Hit Point maximum increases by an additional 1 Hit Point. Your primal beast's Hit Point maximum also increases by your Ranger level."
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -12433,6 +13259,668 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Runic Power",
+			"source": "WoW",
+			"className": "Death Knight",
+			"classSource": "WoW",
+			"subclassShortName": "Ebon Blade",
+			"subclassSource": "WoW",
+			"level": 3,
+			"activities": [
+				{
+					"name": "Blood Rune Power",
+					"type": "heal",
+					"img": "icons/magic/unholy/orb-swirling-pink.webp",
+					"description": "You regain a number of Hit Points equal to the Necrotic damage dealt with your {@i Rune Strike}.",
+					"activation": {
+						"type": "special",
+						"condition": "Immediately after you cast Rune Strike"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Channel Divinity|Paladin|XPHB|3"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						}
+					},
+					"visibility": {
+						"requireMagic": true
+					}
+				},
+				{
+					"name": "Frost Rune Power",
+					"type": "damage",
+					"img": "icons/magic/water/orb-water-bubbles-teal.webp",
+					"description": "Frost covers your weapon and shatters on impact. The target of your {@i Rune Strike} and each enemy in a 10-foot Emanation originating from the target take 2d6 Cold damage.",
+					"activation": {
+						"type": "special",
+						"condition": "Immediately after you cast Rune Strike"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Channel Divinity|Paladin|XPHB|3"
+								}
+							}
+						]
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "radius",
+							"size": "10"
+						},
+						"affects": {
+							"type": "enemy"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 6,
+								"types": [
+									"cold"
+								]
+							}
+						]
+					},
+					"visibility": {
+						"requireMagic": true
+					}
+				},
+				{
+					"name": "Unholy Rune Power",
+					"type": "utility",
+					"img": "icons/magic/unholy/orb-smoking-green.webp",
+					"description": "The target of your {@i Rune Strike} is cursed until the end of your next turn. The next time the cursed target makes a saving throw, it subtracts 1d6 from the roll, and the curse ends.",
+					"activation": {
+						"type": "special",
+						"condition": "Immediately after you cast Rune Strike"
+					},
+					"duration": {
+						"units": "round",
+						"expiry": "sourceEnd",
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Channel Divinity|Paladin|XPHB|3"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"visibility": {
+						"requireMagic": true
+					},
+					"effects": [
+						{
+							"foundryId": "runicPower"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "runicPower",
+					"name": "Cursed",
+					"duration": {
+						"units": "seconds"
+					},
+					"statuses": [
+						"cursed"
+					],
+					"description": "The next time you make a saving throw, subtract 1d6 from the roll. The curse then ends."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Aura of Deathly Endurance",
+			"source": "WoW",
+			"className": "Death Knight",
+			"classSource": "WoW",
+			"subclassShortName": "Ebon Blade",
+			"subclassSource": "WoW",
+			"level": 7,
+			"activities": [
+				{
+					"name": "Place Aura",
+					"type": "utility",
+					"activation": {
+						"type": ""
+					},
+					"duration": {
+						"units": "perm"
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "radius",
+							"size": "10 + 20 * min(floor(@classes.death-knight.levels / 18), 1)"
+						},
+						"affects": {
+							"type": "ally"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Runic Mastery",
+			"source": "WoW",
+			"className": "Death Knight",
+			"classSource": "WoW",
+			"subclassShortName": "Ebon Blade",
+			"subclassSource": "WoW",
+			"level": 15,
+			"system": {
+				"uses.max": "1",
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"activities": [
+				{
+					"name": "Blood Rune Mastery",
+					"type": "utility",
+					"img": "icons/magic/unholy/orb-swirling-pink.webp",
+					"description": "When a creature hits another creature you can see within 10 feet of you with an attack roll, you can take a Reaction to reduce the damage the target takes by your Paladin level. You then lose a number of Hit Points equal to your Paladin level.",
+					"activation": {
+						"type": "reaction",
+						"condition": "When a creature hits another creature you can see within 10 feet of you with an attack roll"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							},
+							{
+								"type": "attribute",
+								"value": "@classes.death-knight.levels",
+								"target": "attributes.hp.value"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "10"
+					},
+					"roll": {
+						"formula": "@classes.paladin.levels",
+						"name": "Damage Reduction"
+					},
+					"visibility": {
+						"requireMagic": true
+					}
+				},
+				{
+					"name": "Frost Rune Mastery",
+					"type": "save",
+					"img": "icons/magic/water/orb-water-bubbles-teal.webp",
+					"description": "When you take the Attack action on your turn, you can replace one attack with an exhalation of frost magic in a 30-foot Cone. Each creature in that area makes a Dexterity saving throw against your spell save DC. A creature takes 8d6 Cold damage on a failed save or half as much damage on a successful one.",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "cone",
+							"size": "30"
+						},
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"number": 8,
+								"denomination": 6,
+								"types": [
+									"cold"
+								]
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "cha"
+						},
+						"visible": true
+					},
+					"visibility": {
+						"requireMagic": true
+					}
+				},
+				{
+					"name": "Unholy Rune Mastery",
+					"type": "cast",
+					"img": "icons/magic/unholy/orb-smoking-green.webp",
+					"description": "When you cast {@spell Summon Undead|XPHB}, you can modify it so that the spell doesn't require Concentration. If you do so, the spell's duration becomes 1 minute for that casting, and when summoned, the {@b Undead Spirit} has a number of Temporary Hit Points equal to your Paladin level plus your Charisma modifier. In addition, the first time each turn the spirit hits a creature, the spirit deals extra Necrotic damage equal to half your Paladin level (round up).",
+					"activation": {
+						"type": "action"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"spell": {
+						"uuid": "@spell[summon undead|xphb]",
+						"spellbook": true,
+						"level": 3
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Aspect of the Horsemen",
+			"source": "WoW",
+			"className": "Death Knight",
+			"classSource": "WoW",
+			"subclassShortName": "Ebon Blade",
+			"subclassSource": "WoW",
+			"level": 20,
+			"system": {
+				"uses.max": "1",
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"activities": [
+				{
+					"name": "Gain Benefits",
+					"type": "enchant",
+					"activation": {
+						"type": "bonus"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "10"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"restrictions": {
+						"allowMagical": true
+					},
+					"enchant": {
+						"self": true
+					},
+					"effects": [
+						{
+							"foundryId": "aspectOfTheHorse",
+							"riders": {
+								"activity": [
+									{
+										"foundryId": "aspectOfTheHorse"
+									}
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Restore Use",
+					"type": "utility",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "-1"
+							},
+							{
+								"type": "spellSlots",
+								"value": "1",
+								"target": "5"
+							}
+						]
+					}
+				},
+				{
+					"foundryId": "aspectOfTheHorse",
+					"name": "Generate Runic Power",
+					"type": "utility",
+					"description": "You can restore a use of your Runic Mastery by expending a level 4 spell slot (no action required).",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "-1",
+								"target": {
+									"prop": "subclassFeature",
+									"uid": "Runic Mastery|Death Knight|WoW|Ebon Blade|WoW|15"
+								}
+							},
+							{
+								"type": "spellSlots",
+								"value": "1",
+								"target": "4"
+							}
+						]
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "aspectOfTheHorse",
+					"type": "enchantment",
+					"disabled": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "name",
+							"value": "{} (Active)",
+							"mode": "OVERRIDE"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Double Jump",
+			"source": "WoW",
+			"className": "Demon Hunter",
+			"classSource": "WoW",
+			"subclassShortName": "Demon Hunter",
+			"subclassSource": "WoW",
+			"level": 3,
+			"activities": [
+				{
+					"name": "Double Jump: Feather Fall",
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "subclassFeature",
+									"uid": "soul fragments|demon hunter|wow|demon hunter|wow|3"
+								}
+							}
+						]
+					},
+					"spell": {
+						"uuid": "@spell[feather fall|xphb]",
+						"spellbook": true,
+						"level": 1
+					}
+				},
+				{
+					"name": "Double Jump: Jump",
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "subclassFeature",
+									"uid": "soul fragments|demon hunter|wow|demon hunter|wow|3"
+								}
+							}
+						]
+					},
+					"spell": {
+						"uuid": "@spell[jump|xphb]",
+						"spellbook": true,
+						"level": 1
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Soul Cleave",
+			"source": "WoW",
+			"className": "Demon Hunter",
+			"classSource": "WoW",
+			"subclassShortName": "Demon Hunter",
+			"subclassSource": "WoW",
+			"level": 3,
+			"activities": [
+				{
+					"name": "Soul Cleave: Save",
+					"type": "save",
+					"description": "Once on each of your turns, when you take the Attack action, you can expend one soul fragment and replace one of your attacks with a whirlwind of soul energy. Each creature in a 10-foot Emanation originating from you makes a Dexterity saving throw. On a failed save, a creature takes Psychic damage equal to 1d12 plus your Wisdom modifier, and you regain Hit Points equal to your Wisdom modifier.",
+					"activation": {
+						"type": "special",
+						"condition": "When you take the Attack action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "subclassFeature",
+									"uid": "soul fragments|demon hunter|wow|demon hunter|wow|3"
+								}
+							}
+						]
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "radius",
+							"size": "10"
+						},
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"onSave": "none",
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 12,
+								"bonus": "@abilities.wis.mod",
+								"types": [
+									"psychic"
+								]
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "wis"
+						},
+						"visible": true
+					},
+					"visibility": {
+						"level": {
+							"max": 14
+						},
+						"identifier": "demon-hunter"
+					}
+				},
+				{
+					"name": "Soul Cleave: Heal",
+					"type": "heal",
+					"description": "Once on each of your turns, when you take the Attack action, you can expend one soul fragment and replace one of your attacks with a whirlwind of soul energy. Each creature in a 10-foot Emanation originating from you makes a Dexterity saving throw. On a failed save, a creature takes Psychic damage equal to 1d12 plus your Wisdom modifier, and you regain Hit Points equal to your Wisdom modifier.",
+					"activation": {
+						"type": "special",
+						"condition": "When you use Soul Cleave"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "@abilities.wis.mod"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				},
+				{
+					"name": "Soul Cleave: Save",
+					"type": "save",
+					"description": "Once on each of your turns, when you take the Attack action, you can expend one soul fragment and replace one of your attacks with a whirlwind of soul energy. Each creature in a 10-foot Emanation originating from you makes a Dexterity saving throw. On a failed save, a creature takes Psychic damage equal to 1d12 plus your Wisdom modifier, and you regain Hit Points equal to your Wisdom modifier.",
+					"activation": {
+						"type": "special",
+						"condition": "When you take the Attack action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "subclassFeature",
+									"uid": "soul fragments|demon hunter|wow|demon hunter|wow|3"
+								}
+							}
+						]
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "radius",
+							"size": "10"
+						},
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"onSave": "none",
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 12,
+								"bonus": "@abilities.wis.mod",
+								"types": [
+									"psychic"
+								]
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "wis"
+						},
+						"visible": true
+					},
+					"visibility": {
+						"level": {
+							"min": 15
+						},
+						"identifier": "demon-hunter"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Soul Fragments",
 			"source": "WoW",
 			"className": "Demon Hunter",
@@ -12449,6 +13937,849 @@
 					}
 				]
 			},
+			"activities": [
+				{
+					"name": "Regain Soul Fragment",
+					"type": "utility",
+					"description": "When an enemy you can see within 30 feet of you dies, you can take a Reaction to regain one expended soul fragment.",
+					"activation": {
+						"type": "reaction",
+						"condition": "When an enemy you can see within 30 feet of you dies"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "-1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Spectral Sight",
+			"source": "WoW",
+			"className": "Demon Hunter",
+			"classSource": "WoW",
+			"subclassShortName": "Demon Hunter",
+			"subclassSource": "WoW",
+			"level": 3,
+			"effects": [
+				{
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.senses.ranges.blindsight",
+							"value": 10,
+							"mode": "UPGRADE"
+						}
+					],
+					"description": "You have &Reference[Blindsight] with a range of 10 feet."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Torment",
+			"source": "WoW",
+			"className": "Demon Hunter",
+			"classSource": "WoW",
+			"subclassShortName": "Demon Hunter",
+			"subclassSource": "WoW",
+			"level": 7,
+			"activities": [
+				{
+					"name": "Aura of Pain",
+					"type": "utility",
+					"description": "The target subtracts 1d4 from the next saving throw it makes before the end of your next turn.",
+					"activation": {
+						"type": "special",
+						"condition": "When you hit a creature marked by your Hunter's Mark with an attack roll with a weapon or a Ranger spell"
+					},
+					"duration": {
+						"units": "round",
+						"expiry": "sourceEnd",
+						"value": "1"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"roll": {
+						"visible": true,
+						"name": "Save Reduction",
+						"formula": "1d4"
+					}
+				},
+				{
+					"name": "Chaos Strike",
+					"type": "damage",
+					"description": "The target takes an extra 1d8 Fire damage.",
+					"activation": {
+						"type": "special",
+						"condition": "When you hit a creature marked by your Hunter's Mark with an attack roll with a weapon or a Ranger spell"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"critical": {
+							"allow": true
+						},
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 8,
+								"types": [
+									"fire"
+								]
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Disrupt",
+			"source": "WoW",
+			"className": "Demon Hunter",
+			"classSource": "WoW",
+			"subclassShortName": "Demon Hunter",
+			"subclassSource": "WoW",
+			"level": 11,
+			"activities": [
+				{
+					"name": "Disrupt",
+					"type": "cast",
+					"description": "You can expend two soul fragments to cast {@spell Counterspell|XPHB} in response to that spell's trigger, using your spellcasting ability.",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "2",
+								"target": {
+									"prop": "subclassFeature",
+									"uid": "soul fragments|demon hunter|wow|demon hunter|wow|3"
+								}
+							}
+						]
+					},
+					"visibility": {
+						"level": {
+							"min": 11
+						},
+						"identifier": "demon-hunter"
+					},
+					"spell": {
+						"uuid": "@spell[counterspell|xphb]",
+						"spellbook": true,
+						"level": 3
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Warglaive Mastery",
+			"source": "WoW",
+			"className": "Demon Hunter",
+			"classSource": "WoW",
+			"subclassShortName": "Demon Hunter",
+			"subclassSource": "WoW",
+			"level": 11,
+			"activities": [
+				{
+					"name": "Warglaive Mastery",
+					"type": "cast",
+					"description": "As a Bonus Action, you can expend one soul fragment to cast {@spell Throw Glaive|WoW} (see \"Demon Hunter Spells\") without expending a spell slot.",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "subclassFeature",
+									"uid": "Soul Fragments|Demon Hunter|WoW|Demon Hunter|WoW|3"
+								}
+							}
+						]
+					},
+					"visibility": {
+						"level": {
+							"min": 11
+						},
+						"identifier": "demon-hunter"
+					},
+					"spell": {
+						"spellbook": true,
+						"uuid": "@spell[throw glaive|wow]"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Soul Shatter",
+			"source": "WoW",
+			"className": "Demon Hunter",
+			"classSource": "WoW",
+			"subclassShortName": "Demon Hunter",
+			"subclassSource": "WoW",
+			"level": 15,
+			"activities": [
+				{
+					"name": "Regain Soul Fragment",
+					"type": "utility",
+					"activation": {
+						"type": "encounter",
+						"condition": "If you have no soul fragments"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "-1",
+								"target": {
+									"prop": "subclassFeature",
+									"uid": "Soul Fragments|Demon Hunter|WoW|Demon Hunter|WoW|3"
+								}
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Raging Elements",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Elements",
+			"subclassSource": "WoW",
+			"level": 3,
+			"activities": [
+				{
+					"name": "Icefury",
+					"type": "attack",
+					"img": "icons/magic/water/projectile-icecicle-glowing.webp",
+					"description": "When this effect is activated, roll a number of d8s equal to your Rage Damage bonus, and add them together. You hurl frigid ice at one creature within 30 feet of yourself. Make either a melee spell attack (if the target is within 5 feet) or a ranged spell attack, using Constitution as your spellcasting ability. On a hit, the attack deals Cold damage equal to the number rolled, and the next time the target takes Fire damage before the end of your next turn, it takes an extra 1d10 Fire damage.",
+					"activation": {
+						"type": "bonus",
+						"condition": "While your rage is active"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					},
+					"attack": {
+						"type": {
+							"classification": "spell"
+						},
+						"ability": "con"
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "(@scale.barbarian.rage-damage)d8"
+								},
+								"types": [
+									"cold"
+								]
+							}
+						]
+					}
+				},
+				{
+					"name": "Icefury: Extra Damage",
+					"type": "damage",
+					"img": "icons/magic/water/projectile-icecicle-glowing.webp",
+					"description": "The next time the target takes Fire damage before the end of your next turn, it takes an extra 1d10 Fire damage.",
+					"activation": {
+						"type": "",
+						"condition": "When a target hit by Icefury takes Fire damage before the end of your next turn"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"critical": {
+							"allow": true
+						},
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 10,
+								"types": [
+									"fire"
+								]
+							}
+						]
+					}
+				},
+				{
+					"name": "Lava Burst",
+					"type": "save",
+					"img": "icons/magic/earth/explosion-lava-orange.webp",
+					"description": "When this effect is activated, roll a number of d4s equal to your Rage Damage bonus, and add them together. You then hurl molten lava at one creature you can see within 30 feet. The target makes a Dexterity saving throw. On a failed save, the target takes Fire damage equal to the number rolled, and the next time the target takes Lightning damage until the end of your next turn, it takes an extra 1d8 Lightning damage. On a successful save, the target takes half as much damage only.",
+					"activation": {
+						"type": "bonus",
+						"condition": "While your rage is active"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "(@scale.barbarian.rage-damage)d4"
+								},
+								"types": [
+									"fire"
+								]
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "con"
+						},
+						"visible": true
+					}
+				},
+				{
+					"name": "Lava Burst: Extra Damage",
+					"type": "damage",
+					"img": "icons/magic/earth/explosion-lava-orange.webp",
+					"description": "The next time the target takes Lightning damage until the end of your next turn, it takes an extra 1d8 Lightning damage.",
+					"activation": {
+						"type": "",
+						"condition": "When a target hit by Lava Burst takes Lightning damage before the end of your next turn"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"critical": {
+							"allow": true
+						},
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 8,
+								"types": [
+									"lightning"
+								]
+							}
+						]
+					}
+				},
+				{
+					"name": "Lightning Bolt",
+					"type": "save",
+					"img": "icons/magic/lightning/bolt-strike-blue-white.webp",
+					"description": "When this effect is activated, roll a number of d6s equal to your Rage Damage bonus, and add them together. You can then hurl a bolt of lightning at one other creature you can see within 30 feet. The target makes a Dexterity saving throw. On a failed save, the target takes Lightning damage equal to the roll's total, and the next time the target takes Cold damage until the end of your next turn, it takes an extra 1d6 Cold damage. On a successful save, the target takes half as much damage only.",
+					"activation": {
+						"type": "bonus",
+						"condition": "While your rage is active"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "(@scale.barbarian.rage-damage)d6"
+								},
+								"types": [
+									"lightning"
+								]
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "con"
+						},
+						"visible": true
+					}
+				},
+				{
+					"name": "Lightning Bolt: Extra Damage",
+					"type": "damage",
+					"img": "icons/magic/lightning/bolt-strike-blue-white.webp",
+					"description": "The next time the target takes Cold damage until the end of your next turn, it takes an extra 1d6 Cold damage.",
+					"activation": {
+						"type": "",
+						"condition": "When a target hit by Lightning Bolt takes Cold damage before the end of your next turn"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"critical": {
+							"allow": true
+						},
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 6,
+								"types": [
+									"cold"
+								]
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Echo of the Elements",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Elements",
+			"subclassSource": "WoW",
+			"level": 6,
+			"activities": [
+				{
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Rage|Barbarian|XPHB|1"
+								}
+							}
+						]
+					},
+					"spell": {
+						"uuid": "@spell[daylight|xphb]",
+						"spellbook": true,
+						"ability": "wis",
+						"level": 3
+					}
+				},
+				{
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Rage|Barbarian|XPHB|1"
+								}
+							}
+						]
+					},
+					"spell": {
+						"uuid": "@spell[water walk|xphb]",
+						"spellbook": true,
+						"ability": "wis",
+						"level": 3
+					}
+				},
+				{
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Rage|Barbarian|XPHB|1"
+								}
+							}
+						]
+					},
+					"spell": {
+						"uuid": "@spell[wind wall|xphb]",
+						"spellbook": true,
+						"ability": "wis",
+						"level": 3
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Primordial Bond",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Elements",
+			"subclassSource": "WoW",
+			"level": 10,
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "special",
+						"condition": "While Rage is active"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "primordialBond"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "primordialBond",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"value": "cold",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "fire",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "lightning",
+							"mode": "ADD"
+						}
+					],
+					"description": "You have Resistance to Cold, Fire, and Lightning damage."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Spiritual Protectors",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Spiritual Guardian",
+			"subclassSource": "WoW",
+			"level": 3,
+			"activities": [
+				{
+					"name": "Distract",
+					"type": "utility",
+					"description": "Until the start of your next turn, the target has Disadvantage on attack rolls against targets other than you or another Barbarian who has this feature.",
+					"activation": {
+						"type": "special",
+						"condition": "When you hit a creature with a weapon or an Unarmed Strike while your Rage is active"
+					},
+					"duration": {
+						"expiry": "sourceStart"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"effects": [
+						{
+							"foundryId": "spiritualProtect"
+						}
+					]
+				},
+				{
+					"name": "Hinder",
+					"type": "utility",
+					"description": "You can activate the &Reference[Slow] mastery property in addition to a different mastery property you're using with that weapon.",
+					"activation": {
+						"type": "special",
+						"condition": "When you hit a creature with a weapon and deal damage to it while your Rage is active."
+					},
+					"duration": {
+						"expiry": "sourceStart"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"effects": [
+						{
+							"foundryId": "spiritualProtec1"
+						}
+					]
+				},
+				{
+					"name": "Strike",
+					"type": "damage",
+					"description": "The target takes an extra 1d4 damage, which can be Cold, Fire, or Lightning damage (your choice).",
+					"activation": {
+						"type": "special",
+						"condition": "When you hit a creature with a weapon or an Unarmed Strike while your Rage is active"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"critical": {
+							"allow": true
+						},
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 4,
+								"types": [
+									"cold",
+									"fire",
+									"lightning"
+								]
+							}
+						]
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "spiritualProtect",
+					"name": "Distracted",
+					"duration": {
+						"units": "seconds"
+					},
+					"description": "The target has Disadvantage on attack rolls against targets other than you or another Barbarian who has this feature."
+				},
+				{
+					"foundryId": "spiritualProtec1",
+					"name": "Slowed",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.bonus",
+							"value": 10,
+							"mode": "SUBTRACT"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Spirit Shield",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Spiritual Guardian",
+			"subclassSource": "WoW",
+			"level": 6,
+			"activities": [
+				{
+					"name": "Reduce Damage",
+					"type": "utility",
+					"activation": {
+						"type": "reaction",
+						"condition": "When another creature you can see takes damage while your Rage is active"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					},
+					"roll": {
+						"visible": true,
+						"name": "Damage Reduction",
+						"formula": "(@scale.barbarian.rage-damage)d6"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Consult the Spirits",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Spiritual Guardian",
+			"subclassSource": "WoW",
+			"level": 10,
+			"system": {
+				"uses.max": "1",
+				"uses.recovery": [
+					{
+						"period": "sr",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"activities": [
+				{
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"spell": {
+						"uuid": "@spell[augury|xphb]",
+						"properties": [
+							"material"
+						],
+						"spellbook": true,
+						"ability": "wis",
+						"level": 2
+					}
+				},
+				{
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"spell": {
+						"uuid": "@spell[clairvoyance|xphb]",
+						"properties": [
+							"material"
+						],
+						"spellbook": true,
+						"ability": "wis",
+						"level": 3
+					}
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -14810,6 +17141,662 @@
 							"type": "self"
 						}
 					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Atonement",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Discipline",
+			"subclassSource": "WoW",
+			"level": 3,
+			"activities": [
+				{
+					"name": "Grant Blessing",
+					"type": "utility",
+					"activation": {
+						"type": "special",
+						"condition": "When a level 1+ spell you cast restores Hit Points"
+					},
+					"duration": {
+						"units": "round",
+						"expiry": "sourceEnd",
+						"value": "1"
+					},
+					"target": {
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"visibility": {
+						"requireMagic": true
+					},
+					"effects": [
+						{
+							"foundryId": "atonement"
+						}
+					]
+				},
+				{
+					"type": "heal",
+					"description": "Whenever you cast a spell that deals damage to a creature using a spell slot, each blessed creature regains additional Hit Points equal to the level of the spell slot you used to cast the damaging spell.",
+					"activation": {
+						"type": "special",
+						"condition": "When you cast a spell that deals damage to a creature using a spell slot"
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true,
+							"max": "9"
+						}
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"special": "With the blessing"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "@scaling"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "atonement",
+					"name": "Blessing of Atonement",
+					"duration": {
+						"units": "seconds"
+					},
+					"description": "Whenever you cast a spell that deals damage to a creature using a spell slot, each blessed creature regains additional Hit Points equal to the level of the spell slot you used to cast the damaging spell."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Holy Bolt",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Discipline",
+			"subclassSource": "WoW",
+			"level": 3,
+			"activities": [
+				{
+					"name": "Holy Bolt",
+					"type": "attack",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Channel Divinity|Cleric|XPHB|2"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "60"
+					},
+					"attack": {
+						"type": {
+							"value": "ranged",
+							"classification": "spell"
+						}
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 10,
+								"bonus": "@mod",
+								"types": [
+									"radiant"
+								]
+							}
+						]
+					},
+					"visibility": {
+						"requireMagic": true
+					}
+				},
+				{
+					"type": "heal",
+					"activation": {
+						"type": "special",
+						"condition": "when you hit with Holy Bolt"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "60"
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"number": 1,
+						"denomination": 10,
+						"bonus": "@abilities.wis.mod"
+					},
+					"visibility": {
+						"requireMagic": true
+					}
+				},
+				{
+					"name": "Ascending Volley",
+					"type": "attack",
+					"description": "When you use Holy Bolt, you can expend a spell slot as part of the Bonus Action to hurl a number of additional bolts equal to the spell slot level expended. You can direct the bolts to hit one creature or several. Make a separate attack roll for each bolt.",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true,
+							"max": "9"
+						},
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Channel Divinity|Cleric|XPHB|2"
+								}
+							},
+							{
+								"type": "spellSlots",
+								"value": "1",
+								"target": "1",
+								"scaling": {
+									"mode": "level"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "@scaling + 1",
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "60"
+					},
+					"attack": {
+						"type": {
+							"value": "ranged",
+							"classification": "spell"
+						}
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 10,
+								"bonus": "@mod",
+								"types": [
+									"radiant"
+								]
+							}
+						]
+					},
+					"visibility": {
+						"level": {
+							"min": 17
+						},
+						"requireMagic": true,
+						"identifier": "cleric"
+					}
+				},
+				{
+					"name": "Ascending Step",
+					"type": "teleport",
+					"description": "When you use Holy Bolt, you can teleport to an unoccupied space you can see within 30 feet before you make an attack roll.",
+					"activation": {
+						"type": "special",
+						"condition": "When you use Holy Bolt before you make an attack roll"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					},
+					"visibility": {
+						"level": {
+							"min": 17
+						},
+						"requireMagic": true,
+						"identifier": "cleric"
+					},
+					"teleport": {
+						"units": "ft"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Luminous Barrier",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Discipline",
+			"subclassSource": "WoW",
+			"level": 6,
+			"activities": [
+				{
+					"type": "heal",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Channel Divinity|Cleric|XPHB|2"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"healing": {
+						"types": [
+							"temphp"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "@classes.cleric.levels + @abilities.wis.mod"
+						},
+						"scaling": {
+							"number": 1
+						}
+					},
+					"visibility": {
+						"requireMagic": true
+					},
+					"effects": [
+						{
+							"foundryId": "luminousBarrier"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "luminousBarrier",
+					"name": "Resistance to All Damage",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"value": "ALL",
+							"mode": "ADD"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Devouring Plague",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "WoW",
+			"level": 3,
+			"system": {
+				"uses.max": "max(1, @abilities.wis.mod)",
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"activities": [
+				{
+					"type": "damage",
+					"activation": {
+						"type": "special",
+						"condition": "When a creature you can see within 30 feet of you fails a saving throw"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 10,
+								"types": [
+									"necrotic"
+								]
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Shadowform",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "WoW",
+			"level": 3,
+			"activities": [
+				{
+					"foundryId": "shadowform",
+					"name": "Shadow Stealth",
+					"type": "utility",
+					"description": "While you are in an area of Dim Light or Darkness, you can take the &Reference[Hide] action as a Bonus Action.",
+					"activation": {
+						"type": "bonus",
+						"condition": "While in Dim Light or Darkness"
+					},
+					"visibility": {
+						"requireMagic": true
+					}
+				},
+				{
+					"foundryId": "shadowform1",
+					"name": "Void Empowerment",
+					"type": "damage",
+					"description": "When you cast a spell using a spell slot that deals Psychic or Necrotic damage, you can add 1d6 to one damage roll of the spell.",
+					"activation": {
+						"type": "action"
+					},
+					"visibility": {
+						"requireMagic": true
+					}
+				},
+				{
+					"name": "Take on Form",
+					"type": "enchant",
+					"activation": {
+						"type": "bonus"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Channel Divinity|Cleric|XPHB|2"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"restrictions": {
+						"allowMagical": true
+					},
+					"enchant": {
+						"self": true
+					},
+					"effects": [
+						{
+							"foundryId": "shadowform",
+							"riders": {
+								"activity": [
+									{
+										"foundryId": "shadowform"
+									},
+									{
+										"foundryId": "shadowform1"
+									},
+									{
+										"foundryId": "shadowform2"
+									}
+								]
+							}
+						}
+					]
+				},
+				{
+					"foundryId": "shadowform2",
+					"name": "Vampiric Embrace",
+					"type": "heal",
+					"description": "While your Shadowform is active, whenever you roll 1d6 to add extra damage to a spell, one creature of your choice within 30 feet of you regains that many Hit Points.",
+					"activation": {
+						"type": "special",
+						"condition": "When you roll 1d6 to add extra damage to a spell"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						}
+					},
+					"visibility": {
+						"level": {
+							"min": 17
+						},
+						"requireMagic": true,
+						"identifier": "cleric"
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "shadowform",
+					"name": "Shadowy Form",
+					"type": "enchantment",
+					"disabled": true,
+					"duration": {
+						"units": "seconds"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Dispersion",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "WoW",
+			"level": 6,
+			"system": {
+				"uses.max": "1",
+				"uses.recovery": [
+					{
+						"period": "sr",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"activities": [
+				{
+					"name": "Disperse",
+					"type": "utility",
+					"activation": {
+						"type": "reaction",
+						"condition": "When you are hit by an attack roll"
+					},
+					"duration": {
+						"units": "round",
+						"expiry": "sourceEnd",
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "dispersion"
+						}
+					]
+				},
+				{
+					"type": "heal",
+					"description": "When the effect ends, you can spend up to half of your total Hit Point Dice, regaining Hit Points as if you had finished a Short Rest.",
+					"activation": {
+						"type": "special",
+						"condition": "When the effect ends"
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true,
+							"max": "floor(@attributes.hd.max / 2)"
+						},
+						"targets": [
+							{
+								"type": "hitDice",
+								"value": "1",
+								"target": "largest",
+								"scaling": {
+									"mode": "amount"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "@consumed.hd + @abilities.con.mod * @scaling"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "dispersion",
+					"name": "Shadowy Energy",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"value": "ALL",
+							"mode": "ADD"
+						},
+						{
+							"key": "system.attributes.movement.speeds.fly",
+							"value": 40,
+							"mode": "UPGRADE"
+						}
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -18363,6 +21350,231 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Drunken Technique",
+			"source": "WoW",
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Mystic Brews",
+			"subclassSource": "WoW",
+			"level": 3,
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "special",
+						"condition": "When you expend a Focus Point using Patient Defense"
+					},
+					"duration": {
+						"expiry": "turnEnd"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "drunkenTechnique"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "drunkenTechnique",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.bonus",
+							"value": 10,
+							"mode": "ADD"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Enhancing a Magical Beverage",
+			"source": "WoW",
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Mystic Brews",
+			"subclassSource": "WoW",
+			"level": 6,
+			"activities": [
+				{
+					"name": "Brew (Enhanced)",
+					"type": "utility",
+					"activation": {
+						"type": "shortRest"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Monk's Focus|Monk|XPHB|2"
+								}
+							}
+						]
+					}
+				},
+				{
+					"name": "Brew (Enhanced)",
+					"type": "utility",
+					"activation": {
+						"type": "longRest"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Monk's Focus|Monk|XPHB|2"
+								}
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Mystic Brew",
+			"source": "WoW",
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Mystic Brews",
+			"subclassSource": "WoW",
+			"level": 6,
+			"activities": [
+				{
+					"name": "Brew",
+					"type": "utility",
+					"activation": {
+						"type": "shortRest"
+					}
+				},
+				{
+					"name": "Brew",
+					"type": "utility",
+					"activation": {
+						"type": "longRest"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Redirect Attack",
+			"source": "WoW",
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Mystic Brews",
+			"subclassSource": "WoW",
+			"level": 6,
+			"activities": [
+				{
+					"name": "Redirect Attack",
+					"type": "utility",
+					"description": "When an enemy misses you with a melee attack roll, you can take a Reaction and spend 1 Focus Point to cause that attack to hit one creature of your choice, other than the attacker, that you can see within 5 feet of yourself.",
+					"activation": {
+						"type": "reaction",
+						"condition": "When an enemy misses you with a melee attack roll"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Monk's Focus|Monk|XPHB|2"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "5"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Intoxicated Frenzy",
+			"source": "WoW",
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Mystic Brews",
+			"subclassSource": "WoW",
+			"level": 17,
+			"activities": [
+				{
+					"name": "Knock Prone",
+					"type": "save",
+					"activation": {
+						"type": "special",
+						"condition": "When you hit a creature with an Unarmed Strike granted by Intoxicated Frenzy"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "5"
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "wis"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "intoxicatedFrenz"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "intoxicatedFrenz",
+					"name": "Prone",
+					"duration": {
+						"units": "seconds"
+					},
+					"statuses": [
+						"prone"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Elemental Attunement",
 			"source": "XPHB",
 			"className": "Monk",
@@ -19513,6 +22725,269 @@
 					"statuses": [
 						"invisible"
 					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Beacon of Light",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Holy",
+			"subclassSource": "WoW",
+			"level": 3,
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Channel Divinity|Paladin|XPHB|3"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "ally",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "60"
+					},
+					"visibility": {
+						"requireMagic": true
+					},
+					"effects": [
+						{
+							"foundryId": "beaconOfLight"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "beaconOfLight",
+					"name": "Holy Energy",
+					"duration": {
+						"units": "seconds"
+					},
+					"description": "Anytime you heal a creature other than the affected ally with a spell or your Lay On Hands, the chosen ally also regains half as many Hit Points."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Lightbringer's Aura",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Holy",
+			"subclassSource": "WoW",
+			"level": 7,
+			"activities": [
+				{
+					"type": "heal",
+					"activation": {
+						"type": "special",
+						"condition": "When you cast a spell or use Lay On Hands to restore Hit Points to a Bloodied creature within your Aura of Protection"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "@scale.paladin.aura"
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"number": 1,
+						"denomination": 6
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Infusion of Light",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Holy",
+			"subclassSource": "WoW",
+			"level": 15,
+			"activities": [
+				{
+					"name": "Regain Lay on Hands",
+					"type": "utility",
+					"activation": {
+						"type": "special",
+						"condition": "When you cast a spell that deals Radiant damage"
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true,
+							"max": "@classes.paladin.levels * 5"
+						},
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "-1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Lay on Hands|Paladin|XPHB|1"
+								},
+								"scaling": {
+									"mode": "amount"
+								}
+							}
+						]
+					},
+					"visibility": {
+						"requireMagic": true
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Holy Deliverance",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Holy",
+			"subclassSource": "WoW",
+			"level": 20,
+			"system": {
+				"uses.max": "1",
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"activities": [
+				{
+					"name": "Imbue Aura",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "10"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"visibility": {
+						"requireMagic": true
+					},
+					"effects": [
+						{
+							"foundryId": "holyDeliverance"
+						}
+					]
+				},
+				{
+					"name": "Restore Use",
+					"type": "utility",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "-1"
+							},
+							{
+								"type": "spellSlots",
+								"value": "1",
+								"target": "5"
+							}
+						]
+					}
+				},
+				{
+					"name": "Healing Power",
+					"type": "heal",
+					"description": "Whenever an ally starts its turn &Reference[Bloodied] and in the aura, that creature regains Hit Points equal to your Charisma modifier plus your Proficiency Bonus.",
+					"activation": {
+						"type": "special",
+						"condition": "when an ally starts its turn Bloodied and in the imbued aura"
+					},
+					"target": {
+						"affects": {
+							"type": "ally"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "@scale.paladin.aura"
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "@abilities.cha.mod + @prof"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "holyDeliverance",
+					"name": "Aura Light",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "token.light.bright",
+							"value": 30,
+							"mode": "UPGRADE"
+						}
+					],
+					"description": "The aura is filled with &Reference[Bright Light] that is sunlight."
 				}
 			],
 			"migrationVersion": 3
@@ -22040,6 +25515,340 @@
 						"{@i Hazy Form and Incorporeal Movement is not automated.}"
 					],
 					"showIcon": 2
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Rakish Audacity",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Swashbuckler",
+			"subclassSource": "WoW",
+			"level": 3,
+			"effects": [
+				{
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.init.roll.bonus",
+							"value": "@abilities.cha.mod",
+							"mode": "ADD"
+						}
+					],
+					"description": "When you roll Initiative, you can give yourself a bonus to the roll equal to your Charisma modifier."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Panache",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Swashbuckler",
+			"subclassSource": "WoW",
+			"level": 9,
+			"activities": [
+				{
+					"name": "Goad",
+					"type": "save",
+					"description": "The target must succeed on a Wisdom saving throw, or until the end of its next turn, the target has Disadvantage on attack rolls against targets other than you and can't make &Reference[Opportunity Attacks] against targets other than you.",
+					"activation": {
+						"type": "special",
+						"condition": "When you deal Sneak Attack damage"
+					},
+					"duration": {
+						"units": "round",
+						"expiry": "targetEnd",
+						"value": "1"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"wis"
+						],
+						"dc": {
+							"calculation": "dex"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "panache"
+						}
+					]
+				},
+				{
+					"name": "Awe",
+					"type": "save",
+					"description": "Each creature of your choice within 30 feet of you must succeed on a Wisdom saving throw or have the &Reference[Charmed apply=false] condition until the end of your next turn.",
+					"activation": {
+						"type": "special",
+						"condition": "When you deal Sneak Attack damage"
+					},
+					"duration": {
+						"units": "round",
+						"expiry": "sourceEnd",
+						"value": "1"
+					},
+					"target": {
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					},
+					"damage": {
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"wis"
+						],
+						"dc": {
+							"calculation": "dex"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "panache1"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "panache",
+					"name": "Cunning Strike: Goaded",
+					"duration": {
+						"units": "seconds"
+					},
+					"description": "The target has Disadvantage on attack rolls against targets other than you and can't make &Reference[Opportunity Attacks] against targets other than you."
+				},
+				{
+					"foundryId": "panache1",
+					"name": "Cunning Strike: Awed",
+					"duration": {
+						"units": "seconds"
+					},
+					"statuses": [
+						"charmed"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Dashing Strikes",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Swashbuckler",
+			"subclassSource": "WoW",
+			"level": 13,
+			"activities": [
+				{
+					"name": "Invigorate",
+					"type": "utility",
+					"description": "Choose a creature you can see within 30 feet of yourself. Until the end of that creature's next turn, whenever it makes an attack roll or a saving throw, it can roll 1d6 and add the number rolled to the attack roll or saving throw.",
+					"activation": {
+						"type": "special",
+						"condition": "When you deal Sneak Attack damage"
+					},
+					"duration": {
+						"units": "round",
+						"expiry": "targetEnd",
+						"value": "1"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					},
+					"effects": [
+						{
+							"foundryId": "dashingStrikes"
+						}
+					]
+				},
+				{
+					"name": "Parrying Stance",
+					"type": "utility",
+					"description": "Roll 1d6. Until the start of your next turn, you gain a bonus to your AC equal to the number rolled.",
+					"activation": {
+						"type": "special",
+						"condition": "When you deal Sneak Attack damage"
+					},
+					"duration": {
+						"units": "round",
+						"expiry": "sourceStart",
+						"value": "1"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"roll": {
+						"name": "AC Increase",
+						"formula": "1d6"
+					},
+					"effects": [
+						{
+							"foundryId": "dashingStrikes1"
+						},
+						{
+							"foundryId": "dashingStrikes2"
+						},
+						{
+							"foundryId": "dashingStrikes3"
+						},
+						{
+							"foundryId": "dashingStrikes4"
+						},
+						{
+							"foundryId": "dashingStrikes5"
+						},
+						{
+							"foundryId": "dashingStrikes6"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "dashingStrikes",
+					"name": "Cunning Strike: Invigorated",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "attack",
+							"value": "1d6",
+							"mode": "dnd5e.bonus"
+						},
+						{
+							"key": "save",
+							"value": "1d6",
+							"mode": "dnd5e.bonus"
+						}
+					],
+					"description": "Whenever it makes an attack roll or a saving throw, it can roll 1d6 and add the number rolled to the attack roll or saving throw."
+				},
+				{
+					"foundryId": "dashingStrikes1",
+					"name": "Cunning Strike: Parried +1",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.ac.bonus",
+							"value": 1,
+							"mode": "ADD"
+						}
+					],
+					"description": "You gain a +1 bonus to your AC."
+				},
+				{
+					"foundryId": "dashingStrikes2",
+					"name": "Cunning Strike: Parried +2",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.ac.bonus",
+							"value": 2,
+							"mode": "ADD"
+						}
+					],
+					"description": "You gain a +2 bonus to your AC."
+				},
+				{
+					"foundryId": "dashingStrikes3",
+					"name": "Cunning Strike: Parried +3",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.ac.bonus",
+							"value": 3,
+							"mode": "ADD"
+						}
+					],
+					"description": "You gain a +3 bonus to your AC."
+				},
+				{
+					"foundryId": "dashingStrikes4",
+					"name": "Cunning Strike: Parried +4",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.ac.bonus",
+							"value": 4,
+							"mode": "ADD"
+						}
+					],
+					"description": "You gain a +4 bonus to your AC."
+				},
+				{
+					"foundryId": "dashingStrikes5",
+					"name": "Cunning Strike: Parried +5",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.ac.bonus",
+							"value": 5,
+							"mode": "ADD"
+						}
+					],
+					"description": "You gain a +5 bonus to your AC."
+				},
+				{
+					"foundryId": "dashingStrikes6",
+					"name": "Cunning Strike: Parried +6",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.ac.bonus",
+							"value": 6,
+							"mode": "ADD"
+						}
+					],
+					"description": "You gain a +6 bonus to your AC."
 				}
 			],
 			"migrationVersion": 3
@@ -25780,6 +29589,98 @@
 					"duration": {
 						"units": "seconds"
 					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"value": "acid",
+							"conditions": {
+								"k": "attributes.hp.temp",
+								"o": "gt",
+								"v": 0
+							},
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "bludgeoning",
+							"conditions": {
+								"k": "attributes.hp.temp",
+								"o": "gt",
+								"v": 0
+							},
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "cold",
+							"conditions": {
+								"k": "attributes.hp.temp",
+								"o": "gt",
+								"v": 0
+							},
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "fire",
+							"conditions": {
+								"k": "attributes.hp.temp",
+								"o": "gt",
+								"v": 0
+							},
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "lightning",
+							"conditions": {
+								"k": "attributes.hp.temp",
+								"o": "gt",
+								"v": 0
+							},
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "piercing",
+							"conditions": {
+								"k": "attributes.hp.temp",
+								"o": "gt",
+								"v": 0
+							},
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "poison",
+							"conditions": {
+								"k": "attributes.hp.temp",
+								"o": "gt",
+								"v": 0
+							},
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "slashing",
+							"conditions": {
+								"k": "attributes.hp.temp",
+								"o": "gt",
+								"v": 0
+							},
+							"mode": "ADD"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"value": "thunder",
+							"conditions": {
+								"k": "attributes.hp.temp",
+								"o": "gt",
+								"v": 0
+							},
+							"mode": "ADD"
+						}
+					],
 					"description": "While it has Temporary Hit Points, the creature has Resistance to every damage type except Force, Necrotic, Psychic, and Radiant."
 				}
 			],

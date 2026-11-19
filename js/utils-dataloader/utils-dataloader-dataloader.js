@@ -1049,7 +1049,7 @@ class DataTypeLoaderCustomQuickref extends DataTypeLoader {
 	_isBrewAvailable () { return false; }
 
 	async _pGetSiteData ({pageClean, sourceClean}) {
-		const json = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/generated/bookref-quick.json`);
+		const json = await DataUtil.quickreference.loadJSON();
 		return {
 			reference: json.reference["bookref-quick"],
 			referenceData: json.data["bookref-quick"],
@@ -1098,8 +1098,6 @@ class DataTypeLoaderCustomQuickref extends DataTypeLoader {
 }
 
 class DataTypeLoaderCustomAdventureBook extends DataTypeLoader {
-	_filename;
-
 	_getSiteIdent ({pageClean, sourceClean}) { return `${pageClean}__${sourceClean}`; }
 
 	hasCustomCacheStrategy ({obj}) { return this.constructor.PROPS.some(prop => obj[prop]?.length); }
@@ -1141,12 +1139,12 @@ class DataTypeLoaderCustomAdventureBook extends DataTypeLoader {
 	async _pGetSiteData ({pageClean, sourceClean}) {
 		const [prop, propData] = this.constructor.PROPS;
 
-		const index = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/${this._filename}`);
+		const index = await DataUtil[prop].loadJSON();
 		const contents = index[prop].find(contents => DataLoaderInternalUtil.getCleanSource({source: contents.source}) === sourceClean);
 
 		if (!contents) return {};
 
-		const json = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/${prop}/${prop}-${UrlUtil.encodeForHash(contents.id.toLowerCase())}.json`);
+		const json = await DataUtil[prop].getCorpusData(contents.id);
 
 		return {
 			[prop]: [contents],
@@ -1176,15 +1174,11 @@ class DataTypeLoaderCustomAdventureBook extends DataTypeLoader {
 class DataTypeLoaderCustomAdventure extends DataTypeLoaderCustomAdventureBook {
 	static PROPS = ["adventure", "adventureData"];
 	static PAGE = UrlUtil.PG_ADVENTURE;
-
-	_filename = "adventures.json";
 }
 
 class DataTypeLoaderCustomBook extends DataTypeLoaderCustomAdventureBook {
 	static PROPS = ["book", "bookData"];
 	static PAGE = UrlUtil.PG_BOOK;
-
-	_filename = "books.json";
 }
 
 class DataTypeLoaderCitation extends DataTypeLoader {

@@ -39,7 +39,7 @@ class OptionalFeaturesSublistManager extends SublistManager {
 		const level = Renderer.optionalfeature.getListPrerequisiteLevelText(it.prerequisite);
 		const cellsText = [
 			it.name,
-			new SublistCell({title: it._dFeatureType.join(", "), text: it._lFeatureType}),
+			new SublistCell({title: it._dFeatureType.join("\n"), text: it._lFeatureType}),
 			prerequisite,
 			level,
 		];
@@ -114,7 +114,7 @@ class OptionalFeaturesPage extends ListPage {
 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
 			<span class="ve-col-0-3 ve-px-0 ve-flex-vh-center ve-lst__btn-toggle-expand ve-self-flex-stretch ve-no-select">[+]</span>
 			<span class="ve-bold ve-col-3 ve-px-1">${it.name}</span>
-			<span class="ve-col-1-5 ve-px-1 ve-text-center" title="${it._dFeatureType.join(", ").qq()}">${it._lFeatureType}</span>
+			<span class="ve-col-1-5 ve-px-1 ve-text-center" title="${it._dFeatureType.join("\n").qq()}">${it._lFeatureType}</span>
 			<span class="ve-col-4-7 ve-px-1">${prerequisite}</span>
 			<span class="ve-col-1 ve-px-1 ve-text-center">${level}</span>
 			<span class="ve-col-1-5 ${Parser.sourceJsonToSourceClassname(it.source)} ve-text-center ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(it.source)}">${source}</span>
