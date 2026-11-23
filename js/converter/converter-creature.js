@@ -996,15 +996,18 @@ export class ConverterCreature extends ConverterBase {
 					return null;
 				}
 
-				const mUses = /^Legendary Action Uses: (?<cnt>\d+)( \((?<cntLair>\d+) in Lair\))?/gi.exec(ent.entries[0]);
+				const mUses = /^Legendary Action Uses: (?<cnt>\d+)( \((?<cntLair>\d+) (?<condition>[^)]+)\))?/gi.exec(ent.entries[0]);
 				if (!hasName && mUses) {
-					const {cnt, cntLair} = mUses.groups;
+					const {cnt, cntLair, condition} = mUses.groups;
 
 					const asNum = Number(cnt);
 					const asNumLair = cntLair ? Number(cntLair) : null;
 
 					if (asNum !== 3) stats.legendaryActions = asNum;
-					if (asNumLair && asNumLair !== asNum) stats.legendaryActionsLair = asNumLair;
+					if (asNumLair && asNumLair !== asNum) {
+						stats.legendaryActionsLair = asNumLair;
+						if (condition.toLowerCase() !== "in lair") stats.legendaryActionsLairCondition = condition;
+					}
 
 					return null;
 				}

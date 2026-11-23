@@ -3256,6 +3256,12 @@
 											"entries": [
 												"This room is used to store echo units afflicted with the Spontaneous Echo Malfunction virus. When the characters first arrive here, the cryopods are drawing insufficient power.",
 												{
+													"type": "insetReadaloud",
+													"entries": [
+														"All around this frigid basement room are glass-lidded pods, like sarcophagi, connected to complex machines. Some of the pods are ajar or broken, their occupants missing; some contain a humanlike entity in frozen slumber. Behind you is a dark elevator box. A robotic voice repeats a warning over speakers mounted near the room's ceiling: \"Elevator offline. Cryopod power level critical. Manual reset required at cryogenerator mainframe.\""
+													]
+												},
+												{
 													"type": "entries",
 													"name": "Cryopods",
 													"id": "0bc",
@@ -3474,6 +3480,17 @@
 													"entries": [
 														"A monitor on the mainframe's terminal mirrors the power-distribution information on the monitor in the hallway just outside this chamber (see {@area area D2|0be|x}). The mainframe's controls are intuitive enough that a character can easily deduce how to divert power from one part of the sublevel (such as the cryopods) to another (such as the elevator).",
 														"The monitor clearly shows the current power levels and the expected power levels after committing the user's change. Once the party has designated their desired power redistribution, they must reset the mainframe for the change to take effect. The mainframe monitor displays instructions for how to do this. Show the players Handout 3: Reset Instructions.",
+														{
+															"type": "image",
+															"href": {
+																"type": "internal",
+																"path": "book/PL/029-04-006.reset-instructions-handout.webp"
+															},
+															"width": 1701,
+															"height": 1207,
+															"title": "Handout 3: Reset Instructions",
+															"credit": "Trystan Falcone"
+														},
 														"Once the Manual Safety Lever is turned, prompt your players to roll for Initiative. From this moment on, every second will count. The following happens in quick succession:",
 														{
 															"type": "list",
@@ -4160,7 +4177,7 @@
 												},
 												"The doors to the east are jammed by rubble.",
 												"In this room, donors have their brains scanned using the machinery in the booths. The resulting neuroscan data is stored in a glass canister, which must be taken to {@area area N7|0fd|x} for processing and storage.",
-												"Director {@creature Rudolph von Aubrecker|PL} (see the \"{@area Creature Database|116|x}\" section; additional details about Rudolph's background are in the \"{@area Personnel Directory|06d|x}\" section) greets the characters as soon as they arrive. While he describes the neuroscan process to the party, his attendants, four {@creature Empty Echo|PL|Empty Echoes} (see the \"{@area Creature Database|10e|x}\" section), measure the characters' heads and attempt to escort the characters to the available booths. The attendants are programmed to force the characters into the booths, and each uses [Tooltip Not Found] to grapple or shove a character into place. The attendants don't try to deal damage to the characters.",
+												"Director {@creature Rudolph von Aubrecker|PL} (see the \"{@area Creature Database|116|x}\" section; additional details about Rudolph's background are in the \"{@area Personnel Directory|06d|x}\" section) greets the characters as soon as they arrive. While he describes the neuroscan process to the party, his attendants, four {@creature Empty Echo|PL|Empty Echoes} (see the \"{@area Creature Database|10e|x}\" section), measure the characters' heads and attempt to escort the characters to the available booths. The attendants are programmed to force the characters into the booths, and each uses {@variantrule Unarmed Strike|XPHB|Unarmed Strikes} to grapple or shove a character into place. The attendants don't try to deal damage to the characters.",
 												{
 													"type": "entries",
 													"name": "Rudolph's Arm/Elevator Lever",

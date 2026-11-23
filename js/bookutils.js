@@ -1,6 +1,8 @@
 import {RenderMap} from "./render-map.js";
 import {OmnisearchUtilsUi} from "./omnisearch/omnisearch-utils-ui.js";
-import {UtilBookUtil} from "./bookutils/bookutils-utils.js";
+import {UtilBookUtil, UtilBookUtilHash} from "./bookutils/bookutils-utils.js";
+
+const _SYM_BOOK_ID_NONE = Symbol("bookIdNone");
 
 export class BookUtil {
 	static _getHeaderText ({header}) {
@@ -109,6 +111,7 @@ export class BookUtil {
 		if (hashParts && hashParts.length > 0) ixChapter = Number(hashParts[0]);
 
 		const isRenderingNewChapterOrNewBook = BookUtil.curRender.chapter !== ixChapter
+			|| bookIdPrev === _SYM_BOOK_ID_NONE
 			|| UrlUtil.encodeForHash(bookIdPrev.toLowerCase()) !== UrlUtil.encodeForHash(bookId);
 
 		if (hashParts && hashParts.length > 1) {
@@ -630,12 +633,11 @@ export class BookUtil {
 			//   their chapter.
 			const [headerName, headerIndex] = hashParts.slice(1);
 			if (headerName && !headerIndex) {
-				const headerNameClean = decodeURIComponent(headerName).trim().toLowerCase();
-				const chapterNum = Number(hashParts[0]);
-				const minChapterHeaderIx = BookUtil.curRender.allViewFirstTitleIndexes[chapterNum];
-				const offsetHeaderIndex = Object.entries(BookUtil._renderer.getTrackedTitles())
-					.filter(([ix, header]) => Number(ix) <= minChapterHeaderIx && header.toLowerCase().trim() === headerNameClean)
-					.length;
+				const offsetHeaderIndex = UtilBookUtilHash.getFullBookHeaderIndex({
+					headerName: decodeURIComponent(headerName),
+					ixChapterFirstTitle: BookUtil.curRender.allViewFirstTitleIndexes[Number(hashParts[0])],
+					trackedTitles: BookUtil._renderer.getTrackedTitles(),
+				});
 				hashParts[2] = `${offsetHeaderIndex}`;
 			}
 
@@ -728,6 +730,9 @@ export class BookUtil {
 	}
 
 	static _booksHashChange_noContent ({wrpContents}) {
+		BookUtil.curRender.curBookId = _SYM_BOOK_ID_NONE;
+		BookUtil.curRender.chapter = null;
+
 		this._doPopulateContents({wrpContents});
 
 		BookUtil.dispBook.vee.empty().vee.html(`<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -750,15 +755,14 @@ export class BookUtil {
 
 	static _handlePageFromHash (pageTerm) {
 		// Find the first result, and jump to it if it exists
-		const found = BookUtil.Search.doSearch(pageTerm, true);
-		if (found.length) {
-			const firstFound = found[0];
-			const nxtHash = BookUtil.Search.getResultHash(BookUtil.curRender.curBookId, firstFound);
-			Hist.replaceHistoryHash(nxtHash);
-			return BookUtil.booksHashChange();
-		} else {
-			JqueryUtil.doToast({type: "warning", content: `Could not find page ${pageTerm}!`});
+		const foundEntryInfos = BookUtil.Search.doSearch(pageTerm, true);
+		if (!foundEntryInfos.length) {
+			return JqueryUtil.doToast({type: "warning", content: `Could not find page ${pageTerm}!`});
 		}
+
+		const nxtHash = BookUtil.Search.getResultHash(BookUtil.curRender.curBookId, foundEntryInfos[0]);
+		Hist.replaceHistoryHash(nxtHash);
+		return BookUtil.booksHashChange();
 	}
 
 	static async _pLoadChapter_pGetData ({fromIndex, bookId, homebrewData}) {
@@ -1117,7 +1121,7 @@ export class BookUtil {
 }
 // region Last render/etc
 BookUtil.curRender = {
-	curBookId: "NONE",
+	curBookId: _SYM_BOOK_ID_NONE,
 	chapter: null, // -1 represents "entire book"
 	data: {},
 	fromIndex: {},
@@ -1161,8 +1165,17 @@ BookUtil._lastHighlight = null;
 BookUtil.Search = class {
 	static _EXTRA_WORDS = 2;
 
-	static getResultHash (bookId, found) {
-		return `${UrlUtil.encodeForHash(bookId)}${HASH_PART_SEP}${~BookUtil.curRender.chapter ? found.ch : -1}${found.header ? `${HASH_PART_SEP}${UrlUtil.encodeForHash(found.header)}${HASH_PART_SEP}${found.headerIndex}` : ""}`;
+	static getResultHash (bookId, foundEntryInfo) {
+		const headerIndex = BookUtil.curRender.chapter === -1 && foundEntryInfo.header
+			? UtilBookUtilHash.getFullBookHeaderIndex({
+				headerName: foundEntryInfo.header,
+				headerIndex: foundEntryInfo.headerIndex,
+				ixChapterFirstTitle: BookUtil.curRender.allViewFirstTitleIndexes[foundEntryInfo.ch],
+				trackedTitles: BookUtil._renderer.getTrackedTitles(),
+			})
+			: foundEntryInfo.headerIndex;
+
+		return `${UrlUtil.encodeForHash(bookId)}${HASH_PART_SEP}${~BookUtil.curRender.chapter ? foundEntryInfo.ch : -1}${foundEntryInfo.header ? `${HASH_PART_SEP}${UrlUtil.encodeForHash(foundEntryInfo.header)}${HASH_PART_SEP}${headerIndex}` : ""}`;
 	}
 
 	static doSearch (term, isPageMode) {

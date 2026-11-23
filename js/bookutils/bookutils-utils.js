@@ -12,3 +12,16 @@ export class UtilBookUtil {
 		});
 	}
 }
+
+export class UtilBookUtilHash {
+	static getFullBookHeaderIndex ({headerName, headerIndex = 0, ixChapterFirstTitle, trackedTitles}) {
+		const headerNameClean = Renderer.utils.TitleRelativeIndexTracker.getCleanName(headerName);
+
+		const offset = Object.entries(trackedTitles)
+			.filter(([ixTitle, title]) => Number(ixTitle) < ixChapterFirstTitle
+				&& Renderer.utils.TitleRelativeIndexTracker.getCleanName(title) === headerNameClean)
+			.length;
+
+		return headerIndex + offset;
+	}
+}

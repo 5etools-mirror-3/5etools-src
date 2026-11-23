@@ -202,7 +202,10 @@
 				"Goblin",
 				"Halfling"
 			],
-			"cr": "7",
+			"cr": {
+				"cr": "7",
+				"xpLair": 3900
+			},
 			"gear": [
 				"studded leather armor|xphb"
 			],
@@ -292,6 +295,16 @@
 					]
 				}
 			],
+			"reaction": [
+				{
+					"name": "Redirect Attack",
+					"entries": [
+						"{@actTrigger} A creature Viktra can see makes an attack roll against her. {@actResponse} Viktra chooses a Small or Medium ally within 5 feet of herself. Viktra and that ally swap places, and the ally becomes the target of the attack instead."
+					]
+				}
+			],
+			"legendaryActionsLair": 4,
+			"legendaryActionsLairCondition": "in Domain",
 			"legendary": [
 				{
 					"name": "Shocking Prod",
@@ -1462,7 +1475,7 @@
 			"senses": [
 				"Darkvision 60 ft."
 			],
-			"passive": 16,
+			"passive": 18,
 			"immune": [
 				"poison"
 			],
@@ -1594,8 +1607,8 @@
 			"str": 18,
 			"dex": 15,
 			"con": 16,
-			"int": 8,
-			"wis": 10,
+			"int": 10,
+			"wis": 8,
 			"cha": 6,
 			"senses": [
 				"Darkvision 60 ft."

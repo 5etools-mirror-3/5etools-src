@@ -10887,7 +10887,7 @@ Renderer.monster = class {
 	/* -------------------------------------------- */
 
 	static getLegendaryActionIntro (mon, {renderer = Renderer.get(), isUseDisplayName = false, styleHint = null} = {}) {
-		return renderer.render(Renderer.monster.getLegendaryActionIntroEntry(mon, {isUseDisplayName}));
+		return renderer.render(Renderer.monster.getLegendaryActionIntroEntry(mon, {isUseDisplayName, styleHint}));
 	}
 
 	static getLegendaryActionIntroEntry (mon, {isUseDisplayName = false, styleHint = null} = {}) {
@@ -10903,17 +10903,19 @@ Renderer.monster = class {
 		const proPossessive = Renderer.monster.getPronounPossessive(mon);
 
 		if (styleHint === "classic") {
+			const legendaryActionsLairCondition = mon.legendaryActionsLairCondition || `in ${proPossessive} lair`;
 			return {
 				entries: [
-					`${legendaryNameTitle} can take ${legendaryActions} legendary action${legendaryActions > 1 ? "s" : ""}${legendaryActionsLair !== legendaryActions ? ` (or ${legendaryActionsLair} when in ${proPossessive} lair)` : ""}, choosing from the options below. Only one legendary action can be used at a time and only at the end of another creature's turn. ${legendaryNameTitle} regains spent legendary actions at the start of ${proPossessive} turn.`,
+					`${legendaryNameTitle} can take ${legendaryActions} legendary action${legendaryActions > 1 ? "s" : ""}${legendaryActionsLair !== legendaryActions ? ` (or ${legendaryActionsLair} when ${legendaryActionsLairCondition})` : ""}, choosing from the options below. Only one legendary action can be used at a time and only at the end of another creature's turn. ${legendaryNameTitle} regains spent legendary actions at the start of ${proPossessive} turn.`,
 				],
 			};
 		}
 
 		const legendaryNameOther = Renderer.monster.getShortName(mon, {isUseDisplayName});
+		const legendaryActionsLairCondition = mon.legendaryActionsLairCondition || "in Lair";
 		return {
 			entries: [
-				`{@note Legendary Action Uses: ${legendaryActions}${legendaryActionsLair !== legendaryActions ? ` (${legendaryActionsLair} in Lair)` : ""}. Immediately after another creature's turn, ${legendaryNameOther} can expend a use to take one of the following actions. ${legendaryNameTitle} regains all expended uses at the start of each of ${proPossessive} turns.}`,
+				`{@note Legendary Action Uses: ${legendaryActions}${legendaryActionsLair !== legendaryActions ? ` (${legendaryActionsLair} ${legendaryActionsLairCondition})` : ""}. Immediately after another creature's turn, ${legendaryNameOther} can expend a use to take one of the following actions. ${legendaryNameTitle} regains all expended uses at the start of each of ${proPossessive} turns.}`,
 			],
 		};
 	}

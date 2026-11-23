@@ -791,6 +791,15 @@ export class CreatureBuilder extends BuilderBase {
 			},
 			"legendaryActionsLair",
 		).vee.appendTo(abilTab.wrpTab);
+		BuilderUi.getStateIptString(
+			"Legendary Action (Lair) Condition",
+			cb,
+			this._state,
+			{
+				title: "If specified, this will override the default \"in lair\" condition for legendary actions.",
+			},
+			"legendaryActionsLairCondition",
+		).vee.appendTo(abilTab.wrpTab);
 		BuilderUi.getStateIptBoolean(
 			"Name is Proper Noun",
 			cb,

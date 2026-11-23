@@ -9674,17 +9674,12 @@
 													"id": "42a",
 													"page": 128,
 													"entries": [
-														"Each day at dawn, the habitat of Mutalos changes. You can choose or roll this new environment on the Mutalos Habitats table. If you roll the result of Mutalos's current environment, roll again until you get a new result."
-													]
-												},
-												{
-													"type": "entries",
-													"name": "Mutalos Habitats",
-													"id": "42b",
-													"page": 128,
-													"entries": [
+														"Each day at dawn, the habitat of Mutalos changes. You can choose or roll this new environment on the Mutalos Habitats table. If you roll the result of Mutalos's current environment, roll again until you get a new result.",
 														{
 															"type": "table",
+															"caption": "Mutalos Habitats",
+															"id": "42b",
+															"page": 128,
 															"colLabels": [
 																"d8",
 																"Habitat"
@@ -11800,129 +11795,68 @@
 										"The strange landscape of the Miskath Strand has been savagely reshaped by the Calamity, infusing the earth with chaotic new elements and especially inhospitable terrain. As a result, much of this region of Eastern Wynandir remains relatively unmapped by modern scholars.",
 										"The terrain and weather features described in the sections that follow can be encountered anywhere within Blightshore's defiled expanse. Many of these areas present hazardous (and potentially fatal) conditions for travelers and explorers. As your players traverse the desolate badlands of the Miskath Strand, you can present Blightshore's weird and wondrous terrain as a character in its own right. And perhaps there are even stranger features of this accursed frontier that wait to be discovered, tamed, or avoided at all costs.",
 										{
-											"type": "entries",
+											"type": "statblock",
+											"tag": "hazard",
 											"name": "Earth Motes",
+											"source": "EGW",
 											"id": "502",
-											"page": 149,
-											"entries": [
-												"These chunks of broken land hover and swirl in the air, held aloft by unknown arcane forces. A typical earth mote is {@dice 1d6 × 10} feet in diameter and hovers {@dice 2d10 × 10} feet above the ground. Earth motes are capable of supporting the weight of modest structures as well as creatures."
-											]
+											"page": 149
 										},
 										{
-											"type": "entries",
+											"type": "statblock",
+											"tag": "hazard",
 											"name": "Electric Wind",
+											"source": "EGW",
 											"id": "503",
-											"page": 150,
-											"entries": [
-												"The galvanic breezes of this supernatural gale are latticed with currents of lightning, which stab through the air with primordial fury.",
-												{
-													"type": "list",
-													"items": [
-														"Ranged attacks through electric wind are made with disadvantage.",
-														"Any creature that starts its turn surrounded by electric wind has a {@chance 5} chance of being struck by lightning. A creature struck by lightning must make a {@dc 15} Dexterity saving throw, taking {@damage 4d6} lightning damage on a failed save, or half as much damage on a successful one."
-													]
-												}
-											]
+											"page": 150
 										},
 										{
-											"type": "entries",
+											"type": "statblock",
+											"tag": "hazard",
 											"name": "Ember Thicket",
+											"source": "EGW",
 											"id": "504",
-											"page": 150,
-											"entries": [
-												"A dense grove of blackened, leafless trees perpetually smolders with the dull glow of arcane embers. This copse is choked by a cloud of ash and cinders, which constantly rain on the cremated forest floor.",
-												{
-													"type": "list",
-													"items": [
-														"An ember thicket is a {@quickref Vision and Light||2||lightly obscured} area.",
-														"Creatures gain one level of {@condition exhaustion} for every 10 minutes spent inside an ember thicket without suitable protection from the heat, smoke, and ash.",
-														"Ranged attacks through an ember thicket are made with disadvantage. A ranged weapon attack made through or within an ember thicket automatically misses a target beyond the weapon's normal range."
-													]
-												}
-											]
+											"page": 150
 										},
 										{
-											"type": "entries",
+											"type": "statblock",
+											"tag": "hazard",
 											"name": "Etheric Rift",
+											"source": "EGW",
 											"id": "505",
-											"page": 150,
-											"entries": [
-												"An etheric rift appears as a light fog or spectral haze. The interplanar tracts of this anomaly reach in and out of the Border Ethereal. Unseen trenches and invisible paths overlap throughout its vaporous expanse.",
-												{
-													"type": "list",
-													"items": [
-														"An etheric rift is a {@quickref Vision and Light||2||lightly obscured} area.",
-														"Any creature that enters an etheric rift or starts its turn there has a {@chance 33} chance of gaining the effect of the {@spell etherealness} spell until the end of its next turn."
-													]
-												}
-											]
+											"page": 150
 										},
 										{
-											"type": "entries",
+											"type": "statblock",
+											"tag": "hazard",
 											"name": "Gravity Funnel",
+											"source": "EGW",
 											"id": "506",
-											"page": 150,
-											"entries": [
-												"This cylindrical area is affected by the unseen pull of heightened gravitational force. A typical gravity funnel is {@dice 3d10 × 10} feet tall and {@dice 5d10 × 10} feet in diameter.",
-												{
-													"type": "list",
-													"items": [
-														"Strength checks made within a gravity funnel have disadvantage.",
-														"A ranged weapon attack made through or within a gravity funnel automatically misses a target beyond the weapon's normal range.",
-														"Creatures and objects that are fully contained within a gravity funnel have resistance against force damage.",
-														"The gravity funnel counts as {@quickref difficult terrain||3}."
-													]
-												}
-											]
+											"page": 150
 										},
 										{
-											"type": "entries",
+											"type": "statblock",
+											"tag": "hazard",
 											"name": "Psychic Miasma",
+											"source": "EGW",
 											"id": "507",
-											"page": 151,
-											"entries": [
-												"A virtually imperceptible mist of preternatural psychotropic vapor hovers above the ground. This coruscating miasma corrupts the sanity of the living and fortifies the grim resolve of the undead.",
-												{
-													"type": "list",
-													"items": [
-														"Creatures that are fully immersed in psychic miasma have vulnerability to psychic damage.",
-														"Any creature that enters a cloud of psychic miasma or starts its turn there must succeed on a {@dc 15} Constitution saving throw or become afflicted with a random form of long-term madness (see \"{@book Madness|DMG|8|Madness}\" in chapter 8 of the {@book Dungeon Master's Guide|DMG}). Creatures that can't be {@condition poisoned} automatically succeed on the saving throw. A creature that successfully saves against the psychic miasma is immune to its effects for 24 hours.",
-														"An undead creature that spends at least 1 minute in a cloud of psychic miasma gains advantage on ability checks and saving throws for 24 hours."
-													]
-												}
-											]
+											"page": 151
 										},
 										{
-											"type": "entries",
+											"type": "statblock",
+											"tag": "hazard",
 											"name": "Rust Rain",
+											"source": "EGW",
 											"id": "508",
-											"page": 151,
-											"entries": [
-												"This crimson precipitation is corrosive to ferrous metal and caustic to creatures.",
-												{
-													"type": "list",
-													"items": [
-														"Rust rain corrodes nonmagical, ferrous metal objects. If the object isn't being worn or carried, the rain destroys 1 cubic foot of it for every 10 minutes of exposure. An object must be covered to avoid exposure. If the exposed object is nonmagical metal armor, a nonmagical metal weapon, or a nonmagical metal shield being worn or carried, it takes a permanent and cumulative \u22121 penalty to damage rolls or the AC it offers for every 10 minutes of exposure to rust rain. A weapon that drops to a \u22125 penalty, armor reduced to an AC of 10, or a shield that drops to a +0 bonus is destroyed.",
-														"Any creature that starts it turn in rust rain and isn't covered by an umbrella, a shield, or some other form of rain protection takes {@damage 1d4} acid damage."
-													]
-												}
-											]
+											"page": 151
 										},
 										{
-											"type": "entries",
+											"type": "statblock",
+											"tag": "hazard",
 											"name": "Toxic Fungus Colony",
+											"source": "EGW",
 											"id": "509",
-											"page": 151,
-											"entries": [
-												"A virulent expanse of malignant fungal growths blankets the landscape and fills the air above it with spores.",
-												{
-													"type": "list",
-													"items": [
-														"Any non-plant creature within 20 feet of a toxic fungus colony is {@condition poisoned}. A creature {@condition poisoned} by the colony for 1 hour has a {@chance 20} chance of gaining a random form of short-term madness (see \"{@book Madness|DMG|8|Madness}\" in chapter 8 of the {@book Dungeon Master's Guide|DMG}).",
-														"A toxic fungus colony can be bioluminescent. A bioluminescent colony sheds {@quickref Vision and Light||2||dim light} within its area and for an additional 20 feet beyond its outer edges."
-													]
-												}
-											]
+											"page": 151
 										},
 										{
 											"type": "entries",
@@ -11930,17 +11864,12 @@
 											"id": "50a",
 											"page": 151,
 											"entries": [
-												"The arcane fallout from the Calamity is so widespread throughout Blightshore that the very land, sea, and air have been subtly altered in strange and mysterious ways. As characters explore the post-Calamity Miskath Strand, roll on the Uncanny Phenomena table as frequently as you like to augment the world they encounter. If you roll something that doesn't make sense, roll again, choose a more appropriate entry, or use the result as inspiration to make up your own phenomenon. The magical effects of these phenomena can't be dispelled."
-											]
-										},
-										{
-											"type": "entries",
-											"name": "Uncanny Phenomena",
-											"id": "50b",
-											"page": 151,
-											"entries": [
+												"The arcane fallout from the Calamity is so widespread throughout Blightshore that the very land, sea, and air have been subtly altered in strange and mysterious ways. As characters explore the post-Calamity Miskath Strand, roll on the Uncanny Phenomena table as frequently as you like to augment the world they encounter. If you roll something that doesn't make sense, roll again, choose a more appropriate entry, or use the result as inspiration to make up your own phenomenon. The magical effects of these phenomena can't be dispelled.",
 												{
 													"type": "table",
+													"caption": "Uncanny Phenomena",
+													"id": "50b",
+													"page": 151,
 													"colLabels": [
 														"d10",
 														"Phenomenon"

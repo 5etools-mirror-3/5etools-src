@@ -258,6 +258,7 @@ const PROPORDER_MONSTER = [
 	EntryPropOrder.getArrayKey("legendaryHeader"),
 	"legendaryActions",
 	"legendaryActionsLair",
+	"legendaryActionsLairCondition",
 	EntryPropOrder.getArrayKey("legendary"),
 	EntryPropOrder.getArrayKey("mythicHeader"),
 	EntryPropOrder.getArrayKey("mythic"),
