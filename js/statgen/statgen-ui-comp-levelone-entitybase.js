@@ -18,8 +18,8 @@ export class StatGenUiRenderLevelOneEntityBase {
 	}
 
 	render () {
-		const wrp = ee`<div class="ve-flex"></div>`;
-		const wrpOuter = ee`<div class="ve-flex-col">
+		const wrp = veT`<div class="ve-flex"></div>`;
+		const wrpOuter = veT`<div class="ve-flex-col">
 			<div class="ve-my-1 ve-statgen-pb__header ve-statgen-pb__header--group ve-mr-3 ve-text-center ve-italic ve-small ve-help-subtle" title="Ability Score Changes from ${this._title}">${this._titleShort}</div>
 
 			${wrp}
@@ -34,7 +34,7 @@ export class StatGenUiRenderLevelOneEntityBase {
 			if (!isInitialLoad && !this._parent.isSettingStateFromOverwrite()) this._parent._state[this._propChoiceMetasFrom] = [];
 			if (!isInitialLoad && !this._parent.isSettingStateFromOverwrite()) this._parent._state[this._propChoiceWeighted] = [];
 			const isAnyFromEntity = this._render_pointBuy(wrp);
-			wrpOuter.toggleVe(isAnyFromEntity);
+			wrpOuter.vee.toggle(isAnyFromEntity);
 		};
 		this._parent._addHookBase(this._propIxEntity, hkIxEntity);
 		this._bindAdditionalHooks_hkIxEntity(hkIxEntity);
@@ -69,8 +69,8 @@ export class StatGenUiRenderLevelOneEntityBase {
 		this._parent[this._propModalFilter].pageFilter.filterBox.on(FILTER_BOX_EVNT_VALCHANGE, () => doApplyFilterToSelEntity());
 		doApplyFilterToSelEntity();
 
-		const btnFilterForEntity = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-br-0 ve-pr-2" title="Filter for ${this._title}"><span class="glyphicon glyphicon-filter"></span> Filter</button>`
-			.onn("click", async () => {
+		const btnFilterForEntity = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-br-0 ve-pr-2" title="Filter for ${this._title}"><span class="glyphicon glyphicon-filter"></span> Filter</button>`
+			.vee.onn("click", async () => {
 				const selected = await this._parent[this._propModalFilter].pGetUserSelection();
 				if (selected == null || !selected.length) return;
 
@@ -87,7 +87,7 @@ export class StatGenUiRenderLevelOneEntityBase {
 				html: `<button class="ve-btn ve-btn-xs ve-btn-default" title="Toggle ${this._title} Preview"><span class="glyphicon glyphicon-eye-open"></span></button>`,
 			},
 		);
-		const hkBtnPreviewEntity = () => btnPreview.toggleVe(this._parent._state[this._propIxEntity] != null && ~this._parent._state[this._propIxEntity]);
+		const hkBtnPreviewEntity = () => btnPreview.vee.toggle(this._parent._state[this._propIxEntity] != null && ~this._parent._state[this._propIxEntity]);
 		this._parent._addHookBase(this._propIxEntity, hkBtnPreviewEntity);
 		hkBtnPreviewEntity();
 
@@ -106,14 +106,14 @@ export class StatGenUiRenderLevelOneEntityBase {
 			},
 		);
 
-		const stgAbilityScoreSet = ee`<div class="ve-flex-v-center ve-mb-2">
+		const stgAbilityScoreSet = veT`<div class="ve-flex-v-center ve-mb-2">
 			<div class="ve-mr-2 ve-no-wrap">Ability Score Increase</div>
 			<div>${selAbilitySet}</div>
 		</div>`;
 
 		const hkSetValuesSelAbilitySet = () => {
 			const entity = this._parent[this._propEntity];
-			stgAbilityScoreSet.toggleVe(!!entity && entity.ability?.length > 1);
+			stgAbilityScoreSet.vee.toggle(!!entity && entity.ability?.length > 1);
 
 			// Set to empty array between real sets, as otherwise two matching sets of list indices
 			//   will be considered "the same list," even though their display will ultimately be different.
@@ -129,14 +129,14 @@ export class StatGenUiRenderLevelOneEntityBase {
 		hkSetValuesSelAbilitySet();
 		// endregion
 
-		const dispPreview = ee`<div class="ve-flex-col ve-mb-2"></div>`;
+		const dispPreview = veT`<div class="ve-flex-col ve-mb-2"></div>`;
 		const hkPreviewEntity = () => {
-			if (!this._parent._state[this._propIsPreview]) return dispPreview.hideVe();
+			if (!this._parent._state[this._propIsPreview]) return dispPreview.vee.hide();
 
 			const entity = this._parent._state[this._propIxEntity] != null ? this._parent[this._propData][this._parent._state[this._propIxEntity]] : null;
-			if (!entity) return dispPreview.hideVe();
+			if (!entity) return dispPreview.vee.hide();
 
-			dispPreview.empty().showVe().appends(Renderer.hover.getHoverContent_stats(this._page, entity));
+			dispPreview.vee.empty().vee.show().vee.appends(Renderer.hover.getHoverContent_stats(this._page, entity));
 		};
 		this._parent._addHookBase(this._propIxEntity, hkPreviewEntity);
 		this._parent._addHookBase(this._propIsPreview, hkPreviewEntity);
@@ -144,7 +144,7 @@ export class StatGenUiRenderLevelOneEntityBase {
 
 		const {hrPreview} = this._getHrPreviewMeta();
 
-		const stgSel = ee`<div class="ve-flex-col ve-mt-3">
+		const stgSel = veT`<div class="ve-flex-col ve-mt-3">
 			<div class="ve-mb-1">Select a ${this._title}</div>
 			<div class="ve-flex-v-center ve-mb-2">
 				<div class="ve-flex-v-center ve-btn-group ve-w-100 ve-mr-2">${btnFilterForEntity}${selEntity}</div>
@@ -169,7 +169,7 @@ export class StatGenUiRenderLevelOneEntityBase {
 	}
 
 	_render_pointBuy (wrp) {
-		wrp.empty();
+		wrp.vee.empty();
 
 		const fromEntity = this._pb_getAbility();
 		if (fromEntity == null) return false;
@@ -177,12 +177,12 @@ export class StatGenUiRenderLevelOneEntityBase {
 		let ptBase = null;
 		if (Parser.ABIL_ABVS.some(it => fromEntity[it])) {
 			const wrpsEntity = Parser.ABIL_ABVS.map(ab => {
-				return ee`<div class="ve-my-1 ve-statgen-pb__cell">
+				return veT`<div class="ve-my-1 ve-statgen-pb__cell">
 					<input class="ve-form-control form-control--minimal ve-statgen-shared__ipt ve-text-right" type="number" readonly value="${fromEntity[ab] || 0}">
 				</div>`;
 			});
 
-			ptBase = ee`<div class="ve-flex-col ve-mr-3">
+			ptBase = veT`<div class="ve-flex-col ve-mr-3">
 				<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center">Static</div>
 				${wrpsEntity}
 			</div>`;
@@ -196,8 +196,8 @@ export class StatGenUiRenderLevelOneEntityBase {
 			const wrpsChoose = Parser.ABIL_ABVS.map(ab => {
 				if (!fromEntity.choose.from.includes(ab)) return `<div class="ve-my-1 ve-statgen-pb__cell"></div>`;
 
-				const cb = ee`<input type="checkbox">`
-					.onn("change", () => {
+				const cb = veT`<input type="checkbox">`
+					.vee.onn("change", () => {
 						const existing = this._parent._state[this._propChoiceMetasFrom].find(it => it.ability === ab);
 						if (existing) {
 							this._parent._state[this._propChoiceMetasFrom] = this._parent._state[this._propChoiceMetasFrom].filter(it => it !== existing);
@@ -216,15 +216,15 @@ export class StatGenUiRenderLevelOneEntityBase {
 						];
 					});
 
-				const hk = () => cb.prop("checked", this._parent._state[this._propChoiceMetasFrom].some(it => it.ability === ab));
+				const hk = () => cb.vee.prop("checked", this._parent._state[this._propChoiceMetasFrom].some(it => it.ability === ab));
 				this._parent._addHookBase(this._propChoiceMetasFrom, hk);
 				this._pbHookMetas.push({unhook: () => this._parent._removeHookBase(this._propChoiceMetasFrom, hk)});
 				hk();
 
-				return ee`<label class="ve-my-1 ve-statgen-pb__cell ve-flex-vh-center">${cb}</label>`;
+				return veT`<label class="ve-my-1 ve-statgen-pb__cell ve-flex-vh-center">${cb}</label>`;
 			});
 
-			ptChooseFrom = ee`<div class="ve-flex-col ve-mr-3">
+			ptChooseFrom = veT`<div class="ve-flex-col ve-mr-3">
 				<div class="ve-my-1 ve-statgen-pb__header ve-statgen-pb__header--choose-from ve-flex-vh-center">
 					<div class="${count !== 1 ? `ve-mr-1` : ""}">${UiUtil.intToBonus(amount, {isPretty: true})}</div>${count !== 1 ? `<div class="ve-small ve-muted">(x${count})</div>` : ""}
 				</div>
@@ -238,8 +238,8 @@ export class StatGenUiRenderLevelOneEntityBase {
 				const wrpsChoose = Parser.ABIL_ABVS.map(ab => {
 					if (!fromEntity.choose.weighted.from.includes(ab)) return `<div class="ve-my-1 ve-statgen-pb__cell"></div>`;
 
-					const cb = ee`<input type="checkbox">`
-						.onn("change", () => {
+					const cb = veT`<input type="checkbox">`
+						.vee.onn("change", () => {
 							const existing = this._parent._state[this._propChoiceWeighted].find(it => it.ability === ab && it.ix === ixWeight);
 							if (existing) {
 								this._parent._state[this._propChoiceWeighted] = this._parent._state[this._propChoiceWeighted].filter(it => it !== existing);
@@ -259,23 +259,23 @@ export class StatGenUiRenderLevelOneEntityBase {
 						});
 
 					const hk = () => {
-						cb.prop("checked", this._parent._state[this._propChoiceWeighted].some(it => it.ability === ab && it.ix === ixWeight));
+						cb.vee.prop("checked", this._parent._state[this._propChoiceWeighted].some(it => it.ability === ab && it.ix === ixWeight));
 					};
 					this._parent._addHookBase(this._propChoiceWeighted, hk);
 					this._pbHookMetas.push({unhook: () => this._parent._removeHookBase(this._propChoiceWeighted, hk)});
 					hk();
 
-					return ee`<label class="ve-my-1 ve-statgen-pb__cell ve-flex-vh-center">${cb}</label>`;
+					return veT`<label class="ve-my-1 ve-statgen-pb__cell ve-flex-vh-center">${cb}</label>`;
 				});
 
-				return ee`<div class="ve-flex-col ve-mr-3">
+				return veT`<div class="ve-flex-col ve-mr-3">
 					<div class="ve-my-1 ve-statgen-pb__header ve-statgen-pb__header--choose-from ve-flex-vh-center">${UiUtil.intToBonus(weight, {isPretty: true})}</div>
 					${wrpsChoose}
 				</div>`;
 			});
 		}
 
-		ee(wrp)`
+		veT(wrp)`
 				${ptBase}
 				${ptChooseFrom}
 				${ptsChooseWeighted}
@@ -294,7 +294,7 @@ export class StatGenUiRenderLevelOneEntityBase {
 	_bindAdditionalHooks_hkSetValuesSelAbilitySet (hkSetValuesSelAbilitySet) { /* Implement as required */ }
 
 	_getHrPreviewMeta () {
-		const hrPreview = ee`<hr class="ve-hr-3">`;
+		const hrPreview = veT`<hr class="ve-hr-3">`;
 		const hkPreview = this._getHkPreview({hrPreview});
 		this._parent._addHookBase(this._propIsPreview, hkPreview);
 		hkPreview();
@@ -306,6 +306,6 @@ export class StatGenUiRenderLevelOneEntityBase {
 	}
 
 	_getHkPreview ({hrPreview}) {
-		return () => hrPreview.toggleVe(this._parent._state[this._propIsPreview]);
+		return () => hrPreview.vee.toggle(this._parent._state[this._propIsPreview]);
 	}
 }

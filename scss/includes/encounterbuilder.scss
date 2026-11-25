@@ -28,7 +28,27 @@
 
 		&-viewer__ {
 			&wrp-output {
+				min-height: 40px;
 				background: vars.$rgb-bg--alt;
+			}
+
+			&ele-resize {
+				background: vars.$rgb-bg--alt;
+			}
+
+			&wrp-creature-info {
+				@container (max-width: 420px) {
+					align-items: unset !important;
+					flex-direction: column !important;
+				}
+			}
+
+			&wrp-row-hovers {
+				color: #5b5b5b;
+
+				@container (max-width: 420px) {
+					margin-bottom: (vars.$spacer * 0.25) !important;
+				}
 			}
 		}
 

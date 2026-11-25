@@ -37,19 +37,19 @@ export class InitiativeTrackerPlayerUiV0 {
 	}
 
 	init () {
-		this._iptServerToken.onn("keydown", evt => {
-			this._iptServerToken.removeClass("error-background");
-			if (evt.key === "Enter") this._btnGenClientToken.trigger("click");
+		this._iptServerToken.vee.onn("keydown", evt => {
+			this._iptServerToken.vee.removeClass("error-background");
+			if (evt.key === "Enter") this._btnGenClientToken.vee.trigger("click");
 		});
 
-		this._btnGenClientToken.onn("click", async () => {
-			this._iptServerToken.removeClass("error-background");
-			const serverToken = this._iptServerToken.val();
+		this._btnGenClientToken.vee.onn("click", async () => {
+			this._iptServerToken.vee.removeClass("error-background");
+			const serverToken = this._iptServerToken.vee.val();
 
 			if (PeerUtilV0.isValidToken(serverToken)) {
 				try {
-					this._iptServerToken.attr("disabled", true);
-					this._btnGenClientToken.attr("disabled", true);
+					this._iptServerToken.vee.attr("disabled", true);
+					this._btnGenClientToken.vee.attr("disabled", true);
 					const clientData = await PeerUtilV0.pInitialiseClient(
 						serverToken,
 						msg => this._view.handleMessage(msg),
@@ -64,8 +64,8 @@ export class InitiativeTrackerPlayerUiV0 {
 					);
 
 					if (!clientData) {
-						this._iptServerToken.attr("disabled", false);
-						this._btnGenClientToken.attr("disabled", false);
+						this._iptServerToken.vee.attr("disabled", false);
+						this._btnGenClientToken.vee.attr("disabled", false);
 						JqueryUtil.doToast({
 							content: `Failed to create client. Are you sure the token was valid?`,
 							type: "warning",
@@ -86,7 +86,7 @@ export class InitiativeTrackerPlayerUiV0 {
 						// 	}
 						// }, 5000);
 
-						this._iptClientToken.val(clientData.textifiedSdp).attr("disabled", false);
+						this._iptClientToken.vee.val(clientData.textifiedSdp).vee.attr("disabled", false);
 					}
 				} catch (e) {
 					JqueryUtil.doToast({
@@ -95,11 +95,11 @@ export class InitiativeTrackerPlayerUiV0 {
 					});
 					setTimeout(() => { throw e; });
 				}
-			} else this._iptServerToken.addClass("error-background");
+			} else this._iptServerToken.vee.addClass("error-background");
 		});
 
-		this._iptClientToken.onn("click", async () => {
-			await MiscUtil.pCopyTextToClipboard(this._iptClientToken.val());
+		this._iptClientToken.vee.onn("click", async () => {
+			await MiscUtil.pCopyTextToClipboard(this._iptClientToken.vee.val());
 			JqueryUtil.showCopiedEffect(this._iptClientToken);
 		});
 	}
@@ -143,12 +143,12 @@ export class InitiativeTrackerPlayerMessageHandlerV1 {
 
 		const data = payload || {};
 
-		this._eleMeta.empty();
-		this._eleHead.empty();
-		this._eleRows.empty();
+		this._eleMeta.vee.empty();
+		this._eleHead.vee.empty();
+		this._eleRows.vee.empty();
 
 		if (data.round) {
-			this._eleMeta.appends(`
+			this._eleMeta.vee.appends(`
 				<div class="${this._isCompact ? "ve-flex-vh-center" : "ve-flex-v-center"}${this._isCompact ? " ve-mb-3" : ""}">
 					<div class="ve-mr-2">Round: </div>
 					<div class="ve-bold">${data.round}</div>
@@ -156,7 +156,7 @@ export class InitiativeTrackerPlayerMessageHandlerV1 {
 			`);
 		}
 
-		this._eleHead.appends(`
+		this._eleHead.vee.appends(`
 				<div class="ve-w-100 ve-split-v-center ve-min-w-100p ${this._isCompact ? "ve-text-center" : ""}">Creature/Status</div>
 				<div class="ve-min-w-100p ${this._isCompact ? "ve-text-center" : ""}">Health</div>
 				${(data.statsCols || []).map(statCol => `<div class="initp__h_stat">${statCol.abbreviation || ""}</div>`).join("")}
@@ -164,7 +164,7 @@ export class InitiativeTrackerPlayerMessageHandlerV1 {
 			`);
 
 		(data.rows || []).forEach(rowData => {
-			this._eleRows.appends(this._getRow(rowData));
+			this._eleRows.vee.appends(this._getRow(rowData));
 		});
 	}
 
@@ -176,7 +176,7 @@ export class InitiativeTrackerPlayerMessageHandlerV1 {
 			"*",
 		);
 
-		const wrpConds = ee`<div class="init__wrp_conds ve-h-100"></div>`;
+		const wrpConds = veT`<div class="init__wrp_conds ve-h-100"></div>`;
 
 		const collectionConditions = new RenderableCollectionConditions({
 			comp: comp,
@@ -198,12 +198,12 @@ export class InitiativeTrackerPlayerMessageHandlerV1 {
 		};
 		const {hpText, hpColor} = getHpContent();
 
-		const dispName = e_({
+		const dispName = veE({
 			tag: "div",
 			txt: `${(rowData.customName || rowData.name || "")}${rowData.ordinal != null ? ` (${rowData.ordinal})` : ""}`,
 		});
 
-		return ee`
+		return veT`
 				<div class="initp__r ${rowData.isActive ? `initp__r--active` : ""}">
 					<div class="ve-w-100 ve-split-v-center ve-min-w-100p">
 						${dispName}
@@ -221,7 +221,7 @@ export class InitiativeTrackerPlayerMessageHandlerV1 {
 	_getRenderedStatsCells ({rowData}) {
 		return (rowData.rowStatColData || [])
 			.map(cell => {
-				return ee`<div class="initp__r_stat ve-flex-vh-center">
+				return veT`<div class="initp__r_stat ve-flex-vh-center">
 				 	${this._getRenderedStatsCellInner({cell})}
 			 	</div>`;
 			});
@@ -264,10 +264,10 @@ export class InitiativeTrackerPlayerMessageHandlerV1 {
 			imageHref: InitiativeTrackerUtil.getImageOrTokenHref({imageHref, tokenUrl}),
 		});
 
-		const ele = ee`<img src="${tokenUrl}" class="ve-w-24p ve-w-24p" alt="Token Image">`
-			.onn("mouseover", evt => hoverMeta.mouseOver(evt, ele))
-			.onn("mousemove", evt => hoverMeta.mouseMove(evt, ele))
-			.onn("mouseleave", evt => hoverMeta.mouseLeave(evt, ele));
+		const ele = veT`<img src="${tokenUrl}" class="ve-w-24p ve-w-24p" alt="Token Image">`
+			.vee.onn("mouseover", evt => hoverMeta.mouseOver(evt, ele))
+			.vee.onn("mousemove", evt => hoverMeta.mouseMove(evt, ele))
+			.vee.onn("mouseleave", evt => hoverMeta.mouseLeave(evt, ele));
 
 		return ele;
 	}

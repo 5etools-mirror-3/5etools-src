@@ -58,15 +58,6 @@
 				}
 			],
 			"startingProficiencies": {
-				"armor": [
-					"light",
-					"medium",
-					"shield"
-				],
-				"weapons": [
-					"simple",
-					"martial"
-				],
 				"skills": [
 					{
 						"choose": {
@@ -82,6 +73,22 @@
 							],
 							"count": 3
 						}
+					}
+				],
+				"weapons": [
+					"simple",
+					"martial"
+				],
+				"armor": [
+					"light",
+					"medium",
+					"shield"
+				],
+				"armorProficiencies": [
+					{
+						"light": true,
+						"medium": true,
+						"shield": true
 					}
 				]
 			},
@@ -139,11 +146,6 @@
 					"wis": 13
 				},
 				"proficienciesGained": {
-					"armor": [
-						"light",
-						"medium",
-						"shield"
-					],
 					"skills": [
 						{
 							"choose": {
@@ -164,6 +166,18 @@
 					"weapons": [
 						"simple",
 						"martial"
+					],
+					"armor": [
+						"light",
+						"medium",
+						"shield"
+					],
+					"armorProficiencies": [
+						{
+							"light": true,
+							"medium": true,
+							"shield": true
+						}
 					]
 				}
 			},
@@ -514,15 +528,6 @@
 				}
 			],
 			"startingProficiencies": {
-				"armor": [
-					"light",
-					"medium",
-					"shield"
-				],
-				"weapons": [
-					"simple",
-					"martial"
-				],
 				"skills": [
 					{
 						"choose": {
@@ -539,7 +544,27 @@
 							"count": 3
 						}
 					}
+				],
+				"weapons": [
+					"simple",
+					"martial"
+				],
+				"armor": [
+					"light",
+					"medium",
+					"shield"
+				],
+				"armorProficiencies": [
+					{
+						"light": true,
+						"medium": true,
+						"shield": true
+					}
 				]
+			},
+			"itemMasteries": true,
+			"itemMasteriesProgression": {
+				"1": 2
 			},
 			"startingEquipment": {
 				"additionalFromBackground": true,
@@ -587,14 +612,6 @@
 			},
 			"multiclassing": {
 				"proficienciesGained": {
-					"weapons": [
-						"martial"
-					],
-					"armor": [
-						"light",
-						"medium",
-						"shield"
-					],
 					"skills": [
 						{
 							"choose": {
@@ -610,6 +627,21 @@
 								],
 								"count": 1
 							}
+						}
+					],
+					"weapons": [
+						"martial"
+					],
+					"armor": [
+						"light",
+						"medium",
+						"shield"
+					],
+					"armorProficiencies": [
+						{
+							"light": true,
+							"medium": true,
+							"shield": true
 						}
 					]
 				}
@@ -752,11 +784,11 @@
 				{
 					"title": "Spell Slots per Spell Level",
 					"colLabels": [
-						"{@filter 1st|spells|level=1|class=ranger}",
-						"{@filter 2nd|spells|level=2|class=ranger}",
-						"{@filter 3rd|spells|level=3|class=ranger}",
-						"{@filter 4th|spells|level=4|class=ranger}",
-						"{@filter 5th|spells|level=5|class=ranger}"
+						"{@filter 1|spells|level=1|class=ranger}",
+						"{@filter 2|spells|level=2|class=ranger}",
+						"{@filter 3|spells|level=3|class=ranger}",
+						"{@filter 4|spells|level=4|class=ranger}",
+						"{@filter 5|spells|level=5|class=ranger}"
 					],
 					"rowsSpellProgression": [
 						[
@@ -915,6 +947,7 @@
 				"Ability Score Improvement|Ranger|XPHB|4",
 				"Extra Attack|Ranger|XPHB|5",
 				"Roving|Ranger|XPHB|6",
+				"Pet Specialization|Ranger|XPHB|6|WoW",
 				{
 					"classFeature": "Subclass Feature|Ranger|XPHB|7",
 					"gainSubclassFeature": true
@@ -1555,6 +1588,7 @@
 			"source": "RHW",
 			"className": "Ranger",
 			"classSource": "XPHB",
+			"page": 20,
 			"edition": "one",
 			"additionalSpells": [
 				{
@@ -1599,8 +1633,8 @@
 				"{@i 1st-level ranger {@variantrule optional class features|tce|optional feature}, which replaces the Natural Explorer feature}",
 				"You are an unsurpassed explorer and survivor, both in the wilderness and in dealing with others on your travels. You gain the Canny benefit below, and you gain an additional benefit below when you reach 6th level and 10th level in this class.",
 				{
-					"name": "Canny",
 					"type": "entries",
+					"name": "Canny",
 					"entries": [
 						"Choose one of your skill proficiencies. Your proficiency bonus is doubled for any ability check you make that uses the chosen skill.",
 						"You can also speak, read, and write two additional languages of your choice."
@@ -2298,6 +2332,39 @@
 			"level": 5,
 			"entries": [
 				"You can attack twice instead of once whenever you take the {@action Attack|XPHB} action on your turn."
+			]
+		},
+		{
+			"name": "Pet Specialization",
+			"source": "WoW",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 6,
+			"isClassFeatureVariant": true,
+			"entries": [
+				"This feature replaces the {@classFeature Roving|Ranger|XPHB|6} feature for a {@class Hunter|WoW} with the {@subclass Beast Master|Hunter|WoW|WoW} subclass.",
+				"While the beast from your {@subclassFeature Primal Companion|Ranger|XPHB|Beast Master|XPHB|3|XPHB} feature is within 60 feet of you, you gain one of the following benefits, depending on the beast's pet family and its specialization (see \"{@book Hunter Pets|WoW|1|Hunter Pets}\").",
+				{
+					"type": "entries",
+					"name": "Cunning",
+					"entries": [
+						"Your {@variantrule Speed|XPHB} and all of your primal beast's speeds increase by 10 feet. In addition, your primal beast can use its action to cast {@spell Freedom of Movement|XPHB} without any spell components, affecting itself and you (if you are within range). Once it does so, it can't do so again until you finish a {@variantrule Long Rest|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Ferocity",
+					"entries": [
+						"When your primal beast is {@status Bloodied|XPHB} and it hits with its Beast's Strike attack, you and your primal beast each regain {@variantrule Hit Points|XPHB} equal to your Wisdom modifier. In addition, your primal beast can use its action to cast {@spell Haste|XPHB} without any spell components, affecting itself and you (if you are within range). Once it does so, it can't do so again until you finish a {@variantrule Long Rest|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Tenacity",
+					"entries": [
+						"Your {@variantrule Hit Points|XPHB|Hit Point} maximum increases by 6. Whenever you gain a Ranger level, your {@variantrule Hit Points|XPHB|Hit Point} maximum increases by an additional 1 {@variantrule Hit Points|XPHB|Hit Point}. Your primal beast's {@variantrule Hit Points|XPHB|Hit Point} maximum also increases by your Ranger level. In addition, your primal beast can use its action to cast {@spell Stoneskin|XPHB} without any spell components, affecting itself and you (if you are within range). Once it does so, it can't do so again until you finish a {@variantrule Long Rest|XPHB}."
+					]
+				}
 			]
 		},
 		{
@@ -3330,7 +3397,7 @@
 			"entries": [
 				"{@i 15th-level Fey Wanderer feature}",
 				"You can slip in and out of the Feywild to move in a blink of an eye: you can cast {@spell misty step} without expending a spell slot. You can do so a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a long rest.",
-				"In addition, whenever you cast {@i misty step}, you can bring along one willing creature you can see within 5 feet of you. That creature teleports to an unoccupied space of your choice within 5 feet of your destination space."
+				"In addition, whenever you cast {@spell misty step}, you can bring along one willing creature you can see within 5 feet of you. That creature teleports to an unoccupied space of your choice within 5 feet of your destination space."
 			]
 		},
 		{
@@ -3992,7 +4059,7 @@
 					"name": "Polar Strikes",
 					"page": 6,
 					"entries": [
-						"When you hit a creature with an attack roll using a weapon, you can deal an extra {@damage 1d4} Cold damage to the target, which can take this extra damage only once per turn. When you reach Ranger level 11, this extra damage increases to {@dice 1d6}."
+						"When you hit a creature with an attack roll using a weapon, you can deal an extra {@damage 1d4} Cold damage to the target, which can take this extra damage only once per turn. When you reach Ranger level 11, this extra damage increases to {@damage 1d6}."
 					]
 				}
 			]
@@ -4146,6 +4213,7 @@
 		{
 			"name": "Hollow Warden",
 			"source": "RHW",
+			"page": 20,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"subclassShortName": "Hollow Warden",
@@ -4167,6 +4235,7 @@
 		{
 			"name": "Hollow Warden Spells",
 			"source": "RHW",
+			"page": 20,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"subclassShortName": "Hollow Warden",
@@ -4213,13 +4282,14 @@
 		{
 			"name": "Wrath of the Wild",
 			"source": "RHW",
+			"page": 21,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"subclassShortName": "Hollow Warden",
 			"subclassSource": "RHW",
 			"level": 3,
 			"entries": [
-				"You draw power from the strange and ancient horrors of the land, causing you to sprout unnatural growths, such as bloody antlers or putrid fangs, or causing your shadow to lengthen or twist around you. As a {@variantrule Bonus Action|XPHB}, you can expend a use of Favored {@variantrule Enemy|XPHB} to transform into a ghastly form, gaining the following benefits for 1 minute or until you have the {@condition Incapacitated|XPHB} condition, die, or end the transformation (no action required).",
+				"You draw power from the strange and ancient horrors of the land, causing you to sprout unnatural growths, such as bloody antlers or putrid fangs, or causing your shadow to lengthen or twist around you. As a {@variantrule Bonus Action|XPHB}, you can expend a use of {@classFeature Favored Enemy|Ranger|XPHB|1} to transform into a ghastly form, gaining the following benefits for 1 minute or until you have the {@condition Incapacitated|XPHB} condition, die, or end the transformation (no action required).",
 				{
 					"type": "entries",
 					"name": "Ancient Armor",
@@ -4246,11 +4316,13 @@
 		{
 			"name": "Hungering Might",
 			"source": "RHW",
+			"page": 21,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"subclassShortName": "Hollow Warden",
 			"subclassSource": "RHW",
 			"level": 7,
+			"header": 2,
 			"entries": [
 				"You gain a bonus to Constitution saving throws equal to your Wisdom modifier (minimum of +1).",
 				"In addition, once per turn when you hit a creature with an attack roll while you are transformed using Wrath of the Wild, you regain a number of Hit Points equal to {@dice 1d10} plus your Wisdom modifier, provided you are {@status Bloodied|XPHB} when you hit."
@@ -4259,6 +4331,7 @@
 		{
 			"name": "Rot and Violence",
 			"source": "RHW",
+			"page": 21,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"subclassShortName": "Hollow Warden",
@@ -4286,6 +4359,7 @@
 		{
 			"name": "Ancient Might",
 			"source": "RHW",
+			"page": 21,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"subclassShortName": "Hollow Warden",
@@ -4478,23 +4552,23 @@
 					],
 					"rows": [
 						[
-							"3rd",
+							"3",
 							"{@spell Charm Person|XPHB}"
 						],
 						[
-							"5th",
+							"5",
 							"{@spell Misty Step|XPHB}"
 						],
 						[
-							"9th",
+							"9",
 							"{@spell Summon Fey|XPHB}"
 						],
 						[
-							"13th",
+							"13",
 							"{@spell Dimension Door|XPHB}"
 						],
 						[
-							"17th",
+							"17",
 							"{@spell Mislead|XPHB}"
 						]
 					]
@@ -4684,23 +4758,23 @@
 					],
 					"rows": [
 						[
-							"3rd",
+							"3",
 							"{@spell Disguise Self|XPHB}"
 						],
 						[
-							"5th",
+							"5",
 							"{@spell Rope Trick|XPHB}"
 						],
 						[
-							"9th",
+							"9",
 							"{@spell Fear|XPHB}"
 						],
 						[
-							"13th",
+							"13",
 							"{@spell Greater Invisibility|XPHB}"
 						],
 						[
-							"17th",
+							"17",
 							"{@spell Seeming|XPHB}"
 						]
 					]

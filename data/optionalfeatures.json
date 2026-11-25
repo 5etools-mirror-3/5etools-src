@@ -348,6 +348,9 @@
 			"name": "Banishing Arrow",
 			"source": "XGE",
 			"page": 29,
+			"reprintedAs": [
+				"Banishing Shot|AU"
+			],
 			"featureType": [
 				"AS"
 			],
@@ -357,6 +360,33 @@
 			"entries": [
 				"You use abjuration magic to try to temporarily banish your target to a harmless location in the Feywild. The creature hit by the arrow must also succeed on a Charisma saving throw or be banished. While banished in this way, the target's speed is 0, and it is {@condition incapacitated}. At the end of its next turn, the target reappears in the space it vacated or in the nearest unoccupied space if that space is occupied.",
 				"After you reach 18th level in this class, a target also takes {@damage 2d6} force damage when the arrow hits it."
+			]
+		},
+		{
+			"name": "Banishing Shot",
+			"source": "AU",
+			"page": 10,
+			"featureType": [
+				"AS"
+			],
+			"consumes": {
+				"name": "Arcane Shot"
+			},
+			"entries": [
+				"Your ammunition temporarily sequesters your target in a harmless demiplane. The creature you hit takes extra Psychic damage equal to one roll of your Arcane Shot Die and must succeed on a Charisma saving throw or be banished. While banished, the creature has the {@condition Incapacitated|XPHB} condition and a {@variantrule Speed|XPHB} of 0. At the end of its next turn, the target reappears in the space it left or, if that space is occupied, in the nearest unoccupied space."
+			]
+		},
+		{
+			"name": "Battle Shout",
+			"source": "WoW",
+			"featureType": [
+				"MV:B"
+			],
+			"consumes": {
+				"name": "Superiority Die"
+			},
+			"entries": [
+				"As a {@variantrule Bonus Action|XPHB}, you can expend one {@subclassFeature Combat Superiority|Fighter|XPHB|Battle Master|XPHB|3|XPHB|Superiority Die} to shout encouragement to allies within 30 feet of you that can hear you. Until the start of your next turn, each affected ally adds the {@subclassFeature Combat Superiority|Fighter|XPHB|Battle Master|XPHB|3|XPHB|Superiority Die} to the damage roll the next time it hits with a melee attack."
 			]
 		},
 		{
@@ -384,6 +414,9 @@
 			"name": "Beguiling Arrow",
 			"source": "XGE",
 			"page": 29,
+			"reprintedAs": [
+				"Beguiling Shot|AU"
+			],
 			"featureType": [
 				"AS"
 			],
@@ -411,6 +444,20 @@
 			],
 			"entries": [
 				"You gain proficiency in the {@skill Deception} and {@skill Persuasion} skills."
+			]
+		},
+		{
+			"name": "Beguiling Shot",
+			"source": "AU",
+			"page": 10,
+			"featureType": [
+				"AS"
+			],
+			"consumes": {
+				"name": "Arcane Shot"
+			},
+			"entries": [
+				"Your ammunition beguiles your target. The creature you hit takes extra Psychic damage equal to two rolls of your Arcane Shot Die and must succeed on a Wisdom saving throw or have the {@condition Charmed|XPHB} condition until the start of your next turn, treating either you or one of your allies within 30 feet of the target (your choice) as the charmer. The {@condition Charmed|XPHB} condition ends early if the charmer attacks the target, deals damage to it, or forces it to make a saving throw."
 			]
 		},
 		{
@@ -658,6 +705,9 @@
 			"name": "Bursting Arrow",
 			"source": "XGE",
 			"page": 29,
+			"reprintedAs": [
+				"Bursting Shot|AU"
+			],
 			"featureType": [
 				"AS"
 			],
@@ -667,6 +717,66 @@
 			"entries": [
 				"You imbue your arrow with force energy drawn from the school of evocation. The energy detonates after your attack. Immediately after the arrow hits the creature, the target and all other creatures within 10 feet of it take {@damage 2d6} force damage each.",
 				"The force damage increases to {@damage 4d6} when you reach 18th level in this class."
+			]
+		},
+		{
+			"name": "Bursting Shot",
+			"source": "AU",
+			"page": 10,
+			"featureType": [
+				"AS"
+			],
+			"consumes": {
+				"name": "Arcane Shot"
+			},
+			"entries": [
+				"You imbue your ammunition with explosive magical energy. Immediately after you deal damage to the creature, your target and each creature within a 10-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the target take Force damage equal to two rolls of your Arcane Shot Die."
+			]
+		},
+		{
+			"name": "Call of the Void",
+			"source": "WoW",
+			"featureType": [
+				"EI"
+			],
+			"prerequisite": [
+				{
+					"level": {
+						"level": 5,
+						"class": {
+							"name": "Warlock",
+							"source": "XPHB",
+							"visibleStats": true
+						}
+					},
+					"optionalfeature": [
+						"pact of the legion|wow"
+					]
+				}
+			],
+			"entries": [
+				"When you cast {@spell Find Familiar|XPHB} using {@optfeature Pact of the Legion|WoW}, you can choose to summon a {@creature Fel Imp|WoW} familiar or a {@creature Voidwalker|WoW}. In addition, you gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Quick Attack",
+					"entries": [
+						"As a {@variantrule Bonus Action|XPHB}, you can command the familiar to take the {@action Attack|XPHB} action."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Your Spell Attack",
+					"entries": [
+						"The familiar uses your spell attack bonus for its attacks."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Shadow Shield",
+					"entries": [
+						"When your Voidwalker familiar takes damage, you can take a {@variantrule Reaction|XPHB} to grant it {@variantrule Resistance|XPHB} against that damage."
+					]
+				}
 			]
 		},
 		{
@@ -904,6 +1014,28 @@
 			]
 		},
 		{
+			"name": "Curse of Corruption",
+			"source": "WoW",
+			"featureType": [
+				"EI"
+			],
+			"prerequisite": [
+				{
+					"level": {
+						"level": 2,
+						"class": {
+							"name": "Warlock",
+							"source": "XPHB",
+							"visibleStats": true
+						}
+					}
+				}
+			],
+			"entries": [
+				"When an enemy starts its turn cursed by a Warlock spell you cast (such as {@spell Hex|XPHB}), it must succeed on a Charisma saving throw or take Necrotic damage equal to your Charisma modifier."
+			]
+		},
+		{
 			"name": "Defense",
 			"source": "PHB",
 			"page": 72,
@@ -931,6 +1063,19 @@
 			],
 			"entries": [
 				"While you are wearing armor, you gain a +1 bonus to AC."
+			]
+		},
+		{
+			"name": "Demoralizing Shout",
+			"source": "WoW",
+			"featureType": [
+				"MV:B"
+			],
+			"consumes": {
+				"name": "Superiority Die"
+			},
+			"entries": [
+				"As a {@variantrule Bonus Action|XPHB}, you can expend one {@subclassFeature Combat Superiority|Fighter|XPHB|Battle Master|XPHB|3|XPHB|Superiority Die} to shout, demoralizing enemies within 30 feet of you that can hear you. Until the end of your next turn, each affected enemy subtracts the {@subclassFeature Combat Superiority|Fighter|XPHB|Battle Master|XPHB|3|XPHB|Superiority Die} from the damage roll the next time it hits a target other than you with a melee attack."
 			]
 		},
 		{
@@ -976,6 +1121,7 @@
 			"name": "Devouring Blade",
 			"source": "XPHB",
 			"page": 155,
+			"srd52": true,
 			"featureType": [
 				"EI"
 			],
@@ -1214,6 +1360,7 @@
 			"name": "Eldritch Mind",
 			"source": "XPHB",
 			"page": 155,
+			"srd52": true,
 			"featureType": [
 				"EI"
 			],
@@ -1271,6 +1418,7 @@
 			"name": "Eldritch Smite",
 			"source": "XPHB",
 			"page": 155,
+			"srd52": true,
 			"featureType": [
 				"EI"
 			],
@@ -1290,7 +1438,7 @@
 				}
 			],
 			"entries": [
-				"Once per turn when you hit a creature with your pact weapon, you can expend a Pact Magic spell slot to deal an extra {@damage 1d8} Force damage to the target, plus another {@dice 1d8} per level of the spell slot, and you can give the target the {@condition Prone|XPHB} condition if it is Huge or smaller."
+				"Once per turn when you hit a creature with your pact weapon, you can expend a Pact Magic spell slot to deal an extra {@damage 1d8} Force damage to the target, plus another {@damage 1d8} per level of the spell slot, and you can give the target the {@condition Prone|XPHB} condition if it is Huge or smaller."
 			]
 		},
 		{
@@ -1417,6 +1565,9 @@
 			"name": "Enfeebling Arrow",
 			"source": "XGE",
 			"page": 29,
+			"reprintedAs": [
+				"Enfeebling Shot|AU"
+			],
 			"featureType": [
 				"AS"
 			],
@@ -1426,6 +1577,20 @@
 			"entries": [
 				"You weave necromantic magic into your arrow. The creature hit by the arrow takes an extra {@damage 2d6} necrotic damage. The target must also succeed on a Constitution saving throw, or the damage dealt by its weapon attacks is halved until the start of your next turn.",
 				"The necrotic damage increases to {@damage 4d6} when you reach 18th level in this class."
+			]
+		},
+		{
+			"name": "Enfeebling Shot",
+			"source": "AU",
+			"page": 11,
+			"featureType": [
+				"AS"
+			],
+			"consumes": {
+				"name": "Arcane Shot"
+			},
+			"entries": [
+				"Your ammunition saps your target's strength. The creature you hit takes extra Necrotic damage equal to two rolls of your Arcane Shot Die. The target must also succeed on a Constitution saving throw or have the {@condition Poisoned|XPHB} condition until the end of its next turn. Whenever a target {@condition Poisoned|XPHB} in this way hits with an attack roll, it subtracts an amount equal to one roll of your Arcane Shot Die from the total damage of that attack."
 			]
 		},
 		{
@@ -1571,6 +1736,28 @@
 			},
 			"entries": [
 				"As a {@variantrule Bonus Action|XPHB}, you can expend one Superiority Die and take the {@action Disengage|XPHB} action. You also roll the die and add the number rolled to your AC until the start of your next turn."
+			]
+		},
+		{
+			"name": "Expendable Minions",
+			"source": "WoW",
+			"featureType": [
+				"EI"
+			],
+			"prerequisite": [
+				{
+					"level": {
+						"level": 9,
+						"class": {
+							"name": "Warlock",
+							"source": "XPHB",
+							"visibleStats": true
+						}
+					}
+				}
+			],
+			"entries": [
+				"When your familiar or a summoned creature you control dies, you or another creature within 60 feet of you regains {@variantrule Hit Points|XPHB} equal to your Warlock level plus your Charisma modifier."
 			]
 		},
 		{
@@ -1974,6 +2161,7 @@
 			"name": "Gift of the Depths",
 			"source": "XPHB",
 			"page": 156,
+			"srd52": true,
 			"featureType": [
 				"EI"
 			],
@@ -2055,6 +2243,7 @@
 			"name": "Gift of the Protectors",
 			"source": "XPHB",
 			"page": 156,
+			"srd52": true,
 			"featureType": [
 				"EI"
 			],
@@ -2186,6 +2375,9 @@
 			"name": "Grasping Arrow",
 			"source": "XGE",
 			"page": 29,
+			"reprintedAs": [
+				"Grasping Shot|AU"
+			],
 			"featureType": [
 				"AS"
 			],
@@ -2195,6 +2387,20 @@
 			"entries": [
 				"When this arrow strikes its target, conjuration magic creates grasping, poisonous brambles, which wrap around the target. The creature hit by the arrow takes an extra {@damage 2d6} poison damage, its speed is reduced by 10 feet, and it takes {@damage 2d6} slashing damage the first time on each turn it moves 1 foot or more without teleporting. The target or any creature that can reach it can use its action to remove the brambles with a successful Strength ({@skill Athletics}) check against your Arcane Shot save DC. Otherwise, the brambles last for 1 minute or until you use this option again.",
 				"The poison damage and slashing damage both increase to {@damage 4d6} when you reach 18th level in this class."
+			]
+		},
+		{
+			"name": "Grasping Shot",
+			"source": "AU",
+			"page": 11,
+			"featureType": [
+				"AS"
+			],
+			"consumes": {
+				"name": "Arcane Shot"
+			},
+			"entries": [
+				"Your ammunition creates clutching brambles around your target. The creature you hit takes extra Slashing damage equal to one roll of your Arcane Shot Die and must succeed on a Strength saving throw or have the {@condition Restrained|XPHB} condition for 1 minute or until you use this option again. The target or a creature within reach of it can take an action to make a Strength ({@skill Athletics|XPHB}) check against your Arcane Shot saving throw DC, removing the brambles and ending the {@condition Restrained|XPHB} condition on the target on a successful check."
 			]
 		},
 		{
@@ -2220,6 +2426,28 @@
 			],
 			"entries": [
 				"When you roll a 1 or 2 on a damage die for an attack you make with a melee weapon that you are wielding with two hands, you can reroll the die and must use the new roll, even if the new roll is a 1 or a 2. The weapon must have the two-handed or versatile property for you to gain this benefit."
+			]
+		},
+		{
+			"name": "Health Funnel",
+			"source": "WoW",
+			"featureType": [
+				"EI"
+			],
+			"prerequisite": [
+				{
+					"level": {
+						"level": 2,
+						"class": {
+							"name": "Warlock",
+							"source": "XPHB",
+							"visibleStats": true
+						}
+					}
+				}
+			],
+			"entries": [
+				"As a {@variantrule Bonus Action|XPHB}, you can expend any number of your unexpended {@variantrule Hit Point Dice|XPHB|Hit Dice} to roll those dice, add your Charisma modifier to each die, and total the rolls. Your familiar or another Fiend you command gains that many {@variantrule Temporary Hit Points|XPHB}."
 			]
 		},
 		{
@@ -2286,6 +2514,19 @@
 			],
 			"entries": [
 				"While wearing this helmet, a creature has advantage on initiative rolls. In addition, the wearer can't be {@status surprised}, provided it isn't {@condition incapacitated}."
+			]
+		},
+		{
+			"name": "Heroic Leap",
+			"source": "WoW",
+			"featureType": [
+				"MV:B"
+			],
+			"consumes": {
+				"name": "Superiority Die"
+			},
+			"entries": [
+				"As a {@variantrule Bonus Action|XPHB}, you can expend one {@subclassFeature Combat Superiority|Fighter|XPHB|Battle Master|XPHB|3|XPHB|Superiority Die} to jump a number of feet up to your Strength score. Creatures within 5 feet of you when you land make a Strength saving throw, taking Bludgeoning damage equal to the {@subclassFeature Combat Superiority|Fighter|XPHB|Battle Master|XPHB|3|XPHB|Superiority Die} roll on a failed save, or half as much damage on a successful one."
 			]
 		},
 		{
@@ -2414,6 +2655,7 @@
 			"name": "Investment of the Chain Master",
 			"source": "XPHB",
 			"page": 156,
+			"srd52": true,
 			"featureType": [
 				"EI"
 			],
@@ -2495,9 +2737,49 @@
 			]
 		},
 		{
+			"name": "Legion Summoning",
+			"source": "WoW",
+			"featureType": [
+				"EI"
+			],
+			"prerequisite": [
+				{
+					"level": {
+						"level": 9,
+						"class": {
+							"name": "Warlock",
+							"source": "XPHB",
+							"visibleStats": true
+						}
+					},
+					"optionalfeature": [
+						"pact of the legion|wow"
+					]
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": "cha",
+					"innate": {
+						"_": {
+							"daily": {
+								"1": [
+									"planar binding|xphb"
+								]
+							}
+						}
+					}
+				}
+			],
+			"entries": [
+				"You can cast {@spell Planar Binding|XPHB} without expending a spell slot. When you do, you summon a {@creature Felguard|WoW}, a {@creature Felhound|WoW}, an {@creature Incubus|XMM}, or a {@creature Succubus|XMM}, and that Fiend becomes the target of the spell. Once you cast the spell in this way, you can't do so again until you finish a {@variantrule Long Rest|XPHB}."
+			]
+		},
+		{
 			"name": "Lessons of the First Ones",
 			"source": "XPHB",
 			"page": 156,
+			"srd52": true,
 			"featureType": [
 				"EI"
 			],
@@ -2734,6 +3016,28 @@
 			],
 			"entries": [
 				"You can cast {@spell Disguise Self|XPHB} without expending a spell slot."
+			]
+		},
+		{
+			"name": "Master Demonologist",
+			"source": "WoW",
+			"featureType": [
+				"EI"
+			],
+			"prerequisite": [
+				{
+					"level": {
+						"level": 5,
+						"class": {
+							"name": "Warlock",
+							"source": "XPHB",
+							"visibleStats": true
+						}
+					}
+				}
+			],
+			"entries": [
+				"Any Fiends you command also deal extra damage to the target of your {@spell Hex|XPHB} spell as if they were you."
 			]
 		},
 		{
@@ -3025,6 +3329,19 @@
 			]
 		},
 		{
+			"name": "Mortal Strike",
+			"source": "WoW",
+			"featureType": [
+				"MV:B"
+			],
+			"consumes": {
+				"name": "Superiority Die"
+			},
+			"entries": [
+				"When you hit a creature with an attack roll, you can expend one {@subclassFeature Combat Superiority|Fighter|XPHB|Battle Master|XPHB|3|XPHB|Superiority Die} to prevent the target from healing. Add the {@subclassFeature Combat Superiority|Fighter|XPHB|Battle Master|XPHB|3|XPHB|Superiority Die} to the attack's damage roll. The target can't regain {@variantrule Hit Points|XPHB} until the end of your next turn."
+			]
+		},
+		{
 			"name": "One with Shadows",
 			"source": "PHB",
 			"page": 111,
@@ -3236,6 +3553,27 @@
 			]
 		},
 		{
+			"name": "Pact of the Legion",
+			"source": "WoW",
+			"featureType": [
+				"EI"
+			],
+			"additionalSpells": [
+				{
+					"ability": "cha",
+					"innate": {
+						"_": [
+							"find familiar|xphb"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You learn the {@spell Find Familiar|XPHB} spell and can cast it as a {@action Magic|XPHB} action without expending a spell slot. When you cast the spell, you summon a {@creature Fel Imp|WoW} familiar.",
+				"Additionally, when you take the {@action Attack|XPHB} action, you can forgo one of your own attacks to allow your familiar to make one attack with its {@variantrule Reaction|XPHB}."
+			]
+		},
+		{
 			"name": "Pact of the Talisman",
 			"source": "TCE",
 			"page": 71,
@@ -3363,6 +3701,9 @@
 			"name": "Piercing Arrow",
 			"source": "XGE",
 			"page": 29,
+			"reprintedAs": [
+				"Piercing Shot|AU"
+			],
 			"featureType": [
 				"AS"
 			],
@@ -3372,6 +3713,20 @@
 			"entries": [
 				"You use transmutation magic to give your arrow an ethereal quality. When you use this option, you don't make an attack roll for the attack. Instead, the arrow shoots forward in a line, which is 1 foot wide and 30 feet long, before disappearing. The arrow passes harmlessly through objects, ignoring cover. Each creature in that line must make a Dexterity saving throw. On a failed save, a creature takes damage as if it were hit by the arrow, plus an extra {@damage 1d6} piercing damage. On a successful save, a target takes half as much damage.",
 				"The piercing damage increases to {@damage 2d6} when you reach 18th level in this class."
+			]
+		},
+		{
+			"name": "Piercing Shot",
+			"source": "AU",
+			"page": 11,
+			"featureType": [
+				"AS"
+			],
+			"consumes": {
+				"name": "Arcane Shot"
+			},
+			"entries": [
+				"You give your ammunition an ethereal quality. When you use this option, you don't make an attack roll for the attack. Instead, the ammunition shoots forward in a 30-foot-long, 1-foot-wide {@variantrule Line [Area of Effect]|XPHB|Line} originating from you, then vanishes. The {@variantrule Line [Area of Effect]|XPHB|Line} ignores cover, as the ammunition phases through solid objects. Each creature in the {@variantrule Line [Area of Effect]|XPHB|Line} makes a Dexterity saving throw. On a failed save, a creature takes damage as if it were hit plus extra Piercing damage equal to two rolls of your Arcane Shot Die. On a successful save, a creature takes half as much damage."
 			]
 		},
 		{
@@ -4340,6 +4695,9 @@
 			"name": "Seeking Arrow",
 			"source": "XGE",
 			"page": 30,
+			"reprintedAs": [
+				"Seeking Shot|AU"
+			],
 			"featureType": [
 				"AS"
 			],
@@ -4349,6 +4707,20 @@
 			"entries": [
 				"Using divination magic, you grant your arrow the ability to seek out a target. When you use this option, you don't make an attack roll for the attack. Instead, choose one creature you have seen in the past minute. The arrow flies toward that creature, moving around corners if necessary and ignoring {@quickref Cover||3||three-quarters cover} and {@quickref Cover||3||half cover}. If the target is within the weapon's range and there is a path large enough for the arrow to travel to the target, the target must make a Dexterity saving throw. Otherwise, the arrow disappears after traveling as far as it can. On a failed save, the target takes damage as if it were hit by the arrow, plus an extra {@damage 1d6} force damage, and you learn the target's current location. On a successful save, the target takes half as much damage, and you don't learn its location.",
 				"The force damage increases to {@damage 2d6} when you reach 18th level in this class."
+			]
+		},
+		{
+			"name": "Seeking Shot",
+			"source": "AU",
+			"page": 11,
+			"featureType": [
+				"AS"
+			],
+			"consumes": {
+				"name": "Arcane Shot"
+			},
+			"entries": [
+				"Your ammunition can seek out a target. When you use this option, you don't make an attack roll for the attack. Instead, choose one creature you have seen in the last minute. The ammunition flies toward that creature, moving around corners if necessary and ignoring {@table Cover|XPHB|Half Cover} and {@table Cover|XPHB|Three-Quarters Cover}. If the target is within your weapon's long range, the target makes a Dexterity saving throw. On a failed save, the target takes damage as if it were hit plus extra Force damage equal to two rolls of your Arcane Shot Die, and you learn the target's current location. On a successful save, the target takes half as much damage only. If the target is beyond your weapon's long range, the ammunition disappears after traveling as far as it can."
 			]
 		},
 		{
@@ -4375,6 +4747,7 @@
 			"name": "Seeking Spell",
 			"source": "XPHB",
 			"page": 142,
+			"srd52": true,
 			"featureType": [
 				"MM"
 			],
@@ -4391,6 +4764,9 @@
 			"name": "Shadow Arrow",
 			"source": "XGE",
 			"page": 30,
+			"reprintedAs": [
+				"Shadow Shot|AU"
+			],
 			"featureType": [
 				"AS"
 			],
@@ -4400,6 +4776,20 @@
 			"entries": [
 				"You weave illusion magic into your arrow, causing it to occlude your foe's vision with shadows. The creature hit by the arrow takes an extra {@damage 2d6} psychic damage, and it must succeed on a Wisdom saving throw or be unable to see anything farther than 5 feet away until the start of your next turn.",
 				"The psychic damage increases to {@damage 4d6} when you reach 18th level in this class."
+			]
+		},
+		{
+			"name": "Shadow Shot",
+			"source": "AU",
+			"page": 11,
+			"featureType": [
+				"AS"
+			],
+			"consumes": {
+				"name": "Arcane Shot"
+			},
+			"entries": [
+				"Your ammunition occludes your foe's vision with shadows. The creature you hit takes extra Psychic damage equal to one roll of your Arcane Shot Die, and it must succeed on a Wisdom saving throw or have the {@condition Blinded|XPHB} condition until the end of its next turn."
 			]
 		},
 		{
@@ -4840,6 +5230,7 @@
 			"name": "Transmuted Spell",
 			"source": "XPHB",
 			"page": 142,
+			"srd52": true,
 			"featureType": [
 				"MM"
 			],
@@ -5128,6 +5519,19 @@
 			],
 			"entries": [
 				"You can communicate telepathically with your familiar and perceive through your familiar's senses as long as you are on the same plane of existence. Additionally, while perceiving through your familiar's senses, you can also speak through your familiar in your own voice, even if your familiar is normally incapable of speech."
+			]
+		},
+		{
+			"name": "Warding Maneuver",
+			"source": "WoW",
+			"featureType": [
+				"MV:B"
+			],
+			"consumes": {
+				"name": "Superiority Die"
+			},
+			"entries": [
+				"When you or a creature you can see within 5 feet of you is hit by an attack roll, you can take a {@variantrule Reaction|XPHB} and expend one {@subclassFeature Combat Superiority|Fighter|XPHB|Battle Master|XPHB|3|XPHB|Superiority Die} if you're wielding a Melee weapon or a {@item Shield|XPHB}. Add the {@subclassFeature Combat Superiority|Fighter|XPHB|Battle Master|XPHB|3|XPHB|Superiority Die} to the target's AC against the triggering attack. If the attack still hits, the target has {@variantrule Resistance|XPHB} against the attack's damage."
 			]
 		},
 		{

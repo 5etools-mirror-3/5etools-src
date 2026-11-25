@@ -1,19 +1,16 @@
 import {BookUtil} from "./bookutils.js";
 
-const CONTENTS_URL = "data/adventures.json";
-
 window.addEventListener("load", async () => {
-	BookUtil.dispBook = es(`#pagecontent`);
+	BookUtil.dispBook = veEs(`#pagecontent`);
 	await Promise.all([
 		PrereleaseUtil.pInit(),
 		BrewUtil2.pInit(),
 	]);
 	ExcludeUtil.pInitialise().then(null); // don't await, as this is only used for search
-	DataUtil.loadJSON(CONTENTS_URL).then(onJsonLoad);
+	DataUtil.adventure.loadJSON().then(onJsonLoad);
 });
 
 async function onJsonLoad (data) {
-	BookUtil.baseDataUrl = "data/adventure/adventure-";
 	BookUtil.allPageUrl = "adventures.html";
 	BookUtil.propHomebrewData = "adventureData";
 	BookUtil.typeTitle = "Adventure";
@@ -23,8 +20,8 @@ async function onJsonLoad (data) {
 
 	BookUtil.bookIndex = data?.adventure || [];
 
-	es(`#page__subtitle`).txt(`Select an adventure from the list on the left`);
-	es(`.book-loading-message`).txt(`Select an adventure to begin`);
+	veEs(`#page__subtitle`).vee.txt(`Select an adventure from the list on the left`);
+	veEs(`.book-loading-message`).vee.txt(`Select an adventure to begin`);
 
 	BookUtil.bookIndexPrerelease = (await PrereleaseUtil.pGetBrewProcessed())?.adventure || [];
 	BookUtil.bookIndexBrew = (await BrewUtil2.pGetBrewProcessed())?.adventure || [];

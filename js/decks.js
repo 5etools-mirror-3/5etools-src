@@ -1,4 +1,4 @@
-"use strict";
+import {DeckSpreads} from "./decks/decks-spreads.js";
 
 class DecksSublistManager extends SublistManager {
 	static _getRowTemplate () {
@@ -14,28 +14,29 @@ class DecksSublistManager extends SublistManager {
 	pGetSublistItem (ent, hash) {
 		const cellsText = [ent.name];
 
-		const ele = ee`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`
-			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
-			.onn("click", evt => this._listSub.doSelect(listItem, evt));
+			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
-		const listItem = new ListItem(
-			hash,
+		const listItem = new ListItem({
+			id: hash,
 			ele,
-			ent.name,
-			{
-				hash,
-				page: ent.page,
+			name: ent.name,
+			values: {
+				...ListItem.getCommonValues(ent),
 				alias: PageFilterDecks.getListAliases(ent),
 			},
-			{
+			data: {
+				hash,
+				page: ent.page,
 				entity: ent,
 				mdRow: [...cellsText],
 			},
-		);
+		});
 		return listItem;
 	}
 }
@@ -147,24 +148,93 @@ class DecksPage extends ListPage {
 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(ent.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(ent.source)}">${source}</span>
 		</a>`;
 
-		const listItem = new ListItem(
-			anI,
-			eleLi,
-			ent.name,
-			{
-				hash,
+		const listItem = new ListItem({
+			id: anI,
+			ele: eleLi,
+			name: ent.name,
+			values: {
 				source,
-				page: ent.page,
+				...ListItem.getCommonValues(ent),
 			},
-			{
+			data: {
+				hash,
+				page: ent.page,
 				isExcluded,
 			},
-		);
+		});
 
 		eleLi.addEventListener("click", (evt) => this._list.doSelect(listItem, evt));
 		eleLi.addEventListener("contextmenu", (evt) => this._openContextMenu(evt, this._list, listItem));
 
 		return listItem;
+	}
+
+	async _handleClick_pDoOpenSpread (ent, btnSpread, {isSkipAnimation = false} = {}) {
+		try {
+			btnSpread.vee.prop("disabled", true);
+
+			let abortController = null;
+
+			const {eleModalInner} = UiUtil.getShowModal({
+				title: `Spread \u2014 ${ent.name}`,
+				isHeaderBorder: true,
+				isUncappedHeight: true,
+				isHeight100: true,
+				isMaxWidth640p: true,
+				isWidth100: true,
+				zIndex: VeCt.Z_INDEX_BENEATH_CARD_VIEWER,
+				cbClose: () => abortController?.abort(),
+			});
+
+			const wrpOut = veE({tag: "div", clazz: "ve-flex-col ve-w-100"});
+
+			const comp = BaseComponent.fromObject({ixSpread: 0});
+			const selSpread = ComponentUiUtil.getSelEnum(
+				comp,
+				"ixSpread",
+				{
+					values: ent.spreads,
+					fnDisplay: spread => `${spread.name} (${Parser.sourceJsonToAbv(spread.source)})`,
+					isSetIndexes: true,
+					html: `<select class="ve-form-control ve-input-sm ve-w-100 ve-br-0"></select>`,
+				},
+			);
+
+			const pDoRender = async ({isSkipAnimation = false} = {}) => {
+				abortController?.abort();
+				abortController = new AbortController();
+
+				wrpOut.vee.empty();
+
+				const spread = ent.spreads[comp._state.ixSpread];
+				const drawnMetas = await DeckSpreads.pGetSpreadDrawnMetas({spread, deck: ent});
+				if (abortController.signal.aborted) return;
+
+				const {rowMetas} = Renderer.get().withLazyImages(() => {
+					const renderedMeta = DeckSpreads.getWrpRenderedSpreadMeta({spread, drawnMetas});
+					wrpOut
+						.vee.appends(renderedMeta.wrp);
+					return renderedMeta;
+				});
+
+				await DeckSpreads.pRevealSpread({rowMetas, isSkipAnimation, abortSignal: abortController.signal});
+			};
+
+			const btnRedraw = veT`<button class="ve-btn ve-btn-primary ve-btn-sm ve-no-shrink" title="Draw Spread (CTRL to Skip Animation)">Draw</button>`
+				.vee.onn("click", evt => pDoRender({isSkipAnimation: EventUtil.isCtrlMetaKey(evt)}));
+
+			comp._addHookBase("ixSpread", () => pDoRender());
+
+			veT`<div class="ve-flex-col ve-w-100 ve-min-h-0 ve-pt-2">
+				<div class="ve-flex-v-center ve-mb-2 ve-input-group">${selSpread}${btnRedraw}</div>
+				<div class="ve-flex-col ve-w-100 ve-overflow-x-hidden ve-overflow-y-auto ve-pr-1">${wrpOut}</div>
+			</div>`
+				.vee.appendTo(eleModalInner);
+
+			await pDoRender({isSkipAnimation});
+		} finally {
+			btnSpread.vee.prop("disabled", false);
+		}
 	}
 
 	_renderStats_doBuildStatsTab ({ent}) {
@@ -173,13 +243,13 @@ class DecksPage extends ListPage {
 			.forEach(fn => fn());
 
 		this._wrpTabs
-			.find(`[data-name="deck-wrp-controls"]`)?.remove();
+			.vee.find(`[data-name="deck-wrp-controls"]`)?.remove();
 
-		const wrpControls = ee`<div class="ve-flex ve-mt-auto" data-name="deck-wrp-controls"></div>`
-			.prependTo(this._wrpTabs);
+		const wrpControls = veT`<div class="ve-flex ve-mt-auto" data-name="deck-wrp-controls"></div>`
+			.vee.prependTo(this._wrpTabs);
 
-		const btnDraw = ee`<button class="ve-btn ve-btn-xs ve-btn-primary ve-bb-0 ve-bbr-0 ve-bbl-0" title="Draw a Card (SHIFT to Skip Replacement; CTRL to Skip Animation)"><i class="fas fa-fw fa-cards"></i></button>`
-			.onn("click", async evt => {
+		const btnDraw = veT`<button class="ve-btn ve-btn-xs ve-btn-primary ve-bb-0 ve-bbr-0 ve-bbl-0" title="Draw a Card (SHIFT to Skip Replacement; CTRL to Skip Animation)"><i class="fas fa-fw fa-cards"></i></button>`
+			.vee.onn("click", async evt => {
 				const cards = this._compCardState.getUndrawnCards(ent);
 				if (!cards.length) return JqueryUtil.doToast({content: "All cards have already been drawn!", type: "warning"});
 
@@ -187,7 +257,7 @@ class DecksPage extends ListPage {
 				if (!card._isReplacement || evt.shiftKey) await this._compCardState.pDrawCard(ent, card);
 
 				if (EventUtil.isCtrlMetaKey(evt)) {
-					const eleChat = ee`<span>Drew card: ${Renderer.get().render(`{@card ${card.name}|${card.set}|${card.source}}`)}</span>`;
+					const eleChat = veT`<span>Drew card: ${Renderer.get().render(`{@card ${card.name}|${card.set}|${card.source}}`)}</span>`;
 
 					Renderer.dice.addRoll({
 						rolledBy: {
@@ -200,43 +270,51 @@ class DecksPage extends ListPage {
 				}
 
 				try {
-					btnDraw.prop("disabled", true);
+					btnDraw.vee.prop("disabled", true);
 					await RenderDecks.pRenderStgCard({deck: ent, card});
 				} finally {
-					btnDraw.prop("disabled", false);
+					btnDraw.vee.prop("disabled", false);
 				}
 			});
 
-		const btnReset = ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-bb-0 ve-bbr-0 ve-bbl-0" title="Reset Deck"><i class="fas fa-fw fa-rotate-left"></i></button>`
-			.onn("click", async () => {
+		const btnReset = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-bb-0 ve-bbr-0 ve-bbl-0" title="Reset Deck"><i class="fas fa-fw fa-rotate-left"></i></button>`
+			.vee.onn("click", async () => {
 				await this._compCardState.pResetDeck(ent);
 				JqueryUtil.doToast("Reset deck!");
 			});
 
 		// region List vs Grid view
-		const btnViewList = this._compSettings ? ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-bb-0 ve-bbr-0 ve-bbl-0" title="Card List View"><i class="fas fa-fw fa-list"></i></button>`
-			.onn("click", () => {
+		const btnViewList = this._compSettings ? veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-bb-0 ve-bbr-0 ve-bbl-0" title="Card List View"><i class="fas fa-fw fa-list"></i></button>`
+			.vee.onn("click", () => {
 				this._compSettings.pSet("cardLayout", "list").then(null);
 			}) : null;
 
-		const btnViewGrid = this._compSettings ? ee`<button class="ve-btn ve-btn-xs ve-btn-default ve-bb-0 ve-bbr-0 ve-bbl-0" title="Card Grid View"><i class="fas fa-fw fa-grid-2"></i></button>`
-			.onn("click", () => {
+		const btnViewGrid = this._compSettings ? veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-bb-0 ve-bbr-0 ve-bbl-0" title="Card Grid View"><i class="fas fa-fw fa-grid-2"></i></button>`
+			.vee.onn("click", () => {
 				this._compSettings.pSet("cardLayout", "grid").then(null);
 			}) : null;
 
 		const hkCardLayout = this._compSettings.addHookBase("cardLayout", () => {
 			const mode = this._compSettings.get("cardLayout");
-			btnViewList.toggleClass("ve-active", mode === "list");
-			btnViewGrid.toggleClass("ve-active", mode === "grid");
+			btnViewList.vee.toggleClass("ve-active", mode === "list");
+			btnViewGrid.vee.toggleClass("ve-active", mode === "grid");
 		});
 		this._renderFnsCleanup.push(() => this._compSettings.removeHookBase("cardLayout", hkCardLayout));
 		hkCardLayout();
 		// endregion
 
-		ee(wrpControls)`<div class="ve-flex">
+		// region Spreads
+		const btnSpread = ent.spreads?.length
+			? veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-bb-0 ve-bbr-0 ve-bbl-0" title="Read a Spread (CTRL to Skip Animation)"><i class="fas fa-fw fa-layer-group"></i></button>`
+				.vee.onn("click", evt => this._handleClick_pDoOpenSpread(ent, btnSpread, {isSkipAnimation: EventUtil.isCtrlMetaKey(evt)}))
+			: null;
+		// endregion
+
+		veT(wrpControls)`<div class="ve-flex">
 			<div class="ve-flex-v-center ve-btn-group">
 				${btnDraw}
 				${btnReset}
+				${btnSpread}
 			</div>
 
 			<div class="ve-flex-v-center ve-btn-group ve-ml-2">
@@ -255,8 +333,8 @@ class DecksPage extends ListPage {
 		this._renderFnsCleanup.push(...fnsCleanup);
 
 		this._pgContent
-			.empty()
-			.appends(ele);
+			.vee.empty()
+			.vee.appends(ele);
 	}
 }
 

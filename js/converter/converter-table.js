@@ -19,14 +19,14 @@ export class ConverterTable extends ConverterBase {
 		if (!inText || !inText.trim()) return options.cbWarning("No input!");
 		inText = this._getCleanInput(inText, options);
 
-		const wrpInput = ee`<div>${inText}</div>`;
-		if (wrpInput.first().is("table")) {
-			this._doParseHtml_doConvertEleTable(wrpInput.first(), options);
+		const wrpInput = veT`<div>${inText}</div>`;
+		if (wrpInput.vee.first().vee.is("table")) {
+			this._doParseHtml_doConvertEleTable(wrpInput.vee.first(), options);
 		} else {
 			// TODO pull out any preceding text to use as the caption; pass this in
 			const caption = "";
 			wrpInput
-				.findAll("table")
+				.vee.findAll("table")
 				.forEach((eleTable, i) => {
 					this._doParseHtml_doConvertEleTable(eleTable, options, {caption, isForceAppend: !!i});
 				});
@@ -49,7 +49,7 @@ export class ConverterTable extends ConverterBase {
 		};
 
 		const getCleanHeaderText = (ele) => {
-			let txt = ele.txt().trim();
+			let txt = ele.vee.txt().trim();
 
 			// if it's all-uppercase, title-case it
 			if (txt.toUpperCase() === txt) txt = txt.toTitleCase();
@@ -58,31 +58,31 @@ export class ConverterTable extends ConverterBase {
 		};
 
 		// Caption
-		const elesCaption = eleTable.findAll(`caption`);
+		const elesCaption = eleTable.vee.findAll(`caption`);
 		if (elesCaption.length) {
-			tbl.caption = elesCaption.map(ele => ele.txt().trim()).join(" ");
+			tbl.caption = elesCaption.map(ele => ele.vee.txt().trim()).join(" ");
 		}
 
 		// Columns
-		const eleTableHead = eleTable.find(`thead`);
+		const eleTableHead = eleTable.vee.find(`thead`);
 		if (eleTableHead) {
-			const elesHeaderRow = eleTableHead.findAll(`tr`);
+			const elesHeaderRow = eleTableHead.vee.findAll(`tr`);
 			if (elesHeaderRow.length !== 1) options.cbWarning(`Table header had ${elesHeaderRow.length} rows!`);
 			elesHeaderRow.forEach((eleHeaderRow, i) => {
 				// use first tr as column headers
 				if (!i) {
-					eleHeaderRow.findAll(`th, td`).forEach(ele => tbl.colLabels.push(getCleanHeaderText(ele)));
+					eleHeaderRow.vee.findAll(`th, td`).forEach(ele => tbl.colLabels.push(getCleanHeaderText(ele)));
 					return;
 				}
 
 				// use others as rows
 				const rowEntries = [];
-				eleHeaderRow.findAll(`th, td`).forEach(ele => rowEntries.push(getCleanHeaderText(ele)));
+				eleHeaderRow.vee.findAll(`th, td`).forEach(ele => rowEntries.push(getCleanHeaderText(ele)));
 				if (rowEntries.length) tbl.rows.push(rowEntries);
 			});
 			eleTableHead.remove();
 		} else {
-			eleTable.findAll("th")
+			eleTable.vee.findAll("th")
 				.forEach(ele => {
 					tbl.colLabels.push(getCleanHeaderText(ele));
 					ele.remove();
@@ -93,18 +93,18 @@ export class ConverterTable extends ConverterBase {
 		const handleTableRow = (eleBodyRow, i) => {
 			const rowEntries = [];
 			eleBodyRow
-				.findAll(`td`)
+				.vee.findAll(`td`)
 				.forEach(eleCell => {
-					rowEntries.push(eleCell.txt().trim());
+					rowEntries.push(eleCell.vee.txt().trim());
 				});
 			tbl.rows.push(rowEntries);
 		};
 
-		const eleTableBody = eleTable.find(`tbody`);
+		const eleTableBody = eleTable.vee.find(`tbody`);
 		if (eleTableBody) {
-			eleTableBody.findAll(`tr`).forEach(handleTableRow);
+			eleTableBody.vee.findAll(`tr`).forEach(handleTableRow);
 		} else {
-			eleTable.find(`tr`).forEach(handleTableRow);
+			eleTable.vee.find(`tr`).forEach(handleTableRow);
 		}
 
 		MarkdownConverter.postProcessTable(tbl);

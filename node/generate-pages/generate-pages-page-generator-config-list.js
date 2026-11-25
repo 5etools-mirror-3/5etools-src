@@ -5,6 +5,9 @@ class _PageGeneratorListActions extends PageGeneratorListBase {
 	_page = UrlUtil.PG_ACTIONS;
 	_pageTitle = "Actions";
 	_scriptIdentList = "actions";
+	_isHasRenderer = false;
+
+	_isModule = true;
 
 	_btnsList = [
 		HtmlGeneratorListButtons.getBtnPreviewToggle(),
@@ -167,10 +170,12 @@ class _PageGeneratorListDecks extends PageGeneratorListBase {
 
 	_stylesheets = [
 		"decks",
+		"deck-spreads",
 	];
 	_isStyleBook = true;
 
 	_scriptIdentList = "decks";
+	_isModule = true;
 
 	_styleListContainerAdditional = "ve-flex-4";
 	_styleContentWrapperAdditional = "ve-flex-7";
@@ -310,6 +315,9 @@ class _PageGeneratorListRewards extends PageGeneratorListBase {
 	_page = UrlUtil.PG_REWARDS;
 	_pageTitle = "Supernatural Gifts & Rewards";
 	_scriptIdentList = "rewards";
+	_isHasRenderer = false;
+
+	_isModule = true;
 
 	_btnsList = [
 		HtmlGeneratorListButtons.getBtnPreviewToggle(),

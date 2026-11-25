@@ -40,7 +40,7 @@ class StatGenPage {
 			if (savedState != null) this._statGenUi.setStateFrom(savedState);
 		}
 
-		this._statGenUi.render(es(`#statgen-main`));
+		this._statGenUi.render(veEs(`#statgen-main`));
 
 		window.dispatchEvent(new Event("toolsLoaded"));
 	}

@@ -1,5 +1,5 @@
 import {EncounterPartyMetaBase, EncounterPartyMetaBudgetTierProviderSpendUpTo, EncounterPartyMetaUtils} from "./encounter-partymeta-base.js";
-import {EncounterBuilderSpendInfo} from "../encounterbuilder-models.js";
+import {EncounterBuilderSpendInfo} from "../encounterbuilder-models-other.js";
 import {LEVEL_CR_CAP, TIER_EXTREME, TIER_TO_LEVEL_CR, TIERS, TIERS_EXTENDED} from "../consts/encounterbuilder-consts-mcdmfleemortals.js";
 
 export class EncounterPartyMetaMcdmFleeMortals extends EncounterPartyMetaBase {
@@ -23,14 +23,14 @@ export class EncounterPartyMetaMcdmFleeMortals extends EncounterPartyMetaBase {
 		});
 	}
 
-	_getEncounterSpendInfo ({creatureMetas}) {
+	_getEncounterSpendInfo ({creatureGroups}) {
 		let baseSpend = 0;
 		let count = 0;
 
-		creatureMetas
-			.forEach(creatureMeta => {
-				count += creatureMeta.getCount();
-				baseSpend += (creatureMeta.getCrNumber() || 0) * creatureMeta.getCount();
+		creatureGroups
+			.forEach(creatureGroup => {
+				count += creatureGroup.getCount();
+				baseSpend += (creatureGroup.getCrNumber() || 0) * creatureGroup.getCount();
 			});
 
 		return new EncounterBuilderSpendInfo({
@@ -64,7 +64,7 @@ export class EncounterPartyMetaMcdmFleeMortals extends EncounterPartyMetaBase {
 		return this._budgetTierProvider.getEncounterTier(encounterXpInfo);
 	}
 
-	getCrCutoff (creatureMetas) {
+	getCrCutoff (creatureGroups) {
 		// "Once you choose the desired difficulty of your encounter, you can determine its CR budget.
 		//   To do so, you'll need to know the average character level of the party (rounding down)."
 		const avgPlayerLevel = Math.floor(this.avgPlayerLevel);

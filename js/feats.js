@@ -34,30 +34,32 @@ class FeatsSublistManager extends SublistManager {
 			it._slPrereq,
 		];
 
-		const ele = ee`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`
-			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
-			.onn("click", evt => this._listSub.doSelect(listItem, evt));
+			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
-		const listItem = new ListItem(
-			hash,
+		const listItem = new ListItem({
+			id: hash,
 			ele,
-			it.name,
-			{
-				hash,
-				page: it.page,
+			name: it.name,
+			values: {
+				...ListItem.getCommonValues(it),
 				category: it.category || "Other",
 				ability: it._slAbility,
 				prerequisite: it._slPrereq,
 			},
-			{
+			data: {
+				hash,
+				page: it.page,
+				ability: it._srtAbility,
 				entity: it,
 				mdRow: [...cellsText],
 			},
-		);
+		});
 		return listItem;
 	}
 }
@@ -106,22 +108,24 @@ class FeatsPage extends ListPage {
 			<div class="ve-flex-col ve-py-3 ve-ml-4 ve-accordion__wrp-preview-inner"></div>
 		</div>`;
 
-		const listItem = new ListItem(
-			ftI,
-			eleLi,
-			feat.name,
-			{
-				hash,
+		const listItem = new ListItem({
+			id: ftI,
+			ele: eleLi,
+			name: feat.name,
+			values: {
 				source,
-				page: feat.page,
+				...ListItem.getCommonValues(feat),
 				category: feat.category || "Other",
 				ability: feat._slAbility,
 				prerequisite: feat._slPrereq,
 			},
-			{
+			data: {
+				hash,
+				page: feat.page,
+				ability: feat._srtAbility,
 				isExcluded,
 			},
-		);
+		});
 
 		eleLi.addEventListener("click", (evt) => this._list.doSelect(listItem, evt));
 		eleLi.addEventListener("contextmenu", (evt) => this._openContextMenu(evt, this._list, listItem));
@@ -130,7 +134,7 @@ class FeatsPage extends ListPage {
 	}
 
 	_renderStats_doBuildStatsTab ({ent}) {
-		this._pgContent.empty().appends(RenderFeats.getRenderedFeat(ent));
+		this._pgContent.vee.empty().vee.appends(RenderFeats.getRenderedFeat(ent));
 	}
 }
 

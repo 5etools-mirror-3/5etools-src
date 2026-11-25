@@ -1,17 +1,16 @@
 import {BookUtil} from "./bookutils.js";
 
-// NOTE: This file is generated with the Node script `generate-quick-reference.js`
-const JSON_URL = "data/generated/bookref-quick.json";
+// NOTE: File is generated with the Node script `generate-quick-reference.js`
 
 let reference;
 
 window.addEventListener("load", async () => {
-	BookUtil.dispBook = es(`#pagecontent`);
+	BookUtil.dispBook = veEs(`#pagecontent`);
 
 	if (!window.location.hash.length) {
 		BookUtil.dispBook
-			.empty()
-			.html(`${Renderer.utils.getBorderTr()}
+			.vee.empty()
+			.vee.html(`${Renderer.utils.getBorderTr()}
 			<tr><td colspan="6" class="initial-message initial-message--med">Select a section to begin</td></tr>
 			${Renderer.utils.getBorderTr()}`);
 	}
@@ -21,7 +20,7 @@ window.addEventListener("load", async () => {
 		BrewUtil2.pInit(),
 	]);
 	await ExcludeUtil.pInitialise();
-	DataUtil.loadJSON(JSON_URL).then(onJsonLoad);
+	DataUtil.quickreference.loadJSON().then(onJsonLoad);
 });
 
 async function onJsonLoad (data) {
@@ -29,7 +28,6 @@ async function onJsonLoad (data) {
 	BookUtil.contentType = "document";
 
 	BookUtil.isDefaultExpandedContents = true;
-	BookUtil.baseDataUrl = "data/generated/";
 	BookUtil.bookIndex = reference;
 	BookUtil.referenceId = "bookref-quick";
 	BookUtil.typeTitle = "Quick Reference (5e/2014)";

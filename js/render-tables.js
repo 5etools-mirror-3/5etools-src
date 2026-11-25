@@ -40,7 +40,7 @@ class RenderTables {
 
 		const ptFrom = this._getPartTableFrom(it);
 
-		return ee`
+		return veT`
 		${Renderer.utils.getBorderTr()}
 		${Renderer.utils.getExcludedTr({entity: it, dataProp: "table"})}
 		${Renderer.utils.getNameTr(it, {page: UrlUtil.PG_TABLES})}

@@ -93,6 +93,7 @@ class Omnidexer {
 	}
 
 	static getProperty (obj, withDots) {
+		if (typeof withDots === "function") return withDots(obj);
 		return MiscUtil.get(obj, ...withDots.split("."));
 	}
 
@@ -150,8 +151,6 @@ class Omnidexer {
 		if (ent.noDisplay) return;
 
 		const {arbiter, index, options} = state;
-
-		if (name) name = name.toAscii();
 
 		const toAdd = await this._pAddToIndex_pGetToAdd(state, ent, {n: name}, ix);
 		if (!toAdd) return;
@@ -599,18 +598,18 @@ class IndexableFileMagicVariants extends IndexableFile {
 		super({
 			category: Parser.CAT_ID_ITEM,
 			file: "magicvariants.json",
-			source: "inherits.source",
-			page: "inherits.page",
+			source: it => SourceUtil.getEntitySource(it),
+			page: it => SourceUtil.getEntityPage(it),
 			listProp: "magicvariant",
 			fluffBaseListProp: "item",
 			baseUrl: "items.html",
 			hashBuilder: (it) => {
-				return UrlUtil.encodeForHash([it.name, it.inherits.source]);
+				return UrlUtil.encodeForHash([it.name, SourceUtil.getEntitySource(it)]);
 			},
 			additionalIndexes: {
 				item: async (indexer, rawVariants) => {
 					const specVars = await (async () => {
-						const baseItemJson = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/items-base.json`);
+						const baseItemJson = await DataUtil.item.loadRawJSON();
 						const rawBaseItems = {...baseItemJson, baseitem: [...baseItemJson.baseitem]};
 
 						const prerelease = typeof PrereleaseUtil !== "undefined" ? await PrereleaseUtil.pGetBrewProcessed() : {};

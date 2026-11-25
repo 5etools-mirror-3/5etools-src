@@ -10,17 +10,17 @@ export class EncounterBuilderComponentBestiary extends EncounterBuilderComponent
 
 	getSublistPluginState () {
 		return {
-			// region Special handling for `creatureMetas`
-			items: this._state.creatureMetas
-				.map(creatureMeta => ({
-					h: creatureMeta.getHash(),
-					c: creatureMeta.getCount(),
-					customHashId: creatureMeta.getCustomHashId(),
-					cId: creatureMeta.id,
-					l: creatureMeta.getIsLocked(),
+			// region Special handling for `creatureGroups`
+			items: this._state.creatureGroups
+				.map(creatureGroup => ({
+					h: creatureGroup.getHash(),
+					c: creatureGroup.getCount(),
+					customHashId: creatureGroup.getCustomHashId(),
+					cId: creatureGroup.id,
+					l: creatureGroup.getIsLocked(),
 				})),
-			sources: this._state.creatureMetas
-				.map(creatureMeta => creatureMeta.getCreature().source)
+			sources: this._state.creatureGroups
+				.map(creatureGroup => creatureGroup.getCreature().source)
 				.unique(),
 			// endregion
 
@@ -39,7 +39,7 @@ export class EncounterBuilderComponentBestiary extends EncounterBuilderComponent
 			//    - `"customShapeGroups"`
 			...Object.fromEntries(
 				Object.entries(this._state)
-					.filter(([k]) => k !== "creatureMetas" && !k.startsWith("pulse"))
+					.filter(([k]) => k !== "creatureGroups" && !k.startsWith("pulse"))
 					.map(([k, v]) => [k, MiscUtil.copyFast(v)]),
 			),
 			// endregion

@@ -35,16 +35,6 @@
 				}
 			],
 			"startingProficiencies": {
-				"armor": [
-					"light",
-					"medium",
-					"heavy",
-					"shield"
-				],
-				"weapons": [
-					"simple",
-					"martial"
-				],
 				"skills": [
 					{
 						"choose": {
@@ -60,6 +50,24 @@
 							],
 							"count": 2
 						}
+					}
+				],
+				"weapons": [
+					"simple",
+					"martial"
+				],
+				"armor": [
+					"light",
+					"medium",
+					"heavy",
+					"shield"
+				],
+				"armorProficiencies": [
+					{
+						"light": true,
+						"medium": true,
+						"heavy": true,
+						"shield": true
 					}
 				]
 			},
@@ -129,14 +137,21 @@
 					]
 				},
 				"proficienciesGained": {
+					"weapons": [
+						"simple",
+						"martial"
+					],
 					"armor": [
 						"light",
 						"medium",
 						"shield"
 					],
-					"weapons": [
-						"simple",
-						"martial"
+					"armorProficiencies": [
+						{
+							"light": true,
+							"medium": true,
+							"shield": true
+						}
 					]
 				}
 			},
@@ -228,16 +243,6 @@
 				}
 			],
 			"startingProficiencies": {
-				"armor": [
-					"light",
-					"medium",
-					"heavy",
-					"shield"
-				],
-				"weapons": [
-					"simple",
-					"martial"
-				],
 				"skills": [
 					{
 						"choose": {
@@ -255,7 +260,32 @@
 							"count": 2
 						}
 					}
+				],
+				"weapons": [
+					"simple",
+					"martial"
+				],
+				"armor": [
+					"light",
+					"medium",
+					"heavy",
+					"shield"
+				],
+				"armorProficiencies": [
+					{
+						"light": true,
+						"medium": true,
+						"heavy": true,
+						"shield": true
+					}
 				]
+			},
+			"itemMasteries": true,
+			"itemMasteriesProgression": {
+				"1": 3,
+				"4": 4,
+				"10": 5,
+				"16": 6
 			},
 			"startingEquipment": {
 				"additionalFromBackground": true,
@@ -321,13 +351,20 @@
 			},
 			"multiclassing": {
 				"proficienciesGained": {
+					"weapons": [
+						"martial"
+					],
 					"armor": [
 						"light",
 						"medium",
 						"shield"
 					],
-					"weapons": [
-						"martial"
+					"armorProficiencies": [
+						{
+							"light": true,
+							"medium": true,
+							"shield": true
+						}
 					]
 				}
 			},
@@ -507,7 +544,8 @@
 				"Additional Superiority Die|Fighter||Battle Master||15",
 				"Relentless|Fighter||Battle Master||15",
 				"Improved Combat Superiority (d12)|Fighter||Battle Master||18"
-			]
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Battle Master",
@@ -995,6 +1033,9 @@
 			"className": "Fighter",
 			"classSource": "PHB",
 			"page": 28,
+			"reprintedAs": [
+				"Arcane Archer|Fighter|XPHB|AU"
+			],
 			"edition": "classic",
 			"additionalSpells": [
 				{
@@ -1046,6 +1087,9 @@
 			"source": "XGE",
 			"className": "Fighter",
 			"classSource": "XPHB",
+			"reprintedAs": [
+				"Arcane Archer|Fighter|XPHB|AU"
+			],
 			"_copy": {
 				"name": "Arcane Archer",
 				"source": "XGE",
@@ -1545,10 +1589,10 @@
 						}
 					],
 					"colLabels": [
-						"{@filter 1st|spells|level=1|subclass=Fighter: Eldritch Knight}",
-						"{@filter 2nd|spells|level=2|subclass=Fighter: Eldritch Knight}",
-						"{@filter 3rd|spells|level=3|subclass=Fighter: Eldritch Knight}",
-						"{@filter 4th|spells|level=4|subclass=Fighter: Eldritch Knight}"
+						"{@filter 1|spells|level=1|subclass=Fighter: Eldritch Knight}",
+						"{@filter 2|spells|level=2|subclass=Fighter: Eldritch Knight}",
+						"{@filter 3|spells|level=3|subclass=Fighter: Eldritch Knight}",
+						"{@filter 4|spells|level=4|subclass=Fighter: Eldritch Knight}"
 					],
 					"rowsSpellProgression": [
 						[
@@ -1836,6 +1880,57 @@
 				"Shared Resilience|Fighter|XPHB|Banneret|FRHoF|15|FRHoF",
 				"Inspiring Commander|Fighter|XPHB|Banneret|FRHoF|18|FRHoF"
 			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Arcane Archer",
+			"shortName": "Arcane Archer",
+			"source": "AU",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"page": 9,
+			"edition": "one",
+			"spellcastingAbility": "int",
+			"additionalSpells": [
+				{
+					"known": {
+						"3": [
+							"druidcraft|xphb#c"
+						]
+					}
+				},
+				{
+					"known": {
+						"3": [
+							"prestidigitation|xphb#c"
+						]
+					}
+				}
+			],
+			"optionalfeatureProgression": [
+				{
+					"name": "Arcane Shots",
+					"featureType": [
+						"AS"
+					],
+					"progression": {
+						"3": 2,
+						"7": 3,
+						"10": 4,
+						"15": 5,
+						"18": 6
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Arcane Archer|Fighter|XPHB|Arcane Archer|AU|3|AU",
+				"Curving Shot|Fighter|XPHB|Arcane Archer|AU|7|AU",
+				"Magical Ammunition|Fighter|XPHB|Arcane Archer|AU|7|AU",
+				"Ever-Ready Shot|Fighter|XPHB|Arcane Archer|AU|10|AU",
+				"Indomitable Teleport|Fighter|XPHB|Arcane Archer|AU|15|AU",
+				"Masterful Shots|Fighter|XPHB|Arcane Archer|AU|18|AU"
+			],
+			"hasFluff": true,
 			"hasFluffImages": true
 		}
 	],
@@ -3785,13 +3880,13 @@
 						},
 						{
 							"type": "refOptionalfeature",
-							"optionalfeature": "Hill Rune|TCE",
-							"name": "Hill Rune (7th Level or Higher)"
+							"name": "Hill Rune (7th Level or Higher)",
+							"optionalfeature": "Hill Rune|TCE"
 						},
 						{
 							"type": "refOptionalfeature",
-							"optionalfeature": "Storm Rune|TCE",
-							"name": "Storm Rune (7th Level or Higher)"
+							"name": "Storm Rune (7th Level or Higher)",
+							"optionalfeature": "Storm Rune|TCE"
 						}
 					]
 				}
@@ -3856,7 +3951,7 @@
 			"entries": [
 				"{@i 10th-level Rune Knight feature}",
 				"The magic of your runes permanently alters you. When you gain this feature, roll {@dice 3d4}. You grow a number of inches in height equal to the roll.",
-				"Moreover, the extra damage you deal with your Giant's Might feature increases to {@dice 1d8}."
+				"Moreover, the extra damage you deal with your Giant's Might feature increases to {@damage 1d8}."
 			]
 		},
 		{
@@ -3901,7 +3996,7 @@
 			"header": 2,
 			"entries": [
 				"{@i 18th-level Rune Knight feature}",
-				"You learn how to amplify your rune-powered transformation. As a result, the extra damage you deal with the Giant's Might feature increases to {@dice 1d10}. Moreover, when you use that feature, your size can increase to Huge, and while you are that size, your reach increases by 5 feet."
+				"You learn how to amplify your rune-powered transformation. As a result, the extra damage you deal with the Giant's Might feature increases to {@damage 1d10}. Moreover, when you use that feature, your size can increase to Huge, and while you are that size, your reach increases by 5 feet."
 			]
 		},
 		{
@@ -4354,6 +4449,257 @@
 			]
 		},
 		{
+			"name": "Arcane Archer",
+			"source": "AU",
+			"page": 9,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcane Archer",
+			"subclassSource": "AU",
+			"level": 3,
+			"entries": [
+				"{@i Deploy Magical Effects Through Enchanted Ammunition}",
+				"An Arcane Archer studies a unique elven method of archery that weaves magic into attacks to produce supernatural effects. Over the centuries, other folk have learned this technique and broadened it so it applies to ranged weapons of many kinds and to aspects of adventuring life outside of combat.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Arcane Archer Lore|Fighter|XPHB|Arcane Archer|AU|3|AU"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Arcane Shot|Fighter|XPHB|Arcane Archer|AU|3|AU"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Arcane Shot Options|Fighter|XPHB|Arcane Archer|AU|3|AU"
+				}
+			]
+		},
+		{
+			"name": "Arcane Archer Lore",
+			"source": "AU",
+			"page": 9,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcane Archer",
+			"subclassSource": "AU",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"You learn magical theory and secrets of nature, granting you the following benefits.",
+				{
+					"type": "entries",
+					"name": "Cantrip",
+					"page": 9,
+					"entries": [
+						"You know either the {@spell Druidcraft|XPHB} or the {@spell Prestidigitation|XPHB} cantrip. Intelligence is your spellcasting ability for it."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Skills",
+					"page": 9,
+					"entries": [
+						"You gain proficiency in the {@skill Arcana|XPHB} and {@skill Nature|XPHB} skills. If you already have one of these proficiencies, you instead gain proficiency in a different skill of your choice from the skills available to Fighters at level 1 (or in two skills available to Fighters at level 1 if you have both)."
+					]
+				}
+			]
+		},
+		{
+			"name": "Arcane Shot",
+			"source": "AU",
+			"page": 9,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcane Archer",
+			"subclassSource": "AU",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"You learn to unleash special magical effects with your shots.",
+				"You learn two {@filter Arcane Shot options|optionalfeatures|feature type=AS|source=AU} of your choice. You learn an additional Arcane Shot option of your choice when you reach Fighter levels 7, 10, 15, and 18. Each time you learn a new Arcane Shot option, you can also replace one option you know with a different one.",
+				{
+					"type": "entries",
+					"name": "Using Arcane Shot",
+					"page": 9,
+					"entries": [
+						"Once per turn when you make a ranged attack using a weapon with the {@itemProperty AF|XDMG|Ammunition} property, you can apply one of your Arcane Shot options to that attack. You decide to use the option when you hit a creature and deal damage to it unless the option doesn't involve an attack roll.",
+						"You can use this feature a number of times equal to your Intelligence modifier (minimum of once). You regain all expended uses when you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Arcane Shot Die",
+					"page": 9,
+					"entries": [
+						"Arcane Shot options refer to your Arcane Shot Die. Your Arcane Shot Die is a {@dice d6}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Saving Throws",
+					"page": 9,
+					"entries": [
+						"If an Arcane Shot option requires a saving throw, the DC equals 8 plus your Intelligence modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "At Higher Levels",
+					"page": 9,
+					"entries": [
+						"Your Arcane Shot Die changes when you reach certain Fighter levels. The die becomes a {@dice d8} at level 10, a {@dice d10} at level 15, and a {@dice d12} at level 18."
+					]
+				}
+			]
+		},
+		{
+			"name": "Arcane Shot Options",
+			"source": "AU",
+			"page": 9,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcane Archer",
+			"subclassSource": "AU",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"The Arcane Shot feature lets you choose options for it at certain levels. The options are presented here in alphabetical order.",
+				{
+					"type": "options",
+					"count": 2,
+					"entries": [
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Banishing Shot|AU"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Beguiling Shot|AU"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Bursting Shot|AU"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Enfeebling Shot|AU"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Grasping Shot|AU"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Piercing Shot|AU"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Seeking Shot|AU"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Shadow Shot|AU"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Curving Shot",
+			"source": "AU",
+			"page": 9,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcane Archer",
+			"subclassSource": "AU",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"You learn how to direct an errant shot toward a new target. If you make a ranged attack roll with a weapon with the {@itemProperty AF|XDMG|Ammunition} property and miss, you can cause the shot to ricochet toward a new target as a {@variantrule Bonus Action|XPHB} immediately after the attack misses. The new target must be a creature you can see within the weapon's range and within 60 feet of the attack's original target. Make an attack roll against the new target."
+			]
+		},
+		{
+			"name": "Magical Ammunition",
+			"source": "AU",
+			"page": 9,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcane Archer",
+			"subclassSource": "AU",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"You learn to imbue your ammunition with magical properties. As a {@action Magic|XPHB} action, you can imbue a piece of nonmagical ammunition with one of the following magical properties and fire it at a solid surface you can see within the weapon's range. When the ammunition hits the surface, the ammunition's effect activates, and the ammunition attaches to the surface it hit for the duration of the effect; you can remove an attached piece of ammunition as a {@action Magic|XPHB} action, ending the effect early. When the effect ends, the ammunition is destroyed.",
+				"Once you use this feature, you can't do so again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}. You can also restore your use of this feature by expending a use of your Second Wind (no action required).",
+				{
+					"type": "entries",
+					"name": "Darkening Ammunition",
+					"page": 9,
+					"entries": [
+						"Magical shadows fill a 15-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the ammunition for 1 minute. Nonmagical flames in the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} are extinguished, and creatures in the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} have a \u22125 penalty to Wisdom ({@skill Perception|XPHB}) checks and {@variantrule Passive Perception|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Unlocking Ammunition",
+					"page": 9,
+					"entries": [
+						"A burst of magic fills a 15-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the ammunition. The ammunition also emits a loud knocking sound, audible up to 300 feet away. Any object in the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} that is held shut by a nonmagical lock or that is stuck or barred becomes unlocked, unstuck, or unbarred. If such an object has multiple locks, only one of them is unlocked."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Vine Ammunition",
+					"page": 10,
+					"entries": [
+						"A 120-foot-long vine grows from the ammunition. You and other creatures can then climb it. The vine withers away after 10 minutes."
+					]
+				}
+			]
+		},
+		{
+			"name": "Ever-Ready Shot",
+			"source": "AU",
+			"page": 10,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcane Archer",
+			"subclassSource": "AU",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"When you roll {@variantrule Initiative|XPHB}, you can regain one expended use of Arcane Shot."
+			]
+		},
+		{
+			"name": "Indomitable Teleport",
+			"source": "AU",
+			"page": 10,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcane Archer",
+			"subclassSource": "AU",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"Your magical mastery lets you escape dire situations. When you use your Indomitable feature and succeed on the saving throw, you can teleport up to 60 feet to an unoccupied space you can see."
+			]
+		},
+		{
+			"name": "Masterful Shots",
+			"source": "AU",
+			"page": 10,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcane Archer",
+			"subclassSource": "AU",
+			"level": 18,
+			"header": 2,
+			"entries": [
+				"You employ agility in your sharpshooting. When a creature you can see misses you with an attack roll, you can take a {@variantrule Reaction|XPHB} to move up to half your {@variantrule Speed|XPHB} away from the attacker without provoking {@action opportunity attack|XPHB|Opportunity Attacks}. You can then make a ranged attack roll against the attacker as part of this {@variantrule Reaction|XPHB} if the attacker is within the weapon's range."
+			]
+		},
+		{
 			"name": "Banneret",
 			"source": "FRHoF",
 			"page": 19,
@@ -4549,7 +4895,7 @@
 					"type": "entries",
 					"name": "Maneuvers",
 					"entries": [
-						"You learn three maneuvers of your choice from the \"{@filter Maneuvers Options|optionalfeatures|feature type=MV:B|source=XPHB}\" section later in this subclass's description. Many maneuvers enhance an attack in some way. You can use only one maneuver per attack.",
+						"You learn three maneuvers of your choice from the \"{@filter Maneuver Options|optionalfeatures|feature type=MV:B|source===extend}\" section later in this subclass's description. Many maneuvers enhance an attack in some way. You can use only one maneuver per attack.",
 						"You learn two additional maneuvers of your choice when you reach Fighter levels 7, 10, and 15. Each time you learn new maneuvers, you can also replace one maneuver you know with a different one."
 					]
 				},
@@ -4596,11 +4942,19 @@
 						},
 						{
 							"type": "refOptionalfeature",
+							"optionalfeature": "Battle Shout|WoW"
+						},
+						{
+							"type": "refOptionalfeature",
 							"optionalfeature": "Commander's Strike|XPHB"
 						},
 						{
 							"type": "refOptionalfeature",
 							"optionalfeature": "Commanding Presence|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Demoralizing Shout|WoW"
 						},
 						{
 							"type": "refOptionalfeature",
@@ -4624,6 +4978,10 @@
 						},
 						{
 							"type": "refOptionalfeature",
+							"optionalfeature": "Heroic Leap|WoW"
+						},
+						{
+							"type": "refOptionalfeature",
 							"optionalfeature": "Lunging Attack|XPHB"
 						},
 						{
@@ -4633,6 +4991,10 @@
 						{
 							"type": "refOptionalfeature",
 							"optionalfeature": "Menacing Attack|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Mortal Strike|WoW"
 						},
 						{
 							"type": "refOptionalfeature",
@@ -4665,6 +5027,10 @@
 						{
 							"type": "refOptionalfeature",
 							"optionalfeature": "Trip Attack|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Warding Maneuver|WoW"
 						}
 					]
 				}

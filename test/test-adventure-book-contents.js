@@ -11,11 +11,12 @@ async function main () {
 		{filename: "adventures.json", prop: "adventure", dir: "adventure"},
 		{filename: "books.json", prop: "book", dir: "book"},
 	].flatMap(({filename, prop, dir}) => ut.readJson(`./data/${filename}`)[prop]
-		.map(({id, contents}) => ({filename: `./data/${dir}/${dir}-${id.toLowerCase()}.json`, contents})))
-		.forEach(({filename, contents}) => {
+		.map(({id, contents}) => ({filename: `./data/${dir}/${dir}-${id.toLowerCase()}.json`, id, contents, propData: `${prop}Data`})))
+		.forEach(({filename, id, contents, propData}) => {
 			const json = ut.readJson(filename);
 
-			if (json.data.length === contents.length) return;
+			const corpus = json[propData]?.find(corpusData => corpusData.id === id);
+			if (corpus?.data?.length === contents.length) return;
 
 			errors.push(`Contents length did not match data length in "${filename}"`);
 		});

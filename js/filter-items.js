@@ -59,22 +59,7 @@ class PageFilterEquipment extends PageFilterBase {
 			itemSortFn: null,
 			...(filterOpts?.["Category"] || {}),
 		});
-		this._costFilter = new RangeFilter({
-			header: "Cost",
-			isLabelled: true,
-			isAllowGreater: true,
-			labelSortFn: null,
-			labels: [
-				0,
-				...[...new Array(9)].map((_, i) => i + 1),
-				...[...new Array(9)].map((_, i) => 10 * (i + 1)),
-				...[...new Array(99)].map((_, i) => 100 * (i + 1)),
-				...[...new Array(9)].map((_, i) => 10_000 * (i + 1)),
-				...[...new Array(9)].map((_, i) => 100_000 * (i + 1)),
-				...[...new Array(10)].map((_, i) => 1_000_000 * (i + 1)),
-			],
-			labelDisplayFn: it => !it ? "None" : Parser.getDisplayCurrency(CurrencyUtil.doSimplifyCoins({cp: it})),
-		});
+		this._costFilter = FilterCommon.getCostFilter();
 		this._weightFilter = new RangeFilter({header: "Weight", min: 0, max: 100, isAllowGreater: true, suffix: " lb."});
 		this._focusFilter = new Filter({header: "Spellcasting Focus", items: [...Parser.ITEM_SPELLCASTING_FOCUS_CLASSES]});
 		this._damageTypeFilter = new Filter({header: "Weapon Damage Type", displayFn: it => Parser.dmgTypeToFull(it).uppercaseFirst(), itemSortFn: (a, b) => SortUtil.ascSortLower(Parser.dmgTypeToFull(a.item), Parser.dmgTypeToFull(b.item))});
@@ -130,7 +115,7 @@ class PageFilterEquipment extends PageFilterBase {
 	static mutateForFilters (item) {
 		this._mutateForFilters_commonSources(item, {isIncludeBaseSource: true});
 
-		item._fProperties = item.property ? item.property.map(p => Renderer.item.getProperty(p?.uid || p)?.name).filter(Boolean) : [];
+		item._fProperties = item.property ? item.property.map(p => Renderer.item.getProperty(p?.uid || p)?.name).filter(Boolean) : null;
 
 		this._mutateForFilters_commonMisc(item);
 		if (item._isItemGroup) item._fMisc.push("Item Group");
@@ -166,11 +151,11 @@ class PageFilterEquipment extends PageFilterBase {
 			}
 		}
 
-		item._fValue = Math.round(item.value || 0);
+		FilterCommon.mutateForFilters_cost(item, {prop: "value"});
 
-		item._fDamageDice = [];
-		if (item.dmg1) item._fDamageDice.push(item.dmg1);
-		if (item.dmg2) item._fDamageDice.push(item.dmg2);
+		item._fDamageDice = item.dmg1 && item.dmg2
+			? [item.dmg1, item.dmg2]
+			: (item.dmg1 || item.dmg2 || null);
 
 		item._fMastery = item.mastery
 			? item.mastery.map(info => {
@@ -238,7 +223,7 @@ class PageFilterEquipment extends PageFilterBase {
 			it._textTypes,
 			it._fProperties,
 			it._category,
-			it._fValue,
+			it._fCost,
 			it.weight,
 			it._fFocus,
 			it.dmgType,
@@ -396,7 +381,7 @@ class PageFilterItems extends PageFilterEquipment {
 	static mutateForFilters (item) {
 		super.mutateForFilters(item);
 
-		item._fTier = [item.tier ? item.tier : "none"];
+		item._fTier = item.tier || "none";
 
 		if (item.curse) item._fMisc.push("Cursed");
 		const isMundane = Renderer.item.isMundane(item);
@@ -411,22 +396,19 @@ class PageFilterItems extends PageFilterEquipment {
 		if (item.critThreshold) item._fMisc.push("Expanded Critical Range");
 
 		const fBaseItemSelf = item._isBaseItem ? `${item.name}__${item.source}`.toLowerCase() : null;
-		item._fBaseItem = [
-			item.baseItem ? (item.baseItem.includes("|") ? item.baseItem.replace("|", "__") : `${item.baseItem}__${Parser.SRC_DMG}`).toLowerCase() : null,
-			item._baseName ? `${item._baseName}__${item._baseSource || item.source}`.toLowerCase() : null,
-		].filter(Boolean);
-		item._fBaseItemAll = fBaseItemSelf ? [fBaseItemSelf, ...item._fBaseItem] : item._fBaseItem;
+		item._fBaseItem = this._mutateForFilters_getFilterBaseItems(item);
+		item._fBaseItemAll = fBaseItemSelf ? [fBaseItemSelf, ...(item._fBaseItem || [])] : item._fBaseItem;
 
-		item._fBonus = [];
-		if (item.bonusAc) item._fBonus.push("Armor Class");
+		item._fBonus = null;
+		if (item.bonusAc) (item._fBonus ||= []).push("Armor Class");
 		this._mutateForFilters_bonusWeapon({prop: "bonusWeapon", item, text: "Weapon Attack and Damage Rolls"});
 		this._mutateForFilters_bonusWeapon({prop: "bonusWeaponAttack", item, text: "Weapon Attack Rolls"});
 		this._mutateForFilters_bonusWeapon({prop: "bonusWeaponDamage", item, text: "Weapon Damage Rolls"});
-		if (item.bonusWeaponCritDamage) item._fBonus.push("Weapon Critical Damage");
-		if (item.bonusSpellAttack) item._fBonus.push("Spell Attacks");
-		if (item.bonusSpellSaveDc) item._fBonus.push("Spell Save DC");
-		if (item.bonusSavingThrow) item._fBonus.push("Saving Throws");
-		if (item.bonusProficiencyBonus) item._fBonus.push("Proficiency Bonus");
+		if (item.bonusWeaponCritDamage) (item._fBonus ||= []).push("Weapon Critical Damage");
+		if (item.bonusSpellAttack) (item._fBonus ||= []).push("Spell Attacks");
+		if (item.bonusSpellSaveDc) (item._fBonus ||= []).push("Spell Save DC");
+		if (item.bonusSavingThrow) (item._fBonus ||= []).push("Saving Throws");
+		if (item.bonusProficiencyBonus) (item._fBonus ||= []).push("Proficiency Bonus");
 
 		item._fAttunement = this._getAttunementFilterItems(item);
 
@@ -436,9 +418,18 @@ class PageFilterItems extends PageFilterEquipment {
 		FilterCommon.mutateForFilters_conditionImmuneNonPlayer(item);
 	}
 
+	static _mutateForFilters_getFilterBaseItems (item) {
+		if (!item.baseItem && !item._baseName) return null;
+
+		const out = [];
+		if (item.baseItem) out.push((item.baseItem.includes("|") ? item.baseItem.replace("|", "__") : `${item.baseItem}__${Parser.SRC_DMG}`).toLowerCase());
+		if (item._baseName) out.push(`${item._baseName}__${item._baseSource || item.source}`.toLowerCase());
+		return out;
+	}
+
 	static _mutateForFilters_bonusWeapon ({prop, item, text}) {
 		if (!item[prop]) return;
-		item._fBonus.push(text);
+		(item._fBonus ||= []).push(text);
 		switch (item[prop]) {
 			case "+1":
 			case "+2":
@@ -449,9 +440,9 @@ class PageFilterItems extends PageFilterEquipment {
 	static _CLASS_FEATURE_EFA_ARTIFICER_REPLICATE_MAGIC_ITEM = "replicate magic item|artificer|efa|2|efa";
 
 	static _mutateForFilters_classFeatures (item) {
-		item._fClassFeatures = [...item.classFeatures || []];
+		item._fClassFeatures = item.classFeatures ? [...item.classFeatures] : null;
 
-		if (item._fClassFeatures.includes(this._CLASS_FEATURE_EFA_ARTIFICER_REPLICATE_MAGIC_ITEM)) return;
+		if (item._fClassFeatures?.includes(this._CLASS_FEATURE_EFA_ARTIFICER_REPLICATE_MAGIC_ITEM)) return;
 		if (item.curse) return;
 		switch (item.rarity) {
 			case "common": {
@@ -463,13 +454,13 @@ class PageFilterItems extends PageFilterEquipment {
 					]
 						.includes(DataUtil.itemType.unpackUid(item.type).abbreviation)
 				) return;
-				item._fClassFeatures.push(this._CLASS_FEATURE_EFA_ARTIFICER_REPLICATE_MAGIC_ITEM);
+				(item._fClassFeatures ||= []).push(this._CLASS_FEATURE_EFA_ARTIFICER_REPLICATE_MAGIC_ITEM);
 				break;
 			}
 			case "uncommon":
 			case "rare": {
 				if (!item.wondrous) return;
-				item._fClassFeatures.push(this._CLASS_FEATURE_EFA_ARTIFICER_REPLICATE_MAGIC_ITEM);
+				(item._fClassFeatures ||= []).push(this._CLASS_FEATURE_EFA_ARTIFICER_REPLICATE_MAGIC_ITEM);
 				break;
 			}
 		}
@@ -480,7 +471,6 @@ class PageFilterItems extends PageFilterEquipment {
 
 		super.addToFilters(item, isExcluded);
 
-		this._sourceFilter.addItem(item.source);
 		this._tierFilter.addItem(item._fTier);
 		this._attachedSpellsFilter.addItem(item._fAttachedSpells);
 		this._lootTableFilter.addItem(item.lootTables);
@@ -540,7 +530,7 @@ class PageFilterItems extends PageFilterEquipment {
 			it._fProperties,
 			it._fAttunement,
 			it._category,
-			it._fValue,
+			it._fCost,
 			it.weight,
 			it._fFocus,
 			it.dmgType,
@@ -639,22 +629,23 @@ class ModalFilterItems extends ModalFilterBase {
 
 		const btnShowHidePreview = eleRow.firstElementChild.children[1].firstElementChild;
 
-		const listItem = new ListItem(
-			itI,
-			eleRow,
-			item.name,
-			{
-				hash,
+		const listItem = new ListItem({
+			id: itI,
+			ele: eleRow,
+			name: item.name,
+			values: {
 				source,
 				sourceJson: item.source,
 				...ListItem.getCommonValues(item),
 				type,
 			},
-			{
+			data: {
+				hash,
+				page: item.page,
 				cbSel: eleRow.firstElementChild.firstElementChild.firstElementChild,
 				btnShowHidePreview,
 			},
-		);
+		});
 
 		this._previewButtonHandler.bindPreviewButton({entity: item, listItem, btnShowHidePreview});
 

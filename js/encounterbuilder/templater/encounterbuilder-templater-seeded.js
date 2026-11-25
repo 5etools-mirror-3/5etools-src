@@ -13,8 +13,8 @@ export class EncounterBuilderTemplaterSeeded extends EncounterBuilderTemplaterBa
 	}
 
 	getEncounterTemplateInfo () {
-		const cntLockedCreatures = this._creatureMetasLocked
-			.map(creatureMeta => creatureMeta.getCount())
+		const cntLockedCreatures = this._creatureGroupsLocked
+			.map(creatureGroup => creatureGroup.getCount())
 			.sum();
 		const cntSlotSeeds = this._slotSeeds?.length || 0;
 
@@ -35,7 +35,7 @@ export class EncounterBuilderTemplaterSeeded extends EncounterBuilderTemplaterBa
 			budgetMode: this._budgetMode,
 		})
 			.getEncounterSizeInfosGroups({
-				creatureMetasLocked: this._creatureMetasLocked,
+				creatureGroupsLocked: this._creatureGroupsLocked,
 				slotSeeds: this._slotSeeds,
 				cntLockedCreatures,
 				lowestSpendAmount,
@@ -91,8 +91,8 @@ export class EncounterBuilderTemplaterSeeded extends EncounterBuilderTemplaterBa
 
 		return encounterSizeMetas
 			.flatMap(({cntCreatures, playerAdjustedSpendMult}) => {
-				const spendLocked = this._creatureMetasLocked
-					.map(creatureMeta => creatureMeta.getCount() * creatureMeta.getSpend({budgetMode: this._budgetMode}) * playerAdjustedSpendMult)
+				const spendLocked = this._creatureGroupsLocked
+					.map(creatureGroup => creatureGroup.getCount() * creatureGroup.getSpend({budgetMode: this._budgetMode}) * playerAdjustedSpendMult)
 					.sum();
 
 				const slots = slotSeeds

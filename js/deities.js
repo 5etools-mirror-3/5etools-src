@@ -31,30 +31,31 @@ class DeitiesSublistManager extends SublistManager {
 		const domains = it.domains.join(", ");
 		const cellsText = [it.name, it.pantheon, alignment, domains];
 
-		const ele = ee`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`
-			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
-			.onn("click", evt => this._listSub.doSelect(listItem, evt));
+			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
-		const listItem = new ListItem(
-			hash,
+		const listItem = new ListItem({
+			id: hash,
 			ele,
-			it.name,
-			{
-				hash,
-				page: it.page,
+			name: it.name,
+			values: {
+				...ListItem.getCommonValues(it),
 				pantheon: it.pantheon,
 				alignment,
 				domains,
 			},
-			{
+			data: {
+				hash,
+				page: it.page,
 				entity: it,
 				mdRow: [...cellsText],
 			},
-		);
+		});
 		return listItem;
 	}
 }
@@ -98,23 +99,24 @@ class DeitiesPage extends ListPage {
 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(ent.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(ent.source)}">${source}</span>
 		</a>`;
 
-		const listItem = new ListItem(
-			dtI,
-			eleLi,
-			ent.name,
-			{
-				hash,
+		const listItem = new ListItem({
+			id: dtI,
+			ele: eleLi,
+			name: ent.name,
+			values: {
 				source,
-				page: ent.page,
+				...ListItem.getCommonValues(ent),
 				title: ent.title || "",
 				pantheon: ent.pantheon,
 				alignment,
 				domains,
 			},
-			{
+			data: {
+				hash,
+				page: ent.page,
 				isExcluded,
 			},
-		);
+		});
 
 		eleLi.addEventListener("click", (evt) => this._list.doSelect(listItem, evt));
 		eleLi.addEventListener("contextmenu", (evt) => this._openContextMenu(evt, this._list, listItem));
@@ -123,7 +125,7 @@ class DeitiesPage extends ListPage {
 	}
 
 	_renderStats_doBuildStatsTab ({ent}) {
-		this._pgContent.empty().appends(RenderDeities.getRenderedDeity(ent));
+		this._pgContent.vee.empty().vee.appends(RenderDeities.getRenderedDeity(ent));
 	}
 }
 

@@ -17,4 +17,9 @@ export class DataLoaderConst {
 	static isSourceAllNonSite (source) {
 		return this._SOURCES_ALL_NON_SITE.has(source);
 	}
+
+	/* -------------------------------------------- */
+
+	static PROP_RAW_PREFIX = "raw_";
+	static RE_PROP_RAW_PREFIX = new RegExp(`^${this.PROP_RAW_PREFIX}`);
 }

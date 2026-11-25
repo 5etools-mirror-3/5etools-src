@@ -14,7 +14,7 @@ class RenderCultsBoons {
 		Renderer.cultboon.doRenderCultParts(it, renderer, renderStack);
 		renderer.recursiveRender({entries: it.entries}, renderStack, {depth: 1});
 
-		return ee`
+		return veT`
 			${Renderer.utils.getBorderTr()}
 			${Renderer.utils.getExcludedTr({entity: it, dataProp: "cult"})}
 			${Renderer.utils.getNameTr(it, {page: UrlUtil.PG_CULTS_BOONS})}
@@ -32,7 +32,7 @@ class RenderCultsBoons {
 		it._displayName = it._displayName || it.name;
 		Renderer.cultboon.doRenderBoonParts(it, renderer, renderStack);
 		renderer.recursiveRender({entries: it.entries}, renderStack, {depth: 1});
-		return ee`
+		return veT`
 			${Renderer.utils.getBorderTr()}
 			${Renderer.utils.getExcludedTr({entity: it, dataProp: "boon"})}
 			${Renderer.utils.getNameTr(it, {page: UrlUtil.PG_CULTS_BOONS})}

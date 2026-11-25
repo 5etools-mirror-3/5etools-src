@@ -51,14 +51,6 @@
 				5
 			],
 			"startingProficiencies": {
-				"armor": [
-					"light",
-					"medium",
-					"shield"
-				],
-				"weapons": [
-					"simple"
-				],
 				"skills": [
 					{
 						"choose": {
@@ -71,6 +63,21 @@
 							],
 							"count": 2
 						}
+					}
+				],
+				"weapons": [
+					"simple"
+				],
+				"armor": [
+					"light",
+					"medium",
+					"shield"
+				],
+				"armorProficiencies": [
+					{
+						"light": true,
+						"medium": true,
+						"shield": true
 					}
 				]
 			},
@@ -142,6 +149,13 @@
 						"light",
 						"medium",
 						"shield"
+					],
+					"armorProficiencies": [
+						{
+							"light": true,
+							"medium": true,
+							"shield": true
+						}
 					]
 				}
 			},
@@ -582,14 +596,6 @@
 				}
 			],
 			"startingProficiencies": {
-				"armor": [
-					"light",
-					"medium",
-					"shield"
-				],
-				"weapons": [
-					"simple"
-				],
 				"skills": [
 					{
 						"choose": {
@@ -602,6 +608,21 @@
 							],
 							"count": 2
 						}
+					}
+				],
+				"weapons": [
+					"simple"
+				],
+				"armor": [
+					"light",
+					"medium",
+					"shield"
+				],
+				"armorProficiencies": [
+					{
+						"light": true,
+						"medium": true,
+						"shield": true
 					}
 				]
 			},
@@ -626,7 +647,7 @@
 								"item": "priest's pack|xphb"
 							},
 							{
-								"value": 7000
+								"value": 700
 							}
 						],
 						"B": [
@@ -646,6 +667,13 @@
 						"light",
 						"medium",
 						"shield"
+					],
+					"armorProficiencies": [
+						{
+							"light": true,
+							"medium": true,
+							"shield": true
+						}
 					]
 				}
 			},
@@ -762,15 +790,15 @@
 				{
 					"title": "Spell Slots per Spell Level",
 					"colLabels": [
-						"{@filter 1st|spells|level=1|class=Cleric}",
-						"{@filter 2nd|spells|level=2|class=Cleric}",
-						"{@filter 3rd|spells|level=3|class=Cleric}",
-						"{@filter 4th|spells|level=4|class=Cleric}",
-						"{@filter 5th|spells|level=5|class=Cleric}",
-						"{@filter 6th|spells|level=6|class=Cleric}",
-						"{@filter 7th|spells|level=7|class=Cleric}",
-						"{@filter 8th|spells|level=8|class=Cleric}",
-						"{@filter 9th|spells|level=9|class=Cleric}"
+						"{@filter 1|spells|level=1|class=Cleric}",
+						"{@filter 2|spells|level=2|class=Cleric}",
+						"{@filter 3|spells|level=3|class=Cleric}",
+						"{@filter 4|spells|level=4|class=Cleric}",
+						"{@filter 5|spells|level=5|class=Cleric}",
+						"{@filter 6|spells|level=6|class=Cleric}",
+						"{@filter 7|spells|level=7|class=Cleric}",
+						"{@filter 8|spells|level=8|class=Cleric}",
+						"{@filter 9|spells|level=9|class=Cleric}"
 					],
 					"rowsSpellProgression": [
 						[
@@ -1658,6 +1686,9 @@
 			"className": "Cleric",
 			"classSource": "PHB",
 			"page": 125,
+			"reprintedAs": [
+				"Arcana|Cleric|XPHB|AU"
+			],
 			"edition": "classic",
 			"additionalSpells": [
 				{
@@ -1725,6 +1756,9 @@
 			"source": "SCAG",
 			"className": "Cleric",
 			"classSource": "XPHB",
+			"reprintedAs": [
+				"Arcana|Cleric|XPHB|AU"
+			],
 			"_copy": {
 				"name": "Arcana Domain",
 				"source": "SCAG",
@@ -2803,6 +2837,7 @@
 			"source": "RHW",
 			"className": "Cleric",
 			"classSource": "XPHB",
+			"page": 19,
 			"edition": "one",
 			"additionalSpells": [
 				{
@@ -2835,6 +2870,146 @@
 				"Divine Reaper|Cleric|XPHB|Grave|RHW|17|RHW"
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Arcana Domain",
+			"shortName": "Arcana",
+			"source": "AU",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"page": 8,
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"known": {
+						"3": [
+							{
+								"choose": "level=0|class=Wizard",
+								"count": 2
+							}
+						]
+					},
+					"prepared": {
+						"3": [
+							"detect magic|xphb",
+							"magic missile|xphb",
+							"magic weapon|xphb",
+							"nystul's magic aura|xphb"
+						],
+						"5": [
+							"counterspell|xphb",
+							"dispel magic|xphb"
+						],
+						"7": [
+							"arcane eye|xphb",
+							"leomund's secret chest|xphb"
+						],
+						"9": [
+							"bigby's hand|xphb",
+							"teleportation circle|xphb"
+						],
+						"17": [
+							{
+								"choose": "level=6|class=Wizard"
+							},
+							{
+								"choose": "level=7|class=Wizard"
+							},
+							{
+								"choose": "level=8|class=Wizard"
+							},
+							{
+								"choose": "level=9|class=Wizard"
+							}
+						]
+					},
+					"ability": "wis"
+				}
+			],
+			"subclassFeatures": [
+				"Arcana Domain|Cleric|XPHB|Arcana|AU|3|AU",
+				"Dispelling Recovery|Cleric|XPHB|Arcana|AU|6|AU",
+				"Magical Mastery|Cleric|XPHB|Arcana|AU|17|AU"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Discipline Domain",
+			"shortName": "Discipline",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"ability": "wis",
+					"prepared": {
+						"3": [
+							"arcane vigor|xphb",
+							"guiding bolt|xphb",
+							"magic weapon|xphb",
+							"shield of faith|xphb"
+						],
+						"5": [
+							"prayer of mending|wow",
+							"protection from energy|xphb"
+						],
+						"7": [
+							"guardian of faith|xphb",
+							"stoneskin|xphb"
+						],
+						"9": [
+							"circle of power|xphb",
+							"destructive wave|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Discipline Domain|Cleric|XPHB|Discipline|WoW|3",
+				"Luminous Barrier|Cleric|XPHB|Discipline|WoW|6",
+				"Ultimate Penitence|Cleric|XPHB|Discipline|WoW|17"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Shadow Domain",
+			"shortName": "Shadow",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"ability": "wis",
+					"prepared": {
+						"3": [
+							"crown of madness|xphb",
+							"dissonant whispers|xphb",
+							"mind spike|xphb",
+							"shadow word: pain|wow"
+						],
+						"5": [
+							"summon undead|xphb",
+							"vampiric touch|xphb"
+						],
+						"7": [
+							"evard's black tentacles|xphb",
+							"psychic horror|wow"
+						],
+						"9": [
+							"dominate person|xphb",
+							"void eruption|wow"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Shadow Domain|Cleric|XPHB|Shadow|WoW|3",
+				"Dispersion|Cleric|XPHB|Shadow|WoW|6",
+				"Vampiric Embrace|Cleric|XPHB|Shadow|WoW|17"
+			]
 		}
 	],
 	"classFeature": [
@@ -3453,7 +3628,7 @@
 			"classSource": "XPHB",
 			"level": 5,
 			"entries": [
-				"Whenever you use Turn Undead, you can roll a number of d8s equal to your Wisdom modifier (minimum of {@dice 1d8}) and add the rolls together. Each Undead that fails its saving throw against that use of Turn Undead takes Radiant damage equal to the roll's total. This damage doesn't end the turn effect."
+				"Whenever you use Turn Undead, you can roll a number of d8s equal to your Wisdom modifier (minimum of {@damage 1d8}) and add the rolls together. Each Undead that fails its saving throw against that use of Turn Undead takes Radiant damage equal to the roll's total. This damage doesn't end the turn effect."
 			]
 		},
 		{
@@ -3484,12 +3659,18 @@
 					"type": "entries",
 					"entries": [
 						{
-							"type": "refClassFeature",
-							"classFeature": "Divine Strike|Cleric|XPHB|7"
-						},
-						{
-							"type": "refClassFeature",
-							"classFeature": "Potent Spellcasting|Cleric|XPHB|7"
+							"type": "options",
+							"count": 1,
+							"entries": [
+								{
+									"type": "refClassFeature",
+									"classFeature": "Divine Strike|Cleric|XPHB|7"
+								},
+								{
+									"type": "refClassFeature",
+									"classFeature": "Potent Spellcasting|Cleric|XPHB|7"
+								}
+							]
 						}
 					]
 				}
@@ -6068,8 +6249,8 @@
 					]
 				},
 				{
-					"name": "Domain Spells",
 					"type": "entries",
+					"name": "Domain Spells",
 					"entries": [
 						"{@i 1st-level Peace Domain feature}",
 						"You gain domain spells at the cleric levels listed in the Peace Domain Spells table. See the Divine Domain class feature for how domain spells work.",
@@ -6288,8 +6469,8 @@
 					]
 				},
 				{
-					"name": "Domain Spells",
 					"type": "entries",
+					"name": "Domain Spells",
 					"entries": [
 						"{@i 1st-level Twilight Domain feature}",
 						"You gain domain spells at the cleric levels listed in the Twilight Domain Spells table. See the Divine Domain class feature for how domain spells work.",
@@ -6812,6 +6993,195 @@
 			"header": 2,
 			"entries": [
 				"Starting at 17th level, you can seize a trace of vitality from a parting soul and use it to heal the living. When an enemy you can see dies within 60 feet of you, you or one creature of your choice that is within 60 feet of you regains hit points equal to the enemy's number of Hit Dice. You can use this feature only if you aren't {@condition incapacitated}. Once you use it, you can't do so again until the start of your next turn."
+			]
+		},
+		{
+			"name": "Arcana Domain",
+			"source": "AU",
+			"page": 8,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcana",
+			"subclassSource": "AU",
+			"level": 3,
+			"entries": [
+				"{@i Amplify Your Magical Power}",
+				"Magic suffuses the multiverse and fuels both destruction and creation. Clerics with the Arcana Domain view magical knowledge not as power to be used in pursuit of personal ends, but as a gift they have the responsibility to share.",
+				"Gods associated with the Arcana Domain know the secrets and potential of magic intimately. These gods are often connected to knowledge, secrecy, or power.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Arcana Domain Spells|Cleric|XPHB|Arcana|AU|3|AU"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Modify Magic|Cleric|XPHB|Arcana|AU|3|AU"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Student of Arcana|Cleric|XPHB|Arcana|AU|3|AU"
+				}
+			]
+		},
+		{
+			"name": "Arcana Domain Spells",
+			"source": "AU",
+			"page": 8,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcana",
+			"subclassSource": "AU",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"Your connection to this divine domain means you always have certain spells ready. When you reach a Cleric level specified in the Arcana Domain Spells table, you thereafter always have the listed spells prepared.",
+				{
+					"type": "table",
+					"caption": "Arcana Domain Spells",
+					"page": 8,
+					"colLabels": [
+						"Cleric Level",
+						"Prepared Spells"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Detect Magic|XPHB}, {@spell Magic Missile|XPHB}, {@spell Magic Weapon|XPHB}, {@spell Nystul's Magic Aura|XPHB}"
+						],
+						[
+							"5",
+							"{@spell Counterspell|XPHB}, {@spell Dispel Magic|XPHB}"
+						],
+						[
+							"7",
+							"{@spell Arcane Eye|XPHB}, {@spell Leomund's Secret Chest|XPHB}"
+						],
+						[
+							"9",
+							"{@spell Bigby's Hand|XPHB}, {@spell Teleportation Circle|XPHB}"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Modify Magic",
+			"source": "AU",
+			"page": 8,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcana",
+			"subclassSource": "AU",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"You can use your Channel Divinity to alter your spells as you cast them. When you cast a spell, you can expend one use of your Channel Divinity and change the spell in one of the following ways (no action required).",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Fortifying Spell|Cleric|XPHB|Arcana|AU|3|AU"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Tenacious Spell|Cleric|XPHB|Arcana|AU|3|AU"
+				}
+			]
+		},
+		{
+			"name": "Student of Arcana",
+			"source": "AU",
+			"page": 8,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcana",
+			"subclassSource": "AU",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Magical Knowledge",
+					"page": 8,
+					"entries": [
+						"You gain proficiency in the {@skill Arcana|XPHB} skill or one skill of your choice from the skills available to Clerics at level 1."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Cantrips",
+					"page": 8,
+					"entries": [
+						"You learn two {@filter Wizard cantrips|spells|level=0|class=Wizard} of your choice. Whenever you gain a Cleric level, you can replace one of these cantrips with another {@filter Wizard cantrip|spells|level=0|class=Wizard}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Fortifying Spell",
+			"source": "AU",
+			"page": 8,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcana",
+			"subclassSource": "AU",
+			"level": 3,
+			"header": 2,
+			"consumes": {
+				"name": "Channel Divinity",
+				"amount": 1
+			},
+			"entries": [
+				"One target of the spell gains a number of {@variantrule Temporary Hit Points|XPHB} equal to {@dice 2d8} plus your Cleric level."
+			]
+		},
+		{
+			"name": "Tenacious Spell",
+			"source": "AU",
+			"page": 8,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcana",
+			"subclassSource": "AU",
+			"level": 3,
+			"header": 2,
+			"consumes": {
+				"name": "Channel Divinity",
+				"amount": 1
+			},
+			"entries": [
+				"When you cast a spell that forces a creature to make a saving throw, and a creature you can see succeeds on that saving throw, roll {@dice 1d6} and subtract the number rolled from the target's first saving throw against the spell's effect."
+			]
+		},
+		{
+			"name": "Dispelling Recovery",
+			"source": "AU",
+			"page": 9,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcana",
+			"subclassSource": "AU",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"Immediately after you cast a spell with a spell slot that restores {@variantrule Hit Points|XPHB} to a creature or ends a condition on a creature, you can cast {@spell Dispel Magic|XPHB} as part of that action, {@variantrule Bonus Action|XPHB}, or {@variantrule Reaction|XPHB}, and without expending a spell slot.",
+				"Once you use this feature, you can't use it again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}. You also restore your use of it by expending one use of Channel Divinity (no action required)."
+			]
+		},
+		{
+			"name": "Magical Mastery",
+			"source": "AU",
+			"page": 9,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcana",
+			"subclassSource": "AU",
+			"level": 17,
+			"header": 2,
+			"entries": [
+				"You learn four {@filter Wizard spells|spells|level=6;7;8;9|class=Wizard}, one from each of levels 6, 7, 8, and 9. You thereafter always have those spells prepared. Whenever you gain a Cleric level, you can replace one of these spells with another {@filter Wizard spell|spells|level=6;7;8;9|class=Wizard} of the same level."
 			]
 		},
 		{
@@ -7477,6 +7847,7 @@
 		{
 			"name": "Circle of Mortality",
 			"source": "RHW",
+			"page": 19,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"subclassShortName": "Grave",
@@ -7488,7 +7859,7 @@
 					"type": "entries",
 					"name": "Pull of Death",
 					"entries": [
-						"Once per turn, when you deal damage to a creature that's missing any {@variantrule Hit Points|XPHB} by casting a spell or by hitting with an attack roll, that creature takes an extra {@damage 1d4} Necrotic damage. This extra damage increases to {@dice 1d6} when you reach Cleric level 11."
+						"Once per turn, when you deal damage to a creature that's missing any {@variantrule Hit Points|XPHB} by casting a spell or by hitting with an attack roll, that creature takes an extra {@damage 1d4} Necrotic damage. This extra damage increases to {@damage 1d6} when you reach Cleric level 11."
 					]
 				},
 				{
@@ -7504,6 +7875,7 @@
 		{
 			"name": "Grave Domain",
 			"source": "RHW",
+			"page": 19,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"subclassShortName": "Grave",
@@ -7530,6 +7902,7 @@
 		{
 			"name": "Grave Domain Spells",
 			"source": "RHW",
+			"page": 19,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"subclassShortName": "Grave",
@@ -7572,6 +7945,7 @@
 		{
 			"name": "Path to the Grave",
 			"source": "RHW",
+			"page": 19,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"subclassShortName": "Grave",
@@ -7589,6 +7963,7 @@
 		{
 			"name": "Sentinel at Death's Door",
 			"source": "RHW",
+			"page": 20,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"subclassShortName": "Grave",
@@ -7603,6 +7978,7 @@
 		{
 			"name": "Divine Reaper",
 			"source": "RHW",
+			"page": 20,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"subclassShortName": "Grave",
@@ -7615,7 +7991,7 @@
 					"type": "entries",
 					"name": "Enhanced Necromancy",
 					"entries": [
-						"When you cast a spell of level 5 or lower from the Necromancy school that targets one creature, or when you cast a spell from the {@book Grave Domain Spells table|RHW|1|Grave Domain Spells}, you can expend a use of Channel Divinity to target a second creature within the spell's range. If the spell requires costly or consumed Material components, you must provide Material components for each target."
+						"When you cast a spell of level 5 or lower from the Necromancy school that targets one creature, or when you cast a spell from the {@subclassFeature Grave Domain Spells|Cleric|XPHB|Grave|RHW|3|RHW|Grave Domain Spells table}, you can expend a use of Channel Divinity to target a second creature within the spell's range. If the spell requires costly or consumed Material components, you must provide Material components for each target."
 					]
 				},
 				{
@@ -7796,6 +8172,282 @@
 			}
 		},
 		{
+			"name": "Atonement",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Discipline",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"When a level 1+ spell you cast restores {@variantrule Hit Points|XPHB} to one or more creatures, each of those creatures gains a blessing that lasts until the end of your next turn. Whenever you cast a spell that deals damage to a creature using a spell slot, each blessed creature regains additional {@variantrule Hit Points|XPHB} equal to the level of the spell slot you used to cast the damaging spell."
+			]
+		},
+		{
+			"name": "Discipline Domain",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Discipline",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"{@i Cure Allies' Wounds While Smiting Enemies}",
+				"The Discipline Domain focuses on the balance between the Holy Light and its shadowy mirror, the Void. Wielding both powers at once, Clerics who embrace this domain aid their allies and harm their foes, often with a single spell.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Discipline Spells|Cleric|XPHB|Discipline|WoW|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Holy Bolt|Cleric|XPHB|Discipline|WoW|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Atonement|Cleric|XPHB|Discipline|WoW|3"
+				}
+			]
+		},
+		{
+			"name": "Discipline Spells",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Discipline",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"Your connection to this domain ensures you always have certain spells ready. When you reach a Cleric level specified in the Discipline Domain Spells table, you thereafter always have the listed spells prepared.",
+				{
+					"type": "table",
+					"caption": "Discipline Domain Spells",
+					"colLabels": [
+						"Cleric Level",
+						"Spells"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Arcane Vigor|XPHB}, {@spell Guiding Bolt|XPHB}, {@spell Magic Weapon|XPHB}, {@spell Shield of Faith|XPHB}"
+						],
+						[
+							"5",
+							"{@spell Prayer of Mending|WoW}, {@spell Protection from Energy|XPHB}"
+						],
+						[
+							"7",
+							"{@spell Guardian of Faith|XPHB}, {@spell Stoneskin|XPHB}"
+						],
+						[
+							"9",
+							"{@spell Circle of Power|XPHB}, {@spell Destructive Wave|XPHB}"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Holy Bolt",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Discipline",
+			"subclassSource": "WoW",
+			"level": 3,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"As a {@variantrule Bonus Action|XPHB}, you present your {@item Holy Symbol|XPHB} and expend a use of your {@classFeature Channel Divinity|Cleric|XPHB|2|XPHB} to make a ranged spell attack, hurling a bolt of holy energy targeting one creature within 60 feet of yourself. On a hit, the target takes Radiant damage equal to {@damage 2d10} plus your Wisdom modifier, and you can choose a creature you can see within 60 feet of yourself to regain {@variantrule Hit Points|XPHB} equal to {@dice 1d10} plus your Wisdom modifier."
+			]
+		},
+		{
+			"name": "Luminous Barrier",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Discipline",
+			"subclassSource": "WoW",
+			"level": 6,
+			"header": 2,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"As a {@variantrule Bonus Action|XPHB}, you can expend a use of your {@classFeature Channel Divinity|Cleric|XPHB|2|XPHB} to place a magical ward of glowing light on each creature blessed by your {@subclassFeature Atonement|Cleric|XPHB|Discipline|WoW|3|WoW}. Each affected creature gains a number of {@variantrule Temporary Hit Points|XPHB} equal to your Cleric level plus your Wisdom modifier. While a creature has {@variantrule Temporary Hit Points|XPHB} gained from this feature, it has {@variantrule Resistance|XPHB} to all damage."
+			]
+		},
+		{
+			"name": "Ultimate Penitence",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Discipline",
+			"subclassSource": "WoW",
+			"level": 17,
+			"header": 2,
+			"entries": [
+				"Your {@subclassFeature Holy Bolt|Cleric|XPHB|Discipline|WoW|3|WoW} grows more powerful as detailed below.",
+				{
+					"type": "entries",
+					"name": "Ascending Step",
+					"entries": [
+						"When you use {@subclassFeature Holy Bolt|Cleric|XPHB|Discipline|WoW|3|WoW}, you can teleport to an unoccupied space you can see within 30 feet before you make an attack roll."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Ascending Volley",
+					"entries": [
+						"When you use {@subclassFeature Holy Bolt|Cleric|XPHB|Discipline|WoW|3|WoW}, you can expend a spell slot as part of the {@variantrule Bonus Action|XPHB} to hurl a number of additional bolts equal to the spell slot level expended. You can direct the bolts to hit one creature or several. Make a separate attack roll for each bolt."
+					]
+				}
+			]
+		},
+		{
+			"name": "Devouring Plague",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"When a creature you can see within 30 feet of you fails a saving throw, you can cause that creature to take {@damage 1d10} Necrotic damage. If you do, you regain {@variantrule Hit Points|XPHB} equal to the Necrotic damage dealt.",
+				"You can use this feature a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+			]
+		},
+		{
+			"name": "Shadow Domain",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"{@i Draw on the Debilitating Power of the Void}",
+				"The Shadow Domain deals with the powers of shadow and the Void\u2014a sinister mirror of the life-giving powers of the Light. Clerics who embrace these powers can wither their enemies' flesh and debilitate their minds.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Shadow Spells|Cleric|XPHB|Shadow|WoW|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Shadowform|Cleric|XPHB|Shadow|WoW|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Devouring Plague|Cleric|XPHB|Shadow|WoW|3"
+				}
+			]
+		},
+		{
+			"name": "Shadow Spells",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"Your connection to this domain ensures you always have certain spells ready. When you reach a Cleric level specified in the Shadow Domain Spells table, you thereafter always have the listed spells prepared.",
+				{
+					"type": "table",
+					"caption": "Shadow Domain Spells",
+					"colLabels": [
+						"Cleric Level",
+						"Spells"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Crown of Madness|XPHB}, {@spell Dissonant Whispers|XPHB}, {@spell Mind Spike|XPHB}, {@spell Shadow Word: Pain|WoW}"
+						],
+						[
+							"5",
+							"{@spell Summon Undead|XPHB}, {@spell Vampiric Touch|XPHB}"
+						],
+						[
+							"7",
+							"{@spell Evard's Black Tentacles|XPHB}, {@spell Psychic Horror|WoW}"
+						],
+						[
+							"9",
+							"{@spell Dominate Person|XPHB}, {@spell Void Eruption|WoW}"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Shadowform",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "WoW",
+			"level": 3,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"As a {@variantrule Bonus Action|XPHB}, you can expend a use of your {@classFeature Channel Divinity|Cleric|XPHB|2|XPHB} to take on a shadowy form that grants you the following benefits:",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Shadow Stealth",
+							"entry": "While you are in an area of {@variantrule Dim Light|XPHB} or {@variantrule Darkness|XPHB}, you can take the {@action Hide|XPHB} action as a {@variantrule Bonus Action|XPHB}."
+						},
+						{
+							"type": "item",
+							"name": "Void Empowerment",
+							"entry": "When you cast a spell using a spell slot that deals Psychic or Necrotic damage, you can add {@damage 1d6} to one damage roll of the spell."
+						}
+					]
+				},
+				"The form lasts for 1 minute, but it ends early if you dismiss it (no action required), if you have the {@condition Incapacitated|XPHB} condition, or if you deal Radiant damage with a spell."
+			]
+		},
+		{
+			"name": "Dispersion",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "WoW",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"When you are hit by an attack roll, you can take a {@variantrule Reaction|XPHB} to disperse into shadowy energy. Until the end of your next turn, you have {@variantrule Resistance|XPHB} to all damage (including the damage from the triggering attack); you can't take any action, {@variantrule Bonus Action|XPHB}, or {@variantrule Reaction|XPHB}; and you have a {@variantrule Fly Speed|XPHB} of 40 feet. When the effect ends, you can spend up to half of your total {@variantrule Hit Point Dice|XPHB}, regaining {@variantrule Hit Points|XPHB} as if you had finished a {@variantrule Short Rest|XPHB}.",
+				"Once you use this feature, you can't use it again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
+			]
+		},
+		{
+			"name": "Vampiric Embrace",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "WoW",
+			"level": 17,
+			"header": 2,
+			"entries": [
+				"While your {@subclassFeature Shadowform|Cleric|XPHB|Shadow|WoW|3|WoW} is active, whenever you roll {@damage 1d6} to add extra damage to a spell, one creature of your choice within 30 feet of you regains that many {@variantrule Hit Points|XPHB}."
+			]
+		},
+		{
 			"name": "Channel Divinity: Artisan's Blessing",
 			"source": "XGE",
 			"className": "Cleric",
@@ -7951,19 +8603,19 @@
 					],
 					"rows": [
 						[
-							"3rd",
+							"3",
 							"{@spell Aid|XPHB}, {@spell Bless|XPHB}, {@spell Cure Wounds|XPHB}, {@spell Lesser Restoration|XPHB}"
 						],
 						[
-							"5th",
+							"5",
 							"{@spell Mass Healing Word|XPHB}, {@spell Revivify|XPHB}"
 						],
 						[
-							"7th",
+							"7",
 							"{@spell Aura of Life|XPHB}, {@spell Death Ward|XPHB}"
 						],
 						[
-							"9th",
+							"9",
 							"{@spell Greater Restoration|XPHB}, {@spell Mass Cure Wounds|XPHB}"
 						]
 					]
@@ -8002,7 +8654,7 @@
 			"level": 6,
 			"header": 2,
 			"entries": [
-				"The healing spells you cast on others heal you as well. Immediately after you cast a spell with a spell slot that restores {@variantrule Hit Points|XPHB} to one creature other than you, you regain {@variantrule Hit Points|XPHB} equal to 2 plus the spell slot's level."
+				"The healing spells you cast on others heal you as well. Immediately after you cast a spell with a spell slot that restores {@variantrule Hit Points|XPHB} to one or more creatures other than yourself, you regain {@variantrule Hit Points|XPHB} equal to 2 plus the spell slot's level."
 			]
 		},
 		{
@@ -8073,19 +8725,19 @@
 					],
 					"rows": [
 						[
-							"3rd",
+							"3",
 							"{@spell Burning Hands|XPHB}, {@spell Faerie Fire|XPHB}, {@spell Scorching Ray|XPHB}, {@spell See Invisibility|XPHB}"
 						],
 						[
-							"5th",
+							"5",
 							"{@spell Daylight|XPHB}, {@spell Fireball|XPHB}"
 						],
 						[
-							"7th",
+							"7",
 							"{@spell Arcane Eye|XPHB}, {@spell Wall of Fire|XPHB}"
 						],
 						[
-							"9th",
+							"9",
 							"{@spell Flame Strike|XPHB}, {@spell Scrying|XPHB}"
 						]
 					]
@@ -8106,7 +8758,7 @@
 				"name": "Channel Divinity"
 			},
 			"entries": [
-				"As a {@action Magic|XPHB} action, you present your {@item Holy Symbol|XPHB} and expend a use of your Channel Divinity to emit a flash of light in a 30-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from yourself. Any magical {@variantrule Darkness|XPHB}\u2014such as that created by the {@spell Darkness|XPHB} spell\u2014in that area is dispelled. Additionally, each creature of your choice in that area must make a Constitution saving throw, taking Radiant damage equal to {@dice 2d10} plus your Cleric level on a failed save or half as much damage on a successful one."
+				"As a {@action Magic|XPHB} action, you present your {@item Holy Symbol|XPHB} and expend a use of your Channel Divinity to emit a flash of light in a 30-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from yourself. Any magical {@variantrule Darkness|XPHB}\u2014such as that created by the {@spell Darkness|XPHB} spell\u2014in that area is dispelled. Additionally, each creature of your choice in that area must make a Constitution saving throw, taking Radiant damage equal to {@damage 2d10} plus your Cleric level on a failed save or half as much damage on a successful one."
 			]
 		},
 		{
@@ -8258,19 +8910,19 @@
 					],
 					"rows": [
 						[
-							"3rd",
+							"3",
 							"{@spell Charm Person|XPHB}, {@spell Disguise Self|XPHB}, {@spell Invisibility|XPHB}, {@spell Pass without Trace|XPHB}"
 						],
 						[
-							"5th",
+							"5",
 							"{@spell Hypnotic Pattern|XPHB}, {@spell Nondetection|XPHB}"
 						],
 						[
-							"7th",
+							"7",
 							"{@spell Confusion|XPHB}, {@spell Dimension Door|XPHB}"
 						],
 						[
-							"9th",
+							"9",
 							"{@spell Dominate Person|XPHB}, {@spell Modify Memory|XPHB}"
 						]
 					]
@@ -8393,19 +9045,19 @@
 					],
 					"rows": [
 						[
-							"3rd",
+							"3",
 							"{@spell Guiding Bolt|XPHB}, {@spell Magic Weapon|XPHB}, {@spell Shield of Faith|XPHB}, {@spell Spiritual Weapon|XPHB}"
 						],
 						[
-							"5th",
+							"5",
 							"{@spell Crusader's Mantle|XPHB}, {@spell Spirit Guardians|XPHB}"
 						],
 						[
-							"7th",
+							"7",
 							"{@spell Fire Shield|XPHB}, {@spell Freedom of Movement|XPHB}"
 						],
 						[
-							"9th",
+							"9",
 							"{@spell Hold Monster|XPHB}, {@spell Steel Wind Strike|XPHB}"
 						]
 					]

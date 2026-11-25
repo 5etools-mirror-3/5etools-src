@@ -659,6 +659,9 @@
 			"name": "Net Trap",
 			"source": "XGE",
 			"page": 113,
+			"reprintedAs": [
+				"Falling Net|XDMG"
+			],
 			"trapHazType": "SMPL",
 			"rating": [
 				{
@@ -803,6 +806,9 @@
 			"name": "Pit Trap",
 			"source": "XGE",
 			"page": 114,
+			"reprintedAs": [
+				"Hidden Pit|XDMG"
+			],
 			"trapHazType": "SMPL",
 			"rating": [
 				{
@@ -904,6 +910,9 @@
 			"name": "Poison Needle Trap",
 			"source": "XGE",
 			"page": 114,
+			"reprintedAs": [
+				"Poisoned Needle|XDMG"
+			],
 			"trapHazType": "SMPL",
 			"rating": [
 				{
@@ -959,7 +968,7 @@
 					"type": "entries",
 					"name": "At Higher Levels",
 					"entries": [
-						"You can scale the trap for higher levels by increasing each dart's Poison damage as follows: 7 ({@dice 2d6}) at levels 5\u201310, 14 ({@dice 4d6}) at levels 11\u201316, or 24 ({@dice 7d6}) at levels 17\u201320."
+						"You can scale the trap for higher levels by increasing each dart's Poison damage as follows: 7 ({@damage 2d6}) at levels 5\u201310, 14 ({@damage 4d6}) at levels 11\u201316, or 24 ({@damage 7d6}) at levels 17\u201320."
 					]
 				}
 			],
@@ -1567,7 +1576,7 @@
 			],
 			"entries": [
 				"Spoiled potions, broken magic items, or runoff from magical workshops can pollute waterways, creating a sludge called arcane effluence. While many Low Netherese individuals recognize the effluence's peculiar violet sheen, careless High Netherese mages usually don't even know such pollution exists.",
-				"One patch of arcane effluence covers a 5-foot square, and creatures within 30 feet of it can smell its acrid, unnatural scent. A creature that comes into contact with arcane effluence takes 3 ({@dice 1d6}) Acid damage. The creature takes the damage again at the start of each of its turns until the effluence is scraped off (requiring an action) or destroyed.",
+				"One patch of arcane effluence covers a 5-foot square, and creatures within 30 feet of it can smell its acrid, unnatural scent. A creature that comes into contact with arcane effluence takes 3 ({@damage 1d6}) Acid damage. The creature takes the damage again at the start of each of its turns until the effluence is scraped off (requiring an action) or destroyed.",
 				"The {@spell Dispel Magic|XPHB} spell or a similar effect destroys arcane effluence."
 			]
 		},
@@ -1608,7 +1617,7 @@
 			],
 			"entries": [
 				"Bile lichen is a toxic, green-yellow substance resembling vomit. It flourishes where extreme heat and cold mingle, such as at the steam-vent openings to Icewind Dale's Underdark. One patch of bile lichen covers a 5-foot square.",
-				"If a patch of bile lichen is touched, it releases a cloud of spores that fills a 10-foot {@variantrule Cube [Area of Effect]|XPHB|Cube} and dissipates after {@dice 1d4} hours. When a creature enters the cloud for the first time on a turn or starts its turn there, the creature makes a {@dc 14} Constitution saving throw, taking 11 ({@dice 2d10}) Poison damage and contracting {@disease Lichen Plague|FRAiF} on a failed save (see \"{@book Magical Contagions|FRAiF|3|Magical Contagions}\" later in this chapter). On a successful save, the creature takes half as much damage only."
+				"If a patch of bile lichen is touched, it releases a cloud of spores that fills a 10-foot {@variantrule Cube [Area of Effect]|XPHB|Cube} and dissipates after {@dice 1d4} hours. When a creature enters the cloud for the first time on a turn or starts its turn there, the creature makes a {@dc 14} Constitution saving throw, taking 11 ({@damage 2d10}) Poison damage and contracting {@disease Lichen Plague|FRAiF} on a failed save (see \"{@book Magical Contagions|FRAiF|3|Magical Contagions}\" later in this chapter). On a successful save, the creature takes half as much damage only."
 			]
 		},
 		{
@@ -1668,6 +1677,7 @@
 			"name": "Burning",
 			"source": "XPHB",
 			"page": 362,
+			"srd52": true,
 			"entries": [
 				"A burning creature or object takes {@damage 1d4} Fire damage at the start of each of its turns. As an action, you can extinguish fire on yourself by giving yourself the {@condition Prone|XPHB} condition and rolling on the ground. The fire also goes out if it is doused, submerged, or suffocated."
 			]
@@ -1695,6 +1705,7 @@
 			"name": "Deep Water",
 			"source": "XDMG",
 			"page": 68,
+			"srd52": true,
 			"trapHazType": "ENV",
 			"entries": [
 				"Swimming through deep water (more than 100 feet deep) presents additional challenges because of the water's pressure and cold temperature. After each hour of swimming in deep water, a creature that lacks a Swim Speed must succeed on a {@dc 10} Constitution saving throw or gain 1 {@condition Exhaustion|XPHB} level."
@@ -1704,6 +1715,7 @@
 			"name": "Dehydration",
 			"source": "XPHB",
 			"page": 365,
+			"srd52": true,
 			"entries": [
 				"A creature requires an amount of water per day based on its size, as shown in the Water Needs per Day table. A creature that drinks less than half the required water for a day gains 1 {@condition Exhaustion|XPHB} level at the day's end. {@condition Exhaustion|XPHB} caused by dehydration can't be removed until the creature drinks the full amount of water required for a day.",
 				{
@@ -1869,6 +1881,64 @@
 			]
 		},
 		{
+			"name": "Earth Motes",
+			"source": "EGW",
+			"page": 149,
+			"trapHazType": "ENV",
+			"entries": [
+				"These chunks of broken land hover and swirl in the air, held aloft by unknown arcane forces. A typical earth mote is {@dice 1d6 × 10} feet in diameter and hovers {@dice 2d10 × 10} feet above the ground. Earth motes are capable of supporting the weight of modest structures as well as creatures."
+			]
+		},
+		{
+			"name": "Electric Wind",
+			"source": "EGW",
+			"page": 150,
+			"trapHazType": "WTH",
+			"entries": [
+				"The galvanic breezes of this supernatural gale are latticed with currents of lightning, which stab through the air with primordial fury.",
+				{
+					"type": "list",
+					"items": [
+						"Ranged attacks through electric wind are made with disadvantage.",
+						"Any creature that starts its turn surrounded by electric wind has a {@chance 5} chance of being struck by lightning. A creature struck by lightning must make a {@dc 15} Dexterity saving throw, taking {@damage 4d6} lightning damage on a failed save, or half as much damage on a successful one."
+					]
+				}
+			]
+		},
+		{
+			"name": "Ember Thicket",
+			"source": "EGW",
+			"page": 150,
+			"trapHazType": "ENV",
+			"entries": [
+				"A dense grove of blackened, leafless trees perpetually smolders with the dull glow of arcane embers. This copse is choked by a cloud of ash and cinders, which constantly rain on the cremated forest floor.",
+				{
+					"type": "list",
+					"items": [
+						"An ember thicket is a {@quickref Vision and Light||2||lightly obscured} area.",
+						"Creatures gain one level of {@condition exhaustion} for every 10 minutes spent inside an ember thicket without suitable protection from the heat, smoke, and ash.",
+						"Ranged attacks through an ember thicket are made with disadvantage. A ranged weapon attack made through or within an ember thicket automatically misses a target beyond the weapon's normal range."
+					]
+				}
+			]
+		},
+		{
+			"name": "Etheric Rift",
+			"source": "EGW",
+			"page": 150,
+			"trapHazType": "ENV",
+			"entries": [
+				"An etheric rift appears as a light fog or spectral haze. The interplanar tracts of this anomaly reach in and out of the Border Ethereal. Unseen trenches and invisible paths overlap throughout its vaporous expanse.",
+				{
+					"type": "list",
+					"items": [
+						"An etheric rift is a {@quickref Vision and Light||2||lightly obscured} area.",
+						"Any creature that enters an etheric rift or starts its turn there has a {@chance 33} chance of gaining the effect of the {@spell etherealness} spell until the end of its next turn."
+					]
+				}
+			]
+		},
+		{
 			"name": "Extreme Cold",
 			"source": "DMG",
 			"page": 110,
@@ -1884,6 +1954,7 @@
 			"name": "Extreme Cold",
 			"source": "XDMG",
 			"page": 68,
+			"srd52": true,
 			"trapHazType": "ENV",
 			"entries": [
 				"When the temperature is 0 degrees Fahrenheit or lower, a creature exposed to the extreme cold must succeed on a {@dc 10} Constitution saving throw at the end of each hour or gain 1 {@condition Exhaustion|XPHB} level. Creatures that have {@variantrule Resistance|XPHB} or {@variantrule Immunity|XPHB} to Cold damage automatically succeed on the save."
@@ -1906,6 +1977,7 @@
 			"name": "Extreme Heat",
 			"source": "XDMG",
 			"page": 68,
+			"srd52": true,
 			"trapHazType": "ENV",
 			"entries": [
 				"When the temperature is 100 degrees Fahrenheit or higher, a creature exposed to the extreme heat and without access to drinkable water must succeed on a Constitution saving throw at the end of each hour or gain 1 {@condition Exhaustion|XPHB} level. The DC is 5 for the first hour and increases by 1 for each additional hour. Creatures wearing Medium or Heavy armor have {@variantrule Disadvantage|XPHB} on the save. Creatures that have {@variantrule Resistance|XPHB} or {@variantrule Immunity|XPHB} to Fire damage automatically succeed on the save."
@@ -1915,6 +1987,7 @@
 			"name": "Falling",
 			"source": "XPHB",
 			"page": 367,
+			"srd52": true,
 			"entries": [
 				"A creature that falls takes {@damage 1d6} Bludgeoning damage at the end of the fall for every 10 feet it fell, to a maximum of {@damage 20d6}. When the creature lands, it has the {@condition Prone|XPHB} condition unless it avoids taking any damage from the fall.",
 				"A creature that falls into water or another liquid can use its {@variantrule Reaction|XPHB} to make a {@dc 15} Strength ({@skill Athletics|XPHB}) or Dexterity ({@skill Acrobatics|XPHB}) check to hit the surface head or feet first. On a successful check, any damage resulting from the fall is halved."
@@ -1924,6 +1997,9 @@
 			"name": "Falling into Water",
 			"source": "TCE",
 			"page": 170,
+			"reprintedAs": [
+				"Falling|XPHB"
+			],
 			"trapHazType": "WLD",
 			"entries": [
 				"A creature that falls into water or another liquid can use its reaction to make a {@dc 15} Strength ({@skill Athletics}) or Dexterity ({@skill Acrobatics}) check to hit the surface head or feet first. On a successful check, any damage resulting from the fall is halved."
@@ -1996,6 +2072,7 @@
 			"name": "Frigid Water",
 			"source": "XDMG",
 			"page": 68,
+			"srd52": true,
 			"trapHazType": "ENV",
 			"entries": [
 				"A creature can be immersed in frigid water for a number of minutes equal to its Constitution score before suffering any ill effects. Each additional minute spent in frigid water requires the creature to succeed on a {@dc 10} Constitution saving throw or gain 1 {@condition Exhaustion|XPHB} level. Creatures with {@variantrule Resistance|XPHB} or {@variantrule Immunity|XPHB} to Cold damage automatically succeed on the save, as do creatures that are naturally adapted to living in ice-cold water."
@@ -2016,9 +2093,27 @@
 			],
 			"entries": [
 				"Intense fields of unstable magic can produce a sparkling, multicolored moss called glittermoss. A patch of glittermoss covers a 5-foot square. Glittermoss is often found near {@book communal telepathy zones|NF|2|Communal Telepathy Zone} (see earlier in this chapter), though it doesn't grow in direct sunlight.",
-				"A creature that comes into contact with glittermoss makes a {@dc 12} Constitution saving throw. On a failed save, the creature takes 11 ({@dice 2d10}) Radiant damage and has the {@condition Blinded|XPHB} condition. While Blinded in this way, the creature is illuminated by glittering spores and sheds {@variantrule Bright Light|XPHB} in a 10-foot radius and {@variantrule Dim Light|XPHB} for an additional 10 feet. The creature repeats the save at the end of each of its turns, ending the effect on itself on a success.",
-				"Glittermoss spores can leap to nearby creatures. While an affected creature is Blinded due to glittermoss, any creature that starts its turn within the Bright Light the affected creature sheds makes a {@dc 12} Constitution saving throw, taking 11 ({@dice 2d10}) Radiant damage on a failed save or half as much damage on a successful one.",
+				"A creature that comes into contact with glittermoss makes a {@dc 12} Constitution saving throw. On a failed save, the creature takes 11 ({@damage 2d10}) Radiant damage and has the {@condition Blinded|XPHB} condition. While Blinded in this way, the creature is illuminated by glittering spores and sheds {@variantrule Bright Light|XPHB} in a 10-foot radius and {@variantrule Dim Light|XPHB} for an additional 10 feet. The creature repeats the save at the end of each of its turns, ending the effect on itself on a success.",
+				"Glittermoss spores can leap to nearby creatures. While an affected creature is Blinded due to glittermoss, any creature that starts its turn within the Bright Light the affected creature sheds makes a {@dc 12} Constitution saving throw, taking 11 ({@damage 2d10}) Radiant damage on a failed save or half as much damage on a successful one.",
 				"Any amount of Fire or Necrotic damage destroys a patch of glittermoss instantly."
+			]
+		},
+		{
+			"name": "Gravity Funnel",
+			"source": "EGW",
+			"page": 150,
+			"trapHazType": "ENV",
+			"entries": [
+				"This cylindrical area is affected by the unseen pull of heightened gravitational force. A typical gravity funnel is {@dice 3d10 × 10} feet tall and {@dice 5d10 × 10} feet in diameter.",
+				{
+					"type": "list",
+					"items": [
+						"Strength checks made within a gravity funnel have disadvantage.",
+						"A ranged weapon attack made through or within a gravity funnel automatically misses a target beyond the weapon's normal range.",
+						"Creatures and objects that are fully contained within a gravity funnel have resistance against force damage.",
+						"The gravity funnel counts as {@quickref difficult terrain||3}."
+					]
+				}
 			]
 		},
 		{
@@ -2078,6 +2173,7 @@
 			"name": "Heavy Precipitation",
 			"source": "XDMG",
 			"page": 69,
+			"srd52": true,
 			"trapHazType": "ENV",
 			"entries": [
 				"Everything within an area of heavy rain or heavy snowfall is {@variantrule Lightly Obscured|XPHB}, and creatures in the area have {@variantrule Disadvantage|XPHB} on all Wisdom ({@skill Perception|XPHB}) checks. Heavy rain also extinguishes open flames."
@@ -2100,6 +2196,7 @@
 			"name": "High Altitude",
 			"source": "XDMG",
 			"page": 69,
+			"srd52": true,
 			"trapHazType": "ENV",
 			"entries": [
 				"Traveling at altitudes of 10,000 feet or higher above sea level is taxing for most creatures because of the reduced amount of oxygen in the air. Each hour such a creature spends traveling at high altitude counts as 2 hours for the purpose of determining how long that creature can travel (see \"{@book Travel Pace|XDMG|1|Travel Pace}\" in {@book chapter 2|XDMG|1}).",
@@ -2329,7 +2426,7 @@
 			],
 			"entries": [
 				"Whenever an area of the Calim Desert is subjected to both strong wind and heavy precipitation (see the {@book Calim Desert Weather table|FRAiF|4|Calim Desert Weather}), there is a 25 percent chance a lightning storm forms. Creatures within the area of such a storm are at risk of lightning strikes.",
-				"A lightning storm lasts for 1 hour. After each minute spent in the area of a lightning storm, a creature rolls {@b {@dice 1d6}}; on a 1, lightning streaks down to strike the creature. The creature makes a {@dc 15} Dexterity saving throw, taking {@b {@dice 3d10}} Lightning damage on a failed save or half as much damage on a successful one.",
+				"A lightning storm lasts for 1 hour. After each minute spent in the area of a lightning storm, a creature rolls {@b {@dice 1d6}}; on a 1, lightning streaks down to strike the creature. The creature makes a {@dc 15} Dexterity saving throw, taking {@b {@damage 3d10}} Lightning damage on a failed save or half as much damage on a successful one.",
 				{
 					"type": "entries",
 					"name": "Detecting Lightning Storms",
@@ -2361,6 +2458,7 @@
 			"name": "Malnutrition",
 			"source": "XPHB",
 			"page": 371,
+			"srd52": true,
 			"entries": [
 				"A creature needs an amount of food per day based on its size, as shown in the Food Needs per Day table. A creature that eats but consumes less than half the required food for a day must succeed on a {@dc 10} Constitution {@variantrule Saving Throw|XPHB|saving throw} or gain 1 {@condition Exhaustion|XPHB} level at the day's end. A creature that eats nothing for 5 days automatically gains 1 {@condition Exhaustion|XPHB} level at the end of the fifth day as well as an additional level at the end of each subsequent day without food.",
 				"{@condition Exhaustion|XPHB} caused by malnutrition can't be removed until the creature eats the full amount of food required for a day.",
@@ -2532,6 +2630,23 @@
 			]
 		},
 		{
+			"name": "Psychic Miasma",
+			"source": "EGW",
+			"page": 151,
+			"trapHazType": "ENV",
+			"entries": [
+				"A virtually imperceptible mist of preternatural psychotropic vapor hovers above the ground. This coruscating miasma corrupts the sanity of the living and fortifies the grim resolve of the undead.",
+				{
+					"type": "list",
+					"items": [
+						"Creatures that are fully immersed in psychic miasma have vulnerability to psychic damage.",
+						"Any creature that enters a cloud of psychic miasma or starts its turn there must succeed on a {@dc 15} Constitution saving throw or become afflicted with a random form of long-term madness (see \"{@book Madness|DMG|8|Madness}\" in chapter 8 of the {@book Dungeon Master's Guide|DMG}). Creatures that can't be {@condition poisoned} automatically succeed on the saving throw. A creature that successfully saves against the psychic miasma is immune to its effects for 24 hours.",
+						"An undead creature that spends at least 1 minute in a cloud of psychic miasma gains advantage on ability checks and saving throws for 24 hours."
+					]
+				}
+			]
+		},
+		{
 			"name": "Quicksand",
 			"source": "DMG",
 			"page": 110,
@@ -2659,7 +2774,7 @@
 					"type": "entries",
 					"name": "At Higher Levels",
 					"entries": [
-						"You can scale this hazard for higher levels by increasing the Bludgeoning damage as follows: 22 ({@dice 4d10}) at levels 5\u201310, 55 ({@dice 10d10}) at levels 11\u201316, and 99 ({@dice 18d10}) at levels 17\u201320."
+						"You can scale this hazard for higher levels by increasing the Bludgeoning damage as follows: 22 ({@damage 4d10}) at levels 5\u201310, 55 ({@damage 10d10}) at levels 11\u201316, and 99 ({@damage 18d10}) at levels 17\u201320."
 					]
 				}
 			]
@@ -2718,6 +2833,22 @@
 			]
 		},
 		{
+			"name": "Rust Rain",
+			"source": "EGW",
+			"page": 151,
+			"trapHazType": "WTH",
+			"entries": [
+				"This crimson precipitation is corrosive to ferrous metal and caustic to creatures.",
+				{
+					"type": "list",
+					"items": [
+						"Rust rain corrodes nonmagical, ferrous metal objects. If the object isn't being worn or carried, the rain destroys 1 cubic foot of it for every 10 minutes of exposure. An object must be covered to avoid exposure. If the exposed object is nonmagical metal armor, a nonmagical metal weapon, or a nonmagical metal shield being worn or carried, it takes a permanent and cumulative \u22121 penalty to damage rolls or the AC it offers for every 10 minutes of exposure to rust rain. A weapon that drops to a \u22125 penalty, armor reduced to an AC of 10, or a shield that drops to a +0 bonus is destroyed.",
+						"Any creature that starts it turn in rust rain and isn't covered by an umbrella, a shield, or some other form of rain protection takes {@damage 1d4} acid damage."
+					]
+				}
+			]
+		},
+		{
 			"name": "Shadowbark",
 			"source": "NF",
 			"rating": [
@@ -2728,7 +2859,7 @@
 			],
 			"entries": [
 				"Netheril's flying cities cast huge shadows over the ground below, sometimes cutting off trees from the sunlight for weeks or months. Due to the magic emanating from these flying cities, the trees below sometimes generate shadowbark: a purple-and-black, moss-like coating that looks like a splotchy bruise.",
-				"Any creature that enters a space within 5 feet of shadowbark for the first time on a turn or starts its turn there makes a {@dc 12} Constitution saving throw. On a failed save, the creature takes 5 ({@dice 1d10}) Necrotic damage and can't regain Hit Points until the start of its next turn. On a successful save, the creature takes half as much damage only.",
+				"Any creature that enters a space within 5 feet of shadowbark for the first time on a turn or starts its turn there makes a {@dc 12} Constitution saving throw. On a failed save, the creature takes 5 ({@damage 1d10}) Necrotic damage and can't regain Hit Points until the start of its next turn. On a successful save, the creature takes half as much damage only.",
 				"Any amount of Radiant damage destroys shadowbark instantly.",
 				{
 					"type": "entries",
@@ -2750,17 +2881,17 @@
 							"rows": [
 								[
 									"5\u201310",
-									"11 ({@dice 2d10})",
+									"11 ({@damage 2d10})",
 									"14"
 								],
 								[
 									"11\u201316",
-									"22 ({@dice 4d10})",
+									"22 ({@damage 4d10})",
 									"16"
 								],
 								[
 									"17\u201320",
-									"55 ({@dice 10d10})",
+									"55 ({@damage 10d10})",
 									"18"
 								]
 							]
@@ -2833,6 +2964,7 @@
 			"name": "Slippery Ice",
 			"source": "XDMG",
 			"page": 69,
+			"srd52": true,
 			"trapHazType": "ENV",
 			"entries": [
 				"Slippery ice is {@variantrule Difficult Terrain|XPHB}. A creature that moves onto slippery ice for the first time on a turn or starts its turn there must succeed on a {@dc 10} Dexterity saving throw or have the {@condition Prone|XPHB} condition."
@@ -2855,6 +2987,7 @@
 			"name": "Strong Wind",
 			"source": "XDMG",
 			"page": 69,
+			"srd52": true,
 			"trapHazType": "ENV",
 			"entries": [
 				"Strong wind imposes {@variantrule Disadvantage|XPHB} on ranged attack rolls with weapons. It also extinguishes open flames and disperses fog. A flying creature in a strong wind must land at the end of its turn or fall.",
@@ -2865,6 +2998,7 @@
 			"name": "Suffocation",
 			"source": "XPHB",
 			"page": 376,
+			"srd52": true,
 			"entries": [
 				"A creature can hold its breath for a number of minutes equal to 1 plus its Constitution modifier (minimum of 30 seconds) before suffocation begins. When a creature runs out of breath or is choking, it gains 1 {@condition Exhaustion|XPHB} level at the end of each of its turns. When a creature can breathe again, it removes all levels of {@condition Exhaustion|XPHB} it gained from suffocating."
 			]
@@ -2885,6 +3019,7 @@
 			"name": "Thin Ice",
 			"source": "XDMG",
 			"page": 69,
+			"srd52": true,
 			"trapHazType": "ENV",
 			"entries": [
 				"Thin ice has a weight tolerance of {@dice 3d10 × 10} pounds per 10-foot-square area. Whenever the total weight on an area of thin ice exceeds its tolerance, the ice in that area breaks. All creatures on broken ice fall through. Below the ice is {@hazard frigid water|XDMG}."
@@ -2899,6 +3034,22 @@
 				"These bone-chilling blizzards drive a wall of wind and snow like a living glacier. The storm projects {@hazard extreme cold} (see the {@book Dungeon Master's Guide|DMG}). Due to the howling wind and dense blue-white ice particles, the area in the storm is heavily obscured, and ranged attack rolls and Wisdom ({@skill Perception}) checks made within it have disadvantage.",
 				"Any creature exposed to the storm at the start of its turn takes {@damage 2d6} cold damage and can't regain hit points until it spends at least 1 hour in a warm environment. A creature that dies in the storm freezes solid. Creatures that are immune to cold damage are immune to the effects of the storm and can see normally within it.",
 				"Thrym's howl typically lasts {@dice 2d10} hours."
+			]
+		},
+		{
+			"name": "Toxic Fungus Colony",
+			"source": "EGW",
+			"page": 151,
+			"trapHazType": "ENV",
+			"entries": [
+				"A virulent expanse of malignant fungal growths blankets the landscape and fills the air above it with spores.",
+				{
+					"type": "list",
+					"items": [
+						"Any non-plant creature within 20 feet of a toxic fungus colony is {@condition poisoned}. A creature {@condition poisoned} by the colony for 1 hour has a {@chance 20} chance of gaining a random form of short-term madness (see \"{@book Madness|DMG|8|Madness}\" in chapter 8 of the {@book Dungeon Master's Guide|DMG}).",
+						"A toxic fungus colony can be bioluminescent. A bioluminescent colony sheds {@quickref Vision and Light||2||dim light} within its area and for an additional 20 feet beyond its outer edges."
+					]
+				}
 			]
 		},
 		{
@@ -3019,19 +3170,19 @@
 					"rows": [
 						[
 							"1\u20132",
-							"The wildstorm becomes momentarily incendiary around the creature. The creature takes 2 ({@dice 1d4}) Fire damage and is burning."
+							"The wildstorm becomes momentarily incendiary around the creature. The creature takes 2 ({@damage 1d4}) Fire damage and is burning."
 						],
 						[
 							"3\u20136",
-							"Shards of magical force whirl past the creature. The creature makes a {@dc 12} Dexterity saving throw, taking 5 ({@dice 1d10}) Force damage on a failed save or half as much damage on a successful one."
+							"Shards of magical force whirl past the creature. The creature makes a {@dc 12} Dexterity saving throw, taking 5 ({@damage 1d10}) Force damage on a failed save or half as much damage on a successful one."
 						],
 						[
 							"7\u201310",
-							"The wildstorm momentarily manifests toxic vapors around the creature. The creature must succeed on a {@dc 12} Constitution saving throw or have the {@condition Poisoned|XPHB} condition for 1 minute. If the creature already has the Poisoned condition, it instead takes 5 ({@dice 2d4}) Poison damage."
+							"The wildstorm momentarily manifests toxic vapors around the creature. The creature must succeed on a {@dc 12} Constitution saving throw or have the {@condition Poisoned|XPHB} condition for 1 minute. If the creature already has the Poisoned condition, it instead takes 5 ({@damage 2d4}) Poison damage."
 						],
 						[
 							"11\u201313",
-							"The creature hears mental cacophony and makes a {@dc 12} Wisdom saving throw, taking 5 ({@dice 1d10}) Psychic damage on a failed save or half as much damage on a successful one. Whether the saving throw succeeds or fails, the creature gains telepathy with a range of 10 feet for 1 minute."
+							"The creature hears mental cacophony and makes a {@dc 12} Wisdom saving throw, taking 5 ({@damage 1d10}) Psychic damage on a failed save or half as much damage on a successful one. Whether the saving throw succeeds or fails, the creature gains telepathy with a range of 10 feet for 1 minute."
 						],
 						[
 							"14\u201317",
@@ -3064,7 +3215,7 @@
 			],
 			"entries": [
 				"Some Low Netherese witches can enchant a patch of thorns to lash out at passersby. These enchanted thorn patches, called witchbriars, are often meant to ensnare Netherese mages who mistreat their workers, though witchbriars don't discriminate once they're animated. Witchbriars resemble an ordinary patch or hedge of thorny vines.",
-				"A patch of witchbriars occupies a 10-foot {@variantrule Cube [Area of Effect]|XPHB|Cube} and has AC 11; HP 30; and Immunity to Bludgeoning, Piercing, and Psychic damage. When a creature casts a spell using a spell slot within 10 feet of witchbriars, thorny vines reach out to entwine the creature. The creature must succeed on a {@dc 14} Strength saving throw or have the {@condition Grappled|XPHB} condition (escape {@dc 14}). Druids automatically succeed on this saving throw. While the target is Grappled in this way, it has the {@condition Restrained|XPHB} condition and takes 11 ({@dice 2d10}) Piercing damage at the start of each of its turns. One patch of witchbriars can grapple up to four creatures at a time.",
+				"A patch of witchbriars occupies a 10-foot {@variantrule Cube [Area of Effect]|XPHB|Cube} and has AC 11; HP 30; and Immunity to Bludgeoning, Piercing, and Psychic damage. When a creature casts a spell using a spell slot within 10 feet of witchbriars, thorny vines reach out to entwine the creature. The creature must succeed on a {@dc 14} Strength saving throw or have the {@condition Grappled|XPHB} condition (escape {@dc 14}). Druids automatically succeed on this saving throw. While the target is Grappled in this way, it has the {@condition Restrained|XPHB} condition and takes 11 ({@damage 2d10}) Piercing damage at the start of each of its turns. One patch of witchbriars can grapple up to four creatures at a time.",
 				"Any amount of Fire damage destroys a patch of witchbriars instantly."
 			],
 			"hasFluffImages": true

@@ -52,6 +52,21 @@ export class ConverterBase {
 			.replace(/, *\n */g, ", ")
 			.replace(/ *\n, */g, ", ");
 
+		// Handle bad OCR'ing of dice
+		iptClean = iptClean
+			.replace(/\nl\/(?<unit>day)[.:]\s*/g, (...m) => `\n1/${m.last().unit}: `)
+			.replace(/\b(?<num>[liI!]|\d+)?d[1liI!]\s*[oO0]\b/g, (...m) => `${m.last().num ? isNaN(m.last().num) ? "1" : m.last().num : ""}d10`)
+			.replace(/\b(?<num>[liI!]|\d+)?d[1liI!]\s*2\b/g, (...m) => `${m.last().num ? isNaN(m.last().num) ? "1" : m.last().num : ""}d12`)
+			.replace(/\b[liI!1]\s*d\s*(?<faces>\d+)\b/g, (...m) => `1d${m.last().faces}`)
+			.replace(/\b(?<num>\d+)\s*d\s*(?<faces>\d+)\b/g, (...m) => `${m.last().num}d${m.last().faces}`)
+		;
+
+		// Handle misc OCR issues
+		iptClean = iptClean
+			.replace(/\bI nt\b/g, "Int")
+			.replace(/\(-[lI!]\)/g, "(-1)")
+		;
+
 		iptClean = iptClean
 			// Connect together e.g. `5d10\nForce damage`
 			.replace(new RegExp(`(?<start>\\d+) *\\n(?<end>${ConverterConst.STR_RE_DAMAGE_TYPE} damage)\\b`, "gi"), (...m) => `${m.last().start} ${m.last().end}`)

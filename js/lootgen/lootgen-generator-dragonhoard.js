@@ -22,13 +22,13 @@ export class LootGenGeneratorDragonHoard extends LootGenGeneratorBase {
 
 		const cbIsPreferRandomMagicItems = ComponentUiUtil.getCbBool(this, "dh_isPreferRandomMagicItems");
 
-		const btnRoll = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">Roll Loot</button>`
-			.onn("click", () => this._dh_pDoHandleClickRollLoot());
+		const btnRoll = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">Roll Loot</button>`
+			.vee.onn("click", () => this._dh_pDoHandleClickRollLoot());
 
-		const btnClear = ee`<button class="ve-btn ve-btn-danger ve-btn-xs">Clear Output</button>`
-			.onn("click", () => this._outputManager.doClearOutput());
+		const btnClear = veT`<button class="ve-btn ve-btn-danger ve-btn-xs">Clear Output</button>`
+			.vee.onn("click", () => this._outputManager.doClearOutput());
 
-		ee`<div class="ve-flex-col ve-py-2 ve-px-3">
+		veT`<div class="ve-flex-col ve-py-2 ve-px-3">
 			<label class="ve-split-v-center ve-mb-2">
 				<div class="ve-mr-2 ve-w-66 ve-no-shrink">Dragon Age</div>
 				${selDragonAge}
@@ -47,7 +47,7 @@ export class LootGenGeneratorDragonHoard extends LootGenGeneratorBase {
 			<hr class="ve-hr-3">
 
 			<div class="ve-small ve-italic">${this._rendererWrapped.er(`Based on the tables and rules in {@book Fizban's Treasury of Dragons|FTD|4|Creating a Hoard}`)}, pages 72.</div>
-		</div>`.appendTo(tabMeta.wrpTab);
+		</div>`.vee.appendTo(tabMeta.wrpTab);
 	}
 
 	async _dh_pDoHandleClickRollLoot () {

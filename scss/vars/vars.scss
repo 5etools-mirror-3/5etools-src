@@ -108,6 +108,7 @@ $time-2-frames: 34ms;
 $time-3-frames: 51ms;
 $time-4-frames: 67ms;
 $time-5-frames: 84ms;
+$time-6-frames: 100ms;
 /* endregion */
 
 // region Widths
@@ -169,8 +170,17 @@ $font-line-height: 1.42857143;
 		@content;
 	}
 
-	@at-root html.is-faux-print #{&} {
+	// Use same specificity as real print rules
+	@at-root :where(html.is-faux-print) #{&} {
 		@content;
+	}
+}
+
+@mixin mix-is-not-print {
+	@media not print {
+		@at-root :where(html:not(.is-faux-print)) #{&} {
+			@content;
+		}
 	}
 }
 

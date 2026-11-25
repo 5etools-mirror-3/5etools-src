@@ -139,7 +139,7 @@ export class FilterSnapshotUi extends BaseComponent {
 			isMinHeight0: true,
 		});
 
-		eleModalInner.appends(`
+		eleModalInner.vee.appends(`
 			<p>Customize how your filters default upon hitting &quot;Reset&quot;.</p>
 			<p>Save your current filter(s) by taking a <b>Snapshot</b>.</p>
 			<p>Use your snapshots to create a <b>Snapshot Deck</b>.</p>

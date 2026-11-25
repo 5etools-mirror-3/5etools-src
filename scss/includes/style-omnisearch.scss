@@ -1,5 +1,5 @@
 @use "../vars/vars";
-@use "../vars/vars-night";
+@use "../vars/vars--night";
 
 @layer vetools {
 	.omni__ {
@@ -194,20 +194,20 @@
 			&wrp-input {
 				&--scrolled {
 					.omni__input {
-						border-color: vars-night.$rgb-border-grey--night;
-						background-color: vars-night.$rgb-bg--night;
+						border-color: vars--night.$rgb-border-grey--night;
+						background-color: vars--night.$rgb-bg--night;
 						color: transparent;
 
 						&:focus,
 						&:focus-within,
 						&:active,
 						&:hover {
-							color: vars-night.$rgb-font--night;
+							color: vars--night.$rgb-font--night;
 						}
 					}
 
 					.omni__submit {
-						border-color: vars-night.$rgb-border-grey--night;
+						border-color: vars--night.$rgb-border-grey--night;
 					}
 				}
 			}
@@ -223,7 +223,7 @@
 			}
 
 			&submit {
-				border-top-color: vars-night.$rgb-border-grey--night;
+				border-top-color: vars--night.$rgb-border-grey--night;
 
 				@media screen and (width > #{vars.$width-screen-md}) {
 					border-top-color: transparent;
@@ -232,8 +232,8 @@
 				&.btn-default:active:focus,
 				&.btn-default:active:hover,
 				&.btn-default {
-					background-color: vars-night.$rgb-bg--night;
-					color: vars-night.$rgb-font--night;
+					background-color: vars--night.$rgb-bg--night;
+					color: vars--night.$rgb-font--night;
 				}
 			}
 		}

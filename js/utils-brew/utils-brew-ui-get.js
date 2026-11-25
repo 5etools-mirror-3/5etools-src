@@ -1,4 +1,5 @@
 import {EVNT_VALCHANGE} from "../filter/filter-constants.js";
+import {BrewSummaryUi} from "./utils-brew-ui-summary.js";
 
 export class GetBrewUi {
 	static _RenderState = class {
@@ -41,20 +42,20 @@ export class GetBrewUi {
 					}),
 			);
 
-			const btnPage = e_({
+			const btnPage = veE({
 				tag: "button",
 				clazz: `ve-btn ve-btn-default ve-w-100 ve-btn-xs`,
-				text: `Select for Page...`,
+				txt: `Select for Page...`,
 				click: evt => ContextUtil.pOpenMenu(evt, menu),
 			});
 
-			e_({
+			veE({
 				tag: "div",
 				clazz: `ve-btn-group ve-mr-2 ve-w-100 ve-flex-v-center`,
 				children: [
 					btnPage,
 				],
-			}).prependTo(wrpStateBtnsOuter);
+			}).vee.prependTo(wrpStateBtnsOuter);
 		}
 	};
 
@@ -81,8 +82,8 @@ export class GetBrewUi {
 			});
 			this._miscFilter = new Filter({
 				header: "Miscellaneous",
-				items: ["Partnered", "Sample"],
-				deselFn: it => it === "Sample",
+				items: ["Loaded", "Partnered", "Sample"],
+				deselFn: it => ["Loaded", "Sample"].includes(it),
 			});
 		}
 
@@ -91,6 +92,7 @@ export class GetBrewUi {
 			if (brewInfo._brewAuthor && brewInfo._brewAuthor.toLowerCase().startsWith("sample -")) brewInfo._fMisc.push("Sample");
 			if (brewInfo.sources?.some(ab => ab.startsWith(Parser.SRC_UA_ONE_PREFIX))) brewInfo._fMisc.push("One D&D");
 			if (brewInfo._brewIsPartnered) brewInfo._fMisc.push("Partnered");
+			if (brewInfo._brewIsLoaded) brewInfo._fMisc.push("Loaded");
 		}
 
 		addToFilters (it, isExcluded) {
@@ -119,114 +121,18 @@ export class GetBrewUi {
 	};
 
 	static _ListUiPreviewButtonHandlerBrew = class extends ListUiPreviewButtonHandlerBase {
-		static _BLOCKLIST_NAMES = {
-			"classFeature": new Set(["Ability Score Improvement"]),
-		};
-
 		_doAppendPrimaryView ({entity, elePreviewWrpInner}) {
-			this._pGetBrewSummary({entity})
-				.then(brewSummary => {
-					const propMetas = Object.entries(brewSummary)
-						.map(([prop, metas]) => [Parser.getPropDisplayName(prop), {prop, metas}])
-						.sort(([propNameA], [propNameB]) => SortUtil.ascSortLower(propNameA, propNameB))
-						.map(([propName, {prop, metas}], ix, arr) => {
-							const metasFilt = metas
-								.filter(meta => !this.constructor._BLOCKLIST_NAMES[prop]?.has(meta.name))
-								.filter(
-									function (meta) { return this.has(meta.name) ? false : this.add(meta.name); },
-									new Set(),
-								);
+			DataUtil.loadRawJSON(entity.urlDownload)
+				.then(brew => {
+					BrewSummaryUi.getRenderedBrewSummary({
+						brewSummary: BrewSummaryUi.getBrewSummary({brew}),
+						isCollapsible: true,
+					})
+						.vee.appendTo(elePreviewWrpInner);
 
-							const dispToggleExpand = ee`<span class="ve-mr-2" title="SHIFT-Click to Toggle All">[+]</span>`;
-
-							const dispHeader = ee`<div class="ve-w-100 ve-py-1 ve-bb-1p-trans ve-flex-v-center">
-								${dispToggleExpand}
-								<b class="ve-mr-1">${propName.qq()}</b>
-								<span class="ve-muted" title="Note that duplicate/unwanted names are not displayed in the list below.">(${metas.length})</span>
-							</div>`
-								.onn("click", evt => {
-									evt.stopPropagation();
-									evt.preventDefault();
-
-									const isExpand = doToggle();
-
-									if (!evt.shiftKey) return;
-
-									propMetas
-										.filter(propMeta => propMeta !== out)
-										.forEach(propMeta => propMeta.doToggle({isExpand}));
-								});
-
-							const htmlLis = metasFilt
-								.map(meta => {
-									return `<div class="ve-w-100 ve-pr-1p ve-py-1p ve-flex ve-relative">
-										<span class="ve-no-shrink">${meta.name.qq()}</span>${meta.page ? `<span class="ve-w-100 ve-min-w-0 ve-relative ve-top-n3p ve-mx-1 ve-bb-1p manbrew-get-preview__sep-page"></span><span class="ve-no-shrink ve-muted ve-small-caps" title="Page ${meta.page}">p${meta.page}</span>` : ""}
-									</div>`;
-								})
-								.join("");
-
-							const dispBody = ee`<div class="ve-mb-0 ve-columns-3 ve-hidden ve-pl-4 ve-mt-1">
-								${htmlLis}
-							</div>`;
-
-							const doToggle = ({isExpand = null} = {}) => {
-								isExpand ??= dispToggleExpand.txt() === "[+]";
-								dispToggleExpand.txt(isExpand ? `[\u2212]` : "[+]");
-
-								dispBody.toggleVe(isExpand);
-
-								return isExpand;
-							};
-							if (arr.length === 1) doToggle();
-
-							const out = {
-								wrp: ee`<div class="ve-flex-col ve-w-100">
-									${dispHeader}
-									${dispBody}
-								</div>`,
-								doToggle,
-							};
-
-							return out;
-						});
-
-					ee`<div class="ve-flex-col ve-w-100">${propMetas.map(meta => meta.wrp)}</div>`
-						.appendTo(elePreviewWrpInner);
+					veT`<div class="ve-flex ve-w-100 ve-mt-2"><a href="${entity.urlDownload}" rel="noopener noreferrer" target="_blank">View Raw<a/></div>`
+						.vee.appendTo(elePreviewWrpInner);
 				});
-		}
-
-		async _pGetBrewSummary ({entity}) {
-			const jsonRaw = await DataUtil.loadRawJSON(entity.urlDownload);
-
-			return Object.fromEntries(
-				Object.entries(jsonRaw)
-					.filter(([k, arr]) => {
-						if (k.startsWith("_")) return false;
-
-						if (k.startsWith("foundry") || k.endsWith("Fluff")) return false;
-						if (["adventureData", "bookData"].includes(k)) return false;
-
-						if (arr == null || !(arr instanceof Array)) return false;
-
-						return true;
-					})
-					.map(([prop, arr]) => {
-						return [
-							prop,
-							arr
-								.map(ent => {
-									if (!ent?.name) return null;
-									return {
-										name: ent.name,
-										page: SourceUtil.getEntityPage(ent),
-									};
-								})
-								.filter(Boolean)
-								.sort((a, b) => SortUtil.ascSortLower(a.name, b.name) || SortUtil.ascSort(a.page, b.page)),
-						];
-					})
-					.filter(([, metas]) => metas.length),
-			);
 		}
 	};
 
@@ -253,8 +159,8 @@ export class GetBrewUi {
 	}
 
 	_sortUrlList (a, b, o) {
-		a = this._dataList[a.ix];
-		b = this._dataList[b.ix];
+		a = this._dataList[a.getId()];
+		b = this._dataList[b.getId()];
 
 		switch (o.sortBy) {
 			case "name": return this.constructor._sortUrlList_byName(a, b);
@@ -263,6 +169,7 @@ export class GetBrewUi {
 			case "added": return this.constructor._sortUrlList_orFallback(a, b, SortUtil.ascSort, "_brewAdded");
 			case "modified": return this.constructor._sortUrlList_orFallback(a, b, SortUtil.ascSort, "_brewModified");
 			case "published": return this.constructor._sortUrlList_orFallback(a, b, SortUtil.ascSort, "_brewPublished");
+			case "loaded": return this.constructor._sortUrlList_orFallback(a, b, SortUtil.ascSort, "_brewIsLoaded");
 			default: throw new Error(`No sort order defined for property "${o.sortBy}"`);
 		}
 	}
@@ -288,6 +195,19 @@ export class GetBrewUi {
 		return true;
 	}
 
+	_mutBrewInfoLoaded (brewInfo) {
+		brewInfo._brewIsLoaded = !!brewInfo.sources?.length && brewInfo.sources.every(src => this._brewUtil.hasSourceJson(src));
+	}
+
+	_doRefreshLoaded (rdState) {
+		this._dataList.forEach(brewInfo => {
+			this._mutBrewInfoLoaded(brewInfo);
+			rdState.pageFilter.mutateAndAddToFilters(brewInfo);
+		});
+		rdState.list.items.forEach(li => li.data.dispLoaded.vee.toggleClass("ve-hidden", !this._dataList[li.getId()]._brewIsLoaded));
+		this._handleFilterChange(rdState);
+	}
+
 	async pHandlePreCloseModal ({rdState}) {
 		// region If the user has selected list items, prompt to load them before closing the modal
 		const cntSel = rdState.list.items.filter(it => it.data.cbSel.checked).length;
@@ -310,45 +230,45 @@ export class GetBrewUi {
 
 		rdState.pageFilter = new this.constructor._PageFilterGetBrew({brewUtil: this._brewUtil});
 
-		const btnAddSelected = ee`<button class="ve-btn ${this._brewUtil.STYLE_BTN} ve-btn-sm ve-col-0-5 ve-text-center" disabled title="Add Selected"><span class="glyphicon glyphicon-save"></button>`;
+		const btnAddSelected = veT`<button class="ve-btn ${this._brewUtil.STYLE_BTN} ve-btn-sm ve-col-0-5 ve-text-center" disabled title="Add Selected"><span class="glyphicon glyphicon-save"></button>`;
 
-		const wrpRows = ee`<div class="list ve-smooth-scroll ve-max-h-unset"><div class="ve-lst__row ve-flex-col"><div class="ve-lst__wrp-cells ve-lst__row-border ve-lst__row-inner ve-flex ve-w-100"><i>Loading...</i></div></div></div>`;
+		const wrpRows = veT`<div class="list ve-smooth-scroll ve-max-h-unset"><div class="ve-lst__row ve-flex-col"><div class="ve-lst__wrp-cells ve-lst__row-border ve-lst__row-inner ve-flex ve-w-100"><i>Loading...</i></div></div></div>`;
 
-		const btnFilter = ee`<button class="ve-btn ve-btn-default ve-btn-sm">Filter</button>`;
+		const btnFilter = veT`<button class="ve-btn ve-btn-default ve-btn-sm">Filter</button>`;
 
-		const btnToggleSummaryHidden = ee`<button class="ve-btn ve-btn-default" title="Toggle Filter Summary Display"><span class="glyphicon glyphicon-resize-small"></span></button>`;
+		const btnToggleSummaryHidden = veT`<button class="ve-btn ve-btn-default" title="Toggle Filter Summary Display"><span class="glyphicon glyphicon-resize-small"></span></button>`;
 
-		const iptSearch = ee`<input type="search" class="search manbrew__search ve-form-control ve-w-100 ve-lst__search ve-lst__search--no-border-h" placeholder="Find ${this._brewUtil.DISPLAY_NAME}...">`
-			.onn("keydown", evt => this._pHandleKeydown_iptSearch(evt, rdState));
-		const dispCntVisible = ee`<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>`;
+		const iptSearch = veT`<input type="search" class="search manbrew__search ve-form-control ve-w-100 ve-lst__search ve-lst__search--no-border-h" placeholder="Find ${this._brewUtil.DISPLAY_NAME}...">`
+			.vee.onn("keydown", evt => this._pHandleKeydown_iptSearch(evt, rdState));
+		const dispCntVisible = veT`<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>`;
 
-		rdState.cbAll = e_({
+		rdState.cbAll = veE({
 			tag: "input",
 			type: "checkbox",
 		});
 
-		rdState.btnTogglePreviewAll = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-col-0-5">${ListUiPreviewButtonHandlerBase.HTML_GLYPHICON_EXPAND}</button>`;
+		rdState.btnTogglePreviewAll = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-col-0-5">${ListUiPreviewButtonHandlerBase.HTML_GLYPHICON_EXPAND}</button>`;
 
-		const btnReset = ee`<button class="ve-btn ve-btn-default ve-btn-sm">Reset</button>`;
+		const btnReset = veT`<button class="ve-btn ve-btn-default ve-btn-sm">Reset</button>`;
 
-		const wrpMiniPills = ee`<div class="ve-fltr__mini-view ve-btn-group"></div>`;
+		const wrpMiniPills = veT`<div class="ve-fltr__mini-view ve-btn-group"></div>`;
 
 		const btnSortAddedPublished = this._brewUtil.IS_PREFER_DATE_ADDED
 			? `<button class="ve-col-1-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="added">Added</button>`
 			: `<button class="ve-col-1-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="published">Published</button>`;
 
-		const wrpSort = ee`<div class="filtertools manbrew__filtertools ve-btn-group ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
+		const wrpSort = veT`<div class="filtertools manbrew__filtertools ve-btn-group ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
 			<label class="ve-col-0-5 ve-pr-0 ve-btn ve-btn-default ve-btn-xs ve-flex-vh-center">${rdState.cbAll}</label>
 			${rdState.btnTogglePreviewAll}
-			<button class="ve-col-3-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+			<button class="ve-col-3-8 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
 			<button class="ve-col-3-1 sort ve-btn ve-btn-default ve-btn-xs" data-sort="author">Author</button>
 			<button class="ve-col-1-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="category">Category</button>
 			<button class="ve-col-1-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="modified">Modified</button>
 			${btnSortAddedPublished}
-			<button class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" disabled>Source</button>
+			<button class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="loaded" title="Loaded"><span class="glyphicon glyphicon-saved"></span></button>
 		</div>`;
 
-		ee(wrp)`
+		veT(wrp)`
 		<div class="ve-mt-1"><i>A list of ${this._brewUtil.DISPLAY_NAME} available in the public repository. Click a name to load the ${this._brewUtil.DISPLAY_NAME}, or view the source directly.${this._brewUtil.IS_EDITABLE ? `<br>
 		Contributions are welcome; see the <a href="${this._brewUtil.URL_REPO_DEFAULT}/blob/master/README.md" target="_blank" rel="noopener noreferrer">README</a>, or stop by our <a href="https://discord.gg/5etools" target="_blank" rel="noopener noreferrer">Discord</a>.` : ""}</i></div>
 		<hr class="ve-hr-3">
@@ -375,7 +295,7 @@ export class GetBrewUi {
 			isSkipSearchKeybindingEnter: true,
 		});
 
-		rdState.list.on("updated", () => dispCntVisible.html(`${rdState.list.visibleItems.length}/${rdState.list.items.length}`));
+		rdState.list.on("updated", () => dispCntVisible.vee.html(`${rdState.list.visibleItems.length}/${rdState.list.items.length}`));
 
 		rdState.listSelectClickHandler = new ListSelectClickHandler({list: rdState.list});
 		rdState.listSelectClickHandler.bindSelectAllCheckbox(rdState.cbAll);
@@ -384,6 +304,7 @@ export class GetBrewUi {
 		SortUtil.initBtnSortHandlers(wrpSort, rdState.list);
 
 		this._dataList.forEach((brewInfo, ix) => {
+			this._mutBrewInfoLoaded(brewInfo);
 			const {listItem} = this._pRender_getUrlRowMeta(rdState, brewInfo, ix);
 			rdState.list.addItem(listItem);
 		});
@@ -412,15 +333,15 @@ export class GetBrewUi {
 		this._handleFilterChange(rdState);
 
 		btnAddSelected
-			.prop("disabled", false)
-			.onn("click", () => this._pHandleClick_btnAddSelected({rdState}));
+			.vee.prop("disabled", false)
+			.vee.onn("click", () => this._pHandleClick_btnAddSelected({rdState}));
 
-		iptSearch.focuse();
+		iptSearch.vee.focus();
 	}
 
 	_handleFilterChange (rdState) {
 		const f = rdState.pageFilter.filterBox.getValues();
-		rdState.list.filter(li => rdState.pageFilter.toDisplay(f, this._dataList[li.ix]));
+		rdState.list.filter(li => rdState.pageFilter.toDisplay(f, this._dataList[li.getId()]));
 	}
 
 	_pRender_getUrlRowMeta (rdState, brewInfo, ix) {
@@ -432,83 +353,75 @@ export class GetBrewUi {
 			? DatetimeUtil.getDateStr({date: new Date(brewInfo._brewModified * 1000), isShort: true, isPad: true})
 			: "";
 
-		const cbSel = e_({
+		const cbSel = veE({
 			tag: "input",
 			clazz: "ve-no-events",
 			type: "checkbox",
 		});
 
-		const btnAdd = e_({
+		const btnAdd = veE({
 			tag: "span",
-			clazz: `ve-col-3-5 ve-bold manbrew__load_from_url ve-pl-0 ve-clickable`,
-			text: brewInfo._brewName,
-			click: evt => this._pHandleClick_btnGetRemote({evt, btn: btnAdd, url: brewInfo.urlDownload}),
+			clazz: `ve-col-3-8 ve-bold manbrew__load_from_url ve-pl-0 ve-clickable`,
+			txt: brewInfo._brewName,
+			click: evt => this._pHandleClick_btnGetRemote({evt, rdState, btn: btnAdd, url: brewInfo.urlDownload}),
 		});
 
-		const btnShowHidePreview = ee`<span class="ve-col-0-5 ve-px-0 ve-flex-vh-center ve-lst__btn-toggle-expand ve-self-flex-stretch ve-no-select">[+]</span>`;
+		const dispLoaded = veT`<span class="glyphicon glyphicon-ok" title="Loaded"></span>`
+			.vee.toggleClass("ve-hidden", !brewInfo._brewIsLoaded);
 
-		const dispExpandedInner = ee`<div class="ve-flex-col ve-py-3 ve-ml-col-1 ve-w-100 ve-bb-0 ve-accordion__wrp-preview-inner manbrew-get-preview__wrp-preview"></div>`;
-		const dispExpandedOuter = ee`<div class="ve-flex ve-hidden ve-relative ve-accordion__wrp-preview ve-w-100">
+		const btnShowHidePreview = veT`<span class="ve-col-0-5 ve-px-0 ve-flex-vh-center ve-lst__btn-toggle-expand ve-self-flex-stretch ve-no-select">[+]</span>`;
+
+		const dispExpandedInner = veT`<div class="ve-flex-col ve-py-3 ve-ml-col-1 ve-w-100 ve-bb-0 ve-accordion__wrp-preview-inner manbrew-get-preview__wrp-preview"></div>`;
+		const dispExpandedOuter = veT`<div class="ve-flex ve-hidden ve-relative ve-accordion__wrp-preview ve-w-100">
 			<div class="ve-vr-0 ve-absolute ve-accordion__vr-preview ve-accordion__vr-preview--col-1"></div>
 			${dispExpandedInner}
 		</div>`;
 
-		const eleLi = e_({
+		const eleLi = veE({
 			tag: "div",
 			clazz: `ve-lst__row ve-lst__row-inner ve-not-clickable ve-lst__row-border ve-no-select ve-flex-col ve-no-shrink`,
 			children: [
-				e_({
+				veE({
 					tag: "div",
 					clazz: `ve-lst__wrp-cells ve-flex ve-w-100`,
 					children: [
-						e_({
+						veE({
 							tag: "label",
 							clazz: `ve-col-0-5 ve-flex-vh-center ve-self-flex-stretch`,
 							children: [cbSel],
 						}),
 						btnShowHidePreview,
 						btnAdd,
-						e_({tag: "span", clazz: "ve-col-3-1", text: brewInfo._brewAuthor}),
-						e_({tag: "span", clazz: "ve-col-1-2 ve-text-center ve-mobile-sm__text-clip-ellipsis", text: brewInfo._brewPropDisplayName, title: brewInfo._brewPropDisplayName}),
-						e_({tag: "span", clazz: "ve-col-1-2 ve-text-center ve-code", text: timestampModified}),
-						e_({tag: "span", clazz: "ve-col-1-2 ve-text-center ve-code", text: timestampAddedPublished}),
-						e_({
-							tag: "span",
-							clazz: "manbrew__source ve-text-center ve-pr-0 ve-grow",
-							children: [
-								e_({
-									tag: "a",
-									text: `View Raw`,
-								})
-									.attr("href", brewInfo.urlDownload)
-									.attr("target", "_blank")
-									.attr("rel", "noopener noreferrer"),
-							],
-						}),
+						veE({tag: "span", clazz: "ve-col-3-1", txt: brewInfo._brewAuthor}),
+						veE({tag: "span", clazz: "ve-col-1-2 ve-text-center ve-mobile-sm__text-clip-ellipsis", txt: brewInfo._brewPropDisplayName, title: brewInfo._brewPropDisplayName}),
+						veE({tag: "span", clazz: "ve-col-1-2 ve-text-center ve-code", txt: timestampModified}),
+						veE({tag: "span", clazz: "ve-col-1-2 ve-text-center ve-code", txt: timestampAddedPublished}),
+						veE({tag: "span", clazz: "ve-col-0-5 ve-text-center", children: [dispLoaded]}),
 					],
 				}),
 				dispExpandedOuter,
 			],
 			keydown: evt => this._pHandleKeydown_row(evt, {rdState, btnAdd, url: brewInfo.urlDownload, listItem}),
 		})
-			.attr("tabindex", ix);
+			.vee.attr("tabindex", ix);
 
-		const listItem = new ListItem(
-			ix,
-			eleLi,
-			brewInfo._brewName,
-			{
+		const listItem = new ListItem({
+			id: ix,
+			ele: eleLi,
+			name: brewInfo._brewName,
+			values: {
 				author: brewInfo._brewAuthor,
 				// category: brewInfo._brewPropDisplayName, // Unwanted in search
 				internalSources: brewInfo._brewInternalSources, // Used for search
 			},
-			{
+			data: {
 				btnAdd,
 				cbSel,
 				btnShowHidePreview,
-				pFnDoDownload: ({isLazy = false} = {}) => this._pHandleClick_btnGetRemote({btn: btnAdd, url: brewInfo.urlDownload, isLazy}),
+				dispLoaded,
+				pFnDoDownload: ({isLazy = false} = {}) => this._pHandleClick_btnGetRemote({rdState, btn: btnAdd, url: brewInfo.urlDownload, isLazy}),
 			},
-		);
+		});
 
 		eleLi.addEventListener("click", evt => rdState.listSelectClickHandler.handleSelectClick(listItem, evt, {isPassThroughEvents: true}));
 
@@ -555,10 +468,11 @@ export class GetBrewUi {
 		await Promise.allSettled(listItems.map(it => it.data.pFnDoDownload({isLazy: true})));
 		const lazyDepsAdded = await this._brewUtil.pAddBrewsLazyFinalize();
 		this._brewsLoaded.push(...lazyDepsAdded);
+		this._doRefreshLoaded(rdState);
 		JqueryUtil.doToast(`Finished loading selected ${this._brewUtil.DISPLAY_NAME}!`);
 	}
 
-	async _pHandleClick_btnGetRemote ({evt, btn, url, isLazy}) {
+	async _pHandleClick_btnGetRemote ({evt, rdState, btn, url, isLazy}) {
 		if (!(url || "").trim()) return JqueryUtil.doToast({type: "danger", content: `${this._brewUtil.DISPLAY_NAME.uppercaseFirst()} had no download URL!`});
 
 		if (evt) {
@@ -566,12 +480,13 @@ export class GetBrewUi {
 			evt.preventDefault();
 		}
 
-		const cachedHtml = btn.html();
-		btn.txt("Loading...").attr("disabled", true);
+		const cachedHtml = btn.vee.html();
+		btn.vee.txt("Loading...").vee.attr("disabled", true);
 		const brewsAdded = await this._brewUtil.pAddBrewFromUrl(url, {isLazy});
 		this._brewsLoaded.push(...brewsAdded);
-		btn.txt("Done!");
-		setTimeout(() => btn.html(cachedHtml).attr("disabled", false), VeCt.DUR_INLINE_NOTIFY);
+		if (!isLazy) this._doRefreshLoaded(rdState);
+		btn.vee.txt("Done!");
+		setTimeout(() => btn.vee.html(cachedHtml).vee.attr("disabled", false), VeCt.DUR_INLINE_NOTIFY);
 	}
 
 	async _pHandleKeydown_row (evt, {rdState, btnAdd, url, listItem}) {

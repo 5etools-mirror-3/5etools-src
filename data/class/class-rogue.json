@@ -1,6 +1,7 @@
 {
 	"_meta": {
 		"internalCopies": [
+			"class",
 			"subclass"
 		]
 	},
@@ -24,24 +25,6 @@
 				"int"
 			],
 			"startingProficiencies": {
-				"armor": [
-					"light"
-				],
-				"weapons": [
-					"simple",
-					"{@item hand crossbow|phb|hand crossbows}",
-					"{@item longsword|phb|longswords}",
-					"{@item rapier|phb|rapiers}",
-					"{@item shortsword|phb|shortswords}"
-				],
-				"tools": [
-					"{@item thieves' tools|PHB}"
-				],
-				"toolProficiencies": [
-					{
-						"thieves' tools": true
-					}
-				],
 				"skills": [
 					{
 						"choose": {
@@ -60,6 +43,29 @@
 							],
 							"count": 4
 						}
+					}
+				],
+				"weapons": [
+					"simple",
+					"{@item hand crossbow|phb|hand crossbows}",
+					"{@item longsword|phb|longswords}",
+					"{@item rapier|phb|rapiers}",
+					"{@item shortsword|phb|shortswords}"
+				],
+				"tools": [
+					"{@item thieves' tools|PHB}"
+				],
+				"toolProficiencies": [
+					{
+						"thieves' tools": true
+					}
+				],
+				"armor": [
+					"light"
+				],
+				"armorProficiencies": [
+					{
+						"light": true
 					}
 				]
 			},
@@ -118,9 +124,6 @@
 					"dex": 13
 				},
 				"proficienciesGained": {
-					"armor": [
-						"light"
-					],
 					"skills": [
 						{
 							"choose": {
@@ -147,6 +150,14 @@
 					"toolProficiencies": [
 						{
 							"thieves' tools": true
+						}
+					],
+					"armor": [
+						"light"
+					],
+					"armorProficiencies": [
+						{
+							"light": true
 						}
 					]
 				}
@@ -473,8 +484,24 @@
 				}
 			],
 			"startingProficiencies": {
-				"armor": [
-					"light"
+				"skills": [
+					{
+						"choose": {
+							"from": [
+								"acrobatics",
+								"athletics",
+								"deception",
+								"insight",
+								"intimidation",
+								"investigation",
+								"perception",
+								"persuasion",
+								"sleight of hand",
+								"stealth"
+							],
+							"count": 4
+						}
+					}
 				],
 				"weapons": [
 					"simple",
@@ -496,25 +523,18 @@
 						"thieves' tools": true
 					}
 				],
-				"skills": [
+				"armor": [
+					"light"
+				],
+				"armorProficiencies": [
 					{
-						"choose": {
-							"from": [
-								"acrobatics",
-								"athletics",
-								"deception",
-								"insight",
-								"intimidation",
-								"investigation",
-								"perception",
-								"persuasion",
-								"sleight of hand",
-								"stealth"
-							],
-							"count": 4
-						}
+						"light": true
 					}
 				]
+			},
+			"itemMasteries": true,
+			"itemMasteriesProgression": {
+				"1": 2
 			},
 			"startingEquipment": {
 				"additionalFromBackground": true,
@@ -563,17 +583,6 @@
 			},
 			"multiclassing": {
 				"proficienciesGained": {
-					"armor": [
-						"light"
-					],
-					"tools": [
-						"{@item Thieves' Tools|XPHB}"
-					],
-					"toolProficiencies": [
-						{
-							"thieves' tools": true
-						}
-					],
 					"skills": [
 						{
 							"choose": {
@@ -591,6 +600,22 @@
 								],
 								"count": 1
 							}
+						}
+					],
+					"tools": [
+						"{@item Thieves' Tools|XPHB}"
+					],
+					"toolProficiencies": [
+						{
+							"thieves' tools": true
+						}
+					],
+					"armor": [
+						"light"
+					],
+					"armorProficiencies": [
+						{
+							"light": true
 						}
 					]
 				}
@@ -885,6 +910,22 @@
 				"Stroke of Luck|Rogue|XPHB|20"
 			],
 			"subclassTitle": "Rogue Subclass",
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Rogue",
+			"source": "WoW",
+			"reskinOf": [
+				"Rogue|XPHB"
+			],
+			"_copy": {
+				"name": "Rogue",
+				"source": "XPHB"
+			},
+			"includeSubclassesFrom": [
+				"Rogue|XPHB"
+			],
 			"hasFluff": true,
 			"hasFluffImages": true
 		}
@@ -1459,6 +1500,9 @@
 					"page": 135
 				}
 			],
+			"reprintedAs": [
+				"Swashbuckler|Rogue|XPHB|WoW"
+			],
 			"edition": "classic",
 			"subclassFeatures": [
 				"Swashbuckler|Rogue||Swashbuckler|XGE|3",
@@ -1766,10 +1810,10 @@
 						}
 					],
 					"colLabels": [
-						"{@filter 1st|spells|level=1|subclass=Rogue: Arcane Trickster}",
-						"{@filter 2nd|spells|level=2|subclass=Rogue: Arcane Trickster}",
-						"{@filter 3rd|spells|level=3|subclass=Rogue: Arcane Trickster}",
-						"{@filter 4th|spells|level=4|subclass=Rogue: Arcane Trickster}"
+						"{@filter 1|spells|level=1|subclass=Rogue: Arcane Trickster}",
+						"{@filter 2|spells|level=2|subclass=Rogue: Arcane Trickster}",
+						"{@filter 3|spells|level=3|subclass=Rogue: Arcane Trickster}",
+						"{@filter 4|spells|level=4|subclass=Rogue: Arcane Trickster}"
 					],
 					"rowsSpellProgression": [
 						[
@@ -2090,6 +2134,7 @@
 			"source": "RHW",
 			"className": "Rogue",
 			"classSource": "XPHB",
+			"page": 21,
 			"edition": "one",
 			"additionalSpells": [
 				{
@@ -2113,6 +2158,65 @@
 				"Death's Friend|Rogue|XPHB|Phantom|RHW|17|RHW"
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Assassin",
+			"shortName": "Assassin",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Assassin",
+				"source": "XPHB",
+				"shortName": "Assassin",
+				"className": "Rogue",
+				"classSource": "XPHB"
+			}
+		},
+		{
+			"name": "Soulknife",
+			"shortName": "Soulknife",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Soulknife",
+				"source": "XPHB",
+				"shortName": "Soulknife",
+				"className": "Rogue",
+				"classSource": "XPHB"
+			}
+		},
+		{
+			"name": "Swashbuckler",
+			"shortName": "Swashbuckler",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Swashbuckler",
+				"source": "WoW",
+				"shortName": "Swashbuckler",
+				"className": "Rogue",
+				"classSource": "XPHB",
+				"_preserve": {
+					"*": true
+				}
+			}
+		},
+		{
+			"name": "Swashbuckler",
+			"shortName": "Swashbuckler",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"edition": "one",
+			"subclassFeatures": [
+				"Swashbuckler|Rogue|XPHB|Swashbuckler|WoW|3",
+				"Panache|Rogue|XPHB|Swashbuckler|WoW|9",
+				"Dashing Strikes|Rogue|XPHB|Swashbuckler|WoW|13",
+				"Master Duelist|Rogue|XPHB|Swashbuckler|WoW|17"
+			]
 		}
 	],
 	"classFeature": [
@@ -4049,7 +4153,7 @@
 				"You gain the following {@classFeature Cunning Strike|Rogue|XPHB|5|XPHB} option.",
 				{
 					"type": "entries",
-					"name": "Terrify (Cost: {@dice 1d6})",
+					"name": "Terrify (Cost: 1d6)",
 					"page": 7,
 					"entries": [
 						"The target must succeed on a Wisdom saving throw, or it has the {@condition Frightened|XPHB} condition for 1 minute. While the target is Frightened in this way, you have {@variantrule Advantage|XPHB} on attack rolls against the target.",
@@ -4105,6 +4209,7 @@
 		{
 			"name": "Phantom",
 			"source": "RHW",
+			"page": 21,
 			"className": "Rogue",
 			"classSource": "XPHB",
 			"subclassShortName": "Phantom",
@@ -4126,6 +4231,7 @@
 		{
 			"name": "Wails from the Grave",
 			"source": "RHW",
+			"page": 21,
 			"className": "Rogue",
 			"classSource": "XPHB",
 			"subclassShortName": "Phantom",
@@ -4139,6 +4245,7 @@
 		{
 			"name": "Whispers of the Dead",
 			"source": "RHW",
+			"page": 21,
 			"className": "Rogue",
 			"classSource": "XPHB",
 			"subclassShortName": "Phantom",
@@ -4151,6 +4258,7 @@
 		{
 			"name": "Tokens of the Departed",
 			"source": "RHW",
+			"page": 22,
 			"className": "Rogue",
 			"classSource": "XPHB",
 			"subclassShortName": "Phantom",
@@ -4202,6 +4310,7 @@
 		{
 			"name": "Voice of Death",
 			"source": "RHW",
+			"page": 22,
 			"className": "Rogue",
 			"classSource": "XPHB",
 			"subclassShortName": "Phantom",
@@ -4216,6 +4325,7 @@
 		{
 			"name": "Ghost Walk",
 			"source": "RHW",
+			"page": 23,
 			"className": "Rogue",
 			"classSource": "XPHB",
 			"subclassShortName": "Phantom",
@@ -4250,6 +4360,7 @@
 		{
 			"name": "Death's Friend",
 			"source": "RHW",
+			"page": 23,
 			"className": "Rogue",
 			"classSource": "XPHB",
 			"subclassShortName": "Phantom",
@@ -4272,6 +4383,119 @@
 						"When you roll {@variantrule Initiative|XPHB}, you gain one soul trinket for your Tokens of the Departed if you have none remaining."
 					]
 				}
+			]
+		},
+		{
+			"name": "Fancy Footwork",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Swashbuckler",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"You've learned how to land a strike and then slip away without reprisal. If you make a melee attack roll against a creature during your turn, that creature can't make {@action opportunity attack|XPHB|Opportunity Attacks} against you for the rest of that turn."
+			]
+		},
+		{
+			"name": "Rakish Audacity",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Swashbuckler",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"When you roll {@variantrule Initiative|XPHB}, you can give yourself a bonus to the roll equal to your Charisma modifier.",
+				"You also gain an additional way to use your {@classFeature Sneak Attack|Rogue|XPHB|1|XPHB}: You don't need {@variantrule Advantage|XPHB} on the attack roll to use your Sneak Attack against a creature if you are within 5 feet of it, no other creatures are within 5 feet of you, and you don't have {@variantrule Disadvantage|XPHB} on the attack roll. All the other rules for Sneak Attack still apply to you."
+			]
+		},
+		{
+			"name": "Swashbuckler",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Swashbuckler",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"{@i Glide into Melee with Panache and Agility}",
+				"As a Swashbuckler, you focus on the art of the blade, bringing speed, elegance, and charm to your combat style\u2014topped off with an exquisite flourish of panache. You excel in single combat, and your methods make a duel look like a flamboyant performance.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Fancy Footwork|Rogue|XPHB|Swashbuckler|WoW|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Rakish Audacity|Rogue|XPHB|Swashbuckler|WoW|3"
+				}
+			]
+		},
+		{
+			"name": "Panache",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Swashbuckler",
+			"subclassSource": "WoW",
+			"level": 9,
+			"header": 2,
+			"entries": [
+				"You have practiced new ways to use your {@classFeature Sneak Attack|Rogue|XPHB|1|XPHB}. The following effects are now among your {@classFeature Cunning Strike|Rogue|XPHB|5|XPHB} options.",
+				{
+					"type": "entries",
+					"name": "Goad (Cost: 1d6)",
+					"entries": [
+						"The target must succeed on a Wisdom saving throw, or until the end of its next turn, the target has {@variantrule Disadvantage|XPHB} on attack rolls against targets other than you and can't make {@action opportunity attack|XPHB|Opportunity Attacks} against targets other than you."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Awe (Cost: 3d6)",
+					"entries": [
+						"Each creature of your choice within 30 feet of you must succeed on a Wisdom saving throw or have the {@condition Charmed|XPHB} condition until the end of your next turn."
+					]
+				}
+			]
+		},
+		{
+			"name": "Dashing Strikes",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Swashbuckler",
+			"subclassSource": "WoW",
+			"level": 13,
+			"header": 2,
+			"entries": [
+				"You have practiced new ways to use your {@classFeature Sneak Attack|Rogue|XPHB|1|XPHB}. The following effects are now among your {@classFeature Cunning Strike|Rogue|XPHB|5|XPHB} options.",
+				{
+					"type": "entries",
+					"name": "Invigorate (Cost: 2d6)",
+					"entries": [
+						"Choose a creature you can see within 30 feet of yourself. Until the end of that creature's next turn, whenever it makes an attack roll or a saving throw, it can roll {@dice 1d6} and add the number rolled to the attack roll or saving throw."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Parrying Stance (Cost: 2d6)",
+					"entries": [
+						"Roll {@dice 1d6}. Until the start of your next turn, you gain a bonus to your AC equal to the number rolled."
+					]
+				}
+			]
+		},
+		{
+			"name": "Master Duelist",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Swashbuckler",
+			"subclassSource": "WoW",
+			"level": 17,
+			"header": 2,
+			"entries": [
+				"Immediately after you use your {@classFeature Sneak Attack|Rogue|XPHB|1|XPHB}, you can make another attack against the same target, provided you are within 5 feet of it and no other creatures are within 5 feet of you."
 			]
 		},
 		{

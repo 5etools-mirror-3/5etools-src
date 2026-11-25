@@ -1,5 +1,5 @@
 import {EncounterPartyMetaBase, EncounterPartyMetaBudgetTierProviderSpendUpTo, EncounterPartyMetaUtils} from "./encounter-partymeta-base.js";
-import {EncounterBuilderSpendInfo} from "../encounterbuilder-models.js";
+import {EncounterBuilderSpendInfo} from "../encounterbuilder-models-other.js";
 import {TIER_ABSURD, TIER_TO_LEVEL_XP, TIERS, TIERS_EXTENDED} from "../consts/encounterbuilder-consts-one.js";
 
 export class EncounterPartyMetaOne extends EncounterPartyMetaBase {
@@ -23,14 +23,14 @@ export class EncounterPartyMetaOne extends EncounterPartyMetaBase {
 		});
 	}
 
-	_getEncounterSpendInfo ({creatureMetas}) {
+	_getEncounterSpendInfo ({creatureGroups}) {
 		let baseSpend = 0;
 		let count = 0;
 
-		creatureMetas
-			.forEach(creatureMeta => {
-				count += creatureMeta.getCount();
-				baseSpend += (creatureMeta.getXp() || 0) * creatureMeta.getCount();
+		creatureGroups
+			.forEach(creatureGroup => {
+				count += creatureGroup.getCount();
+				baseSpend += (creatureGroup.getXp() || 0) * creatureGroup.getCount();
 			});
 
 		return new EncounterBuilderSpendInfo({
@@ -61,7 +61,7 @@ export class EncounterPartyMetaOne extends EncounterPartyMetaBase {
 	}
 
 	// Unused in '24 rules
-	getCrCutoff (creatureMetas) { return 0; }
+	getCrCutoff (creatureGroups) { return 0; }
 
 	// Unused in '24 rules
 	getPlayerAdjustedSpendMultiplier (cntCreatures) { return 1; }

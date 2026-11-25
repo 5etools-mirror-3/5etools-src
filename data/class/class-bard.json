@@ -100,8 +100,10 @@
 				}
 			],
 			"startingProficiencies": {
-				"armor": [
-					"light"
+				"skills": [
+					{
+						"any": 3
+					}
 				],
 				"weapons": [
 					"simple",
@@ -118,9 +120,12 @@
 						"anyMusicalInstrument": 3
 					}
 				],
-				"skills": [
+				"armor": [
+					"light"
+				],
+				"armorProficiencies": [
 					{
-						"any": 3
+						"light": true
 					}
 				]
 			},
@@ -178,9 +183,6 @@
 					"cha": 13
 				},
 				"proficienciesGained": {
-					"armor": [
-						"light"
-					],
 					"skills": [
 						{
 							"choose": {
@@ -214,6 +216,14 @@
 					"toolProficiencies": [
 						{
 							"anyMusicalInstrument": 1
+						}
+					],
+					"armor": [
+						"light"
+					],
+					"armorProficiencies": [
+						{
+							"light": true
 						}
 					]
 				}
@@ -703,8 +713,10 @@
 				}
 			],
 			"startingProficiencies": {
-				"armor": [
-					"light"
+				"skills": [
+					{
+						"any": 3
+					}
 				],
 				"weapons": [
 					"simple"
@@ -717,9 +729,12 @@
 						"anyMusicalInstrument": 3
 					}
 				],
-				"skills": [
+				"armor": [
+					"light"
+				],
+				"armorProficiencies": [
 					{
-						"any": 3
+						"light": true
 					}
 				]
 			},
@@ -758,17 +773,6 @@
 			},
 			"multiclassing": {
 				"proficienciesGained": {
-					"armor": [
-						"light"
-					],
-					"tools": [
-						"Choose one {@item Musical Instrument|XPHB}"
-					],
-					"toolProficiencies": [
-						{
-							"anyMusicalInstrument": 1
-						}
-					],
 					"skills": [
 						{
 							"choose": {
@@ -794,6 +798,22 @@
 								],
 								"count": 1
 							}
+						}
+					],
+					"tools": [
+						"Choose one {@item Musical Instrument|XPHB}"
+					],
+					"toolProficiencies": [
+						{
+							"anyMusicalInstrument": 1
+						}
+					],
+					"armor": [
+						"light"
+					],
+					"armorProficiencies": [
+						{
+							"light": true
 						}
 					]
 				}
@@ -1091,15 +1111,15 @@
 				{
 					"title": "Spell Slots per Spell Level",
 					"colLabels": [
-						"{@filter 1st|spells|level=1|class=bard}",
-						"{@filter 2nd|spells|level=2|class=bard}",
-						"{@filter 3rd|spells|level=3|class=bard}",
-						"{@filter 4th|spells|level=4|class=bard}",
-						"{@filter 5th|spells|level=5|class=bard}",
-						"{@filter 6th|spells|level=6|class=bard}",
-						"{@filter 7th|spells|level=7|class=bard}",
-						"{@filter 8th|spells|level=8|class=bard}",
-						"{@filter 9th|spells|level=9|class=bard}"
+						"{@filter 1|spells|level=1|class=bard}",
+						"{@filter 2|spells|level=2|class=bard}",
+						"{@filter 3|spells|level=3|class=bard}",
+						"{@filter 4|spells|level=4|class=bard}",
+						"{@filter 5|spells|level=5|class=bard}",
+						"{@filter 6|spells|level=6|class=bard}",
+						"{@filter 7|spells|level=7|class=bard}",
+						"{@filter 8|spells|level=8|class=bard}",
+						"{@filter 9|spells|level=9|class=bard}"
 					],
 					"rowsSpellProgression": [
 						[
@@ -1905,6 +1925,7 @@
 			"source": "RHW",
 			"className": "Bard",
 			"classSource": "XPHB",
+			"page": 17,
 			"edition": "one",
 			"additionalSpells": [
 				{
@@ -2842,7 +2863,7 @@
 			"subclassSource": "TCE",
 			"level": 3,
 			"entries": [
-				"Bards believe the cosmos is a work of art-the creation of the first dragons and gods. That creative work included harmonies that continue to resound through existence today, a power known as the Song of Creation. The bards of the College of Creation draw on that primeval song through dance, music, and poetry, and their teachers share this lesson:",
+				"Bards believe the cosmos is a work of art\u2014the creation of the first dragons and gods. That creative work included harmonies that continue to resound through existence today, a power known as the Song of Creation. The bards of the College of Creation draw on that primeval song through dance, music, and poetry, and their teachers share this lesson:",
 				"\"Before the sun and the moon, there was the Song, and its music awoke the first dawn. Its melodies so delighted the stones and trees that some of them gained a voice of their own. And now they sing too. Learn the Song, students, and you too can teach the mountains to sing and dance.\"",
 				"Dwarves and gnomes often encourage their bards to become students of the Song of Creation. And among dragonborn, the Song of Creation is revered, for legends portray Bahamut and Tiamat-the greatest of dragons-as two of the song's first singers.",
 				{
@@ -3679,6 +3700,7 @@
 		{
 			"name": "Channeler",
 			"source": "RHW",
+			"page": 17,
 			"className": "Bard",
 			"classSource": "XPHB",
 			"subclassShortName": "Spirits",
@@ -3705,6 +3727,7 @@
 		{
 			"name": "College of Spirits",
 			"source": "RHW",
+			"page": 17,
 			"className": "Bard",
 			"classSource": "XPHB",
 			"subclassShortName": "Spirits",
@@ -3726,6 +3749,7 @@
 		{
 			"name": "Spirits from Beyond",
 			"source": "RHW",
+			"page": 17,
 			"className": "Bard",
 			"classSource": "XPHB",
 			"subclassShortName": "Spirits",
@@ -3814,6 +3838,7 @@
 		{
 			"name": "Empowered Channeling",
 			"source": "RHW",
+			"page": 18,
 			"className": "Bard",
 			"classSource": "XPHB",
 			"subclassShortName": "Spirits",
@@ -3842,6 +3867,7 @@
 		{
 			"name": "Mystical Connection",
 			"source": "RHW",
+			"page": 18,
 			"className": "Bard",
 			"classSource": "XPHB",
 			"subclassShortName": "Spirits",
@@ -3849,7 +3875,7 @@
 			"level": 14,
 			"header": 2,
 			"entries": [
-				"You gain mastery over the spirits you call forth. Whenever you roll on the {@book Spirits from Beyond table|RHW|1|Spirits from Beyond}, you can roll the die twice and choose which of the two effects to bestow. If you roll the same number on both dice, you can instead choose any effect on the table."
+				"You gain mastery over the spirits you call forth. Whenever you roll on the {@subclassFeature Spirits from Beyond|Bard|XPHB|Spirits|RHW|3|RHW|Spirits from Beyond table}, you can roll the die twice and choose which of the two effects to bestow. If you roll the same number on both dice, you can instead choose any effect on the table."
 			]
 		},
 		{

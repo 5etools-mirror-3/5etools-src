@@ -60,16 +60,16 @@ export class StyleSwitcher {
 	/* -------------------------------------------- */
 
 	static getSelStyle () {
-		const selStyle = e_({
+		const selStyle = veE({
 			tag: "select",
 			clazz: "ve-form-control ve-input-xs",
 			children: Object.entries(this._STYLE_THEME_TO_DISPLAY_NAME)
-				.map(([id, name]) => ee`<option value="${id}">${name}</option>`),
+				.map(([id, name]) => veT`<option value="${id}">${name}</option>`),
 			change: () => {
-				styleSwitcher._setActiveStyleTheme(selStyle.val());
+				styleSwitcher._setActiveStyleTheme(selStyle.vee.val());
 			},
 		})
-			.val(styleSwitcher._styleTheme);
+			.vee.val(styleSwitcher._styleTheme);
 
 		return selStyle;
 	}
@@ -77,16 +77,16 @@ export class StyleSwitcher {
 	/* -------------------------------------------- */
 
 	static getSelRollboxPosition () {
-		const selStyle = e_({
+		const selStyle = veE({
 			tag: "select",
 			clazz: "ve-form-control ve-input-xs",
 			children: Object.entries(this._STYLE_ROLLBOX_TO_DISPLAY_NAME)
-				.map(([id, name]) => ee`<option value="${id}">${name}</option>`),
+				.map(([id, name]) => veT`<option value="${id}">${name}</option>`),
 			change: () => {
-				styleSwitcher._setActiveStyleRollbox(selStyle.val());
+				styleSwitcher._setActiveStyleRollbox(selStyle.vee.val());
 			},
 		})
-			.val(styleSwitcher._styleRollbox);
+			.vee.val(styleSwitcher._styleRollbox);
 
 		return selStyle;
 	}
@@ -94,7 +94,7 @@ export class StyleSwitcher {
 	/* -------------------------------------------- */
 
 	static getCbWide () {
-		const cbWide = e_({
+		const cbWide = veE({
 			tag: "input",
 			type: "checkbox",
 			change: () => {
@@ -216,6 +216,8 @@ export class StyleSwitcher {
 	// endregion
 
 	// region Wide Mode
+	getIsWideMode () { return document.documentElement.classList.contains(StyleSwitcher._WIDE_ID); }
+
 	_setActiveWide (isActive) {
 		const existing = document.getElementById(StyleSwitcher._WIDE_ID);
 		if (!isActive) {

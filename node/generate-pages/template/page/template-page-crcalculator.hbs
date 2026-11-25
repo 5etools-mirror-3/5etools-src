@@ -24,12 +24,12 @@
 				<ol>
 					<li>Enter expected CR of the creature.</li>
 					<li>Fill in the HP, AC, and other defensive attributes of the creature.</li>
-					<li>Fill in offensives attributes of the creature. DPR is averaged over three rounds!</li>
-					<li>Add any special Monster Features of creature.</li>
+					<li>Fill in offensive attributes of the creature. DPR is averaged over three rounds!</li>
+					<li>Add any special Monster Features of the creature.</li>
 				</ol>
 				<p>
 					<small>Be sure to read the <em>Dungeon Master's Guide (2014)</em> <a href="book.html#dmg,9,creating%20a%20monster,0">section on monster creation</a>, pages 273
-						through 283. You can click on the table to the right to fill in values for a given and adjust to
+						through 283. You can click on the table to the right to fill in values for a given CR and adjust to
 						taste. You can hover over the individual labels for a short description of how each attribute
 						contributes to a monster's CR. You can also hover over each feature description to see how that
 						feature affects the calculations.
@@ -97,7 +97,7 @@
 					<label for="dpr" class="ve-ui-tip__parent">
 						Damage Per Round:
 						<span class="explanation ve-ui-tip__child">
-							A creature's damage per round (DPR) determines its offensive CR, which is offset by its attack bonus or save DC. DPR is determined by averaging its maximum damage output (taking the average of dice rolls, ignoring critics and accuracy) over three rounds. Areas of effect are treated as though they hit two creatures, which fail any involved saving throws.
+							A creature's damage per round (DPR) determines its offensive CR, which is offset by its attack bonus or save DC. DPR is determined by averaging its maximum damage output (taking the average of dice rolls, ignoring critical hits and accuracy) over three rounds. Areas of effect are treated as though they hit two creatures, which fail any involved saving throws.
 						</span>
 					</label>
 					<input type="number" id="dpr" placeholder="Average DPR" value="1" min="0" max="320" class="ve-form-control form-control--minimal ve-input-xs">
@@ -164,7 +164,7 @@
 					<label for="con" class="ve-ui-tip__parent">
 						Constitution:
 						<span class="explanation ve-ui-tip__child">
-							A creature's HP is increases by its Constitution modifier for each hit die it has.
+							A creature's HP is increased by its Constitution modifier for each hit die it has.
 						</span>
 					</label>
 					<input type="number" id="con" value="10" min="1" max="30" class="ve-form-control form-control--minimal ve-input-xs">
@@ -188,7 +188,7 @@
 					<label for="resistances" class="ve-ui-tip__parent">
 						Resistances/Immunities:
 						<span class="explanation ve-ui-tip__child">
-							A monster's HP is multiplied based on the resistances and immunities has to common damage types (non-magical bludgeoning, piercing, and slashing chief among them).
+							A monster's HP is multiplied based on the resistances and immunities it has to common damage types (non-magical bludgeoning, piercing, and slashing chief among them).
 						</span>
 					</label>
 					<span class="ve-flex-v-center">

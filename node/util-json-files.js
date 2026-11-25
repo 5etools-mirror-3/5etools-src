@@ -2,7 +2,7 @@ import path from "path";
 import * as ut from "./util.js";
 import {readJsonSync} from "5etools-utils/lib/UtilFs.js";
 
-export const getCleanPath = pth => path.normalize(pth).toString().replace(/\\/g, "/");
+export const getCleanPath = pth => path.posix.normalize(pth);
 
 export class JsonFile {
 	constructor ({filePath}) {
@@ -22,7 +22,7 @@ export class JsonFile {
 	}
 
 	isSampleFile () {
-		return path.basename(this._filePath).startsWith("Sample - ");
+		return path.posix.basename(this._filePath).startsWith("Sample - ");
 	}
 
 	isPartnered () {
@@ -30,31 +30,47 @@ export class JsonFile {
 			.some(source => source?.partnered);
 	}
 
-	isConvertedBy ({name}) {
+	_isAuthorConvertedBy ({name, prop}) {
 		const nameSearch = `${name}`.toLowerCase().trim();
 		return this.getSources()
-			.some(source => source?.convertedBy?.some(val => `${val}`.toLowerCase().trim() === nameSearch));
+			.some(source => source?.[prop]?.some(val => `${val}`.toLowerCase().trim() === nameSearch));
+	}
+
+	isConvertedBy ({name}) {
+		return this._isAuthorConvertedBy({name, prop: "convertedBy"});
+	}
+
+	isAuthor ({name}) {
+		return this._isAuthorConvertedBy({name, prop: "authors"});
 	}
 }
 
-const _getAllJson_addFile = (allFiles, path) => {
-	allFiles.push(path);
+const _isFileBlocklisted = ({filePath, fnIsBlocklisted}) => {
+	if (!fnIsBlocklisted) return false;
+	return fnIsBlocklisted(getCleanPath(filePath));
 };
 
-const _getAllJson_addDir = (allFiles, dir) => {
+const _getAllJson_addFile = (allFiles, filePath) => {
+	allFiles.push(filePath);
+};
+
+const _getAllJson_addDir = (allFiles, dir, {fnIsBlocklisted = null} = {}) => {
 	ut.listFiles({dir})
 		.filter(file => file.toLowerCase().endsWith(".json"))
+		.filter(file => !_isFileBlocklisted({filePath: file, fnIsBlocklisted}))
 		.forEach(filePath => _getAllJson_addFile(allFiles, filePath));
 };
 
-export const getAllJsonFiles = ({files, dirs}) => {
-	return getAllJsonFilePaths({files, dirs})
+export const getAllJsonFiles = ({files, dirs, fnIsBlocklisted = null}) => {
+	return getAllJsonFilePaths({files, dirs, fnIsBlocklisted})
 		.map(file => new JsonFile({filePath: file}));
 };
 
-export const getAllJsonFilePaths = ({files, dirs}) => {
+export const getAllJsonFilePaths = ({files, dirs, fnIsBlocklisted = null}) => {
 	const allFiles = [];
-	dirs.forEach(dir => _getAllJson_addDir(allFiles, dir));
-	files.forEach(file => _getAllJson_addFile(allFiles, file));
+	dirs.forEach(dir => _getAllJson_addDir(allFiles, dir, {fnIsBlocklisted}));
+	files
+		.filter(file => !_isFileBlocklisted({filePath: file, fnIsBlocklisted}))
+		.forEach(file => _getAllJson_addFile(allFiles, file));
 	return allFiles;
 };

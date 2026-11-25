@@ -1,5 +1,3 @@
-import {EncounterBuilderCreatureMeta} from "../encounterbuilder-models.js";
-
 export class EncounterBuilderRandomizerBase {
 	_partyMeta;
 	_cache;
@@ -22,22 +20,22 @@ export class EncounterBuilderRandomizerBase {
 		this._budgetMode = budgetMode;
 	}
 
-	async pGetRandomEncounter ({creatureMetasLocked}) {
-		const closestSolution = this._pDoGenerateEncounter_getSolution({creatureMetasLocked});
+	async pGetRandomEncounter ({creatureGroupsLocked}) {
+		const closestSolution = this._pDoGenerateEncounter_getSolution({creatureGroupsLocked});
 
 		if (!closestSolution.candidateEncounter) {
 			JqueryUtil.doToast({content: closestSolution.message, type: "warning"});
 			return null;
 		}
 
-		return closestSolution.candidateEncounter.getCreatureMetas();
+		return closestSolution.candidateEncounter.getCreatureGroups();
 	}
 
 	/**
-	 * @param {Array<EncounterBuilderCreatureMeta>} creatureMetasLocked
+	 * @param {Array<EncounterBuilderCreatureGroupBase>} creatureGroupsLocked
 	 * @return {EncounterBuilderOptionalCandidateEncounter}
 	 */
-	_pDoGenerateEncounter_getSolution ({creatureMetasLocked}) { throw new Error("Unimplemented!"); }
+	_pDoGenerateEncounter_getSolution ({creatureGroupsLocked}) { throw new Error("Unimplemented!"); }
 
 	_isValidEncounter ({candidateEncounter}) {
 		const encounterXp = candidateEncounter.getEncounterSpendInfo();

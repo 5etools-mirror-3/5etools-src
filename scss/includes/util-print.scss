@@ -2,12 +2,12 @@
 
 @layer vetools {
 	@include vars.mix-is-print {
-		.no-print {
-			display: none !important;
-		}
+		.ve-print__ {
+			&hidden {
+				display: none !important;
+			}
 
-		.print__ {
-			&ve-block {
+			&block {
 				display: block !important;
 			}
 
@@ -17,6 +17,10 @@
 
 			&overflow-visible {
 				overflow: visible !important;
+			}
+
+			&m-0 {
+				margin: 0 !important;
 			}
 
 			&my-2 {

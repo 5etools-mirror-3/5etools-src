@@ -25,29 +25,30 @@ class RecipesSublistManager extends SublistManager {
 		const name = it._displayName || it.name;
 		const cellsText = [name, it.type || "\u2014"];
 
-		const ele = ee`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`
-			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
-			.onn("click", evt => this._listSub.doSelect(listItem, evt));
+			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
-		const listItem = new ListItem(
-			hash,
+		const listItem = new ListItem({
+			id: hash,
 			ele,
 			name,
-			{
-				hash,
-				page: it.page,
+			values: {
+				...ListItem.getCommonValues(it),
 				type: it.type,
 			},
-			{
+			data: {
+				hash,
+				page: it.page,
 				entity: it,
 				mdRow: [...cellsText],
 				customHashId,
 			},
-		);
+		});
 		return listItem;
 	}
 }
@@ -93,21 +94,22 @@ class RecipesPage extends ListPage {
 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(ent.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(ent.source)}">${source}</span>
 		</a>`;
 
-		const listItem = new ListItem(
-			rpI,
-			eleLi,
-			ent.name,
-			{
-				hash,
+		const listItem = new ListItem({
+			id: rpI,
+			ele: eleLi,
+			name: ent.name,
+			values: {
 				source,
-				page: ent.page,
+				...ListItem.getCommonValues(ent),
 				type: ent.type,
 				alias: PageFilterRecipes.getListAliases(ent),
 			},
-			{
+			data: {
+				hash,
+				page: ent.page,
 				isExcluded,
 			},
-		);
+		});
 
 		eleLi.addEventListener("click", (evt) => this._list.doSelect(listItem, evt));
 		eleLi.addEventListener("contextmenu", (evt) => this._openContextMenu(evt, this._list, listItem));
@@ -120,34 +122,50 @@ class RecipesPage extends ListPage {
 	_renderStats_doBuildStatsTab ({ent, scaleFactor = null}) {
 		if (scaleFactor != null) ent = Renderer.recipe.getScaledRecipe(ent, scaleFactor);
 
-		const selScaleFactor = ee`
-			<select title="Scale Recipe" class="ve-form-control ve-input-xs form-control--minimal ve-popwindow__hidden">
+		const selScaleFactor = veT`
+			<select title="Scale Recipe" class="ve-form-control ve-input-xs form-control--minimal ve-popwindow__hidden ve-min-w-40p">
 				${[0.5, 1, 2, 3, 4].map(it => `<option value="${it}" ${(scaleFactor || 1) === it ? "selected" : ""}>×${it}</option>`)}
 			</select>`
-			.onn("change", () => {
-				const scaleFactor = Number(selScaleFactor.val());
+			.vee.onn("change", () => {
+				const scaleFactor = Number(selScaleFactor.vee.val());
 
 				if (scaleFactor !== this._lastRender?._scaleFactor) {
 					if (scaleFactor === 1) Hist.setSubhash(VeCt.HASH_SCALED, null);
 					else Hist.setSubhash(VeCt.HASH_SCALED, scaleFactor);
 				}
 			});
-		selScaleFactor.val(`${scaleFactor || 1}`);
+		selScaleFactor.vee.val(`${scaleFactor || 1}`);
 
-		this._pgContent.empty().append(RenderRecipes.getRenderedRecipe(ent, {selScaleFactor}));
+		this._pgContent.vee.empty().append(RenderRecipes.getRenderedRecipe(ent, {selScaleFactor}));
 		Renderer.initLazyImageLoaders();
 		this._lastRender = {entity: ent};
 	}
 
+	async _pDoLoadSubHash_pScaler_ ({sub}) {
+		const scaledHash = sub.find(it => it.startsWith(RecipesPage._HASH_START_SCALED));
+		if (!scaledHash) return sub;
+
+		const scaleFactor = Number(UrlUtil.unpackSubHash(scaledHash)[VeCt.HASH_SCALED][0]);
+		const r = this._dataList[Hist.lastLoadedId];
+		this._renderStats_doBuildStatsTab({ent: r, scaleFactor});
+
+		return sub;
+	}
+
+	async _pDoLoadSubHash_pScaler ({sub}) {
+		try {
+			sub = await this._pDoLoadSubHash_pScaler_({sub});
+		} catch (e) {
+			JqueryUtil.doToast({type: "danger", content: `Failed to set recipe scaler state from URL! ${VeCt.STR_SEE_CONSOLE}`, isAutoHide: false});
+			setTimeout(() => { throw e; });
+		}
+		return sub;
+	}
+
 	async _pDoLoadSubHash ({sub, lockToken}) {
 		sub = await super._pDoLoadSubHash({sub, lockToken});
-
-		const scaledHash = sub.find(it => it.startsWith(RecipesPage._HASH_START_SCALED));
-		if (scaledHash) {
-			const scaleFactor = Number(UrlUtil.unpackSubHash(scaledHash)[VeCt.HASH_SCALED][0]);
-			const r = this._dataList[Hist.lastLoadedId];
-			this._renderStats_doBuildStatsTab({ent: r, scaleFactor});
-		}
+		sub = await this._pDoLoadSubHash_pScaler({sub});
+		return sub;
 	}
 }
 RecipesPage._HASH_START_SCALED = `${VeCt.HASH_SCALED}${HASH_SUB_KV_SEP}`;

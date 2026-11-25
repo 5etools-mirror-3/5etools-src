@@ -1,8 +1,20 @@
 import {injectManifest} from "workbox-build";
 import esbuild from "esbuild";
+import {Command} from "commander";
 
-const args = process.argv.slice(2);
-const prod = args[0] === "prod";
+const program = new Command()
+	.option("--prod", "Build for production")
+
+	.option("--skip-prerelease", "Skip caching prerelease data")
+	.option("--skip-homebrew", "Skip caching homebrew data")
+
+	.option("--dbg-force", "Force a service worker update on next reload")
+;
+
+program.parse(process.argv);
+const params = program.opts();
+
+if (params.dbgForce) console.warn("Forcing service worker update on next reload!");
 
 /**
  * convert from bytes to mb and label the units
@@ -20,8 +32,8 @@ const buildResultLog = (label, buildResult) => {
 const esbuildBuildResultSwInjector = await esbuild.build({
 	entryPoints: ["sw-injector-template.js"],
 	bundle: true,
-	minify: prod,
-	drop: prod ? ["console"] : undefined,
+	minify: params.prod,
+	drop: params.prod ? ["console"] : undefined,
 	allowOverwrite: true,
 	outfile: "sw-injector.js",
 });
@@ -38,8 +50,8 @@ const workboxPrecacheBuildResult = await injectManifest({
 		"js/**/*.js", // all js needs to be loaded
 		"lib/**/*.js", // js in lib needs to be loaded
 		"css/**/*.css", // all css needs to be loaded
-		"homebrew/**/*.json", // presumably if there is homebrew data it should also be loaded
-		"prerelease/**/*.json", // as above
+		...params.skipHomebrew ? [] : ["homebrew/**/*.json"], // presumably if there is homebrew data it should also be loaded
+		...params.skipPrerelease ? [] : ["prerelease/**/*.json"], // as above
 		// we want to match all data unless its for an adventure
 		"data/*.json", // root level data
 		"data/**/!(adventure)/*.json", // matches all json in data unless it is a file inside a directory called adventure
@@ -100,8 +112,9 @@ buildResultLog(
 const esbuildBuildResultSw = await esbuild.build({
 	entryPoints: ["sw.js"],
 	bundle: true,
-	minify: prod,
-	drop: prod ? ["console"] : undefined,
+	minify: params.prod,
+	drop: params.prod ? ["console"] : undefined,
+	banner: params.dbgForce ? {js: `/* Force-update timestamp: ${Date.now()} */`} : undefined,
 	allowOverwrite: true,
 	outfile: "sw.js",
 });

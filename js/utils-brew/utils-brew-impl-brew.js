@@ -18,6 +18,7 @@ export class BrewUtil2_ extends BrewUtil2Base {
 	_PATH_LOCAL_DIR = "homebrew";
 	_PATH_LOCAL_INDEX = VeCt.JSON_BREW_INDEX;
 
+	ID = "homebrew";
 	IS_EDITABLE = true;
 	PAGE_MANAGE = UrlUtil.PG_MANAGE_BREW;
 	URL_REPO_DEFAULT = VeCt.URL_BREW;
@@ -35,13 +36,13 @@ export class BrewUtil2_ extends BrewUtil2Base {
 
 	getFileUrl (path, urlRoot) { return DataUtil.brew.getFileUrl(path, urlRoot); }
 
-	pLoadTimestamps (urlRoot) { return DataUtil.brew.pLoadTimestamps(urlRoot); }
+	async pLoadTimestamps (urlRoot) { return DataUtil.brew.pLoadTimestamps(urlRoot); }
 
-	pLoadPropIndex (urlRoot) { return DataUtil.brew.pLoadPropIndex(urlRoot); }
+	async pLoadPropIndex (urlRoot) { return DataUtil.brew.pLoadPropIndex(urlRoot); }
 
-	pLoadMetaIndex (urlRoot) { return DataUtil.brew.pLoadMetaIndex(urlRoot); }
+	async pLoadMetaIndex (urlRoot) { return DataUtil.brew.pLoadMetaIndex(urlRoot); }
 
-	pLoadAdventureBookIdsIndex (urlRoot) { return DataUtil.brew.pLoadAdventureBookIdsIndex(urlRoot); }
+	async pLoadAdventureBookIdsIndex (urlRoot) { return DataUtil.brew.pLoadAdventureBookIdsIndex(urlRoot); }
 
 	/* -------------------------------------------- */
 

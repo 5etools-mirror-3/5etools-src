@@ -1234,7 +1234,7 @@
 				{
 					"name": "Force Strike",
 					"entries": [
-						"{@atkr m,r} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. or range 30 ft. {@h}{@dice 1d6 + summonSpellLevel} Force damage."
+						"{@atkr m,r} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. or range 30 ft. {@h}{@damage 1d6 + summonSpellLevel} Force damage."
 					]
 				}
 			],
@@ -1747,8 +1747,10 @@
 					"name": "Spellcasting",
 					"type": "spellcasting",
 					"headerEntries": [
-						"The inquisitive casts one of the following spells, requiring no Material components and using Wisdom as the spellcasting ability (spell save {@dc 13}):",
-						"At Will : Guidance"
+						"The inquisitive casts one of the following spells, requiring no Material components and using Wisdom as the spellcasting ability (spell save {@dc 13}):"
+					],
+					"will": [
+						"{@spell Guidance|XPHB}"
 					],
 					"daily": {
 						"1e": [
@@ -2263,9 +2265,11 @@
 						"{@spell Mage Armor|XPHB} (included in AC)",
 						"{@spell Message|XPHB}"
 					],
-					"footerEntries": [
-						"1/Da y: Sending"
-					],
+					"daily": {
+						"1e": [
+							"{@spell Sending|XPHB}"
+						]
+					},
 					"ability": "int",
 					"displayAs": "action"
 				}
@@ -2388,7 +2392,7 @@
 				{
 					"name": "Force-Empowered Rend",
 					"entries": [
-						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}{@dice 1d8 + 2} plus your Intelligence modifier Force damage."
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}{@damage 1d8 + 2} plus your Intelligence modifier Force damage."
 					]
 				},
 				{
@@ -2902,6 +2906,9 @@
 			"miscTags": [
 				"MA",
 				"RA"
+			],
+			"conditionInflict": [
+				"blinded"
 			],
 			"savingThrowForced": [
 				"wisdom"

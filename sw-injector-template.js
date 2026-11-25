@@ -13,6 +13,21 @@ const throttle = (func, delay) => {
 	};
 };
 
+const pDoWaitForServiceWorkerActivation = sw => {
+	if (sw.state === "activated") return Promise.resolve();
+
+	return new Promise(resolve => {
+		const onStateChange = () => {
+			if (sw.state !== "activated") return;
+
+			sw.removeEventListener("statechange", onStateChange);
+			resolve();
+		};
+
+		sw.addEventListener("statechange", onStateChange);
+	});
+};
+
 const fetchError = {
 	"generic": throttle(() => {
 		JqueryUtil.doToast({
@@ -41,20 +56,36 @@ const fetchError = {
 
 const wb = new Workbox("sw.js");
 
-wb.addEventListener("controlling", () => {
+wb.addEventListener("waiting", ({sw}) => {
 	if (!VetoolsConfig.get("ui", "isNotifyUpdates")) return;
 
-	const lnk = ee`<a href="${Renderer.get().baseUrl}changelog.html" class="alert-link">changelog</a>`
-		.onn("click", evt => {
+	const btnUpdate = veT`<button class="ve-btn ve-btn-primary ve-btn-xs ve-ml-2 ve-w-140p">Update and Reload</button>`
+		.vee.onn("click", async evt => {
+			evt.stopPropagation();
+
+			btnUpdate
+				.vee.prop("disabled", true)
+				.vee.txt("Updating...")
+				.vee.addClass("ve-text-center");
+
+			const pActivated = pDoWaitForServiceWorkerActivation(sw);
+			wb.messageSkipWaiting();
+			await pActivated;
+
+			window.location.reload();
+		});
+
+	const lnk = veT`<a href="${Renderer.get().baseUrl}changelog.html" class="alert-link">changelog</a>`
+		.vee.onn("click", evt => {
 			evt.stopPropagation();
 		});
+
 	JqueryUtil.doToast({
-		content: ee`<div>${window.location.hostname} has been updated\u2014reload to see new content, and ensure the page is displayed correctly. See the ${lnk} for more info!</div>`,
-		type: "success",
-		isAutoHide: false, // never auto hide - this warning is important
+		content: veT`<div>An update to ${window.location.hostname} is ready. See the ${lnk} for more info. ${btnUpdate}</div>`,
+		type: "info",
+		isAutoHide: false,
 	});
 });
-
 // this is where we tell the service worker to start - after the page has loaded
 // event listeners need to be added first
 wb.register();
@@ -114,16 +145,16 @@ const removeDownloadBar = () => {
 const initDownloadBar = () => {
 	if (downloadBar !== null) removeDownloadBar();
 
-	const displayProgress = ee`<div class="page__disp-download-progress-bar"></div>`;
-	const displayPercent = ee`<div class="page__disp-download-progress-text ve-flex-vh-center ve-bold">0%</div>`;
+	const displayProgress = veT`<div class="page__disp-download-progress-bar"></div>`;
+	const displayPercent = veT`<div class="page__disp-download-progress-text ve-flex-vh-center ve-bold">0%</div>`;
 
-	const btnCancel = ee`<button class="ve-btn ve-btn-default"><span class="glyphicon glyphicon-remove"></span></button>`
-		.onn("click", () => {
+	const btnCancel = veT`<button class="ve-btn ve-btn-default"><span class="glyphicon glyphicon-remove"></span></button>`
+		.vee.onn("click", () => {
 			swCancelCacheRoutes();
 		});
 
-	const wrapBar = ee`<div class="page__wrp-download-bar ve-w-100 ve-relative ve-mr-2">${displayProgress}${displayPercent}</div>`;
-	const wrapOuter = ee`<div class="page__wrp-download">
+	const wrapBar = veT`<div class="page__wrp-download-bar ve-w-100 ve-relative ve-mr-2">${displayProgress}${displayPercent}</div>`;
+	const wrapOuter = veT`<div class="page__wrp-download">
 		${wrapBar}
 		${btnCancel}
 	</div>`.appendTo(document.body);
@@ -141,7 +172,9 @@ const updateDownloadBar = (msg) => {
 	switch (msg.type) {
 		case "CACHE_ROUTES_PROGRESS":
 			// eslint-disable-next-line no-case-declarations
-			const percent = `${(100 * (msg.payload.fetched / msg.payload.fetchTotal)).toFixed(3)}%`;
+			const percent = msg.payload.fetchTotal
+				? `${(100 * (msg.payload.fetched / msg.payload.fetchTotal)).toFixed(3)}%`
+				: "100%";
 			downloadBar.displayProgress.css({width: percent});
 			downloadBar.displayPercent.txt(percent);
 			// do a toast and cleanup if every single file has been downloaded.
@@ -164,10 +197,9 @@ const updateDownloadBar = (msg) => {
 					{
 						type: "warning",
 						autoHideTime: 15_000,
-						content:
-					`An error occurred while preloading.
-					You may have gone offline, or the server may not be responding.
-					Please try again. ${VeCt.STR_SEE_CONSOLE}`,
+						content: msg.payload.isQuotaExceeded
+							? `Storage quota exceeded. You may have to reset preloaded data \u2014 or choose a smaller preload \u2014 then try again.`
+							: `An error occurred while preloading. You may have gone offline, or the server may not be responding. Please try again. ${VeCt.STR_SEE_CONSOLE}`,
 					},
 				);
 			}, 2_000);

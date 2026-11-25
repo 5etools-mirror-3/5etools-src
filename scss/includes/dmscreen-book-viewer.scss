@@ -1,5 +1,5 @@
 @use "../vars/vars";
-@use "../vars/vars-night";
+@use "../vars/vars--night";
 
 @layer vetools {
 	.dm-book__ {
@@ -9,7 +9,7 @@
 		}
 
 		&wrp-controls {
-			padding: 2px 2px 1px 21px;
+			padding: 2px 2px 1px;
 			border-top: 1px solid vars.$rgb-border-grey;
 			justify-content: flex-end;
 		}
@@ -24,7 +24,7 @@
 
 	.ve-night-mode .dm-book__ {
 		&wrp-controls {
-			border-color: vars-night.$rgb-border-grey--night;
+			border-color: vars--night.$rgb-border-grey--night;
 		}
 	}
 }

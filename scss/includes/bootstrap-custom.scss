@@ -1,5 +1,5 @@
 @use "../vars/vars";
-@use "../vars/vars-night";
+@use "../vars/vars--night";
 
 @layer vetools {
 	:root {
@@ -84,6 +84,11 @@
 
 	hr {
 		flex-shrink: 0;
+	}
+
+	kbd {
+		border: 1px solid #8882;
+		font-style: initial;
 	}
 
 	/* *** */
@@ -355,7 +360,7 @@
 		> button,
 		> a.ve-btn {
 			&:last-child {
-				border-right-color: vars-night.$rgb-border-grey--night;
+				border-right-color: vars--night.$rgb-border-grey--night;
 			}
 		}
 	}

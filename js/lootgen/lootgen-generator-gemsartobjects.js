@@ -10,19 +10,19 @@ export class LootGenGeneratorGemsArtObjects extends LootGenGeneratorBase {
 		const cbIsUseArtObjects = ComponentUiUtil.getCbBool(this, "gao_isUseArtObjects");
 
 		const iptTargetGoldAmount = ComponentUiUtil.getIptInt(this, "gao_targetGoldAmount", 0, {min: 0})
-			.onn("keydown", evt => {
+			.vee.onn("keydown", evt => {
 				if (evt.key !== "Enter") return;
 				iptTargetGoldAmount.change();
 				btnRoll.click();
 			});
 
-		const btnRoll = ee`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">Roll Loot</button>`
-			.onn("click", () => this._goa_pDoHandleClickRollLoot());
+		const btnRoll = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">Roll Loot</button>`
+			.vee.onn("click", () => this._goa_pDoHandleClickRollLoot());
 
-		const btnClear = ee`<button class="ve-btn ve-btn-danger ve-btn-xs">Clear Output</button>`
-			.onn("click", () => this._outputManager.doClearOutput());
+		const btnClear = veT`<button class="ve-btn ve-btn-danger ve-btn-xs">Clear Output</button>`
+			.vee.onn("click", () => this._outputManager.doClearOutput());
 
-		ee`<div class="ve-flex-col ve-py-2 ve-px-3">
+		veT`<div class="ve-flex-col ve-py-2 ve-px-3">
 			<h4 class="ve-mt-1 ve-mb-3">Gem/Art Object Generator</h4>
 
 			<label class="ve-split-v-center ve-mb-3">
@@ -48,7 +48,7 @@ export class LootGenGeneratorGemsArtObjects extends LootGenGeneratorBase {
 			<hr class="ve-hr-3">
 
 			<div class="ve-small ve-italic">${this._rendererWrapped.er(`This custom generator randomly selects gems/art objects up to the target gold amount.`)}</div>
-		</div>`.appendTo(tabMeta.wrpTab);
+		</div>`.vee.appendTo(tabMeta.wrpTab);
 	}
 
 	async _goa_pDoHandleClickRollLoot () {

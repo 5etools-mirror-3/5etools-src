@@ -1,4 +1,5 @@
-import {EncounterBuilderCreatureMeta, EncounterPartyPlayerMeta} from "./encounterbuilder-models.js";
+import {EncounterBuilderCreatureGroupEntityCreature, EncounterBuilderCreatureGroupRegistry} from "./encounterbuilder-models-creaturegroup.js";
+import {EncounterPartyPlayerMeta} from "./encounterbuilder-models-other.js";
 
 export class EncounterBuilderComponent extends BaseComponent {
 	constructor ({cache}) {
@@ -8,8 +9,8 @@ export class EncounterBuilderComponent extends BaseComponent {
 
 	/* -------------------------------------------- */
 
-	get creatureMetas () { return this._state.creatureMetas; }
-	set creatureMetas (val) { this._state.creatureMetas = val; }
+	get creatureGroups () { return this._state.creatureGroups; }
+	set creatureGroups (val) { this._state.creatureGroups = val; }
 
 	get customShapeGroups () { return this._state.customShapeGroups; }
 	set customShapeGroups (val) { this._state.customShapeGroups = val; }
@@ -18,7 +19,7 @@ export class EncounterBuilderComponent extends BaseComponent {
 
 	/* -------------------------------------------- */
 
-	addHookCreatureMetas (hk) { return this._addHookBase("creatureMetas", hk); }
+	addHookCreatureGroups (hk) { return this._addHookBase("creatureGroups", hk); }
 	addHookCustomShapeGroups (hk) { return this._addHookBase("customShapeGroups", hk); }
 	addHookPulseDeriverPartyMeta (hk) { return this._addHookBase("pulseDerivedPartyMeta", hk); }
 
@@ -30,98 +31,109 @@ export class EncounterBuilderComponent extends BaseComponent {
 	setActiveRulesComp (rulesComp) { this._activeRulesComp = rulesComp; }
 	setActivePartyComp (partyComp) { this._activePartyComp = partyComp; }
 
-	doAddCreature ({creature = null, quantity = 1}) {
-		if (!creature) return;
+	doAddCreatureGroup ({creatureGroup}) {
+		const creatureGroupsNxt = [...this.creatureGroups];
+		const existingGroup = creatureGroupsNxt.find(creatureGroupNxt => creatureGroupNxt.isSameCreatureGroup(creatureGroup));
 
-		const creatureMetasNxt = [...this.creatureMetas];
-		const existingMeta = creatureMetasNxt.find(creatureMeta => creatureMeta.hasCreature(creature));
-
-		if (existingMeta) {
-			existingMeta.setCount(existingMeta.getCount() + quantity);
-			this.creatureMetas = creatureMetasNxt;
+		if (existingGroup) {
+			existingGroup.setCount(existingGroup.getCount() + creatureGroup.getCount());
+			this.creatureGroups = creatureGroupsNxt;
 			return;
 		}
 
-		this.creatureMetas = [
-			...creatureMetasNxt,
-			new EncounterBuilderCreatureMeta({
-				creature,
-				count: quantity,
-			}),
+		this.creatureGroups = [
+			...creatureGroupsNxt,
+			creatureGroup,
 		];
 	}
 
-	doSubtractCreature ({creature = null, quantity = 1}) {
-		if (!creature) return;
+	doSubtractCreatureGroup ({creatureGroup, quantity = null}) {
+		quantity ??= creatureGroup.getCount();
 
 		let isAnyMod = false;
-		const creatureMetasNxt = this.creatureMetas
-			.map(creatureMeta => {
-				if (!creatureMeta.hasCreature(creature)) return creatureMeta;
+		const creatureGroupsNxt = this.creatureGroups
+			.map(creatureGroupNxt => {
+				if (!creatureGroupNxt.isSameCreatureGroup(creatureGroup)) return creatureGroupNxt;
 
 				isAnyMod = true;
 
-				const countNxt = creatureMeta.getCount() - quantity;
+				const countNxt = creatureGroupNxt.getCount() - quantity;
 				if (countNxt <= 0) return null;
 
-				creatureMeta.setCount(countNxt);
-				return creatureMeta;
+				creatureGroupNxt.setCount(countNxt);
+				return creatureGroupNxt;
 			})
 			.filter(Boolean);
 
 		if (!isAnyMod) return;
-		this.creatureMetas = creatureMetasNxt;
+		this.creatureGroups = creatureGroupsNxt;
 	}
 
-	doShuffleCreature ({creatureMeta}) {
-		if (creatureMeta.getIsLocked()) return;
-
-		const ix = this.creatureMetas.findIndex(creatureMeta_ => creatureMeta_.isSameCreature(creatureMeta));
-		if (!~ix) throw new Error(`Could not find creature ${creatureMeta.getHash()} (${creatureMeta.customHashId})`);
-
-		const creatureMeta_ = this.creatureMetas[ix];
-		if (creatureMeta_.getIsLocked()) return;
-
+	_getReplacementEntityCreature ({creatureGroup}) {
 		const lockedHashes = new Set(
-			this.creatureMetas
-				.filter(creatureMeta => creatureMeta.getIsLocked())
-				.map(creatureMeta => creatureMeta.getHash()),
+			this.creatureGroups
+				.filter(creatureGroup => creatureGroup.getIsLocked())
+				.map(creatureGroup => creatureGroup.getHash())
+				.filter(Boolean),
 		);
 
-		const monRolled = this._doShuffleCreature_getShuffled({creatureMeta: creatureMeta_, lockedHashes});
-		if (!monRolled) return JqueryUtil.doToast({content: "Could not find another creature worth the same amount of XP!", type: "warning"});
-
-		const creatureMetaNxt = new EncounterBuilderCreatureMeta({
-			creature: monRolled,
-			count: creatureMeta_.getCount(),
-		});
-
-		const creatureMetasNxt = [...this.creatureMetas];
-		const withMonRolled = creatureMetasNxt.find(creatureMeta_ => creatureMeta_.hasCreature(monRolled));
-		if (withMonRolled) {
-			withMonRolled.setCount(withMonRolled.getCount() + creatureMetaNxt.getCount());
-			creatureMetasNxt.splice(ix, 1);
-		} else {
-			creatureMetasNxt[ix] = creatureMetaNxt;
-		}
-
-		this.creatureMetas = creatureMetasNxt;
-	}
-
-	_doShuffleCreature_getShuffled ({creatureMeta, lockedHashes}) {
 		const budgetMode = this._activeRulesComp.getBudgetMode();
 
-		const spendValue = creatureMeta.getSpend({budgetMode});
-		const hash = creatureMeta.getHash();
+		const spendValue = creatureGroup.getSpend({budgetMode});
+		const hash = creatureGroup.getHash();
 
 		const availMons = this._cache.getCreatures({budgetMode, spendValue})
 			.filter(mon => {
-				const hash_ = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BESTIARY](mon);
-				return !lockedHashes.has(hash) && hash_ !== hash;
+				const hashNxt = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BESTIARY](mon);
+				return !lockedHashes.has(hashNxt) && hashNxt !== hash;
 			});
 		if (!availMons.length) return null;
 
 		return RollerUtil.rollOnArray(availMons);
+	}
+
+	_doReplaceCreatureGroup ({creatureGroup, creatureGroupNxt}) {
+		const ix = this.creatureGroups.findIndex(creatureGroup_ => creatureGroup_.id === creatureGroup.id);
+		if (!~ix) throw new Error(`Could not find creature group "${creatureGroup.id}"!`);
+
+		const creatureGroupsNxt = [...this.creatureGroups];
+		const existingGroup = creatureGroupsNxt.find(creatureGroup_ => creatureGroup_.id !== creatureGroup.id && creatureGroup_.isSameCreatureGroup(creatureGroupNxt));
+		if (existingGroup) {
+			existingGroup.setCount(existingGroup.getCount() + creatureGroupNxt.getCount());
+			creatureGroupsNxt.splice(ix, 1);
+		} else {
+			creatureGroupsNxt[ix] = creatureGroupNxt;
+		}
+
+		this.creatureGroups = creatureGroupsNxt;
+	}
+
+	doReplaceCreatureGroupWithRandomEntityCreature ({creatureGroup}) {
+		if (creatureGroup.getIsLocked()) return;
+
+		const creature = this._getReplacementEntityCreature({creatureGroup});
+		if (!creature) return JqueryUtil.doToast({content: "Could not find another creature worth the same amount of XP!", type: "warning"});
+
+		this._doReplaceCreatureGroup({
+			creatureGroup,
+			creatureGroupNxt: new EncounterBuilderCreatureGroupEntityCreature({
+				creature,
+				count: creatureGroup.getCount(),
+			}),
+		});
+	}
+
+	doShuffleCreatureGroup ({creatureGroup}) {
+		if (creatureGroup.getIsLocked()) return;
+		this.doReplaceCreatureGroupWithRandomEntityCreature({creatureGroup});
+	}
+
+	doDeleteCreatureGroup ({creatureGroup}) {
+		this.creatureGroups = this.creatureGroups.filter(creatureGroup_ => creatureGroup_.id !== creatureGroup.id);
+	}
+
+	doPulseCreatureGroups () {
+		this._triggerCollectionUpdate("creatureGroups");
 	}
 
 	/* -------------------------------------------- */
@@ -157,6 +169,31 @@ export class EncounterBuilderComponent extends BaseComponent {
 
 	/* -------------------------------------------- */
 
+	getBaseSaveableState () {
+		return {
+			state: MiscUtil.copyFast({
+				...this.__state,
+				creatureGroups: this.__state.creatureGroups
+					?.map(creatureGroup => creatureGroup.toSerial()),
+			}),
+		};
+	}
+
+	/* ----- */
+
+	_mutValidateLoadedState (loadedState) {
+		if (loadedState.creatureMetas?.length && !loadedState.creatureGroups?.length) {
+			loadedState.creatureGroups = loadedState.creatureMetas;
+			delete loadedState.creatureMetas;
+		}
+
+		if (loadedState.creatureGroups?.length) {
+			loadedState.creatureGroups = loadedState.creatureGroups
+				.map(creatureGroup => EncounterBuilderCreatureGroupRegistry.fromSerial(creatureGroup))
+				.filter(creatureGroup => creatureGroup.isValid());
+		}
+	}
+
 	setStateFrom (toLoad, isOverwrite = false) {
 		if (toLoad.state) this._mutValidateLoadedState(toLoad.state);
 		return super.setStateFrom(toLoad, isOverwrite);
@@ -176,26 +213,11 @@ export class EncounterBuilderComponent extends BaseComponent {
 		this._proxyAssignSimple("state", partialLoadedState);
 	}
 
-	_mutValidateLoadedState (loadedState) {
-		if (loadedState.creatureMetas?.length) {
-			loadedState.creatureMetas = loadedState.creatureMetas
-				.map(creatureMeta => {
-					return creatureMeta instanceof EncounterBuilderCreatureMeta
-						? creatureMeta
-						: new EncounterBuilderCreatureMeta({...creatureMeta.entity});
-				});
-		}
-	}
-
 	/* -------------------------------------------- */
-
-	getDefaultStateKeys () {
-		return Object.keys(this.constructor._getDefaultState());
-	}
 
 	static _getDefaultState () {
 		return {
-			creatureMetas: [],
+			creatureGroups: [],
 
 			customShapeGroups: [],
 
@@ -207,5 +229,9 @@ export class EncounterBuilderComponent extends BaseComponent {
 		return {
 			...this.constructor._getDefaultState(),
 		};
+	}
+
+	getDefaultStateKeys () {
+		return Object.keys(this.constructor._getDefaultState());
 	}
 }

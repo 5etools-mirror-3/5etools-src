@@ -56,7 +56,7 @@ class _RenderBestiaryImplBase {
 	}
 
 	_getBtnPronounceHtml ({mon}) {
-		return `<button class="ve-btn ve-btn-xs ve-btn-default ve-stats__btn-name-pronounce ve-lst-is-exporting-image__hidden no-print ve-ml-2 ve-mb-2 ve-self-flex-end">
+		return `<button class="ve-btn ve-btn-xs ve-btn-default ve-stats__btn-name-pronounce ve-lst-is-exporting-image__hidden ve-print__hidden ve-ml-2 ve-mb-2 ve-self-flex-end">
 			<span class="glyphicon glyphicon-volume-up ve-stats__icn-pronounce-name"></span>
 			<audio class="ve-hidden" preload="none" data-name="aud-pronounce">
 			   <source src="${Renderer.utils.getEntryMediaUrl(mon, "soundClip", "audio")}" type="audio/mpeg">
@@ -92,13 +92,31 @@ class _RenderBestiaryImplBase {
 
 			case "legendary":
 			case "mythic": {
-				const cpy = MiscUtil.copy(entries)
-					.map(it => {
-						if (it.name && it.entries) it.type ||= "item";
-						return it;
+				// Split runs of "rendered" (i.e., spellcasting entries) vs. "other" (i.e., likely hanging list items)
+				//   into groupings, and handle each appropriately.
+				const listGroups = [];
+
+				MiscUtil.copy(entries)
+					.forEach(ent => {
+						if (ent.rendered) return listGroups.push({rendered: ent.rendered});
+
+						if (ent.name && ent.entries) ent.type ||= "item";
+
+						if (!listGroups.length || listGroups.at(-1).rendered) {
+							listGroups.push({type: "list", style: "list-hang-notitle", items: []});
+						}
+						listGroups.at(-1).items.push(ent);
 					});
-				const toRender = {type: "list", style: "list-hang-notitle", items: cpy};
-				renderer.setFirstSection(true).recursiveRender(toRender, renderStack, {depth: depth});
+
+				listGroups.forEach(group => {
+					if (group.rendered) {
+						renderStack.push(group.rendered);
+						return;
+					}
+
+					renderer.setFirstSection(true).recursiveRender(group, renderStack, {depth: depth});
+				});
+
 				break;
 			}
 
@@ -138,7 +156,7 @@ class _RenderBestiaryImplBase {
 		return {
 			htmlPtIsExcluded: this._getCommonHtmlParts_isExcluded({mon, isSkipExcludesRender}),
 			htmlPtName: this._getCommonHtmlParts_name({mon, isInlinedToken}),
-			htmlPtSizeTypeAlignment: this._getCommonHtmlParts_sizeTypeAlignment({mon, isInlinedToken}),
+			htmlPtSizeTypeAlignment: this._getCommonHtmlParts_sizeTypeAlignment({mon, renderer, isInlinedToken}),
 
 			htmlPtHitPoints: this._getCommonHtmlParts_hitPoints({mon, isInlinedToken}),
 			htmlPtsResources: this._getCommonHtmlParts_resources({mon, isInlinedToken}),
@@ -189,15 +207,16 @@ class _RenderBestiaryImplBase {
 		);
 	}
 
-	_getCommonHtmlParts_sizeTypeAlignment ({mon, isInlinedToken}) {
-		return `<tr><td colspan="6"><div ${isInlinedToken ? `class="ve-stats__wrp-avoid-token"` : ""}><i>${Renderer.monster.getTypeAlignmentPart(mon)}</i></div></td></tr>`;
+	_getCommonHtmlParts_sizeTypeAlignment ({mon, renderer, isInlinedToken}) {
+		return `<tr><td colspan="6"><div ${isInlinedToken ? `class="ve-stats__wrp-avoid-token"` : ""}><i>${Renderer.monster.getTypeAlignmentPart(mon, {renderer})}</i></div></td></tr>`;
 	}
 
 	/* ----- */
 
 	_getCommonHtmlParts_hitPoints ({mon, isInlinedToken}) {
-		const label = this._style === "classic" ? "Hit Points" : "HP";
-		const ptTitle = this._style === "classic" ? "" : `title="Hit Points"`;
+		const labelFull = mon.hp?.isTemporary ? "Temporary Hit Points" : "Hit Points";
+		const label = this._style === "classic" ? labelFull : mon.hp?.isTemporary ? "Temp HP" : "HP";
+		const ptTitle = this._style === "classic" ? "" : `title="${labelFull}"`;
 		const rendered = mon.hp == null ? "\u2014" : Renderer.monster.getRenderedHp(mon.hp);
 		return `<tr><td colspan="6"><div ${isInlinedToken ? `class="ve-stats__wrp-avoid-token"` : ""}><strong ${ptTitle}>${label}</strong> ${rendered}</div></td></tr>`;
 	}
@@ -367,7 +386,7 @@ class _RenderBestiaryImplBase {
 
 		if (Parser.crToNumber(mon.cr) >= VeCt.CR_UNKNOWN && this._style === "classic") return `<td colspan="3">${ptLabel} <span>\u2014</span></td>`;
 
-		return ee`<td colspan="${this._style !== "classic" ? "6" : "3"}">${ptLabel}
+		return veT`<td colspan="${this._style !== "classic" ? "6" : "3"}">${ptLabel}
 			<span>${Renderer.monster.getChallengeRatingPart(mon, {styleHint: this._style})}</span>
 			${opts.btnScaleCr || ""}
 			${opts.btnResetScaleCr || ""}
@@ -522,7 +541,7 @@ class _RenderBestiaryImplClassic extends _RenderBestiaryImplBase {
 			entsTrait,
 		});
 
-		return ee`
+		return veT`
 		${Renderer.utils.getBorderTr()}
 
 		${htmlPtIsExcluded}
@@ -558,8 +577,8 @@ class _RenderBestiaryImplClassic extends _RenderBestiaryImplBase {
 			${htmlPtPb}
 		</tr>
 
-		<tr>${opts.selSummonSpellLevel ? ee`<td colspan="6"><strong class="ve-mr-2">Spell Level</strong> ${opts.selSummonSpellLevel}</td>` : ""}</tr>
-		<tr>${opts.selSummonClassLevel ? ee`<td colspan="6"><strong class="ve-mr-2">${opts.classLevelScalerClass ? "Class Level" : "Level"}</strong> ${opts.selSummonClassLevel}</td>` : ""}</tr>
+		<tr>${opts.selSummonSpellLevel ? veT`<td colspan="6"><strong class="ve-mr-2">Spell Level</strong> ${opts.selSummonSpellLevel}</td>` : ""}</tr>
+		<tr>${opts.selSummonClassLevel ? veT`<td colspan="6"><strong class="ve-mr-2">${opts.classLevelScalerClass ? "Class Level" : "Level"}</strong> ${opts.selSummonClassLevel}</td>` : ""}</tr>
 
 		${htmlPtTraits}
 		${htmlPtActions}
@@ -720,7 +739,7 @@ class _RenderBestiaryImplOne extends _RenderBestiaryImplBase {
 			entsTrait,
 		});
 
-		return ee`
+		return veT`
 		${Renderer.utils.getBorderTr()}
 
 		${htmlPtIsExcluded}
@@ -751,8 +770,8 @@ class _RenderBestiaryImplOne extends _RenderBestiaryImplBase {
 			${this._getTdChallenge(mon, opts)}
 		</tr>
 
-		<tr>${opts.selSummonSpellLevel ? ee`<td colspan="6"><strong class="ve-mr-2">Spell Level</strong> ${opts.selSummonSpellLevel}</td>` : ""}</tr>
-		<tr>${opts.selSummonClassLevel ? ee`<td colspan="6"><strong class="ve-mr-2">${opts.classLevelScalerClass ? "Class Level" : "Level"}</strong> ${opts.selSummonClassLevel}</td>` : ""}</tr>
+		<tr>${opts.selSummonSpellLevel ? veT`<td colspan="6"><strong class="ve-mr-2">Spell Level</strong> ${opts.selSummonSpellLevel}</td>` : ""}</tr>
+		<tr>${opts.selSummonClassLevel ? veT`<td colspan="6"><strong class="ve-mr-2">${opts.classLevelScalerClass ? "Class Level" : "Level"}</strong> ${opts.selSummonClassLevel}</td>` : ""}</tr>
 
 		${htmlPtTraits}
 		${htmlPtActions}
@@ -794,7 +813,7 @@ export class RenderBestiary {
 	}
 
 	static getRenderedLegendaryGroup (legGroup) {
-		return ee`
+		return veT`
 		${Renderer.utils.getBorderTr()}
 		${Renderer.utils.getNameTr(legGroup)}
 		<tr><td colspan="6">

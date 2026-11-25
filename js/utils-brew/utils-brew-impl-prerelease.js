@@ -16,6 +16,7 @@ export class PrereleaseUtil_ extends BrewUtil2Base {
 
 	_VERSION = 1;
 
+	ID = "prerelease";
 	IS_EDITABLE = false;
 	PAGE_MANAGE = UrlUtil.PG_MANAGE_PRERELEASE;
 	URL_REPO_DEFAULT = VeCt.URL_PRERELEASE;

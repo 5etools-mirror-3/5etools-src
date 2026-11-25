@@ -41,7 +41,7 @@ export class RenderableCollectionConditions extends RenderableCollectionGenericR
 			.filter(Boolean)
 			.join(" ");
 
-		return ee`<div class="init__cond ve-relative" ${ptStyle ? `style="${ptStyle}"` : ""}></div>`;
+		return veT`<div class="init__cond ve-relative" ${ptStyle ? `style="${ptStyle}"` : ""}></div>`;
 	}
 
 	/* -------------------------------------------- */
@@ -52,12 +52,12 @@ export class RenderableCollectionConditions extends RenderableCollectionGenericR
 		this._populateRow_bindHookConditionHover({comp, wrpRow, entity});
 
 		wrpRow
-			.onn("contextmenu", evt => {
+			.vee.onn("contextmenu", evt => {
 				if (this._isReadOnly) return;
 				evt.preventDefault();
 				this._doTickDown({comp, entity, isFromClick: true});
 			})
-			.onn("click", evt => {
+			.vee.onn("click", evt => {
 				if (this._isReadOnly) return;
 				if (EventUtil.isCtrlMetaKey(evt)) return this._utils.doDelete({entity});
 				this._doTickUp({comp, entity, isFromClick: true});
@@ -67,7 +67,7 @@ export class RenderableCollectionConditions extends RenderableCollectionGenericR
 	_populateRow_bindHookTooltip ({comp, wrpRow, entity}) {
 		const hkTooltip = () => {
 			const turnsText = `${comp._state.turns} turn${comp._state.turns > 1 ? "s" : ""} remaining${this._isReadOnly ? "" : `; CTRL-click to Clear`}`;
-			wrpRow.tooltip(
+			wrpRow.vee.tooltip(
 				comp._state.name && comp._state.turns
 					? `${comp._state.name.escapeQuotes()} (${turnsText})`
 					: comp._state.name
@@ -91,30 +91,30 @@ export class RenderableCollectionConditions extends RenderableCollectionGenericR
 				: this._populateRow_getHtmlBar({comp, wrpRow, entity});
 
 			wrpRow
-				.empty()
-				.html(htmlBars);
+				.vee.empty()
+				.vee.html(htmlBars);
 		})();
 	}
 
 	_populateRow_bindHookConditionHover ({comp, wrpRow, entity}) {
 		comp._addHookBase("name", () => {
 			wrpRow
-				.off("mouseover")
-				.off("mousemove")
-				.off("mouseleave");
+				.vee.off("mouseover")
+				.vee.off("mousemove")
+				.vee.off("mouseleave");
 
 			const cond = InitiativeTrackerUtil.CONDITIONS.find(it => it.condName !== null && it.name.toLowerCase() === comp._state.name.toLowerCase().trim());
 			if (!cond) return;
 
-			wrpRow.onn("mouseover", (evt) => {
+			wrpRow.vee.onn("mouseover", (evt) => {
 				if (!evt.shiftKey) return;
 
 				evt.shiftKey = false;
 				const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CONDITIONS_DISEASES]({name: cond.condName || cond.name, source: Parser.SRC_PHB});
 				Renderer.hover.pHandleLinkMouseOver(evt, wrpRow, {isSpecifiedLinkData: true, page: UrlUtil.PG_CONDITIONS_DISEASES, source: Parser.SRC_PHB, hash}).then(null);
 			});
-			wrpRow.onn("mousemove", (evt) => Renderer.hover.handleLinkMouseMove(evt, wrpRow));
-			wrpRow.onn("mouseleave", (evt) => Renderer.hover.handleLinkMouseLeave(evt, wrpRow));
+			wrpRow.vee.onn("mousemove", (evt) => Renderer.hover.handleLinkMouseMove(evt, wrpRow));
+			wrpRow.vee.onn("mouseleave", (evt) => Renderer.hover.handleLinkMouseLeave(evt, wrpRow));
 		})();
 	}
 

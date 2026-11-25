@@ -492,10 +492,13 @@ class PageFilterBestiary extends PageFilterBase {
 	static _getEquipmentList (mon) {
 		if (mon.gear) {
 			return mon.gear
-				.map(ref => (ref.item || ref).toLowerCase());
+				.map(ref => DataUtil.proxy.unpackUid("item", ref.item || ref, "item", {isLower: true}).name);
 		}
 
-		const itemSet = new Set(mon.attachedItems || []);
+		const itemSet = new Set(
+			(mon.attachedItems || [])
+				.map(ref => DataUtil.proxy.unpackUid("item", ref.item || ref, "item", {isLower: true}).name),
+		);
 
 		const walker = this._getInitWalker();
 
@@ -533,6 +536,7 @@ class PageFilterBestiary extends PageFilterBase {
 
 		this._sourceFilter.addItem(mon._fSources);
 		this._crFilter.addItem(mon._fCr);
+		this._typeFilter.addItem(mon._pTypes.types);
 		this._strengthFilter.addItem(mon._fStr);
 		this._dexterityFilter.addItem(mon._fDex);
 		this._constitutionFilter.addItem(mon._fCon);
@@ -742,7 +746,7 @@ class ModalFilterBestiary extends ModalFilterBase {
 
 		const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BESTIARY](mon);
 		const source = Parser.sourceJsonToAbv(mon.source);
-		const type = mon._pTypes.asText;
+		const type = mon._pTypes.asTextShort;
 		const cr = mon._pCr;
 
 		eleRow.innerHTML = `<div class="ve-w-100 ve-flex-vh-center ve-lst__row-border veapp__list-row ve-no-select ve-lst__wrp-cells">
@@ -760,23 +764,24 @@ class ModalFilterBestiary extends ModalFilterBase {
 
 		const btnShowHidePreview = eleRow.firstElementChild.children[1].firstElementChild;
 
-		const listItem = new ListItem(
-			itI,
-			eleRow,
-			mon.name,
-			{
-				hash,
+		const listItem = new ListItem({
+			id: itI,
+			ele: eleRow,
+			name: mon.name,
+			values: {
 				source,
 				sourceJson: mon.source,
 				...ListItem.getCommonValues(mon),
 				type,
 				cr,
 			},
-			{
+			data: {
+				hash,
+				page: mon.page,
 				cbSel: eleRow.firstElementChild.firstElementChild.firstElementChild,
 				btnShowHidePreview,
 			},
-		);
+		});
 
 		this._previewButtonHandler.bindPreviewButton({entity: mon, listItem, btnShowHidePreview});
 

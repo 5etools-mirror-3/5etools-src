@@ -23,7 +23,7 @@ export class OmnisearchBacking {
 			this.addField("sA");
 			this.setRef("id");
 		});
-		SearchUtil.removeStemmer(this._searchIndex);
+		SearchUtil.initSearchIndex(this._searchIndex);
 
 		const siteIndex = Omnidexer.decompressIndex(await DataUtil.loadJSON(`${Renderer.get().baseUrl}search/index.json`));
 		siteIndex.forEach(it => this._addToIndex(it));

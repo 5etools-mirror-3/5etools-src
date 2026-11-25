@@ -1,4 +1,5 @@
-import {EncounterBuilderCandidateEncounter, EncounterBuilderCreatureMeta, EncounterBuilderOptionalCandidateEncounter} from "../encounterbuilder-models.js";
+import {EncounterBuilderCreatureGroupEntityCreature} from "../encounterbuilder-models-creaturegroup.js";
+import {EncounterBuilderCandidateEncounter, EncounterBuilderOptionalCandidateEncounter} from "../encounterbuilder-models-other.js";
 import {EncounterBuilderRandomizerBase} from "./encounterbuilder-randomizer-base.js";
 import {EncounterBuilderTemplaterRandom} from "../templater/encounterbuilder-templater-random.js";
 import {EncounterbuilderTemplaterTemplated} from "../templater/encounterbuilder-templater-templated.js";
@@ -21,7 +22,7 @@ export class EncounterBuilderRandomizerTemplated extends EncounterBuilderRandomi
 		this._encounterShapeHash = encounterShapeHash || UrlUtil.URL_TO_HASH_BUILDER["encounterShape"]({name: ENCOUNTER_SHAPE_RANDOM_NAME, source: ENCOUNTER_SHAPE_RANDOM_SOURCE});
 	}
 
-	_getTemplater ({creatureMetasLocked}) {
+	_getTemplater ({creatureGroupsLocked}) {
 		const spendKeys = this._cache.getKeys({
 			budgetMode: this._budgetMode,
 			// Skip TftYP "Reduced-Threat" values (i.e. those that are not real XP thresholds) 95% of the time
@@ -36,7 +37,7 @@ export class EncounterBuilderRandomizerTemplated extends EncounterBuilderRandomi
 				budgetMin: this._budgetMin,
 				budgetMax: this._budgetMax,
 				budgetMode: this._budgetMode,
-				creatureMetasLocked,
+				creatureGroupsLocked,
 			});
 		}
 
@@ -46,23 +47,23 @@ export class EncounterBuilderRandomizerTemplated extends EncounterBuilderRandomi
 			budgetMin: this._budgetMin,
 			budgetMax: this._budgetMax,
 			budgetMode: this._budgetMode,
-			creatureMetasLocked,
+			creatureGroupsLocked,
 			encounterShape,
 		});
 	}
 
-	_pDoGenerateEncounter_getSolution ({creatureMetasLocked}) {
-		const templater = this._getTemplater({creatureMetasLocked});
+	_pDoGenerateEncounter_getSolution ({creatureGroupsLocked}) {
+		const templater = this._getTemplater({creatureGroupsLocked});
 
 		const templateInfo = templater.getEncounterTemplateInfo();
 		if (!templateInfo.templateOptions) return EncounterBuilderOptionalCandidateEncounter.failure({message: templateInfo.message});
 
 		const validEncounters = templateInfo.templateOptions
-			.map(creatureMetaTemplates => {
-				const candidateEncounter = new EncounterBuilderCandidateEncounter({partyMeta: this._partyMeta, creatureMetasLocked});
+			.map(creatureGroupTemplates => {
+				const candidateEncounter = new EncounterBuilderCandidateEncounter({partyMeta: this._partyMeta, creatureGroupsLocked});
 				const usedCreatureHashes = new Set();
 
-				const isAddPerTemplate = creatureMetaTemplates
+				const isAddPerTemplate = creatureGroupTemplates
 					.map(({spendAmount, count}) => {
 						const availableCreatures = [
 							...this._cache.getCreatures({
@@ -82,8 +83,8 @@ export class EncounterBuilderRandomizerTemplated extends EncounterBuilderRandomi
 						const creature = RollerUtil.rollOnArray(availableCreatures);
 						usedCreatureHashes.add(UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BESTIARY](creature));
 
-						return candidateEncounter.addCreatureMeta(
-							new EncounterBuilderCreatureMeta({
+						return candidateEncounter.addCreatureGroup(
+							new EncounterBuilderCreatureGroupEntityCreature({
 								creature,
 								count,
 							}),

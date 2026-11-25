@@ -149,7 +149,7 @@ class _PageGeneratorInittrackerplayerview extends PageGeneratorGeneric {
 	_page = "inittrackerplayerview.html";
 
 	_pageTitle = "Initiative Tracker Player View";
-	_navbarDescription = "Press F to toggle fullscreen. Good luck.";
+	_navbarDescriptionHtml = "Press <kbd>f</kbd> to toggle fullscreen. Good luck.";
 
 	_stylesheets = [
 		"inittrackerplayerview",
@@ -206,11 +206,7 @@ class _PageGeneratorLifegen extends PageGeneratorGeneric {
 		"lifegen",
 	];
 
-	_scriptsUtilsAdditional = [
-		"utils-generate.js",
-	];
-
-	_scripts = [
+	_scriptsModules = [
 		"lifegen.js",
 	];
 }
@@ -227,7 +223,6 @@ class _PageGeneratorLootgen extends PageGeneratorGeneric {
 	];
 
 	_scriptsUtilsAdditional = [
-		"utils-generate.js",
 		"filter-common.js",
 		"filter-items.js",
 		"filter-spells.js",

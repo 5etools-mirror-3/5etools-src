@@ -14,6 +14,14 @@ class NavBar {
 	static _CAT_SETTINGS = "Settings";
 	static _CAT_CACHE = "Preload Data";
 
+	static _CACHE_SIZE_MB = 1024 ** 2;
+	static _CACHE_SIZE_GB = 1024 ** 3;
+	static _CACHE_SIZE_ADVENTURES_BYTES = 50 * this._CACHE_SIZE_MB;
+	static _CACHE_SIZE_BOOK_IMAGES_BYTES = this._CACHE_SIZE_GB;
+	static _CACHE_SIZE_ADVENTURE_IMAGES_BYTES = 2 * this._CACHE_SIZE_GB;
+	static _CACHE_SIZE_ALL_IMAGES_BYTES = 4 * this._CACHE_SIZE_GB;
+	static _CACHE_SIZE_ALL_BYTES = 5 * this._CACHE_SIZE_GB;
+
 	static _navbar = null;
 
 	static _tree = {};
@@ -229,40 +237,40 @@ class NavBar {
 		this._addElement_button(
 			{
 				keyPath: [NavBar._CAT_SETTINGS, NavBar._CAT_CACHE],
-				html: "Preload Adventure Text <small>(50MB+)</small>",
-				click: (evt) => NavBar.InteractionManager._pOnClick_button_preloadOffline(evt, {route: /data\/adventure/}),
+				html: `Preload Adventure Text <small>(${Parser.bytesToHumanReadable(this._CACHE_SIZE_ADVENTURES_BYTES, {fixedDigits: 0})}+)</small>`,
+				click: (evt) => NavBar.InteractionManager._pOnClick_button_preloadOffline(evt, {route: /data\/adventure/, estimatedSizeBytes: this._CACHE_SIZE_ADVENTURES_BYTES}),
 				title: "Preload adventure text for offline use.",
 			},
 		);
 		this._addElement_button(
 			{
 				keyPath: [NavBar._CAT_SETTINGS, NavBar._CAT_CACHE],
-				html: "Preload Book Images <small>(1GB+)</small>",
-				click: (evt) => NavBar.InteractionManager._pOnClick_button_preloadOffline(evt, {route: /img\/book/, isRequireImages: true}),
+				html: `Preload Book Images <small>(${Parser.bytesToHumanReadable(this._CACHE_SIZE_BOOK_IMAGES_BYTES, {fixedDigits: 0})}+)</small>`,
+				click: (evt) => NavBar.InteractionManager._pOnClick_button_preloadOffline(evt, {route: /img\/book/, isRequireImages: true, estimatedSizeBytes: this._CACHE_SIZE_BOOK_IMAGES_BYTES}),
 				title: "Preload book images offline use. Note that book text is preloaded automatically.",
 			},
 		);
 		this._addElement_button(
 			{
 				keyPath: [NavBar._CAT_SETTINGS, NavBar._CAT_CACHE],
-				html: "Preload Adventure Text and Images <small>(2GB+)</small>",
-				click: (evt) => NavBar.InteractionManager._pOnClick_button_preloadOffline(evt, {route: /(?:data|img)\/adventure/, isRequireImages: true}),
+				html: `Preload Adventure Text and Images <small>(${Parser.bytesToHumanReadable(this._CACHE_SIZE_ADVENTURE_IMAGES_BYTES, {fixedDigits: 0})}+)</small>`,
+				click: (evt) => NavBar.InteractionManager._pOnClick_button_preloadOffline(evt, {route: /(?:data|img)\/adventure/, isRequireImages: true, estimatedSizeBytes: this._CACHE_SIZE_ADVENTURE_IMAGES_BYTES}),
 				title: "Preload adventure text and images for offline use.",
 			},
 		);
 		this._addElement_button(
 			{
 				keyPath: [NavBar._CAT_SETTINGS, NavBar._CAT_CACHE],
-				html: "Preload All Images <small>(4GB+)</small>",
-				click: (evt) => NavBar.InteractionManager._pOnClick_button_preloadOffline(evt, {route: /img/, isRequireImages: true}),
+				html: `Preload All Images <small>(${Parser.bytesToHumanReadable(this._CACHE_SIZE_ALL_IMAGES_BYTES, {fixedDigits: 0})}+)</small>`,
+				click: (evt) => NavBar.InteractionManager._pOnClick_button_preloadOffline(evt, {route: /img/, isRequireImages: true, estimatedSizeBytes: this._CACHE_SIZE_ALL_IMAGES_BYTES}),
 				title: "Preload all images for offline use.",
 			},
 		);
 		this._addElement_button(
 			{
 				keyPath: [NavBar._CAT_SETTINGS, NavBar._CAT_CACHE],
-				html: "Preload All <small>(5GB+)</small>",
-				click: (evt) => NavBar.InteractionManager._pOnClick_button_preloadOffline(evt, {route: /./, isRequireImages: true}),
+				html: `Preload All <small>(${Parser.bytesToHumanReadable(this._CACHE_SIZE_ALL_BYTES, {fixedDigits: 0})}+)</small>`,
+				click: (evt) => NavBar.InteractionManager._pOnClick_button_preloadOffline(evt, {route: /./, isRequireImages: true, estimatedSizeBytes: this._CACHE_SIZE_ALL_BYTES}),
 				title: "Preload everything for offline use.",
 			},
 		);
@@ -808,15 +816,15 @@ class NavBar {
 	/* -------------------------------------------- */
 
 	static _handleItemMouseEnter (ele) {
-		ele = e_(ele);
-		const timerIds = ele.siblings("[data-timer-id]").map(eleSib => ({ele: e_(eleSib), timerId: e_(eleSib).attr("data-timer-id")}));
+		ele = veE(ele);
+		const timerIds = ele.vee.siblings("[data-timer-id]").map(eleSib => ({ele: veE(eleSib), timerId: veE(eleSib).vee.attr("data-timer-id")}));
 		timerIds.forEach(({ele, timerId}) => {
 			if (NavBar._timersOpen[timerId]) {
 				clearTimeout(NavBar._timersOpen[timerId]);
 				delete NavBar._timersOpen[timerId];
 			}
 
-			if (!NavBar._timersClose[timerId] && ele.hasClass("open")) {
+			if (!NavBar._timersClose[timerId] && ele.vee.hasClass("open")) {
 				const getTimeoutFn = () => {
 					if (NavBar._timerMousePos[timerId]) {
 						const [xStart] = NavBar._timerMousePos[timerId];
@@ -842,7 +850,7 @@ class NavBar {
 	}
 
 	static _handleSideItemMouseEnter (ele) {
-		const timerId = e_(ele).closest(`li.dropdown`).attr("data-timer-id");
+		const timerId = veE(ele).closest(`li.dropdown`).vee.attr("data-timer-id");
 		if (NavBar._timersClose[timerId]) {
 			clearTimeout(NavBar._timersClose[timerId]);
 			delete NavBar._timersClose[timerId];
@@ -851,9 +859,9 @@ class NavBar {
 	}
 
 	static _handleSideDropdownMouseEnter (ele) {
-		ele = e_(ele);
-		const timerId = ele.parente().attr("data-timer-id") || NavBar._timerId++;
-		ele.parente().attr("data-timer-id", timerId);
+		ele = veE(ele);
+		const timerId = ele.vee.parent().vee.attr("data-timer-id") || NavBar._timerId++;
+		ele.vee.parent().vee.attr("data-timer-id", timerId);
 
 		if (NavBar._timersClose[timerId]) {
 			clearTimeout(NavBar._timersClose[timerId]);
@@ -870,9 +878,9 @@ class NavBar {
 	}
 
 	static _handleSideDropdownMouseLeave (ele) {
-		ele = e_(ele);
-		if (!ele.parente().attr("data-timer-id")) return;
-		const timerId = ele.parente().attr("data-timer-id");
+		ele = veE(ele);
+		if (!ele.vee.parent().vee.attr("data-timer-id")) return;
+		const timerId = ele.vee.parent().vee.attr("data-timer-id");
 		clearTimeout(NavBar._timersOpen[timerId]);
 		delete NavBar._timersOpen[timerId];
 	}
@@ -934,7 +942,41 @@ NavBar.InteractionManager = class {
 		}
 	}
 
-	static async _pOnClick_button_preloadOffline (evt, {route, isRequireImages = false}) {
+	/**
+	 * Note that storage estimates are only estimates -- prefer attempting a preload
+	 *   if not explicitly blocked from doing so.
+	 */
+	static async _pOnClick_button_preloadOffline_pGetIsStorageSpaceAvailable ({estimatedSizeBytes}) {
+		if (!navigator.storage) return true;
+		if (!estimatedSizeBytes) return true;
+
+		try {
+			const isPersistent = await navigator.storage.persist?.();
+			if (isPersistent === false) {
+				JqueryUtil.doToast({
+					type: "warning",
+					content: "Non-persistent storage space detected. Your browser may automatically remove preloaded data if storage space runs low.",
+				});
+			}
+
+			const {quota, usage} = await navigator.storage.estimate?.() || {};
+			if (quota == null || usage == null) return true;
+
+			const availableBytes = Math.max(0, quota - usage);
+			if (availableBytes >= estimatedSizeBytes) return true;
+
+			return InputUiUtil.pGetUserBoolean({
+				title: "Insufficient Storage Space",
+				htmlDescription: `This preload requires a minimum of ${Parser.bytesToHumanReadable(estimatedSizeBytes)} of storage space, but your browser reports an estimate of ${Parser.bytesToHumanReadable(availableBytes)} available. Continue anyway?`,
+				textYes: "Continue",
+				textNo: "Cancel",
+			});
+		} catch {
+			return true;
+		}
+	}
+
+	static async _pOnClick_button_preloadOffline (evt, {route, isRequireImages = false, estimatedSizeBytes}) {
 		evt.preventDefault();
 
 		if (globalThis.swCacheRoutes === undefined) {
@@ -949,6 +991,8 @@ NavBar.InteractionManager = class {
 			});
 			return;
 		}
+
+		if (!await this._pOnClick_button_preloadOffline_pGetIsStorageSpaceAvailable({estimatedSizeBytes})) return;
 
 		globalThis.swCacheRoutes(route);
 	}

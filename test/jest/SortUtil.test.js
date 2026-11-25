@@ -23,4 +23,13 @@ describe("SortUtil", () => {
 			expect(SortUtil.ascSortLowerNormalized("Z", "z")).toBe(0);
 		});
 	});
+
+	describe("ascSortSpellRechargeKeys", () => {
+		it("Should correctly sort keys", () => {
+			expect(SortUtil.ascSortSpellRechargeKeys("1", "1")).toBe(0);
+			expect(SortUtil.ascSortSpellRechargeKeys("1e", "1e")).toBe(0);
+			expect(SortUtil.ascSortSpellRechargeKeys("1", "1e")).toBe(-1);
+			expect(SortUtil.ascSortSpellRechargeKeys("11", "1e")).toBe(1);
+		});
+	});
 });

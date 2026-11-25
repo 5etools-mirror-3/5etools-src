@@ -8,9 +8,9 @@
 export class EncounterBuilderTtkBase {
 	_approxOutputs;
 
-	constructor ({partyMeta, creatureMetas}) {
+	constructor ({partyMeta, creatureGroups}) {
 		this._partyMeta = partyMeta;
-		this._creatureMetas = creatureMetas;
+		this._creatureGroups = creatureGroups;
 	}
 
 	_getApproxDpt (pcLevel) {
@@ -26,14 +26,14 @@ export class EncounterBuilderTtkBase {
 			.map(playerMeta => this._getApproxDpt(playerMeta.level) * playerMeta.count)
 			.sum();
 
-		const totalHp = this._creatureMetas
-			.map(creatureMeta => {
-				const approxHp = creatureMeta.getApproxHp();
-				const approxAc = creatureMeta.getApproxAc();
+		const totalHp = this._creatureGroups
+			.map(creatureGroup => {
+				const approxHp = creatureGroup.getApproxHp();
+				const approxAc = creatureGroup.getApproxAc();
 
 				if (approxHp == null || approxAc == null) return 0;
 
-				return (approxHp * (approxAc / 10)) * creatureMeta.getCount();
+				return (approxHp * (approxAc / 10)) * creatureGroup.getCount();
 			})
 			.sum();
 

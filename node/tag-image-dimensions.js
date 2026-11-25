@@ -76,6 +76,7 @@ async function main (
 		dirs,
 		files,
 		convertedBy = null,
+		author = null,
 		filter = null,
 		localBrewDir = null,
 		localBrewDirImg = null,
@@ -89,6 +90,7 @@ async function main (
 			dirs,
 			files,
 			convertedBy,
+			author,
 			filter,
 			fnMutDefaultSelection: ({files, dirs}) => {
 				const addAllFilesFluffDir = (dir) => {
@@ -165,6 +167,7 @@ main({
 	dirs: params.dir,
 	files: params.file,
 	convertedBy: params.convertedBy,
+	author: params.author,
 	filter: params.filter,
 	localBrewDir: params.localBrewDir,
 	localBrewDirImg: params.localBrewDirImg,

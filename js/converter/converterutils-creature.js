@@ -4,6 +4,7 @@ import {ConverterConst} from "./converterutils-const.js";
 import {ItemTag, SpellTag} from "./converterutils-entries.js";
 import {VetoolsConfig} from "../utils-config/utils-config-config.js";
 import {SITE_STYLE__CLASSIC} from "../consts.js";
+import {ConverterUtils} from "./converterutils-utils.js";
 
 export class AcConvert {
 	static _ITEM_LOOKUP = null;
@@ -1611,6 +1612,7 @@ export class SpellcastingTraitConvert {
 				line = line.replace(/,\s*\*/g, ",*"); // put asterisks on the correct side of commas
 
 				const entFaux = {entries: [line]};
+
 				const propPathUsage = this.getMutUsagePropPath({entry: entFaux, prop});
 				if (propPathUsage) {
 					line = entFaux.entries[0];
@@ -1769,6 +1771,7 @@ export class SpellcastingTraitConvert {
 		{re: /(?<cnt>\d+)\/week(?<ptEach> each)?/i, prop: "weekly"},
 		{re: /(?<cnt>\d+)\/month(?<ptEach> each)?/i, prop: "monthly"},
 		{re: /(?<cnt>\d+)\/year(?<ptEach> each)?/i, prop: "yearly"},
+		{re: /(?<cnt>\d+) charges?(?<ptEach> each)?/i, prop: "charges"},
 	];
 
 	static _USES_RE_INFOS_ENTRY = this._USES_RE_INFOS_NAME
@@ -2133,7 +2136,7 @@ export class SpeedConvert {
 	static _SPEED_TYPES = new Set(Parser.SPEED_MODES);
 
 	static _splitSpeed (str) {
-		const cSplitter = str.includes(";") ? ";" : ",";
+		let cSplitter = ConverterUtils.isHasCharOutwithParens(str, ";") ? ";" : ",";
 
 		let ret = [];
 		let stack = "";
@@ -2175,6 +2178,13 @@ export class SpeedConvert {
 		if (typeof mon.speed !== "string") return;
 
 		let line = mon.speed.trim().replace(/^speed[:.]?\s*/i, "");
+
+		line = line
+			// E.g. "Battle Familiar" :: AU
+			.replace(
+				/(?<speed>\bfly\s+\d+\s*ft\.?)\s+hover;\s*(?<condition>[^,;]+?\bonly)\b/gi,
+				(...m) => `${m.at(-1).speed} (hover; ${m.at(-1).condition})`,
+			);
 
 		const out = {};
 		let byHand = false;

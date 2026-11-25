@@ -34,7 +34,7 @@ class InitTrackerPlayerViews extends BaseComponent {
 	init ({hash}) {
 		const {v0: tokenV0, v1: tokenV1} = this.constructor._getTokens({hash});
 
-		const wrpContent = es(`#page-content`).empty();
+		const wrpContent = veEs(`#page-content`).vee.empty();
 
 		const iptTabMetas = [
 			new TabUiUtil.TabMeta({name: "Standard", hasBorder: true, hasBackground: true}),
@@ -73,12 +73,12 @@ class InitiativeTrackerPlayerMessageHandlerPageV1 extends InitiativeTrackerPlaye
 		if (this._isUiInit) return;
 
 		this._isUiInit = true;
-		this._wrpTab.findAll(`.initp__initial`).forEach(ele => ele.remove());
-		this._wrpTab.findAll(`.initp__wrp_active`).forEach(ele => ele.showVe());
+		this._wrpTab.vee.findAll(`.initp__initial`).forEach(ele => ele.remove());
+		this._wrpTab.vee.findAll(`.initp__wrp_active`).forEach(ele => ele.vee.show());
 
-		this._eleMeta = this._wrpTab.find(`.initp__meta`);
-		this._eleHead = this._wrpTab.find(`.initp__header`);
-		this._eleRows = this._wrpTab.find(`.initp__rows`);
+		this._eleMeta = this._wrpTab.vee.find(`.initp__meta`);
+		this._eleHead = this._wrpTab.vee.find(`.initp__header`);
+		this._eleRows = this._wrpTab.vee.find(`.initp__rows`);
 	}
 
 	static initUnloadMessage () {
@@ -101,34 +101,34 @@ class InitTrackerPlayerViewV1 {
 	render ({tabMeta, token}) {
 		const view = new InitiativeTrackerPlayerMessageHandlerPageV1(tabMeta.wrpTab);
 
-		const iptPlayerName = ee`<input class="ve-form-control ve-code">`
-			.onn("change", () => iptServerToken.removeClass("form-control--error"))
-			.disableSpellcheck();
+		const iptPlayerName = veT`<input class="ve-form-control ve-code">`
+			.vee.onn("change", () => iptServerToken.vee.removeClass("form-control--error"))
+			.vee.disableSpellcheck();
 
-		const iptServerToken = ee`<input class="ve-form-control ve-code">`
-			.onn("change", () => iptPlayerName.removeClass("form-control--error"))
-			.disableSpellcheck();
+		const iptServerToken = veT`<input class="ve-form-control ve-code">`
+			.vee.onn("change", () => iptPlayerName.vee.removeClass("form-control--error"))
+			.vee.disableSpellcheck();
 
-		if (token) iptServerToken.val(token);
+		if (token) iptServerToken.vee.val(token);
 
-		const btnConnect = ee`<button class="ve-btn ve-btn-xs ve-btn-primary">Connect</button>`
-			.onn("click", async () => {
-				if (!iptPlayerName.val().trim()) return iptPlayerName.addClass("form-control--error");
-				if (!iptServerToken.val().trim()) return iptServerToken.addClass("form-control--error");
+		const btnConnect = veT`<button class="ve-btn ve-btn-xs ve-btn-primary">Connect</button>`
+			.vee.onn("click", async () => {
+				if (!iptPlayerName.vee.val().trim()) return iptPlayerName.vee.addClass("form-control--error");
+				if (!iptServerToken.vee.val().trim()) return iptServerToken.vee.addClass("form-control--error");
 
 				try {
-					btnConnect.attr("disabled", true);
-					const ui = new InitiativeTrackerPlayerUiV1(view, iptPlayerName.val(), iptServerToken.val());
+					btnConnect.vee.attr("disabled", true);
+					const ui = new InitiativeTrackerPlayerUiV1(view, iptPlayerName.vee.val(), iptServerToken.vee.val());
 					await ui.pInit();
 					InitiativeTrackerPlayerMessageHandlerPageV1.initUnloadMessage();
 					view.initUi();
 				} catch (e) {
-					btnConnect.attr("disabled", false);
+					btnConnect.vee.attr("disabled", false);
 					throw e;
 				}
 			});
 
-		ee(tabMeta.wrpTab)`<div class="ve-flex-col initp__content ve-px-2 ve-py-3 ve-min-h-0">
+		veT(tabMeta.wrpTab)`<div class="ve-flex-col initp__content ve-px-2 ve-py-3 ve-min-h-0">
 			<div class="initp__initial row">
 				<div class="ve-col-12">
 					<p>
@@ -162,15 +162,15 @@ class InitTrackerPlayerViewV1 {
 			</div>
 		</div>`;
 
-		const eleBody = e_(document.body);
+		const eleBody = veE(document.body);
 		eleBody
-			.onn("keypress", (evt) => {
+			.vee.onn("keypress", (evt) => {
 				if (this._parent._getActiveTab() !== tabMeta) return;
 
 				if (EventUtil.getKeyIgnoreCapsLock(evt) === "f" && EventUtil.noModifierKeys(evt) && !EventUtil.isInInput(evt)) {
 					evt.preventDefault();
 
-					if (view.isActive) eleBody.toggleClass("is-fullscreen");
+					if (view.isActive) eleBody.vee.toggleClass("is-fullscreen");
 				}
 			});
 	}
@@ -188,12 +188,12 @@ class InitiativeTrackerPlayerMessageHandlerPageV0 extends InitiativeTrackerPlaye
 		if (this._isUiInit) return;
 
 		this._isUiInit = true;
-		this._wrpTab.findAll(`.initp__initial`).forEach(ele => ele.remove());
-		this._wrpTab.findAll(`.initp__wrp_active`).forEach(ele => ele.showVe());
+		this._wrpTab.vee.findAll(`.initp__initial`).forEach(ele => ele.remove());
+		this._wrpTab.vee.findAll(`.initp__wrp_active`).forEach(ele => ele.vee.show());
 
-		this._eleMeta = this._wrpTab.find(`.initp__meta`);
-		this._eleHead = this._wrpTab.find(`.initp__header`);
-		this._eleRows = this._wrpTab.find(`.initp__rows`);
+		this._eleMeta = this._wrpTab.vee.find(`.initp__meta`);
+		this._eleHead = this._wrpTab.vee.find(`.initp__header`);
+		this._eleRows = this._wrpTab.vee.find(`.initp__rows`);
 
 		window.addEventListener("beforeunload", evt => {
 			if (this._clientData.client.isActive) {
@@ -216,23 +216,23 @@ class InitTrackerPlayerViewV0 {
 	render ({tabMeta, token}) {
 		const view = new InitiativeTrackerPlayerMessageHandlerPageV0(tabMeta.wrpTab);
 
-		const iptServerToken = ee`<input class="ve-form-control ve-code">`.disableSpellcheck();
+		const iptServerToken = veT`<input class="ve-form-control ve-code">`.vee.disableSpellcheck();
 
-		if (token) iptServerToken.val(token);
+		if (token) iptServerToken.vee.val(token);
 
-		const btnGenClientToken = ee`<button class="ve-btn ve-btn-xs ve-btn-primary">Generate Client Token</button>`
-			.onn("click", () => dispWarning.remove());
+		const btnGenClientToken = veT`<button class="ve-btn ve-btn-xs ve-btn-primary">Generate Client Token</button>`
+			.vee.onn("click", () => dispWarning.remove());
 
-		const iptClientToken = ee`<input class="ve-form-control ve-code ve-copyable" readonly disabled>`.disableSpellcheck();
+		const iptClientToken = veT`<input class="ve-form-control ve-code ve-copyable" readonly disabled>`.vee.disableSpellcheck();
 
 		const ui = new InitiativeTrackerPlayerUiV0(view, iptServerToken, btnGenClientToken, iptClientToken);
 		ui.init();
 
-		const dispWarning = ee`<div class="alert alert-warning ve-my-3">
+		const dispWarning = veT`<div class="alert alert-warning ve-my-3">
 			<p>Use of &quot;Standard&quot; mode is strongly recommended, as it provides a simplified workflow. If Standard mode is unavailable, &quot;Manual&quot; mode may be used instead.</p>
 		</div>`;
 
-		ee(tabMeta.wrpTab)`<div class="ve-flex-col initp__content ve-px-2 ve-py-3 ve-min-h-0">
+		veT(tabMeta.wrpTab)`<div class="ve-flex-col initp__content ve-px-2 ve-py-3 ve-min-h-0">
 			${dispWarning}
 
 			<div class="initp__initial ve-flex">
@@ -267,14 +267,14 @@ class InitTrackerPlayerViewV0 {
 			</div>
 		</div>`;
 
-		const eleBody = e_(document.body);
-		eleBody.onn("keypress", (evt) => {
+		const eleBody = veE(document.body);
+		eleBody.vee.onn("keypress", (evt) => {
 			if (this._parent._getActiveTab() !== tabMeta) return;
 
 			if (EventUtil.getKeyIgnoreCapsLock(evt) === "f" && EventUtil.noModifierKeys(evt) && !EventUtil.isInInput(evt)) {
 				evt.preventDefault();
 
-				if (view.isActive) eleBody.toggleClass("is-fullscreen");
+				if (view.isActive) eleBody.vee.toggleClass("is-fullscreen");
 			}
 		});
 	}

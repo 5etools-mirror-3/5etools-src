@@ -1,5 +1,9 @@
+import {ConverterUtils} from "./converterutils-utils.js";
+
 export class ConverterStringBlocklist {
-	static _getCleanString (str) { return str.toLowerCase().trim(); }
+	static _getCleanString (str) {
+		return ConverterUtils.getWithoutParens(Renderer.stripTags(str)).toLowerCase().trim();
+	}
 
 	constructor ({blocklist, blocklistIgnore}) {
 		this._blocklist = blocklist instanceof Set ? blocklist : new Set(blocklist.map(ConverterStringBlocklist._getCleanString.bind(ConverterStringBlocklist)));

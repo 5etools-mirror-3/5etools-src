@@ -1,9 +1,11 @@
-import {FilterItem} from "../filter-item.js";
+import {FilterItem, FilterItemBase, FilterItemRegistry} from "../filter-item.js";
 import {Filter} from "./filter-filter-generic.js";
-import {MISC_FILTER_VALUE__BASIC_RULES_2014, MISC_FILTER_VALUE__BASIC_RULES_2024, MISC_FILTER_VALUE__SRD_5_1, MISC_FILTER_VALUE__SRD_5_2, PILL_STATE__IGNORE, PILL_STATE__YES, SOURCE_HEADER} from "../filter-constants.js";
+import {MISC_FILTER_VALUE__BASIC_RULES_2014, MISC_FILTER_VALUE__BASIC_RULES_2024, MISC_FILTER_VALUE__SRD_5_1, MISC_FILTER_VALUE__SRD_5_2, PILL_STATE__IGNORE, PILL_STATE__NO, PILL_STATE__YES, SOURCE_HEADER} from "../filter-constants.js";
 import {PageFilterBase} from "../filter-page-filter-base.js";
 
 export class SourceFilterItem extends FilterItem {
+	static TYPE = "source";
+
 	/**
 	 * @param options
 	 * @param [options.isOtherSource] If this is not the primary source of the entity.
@@ -16,6 +18,20 @@ export class SourceFilterItem extends FilterItem {
 		this._sortName = null;
 		this.itemFull = Parser.sourceJsonToFull(this.item);
 	}
+
+	getSerialized () {
+		return Object.assign(
+			super.getSerialized(),
+			{
+				isOtherSource: this.isOtherSource,
+				isReferenceSource: this.isReferenceSource,
+			},
+		);
+	}
+
+	static {
+		FilterItemRegistry.register(this);
+	}
 }
 
 export class SourceFilter extends Filter {
@@ -24,9 +40,10 @@ export class SourceFilter extends Filter {
 	}
 
 	static _SORT_ITEMS_MINI (a, b) {
-		const valA = BrewUtil2.hasSourceJson(a.item) ? 2 : (SourceUtil.isNonstandardSource(a.item) || PrereleaseUtil.hasSourceJson(a.item)) ? 1 : 0;
-		const valB = BrewUtil2.hasSourceJson(b.item) ? 2 : (SourceUtil.isNonstandardSource(b.item) || PrereleaseUtil.hasSourceJson(b.item)) ? 1 : 0;
+		const valA = SourceUtil.getFilterGroup(a.item);
+		const valB = SourceUtil.getFilterGroup(b.item);
 		return SortUtil.ascSort(valA, valB)
+			|| SortUtil.ascSortLower(Parser.sourceJsonToAbv(a.item), Parser.sourceJsonToAbv(b.item))
 			|| SourceFilter._SORT_ITEMS(a, b);
 	}
 
@@ -39,6 +56,7 @@ export class SourceFilter extends Filter {
 		const group = SourceUtil.getFilterGroup(item);
 		switch (group) {
 			case SourceUtil.FILTER_GROUP_STANDARD: return `<span class="glyphicon glyphicon-book"></span>`;
+			case SourceUtil.FILTER_GROUP_UNIVERSES_BEYOND: return `<span title="(Universes Beyond)" class="glyphicon glyphicon-globe"></span>`;
 			case SourceUtil.FILTER_GROUP_NON_STANDARD: return `<span title="(Other)" class="glyphicon glyphicon-file"></span>`;
 			case SourceUtil.FILTER_GROUP_PARTNERED: return `<span title="(Partnered)" class="glyphicon glyphicon-star-empty"></span>`;
 			case SourceUtil.FILTER_GROUP_PRERELEASE: return `<span title="(Prerelease)" class="glyphicon glyphicon-wrench"></span>`;
@@ -69,13 +87,18 @@ export class SourceFilter extends Filter {
 	doSetPillsClear () { return this._doSetPillsClear(); }
 
 	_getFilterItem (item) {
-		return item instanceof FilterItem ? item : new SourceFilterItem({item});
+		if (item instanceof FilterItemBase || FilterItemRegistry.isSerialized(item)) return super._getFilterItem(item);
+		return new SourceFilterItem({item});
 	}
 
 	addItem (item) {
-		const out = super.addItem(item);
+		if (item instanceof Array) return super.addItem(item);
+
+		const isAdded = super.addItem(item);
+		if (!isAdded) return false;
+
 		this._tmpState.ixAdded++;
-		return out;
+		return true;
 	}
 
 	trimState_ () {
@@ -90,45 +113,47 @@ export class SourceFilter extends Filter {
 		this._proxyAssignSimple("state", nxtState, true);
 	}
 
+	static _TITLE_CONTEXT_SOURCE_SET = `SHIFT to add to existing selection; ALT to intersect; CTRL to exclude others.`;
+
 	_getHeaderControls_addExtraStateBtns (opts, wrpStateBtnsOuter) {
-		const btnSupplements = e_({
+		const btnSupplements = veE({
 			tag: "button",
 			clazz: `ve-btn ve-btn-default ve-w-100 ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"}`,
-			title: `SHIFT to add to existing selection; CTRL to include UA/etc.`,
+			title: `SHIFT to add to existing selection; ALT to intersect; CTRL to include UA/etc.`,
 			html: `Core/Supplements`,
-			click: evt => this._doSetPinsSupplements({isIncludeUnofficial: EventUtil.isCtrlMetaKey(evt), isAdditive: evt.shiftKey}),
+			click: evt => this._doSetPinsSupplements({isIncludeUnofficial: EventUtil.isCtrlMetaKey(evt), isAdditive: evt.shiftKey, isIntersection: EventUtil.isAltOptionKey(evt)}),
 		});
 
-		const btnAdventures = e_({
+		const btnAdventures = veE({
 			tag: "button",
 			clazz: `ve-btn ve-btn-default ve-w-100 ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"}`,
-			title: `SHIFT to add to existing selection; CTRL to include UA`,
+			title: `SHIFT to add to existing selection; ALT to intersect; CTRL to include UA/etc.`,
 			html: `Adventures`,
-			click: evt => this._doSetPinsAdventures({isIncludeUnofficial: EventUtil.isCtrlMetaKey(evt), isAdditive: evt.shiftKey}),
+			click: evt => this._doSetPinsAdventures({isIncludeUnofficial: EventUtil.isCtrlMetaKey(evt), isAdditive: evt.shiftKey, isIntersection: EventUtil.isAltOptionKey(evt)}),
 		});
 
-		const btnPartnered = e_({
+		const btnPartnered = veE({
 			tag: "button",
 			clazz: `ve-btn ve-btn-default ve-w-100 ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"}`,
-			title: `SHIFT to add to existing selection`,
+			title: `SHIFT to add to existing selection; ALT to intersect`,
 			html: `Partnered`,
-			click: evt => this._doSetPinsPartnered({isAdditive: evt.shiftKey}),
+			click: evt => this._doSetPinsPartnered({isAdditive: evt.shiftKey, isIntersection: EventUtil.isAltOptionKey(evt)}),
 		});
 
-		const btnHomebrew = e_({
+		const btnHomebrew = veE({
 			tag: "button",
 			clazz: `ve-btn ve-btn-default ve-w-100 ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"}`,
-			title: `SHIFT to add to existing selection`,
+			title: `SHIFT to add to existing selection; ALT to intersect`,
 			html: `Homebrew`,
-			click: evt => this._doSetPinsHomebrew({isAdditive: evt.shiftKey}),
+			click: evt => this._doSetPinsHomebrew({isAdditive: evt.shiftKey, isIntersection: EventUtil.isAltOptionKey(evt)}),
 		});
 
 		const hkIsButtonsActive = () => {
 			const hasPartnered = Object.keys(this.__state).some(src => SourceUtil.getFilterGroup(src) === SourceUtil.FILTER_GROUP_PARTNERED);
-			btnPartnered.toggleClass("ve-hidden", !hasPartnered);
+			btnPartnered.vee.toggleClass("ve-hidden", !hasPartnered);
 
 			const hasBrew = Object.keys(this.__state).some(src => SourceUtil.getFilterGroup(src) === SourceUtil.FILTER_GROUP_HOMEBREW);
-			btnHomebrew.toggleClass("ve-hidden", !hasBrew);
+			btnHomebrew.vee.toggleClass("ve-hidden", !hasBrew);
 		};
 		this._addHook("tmpState", "ixAdded", hkIsButtonsActive);
 		hkIsButtonsActive();
@@ -145,54 +170,66 @@ export class SourceFilter extends Filter {
 		const menu = ContextUtil.getMenu([
 			new ContextUtil.Action(
 				"Select All Standard Sources",
-				() => this._doSetPinsStandard(),
+				(evt) => this._doSetPinsStandard({isAdditive: evt.shiftKey, isIntersection: EventUtil.isAltOptionKey(evt), isExclusive: EventUtil.isCtrlMetaKey(evt)}),
+				{title: this.constructor._TITLE_CONTEXT_SOURCE_SET},
 			),
 			new ContextUtil.Action(
 				"Select All Partnered Sources",
-				() => this._doSetPinsPartnered(),
+				(evt) => this._doSetPinsPartnered({isAdditive: evt.shiftKey, isIntersection: EventUtil.isAltOptionKey(evt), isExclusive: EventUtil.isCtrlMetaKey(evt)}),
+				{title: this.constructor._TITLE_CONTEXT_SOURCE_SET},
+			),
+			new ContextUtil.Action(
+				"Select All Universes Beyond Sources",
+				(evt) => this._doSetPinsUniversesBeyond({isAdditive: evt.shiftKey, isIntersection: EventUtil.isAltOptionKey(evt), isExclusive: EventUtil.isCtrlMetaKey(evt)}),
+				{title: this.constructor._TITLE_CONTEXT_SOURCE_SET},
 			),
 			new ContextUtil.Action(
 				"Select All Non-Standard Sources",
-				() => this._doSetPinsNonStandard(),
+				(evt) => this._doSetPinsNonStandard({isAdditive: evt.shiftKey, isIntersection: EventUtil.isAltOptionKey(evt), isExclusive: EventUtil.isCtrlMetaKey(evt)}),
+				{title: this.constructor._TITLE_CONTEXT_SOURCE_SET},
 			),
 			new ContextUtil.Action(
 				"Select All Prerelease Sources",
-				() => this._doSetPinsPrerelease(),
+				(evt) => this._doSetPinsPrerelease({isAdditive: evt.shiftKey, isIntersection: EventUtil.isAltOptionKey(evt), isExclusive: EventUtil.isCtrlMetaKey(evt)}),
+				{title: this.constructor._TITLE_CONTEXT_SOURCE_SET},
 			),
 			new ContextUtil.Action(
 				"Select All Homebrew Sources",
-				() => this._doSetPinsHomebrew(),
+				(evt) => this._doSetPinsHomebrew({isAdditive: evt.shiftKey, isIntersection: EventUtil.isAltOptionKey(evt), isExclusive: EventUtil.isCtrlMetaKey(evt)}),
+				{title: this.constructor._TITLE_CONTEXT_SOURCE_SET},
 			),
 			null,
 			new ContextUtil.Action(
 				`Select 5e/2014 Sources`,
-				() => this._doSetPinsClassic(),
-				{title: `Select sources published from 2014 to 2024.`},
+				(evt) => this._doSetPinsClassic({isAdditive: evt.shiftKey, isIntersection: EventUtil.isAltOptionKey(evt), isExclusive: EventUtil.isCtrlMetaKey(evt)}),
+				{title: `Select sources published from 2014 to 2024. ${this.constructor._TITLE_CONTEXT_SOURCE_SET}`},
 			),
 			new ContextUtil.Action(
 				`Select 5.5e/2024 Sources`,
-				() => this._doSetPinsOne(),
-				{title: `Select sources published from 2024 onwards.`},
+				(evt) => this._doSetPinsOne({isAdditive: evt.shiftKey, isIntersection: EventUtil.isAltOptionKey(evt), isExclusive: EventUtil.isCtrlMetaKey(evt)}),
+				{title: `Select sources published from 2024 onwards. ${this.constructor._TITLE_CONTEXT_SOURCE_SET}`},
 			),
 			null,
 			new ContextUtil.Action(
 				`Select "Vanilla" Sources`,
-				() => this._doSetPinsVanilla(),
-				{title: `Select a baseline set of sources suitable for any campaign.`},
+				(evt) => this._doSetPinsVanilla({isAdditive: evt.shiftKey, isIntersection: EventUtil.isAltOptionKey(evt), isExclusive: EventUtil.isCtrlMetaKey(evt)}),
+				{title: `Select a baseline set of sources suitable for any campaign. ${this.constructor._TITLE_CONTEXT_SOURCE_SET}`},
 			),
 			new ContextUtil.Action(
 				"Select All Non-UA Sources",
-				() => this._doSetPinsNonUa(),
+				(evt) => this._doSetPinsNonUa({isAdditive: evt.shiftKey, isIntersection: EventUtil.isAltOptionKey(evt), isExclusive: EventUtil.isCtrlMetaKey(evt)}),
+				{title: this.constructor._TITLE_CONTEXT_SOURCE_SET},
 			),
 			null,
 			new ContextUtil.Action(
 				"Select SRD Sources",
-				() => this._doSetPinsSrd(),
-				{title: `Select System Reference Document Sources.`},
+				(evt) => this._doSetPinsSrd({isAdditive: evt.shiftKey, isIntersection: EventUtil.isAltOptionKey(evt), isExclusive: EventUtil.isCtrlMetaKey(evt)}),
+				{title: `Select System Reference Document Sources. ${this.constructor._TITLE_CONTEXT_SOURCE_SET}`},
 			),
 			new ContextUtil.Action(
 				"Select Basic Rules Sources",
-				() => this._doSetPinsBasicRules(),
+				(evt) => this._doSetPinsBasicRules({isAdditive: evt.shiftKey, isIntersection: EventUtil.isAltOptionKey(evt), isExclusive: EventUtil.isCtrlMetaKey(evt)}),
+				{title: this.constructor._TITLE_CONTEXT_SOURCE_SET},
 			),
 			null,
 			new ContextUtil.Action(
@@ -202,7 +239,7 @@ export class SourceFilter extends Filter {
 			null,
 			actionSelectDisplayMode,
 		]);
-		const btnBurger = e_({
+		const btnBurger = veE({
 			tag: "button",
 			clazz: `ve-btn ve-btn-default ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"}`,
 			html: `<span class="glyphicon glyphicon-option-vertical"></span>`,
@@ -210,7 +247,7 @@ export class SourceFilter extends Filter {
 			title: "Other Options",
 		});
 
-		const btnOnlyPrimary = e_({
+		const btnOnlyPrimary = veE({
 			tag: "button",
 			clazz: `ve-btn ve-btn-default ve-w-100 ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"}`,
 			html: `Include References`,
@@ -218,12 +255,12 @@ export class SourceFilter extends Filter {
 			click: () => this._meta.isIncludeReferenceSources = !this._meta.isIncludeReferenceSources,
 		});
 		const hkIsIncludeOtherSources = () => {
-			btnOnlyPrimary.toggleClass("ve-active", !!this._meta.isIncludeReferenceSources);
+			btnOnlyPrimary.vee.toggleClass("ve-active", !!this._meta.isIncludeReferenceSources);
 		};
 		hkIsIncludeOtherSources();
 		this._addHook("meta", "isIncludeReferenceSources", hkIsIncludeOtherSources);
 
-		e_({
+		veE({
 			tag: "div",
 			clazz: `ve-btn-group ve-mr-2 ve-w-100 ve-flex-v-center ve-mobile-sm__m-1 ve-mobile-sm__mb-2`,
 			children: [
@@ -234,73 +271,92 @@ export class SourceFilter extends Filter {
 				btnBurger,
 				btnOnlyPrimary,
 			],
-		}).prependTo(wrpStateBtnsOuter);
+		}).vee.prependTo(wrpStateBtnsOuter);
 	}
 
-	_doSetPinsStandard () {
-		Object.keys(this._state).forEach(k => this._state[k] = SourceUtil.getFilterGroup(k) === SourceUtil.FILTER_GROUP_STANDARD ? PILL_STATE__YES : PILL_STATE__IGNORE);
+	_doSetPins_getKeyStateDefault ({k, isAdditive, isExclusive}) {
+		if (isAdditive) return this._state[k];
+		if (isExclusive) return PILL_STATE__NO;
+		return PILL_STATE__IGNORE;
 	}
 
-	_doSetPinsPartnered ({isAdditive = false} = {}) {
+	_doSetPins ({fnIsMatch, isAdditive = false, isExclusive = false, isIntersection = false} = {}) {
 		this._proxyAssignSimple(
 			"state",
 			Object.keys(this._state)
-				.mergeMap(k => ({[k]: SourceUtil.getFilterGroup(k) === SourceUtil.FILTER_GROUP_PARTNERED ? PILL_STATE__YES : isAdditive ? this._state[k] : PILL_STATE__IGNORE})),
+				.mergeMap(k => {
+					const isMatch = fnIsMatch(k);
+
+					if (isIntersection) {
+						if (isMatch && this._state[k] === PILL_STATE__YES) return {[k]: PILL_STATE__YES};
+						return {[k]: this._doSetPins_getKeyStateDefault({k, isAdditive, isExclusive})};
+					}
+
+					return {[k]: isMatch ? PILL_STATE__YES : this._doSetPins_getKeyStateDefault({k, isAdditive, isExclusive})};
+				}),
 		);
 	}
 
-	_doSetPinsNonStandard () {
-		Object.keys(this._state).forEach(k => this._state[k] = SourceUtil.getFilterGroup(k) === SourceUtil.FILTER_GROUP_NON_STANDARD ? PILL_STATE__YES : PILL_STATE__IGNORE);
+	_doSetPinsStandard (opts) {
+		this._doSetPins({...opts, fnIsMatch: k => SourceUtil.getFilterGroup(k) === SourceUtil.FILTER_GROUP_STANDARD});
 	}
 
-	_doSetPinsPrerelease () {
-		Object.keys(this._state).forEach(k => this._state[k] = SourceUtil.getFilterGroup(k) === SourceUtil.FILTER_GROUP_PRERELEASE ? PILL_STATE__YES : PILL_STATE__IGNORE);
+	_doSetPinsPartnered (opts) {
+		this._doSetPins({...opts, fnIsMatch: k => SourceUtil.getFilterGroup(k) === SourceUtil.FILTER_GROUP_PARTNERED});
 	}
 
-	_doSetPinsSupplements ({isIncludeUnofficial = false, isAdditive = false} = {}) {
-		this._proxyAssignSimple(
-			"state",
-			Object.keys(this._state)
-				.mergeMap(k => ({[k]: SourceUtil.isCoreOrSupplement(k) && (isIncludeUnofficial || !SourceUtil.isNonstandardSource(k)) ? PILL_STATE__YES : isAdditive ? this._state[k] : PILL_STATE__IGNORE})),
-		);
+	_doSetPinsUniversesBeyond (opts) {
+		this._doSetPins({...opts, fnIsMatch: k => SourceUtil.getFilterGroup(k) === SourceUtil.FILTER_GROUP_UNIVERSES_BEYOND});
 	}
 
-	_doSetPinsAdventures ({isIncludeUnofficial = false, isAdditive = false} = {}) {
-		this._proxyAssignSimple(
-			"state",
-			Object.keys(this._state)
-				.mergeMap(k => ({[k]: SourceUtil.isAdventure(k) && (isIncludeUnofficial || !SourceUtil.isNonstandardSource(k)) ? PILL_STATE__YES : isAdditive ? this._state[k] : PILL_STATE__IGNORE})),
-		);
+	_doSetPinsNonStandard (opts) {
+		this._doSetPins({...opts, fnIsMatch: k => SourceUtil.getFilterGroup(k) === SourceUtil.FILTER_GROUP_NON_STANDARD});
 	}
 
-	_doSetPinsHomebrew ({isAdditive = false} = {}) {
-		this._proxyAssignSimple(
-			"state",
-			Object.keys(this._state)
-				.mergeMap(k => ({[k]: SourceUtil.getFilterGroup(k) === SourceUtil.FILTER_GROUP_HOMEBREW ? PILL_STATE__YES : isAdditive ? this._state[k] : PILL_STATE__IGNORE})),
-		);
+	_doSetPinsPrerelease (opts) {
+		this._doSetPins({...opts, fnIsMatch: k => SourceUtil.getFilterGroup(k) === SourceUtil.FILTER_GROUP_PRERELEASE});
 	}
 
-	_doSetPinsClassic () {
-		Object.keys(this._state).forEach(k => this._state[k] = SourceUtil.isClassicSource(k) ? PILL_STATE__YES : PILL_STATE__IGNORE);
+	_doSetPinsSupplements ({isIncludeUnofficial = false, ...opts} = {}) {
+		this._doSetPins({
+			...opts,
+			fnIsMatch: k => SourceUtil.isCoreOrSupplement(k)
+				&& (isIncludeUnofficial || (!SourceUtil.isNonstandardSource(k) && !SourceUtil.isUniversesBeyondSource(k))),
+		});
 	}
 
-	_doSetPinsOne () {
-		Object.keys(this._state).forEach(k => this._state[k] = SourceUtil.isClassicSource(k) ? PILL_STATE__IGNORE : PILL_STATE__YES);
+	_doSetPinsAdventures ({isIncludeUnofficial = false, ...opts} = {}) {
+		this._doSetPins({
+			...opts,
+			fnIsMatch: k => SourceUtil.isAdventure(k)
+				&& (isIncludeUnofficial || (!SourceUtil.isNonstandardSource(k) && !SourceUtil.isUniversesBeyondSource(k))),
+		});
 	}
 
-	_doSetPinsVanilla () {
-		Object.keys(this._state).forEach(k => this._state[k] = Parser.SOURCES_VANILLA.has(k) ? PILL_STATE__YES : PILL_STATE__IGNORE);
+	_doSetPinsHomebrew (opts) {
+		this._doSetPins({...opts, fnIsMatch: k => SourceUtil.getFilterGroup(k) === SourceUtil.FILTER_GROUP_HOMEBREW});
 	}
 
-	_doSetPinsNonUa () {
-		Object.keys(this._state).forEach(k => this._state[k] = !SourceUtil.isPrereleaseSource(k) ? PILL_STATE__YES : PILL_STATE__IGNORE);
+	_doSetPinsClassic (opts) {
+		this._doSetPins({...opts, fnIsMatch: k => SourceUtil.isClassicSource(k)});
 	}
 
-	_doSetPinsSrd () {
+	_doSetPinsOne (opts) {
+		this._doSetPins({...opts, fnIsMatch: k => !SourceUtil.isClassicSource(k)});
+	}
+
+	_doSetPinsVanilla (opts) {
+		this._doSetPins({...opts, fnIsMatch: k => Parser.SOURCES_VANILLA.has(k)});
+	}
+
+	_doSetPinsNonUa (opts) {
+		this._doSetPins({...opts, fnIsMatch: k => !SourceUtil.isPrereleaseSource(k)});
+	}
+
+	_doSetPinsSrd (opts) {
 		SourceFilter._SRD_SOURCES = SourceFilter._SRD_SOURCES || new Set([Parser.SRC_PHB, Parser.SRC_MM, Parser.SRC_DMG, Parser.SRC_XPHB, Parser.SRC_XDMG, Parser.SRC_XMM]);
 
-		Object.keys(this._state).forEach(k => this._state[k] = SourceFilter._SRD_SOURCES.has(k) ? PILL_STATE__YES : PILL_STATE__IGNORE);
+		this._doSetPins({...opts, fnIsMatch: k => SourceFilter._SRD_SOURCES.has(k)});
 
 		const srdFilter = this._filterBox.filters.find(it => it.isSrdFilter);
 		if (srdFilter) {
@@ -319,10 +375,10 @@ export class SourceFilter extends Filter {
 		if (reprintedFilter) reprintedFilter.setValue("Reprinted", PILL_STATE__IGNORE);
 	}
 
-	_doSetPinsBasicRules () {
+	_doSetPinsBasicRules (opts) {
 		SourceFilter._BASIC_RULES_SOURCES = SourceFilter._BASIC_RULES_SOURCES || new Set([Parser.SRC_PHB, Parser.SRC_MM, Parser.SRC_DMG, Parser.SRC_XPHB, Parser.SRC_XDMG, Parser.SRC_XMM]);
 
-		Object.keys(this._state).forEach(k => this._state[k] = SourceFilter._BASIC_RULES_SOURCES.has(k) ? PILL_STATE__YES : PILL_STATE__IGNORE);
+		this._doSetPins({...opts, fnIsMatch: k => SourceFilter._BASIC_RULES_SOURCES.has(k)});
 
 		const basicRulesFilter = this._filterBox.filters.find(it => it.isBasicRulesFilter);
 		if (basicRulesFilter) {
@@ -344,7 +400,13 @@ export class SourceFilter extends Filter {
 	static getCompleteFilterSources (ent, {isIncludeBaseSource = false} = {}) {
 		const isSkipBaseSource = !isIncludeBaseSource || !ent._baseSource;
 
-		if (!ent.otherSources && !ent.referenceSources && isSkipBaseSource) return ent.source;
+		if (!ent.otherSources && !ent.referenceSources) {
+			if (isSkipBaseSource) return ent.source;
+
+			return this._getCompleteFilterSources_isIncludedSource(ent._baseSource)
+				? [ent.source, ent._baseSource]
+				: [ent.source];
+		}
 
 		// Avoid `otherSources`/`referenceSources` from e.g. homebrews which are not loaded, and so lack their metadata
 		const otherSourcesFilt = (ent.otherSources || [])
@@ -355,8 +417,8 @@ export class SourceFilter extends Filter {
 		if (!otherSourcesFilt.length && !referenceSourcesFilt.length && isSkipBaseSource) return ent.source;
 
 		const out = [ent.source]
-			.concat(otherSourcesFilt.map(src => new SourceFilterItem({item: src.source, isIgnoreRed: true, isOtherSource: true})))
-			.concat(referenceSourcesFilt.map(src => new SourceFilterItem({item: src, isIgnoreRed: true, isReferenceSource: true})))
+			.concat(otherSourcesFilt.map(src => new SourceFilterItem({item: src.source, isIgnoreRed: true, isOtherSource: true}).getSerialized()))
+			.concat(referenceSourcesFilt.map(src => new SourceFilterItem({item: src, isIgnoreRed: true, isReferenceSource: true}).getSerialized()))
 		;
 
 		// Base sources should already be filtered
@@ -395,33 +457,33 @@ export class SourceFilter extends Filter {
 			fnDisplay: val => dates[val]?.str,
 		}).get();
 
-		const wrpWrpSlider = e_({
+		const wrpWrpSlider = veE({
 			tag: "div",
 			clazz: `"ve-w-100 ve-flex ve-pt-2 ve-pb-5 ve-mb-2 ve-mt-1 ve-fltr-src__wrp-slider`,
 			children: [
 				wrpSlider,
 			],
-		}).hideVe();
+		}).vee.hide();
 
-		const btnCancel = e_({
+		const btnCancel = veE({
 			tag: "button",
 			clazz: `ve-btn ve-btn-xs ve-btn-default ve-px-1`,
 			html: "Cancel",
 			click: () => {
-				grpBtnsInactive.showVe();
-				wrpWrpSlider.hideVe();
-				grpBtnsActive.hideVe();
+				grpBtnsInactive.vee.show();
+				wrpWrpSlider.vee.hide();
+				grpBtnsActive.vee.hide();
 			},
 		});
 
-		const btnConfirm = e_({
+		const btnConfirm = veE({
 			tag: "button",
 			clazz: `ve-btn ve-btn-xs ve-btn-default ve-px-1`,
 			html: "Confirm",
 			click: () => {
-				grpBtnsInactive.showVe();
-				wrpWrpSlider.hideVe();
-				grpBtnsActive.hideVe();
+				grpBtnsInactive.vee.show();
+				wrpWrpSlider.vee.hide();
+				grpBtnsActive.vee.hide();
 
 				const min = comp._state.curMin;
 				const max = comp._state.curMax;
@@ -438,14 +500,14 @@ export class SourceFilter extends Filter {
 			},
 		});
 
-		const btnShowSlider = e_({
+		const btnShowSlider = veE({
 			tag: "button",
 			clazz: `ve-btn ve-btn-xxs ve-btn-default ve-px-1`,
 			html: "Select by Date",
 			click: () => {
-				grpBtnsInactive.hideVe();
-				wrpWrpSlider.showVe();
-				grpBtnsActive.showVe();
+				grpBtnsInactive.vee.hide();
+				wrpWrpSlider.vee.show();
+				grpBtnsActive.vee.show();
 
 				dates = Object.keys(this._state)
 					.filter(it => SourceUtil.isPrereleaseSource(it))
@@ -468,7 +530,7 @@ export class SourceFilter extends Filter {
 			},
 		});
 
-		const btnClear = e_({
+		const btnClear = veE({
 			tag: "button",
 			clazz: `ve-btn ve-btn-xxs ve-btn-default ve-px-1`,
 			html: "Clear",
@@ -481,16 +543,16 @@ export class SourceFilter extends Filter {
 			},
 		});
 
-		const grpBtnsActive = e_({
+		const grpBtnsActive = veE({
 			tag: "div",
 			clazz: `ve-flex-v-center ve-btn-group`,
 			children: [
 				btnCancel,
 				btnConfirm,
 			],
-		}).hideVe();
+		}).vee.hide();
 
-		const grpBtnsInactive = e_({
+		const grpBtnsInactive = veE({
 			tag: "div",
 			clazz: `ve-flex-v-center ve-btn-group`,
 			children: [
@@ -500,16 +562,16 @@ export class SourceFilter extends Filter {
 		});
 
 		const elesDividerHeaders = super._doRenderPills_doRenderWrpGroup_getDividerHeaders(group);
-		if (!elesDividerHeaders.length) elesDividerHeaders.push(e_({clazz: "div"}));
+		if (!elesDividerHeaders.length) elesDividerHeaders.push(veE({clazz: "div"}));
 		if (elesDividerHeaders.length > 1) throw new Error("Unimplemented!");
 
 		return [
-			e_({
+			veE({
 				tag: "div",
 				clazz: `ve-split-v-center ve-w-100`,
 				children: [
 					...elesDividerHeaders,
-					e_({
+					veE({
 						tag: "div",
 						clazz: `ve-mb-1 ve-flex-h-right`,
 						children: [
@@ -524,7 +586,7 @@ export class SourceFilter extends Filter {
 	}
 
 	_doRenderPills_doRenderWrpGroup_getDividerHeaders_groupBrew (group) {
-		const btnClear = e_({
+		const btnClear = veE({
 			tag: "button",
 			clazz: `ve-btn ve-btn-xxs ve-btn-default ve-px-1`,
 			html: "Clear",
@@ -538,20 +600,20 @@ export class SourceFilter extends Filter {
 		});
 
 		const elesDividerHeaders = super._doRenderPills_doRenderWrpGroup_getDividerHeaders(group);
-		if (!elesDividerHeaders.length) elesDividerHeaders.push(e_({clazz: "div"}));
+		if (!elesDividerHeaders.length) elesDividerHeaders.push(veE({clazz: "div"}));
 		if (elesDividerHeaders.length > 1) throw new Error("Unimplemented!");
 
 		return [
-			e_({
+			veE({
 				tag: "div",
 				clazz: `ve-split-v-center ve-w-100`,
 				children: [
 					...elesDividerHeaders,
-					e_({
+					veE({
 						tag: "div",
 						clazz: `ve-mb-1 ve-flex-h-right`,
 						children: [
-							e_({
+							veE({
 								tag: "div",
 								clazz: `ve-flex-v-center ve-btn-group`,
 								children: [
@@ -575,23 +637,23 @@ export class SourceFilter extends Filter {
 		const displayText = this._getDisplayText(item);
 		const displayTextMini = this._getDisplayTextMini(item);
 
-		const dispName = e_({
+		const dispName = veE({
 			tag: "span",
 			html: displayText,
 		});
 
-		const spc = e_({
+		const spc = veE({
 			tag: "span",
 			clazz: "ve-px-2 ve-fltr-src__spc-pill",
-			text: "|",
+			txt: "|",
 		});
 
-		const dispAbbreviation = e_({
+		const dispAbbreviation = veE({
 			tag: "span",
 			html: displayTextMini,
 		});
 
-		const btnPill = e_({
+		const btnPill = veE({
 			tag: "div",
 			clazz: "ve-fltr__pill",
 			children: [
@@ -606,9 +668,9 @@ export class SourceFilter extends Filter {
 		this._getPill_bindHookState({btnPill, item});
 
 		this._addHook("uiMeta", "pillDisplayMode", () => {
-			dispAbbreviation.toggleVe(this._uiMeta.pillDisplayMode !== SourceFilter._PILL_DISPLAY_MODE__AS_NAMES);
-			spc.toggleVe(this._uiMeta.pillDisplayMode === SourceFilter._PILL_DISPLAY_MODE__AS_BOTH);
-			dispName.toggleVe(this._uiMeta.pillDisplayMode !== SourceFilter._PILL_DISPLAY_MODE__AS_ABVS);
+			dispAbbreviation.vee.toggle(this._uiMeta.pillDisplayMode !== SourceFilter._PILL_DISPLAY_MODE__AS_NAMES);
+			spc.vee.toggle(this._uiMeta.pillDisplayMode === SourceFilter._PILL_DISPLAY_MODE__AS_BOTH);
+			dispName.vee.toggle(this._uiMeta.pillDisplayMode !== SourceFilter._PILL_DISPLAY_MODE__AS_ABVS);
 		})();
 
 		item.searchText = `${Parser.sourceJsonToAbv(item.item || item).toLowerCase()} -- ${displayText.toLowerCase()}`;

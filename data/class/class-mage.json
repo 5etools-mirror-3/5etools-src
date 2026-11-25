@@ -1,0 +1,53 @@
+{
+	"_meta": {
+		"dependencies": {
+			"class": [
+				"wizard"
+			],
+			"subclass": [
+				"wizard"
+			],
+			"classFeature": [
+				"wizard"
+			]
+		}
+	},
+	"class": [
+		{
+			"name": "Mage",
+			"alias": [
+				"Wizard"
+			],
+			"source": "WoW",
+			"reskinOf": [
+				"Wizard|XPHB"
+			],
+			"_copy": {
+				"name": "Wizard",
+				"source": "XPHB"
+			},
+			"includeSubclassesFrom": [
+				"Wizard|XPHB"
+			],
+			"subclassTitle": "Mage Subclass",
+			"hasFluff": true,
+			"hasFluffImages": true
+		}
+	],
+	"subclass": [
+		{
+			"name": "Evoker",
+			"shortName": "Evoker",
+			"source": "WoW",
+			"className": "Mage",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Evoker",
+				"source": "XPHB",
+				"shortName": "Evoker",
+				"className": "Wizard",
+				"classSource": "XPHB"
+			}
+		}
+	]
+}

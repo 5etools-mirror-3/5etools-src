@@ -4,8 +4,8 @@ import {EncounterBuilderTemplaterBase} from "./encounterbuilder-templater-base.j
 
 export class EncounterBuilderTemplaterRandom extends EncounterBuilderTemplaterBase {
 	getEncounterTemplateInfo () {
-		const cntLockedCreatures = this._creatureMetasLocked
-			.map(creatureMeta => creatureMeta.getCount())
+		const cntLockedCreatures = this._creatureGroupsLocked
+			.map(creatureGroup => creatureGroup.getCount())
 			.sum();
 
 		const lowestSpendAmount = Math.min(...this._spendKeys);
@@ -25,7 +25,7 @@ export class EncounterBuilderTemplaterRandom extends EncounterBuilderTemplaterBa
 			budgetMode: this._budgetMode,
 		})
 			.getEncounterSizeInfosGroups({
-				creatureMetasLocked: this._creatureMetasLocked,
+				creatureGroupsLocked: this._creatureGroupsLocked,
 				slotSeeds: null,
 				cntLockedCreatures,
 				lowestSpendAmount,
@@ -72,8 +72,8 @@ export class EncounterBuilderTemplaterRandom extends EncounterBuilderTemplaterBa
 	) {
 		return encounterSizeMetas
 			.map(({cntCreatures, playerAdjustedSpendMult}) => {
-				const spendLocked = this._creatureMetasLocked
-					.map(creatureMeta => creatureMeta.getCount() * creatureMeta.getSpend({budgetMode: this._budgetMode}) * playerAdjustedSpendMult)
+				const spendLocked = this._creatureGroupsLocked
+					.map(creatureGroup => creatureGroup.getCount() * creatureGroup.getSpend({budgetMode: this._budgetMode}) * playerAdjustedSpendMult)
 					.sum();
 
 				const slots = Array.from({length: cntCreatures - cntLockedCreatures}, () => new CreatureSlot({
@@ -81,7 +81,7 @@ export class EncounterBuilderTemplaterRandom extends EncounterBuilderTemplaterBa
 					count: 1,
 				}));
 
-				const cntSlotsDesired = Math.max(1, this._getMaxDesiredCreatureTypes() - this._creatureMetasLocked.length);
+				const cntSlotsDesired = Math.max(1, this._getMaxDesiredCreatureTypes() - this._creatureGroupsLocked.length);
 				const slotsMerged = [];
 				slots.forEach(slot => {
 					if (slotsMerged.length < cntSlotsDesired) return slotsMerged.push(slot);

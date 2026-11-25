@@ -43,6 +43,10 @@
 		}
 	}
 
+	.ve-fontw-normal {
+		font-weight: normal !important;
+	}
+
 	.ve-bold {
 		font-weight: bold !important;
 	}
@@ -96,6 +100,10 @@
 
 	.ve-background {
 		background-color: vars.$rgb-bg;
+	}
+
+	.ve-shadow-big {
+		@include vars.mix-shadow-1;
 	}
 
 	.ve-highlight {
@@ -191,12 +199,6 @@
 
 	.ve-btn-lg .ve-caret {
 		border-width: 5px 5px 0;
-	}
-
-	@media print {
-		.ve-btn > .ve-caret {
-			border-top-color: #000 !important;
-		}
 	}
 	// endregion
 
@@ -392,6 +394,10 @@
 		width: initial !important;
 	}
 
+	.ve-w-16p {
+		width: 16px !important;
+	}
+
 	.ve-w-20p {
 		width: 20px !important;
 	}
@@ -480,6 +486,10 @@
 		min-width: 20px !important;
 	}
 
+	.ve-min-w-40p {
+		min-width: 40px !important;
+	}
+
 	.ve-min-w-60p {
 		min-width: 60px !important;
 	}
@@ -554,6 +564,10 @@
 		height: 100% !important;
 	}
 
+	.ve-h-50h {
+		height: 50vh !important;
+	}
+
 	.ve-h-100h {
 		height: 100vh !important;
 	}
@@ -564,6 +578,10 @@
 
 	.ve-h-21p {
 		height: 21px !important;
+	}
+
+	.ve-h-22p {
+		height: 22px !important;
 	}
 
 	.ve-h-25p {
@@ -988,6 +1006,12 @@
 	// region Opacity
 	.ve-opacity-50 {
 		opacity: 0.5 !important;
+	}
+	// endregion
+
+	// region Containers
+	.ve-container-inline {
+		container-type: inline-size !important;
 	}
 	// endregion
 

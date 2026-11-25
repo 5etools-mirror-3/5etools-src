@@ -1,6 +1,7 @@
 {
 	"_meta": {
 		"internalCopies": [
+			"class",
 			"subclass"
 		]
 	},
@@ -38,16 +39,6 @@
 				}
 			],
 			"startingProficiencies": {
-				"armor": [
-					"light",
-					"medium",
-					"heavy",
-					"shield"
-				],
-				"weapons": [
-					"simple",
-					"martial"
-				],
 				"skills": [
 					{
 						"choose": {
@@ -61,6 +52,24 @@
 							],
 							"count": 2
 						}
+					}
+				],
+				"weapons": [
+					"simple",
+					"martial"
+				],
+				"armor": [
+					"light",
+					"medium",
+					"heavy",
+					"shield"
+				],
+				"armorProficiencies": [
+					{
+						"light": true,
+						"medium": true,
+						"heavy": true,
+						"shield": true
 					}
 				]
 			},
@@ -125,14 +134,21 @@
 					"cha": 13
 				},
 				"proficienciesGained": {
+					"weapons": [
+						"simple",
+						"martial"
+					],
 					"armor": [
 						"light",
 						"medium",
 						"shield"
 					],
-					"weapons": [
-						"simple",
-						"martial"
+					"armorProficiencies": [
+						{
+							"light": true,
+							"medium": true,
+							"shield": true
+						}
 					]
 				}
 			},
@@ -411,16 +427,6 @@
 				}
 			],
 			"startingProficiencies": {
-				"armor": [
-					"light",
-					"medium",
-					"heavy",
-					"shield"
-				],
-				"weapons": [
-					"simple",
-					"martial"
-				],
 				"skills": [
 					{
 						"choose": {
@@ -435,7 +441,29 @@
 							"count": 2
 						}
 					}
+				],
+				"weapons": [
+					"simple",
+					"martial"
+				],
+				"armor": [
+					"light",
+					"medium",
+					"heavy",
+					"shield"
+				],
+				"armorProficiencies": [
+					{
+						"light": true,
+						"medium": true,
+						"heavy": true,
+						"shield": true
+					}
 				]
+			},
+			"itemMasteries": true,
+			"itemMasteriesProgression": {
+				"1": 2
 			},
 			"startingEquipment": {
 				"additionalFromBackground": true,
@@ -478,13 +506,20 @@
 			},
 			"multiclassing": {
 				"proficienciesGained": {
+					"weapons": [
+						"martial"
+					],
 					"armor": [
 						"light",
 						"medium",
 						"shield"
 					],
-					"weapons": [
-						"martial"
+					"armorProficiencies": [
+						{
+							"light": true,
+							"medium": true,
+							"shield": true
+						}
 					]
 				}
 			},
@@ -580,11 +615,11 @@
 				{
 					"title": "Spell Slots per Spell Level",
 					"colLabels": [
-						"{@filter 1st|spells|level=1|class=Paladin}",
-						"{@filter 2nd|spells|level=2|class=Paladin}",
-						"{@filter 3rd|spells|level=3|class=Paladin}",
-						"{@filter 4th|spells|level=4|class=Paladin}",
-						"{@filter 5th|spells|level=5|class=Paladin}"
+						"{@filter 1|spells|level=1|class=Paladin}",
+						"{@filter 2|spells|level=2|class=Paladin}",
+						"{@filter 3|spells|level=3|class=Paladin}",
+						"{@filter 4|spells|level=4|class=Paladin}",
+						"{@filter 5|spells|level=5|class=Paladin}"
 					],
 					"rowsSpellProgression": [
 						[
@@ -768,6 +803,22 @@
 				}
 			],
 			"subclassTitle": "Paladin Subclass",
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Paladin",
+			"source": "WoW",
+			"reskinOf": [
+				"Paladin|XPHB"
+			],
+			"_copy": {
+				"name": "Paladin",
+				"source": "XPHB"
+			},
+			"includeSubclassesFrom": [
+				"Paladin|XPHB"
+			],
 			"hasFluff": true,
 			"hasFluffImages": true
 		}
@@ -1196,7 +1247,7 @@
 							"hypnotic pattern"
 						],
 						"13": [
-							"Otiluke's resilient sphere",
+							"Otiluke's Resilient Sphere",
 							"stoneskin"
 						],
 						"17": [
@@ -1613,6 +1664,92 @@
 				"Noble Scion|Paladin|XPHB|Noble Genies|FRHoF|20|FRHoF"
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Oath of Devotion",
+			"shortName": "Devotion",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Oath of Devotion",
+				"source": "XPHB",
+				"shortName": "Devotion",
+				"className": "Paladin",
+				"classSource": "XPHB"
+			}
+		},
+		{
+			"name": "Oath of the Holy",
+			"shortName": "Holy",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Oath of the Holy",
+				"source": "WoW",
+				"shortName": "Holy",
+				"className": "Paladin",
+				"classSource": "XPHB",
+				"_preserve": {
+					"*": true
+				}
+			}
+		},
+		{
+			"name": "Oath of the Holy",
+			"shortName": "Holy",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"ability": "cha",
+					"prepared": {
+						"3": [
+							"cure wounds|xphb",
+							"healing word|xphb"
+						],
+						"5": [
+							"lesser restoration|xphb",
+							"prayer of healing|xphb"
+						],
+						"9": [
+							"dispel magic|xphb",
+							"mass healing word|xphb"
+						],
+						"13": [
+							"aura of life|xphb",
+							"death ward|xphb"
+						],
+						"17": [
+							"greater restoration|xphb",
+							"mass cure wounds|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Oath of the Holy|Paladin|XPHB|Holy|WoW|3",
+				"Lightbringer's Aura|Paladin|XPHB|Holy|WoW|7",
+				"Infusion of Light|Paladin|XPHB|Holy|WoW|15",
+				"Holy Deliverance|Paladin|XPHB|Holy|WoW|20"
+			]
+		},
+		{
+			"name": "Oath of Vengeance",
+			"shortName": "Vengeance",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Oath of Vengeance",
+				"source": "XPHB",
+				"shortName": "Vengeance",
+				"className": "Paladin",
+				"classSource": "XPHB"
+			}
 		}
 	],
 	"classFeature": [
@@ -1806,8 +1943,8 @@
 				"When you reach 3rd level, you swear the oath that binds you as a paladin forever. Up to this time you have been in a preparatory stage, committed to the path but not yet sworn to it. Now you choose from the list of available oaths.",
 				"Your choice grants you features at 3rd level and again at 7th, 15th, and 20th level. Those features include oath spells and the Channel Divinity feature.",
 				{
-					"name": "Oath Spells",
 					"type": "entries",
+					"name": "Oath Spells",
 					"entries": [
 						"Each oath has a list of associated spells. You gain access to these spells at the levels specified in the oath description. Once you gain access to an oath spell, you always have it prepared. Oath spells don't count against the number of spells you can prepare each day.",
 						"If you gain an oath spell that doesn't appear on the paladin spell list, the spell is nonetheless a paladin spell for you."
@@ -1822,8 +1959,8 @@
 					"classFeature": "Channel Divinity: Harness Divine Power|Paladin||3|TCE"
 				},
 				{
-					"name": "Breaking Your Oath",
 					"type": "inset",
+					"name": "Breaking Your Oath",
 					"entries": [
 						"A paladin tries to hold to the highest standards of conduct, but even the most virtuous paladin is fallible. Sometimes the right path proves too demanding, sometimes a situation calls for the lesser of two evils, and sometimes the heat of emotion causes a paladin to transgress his or her oath.",
 						"A paladin who has broken a vow typically seeks absolution from a cleric who shares his or her faith or from another paladin of the same order. The paladin might spend an all-night vigil in prayer as a sign of penitence, or undertake a fast or similar act of self-denial. After a rite of confession and forgiveness, the paladin starts fresh.",
@@ -4407,7 +4544,7 @@
 						],
 						[
 							"13th",
-							"{@spell Otiluke's resilient sphere}, {@spell stoneskin}"
+							"{@spell Otiluke's Resilient Sphere}, {@spell stoneskin}"
 						],
 						[
 							"17th",
@@ -4766,7 +4903,7 @@
 			"level": 15,
 			"header": 2,
 			"entries": [
-				"When you are hit by an attack roll, you can take a {@variantrule Reaction|XPHB} to halve the attack's damage against yourself (round down) and force the attacker to make a Dexterity saving throw against your spell save DC. On a failed save, the attacker takes damage equal to {@dice 2d10} plus your Charisma modifier of one of the following types (your choice): Acid, Cold, Fire, Lightning, or Thunder. On a successful save, the attacker takes half as much damage.",
+				"When you are hit by an attack roll, you can take a {@variantrule Reaction|XPHB} to halve the attack's damage against yourself (round down) and force the attacker to make a Dexterity saving throw against your spell save DC. On a failed save, the attacker takes damage equal to {@damage 2d10} plus your Charisma modifier of one of the following types (your choice): Acid, Cold, Fire, Lightning, or Thunder. On a successful save, the attacker takes half as much damage.",
 				"You can use this feature a number of times equal to your Charisma modifier (minimum of once), and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
 			]
 		},
@@ -4796,6 +4933,150 @@
 					"page": 5,
 					"entries": [
 						"When you or an ally in your {@classFeature Aura of Protection|Paladin|XPHB|6|XPHB} fails a {@variantrule D20 Test|XPHB}, you can take a {@variantrule Reaction|XPHB} to make the {@variantrule D20 Test|XPHB} succeed instead."
+					]
+				}
+			]
+		},
+		{
+			"name": "Beacon of Light",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Holy",
+			"subclassSource": "WoW",
+			"level": 3,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"As a {@action Magic|XPHB} action, you can expend one use of your {@classFeature Channel Divinity|Paladin|XPHB|3|XPHB} to wrap an ally within 60 feet in holy energy. For 1 minute, anytime you heal a creature other than the affected ally with a spell or your {@classFeature Lay On Hands|Paladin|XPHB|1|XPHB}, the chosen ally also regains half as many {@variantrule Hit Points|XPHB}."
+			]
+		},
+		{
+			"name": "Oath of the Holy",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Holy",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"{@i Serve as a Beacon of the Light}",
+				"The Oath of the Holy unites Paladins who nurture life and use the power of the Light for healing and support. They combine great piety and virtue with martial skill, aspiring to the highest standards of morality, service to others, and self-sacrifice.",
+				"These paladins share the following tenets:",
+				{
+					"type": "list",
+					"items": [
+						"Live your life in service to others of goodwill.",
+						"Do all in your power to ease the suffering of the innocent.",
+						"Let the Light shine through you to banish the darkness."
+					]
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Oath of the Holy Spells|Paladin|XPHB|Holy|WoW|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Beacon of Light|Paladin|XPHB|Holy|WoW|3"
+				}
+			]
+		},
+		{
+			"name": "Oath of the Holy Spells",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Holy",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"The magic of your oath ensures you always have certain spells ready; when you reach a Paladin level specified in the Oath of the Holy Spells table, you thereafter always have the listed spells prepared.",
+				{
+					"type": "table",
+					"caption": "Oath of the Holy Spells",
+					"colLabels": [
+						"Paladin Level",
+						"Spells"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Cure Wounds|XPHB}, {@spell Healing Word|XPHB}"
+						],
+						[
+							"5",
+							"{@spell Lesser Restoration|XPHB}, {@spell Prayer of Healing|XPHB}"
+						],
+						[
+							"9",
+							"{@spell Dispel Magic|XPHB}, {@spell Mass Healing Word|XPHB}"
+						],
+						[
+							"13",
+							"{@spell Aura of Life|XPHB}, {@spell Death Ward|XPHB}"
+						],
+						[
+							"17",
+							"{@spell Greater Restoration|XPHB}, {@spell Mass Cure Wounds|XPHB}"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Lightbringer's Aura",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Holy",
+			"subclassSource": "WoW",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"Whenever you cast a spell or use {@classFeature Lay On Hands|Paladin|XPHB|1|XPHB} to restore {@variantrule Hit Points|XPHB} to a {@status Bloodied|XPHB} creature within your {@classFeature Aura of Protection|Paladin|XPHB|6|XPHB}, the creature regains an extra {@dice 1d6} {@variantrule Hit Points|XPHB}."
+			]
+		},
+		{
+			"name": "Infusion of Light",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Holy",
+			"subclassSource": "WoW",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"Whenever you cast a spell that deals Radiant damage, you refresh the pool of healing power that fuels your {@classFeature Lay On Hands|Paladin|XPHB|1|XPHB} feature. Your pool of healing power regains a number of {@variantrule Hit Points|XPHB} equal to the total number rolled for the spell's Radiant damage, to a maximum of five times your Paladin level."
+			]
+		},
+		{
+			"name": "Holy Deliverance",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Holy",
+			"subclassSource": "WoW",
+			"level": 20,
+			"header": 2,
+			"entries": [
+				"As a {@variantrule Bonus Action|XPHB}, you can imbue your {@classFeature Aura of Protection|Paladin|XPHB|6|XPHB} with holy power, granting the benefits below for 10 minutes or until you end them (no action required). Once you use this feature, you can't use it again until you finish a {@variantrule Long Rest|XPHB}. You can also restore your use of it by expending a level 5 spell slot (no action required).",
+				{
+					"type": "entries",
+					"name": "Healing Power",
+					"entries": [
+						"Whenever an ally starts its turn {@status Bloodied|XPHB} and in the aura, that creature regains {@variantrule Hit Points|XPHB} equal to your Charisma modifier plus your {@variantrule Proficiency|XPHB|Proficiency Bonus}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Sunlight",
+					"entries": [
+						"The aura is filled with {@variantrule Bright Light|XPHB} that is sunlight."
 					]
 				}
 			]
@@ -4871,23 +5152,23 @@
 					],
 					"rows": [
 						[
-							"3rd",
+							"3",
 							"{@spell Ensnaring Strike|XPHB}, {@spell Speak with Animals|XPHB}"
 						],
 						[
-							"5th",
+							"5",
 							"{@spell Misty Step|XPHB}, {@spell Moonbeam|XPHB}"
 						],
 						[
-							"9th",
+							"9",
 							"{@spell Plant Growth|XPHB}, {@spell Protection from Energy|XPHB}"
 						],
 						[
-							"13th",
+							"13",
 							"{@spell Ice Storm|XPHB}, {@spell Stoneskin|XPHB}"
 						],
 						[
-							"17th",
+							"17",
 							"{@spell Commune with Nature|XPHB}, {@spell Tree Stride|XPHB}"
 						]
 					]
@@ -5018,23 +5299,23 @@
 					],
 					"rows": [
 						[
-							"3rd",
-							"{@spell Protection from Evil And Good|XPHB}, {@spell Shield of Faith|XPHB}"
+							"3",
+							"{@spell Protection from Evil and Good|XPHB}, {@spell Shield of Faith|XPHB}"
 						],
 						[
-							"5th",
+							"5",
 							"{@spell Aid|XPHB}, {@spell Zone of Truth|XPHB}"
 						],
 						[
-							"9th",
+							"9",
 							"{@spell Beacon of Hope|XPHB}, {@spell Dispel Magic|XPHB}"
 						],
 						[
-							"13th",
+							"13",
 							"{@spell Freedom of Movement|XPHB}, {@spell Guardian of Faith|XPHB}"
 						],
 						[
-							"17th",
+							"17",
 							"{@spell Commune|XPHB}, {@spell Flame Strike|XPHB}"
 						]
 					]
@@ -5205,23 +5486,23 @@
 					],
 					"rows": [
 						[
-							"3rd",
+							"3",
 							"{@spell Guiding Bolt|XPHB}, {@spell Heroism|XPHB}"
 						],
 						[
-							"5th",
+							"5",
 							"{@spell Enhance Ability|XPHB}, {@spell Magic Weapon|XPHB}"
 						],
 						[
-							"9th",
+							"9",
 							"{@spell Haste|XPHB}, {@spell Protection from Energy|XPHB}"
 						],
 						[
-							"13th",
+							"13",
 							"{@spell Compulsion|XPHB}, {@spell Freedom of Movement|XPHB}"
 						],
 						[
-							"17th",
+							"17",
 							"{@spell Legend Lore|XPHB}, {@spell Yolande's Regal Presence|XPHB}"
 						]
 					]
@@ -5364,23 +5645,23 @@
 					],
 					"rows": [
 						[
-							"3rd",
+							"3",
 							"{@spell Bane|XPHB}, {@spell Hunter's Mark|XPHB}"
 						],
 						[
-							"5th",
+							"5",
 							"{@spell Hold Person|XPHB}, {@spell Misty Step|XPHB}"
 						],
 						[
-							"9th",
+							"9",
 							"{@spell Haste|XPHB}, {@spell Protection from Energy|XPHB}"
 						],
 						[
-							"13th",
+							"13",
 							"{@spell Banishment|XPHB}, {@spell Dimension Door|XPHB}"
 						],
 						[
-							"17th",
+							"17",
 							"{@spell Hold Monster|XPHB}, {@spell Scrying|XPHB}"
 						]
 					]

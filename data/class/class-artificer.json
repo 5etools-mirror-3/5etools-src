@@ -84,10 +84,21 @@
 				}
 			],
 			"startingProficiencies": {
-				"armor": [
-					"light",
-					"medium",
-					"shield"
+				"skills": [
+					{
+						"choose": {
+							"from": [
+								"arcana",
+								"history",
+								"investigation",
+								"medicine",
+								"nature",
+								"perception",
+								"sleight of hand"
+							],
+							"count": 2
+						}
+					}
 				],
 				"weapons": [
 					"simple",
@@ -108,20 +119,16 @@
 						"anyArtisansTool": 1
 					}
 				],
-				"skills": [
+				"armor": [
+					"light",
+					"medium",
+					"shield"
+				],
+				"armorProficiencies": [
 					{
-						"choose": {
-							"from": [
-								"arcana",
-								"history",
-								"investigation",
-								"medicine",
-								"nature",
-								"perception",
-								"sleight of hand"
-							],
-							"count": 2
-						}
+						"light": true,
+						"medium": true,
+						"shield": true
 					}
 				]
 			},
@@ -170,11 +177,6 @@
 					"int": 13
 				},
 				"proficienciesGained": {
-					"armor": [
-						"light",
-						"medium",
-						"shield"
-					],
 					"tools": [
 						"{@item thieves' tools|PHB}",
 						"{@item tinker's tools|PHB}"
@@ -183,6 +185,18 @@
 						{
 							"thieves' tools": true,
 							"tinker's tools": true
+						}
+					],
+					"armor": [
+						"light",
+						"medium",
+						"shield"
+					],
+					"armorProficiencies": [
+						{
+							"light": true,
+							"medium": true,
+							"shield": true
 						}
 					]
 				}
@@ -575,10 +589,21 @@
 				}
 			],
 			"startingProficiencies": {
-				"armor": [
-					"light",
-					"medium",
-					"shield"
+				"skills": [
+					{
+						"choose": {
+							"from": [
+								"arcana",
+								"history",
+								"investigation",
+								"medicine",
+								"nature",
+								"perception",
+								"sleight of hand"
+							],
+							"count": 2
+						}
+					}
 				],
 				"weapons": [
 					"simple"
@@ -595,20 +620,16 @@
 						"anyArtisansTool": 1
 					}
 				],
-				"skills": [
+				"armor": [
+					"light",
+					"medium",
+					"shield"
+				],
+				"armorProficiencies": [
 					{
-						"choose": {
-							"from": [
-								"arcana",
-								"history",
-								"investigation",
-								"medicine",
-								"nature",
-								"perception",
-								"sleight of hand"
-							],
-							"count": 2
-						}
+						"light": true,
+						"medium": true,
+						"shield": true
 					}
 				]
 			},
@@ -649,19 +670,6 @@
 			},
 			"multiclassing": {
 				"proficienciesGained": {
-					"armor": [
-						"light",
-						"medium",
-						"shield"
-					],
-					"tools": [
-						"{@item Tinker's Tools|XPHB}"
-					],
-					"toolProficiencies": [
-						{
-							"tinker's tools": true
-						}
-					],
 					"skills": [
 						{
 							"choose": {
@@ -676,6 +684,26 @@
 								],
 								"count": 1
 							}
+						}
+					],
+					"tools": [
+						"{@item Tinker's Tools|XPHB}"
+					],
+					"toolProficiencies": [
+						{
+							"tinker's tools": true
+						}
+					],
+					"armor": [
+						"light",
+						"medium",
+						"shield"
+					],
+					"armorProficiencies": [
+						{
+							"light": true,
+							"medium": true,
+							"shield": true
 						}
 					]
 				}
@@ -814,11 +842,11 @@
 				{
 					"title": "Spell Slots per Spell Level",
 					"colLabels": [
-						"{@filter 1st|spells|level=1|class=artificer}",
-						"{@filter 2nd|spells|level=2|class=artificer}",
-						"{@filter 3rd|spells|level=3|class=artificer}",
-						"{@filter 4th|spells|level=4|class=artificer}",
-						"{@filter 5th|spells|level=5|class=artificer}"
+						"{@filter 1|spells|level=1|class=artificer}",
+						"{@filter 2|spells|level=2|class=artificer}",
+						"{@filter 3|spells|level=3|class=artificer}",
+						"{@filter 4|spells|level=4|class=artificer}",
+						"{@filter 5|spells|level=5|class=artificer}"
 					],
 					"rowsSpellProgression": [
 						[
@@ -1517,6 +1545,7 @@
 			"source": "RHW",
 			"className": "Artificer",
 			"classSource": "EFA",
+			"page": 15,
 			"additionalSpells": [
 				{
 					"prepared": {
@@ -1723,8 +1752,8 @@
 							]
 						},
 						{
-							"caption": "Magic Item Plans (Artificer Level 2+)",
 							"type": "table",
+							"caption": "Magic Item Plans (Artificer Level 2+)",
 							"colLabels": [
 								"Magic Item Plan",
 								"Attunement"
@@ -1804,8 +1833,8 @@
 							]
 						},
 						{
-							"caption": "Magic Item Plans (Artificer Level 6+)",
 							"type": "table",
+							"caption": "Magic Item Plans (Artificer Level 6+)",
 							"colLabels": [
 								"Magic Item Plan",
 								"Attunement"
@@ -1906,8 +1935,8 @@
 							]
 						},
 						{
-							"caption": "Magic Item Plans (Artificer Level 10+)",
 							"type": "table",
+							"caption": "Magic Item Plans (Artificer Level 10+)",
 							"colLabels": [
 								"Magic Item Plan",
 								"Attunement"
@@ -1967,8 +1996,8 @@
 							]
 						},
 						{
-							"caption": "Magic Item Plans (Artificer Level 14+)",
 							"type": "table",
+							"caption": "Magic Item Plans (Artificer Level 14+)",
 							"colLabels": [
 								"Magic Item Plan",
 								"Attunement"
@@ -2023,7 +2052,7 @@
 			"classSource": "EFA",
 			"level": 3,
 			"entries": [
-				"You gain an Artificer subclass of your choice. The {@subclass Alchemist|Artificer|EFA|EFA}, {@subclass Armorer|Artificer|EFA|EFA}, {@subclass Artillerist|Artificer|EFA|EFA}, and {@subclass Battle Smith|Artificer|EFA|EFA}, and {@subclass Cartographer|Artificer|EFA|EFA} subclasses are detailed after this class's description. A subclass is a specialization that grants you features at certain Artificer levels. For the rest of your career, you gain each of your subclass's features that are of your Artificer level or lower."
+				"You gain an Artificer subclass of your choice. The {@subclass Alchemist|Artificer|EFA|EFA}, {@subclass Armorer|Artificer|EFA|EFA}, {@subclass Artillerist|Artificer|EFA|EFA}, {@subclass Battle Smith|Artificer|EFA|EFA}, and {@subclass Cartographer|Artificer|EFA|EFA} subclasses are detailed after this class's description. A subclass is a specialization that grants you features at certain Artificer levels. For the rest of your career, you gain each of your subclass's features that are of your Artificer level or lower."
 			]
 		},
 		{
@@ -2820,8 +2849,8 @@
 			"entries": [
 				"When you reach an Artificer level specified in the Alchemist Spells table, you thereafter always have the listed spells prepared.",
 				{
-					"caption": "Alchemist Spells",
 					"type": "table",
+					"caption": "Alchemist Spells",
 					"page": 13,
 					"colLabels": [
 						"Artificer Level",
@@ -2883,8 +2912,8 @@
 					]
 				},
 				{
-					"caption": "Experimental Elixir",
 					"type": "table",
+					"caption": "Experimental Elixir",
 					"page": 13,
 					"colLabels": [
 						"1d6",
@@ -3117,8 +3146,8 @@
 			"entries": [
 				"When you reach an Artificer level specified in the Armorer Spells table, you thereafter always have the listed spells prepared.",
 				{
-					"caption": "Armorer Spells",
 					"type": "table",
+					"caption": "Armorer Spells",
 					"page": 15,
 					"colLabels": [
 						"Artificer Level",
@@ -3412,8 +3441,8 @@
 			"entries": [
 				"When you reach an Artificer level specified in the Artillerist Spells table, you thereafter always have the listed spells prepared.",
 				{
-					"caption": "Artillerist Spells",
 					"type": "table",
+					"caption": "Artillerist Spells",
 					"page": 16,
 					"colLabels": [
 						"Artificer Level",
@@ -3636,8 +3665,8 @@
 			"entries": [
 				"When you reach an Artificer level specified in the Battle Smith Spells table, you thereafter always have the listed spells prepared.",
 				{
-					"caption": "Battle Smith Spells",
 					"type": "table",
+					"caption": "Battle Smith Spells",
 					"page": 18,
 					"colLabels": [
 						"Artificer Level",
@@ -3801,7 +3830,7 @@
 					"type": "entries",
 					"name": "Improved Deflection",
 					"entries": [
-						"Whenever your {@creature Steel Defender|EFA} uses its Deflect Attack, the attacker takes Force damage equal to {@dice 1d4} plus your Intelligence modifier."
+						"Whenever your {@creature Steel Defender|EFA} uses its Deflect Attack, the attacker takes Force damage equal to {@damage 1d4} plus your Intelligence modifier."
 					]
 				}
 			]
@@ -3876,8 +3905,8 @@
 			"entries": [
 				"When you reach an Artificer level specified in the Cartographer Spells table, you thereafter always have the listed spells prepared.",
 				{
-					"caption": "Cartographer Spells",
 					"type": "table",
+					"caption": "Cartographer Spells",
 					"page": 20,
 					"colLabels": [
 						"Artificer Level",
@@ -4026,20 +4055,21 @@
 		{
 			"name": "Reanimated Companion",
 			"source": "RHW",
+			"page": 15,
 			"className": "Artificer",
 			"classSource": "EFA",
 			"subclassShortName": "Reanimator",
 			"subclassSource": "RHW",
 			"level": 3,
 			"entries": [
-				"Using {@item Tinker's Tools|XPHB} or another type of Artisan's Tools with which you have proficiency, you can take a {@action Magic|XPHB} action to create a {@creature Reanimated Companion|RHW} through the power of necromancy and science. The companion manifests in an unoccupied space within 5 feet of you. You determine the companion's appearance; your choices don't affect the companion's game statistics.",
-				"The companion is {@variantrule Friendly [Attitude]|XPHB|Friendly} to you and your allies and obeys you. It lasts until you finish a Long Rest or until you take a {@action Magic|XPHB} action to dismiss it early, at which point it harmlessly collapses into a pile of viscera. It immediately drops to 0 Hit Points and dies (triggering its Death Burst trait) if you die.",
-				"Once you create a companion, you can't do so again until you finish a Long Rest or expend a spell slot to create one. You can have only one companion at a time and can't create one while your companion is present.",
+				"Using {@item Tinker's Tools|XPHB} or another type of {@item Artisan's Tools|XPHB} with which you have proficiency, you can take a {@action Magic|XPHB} action to create a {@creature Reanimated Companion|RHW} through the power of necromancy and science. The companion manifests in an unoccupied space within 5 feet of you. You determine the companion's appearance; your choices don't affect the companion's game statistics.",
+				"The companion is {@variantrule Friendly [Attitude]|XPHB|Friendly} to you and your allies and obeys you. It lasts until you finish a {@variantrule Long Rest|XPHB} or until you take a {@action Magic|XPHB} action to dismiss it early, at which point it harmlessly collapses into a pile of viscera. It immediately drops to 0 {@variantrule Hit Points|XPHB} and dies (triggering its Death Burst trait) if you die.",
+				"Once you create a companion, you can't do so again until you finish a {@variantrule Long Rest|XPHB} or expend a spell slot to create one. You can have only one companion at a time and can't create one while your companion is present.",
 				{
 					"type": "entries",
 					"name": "The Companion in Combat",
 					"entries": [
-						"In combat, the companion acts during your turn. It can move and take its Reaction on its own, but the only action it takes is the {@action Dodge|XPHB} action unless you take a Bonus Action to command it to take an action. If you have the {@condition Incapacitated|XPHB} condition, the companion acts on its own and isn't limited to the Dodge action."
+						"In combat, the companion acts during your turn. It can move and take its {@variantrule Reaction|XPHB} on its own, but the only action it takes is the {@action Dodge|XPHB} action unless you take a {@variantrule Bonus Action|XPHB} to command it to take an action. If you have the {@condition Incapacitated|XPHB} condition, the companion acts on its own and isn't limited to the {@action Dodge|XPHB} action."
 					]
 				}
 			]
@@ -4047,6 +4077,7 @@
 		{
 			"name": "Reanimator",
 			"source": "RHW",
+			"page": 15,
 			"className": "Artificer",
 			"classSource": "EFA",
 			"subclassShortName": "Reanimator",
@@ -4072,6 +4103,7 @@
 		{
 			"name": "Reanimator Spells",
 			"source": "RHW",
+			"page": 15,
 			"className": "Artificer",
 			"classSource": "EFA",
 			"subclassShortName": "Reanimator",
@@ -4118,6 +4150,7 @@
 		{
 			"name": "Reanimator's Skill Set",
 			"source": "RHW",
+			"page": 15,
 			"className": "Artificer",
 			"classSource": "EFA",
 			"subclassShortName": "Reanimator",
@@ -4129,15 +4162,15 @@
 					"type": "entries",
 					"name": "Jolt to Life",
 					"entries": [
-						"When you cast {@spell Spare the Dying|XPHB}, you can modify the spell so that it sends a jolt of electricity through the target, reviving it. The target regains a number of Hit Points equal to your Artificer level, and each creature of your choice in a 10-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the target makes a Dexterity saving throw against your spell save DC, taking {@damage 2d4} Lightning damage on a failed save or half as much damage on a successful one.",
-						"You can modify the spell this way a number of times equal to your Intelligence modifier, and you regain all expended uses when you finish a Long Rest. The Lightning damage of this feature increases by {@dice 1d4} when you reach Artificer levels 11 ({@dice 3d4}) and 17 ({@dice 4d4})."
+						"When you cast {@spell Spare the Dying|XPHB}, you can modify the spell so that it sends a jolt of electricity through the target, reviving it. The target regains a number of {@variantrule Hit Points|XPHB} equal to your Artificer level, and each creature of your choice in a 10-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the target makes a Dexterity saving throw against your spell save DC, taking {@damage 2d4} Lightning damage on a failed save or half as much damage on a successful one.",
+						"You can modify the spell this way a number of times equal to your Intelligence modifier, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}. The Lightning damage of this feature increases by {@damage 1d4} when you reach Artificer levels 11 ({@damage 3d4}) and 17 ({@damage 4d4})."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Reanimator's Tools",
 					"entries": [
-						"You gain proficiency with {@item Alchemist's Supplies|XPHB}. If you already have this proficiency, you gain proficiency with one other type of Artisan's Tools of your choice."
+						"You gain proficiency with {@item Alchemist's Supplies|XPHB}. If you already have this proficiency, you gain proficiency with one other type of {@item Artisan's Tools|XPHB} of your choice."
 					]
 				}
 			]
@@ -4145,6 +4178,7 @@
 		{
 			"name": "Strange Modifications",
 			"source": "RHW",
+			"page": 16,
 			"className": "Artificer",
 			"classSource": "EFA",
 			"subclassShortName": "Reanimator",
@@ -4164,7 +4198,7 @@
 					"type": "entries",
 					"name": "Ferocity",
 					"entries": [
-						"The damage die of the companion's Dreadful Swipe increases to {@dice 1d6}."
+						"The damage die of the companion's Dreadful Swipe increases to {@damage 1d6}."
 					]
 				}
 			]
@@ -4172,6 +4206,7 @@
 		{
 			"name": "Improved Reanimation",
 			"source": "RHW",
+			"page": 16,
 			"className": "Artificer",
 			"classSource": "EFA",
 			"subclassShortName": "Reanimator",
@@ -4179,12 +4214,13 @@
 			"level": 9,
 			"header": 2,
 			"entries": [
-				"The damage of your {@creature Reanimated Companion|RHW|Reanimated Companion's} Death Burst increases to {@dice 4d4}. Necrotic damage dealt by your companion ignores Resistance."
+				"The damage of your {@creature Reanimated Companion|RHW|Reanimated Companion's} Death Burst increases to {@damage 4d4}. Necrotic damage dealt by your companion ignores {@spell Resistance|XPHB}."
 			]
 		},
 		{
 			"name": "Macabre Modifications",
 			"source": "RHW",
+			"page": 16,
 			"className": "Artificer",
 			"classSource": "EFA",
 			"subclassShortName": "Reanimator",
@@ -4204,14 +4240,14 @@
 					"type": "entries",
 					"name": "Gaunt",
 					"entries": [
-						"The companion's Speed increases to 45 feet, and it gains a Climb Speed equal to its Speed. It can climb difficult surfaces, including along ceilings, without needing to make an ability check. In addition, whenever a creature of your choice starts its turn within a 10-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from your companion, the creature must succeed on a Wisdom saving throw against your spell save DC or have the {@condition Frightened|XPHB} condition until the start of its next turn."
+						"The companion's {@variantrule Speed|XPHB} increases to 45 feet, and it gains a {@variantrule Climb Speed|XPHB} equal to its {@variantrule Speed|XPHB}. It can climb difficult surfaces, including along ceilings, without needing to make an ability check. In addition, whenever a creature of your choice starts its turn within a 10-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from your companion, the creature must succeed on a Wisdom saving throw against your spell save DC or have the {@condition Frightened|XPHB} condition until the start of its next turn."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Moist",
 					"entries": [
-						"The companion gains a Swim Speed equal to its Speed, and it can move through a space as narrow as 1 inch without expending extra movement to do so. In addition, whenever the companion is hit by an attack roll from a creature within 10 feet of itself, the attacker takes Acid damage equal to your Intelligence modifier."
+						"The companion gains a {@variantrule Swim Speed|XPHB} equal to its {@variantrule Speed|XPHB}, and it can move through a space as narrow as 1 inch without expending extra movement to do so. In addition, whenever the companion is hit by an attack roll from a creature within 10 feet of itself, the attacker takes Acid damage equal to your Intelligence modifier."
 					]
 				}
 			]
@@ -4219,6 +4255,7 @@
 		{
 			"name": "Refined Reanimation",
 			"source": "RHW",
+			"page": 16,
 			"className": "Artificer",
 			"classSource": "EFA",
 			"subclassShortName": "Reanimator",
@@ -4231,14 +4268,14 @@
 					"type": "entries",
 					"name": "Facilitated Revival",
 					"entries": [
-						"You can cast {@spell Raise Dead|XPHB} once without expending a spell slot and without Material components, provided you use {@item Tinker's Tools|XPHB} or another type of Artisan's Tools with which you have proficiency as the Spellcasting Focus. Once you use this feature, you can't use it again until you finish a Long Rest."
+						"You can cast {@spell Raise Dead|XPHB} once without expending a spell slot and without Material components, provided you use {@item Tinker's Tools|XPHB} or another type of {@item Artisan's Tools|XPHB} with which you have proficiency as the {@variantrule Spellcasting Focus|XPHB}. Once you use this feature, you can't use it again until you finish a {@variantrule Long Rest|XPHB}."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Life Transfer",
 					"entries": [
-						"You can siphon the animating magic of your {@creature Reanimated Companion|RHW} to bolster yourself. When you or your companion takes damage, you can take a Reaction to gain a number of Hit Points equal to your companion's current Hit Points. The companion then immediately drops to 0 Hit Points and dies (triggering its Death Burst trait)."
+						"You can siphon the animating magic of your {@creature Reanimated Companion|RHW} to bolster yourself. When you or your companion takes damage, you can take a {@variantrule Reaction|XPHB} to gain a number of {@variantrule Hit Points|XPHB} equal to your companion's current {@variantrule Hit Points|XPHB}. The companion then immediately drops to 0 {@variantrule Hit Points|XPHB} and dies (triggering its Death Burst trait)."
 					]
 				},
 				{
@@ -5288,7 +5325,7 @@
 					"type": "list",
 					"items": [
 						"The extra damage and the healing of your Arcane Jolt both increase to {@damage 4d6}.",
-						"Your steel defender gains a +2 bonus to Armor Class.",
+						"Your steel defender gains a +2 bonus to {@variantrule Armor Class|XPHB}.",
 						"Whenever your steel defender uses its Deflect Attack, the attacker takes force damage equal to {@damage 1d4} + your Intelligence modifier."
 					]
 				}

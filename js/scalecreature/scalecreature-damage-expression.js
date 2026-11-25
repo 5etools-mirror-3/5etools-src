@@ -166,37 +166,45 @@ export class ScaleCreatureDamageExpression {
 		// can't be scaled
 		if (state.diceFaces === 1 || state.diceFaces === 20) return false;
 
-		let diceFacesTemp = state.diceFaces;
-
-		let tempAvgDpr = ScaleCreatureUtils.getDiceExpressionAverage(
+		// Pick an initial scaling direction for the dice faces
+		const dirs = state.dprAdjusted < ScaleCreatureUtils.getDiceExpressionAverage(
 			state.getDiceExpression({
-				diceFaces: diceFacesTemp,
+				diceFaces: state.diceFaces,
 			}),
-		);
+		)
+			? [this._DIR_DECREASE, this._DIR_INCREASE]
+			: [this._DIR_INCREASE, this._DIR_DECREASE];
 
-		const dir = state.dprAdjusted < tempAvgDpr ? this._DIR_DECREASE : this._DIR_INCREASE;
+		for (const dir of dirs) {
+			let diceFacesTemp = state.diceFaces;
 
-		while (
-			(dir === this._DIR_INCREASE ? diceFacesTemp < 20 : diceFacesTemp > 1)
-			&& (dir === this._DIR_INCREASE ? tempAvgDpr <= state.dprTargetMax : tempAvgDpr >= state.dprTargetMin)
-		) {
-			diceFacesTemp = dir === this._DIR_INCREASE ? this._getNextDice(diceFacesTemp) : this._getPreviousDice(diceFacesTemp);
-			tempAvgDpr = ScaleCreatureUtils.getDiceExpressionAverage(state.getDiceExpression({diceFaces: diceFacesTemp}));
+			let tempAvgDpr = ScaleCreatureUtils.getDiceExpressionAverage(
+				state.getDiceExpression({
+					diceFaces: diceFacesTemp,
+				}),
+			);
 
-			if (
-				state.isInRange(
-					ScaleCreatureUtils.getDiceExpressionAverage(
-						state.getDiceExpression({diceFaces: diceFacesTemp}),
-					),
-				)
+			while (
+				(dir === this._DIR_INCREASE ? diceFacesTemp < 20 : diceFacesTemp > 1)
 			) {
-				state.diceFacesOut = diceFacesTemp;
-				return true;
-			}
+				diceFacesTemp = dir === this._DIR_INCREASE ? this._getNextDice(diceFacesTemp) : this._getPreviousDice(diceFacesTemp);
+				tempAvgDpr = ScaleCreatureUtils.getDiceExpressionAverage(state.getDiceExpression({diceFaces: diceFacesTemp}));
 
-			if (this._getScaled_tryAdjustNumDice(state, {diceFacesTemp})) {
-				state.diceFacesOut = diceFacesTemp;
-				return true;
+				if (
+					state.isInRange(
+						ScaleCreatureUtils.getDiceExpressionAverage(
+							state.getDiceExpression({diceFaces: diceFacesTemp}),
+						),
+					)
+				) {
+					state.diceFacesOut = diceFacesTemp;
+					return true;
+				}
+
+				if (this._getScaled_tryAdjustNumDice(state, {diceFacesTemp})) {
+					state.diceFacesOut = diceFacesTemp;
+					return true;
+				}
 			}
 		}
 

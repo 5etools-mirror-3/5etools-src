@@ -11,6 +11,7 @@ export class ConverterTaggerInitializable extends ConverterTaggerBase {
 	static _IS_INIT = false;
 
 	static async pInit (...args) {
+		if (this._IS_INIT) return;
 		await this._pInit(...args);
 		this._IS_INIT = true;
 	}

@@ -91,6 +91,14 @@ export class EncounterBuilderCacheBase {
 	 * @return {Array<number>}
 	 */
 	_getKeysByCr () { throw new Error("Unimplemented!"); }
+}
+
+/**
+ * @abstract
+ */
+export class EncounterBuilderCacheGeneric extends EncounterBuilderCacheBase {
+	_cacheXp = null;
+	_cacheCr = null;
 
 	/* -------------------------------------------- */
 
@@ -103,5 +111,66 @@ export class EncounterBuilderCacheBase {
 		if (this.constructor._UNWANTED_CR_NUMS.has(crNum)) return true;
 
 		return false;
+	}
+
+	/* -------------------------------------------- */
+
+	/**
+	 * @abstract
+	 * @returns {Array}
+	 */
+	_getCacheableCreatures () { throw new Error("Unimplemented!"); }
+
+	_getCaches () {
+		const cacheXp = {};
+		const cacheCr = {};
+
+		this._getCacheableCreatures()
+			.filter(mon => !this._isUnwantedCreature(mon))
+			.forEach(mon => {
+				(cacheXp[Parser.crToXpNumber(mon.cr)] ||= []).push(mon);
+				(cacheCr[Parser.crToNumber(mon.cr)] ||= []).push(mon);
+			});
+
+		return {cacheXp, cacheCr};
+	}
+
+	_doBuildCaches () {
+		if (this._cacheXp != null && this._cacheCr != null) return;
+
+		const {cacheXp, cacheCr} = this._getCaches();
+		this._cacheXp = cacheXp;
+		this._cacheCr = cacheCr;
+	}
+
+	/* -------------------------------------------- */
+
+	reset () {
+		this._cacheXp = null;
+		this._cacheCr = null;
+	}
+
+	/* -------------------------------------------- */
+
+	_getCreaturesByXp (spendValue) {
+		this._doBuildCaches();
+		return this._cacheXp[spendValue] || [];
+	}
+
+	_getKeysByXp () {
+		this._doBuildCaches();
+		return Object.keys(this._cacheXp).map(Number);
+	}
+
+	/* ----- */
+
+	_getCreaturesByCr (spendValue) {
+		this._doBuildCaches();
+		return this._cacheCr[spendValue] || [];
+	}
+
+	_getKeysByCr () {
+		this._doBuildCaches();
+		return Object.keys(this._cacheCr).map(Number).sort(SortUtil.ascSort);
 	}
 }

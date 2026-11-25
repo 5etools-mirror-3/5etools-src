@@ -1,6 +1,23 @@
-import {BookUtil} from "./bookutils.js";
+import {UtilBookUtil} from "./bookutils/bookutils-utils.js";
 
 export class AdventuresBooksList {
+	static _getHeaderText ({header}) {
+		return header.header || header;
+	}
+
+	static _getScrollHash ({bookSource, header, headerText, headerCounts}) {
+		if (header.statblock) {
+			return `${VeCt.HASH_PREFIX_STATS_SCROLLER}${UtilBookUtil.getStatblockHash({header, bookSource})}`;
+		}
+
+		const headerTextClean = headerText.toLowerCase().trim();
+		const headerPos = headerCounts[headerTextClean] || 0;
+		headerCounts[headerTextClean] = headerPos + 1;
+		const headerIndex = header.index ?? headerPos;
+
+		return `${UrlUtil.encodeForHash(headerText)}${headerIndex > 0 ? `,${headerIndex}` : ""}`;
+	}
+
 	static _getDateStr (advBook) {
 		if (!advBook.published) return "\u2014";
 		const date = new Date(advBook.published);
@@ -19,8 +36,8 @@ export class AdventuresBooksList {
 	}
 
 	static _sortAdventuresBooks (dataList, a, b, o) {
-		a = dataList[a.ix];
-		b = dataList[b.ix];
+		a = dataList[a.getId()];
+		b = dataList[b.getId()];
 
 		if (o.sortBy === "name") return this._sortAdventuresBooks_byName(a, b, o);
 		if (o.sortBy === "storyline") return this._sortAdventuresBooks_orFallback(SortUtil.ascSort, "storyline", a, b, o);
@@ -43,7 +60,7 @@ export class AdventuresBooksList {
 	}
 
 	constructor (options) {
-		this._contentsUrl = options.contentsUrl;
+		this._dataSource = options.dataSource;
 		this._fnSort = options.fnSort;
 		this._sortByInitial = options.sortByInitial;
 		this._sortDirInitial = options.sortDirInitial;
@@ -65,23 +82,23 @@ export class AdventuresBooksList {
 		]);
 
 		const [data] = await Promise.all([
-			await DataUtil.loadJSON(`${Renderer.get().baseUrl}${this._contentsUrl}`),
-			await ExcludeUtil.pInitialise(),
+			this._dataSource(),
+			ExcludeUtil.pInitialise(),
 		]);
 
-		const iptSearch = es(`#search`);
+		const iptSearch = veEs(`#search`);
 
 		const fnSort = (a, b, o) => this._fnSort(this._dataList, a, b, o);
 		this._list = new List({
-			wrpList: es(".books"),
+			wrpList: veEs(".books"),
 			iptSearch,
 			fnSort,
 			sortByInitial: this._sortByInitial,
 			sortDirInitial: this._sortDirInitial,
 		});
-		SortUtil.initBtnSortHandlers(es(`#filtertools`), this._list);
+		SortUtil.initBtnSortHandlers(veEs(`#filtertools`), this._list);
 
-		const wrpBookshelf = es(".books--alt");
+		const wrpBookshelf = veEs(".books--alt");
 		this._listAlt = new List({
 			wrpList: wrpBookshelf,
 			iptSearch,
@@ -90,13 +107,13 @@ export class AdventuresBooksList {
 			sortDirInitial: this._sortDirInitial,
 		});
 
-		es("#reset").onn("click", () => {
+		veEs("#reset").vee.onn("click", () => {
 			this._list.reset();
 			this._listAlt.reset();
-			iptSearch.val("");
+			iptSearch.vee.val("");
 
 			this._list.items.forEach(li => {
-				if (li.data.btnToggleExpand.txt() === "[\u2212]") li.data.btnToggleExpand.trigger("click");
+				if (li.data.btnToggleExpand.vee.txt() === "[\u2212]") li.data.btnToggleExpand.vee.trigger("click");
 			});
 		});
 
@@ -106,12 +123,12 @@ export class AdventuresBooksList {
 		// TODO(MODULES) refactor
 		import("./utils-brew/utils-brew-ui-manage.js")
 			.then(({ManageBrewUi}) => {
-				ManageBrewUi.bindBtngroupManager(e_({id: "btngroup-manager"}));
+				ManageBrewUi.bindBtngroupManager(veE({id: "btngroup-manager"}));
 			});
 		this._list.init();
 		this._listAlt.init();
 
-		if (ExcludeUtil.isAllContentExcluded(this._dataList)) wrpBookshelf.appends(ExcludeUtil.getAllContentBlocklistedHtml());
+		if (ExcludeUtil.isAllContentExcluded(this._dataList)) wrpBookshelf.vee.appends(ExcludeUtil.getAllContentBlocklistedHtml());
 
 		window.dispatchEvent(new Event("toolsLoaded"));
 	}
@@ -134,7 +151,7 @@ export class AdventuresBooksList {
 
 			const elesContents = [];
 			it.contents.map((chapter, ixChapter) => {
-				const lnkChapter = ee`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)},${ixChapter}" class="ve-flex ve-w-100 bklist__row-chapter ve-lst__row-border ve-lst__row-inner ve-lst__row ve-lst__wrp-cells ve-bold">
+				const lnkChapter = veT`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)},${ixChapter}" class="ve-flex ve-w-100 bklist__row-chapter ve-lst__row-border ve-lst__row-inner ve-lst__row ve-lst__wrp-cells ve-bold">
 					${Parser.bookOrdinalToAbv(chapter.ordinal)}${chapter.name}
 				</a>`;
 				elesContents.push(lnkChapter);
@@ -144,32 +161,30 @@ export class AdventuresBooksList {
 				const headerCounts = {};
 
 				chapter.headers.forEach(header => {
-					const headerText = BookUtil.getHeaderText(header);
+					const headerText = this.constructor._getHeaderText({header});
+					const headerHash = this.constructor._getScrollHash({bookSource: it.source, header, headerText, headerCounts});
 
-					const headerTextClean = headerText.toLowerCase().trim();
-					const headerPos = headerCounts[headerTextClean] || 0;
-					headerCounts[headerTextClean] = (headerCounts[headerTextClean] || 0) + 1;
-					const lnk = ee`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)},${ixChapter},${UrlUtil.encodeForHash(headerText)}${header.index ? `,${header.index}` : ""}${headerPos > 0 ? `,${headerPos}` : ""}" class="ve-lst__row ve-lst__row-border ve-lst__row-inner ve-lst__wrp-cells bklist__row-section ve-flex ve-w-100">
+					const lnk = veT`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)},${ixChapter},${headerHash}" class="ve-lst__row ve-lst__row-border ve-lst__row-inner ve-lst__wrp-cells bklist__row-section ve-flex ve-w-100">
 						${BookUtil._getContentsSectionHeader(header)}
 					</a>`;
 					elesContents.push(lnk);
 				});
 			});
 
-			const wrpContents = ee`<div class="ve-flex ve-w-100 ve-relative">
+			const wrpContents = veT`<div class="ve-flex ve-w-100 ve-relative">
 				<div class="ve-vr-0 ve-absolute bklist__vr-contents"></div>
 				<div class="ve-flex-col ve-w-100 bklist__wrp-rows-inner">${elesContents}</div>
-			</div>`.hideVe();
+			</div>`.vee.hide();
 
-			const btnToggleExpand = ee`<span class="ve-px-2 ve-py-1p ve-bold ve-mobile-sm__hidden ve-no-select">[+]</span>`
-				.onn("click", evt => {
+			const btnToggleExpand = veT`<span class="ve-px-2 ve-py-1p ve-bold ve-mobile-sm__hidden ve-no-select">[+]</span>`
+				.vee.onn("click", evt => {
 					evt.stopPropagation();
 					evt.preventDefault();
-					btnToggleExpand.txt(btnToggleExpand.txt() === "[+]" ? "[\u2212]" : "[+]");
-					wrpContents.toggleVe();
+					btnToggleExpand.vee.txt(btnToggleExpand.vee.txt() === "[+]" ? "[\u2212]" : "[+]");
+					wrpContents.vee.toggle();
 				});
 
-			const eleLi = ee`<div class="ve-flex-col ve-w-100">
+			const eleLi = veT`<div class="ve-flex-col ve-w-100">
 				<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)}" class="ve-split-v-center ve-lst__row-border ve-lst__row-inner ve-lst__row ${isExcluded ? `ve-lst__row--blocklisted` : ""}">
 					<span class="ve-w-100 ve-flex">${this._rowBuilderFn(it)}</span>
 					${btnToggleExpand}
@@ -179,35 +194,42 @@ export class AdventuresBooksList {
 
 			const listItemValues = {
 				source: Parser.sourceJsonToAbv(it.source),
-				alias: (it.alias || []).map(it => `"${it}"`).join(","),
+				...ListItem.getCommonValues(it, {isCorpus: true}),
 				storyline: it.storyline || "",
 			};
 
-			const listItem = new ListItem(
-				this._dataIx,
-				eleLi,
-				it.name,
-				listItemValues,
-				{
+			const listItem = new ListItem({
+				id: this._dataIx,
+				ele: eleLi,
+				name: it.name,
+				values: listItemValues,
+				data: {
 					btnToggleExpand,
 				},
-			);
+			});
 
 			this._list.addItem(listItem);
 
 			const isLegacySource = SourceUtil.isLegacySourceWotc(it.source);
 
+			const ptTitle = [
+				it.coverCredit ? `Credit: ${it.coverCredit.qq()}` : null,
+				isLegacySource ? `Legacy Source` : null,
+			]
+				.filter(Boolean)
+				.join(". ");
+
 			// region Alt list (covers/thumbnails)
-			const eleLiAlt = ee`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)}" class="ve-flex-col ve-flex-v-center ve-m-3 bks__wrp-bookshelf-item ${isExcluded ? `bks__wrp-bookshelf-item--blocklisted` : ""} ${isLegacySource ? `bks__wrp-bookshelf-item--legacy` : ""} ve-py-3 ve-px-2 ${Parser.sourceJsonToSourceClassname(it.source)}" ${isLegacySource ? `title="(Legacy Source)"` : ""}>
+			const eleLiAlt = veT`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)}" class="ve-flex-col ve-flex-v-center ve-m-3 bks__wrp-bookshelf-item ${isExcluded ? `bks__wrp-bookshelf-item--blocklisted` : ""} ${isLegacySource ? `bks__wrp-bookshelf-item--legacy` : ""} ve-py-3 ve-px-2 ${Parser.sourceJsonToSourceClassname(it.source)}" ${ptTitle ? `title="${ptTitle}"` : ""}>
 				<img src="${Renderer.adventureBook.getCoverUrl(it)}" class="ve-mb-2 bks__bookshelf-image" loading="lazy" alt="Cover Image: ${(it.name || "").qq()}">
 				<div class="bks__bookshelf-item-name ve-flex-vh-center ve-text-center">${it.name}</div>
 			</a>`;
-			const listItemAlt = new ListItem(
-				this._dataIx,
-				eleLiAlt,
-				it.name,
-				listItemValues,
-			);
+			const listItemAlt = new ListItem({
+				id: this._dataIx,
+				ele: eleLiAlt,
+				name: it.name,
+				values: listItemValues,
+			});
 			this._listAlt.addItem(listItemAlt);
 			// endregion
 		}

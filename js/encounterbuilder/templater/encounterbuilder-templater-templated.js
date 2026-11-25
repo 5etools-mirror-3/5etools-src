@@ -17,7 +17,7 @@ export class EncounterbuilderTemplaterTemplated extends EncounterBuilderTemplate
 	}
 
 	getEncounterTemplateInfo () {
-		if (this._creatureMetasLocked?.length) return new EncounterTemplateOptions({message: `Only the "Random" encounter type may be used with locked creatures! Unlock your creatures, or use the "Random" encounter type.`});
+		if (this._creatureGroupsLocked?.length) return new EncounterTemplateOptions({message: `Only the "Random" encounter type may be used with locked creatures! Unlock your creatures, or use the "Random" encounter type.`});
 
 		const resolvedEncounterShapes = this._getResolvedEncounterShapes();
 		if (!resolvedEncounterShapes.length) return new EncounterTemplateOptions({message: `Failed to generate encounter! You may need to add some players first.`});

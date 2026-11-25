@@ -9,6 +9,16 @@ export class ConverterUtils {
 		;
 	}
 
+	static isHasCharOutwithParens (str, char) {
+		let cntParens = 0;
+		for (const c of str) {
+			if (c === "(") cntParens++;
+			else if (c === ")") cntParens--;
+			else if (c === char && !cntParens) return true;
+		}
+		return false;
+	}
+
 	/* -------------------------------------------- */
 
 	static isJsonLine (curLine) { return curLine.startsWith(`__VE_JSON__`); }
@@ -44,6 +54,7 @@ export class ConverterUtils {
 	 * @param [opts.noHit] Disable "Hit:" checking.
 	 * @param [opts.noSpellcastingAbility] Disable spellcasting ability checking.
 	 * @param [opts.noSpellcastingWarlockSlotLevel] Disable spellcasting warlock slot checking.
+	 * @param [opts.noSpellcastingCharges] Disable spellcasting charges checking.
 	 * @param [opts.noDc] Disable "DC" checking
 	 */
 	static getContinuationLineType (entryArray, curLine, opts) {
@@ -64,6 +75,7 @@ export class ConverterUtils {
 		const cleanLine = curLine.trim();
 
 		if (/^\d..-\d..[- ][Ll]evel\s+\(/.test(cleanLine) && !opts.noSpellcastingWarlockSlotLevel) return this.CONT_LINE_NO;
+		if (/^\d Charges?\b/i.test(cleanLine) && !opts.noSpellcastingCharges) return this.CONT_LINE_NO;
 
 		// Start of a list item
 		if (/^[•●]/.test(cleanLine)) return this.CONT_LINE_NO;

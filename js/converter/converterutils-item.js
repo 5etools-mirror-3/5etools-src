@@ -677,15 +677,24 @@ export class ConditionImmunityTag {
 						all.add("disease");
 					});
 
-					str.replace(/you (?:have|gain|are) (?:[^.!?]+ )?(?:immune) ([^.!?]+)/gi, (...m) => {
-						m[1].replace(/{@condition ([^}]+)}/gi, (...n) => {
-							all.add(n[1].toLowerCase());
-						});
-					});
+					str
+						.replace(/you (?:have|gain|are) (?:[^.!?]+ )?(?:immune) ([^.!?]+)/gi, (...m) => {
+							m[1].replace(/{@condition ([^}]+)}/gi, (...n) => {
+								all.add(n[1].toLowerCase());
+							});
+						})
+						.replace(/\byou can't be ([^.!?]+)/gi, (...m) => {
+							if (/\bsurprised\b/i.test(Renderer.stripTags(m[1]))) return;
+
+							m[1].replace(/{@condition ([^}]+)}/gi, (...n) => {
+								all.add(n[1].toLowerCase());
+							});
+						})
+					;
 				},
 			},
 		);
-		if (all.size) obj.conditionImmune = [...all].sort(SortUtil.ascSortLower);
+		if (all.size) obj.conditionImmune = [...all, ...(obj.conditionImmune || [])].unique().sort(SortUtil.ascSortLower);
 		else delete obj.conditionImmune;
 	}
 

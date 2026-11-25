@@ -1,0 +1,64 @@
+{
+	"_meta": {
+		"dependencies": {
+			"class": [
+				"ranger"
+			],
+			"subclass": [
+				"ranger"
+			]
+		}
+	},
+	"class": [
+		{
+			"name": "Hunter",
+			"alias": [
+				"Ranger"
+			],
+			"source": "WoW",
+			"reskinOf": [
+				"Ranger|XPHB"
+			],
+			"_copy": {
+				"name": "Ranger",
+				"source": "XPHB"
+			},
+			"includeSubclassesFrom": [
+				"Ranger|XPHB"
+			],
+			"subclassTitle": "Hunter Subclass",
+			"hasFluff": true,
+			"hasFluffImages": true
+		}
+	],
+	"subclass": [
+		{
+			"name": "Beast Master",
+			"shortName": "Beast Master",
+			"source": "WoW",
+			"className": "Hunter",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Beast Master",
+				"source": "XPHB",
+				"shortName": "Beast Master",
+				"className": "Ranger",
+				"classSource": "XPHB"
+			}
+		},
+		{
+			"name": "Hunter",
+			"shortName": "Hunter",
+			"source": "WoW",
+			"className": "Hunter",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Hunter",
+				"source": "XPHB",
+				"shortName": "Hunter",
+				"className": "Ranger",
+				"classSource": "XPHB"
+			}
+		}
+	]
+}

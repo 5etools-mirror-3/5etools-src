@@ -9,6 +9,9 @@ export const WALKER_CONVERTER_KEY_BLOCKLIST = new Set([
 	"conditionImmune",
 	"classFeatures",
 	"subclassFeatures",
+	"reprintedAs",
+	"srd",
+	"srd52",
 ]);
 
 export const WALKER_CONVERTER = MiscUtil.getWalker({

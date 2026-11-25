@@ -38,7 +38,7 @@ export class EncounterSizer {
 	 */
 	getEncounterSizeInfosGroups (
 		{
-			creatureMetasLocked,
+			creatureGroupsLocked,
 			slotSeeds = null,
 			cntLockedCreatures,
 			lowestSpendAmount,
@@ -63,7 +63,7 @@ export class EncounterSizer {
 		const encounterSizeMetaPairsBase = Array.from({length: (cntMax - cntMin) + 1}, (_, i) => cntMin + i)
 			.map(cntCreatures => ({
 				encounterSizeMeta: this._getEncounterSizeMeta({
-					creatureMetasLocked,
+					creatureGroupsLocked,
 					cntLockedCreatures,
 					lowestSpendAmount,
 					seededSlotsMin,
@@ -72,7 +72,7 @@ export class EncounterSizer {
 				encounterSizeMetaNonFree: lowestNonFreeSpendAmount == null
 					? null
 					: this._getEncounterSizeMeta({
-						creatureMetasLocked,
+						creatureGroupsLocked,
 						cntLockedCreatures,
 						lowestSpendAmount: lowestNonFreeSpendAmount,
 						seededSlotsMin,
@@ -104,14 +104,14 @@ export class EncounterSizer {
 		let triesNonFreeMiss = cntAdditional;
 		for (let cntCreatures = cntMax + 1; cntCreatures < cntMax + this.constructor._MAX_ENCOUNTER_SIZE; ++cntCreatures) {
 			const encounterSizeMeta = this._getEncounterSizeMeta({
-				creatureMetasLocked,
+				creatureGroupsLocked,
 				cntLockedCreatures,
 				lowestSpendAmount,
 				seededSlotsMin,
 				cntCreatures,
 			});
 			const encounterSizeMetaNonFree = this._getEncounterSizeMeta({
-				creatureMetasLocked,
+				creatureGroupsLocked,
 				cntLockedCreatures,
 				lowestSpendAmount: lowestNonFreeSpendAmount,
 				seededSlotsMin,
@@ -150,7 +150,7 @@ export class EncounterSizer {
 
 	_getEncounterSizeMeta (
 		{
-			creatureMetasLocked,
+			creatureGroupsLocked,
 			cntLockedCreatures,
 			lowestSpendAmount,
 			seededSlotsMin,
@@ -170,8 +170,8 @@ export class EncounterSizer {
 		if (spendLowestUnlocked > this._budgetMax) return null;
 
 		if (cntLockedCreatures) {
-			spendLocked = creatureMetasLocked
-				.map(creatureMeta => creatureMeta.getCount() * creatureMeta.getSpend({budgetMode: this._budgetMode}) * playerAdjustedSpendMult)
+			spendLocked = creatureGroupsLocked
+				.map(creatureGroup => creatureGroup.getCount() * creatureGroup.getSpend({budgetMode: this._budgetMode}) * playerAdjustedSpendMult)
 				.sum();
 			const spendUnlockedMin = lowestSpendAmount * playerAdjustedSpendMult * (cntCreatures - cntLockedCreatures);
 

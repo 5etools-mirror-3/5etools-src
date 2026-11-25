@@ -32,7 +32,7 @@ Bugs should be reported via the `/bugreport` bot command in our [Discord](https:
 Only "official" (that is, published by WotC) data is to be included in the site. Anything else should be added to the homebrew repository. Some exceptions to this rule are:
 - All Adventurers League (AL) -specific content is to be kept in the homebrew repository. While much of this content broadly falls under the "published by WotC" umbrella, a good deal of it doesn't. For the sake of consistency/cleanliness, all AL content is to be considered homebrew.
 - Anything published in the Dragon+ magazine.
-- Anything veto'd by the maintainers of this repository.
+- Anything vetoed by the maintainers of this repository.
 
 Prioritise RAW above all else. Aim to provide a 1:1 copy of the original data. Obvious typos (for instance, mathematical errors in creature stat blocks) may be corrected at the discretion of the maintainer(s).
 
@@ -53,7 +53,7 @@ The primary source for an entity should be that under which it was first release
 
 Within this ordering, the following prioritisation should be made:
 - text that directly refers to or describes a language, in order of first appearance in the product (i.e. if a language is mentioned on page 2 and 10 of a book, the entry on page 2 should be taken as the primary source)
-- text that is given for player use (e.g. the "Druidic" feature of the Druid class) (the text of which may have to be adapted to fit a reference format; i.e. changing "You can understand..." to "A speaker or X language can understand...).
+- text that is given for player use (e.g. the "Druidic" feature of the Druid class) (the text of which may have to be adapted to fit a reference format; i.e. changing "You can understand..." to "A speaker of X language can understand...).
 
 *Bestiary.* "Subrace"-style creature-type tags should generally be hidden. For example, an NPC which is a "drow **assassin**" should be type "Humanoid (Elf)", and not type "Humanoid (Drow Elf)". This is consistent with how statblocks are most commonly presented across all sources.
 
@@ -94,9 +94,9 @@ Any language feature which is available in both main-line Chrome and main-line F
     - Within data from a source, avoid referencing content from a source printed after the publication of that source. For example, MTF content might reference SCAG deities, but SCAG deities should refrain from referencing MTF content.
 
 - When referring to an entity via "UID" (usually a sequence of strings joined with "|"s), the following casing convention is expected:
-  - As part of a `{@tag ...}` in a renderable entry: 
+  - As part of a `{@tag ...}` in a renderable entry:
     - Display names are cased according to the needs of the text (i.e., match the original document). For example: `{@spell Fireball|PHB|This is fireball display text, with Mixed Casing.}`.
-    - Names are title-cased if a display name is also used, or if a display name is not used, are cased according to the needs of the text. For example: `The golbin casts {@spell fireball|PHB}`.
+    - Names are title-cased if a display name is also used, or if a display name is not used, are cased according to the needs of the text. For example: `The goblin casts {@spell fireball|PHB}`.
     - Source identifiers are cased to match their definition. For example: `{@spell Fireball|PHB}`; `{@spell Iceball|MyHomebrewSource}`.
   - As a freestanding UID in data: all-lowercase. For example: `{"additionalSpells": [{"innate": {"3": [ "fireball|phb" ]}}]}`; `{"startingEquipment": [{"a": [ "dagger|phb" ]}]}`
 
@@ -139,7 +139,7 @@ Replace: `$1$3`
 - `—` (em dash) should be replaced with `\u2014` (Unicode for em dash)
 - `–` should be replaced with `\u2013` (Unicode for en dash)
 - `−` should be replaced with `\u2212` (Unicode for minus sign)
-- `•` should be not be used unless the JSON in question is not yet covered by the entryRenderer, i.e. should be encoded as a list
+- `•` should not be used unless the JSON in question is not yet covered by the entryRenderer, i.e. should be encoded as a list
 - the only Unicode escape sequences allowed are `\u2014`, `\u2013`, and `\u2212`; all other characters (unless noted above) should be stored as-is
 
 #### Convention for dashes
@@ -162,11 +162,11 @@ Dice should be written as `[X]dY[ <+|-|×> Z]`, i.e. with a space between dice a
 
 #### Convention for Item Names
 
-Item names should be title-case, with the exception of units in parentheses, which should be sentence-case. Items who's volume or amount is specified by container (e.g. `(vial)`) treat the container as a unit.
+Item names should be title-case, with the exception of units in parentheses, which should be sentence-case. Items whose volume or amount is specified by container (e.g. `(vial)`) treat the container as a unit.
 
 ### Mouse/Keyboard Events
 
-Avoid binding ALT-modified events, as these are not available under MacOS or various Linux flavors. Binding SHIFT-/CTRL-modified events is preferred.
+Avoid binding ALT-modified events, as these are not available under macOS or various Linux flavors. Binding SHIFT-/CTRL-modified events is preferred. SHIFT is used for primary and/or "positive" modifiers, and CTRL is used for secondary and/or "negative" modifiers.
 
 ### Dev Server
 

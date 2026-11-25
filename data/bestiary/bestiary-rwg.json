@@ -1,0 +1,69 @@
+{
+	"_meta": {
+		"dependencies": {
+			"monster": [
+				"XMM"
+			]
+		},
+		"otherSources": {
+			"monster": {
+				"XMM": "RWG",
+				"AU": "RWG"
+			}
+		}
+	},
+	"monster": [
+		{
+			"name": "Ri'all",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "RWG",
+			"_copy": {
+				"name": "Death Cultist",
+				"source": "XMM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the cultist",
+						"with": "Ri'all",
+						"flags": "i"
+					}
+				}
+			},
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"exhaustion",
+				"frightened",
+				"grappled",
+				"incapacitated",
+				"invisible",
+				"paralyzed",
+				"petrified",
+				"poisoned",
+				"prone",
+				"restrained",
+				"stunned",
+				"unconscious"
+			],
+			"trait": [
+				{
+					"name": "Immunities and Saves",
+					"entries": [
+						"Ri'all automatically succeeds on all saving throws."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Spirit Wail {@recharge 5}",
+					"entries": [
+						"{@actSave wis} {@dc 14}, each creature, excluding Thayan mercenaries, in a 20-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the cultist. {@actSaveFail} 7 ({@damage 2d6}) Psychic damage, and the target has the {@condition Frightened|XPHB} condition until the end of its next turn. {@actSaveSuccess} Half damage only."
+					]
+				}
+			],
+			"hasToken": true
+		}
+	]
+}

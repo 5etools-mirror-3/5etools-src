@@ -1,5 +1,5 @@
 @use "../vars/vars";
-@use "../vars/vars-night";
+@use "../vars/vars--night";
 
 @layer vetools {
 	// region Expose variables for homebrew
@@ -13,11 +13,11 @@
 	}
 
 	:root.ve-night-mode {
-		--rgb-font: #{vars-night.$rgb-font--night};
-		--rgb-name: #{vars-night.$rgb-name-red--night};
-		--rgb-bg: #{vars-night.$rgb-bg--night};
-		--rgb-bg--alt: #{vars-night.$rgb-bg--alt-night};
-		--rgb-border--statblock: #{vars-night.$rgb-border-grey--statblock-night};
+		--rgb-font: #{vars--night.$rgb-font--night};
+		--rgb-name: #{vars--night.$rgb-name-red--night};
+		--rgb-bg: #{vars--night.$rgb-bg--night};
+		--rgb-bg--alt: #{vars--night.$rgb-bg--alt-night};
+		--rgb-border--statblock: #{vars--night.$rgb-border-grey--statblock-night};
 	}
 	// endregion
 }

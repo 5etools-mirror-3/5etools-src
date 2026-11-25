@@ -12,7 +12,7 @@ export class LootGenUiDataManager {
 	}
 
 	async pInit () {
-		this._data = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/loot.json`);
+		this._data = await DataUtil.loot.loadJSON();
 		this._dataGemsArtObjects = [
 			...this._data.gems,
 			...this._data.artObjects,

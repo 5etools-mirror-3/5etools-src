@@ -9,6 +9,7 @@ export class BrewDoc {
 		"spellDistanceUnits",
 		"featCategories",
 		"optionalFeatureTypes",
+		"vehicleUpgradeTypes",
 		"psionicTypes",
 		"currencyConversions",
 	];

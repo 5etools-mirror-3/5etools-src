@@ -26,10 +26,10 @@ class _PanzoomComp extends BaseComponent {
 	}
 
 	bindOnChange ({img, iptRange}) {
-		this._addHookBase("zoom", () => iptRange.val(this._state.zoom))();
+		this._addHookBase("zoom", () => iptRange.vee.val(this._state.zoom))();
 
 		this._addHookAllBase(() => {
-			img.css({
+			img.vee.css({
 				transform: this._getTransformationMatrix(),
 				transformOrigin: this._getTransformOrigin(),
 			});
@@ -75,18 +75,18 @@ export class Panzoom {
 	) {
 		const comp = new _PanzoomComp({scaleMin, scaleMax});
 
-		btnReset.onn("click", () => comp.reset());
+		btnReset.vee.onn("click", () => comp.reset());
 
 		iptRange
-			.onn("input", () => {
-				comp.setZoom(Number(iptRange.val()));
+			.vee.onn("input", () => {
+				comp.setZoom(Number(iptRange.vee.val()));
 			})
-			.attr("min", scaleMin)
-			.attr("max", scaleMax)
-			.attr("step", scaleStep);
+			.vee.attr("min", scaleMin)
+			.vee.attr("max", scaleMax)
+			.vee.attr("step", scaleStep);
 
 		img
-			.css({
+			.vee.css({
 				cursor: "move",
 				userSelect: "none",
 			});
@@ -100,13 +100,13 @@ export class Panzoom {
 			zoomInitialY: null,
 		};
 
-		const eleBody = e_(document.body);
+		const eleBody = veE(document.body);
 
 		const onBodyMouseUpPan = evt => {
 			img.style.cursor = "move";
 			eleBody
-				.off("mouseup", onBodyMouseUpPan)
-				.off("mousemove", onBodyMouseMovePan);
+				.vee.off("mouseup", onBodyMouseUpPan)
+				.vee.off("mousemove", onBodyMouseMovePan);
 			dragState.pointInitial = null;
 		};
 
@@ -121,8 +121,8 @@ export class Panzoom {
 		const onBodyMouseUpZoom = evt => {
 			img.style.cursor = "move";
 			eleBody
-				.off("mouseup", onBodyMouseUpZoom)
-				.off("mousemove", onBodyMouseMoveZoom);
+				.vee.off("mouseup", onBodyMouseUpZoom)
+				.vee.off("mousemove", onBodyMouseMoveZoom);
 			dragState.zoomInitial = null;
 			dragState.zoomInitialY = null;
 		};
@@ -133,7 +133,7 @@ export class Panzoom {
 		};
 
 		img
-			.onn("mousedown", evt => {
+			.vee.onn("mousedown", evt => {
 				switch (evt.button) {
 					// LMB
 					case 0: {
@@ -149,8 +149,8 @@ export class Panzoom {
 						];
 
 						eleBody
-							.onn("mouseup", onBodyMouseUpPan)
-							.onn("mousemove", onBodyMouseMovePan);
+							.vee.onn("mouseup", onBodyMouseUpPan)
+							.vee.onn("mousemove", onBodyMouseMovePan);
 
 						break;
 					}
@@ -165,8 +165,8 @@ export class Panzoom {
 						dragState.zoomInitialY = EventUtil.getClientY(evt);
 
 						eleBody
-							.onn("mouseup", onBodyMouseUpZoom)
-							.onn("mousemove", onBodyMouseMoveZoom);
+							.vee.onn("mouseup", onBodyMouseUpZoom)
+							.vee.onn("mousemove", onBodyMouseMoveZoom);
 					}
 				}
 			});

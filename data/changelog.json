@@ -391,7 +391,7 @@
 		"ver": "1.75.13",
 		"date": "2019-06-12",
 		"title": "Conspicuously Light on Content",
-		"txt": "- Classes page:  \n- Added show/hide toggle to sidebar  \n- Made Outline show/hide toggle more visible  \n- Fixed filter box overflowing on narrow displays  \n- Fixed \"X Sources\" cycler failing to display anything on \"Most Recent\" mode\n- Homebrew  \n- Added @loader render tag, which displays a clickable link that loads homebrew (see the Demo for an example)  \n- Creature \"skill\" object now accepts a \"special\" property, for entering free text (\"save\" did this already)  \n- Added support for homebrew \"baseitem\"s, i.e. those that have \"magicvariant\"s applied  \n- Homebrew builder item/spell searches now include currently loaded homebrew items/spells in the results  \n- Homebrew sources may now specify a hex (HTML) color code as part of their metadata. See the \"Farmer\" sample background in the homebrew repo for an example.  \n- Fixed locally loaded homebrew being filtered out  \n- Fixed homebrew magic variant items being un-hoverable  \n- Fixed bug where homebrew manager would infinitely loop a text replace, secretly overheating your CPU :^)\n- CR Scaling now handles Warlock casting traits sensibly\n- Added \"Custom\" combining mode for filters, which allows you to chose which filters are combined as AND and which as OR. For example, if you want creatures from the Monster Manual/Volo's Guide to Monsters, which are Large or have a fly speed, you can set \"Source\" to \"AND,\" \"Size\" to \"OR,\" and \"Speed Type\" to \"OR.\" The logic is (a1 & a2 &... aN) & (o1 | o2 |... oN) where as are set to AND, and os are set to OR. Y'get me?\n- Added hoverable \"Image\" hotzone to encounter builder rows, allowing you to preview the strange creature you just added to the encounter\n- Improved list cell positioning; should now actually match the headers\n- Classes/subclasses in spell description footers are now links to the appropriate class/subclass\n- Fixed case where filters could get stuck attempting to display deleted homebrew, producing a blank list\n- Fixed page-specific (settings not being saved to the tracker for Settings -> Save State to File\n- Fixed Optional Feature prerequisite rendering bugs in list (missing dashes; |sources showing)\n- Fixed DM Screen displaying a blank page on Mobile\n- Fixed print/book view displaying items which had been removed from the pinned list\n- (Fixed typos/added tags)"
+		"txt": "- Classes page:  \n- Added show/hide toggle to sidebar  \n- Made Outline show/hide toggle more visible  \n- Fixed filter box overflowing on narrow displays  \n- Fixed \"X Sources\" cycler failing to display anything on \"Most Recent\" mode\n- Homebrew  \n- Added @loader render tag, which displays a clickable link that loads homebrew (see the Demo for an example)  \n- Creature \"skill\" object now accepts a \"special\" property, for entering free text (\"save\" did this already)  \n- Added support for homebrew \"baseitem\"s, i.e. those that have \"magicvariant\"s applied  \n- Homebrew builder item/spell searches now include currently loaded homebrew items/spells in the results  \n- Homebrew sources may now specify a hex (HTML) color code as part of their metadata. See the \"Farmer\" sample background in the homebrew repo for an example.  \n- Fixed locally loaded homebrew being filtered out  \n- Fixed homebrew magic variant items being un-hoverable  \n- Fixed bug where homebrew manager would infinitely loop a text replace, secretly overheating your CPU :^)\n- CR Scaling now handles Warlock casting traits sensibly\n- Added \"Custom\" combining mode for filters, which allows you to chose which filters are combined as AND and which as OR. For example, if you want creatures from the Monster Manual/Volo's Guide to Monsters, which are Large or have a fly speed, you can set \"Source\" to \"AND,\" \"Size\" to \"OR,\" and \"Speed Type\" to \"OR.\" The logic is (a1 & a2 &... aN) & (o1 | o2 |... oN) where as are set to AND, and os are set to OR. Y'get me?\n- Added hoverable \"Image\" hotzone to encounter builder rows, allowing you to preview the strange creature you just added to the encounter\n- Improved list cell positioning; should now actually match the headers\n- Classes/subclasses in spell description footers are now links to the appropriate class/subclass\n- Fixed case where filters could get stuck attempting to display deleted homebrew, producing a blank list\n- Fixed page-specific settings not being saved to the tracker for Settings -> Save State to File\n- Fixed Optional Feature prerequisite rendering bugs in list (missing dashes; |sources showing)\n- Fixed DM Screen displaying a blank page on Mobile\n- Fixed print/book view displaying items which had been removed from the pinned list\n- (Fixed typos/added tags)"
 	},
 	{
 		"ver": "1.75.14",
@@ -3049,7 +3049,7 @@
 	{
 		"ver": "2.12.1",
 		"date": "2025-10-04",
-		"txt": "- Added \"Dice Roller Position\" setting to Preferences\n- Clicking a hoverable fake-link (e.g. when searching \"Tremorsense\" in Omnisearch) now opens a pinned window, allowing the result to be viewed on mobile\n- The Optional Feature \"Feature Prerequisite\" filter now includes optional feature prerequisites\n- Added per-mode speed filters to Bestiary\n- Revised creature Markdown rendering to better support '24 formatting\n- Fixed Dynamic Map Viewer \"Zoom to Fit\" failing when popped out into separate browser window\n- Fixed Statgen \"Copy to Link\" failing to retain much of the available state\n- Fixed Statgen \"Load from File\"/load from URL resetting nested sections\n- Fixed rare Statgen crash when using \"Reset All\" after selecting an ability-increasing feat via Ability Score Increases\n- (Brew) Added \"Display As\"/\"Hidden\" support to spellcasting in Creature Homebrew Builder\n- (Brew) Added \"Open Page\" support for homebrew. Note that these pages will not appear in a sitemap nor have previewable embeds, but will auto-load the appropriate homebrew when visited.\n- (Brew) Improved Species Text Converter handling of creature type/size/speed\n- (Fixed typos/added tags)/added tags)"
+		"txt": "- Added \"Dice Roller Position\" setting to Preferences\n- Clicking a hoverable fake-link (e.g. when searching \"Tremorsense\" in Omnisearch) now opens a pinned window, allowing the result to be viewed on mobile\n- The Optional Feature \"Feature Prerequisite\" filter now includes optional feature prerequisites\n- Added per-mode speed filters to Bestiary\n- Revised creature Markdown rendering to better support '24 formatting\n- Fixed Dynamic Map Viewer \"Zoom to Fit\" failing when popped out into separate browser window\n- Fixed Statgen \"Copy to Link\" failing to retain much of the available state\n- Fixed Statgen \"Load from File\"/load from URL resetting nested sections\n- Fixed rare Statgen crash when using \"Reset All\" after selecting an ability-increasing feat via Ability Score Increases\n- (Brew) Added \"Display As\"/\"Hidden\" support to spellcasting in Creature Homebrew Builder\n- (Brew) Added \"Open Page\" support for homebrew. Note that these pages will not appear in a sitemap nor have previewable embeds, but will auto-load the appropriate homebrew when visited.\n- (Brew) Improved Species Text Converter handling of creature type/size/speed\n- (Fixed typos/added tags)"
 	},
 	{
 		"ver": "2.13.0",
@@ -3238,5 +3238,134 @@
 		"ver": "2.30.1",
 		"date": "2026-06-14",
 		"txt": "- Updated the `dom-to-image-more` library, used when exporting statblocks as images, to the newly-released version, hopefully fixing various rendering bugs\n- Fixed Blocklist failing to apply to sub-adventures/books contained in blocklisted parent source\n- (Brew) Improved Item Text Converter handling of various armor types\n- (Brew) Fixed Spell Text Converter failing to use `\"EFA\"` as Artificer class source when in Modern (5.5e) mode\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "2.31.0",
+		"title": "Further Horrors",
+		"titleAlt": "A Future Filled With Horrors",
+		"date": "2026-06-19",
+		"txt": "- Added _Ravenloft: The Horrors Within_ Tarokka Deck to Decks page\n- Added _Ravenloft: The Horrors Within_ tokens to the Bestiary\n- Revised '24 PHB Bestiary tokens, and added tokens for summon variants (thanks @ anon)\n- (Brew) Fixed homebrew spell class sources failing to load when hovered on non-Spells pages \n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "2.32.0",
+		"title": "Hiding Horrible Handwriting",
+		"date": "2026-07-05",
+		"txt": "- Added _Dungeon Master's Screen; Ravenloft: The Horrors Within_ (thanks @ Lyra)\n- Added support for re-ordering DM Screen save slots\n- Added support for decimals (e.g. \"0.5\") in Bestiary Encounter Builder CR fields (previously, only fractions e.g. \"1/2\" were supported)\n- Fixed Species page sublist failing to sort by \"Size\"\n- Fixed rare CR Scaler crash when attempt to scale a dice expression\n- (Brew) Added support for spell usage counts up to 99 (was previously 9)\n- (Brew) Added OCR character handling to all Text Converters (previously only available in the Creature Text Converter)\n- (Brew) Added rudimentary `@creature` tagging to Text Converters\n- (Brew) Improved support for `\"spellcasting\"` entries within legendary actions/mythic actions\n- (Brew) Fixed Text Converter failing to identify title-case reference names in some cases\n- (Brew) Fixed Creature Text Converter failing to handle some ability score formats\n- (Brew) Fixed creature skills with sources failing to render correctly\n- (Brew) Fixed nested condition immunity groups failing to render correctly\n- (Foundry) Added Rivet button to Bestiary Encounter Builder; DM Screen Initiative Tracker; DM Screen Calendar\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "2.32.1",
+		"date": "2026-07-08",
+		"txt": "- Added SHIFT and CTRL modifiers to \"Source\" filter quick-select groups, to add to existing selection, or to exclude others, respectively\n- (Brew) Fixed crash when rendering mixed legendary/non-legendary spellcasting entries\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "2.33.0",
+		"title": "Busman's (Summer) Holiday",
+		"date": "2026-07-27",
+		"txt": "- Overhauled and expanded DM Screen panel history functionality:\n  - Added \"Enable History\" and \"History Size\" settings (previously always enabled/10, respectively; these are retained as defaults)\n  - Added \"Preserve Embeds on Save Slot Change\" setting (disabled by default); when enabled, and when switching between save slots, embedded `iframe`s (e.g. Google Docs, YouTube videos) will remain loaded\n  - Added support for YouTube and Twitch panels in panel history (previously these were immediately deleted); closed YouTube and Twitch panels will now have their players temporarily removed from the page to prevent continued playback/streaming, but may be restored from history like any other panel\n  - Added placeholder text and better tooltips to panels in panel history\n  - Fixed YouTube panels eating drag events, preventing them from being re-positioned once playing\n  - Fixed embedded `iframe` panel state being reset when re-positioning (which would notably restart YouTube and Twitch panels)\n- Added rudimentary \"Download as Markdown\" to Classes page \"Other Options\" menu (previously \"Settings\" menu)\n- Added \"Download as Markdown\" button to list page \"Other Options\" menus, removing the need to first open the Markdown view\n- Added Sublist (i.e., \"Pin\") and Printer View support to Names and Encounter Generator pages\n- Improved quality of various images, and made use of various un-used images not referenced in the site's data\n- Added CTRL+click to adventure/book headers, to update browser URL to clicked link\n- Reworked Adventure/Book page embedded statblock support to fix various bugs:\n  - Capped embedded statblock height to pre-defined values, preventing layout shifts/re-renders during scrolling, and preventing cascading viewport movement due to repeated layout shifts\n    - The old \"bad\" behavior may be re-gained by SHIFT-clicking a capped header, which will un-cap the height of every embedded statblock on the page. _[My sincerest apologies to those who preferred the bugged version.]_\n  - Improved embedded statblock header titles, and added tooltip text\n  - Added SHIFT-click to expand/collapse all embedded statblocks (and switched general header expand/collapse-all to SHIFT-click; previously CTRL)\n  - Fixed embedded statblock rendering potentially hijacking header identifiers, preventing contents clicks from scrolling to the correct header\n  - Fixed fast-scrolling up/down the page triggering lazy-loading of content which was no longer visible\n- Fixed list page search indexing unwanted values (URL; page number)\n- Fixed crash when rendering a single entity to Markdown via list page Book Views\n- Fixed Classes page having inconsistent subclass-retention behavior when clicking list items vs. pressing `J`/`K` (fixing the latter)\n- Fixed DM Screen \"Paste image URL\" input failing to clear after image was added\n- (Brew) Added support for rudimentary `\"initiative\"` field on `\"SHIP\"`-type `\"vehicle\"`s\n- (Brew) Added support for rendering vehicle terrain\n- (Brew) Fixed JSON cleaner affecting local `[homebrew|prerelease]/index.json` files; added `prerelease/` dir to list of cleaned dirs\n- (Brew) Fixed crash when handling various `@tag`s with missing data, or `@recharge` tags with invalid data\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "2.33.1",
+		"date": "2026-07-28",
+		"txt": "- Fixed crash when loading Adventures/Books \"View All\" pages\n- (Brew) Fixed Creature Homebrew Builder failing to restore custom creature type on statblock load"
+	},
+	{
+		"ver": "2.33.2",
+		"date": "2026-07-31",
+		"txt": "- Added \"Cost\" filter to Vehicles page\n- Fixed DM Screen crash when loading Initiative Tracker Creature Viewer\n- (Brew) Added support for custom `\"vehicleUpgradeTypes\"`\n- (Brew) Added support for `\"cost\"` on `\"vehicleUpgrade\"`s\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "2.33.3",
+		"date": "2026-08-03",
+		"txt": "- Fixed Classes page \"<n> more not shown\" button failing to set \"Miscellaneous\" filter\n- Fixed list page \"Source\" column sort failing to use page number as secondary sort order\n- (Brew) Added support for custom armor proficiencies on classes\n- (Brew) Added common JSON CLI args (`--converted-by`, etc.) to JSON prettifier\n- (Brew) Added `--author <name>` support to common JSON CLI\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "2.34.0",
+		"date": "2026-08-26",
+		"title": "Spread 'Em",
+		"txt": "- Added \"Read a Spread\" button and spread viewer to Decks page (thanks @ ciufflegend for the prototype)\n- Added \"Has Spreads\" Miscellaneous filter to Decks page\n- Added embedded statblocks to adventures/books which previously only had lists of links to other content\n- Added page numbers to _Stranger Things: Welcome to the Hellfire Club_ and _Ravenloft: The Horrors Within_ adventure/book content, respectively _[other entity page numbers Soon:tm:]_\n- Added \"Uses Action\" and \"Burns Objects\" Miscellaneous filters to Spells page\n- Improved List page error handling when attempting to load outdated/broken filter state from link\n- Improved List page \"Ability [Score Increase]\" sort ordering\n- Reworked Dice Roller output to show roll formula by default; exact roll results when clicked and on hover\n- Added Book View support for printing in 3-6 columns (thanks @ Lyra)\n- Improved Preload Data handling of available storage\n- Fixed List pages failing to sub-sort by page number when sorting by \"Source\"\n- Fixed Species page failing to populate \"Language Proficiency\" Miscellaneous filter\n- Fixed embedded statblocks failing to use full width in some cases, and tweaked slot sizing\n- Fixed various cases where input fields could have unintended autocomplete/spellcheck _[hopefully]_\n- Fixed crash when attempting to download/copy multiple entities as Markdown in Book View\n- Fixed Preload Data caching failed HTTP responses\n- Fixed Preload Data for non-root hosting paths\n- Fixed Preload Data auto-updating without confirmation, which could lead to multiple in-flight updates\n- Fixed SRD v5.2.1 aliases failing to appear in statblocks\n- (Brew) Added \"coverCredit\" support\n- (Brew) Improved offline error handling _[hopefully]_\n- (Brew) Added `\"subrace\"` dependency handling as an alias of `\"race\"`\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "2.34.1",
+		"date": "2026-08-30",
+		"txt": "- Refined Decks page Spread Viewer\n  - Added card-spread animation (and tweaked UI)\n  - Added links to source adventure/book text\n  - Fixed layout shifts due to image loading\n- Added \"No results found.\" display to adventure/book page \"f\"-to-find results\n- Re-reworked Dice Roller output to show roll formula *and* exact roll results, with improved visual separation\n- Added wide-mode support to Filter modal(s)\n- Fixed Preload Data \"Update and Reload\" button failing to reload\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "2.35.0",
+		"date": "2026-09-02",
+		"title": "Arcana Unearthed",
+		"txt": "- Added _Arcana Unleashed_ and _Arcana Unleashed: Deadfall_ content\n- Added page numbers to _Stranger Things: Welcome to the Hellfire Club_ and _Ravenloft: The Horrors Within_ entities\n- Added Rewards page \"See also\" links from charms granted by bastion facilities to their associated facilities\n- Fixed numeric inputs falling back on `0`, rather than prior value, when given invalid text\n- Fixed Printer View column count off-by-one issue\n- (Brew) Improved Feat Text Converter handling of spellcasting prerequisites; epic boons\n- (Brew) Improved Creature Text Converter handling of complex types/alignments\n- (Brew) Fixed Item Text Converter adding junk properties to staffs\n- (Brew) Fixed `\"_copy\"` `\"remove\"` mode failing to apply when used under a dot-path\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "2.35.1",
+		"date": "2026-09-08",
+		"txt": "- Added Dynamic Map Viewer support to _Arcana Unleashed_ and _Arcana Unleashed: Deadfall_ content\n- Added \"Open in New Tab\" header button to DM Screen panels displaying entities, adventures, and books\n- Added \"active\" tab button styling to tab buttons in DM Screen panels\n- Added \"Reroll\" buttons to various This Is Your Life outputs (siblings; life events; family members)\n- Fixed This Is Your Life failing to generate \"supplemental tables\" details\n- Fixed DM Screen creature scaling failing to persist between reloads\n- Fixed DM Screen tab button container failing to scroll on scroll-wheel\n- Fixed creatures failing to render as Markdown\n- (Brew/Foundry) Added Rivet button to Homebrew Manager; this allows you to set your Plutonium \"Additional [Local] Homebrew Files\" Config option (ditto for the Prerelease Content Manager and matching Config)\n- (Brew) Added select-all checkbox to Homebrew Manager \"Export\" source-selection screen\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "2.36.0",
+		"date": "2026-09-21",
+		"title": "Red Paint",
+		"titleAlt": "5.5th Gear",
+		"txt": "- Added tokens for _Arcana Unleashed_ and _Arcana Unleashed: Deadfall_ content\n- Improved performance of initial list-page renders (most notably on the Items page)\n- Improved performance of list-page searches\n- (Brew) Added handling for `_meta.source`-less \"blocklist\" files (i.e., a bare blocklist export will be treated as a valid homebrew file, despite not being one)\n- (Brew) Fixed un-named `_copy` entities showing `\"(Unknown)\"` as name in \"View Contents\" list\n- (Brew) Improved Creature Text Converter tagging of multiple inflicted conditions\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "2.36.1",
+		"date": "2026-09-23",
+		"txt": "- Fixed Ability Score filters failing to apply\n- Fixed Recipes page failing to pluralize units in some cases\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "2.37.0",
+		"date": "2026-10-08",
+		"title": "Delicious Leftovers",
+		"txt": "- Added _Red Wizards' Gambit_ content _[for now; this may be moved out and marked as \"partnered\" depending on volume of seasonal adventure releases]_\n- Added _Heroes' Feast: Legends of the Table_ content (thanks @ Lyra)\n- Added page numbers to _Arcana Unleashed_/_Arcana Unleashed: Deadfall_ content (thanks @ Lyra)\n- Added latest _Player's Handbook ('24)_ errata\n- Added \"Enable Light Theme on Copy/Save\" button to \"Export as Image\" list page modal, allowing the functionality to be used on mobile\n- Fixed Bestiary page \"Equipment\" filter showing junk source text\n- Fixed DM Screen Dynamic Map Viewer crashing with infinite-recursion error\n- Fixed \"Table View\" crash when opened with no entities pinned\n- Fixed various minor print styling issues\n- (Brew) Added `entries` support to JSON prettifier\n- (Brew) Added \"Initiative\" section to Creature Homebrew Builder\n- (Brew) Added support for more `@*Fluff` tags\n- (Brew) Reworked Renderer Demo page to support multiple samples; improve error handling\n- (Brew) Fixed Creature Homebrew Builder generating 5e-style attacks when in 5.5e mode\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "2.38.0",
+		"date": "2026-10-14",
+		"title": "Laboratory Maniac",
+		"txt": "- Added _Project_Lamordia_ content\n- Added Markdown export support for embedded statblocks to Adventure/Book pages\n- (Brew) Added schema validation to Renderer Demo input (thanks @ Lyra for the prototype)\n- (Brew) Improved Species Text Converter `\"resist\"` handling\n- (Brew) Fixed Text Converter and Renderer Demo \"white flash\" on initial load\n- (Brew) Fixed JSON prettifier attempting to run on blocklisted directories\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "2.39.0",
+		"date": "2026-10-24",
+		"title": "Message in a Bottle",
+		"txt": "- Added _Shadows of Sithicus_ content\n- Added Dynamic Map Viewer support; tokens to _Project_Lamordia_\n- Added flyout hover window to Omnisearch results when navigating by keyboard, on sufficiently wide screens\n- Added \"Targets Willing Creatures\" and \"Targets Allies\" filters to Spells page\n- Fixed Optional Features page \"Prerequisite\" failing to apply spells filter, and improved rendering of spell choice filter items\n- (Brew) Added keyboard shortcut for Renderer Demo \"Format\" button\n- (Brew) Added \"JSON (All)\" button to Homebrew Builder, which downloads a JSON containing all entity types for the currently-active source (rather than the old \"JSON [(Mode)]\" button, which downloads for currently-selected source _and active mode_ only)\n- (Brew) Fixed crash when attempting to render legendary group embeds\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "2.39.1",
+		"date": "2026-11-02",
+		"txt": "- Added more DMG'24 item images\n- Added \"Download as Markdown\" to all list page Printer Views\n- Moved DM Screen Initiative Tracker \"Import Settings\" into subsection of main \"Settings\"\n- Fixed Omnisearch backing (notably used in the DM Screen) over-zealously stripping diacritics, which resulted in un-loadable entries appearing in search results\n- Fixed page scrolling to top when viewing new statblock on mobile\n- Fixed crash when loading item group fluff in hover windows\n- Fixed Markdown rendering of creature ability scores; flowchart blocks\n- (Brew) Added \"Loaded\" column; filter to Get Homebrew modal. Note that the \"View JSON\" link is now part of the expandable preview.\n- (Brew) Improved generated JSON `@tag` accuracy, and slightly increased coverage (most notably for items)\n- (Brew) Fixed Spells page Printer View sorting in the presence of homebrew\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "2.40.0",
+		"date": "2026-11-04",
+		"title": "Corporate Need",
+		"titleAlt": "Enshittified",
+		"txt": "- Added _D&D: World of Warcraft_ content\n  - _[Note that WoW-specific classes do not currently contain all the subclasses that they could/should. This will be fixed Eventually:tm:]_\n- Added _World of Warcraft: Icecrown Citadel_ content\n- Added \"ALT to intersect\" to \"Select...\" menu options in Source Filters\n- (Brew) Added support for tool proficiency feature prerequisites\n- (Brew) Improved coverage and accuracy of various Text Converters (including, but not limited to: complex ability score prerequisites; tool proficiency prerequisites; species prerequisites; species tool proficiency)\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "2.40.1",
+		"date": "2026-11-06",
+		"txt": "- Added Dynamic Map Viewer support to _D&D: World of Warcraft_ and _World of Warcraft: Icecrown Citadel_ content\n- Added \"Hero Class\" (default ignore) and \"Reskin\" (default off) filters to the Classes page\n- Added WoW subclasses to PHB'24 versions of their respective classes _[except those from Hero Classes]_\n- Added \"Universes Beyond\" category to Source filters\n- (Fixed Docker image build timing hack (thanks @ alterNERDtive))\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "2.41.0",
+		"date": "2026-11-08",
+		"title": "Prep Into Coin",
+		"txt": "- Added _World of Warcraft: Deadmines Dungeon_ content\n- Fixed creature spell-level scaling failing to update roller display text in some cases\n- Fixed Classes page failing to set filters to allow subclass when navigating to a filtered-out subclass in more cases\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "2.41.1",
+		"date": "2026-11-17",
+		"txt": "- Added \"Copy as Markdown\" button to list page kebab menu\n- Added \"Copy Source Data\"/\"Download Source Data\" buttons to list page kebab menu\n- Added \"Food\"/\"Drink\" Miscellaneous filters to Items page\n- (Brew) Added rudimentary homebrew file validation/display to Renderer Demo\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "2.41.2",
+		"date": "2026-11-19",
+		"txt": "- Added _D&D: World of Warcraft_ tokens\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "2.41.3",
+		"date": "2026-11-23",
+		"txt": "- Fixed Adventure/Book pages navigating to wrong search result in full-text mode\n- (Brew) Added support for non-standard creature lair types\n- (Fixed typos/added tags)"
 	}
 ]

@@ -1,6 +1,7 @@
 {
 	"_meta": {
 		"internalCopies": [
+			"class",
 			"subclass",
 			"subclassFeature"
 		]
@@ -50,12 +51,21 @@
 				4
 			],
 			"startingProficiencies": {
-				"armor": [
-					"light",
-					"medium",
+				"skills": [
 					{
-						"proficiency": "shield",
-						"full": "shields (druids will not wear armor or use shields made of metal)"
+						"choose": {
+							"from": [
+								"arcana",
+								"animal handling",
+								"insight",
+								"medicine",
+								"nature",
+								"perception",
+								"religion",
+								"survival"
+							],
+							"count": 2
+						}
 					}
 				],
 				"weapons": [
@@ -78,21 +88,19 @@
 						"herbalism kit": true
 					}
 				],
-				"skills": [
+				"armor": [
+					"light",
+					"medium",
 					{
-						"choose": {
-							"from": [
-								"arcana",
-								"animal handling",
-								"insight",
-								"medicine",
-								"nature",
-								"perception",
-								"religion",
-								"survival"
-							],
-							"count": 2
-						}
+						"proficiency": "shield",
+						"full": "shields (druids will not wear armor or use shields made of metal)"
+					}
+				],
+				"armorProficiencies": [
+					{
+						"light": true,
+						"medium": true,
+						"shield": true
 					}
 				]
 			},
@@ -147,6 +155,13 @@
 						{
 							"proficiency": "shield",
 							"full": "shields (druids will not wear armor or use shields made of metal)"
+						}
+					],
+					"armorProficiencies": [
+						{
+							"light": true,
+							"medium": true,
+							"shield": true
 						}
 					]
 				}
@@ -584,21 +599,6 @@
 				}
 			],
 			"startingProficiencies": {
-				"armor": [
-					"light",
-					"shield"
-				],
-				"weapons": [
-					"simple"
-				],
-				"tools": [
-					"{@item Herbalism Kit|XPHB}"
-				],
-				"toolProficiencies": [
-					{
-						"herbalism kit": true
-					}
-				],
 				"skills": [
 					{
 						"choose": {
@@ -614,6 +614,27 @@
 							],
 							"count": 2
 						}
+					}
+				],
+				"weapons": [
+					"simple"
+				],
+				"tools": [
+					"{@item Herbalism Kit|XPHB}"
+				],
+				"toolProficiencies": [
+					{
+						"herbalism kit": true
+					}
+				],
+				"armor": [
+					"light",
+					"shield"
+				],
+				"armorProficiencies": [
+					{
+						"light": true,
+						"shield": true
 					}
 				]
 			},
@@ -660,6 +681,12 @@
 					"armor": [
 						"light",
 						"shield"
+					],
+					"armorProficiencies": [
+						{
+							"light": true,
+							"shield": true
+						}
 					]
 				}
 			},
@@ -776,15 +803,15 @@
 				{
 					"title": "Spell Slots per Spell Level",
 					"colLabels": [
-						"{@filter 1st|spells|level=1|class=Druid}",
-						"{@filter 2nd|spells|level=2|class=Druid}",
-						"{@filter 3rd|spells|level=3|class=Druid}",
-						"{@filter 4th|spells|level=4|class=Druid}",
-						"{@filter 5th|spells|level=5|class=Druid}",
-						"{@filter 6th|spells|level=6|class=Druid}",
-						"{@filter 7th|spells|level=7|class=Druid}",
-						"{@filter 8th|spells|level=8|class=Druid}",
-						"{@filter 9th|spells|level=9|class=Druid}"
+						"{@filter 1|spells|level=1|class=Druid}",
+						"{@filter 2|spells|level=2|class=Druid}",
+						"{@filter 3|spells|level=3|class=Druid}",
+						"{@filter 4|spells|level=4|class=Druid}",
+						"{@filter 5|spells|level=5|class=Druid}",
+						"{@filter 6|spells|level=6|class=Druid}",
+						"{@filter 7|spells|level=7|class=Druid}",
+						"{@filter 8|spells|level=8|class=Druid}",
+						"{@filter 9|spells|level=9|class=Druid}"
 					],
 					"rowsSpellProgression": [
 						[
@@ -1044,6 +1071,22 @@
 				"Archdruid|Druid|XPHB|20"
 			],
 			"subclassTitle": "Druid Subclass",
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Druid",
+			"source": "WoW",
+			"reskinOf": [
+				"Druid|XPHB"
+			],
+			"_copy": {
+				"name": "Druid",
+				"source": "XPHB"
+			},
+			"includeSubclassesFrom": [
+				"Druid|XPHB"
+			],
 			"hasFluff": true,
 			"hasFluffImages": true
 		}
@@ -1937,6 +1980,48 @@
 				"Full of Stars|Druid|XPHB|Stars|XPHB|14"
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Circle of the Land",
+			"shortName": "Land",
+			"source": "WoW",
+			"className": "Druid",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Circle of the Land",
+				"source": "XPHB",
+				"shortName": "Land",
+				"className": "Druid",
+				"classSource": "XPHB"
+			}
+		},
+		{
+			"name": "Circle of the Moon",
+			"shortName": "Moon",
+			"source": "WoW",
+			"className": "Druid",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Circle of the Moon",
+				"source": "XPHB",
+				"shortName": "Moon",
+				"className": "Druid",
+				"classSource": "XPHB"
+			}
+		},
+		{
+			"name": "Circle of the Stars",
+			"shortName": "Stars",
+			"source": "WoW",
+			"className": "Druid",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Circle of the Stars",
+				"source": "XPHB",
+				"shortName": "Stars",
+				"className": "Druid",
+				"classSource": "XPHB"
+			}
 		}
 	],
 	"classFeature": [
@@ -4299,19 +4384,19 @@
 					],
 					"rows": [
 						[
-							"3rd",
+							"3",
 							"{@spell Blur|XPHB}, {@spell Burning Hands|XPHB}, {@spell Fire Bolt|XPHB}"
 						],
 						[
-							"5th",
+							"5",
 							"{@spell Fireball|XPHB}"
 						],
 						[
-							"7th",
+							"7",
 							"{@spell Blight|XPHB}"
 						],
 						[
-							"9th",
+							"9",
 							"{@spell Wall of Stone|XPHB}"
 						]
 					]
@@ -4329,19 +4414,19 @@
 					],
 					"rows": [
 						[
-							"3rd",
+							"3",
 							"{@spell Fog Cloud|XPHB}, {@spell Hold Person|XPHB}, {@spell Ray of Frost|XPHB}"
 						],
 						[
-							"5th",
+							"5",
 							"{@spell Sleet Storm|XPHB}"
 						],
 						[
-							"7th",
+							"7",
 							"{@spell Ice Storm|XPHB}"
 						],
 						[
-							"9th",
+							"9",
 							"{@spell Cone of Cold|XPHB}"
 						]
 					]
@@ -4359,19 +4444,19 @@
 					],
 					"rows": [
 						[
-							"3rd",
+							"3",
 							"{@spell Misty Step|XPHB}, {@spell Shocking Grasp|XPHB}, {@spell Sleep|XPHB}"
 						],
 						[
-							"5th",
+							"5",
 							"{@spell Lightning Bolt|XPHB}"
 						],
 						[
-							"7th",
+							"7",
 							"{@spell Freedom of Movement|XPHB}"
 						],
 						[
-							"9th",
+							"9",
 							"{@spell Tree Stride|XPHB}"
 						]
 					]
@@ -4389,19 +4474,19 @@
 					],
 					"rows": [
 						[
-							"3rd",
+							"3",
 							"{@spell Acid Splash|XPHB}, {@spell Ray of Sickness|XPHB}, {@spell Web|XPHB}"
 						],
 						[
-							"5th",
+							"5",
 							"{@spell Stinking Cloud|XPHB}"
 						],
 						[
-							"7th",
+							"7",
 							"{@spell Polymorph|XPHB}"
 						],
 						[
-							"9th",
+							"9",
 							"{@spell Insect Plague|XPHB}"
 						]
 					]
@@ -4742,19 +4827,19 @@
 					],
 					"rows": [
 						[
-							"3rd",
+							"3",
 							"{@spell Fog Cloud|XPHB}, {@spell Gust of Wind|XPHB}, {@spell Ray of Frost|XPHB}, {@spell Shatter|XPHB}, {@spell Thunderwave|XPHB}"
 						],
 						[
-							"5th",
+							"5",
 							"{@spell Lightning Bolt|XPHB}, {@spell Water Breathing|XPHB}"
 						],
 						[
-							"7th",
+							"7",
 							"{@spell Control Water|XPHB}, {@spell Ice Storm|XPHB}"
 						],
 						[
-							"9th",
+							"9",
 							"{@spell Conjure Elemental|XPHB}, {@spell Hold Monster|XPHB}"
 						]
 					]

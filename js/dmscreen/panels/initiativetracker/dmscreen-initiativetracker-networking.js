@@ -1,0 +1,578 @@
+
+class _InitiativeTrackerNetworkingP2pMetaV1 {
+	constructor () {
+		this.rows = [];
+		this.serverInfo = null;
+		this.serverPeer = null;
+	}
+}
+
+class _InitiativeTrackerNetworkingP2pMetaV0 {
+	constructor () {
+		this.rows = [];
+		this.serverInfo = null;
+	}
+}
+
+export class InitiativeTrackerNetworking {
+	constructor ({board}) {
+		this._board = board;
+
+		this._p2pMetaV1 = new _InitiativeTrackerNetworkingP2pMetaV1();
+		this._p2pMetaV0 = new _InitiativeTrackerNetworkingP2pMetaV0();
+	}
+
+	/* -------------------------------------------- */
+
+	sendStateToClients ({fnGetToSend}) {
+		return this._sendMessageToClients({fnGetToSend});
+	}
+
+	sendShowImageMessageToClients ({imageHref}) {
+		return this._sendMessageToClients({
+			fnGetToSend: () => ({
+				type: "showImage",
+				payload: {
+					imageHref,
+				},
+			}),
+		});
+	}
+
+	_sendMessageToClients ({fnGetToSend}) {
+		let toSend = null;
+
+		// region V1
+		if (this._p2pMetaV1.serverPeer) {
+			if (!this._p2pMetaV1.serverPeer.hasConnections()) return;
+
+			toSend ||= fnGetToSend();
+			this._p2pMetaV1.serverPeer.pSendMessage(toSend);
+		}
+		// endregion
+
+		// region V0
+		if (this._p2pMetaV0.serverInfo) {
+			this._p2pMetaV0.rows = this._p2pMetaV0.rows.filter(row => !row.isDeleted);
+			this._p2pMetaV0.serverInfo = this._p2pMetaV0.serverInfo.filter(row => {
+				if (row.isDeleted) {
+					row.server.close();
+					return false;
+				}
+				return true;
+			});
+
+			toSend ||= fnGetToSend();
+			try {
+				this._p2pMetaV0.serverInfo.filter(info => info.server.isActive).forEach(info => info.server.sendMessage(toSend));
+			} catch (e) { setTimeout(() => { throw e; }); }
+		}
+		// endregion
+	}
+
+	/* -------------------------------------------- */
+
+	/**
+	 * @param opts
+	 * @param opts.doUpdateExternalStates
+	 * @param [opts.btnStartServer]
+	 * @param [opts.btnGetToken]
+	 * @param [opts.btnGetLink]
+	 * @param [opts.fnDispServerStoppedState]
+	 * @param [opts.fnDispServerRunningState]
+	 */
+	async startServerV1 (opts) {
+		opts = opts || {};
+
+		if (this._p2pMetaV1.serverPeer) {
+			await this._p2pMetaV1.serverPeer.pInit();
+			return {
+				isRunning: true,
+				token: this._p2pMetaV1.serverPeer?.token,
+			};
+		}
+
+		try {
+			if (opts.btnStartServer) opts.btnStartServer.vee.prop("disabled", true);
+			this._p2pMetaV1.serverPeer = new PeerVeServer();
+			await this._p2pMetaV1.serverPeer.pInit();
+			if (opts.btnGetToken) opts.btnGetToken.vee.prop("disabled", false);
+			if (opts.btnGetLink) opts.btnGetLink.vee.prop("disabled", false);
+
+			this._p2pMetaV1.serverPeer.on("connection", connection => {
+				const pConnected = new Promise(resolve => {
+					connection.on("open", () => {
+						resolve(true);
+						opts.doUpdateExternalStates();
+					});
+				});
+				const pTimeout = MiscUtil.pDelay(5 * 1000, false);
+				Promise.race([pConnected, pTimeout])
+					.then(didConnect => {
+						if (!didConnect) {
+							JqueryUtil.doToast({content: `Connecting to "${connection.label.escapeQuotes()}" has taken more than 5 seconds! The connection may need to be re-attempted.`, type: "warning"});
+						}
+					});
+			});
+
+			window.addEventListener("beforeunload", evt => {
+				const message = `The connection will be closed`;
+				(evt || window.event).message = message;
+				return message;
+			});
+
+			if (opts.fnDispServerRunningState) opts.fnDispServerRunningState();
+
+			return {
+				isRunning: true,
+				token: this._p2pMetaV1.serverPeer?.token,
+			};
+		} catch (e) {
+			if (opts.fnDispServerStoppedState) opts.fnDispServerStoppedState();
+			if (opts.btnStartServer) opts.btnStartServer.vee.prop("disabled", false);
+			this._p2pMetaV1.serverPeer = null;
+			JqueryUtil.doToast({content: `Failed to start server! ${VeCt.STR_SEE_CONSOLE}`, type: "danger"});
+			setTimeout(() => { throw e; });
+		}
+
+		return {
+			isRunning: false,
+			token: this._p2pMetaV1.serverPeer?.token,
+		};
+	}
+
+	handleClick_playerWindowV1 ({doUpdateExternalStates}) {
+		const {eleModalInner} = UiUtil.getShowModal({
+			title: "Configure Player View",
+			isUncappedHeight: true,
+			isHeight100: true,
+			cbClose: () => {
+				if (this._p2pMetaV1.rows.length) {
+					this._p2pMetaV1.rows
+						.filter(row => !row.isStub)
+						.forEach(row => row.eleRow.vee.detach());
+				}
+				if (this._p2pMetaV1.serverPeer) this._p2pMetaV1.serverPeer.offTemp("connection");
+			},
+		});
+
+		const wrpHelp = UiUtil.getAddModalRow(eleModalInner, "div");
+
+		const fnDispServerStoppedState = () => {
+			btnStartServer.vee.html(`<span class="glyphicon glyphicon-play"></span> Start Server`).vee.prop("disabled", false);
+			btnGetToken.vee.prop("disabled", true);
+			btnGetLink.vee.prop("disabled", true);
+		};
+
+		const fnDispServerRunningState = () => {
+			btnStartServer.vee.html(`<span class="glyphicon glyphicon-play"></span> Server Running`).vee.prop("disabled", true);
+			btnGetToken.vee.prop("disabled", false);
+			btnGetLink.vee.prop("disabled", false);
+		};
+
+		const btnStartServer = veT`<button class="ve-btn ve-btn-default ve-mr-2"></button>`
+			.vee.onn("click", async () => {
+				const {isRunning} = await this.startServerV1({doUpdateExternalStates, btnStartServer, btnGetToken, btnGetLink, fnDispServerStoppedState, fnDispServerRunningState});
+				if (!isRunning) return;
+
+				this._p2pMetaV1.serverPeer.onTemp("connection", showConnected);
+				showConnected();
+			});
+
+		const btnGetToken = veT`<button class="ve-btn ve-btn-default" disabled><span class="glyphicon glyphicon-copy"></span> Copy Token</button>`.vee.appendTo(wrpHelp)
+			.vee.onn("click", async () => {
+				await MiscUtil.pCopyTextToClipboard(this._p2pMetaV1.serverPeer.token);
+				JqueryUtil.showCopiedEffect(btnGetToken);
+			});
+
+		const btnGetLink = veT`<button class="ve-btn ve-btn-default ve-mr-2" disabled><span class="glyphicon glyphicon-link"></span> Copy Link</button>`.vee.appendTo(wrpHelp)
+			.vee.onn("click", async () => {
+				const cleanOrigin = window.location.origin.replace(/\/+$/, "");
+				const cleanPathname = window.location.pathname.split("/").slice(0, -1).join("/");
+				const url = `${cleanOrigin}${cleanPathname}/inittrackerplayerview.html#v1:${this._p2pMetaV1.serverPeer.token}`;
+				await MiscUtil.pCopyTextToClipboard(url);
+				JqueryUtil.showCopiedEffect(btnGetLink);
+			});
+
+		if (this._p2pMetaV1.serverPeer) fnDispServerRunningState();
+		else fnDispServerStoppedState();
+
+		veT`<div class="row ve-w-100">
+			<div class="ve-col-12">
+				<p>
+				The Player View is part of a peer-to-peer system to allow players to connect to a DM's initiative tracker. Players should use the <a href="inittrackerplayerview.html">Initiative Tracker Player View</a> page to connect to the DM's instance. As a DM, the usage is as follows:
+				<ol>
+					<li>Start the server.</li>
+					<li>Copy your link/token and share it with your players.</li>
+					<li>Wait for them to connect!</li>
+				</ol>
+				</p>
+				<p>${btnStartServer}${btnGetLink}${btnGetToken}</p>
+				<p><i>Please note that this system is highly experimental. Your experience may vary.</i></p>
+			</div>
+		</div>`.vee.appendTo(wrpHelp);
+
+		UiUtil.addModalSep(eleModalInner);
+
+		const wrpConnected = UiUtil.getAddModalRow(eleModalInner, "div").vee.addClass("flx-col");
+
+		const showConnected = () => {
+			if (!this._p2pMetaV1.serverPeer) return wrpConnected.vee.html(`<div class="ve-w-100 ve-flex-vh-center"><i>No clients connected.</i></div>`);
+
+			let stack = `<div class="ve-w-100"><h5>Connected Clients:</h5><ul>`;
+			this._p2pMetaV1.serverPeer.getActiveConnections()
+				.map(it => it.label || "(Unknown)")
+				.sort(SortUtil.ascSortLower)
+				.forEach(it => stack += `<li>${it.escapeQuotes()}</li>`);
+			stack += "</ul></div>";
+			wrpConnected.vee.html(stack);
+		};
+
+		if (this._p2pMetaV1.serverPeer) this._p2pMetaV1.serverPeer.onTemp("connection", showConnected);
+
+		showConnected();
+	}
+
+	// nop on receiving a message; we want to send only
+	// TODO expand this, to allow e.g. players to set statuses or assign damage/healing (at DM approval?)
+	_playerWindowV0_DM_MESSAGE_RECEIVER = function () {};
+
+	_playerWindowV0_DM_ERROR_HANDLER = function (err) {
+		if (!this.isClosed) {
+			// TODO: this could be better at handling `err.error == "RTCError: User-Initiated Abort, reason=Close called"`
+			JqueryUtil.doToast({
+				content: `Server error:\n${err ? (err.message || err.error || err) : "(Unknown error)"}`,
+				type: "danger",
+			});
+		}
+	};
+
+	async _playerWindowV0_pGetServerTokens ({rowMetas}) {
+		const targetRows = rowMetas
+			.filter(it => !it.isDeleted)
+			.filter(it => !it.isActive);
+		if (targetRows.every(it => it.isActive)) {
+			return JqueryUtil.doToast({
+				content: "No rows require Server Token generation!",
+				type: "warning",
+			});
+		}
+
+		let anyInvalidNames = false;
+		targetRows
+			.filter(row => !row.isStub)
+			.forEach(row => {
+				row.iptName.vee.removeClass("error-background");
+				if (!row.iptName.vee.val().trim()) {
+					anyInvalidNames = true;
+					row.iptName.vee.addClass("error-background");
+				}
+			});
+		if (anyInvalidNames) return;
+
+		const names = targetRows
+			.map(row => {
+				row.isActive = true;
+
+				if (row.isStub) return "";
+
+				row.iptName.vee.attr("disabled", true);
+				row.btnGenServerToken.vee.attr("disabled", true);
+
+				return row.iptName.vee.val();
+			});
+
+		if (this._p2pMetaV0.serverInfo) {
+			await this._p2pMetaV0.serverInfo;
+
+			const serverInfo = await PeerUtilV0.pInitialiseServersAddToExisting(
+				names,
+				this._p2pMetaV0.serverInfo,
+				this._playerWindowV0_DM_MESSAGE_RECEIVER,
+				this._playerWindowV0_DM_ERROR_HANDLER,
+			);
+
+			return targetRows.map((row, i) => {
+				row.name = serverInfo[i].name;
+				row.serverInfo = serverInfo[i];
+				if (!row.isStub) row.iptTokenServer.vee.val(serverInfo[i].textifiedSdp).vee.attr("disabled", false);
+
+				serverInfo[i].rowMeta = row;
+
+				if (!row.isStub) row.iptTokenClient.vee.attr("disabled", false);
+				if (!row.isStub) row.btnAcceptClientToken.vee.attr("disabled", false);
+
+				return serverInfo[i].textifiedSdp;
+			});
+		} else {
+			this._p2pMetaV0.serverInfo = (async () => {
+				this._p2pMetaV0.serverInfo = await PeerUtilV0.pInitialiseServers(names, this._playerWindowV0_DM_MESSAGE_RECEIVER, this._playerWindowV0_DM_ERROR_HANDLER);
+
+				targetRows.forEach((row, i) => {
+					row.name = this._p2pMetaV0.serverInfo[i].name;
+					row.serverInfo = this._p2pMetaV0.serverInfo[i];
+					if (!row.isStub) row.iptTokenServer.vee.val(this._p2pMetaV0.serverInfo[i].textifiedSdp).vee.attr("disabled", false);
+
+					this._p2pMetaV0.serverInfo[i].rowMeta = row;
+
+					if (!row.isStub) row.iptTokenClient.vee.attr("disabled", false);
+					if (!row.isStub) row.btnAcceptClientToken.vee.attr("disabled", false);
+				});
+			})();
+
+			await this._p2pMetaV0.serverInfo;
+			return targetRows.map(row => row.serverInfo.textifiedSdp);
+		}
+	}
+
+	handleClick_playerWindowV0 ({doUpdateExternalStates}) {
+		const {eleModalInner} = UiUtil.getShowModal({
+			title: "Configure Player View",
+			isUncappedHeight: true,
+			isHeight100: true,
+			cbClose: () => {
+				if (!this._p2pMetaV0.rows.length) return;
+				this._p2pMetaV0.rows
+					.filter(row => !row.isStub)
+					.forEach(row => row.eleRow.vee.detach());
+			},
+		});
+
+		const wrpHelp = UiUtil.getAddModalRow(eleModalInner, "div");
+		const btnAltAddPlayer = veT`<button class="ve-btn ve-btn-primary ve-btn-text-insert">Add Player</button>`.vee.onn("click", () => btnAddClient.vee.trigger("click"));
+		const btnAltGenAll = veT`<button class="ve-btn ve-btn-primary ve-btn-text-insert">Generate All</button>`.vee.onn("click", () => btnGenServerTokens.vee.trigger("click"));
+		const btnAltCopyAll = veT`<button class="ve-btn ve-btn-primary ve-btn-text-insert">Copy Server Tokens</button>`.vee.onn("click", () => btnCopyServers.vee.trigger("click"));
+		veT`<div class="ve-flex ve-w-100">
+			<div class="ve-col-12">
+				<p>
+				The Player View is part of a peer-to-peer (i.e., serverless) system to allow players to connect to a DM's initiative tracker. Players should use the <a href="inittrackerplayerview.html">Initiative Tracker Player View</a> page to connect to the DM's instance. As a DM, the usage is as follows:
+				<ol>
+						<li>Add the required number of players ("${btnAltAddPlayer}"), and input (preferably unique) player names.</li>
+						<li>Click "${btnAltGenAll}," which will generate a "server token" per player. You can click "${btnAltCopyAll}" to copy them all as a single block of text, or click on the "Server Token" values to copy them individually. Distribute these tokens to your players (via a messaging service of your choice; we recommend <a href="https://discordapp.com/">Discord</a>). Each player should paste their token into the <a href="inittrackerplayerview.html">Initiative Tracker Player View</a>, following the instructions provided therein.</li>
+						<li>
+							Get a resulting "client token" from each player via a messaging service of your choice. Then, either:
+							<ol type="a">
+								<li>Click the "Accept Multiple Clients" button, and paste in text containing multiple client tokens. <b>This will try to find tokens in <i>any</i> text, ignoring everything else.</b> Pasting a chatroom log (containing, for example, usernames and timestamps mixed with tokens) is the expected usage.</li>
+								<li>Paste each token into the appropriate "Client Token" field and "Accept Client" on each. A token can be identified by the slugified player name in the first few characters.</li>
+							</ol>
+						</li>
+					</ol>
+				</p>
+				<p>Once a player's client has been "accepted," it will receive updates from the DM's tracker. <i>Please note that this system is highly experimental. Your experience may vary.</i></p>
+			</div>
+		</div>`.vee.appendTo(wrpHelp);
+
+		UiUtil.addModalSep(eleModalInner);
+
+		const wrpTop = UiUtil.getAddModalRow(eleModalInner, "div");
+
+		const btnAddClient = veT`<button class="ve-btn ve-btn-xs ve-btn-primary" title="Add Client">Add Player</button>`.vee.onn("click", () => addClientRow());
+
+		const btnCopyServers = veT`<button class="ve-btn ve-btn-xs ve-btn-primary" title="Copy any available server tokens to the clipboard">Copy Server Tokens</button>`
+			.vee.onn("click", async () => {
+				const targetRows = this._p2pMetaV0.rows
+					.filter(row => !row.isStub)
+					.filter(it => !it.isDeleted && !it.iptTokenClient.vee.attr("disabled"));
+				if (!targetRows.length) {
+					JqueryUtil.doToast({
+						content: `No free server tokens to copy. Generate some!`,
+						type: "warning",
+					});
+				} else {
+					await MiscUtil.pCopyTextToClipboard(targetRows.map(it => it.iptTokenServer.vee.val()).join("\n\n"));
+					JqueryUtil.showCopiedEffect(btnGenServerTokens);
+				}
+			});
+
+		const btnAcceptClients = veT`<button class="ve-btn ve-btn-xs ve-btn-primary" title="Open a prompt into which text containing client tokens can be pasted">Accept Multiple Clients</button>`
+			.vee.onn("click", () => {
+				const {eleModalInner, doClose} = UiUtil.getShowModal({title: "Accept Multiple Clients"});
+
+				const iptText = veT`<textarea class="ve-form-control dm-init-pl__textarea ve-block ve-mb-2"></textarea>`
+					.vee.onn("keydown", () => iptText.vee.removeClass("error-background"));
+
+				const btnAccept = veT`<button class="ve-btn ve-btn-xs ve-btn-primary ve-block ve-text-center" title="Add Client">Accept Multiple Clients</button>`
+					.vee.onn("click", async () => {
+						iptText.vee.removeClass("error-background");
+						const txt = iptText.vee.val();
+						if (!txt.trim() || !PeerUtilV0.containsAnyTokens(txt)) {
+							iptText.vee.addClass("error-background");
+						} else {
+							const connected = await PeerUtilV0.pConnectClientsToServers(this._p2pMetaV0.serverInfo, txt);
+							this._board.doBindAlertOnNavigation();
+							connected.forEach(serverInfo => {
+								serverInfo.rowMeta.iptTokenClient.vee.val(serverInfo._tempTokenToDisplay || "").vee.attr("disabled", true);
+								serverInfo.rowMeta.btnAcceptClientToken.vee.attr("disabled", true);
+								delete serverInfo._tempTokenToDisplay;
+							});
+							doClose();
+							doUpdateExternalStates();
+						}
+					});
+
+				veT`<div>
+					<p>Paste text containing one or more client tokens, and click "Accept Multiple Clients"</p>
+					${iptText}
+					<div class="ve-flex-vh-center">${btnAccept}</div>
+				</div>`.vee.appendTo(eleModalInner);
+			});
+
+		veT`
+			<div class="ve-flex ve-w-100">
+				<div class="ve-col-12">
+					<div class="ve-flex-inline-v-center ve-mr-2">
+						<span class="ve-mr-1">Add a player (client):</span>
+						${btnAddClient}
+					</div>
+					<div class="ve-flex-inline-v-center ve-mr-2">
+						<span class="ve-mr-1">Copy all un-paired server tokens:</span>
+						${btnCopyServers}
+					</div>
+					<div class="ve-flex-inline-v-center ve-mr-2">
+						<span class="ve-mr-1">Mass-accept clients:</span>
+						${btnAcceptClients}
+					</div>
+				</div>
+			</div>
+		`.vee.appendTo(wrpTop);
+
+		UiUtil.addModalSep(eleModalInner);
+
+		const btnGenServerTokens = veT`<button class="ve-btn ve-btn-primary ve-btn-xs">Generate All</button>`
+			.vee.onn("click", () => this._playerWindowV0_pGetServerTokens({rowMetas: this._p2pMetaV0.rows}));
+
+		veT`<div class="ve-flex ve-w-100">
+			<div class="ve-col-2 ve-bold">Player Name</div>
+			<div class="ve-col-3-5 ve-bold">Server Token</div>
+			<div class="ve-col-1 ve-text-center">${btnGenServerTokens}</div>
+			<div class="ve-col-3-5 ve-bold">Client Token</div>
+		</div>`
+			.vee.appendTo(UiUtil.getAddModalRow(eleModalInner, "div"));
+
+		const _getEleRowTemplate = (
+			iptName,
+			iptTokenServer,
+			btnGenServerToken,
+			iptTokenClient,
+			btnAcceptClientToken,
+			btnDeleteClient,
+		) => veT`<div class="ve-w-100 ve-mb-2 ve-flex">
+			<div class="ve-col-2 ve-pr-1">${iptName}</div>
+			<div class="ve-col-3-5 ve-px-1">${iptTokenServer}</div>
+			<div class="ve-col-1 ve-px-1 ve-flex-vh-center">${btnGenServerToken}</div>
+			<div class="ve-col-3-5 ve-px-1">${iptTokenClient}</div>
+			<div class="ve-col-1-5 ve-px-1 ve-flex-vh-center">${btnAcceptClientToken}</div>
+			<div class="ve-col-0-5 ve-pl-1 ve-flex-vh-center">${btnDeleteClient}</div>
+		</div>`;
+
+		const clientRowMetas = [];
+		const addClientRow = () => {
+			const rowMeta = {id: CryptUtil.uid()};
+			clientRowMetas.push(rowMeta);
+
+			const iptName = veT`<input class="ve-form-control ve-input-sm">`
+				.vee.onn("keydown", evt => {
+					iptName.vee.removeClass("error-background");
+					if (evt.key === "Enter") btnGenServerToken.vee.trigger("click");
+				});
+
+			const iptTokenServer = veT`<input class="ve-form-control ve-input-sm ve-copyable ve-code" readonly disabled>`
+				.vee.onn("click", async () => {
+					await MiscUtil.pCopyTextToClipboard(iptTokenServer.vee.val());
+					JqueryUtil.showCopiedEffect(iptTokenServer);
+				}).vee.disableSpellcheck();
+
+			const btnGenServerToken = veT`<button class="ve-btn ve-btn-xs ve-btn-primary" title="Generate Server Token">Generate</button>`
+				.vee.onn("click", () => this._playerWindowV0_pGetServerTokens({rowMetas: [rowMeta]}));
+
+			const iptTokenClient = veT`<input class="ve-form-control ve-input-sm ve-code" disabled>`
+				.vee.onn("keydown", evt => {
+					iptTokenClient.vee.removeClass("error-background");
+					if (evt.key === "Enter") btnAcceptClientToken.vee.trigger("click");
+				}).vee.disableSpellcheck();
+
+			const btnAcceptClientToken = veT`<button class="ve-btn ve-btn-xs ve-btn-primary" title="Accept Client Token" disabled>Accept Client</button>`
+				.vee.onn("click", async () => {
+					const token = iptTokenClient.vee.val();
+					if (PeerUtilV0.isValidToken(token)) {
+						try {
+							await PeerUtilV0.pConnectClientsToServers([rowMeta.serverInfo], token);
+							this._board.doBindAlertOnNavigation();
+							iptTokenClient.vee.prop("disabled", true);
+							btnAcceptClientToken.vee.prop("disabled", true);
+							doUpdateExternalStates();
+						} catch (e) {
+							JqueryUtil.doToast({
+								content: `Failed to accept client token! Are you sure it was valid? (See the log for more details.)`,
+								type: "danger",
+							});
+							setTimeout(() => { throw e; });
+						}
+					} else iptTokenClient.vee.addClass("error-background");
+				});
+
+			const btnDeleteClient = veT`<button class="ve-btn ve-btn-xs ve-btn-danger"><span class="glyphicon glyphicon-trash"></span></button>`
+				.vee.onn("click", () => {
+					rowMeta.eleRow.remove();
+					rowMeta.isDeleted = true;
+					if (rowMeta.serverInfo) {
+						rowMeta.serverInfo.server.close();
+						rowMeta.serverInfo.isDeleted = true;
+					}
+					const ix = clientRowMetas.indexOf(rowMeta);
+					if (~ix) clientRowMetas.splice(ix, 1);
+
+					if (!clientRowMetas.length) addClientRow();
+				});
+
+			rowMeta.eleRow = _getEleRowTemplate(
+				iptName,
+				iptTokenServer,
+				btnGenServerToken,
+				iptTokenClient,
+				btnAcceptClientToken,
+				btnDeleteClient,
+			).vee.appendTo(wrpRowsInner);
+
+			rowMeta.iptName = iptName;
+			rowMeta.iptTokenServer = iptTokenServer;
+			rowMeta.btnGenServerToken = btnGenServerToken;
+			rowMeta.iptTokenClient = iptTokenClient;
+			rowMeta.btnAcceptClientToken = btnAcceptClientToken;
+			this._p2pMetaV0.rows.push(rowMeta);
+
+			return rowMeta;
+		};
+
+		const wrpRows = UiUtil.getAddModalRow(eleModalInner, "div");
+		const wrpRowsInner = veT`<div class="ve-w-100"></div>`.vee.appendTo(wrpRows);
+
+		if (!this._p2pMetaV0.rows.length) {
+			addClientRow();
+			return;
+		}
+
+		this._p2pMetaV0.rows
+			.filter(row => !row.isStub)
+			.forEach(row => row.eleRow.vee.appendTo(wrpRowsInner));
+	}
+
+	async pHandleDoConnectLocalV0 ({clientView}) {
+		const rowMeta = {
+			id: CryptUtil.uid(),
+			iptName: veT`<input value="local">`,
+			isStub: true,
+		};
+
+		this._p2pMetaV0.rows.push(rowMeta);
+
+		const serverTokens = await this._playerWindowV0_pGetServerTokens({rowMetas: [rowMeta]});
+		const clientData = await PeerUtilV0.pInitialiseClient(
+			serverTokens[0],
+			msg => clientView.handleMessage(msg),
+			() => {}, // ignore local errors
+		);
+		clientView.clientData = clientData;
+		await PeerUtilV0.pConnectClientsToServers([rowMeta.serverInfo], clientData.textifiedSdp);
+	}
+}

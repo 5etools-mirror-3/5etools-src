@@ -21,30 +21,27 @@ class BlocklistUtil {
 		"bookData",
 	]);
 
-	static _BASIC_FILES = [
-		"actions.json",
-		"adventures.json",
-		"backgrounds.json",
-		"books.json",
-		"cultsboons.json",
-		"charcreationoptions.json",
-		"conditionsdiseases.json",
-		"deities.json",
-		"feats.json",
-		"items-base.json",
-		"magicvariants.json",
-		"items.json",
-		"objects.json",
-		"optionalfeatures.json",
-		"psionics.json",
-		"recipes.json",
-		"rewards.json",
-		"trapshazards.json",
-		"variantrules.json",
-		"vehicles.json",
-		"decks.json",
-		"languages.json",
-		"bastions.json",
+	static _BASIC_PROPS = [
+		"adventure",
+		"book",
+		"action",
+		"background",
+		"cult",
+		"charoption",
+		"condition",
+		"deity",
+		"feat",
+		"object",
+		"optionalfeature",
+		"psionic",
+		"recipe",
+		"reward",
+		"trap",
+		"variantrule",
+		"vehicle",
+		"deck",
+		"language",
+		"facility",
 	];
 
 	static async pLoadData (
@@ -70,7 +67,10 @@ class BlocklistUtil {
 		this._addData(out, MiscUtil.copy(await DataUtil.race.loadJSON({isAddBaseRaces: true})));
 
 		(
-			await Promise.all(this._BASIC_FILES.map(url => DataUtil.loadJSON(`${Renderer.get().baseUrl}data/${url}`)))
+			await Promise.all([
+				DataUtil.item.loadRawJSON(),
+				...this._BASIC_PROPS.map(prop => DataUtil[prop].loadJSON()),
+			])
 		)
 			.forEach(json => this._addData(out, MiscUtil.copyFast(json)));
 
@@ -258,26 +258,26 @@ class BlocklistUi {
 	}
 
 	_pInit_initUi () {
-		this._wrpControls = ee`<div ${this._isCompactUi ? "" : `class="bg-solid ve-py-5 ve-px-3 shadow-big ve-b-1p"`}></div>`;
+		this._wrpControls = veT`<div ${this._isCompactUi ? "" : `class="ve-bg-solid ve-py-5 ve-px-3 ve-shadow-big ve-b-1p"`}></div>`;
 
-		const iptSearch = ee`<input type="search" class="search ve-form-control ve-lst__search ve-lst__search--no-border-h ve-h-100">`.disableSpellcheck();
+		const iptSearch = veT`<input type="search" class="search ve-form-control ve-lst__search ve-lst__search--no-border-h ve-h-100">`.vee.disableSpellcheck();
 
-		const btnReset = ee`<button class="ve-btn ve-btn-default">Reset Search</button>`
-			.onn("click", () => {
-				iptSearch.val("");
+		const btnReset = veT`<button class="ve-btn ve-btn-default">Reset Search</button>`
+			.vee.onn("click", () => {
+				iptSearch.vee.val("");
 				this._list.reset();
 			});
 
-		const wrpFilterTools = ee`<div class="ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
+		const wrpFilterTools = veT`<div class="ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
 			<button class="ve-col-4 sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Source</button>
 			<button class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="category">Category</button>
 			<button class="ve-col-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
 			<button class="ve-col-1 sort ve-btn ve-btn-default ve-btn-xs" disabled>&nbsp;</button>
 		</div>`;
 
-		const wrpList = ee`<div class="list-display-only ve-smooth-scroll ve-overflow-y-auto ve-h-100 ve-min-h-0"></div>`;
+		const wrpList = veT`<div class="list-display-only ve-smooth-scroll ve-overflow-y-auto ve-h-100 ve-min-h-0"></div>`;
 
-		ee(this._wrpContent.empty())`
+		veT(this._wrpContent.vee.empty())`
 			${this._wrpControls}
 
 			<hr class="${this._isCompactUi ? "ve-hr-2" : "ve-hr-5"}">
@@ -312,34 +312,34 @@ class BlocklistUi {
 	_pInit_render () {
 		// region Helper controls
 		const btnExcludeAllUa = this._getBtn_addToBlocklist()
-			.onn("click", () => this._addAllUa());
+			.vee.onn("click", () => this._addAllUa());
 		const btnIncludeAllUa = this._getBtn_removeFromBlocklist()
-			.onn("click", () => this._removeAllUa());
+			.vee.onn("click", () => this._removeAllUa());
 
 		const btnExcludeAllSources = this._getBtn_addToBlocklist()
-			.onn("click", () => this._addAllSources());
+			.vee.onn("click", () => this._addAllSources());
 		const btnIncludeAllSources = this._getBtn_removeFromBlocklist()
-			.onn("click", () => this._removeAllSources());
+			.vee.onn("click", () => this._removeAllSources());
 
 		const btnExcludeAllComedySources = this._getBtn_addToBlocklist()
-			.onn("click", () => this._addAllComedySources());
+			.vee.onn("click", () => this._addAllComedySources());
 		const btnIncludeAllComedySources = this._getBtn_removeFromBlocklist()
-			.onn("click", () => this._removeAllComedySources());
+			.vee.onn("click", () => this._removeAllComedySources());
 
 		const btnExcludeAllNonForgottenRealmsSources = this._getBtn_addToBlocklist()
-			.onn("click", () => this._addAllNonForgottenRealms());
+			.vee.onn("click", () => this._addAllNonForgottenRealms());
 		const btnIncludeAllNonForgottenRealmsSources = this._getBtn_removeFromBlocklist()
-			.onn("click", () => this._removeAllNonForgottenRealms());
+			.vee.onn("click", () => this._removeAllNonForgottenRealms());
 
 		const btnExcludeClassicSources = this._getBtn_addToBlocklist()
-			.onn("click", () => this._addAllNonClassicSources());
+			.vee.onn("click", () => this._addAllNonClassicSources());
 		const btnIncludeClassicSources = this._getBtn_removeFromBlocklist()
-			.onn("click", () => this._removeAllClassicSources());
+			.vee.onn("click", () => this._removeAllClassicSources());
 
 		const btnExcludeModernSources = this._getBtn_addToBlocklist()
-			.onn("click", () => this._addAllNonModernSources());
+			.vee.onn("click", () => this._addAllNonModernSources());
 		const btnIncludeModernSources = this._getBtn_removeFromBlocklist()
-			.onn("click", () => this._removeAllModernSources());
+			.vee.onn("click", () => this._removeAllModernSources());
 		// endregion
 
 		// region Primary controls
@@ -380,77 +380,44 @@ class BlocklistUi {
 		);
 		this._comp.addHook("category", () => this._doHandleSourceCategorySelChange());
 
-		this._wrpSelName = ee`<div class="ve-w-100 ve-flex"></div>`;
+		this._wrpSelName = veT`<div class="ve-w-100 ve-flex"></div>`;
 		this._doHandleSourceCategorySelChange();
 
-		const btnAddExclusion = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Add to Blocklist</button>`
-			.onn("click", () => this._pAdd());
+		const btnAddExclusion = veT`<button class="ve-btn ve-btn-default ve-btn-xs">Add to Blocklist</button>`
+			.vee.onn("click", () => this._pAdd());
 		// endregion
 
 		// Utility controls
 		const btnSendToFoundry = !globalThis.IS_VTT && ExtensionUtil.ACTIVE
-			? ee`<button title="Send to Foundry" class="ve-btn ve-btn-xs ve-btn-default ve-mr-2"><span class="glyphicon glyphicon-send"></span></button>`
-				.onn("click", evt => this._pDoSendToFoundry({isTemp: !!evt.shiftKey}))
+			? veT`<button title="Send to Foundry" class="ve-btn ve-btn-xs ve-btn-default ve-mr-2"><span class="glyphicon glyphicon-send"></span></button>`
+				.vee.onn("click", evt => this._pDoSendToFoundry({isTemp: !!evt.shiftKey}))
 			: null;
-		const btnExport = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Export List</button>`
-			.onn("click", () => this._export());
-		const btnImport = ee`<button class="ve-btn ve-btn-default ve-btn-xs" title="SHIFT for Add Only">Import List</button>`
-			.onn("click", evt => this._pImport(evt));
-		const btnReset = ee`<button class="ve-btn ve-btn-danger ve-btn-xs">Reset List</button>`
-			.onn("click", async () => {
+		const btnExport = veT`<button class="ve-btn ve-btn-default ve-btn-xs">Export List</button>`
+			.vee.onn("click", () => this._export());
+		const btnImport = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="SHIFT for Add Only">Import List</button>`
+			.vee.onn("click", evt => this._pImport(evt));
+		const btnReset = veT`<button class="ve-btn ve-btn-danger ve-btn-xs">Reset List</button>`
+			.vee.onn("click", async () => {
 				if (!await InputUiUtil.pGetUserBoolean({title: "Reset Blocklist", htmlDescription: "Are you sure?", textYes: "Yes", textNo: "Cancel"})) return;
 				this._reset();
 			});
 		// endregion
 
-		ee(this._wrpControls.empty())`<div class="${this._isCompactUi ? "ve-mb-2" : "ve-mb-5"} ve-flex-v-center ve-mobile-md__flex-col ve-mobile-md__flex-ai-start">
-			<div class="ve-flex-vh-center ve-mr-4 ve-mobile-md__mr-0 ve-mobile-md__mb-2">
-				<div class="ve-mr-2">UA/Etc. Sources</div>
-				<div class="ve-flex-v-center ve-btn-group">
-					${btnExcludeAllUa}
-					${btnIncludeAllUa}
+		const getWrpExcludeInclude = ({name, btnExclude, btnInclude}) => veT`<div class="ve-flex-v-center ve-mobile-md__w-100 ve-mr-2 ve-mobile-md__mr-0 ve-mobile-md__mb-2 ve-p-2 ve-b-1p ve-bc-5p">
+				<div class="ve-mr-2">${name}</div>
+				<div class="ve-flex-v-center ve-btn-group ve-mobile-md__ml-auto">
+					${btnExclude}
+					${btnInclude}
 				</div>
-			</div>
+			</div>`;
 
-			<div class="ve-flex-vh-center ve-mr-3 ve-mobile-md__mr-0 ve-mobile-md__mb-2">
-				<div class="ve-mr-2">Comedy Sources</div>
-				<div class="ve-flex-v-center ve-btn-group">
-					${btnExcludeAllComedySources}
-					${btnIncludeAllComedySources}
-				</div>
-			</div>
-
-			<div class="ve-flex-vh-center ve-mr-3 ve-mobile-md__mr-0 ve-mobile-md__mb-2">
-				<div class="ve-mr-2">Non-<i>Forgotten Realms</i></div>
-				<div class="ve-flex-v-center ve-btn-group">
-					${btnExcludeAllNonForgottenRealmsSources}
-					${btnIncludeAllNonForgottenRealmsSources}
-				</div>
-			</div>
-
-			<div class="ve-flex-vh-center ve-mr-3 ve-mobile-md__mr-0 ve-mobile-md__mb-2">
-				<div class="ve-mr-2">5e (&apos;14) Sources</div>
-				<div class="ve-flex-v-center ve-btn-group">
-					${btnExcludeClassicSources}
-					${btnIncludeClassicSources}
-				</div>
-			</div>
-
-			<div class="ve-flex-vh-center ve-mr-3 ve-mobile-md__mr-0 ve-mobile-md__mb-2">
-				<div class="ve-mr-2">5.5e (&apos;24) Sources</div>
-				<div class="ve-flex-v-center ve-btn-group">
-					${btnExcludeModernSources}
-					${btnIncludeModernSources}
-				</div>
-			</div>
-
-			<div class="ve-flex-vh-center ve-mr-3 ve-mobile-md__mr-0 ve-mobile-md__mb-2">
-				<div class="ve-mr-2">All Sources</div>
-				<div class="ve-flex-v-center ve-btn-group">
-					${btnExcludeAllSources}
-					${btnIncludeAllSources}
-				</div>
-			</div>
+		veT(this._wrpControls.vee.empty())`<div class="${this._isCompactUi ? "ve-mb-2" : "ve-mb-5"} ve-flex-v-center ve-mobile-md__flex-col ve-mobile-md__flex-ai-start">
+			${getWrpExcludeInclude({name: "UA/Etc. Sources", btnExclude: btnExcludeAllUa, btnInclude: btnIncludeAllUa})}
+			${getWrpExcludeInclude({name: `Comedy Sources`, btnExclude: btnExcludeAllComedySources, btnInclude: btnIncludeAllComedySources})}
+			${getWrpExcludeInclude({name: `Non-<i>Forgotten Realms</i>`, btnExclude: btnExcludeAllNonForgottenRealmsSources, btnInclude: btnIncludeAllNonForgottenRealmsSources})}
+			${getWrpExcludeInclude({name: `5e (&apos;14) Sources`, btnExclude: btnExcludeClassicSources, btnInclude: btnIncludeClassicSources})}
+			${getWrpExcludeInclude({name: `5.5e (&apos;24) Sources`, btnExclude: btnExcludeModernSources, btnInclude: btnIncludeModernSources})}
+			${getWrpExcludeInclude({name: `All Sources`, btnExclude: btnExcludeAllSources, btnInclude: btnIncludeAllSources})}
 		</div>
 
 		<div class="ve-flex-v-end ${this._isCompactUi ? "ve-mb-2" : "ve-mb-5"} ve-mobile-sm__flex-col ve-mobile-sm__flex-ai-start">
@@ -487,16 +454,16 @@ class BlocklistUi {
 	}
 
 	_getBtn_addToBlocklist () {
-		return ee`<button class="ve-btn ve-btn-danger ve-btn-xs ve-w-20p ve-h-21p ve-flex-vh-center" title="Add to Blocklist"><span class="glyphicon glyphicon-trash"></span></button>`;
+		return veT`<button class="ve-btn ve-btn-danger ve-btn-xs ve-w-20p ve-h-21p ve-flex-vh-center" title="Add to Blocklist"><span class="glyphicon glyphicon-trash"></span></button>`;
 	}
 
 	_getBtn_removeFromBlocklist () {
-		return ee`<button class="ve-btn ve-btn-success ve-btn-xs ve-w-20p ve-h-21p ve-flex-vh-center" title="Remove from Blocklist"><span class="glyphicon glyphicon-thumbs-up"></span></button>`;
+		return veT`<button class="ve-btn ve-btn-success ve-btn-xs ve-w-20p ve-h-21p ve-flex-vh-center" title="Remove from Blocklist"><span class="glyphicon glyphicon-thumbs-up"></span></button>`;
 	}
 
 	_doHandleSourceCategorySelChange () {
 		if (this._metaSelName) this._metaSelName.unhook();
-		this._wrpSelName.empty();
+		this._wrpSelName.vee.empty();
 
 		const filteredData = this._doHandleSourceCategorySelChange_getFilteredData();
 
@@ -610,34 +577,34 @@ class BlocklistUi {
 		const sourceFull = Parser.sourceJsonToFull(source);
 
 		const btnRemove = isAuto
-			? ee`<button class="ve-btn ve-btn-xxs ve-btn-danger" disabled title="This blocklist entry is automatically managed, and cannot be manually removed.">Remove</button>`
-			: ee`<button class="ve-btn ve-btn-xxs ve-btn-danger">Remove</button>`
-				.onn("click", () => {
+			? veT`<button class="ve-btn ve-btn-xxs ve-btn-danger" disabled title="This blocklist entry is automatically managed, and cannot be manually removed.">Remove</button>`
+			: veT`<button class="ve-btn ve-btn-xxs ve-btn-danger">Remove</button>`
+				.vee.onn("click", () => {
 					this._remove(id, hash, category, source);
 				});
 
-		const ele = ee`<div class="${this._addListItem_getItemStyles()}">
-			<span class="ve-col-4 ve-text-center">${sourceFull}</span>
+		const ele = veT`<div class="${this._addListItem_getItemStyles()}">
+			<span class="ve-col-4 ve-text-center">${sourceFull.qq()}</span>
 			<span class="ve-col-2 ve-text-center">${display.displayCategory}</span>
 			<span class="ve-col-5 ve-text-center">${displayName}</span>
 			<span class="ve-col-1 ve-text-center">${btnRemove}</span>
 		</div>`;
 
-		const listItem = new ListItem(
+		const listItem = new ListItem({
 			id,
 			ele,
-			displayName,
-			{
+			name: displayName,
+			values: {
 				category: display.displayCategory,
 				source: sourceFull,
 			},
-			{
+			data: {
 				displayName: displayName,
 				hash: hash,
 				category: category,
 				source: source,
 			},
-		);
+		});
 
 		this._list.addItem(listItem);
 	}
@@ -697,7 +664,7 @@ class BlocklistUi {
 			.forEach(source => {
 				const item = this._list.items.find(it => it.data.hash === "*" && it.data.category === "*" && it.data.source === source);
 				if (!item) return;
-				this._remove(item.ix, "*", "*", source, {isSkipListUpdate: true});
+				this._remove(item.getId(), "*", "*", source, {isSkipListUpdate: true});
 			});
 		this._list.update();
 	}
@@ -720,9 +687,9 @@ class BlocklistUi {
 	_addAllNonModernSources () { this._addMassSources({fnFilter: source => !SourceUtil.isClassicSource(source)}); }
 	_removeAllModernSources () { this._removeMassSources({fnFilter: source => !SourceUtil.isClassicSource(source)}); }
 
-	_remove (ix, hash, category, source, {isSkipListUpdate = false} = {}) {
+	_remove (id, hash, category, source, {isSkipListUpdate = false} = {}) {
 		this._removeExclude(hash, category, source);
-		this._list.removeItemByIndex(ix);
+		this._list.removeItemById(id);
 		if (!isSkipListUpdate) this._list.update();
 	}
 

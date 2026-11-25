@@ -42,7 +42,7 @@ async function pMain () {
 					const data = ut.readJson(filePath);
 
 					walker.walk(
-						data.data,
+						data[`${meta.prop}Data`].find(corpusData => corpusData.id === contents.id).data,
 						{
 							object: (obj) => {
 								if (obj.type !== "image" || !obj.mapRegions) return;

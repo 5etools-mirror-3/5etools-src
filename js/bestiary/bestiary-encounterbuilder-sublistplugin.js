@@ -72,7 +72,7 @@ export class EncounterBuilderSublistPlugin extends SublistPlugin {
 
 		this._encounterBuilder.setActivePartyId(exportedSublist?.activePartyId || this._partyComps[0].partyId);
 
-		// Note that we do not set `creatureMetas` here, as `onSublistUpdate` handles this
+		// Note that we do not set `creatureGroups` here, as `onSublistUpdate` handles this
 		this._encounterBuilderComp.setStateFromLoaded(nxt);
 	}
 
@@ -259,10 +259,10 @@ export class EncounterBuilderSublistPlugin extends SublistPlugin {
 
 	onSublistUpdate () {
 		this._encounterBuilder.withSublistSyncSuppressed(() => {
-			// Note that we only update `creatureMetas` here, as this only triggers on direct updates to the underlying sublist.
+			// Note that we only update `creatureGroups` here, as this only triggers on direct updates to the underlying sublist.
 			//   For everything else, the `pLoadData` path is used.
-			this._encounterBuilderComp.creatureMetas = this._sublistManager.sublistItems
-				.map(sublistItem => EncounterBuilderHelpers.getSublistedCreatureMeta({sublistItem}));
+			this._encounterBuilderComp.creatureGroups = this._sublistManager.sublistItems
+				.map(sublistItem => EncounterBuilderHelpers.getSublistedCreatureGroup({sublistItem}));
 		});
 	}
 }

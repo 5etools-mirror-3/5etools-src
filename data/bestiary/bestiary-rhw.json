@@ -1,6 +1,6 @@
 {
 	"_meta": {
-		"referenceSources": {
+		"otherSources": {
 			"monster": {
 				"XMM": "RHW"
 			}
@@ -64,7 +64,7 @@
 				{
 					"name": "Flyby",
 					"entries": [
-						"The death's head doesn't provoke an Opportunity Attack when it flies out of an enemy's reach."
+						"The death's head doesn't provoke an {@action Opportunity Attack|XPHB} when it flies out of an enemy's reach."
 					]
 				}
 			],
@@ -97,6 +97,7 @@
 			"conditionInflict": [
 				"frightened"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -183,7 +184,7 @@
 					"will": [
 						"{@spell Dispel Magic|XPHB}",
 						"{@spell Divination|XPHB}",
-						"{@spell Mage Hand|XPHB} (hand is Invisible)",
+						"{@spell Mage Hand|XPHB} (hand is {@condition Invisible|XPHB})",
 						"{@spell Power Word Stun|XPHB}"
 					],
 					"daily": {
@@ -289,6 +290,9 @@
 				"MA",
 				"RA"
 			],
+			"conditionInflictLegendary": [
+				"charmed"
+			],
 			"conditionInflictSpell": [
 				"blinded",
 				"stunned"
@@ -300,6 +304,7 @@
 			"savingThrowForcedSpell": [
 				"constitution"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -526,6 +531,7 @@
 				"dexterity",
 				"wisdom"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -657,6 +663,7 @@
 			"savingThrowForced": [
 				"strength"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -742,6 +749,7 @@
 			"miscTags": [
 				"MA"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -749,6 +757,9 @@
 			"name": "Boneless",
 			"source": "RHW",
 			"page": 238,
+			"referenceSources": [
+				"SoS"
+			],
 			"size": [
 				"M"
 			],
@@ -820,7 +831,7 @@
 				{
 					"name": "Unraveling Flesh (1/Day)",
 					"entries": [
-						"{@actSave wis} {@dc 11}, each creature within 30 feet that can see the boneless. {@actSaveFail} The target has the {@condition Frightened|XPHB} condition. {@actSaveSuccessOrFail} The boneless moves up to its {@variantrule Speed|XPHB} without provoking Opportunity Attacks."
+						"{@actSave wis} {@dc 11}, each creature within 30 feet that can see the boneless. {@actSaveFail} The target has the {@condition Frightened|XPHB} condition. {@actSaveSuccessOrFail} The boneless moves up to its {@variantrule Speed|XPHB} without provoking {@action Opportunity Attack|XPHB|Opportunity Attacks}."
 					]
 				}
 			],
@@ -842,12 +853,15 @@
 				"MA"
 			],
 			"conditionInflict": [
+				"blinded",
 				"frightened",
-				"grappled"
+				"grappled",
+				"restrained"
 			],
 			"savingThrowForced": [
 				"wisdom"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -999,6 +1013,7 @@
 			"savingThrowForcedSpell": [
 				"wisdom"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1081,6 +1096,7 @@
 			"savingThrowForced": [
 				"constitution"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1178,6 +1194,7 @@
 			"savingThrowForced": [
 				"charisma"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1298,7 +1315,7 @@
 				{
 					"name": "Prowl (Panther or Hybrid Form Only)",
 					"entries": [
-						"Chakuna moves up to her {@variantrule Speed|XPHB} without provoking Opportunity Attacks. At the end of this movement, she can take the Hide action."
+						"Chakuna moves up to her {@variantrule Speed|XPHB} without provoking {@action Opportunity Attack|XPHB|Opportunity Attacks}. At the end of this movement, she can take the {@action Hide|XPHB} action."
 					]
 				},
 				{
@@ -1318,7 +1335,7 @@
 				{
 					"name": "Strike from Shadows",
 					"entries": [
-						"Chakuna makes one Barbed Spear attack. If Chakuna has the Hide action's {@condition Invisible|XPHB} condition, this attack doesn't end that condition. Chakuna can't take this action again until the start of her next turn."
+						"Chakuna makes one Barbed Spear attack. If Chakuna has the {@action Hide|XPHB} action's {@condition Invisible|XPHB} condition, this attack doesn't end that condition. Chakuna can't take this action again until the start of her next turn."
 					]
 				},
 				{
@@ -1359,6 +1376,7 @@
 			"savingThrowForced": [
 				"constitution"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1584,6 +1602,7 @@
 				"intelligence",
 				"wisdom"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1591,6 +1610,9 @@
 			"name": "Death's Head",
 			"source": "RHW",
 			"page": 242,
+			"referenceSources": [
+				"SoS"
+			],
 			"size": [
 				"T"
 			],
@@ -1636,7 +1658,7 @@
 				{
 					"name": "Flyby",
 					"entries": [
-						"The death's head doesn't provoke an Opportunity Attack when it flies out of an enemy's reach."
+						"The death's head doesn't provoke an {@action Opportunity Attack|XPHB} when it flies out of an enemy's reach."
 					]
 				}
 			],
@@ -1663,6 +1685,7 @@
 			"miscTags": [
 				"MA"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1670,6 +1693,9 @@
 			"name": "Death's Head Tree",
 			"source": "RHW",
 			"page": 243,
+			"referenceSources": [
+				"SoS"
+			],
 			"size": [
 				"H"
 			],
@@ -1777,6 +1803,7 @@
 			"savingThrowForced": [
 				"dexterity"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1909,6 +1936,7 @@
 			"savingThrowForced": [
 				"constitution"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2032,7 +2060,7 @@
 				{
 					"name": "Worthy Wielder",
 					"entries": [
-						"{@actSave cha} {@dc 17}, one willing Humanoid within 5 feet. {@actSaveFail} 36 ({@damage 8d8}) Force damage. If this damage reduces the target to 0 {@variantrule Hit Points|XPHB}, Ebonbane devourers its soul. A creature whose soul has been devoured by Ebonbane can be restored to life only by a {@spell Wish|XPHB} spell. {@actSaveSuccess} The target attunes to Ebonbane and can wield the sword."
+						"{@actSave cha} {@dc 17}, one willing Humanoid within 5 feet. {@actSaveFail} 36 ({@damage 8d8}) Force damage. If this damage reduces the target to 0 {@variantrule Hit Points|XPHB}, Ebonbane devours its soul. A creature whose soul has been devoured by Ebonbane can be restored to life only by a {@spell Wish|XPHB} spell. {@actSaveSuccess} The target attunes to Ebonbane and can wield the sword."
 					]
 				}
 			],
@@ -2093,6 +2121,7 @@
 				"charisma",
 				"constitution"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2242,6 +2271,7 @@
 			],
 			"conditionInflict": [
 				"charmed",
+				"exhaustion",
 				"stunned"
 			],
 			"conditionInflictSpell": [
@@ -2255,6 +2285,7 @@
 				"strength",
 				"wisdom"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2392,7 +2423,7 @@
 				{
 					"name": "Inspiring Rally",
 					"entries": [
-						"Ez chooses up to six allies within 60 feet. Each target that can hear her can take a {@variantrule Reaction|XPHB} to move up to its {@variantrule Speed|XPHB} without provoking Opportunity Attacks."
+						"Ez chooses up to six allies within 60 feet. Each target that can hear her can take a {@variantrule Reaction|XPHB} to move up to its {@variantrule Speed|XPHB} without provoking {@action Opportunity Attack|XPHB|Opportunity Attacks}."
 					]
 				}
 			],
@@ -2426,6 +2457,7 @@
 				"charisma",
 				"dexterity"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2562,6 +2594,7 @@
 				"constitution",
 				"wisdom"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2720,11 +2753,15 @@
 			"savingThrowForcedSpell": [
 				"charisma"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
 		{
 			"name": "Greater Star Spawn Emissary",
+			"group": [
+				"Star Spawn Emissary"
+			],
 			"source": "RHW",
 			"page": 268,
 			"size": [
@@ -2886,6 +2923,7 @@
 				"charisma",
 				"dexterity"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2972,6 +3010,7 @@
 			"miscTags": [
 				"MA"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -3080,11 +3119,13 @@
 			],
 			"conditionInflict": [
 				"grappled",
+				"prone",
 				"restrained"
 			],
 			"savingThrowForced": [
 				"dexterity"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -3189,7 +3230,7 @@
 				{
 					"name": "Regeneration",
 					"entries": [
-						"Harkon gains 10 {@variantrule Hit Points|XPHB} at the start of each of its turns if he has at least 1 {@variantrule Hit Points|XPHB|Hit Point}. If Harkon takes Radiant damage, this trait doesn't function at the start of its next turn."
+						"Harkon gains 10 {@variantrule Hit Points|XPHB} at the start of each of his turns if he has at least 1 {@variantrule Hit Points|XPHB|Hit Point}. If Harkon takes Radiant damage, this trait doesn't function at the start of his next turn."
 					]
 				}
 			],
@@ -3279,10 +3320,15 @@
 				"charmed",
 				"prone"
 			],
+			"conditionInflictLegendary": [
+				"charmed",
+				"unconscious"
+			],
 			"savingThrowForced": [
 				"constitution",
 				"wisdom"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -3338,7 +3384,13 @@
 				"psychic"
 			],
 			"conditionImmune": [
-				"charmed"
+				{
+					"conditionImmune": [
+						"charmed"
+					],
+					"note": "(with {@spell Mind Blank|XPHB})",
+					"cond": true
+				}
 			],
 			"languages": [
 				"Abyssal",
@@ -3535,6 +3587,9 @@
 			"conditionInflict": [
 				"blinded"
 			],
+			"conditionInflictLegendary": [
+				"restrained"
+			],
 			"conditionInflictSpell": [
 				"invisible"
 			],
@@ -3548,11 +3603,15 @@
 				"dexterity",
 				"wisdom"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
 		{
 			"name": "Inquisitor of the Mind Fire",
+			"group": [
+				"Ulmist Inquisitor"
+			],
 			"source": "RHW",
 			"page": 272,
 			"size": [
@@ -3616,7 +3675,7 @@
 						"{@spell Detect Magic|XPHB}",
 						"{@spell Detect Thoughts|XPHB}",
 						"{@spell Dispel Magic|XPHB}",
-						"{@spell Mage Hand|XPHB} (the hand is Invisible)",
+						"{@spell Mage Hand|XPHB} (the hand is {@condition Invisible|XPHB})",
 						"{@spell Sending|XPHB}"
 					],
 					"daily": {
@@ -3645,7 +3704,7 @@
 				{
 					"name": "Inquisitor's Command {@recharge 5}",
 					"entries": [
-						"{@actSave wis} {@dc 16}, each creature of the inquisitor's choice that it can see within 60 feet. {@actSaveFail} The target has the {@condition Charmed|XPHB} condition until the start of the inquisitor's next turn. On the {@condition Charmed|XPHB} target's turn, the inquisitor can telepathically control the target's move and make the target take the Attack action (the inquisitor chooses the target), the Dash action, or no action."
+						"{@actSave wis} {@dc 16}, each creature of the inquisitor's choice that it can see within 60 feet. {@actSaveFail} The target has the {@condition Charmed|XPHB} condition until the start of the inquisitor's next turn. On the {@condition Charmed|XPHB} target's turn, the inquisitor can telepathically control the target's move and make the target take the {@action Attack|XPHB} action (the inquisitor chooses the target), the {@action Dash|XPHB} action, or no action."
 					]
 				},
 				{
@@ -3699,11 +3758,15 @@
 			"savingThrowForcedSpell": [
 				"wisdom"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
 		{
 			"name": "Inquisitor of the Sword",
+			"group": [
+				"Ulmist Inquisitor"
+			],
 			"source": "RHW",
 			"page": 273,
 			"size": [
@@ -3768,7 +3831,7 @@
 						"{@spell Detect Magic|XPHB}",
 						"{@spell Detect Thoughts|XPHB}",
 						"{@spell Dispel Magic|XPHB}",
-						"{@spell Mage Hand|XPHB} (the hand is Invisible)",
+						"{@spell Mage Hand|XPHB} (the hand is {@condition Invisible|XPHB})",
 						"{@spell Sending|XPHB}"
 					],
 					"daily": {
@@ -3840,11 +3903,15 @@
 			"savingThrowForcedSpell": [
 				"wisdom"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
 		{
 			"name": "Inquisitor of the Tome",
+			"group": [
+				"Ulmist Inquisitor"
+			],
 			"source": "RHW",
 			"page": 273,
 			"size": [
@@ -3909,7 +3976,7 @@
 						"{@spell Detect Magic|XPHB}",
 						"{@spell Dispel Magic|XPHB}",
 						"{@spell Mage Armor|XPHB} (included in AC)",
-						"{@spell Mage Hand|XPHB} (the hand is Invisible)",
+						"{@spell Mage Hand|XPHB} (the hand is {@condition Invisible|XPHB})",
 						"{@spell Sending|XPHB}"
 					],
 					"daily": {
@@ -3984,6 +4051,7 @@
 				"dexterity",
 				"strength"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -4117,6 +4185,7 @@
 			"savingThrowForced": [
 				"dexterity"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -4292,6 +4361,7 @@
 			"savingThrowForcedSpell": [
 				"wisdom"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -4372,7 +4442,7 @@
 									"type": "item",
 									"name": "Susceptible to Holy Symbols",
 									"entries": [
-										"While the jiangshi is wearing or touching a Holy Symbol, it loses its {@variantrule Immunity|XPHB} to the {@condition Frightened|XPHB} condition and automatically fails saving throws to avoid or end the {@condition Frightened|XPHB} condition."
+										"While the jiangshi is wearing or touching a {@item Holy Symbol|XPHB}, it loses its {@variantrule Immunity|XPHB} to the {@condition Frightened|XPHB} condition and automatically fails saving throws to avoid or end the {@condition Frightened|XPHB} condition."
 									]
 								}
 							]
@@ -4404,7 +4474,7 @@
 				{
 					"name": "Hungering Stride (Requires Consume Energy)",
 					"entries": [
-						"The jiangshi takes the Dash action."
+						"The jiangshi takes the {@action Dash|XPHB} action."
 					]
 				},
 				{
@@ -4439,6 +4509,7 @@
 			"savingThrowForced": [
 				"constitution"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -4539,11 +4610,15 @@
 				"RA",
 				"RNG"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
 		{
 			"name": "Lesser Star Spawn Emissary",
+			"group": [
+				"Star Spawn Emissary"
+			],
 			"source": "RHW",
 			"page": 267,
 			"size": [
@@ -4706,6 +4781,7 @@
 			"savingThrowForced": [
 				"constitution"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -4900,6 +4976,7 @@
 				"charisma",
 				"wisdom"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -5021,7 +5098,7 @@
 				{
 					"name": "Mauling Charge",
 					"entries": [
-						"The loup garou moves up to half its {@variantrule Speed|XPHB} without provoking Opportunity Attacks and makes one Longsword or Rend attack."
+						"The loup garou moves up to half its {@variantrule Speed|XPHB} without provoking {@action Opportunity Attack|XPHB|Opportunity Attacks} and makes one Longsword or Rend attack."
 					]
 				},
 				{
@@ -5068,6 +5145,7 @@
 			"savingThrowForced": [
 				"constitution"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -5249,6 +5327,7 @@
 			"savingThrowForcedSpell": [
 				"wisdom"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -5418,6 +5497,7 @@
 			"savingThrowForcedSpell": [
 				"wisdom"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -5566,6 +5646,7 @@
 			"savingThrowForcedSpell": [
 				"wisdom"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -5706,6 +5787,10 @@
 				"MA",
 				"RA"
 			],
+			"conditionInflict": [
+				"blinded",
+				"deafened"
+			],
 			"conditionInflictSpell": [
 				"paralyzed"
 			],
@@ -5715,6 +5800,7 @@
 			"savingThrowForcedSpell": [
 				"wisdom"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -5872,6 +5958,7 @@
 				"dexterity",
 				"strength"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -5943,7 +6030,7 @@
 						"{@spell Charm Person|XPHB}",
 						"{@spell Dancing Lights|XPHB}",
 						"{@spell Disguise Self|XPHB} (24-hour duration)",
-						"{@spell Invisibility|XPHB} (self only, and Lorinda leaves no tracks while Invisible)",
+						"{@spell Invisibility|XPHB} (self only, and Lorinda leaves no tracks while {@condition Invisible|XPHB})",
 						"{@spell Minor Illusion|XPHB}",
 						"{@spell Ray of Sickness|XPHB} (level 3 version)"
 					],
@@ -6085,6 +6172,7 @@
 				"constitution",
 				"wisdom"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -6231,6 +6319,7 @@
 			"savingThrowForced": [
 				"constitution"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -6292,7 +6381,7 @@
 				{
 					"name": "Flyby",
 					"entries": [
-						"The nightgaunt doesn't provoke an Opportunity Attack when it flies out of an enemy's reach."
+						"The nightgaunt doesn't provoke an {@action Opportunity Attack|XPHB} when it flies out of an enemy's reach."
 					]
 				}
 			],
@@ -6368,6 +6457,7 @@
 			"savingThrowForced": [
 				"wisdom"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -6426,7 +6516,7 @@
 				{
 					"name": "Flyby",
 					"entries": [
-						"The death's head doesn't provoke an Opportunity Attack when it flies out of an enemy's reach."
+						"The death's head doesn't provoke an {@action Opportunity Attack|XPHB} when it flies out of an enemy's reach."
 					]
 				}
 			],
@@ -6463,6 +6553,7 @@
 			"savingThrowForced": [
 				"constitution"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -6470,6 +6561,9 @@
 			"name": "Priest of Osybus",
 			"source": "RHW",
 			"page": 261,
+			"referenceSources": [
+				"SoS"
+			],
 			"size": [
 				"S",
 				"M"
@@ -6615,6 +6709,7 @@
 				"strength",
 				"wisdom"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -6702,7 +6797,7 @@
 					"type": "spellcasting",
 					"headerEntries": [
 						"Ramya casts {@spell Disguise Self|XPHB} using the same spellcasting ability as Spellcasting. The spell lasts until Ramya drops to 80 {@variantrule Hit Points|XPHB} or fewer or uses her Vengeful Fire action. Intelligence ({@skill Investigation|XPHB}) checks to discern her true appearance are made with {@variantrule Disadvantage|XPHB}.",
-						"When the disguise ends, each creature in a 30-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from Ramya is subjected to the following effect. Wisdom {@variantrule Saving Throw|XPHB}: {@dc 17} (the target succeeds automatically if it is a Construct or an Undead). Failure: The target has the Frightened condition for 1 minute. While Frightened, the target has {@variantrule Disadvantage|XPHB} on saving throws."
+						"When the disguise ends, each creature in a 30-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from Ramya is subjected to the following effect. Wisdom {@variantrule Saving Throw|XPHB}: {@dc 17} (the target succeeds automatically if it is a Construct or an Undead). Failure: The target has the {@condition Frightened|XPHB} condition for 1 minute. While {@condition Frightened|XPHB}, the target has {@variantrule Disadvantage|XPHB} on saving throws."
 					],
 					"will": [
 						"{@spell Disguise Self|XPHB}"
@@ -6837,12 +6932,14 @@
 			"savingThrowForcedSpell": [
 				"wisdom"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
 		{
 			"name": "Reanimated Companion",
 			"source": "RHW",
+			"page": 15,
 			"summonedByClass": "Artificer|EFA",
 			"size": [
 				"M"
@@ -6892,13 +6989,13 @@
 				{
 					"name": "Death Burst",
 					"entries": [
-						"The companion explodes when it dies. {@actSave dex} DC equals {@dcYourSpellSave}, each creature in a 10-foot Emanation originating from the companion. {@actSaveFail} {@damage 2d4} Necrotic damage. {@actSaveSuccess} Half damage."
+						"The companion explodes when it dies. {@actSave dex} DC equals {@dcYourSpellSave}, each creature in a 10-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the companion. {@actSaveFail} {@damage 2d4} Necrotic damage. {@actSaveSuccess} Half damage."
 					]
 				},
 				{
 					"name": "Lightning Absorption",
 					"entries": [
-						"Whenever the companion is subjected to Lightning damage, it regains a number of Hit Points equal to the Lightning damage dealt."
+						"Whenever the companion is subjected to Lightning damage, it regains a number of {@variantrule Hit Points|XPHB} equal to the Lightning damage dealt."
 					]
 				}
 			],
@@ -6906,7 +7003,7 @@
 				{
 					"name": "Dreadful Swipe",
 					"entries": [
-						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}{@dice 1d4} plus your Intelligence modifier Necrotic damage, and the target can't take Opportunity Attacks until the start of its next turn."
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}{@damage 1d4} plus your Intelligence modifier Necrotic damage, and the target can't take {@action Opportunity Attack|XPHB|Opportunity Attacks} until the start of its next turn."
 					]
 				}
 			],
@@ -6925,10 +7022,14 @@
 			],
 			"savingThrowForced": [
 				"dexterity"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Relentless Juggernaut",
+			"group": [
+				"Relentless Killer"
+			],
 			"source": "RHW",
 			"page": 263,
 			"size": [
@@ -7065,11 +7166,15 @@
 				"dexterity",
 				"strength"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
 		{
 			"name": "Relentless Nightmare",
+			"group": [
+				"Relentless Killer"
+			],
 			"source": "RHW",
 			"page": 263,
 			"size": [
@@ -7197,16 +7302,21 @@
 				"THW"
 			],
 			"conditionInflict": [
+				"exhaustion",
 				"unconscious"
 			],
 			"savingThrowForced": [
 				"wisdom"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
 		{
 			"name": "Relentless Slasher",
+			"group": [
+				"Relentless Killer"
+			],
 			"source": "RHW",
 			"page": 262,
 			"size": [
@@ -7317,6 +7427,7 @@
 			"savingThrowForced": [
 				"dexterity"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -7447,6 +7558,7 @@
 				"charisma",
 				"constitution"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -7671,12 +7783,16 @@
 				"HPR",
 				"MA"
 			],
+			"conditionInflict": [
+				"invisible"
+			],
 			"savingThrowForced": [
 				"constitution"
 			],
 			"savingThrowForcedSpell": [
 				"dexterity"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -7815,11 +7931,14 @@
 				"RCH"
 			],
 			"conditionInflict": [
-				"grappled"
+				"deafened",
+				"grappled",
+				"stunned"
 			],
 			"savingThrowForced": [
 				"strength"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -7901,7 +8020,7 @@
 				{
 					"name": "Shield Bash",
 					"entries": [
-						"{@actSave str} {@dc 13}, one creature within 5 feet that the skeleton can see. {@actSaveFail} 10 ({@damage 2d6 + 3}) Bludgeoning damage. If the target is a Medium or smaller creature, it has the {@condition Prone|XPHB} condition"
+						"{@actSave str} {@dc 13}, one creature within 5 feet that the skeleton can see. {@actSaveFail} 10 ({@damage 2d6 + 3}) Bludgeoning damage. If the target is a Medium or smaller creature, it has the {@condition Prone|XPHB} condition."
 					]
 				}
 			],
@@ -7939,6 +8058,7 @@
 			"savingThrowForced": [
 				"strength"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -8043,7 +8163,7 @@
 					"name": "Charm",
 					"type": "spellcasting",
 					"headerEntries": [
-						"Strahd casts {@spell Charm Person|XPHB}, requiring no spell components and using the same spellcasting ability as Spellcasting. When the spell is cast this way, its duration is 24 hours, and the Charmed target is a willing recipient of Strahd's Bite, the damage of which doesn't end the spell. When the spell ends, the target is unaware it was Charmed by Strahd."
+						"Strahd casts {@spell Charm Person|XPHB}, requiring no spell components and using the same spellcasting ability as Spellcasting. When the spell is cast this way, its duration is 24 hours, and the {@condition Charmed|XPHB} target is a willing recipient of Strahd's Bite, the damage of which doesn't end the spell. When the spell ends, the target is unaware it was {@condition Charmed|XPHB} by Strahd."
 					],
 					"will": [
 						"{@spell Charm Person|XPHB}"
@@ -8232,6 +8352,7 @@
 				"strength",
 				"wisdom"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -8239,6 +8360,9 @@
 			"name": "Strigoi",
 			"source": "RHW",
 			"page": 270,
+			"referenceSources": [
+				"SoS"
+			],
 			"size": [
 				"M"
 			],
@@ -8357,6 +8481,7 @@
 			"savingThrowForced": [
 				"constitution"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -8459,6 +8584,7 @@
 			"miscTags": [
 				"MA"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -8466,6 +8592,9 @@
 			"name": "Swarm of Infesting Insects",
 			"source": "RHW",
 			"page": 271,
+			"referenceSources": [
+				"SoS"
+			],
 			"size": [
 				"M"
 			],
@@ -8549,11 +8678,13 @@
 			],
 			"conditionInflict": [
 				"blinded",
+				"exhaustion",
 				"poisoned"
 			],
 			"savingThrowForced": [
 				"constitution"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -8650,13 +8781,20 @@
 			"conditionInflict": [
 				"poisoned"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
 		{
 			"name": "Swarm of Zombie Limbs",
+			"group": [
+				"Zombie"
+			],
 			"source": "RHW",
 			"page": 282,
+			"referenceSources": [
+				"SoS"
+			],
 			"size": [
 				"M"
 			],
@@ -8738,6 +8876,7 @@
 			"conditionInflict": [
 				"poisoned"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -8831,7 +8970,7 @@
 				{
 					"name": "Warp Mind",
 					"entries": [
-						"{@actTrigger} A creature the horror can see within 120 feet of itself takes the Study action or makes a Constitution saving throw to maintain {@status Concentration|XPHB}. {@actResponse d}{@actSave wis} {@dc 15}, the triggering creature. {@actSaveFail} 7 ({@damage 2d6}) Psychic damage, and the target has the {@condition Stunned|XPHB} condition until the end of its next turn."
+						"{@actTrigger} A creature the horror can see within 120 feet of itself takes the {@action Study|XPHB} action or makes a Constitution saving throw to maintain {@status Concentration|XPHB}. {@actResponse d}{@actSave wis} {@dc 15}, the triggering creature. {@actSaveFail} 7 ({@damage 2d6}) Psychic damage, and the target has the {@condition Stunned|XPHB} condition until the end of its next turn."
 					]
 				}
 			],
@@ -8862,6 +9001,7 @@
 			"savingThrowForced": [
 				"wisdom"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -8869,6 +9009,9 @@
 			"name": "Vampire Mind Flayer",
 			"source": "RHW",
 			"page": 276,
+			"referenceSources": [
+				"SoS"
+			],
 			"size": [
 				"M"
 			],
@@ -9003,6 +9146,7 @@
 				"MA"
 			],
 			"conditionInflict": [
+				"exhaustion",
 				"grappled",
 				"incapacitated"
 			],
@@ -9010,6 +9154,7 @@
 				"intelligence",
 				"wisdom"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -9131,7 +9276,7 @@
 				{
 					"name": "Bloodthirsty Slash",
 					"entries": [
-						"{@actTrigger} A {@status Bloodied|XPHB} creature the nosferatu can see within 40 feet takes damage. {@actResponse} The nosferatu moves up to its {@variantrule Speed|XPHB} without provoking Opportunity Attacks and makes a Claw attack against the triggering creature."
+						"{@actTrigger} A {@status Bloodied|XPHB} creature the nosferatu can see within 40 feet takes damage. {@actResponse} The nosferatu moves up to its {@variantrule Speed|XPHB} without provoking {@action Opportunity Attack|XPHB|Opportunity Attacks} and makes a Claw attack against the triggering creature."
 					]
 				}
 			],
@@ -9169,6 +9314,7 @@
 			"savingThrowForced": [
 				"constitution"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -9384,6 +9530,7 @@
 				"constitution",
 				"dexterity"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -9558,6 +9705,7 @@
 				"dexterity",
 				"wisdom"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -9682,6 +9830,7 @@
 				"MA",
 				"RA"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -9689,6 +9838,9 @@
 			"name": "Wereraven",
 			"source": "RHW",
 			"page": 280,
+			"referenceSources": [
+				"SoS"
+			],
 			"size": [
 				"S",
 				"M"
@@ -9807,6 +9959,7 @@
 			"savingThrowForced": [
 				"constitution"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -9987,10 +10140,14 @@
 			"conditionInflict": [
 				"charmed"
 			],
+			"conditionInflictLegendary": [
+				"deafened"
+			],
 			"savingThrowForced": [
 				"charisma",
 				"dexterity"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -10159,13 +10316,20 @@
 			"savingThrowForcedSpell": [
 				"wisdom"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
 		{
 			"name": "Zombie Clot",
+			"group": [
+				"Zombie"
+			],
 			"source": "RHW",
 			"page": 283,
+			"referenceSources": [
+				"SoS"
+			],
 			"size": [
 				"H"
 			],
@@ -10284,11 +10448,15 @@
 				"constitution",
 				"strength"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
 		{
 			"name": "Zombie Plague Spreader",
+			"group": [
+				"Zombie"
+			],
 			"source": "RHW",
 			"page": 283,
 			"size": [
@@ -10401,6 +10569,7 @@
 			"savingThrowForced": [
 				"constitution"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		}

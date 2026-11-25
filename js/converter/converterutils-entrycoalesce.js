@@ -9,8 +9,9 @@ export class EntryCoalesceEntryLists {
 	 * @param stats
 	 * @param prop
 	 * @param {"classic" | "one" | null} styleHint
+	 * @param {?function} isPossibleHangingListItem Optional additional filtering function
 	 */
-	static mutCoalesce (stats, prop, {styleHint = null} = {}) {
+	static mutCoalesce (stats, prop, {styleHint = null, isPossibleHangingListItem = null} = {}) {
 		if (!stats[prop]) return;
 
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
@@ -18,7 +19,7 @@ export class EntryCoalesceEntryLists {
 		this._WALKER ||= MiscUtil.getWalker({keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST});
 
 		this._mutCoalesce_listsBasic({stats, prop, styleHint});
-		this._mutCoalesce_listsHanging({stats, prop, styleHint});
+		this._mutCoalesce_listsHanging({stats, prop, styleHint, isPossibleHangingListItem});
 		this._mutCoalesce_listsHangingAttributes({stats, prop, styleHint});
 
 		this._mutCoalesce_separateUsageNote({stats, prop, styleHint});
@@ -70,22 +71,16 @@ export class EntryCoalesceEntryLists {
 		);
 	}
 
-	static _mutCoalesce_listsHanging ({stats, prop, styleHint}) {
+	static _mutCoalesce_listsHanging ({stats, prop, styleHint, isPossibleHangingListItem}) {
 		if (styleHint === SITE_STYLE__CLASSIC) return;
 
-		let tmpList = null;
-
 		const getNewList = () => ({type: "list", style: "list-hang-notitle", items: []});
-		const checkFinalizeList = ({out}) => {
-			if (!tmpList?.items?.length) return;
-			out.push(tmpList);
-			tmpList = null;
-		};
+		const isListItemEntry = ent => ent?.type === "entries" && (!isPossibleHangingListItem || isPossibleHangingListItem(ent));
 
 		const isIntroString = ({str, entNxt}) => {
 			return str.trim().endsWith(":")
 				&& /\b(choose|choice|one of the following|following benefits|options)\b/i.exec(str)
-				&& entNxt?.type === "entries";
+				&& isListItemEntry(entNxt);
 		};
 
 		// Walk for "string into entries"
@@ -96,13 +91,19 @@ export class EntryCoalesceEntryLists {
 					if (objProp !== "entries") return arr;
 
 					const out = [];
+					let tmpList = null;
+
+					const doCheckFinalizeList = () => {
+						if (tmpList?.items?.length) out.push(tmpList);
+						tmpList = null;
+					};
 
 					for (let i = 0; i < arr.length; ++i) {
 						const ent = arr[i];
 						const entNxt = arr[i + 1];
 
 						if (typeof ent === "string") {
-							checkFinalizeList({out});
+							doCheckFinalizeList();
 							out.push(ent);
 
 							if (isIntroString({str: ent, entNxt})) {
@@ -111,6 +112,8 @@ export class EntryCoalesceEntryLists {
 
 							continue;
 						}
+
+						if (!isListItemEntry(ent)) doCheckFinalizeList();
 
 						if (!tmpList) {
 							out.push(ent);
@@ -122,7 +125,7 @@ export class EntryCoalesceEntryLists {
 						);
 					}
 
-					checkFinalizeList({out});
+					doCheckFinalizeList();
 
 					return out;
 				},
@@ -139,14 +142,20 @@ export class EntryCoalesceEntryLists {
 
 					const out = [];
 					let entryParent = null;
+					let tmpList = null;
+
+					const doCheckFinalizeList = () => {
+						if (tmpList?.items?.length) (entryParent?.entries || out).push(tmpList);
+						tmpList = null;
+						entryParent = null;
+					};
 
 					for (let i = 0; i < arr.length; ++i) {
 						const ent = arr[i];
 						const entNxt = arr[i + 1];
 
-						if (typeof ent === "string") {
-							checkFinalizeList({out: entryParent?.entries || out});
-							entryParent = null;
+						if (!isListItemEntry(ent)) {
+							doCheckFinalizeList();
 							out.push(ent);
 							continue;
 						}
@@ -154,7 +163,7 @@ export class EntryCoalesceEntryLists {
 						const trailingEnt = ent?.entries?.at(-1);
 
 						if (typeof trailingEnt === "string" && isIntroString({str: trailingEnt, entNxt})) {
-							checkFinalizeList({out: entryParent?.entries || out});
+							doCheckFinalizeList();
 							entryParent = ent;
 							out.push(ent);
 							tmpList = getNewList();
@@ -172,7 +181,7 @@ export class EntryCoalesceEntryLists {
 						);
 					}
 
-					checkFinalizeList({out: entryParent?.entries || out});
+					doCheckFinalizeList();
 
 					return out;
 				},

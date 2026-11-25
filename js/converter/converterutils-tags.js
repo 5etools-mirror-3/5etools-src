@@ -53,6 +53,23 @@ export class TaggerUtils {
 	/* -------------------------------------------- */
 
 	/**
+	 * @param {Array<string>} names
+	 * @param {?string} flags
+	 * @param {boolean} isExact
+	 */
+	static getNameRegex (names, {flags = null, isExact = false} = {}) {
+		if (!names?.length) throw new Error("At least one name is required!");
+
+		const pattern = [...new Set(names)]
+			.sort((a, b) => b.length - a.length || SortUtil.ascSort(a, b))
+			.map(it => it.escapeRegexp())
+			.join("|");
+		return new RegExp(isExact ? `^(?<name>${pattern})$` : `(?<!\\w)(?<name>${pattern})(?!\\w)`, flags || "");
+	}
+
+	/* -------------------------------------------- */
+
+	/**
 	 *
 	 * @param targetTags e.g. `["@condition"]`
 	 * @param ptrStack
@@ -66,6 +83,7 @@ export class TaggerUtils {
 	static walkerStringHandler (targetTags, ptrStack, depth, tagCount, str, meta) {
 		const tagSplit = Renderer.splitByTags(str);
 		const len = tagSplit.length;
+		let ixStart = 0;
 		for (let i = 0; i < len; ++i) {
 			const s = tagSplit[i];
 			if (!s) continue;
@@ -91,21 +109,24 @@ export class TaggerUtils {
 					ptrStack._ += s;
 				} else {
 					let sMod = s;
-					sMod = meta.fnTag(sMod);
+					sMod = meta.fnTag(sMod, {str, ixStart});
 					ptrStack._ += sMod;
 				}
 			}
+			ixStart += s.length;
 		}
 	}
 
 	static walkerStringHandlerStrictCapsWords (targetTags, ptrStack, str, meta) {
 		const tagSplit = Renderer.splitByTags(str);
 
-		const reTokenStr = /([ .!?:;,()])/.source;
-		const reTokenSplit = new RegExp(reTokenStr, "g");
-		const reTokenCheck = new RegExp(reTokenStr);
+		const reTokenStr = /[ .!?:;,()]/.source;
+		const reTokenSplit = new RegExp(`(\\[[^\\[\\]]+]|${reTokenStr})`, "g");
+		const reTokenCheck = new RegExp(`^${reTokenStr}$`);
 
-		const reCapsFirst = /^[A-Z]+[a-z']*$/;
+		// Include square bracket surrounds for e.g. "Cone [Area of Effect]"
+		const reCapsFirst = /^[A-Z]+[-a-z']*$/;
+		const reCapsFirstBracketed = /^\[[A-Z][-A-Za-z' ]*]$/;
 
 		const setLower = new Set(StrUtil.TITLE_LOWER_WORDS);
 		const setUpper = new Set([...StrUtil.TITLE_UPPER_WORDS, ...StrUtil.TITLE_UPPER_WORDS_PLURAL].map(it => it.toUpperCase()));
@@ -114,10 +135,19 @@ export class TaggerUtils {
 			return reTokenCheck.test(tk) || setLower.has(tk);
 		};
 
+		let lenProcessed = 0;
+		const ixsSentenceStart = new Set([
+			0,
+			...str
+				.matchAll(/[.!?]\s*/g)
+				.map(it => it[0].length + it.index),
+		]);
+
 		tagSplit
 			.forEach(s => {
 				if (!s || s.startsWith("{@")) {
 					ptrStack._ += s;
+					lenProcessed += s.length;
 					return;
 				}
 
@@ -131,8 +161,11 @@ export class TaggerUtils {
 					}
 					trailing.reverse();
 
-					const str = stack.join("");
-					this.walkerStringHandler(targetTags, ptrStack, 0, 0, str, meta);
+					const strCaps = stack.join("");
+					this.walkerStringHandler(targetTags, ptrStack, 0, 0, strCaps, {
+						...meta,
+						fnTag: strMod => meta.fnTag(strMod, {str, ixStart}),
+					});
 
 					ptrStack._ += trailing.join("");
 
@@ -140,12 +173,16 @@ export class TaggerUtils {
 				};
 
 				let stack = [];
-				const tokens = s.split(reTokenSplit);
+				let ixStart = null;
+				const tokens = s.split(reTokenSplit).filter(Boolean);
 				tokens
 					.forEach(tk => {
+						if (!stack.length) ixStart = lenProcessed;
+
 						if (tk === " ") {
 							if (stack.length) stack.push(tk);
 							else ptrStack._ += tk;
+							lenProcessed += tk.length;
 							return;
 						}
 
@@ -153,27 +190,38 @@ export class TaggerUtils {
 						if (reTokenCheck.test(tk)) {
 							flush();
 							ptrStack._ += tk;
+							lenProcessed += tk.length;
 							return;
 						}
 
-						if (setLower.has(tk)) {
+						if (
+							setLower.has(tk)
+							|| (
+								ixsSentenceStart.has(lenProcessed)
+								&& setLower.has(tk.toLowerCase())
+							)
+						) {
 							if (stack.length) stack.push(tk);
 							else ptrStack._ += tk;
+							lenProcessed += tk.length;
 							return;
 						}
 
 						if (setUpper.has(tk)) {
 							stack.push(tk);
+							lenProcessed += tk.length;
 							return;
 						}
 
-						if (reCapsFirst.test(tk)) {
+						if (reCapsFirst.test(tk) || reCapsFirstBracketed.test(tk)) {
 							stack.push(tk);
+							lenProcessed += tk.length;
 							return;
 						}
 
 						flush();
 						ptrStack._ += tk;
+						lenProcessed += tk.length;
 					});
 
 				flush();
@@ -243,7 +291,7 @@ export class TagCondition extends ConverterTaggerInitializable {
 			...conditionsPhb.map(it => it.name.toLowerCase().escapeRegexp()),
 			...(conditionsBrew || []).map(it => it.name.toLowerCase().escapeRegexp()),
 		];
-		this._conditionMatcher = new RegExp(`\\b(${conditions.join("|")})\\b`, "g");
+		this._conditionMatcher = new RegExp(`\\b(?<name>${conditions.join("|")})\\b`, "g");
 		this._conditionSourceMapBrew = conditionsBrew.mergeMap(({name, source}) => ({[name.toLowerCase()]: source}));
 	}
 
@@ -258,12 +306,25 @@ export class TagCondition extends ConverterTaggerInitializable {
 
 	/* -------------------------------------------- */
 
+	static _isContextPlainText ({name, str, ixStart}) {
+		const ptFollows = str.slice(ixStart + name.length);
+		switch (name.toLowerCase()) {
+			case "prone": return /^ to\b/i.test(ptFollows);
+			case "petrified": return /^ (?:woods?|of)\b/i.test(ptFollows);
+			case "invisible": return /^ stalkers?\b/i.test(ptFollows);
+			case "poisoned": return /^ (?:foods?|drinks?|weapons?|ammunition|objects?)\b/i.test(ptFollows);
+			default: return false;
+		}
+	}
+
 	static _fnTag ({strMod, styleHint, blocklistNames}) {
 		return strMod
 			.replace(this._conditionMatcher, (...m) => {
-				const name = m[1];
+				const {name} = m.at(-1);
 
 				if (blocklistNames?.isBlocked(name)) return m[0];
+
+				if (this._isContextPlainText({name, str: m.at(-2), ixStart: m.at(-3)})) return m[0];
 
 				const source = this._conditionSourceMapBrew[name.toLowerCase()];
 				if (!source) return `{@condition ${name}}`;
@@ -291,13 +352,14 @@ export class TagCondition extends ConverterTaggerInitializable {
 		;
 	}
 
-	static _fnTagStrict ({strMod, blocklistNames}) {
+	static _fnTagStrict ({strMod, blocklistNames, context}) {
 		if (blocklistNames?.isBlocked(strMod)) return strMod;
 
 		return strMod
 			.replace(this._conditionMatcherCore, (...m) => {
 				const {name} = m.at(-1);
 				if (blocklistNames?.isBlocked(name)) return name;
+				if (this._isContextPlainText({name, str: context.str, ixStart: context.ixStart + m.at(-3)})) return m[0];
 				return `{@condition ${name}|${Parser.SRC_XPHB}}`;
 			})
 			.replace(this._statusMatcherCore, (...m) => {
@@ -324,12 +386,7 @@ export class TagCondition extends ConverterTaggerInitializable {
 			},
 		);
 
-		const out = ptrStack._
-			.replace(/{@condition (prone)} (to)\b/gi, "$1 $2")
-			.replace(/{@condition (petrified)} (wood)\b/gi, "$1 $2")
-			.replace(/{@condition (invisible)} (stalker)/gi, "$1 $2")
-			.replace(/{@condition (poisoned)} (food|drink|weapon|ammunition|object)/gi, "$1 $2")
-		;
+		const out = ptrStack._;
 
 		// Collect inflicted conditions for tagging
 		if (inflictedSet) this._collectInflictedConditions(out, {inflictedSet, inflictedAllowlist});
@@ -345,7 +402,7 @@ export class TagCondition extends ConverterTaggerInitializable {
 			ptrStack,
 			str,
 			{
-				fnTag: strMod => this._fnTagStrict({strMod, blocklistNames, styleHint}),
+				fnTag: (strMod, context) => this._fnTagStrict({strMod, blocklistNames, styleHint, context}),
 			},
 		);
 
@@ -508,6 +565,7 @@ export class TagCondition extends ConverterTaggerInitializable {
 // Each should have one group which matches the condition name.
 //   A comma/and part is appended to the end to handle chains of conditions.
 TagCondition.__TGT = `(?:target|wielder)`;
+TagCondition.__CONDITION_INFLICTED_MODERN_TAIL = `(?= condition\\b|(?:, {@condition [^}]+})*,? (?:and|or) {@condition [^}]+} conditions?\\b)`;
 TagCondition._CONDITION_INFLICTED_MATCHERS = [
 	`(?:creature|enemy|target) is \\w+ {@condition ([^}]+)}`, // "is knocked prone"
 	`(?:creature|enemy|target) becomes (?:\\w+ )?{@condition ([^}]+)}`,
@@ -530,6 +588,7 @@ TagCondition._CONDITION_INFLICTED_MATCHERS = [
 	`a[^.!?]+?(?:creature|enemy)[^.!?]+?to the[^.!?]+?is (?:also )?{@condition ([^}]+)}`, // MM :: Mimic :: Adhesive
 	`(?:creature|enemy) gains? \\w+ levels? of {@condition (exhaustion)}`, // MM :: Myconid Adult :: Euphoria Spores
 	`(?:saving throw|failed save)[^.!?]+? gains? \\w+ levels? of {@condition (exhaustion)}`, // ERLW :: Belashyrra :: Rend Reality
+	`(?:creature|enemy|target) gains? \\w+ {@condition (exhaustion(?:\\|[^}]+)?)} levels?`, // XMM :: Fomorian :: Warping Hex
 	`(?:on a successful save|if the saving throw is successful), (?:the ${TagCondition.__TGT} |(?:a|the )creature |(?:an |the )enemy )[^.!?]*?isn't {@condition ([^}]+)}`,
 	`or take[^.!?]+?damage and (?:becomes?|is|be) {@condition ([^}]+)}`, // MM :: Quasit || Claw
 	`the (?:${TagCondition.__TGT}|creature|enemy) [^.!?]+? and is {@condition ([^}]+)}`, // MM :: Satyr :: Gentle Lullaby
@@ -549,8 +608,8 @@ TagCondition._CONDITION_INFLICTED_MATCHERS = [
 	`magically (?:become|turn)s? {@condition (invisible)}`, // MM :: Will-o'-Wisp :: Invisibility
 	{re: `The (?!(?:[^.]+) can sense)(?:[^.]+) is {@condition (invisible)}`, flags: "g"}, // MM :: Invisible Stalker :: Invisibility
 	`succeed\\b[^.!?]+\\bsaving throw\\b[^.!?]+\\. (?:It|The (?:creature|target)) is {@condition ([^}]+)}`, // MM :: Beholder :: 6. Telekinetic Ray
-	{re: `\\bhave the {@condition ([^}]+)}\\b`, flags: "g"}, // XPHB :: Animal Friendship
-	{re: `(?<!while [^.!?]+? |can't use this trait if [^.!?]+? |unless [^.!?]+? |suppressed while [^.!?]+? )has the {@condition ([^}]+)} condition\\b`, flags: "g"}, // XPHB :: Constrictor Snake
+	`(?:can )?gives? (?:it|itself|herself|himself|the target) the {@condition ([^}]+)} condition`, // XMM :: Animated Rug of Smothering :: Smother; XMM :: Poltergeist :: Vanish
+	{re: `(?<!while [^.!?]+? |can't use this trait if [^.!?]+? |unless [^.!?]+? |suppressed while [^.!?]+? |doesn't |that )ha(?:s|ve) the {@condition ([^}]+)}${TagCondition.__CONDITION_INFLICTED_MODERN_TAIL}`, flags: "gi"}, // XPHB :: Animal Friendship; XPHB :: Constrictor Snake
 ]
 	.map(it => typeof it === "object" ? it : ({re: it, flags: "gi"}))
 	.map(({re, flags}) => new RegExp(`${re}((?:, {@condition [^}]+})*)(,? (?:and|or) {@condition [^}]+})?`, flags));
@@ -619,8 +678,11 @@ export class DiceConvert {
 
 		// re-tag + format dice
 		str = str
-			.replace(/\b(\s*[-+]\s*)?(([1-9]\d*|PB)?d([1-9]\d*)(\s*?(?:plus|minus|[-+×x*÷/])\s*?(\d,\d|\d|PB)+(\.\d+)?)?)+(?:\s*\+\s*\bPB\b)?\b/gi, (...m) => {
-				const expanded = m[0]
+			.replace(/\b(?:\s*[-+]\s*)?(?:(?:[1-9]\d*|PB)?d(?:[1-9]\d*)(?:\s*?(?:plus|minus|[-+×x*÷/])\s*?(?:\d,\d|\d|PB)+(?:\.\d+)?)?)+(?:\s*\+\s*\bPB\b)?\b/gi, (full, ixStart, strOriginal) => {
+				// Avoid tagging `D20 Test` rules
+				if (/^d20$/i.test(full) && /^ Tests?\b/i.test(strOriginal.slice(ixStart + full.length))) return full;
+
+				const expanded = full
 					.split(this._RE_NO_FORMAT_STRINGS)
 					.map(pt => {
 						pt = pt.trim();
@@ -636,28 +698,6 @@ export class DiceConvert {
 					.join(" ");
 				return `{@dice ${expanded}}`;
 			});
-
-		// unwrap double-tagged
-		let last;
-		do {
-			last = str;
-			str = str.replace(/{@(dice|damage|scaledice|scaledamage|d20) ([^}]*){@(dice|damage|scaledice|scaledamage|d20) ([^}]*)}([^}]*)}/gi, (...m) => {
-				// Choose the strongest dice type we have
-				const nxtType = [
-					m[1] === "scaledamage" || m[3] === "scaledamage" ? "scaledamage" : null,
-					m[1] === "damage" || m[3] === "damage" ? "damage" : null,
-					m[1] === "d20" || m[3] === "d20" ? "d20" : null,
-					m[1] === "scaledice" || m[3] === "scaledice" ? "scaledice" : null,
-					m[1] === "dice" || m[3] === "dice" ? "dice" : null,
-				].filter(Boolean)[0];
-				return `{@${nxtType} ${m[2]}${m[4]}${m[5]}}`;
-			});
-		} while (last !== str);
-
-		do {
-			last = str;
-			str = str.replace(/{@b ({@(?:dice|damage|scaledice|scaledamage|d20) ([^}]*)})}/gi, "$1");
-		} while (last !== str);
 
 		// tag @damage (creature style)
 		str = str.replace(/\d+ \({@dice (?:[^|}]*)}\)(?:\s+[-+]\s+[-+a-zA-Z0-9 ]*?)?(?: magic(?:al)?)?(?: [a-z]+(?:(?:, |, or | or )[a-z]+)*)? damage/ig, (...m) => m[0].replace(/{@dice /gi, "{@damage "));
@@ -802,7 +842,9 @@ export class ActionTag extends ConverterTaggerInitializable {
 		this._RE_BASIC_XPHB = new RegExp(`^(?<name>${(coreActions.map(action => action.name).join("|"))})$`, "g");
 	}
 
-	static _tryRunStrictCapsWords (it) {
+	static _tryRunStrictCapsWords (it, {styleHint = null} = {}) {
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
 		return WALKER_CONVERTER.walk(
 			it,
 			{
@@ -814,19 +856,7 @@ export class ActionTag extends ConverterTaggerInitializable {
 						ptrStack,
 						str,
 						{
-							fnTag: strMod => this._fnTagStrict_one(strMod),
-						},
-					);
-
-					str = ptrStack._;
-					ptrStack._ = "";
-
-					TaggerUtils.walkerStringHandlerStrictCapsWords(
-						["@action"],
-						ptrStack,
-						str,
-						{
-							fnTag: strMod => this._fnTagStrict_classic(strMod),
+							fnTag: (strMod, context) => this._fnTagStrict({strMod, context, styleHint}),
 						},
 					);
 
@@ -836,35 +866,15 @@ export class ActionTag extends ConverterTaggerInitializable {
 		);
 	}
 
-	static _fnTagStrict_one (strMod) {
-		return strMod
-			.replace(this._RE_BASIC_XPHB, (...m) => `{@action ${m.at(-1).name}|${Parser.SRC_XPHB}}`)
-			.replace(/\bOpportunity Attacks\b/g, (...m) => `{@action Opportunity Attack|XPHB|Opportunity Attacks}`)
-		;
-	}
+	static _fnTagStrict ({strMod, context, styleHint}) {
+		if (strMod === "Attack" && /^ (?:and|or) damage rolls?\b/.test(context.str.slice(context.ixStart + strMod.length))) return strMod;
+		if (strMod === "Opportunity Attacks") return `{@action Opportunity Attack|${styleHint === SITE_STYLE__ONE ? Parser.SRC_XPHB : ""}|${strMod}}`;
 
-	static _fnTagStrict_classic (strMod) {
-		// Avoid tagging text within titles
-		if (strMod.toTitleCase() === strMod) return strMod;
-
-		let mAction;
-		while ((mAction = this._RE_BASIC_CLASSIC.exec(strMod))) {
-			const ixMatchEnd = mAction.index + mAction[0].length;
-
-			const ptTag = mAction[1] === "shove a creature" ? "shove" : mAction[1];
-			const ptTrailing = mAction[1] === "shove a creature" ? ` a creature` : "";
-			const replaceAs = `{@action ${ptTag}}${ptTrailing}`;
-
-			strMod = `${strMod.slice(0, mAction.index)}${replaceAs}${strMod.slice(ixMatchEnd, strMod.length)}`
-				.replace(/{@action Attack} (and|or) damage roll/g, "Attack $1 damage roll")
-			;
-
-			this._RE_BASIC_CLASSIC.lastIndex += replaceAs.length - 1;
+		if (styleHint === SITE_STYLE__ONE) {
+			const out = strMod.replace(this._RE_BASIC_XPHB, (...m) => `{@action ${m.at(-1).name}|${Parser.SRC_XPHB}}`);
+			if (out !== strMod) return out;
 		}
-
-		this._RE_BASIC_CLASSIC.lastIndex = 0;
-
-		return strMod;
+		return strMod.replace(this._RE_BASIC_CLASSIC, (full, name) => name === "shove a creature" ? "{@action shove} a creature" : `{@action ${name}}`);
 	}
 }
 

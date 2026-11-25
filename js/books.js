@@ -3,7 +3,7 @@ import {AdventuresBooksList} from "./bookslist.js";
 class BooksList extends AdventuresBooksList {
 	constructor () {
 		super({
-			contentsUrl: "data/books.json",
+			dataSource: DataUtil.book.loadJSON.bind(DataUtil.book),
 			fnSort: AdventuresBooksList._sortAdventuresBooks.bind(AdventuresBooksList),
 			sortByInitial: "group",
 			sortDirInitial: "asc",

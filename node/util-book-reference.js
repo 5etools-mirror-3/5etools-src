@@ -94,7 +94,7 @@ const UtilBookReference = {
 			}
 
 			bookData.forEach(book => {
-				book.file.data.forEach(chap => {
+				book.file.bookData.find(corpusData => corpusData.id === book.source).data.forEach(chap => {
 					if (chap.entries) {
 						recursiveAdd(chap, book.source);
 					}

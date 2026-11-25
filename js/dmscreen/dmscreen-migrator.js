@@ -6,7 +6,7 @@ const _BASE_MIGRATION_VERSION = 0;
 class _DmScreenMigrationBase {
 	_version;
 
-	mutMigrat (save) {
+	mutMigrate (save) {
 		save.mv ||= _BASE_MIGRATION_VERSION;
 		if (save.mv >= this._version) return false;
 		this._mutMigrate(save);
@@ -54,7 +54,7 @@ export class DmScreenMigrator {
 		let isAnyMigrate = false;
 		this.constructor._MIGRATORS
 			.forEach(migrator => {
-				const isMigrate = migrator.mutMigrat(save);
+				const isMigrate = migrator.mutMigrate(save);
 				isAnyMigrate ||= isMigrate;
 			});
 

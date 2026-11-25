@@ -30,29 +30,32 @@ class RacesSublistManager extends SublistManager {
 			new SublistCell({text: sizeShortText, title: sizeText}),
 		];
 
-		const ele = ee`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
 				<a href="#${UrlUtil.autoEncodeHash(race)}" class="ve-lst__row-border ve-lst__row-inner">
 					${this.constructor._getRowCellsHtml({values: cellsText})}
 				</a>
 			</div>
 		`
-			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
-			.onn("click", evt => this._listSub.doSelect(listItem, evt));
+			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
-		const listItem = new ListItem(
-			hash,
+		const listItem = new ListItem({
+			id: hash,
 			ele,
-			race.name,
-			{
+			name: race.name,
+			values: {
+				...ListItem.getCommonValues(race),
+				ability: race._slAbility,
+				size: sizeText,
+			},
+			data: {
 				hash,
 				page: race.page,
-				ability: race._slAbility,
-			},
-			{
+				ability: race._srtAbility,
 				entity: race,
 				mdRow: [...cellsText],
 			},
-		);
+		});
 		return listItem;
 	}
 }
@@ -119,23 +122,25 @@ class RacesPage extends ListPage {
 			<div class="ve-flex-col ve-py-3 ve-ml-4 ve-accordion__wrp-preview-inner"></div>
 		</div>`;
 
-		const listItem = new ListItem(
-			rcI,
-			eleLi,
-			race.name,
-			{
-				hash,
+		const listItem = new ListItem({
+			id: rcI,
+			ele: eleLi,
+			name: race.name,
+			values: {
 				source,
-				page: race.page,
+				...ListItem.getCommonValues(race),
 				ability: race._slAbility,
 				size: sizeText,
 				cleanName: PageFilterRaces.getInvertedName(race.name) || "",
 				alias: PageFilterRaces.getListAliases(race),
 			},
-			{
+			data: {
+				hash,
+				page: race.page,
+				ability: race._srtAbility,
 				isExcluded,
 			},
-		);
+		});
 
 		eleLi.addEventListener("click", (evt) => this._list.doSelect(listItem, evt));
 		eleLi.addEventListener("contextmenu", (evt) => this._openContextMenu(evt, this._list, listItem));
@@ -144,7 +149,7 @@ class RacesPage extends ListPage {
 	}
 
 	_renderStats_doBuildStatsTab ({ent}) {
-		this._pgContent.empty().appends(RenderRaces.getRenderedRace(ent));
+		this._pgContent.vee.empty().vee.appends(RenderRaces.getRenderedRace(ent));
 	}
 }
 

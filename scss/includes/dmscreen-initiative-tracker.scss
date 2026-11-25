@@ -1,5 +1,5 @@
 @use "../vars/vars";
-@use "../vars/vars-night";
+@use "../vars/vars--night";
 
 @layer vetools {
 	.dm-init {
@@ -210,15 +210,15 @@
 
 	.ve-night-mode {
 		.dm-init__wrp-header {
-			border-color: vars-night.$rgb-border-grey--night;
+			border-color: vars--night.$rgb-border-grey--night;
 		}
 
 		.dm-init__wrp-controls {
-			border-color: vars-night.$rgb-border-grey--night;
+			border-color: vars--night.$rgb-border-grey--night;
 		}
 
 		.dm-init__wrp-creature {
-			border-color: vars-night.$rgb-border-grey--night;
+			border-color: vars--night.$rgb-border-grey--night;
 		}
 
 		.dm-init__row.dm-init__row-active input,
@@ -228,7 +228,7 @@
 		}
 
 		.dm-init__row.dm-init__row-active .dm-init__wrp-stat-cb {
-			border-color: vars-night.$rgb-border-grey--night;
+			border-color: vars--night.$rgb-border-grey--night;
 		}
 	}
 }

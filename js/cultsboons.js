@@ -24,29 +24,30 @@ class CultsBoonsSublistManager extends SublistManager {
 	pGetSublistItem (it, hash) {
 		const cellsText = [it._lType, it._lSubType, it.name];
 
-		const ele = ee`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`
-			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
-			.onn("click", evt => this._listSub.doSelect(listItem, evt));
+			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
-		const listItem = new ListItem(
-			hash,
+		const listItem = new ListItem({
+			id: hash,
 			ele,
-			it.name,
-			{
-				hash,
-				page: it.page,
+			name: it.name,
+			values: {
+				...ListItem.getCommonValues(it),
 				type: it._lType,
 				subType: it._lSubType,
 			},
-			{
+			data: {
+				hash,
+				page: it.page,
 				entity: it,
 				mdRow: [...cellsText],
 			},
-		);
+		});
 		return listItem;
 	}
 }
@@ -55,7 +56,7 @@ class CultsBoonsPage extends ListPage {
 	constructor () {
 		const pageFilter = new PageFilterCultsBoons();
 		super({
-			dataSource: "data/cultsboons.json",
+			dataSource: DataUtil.cult.loadJSON.bind(DataUtil.cult),
 
 			pageFilter,
 
@@ -88,21 +89,22 @@ class CultsBoonsPage extends ListPage {
 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(it.source)}">${source}</span>
 		</a>`;
 
-		const listItem = new ListItem(
-			bcI,
-			eleLi,
-			it.name,
-			{
-				hash,
+		const listItem = new ListItem({
+			id: bcI,
+			ele: eleLi,
+			name: it.name,
+			values: {
 				source,
-				page: it.page,
+				...ListItem.getCommonValues(it),
 				type: it._lType,
 				subType: it._lSubType,
 			},
-			{
+			data: {
+				hash,
+				page: it.page,
 				isExcluded,
 			},
-		);
+		});
 
 		eleLi.addEventListener("click", (evt) => this._list.doSelect(listItem, evt));
 		eleLi.addEventListener("contextmenu", (evt) => this._openContextMenu(evt, this._list, listItem));
@@ -111,7 +113,7 @@ class CultsBoonsPage extends ListPage {
 	}
 
 	_renderStats_doBuildStatsTab ({ent}) {
-		this._pgContent.empty().appends(RenderCultsBoons.getRenderedCultBoon(ent));
+		this._pgContent.vee.empty().vee.appends(RenderCultsBoons.getRenderedCultBoon(ent));
 	}
 }
 

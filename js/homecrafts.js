@@ -31,30 +31,31 @@ class HomeCraftsSublistManager extends SublistManager {
 			category,
 		];
 
-		const ele = ee`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`
-			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
-			.onn("click", evt => this._listSub.doSelect(listItem, evt));
+			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
-		const listItem = new ListItem(
-			hash,
+		const listItem = new ListItem({
+			id: hash,
 			ele,
-			ent.name,
-			{
-				hash,
-				page: ent.page,
+			name: ent.name,
+			values: {
+				...ListItem.getCommonValues(ent),
 				category,
 				level: ent.level || 0,
 				prerequisite: ent._slPrereq,
 			},
-			{
+			data: {
+				hash,
+				page: ent.page,
 				entity: ent,
 				mdRow: [...cellsText],
 			},
-		);
+		});
 		return listItem;
 	}
 }
@@ -98,21 +99,22 @@ class HomeCraftsPage extends ListPage {
 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(ent.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(ent.source)}">${source}</span>
 		</a>`;
 
-		const listItem = new ListItem(
-			ixEnt,
-			eleLi,
-			ent.name,
-			{
-				hash,
+		const listItem = new ListItem({
+			id: ixEnt,
+			ele: eleLi,
+			name: ent.name,
+			values: {
 				source,
-				page: ent.page,
+				...ListItem.getCommonValues(ent),
 				type,
 				category,
 			},
-			{
+			data: {
+				hash,
+				page: ent.page,
 				isExcluded,
 			},
-		);
+		});
 
 		eleLi.addEventListener("click", (evt) => this._list.doSelect(listItem, evt));
 		eleLi.addEventListener("contextmenu", (evt) => this._openContextMenu(evt, this._list, listItem));
@@ -121,27 +123,27 @@ class HomeCraftsPage extends ListPage {
 	}
 
 	_renderStats_doBuildStatsTab ({ent}) {
-		this._wrpTabs.parente().find(`[data-name="homecraft-type"]`)?.remove();
+		this._wrpTabs.vee.parent().vee.find(`[data-name="homecraft-type"]`)?.remove();
 
 		Promise.any([
 			Renderer.utils.pHasFluffText(ent, `${ent.__prop}Fluff`),
 			Renderer.utils.pHasFluffImages(ent, `${ent.__prop}Fluff`),
 		])
 			.then(hasAnyFluff => {
-				const wrpType = ee`<div data-name="homecraft-type" class="ve-italic ve-inline-block"></div>`;
+				const wrpType = veT`<div data-name="homecraft-type" class="ve-italic ve-inline-block"></div>`;
 
-				if (hasAnyFluff) wrpType.addClass("ve-mb-1").insertBeforee(this._wrpTabs);
-				else wrpType.addClass("ve-pl-7p").prependTo(this._wrpTabs);
+				if (hasAnyFluff) wrpType.vee.addClass("ve-mb-1").vee.insertBefore(this._wrpTabs);
+				else wrpType.vee.addClass("ve-pl-7p").vee.prependTo(this._wrpTabs);
 
-				ee`<span class="ve-roller">${Parser.getPropDisplayName(ent.__prop)}</span>`
-					.onn("click", () => {
+				veT`<span class="ve-roller">${Parser.getPropDisplayName(ent.__prop)}</span>`
+					.vee.onn("click", () => {
 						this._filterBox.setFromValues({"Type": {[ent.__prop]: 1}});
 						this.handleFilterChange();
 					})
-					.appendTo(wrpType);
+					.vee.appendTo(wrpType);
 			});
 
-		this._pgContent.empty().appends(RenderCrochetPatterns.getRenderedCrochetPattern(ent));
+		this._pgContent.vee.empty().vee.appends(RenderCrochetPatterns.getRenderedCrochetPattern(ent));
 	}
 }
 

@@ -21,6 +21,7 @@ export class BrewUtil2Base {
 	_PATH_LOCAL_DIR;
 	_PATH_LOCAL_INDEX;
 
+	ID;
 	IS_EDITABLE;
 	PAGE_MANAGE;
 	URL_REPO_DEFAULT;
@@ -171,7 +172,7 @@ export class BrewUtil2Base {
 		try {
 			JqueryUtil.doToast({
 				...messageInfo,
-				content: e_({outer: messageInfo.contentHtml}),
+				content: veE({outer: messageInfo.contentHtml}),
 			});
 		} catch (e) {
 			setTimeout(() => { throw e; });
@@ -608,13 +609,13 @@ export class BrewUtil2Base {
 	/** @abstract */
 	getFileUrl (path, urlRoot) { throw new Error("Unimplemented!"); }
 	/** @abstract */
-	pLoadTimestamps (urlRoot) { throw new Error("Unimplemented!"); }
+	async pLoadTimestamps (urlRoot) { throw new Error("Unimplemented!"); }
 	/** @abstract */
-	pLoadPropIndex (urlRoot) { throw new Error("Unimplemented!"); }
+	async pLoadPropIndex (urlRoot) { throw new Error("Unimplemented!"); }
 	/** @abstract */
-	pLoadMetaIndex (urlRoot) { throw new Error("Unimplemented!"); }
+	async pLoadMetaIndex (urlRoot) { throw new Error("Unimplemented!"); }
 	/** @abstract */
-	pLoadAdventureBookIdsIndex (urlRoot) { throw new Error("Unimplemented!"); }
+	async pLoadAdventureBookIdsIndex (urlRoot) { throw new Error("Unimplemented!"); }
 
 	async pGetCombinedIndexes () {
 		const urlRoot = await this.pGetCustomUrl();
@@ -941,14 +942,14 @@ export class BrewUtil2Base {
 	}
 
 	async pAddBrewFromLoaderTag (ele) {
-		ele = e_(ele);
-		if (!ele.hasClass("ve-rd__wrp-loadbrew--ready")) return; // an existing click is being handled
-		let jsonPath = ele.dataset.rdLoaderPath;
-		const name = ele.dataset.rdLoaderName;
-		const cached = ele.html();
-		const cachedTitle = ele.tooltip();
-		ele.tooltip("");
-		ele.removeClass("ve-rd__wrp-loadbrew--ready").html(`${name.qq()}<span class="glyphicon glyphicon-refresh ve-rd__loadbrew-icon ve-rd__loadbrew-icon--active"></span>`);
+		ele = veE(ele);
+		if (!ele.vee.hasClass("ve-rd__wrp-loadbrew--ready")) return; // an existing click is being handled
+		let jsonPath = ele.vee.attr("data-rd-loader-path");
+		const name = ele.vee.attr("data-rd-loader-name");
+		const cached = ele.vee.html();
+		const cachedTitle = ele.vee.tooltip();
+		ele.vee.tooltip("");
+		ele.vee.removeClass("ve-rd__wrp-loadbrew--ready").vee.html(`${name.qq()}<span class="glyphicon glyphicon-refresh ve-rd__loadbrew-icon ve-rd__loadbrew-icon--active"></span>`);
 
 		jsonPath = jsonPath.unescapeQuotes();
 		if (!UrlUtil.isFullUrl(jsonPath)) {
@@ -957,8 +958,8 @@ export class BrewUtil2Base {
 		}
 
 		await this.pAddBrewFromUrl(jsonPath);
-		ele.html(`${name.qq()}<span class="glyphicon glyphicon-saved ve-rd__loadbrew-icon"></span>`);
-		setTimeout(() => ele.html(cached).addClass("ve-rd__wrp-loadbrew--ready").tooltip(cachedTitle), 500);
+		ele.vee.html(`${name.qq()}<span class="glyphicon glyphicon-saved ve-rd__loadbrew-icon"></span>`);
+		setTimeout(() => ele.vee.html(cached).vee.addClass("ve-rd__wrp-loadbrew--ready").vee.tooltip(cachedTitle), 500);
 	}
 
 	_isMatchingCombinedIndexInfo (info) {
@@ -998,7 +999,26 @@ export class BrewUtil2Base {
 		return brewDocsAdded;
 	}
 
+	/**
+	 * Permit files which only contain an exported blocklist, by providing them with a randomly-generated source.
+	 */
+	static _mutEnsureBlocklistSource ({json, filename}) {
+		if (!json || json._meta?.sources != null) return;
+		if (!json.blocklist || !(json.blocklist instanceof Array)) return;
+		if (Object.entries(json).some(([prop, val]) => prop !== "blocklist" && val instanceof Array)) return;
+
+		(json._meta ||= {}).sources = [
+			{
+				json: CryptUtil.uid(),
+				abbreviation: "BLOCK",
+				full: `Content Blocklist`,
+			},
+		];
+	}
+
 	_getBrewDoc ({json, url = null, filename = null, isLocal = false, isEditable = false}) {
+		this.constructor._mutEnsureBlocklistSource({json, filename});
+
 		return BrewDoc.fromValues({
 			head: {
 				json,

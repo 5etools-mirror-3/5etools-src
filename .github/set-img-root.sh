@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -Eeuo pipefail
 
 if [[ $# -eq 0 ]]; then
     echo "No arguments provided. Usage: set-img-root.sh <repositoryOwner>"

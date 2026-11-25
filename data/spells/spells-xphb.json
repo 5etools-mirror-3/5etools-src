@@ -251,6 +251,9 @@
 				"bludgeoning",
 				"piercing",
 				"slashing"
+			],
+			"miscTags": [
+				"UA"
 			]
 		},
 		{
@@ -289,7 +292,7 @@
 				}
 			],
 			"entries": [
-				"Target a Beast that you can see within range. The target must succeed on a Wisdom saving throw or have the {@condition Charmed|XPHB} condition for the duration. If you or one of your allies deals damage to the target, the spells ends."
+				"Target a Beast that you can see within range. The target must succeed on a Wisdom saving throw or have the {@condition Charmed|XPHB} condition for the duration. If you or one of your allies deals damage to the target, the spell ends."
 			],
 			"entriesHigherLevel": [
 				{
@@ -421,7 +424,9 @@
 				"The target gains a number of {@variantrule Temporary Hit Points|XPHB} equal to the {@variantrule Hit Points|XPHB} of the first form into which it shape-shifts. These {@variantrule Temporary Hit Points|XPHB} vanish if any remain when the spell ends. The transformation lasts for the duration or until the target ends it as a {@variantrule Bonus Action|XPHB}."
 			],
 			"miscTags": [
-				"SGT"
+				"SGT",
+				"UA",
+				"WLT"
 			],
 			"areaTags": [
 				"MT"
@@ -481,6 +486,7 @@
 			"miscTags": [
 				"PRM",
 				"SMN",
+				"UA",
 				"UBA"
 			]
 		},
@@ -541,6 +547,7 @@
 			"miscTags": [
 				"OBJ",
 				"SMN",
+				"UA",
 				"UBA"
 			],
 			"areaTags": [
@@ -774,6 +781,7 @@
 				"As a {@variantrule Bonus Action|XPHB}, you can move the eye up to 30 feet in any direction. A solid barrier blocks the eye's movement, but the eye can pass through an opening as small as 1 inch in diameter."
 			],
 			"miscTags": [
+				"UA",
 				"UBA"
 			]
 		},
@@ -819,6 +827,7 @@
 				"OBJ",
 				"SGT",
 				"TP",
+				"UA",
 				"UBA"
 			]
 		},
@@ -1065,7 +1074,9 @@
 			],
 			"miscTags": [
 				"PRM",
-				"PS"
+				"PS",
+				"UA",
+				"WLT"
 			],
 			"areaTags": [
 				"MT"
@@ -1115,13 +1126,13 @@
 				{
 					"type": "table",
 					"caption": "Omens",
-					"colStyles": [
-						"col-4",
-						"col-8"
-					],
 					"colLabels": [
 						"Omen",
 						"For Results That Will Be..."
+					],
+					"colStyles": [
+						"col-4",
+						"col-8"
 					],
 					"rows": [
 						[
@@ -1187,6 +1198,7 @@
 				"necrotic"
 			],
 			"miscTags": [
+				"ALT",
 				"HL"
 			],
 			"areaTags": [
@@ -1232,7 +1244,8 @@
 				"poison"
 			],
 			"miscTags": [
-				"ADV"
+				"ADV",
+				"ALT"
 			],
 			"areaTags": [
 				"S"
@@ -1537,7 +1550,8 @@
 				"You touch a willing creature. Until the spell ends, the target's skin assumes a bark-like appearance, and the target has an {@variantrule Armor Class|XPHB} of 17 if its AC is lower than that."
 			],
 			"miscTags": [
-				"MAC"
+				"MAC",
+				"WLT"
 			],
 			"areaTags": [
 				"ST"
@@ -1625,6 +1639,9 @@
 			},
 			"entries": [
 				"You touch a willing Beast. For the duration, you can perceive through the Beast's senses as well as your own. When perceiving through the Beast's senses, you benefit from any special senses it has."
+			],
+			"miscTags": [
+				"WLT"
 			],
 			"areaTags": [
 				"ST"
@@ -1816,7 +1833,7 @@
 							"type": "item",
 							"name": "Interposing Hand",
 							"entries": [
-								"The hand grants you Half {@variantrule Cover|XPHB} against attacks and other effects that originate from its space or that pass through it. In addition, its space counts as {@variantrule Difficult Terrain|XPHB} for your enemies."
+								"The hand grants you {@variantrule Cover|XPHB|Half Cover} against attacks and other effects that originate from its space or that pass through it. In addition, its space counts as {@variantrule Difficult Terrain|XPHB} for your enemies."
 							]
 						}
 					]
@@ -1850,6 +1867,7 @@
 				"FMV",
 				"OBJ",
 				"SGT",
+				"UA",
 				"UBA"
 			],
 			"hasFluffImages": true
@@ -1891,7 +1909,7 @@
 			],
 			"entries": [
 				"You create a wall of whirling blades made of magical energy. The wall appears within range and lasts for the duration. You make a straight wall up to 100 feet long, 20 feet high, and 5 feet thick, or a ringed wall up to 60 feet in diameter, 20 feet high, and 5 feet thick. The wall provides Three-Quarters {@variantrule Cover|XPHB}, and its space is {@variantrule Difficult Terrain|XPHB}.",
-				"Any creature in the wall's space makes a Dexterity saving throw, taking {@damage 6d10} Force damage on a failed save or half as much damage on a successful one. A creature also makes that save if it enters the wall's space or ends it turn there. A creature makes that save only once per turn."
+				"Any creature in the wall's space makes a Dexterity saving throw, taking {@damage 6d10} Force damage on a failed save or half as much damage on a successful one. A creature also makes that save if it enters the wall's space or ends its turn there. A creature makes that save only once per turn."
 			],
 			"damageInflict": [
 				"force"
@@ -2310,6 +2328,7 @@
 				"dexterity"
 			],
 			"miscTags": [
+				"BO",
 				"OBJ"
 			],
 			"areaTags": [
@@ -2373,7 +2392,8 @@
 				"dexterity"
 			],
 			"miscTags": [
-				"SGT"
+				"SGT",
+				"UA"
 			],
 			"areaTags": [
 				"S",
@@ -2839,7 +2859,8 @@
 				"An aura radiates from you in a 30-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} for the duration. While in the aura, you and your allies have {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects. When an affected creature makes a saving throw against a spell or magical effect that allows a save to take only half damage, it takes no damage if it succeeds on the save."
 			],
 			"miscTags": [
-				"ADV"
+				"ADV",
+				"ALT"
 			],
 			"areaTags": [
 				"S"
@@ -2893,6 +2914,7 @@
 				"A creature that sees the sensor (such as a creature benefiting from {@spell See Invisibility|XPHB} or {@sense Truesight|XPHB}) sees a luminous orb about the size of your fist."
 			],
 			"miscTags": [
+				"UA",
 				"UBA"
 			]
 		},
@@ -2987,6 +3009,9 @@
 			],
 			"damageInflict": [
 				"slashing"
+			],
+			"miscTags": [
+				"UA"
 			],
 			"areaTags": [
 				"C"
@@ -3429,6 +3454,7 @@
 			],
 			"miscTags": [
 				"SGT",
+				"UA",
 				"UBA"
 			],
 			"areaTags": [
@@ -3532,13 +3558,13 @@
 				"Each creature in a 10-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point you choose within range must succeed on a Wisdom saving throw, or that target can't take Bonus Actions or Reactions and must roll {@dice 1d10} at the start of each of its turns to determine its behavior for that turn, consulting the table below.",
 				{
 					"type": "table",
-					"colStyles": [
-						"col-2 text-center",
-						"col-10"
-					],
 					"colLabels": [
 						"1d10",
 						"Behavior for the Turn"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
 					],
 					"rows": [
 						[
@@ -3820,7 +3846,7 @@
 			],
 			"entries": [
 				"You conjure a Large, intangible spirit from the Elemental Planes that appears in an unoccupied space within range. Choose the spirit's element, which determines its damage type: air (Lightning), earth (Thunder), fire (Fire), or water (Cold). The spirit lasts for the duration.",
-				"Whenever a creature you can see enters the spirit's space or starts its turn within 5 feet of the spirit, you can force that creature to make a Dexterity saving throw if the spirit has no creature {@condition Restrained|XPHB}. On failed save, the target takes {@damage 8d8} damage of the spirit's type, and the target has the {@condition Restrained|XPHB} condition until the spell ends. At the start of each of its turns, the {@condition Restrained|XPHB} target repeats the save. On a failed save, the target takes {@damage 4d8} damage of the spirit's type. On a successful save, the target isn't {@condition Restrained|XPHB} by the spirit."
+				"Whenever a creature you can see enters the spirit's space or starts its turn within 5 feet of the spirit, you can force that creature to make a Dexterity saving throw if the spirit has no creature {@condition Restrained|XPHB}. On a failed save, the target takes {@damage 8d8} damage of the spirit's type, and the target has the {@condition Restrained|XPHB} condition until the spell ends. At the start of each of its turns, the {@condition Restrained|XPHB} target repeats the save. On a failed save, the target takes {@damage 4d8} damage of the spirit's type. On a successful save, the target isn't {@condition Restrained|XPHB} by the spirit."
 			],
 			"entriesHigherLevel": [
 				{
@@ -4391,13 +4417,13 @@
 				{
 					"type": "table",
 					"caption": "Precipitation",
-					"colStyles": [
-						"col-2 text-center",
-						"col-10"
-					],
 					"colLabels": [
 						"Stage",
 						"Condition"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
 					],
 					"rows": [
 						[
@@ -4425,13 +4451,13 @@
 				{
 					"type": "table",
 					"caption": "Temperature",
-					"colStyles": [
-						"col-2 text-center",
-						"col-10"
-					],
 					"colLabels": [
 						"Stage",
 						"Condition"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
 					],
 					"rows": [
 						[
@@ -4463,13 +4489,13 @@
 				{
 					"type": "table",
 					"caption": "Wind",
-					"colStyles": [
-						"col-2 text-center",
-						"col-10"
-					],
 					"colLabels": [
 						"Stage",
 						"Condition"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
 					],
 					"rows": [
 						[
@@ -4798,13 +4824,13 @@
 				{
 					"type": "table",
 					"caption": "Materials",
-					"colStyles": [
-						"col-6",
-						"col-6"
-					],
 					"colLabels": [
 						"Material",
 						"Duration"
+					],
+					"colStyles": [
+						"col-6",
+						"col-6"
 					],
 					"rows": [
 						[
@@ -4933,7 +4959,8 @@
 				"radiant"
 			],
 			"miscTags": [
-				"AAD"
+				"AAD",
+				"ALT"
 			],
 			"areaTags": [
 				"S"
@@ -5035,6 +5062,7 @@
 			],
 			"miscTags": [
 				"LGT",
+				"UA",
 				"UBA"
 			]
 		},
@@ -5125,6 +5153,9 @@
 			],
 			"entries": [
 				"For the duration, a willing creature you touch has {@sense Darkvision|XPHB} with a range of 150 feet."
+			],
+			"miscTags": [
+				"WLT"
 			],
 			"areaTags": [
 				"ST"
@@ -5278,6 +5309,7 @@
 				"dexterity"
 			],
 			"miscTags": [
+				"BO",
 				"OBJ"
 			],
 			"areaTags": [
@@ -5616,7 +5648,8 @@
 				"force"
 			],
 			"miscTags": [
-				"TP"
+				"TP",
+				"WLT"
 			]
 		},
 		{
@@ -5789,7 +5822,8 @@
 				"undead"
 			],
 			"miscTags": [
-				"SGT"
+				"SGT",
+				"UA"
 			],
 			"areaTags": [
 				"ST"
@@ -6071,13 +6105,13 @@
 				{
 					"type": "table",
 					"caption": "Divine Word Effects",
-					"colStyles": [
-						"col-2 text-center",
-						"col-10"
-					],
 					"colLabels": [
 						"Hit Points",
 						"Effect"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
 					],
 					"rows": [
 						[
@@ -6360,6 +6394,9 @@
 			"savingThrow": [
 				"dexterity"
 			],
+			"miscTags": [
+				"WLT"
+			],
 			"areaTags": [
 				"N",
 				"ST"
@@ -6410,7 +6447,8 @@
 				"If another creature is holding or carrying the object, crushing the sapphire doesn't transport it, but instead you learn who that creature is and where that creature is currently located."
 			],
 			"miscTags": [
-				"OBJ"
+				"OBJ",
+				"UA"
 			]
 		},
 		{
@@ -6458,6 +6496,9 @@
 			],
 			"savingThrow": [
 				"wisdom"
+			],
+			"miscTags": [
+				"WLT"
 			],
 			"areaTags": [
 				"ST"
@@ -6523,6 +6564,10 @@
 						"You light or snuff out a candle, a torch, or a campfire."
 					]
 				}
+			],
+			"miscTags": [
+				"BO",
+				"OBJ"
 			],
 			"hasFluffImages": true
 		},
@@ -6783,6 +6828,7 @@
 				}
 			],
 			"miscTags": [
+				"BO",
 				"OBJ"
 			],
 			"areaTags": [
@@ -7064,7 +7110,8 @@
 					"duration": {
 						"type": "minute",
 						"amount": 1
-					}
+					},
+					"concentration": true
 				}
 			],
 			"entries": [
@@ -7133,7 +7180,8 @@
 			],
 			"miscTags": [
 				"PS",
-				"SCT"
+				"SCT",
+				"WLT"
 			]
 		},
 		{
@@ -7174,7 +7222,7 @@
 			],
 			"entries": [
 				"Squirming, ebony tentacles fill a 20-foot square on ground that you can see within range. For the duration, these tentacles turn the ground in that area into {@variantrule Difficult Terrain|XPHB}.",
-				"Each creature in that area makes a Strength saving throw. On a failed save, it takes {@damage 3d6} Bludgeoning damage, and it has the {@condition Restrained|XPHB} condition until the spell ends. A creature also makes that save if it enters the area or ends it turn there. A creature makes that save only once per turn.",
+				"Each creature in that area makes a Strength saving throw. On a failed save, it takes {@damage 3d6} Bludgeoning damage, and it has the {@condition Restrained|XPHB} condition until the spell ends. A creature also makes that save if it enters the area or ends its turn there. A creature makes that save only once per turn.",
 				"A {@condition Restrained|XPHB} creature can take an action to make a Strength ({@skill Athletics|XPHB}) check against your spell save DC, ending the condition on itself on a success."
 			],
 			"damageInflict": [
@@ -7306,7 +7354,8 @@
 				"wisdom"
 			],
 			"miscTags": [
-				"SGT"
+				"SGT",
+				"UA"
 			],
 			"areaTags": [
 				"ST"
@@ -7611,6 +7660,9 @@
 				"blinded",
 				"incapacitated"
 			],
+			"miscTags": [
+				"WLT"
+			],
 			"areaTags": [
 				"ST"
 			]
@@ -7687,7 +7739,8 @@
 			],
 			"miscTags": [
 				"PRM",
-				"SMN"
+				"SMN",
+				"UA"
 			],
 			"hasFluffImages": true
 		},
@@ -7947,6 +8000,7 @@
 				"R"
 			],
 			"miscTags": [
+				"BO",
 				"OBJ",
 				"SCL"
 			],
@@ -8046,6 +8100,7 @@
 				"dexterity"
 			],
 			"miscTags": [
+				"BO",
 				"OBJ"
 			],
 			"areaTags": [
@@ -8109,6 +8164,7 @@
 				"dexterity"
 			],
 			"miscTags": [
+				"BO",
 				"OBJ"
 			],
 			"areaTags": [
@@ -8173,6 +8229,7 @@
 			],
 			"miscTags": [
 				"LGT",
+				"UA",
 				"UBA"
 			],
 			"areaTags": [
@@ -8240,7 +8297,7 @@
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 2,
-			"school": "C",
+			"school": "V",
 			"time": [
 				{
 					"number": 1,
@@ -8290,8 +8347,10 @@
 				"dexterity"
 			],
 			"miscTags": [
+				"BO",
 				"LGT",
 				"OBJ",
+				"UA",
 				"UBA"
 			],
 			"areaTags": [
@@ -8405,7 +8464,8 @@
 				}
 			],
 			"miscTags": [
-				"SCT"
+				"SCT",
+				"WLT"
 			],
 			"areaTags": [
 				"ST"
@@ -8623,7 +8683,8 @@
 				"You touch a willing creature and bestow a limited ability to see into the immediate future. For the duration, the target has {@variantrule Advantage|XPHB} on {@variantrule D20 Test|XPHB|D20 Tests}, and other creatures have {@variantrule Disadvantage|XPHB} on attack rolls against it. The spell ends early if you cast it again."
 			],
 			"miscTags": [
-				"ADV"
+				"ADV",
+				"WLT"
 			],
 			"areaTags": [
 				"ST"
@@ -8736,7 +8797,8 @@
 				"restrained"
 			],
 			"miscTags": [
-				"SCT"
+				"SCT",
+				"WLT"
 			],
 			"areaTags": [
 				"ST"
@@ -8846,7 +8908,8 @@
 			],
 			"miscTags": [
 				"ADV",
-				"SCT"
+				"SCT",
+				"WLT"
 			],
 			"areaTags": [
 				"ST"
@@ -8994,6 +9057,7 @@
 				"s": true,
 				"m": {
 					"text": "2 Copper Pieces, which the spell consumes",
+					"cost": 2,
 					"consume": true
 				}
 			},
@@ -9691,6 +9755,9 @@
 			"entries": [
 				"You touch a willing creature and choose a skill. Until the spell ends, the creature adds {@dice 1d4} to any ability check using the chosen skill."
 			],
+			"miscTags": [
+				"WLT"
+			],
 			"areaTags": [
 				"ST"
 			]
@@ -9777,9 +9844,10 @@
 				}
 			],
 			"range": {
-				"type": "point",
+				"type": "line",
 				"distance": {
-					"type": "self"
+					"type": "feet",
+					"amount": 60
 				}
 			},
 			"components": {
@@ -10168,7 +10236,8 @@
 			"miscTags": [
 				"ADV",
 				"MAC",
-				"SGT"
+				"SGT",
+				"WLT"
 			],
 			"areaTags": [
 				"ST"
@@ -10334,6 +10403,7 @@
 			"miscTags": [
 				"OBJ",
 				"SGT",
+				"UA",
 				"UBA"
 			],
 			"areaTags": [
@@ -10502,7 +10572,8 @@
 			],
 			"miscTags": [
 				"SCT",
-				"THP"
+				"THP",
+				"WLT"
 			],
 			"areaTags": [
 				"ST"
@@ -10563,6 +10634,7 @@
 			"miscTags": [
 				"AAD",
 				"SGT",
+				"UA",
 				"UBA"
 			],
 			"areaTags": [
@@ -10877,6 +10949,7 @@
 				"AAD",
 				"ADV",
 				"SGT",
+				"UA",
 				"UBA"
 			],
 			"areaTags": [
@@ -11595,7 +11668,8 @@
 				}
 			],
 			"miscTags": [
-				"SCT"
+				"SCT",
+				"WLT"
 			],
 			"areaTags": [
 				"ST"
@@ -11732,7 +11806,8 @@
 			],
 			"miscTags": [
 				"OBJ",
-				"PRM"
+				"PRM",
+				"UA"
 			]
 		},
 		{
@@ -11872,7 +11947,8 @@
 			],
 			"miscTags": [
 				"OBJ",
-				"SGT"
+				"SGT",
+				"UA"
 			],
 			"areaTags": [
 				"ST"
@@ -12261,7 +12337,8 @@
 				"You touch a willing creature who isn't wearing armor. Until the spell ends, the target's base AC becomes 13 plus its Dexterity modifier. The spell ends early if the target dons armor."
 			],
 			"miscTags": [
-				"MAC"
+				"MAC",
+				"WLT"
 			],
 			"areaTags": [
 				"ST"
@@ -12446,7 +12523,8 @@
 				"humanoid"
 			],
 			"miscTags": [
-				"SGT"
+				"SGT",
+				"UA"
 			]
 		},
 		{
@@ -12662,7 +12740,8 @@
 			],
 			"miscTags": [
 				"PRM",
-				"SGT"
+				"SGT",
+				"UA"
 			]
 		},
 		{
@@ -13149,6 +13228,7 @@
 				"dexterity"
 			],
 			"miscTags": [
+				"BO",
 				"OBJ",
 				"SGT"
 			],
@@ -13197,6 +13277,9 @@
 			],
 			"conditionImmune": [
 				"charmed"
+			],
+			"miscTags": [
+				"WLT"
 			],
 			"areaTags": [
 				"ST"
@@ -13503,7 +13586,8 @@
 				"invisible"
 			],
 			"miscTags": [
-				"SGT"
+				"SGT",
+				"UA"
 			]
 		},
 		{
@@ -13667,7 +13751,8 @@
 				"constitution"
 			],
 			"miscTags": [
-				"LGT"
+				"LGT",
+				"UA"
 			],
 			"areaTags": [
 				"Y"
@@ -13721,7 +13806,8 @@
 				"dexterity"
 			],
 			"miscTags": [
-				"SGT"
+				"SGT",
+				"UA"
 			]
 		},
 		{
@@ -13894,6 +13980,7 @@
 			],
 			"miscTags": [
 				"SGT",
+				"UA",
 				"UBA"
 			],
 			"areaTags": [
@@ -13991,7 +14078,8 @@
 				"For the duration, you hide a target that you touch from Divination spells. The target can be a willing creature, or it can be a place or an object no larger than 10 feet in any dimension. The target can't be targeted by any Divination spell or perceived through magical scrying sensors."
 			],
 			"miscTags": [
-				"OBJ"
+				"OBJ",
+				"WLT"
 			],
 			"areaTags": [
 				"ST"
@@ -14051,7 +14139,8 @@
 			"miscTags": [
 				"OBJ",
 				"PIR",
-				"PRM"
+				"PRM",
+				"WLT"
 			],
 			"areaTags": [
 				"ST"
@@ -14089,7 +14178,7 @@
 				}
 			],
 			"entries": [
-				"A frigid globe streaks from you to a point of your choice within range, where it explodes in a 60-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere}. Each creature in that area makes a Constitution saving throw, taking {@damage 10d6} Cold damage on failed save or half as much damage on a successful one.",
+				"A frigid globe streaks from you to a point of your choice within range, where it explodes in a 60-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere}. Each creature in that area makes a Constitution saving throw, taking {@damage 10d6} Cold damage on a failed save or half as much damage on a successful one.",
 				"If the globe strikes a body of water, it freezes the water to a depth of 6 inches over an area 30 feet square. This ice lasts for 1 minute. Creatures that were swimming on the surface of frozen water are trapped in the ice and have the {@condition Restrained|XPHB} condition. A trapped creature can take an action to make a Strength ({@skill Athletics|XPHB}) check against your spell save DC to break free.",
 				"You can refrain from firing the globe after completing the spell's casting. If you do so, a globe about the size of a sling bullet, cool to the touch, appears in your hand. At any time, you or a creature you give the globe to can throw the globe (to a range of 40 feet) or hurl it with a sling (to the sling's normal range). It shatters on impact, with the same effect as a normal casting of the spell. You can also set the globe down without shattering it. After 1 minute, if the globe hasn't already shattered, it explodes."
 			],
@@ -14634,7 +14723,8 @@
 			],
 			"miscTags": [
 				"PS",
-				"TP"
+				"TP",
+				"WLT"
 			]
 		},
 		{
@@ -15113,6 +15203,7 @@
 				}
 			],
 			"miscTags": [
+				"BO",
 				"OBJ"
 			]
 		},
@@ -15151,13 +15242,13 @@
 				{
 					"type": "table",
 					"caption": "Prismatic Rays",
-					"colStyles": [
-						"col-2 text-center",
-						"col-10"
-					],
 					"colLabels": [
 						"1d8",
 						"Ray"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
 					],
 					"rows": [
 						[
@@ -15261,13 +15352,13 @@
 				{
 					"type": "table",
 					"caption": "Prismatic Layers",
-					"colStyles": [
-						"col-2 text-center",
-						"col-10"
-					],
 					"colLabels": [
 						"Order",
 						"Effects"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
 					],
 					"rows": [
 						[
@@ -15391,7 +15482,8 @@
 			"miscTags": [
 				"LGT",
 				"OBJ",
-				"SCL"
+				"SCL",
+				"UA"
 			],
 			"areaTags": [
 				"ST"
@@ -15493,7 +15585,8 @@
 				"intelligence"
 			],
 			"miscTags": [
-				"SGT"
+				"SGT",
+				"UA"
 			]
 		},
 		{
@@ -15539,6 +15632,9 @@
 				"fire",
 				"lightning",
 				"thunder"
+			],
+			"miscTags": [
+				"WLT"
 			],
 			"areaTags": [
 				"ST"
@@ -15598,7 +15694,8 @@
 				"undead"
 			],
 			"miscTags": [
-				"ADV"
+				"ADV",
+				"WLT"
 			],
 			"areaTags": [
 				"ST"
@@ -15794,6 +15891,9 @@
 			"entries": [
 				"You forge a telepathic link among up to eight willing creatures of your choice within range, psychically linking each creature to all the others for the duration. Creatures that can't communicate in any languages aren't affected by this spell.",
 				"Until the spell ends, the targets can communicate telepathically through the bond whether or not they share a language. The communication is possible over any distance, though it can't extend to other planes of existence."
+			],
+			"miscTags": [
+				"WLT"
 			],
 			"areaTags": [
 				"MT"
@@ -16052,13 +16152,13 @@
 				"You touch a dead Humanoid or a piece of one. If the creature has been dead no longer than 10 days, the spell forms a new body for it and calls the soul to enter that body. Roll {@dice 1d10} and consult the table below to determine the body's species, or the DM chooses another playable species.",
 				{
 					"type": "table",
-					"colStyles": [
-						"col-2 text-center",
-						"col-10"
-					],
 					"colLabels": [
 						"1d10",
 						"Species"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
 					],
 					"rows": [
 						[
@@ -16188,6 +16288,9 @@
 			],
 			"entries": [
 				"You touch a willing creature and choose a damage type: Acid, Bludgeoning, Cold, Fire, Lightning, Necrotic, Piercing, Poison, Radiant, Slashing, or Thunder. When the creature takes damage of the chosen type before the spell ends, the creature reduces the total damage taken by {@dice 1d4}. A creature can benefit from this spell only once per turn."
+			],
+			"miscTags": [
+				"WLT"
 			],
 			"areaTags": [
 				"ST"
@@ -16419,7 +16522,7 @@
 				}
 			],
 			"entries": [
-				"Flame-like radiance descends on a creature that you can see within range. The target must succeed on a Dexterity saving throw or take {@damage 1d8} Radiant damage. The target gains no benefit from Half {@variantrule Cover|XPHB} or Three-Quarters {@variantrule Cover|XPHB} for this save."
+				"Flame-like radiance descends on a creature that you can see within range. The target must succeed on a Dexterity saving throw or take {@damage 1d8} Radiant damage. The target gains no benefit from {@variantrule Cover|XPHB|Half Cover} or Three-Quarters {@variantrule Cover|XPHB} for this save."
 			],
 			"entriesHigherLevel": [
 				{
@@ -16597,13 +16700,13 @@
 				"You can see and hear a creature you choose that is on the same plane of existence as you. The target makes a Wisdom saving throw, which is modified (see the tables below) by how well you know the target and the sort of physical connection you have to it. The target doesn't know what it is making the save against, only that it feels uneasy.",
 				{
 					"type": "table",
-					"colStyles": [
-						"col-10",
-						"col-2 text-center"
-					],
 					"colLabels": [
 						"Your Knowledge of the Target Is...",
 						"Save Modifier"
+					],
+					"colStyles": [
+						"col-10",
+						"col-2 text-center"
 					],
 					"rows": [
 						[
@@ -16622,13 +16725,13 @@
 				},
 				{
 					"type": "table",
-					"colStyles": [
-						"col-10",
-						"col-2 text-center"
-					],
 					"colLabels": [
 						"You Have the Target's...",
 						"Save Modifier"
+					],
+					"colStyles": [
+						"col-10",
+						"col-2 text-center"
 					],
 					"rows": [
 						[
@@ -16890,7 +16993,8 @@
 				"unconscious"
 			],
 			"miscTags": [
-				"OBJ"
+				"OBJ",
+				"WLT"
 			],
 			"areaTags": [
 				"ST"
@@ -16941,7 +17045,8 @@
 				"Upon shape-shifting, you determine whether your equipment drops to the ground or changes in size and shape to fit the new form while you're in it."
 			],
 			"miscTags": [
-				"THP"
+				"THP",
+				"UA"
 			],
 			"hasFluffImages": true
 		},
@@ -17130,7 +17235,7 @@
 				}
 			],
 			"entries": [
-				"A Club or Quarterstaff you are holding is imbued with nature's power. For the duration, you can use your spellcasting ability instead of Strength for the attack and damage rolls of melee attacks using that weapon, and the weapon's damage die becomes a {@dice d8}. If the attack deals damage, it can be Force damage or the weapon's normal damage type (your choice).",
+				"A Club or Quarterstaff you are holding is imbued with nature's power. For the duration, you can use your spellcasting ability instead of Strength for the attack and damage rolls of melee attacks using that weapon, and the weapon's damage die becomes a {@damage d8}. If the attack deals damage, it can be Force damage or the weapon's normal damage type (your choice).",
 				"The spell ends early if you cast it again or if you let go of the weapon."
 			],
 			"entriesHigherLevel": [
@@ -17381,6 +17486,9 @@
 			"abilityCheck": [
 				"intelligence"
 			],
+			"miscTags": [
+				"UA"
+			],
 			"hasFluffImages": true
 		},
 		{
@@ -17625,8 +17733,8 @@
 				}
 			],
 			"entries": [
-				"You cast sorcerous energy at one creature or object within range. Make a ranged attack roll against the target. On a hit, the target takes {@damage 1d8} damage of a type you choose: Acid, Cold, Fire, Lightning, Poison, Psychic, or Thunder.",
-				"If you roll an 8 on a {@dice d8} for this spell, you can roll another {@dice d8}, and add it to the damage. When you cast this spell, the maximum number of these d8s you can add to the spell's damage equals your spellcasting ability modifier."
+				"You cast sorcerous energy at one creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes {@damage 1d8} damage of a type you choose: Acid, Cold, Fire, Lightning, Poison, Psychic, or Thunder.",
+				"If you roll an 8 on a {@damage d8} for this spell, you can roll another {@damage d8}, and add it to the damage. When you cast this spell, the maximum number of these d8s you can add to the spell's damage equals your spellcasting ability modifier."
 			],
 			"entriesHigherLevel": [
 				{
@@ -17923,7 +18031,8 @@
 				}
 			],
 			"miscTags": [
-				"SCT"
+				"SCT",
+				"WLT"
 			]
 		},
 		{
@@ -18415,6 +18524,9 @@
 				"bludgeoning",
 				"piercing",
 				"slashing"
+			],
+			"miscTags": [
+				"WLT"
 			],
 			"areaTags": [
 				"ST"
@@ -19126,7 +19238,8 @@
 				"constitution"
 			],
 			"miscTags": [
-				"LGTS"
+				"LGTS",
+				"UA"
 			],
 			"areaTags": [
 				"L"
@@ -19425,11 +19538,12 @@
 			],
 			"entries": [
 				"You conjure a claw-footed cauldron filled with bubbling liquid. The cauldron appears in an unoccupied space on the ground within 5 feet of you and lasts for the duration. The cauldron can't be moved and disappears when the spell ends, along with the bubbling liquid inside it.",
-				"The liquid in the cauldron duplicates the properties of a Common or an Uncommon potion of your choice (such as a {@item Potion of Healing|XDMG}). As a {@variantrule Bonus Action|XPHB}, you or an ally can reach into the cauldron and withdraw one potion of that kind. The potion is contained in a vial that disappears when the potion is consumed. The cauldron can produce a number of these potions equal to your spellcasting ability modifier (minimum 1). When the last of these potions is withdrawn from the cauldron, the cauldron disappears, and the spell ends.",
+				"The liquid in the cauldron duplicates the properties of a {@filter Common or an Uncommon potion|items|type=potion|rarity=common;uncommon} of your choice (such as a {@item Potion of Healing|XDMG}). As a {@variantrule Bonus Action|XPHB}, you or an ally can reach into the cauldron and withdraw one potion of that kind. The potion is contained in a vial that disappears when the potion is consumed. The cauldron can produce a number of these potions equal to your spellcasting ability modifier (minimum 1). When the last of these potions is withdrawn from the cauldron, the cauldron disappears, and the spell ends.",
 				"Potions obtained from the cauldron that aren't consumed disappear when you cast this spell again."
 			],
 			"miscTags": [
 				"HL",
+				"UA",
 				"UBA"
 			],
 			"hasFluffImages": true
@@ -19603,6 +19717,9 @@
 				"You create a telepathic link between yourself and a willing creature with which you are familiar. The creature can be anywhere on the same plane of existence as you. The spell ends if you or the target are no longer on the same plane.",
 				"Until the spell ends, you and the target can instantly share words, images, sounds, and other sensory messages with each other through the link, and the target recognizes you as the creature it is communicating with. The spell enables a creature to understand the meaning of your words and any sensory messages you send to it."
 			],
+			"miscTags": [
+				"WLT"
+			],
 			"areaTags": [
 				"ST"
 			]
@@ -19642,19 +19759,19 @@
 				{
 					"type": "table",
 					"caption": "Teleportation Outcome",
-					"colStyles": [
-						"col-4",
-						"col-2 text-center",
-						"col-2 text-center",
-						"col-2 text-center",
-						"col-2 text-center"
-					],
 					"colLabels": [
 						"Familiarity",
 						"Mishap",
 						"Similar Area",
 						"Off Target",
 						"On Target"
+					],
+					"colStyles": [
+						"col-4",
+						"col-2 text-center",
+						"col-2 text-center",
+						"col-2 text-center",
+						"col-2 text-center"
 					],
 					"rows": [
 						[
@@ -19755,7 +19872,8 @@
 				"OBJ",
 				"RO",
 				"SGT",
-				"TP"
+				"TP",
+				"WLT"
 			],
 			"areaTags": [
 				"MT"
@@ -20365,7 +20483,7 @@
 					"type": "timed",
 					"duration": {
 						"type": "minute",
-						"amount": 10
+						"amount": 1
 					}
 				}
 			],
@@ -20585,6 +20703,9 @@
 			],
 			"entries": [
 				"For the duration, the willing creature you touch has {@sense Truesight|XPHB} with a range of 120 feet."
+			],
+			"miscTags": [
+				"WLT"
 			]
 		},
 		{
@@ -20754,6 +20875,7 @@
 			],
 			"miscTags": [
 				"SMN",
+				"UA",
 				"UBA"
 			]
 		},
@@ -21266,7 +21388,8 @@
 				"The spell ends if you drop to 0 {@variantrule Hit Points|XPHB} or if you and the target become separated by more than 60 feet. It also ends if the spell is cast again on either of the connected creatures."
 			],
 			"miscTags": [
-				"MAC"
+				"MAC",
+				"WLT"
 			],
 			"areaTags": [
 				"ST"
@@ -21312,6 +21435,9 @@
 			},
 			"entries": [
 				"This spell grants up to ten willing creatures of your choice within range the ability to breathe underwater until the spell ends. Affected creatures also retain their normal mode of respiration."
+			],
+			"miscTags": [
+				"WLT"
 			],
 			"areaTags": [
 				"MT"
@@ -21359,6 +21485,9 @@
 			"entries": [
 				"This spell grants the ability to move across any liquid surface\u2014such as water, acid, mud, snow, quicksand, or lava\u2014as if it were harmless solid ground (creatures crossing molten lava can still take damage from the heat). Up to ten willing creatures of your choice within range gain this ability for the duration.",
 				"An affected target must take a {@variantrule Bonus Action|XPHB} to pass from the liquid's surface into the liquid itself and vice versa, but if the target falls into the liquid, the target passes through the surface into the liquid below."
+			],
+			"miscTags": [
+				"WLT"
 			],
 			"areaTags": [
 				"MT"
@@ -21524,6 +21653,9 @@
 			],
 			"conditionInflict": [
 				"stunned"
+			],
+			"miscTags": [
+				"WLT"
 			],
 			"areaTags": [
 				"MT"
@@ -21752,6 +21884,7 @@
 				"R"
 			],
 			"miscTags": [
+				"UA",
 				"UBA"
 			],
 			"areaTags": [
@@ -21857,7 +21990,8 @@
 			],
 			"miscTags": [
 				"PS",
-				"TP"
+				"TP",
+				"WLT"
 			]
 		},
 		{

@@ -16,6 +16,7 @@ import {TagTestUrlLookup} from "./test-tags/test-tags-entity-registry.js";
 import {EntityFileHandlerLoot} from "./test-tags/entity-file/test-tags-entity-file-loot.js";
 import {EntityFileHandlerItems} from "./test-tags/entity-file/test-tags-entity-file-items.js";
 import {EntityFileHandlerAction} from "./test-tags/entity-file/test-tags-entity-file-action.js";
+import {EntityFileHandlerAdventureBook} from "./test-tags/entity-file/test-tags-entity-file-adventure-book.js";
 import {EntityFileHandlerBackground} from "./test-tags/entity-file/test-tags-entity-file-background.js";
 import {EntityFileHandlerBestiary} from "./test-tags/entity-file/test-tags-entity-file-bestiary.js";
 import {EntityFileHandlerClass} from "./test-tags/entity-file/test-tags-entity-file-class.js";
@@ -36,6 +37,9 @@ import {EntityFileHandlerVariantrule} from "./test-tags/entity-file/test-tags-en
 import {EntityFileHandlerSpellList} from "./test-tags/entity-file/test-tags-entity-file-spelllist.js";
 import {EntityFileHandlerHomeCrafts} from "./test-tags/entity-file/test-tags-entity-file-homecraft.js";
 import {PATH_DEFAULT_HOMEBREW_DIR, PATH_DEFAULT_PRERELEASE_DIR} from "./util-test.js";
+import {getInvalidCorpusHeaderUidMessage, TagTestCorpusHeaderUidMap} from "./test-tags/test-tags-utils-corpus.js";
+import {FoundryUuidCheck} from "./test-tags/test-tags-foundry-uuid.js";
+import {FoundryActivityReferenceInlineCheck} from "./test-tags/test-tags-foundry-activity-reference-inline.js";
 
 const program = new Command()
 	.option("--log-similar", `If, when logging a missing link, a list of potentially-similar links should additionally be logged.`)
@@ -122,9 +126,14 @@ class LinkCheck extends DataTesterBase {
 			const tagFaux = `${tagNonFluff}Fluff`;
 
 			const sourceDefault = Renderer.tag.getTagInfo(tagNonFluff, {isRequired: true}).defaultSource;
-			const uid = DataUtil.proxy.getUid(prop, {...obj, source: obj.source || sourceDefault});
+			const source = obj.source || sourceDefault;
+			const uid = DataUtil.proxy.getUid(prop, {...obj, source});
 
 			this._checkTagText({original: JSON.stringify(obj), tag: tagFaux, text: uid, filePath, isStatblock: true});
+
+			const hash = UrlUtil.URL_TO_HASH_BUILDER[prop]({...obj, source});
+			const fluff = DataLoader.getFromCache(prop, source, hash);
+			if (fluff && !fluff.entries?.length) this._addMessage(`Image-only fluff used: "${prop}" statblock ${JSON.stringify(obj)} in file ${filePath} referenced fluff with no entries\n`);
 
 			return obj;
 		}
@@ -223,8 +232,6 @@ class StripTagTest extends DataTesterBase {
 	}
 
 	_checkString (str, {filePath}) {
-		if (filePath === "./data/bestiary/template.json") return;
-
 		try {
 			Renderer.stripTags(str);
 		} catch (e) {
@@ -434,7 +441,7 @@ class AreaCheck extends DataTesterBase {
 
 		if (!this._fileMatcherValid.test(file) && !isNonSiteData) return this._handleObject_areaNotSupported({file, obj: contents, reason: "not a corpus data file"});
 
-		const propsValid = new Set(isNonSiteData ? ["adventureData", "bookData"] : ["data"]);
+		const propsValid = new Set(["adventureData", "bookData"]);
 
 		if (!contents || typeof contents !== "object") return this._handleObject_areaNotSupported({file, obj: contents, reason: "root was not an object"});
 		if (contents instanceof Array) return this._handleObject_areaNotSupported({file, obj: contents, reason: "root was not an object"});
@@ -442,7 +449,6 @@ class AreaCheck extends DataTesterBase {
 		Object.entries(contents)
 			.forEach(([prop, val]) => {
 				if (propsValid.has(prop)) {
-					if (prop === "data") return this._handleArray_areaSupported({file, obj: val, corpusPath: prop});
 					return val
 						.forEach((subVal, i) => this._handleArray_areaSupported({file, obj: subVal.data, corpusPath: `${prop}[${i}]`}));
 				}
@@ -802,13 +808,21 @@ class HasFluffCheck extends DataTesterBase {
 	}
 
 	_getHashesAlt ({page, ent}) {
+		// e.g. `_subclassFluff`
+		const fluffRef = ent.fluff?.[`_${ent.__prop}Fluff`];
+		if (fluffRef) return [UrlUtil.URL_TO_HASH_BUILDER[page](fluffRef)];
+
 		if (ent.__prop === "item" && ent._variantName) return [UrlUtil.URL_TO_HASH_BUILDER[page]({name: ent._variantName, source: ent.source})];
 		return [];
 	}
 }
 
 class AdventureBookTagCheck extends DataTesterBase {
-	static _TO_CHECK = {};
+	constructor ({tagTestUrlLookup, tagTestCorpusHeaderUidMap}) {
+		super();
+		this._tagTestUrlLookup = tagTestUrlLookup;
+		this._tagTestCorpusHeaderUidMap = tagTestCorpusHeaderUidMap;
+	}
 
 	registerParsedPrimitiveHandlers (parsedJsonChecker) {
 		parsedJsonChecker.addPrimitiveHandler("string", this._checkString.bind(this));
@@ -819,83 +833,108 @@ class AdventureBookTagCheck extends DataTesterBase {
 		"@b",
 	]);
 
+	_getTagMetas (str) {
+		return Renderer.splitByTags(str)
+			.filter(strPart => strPart?.startsWith("{@"))
+			.map(strPart => {
+				const [tag, text] = Renderer.splitFirstSpace(strPart.slice(1, -1));
+				return {tag, text, tagString: strPart};
+			});
+	};
+
+	_getAdventureBookTagMetas (str) {
+		return this._getTagMetas(str)
+			.filter(({tag}) => ["@adventure", "@book"].includes(tag));
+	}
+
+	_getAdventureBookDisplayTextSubTags (displayText) {
+		return this._getTagMetas(displayText)
+			.map(({tag}) => tag);
+	};
+
 	_checkString (str, {filePath}) {
-		const tagSplit = Renderer.splitByTags(str);
-
-		const len = tagSplit.length;
-		for (let i = 0; i < len; ++i) {
-			const s = tagSplit[i];
-
-			if (!s) continue;
-			if (!s.startsWith("{@")) continue;
-
-			const [tag, text] = Renderer.splitFirstSpace(s.slice(1, -1));
-			if (!["@adventure", "@book"].includes(tag)) continue;
-
+		for (const {tag, text, tagString} of this._getAdventureBookTagMetas(str)) {
 			const prop = tag.slice(1);
 
-			const [displayText, id, chap] = text.toLowerCase().split("|");
-			if (!id) {
-				this._addMessage(`Missing link: ${s} had no corpus ID!\n`);
+			const message = getInvalidCorpusHeaderUidMessage({
+				tagTestUrlLookup: this._tagTestUrlLookup,
+				tagTestCorpusHeaderUidMap: this._tagTestCorpusHeaderUidMap,
+				prop,
+				uid: text,
+				filePath,
+			});
+			if (message) {
+				this._addMessage(message);
 				continue;
 			}
 
-			const url = `${DataLoader.getPropPage(prop)}#${UrlUtil.getHashBuilder(prop)({id})}`;
+			const {displayText} = UidUtil.unpackUidAdventureBook(text, {isLower: true});
 
-			if (!tagTestUrlLookup.hasUrl(url)) {
-				this._addMessage(`Missing link: ${s} in file ${filePath} had unknown "${tag}" ID "${id}"\n`);
-				continue;
-			}
+			if (!displayText.includes("{@")) continue;
 
-			if (chap) {
-				if (isNaN(chap) || Number(chap) < 0) {
-					this._addMessage(`Missing link: ${s} in file ${filePath} had unknown "${tag}" chapter "${chap}"\n`);
-					continue;
-				}
-
-				(((this.constructor._TO_CHECK[prop] ||= {})[id] ||= {})[chap] ||= []).push({s, filePath});
-			}
-
-			if (!displayText.includes("{@")) return;
-
-			const tagSplitSub = Renderer.splitByTags(displayText);
-			for (let j = 0; j < len; ++j) {
-				const sSub = tagSplitSub[j];
-
-				if (!sSub) continue;
-				if (!sSub.startsWith("{@")) continue;
-
-				const [tagSub] = Renderer.splitFirstSpace(sSub.slice(1, -1));
+			for (const tagSub of this._getAdventureBookDisplayTextSubTags(displayText)) {
 				if (this.constructor._ALLOWED_SUB_TAGS.has(tagSub)) continue;
 
-				this._addMessage(`Link contained sub-tag "${tagSub}": ${s}\n`);
+				this._addMessage(`Link contained sub-tag "${tagSub}": ${tagString}\n`);
 			}
 		}
 	}
 
 	async pPostRun () {
-		if (!Object.keys(this.constructor._TO_CHECK).length) return;
+		const tagInfos = this._tagTestCorpusHeaderUidMap.getTagInfos();
+		if (!Object.keys(tagInfos).length) return;
 
-		for (const [prop, propTo] of Object.entries(this.constructor._TO_CHECK)) {
+		for (const [prop, propTo] of Object.entries(tagInfos)) {
 			const page = DataLoader.getPropPage(prop);
 
 			for (const [id, idTo] of Object.entries(propTo)) {
 				const data = await DataLoader.pCacheAndGetHash(page, UrlUtil.getHashBuilder(page)({id}));
 				if (!data) {
 					const ptLinks = Object.entries(idTo)
-						.map(([id, arr]) => arr.map(({s, filePath}) => `\t"${s}" in file ${filePath}`));
+						.flatMap(([, arr]) => arr.map(({uid, filePath}) => `\t${prop} header UID "${uid}" in file ${filePath}`));
 					this._addMessage(`Missing link${ptLinks.length === 1 ? "" : "s"}:\n${ptLinks.join("\n")}\n`);
 					continue;
 				}
 
 				const propData = `${prop}Data`;
-				for (const [chapRaw, arr] of Object.entries(idTo)) {
-					const chap = Number(chapRaw);
+
+				const chapterIxToTrackedTitles = {};
+				const renderer = new Renderer()
+					.setEnumerateTitlesRel(true)
+					.setTrackTitles(true)
+					.setHeaderIndexTableCaptions(true)
+					.setHeaderIndexImageTitles(true);
+				data?.[propData]?.data
+					.forEach((chapter, ixChapter) => {
+						renderer
+							.setFirstSection(true)
+							.resetHeaderIndex()
+							.render(chapter);
+						chapterIxToTrackedTitles[ixChapter] = renderer.getTrackedTitlesInverted({isStripTags: true});
+					});
+
+				for (const [ixChapterRaw, arr] of Object.entries(idTo)) {
+					const ixChapter = Number(ixChapterRaw);
 					arr
-						.forEach(({s, filePath}) => {
-							if (!data?.[propData]?.data[chap]) {
+						.forEach(({uid, filePath}) => {
+							if (!data?.[propData]?.data[ixChapter]) {
 								const ptRange = data?.[propData]?.data ? ` (expected 0-${data[propData].data.length - 1})` : "";
-								this._addMessage(`Missing link: ${s} in file ${filePath} had out-of-bounds chapter "${chap}"${ptRange}\n`);
+								this._addMessage(`Missing link: ${prop} header UID "${uid}" in file ${filePath} had out-of-bounds chapter "${ixChapter}"${ptRange}\n`);
+								return;
+							}
+
+							const {sectionName, ixNamedSection} = UidUtil.unpackUidAdventureBook(uid, {isLower: true});
+							if (sectionName == null) return;
+
+							const trackedTitles = chapterIxToTrackedTitles[ixChapter];
+
+							if (!trackedTitles[sectionName]) {
+								this._addMessage(`Missing link: ${prop} header UID "${uid}" in file ${filePath} section name "${sectionName}" was not found in chapter "${ixChapter}"\n`);
+								return;
+							}
+
+							if (!trackedTitles[sectionName][ixNamedSection || 0]) {
+								this._addMessage(`Missing link: ${prop} header UID "${uid}" in file ${filePath} section index "${ixNamedSection}" was out of bounds (expected 0-${trackedTitles[sectionName].length - 1}) for chapter "${ixChapter}"\n`);
 							}
 						});
 				}
@@ -916,7 +955,8 @@ async function main () {
 
 	await tagTestUrlLookup.pInit();
 
-	const sharedParamsEntityTypeTester = {tagTestUrlLookup};
+	const tagTestCorpusHeaderUidMap = new TagTestCorpusHeaderUidMap();
+	const sharedParamsEntityTypeTester = {tagTestUrlLookup, tagTestCorpusHeaderUidMap};
 
 	const dataTesters = [
 		new LinkCheck(),
@@ -926,7 +966,7 @@ async function main () {
 		new StripTagTest(),
 		new StandaloneTagTest(),
 		new TableDiceTest(),
-		new AdventureBookTagCheck(),
+		new AdventureBookTagCheck({tagTestUrlLookup, tagTestCorpusHeaderUidMap}),
 		new AreaCheck(),
 		new EntriesCheck(),
 		new EscapeCharacterCheck(),
@@ -935,7 +975,11 @@ async function main () {
 		new TestCopyCheck(),
 		new HasFluffCheck(),
 
+		new FoundryUuidCheck({tagTestUrlLookup}),
+		new FoundryActivityReferenceInlineCheck(),
+
 		new EntityFileHandlerAction(sharedParamsEntityTypeTester),
+		new EntityFileHandlerAdventureBook(sharedParamsEntityTypeTester),
 		new EntityFileHandlerBackground(sharedParamsEntityTypeTester),
 		new EntityFileHandlerBestiary(sharedParamsEntityTypeTester),
 		new EntityFileHandlerClass(sharedParamsEntityTypeTester),

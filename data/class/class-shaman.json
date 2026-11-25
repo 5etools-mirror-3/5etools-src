@@ -1,0 +1,98 @@
+{
+	"_meta": {
+		"dependencies": {
+			"class": [
+				"barbarian"
+			],
+			"subclass": [
+				"barbarian"
+			]
+		}
+	},
+	"class": [
+		{
+			"name": "Shaman",
+			"alias": [
+				"Barbarian"
+			],
+			"source": "WoW",
+			"reskinOf": [
+				"Barbarian|XPHB"
+			],
+			"_copy": {
+				"name": "Barbarian",
+				"source": "XPHB"
+			},
+			"includeSubclassesFrom": [
+				"Barbarian|XPHB"
+			],
+			"subclassTitle": "Shaman Subclass",
+			"hasFluff": true,
+			"hasFluffImages": true
+		}
+	],
+	"subclass": [
+		{
+			"name": "Path of the Berserker",
+			"shortName": "Berserker",
+			"source": "WoW",
+			"className": "Shaman",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Path of the Berserker",
+				"source": "XPHB",
+				"shortName": "Berserker",
+				"className": "Barbarian",
+				"classSource": "XPHB"
+			}
+		},
+		{
+			"name": "Path of the Elements",
+			"shortName": "Elements",
+			"source": "WoW",
+			"className": "Shaman",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Path of the Elements",
+				"source": "WoW",
+				"shortName": "Elements",
+				"className": "Barbarian",
+				"classSource": "XPHB",
+				"_preserve": {
+					"*": true
+				}
+			}
+		},
+		{
+			"name": "Path of the Spiritual Guardian",
+			"shortName": "Spiritual Guardian",
+			"source": "WoW",
+			"className": "Shaman",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Path of the Spiritual Guardian",
+				"source": "WoW",
+				"shortName": "Spiritual Guardian",
+				"className": "Barbarian",
+				"classSource": "XPHB",
+				"_preserve": {
+					"*": true
+				}
+			}
+		},
+		{
+			"name": "Path of the World Tree",
+			"shortName": "World Tree",
+			"source": "WoW",
+			"className": "Shaman",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Path of the World Tree",
+				"source": "XPHB",
+				"shortName": "World Tree",
+				"className": "Barbarian",
+				"classSource": "XPHB"
+			}
+		}
+	]
+}

@@ -9,6 +9,7 @@ export class PageFilterBase {
 		//   - "Deselect Prerelease Content Sources by Default"
 		//   - "Deselect Homebrew Sources by Default"
 		return PageFilterBase.defaultSourceSelFnStandardPartnered(val)
+			|| SourceUtil.getFilterGroup(val) === SourceUtil.FILTER_GROUP_UNIVERSES_BEYOND
 			|| SourceUtil.getFilterGroup(val) === SourceUtil.FILTER_GROUP_PRERELEASE
 			|| SourceUtil.getFilterGroup(val) === SourceUtil.FILTER_GROUP_HOMEBREW;
 	}
@@ -22,8 +23,8 @@ export class PageFilterBase {
 		return val === "Reprinted";
 	}
 
-	constructor (opts) {
-		opts = opts || {};
+	constructor (opts = null) {
+		opts ||= {};
 		this._sourceFilter = new SourceFilter(opts.sourceFilterOpts);
 		this._filterBox = null;
 		this._miscFilter = null;
@@ -90,7 +91,7 @@ export class PageFilterBase {
 			opts.definedInSource = definedInSource;
 		}
 
-		return new FilterItemClassSubclass(opts);
+		return new FilterItemClassSubclass(opts).getSerialized();
 	}
 
 	static _getSubclassFilterItem ({className, classSource, subclassShortName, subclassName, subclassSource, subSubclassName, isVariantClass, definedInSource}) {
@@ -105,7 +106,7 @@ export class PageFilterBase {
 			item: `${className}: ${classFilterItem.item}${subSubclassName ? `, ${subSubclassName}` : ""}`,
 			nest: className,
 			group,
-		});
+		}).getSerialized();
 	}
 
 	static isReprinted (ent, {fnMissingBuilder = null} = {}) {
@@ -121,6 +122,10 @@ export class PageFilterBase {
 				const hash = UrlUtil.URL_TO_HASH_BUILDER[ent.__prop](unpacked);
 				return !ExcludeUtil.isExcluded(hash, ent.__prop, unpacked.source, {isNoCount: true});
 			});
+	}
+
+	static isReskin (ent) {
+		return !!ent.reskinOf?.length;
 	}
 
 	static getListAliases (ent) {
@@ -156,6 +161,7 @@ export class PageFilterBase {
 		if (this._hasSoundClip(ent)) ent._fMisc.push("Has Pronunciation Audio");
 
 		if (this.isReprinted(ent)) ent._fMisc.push("Reprinted");
+		if (this.isReskin(ent)) ent._fMisc.push("Reskin");
 
 		if (ent.tokenCustom) ent._fMisc.push("Has Custom/Unofficial Token");
 		if (ent.tokenCredit) ent._fMisc.push("Has Token Credit");

@@ -6,7 +6,7 @@ window.addEventListener("load", async () => {
 	ExcludeUtil.pInitialise().then(null); // don't await, as this is only used for search
 
 	const changelog = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/changelog.json`);
-	const wrp = es(`#pagecontent`).empty();
+	const wrp = veEs(`#pagecontent`).vee.empty();
 	UtilsChangelog.renderChangelog(changelog, wrp);
 
 	window.dispatchEvent(new Event("toolsLoaded"));

@@ -1,18 +1,18 @@
-"use strict";
+import {TableListPage} from "./tablepage.js";
 
 class NamesPage extends TableListPage {
 	constructor () {
 		super({
-			dataSource: "data/names.json",
+			dataSource: DataUtil.namez.loadJSON.bind(DataUtil.namez),
 
 			dataProps: ["name"],
+
+			bookViewOptions: {
+				nameSingular: "table",
+				namePlural: "tables",
+				pageTitle: "Names Book View",
+			},
 		});
-	}
-
-	static _COL_NAME_1 = "Name";
-
-	_getHash (ent) {
-		return UrlUtil.encodeForHash([ent.name, ent.source, ent.option]);
 	}
 
 	_getHeaderId (ent) {
@@ -20,7 +20,11 @@ class NamesPage extends TableListPage {
 	}
 
 	_getDisplayName (ent) {
-		return Renderer.table.getConvertedNameTableName(ent, ent);
+		return Renderer.namez.getDisplayName(ent);
+	}
+
+	_getRenderedTable (ent) {
+		return RenderNames.getRenderedNameTable(ent);
 	}
 }
 

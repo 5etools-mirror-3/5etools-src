@@ -34,6 +34,7 @@ import {
 import {CoreRuleTag, HazardTag, SpellTag} from "./converterutils-entries.js";
 import {PropOrder} from "../utils-proporder.js";
 import {ConverterStringBlocklist} from "./converterutils-utils-blocklist.js";
+import {AlignmentUtil} from "./converterutils-utils-alignment.js";
 import {VetoolsConfig} from "../utils-config/utils-config-config.js";
 import {SITE_STYLE__CLASSIC} from "../consts.js";
 
@@ -167,6 +168,7 @@ export class ConverterCreature extends ConverterBase {
 	 * @param options.isAppend Default output append mode.
 	 * @param options.source Entity source.
 	 * @param options.page Entity page.
+	 * @param [options.isAddPageNumber] Whether to include the page in the output. Defaults to true if a page is provided.
 	 * @param options.titleCaseFields Array of fields to be title-cased in this entity (if enabled).
 	 * @param options.isTitleCase Whether title-case fields should be title-cased in this entity.
 	 * @param options.styleHint
@@ -458,7 +460,13 @@ export class ConverterCreature extends ConverterBase {
 
 				// Avoid eating spellcasting `At Will: ...`
 				const splColonNext = lineNxt.split(/(?::| -) /g).filter(Boolean);
-				if (line.trim().endsWith(":") && splColonNext.length > 1 && /^[A-Z\d][\\/a-z]/.test(splColonNext[0].trim())) continue;
+				if (
+					splColonNext.length > 1
+					&& (
+						/^[A-Z\d][\\/a-z]/.test(splColonNext[0].trim())
+						|| /^\d+ Charge/i.test(splColonNext[0].trim())
+					)
+				) continue;
 
 				meta.toConvert[j] = `${line.trim()} ${lineNxt.trim()}`;
 				meta.toConvert.splice(j + 1, 1);
@@ -696,23 +704,6 @@ export class ConverterCreature extends ConverterBase {
 		]
 			.map(it => ({re: new RegExp(`\\n\\s*${it.split("").join("\\s*")}\\s*\\n`, "g"), original: it.replace(/[^a-zA-Z ]/g, "")}))
 			.forEach(({re, original}) => clean = clean.replace(re, `\n${original}\n`));
-		// endregion
-
-		// region Handle bad OCR'ing of dice
-		clean = clean
-			.replace(/\nl\/(?<unit>day)[.:]\s*/g, (...m) => `\n1/${m.last().unit}: `)
-			.replace(/\b(?<num>[liI!]|\d+)?d[1liI!]\s*[oO0]\b/g, (...m) => `${m.last().num ? isNaN(m.last().num) ? "1" : m.last().num : ""}d10`)
-			.replace(/\b(?<num>[liI!]|\d+)?d[1liI!]\s*2\b/g, (...m) => `${m.last().num ? isNaN(m.last().num) ? "1" : m.last().num : ""}d12`)
-			.replace(/\b[liI!1]\s*d\s*(?<faces>\d+)\b/g, (...m) => `1d${m.last().faces}`)
-			.replace(/\b(?<num>\d+)\s*d\s*(?<faces>\d+)\b/g, (...m) => `${m.last().num}d${m.last().faces}`)
-		;
-		// endregion
-
-		// region Handle misc OCR issues
-		clean = clean
-			.replace(/\bI nt\b/g, "Int")
-			.replace(/\(-[lI!]\)/g, "(-1)")
-		;
 		// endregion
 
 		// Handle modifiers split across lines
@@ -1005,15 +996,18 @@ export class ConverterCreature extends ConverterBase {
 					return null;
 				}
 
-				const mUses = /^Legendary Action Uses: (?<cnt>\d+)( \((?<cntLair>\d+) in Lair\))?/gi.exec(ent.entries[0]);
+				const mUses = /^Legendary Action Uses: (?<cnt>\d+)( \((?<cntLair>\d+) (?<condition>[^)]+)\))?/gi.exec(ent.entries[0]);
 				if (!hasName && mUses) {
-					const {cnt, cntLair} = mUses.groups;
+					const {cnt, cntLair, condition} = mUses.groups;
 
 					const asNum = Number(cnt);
 					const asNumLair = cntLair ? Number(cntLair) : null;
 
 					if (asNum !== 3) stats.legendaryActions = asNum;
-					if (asNumLair && asNumLair !== asNum) stats.legendaryActionsLair = asNumLair;
+					if (asNumLair && asNumLair !== asNum) {
+						stats.legendaryActionsLair = asNumLair;
+						if (condition.toLowerCase() !== "in lair") stats.legendaryActionsLairCondition = condition;
+					}
 
 					return null;
 				}
@@ -1405,6 +1399,7 @@ export class ConverterCreature extends ConverterBase {
 	 * @param options.isAppend Default output append mode.
 	 * @param options.source Entity source.
 	 * @param options.page Entity page.
+	 * @param [options.isAddPageNumber] Whether to include the page in the output. Defaults to true if a page is provided.
 	 * @param options.titleCaseFields Array of fields to be title-cased in this entity (if enabled).
 	 * @param options.isTitleCase Whether title-case fields should be title-cased in this entity.
 	 */
@@ -2018,7 +2013,7 @@ export class ConverterCreature extends ConverterBase {
 		let cntLines = 0;
 		const nextSixLines = [];
 		for (let i = meta.ixToConvert; nextSixLines.length < 6; ++i) {
-			const line = (meta.toConvert[i] || "").toLowerCase();
+			const line = (meta.toConvert[i] || "").toLowerCase().trim();
 			if (Parser.ABIL_ABVS.includes(line)) nextSixLines.push(line);
 			else break;
 			cntLines++;
@@ -2088,8 +2083,21 @@ export class ConverterCreature extends ConverterBase {
 		// endregion
 
 		const tksNoSize = tks.slice(ixSizeLast + 1);
+		const strTypeAlignment = tksNoSize.join("");
 
-		const spl = tksNoSize.join("").split(StrUtil.COMMAS_NOT_IN_PARENTHESES_REGEX);
+		// E.g. "Battle Familiar" :: AU
+		const mSemicolon = /^(?<ptType>.+?);\s*(?<ptAlignment>[^;]+)$/.exec(strTypeAlignment);
+		if (mSemicolon) {
+			const {alignmentPrefix, alignment} = AlignmentUtil.tryGetConvertedAlignment(mSemicolon.groups.ptAlignment);
+			if (Array.isArray(alignment)) {
+				stats.type = mSemicolon.groups.ptType.trim();
+				stats.alignment = alignment;
+				if (alignmentPrefix) stats.alignmentPrefix = alignmentPrefix;
+				return;
+			}
+		}
+
+		const spl = strTypeAlignment.split(StrUtil.COMMAS_NOT_IN_PARENTHESES_REGEX);
 		if (!spl.length) {
 			options.cbWarning(`Type/Alignment "${tksNoSize.join("")}" requires manual conversion`);
 			return;

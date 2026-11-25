@@ -60,7 +60,7 @@ This is the code that should now be in every page's `<head>` section.
 
 ### More changes
 - **Favicon:** The stroke color has been changed to match the app icon. This has the added benefit of making it easier to see while in dark mode.
-- **App icon:** The text has been resized within the app icon to give more spacing around edge. (Apple's "official" app icon design grid came in handy here.) Also, a *slight* gradient was applied to give it some almost-imperceptible pop.
+- **App icon:** The text has been resized within the app icon to give more spacing around the edge. (Apple's "official" app icon design grid came in handy here.) Also, a *slight* gradient was applied to give it some almost-imperceptible pop.
 - **Goodbye, pirate hat:** The icon with the pirate hat has been replaced. It was cheeky, but definitely not the impression we want to give off. <!-- TODO: Delete the /icon folder, wherever it is, since it's not used anymore -->
 - **Android splash screen:** When launching it from the home screen on Android, 5etools now gets a fancy splash screen.
 - **Better standalone mode:** After adding 5etools to your device's home screen (or installing it in your browser as an app), it now behaves like its own app, including showing up in your app switcher as "5etools." It did this before, but now it should behave a little nicer. Depending on your platform, it might even show a back button now.

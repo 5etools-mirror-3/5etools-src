@@ -2,7 +2,7 @@
 
 class RenderLanguages {
 	static getRenderedLanguage (it) {
-		return ee`${Renderer.utils.getBorderTr()}
+		return veT`${Renderer.utils.getBorderTr()}
 		${Renderer.language.getRenderedString(it)}
 		${Renderer.utils.getPageTr(it)}
 		${Renderer.utils.getBorderTr()}`;

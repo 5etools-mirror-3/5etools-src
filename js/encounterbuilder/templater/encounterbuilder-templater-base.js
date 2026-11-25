@@ -16,7 +16,7 @@ export class EncounterBuilderTemplaterBase {
 	 * @param {number} budgetMax
 	 * @param {"xp" | "cr"} budgetMode
 	 *
-	 * @param {Array<EncounterBuilderCreatureMeta>} creatureMetasLocked
+	 * @param {Array<EncounterBuilderCreatureGroupBase>} creatureGroupsLocked
 	 */
 	constructor (
 		{
@@ -26,7 +26,7 @@ export class EncounterBuilderTemplaterBase {
 			budgetMax,
 			budgetMode,
 
-			creatureMetasLocked,
+			creatureGroupsLocked,
 		},
 	) {
 		this._partyMeta = partyMeta;
@@ -35,7 +35,7 @@ export class EncounterBuilderTemplaterBase {
 		this._budgetMax = budgetMax;
 		this._budgetMode = budgetMode;
 
-		this._creatureMetasLocked = creatureMetasLocked;
+		this._creatureGroupsLocked = creatureGroupsLocked;
 	}
 
 	/**

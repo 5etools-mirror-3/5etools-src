@@ -10,7 +10,7 @@ class RenderVariantRules {
 		Renderer.get().resetHeaderIndex();
 		Renderer.get().recursiveRender(cpy, textStack);
 
-		return ee`
+		return veT`
 		${Renderer.utils.getBorderTr()}
 		${Renderer.utils.getExcludedTr({entity: rule, dataProp: "variantrule"})}
 		${Renderer.utils.getNameTr(rule, {page: UrlUtil.PG_VARIANTRULES})}

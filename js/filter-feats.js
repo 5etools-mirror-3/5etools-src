@@ -101,6 +101,7 @@ class PageFilterFeats extends PageFilterBase {
 		if (feat.repeatable != null) feat._fMisc.push(feat.repeatable ? "Repeatable" : "Not Repeatable");
 
 		feat._slAbility = ability.asTextShort || VeCt.STR_NONE;
+		feat._srtAbility = ability.asSortableString;
 		feat._slPrereq = prereqText;
 
 		FilterCommon.mutateForFilters_damageVulnResImmunePlayer(feat);
@@ -218,12 +219,11 @@ class ModalFilterFeats extends ModalFilterBase {
 
 		const btnShowHidePreview = eleRow.firstElementChild.children[1].firstElementChild;
 
-		const listItem = new ListItem(
-			ftI,
-			eleRow,
-			feat.name,
-			{
-				hash,
+		const listItem = new ListItem({
+			id: ftI,
+			ele: eleRow,
+			name: feat.name,
+			values: {
 				source,
 				sourceJson: feat.source,
 				...ListItem.getCommonValues(feat),
@@ -231,11 +231,14 @@ class ModalFilterFeats extends ModalFilterBase {
 				ability: feat._slAbility,
 				prerequisite: feat._slPrereq,
 			},
-			{
+			data: {
+				hash,
+				page: feat.page,
+				ability: feat._srtAbility,
 				cbSel: eleRow.firstElementChild.firstElementChild.firstElementChild,
 				btnShowHidePreview,
 			},
-		);
+		});
 
 		this._previewButtonHandler.bindPreviewButton({entity: feat, listItem, btnShowHidePreview});
 

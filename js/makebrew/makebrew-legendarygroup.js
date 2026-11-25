@@ -73,7 +73,7 @@ export class LegendaryGroupBuilder extends BuilderBase {
 
 	_renderInputMain () {
 		this._sourcesCache = MiscUtil.copy(this._ui.allSources);
-		const wrp = this._ui.wrpInput.empty();
+		const wrp = this._ui.wrpInput.vee.empty();
 
 		const _cb = () => {
 			// Prefer numerical pages if possible
@@ -106,21 +106,21 @@ export class LegendaryGroupBuilder extends BuilderBase {
 			},
 		);
 		const [infoTab, lairActionsTab, regionalEffectsTab, mythicEncounterTab] = tabs;
-		ee`<div class="ve-flex-v-center ve-w-100 ve-no-shrink ve-ui-tab__wrp-tab-heads--border">${tabs.map(it => it.btnTab)}</div>`.appendTo(wrp);
-		tabs.forEach(it => it.wrpTab.appendTo(wrp));
+		veT`<div class="ve-flex-v-center ve-w-100 ve-no-shrink ve-ui-tab__wrp-tab-heads--border">${tabs.map(it => it.btnTab)}</div>`.vee.appendTo(wrp);
+		tabs.forEach(it => it.wrpTab.vee.appendTo(wrp));
 
 		// INFO
-		BuilderUi.getStateIptString("Name", cb, this._state, {nullable: false}, "name").appendTo(infoTab.wrpTab);
-		this._selSource = this.getSourceInput(cb).appendTo(infoTab.wrpTab);
+		BuilderUi.getStateIptString("Name", cb, this._state, {nullable: false}, "name").vee.appendTo(infoTab.wrpTab);
+		this._selSource = this.getSourceInput(cb).vee.appendTo(infoTab.wrpTab);
 
 		// LAIR ACTIONS
-		this.__getLairActionsInput(cb).appendTo(lairActionsTab.wrpTab);
+		this.__getLairActionsInput(cb).vee.appendTo(lairActionsTab.wrpTab);
 
 		// REGIONAL EFFECTS
-		this.__getRegionalEffectsInput(cb).appendTo(regionalEffectsTab.wrpTab);
+		this.__getRegionalEffectsInput(cb).vee.appendTo(regionalEffectsTab.wrpTab);
 
 		// MYTHIC ENCOUNTER
-		this.__getMythicEncounterEffectsInput(cb).appendTo(mythicEncounterTab.wrpTab);
+		this.__getMythicEncounterEffectsInput(cb).vee.appendTo(mythicEncounterTab.wrpTab);
 	}
 
 	__getLairActionsInput (cb) {
@@ -140,7 +140,7 @@ export class LegendaryGroupBuilder extends BuilderBase {
 	}
 
 	_renderOutput () {
-		const wrp = this._ui.wrpOutput.empty();
+		const wrp = this._ui.wrpOutput.vee.empty();
 
 		// initialise tabs
 		this._resetTabs({tabGroup: "output"});
@@ -155,12 +155,12 @@ export class LegendaryGroupBuilder extends BuilderBase {
 			},
 		);
 		const [legGroupTab, dataTab] = tabs;
-		ee`<div class="ve-flex-v-center ve-w-100 ve-no-shrink">${tabs.map(it => it.btnTab)}</div>`.appendTo(wrp);
-		tabs.forEach(it => it.wrpTab.appendTo(wrp));
+		veT`<div class="ve-flex-v-center ve-w-100 ve-no-shrink">${tabs.map(it => it.btnTab)}</div>`.vee.appendTo(wrp);
+		tabs.forEach(it => it.wrpTab.vee.appendTo(wrp));
 
 		// Legendary Group
-		const tblLegGroup = ee`<table class="ve-w-100 ve-stats"></table>`.appendTo(legGroupTab.wrpTab);
-		tblLegGroup.appends(RenderBestiary.getRenderedLegendaryGroup(this._state));
+		const tblLegGroup = veT`<table class="ve-w-100 ve-stats"></table>`.vee.appendTo(legGroupTab.wrpTab);
+		tblLegGroup.vee.appends(RenderBestiary.getRenderedLegendaryGroup(this._state));
 
 		// Data
 		const asCode = Renderer.get().render({
@@ -173,12 +173,12 @@ export class LegendaryGroupBuilder extends BuilderBase {
 				},
 			],
 		});
-		ee`<table class="ve-stats ve-stats--book mkbru__wrp-output-tab-data">
+		veT`<table class="ve-stats ve-stats--book mkbru__wrp-output-tab-data">
 			${Renderer.utils.getBorderTr()}
 			<tr><td colspan="6">${asCode}</td></tr>
 			${Renderer.utils.getBorderTr()}
 		</table>`
-			.appendTo(dataTab.wrpTab);
+			.vee.appendTo(dataTab.wrpTab);
 	}
 
 	async pDoPostSave () { await this._ui.creatureBuilder.pUpdateLegendaryGroups(); }

@@ -7,7 +7,7 @@ export class RenderRaces {
 		const entriesMeta = Renderer.race.getRaceRenderableEntriesMeta(ent, {styleHint});
 		const ptHeightWeight = RenderRaces._getHeightAndWeightPart(ent);
 
-		return ee`
+		return veT`
 		${Renderer.utils.getBorderTr()}
 		${Renderer.utils.getExcludedTr({entity: ent, dataProp: "race"})}
 		${Renderer.utils.getNameTr(ent, {htmlControlRhs: ent.soundClip ? RenderRaces._getBtnPronounceHtml(ent) : "", page: UrlUtil.PG_RACES})}
@@ -21,14 +21,14 @@ export class RenderRaces {
 			 </section>` : ""}
 		</td></tr>
 
-		${ptHeightWeight ? ee`<tr><td colspan="6"><hr class="ve-rd__hr">${ptHeightWeight}</td></tr>` : ""}
+		${ptHeightWeight ? veT`<tr><td colspan="6"><hr class="ve-rd__hr">${ptHeightWeight}</td></tr>` : ""}
 
 		${Renderer.utils.getPageTr(ent)}
 		${Renderer.utils.getBorderTr()}`;
 	}
 
 	static _getBtnPronounceHtml (race) {
-		return `<button class="ve-btn ve-btn-xs ve-btn-default ve-stats__btn-name-pronounce ve-lst-is-exporting-image__hidden no-print ve-ml-2 ve-mb-2 ve-self-flex-end">
+		return `<button class="ve-btn ve-btn-xs ve-btn-default ve-stats__btn-name-pronounce ve-lst-is-exporting-image__hidden ve-print__hidden ve-ml-2 ve-mb-2 ve-self-flex-end">
 			<span class="glyphicon glyphicon-volume-up ve-stats__icn-pronounce-name"></span>
 			<audio class="ve-hidden" preload="none" data-name="aud-pronounce">
 			   <source src="${Renderer.utils.getEntryMediaUrl(race, "soundClip", "audio")}" type="audio/mpeg">
@@ -39,7 +39,7 @@ export class RenderRaces {
 	static _getHeightAndWeightPart (race) {
 		const outer = Renderer.race.getHeightAndWeightPart(race);
 		if (!outer) return null;
-		const ele = e_({outer});
+		const ele = veE({outer});
 		Renderer.race.bindListenersHeightAndWeight(race, ele);
 		return ele;
 	}

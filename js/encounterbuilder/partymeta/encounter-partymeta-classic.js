@@ -1,5 +1,5 @@
 import {EncounterPartyMetaBase, EncounterPartyMetaUtils} from "./encounter-partymeta-base.js";
-import {EncounterBuilderSpendInfo} from "../encounterbuilder-models.js";
+import {EncounterBuilderSpendInfo} from "../encounterbuilder-models-other.js";
 import {LEVEL_TO_XP_DAILY, MONSTER_COUNT_TO_XP_MULTIPLIER, TIER_ABSURD, TIER_TO_LEVEL_XP, TIER_TRIVIAL, TIERS_EXTENDED} from "../consts/encounterbuilder-consts-classic.js";
 
 export class EncounterPartyMetaClassic extends EncounterPartyMetaBase {
@@ -21,17 +21,17 @@ export class EncounterPartyMetaClassic extends EncounterPartyMetaBase {
 			.sum();
 	}
 
-	_getEncounterSpendInfo ({creatureMetas}) {
+	_getEncounterSpendInfo ({creatureGroups}) {
 		let baseSpend = 0;
 		let relevantCount = 0;
 		let count = 0;
 
-		const crCutoff = this.getCrCutoff(creatureMetas);
-		creatureMetas
-			.forEach(creatureMeta => {
-				if (creatureMeta.getCrNumber() >= crCutoff) relevantCount += creatureMeta.getCount();
-				count += creatureMeta.getCount();
-				baseSpend += (creatureMeta.getXp() || 0) * creatureMeta.getCount();
+		const crCutoff = this.getCrCutoff(creatureGroups);
+		creatureGroups
+			.forEach(creatureGroup => {
+				if (creatureGroup.getCrNumber() >= crCutoff) relevantCount += creatureGroup.getCount();
+				count += creatureGroup.getCount();
+				baseSpend += (creatureGroup.getXp() || 0) * creatureGroup.getCount();
 			});
 
 		const playerAdjustedSpendMult = this.getPlayerAdjustedSpendMultiplier(relevantCount, this.cntPlayers);
@@ -82,14 +82,14 @@ export class EncounterPartyMetaClassic extends EncounterPartyMetaBase {
 		return (cntHigher / (cntLower + cntHigher)) >= 0.333;
 	}
 
-	getCrCutoff (creatureMetas) {
-		creatureMetas = creatureMetas
-			.filter(creatureMeta => creatureMeta.getCrNumber() != null)
+	getCrCutoff (creatureGroups) {
+		creatureGroups = creatureGroups
+			.filter(creatureGroup => creatureGroup.getCrNumber() != null)
 			.sort((a, b) => SortUtil.ascSort(b.getCrNumber(), a.getCrNumber()));
-		if (!creatureMetas.length) return 0;
+		if (!creatureGroups.length) return 0;
 
 		// no cutoff for CR 0-2
-		if (creatureMetas[0].getCrNumber() <= 2) return 0;
+		if (creatureGroups[0].getCrNumber() <= 2) return 0;
 
 		// ===============================================================================================================
 		// "When making this calculation, don't count any monsters whose challenge rating is significantly below the average
@@ -104,9 +104,9 @@ export class EncounterPartyMetaClassic extends EncounterPartyMetaBase {
 
 		// Spread the CRs into a single array
 		const crValues = [];
-		creatureMetas.forEach(creatureMeta => {
-			const cr = creatureMeta.getCrNumber();
-			for (let i = 0; i < creatureMeta.getCount(); ++i) crValues.push(cr);
+		creatureGroups.forEach(creatureGroup => {
+			const cr = creatureGroup.getCrNumber();
+			for (let i = 0; i < creatureGroup.getCount(); ++i) crValues.push(cr);
 		});
 
 		// TODO(Future) allow this to be controlled by the user

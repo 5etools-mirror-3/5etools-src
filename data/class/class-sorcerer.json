@@ -83,13 +83,6 @@
 				}
 			],
 			"startingProficiencies": {
-				"weapons": [
-					"{@item dagger|phb|daggers}",
-					"{@item dart|phb|darts}",
-					"{@item sling|phb|slings}",
-					"{@item quarterstaff|phb|quarterstaffs}",
-					"{@item light crossbow|phb|light crossbows}"
-				],
 				"skills": [
 					{
 						"choose": {
@@ -104,6 +97,13 @@
 							"count": 2
 						}
 					}
+				],
+				"weapons": [
+					"{@item dagger|phb|daggers}",
+					"{@item dart|phb|darts}",
+					"{@item sling|phb|slings}",
+					"{@item quarterstaff|phb|quarterstaffs}",
+					"{@item light crossbow|phb|light crossbows}"
 				]
 			},
 			"startingEquipment": {
@@ -681,9 +681,6 @@
 				}
 			],
 			"startingProficiencies": {
-				"weapons": [
-					"simple"
-				],
 				"skills": [
 					{
 						"choose": {
@@ -698,6 +695,9 @@
 							"count": 2
 						}
 					}
+				],
+				"weapons": [
+					"simple"
 				]
 			},
 			"startingEquipment": {
@@ -893,15 +893,15 @@
 				{
 					"title": "Spell Slots per Spell Level",
 					"colLabels": [
-						"{@filter 1st|spells|level=1|class=sorcerer}",
-						"{@filter 2nd|spells|level=2|class=sorcerer}",
-						"{@filter 3rd|spells|level=3|class=sorcerer}",
-						"{@filter 4th|spells|level=4|class=sorcerer}",
-						"{@filter 5th|spells|level=5|class=sorcerer}",
-						"{@filter 6th|spells|level=6|class=sorcerer}",
-						"{@filter 7th|spells|level=7|class=sorcerer}",
-						"{@filter 8th|spells|level=8|class=sorcerer}",
-						"{@filter 9th|spells|level=9|class=sorcerer}"
+						"{@filter 1|spells|level=1|class=sorcerer}",
+						"{@filter 2|spells|level=2|class=sorcerer}",
+						"{@filter 3|spells|level=3|class=sorcerer}",
+						"{@filter 4|spells|level=4|class=sorcerer}",
+						"{@filter 5|spells|level=5|class=sorcerer}",
+						"{@filter 6|spells|level=6|class=sorcerer}",
+						"{@filter 7|spells|level=7|class=sorcerer}",
+						"{@filter 8|spells|level=8|class=sorcerer}",
+						"{@filter 9|spells|level=9|class=sorcerer}"
 					],
 					"rowsSpellProgression": [
 						[
@@ -1942,6 +1942,7 @@
 					"name": "Full Moon",
 					"known": {
 						"1": [
+							"sacred flame#c",
 							"shield",
 							"ray of sickness",
 							"color spray"
@@ -2205,6 +2206,7 @@
 			"source": "RHW",
 			"className": "Sorcerer",
 			"classSource": "XPHB",
+			"page": 23,
 			"edition": "one",
 			"additionalSpells": [
 				{
@@ -4893,7 +4895,7 @@
 			"level": 14,
 			"header": 2,
 			"entries": [
-				"Your {@subclassFeature Spellfire Burst|Sorcerer|XPHB|Spellfire|FRHoF|3|FRHoF} improves. You add your {@class Sorcerer|XPHB} level to the {@variantrule Temporary Hit Points|XPHB} gained from {@subclassFeature Bolstering Flames|Sorcerer|XPHB|Spellfire|FRHoF|3|FRHoF}, and the damage of {@subclassFeature Radiant Fire|Sorcerer|XPHB|Spellfire|FRHoF|3|FRHoF} increases to {@dice 1d8}."
+				"Your {@subclassFeature Spellfire Burst|Sorcerer|XPHB|Spellfire|FRHoF|3|FRHoF} improves. You add your {@class Sorcerer|XPHB} level to the {@variantrule Temporary Hit Points|XPHB} gained from {@subclassFeature Bolstering Flames|Sorcerer|XPHB|Spellfire|FRHoF|3|FRHoF}, and the damage of {@subclassFeature Radiant Fire|Sorcerer|XPHB|Spellfire|FRHoF|3|FRHoF} increases to {@damage 1d8}."
 			]
 		},
 		{
@@ -5005,6 +5007,7 @@
 		{
 			"name": "Power of Shadow",
 			"source": "RHW",
+			"page": 24,
 			"className": "Sorcerer",
 			"classSource": "XPHB",
 			"subclassShortName": "Shadow",
@@ -5031,6 +5034,7 @@
 		{
 			"name": "Shadow Sorcery",
 			"source": "RHW",
+			"page": 23,
 			"className": "Sorcerer",
 			"classSource": "XPHB",
 			"subclassShortName": "Shadow",
@@ -5052,6 +5056,7 @@
 		{
 			"name": "Shadow Spells",
 			"source": "RHW",
+			"page": 23,
 			"className": "Sorcerer",
 			"classSource": "XPHB",
 			"subclassShortName": "Shadow",
@@ -5094,6 +5099,7 @@
 		{
 			"name": "Beasts of Ill Omen",
 			"source": "RHW",
+			"page": 24,
 			"className": "Sorcerer",
 			"classSource": "XPHB",
 			"subclassShortName": "Shadow",
@@ -5108,6 +5114,7 @@
 		{
 			"name": "Shadow Walk",
 			"source": "RHW",
+			"page": 24,
 			"className": "Sorcerer",
 			"classSource": "XPHB",
 			"subclassShortName": "Shadow",
@@ -5121,6 +5128,7 @@
 		{
 			"name": "Umbral Form",
 			"source": "RHW",
+			"page": 24,
 			"className": "Sorcerer",
 			"classSource": "XPHB",
 			"subclassShortName": "Shadow",
@@ -5302,19 +5310,19 @@
 					],
 					"rows": [
 						[
-							"3rd",
+							"3",
 							"{@spell Arms of Hadar|XPHB}, {@spell Calm Emotions|XPHB}, {@spell Detect Thoughts|XPHB}, {@spell Dissonant Whispers|XPHB}, {@spell Mind Sliver|XPHB}"
 						],
 						[
-							"5th",
+							"5",
 							"{@spell Hunger of Hadar|XPHB}, {@spell Sending|XPHB}"
 						],
 						[
-							"7th",
+							"7",
 							"{@spell Evard's Black Tentacles|XPHB}, {@spell Summon Aberration|XPHB}"
 						],
 						[
-							"9th",
+							"9",
 							"{@spell Rary's Telepathic Bond|XPHB}, {@spell Telekinesis|XPHB}"
 						]
 					]
@@ -5477,19 +5485,19 @@
 					],
 					"rows": [
 						[
-							"3rd",
+							"3",
 							"{@spell Aid|XPHB}, {@spell Alarm|XPHB}, {@spell Lesser Restoration|XPHB}, {@spell Protection from Evil and Good|XPHB}"
 						],
 						[
-							"5th",
+							"5",
 							"{@spell Dispel Magic|XPHB}, {@spell Protection From Energy|XPHB}"
 						],
 						[
-							"7th",
+							"7",
 							"{@spell Freedom of Movement|XPHB}, {@spell Summon Construct|XPHB}"
 						],
 						[
-							"9th",
+							"9",
 							"{@spell Greater Restoration|XPHB}, {@spell Wall of Force|XPHB}"
 						]
 					]
@@ -5684,19 +5692,19 @@
 					],
 					"rows": [
 						[
-							"3rd",
+							"3",
 							"{@spell Alter Self|XPHB}, {@spell Chromatic Orb|XPHB}, {@spell Command|XPHB}, {@spell Dragon's Breath|XPHB}"
 						],
 						[
-							"5th",
+							"5",
 							"{@spell Fear|XPHB}, {@spell Fly|XPHB}"
 						],
 						[
-							"7th",
+							"7",
 							"{@spell Arcane Eye|XPHB}, {@spell Charm Monster|XPHB}"
 						],
 						[
-							"9th",
+							"9",
 							"{@spell Legend Lore|XPHB}, {@spell Summon Dragon|XPHB}"
 						]
 					]
@@ -5855,7 +5863,7 @@
 						],
 						[
 							"17\u201320",
-							"You are subjected to an effect that lasts for 1 minute unless its description says otherwise. Roll {@dice 1d8} to determine the effect: on a 1, you're surrounded by faint, ethereal music only you and creatures within 5 feet of you can hear; on a 2, your size increases by one size category; on a 3, you grow a long beard made of feathers that remains until you sneeze, at which point the feathers explode from your face and vanish; on a 4, you must shout when you speak; on a 5, illusory butterflies flutter in the air within 10 feet of you; on a 6, an eye appears on your forehead, granting you {@variantrule Advantage|XPHB} on Wisdom ({@skill Perception|XPHB}) checks; on an 7, pink bubbles float out of your mouth whenever you speak; on an 8, your skin turns a vibrant shade of blue for 24 hours or until the effect is ended by a {@spell Remove Curse|XPHB} spell."
+							"You are subjected to an effect that lasts for 1 minute unless its description says otherwise. Roll {@dice 1d8} to determine the effect: on a 1, you're surrounded by faint, ethereal music only you and creatures within 5 feet of you can hear; on a 2, your size increases by one size category; on a 3, you grow a long beard made of feathers that remains until you sneeze, at which point the feathers explode from your face and vanish; on a 4, you must shout when you speak; on a 5, illusory butterflies flutter in the air within 10 feet of you; on a 6, an eye appears on your forehead, granting you {@variantrule Advantage|XPHB} on Wisdom ({@skill Perception|XPHB}) checks; on a 7, pink bubbles float out of your mouth whenever you speak; on an 8, your skin turns a vibrant shade of blue for 24 hours or until the effect is ended by a {@spell Remove Curse|XPHB} spell."
 						],
 						[
 							"21\u201324",
@@ -5935,7 +5943,7 @@
 						],
 						[
 							"97\u201300",
-							"Roll {@dice 1d6} On a 1, you regain {@dice 2d10} {@variantrule Hit Points|XPHB}; on a 2, one ally of your choice within 300 feet of you regains {@dice 2d10} {@variantrule Hit Points|XPHB}; on a 3, you regain your lowest-level expended spell slot; on a 4, one ally of your choice within 300 feet of you regains their lowest-level expended spell slot; on a 5, you regain all your expended Sorcery Points; on a 6, all the effects of row 17\u201320 affect you simultaneously."
+							"Roll {@dice 1d6}. On a 1, you regain {@dice 2d10} {@variantrule Hit Points|XPHB}; on a 2, one ally of your choice within 300 feet of you regains {@dice 2d10} {@variantrule Hit Points|XPHB}; on a 3, you regain your lowest-level expended spell slot; on a 4, one ally of your choice within 300 feet of you regains their lowest-level expended spell slot; on a 5, you regain all your expended Sorcery Points; on a 6, all the effects of row 17\u201320 affect you simultaneously."
 						]
 					],
 					"data": {

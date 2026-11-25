@@ -106,6 +106,12 @@
 		$rgb-source-EFA: #827d4d;
 		$rgb-source-CaBoMP: #832c5a;
 		$rgb-source-RHW: #7e2327;
+		$rgb-source-AU: #b9618a;
+		$rgb-source-AUD: #729c3c;
+		$rgb-source-HFLotT: #1465a2;
+		$rgb-source-PL: #29be18;
+		$rgb-source-WoW: #0087b0;
+		$rgb-source-ICC: #1fb6e4;
 
 		// region Categories
 
@@ -569,8 +575,33 @@
 				@include mix-source-color($rgb-source-CaBoMP);
 			}
 
-			&RHW {
+			&RHW,
+			&XScreenRHW {
 				@include mix-source-color($rgb-source-RHW);
+			}
+
+			&AU {
+				@include mix-source-color($rgb-source-AU);
+			}
+
+			&AUD {
+				@include mix-source-color($rgb-source-AUD);
+			}
+
+			&HFLotT {
+				@include mix-source-color($rgb-source-HFLotT);
+			}
+
+			&PL {
+				@include mix-source-color($rgb-source-PL);
+			}
+
+			&WoW {
+				@include mix-source-color($rgb-source-WoW);
+			}
+
+			&ICC {
+				@include mix-source-color($rgb-source-ICC);
 			}
 		}
 		// endregion

@@ -1818,6 +1818,12 @@
 					}
 				}
 			},
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
 			"hp": {
 				"average": 49,
 				"formula": "9d8 + 9"
@@ -2301,7 +2307,7 @@
 				{
 					"name": "Change Shape",
 					"entries": [
-						"The druid magically polymorphs into a beast form\u2014fox, mountain goat, owl, or wolf\u2014or back into its humanoid form. Any equipment it is wearing or carrying is absorbed or borne by the beast form (the druid's choice). It reverts to its humanoid form when it dies. The druid's statistics are the same in each form, except where noted in this stat block."
+						"The druid magically polymorphs into a beast form\u2014{@creature fox|IDRotF}, {@creature mountain goat|IDRotF}, {@creature owl}, or {@creature wolf}\u2014or back into its humanoid form. Any equipment it is wearing or carrying is absorbed or borne by the beast form (the druid's choice). It reverts to its humanoid form when it dies. The druid's statistics are the same in each form, except where noted in this stat block."
 					]
 				}
 			],
@@ -3556,6 +3562,47 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Gromin'gorn",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "IDRotF",
+			"page": 140,
+			"_copy": {
+				"name": "Frost Giant",
+				"source": "MM",
+				"_mod": {
+					"action": [
+						{
+							"mode": "replaceArr",
+							"replace": "Multiattack",
+							"items": {
+								"name": "Multiattack",
+								"entries": [
+									"Gromin'gorn makes two Anvil Chain attacks."
+								]
+							}
+						},
+						{
+							"mode": "replaceArr",
+							"replace": "Greataxe",
+							"items": {
+								"name": "Anvil Chain",
+								"entries": [
+									"{@atk mw} {@hit 9} to hit, reach 10 ft., one target. {@h}25 ({@damage 3d12 + 6}) bludgeoning damage."
+								]
+							}
+						}
+					]
+				}
+			},
+			"tokenCredit": "Adam Barker",
+			"tokenCustom": true,
+			"damageTags": [
+				"B"
+			],
+			"hasToken": true
+		},
+		{
 			"name": "Gunvald Halraggson",
 			"isNpc": true,
 			"isNamedCreature": true,
@@ -3773,14 +3820,6 @@
 							"with": "Hengar",
 							"flags": "i"
 						}
-					],
-					"_": [
-						{
-							"mode": "addSkills",
-							"skills": {
-								"survival": 1
-							}
-						}
 					]
 				}
 			},
@@ -3794,6 +3833,11 @@
 				"N",
 				"G"
 			],
+			"skill": {
+				"athletics": "+10",
+				"intimidation": "+5",
+				"survival": "+5"
+			},
 			"languages": [
 				"Common"
 			],
@@ -4524,13 +4568,16 @@
 				"L",
 				"E"
 			],
+			"languages": [
+				"Common",
+				"Infernal"
+			],
 			"senseTags": [
 				"D"
 			],
 			"languageTags": [
 				"C",
-				"I",
-				"X"
+				"I"
 			],
 			"damageTagsSpell": [
 				"F",
@@ -4646,6 +4693,7 @@
 				"Common",
 				"Infernal"
 			],
+			"tokenCredit": "Anon",
 			"tokenCustom": true,
 			"languageTags": [
 				"C",
@@ -5993,7 +6041,7 @@
 				{
 					"name": "Ice Dagger",
 					"entries": [
-						"{@atk rw} {@hit 5} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}5 ({@damage 1d4 + 3}) piercing damage plus 5 ({@damage 2d4}) cold damage."
+						"{@atk mw,rw} {@hit 5} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}5 ({@damage 1d4 + 3}) piercing damage plus 5 ({@damage 2d4}) cold damage."
 					]
 				}
 			],

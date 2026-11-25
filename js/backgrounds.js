@@ -30,29 +30,30 @@ class BackgroundSublistManager extends SublistManager {
 			skills,
 		];
 
-		const ele = ee`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
 				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`
-			.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
-			.onn("click", evt => this._listSub.doSelect(listItem, evt));
+			.vee.onn("contextmenu", evt => this._handleSublistItemContextMenu(evt, listItem))
+			.vee.onn("click", evt => this._listSub.doSelect(listItem, evt));
 
-		const listItem = new ListItem(
-			hash,
+		const listItem = new ListItem({
+			id: hash,
 			ele,
 			name,
-			{
-				hash,
+			values: {
 				source: Parser.sourceJsonToAbv(it.source),
-				page: it.page,
+				...ListItem.getCommonValues(it),
 				skills,
 			},
-			{
+			data: {
+				hash,
+				page: it.page,
 				entity: it,
 				mdRow: [...cellsText],
 			},
-		);
+		});
 		return listItem;
 	}
 }
@@ -94,21 +95,22 @@ class BackgroundPage extends ListPage {
 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(bg.source)}  ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(bg.source)}">${source}</span>
 		</a>`;
 
-		const listItem = new ListItem(
-			bgI,
-			eleLi,
+		const listItem = new ListItem({
+			id: bgI,
+			ele: eleLi,
 			name,
-			{
-				hash,
+			values: {
 				source,
-				page: bg.page,
+				...ListItem.getCommonValues(bg),
 				ability: bg._slAbility,
 				skills: bg._skillDisplay,
 			},
-			{
+			data: {
+				hash,
+				page: bg.page,
 				isExcluded,
 			},
-		);
+		});
 
 		eleLi.addEventListener("click", (evt) => this._list.doSelect(listItem, evt));
 		eleLi.addEventListener("contextmenu", (evt) => this._openContextMenu(evt, this._list, listItem));
@@ -117,7 +119,7 @@ class BackgroundPage extends ListPage {
 	}
 
 	_renderStats_doBuildStatsTab ({ent}) {
-		this._pgContent.empty().appends(RenderBackgrounds.getRenderedBackground(ent));
+		this._pgContent.vee.empty().vee.appends(RenderBackgrounds.getRenderedBackground(ent));
 	}
 }
 

@@ -1,5 +1,5 @@
 @use "vars/vars";
-@use "vars/vars-night";
+@use "vars/vars--night";
 
 @layer vetools {
 	// region Custom statblock styling
@@ -12,7 +12,7 @@
 
 	.ve-night-mode {
 		#pagecontent {
-			background: vars-night.$rgb-bg--night !important;
+			background: vars--night.$rgb-bg--night !important;
 		}
 	}
 	// endregion
@@ -48,7 +48,7 @@
 	}
 
 	.ve-night-mode [data-proficiency-dice-mode="dice"] .ve-rd__dc--rollable {
-		color: vars-night.$rgb-link-blue--night;
+		color: vars--night.$rgb-link-blue--night;
 	}
 	// endregion
 

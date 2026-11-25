@@ -1,4 +1,4 @@
-import {EncounterBuilderCreatureMeta} from "./encounterbuilder/encounterbuilder-models.js";
+import {EncounterBuilderCreatureGroupEntityCreature} from "./encounterbuilder/encounterbuilder-models-creaturegroup.js";
 import {EncounterBuilderComponentBestiary} from "./bestiary/bestiary-encounterbuilder-component.js";
 
 export class ListUtilBestiary extends ListUtilEntity {
@@ -31,10 +31,10 @@ export class ListUtilBestiary extends ListUtilEntity {
 }
 
 export class EncounterBuilderHelpers {
-	static getSublistedCreatureMeta ({sublistItem}) {
+	static getSublistedCreatureGroup ({sublistItem}) {
 		const mon = sublistItem.data.entityBase;
 
-		return new EncounterBuilderCreatureMeta({
+		return new EncounterBuilderCreatureGroupEntityCreature({
 			id: sublistItem.data.collectionId,
 
 			creature: sublistItem.data.entity,
