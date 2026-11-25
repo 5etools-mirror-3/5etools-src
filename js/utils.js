@@ -1516,7 +1516,7 @@ class ElementUtil {
 		static _disableSpellcheck () {
 			// avoid setting input type to "search" as it visually offsets the contents of the input
 			return this
-				.vee.attr("autocomplete", "new-password")
+				.vee.attr("autocomplete", "off")
 				.vee.attr("autocapitalize", "off")
 				.vee.attr("spellcheck", "false")
 				.vee.attr("inputmode", "text")
