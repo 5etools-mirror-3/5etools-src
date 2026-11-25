@@ -3343,6 +3343,7 @@ Parser.SRC_SCREEN_DUNGEON_KIT = "ScreenDungeonKit";
 Parser.SRC_SCREEN_SPELLJAMMER = "ScreenSpelljammer";
 Parser.SRC_XSCREEN = "XScreen";
 Parser.SRC_XSCREEN_RHW = "XScreenRHW";
+Parser.SRC_XSCREEN_WoW = "XScreenWoW";
 Parser.SRC_HF = "HF";
 Parser.SRC_HFFotM = "HFFotM";
 Parser.SRC_HFStCM = "HFStCM";
@@ -3558,6 +3559,7 @@ Parser.SOURCE_JSON_TO_FULL[Parser.SRC_SCREEN_DUNGEON_KIT] = "Dungeon Master's Sc
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_SCREEN_SPELLJAMMER] = "Dungeon Master's Screen: Spelljammer";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_XSCREEN] = "Dungeon Master's Screen (2024)";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_XSCREEN_RHW] = "Dungeon Master's Screen; Ravenloft: The Horrors Within";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_XSCREEN_WoW] = "Dungeon Master's Screen; World of Warcraft";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_HF] = "Heroes' Feast";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_HFFotM] = "Heroes' Feast: Flavors of the Multiverse";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_HFStCM] = "Heroes' Feast: Saving the Children's Menu";
@@ -3751,6 +3753,7 @@ Parser.SOURCE_JSON_TO_ABV[Parser.SRC_SCREEN_DUNGEON_KIT] = "ScrDun";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_SCREEN_SPELLJAMMER] = "ScrSJ";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_XSCREEN] = "Scr'24";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_XSCREEN_RHW] = "ScrRHW";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_XSCREEN_WoW] = "ScrWoW";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_HF] = "HF";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_HFFotM] = "HFFotM";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_HFStCM] = "HFStCM";
@@ -3943,6 +3946,7 @@ Parser.SOURCE_JSON_TO_DATE[Parser.SRC_SCREEN_DUNGEON_KIT] = "2020-09-21";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_SCREEN_SPELLJAMMER] = "2022-08-16";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_XSCREEN] = "2024-11-12";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_XSCREEN_RHW] = "2026-06-16";
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_XSCREEN_WoW] = "2026-11-17";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_HF] = "2020-10-27";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_HFFotM] = "2023-11-07";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_HFStCM] = "2023-11-21";
@@ -4216,7 +4220,6 @@ Parser.SOURCES_VANILLA = new Set([
 	Parser.SRC_MPMM,
 	// Parser.SRC_SCREEN, // "Legacy" source, removed in favor of XSCREEN
 	Parser.SRC_XSCREEN,
-	Parser.SRC_XSCREEN_RHW,
 	Parser.SRC_SCREEN_WILDERNESS_KIT,
 	Parser.SRC_SCREEN_DUNGEON_KIT,
 	Parser.SRC_VD,
@@ -4299,11 +4302,13 @@ Parser.SOURCES_NON_FR = new Set([
 	Parser.SRC_PL,
 	Parser.SRC_WoW,
 	Parser.SRC_ICC,
+	Parser.SRC_XSCREEN_WoW,
 ]);
 
 Parser.SOURCES_UNIVERSES_BEYOND = new Set([
 	Parser.SRC_WoW,
 	Parser.SRC_ICC,
+	Parser.SRC_XSCREEN_WoW,
 ]);
 
 // endregion
@@ -4365,6 +4370,7 @@ Parser.SOURCES_AVAILABLE_DOCS_BOOK = {};
 	Parser.SRC_AU,
 	Parser.SRC_PL,
 	Parser.SRC_WoW,
+	Parser.SRC_XSCREEN_WoW,
 ].forEach(src => {
 	Parser.SOURCES_AVAILABLE_DOCS_BOOK[src] = src;
 	Parser.SOURCES_AVAILABLE_DOCS_BOOK[src.toLowerCase()] = src;
