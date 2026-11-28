@@ -184,7 +184,7 @@ const pMain = async () => {
 		return;
 	}
 
-	fs.writeFileSync(pathWords, [...wordsExisting, ...toAdd].sort(SortUtil.ascSortLower).join("\n"), "utf-8");
+	fs.writeFileSync(pathWords, [...wordsExisting, ...toAdd].sort(SortUtil.ascSortLowerSpellcheck).join("\n"), "utf-8");
 	console.log(`Added ${toAdd.length} words to "${pathWords}".`);
 };
 

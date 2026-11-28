@@ -4364,6 +4364,19 @@ globalThis.SortUtil = class {
 		return SortUtil._ascSort(a, b);
 	}
 
+	static ascSortLowerSpellcheck (a, b) {
+		if (typeof FilterItem !== "undefined") {
+			if (a instanceof FilterItem) a = a.item;
+			if (b instanceof FilterItem) b = b.item;
+		}
+
+		const lowerA = a ? a.toLowerCase() : a;
+		const lowerB = b ? b.toLowerCase() : b;
+
+		return SortUtil._ascSort(lowerA, lowerB)
+			|| SortUtil._ascSort(a, b);
+	}
+
 	static _COLLATOR_NORMALIZED = new Intl.Collator(
 		undefined,
 		{
