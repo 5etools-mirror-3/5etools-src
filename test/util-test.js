@@ -24,6 +24,7 @@ export const BLOCKLIST_SOURCES_PAGES = new Set([
 	Parser.SRC_FFotR,
 	Parser.SRC_BQGT,
 	Parser.SRC_ABH,
+	Parser.SRC_PL,
 
 	// N.b.: other MCV source creatures mysteriously have page numbers on Beyond
 	Parser.SRC_MCV4EC,
@@ -36,6 +37,7 @@ export const BLOCKLIST_SOURCES_PAGES = new Set([
 	Parser.SRC_SCREEN_SPELLJAMMER,
 	Parser.SRC_XSCREEN,
 	Parser.SRC_XSCREEN_RHW,
+	Parser.SRC_XSCREEN_WoW,
 	// endregion
 
 	// region Sources which are formats other than books, and therefore "pageless"
